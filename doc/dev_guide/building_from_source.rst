@@ -57,7 +57,7 @@ the preferences can differ. But strategically the steps are always the same.
               python python-pip python-setuptools python-dev \
               python-msgpack python-yaml python-argparse python-six python-gevent
 
-   * For RHEL/CentOS/Fedora, say:
+   * For RHEL/CentOS (versions under 8)/Fedora, say:
 
      .. code-block:: console
 
@@ -67,6 +67,19 @@ the preferences can differ. But strategically the steps are always the same.
                libunwind-devel libicu-devel \
                python python-pip python-setuptools python-devel \
                python-msgpack python-yaml python-argparse python-six python-gevent
+
+   * For CentOS 8, say:
+
+     .. code-block:: console
+
+         $ yum install epel-release
+         $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | sudo bash
+         $ yum install -y gcc gcc-c++ cmake make coreutils sed \
+               autoconf automake libtool zlib-devel \
+               readline-devel ncurses-devel openssl-devel \
+               libunwind-devel libicu-devel \
+               python2 python2-pip python2-setuptools python2-devel \
+               python2-yaml python2-six
 
    * For Mac OS X (instructions below are for OS X El Capitan):
 
