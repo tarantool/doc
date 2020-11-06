@@ -10,6 +10,8 @@
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
 * :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
 * :ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>`
+* :ref:`election_mode <cfg_replication-election_mode>`
+* :ref:`election_timeout <cfg_replication-election_timeout>`
 
 
 .. _cfg_replication-replication:
@@ -436,3 +438,25 @@
     | Type: number
     | Default: 5
     | Dynamic: **yes**
+
+.. _cfg_replication-election_mode:
+
+.. confval:: election_mode
+
+    Since version 2.6.1.
+
+
+    | Type:
+    | Default:
+    | Dynamic:
+
+.. _cfg_replication-election_timeout:
+
+.. confval:: election_timeout
+
+    Since version 2.6.1.
+
+
+    | Type:
+    | Default:
+    | Dynamic:

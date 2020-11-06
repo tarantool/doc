@@ -4,9 +4,8 @@
 Leader election
 ================================================================================
 
-Starting from the version 2.6.1, Tarantool has the built-in functionality/feature
-ensuring/guaranteeing the automated leader election
-[in case of the leader node's falling down in a cluster].
+Starting from the version 2.6.1, Tarantool has the built-in functionality
+ensuring the automated leader election in a replica set.
 This functionality increases fault tolerance of the systems
 built on the base of Tarantool and decreases/removes dependency on
 the external tools for cluster management
@@ -106,7 +105,10 @@ Raft Basics
 ~~~~~~~~~~~~~
 
 A Raft cluster contains several servers; five is a typical number,
-which allows the system to tolerate failure of two servers.
+which allows the system to tolerate failure of two servers. Minimal number is
+three.
+
+.. _repl_leader_elect_state:
 
 ^^^^^^^^^
 States
@@ -328,7 +330,7 @@ functioning of Raft algorithm for a given cluster node (server),
 specifically the leader election process:
 
 
-``election_role`` –- specifies the role of a cluster node during leader election.
+``election_mode`` –- specifies the role of a cluster node during leader election.
 
 Possible values:
 
@@ -355,7 +357,7 @@ for synchronous replication is reused: ``replication_synchro_quorum`` [link to t
 The election quorum should be the strict majority of the nodes' votes
 which means minimum N/2+1 where N is the number of nodes in the cluster.
 
-3. We reuse the ``replication_timeout option`` [https://www.tarantool.io/en/doc/latest/reference/configuration/#cfg-replication-replication-timeout]
+3. We reuse the ``replication_timeout`` option [https://www.tarantool.io/en/doc/latest/reference/configuration/#cfg-replication-replication-timeout]
 to define the timeout when a follower does not receive a heartbeat
 from the current leader and assumes there is no viable leader and begins
 an election to choose a new one.
@@ -398,7 +400,7 @@ Its complete description can be found here: https://raft.github.io/raft.pdf.
 In Tarantool synchronous replication and leader election are supported
 as two separate subsystems. So it is possible to get synchronous replication,
 but use something non-Raft for leader election. And vice versa -- elect a leader
-in the cluster, but not use synchronous spaces at all.
+in the cluster, but don't use synchronous spaces at all.
 Synchronous replication has a separate documentation section [todo - link].
 Leader election is described here.
 
@@ -406,20 +408,22 @@ Leader election is described here.
 Automated leader election
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Automated leader election in Tarantool helps to guarantee that in a cluster
+Automated leader election in Tarantool helps guarantee that in a replica set
 there is at most one leader at any given moment of time.
 Leader is a writable node, and all other nodes are non-writable --
 they accept exclusively read-only requests. This can be useful when an application
-does not want to support master-master replication, and it is necessary to somehow
-ensure only one node will accept new transactions and commit them successfully.
+doesn't want to support master-master replication, and it is necessary to
+ensure that only one node accepts new transactions and commit them successfully.
 
-When election is enabled life cycle of the cluster is divided into so called 'terms'.
+When election is enabled, life cycle of a replica set is divided into so called 'terms'.
 Each term is described by a monotonically growing number.
-Each node, after first boot, has it equal 1. When a node sees that it is not a leader,
+Each node, after first boot, has it equal to 1. When a node sees that it is not a leader,
 and there is no a leader available for some time, it increases the term,
-and starts new leader election round. Leader election happens via votes.
-Nodes, who started the election, vote for self, and send vote requests to other nodes.
-The ones, who got a vote request, vote for a first of them, and then can't do
+and starts new leader election round.
+
+Leader election happens via votes.
+The node which started the election votes for itself and sends vote requests to other nodes.
+The ones, who got a vote request, vote for the first of them, and then can't do
 anything in the same term but wait for a leader being elected.
 If there is a node collected a quorum of votes, it becomes a leader,
 and notifies other nodes about that. Also a split-vote can happen,
@@ -508,6 +512,8 @@ still can vote, become a leader.
 Monitoring
 ~~~~~~~~~~~~
 
+[todo] redirect to box.info page
+
 To see the current state of the node regarding leader election there is ``box.info.election``.
 
 .. code-block:: console
@@ -522,21 +528,22 @@ To see the current state of the node regarding leader election there is ``box.in
 
 It shows the node state, term, vote in the current term,
 and leader ID of the current term. IDs in the info output are the replica IDs
-visible in ``box.info.id`` output on each node and in _cluster space.
+visible in ``box.info.id`` output on each node and in ``_cluster`` space.
 0 vote means the node didn't vote in the current term.
 0 leader means the node does not know who is a leader in the current term.
-State can be follower, candidate, leader.
+State can be ``follower``, ``candidate``, ``leader``.
 When election is enabled, only in leader state the node is writable.
 
-Election implementation based on Raft logs all its actions with 'RAFT:' prefix. Actions such as new Raft message handling, state change, vote, term bump, and so on.
+Election implementation based on Raft logs all its actions with 'RAFT:' prefix.
+Actions such as new Raft message handling, state change, vote, term bump, and so on.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Important notes to keep in mind
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Leader election won't work properly if the election quorum is set <= ``cluster size / 2``
-because in that case a split brain can happen, when 2 leaders are elected.
-For example, assume there were 5 nodes. When quorum is set to 2, node1 and node2
+Leader election won't work properly if the election quorum is set less or equal than ``cluster_size / 2``
+because in that case a split vote can happen when 2 leaders are elected.
+For example, assume there are 5 nodes. When quorum is set to 2, node1 and node2
 can both vote for node1. Node3 and node4 can both vote for node5.
 Node1 and node5 both win the election. When the quorum is set
 to the cluster majority, it won't ever happen.

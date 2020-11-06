@@ -48,6 +48,8 @@ variables.
 * **vinyl()** returns runtime statistics for the vinyl storage engine.
   This function is deprecated, use
   :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>` instead.
+* **election** shows the current state of a replica set node regarding leader
+  election (see :ref:`below <box_info_election>`).
 
 .. _box_info:
 
@@ -170,7 +172,7 @@ variables.
     * unix/:<path> for UNIX domain sockets
     * <ip>:<port> for IPv4
     * [ip]:<port> for IPv6
-    
+
     If an instance does not listen to anything, ``box.info.listen`` is nil.
 
     **Example:**
@@ -292,7 +294,7 @@ variables.
       * ``follow`` means that downstream replication is in progress
         (instance *n* is ready to accept data from the master or is currently doing so)
 
-    * :samp:`replication[{n}].downstream.message` and 
+    * :samp:`replication[{n}].downstream.message` and
       :samp:`replication[{n}].downstream.system_message`
       will be nil unless a problem occurs with the connection.
       For example, if instance *n* goes down, then one may see
@@ -352,3 +354,37 @@ variables.
     replica performs some local space operations.
     To find out the ``lsn`` of a specific anonymous replica, you have to issue ``box.info.lsn`` on
     it.
+
+.. _box_info_election:
+
+.. function:: box.info.election
+
+   Shows the current state of a replica set node in regards to
+   :ref:`leader election <repl_leader_elect>`, namely,
+   election state (mode), election term, vote in the current term,
+   and the leader ID of the current term.
+
+   **Example:**
+
+   .. code-block:: tarantoolsession
+
+      tarantool> box.info.election
+      ---
+      - state: follower
+        vote: 0
+        leader: 0
+        term: 1
+      ...
+
+   IDs in the ``box.info.election`` output are the replica IDs visible in
+   the ``box.info.id`` output on each node and in the ``_cluster`` space.
+
+   :ref:`State <repl_leader_elect_state>` can be ``leader``, ``follower``,
+   or ``candidate``. Also, refer to the information on `configuring <cfg_replication-election_mode>`
+   node's election mode. When election is enabled, the node is writable only in
+   the ``leader`` state.
+
+   ``vote`` equals ``0`` means the node didn't vote in the current term.
+
+   ``leader`` equals ``0`` means the node doesn't know who a leader in
+   the current term is.
