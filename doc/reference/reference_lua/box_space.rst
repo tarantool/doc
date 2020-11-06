@@ -340,6 +340,9 @@ Below is a list of all ``box.space`` functions and members.
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | func                | :ref:`functional index <box_space-index_func>`        | string                           | not present                   |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+            | hint                | affects TREE only. ``true`` makes an index work       | boolean                          | ``true``                      |
+            |                     | faster, ``false`` -- an index size is reduced by half |                                  |                               |
+            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
             The options in the above chart are also applicable for :ref:`index_object:alter() <box_index-alter>`.
 
