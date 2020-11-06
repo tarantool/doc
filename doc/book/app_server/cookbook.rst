@@ -255,8 +255,8 @@ print_arrays.lua
 
 Create Lua tables, and print them.
 Notice that for the 'array' table the iterator function
-is ipairs(), while for the 'map' table the iterator function
-is pairs(). (`ipairs()` is faster than `pairs()`, but pairs()
+is ``ipairs()``, while for the 'map' table the iterator function
+is pairs(). (``ipairs()`` is faster than ``pairs()``, but ``pairs()``
 is recommended for map-like tables or mixed tables.)
 The display will look like:
 "1 Apple | 2 Orange | 3 Grapefruit | 4 Banana | k3 v3 | k1 v1 | k2 v2".
@@ -679,13 +679,13 @@ to get data via HTTP.
 
     local http_client = require('http.client')
     local json = require('json')
-    local r = http_client.get('http://api.openweathermap.org/data/2.5/weather?q=Oakland,us')
+    local r = http_client.get('https://api.frankfurter.app/latest?to=USD%2CRUB')
     if r.status ~= 200 then
-        print('Failed to get weather forecast ', r.reason)
+        print('Failed to get currency ', r.reason)
         return
     end
     local data = json.decode(r.body)
-    print('Oakland wind speed: ', data.wind.speed)
+    print(data.base, 'rate of', data.date, 'is', data.rates.RUB, 'RUB or', data.rates.USD, 'USD')
 
 .. _cookbook-http_send:
 
@@ -703,7 +703,7 @@ to send data via HTTP.
     local http_client = require('http.client')
     local json = require('json')
     local data = json.encode({ Key = 'Value'})
-    local headers = { Token = 'xxxx', ['X-Secret-Value'] = 42 }
+    local headers = { Token = 'xxxx', ['X-Secret-Value'] = '42' }
     local r = http_client.post('http://localhost:8081', data, { headers = headers})
     if r.status == 200 then
         print 'Success'
@@ -723,11 +723,13 @@ to turn Tarantool into a web server.
     #!/usr/bin/env tarantool
 
     local function handler(self)
-        return self:render{ json = { ['Your-IP-Is'] = self.peer.host } }
+        return self:render{ json = { ['Your-IP-Is'] = self:peer().host } }
     end
 
     local server = require('http.server').new(nil, 8080) -- listen *:8080
-    server:route({ path = '/' }, handler)
+    local router = require('http.router').new({charset = "utf8"})
+    server:set_router(router)
+    router:route({ path = '/' }, handler)
     server:start()
     -- connect to localhost:8080 and see json
 
@@ -753,7 +755,9 @@ to learn new languages in order to write templates.
     end
 
     local server = require('http.server').new(nil, 8080) -- nil means '*'
-    server:route({ path = '/', file = 'index.html.lua' }, handler)
+    local router = require('http.router').new({charset = "utf8"})
+    server:set_router(router)
+    router:route({ path = '/', file = 'index.html.lua' }, handler)
     server:start()
 
 An "HTML" file for this server, including Lua, could look like this
