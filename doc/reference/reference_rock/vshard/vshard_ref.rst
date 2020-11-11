@@ -371,13 +371,13 @@ Router public API
                            'write',
                            'customer_add',
                            {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}},
-                           {timeout = 100})
+                           {timeout = 5})
         -- or, the same thing but with a map for the second argument
         vshard.router.call(100,
                            {mode='write'},
                            'customer_add',
                            {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}},
-                           {timeout = 100})
+                           {timeout = 5})
 
 .. _router_api-callro:
 
@@ -536,7 +536,7 @@ Router public API
                 error(err)
             end
             for uid, replica in pairs(shards) do
-                local set = replica:callro('box.space.*space-name*:select', {{}, {limit=10}})
+                local set = replica:callro('box.space.*space-name*:select', {{}, {limit=10}}, {timeout=5})
                 for _, item in ipairs(set) do
                     table.insert(resultset, item)
                 end
@@ -587,9 +587,29 @@ Router public API
 
     .. code-block:: tarantoolsession
 
+        tarantool> vshard.router.bucket_count()
+        ---
+        - 3000
+        ...
+
+        tarantool> vshard.router.bucket_id_strcrc32("18374927634039")
+        ---
+        - 2032
+        ...
+
         tarantool> vshard.router.bucket_id_strcrc32(18374927634039)
         ---
-        - 8
+        - 2032
+        ...
+
+        tarantool> vshard.router.bucket_id_strcrc32("test")
+        ---
+        - 1216
+        ...
+
+        tarantool> vshard.router.bucket_id_strcrc32("other")
+        ---
+        - 2284
         ...
 
     .. Note::
@@ -891,7 +911,8 @@ Router public API
                      >     {{
                      >         1, bucket, 'Renata Litvinova',
                      >         {theatre="Moscow Art Theatre"}
-                     >     }}
+                     >     }},
+                     >     {timeout=5}
                      > )
 
 
