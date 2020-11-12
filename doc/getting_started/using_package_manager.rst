@@ -19,14 +19,12 @@ for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_
 Starting Tarantool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To start a Tarantool instance, say this:
+To start working with a Tarantool, run a terminal and say this:
 
 .. code-block:: console
 
-    $ # if you downloaded a package with apt-get or yum, say this:
-    $ /usr/bin/tarantool
-    $ # if you downloaded and untarred a package tarball to ~/tarantool, say this:
-    $ ~/tarantool/bin/tarantool
+    $ tarantool
+    $ # by doing this, you create a new Tarantool instance
 
 Tarantool starts in the interactive mode and displays a prompt:
 

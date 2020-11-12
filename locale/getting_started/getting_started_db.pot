@@ -222,13 +222,11 @@ msgstr ""
 msgid "Starting Tarantool"
 msgstr ""
 
-msgid "To start a Tarantool instance, say this:"
+msgid "To start working with a Tarantool, run a terminal and say this:"
 msgstr ""
 
-msgid "$ # if you downloaded a package with apt-get or yum, say this:\n"
-"$ /usr/bin/tarantool\n"
-"$ # if you downloaded and untarred a package tarball to ~/tarantool, say this:\n"
-"$ ~/tarantool/bin/tarantool"
+msgid "$ tarantool\n"
+"$ # by doing this, you create a new Tarantool instance"
 msgstr ""
 
 msgid "Tarantool starts in the interactive mode and displays a prompt:"
