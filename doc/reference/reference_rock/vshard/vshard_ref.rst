@@ -367,9 +367,17 @@ Router public API
 
     .. code-block:: lua
 
-        vshard.router.call(100, 'write', 'customer_add', {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}}, {timeout = 100})
+        vshard.router.call(100,
+                           'write',
+                           'customer_add',
+                           {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}},
+                           {timeout = 5})
         -- or, the same thing but with a map for the second argument
-        vshard.router.call(100, {mode='write'}, 'customer_add', {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}}, {timeout = 100})
+        vshard.router.call(100,
+                           {mode='write'},
+                           'customer_add',
+                           {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}},
+                           {timeout = 5})
 
 .. _router_api-callro:
 
@@ -521,7 +529,21 @@ Router public API
 
     .. code-block:: lua
 
-        replicasets = vshard.router.routeall()
+        function selectall()
+            local resultset = {}
+            shards, err = vshard.router.routeall()
+            if err ~= nil then
+                error(err)
+            end
+            for uid, replica in pairs(shards) do
+                local set = replica:callro('box.space.*space-name*:select', {{}, {limit=10}}, {timeout=5})
+                for _, item in ipairs(set) do
+                    table.insert(resultset, item)
+                end
+            end
+            table.sort(resultset, function(a, b) return a[1] < b[1] end)
+            return resultset
+        end
 
 .. _router_api-bucket_id:
 
@@ -563,9 +585,32 @@ Router public API
 
     **Example:**
 
-    .. code-block:: lua
+    .. code-block:: tarantoolsession
 
-        bucket_id = vshard.router.bucket_id_strcrc32(18374927634039)
+        tarantool> vshard.router.bucket_count()
+        ---
+        - 3000
+        ...
+
+        tarantool> vshard.router.bucket_id_strcrc32("18374927634039")
+        ---
+        - 2032
+        ...
+
+        tarantool> vshard.router.bucket_id_strcrc32(18374927634039)
+        ---
+        - 2032
+        ...
+
+        tarantool> vshard.router.bucket_id_strcrc32("test")
+        ---
+        - 1216
+        ...
+
+        tarantool> vshard.router.bucket_id_strcrc32("other")
+        ---
+        - 2284
+        ...
 
     .. Note::
 
@@ -642,6 +687,14 @@ Router public API
 
     :Return: the total number of buckets
     :Rtype: number
+
+    .. code-block:: tarantoolsession
+
+        tarantool> vshard.router.bucket_count()
+        ---
+        - 10000
+        ...
+
 
 .. _router_api-sync:
 
@@ -771,6 +824,27 @@ Router public API
 
     :Return: a map of the following type: ``{bucket_id = 'unknown'/replicaset_uuid}``
 
+    .. code-block:: tarantoolsession
+
+        tarantool> vshard.router.buckets_info()
+        ---
+        - - uuid: aaaaaaaa-0000-4000-a000-000000000000
+            status: available_rw
+          - uuid: aaaaaaaa-0000-4000-a000-000000000000
+            status: available_rw
+          - uuid: aaaaaaaa-0000-4000-a000-000000000000
+            status: available_rw
+          - uuid: bbbbbbbb-0000-4000-a000-000000000000
+            status: available_rw
+          - uuid: bbbbbbbb-0000-4000-a000-000000000000
+            status: available_rw
+          - uuid: bbbbbbbb-0000-4000-a000-000000000000
+            status: available_rw
+          - uuid: bbbbbbbb-0000-4000-a000-000000000000
+            status: available_rw
+        ...
+
+
 .. class:: replicaset_object
 
     .. _router_api-replicaset_call:
@@ -828,6 +902,19 @@ Router public API
 
             * result of ``function_name`` on success
             * nill, err otherwise
+
+        .. code-block:: lua
+
+            tarantool> local bucket = 1; return vshard.router.callrw(
+                     >     bucket,
+                     >     'box.space.actors:insert',
+                     >     {{
+                     >         1, bucket, 'Renata Litvinova',
+                     >         {theatre="Moscow Art Theatre"}
+                     >     }},
+                     >     {timeout=5}
+                     > )
+
 
     .. _router_api-replicaset_callro:
 
@@ -1098,7 +1185,7 @@ Storage public API
 
     .. code-block:: tarantoolsession
 
-        vshard.storage.buckets_info(1)
+        tarantool> vshard.storage.buckets_info(1)
         ---
         - 1:
             status: active
@@ -1152,6 +1239,47 @@ Storage public API
 .. function:: vshard.storage.sharded_spaces()
 
     Show the spaces that are visible to rebalancer and garbage collector fibers.
+
+    .. code-block:: tarantoolsession
+
+        tarantool> vshard.storage.sharded_spaces()
+        ---
+        - 513:
+            engine: memtx
+            before_replace: 'function: 0x010e50e738'
+            field_count: 0
+            id: 513
+            on_replace: 'function: 0x010e50e700'
+            temporary: false
+            index:
+              0: &0
+                unique: true
+                parts:
+                - type: number
+                  fieldno: 1
+                  is_nullable: false
+                id: 0
+                type: TREE
+                name: primary
+                space_id: 513
+              1: &1
+                unique: false
+                parts:
+                - type: number
+                  fieldno: 2
+                  is_nullable: false
+                id: 1
+                type: TREE
+                name: bucket_id
+                space_id: 513
+              primary: *0
+              bucket_id: *1
+            is_local: false
+            enabled: true
+            name: actors
+            ck_constraint: []
+        ...
+
 
 .. _vshard-storage_internal_api:
 
