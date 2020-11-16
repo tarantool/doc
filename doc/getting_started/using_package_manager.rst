@@ -11,7 +11,7 @@ An automatic build system creates, tests and publishes packages for every
 push into a corresponding branch (``1.10`` or ``2.2``) at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
 
-To download and install the package that is appropriate for your OS,
+To download and install the package that's appropriate for your OS,
 start a shell (terminal) and enter the command-line instructions provided
 for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_.
 
@@ -19,7 +19,7 @@ for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_
 Starting Tarantool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To start working with a Tarantool, run a terminal and say this:
+To start working with Tarantool, run a terminal and say this:
 
 .. code-block:: console
 
