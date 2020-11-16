@@ -2,8 +2,12 @@
 msgid "API reference"
 msgstr ""
 
-msgid "Contents"
-msgstr "Содержание"
+msgid ""
+"This section represents public and internal API for the :ref:`router "
+"<vshard-router>` and the :ref:`storage <vshard-storage>`."
+msgstr ""
+"В этом разделе представлен общедоступный и внутренний API для "
+":ref:`роутера <vshard-router>` и для :ref:`хранилища <vshard-storage>`."
 
 msgid "Subsection"
 msgstr "Раздел"

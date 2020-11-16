@@ -4,9 +4,8 @@
 API reference
 -------------------------------------------------------------------------------
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Contents
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This section represents public and internal API for the :ref:`router <vshard-router>`
+and the :ref:`storage <vshard-storage>`.
 
 .. container:: table
 
