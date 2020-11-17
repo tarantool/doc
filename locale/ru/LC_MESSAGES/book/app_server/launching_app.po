@@ -137,7 +137,7 @@ msgid ""
 "<building_from_source>`, we can launch our application:"
 msgstr ""
 "При запуске Tarantool'а из :ref:`пакета <getting_started-"
-"using_package_manager>` или :ref:`сборке из исходников "
+"using_package_manager>` или при :ref:`сборке из исходников "
 "<building_from_source>`, можно запустить наше приложение:"
 
 msgid "in the script mode,"
