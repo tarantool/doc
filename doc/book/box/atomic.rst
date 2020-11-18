@@ -244,3 +244,37 @@ via telnet, via one of the connectors, or via the
 
 After a fiber has yielded and then has regained control, it immediately issues
 :ref:`testcancel <fiber-testcancel>`.
+
+.. atomic-transactional-manager
+
+--------------------------------------------------------------------------------
+Transactional manager
+--------------------------------------------------------------------------------
+
+Since version 2.6.1, Tarantool has another option for transaction behaviour that
+allows yielding inside a memtx transaction. This is controled by
+the *transactional manager*.
+
+The transactional manager is designed for isolation of concurrent transactions
+and provides *serializable* `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_.
+It consists of two parts:
+
+* *MVCC engine*
+* *conflict manager*.
+
+The MVCC engine provides personal read views for transactions if necessary.
+The conflict manager tracks transactions' changes and determines their correctness
+in serialization order. Of course, once yielded, a transaction could interfere
+with other transactions and could be aborted due to conflict.
+
+Another important thing to mention is that the transaction manager
+provides non-classic snapshot isolation level. It means that a transaction
+can get a consistent snapshot of the database (that is common) but this snapshot
+is not necessarily bound to the moment of the beginning of the transaction
+(that is not common).
+The conflict manager makes decisions on whether and when each transaction gets
+which snapshot. That allows to avoid some conflicts comparing with classical
+snapshot isolation approach.
+
+The transactional manager can be switched on and off by the ``box.cfg`` option
+:ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`.
