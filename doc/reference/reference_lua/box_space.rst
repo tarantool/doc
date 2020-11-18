@@ -187,7 +187,7 @@ Below is a list of all ``box.space`` functions and members.
                               -- the meaning of these parameters is the same as in
                               :ref:`box.schema.space.create() <box_schema-space_create>`
 
-        :return: nothing in case of success, an error when fails
+        :return: nothing in case of success; an error when fails
 
         **Example:**
 
