@@ -210,25 +210,23 @@ msgstr ""
 msgid "This was a temporary container, and its disk/memory data were flushed when you stopped it. But since you mounted a data directory from the host in the container, Tarantool's data files were persisted to the host's disk. Now if you start a new container and mount that data directory in it, Tarantool will recover all data from disk and continue working with the persisted data."
 msgstr ""
 
-msgid "Using a binary package"
+msgid "Using a package manager"
 msgstr ""
 
-msgid "For production purposes, we recommend `official binary packages <http://tarantool.org/download.html>`_. You can choose from several Tarantool versions. An automatic build system creates, tests and publishes packages for every push into a corresponding branch (``1.10``, ``2.2``,  ``2.3`` or  ``2.4``) at `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_."
+msgid "For production purposes, we recommend to install Tarantool via `official package manager <http://tarantool.org/download.html>`_. You can choose one of three versions: LTS, stable, or beta. An automatic build system creates, tests and publishes packages for every push into a corresponding branch at `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_."
 msgstr ""
 
-msgid "To download and install the package that’s appropriate for your OS, start a shell (terminal) and enter the command-line instructions provided for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_."
+msgid "To download and install the package that's appropriate for your OS, start a shell (terminal) and enter the command-line instructions provided for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_."
 msgstr ""
 
 msgid "Starting Tarantool"
 msgstr ""
 
-msgid "To start a Tarantool instance, say this:"
+msgid "To start working with Tarantool, run a terminal and say this:"
 msgstr ""
 
-msgid "$ # if you downloaded a binary with apt-get or yum, say this:\n"
-"$ /usr/bin/tarantool\n"
-"$ # if you downloaded and untarred a binary tarball to ~/tarantool, say this:\n"
-"$ ~/tarantool/bin/tarantool"
+msgid "$ tarantool\n"
+"$ # by doing this, you create a new Tarantool instance"
 msgstr ""
 
 msgid "Tarantool starts in the interactive mode and displays a prompt:"
