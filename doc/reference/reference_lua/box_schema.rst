@@ -175,6 +175,9 @@ Below is a list of all ``box.schema`` functions.
         |               | of the local node but there is no                  |         |                     |
         |               | :ref:`replication <replication>`.                  |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
+        | is_sync       | any transaction doing a DML request on this space  | boolean | false               |
+        |               | becomes synchronous                                |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
         | temporary     | space contents are temporary:                      | boolean | false               |
         |               | changes are not stored in the                      |         |                     |
         |               | :ref:`write-ahead log <internals-wal>`             |         |                     |

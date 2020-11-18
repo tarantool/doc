@@ -21,7 +21,7 @@ msgstr ""
 "(получение), ``put`` (выдача). Также в модуле есть такие элементы, как "
 "id, и указание на активность спейса. Код вложенного модуля находится в "
 "файле `src/box/lua/schema.lua "
-"<https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_."
+"<https://github.com/tarantool/tarantool/blob/2.1/src/box/lua/schema.lua>`_."
 
 msgid "Index"
 msgstr "Индекс"
@@ -34,6 +34,12 @@ msgstr "Имя"
 
 msgid "Use"
 msgstr "Использование"
+
+msgid ":ref:`space_object:alter() <box_space-alter>`"
+msgstr ":ref:`space_object:alter() <box_space-alter>`"
+
+msgid "Alter a space"
+msgstr "Изменение спейса"
 
 msgid ":ref:`space_object:auto_increment() <box_space-auto>`"
 msgstr ""
@@ -305,6 +311,54 @@ msgid "(Metadata) List of settings affecting behavior of the current session"
 msgstr "(Метаданные) Список пользователей, доступных текущему пользователю"
 
 msgid ""
+"Since version 2.5.2. Alter an existing space. This method changes certain"
+" space parameters."
+msgstr ""
+"Для версий от 2.5.2 и выше. Изменение существующего спейса. Этот метод "
+"меняет определенные параметры спейса."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid ""
+"``field_count``, ``user``, ``format``, ``temporary``, ``is_sync``, and "
+"``name`` -- the meaning of these parameters is the same as in "
+":ref:`box.schema.space.create() <box_schema-space_create>`"
+msgstr ""
+"``field_count``, ``user``, ``format``, ``temporary``, ``is_sync``, и "
+"``name`` -- эти параметры имеют то же значение, что и параметры в "
+":ref:`box.schema.space.create() <box_schema-space_create>`"
+
+msgid "return"
+msgstr "возвращается"
+
+msgid "nothing in case of success; an error when fails"
+msgstr "ничего в случае успеха; ошибка при неудаче"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> s = box.schema.create_space('tester')\n"
+"---\n"
+"...\n"
+"tarantool> format = {{name = 'field1', type = 'unsigned'}}\n"
+"---\n"
+"...\n"
+"tarantool> s:alter({name = 'tester1', format = format})\n"
+"---\n"
+"...\n"
+"tarantool> s.name\n"
+"---\n"
+"- tester1\n"
+"...\n"
+"tarantool> s:format()\n"
+"---\n"
+"- [{'name': 'field1', 'type': 'unsigned'}]\n"
+"..."
+msgstr ""
+
+msgid ""
 "Insert a new tuple using an auto-increment primary key. The space "
 "specified by space_object must have an :ref:`'unsigned' or 'integer' or "
 "'number' <index-box_indexed-field-types>` primary key index of type "
@@ -323,17 +377,11 @@ msgstr ""
 "Данный метод объявлен устаревшим с версии 1.7.5 -- лучше использовать "
 ":ref:`последовательности <index-box_sequence>`."
 
-msgid "Parameters"
-msgstr "Параметры"
-
 msgid "an :ref:`object reference <app_server-object_reference>`"
 msgstr ":ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "tuple's fields, other than the primary-key field"
 msgstr "поля кортежа, не включая поле первичного ключа"
-
-msgid "return"
-msgstr "возвращается"
 
 msgid "the inserted tuple."
 msgstr "вставленный кортеж."
@@ -361,9 +409,6 @@ msgstr "неподходящий тип индекса;"
 
 msgid "primary-key indexed field is not a number."
 msgstr "проиндексированное поле первичного ключа не является числовым."
-
-msgid "**Example:**"
-msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester:auto_increment{'Fld#1', 'Fld#2'}\n"
