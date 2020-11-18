@@ -6,7 +6,7 @@ Using a package manager
 
 For production purposes, we recommend to install Tarantool via
 `official package manager <http://tarantool.org/download.html>`_.
-You can choose from tree versions: LTS, stable and beta.
+You can choose one of three versions: LTS, stable, or beta.
 An automatic build system creates, tests and publishes packages for every
 push into a corresponding branch at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
