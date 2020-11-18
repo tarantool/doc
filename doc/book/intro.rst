@@ -12,7 +12,7 @@ How to read the documentation
 
 To get started, you can install and launch Tarantool using
 :ref:`a Docker container <getting_started-using_docker>`,
-:ref:`a binary package <getting_started-using_binary>`,
+:ref:`a package manager <getting_started-using_package_manager>`,
 or the online Tarantool server at http://try.tarantool.org.
 Either way, as the first tryout, you can follow the introductory exercises
 from :ref:`Chapter 2 "Getting started" <getting_started>`.
