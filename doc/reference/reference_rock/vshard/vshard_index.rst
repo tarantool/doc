@@ -17,3 +17,4 @@ complete ``vshard`` documentation:
    vshard_admin
    vshard_quick
    vshard_ref
+   vshard_api
