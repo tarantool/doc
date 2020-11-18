@@ -334,7 +334,9 @@ msgid "is_sync"
 msgstr "is_sync"
 
 msgid "any transaction doing a DML request on this space becomes synchronous"
-msgstr "любая транзакция, выполняющая DML-запрос на этом спейсе, становится синхронной"
+msgstr ""
+"любая транзакция, выполняющая DML-запрос на этом спейсе, становится "
+"синхронной"
 
 msgid "temporary"
 msgstr "temporary (временный)"

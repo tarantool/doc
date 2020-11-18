@@ -331,8 +331,8 @@ msgstr ""
 msgid "return"
 msgstr "возвращается"
 
-msgid "nothing in case of success, an error when fails"
-msgstr "ничего в случае успеха, ошибка при неудаче"
+msgid "nothing in case of success; an error when fails"
+msgstr "ничего в случае успеха; ошибка при неудаче"
 
 msgid "**Example:**"
 msgstr "**Пример:**"

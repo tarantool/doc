@@ -296,7 +296,7 @@ msgstr ""
 msgid "return"
 msgstr ""
 
-msgid "nothing in case of success, an error when fails"
+msgid "nothing in case of success; an error when fails"
 msgstr ""
 
 msgid "**Example:**"
