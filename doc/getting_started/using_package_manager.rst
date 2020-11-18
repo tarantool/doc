@@ -1,17 +1,17 @@
-.. _getting_started-using_binary:
+.. _getting_started-using_package_manager:
 
 --------------------------------------------------------------------------------
-Using a binary package
+Using a package manager
 --------------------------------------------------------------------------------
 
-For production purposes, we recommend
-`official binary packages <http://tarantool.org/download.html>`_.
-You can choose from two Tarantool versions: ``1.10`` (stable) or ``2.2`` (beta).
+For production purposes, we recommend to install Tarantool via
+`official package manager <http://tarantool.org/download.html>`_.
+You can choose one of three versions: LTS, stable, or beta.
 An automatic build system creates, tests and publishes packages for every
-push into a corresponding branch (``1.10`` or ``2.2``) at
+push into a corresponding branch at
 `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
 
-To download and install the package that’s appropriate for your OS,
+To download and install the package that's appropriate for your OS,
 start a shell (terminal) and enter the command-line instructions provided
 for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_.
 
@@ -19,14 +19,12 @@ for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_
 Starting Tarantool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To start a Tarantool instance, say this:
+To start working with Tarantool, run a terminal and say this:
 
 .. code-block:: console
 
-    $ # if you downloaded a binary with apt-get or yum, say this:
-    $ /usr/bin/tarantool
-    $ # if you downloaded and untarred a binary tarball to ~/tarantool, say this:
-    $ ~/tarantool/bin/tarantool
+    $ tarantool
+    $ # by doing this, you create a new Tarantool instance
 
 Tarantool starts in the interactive mode and displays a prompt:
 

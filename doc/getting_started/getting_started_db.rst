@@ -10,4 +10,4 @@ You can install Tarantool and work with it locally or in Docker.
 
 .. include:: using_docker.rst
 
-.. include:: using_binary.rst
+.. include:: using_package_manager.rst

@@ -82,9 +82,9 @@ is ``/opt/tarantool``, and the directory for data is ``/var/lib/tarantool``.
 Launching a binary program
 --------------------------------------------------------------------------------
 
-If we run Tarantool from a :ref:`binary package <getting_started-using_binary>`
-or from a :ref:`source build <building_from_source>`, we can launch our
-application:
+If we run Tarantool from a :ref:`package
+<getting_started-using_package_manager>` or from a :ref:`source build
+<building_from_source>`, we can launch our application:
 
 * in the script mode,
 * as a server application, or
