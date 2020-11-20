@@ -1,22 +1,28 @@
 .. _repl_leader_elect:
 
 ================================================================================
-Leader election
+[todo] Automated/Automatic leader election
 ================================================================================
 
 Starting from the version 2.6.1, Tarantool has the built-in functionality
-ensuring the automated leader election in a replica set.
-This functionality increases fault tolerance of the systems
+for/managing automated leader election in a replica set.
+
+
+[TODO - do we need this paragraph?] This functionality increases fault tolerance of the systems
 built on the base of Tarantool and decreases/removes dependency on
 the external tools for cluster management
 [?which is another big step for being a self-sufficient platform for building /practical software solutions].
 
-The description that follows has mainly two parts.
-The first one are some excerpts from the description of the :ref:`consensus algorithm <consensus_algorithm>`
+
+[TODO - maybe not] The description that follows has mainly two parts.
+
+[TODO - not excerpts but basics] The first one are some excerpts from the description of the :ref:`consensus algorithm <consensus_algorithm>`
 that is the basis of this functionality/feature
 (for more detailed information, you can refer to the complete article https://raft.github.io/raft.pdf)
 where it is briefly explained its basics and main principles.
-Next, we describe the details of the :ref:`algorithm implementation in Tarantool <algorithm implement>`.
+
+
+[TODO] Next, we describe the details of the :ref:`algorithm implementation in Tarantool <algorithm implement>`.
 
 .. _consensus_algorithm:
 
@@ -24,11 +30,11 @@ Next, we describe the details of the :ref:`algorithm implementation in Tarantool
 Raft consensus algorithm
 --------------------------------------------------------------------------------
 
-[TODO] TBD if we need such a detailed intro in our doc; if not, it should be shorten
+[TODO - if we need such a detailed intro (below) in our doc; if not, it should be shorten]
 
 
-Currently, the algorithm used for implementing automatic failover
-in a replica set is Raft.
+An algorithm used for implementing automatic leader election
+in a replica set is called Raft.
 
 Raft is a consensus algorithm for managing a replicated log.
 Raft separates the key elements of consensus, such as leader election,
@@ -100,8 +106,10 @@ by guaranteeing that each of these properties is true at all times:
   to its state machine, no other server will ever apply a different log entry
   for the same index.
 
+.. _repl_leader_elect_basics:
+
 ~~~~~~~~~~~~~
-Raft Basics
+Raft basics
 ~~~~~~~~~~~~~
 
 A Raft cluster contains several servers; five is a typical number,
@@ -116,9 +124,9 @@ States
 
 At any given time each server is in one of three states:
 
-* leader
-* follower
-* or candidate.
+* ``leader``
+* ``follower``
+* or ``candidate``.
 
 In normal operation there is exactly one leader and all of the other servers are
 followers.
@@ -154,7 +162,6 @@ discovers that its term is out of date, it immediately reverts
 to the follower state. If a server receives a request with a stale term number,
 it rejects the request.
 
-
 ^^^^^^^^^^^^^^^^
 Types of RPCs
 ^^^^^^^^^^^^^^^^
@@ -169,9 +176,9 @@ consensus algorithm requires only two types of RPCs:
 Servers retry RPCs if they do not receive a response in a timely manner,
 and they issue RPCs in parallel for best performance.
 
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 Electing a leader
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 Raft uses a heartbeat mechanism to trigger a leader election.
 When servers start up, they begin as followers. A server remains in follower
@@ -391,18 +398,21 @@ may use a smaller election quorum than the configured one.
 Leader election and synchronous replication
 --------------------------------------------------------------------------------
 
-[TODO] Vlad's notes on the topic -- to merge with the content above
+[TODO - below is Vlad's notes on the topic -- to merge with the content above]
 
 
 In Tarantool both are implemented as a modification of Raft.
 Raft is an algorithm of synchronous replication and automatic leader election.
+
 Its complete description can be found here: https://raft.github.io/raft.pdf.
-In Tarantool synchronous replication and leader election are supported
-as two separate subsystems. So it is possible to get synchronous replication,
+
+In Tarantool, :ref:`synchronous replication <repl_sync>` and leader election
+are supported as two separate subsystems. So it is possible to get
+synchronous replication,
 but use something non-Raft for leader election. And vice versa -- elect a leader
 in the cluster, but don't use synchronous spaces at all.
-Synchronous replication has a separate documentation section [todo - link].
-Leader election is described here.
+Synchronous replication has a separate :ref:`documentation section <repl_sync>`.
+Leader election is described below.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Automated leader election
@@ -411,25 +421,27 @@ Automated leader election
 Automated leader election in Tarantool helps guarantee that in a replica set
 there is at most one leader at any given moment of time.
 Leader is a writable node, and all other nodes are non-writable --
-they accept exclusively read-only requests. This can be useful when an application
+they accept read-only requests exclusively. This can be useful when an application
 doesn't want to support master-master replication, and it is necessary to
 ensure that only one node accepts new transactions and commit them successfully.
 
-When election is enabled, life cycle of a replica set is divided into so called 'terms'.
-Each term is described by a monotonically growing number.
-Each node, after first boot, has it equal to 1. When a node sees that it is not a leader,
-and there is no a leader available for some time, it increases the term,
+When election is enabled, life cycle of a replica set is divided into so called
+*terms*. Each term is described by a monotonically growing number.
+Each node, after first boot, has it equal to 1. When a node sees that it is not
+a leader and there is no leader available for some time, it increases the term
 and starts new leader election round.
 
 Leader election happens via votes.
-The node which started the election votes for itself and sends vote requests to other nodes.
+The node which started the election votes for itself and sends vote requests to
+other nodes.
 The ones, who got a vote request, vote for the first of them, and then can't do
 anything in the same term but wait for a leader being elected.
 If there is a node collected a quorum of votes, it becomes a leader,
 and notifies other nodes about that. Also a split-vote can happen,
 when no nodes got a quorum of votes. Then all the nodes, after a random timeout,
 bump the term again and start a new election round. Eventually a leader is elected.
-All the non-leader nodes are called 'followers'. The nodes, who start a new election round,
+All the non-leader nodes are called 'followers'. The nodes, who start a new
+election round,
 are called 'candidates'. The elected leader sends heartbeats to the non-leader
 nodes to let them know it is alive. So if no heartbeats for too long time --
 new election is started. Terms and votes are persisted by each instance
