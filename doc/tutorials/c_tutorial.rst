@@ -35,7 +35,7 @@ writing their own stored procedures.
 
 Check that these items exist on the computer:
 
-* Tarantool 2.1
+* Tarantool 2.1 or later
 * A gcc compiler, any modern version should work
 * ``module.h`` and files #included in it
 * ``msgpuck.h``
@@ -223,7 +223,7 @@ Now go back to the client and execute these requests:
     table.insert(passable_table, 1)
     table.insert(passable_table, 2)
     table.insert(passable_table, 3)
-    capi_connection:call('harder', passable_table)
+    capi_connection:call('harder', {passable_table})
 
 This time the call is passing a Lua table (``passable_table``)
 to the ``harder()`` function. The ``harder()`` function will see it,
