@@ -121,9 +121,6 @@ To remove a unique constraint, use use either ``ALTER ... DROP CONSTRAINT`` or
 :ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint
 as well.
 
-To remove a unique constraint, use :ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint
-as well.
-
 .. code-block:: sql
 
    -- dropping a constraint:
@@ -143,6 +140,8 @@ If a constraint is disabled, then the check will not be performed.
 Limitations:
 
 * It is not possible to add or drop a column.
+  However, there is a plan to make it possible to add a column for an empty table
+  (`Issue#3075 <https://github.com/tarantool/tarantool/issues/3075>`_).
 * It is not possible to modify NOT NULL constraints or column properties DEFAULT
   and :ref:`data type <sql_column_def_data_type>`.
   However, it is possible to modify them with Tarantool/NOSQL, for example by
