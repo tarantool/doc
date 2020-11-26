@@ -2879,7 +2879,7 @@ Variation: ``EXPLAIN QUERY PLAN statement;`` shows the steps of a search.
 
    If all rows were processed without an error that caused statement rollback or transaction rollback, the data-change can be committed. Ordinarily, unless processing is within a transaction that began with START TRANSACTION, there will be an automatic COMMIT.
 
-   Finish the data-change by calling the low-level Tarantool routines. Thus new rows (new "tuples" in Tarantool's NoSQL terminology) are added to the table (the "space" in Tarantool's NoSQL terminology), or row sare removed from the table,  and indexes are updated.
+   Finish the data-change by calling the low-level Tarantool routines. Thus new rows (new "tuples" in Tarantool's NoSQL terminology) are added to the table (the "space" in Tarantool's NoSQL terminology), or rows are removed from the table,  and indexes are updated.
 
 .. _sql_transactions:
 
@@ -3095,7 +3095,7 @@ Examples:
    box.execute([[SAVEPOINT "1";]])
    box.execute([[INSERT INTO t VALUES ('Data change #2');]])
    box.execute([[ROLLBACK TO SAVEPOINT "1";]]) -- rollback Data change #2
-   box.execute([[ROLLBACK TO SAVEPOINt "1";]]) -- this is legal but does nothing
+   box.execute([[ROLLBACK TO SAVEPOINT "1";]]) -- this is legal but does nothing
    box.execute([[COMMIT;]]) -- make Data change #1 permanent, end the transaction
    end
 

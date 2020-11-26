@@ -38,7 +38,7 @@ as follows:
    from the master branch and tag it as a new beta version.
    It contains ``1`` for the PATCH digit, e.g., 2.3.1, 2.4.1, and so on.
    This version cannot be called stable yet (feature freeze has just been done)
-   although there're no known critical regressions in it since
+   although there are no known critical regressions in it since
    the last stable release.
 
 3. **Stable**. Finally, after we see our beta version runs successfully in

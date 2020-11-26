@@ -127,7 +127,7 @@ is *serializable* with the clause "if no failure during writing to WAL". In
 case of such a failure that can happen, for example, if the disk space
 is over, the transaction isolation level becomes *read uncommitted*.
 
-In :ref:`vynil <engines-chapter>`, to implement isolation Tarantool uses a simple optimistic scheduler:
+In :ref:`vinyl <engines-chapter>`, to implement isolation Tarantool uses a simple optimistic scheduler:
 the first transaction to commit wins. If a concurrent active transaction
 has read a value modified by a committed transaction, it is aborted.
 
@@ -142,7 +142,7 @@ actually ``box.begin()`` does not start a transaction. It is a mark telling
 Tarantool to start a transaction after some database request that follows.
 
 In memtx, if an instruction that implies yields, explicit or implicit, is
-executed during a transaction, the transaction is fully rolled back. In vynil,
+executed during a transaction, the transaction is fully rolled back. In vinyl,
 we use more complex transactional manager that allows yields.
 
 .. note::
@@ -251,7 +251,7 @@ After a fiber has yielded and then has regained control, it immediately issues
 Transactional manager
 --------------------------------------------------------------------------------
 
-Since version 2.6.1, Tarantool has another option for transaction behaviour that
+Since version 2.6.1, Tarantool has another option for transaction behavior that
 allows yielding inside a memtx transaction. This is controled by
 the *transactional manager*.
 

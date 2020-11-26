@@ -231,7 +231,7 @@ The other issue that always comes up in C styling is the placement of
 braces.  Unlike the indent size, there are few technical reasons to
 choose one placement strategy over the other, but the preferred way, as
 shown to us by the prophets Kernighan and Ritchie, is to put the opening
-brace last on the line, and put the closing brace first, thusly:
+brace last on the line, and put the closing brace first, thus:
 
 .. code-block:: none
 
@@ -272,7 +272,7 @@ special anyway (you can't nest them in C).
 
 Note that the closing brace is empty on a line of its own, _except_ in
 the cases where it is followed by a continuation of the same statement,
-ie a "while" in a do-statement or an "else" in an if-statement, like
+i.e. a "while" in a do-statement or an "else" in an if-statement, like
 this:
 
 .. code-block:: c
@@ -414,7 +414,7 @@ makes buggy programs.
 LOCAL variable names should be short, and to the point.  If you have
 some random integer loop counter, it should probably be called "i".
 Calling it "loop_counter" is non-productive, if there is no chance of it
-being mis-understood.  Similarly, "tmp" can be just about any type of
+being misunderstood.  Similarly, "tmp" can be just about any type of
 variable that is used to hold a temporary value.
 
 If you are afraid to mix up your local variable names, you have another
@@ -532,7 +532,7 @@ Another measure of the function is the number of local variables.  They
 shouldn't exceed 5-10, or you're doing something wrong.  Re-think the
 function, and split it into smaller pieces.  A human brain can
 generally easily keep track of about 7 different things, anything more
-and it gets confu/sed.  You know you're brilliant, but maybe you'd like
+and it gets confused.  You know you're brilliant, but maybe you'd like
 to understand what you did 2 weeks from now.
 
 In source files, separate functions with one blank line.  If the function is

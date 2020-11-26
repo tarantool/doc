@@ -49,7 +49,7 @@ Below is a list of all ``msgpack`` functions and members.
     | :ref:`msgpack.decode(C_style_string_pointer)           | Convert a raw MsgPack string in |
     | <msgpack-decode_c_style_string_pointer>`               | an ibuf to a Lua object         |
     +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_unchecked(mspack_string)          | Convert a raw MsgPack string to |
+    | :ref:`msgpack.decode_unchecked(msgpack_string)         | Convert a raw MsgPack string to |
     | <msgpack-decode_unchecked_string>`                     | a Lua object                    |
     +--------------------------------------------------------+---------------------------------+
     | :ref:`msgpack.decode_unchecked(C_style_string_pointer) | Convert a raw MsgPack string to |

@@ -497,7 +497,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         * IllegalParams:  an incorrect handle parameter
         * IllegalParams:  called on a closed handle
-        * IllegalParams:  neither stdin, stdout nor stderr is choosen
+        * IllegalParams:  neither stdin, stdout nor stderr is chosen
         * IllegalParams:  a requested IO operation is not supported by
           the handle (one of std* is not piped)
 

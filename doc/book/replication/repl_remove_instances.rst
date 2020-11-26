@@ -221,6 +221,6 @@ from the cluster:
    - [2, '0a756d14-e437-4296-85b0-d27a0621613e']
    ...
 
-**Final ckecks**
+**Final checks**
 
 After all modifications, say ``box.info.replication`` to check the health status.

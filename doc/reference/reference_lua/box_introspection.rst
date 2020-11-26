@@ -56,7 +56,7 @@ Some of this information is also available from the :ref:`tarantool module <tara
 * **replication.lag** Number of seconds that the replica is behind the master.
 * **replication.status** Usually this is 'follow', but it can be
   'off', 'stopped', 'connecting', 'auth', or 'disconnected'.
-* **replication.idle** Number of seconds that the instancehas been idle.
+* **replication.idle** Number of seconds that the instance has been idle.
 * **replication.vclock** See the :ref:`discussion of "vector clock" <replication-vector>` in the Internals section.
 * **replication.uuid** The unique identifier of a master to which this instance is connected.
 * **replication.uptime** Number of seconds since the instance started.

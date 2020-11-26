@@ -184,7 +184,7 @@ the function invocations will look like ``sock:function_name(...)``.
                             returned addresses
                           * ``protocol``
                           * ``flags`` -- additional options (see details `here <https://man7.org/linux/man-pages/man3/getaddrinfo.3.html>`_)
-    :return: (if error) {nil, error-message-string}. (if no errror) A table containing these fields: "host", "family", "type", "protocol", "port".
+    :return: (if error) {nil, error-message-string}. (if no error) A table containing these fields: "host", "family", "type", "protocol", "port".
     :rtype:  table
 
     **Example:**
@@ -274,7 +274,7 @@ the function invocations will look like ``sock:function_name(...)``.
     :param string host: URL or IP address
     :param number port: port number
 
-    :return: (if error) {nil, error-message-string}. (if no errror) A table which may have information about the bind result.
+    :return: (if error) {nil, error-message-string}. (if no error) A table which may have information about the bind result.
     :rtype:  table
 
 .. class:: socket_object

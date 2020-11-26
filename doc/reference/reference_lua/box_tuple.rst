@@ -89,7 +89,7 @@ Below is a list of all ``box.tuple`` functions.
 .. function:: new(value)
 
     Construct a new tuple from either a scalar or a Lua table. Alternatively,
-    one can get new tuples from tarantool's :ref:`select <box_space-select>`
+    one can get new tuples from Tarantool's :ref:`select <box_space-select>`
     or :ref:`insert <box_space-insert>` or :ref:`replace <box_space-replace>`
     or :ref:`update <box_space-update>` requests,
     which can be regarded as statements that do

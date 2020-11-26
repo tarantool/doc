@@ -40,7 +40,7 @@ Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`.
       values in corresponding positions, that is, the first ? will be replaced by the first
       extra parameter, the second ? will be replaced by the second extra parameter, and so on.
       If placeholders are :names, then they will be replaced by extra-parameter
-      values with corrresponding names.
+      values with corresponding names.
       For example this request which contains literal values 1 and 'x': |br|
       ``box.execute([[INSERT INTO tt VALUES (1, 'x');]]);`` |br|
       is the same as this request which contains two question-mark placeholders (``?`` and ``?``)

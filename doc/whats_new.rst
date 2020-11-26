@@ -1364,7 +1364,7 @@ Functionality added or changed:
   * Added a VERBOSE :ref:`log level <cfg_logging-log_level>` beyond INFO.
     Issue `2467 <https://github.com/tarantool/tarantool/issues/2467>`_.
   * Tarantool now automatically makes snapshots every hour.
-    Please set :ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-checkpoint_interval>` to restore pre-1.7.5 behaviour.
+    Please set :ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-checkpoint_interval>` to restore pre-1.7.5 behavior.
     Issue `2496 <https://github.com/tarantool/tarantool/issues/2496>`_.
   * Increase precision for percentage ratios provided by :ref:`box.slab.info() <box_slab_info>`.
     Issue `2082 <https://github.com/tarantool/tarantool/issues/2082>`_.
@@ -1771,7 +1771,7 @@ Deprecated, removed features and minor incompatibilities:
     To upgrade, perform the following steps:
 
     1. Install new 1.7.2 packages.
-    2. Ensure that ``INSTANCENAME.lua`` file is present in ``/etc/tarantool/instace.enabled``.
+    2. Ensure that ``INSTANCENAME.lua`` file is present in ``/etc/tarantool/instances.enabled``.
     3. Stop INSTANCENAME using ``tarantoolctl stop INSTANCENAME``.
     4. Start INSTANCENAME using ``systemctl start tarantool@INSTANCENAME``.
     5. Enable INSTANCENAME during system boot using ``systemctl enable trantool@INTANCENAME``.
@@ -1784,7 +1784,7 @@ Deprecated, removed features and minor incompatibilities:
   * Debian and Ubuntu packages start a ready-to-use ``example.lua`` instance on
     a clean installation of the package.
     The default instance grants universe permissions for ``guest`` user and listens
-    on "locahost:3313".
+    on "localhost:3313".
   * Fedora 22 packages were deprecated (EOL).
 
 .. _whats_new_171:
@@ -1923,7 +1923,7 @@ Incompatible changes:
     facilities for multi-instance management. To upgrade, perform the
     following steps:
 
-    1. Ensure that ``INSTANCENAME.lua`` file is present in ``/etc/tarantool/instace.available``.
+    1. Ensure that ``INSTANCENAME.lua`` file is present in ``/etc/tarantool/instances.available``.
     2. Stop INSTANCENAME using ``tarantoolctl stop INSTANCENAME``.
     3. Start INSTANCENAME using ``systemctl start tarantool@INSTANCENAME``.
     4. Enable INSTANCENAME during system boot using ``systemctl enable trantool@INTANCENAME``.

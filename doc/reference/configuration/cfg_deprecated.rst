@@ -158,6 +158,6 @@ These parameters are deprecated since Tarantool version 1.7.4:
 
 .. confval:: rows_per_wal
 
-    **Deprecated** in favour of
+    **Deprecated** in favor of
     :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`.
     The parameter does not allow to properly limit size of WAL logs.

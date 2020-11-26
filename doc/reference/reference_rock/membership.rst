@@ -214,7 +214,7 @@ Common functions:
 
    .. code-block:: lua
 
-      for uri, member in memberhip.pairs()
+      for uri, member in membership.pairs()
         -- do something
       end
 
