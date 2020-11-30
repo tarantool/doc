@@ -32,29 +32,29 @@ Buffer uses four pointers to manage its capacity:
 
     **Example:**
 
-    Assume a Tarantool server is listening on farhost:3301.
-    Assume it has a space ``T`` with one tuple: ``'ABCDE', 12345``.
-    In this example we start up a server on localhost:3302
-    and then use ``net.box`` routines to connect to farhost.
-    Then we create a buffer, and use it as an option
-    for a ``conn.space...select()`` call.
-    The result will be in MsgPack_ format.
-    To show this, we will use
-    :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked_c_style_string_pointer>`
-    on ``ibuf.rpos``.
-    Thus we do not decode on the remote server, but we do
-    decode on the local server.
+    In this example we will show that using buffer allows you to keep the data
+    in the format that you get from the server. So if you get the data only for
+    sending it somewhere else, buffer fastens this a lot.
 
     .. code-block:: lua
 
-        box.cfg{listen = 3302}
+        box.cfg{listen = 3301}
         buffer = require('buffer')
-        ibuf = buffer.ibuf()
         net_box = require('net.box')
-        conn = net_box.connect('farhost:3301')
-        buffer = require('buffer')
-        conn.space.T:select({}, {buffer=ibuf})
         msgpack = require('msgpack')
+
+        box.schema.space.create('tester')
+        box.space.tester:create_index('primary')
+        box.space.tester:insert({1, 'ABCDE', 12345})
+
+        box.schema.user.create('usr1', {password = 'pwd1'})
+        box.schema.user.grant('usr1', 'read,write,execute', 'space', 'tester')
+
+        ibuf = buffer.ibuf()
+
+        conn = net_box.connect('usr1:pwd1@localhost:3301')
+        conn.space.tester:select({}, {buffer=ibuf})
+
         msgpack.decode_unchecked(ibuf.rpos)
 
     The result of the final request looks like this:
@@ -78,6 +78,8 @@ Buffer uses four pointers to manage its capacity:
     .. _buffer-alloc:
 
     .. method:: alloc(size)
+
+        Allocate ``size`` bytes for ``buffer_object``.
 
         :param number size: memory in bytes to allocate
         :return: ``wpos``
@@ -105,6 +107,8 @@ Buffer uses four pointers to manage its capacity:
     .. _buffer-pos:
 
     .. method:: pos()
+
+        Return the size of the range occupied by data.
 
         :return: ``rpos - buf``
 
