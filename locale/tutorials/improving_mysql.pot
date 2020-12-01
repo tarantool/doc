@@ -2,7 +2,7 @@
 msgid "Improving MySQL with Tarantool"
 msgstr ""
 
-msgid "Replicating MySQL is one of the in-memory-database Tarantool’s killer functions. It allows you to keep your existing MySQL database while at the same time accelerating it and scaling it out horizontally. Even if you aren’t interested in extensive expansion, simply replacing existing replicas with Tarantool can save you money, because Tarantool is more efficient per core than MySQL. To read a testimonial of a company that implemented Tarantool replication on a large scale, please see `here <https://dzone.com/articles/next-level-mysql-performance-tarantool-as-a-replic>`_."
+msgid "Replicating MySQL is one of the Tarantool’s killer functions. It allows you to keep your existing MySQL database while at the same time accelerating it and scaling it out horizontally. Even if you aren’t interested in extensive expansion, simply replacing existing replicas with Tarantool can save you money, because Tarantool is more efficient per core than MySQL. To read a testimonial of a company that implemented Tarantool replication on a large scale, please see `here <https://dzone.com/articles/next-level-mysql-performance-tarantool-as-a-replic>`_."
 msgstr ""
 
 msgid "Notes:"
