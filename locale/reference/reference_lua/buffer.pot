@@ -8,19 +8,19 @@ msgstr ""
 msgid "Ordinarily the ``net.box`` methods return a Lua table. If a ``buffer`` option is used, then the ``net.box`` methods return a :ref:`raw MsgPack string <msgpack-definitions>`. This saves time on the server, if the client application has its own routine for decoding raw MsgPack strings."
 msgstr ""
 
-msgid "Buffer uses four pointers to manage its capacity:"
+msgid "The buffer uses four pointers to manage its capacity:"
 msgstr ""
 
-msgid "buf -- a pointer to the beginning of the buffer"
+msgid "``buf`` -- a pointer to the beginning of the buffer"
 msgstr ""
 
-msgid "rpos -- a pointer to the beginning of the range, available for reading data (\"read position\")"
+msgid "``rpos`` -- a pointer to the beginning of the range; available for reading data (\"read position\")"
 msgstr ""
 
-msgid "wpos -- a pointer to the end of the range, available for reading data, and to the beginning of the range for writing new data (\"write position\")"
+msgid "``wpos`` -- a pointer to the end of the range; available for reading data, and to the beginning of the range for writing new data (\"write position\")"
 msgstr ""
 
-msgid "epos -- a pointer to the end of the range, available for writing new data (\"end position\")"
+msgid "``epos`` -- a pointer to the end of the range; available for writing new data (\"end position\")"
 msgstr ""
 
 msgid "Create a new buffer."
