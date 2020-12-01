@@ -4,7 +4,7 @@
 Improving MySQL with Tarantool
 ================================================================================
 
-Replicating MySQL is one of the in-memory-database Tarantool’s killer functions.
+Replicating MySQL is one of the Tarantool’s killer functions.
 It allows you to keep your existing MySQL database while at the same time
 accelerating it and scaling it out horizontally. Even if you aren’t interested
 in extensive expansion, simply replacing existing replicas with Tarantool can
@@ -28,7 +28,7 @@ Notes:
 
 So let’s proceed.
 
-1. First we’ll install the necessary packages in CentOS:
+#. First we’ll install the necessary packages in CentOS:
 
    .. code-block:: bash
 
