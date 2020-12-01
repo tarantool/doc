@@ -1,3 +1,5 @@
+.. previous location: doc/reference/reference_rock/shard.rst
+
 .. _shard-module:
 
 -------------------------------------------------------------------------------
