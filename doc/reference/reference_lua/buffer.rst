@@ -16,13 +16,13 @@ its own routine for decoding raw MsgPack strings.
 
 .. module:: buffer
 
-Buffer uses four pointers to manage its capacity:
+The buffer uses four pointers to manage its capacity:
 
-* buf -- a pointer to the beginning of the buffer
-* rpos -- a pointer to the beginning of the range, available for reading data ("read position")
-* wpos -- a pointer to the end of the range, available for reading data, and to the
+* ``buf`` -- a pointer to the beginning of the buffer
+* ``rpos`` -- a pointer to the beginning of the range; available for reading data ("read position")
+* ``wpos`` -- a pointer to the end of the range; available for reading data, and to the
   beginning of the range for writing new data ("write position")
-* epos -- a pointer to the end of the range, available for writing new data ("end position")
+* ``epos`` -- a pointer to the end of the range; available for writing new data ("end position")
 
 .. _buffer-ibuf:
 
@@ -186,6 +186,5 @@ Buffer uses four pointers to manage its capacity:
         Return a range for writing data.
 
         :return: ``epos - wpos``
-
 
 
