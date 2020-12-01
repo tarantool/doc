@@ -48,6 +48,7 @@ version = '.'.join(release.split('.')[0:2])
 
 exclude_patterns = [
     '_build',
+    'archive/*',
     'book/connectors/__*',
     'book/replication/*_1.rst',
     'book/replication/*_2.rst',
