@@ -15,4 +15,5 @@ If you are new to Tarantool, please see our
     lua_tutorials
     c_tutorial
     sql_tutorial
+    improving_mysql
     libslave
