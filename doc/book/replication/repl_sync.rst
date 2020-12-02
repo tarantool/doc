@@ -147,28 +147,12 @@ Anonymous replicas participate in the quorum. This will change: it won't be poss
 for a synchronous transaction to gather quorum using anonymous replicas in future.
 
 --------------------------------------------------------------------------------
-[todo - correct and make a link to repl_leader_elect] Leader election
+Leader election
 --------------------------------------------------------------------------------
 
 Starting from the version 2.6.1, Tarantool has the built-in functionality
-for/managing automatic leader election in a replica set. For more information,
+managing automated leader election in a replica set. For more information,
 refer to the :ref:`corresponding chapter <repl_leader_elect>`.
-
-[todo]
-The option can be switched on and off, so the usage of external tool or manual
-management of ?leader is also/still possible.
-
-[todo - double-check if this behaviour is still there]
-When the master node dies, you need to find the replica which received the latest
-changes from the master compared to all the other replicas, i.e. with the biggest
-LSN in the old master's ``vclock`` component.
-
-[todo - double-check if this behaviour is still there]
-On this replica, you need to call the function ``box.ctl.clear_synchro_queue()``.
-This function will try to successfully confirm and commit the pending synchronous
-transactions. If it couldn't be done in the ``box.cfg.replication_synchro_timeout``,
-the non-confirmed transactions are rolled back. From this moment, this instance
-can become a new master and make new synchronous transactions.
 
 --------------------------------------------------------------------------------
 Tips and tricks
