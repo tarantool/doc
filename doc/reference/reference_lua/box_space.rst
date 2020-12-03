@@ -43,6 +43,22 @@ Below is a list of all ``box.space`` functions and members.
     +----------------------------------------------+---------------------------------+
     | :ref:`space_object:create_index()            | Create an index                 |
     | <box_space-create_index>`                    |                                 |
+    | |br| * :ref:`Details about index field types |                                 |
+    | <details_about_index_field_types>`           |                                 |
+    | |br| * :ref:`Index field types to use in     |                                 |
+    | space_object:create_index()                  |                                 |
+    | <box_space-index_field_types>`               |                                 |
+    | |br| * :ref:`Allowing null for an indexed    |                                 |
+    | key <box_space-is_nullable>`                 |                                 |
+    | |br| * :ref:`Using field names instead of    |                                 |
+    | field numbers <box_space-field_names>`       |                                 |
+    | |br| * :ref:`Using the path option for map   |                                 |
+    | fields (JSON-indexes) <box_space-path>`      |                                 |
+    | |br| * :ref:`Using the path option with [*]  |                                 |
+    | <box_space-path_multikey>`                   |                                 |
+    | |br| * :ref:`Making a functional index with  |                                 |
+    | space_object:create_index()                  |                                 |
+    | <box_space-index_func>`                      |                                 |
     +----------------------------------------------+---------------------------------+
     | :ref:`space_object:delete()                  | Delete a tuple                  |
     | <box_space-delete>`                          |                                 |
@@ -589,11 +605,12 @@ Below is a list of all ``box.space`` functions and members.
 
     .. _box_space-path:
 
-    **Using the path option for map fields:** To create an index for a field that is a map
-    (a path string and a scalar value), specify the path string during index_create,
-    that is, :code:`parts={` :samp:`{field-number},'{data-type}',path = '{path-name}'` :code:`}`.
-    The index type must be ``'tree'`` or ``'hash'`` and the field's contents must always
-    be maps with the same path.
+    **Using the path option for map fields (JSON-indexes):** To create an index
+    for a field that is a map (a path string and a scalar value), specify the
+    path string during index_create, that is,
+    :code:`parts={` :samp:`{field-number},'{data-type}',path = '{path-name}'` :code:`}`.
+    The index type must be ``'tree'`` or ``'hash'`` and the field's contents
+    must always be maps with the same path.
 
     .. code-block:: lua
 
@@ -1682,16 +1699,16 @@ Below is a list of all ``box.space`` functions and members.
 
         Possible operators are:
 
-            * ``+`` for addition. values must be numeric, e.g. unsigned or decimal
-            * ``-`` for subtraction. values must be numeric
-            * ``&`` for bitwise AND. values must be unsigned numeric
-            * ``|`` for bitwise OR. values must be unsigned numeric
-            * ``^`` for bitwise :abbr:`XOR(exclusive OR)`. values must be
-              unsigned numeric
-            * ``:`` for string splice.
-            * ``!`` for insertion of a new field.
-            * ``#`` for deletion.
-            * ``=`` for assignment.
+        * ``+`` for addition. values must be numeric, e.g. unsigned or decimal
+        * ``-`` for subtraction. values must be numeric
+        * ``&`` for bitwise AND. values must be unsigned numeric
+        * ``|`` for bitwise OR. values must be unsigned numeric
+        * ``^`` for bitwise :abbr:`XOR(exclusive OR)`. values must be
+          unsigned numeric
+        * ``:`` for string splice.
+        * ``!`` for insertion of a new field.
+        * ``#`` for deletion.
+        * ``=`` for assignment.
 
         Possible field_identifiers are:
 
