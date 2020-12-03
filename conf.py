@@ -52,26 +52,19 @@ exclude_patterns = [
     'book/connectors/__*',
     'book/replication/*_1.rst',
     'book/replication/*_2.rst',
-    'book/admin.rst',
-    'book/cookbook.rst',
     'book/box/engines/vinyl.rst',
     'getting_started/getting_started_go.rst',
     'getting_started/getting_started_php.rst',
     'getting_started/getting_started_python.rst',
-    'getting_started/using_binary.rst',
+    'getting_started/using_package_manager.rst',
     'getting_started/using_docker.rst',
     'dev_guide/box_protocol.rst',
     'dev_guide/internals.rst',
     'reference/configuration/cfg_*',
     'reference/reference_lua/jit.rst',
-    'reference/reference_lua/os.rst',
-    'CNAME',
-    'robots.txt',
-    '_downloads/license.docx',
-    '_downloads/license_eng.docx',
-    '_downloads/terms.docx',
-    '_downloads/terms_eng.docx',
-    'images'
+    'images',
+    'singlehtml.rst',
+    'toctree.rst'
 ]
 
 base_url = "https://tarantool.org/"
