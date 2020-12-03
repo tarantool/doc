@@ -20,6 +20,7 @@ rocks
 /locale/tutorials/LC_MESSAGES/
 /locale/getting_started/LC_MESSAGES/
 /locale/archive/LC_MESSAGES/
+/locale/contributing/LC_MESSAGES/
 /doc/book/cartridge/cartridge_api/
 /doc/book/cartridge/cartridge_cli.rst
 /doc/book/cartridge/cartridge_cli/
