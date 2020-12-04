@@ -14,7 +14,7 @@ msgstr ""
 msgid "Before we proceed:"
 msgstr ""
 
-msgid "`Install <https://github.com/tarantool/tarantool-python#download-and-install>`_ the ``tarantool-python`` library. We recommend using ``python3`` and ``pip3``."
+msgid "`Install <https://github.com/tarantool/tarantool-python#download-and-install>`_ the ``tarantool`` module. We recommend using ``python3`` and ``pip3``."
 msgstr ""
 
 msgid ":ref:`Start <getting_started_db>` Tarantool (locally or in Docker) and make sure that you have created and populated a database as we suggested :ref:`earlier <creating-db-locally>`:"
@@ -218,10 +218,16 @@ msgstr ""
 msgid "`Install <https://github.com/tarantool-php/client#installation>`_ the ``tarantool/client`` library."
 msgstr ""
 
+msgid "To configure a connection to the Tarantool server, say this:"
+msgstr ""
+
 msgid "use Tarantool\\Client\\Client;\n"
 "\n"
 "require __DIR__.'/vendor/autoload.php';\n"
 "$client = Client::fromDefaults();"
+msgstr ""
+
+msgid "The connection itself will be established at the first request. You can also specify the user name and password, if needed:"
 msgstr ""
 
 msgid "$client = Client::fromOptions([\n"

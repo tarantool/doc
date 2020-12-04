@@ -1,5 +1,5 @@
 
-msgid "Server administration"
+msgid "Administration"
 msgstr ""
 
 msgid "Tarantool is designed to have multiple running instances on the same host."

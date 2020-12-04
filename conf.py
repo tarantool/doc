@@ -62,9 +62,7 @@ exclude_patterns = [
     'dev_guide/internals.rst',
     'reference/configuration/cfg_*',
     'reference/reference_lua/jit.rst',
-    'images',
-    'singlehtml.rst',
-    'toctree.rst'
+    'images'
 ]
 
 base_url = "https://tarantool.org/"
