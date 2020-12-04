@@ -2,7 +2,7 @@
 msgid "Application server"
 msgstr ""
 
-msgid "In this chapter, we introduce the basics of working with Tarantool as a Lua application server."
+msgid "Here we introduce the basics of working with Tarantool as a Lua application server."
 msgstr ""
 
 msgid "This chapter contains the following sections:"

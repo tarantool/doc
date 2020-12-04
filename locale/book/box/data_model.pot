@@ -8,7 +8,7 @@ msgstr ""
 msgid "If you tried to create a database as suggested in our :ref:`\"Getting started\" exercises <getting_started_db>`, then your test database now looks like this:"
 msgstr ""
 
-msgid "Space"
+msgid "Spaces"
 msgstr ""
 
 msgid "A **space** -- 'tester' in our example -- is a container."
@@ -20,7 +20,7 @@ msgstr ""
 msgid "A space is a container for :ref:`tuples <index-box_tuple>`. To be functional, it needs to have a :ref:`primary index <index-box_index>`. It can also have secondary indexes."
 msgstr ""
 
-msgid "Tuple"
+msgid "Tuples"
 msgstr ""
 
 msgid "A **tuple** plays the same role as a “row” or a “record”, and the components of a tuple (which we call “fields”) play the same role as a “row column” or “record field”, except that:"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "When Tarantool returns a tuple value in console, it uses the `YAML <https://en.wikipedia.org/wiki/YAML>`_ format, for example: ``[3, 'Ace of Base', 1993]``."
 msgstr ""
 
-msgid "Index"
+msgid "Indexes"
 msgstr ""
 
 msgid "An **index** is a group of key values and pointers."
@@ -65,7 +65,7 @@ msgstr ""
 msgid "The first index defined on a space is called the **primary key index**, and it must be unique. All other indexes are called **secondary indexes**, and they may be non-unique."
 msgstr ""
 
-msgid "An index definition may include identifiers of tuple fields and their expected **types** (see allowed :ref:`indexed field types <index-box_indexed-field-types>` below)."
+msgid "An index definition may include identifiers of tuple fields and their expected **types**. See allowed indexed field types :ref:`here <index-box_indexed-field-types>`."
 msgstr ""
 
 msgid "A recommended design pattern for a data model is to base primary keys on the first fields of a tuple, because this speeds up tuple comparison."
