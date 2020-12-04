@@ -65,7 +65,7 @@
                 book/box/data_model
                 CRUD operations <reference/reference_lua/box_space>
                 book/box/indexes
-                Transactions <book/box/atomic>
+                book/box/atomic
                 book/box/authentication
                 book/box/triggers
                 reference/reference_rock/vshard/vshard_index
