@@ -533,7 +533,31 @@ IPROTO_TUPLE (0x21) + array of arguments to match placeholders.
 **IPROTO_UPSERT** = 0x09.
 
 See :ref:`space_object:upsert()  <box_space-upsert>`.
-The body is the same as the body of :ref:`IPROTO_UPDATE <box_protocol-update>`.
+
+.. code-block:: none
+
+    +===============================+===============================+
+    |                               |                               |
+    |   0x10: IPROTO_SPACE_ID       |   0x15: IPROTO_INDEX_BASE     |
+    | MP_INT: MP_INT                | MP_INT: MP_INT                |
+    |                               |                               |
+    +===============================+===============================+
+    |                 +~~~~~~~~~~~+ |                               |
+    |                 | usually   | |   0x21: IPROTO_TUPLE          |
+    |                 | OPERATOR, | | MP_INT: MP_ARRAY              |
+    | (IPROTO_OPS)    | FIELD_NO, | |                               |
+    |    0x28:        | VALUE     | |                               |
+    |  MP_INT:        +~~~~~~~~~~~+ |                               |
+    |                   MP_ARRAY    |                               |
+    +===============================+===============================+
+                MP_MAP
+
+IPROTO_SPACE_ID (0x10) + MP_INT,
+IPROTO_INDEX_BASE (0x15) + MP_INT with index number starting with 1,
+IPROTO_OPS (0x28) + MP_ARRAY (array of upsert operations),
+IPROTO_TUPLE (0x21) + MP_ARRAY (array of primary-key-field values). |br|
+
+The IPROTO_OPS is the same as the IPROTO_OPS of :ref:`IPROTO_UPDATE <box_protocol-update>`.
 
 .. _box_protocol-call:
 
