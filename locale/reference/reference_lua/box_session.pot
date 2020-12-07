@@ -438,7 +438,7 @@ msgstr ""
 msgid "what to send"
 msgstr ""
 
-msgid "an optional argument to indicate what the session is, as taken from an earlier call to :ref:`box_session:sync() <box_session-sync>`. If it is omitted, the default is the current ``box.session.sync()`` value."
+msgid "an optional argument to indicate what the session is, as taken from an earlier call to :ref:`box_session:sync() <box_session-sync>`. If it is omitted, the default is the current ``box.session.sync()`` value. In Tarantool version 2.4.1, `sync` is deprecated and its use will cause a warning. In Tarantool versions after 2.4.1, its use will cause an error."
 msgstr ""
 
 msgid "{nil, error} or true:"

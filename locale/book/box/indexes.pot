@@ -38,7 +38,7 @@ msgstr ""
 msgid "After that, we defined a secondary index (named 'secondary') based on field #2 of each tuple:"
 msgstr ""
 
-msgid "tarantool> i = s:create_index('secondary', {type = 'tree', parts = {2, 'string'}})"
+msgid "tarantool> i = s:create_index('secondary', {type = 'tree', parts = {field = 2, type = 'string'}})"
 msgstr ""
 
 msgid "The effect is that, for all tuples in space 'tester', field #2 must exist and must contain a string. The index type is 'tree', so values in field #2 must not be unique, because keys in TREE indexes may be non-unique."

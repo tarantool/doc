@@ -100,9 +100,10 @@ msgstr ""
 "После этого мы определим вторичный индекс (под названием 'secondary') по "
 "полю №2 каждого кортежа:"
 
+#, fuzzy
 msgid ""
-"tarantool> i = s:create_index('secondary', {type = 'tree', parts = {2, "
-"'string'}})"
+"tarantool> i = s:create_index('secondary', {type = 'tree', parts = {field"
+" = 2, type = 'string'}})"
 msgstr ""
 "tarantool> i = s:create_index('secondary', {type = 'tree', parts = {2, "
 "'string'}})"

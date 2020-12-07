@@ -867,6 +867,9 @@ msgstr ""
 msgid "If the format is ``read(buffer, count)`` then return the data to the buffer. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
 msgstr ""
 
+msgid "In case of an error the method returns ``nil, err`` and sets the error to ``errno``."
+msgstr ""
+
 msgid "tarantool> ibuf = require('buffer').ibuf()\n"
 "---\n"
 "...\n"

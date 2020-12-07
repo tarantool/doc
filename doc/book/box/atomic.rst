@@ -1,7 +1,7 @@
 .. _atomic-atomic_execution:
 
 ================================================================================
-Transaction control
+Transactions
 ================================================================================
 
 Transactions in Tarantool occur in **fibers** on a single **thread**.

@@ -38,7 +38,7 @@ msgstr ""
 msgid "Check that these items exist on the computer:"
 msgstr ""
 
-msgid "Tarantool 2.1"
+msgid "Tarantool 2. or later"
 msgstr ""
 
 msgid "A gcc compiler, any modern version should work"
@@ -208,7 +208,7 @@ msgid "box.schema.func.create('harder', {language = 'C'})\n"
 "table.insert(passable_table, 1)\n"
 "table.insert(passable_table, 2)\n"
 "table.insert(passable_table, 3)\n"
-"capi_connection:call('harder', passable_table)"
+"capi_connection:call('harder', {passable_table})"
 msgstr ""
 
 msgid "This time the call is passing a Lua table (``passable_table``) to the ``harder()`` function. The ``harder()`` function will see it, it's in the :code:`char *args` parameter."
