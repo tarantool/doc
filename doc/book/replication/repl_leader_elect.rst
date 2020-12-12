@@ -22,14 +22,14 @@ Leader election and synchronous replication
 --------------------------------------------------------------------------------
 
 Leader election and synchronous replication are implemented in Tarantool as
-a modification of *Raft*.
+a modification of *Raft* algorithm.
 Raft is an algorithm of synchronous replication and automatic leader election.
 Its complete description can be found in the `corresponding document <https://raft.github.io/raft.pdf>`_.
 
 In Tarantool, :ref:`synchronous replication <repl_sync>` and leader election
 are supported as two separate subsystems. So it is possible to get
 synchronous replication,
-but use something non-Raft for leader election. And vice versa -- elect a leader
+but use an alternative algorithm for leader election. And vice versa -- elect a leader
 in the cluster, but don't use synchronous spaces at all.
 Synchronous replication has a separate :ref:`documentation section <repl_sync>`.
 Leader election is described below.
@@ -56,21 +56,23 @@ set, it increases the term and starts a new leader election round.
 
 *Leader election* happens via votes. The node which started the election votes
 for itself and sends vote requests to other nodes.
-The ones that received vote requests vote for the first of them, and then cannot
+Upon receiving vote requests, a node votes for the first of them, and then cannot
 do anything in the same term but wait for a leader being elected.
 
-If there is a node that collected a :ref:`quorum of votes <repl_leader_elect_config>`,
-it becomes a leader,
+A node that collected a :ref:`quorum of votes <repl_leader_elect_config>`
+becomes a leader
 and notifies other nodes about that. Also a split-vote can happen
-when no nodes received a quorum of votes. Then all the nodes,
+when no nodes received a quorum of votes. In this case,
 after a :ref:`random timeout <repl_leader_elect_config>`,
-increase the term again and start a new election round.
+each node increases its term and starts a new election round if no new vote
+request with greater term is arrived during this time period.
 Eventually a leader is elected.
 
 All the non-leader nodes are called *followers*. The nodes that start a new
 election round are called *candidates*. The elected leader sends heartbeats to
 the non-leader nodes to let them know it is alive. So if there are no heartbeats
-for too long time, a new election is started. Terms and votes are persisted by
+for a time period set by the :ref:`replication_timeout <cfg_replication-replication_timeout>`
+option, a new election is started. Terms and votes are persisted by
 each instance in order to preserve certain Raft guarantees.
 
 During the election, the nodes prefer to vote for those ones that have the
@@ -135,7 +137,7 @@ should be satisfied (``box.cfg{replication_connect_quorum = <count>}``)
 or disabled (``box.cfg{replication_connect_quorum = 0}``).
 Nothing prevents from setting the ``read_only`` option to ``true``,
 but the leader just won't be writable then. The option doesn't affect the
-election process itself, so a read-only instanc still can vote and become
+election process itself, so a read-only instance still can vote and become
 a leader.
 
 .. _repl_leader_elect_monitoring:
@@ -171,13 +173,14 @@ Important notes
 --------------------------------------------
 
 Leader election won't work properly if the election quorum is set less or equal
-than ``<cluster size> / 2`` because in that case the split-vote can happen (two
-leaders are elected).
+than ``<cluster size> / 2`` because in that case a split-vote can lead to
+a state when two leaders are elected at once.
+
 For example, let's assume there are 5 nodes. When quorum is set to 2, ``node1``
 and ``node2`` can both vote for ``node1``. ``node3`` and ``node4`` can both vote
 for ``node5``. In this case, ``node1`` and ``node5`` both win the election.
 When the quorum is set to the cluster majority, that is
-``(<cluster size> / 2) + 1`` or bigger, the split-vote cannot ever happen.
+``(<cluster size> / 2) + 1`` or bigger, the split-vote is not possible.
 
 That must be especially actual when adding new nodes. If the majority value is
 going to change, it's better to update the quorum on all the existing nodes
