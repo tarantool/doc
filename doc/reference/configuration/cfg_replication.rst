@@ -10,6 +10,8 @@
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
 * :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
 * :ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>`
+* :ref:`election_mode <cfg_replication-election_mode>`
+* :ref:`election_timeout <cfg_replication-election_timeout>`
 
 
 .. _cfg_replication-replication:
@@ -432,6 +434,70 @@
     It is not used on replicas, so if the master dies, the pending synchronous
     transactions will be kept waiting on the replicas until a new master is
     elected.
+
+    | Type: number
+    | Default: 5
+    | Dynamic: **yes**
+
+.. _cfg_replication-election_mode:
+
+.. confval:: election_mode
+
+    Since version 2.6.1. Specifies the role of a replica set node in the
+    :ref:`leader election process <repl_leader_elect>`.
+
+    Possible values:
+
+    * off
+    * voter
+    * candidate.
+
+    Participation of a replica set node in the automated leader election can be
+    turned on and off by this option.
+    The default value is ``off``. All nodes that have values other than ``off``
+    run the Raft state machine internally talking to other nodes according
+    to the Raft leader election protocol. When the option is ``off``, the node
+    accepts Raft messages
+    from other nodes, but it doesn't participate in the election activities,
+    and this doesn't affect the node's state. So, for example, if a node is not
+    a leader but it has ``election_mode = 'off'``, it is writable anyway.
+
+    You can control which nodes can become a leader. If you want a node
+    to participate in the election process but don't want that it becomes
+    a leaders, set the ``election_mode`` option to ``voter``. In this case,
+    the election works as usual, this particular node will vote for other nodes,
+    but won't become a leader.
+
+    If the node should be able to become a leader, use ``election_mode = 'candidate'``.
+
+    | Type: string
+    | Default: 'off'
+    | Dynamic: **yes**
+
+.. _cfg_replication-election_timeout:
+
+.. confval:: election_timeout
+
+    Since version 2.6.1. Specifies the timeout between election rounds in the
+    :ref:`leader election process <repl_leader_elect>` if the previous round
+    ended up with a split-vote.
+
+    In the :ref:`leader election process <repl_leader_elect_process>`, there
+    can be an election timeout for the case of a split-vote.
+    The timeout can be configured using this option; the default value is
+    5 seconds.
+
+    It is quite big, and for most of the cases it can be freely lowered to
+    300-400 ms. It can be a floating point value (300 ms would be
+    ``box.cfg{election_timeout = 0.3}``).
+
+    To avoid the split vote repeat, the timeout is randomized on each node
+    during every new election, from 100% to 110% of the original timeout value.
+    For example, if the timeout is 300 ms and there are 3 nodes started
+    the election simultaneously in the same term,
+    they can set their election timeouts to 300, 310, 320 respectively,
+    or to 305, 302, 324, and so on. In that way, the votes will never be split
+    because the election on different nodes won't be restarted simultaneously.
 
     | Type: number
     | Default: 5

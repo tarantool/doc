@@ -23,3 +23,4 @@ This chapter includes the following sections:
    repl_reseed
    repl_problem_solving
    repl_sync
+   repl_leader_elect
