@@ -166,7 +166,7 @@ the ULL suffix and the ``tonumber64`` function:
 
 .. _index-box_double:
 
-The Tarantool/SQL **double** field type exists
+The **double** field type exists
 mainly so that there will be an equivalent to Tarantool/SQL's
 :ref:`DOUBLE data type <sql_data_type_double>`.
 In MsgPack the storage type is MP_DOUBLE and the size of the encoded value is always 9 bytes.
@@ -201,7 +201,7 @@ Tarantool/SQL does
 An **ext** (extension) value is an addition by Tarantool, not part of the
 formal MsgPack definition, for storage of decimal values. Values with the
 decimal type are not floating-point values although they may contain decimal
-points. They are exact.
+points. They are exact with :ref:`up to 38 digits of precision <decimal>`.
 
 A **bin** (binary) value is not directly supported by Lua but there is
 a Tarantool type ``VARBINARY`` which is encoded as MessagePack binary.
@@ -332,7 +332,7 @@ Here is how Tarantool indexed field types correspond to MsgPack data types.
     |                            | **decimal**                       |                      |                    |
     |                            | (value returned by a function in  |                      |                    |
     |                            | the :ref:`decimal <decimal>`      |                      |                    |
-    |                            | module                            |                      |                    |
+    |                            | module)                           |                      |                    |
     |                            |                                   |                      |                    |
     |                            | **string** (any set of octets)    |                      |                    |
     |                            |                                   |                      |                    |
