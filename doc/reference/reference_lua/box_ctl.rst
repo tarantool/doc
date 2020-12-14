@@ -4,7 +4,9 @@
                                 Submodule `box.ctl`
 -------------------------------------------------------------------------------
 
-.. module:: box.ctl
+===============================================================================
+                                  Overview
+===============================================================================
 
 The ``box.ctl`` submodule contains two functions: ``wait_ro``
 (wait until read-only)
@@ -24,45 +26,25 @@ Waiting until "read only mode = false" solves this problem.
 To see whether a function is already in read-only or
 read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
 
-.. _ctl-wait_ro:
+===============================================================================
+                                 Contents
+===============================================================================
 
-.. function:: wait_ro([timeout])
+.. container:: table
 
-    Wait until ``box.info.ro`` is true.
+    .. rst-class:: left-align-column-1
+    .. rst-class:: left-align-column-2
 
-    :param number timeout: maximum number of seconds to wait
-    :return: nil, or error may be thrown due to timeout or fiber cancellation
+    +-------------------------------------+-------------------------------------+
+    | Name                                | Use                                 |
+    +=====================================+=====================================+
+    | :ref:`box.ctl.wait_ro <ctl-wait_ro> | Wait until ``box.info.ro`` is true  |
+    +-------------------------------------+-------------------------------------+
+    | :ref:`box.ctl.wait_ro <ctl-wait_rw> | Wait until ``box.info.ro`` is false |
+    +-------------------------------------+-------------------------------------+
 
-    **Example:**
+.. toctree::
+    :hidden:
 
-    .. code-block:: tarantoolsession
-
-        tarantool> box.info().ro
-        ---
-        - false
-        ...
-
-        tarantool> n = box.ctl.wait_ro(0.1)
-        ---
-        - error: timed out
-        ...
-
-.. _ctl-wait_rw:
-
-.. function:: wait_rw([timeout])
-
-    Wait until box.info.ro is false.
-
-    :param number timeout: maximum number of seconds to wait
-    :return: nil, or error may be thrown due to timeout or fiber cancellation
-
-
-    **Example:**
-
-    .. code-block:: tarantoolsession
-
-        tarantool> box.ctl.wait_rw(0.1)
-        ---
-        ...
-
-
+    box_ctl/box_ctl_wait_ro
+    box_ctl/box_ctl_wait_rw
