@@ -1,7 +1,7 @@
 .. _box_schema-sequence_create_index:
 
 ===============================================================================
-space_object:create_index()
+specifying a sequence in create_index()
 ===============================================================================
 
 .. module:: box.schema

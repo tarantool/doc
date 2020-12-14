@@ -14,7 +14,7 @@ The ``box.schema`` submodule has data-definition functions
 for spaces, users, roles, function tuples, and sequences.
 
 ===============================================================================
-                                    Index
+                                  Contents
 ===============================================================================
 
 Below is a list of all ``box.schema`` functions.
@@ -89,27 +89,6 @@ Below is a list of all ``box.schema`` functions.
     | :ref:`box.schema.func.reload()       | Reload a C module with all its  |
     | <box_schema-func_reload>`            | functions, no restart           |
     +--------------------------------------+---------------------------------+
-    | :ref:`box.schema.sequence.create()   | Create a new sequence generator |
-    | <box_schema-sequence_create>`        |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:next()         | Generate and return the next    |
-    | <box_schema-sequence_next>`          | value                           |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:alter()        | Change sequence options         |
-    | <box_schema-sequence_alter>`         |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:reset()        | Reset sequence state            |
-    | <box_schema-sequence_reset>`         |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:set()          | Set the new value               |
-    | <box_schema-sequence_set>`           |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:drop()         | Drop the sequence               |
-    | <box_schema-sequence_drop>`          |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`space_object:create_index()    | Create an index                 |
-    | <box_schema-sequence_create_index>`  |                                 |
-    +--------------------------------------+---------------------------------+
 
 .. toctree::
     :hidden:
@@ -134,11 +113,3 @@ Below is a list of all ``box.schema`` functions.
     box_schema/box_schema_func_drop
     box_schema/box_schema_func_exists
     box_schema/box_schema_func_reload
-    box_schema/box_schema_sequences
-    box_schema/box_schema_sequence_create
-    box_schema/box_schema_sequence_next
-    box_schema/box_schema_sequence_alter
-    box_schema/box_schema_sequence_reset
-    box_schema/box_schema_sequence_set
-    box_schema/box_schema_sequence_drop
-    box_schema/box_schema_sequence_create_index
