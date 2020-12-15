@@ -21,22 +21,26 @@ with ``box``, with no arguments. The ``box`` module contains:
     :maxdepth: 3
     :includehidden:
 
-    box_backup
+    box_stat
     box_cfg
+
+    box_backup
     box_ctl
     box_error
     box_index
     box_info
-    box_once
-    box_null
     box_schema
+    box_schema_sequences
     box_session
     box_slab
     box_space
-    box_stat
-    box_snapshot
     box_tuple
+
     box_txn_management
+    box_once
+    box_snapshot
+
+    box_null
 
 
 .. // moved to "User Guide > 5. Server administration":

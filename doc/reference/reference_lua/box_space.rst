@@ -16,7 +16,7 @@ is available in file
 `src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_.
 
 ===============================================================================
-                                    Index
+                                Contents
 ===============================================================================
 
 Below is a list of all ``box.space`` functions and members.
