@@ -10,7 +10,7 @@ Release management
 Release policy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A Tarantool release is identified by three digits, for example, 1.10.7:
+A Tarantool release is identified by **three** digits, for example, 1.10.7:
 
 * The first digit stands for a MAJOR release series that introduces
   some *major changes*. Up to now, there has been only one major release jump
@@ -114,6 +114,14 @@ channel (`tarantool_news <https://t.me/tarantool_news>`_).
 
 We also publish nightly builds, and use the fourth slot in the version
 identifier to designate the nightly build number.
+
+.. important::
+
+   Only a version with ``0`` in the fourth slot, namely ``X.Y.Z-0-<hash>`` is
+   considered to be a *release*. Further nightly builds in the same branch
+   although published are **not** releases. For example, ``2.5.1-0-<hash>`` is
+   the release version while ``2.5.1-1-<hash>``, ``2.5.1-2-<hash>``, and so on
+   are not.
 
 .. _backward-incompatible:
 
