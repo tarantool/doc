@@ -1,0 +1,40 @@
+
+msgid "index_object:drop()"
+msgstr ""
+
+msgid ""
+"Drop an index. Dropping a primary-key index has a side effect: all tuples"
+" are deleted."
+msgstr ""
+"Удаление индекса. Побочный эффект удаления первичного индекса -- все "
+"кортежи удалятся."
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil."
+msgstr "nil."
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "index does not exist,"
+msgstr ""
+
+msgid "a primary-key index cannot be dropped while a secondary-key index exists."
+msgstr "первичный индекс невозможно удалить, если существует вторичный индекс."
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> box.space.space55.index.primary:drop()\n"
+"---\n"
+"..."
+msgstr ""

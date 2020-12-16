@@ -1,0 +1,22 @@
+
+msgid "box.session.peer()"
+msgstr ""
+
+msgid "This function works only if there is a peer, that is, if a connection has been made to a separate Tarantool instance."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "The host address and port of the session peer, for example \"127.0.0.1:55457\". If the session exists but there is no connection to a separate instance, the return is null. The command is executed on the server instance, so the \"local name\" is the server instance's host and port, and the \"peer name\" is the client's host and port."
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "Possible errors: 'session.peer(): session does not exist'"
+msgstr ""
+

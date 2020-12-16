@@ -1,0 +1,31 @@
+
+msgid "space_object:drop()"
+msgstr ""
+
+msgid "Drop a space. The method is performed in background and doesn't block consequent requests."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil"
+msgstr ""
+
+msgid "**Possible errors:** ``space_object`` does not exist."
+msgstr ""
+
+msgid "**Complexity factors:** Index size, Index type, Number of indexes accessed, WAL settings."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "box.space.space_that_does_not_exist:drop()"
+msgstr ""
+

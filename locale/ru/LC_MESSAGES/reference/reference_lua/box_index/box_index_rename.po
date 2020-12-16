@@ -1,0 +1,41 @@
+
+msgid "index_object:rename()"
+msgstr ""
+
+msgid "Rename an index."
+msgstr "Переименование индекса."
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+msgid "new name for index"
+msgstr "новое имя индекса"
+
+msgid "return"
+msgstr ""
+
+msgid "nil"
+msgstr ""
+
+msgid "**Possible errors:** index_object does not exist."
+msgstr "**Возможные ошибки:** index_object не существует."
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> box.space.space55.index.primary:rename('secondary')\n"
+"---\n"
+"..."
+msgstr ""
+"tarantool> box.space.space55.index.primary:rename('secondary')\n"
+"---\n"
+"..."
+
+msgid "**Complexity factors:** Index size, Index type, Number of tuples accessed."
+msgstr ""
+"**Факторы сложности:** Размер индекса, тип индекса, количество кортежей, "
+"к которым получен доступ."

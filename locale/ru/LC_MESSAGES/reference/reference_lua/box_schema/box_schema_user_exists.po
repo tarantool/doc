@@ -1,0 +1,24 @@
+
+msgid "box.schema.user.exists()"
+msgstr ""
+
+msgid ""
+"Return ``true`` if a user exists; return ``false`` if a user does not "
+"exist. For explanation of how Tarantool maintains user data, see section "
+":ref:`Users <authentication-users>` and reference on :ref:`_user "
+"<box_space-user>` space."
+msgstr ""
+"Возврат ``true`` (правда), если пользователь существует; возврат "
+"``false`` (ложь), если пользователь отсутствует. Чтобы получить "
+"информацию о том, как происходит управление данными пользователя в "
+"Tarantool'е, см. раздел :ref:`Пользователи <authentication-users>` и "
+"справочник по спейсу :ref:`_user <box_space-user>`."
+
+msgid "bool"
+msgstr "логическое значение bool"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid "box.schema.user.exists('Lena')"
+msgstr "box.schema.user.exists('Lena')"

@@ -1,0 +1,39 @@
+
+msgid "box.schema.role.grant()"
+msgstr ""
+
+msgid "Grant :ref:`privileges <authentication-owners_privileges>` to a role."
+msgstr "Выдача :ref:`прав <authentication-owners_privileges>` роли."
+
+msgid "the name of the role."
+msgstr "имя роли."
+
+msgid "the name of a function or space or sequence or role."
+msgstr "имя функции, спейса, последовательности или роли."
+
+msgid ""
+"``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; "
+"``true`` means there should be no error if the role already has the "
+"privilege."
+msgstr ""
+"``if_not_exists`` (если отсутствует) = ``true|false`` (правда/ложь, по "
+"умолчанию ложь) - логическое значение boolean; ``true`` (правда) "
+"означает, что ошибка не выпадет, если у роли уже есть права."
+
+msgid "The role must exist, and the object must exist."
+msgstr "Должна существовать роль, должен существовать объект."
+
+msgid ""
+"**Variation:** instead of ``privilege, object-type, object-name`` say "
+"``role-name`` -- to grant a role to a role."
+msgstr ""
+"**Вариант:** вместо ``privilege, object-type, object-name`` введите "
+"``role-name``, чтобы назначить роль для роли."
+
+msgid ""
+"box.schema.role.grant('Accountant', 'read', 'space', 'tester')\n"
+"box.schema.role.grant('Accountant', 'execute', 'function', 'f')\n"
+"box.schema.role.grant('Accountant', 'read,write', 'universe')\n"
+"box.schema.role.grant('public', 'Accountant')\n"
+"box.schema.role.grant('role1', 'role2', nil, nil, {if_not_exists=false})"
+msgstr ""

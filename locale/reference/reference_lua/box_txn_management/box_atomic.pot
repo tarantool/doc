@@ -1,0 +1,19 @@
+
+msgid "box.atomic()"
+msgstr ""
+
+msgid "Execute a function, acting as if the function starts with an implicit :ref:`box.begin() <box-begin>` and ends with an implicit :ref:`box.commit() <box-commit>` if successful, or ends with an implicit :ref:`box.rollback() <box-rollback>` if there is an error."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "the result of the function passed to ``atomic()`` as an argument."
+msgstr ""
+
+msgid "**Possible errors:** any error that :ref:`box.begin() <box-begin>` and"
+msgstr ""
+
+msgid ":ref:`box.commit() <box-commit>` can return."
+msgstr ""
+

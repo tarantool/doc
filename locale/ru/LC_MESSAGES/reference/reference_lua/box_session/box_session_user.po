@@ -1,0 +1,15 @@
+
+msgid "box.session.user()"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "the name of the :ref:`current user <authentication-users>`"
+msgstr "имя :ref:`текущего пользователя <authentication-users>`"
+
+msgid "rtype"
+msgstr ""
+
+msgid "string"
+msgstr ""

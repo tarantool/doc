@@ -1,0 +1,40 @@
+
+msgid "space_object:truncate()"
+msgstr ""
+
+msgid "Deletes all tuples. The method is performed in background and doesn't block consequent requests."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+msgid "**Complexity factors:** Index size, Index type, Number of tuples accessed."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil"
+msgstr ""
+
+msgid "The ``truncate`` method can only be called by the user who created the space, or from within a ``setuid`` function created by the user who created the space. Read more about `setuid` functions in the reference for :ref:`box.schema.func.create() <box_schema-func_create>`."
+msgstr ""
+
+msgid "The ``truncate`` method cannot be called from within a transaction."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> box.space.tester:truncate()\n"
+"---\n"
+"...\n"
+"tarantool> box.space.tester:len()\n"
+"---\n"
+"- 0\n"
+"..."
+msgstr ""
+

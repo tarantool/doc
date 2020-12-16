@@ -1,0 +1,43 @@
+
+msgid "index_object:update()"
+msgstr ""
+
+msgid "Update a tuple."
+msgstr ""
+
+msgid "Same as :ref:`box.space...update() <box_space-update>`, but key is searched in this index instead of primary key. This index ought to be unique."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+msgid "values to be matched against the index key"
+msgstr ""
+
+msgid "operation type represented in string"
+msgstr ""
+
+msgid "what field the operation will apply to. The field number can be negative, meaning the position from the end of tuple. (#tuple + negative field number + 1)"
+msgstr ""
+
+msgid "what value will be applied"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "the updated tuple"
+msgstr ""
+
+msgid "nil if the key is not found"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "tuple or nil"
+msgstr ""
+

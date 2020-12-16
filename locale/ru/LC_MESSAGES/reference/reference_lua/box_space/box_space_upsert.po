@@ -1,0 +1,86 @@
+
+msgid "space_object:upsert()"
+msgstr ""
+
+msgid "Update or insert a tuple."
+msgstr ""
+
+msgid ""
+"If there is an existing tuple which matches the key fields of ``tuple``, "
+"then the request has the same effect as :ref:`space_object:update() "
+"<box_space-update>` and the ``{{operator, field_no, value}, ...}`` "
+"parameter is used. If there is no existing tuple which matches the key "
+"fields of ``tuple``, then the request has the same effect as "
+":ref:`space_object:insert() <box_space-insert>` and the ``{tuple}`` "
+"parameter is used. However, unlike ``insert`` or ``update``, ``upsert`` "
+"will not read a tuple and perform error checks before returning -- this "
+"is a design feature which enhances throughput but requires more caution "
+"on the part of the user."
+msgstr ""
+"Если существует кортеж, который совпадает с полями ключа ``tuple``, "
+"запрос приведет к тому же результату, что и :ref:`space_object:update() "
+"<box_space-update>`, и используется параметр ``{{operator, field_no, "
+"value}, ...}``. Если нет кортежа, который совпадает с полями ключа "
+"``tuple``, запрос приведет к тому же результату, что и  "
+":ref:`space_object:insert() <box_space-insert>`, и используется параметр "
+"``{tuple}``. Однако, в отличие от ``insert`` или ``update``, ``upsert`` "
+"не считывает кортеж и не проверяет на ошибки перед возвратом -- это "
+"конструктивная особенность, которая увеличивает быстродействие, но "
+"требует большей осторожности со стороны пользователя."
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+msgid "default tuple to be inserted, if analogue isn't found"
+msgstr "вставляемый по умолчанию кортеж, если не найдет аналог"
+
+msgid "operation type represented in string"
+msgstr ""
+
+msgid ""
+"what field the operation will apply to. The field number can be negative,"
+" meaning the position from the end of tuple. (#tuple + negative field "
+"number + 1)"
+msgstr ""
+
+msgid "what value will be applied"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "null"
+msgstr "null"
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "It is illegal to modify a primary-key field."
+msgstr "Нельзя изменять поле первичного ключа."
+
+msgid ""
+"It is illegal to use upsert with a space that has a unique secondary "
+"index."
+msgstr ""
+"Нельзя проводить операцию upsert в спейсе, в котором есть уникальный "
+"вторичный индекс."
+
+msgid ""
+"**Complexity factors:** Index size, Index type, number of indexes "
+"accessed, WAL settings."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})"
+msgstr "box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})"
+
+msgid ""
+"For more usage scenarios and typical errors see :ref:`Example: using data"
+" operations <box_space-operations-detailed-examples>` further in this "
+"section."
+msgstr ""

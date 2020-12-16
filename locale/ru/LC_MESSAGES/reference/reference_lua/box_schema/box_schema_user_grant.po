@@ -1,0 +1,79 @@
+
+msgid "box.schema.user.grant()"
+msgstr ""
+
+msgid ""
+"Grant :ref:`privileges <authentication-owners_privileges>` to a user or "
+"to another role."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "the name of the user."
+msgstr ""
+
+msgid ""
+"'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a "
+"combination."
+msgstr ""
+
+msgid "'space' or 'function' or 'sequence' or 'role'."
+msgstr ""
+
+msgid "name of object to grant permissions for."
+msgstr ""
+
+msgid "name of role to grant to user."
+msgstr ""
+
+msgid "``grantor``, ``if_not_exists``."
+msgstr ""
+
+msgid ""
+"If :samp:`'function','{object-name}'` is specified, then a _func tuple "
+"with that object-name must exist."
+msgstr ""
+
+msgid ""
+"**Variation:** instead of ``object-type, object-name`` say 'universe' "
+"which means 'all object-types and all objects'. In this case, object name"
+" is omitted."
+msgstr ""
+
+msgid ""
+"**Variation:** instead of ``privilege, object-type, object-name`` say "
+"``role-name`` (see section :ref:`Roles <authentication-roles>`)."
+msgstr ""
+
+msgid ""
+"**Variation:** instead of :samp:`box.schema.user.grant('{user-"
+"name}','usage,session','universe',nil,` :code:`{if_not_exists=true})` say"
+" :samp:`box.schema.user.enable('{user-name}')`."
+msgstr ""
+
+msgid "The possible options are:"
+msgstr ""
+
+msgid ""
+"``grantor`` = *grantor_name_or_id* -- string or number, for custom "
+"grantor,"
+msgstr ""
+
+msgid ""
+"``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; "
+"``true`` means there should be no error if the user already has the "
+"privilege."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"box.schema.user.grant('Lena', 'read', 'space', 'tester')\n"
+"box.schema.user.grant('Lena', 'execute', 'function', 'f')\n"
+"box.schema.user.grant('Lena', 'read,write', 'universe')\n"
+"box.schema.user.grant('Lena', 'Accountant')\n"
+"box.schema.user.grant('Lena', 'read,write,execute', 'universe')\n"
+"box.schema.user.grant('X', 'read', 'universe', nil, {if_not_exists=true}))"
+msgstr ""

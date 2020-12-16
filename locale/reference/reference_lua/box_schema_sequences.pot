@@ -1,0 +1,85 @@
+
+msgid "Sequences"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "An introduction to sequences is in the :ref:`Sequences <index-box_sequence>` section of the \"Data model\" chapter. Here are the details for each function and option."
+msgstr ""
+
+msgid "All functions related to sequences require appropriate :ref:`privileges <authentication-owners_privileges>`."
+msgstr ""
+
+msgid "Contents"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":ref:`box.schema.sequence.create() <box_schema-sequence_create>`"
+msgstr ""
+
+msgid "Create a new sequence generator"
+msgstr ""
+
+msgid ":ref:`sequence_object:next() <box_schema-sequence_next>`"
+msgstr ""
+
+msgid "Generate and return the next value"
+msgstr ""
+
+msgid ":ref:`sequence_object:alter() <box_schema-sequence_alter>`"
+msgstr ""
+
+msgid "Change sequence options"
+msgstr ""
+
+msgid ":ref:`sequence_object:reset() <box_schema-sequence_reset>`"
+msgstr ""
+
+msgid "Reset sequence state"
+msgstr ""
+
+msgid ":ref:`sequence_object:set() <box_schema-sequence_set>`"
+msgstr ""
+
+msgid "Set the new value"
+msgstr ""
+
+msgid ":ref:`sequence_object:drop() <box_schema-sequence_drop>`"
+msgstr ""
+
+msgid "Drop the sequence"
+msgstr ""
+
+msgid ":ref:`space_object:create_index() <box_schema-sequence_create_index>`"
+msgstr ""
+
+msgid "Create an index with a sequence option"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "Here is an example showing all sequence options and operations:"
+msgstr ""
+
+msgid "s = box.schema.sequence.create(\n"
+"               'S2',\n"
+"               {start=100,\n"
+"               min=100,\n"
+"               max=200,\n"
+"               cache=100000,\n"
+"               cycle=false,\n"
+"               step=100\n"
+"               })\n"
+"s:alter({step=6})\n"
+"s:next()\n"
+"s:reset()\n"
+"s:set(150)\n"
+"s:drop()"
+msgstr ""

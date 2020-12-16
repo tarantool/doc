@@ -1,0 +1,31 @@
+
+msgid "tuple_object[field-number]"
+msgstr ""
+
+msgid "If ``t`` is a tuple instance, ``t[field-number]`` will return the field numbered field-number in the tuple. The first field is ``t[1]``."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "field value."
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "lua-value"
+msgstr ""
+
+msgid "In the following example, a tuple named ``t`` is created and then the second field in ``t`` is returned."
+msgstr ""
+
+msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4'}\n"
+"---\n"
+"...\n"
+"tarantool> t[2]\n"
+"---\n"
+"- Fld#2\n"
+"..."
+msgstr ""
+

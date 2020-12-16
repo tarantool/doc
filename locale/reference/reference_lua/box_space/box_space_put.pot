@@ -1,0 +1,7 @@
+
+msgid "space_object:put()"
+msgstr ""
+
+msgid "See :ref:`space_object:replace() <box_space-replace>`."
+msgstr ""
+

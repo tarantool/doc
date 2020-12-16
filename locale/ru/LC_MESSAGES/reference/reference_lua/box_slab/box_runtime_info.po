@@ -1,0 +1,44 @@
+
+msgid "box.runtime.info()"
+msgstr ""
+
+msgid "Show a memory usage report (in bytes) for the Lua runtime."
+msgstr ""
+"Отображение отчета по использованию памяти (в байтах) во время исполнения"
+" Lua-кода."
+
+msgid "return"
+msgstr "возвращается"
+
+msgid "``lua`` is the heap size of the Lua garbage collector;"
+msgstr "``lua`` -- это размер динамической памяти сборщика мусора в Lua;"
+
+msgid "``maxalloc`` is the maximal memory quota that can be allocated for Lua;"
+msgstr ""
+"``maxalloc`` -- это максимальная квота памяти, которую можно выделить для"
+" Lua;"
+
+msgid "``used`` is the current memory size used by Lua."
+msgstr "``used`` -- объем памяти, используемый Lua в данный момент."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "table"
+msgstr "таблица"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.runtime.info()\n"
+"---\n"
+"- lua: 913710\n"
+"  maxalloc: 4398046510080\n"
+"  used: 12582912\n"
+"...\n"
+"tarantool> box.runtime.info().used\n"
+"---\n"
+"- used: 12582912\n"
+"..."
+msgstr ""

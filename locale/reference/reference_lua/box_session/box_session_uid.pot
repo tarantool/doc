@@ -1,0 +1,19 @@
+
+msgid "box.session.uid()"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "the user ID of the :ref:`current user <authentication-users>`."
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+msgid "Every user has a unique name (seen with :ref:`box.session.user() <box_session-user>`) and a unique ID (seen with ``box.session.uid()``). The values are stored together in the ``_user`` space."
+msgstr ""
+

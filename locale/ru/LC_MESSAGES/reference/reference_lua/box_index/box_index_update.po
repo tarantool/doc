@@ -1,0 +1,54 @@
+
+msgid "index_object:update()"
+msgstr ""
+
+msgid "Update a tuple."
+msgstr "Обновление кортежа."
+
+msgid ""
+"Same as :ref:`box.space...update() <box_space-update>`, but key is "
+"searched in this index instead of primary key. This index ought to be "
+"unique."
+msgstr ""
+"То же, что и :ref:`box.space...update() <box_space-update>`, но поиск "
+"ключа происходит в этом индексе, вместо первичного. Данный индекс должен "
+"быть уникальным."
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+msgid "values to be matched against the index key"
+msgstr ""
+
+msgid "operation type represented in string"
+msgstr "тип операции, представленный строкой"
+
+msgid ""
+"what field the operation will apply to. The field number can be negative,"
+" meaning the position from the end of tuple. (#tuple + negative field "
+"number + 1)"
+msgstr ""
+"к какому полю применяется операция. Номер поля может быть отрицательным, "
+"что означает, что позиция рассчитывается с конца кортежа. (#кортеж + "
+"отрицательный номер поля + 1)"
+
+msgid "what value will be applied"
+msgstr "какое значение применяется"
+
+msgid "return"
+msgstr ""
+
+msgid "the updated tuple"
+msgstr "обновленный кортеж"
+
+msgid "nil if the key is not found"
+msgstr "nil, если ключ не найден"
+
+msgid "rtype"
+msgstr ""
+
+msgid "tuple or nil"
+msgstr ""

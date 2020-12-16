@@ -1,0 +1,541 @@
+
+msgid "space_object:create_index()"
+msgstr ""
+
+msgid ""
+"Create an :ref:`index <index-box_index>`. It is mandatory to create an "
+"index for a space before trying to insert tuples into it, or select "
+"tuples from it. The first created index, which will be used as the "
+"primary-key index, must be unique."
+msgstr ""
+"Создание :ref:`индекса <index-box_index>`. Индекс обязательно должен "
+"создаваться для спейса до вставки в него кортежей или выборки. Первый "
+"созданный индекс, который будет использоваться в качестве первичного "
+"индекса, должен быть уникальным."
+
+#, fuzzy
+msgid "Parameters"
+msgstr "parts"
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+msgid ""
+"name of index, which should conform to the :ref:`rules for object names "
+"<app_server-names>`"
+msgstr ""
+"имя индекса, которое должно соответствовать :ref:`правилам именования "
+"объектов <app_server-names>`"
+
+msgid "see \"Options for space_object:create_index()\", below"
+msgstr "см. \"Параметры для space_object:create_index()\" ниже"
+
+msgid "return"
+msgstr ""
+
+msgid "index object"
+msgstr "объект индекса"
+
+#, fuzzy
+msgid "rtype"
+msgstr "type"
+
+msgid "index_object"
+msgstr "объект индекса"
+
+msgid "**Options for space_object:create_index()**"
+msgstr "**Параметры для space_object:create_index()**"
+
+#, fuzzy
+msgid "Name"
+msgstr "число"
+
+msgid "Effect"
+msgstr "Эффект"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Default"
+msgstr "Значение по умолчанию"
+
+msgid "type"
+msgstr "type"
+
+msgid "type of index"
+msgstr "тип индекса"
+
+msgid ""
+"string ('HASH' or 'TREE' or 'BITSET' or 'RTREE') Note re storage engine: "
+"vinyl only supports 'TREE'"
+msgstr ""
+"строка ('HASH' или 'TREE', или 'BITSET', или 'RTREE') Примечание про "
+"движок базы данных: vinyl поддерживает только 'TREE'"
+
+msgid "'TREE'"
+msgstr "'TREE'"
+
+msgid "id"
+msgstr "id"
+
+msgid "unique identifier"
+msgstr "уникальный идентификатор"
+
+msgid "number"
+msgstr "число"
+
+msgid "last index's id, +1"
+msgstr "идентификатор последнего индекса +1"
+
+msgid "unique"
+msgstr "unique"
+
+msgid "index is unique"
+msgstr "индекс уникален"
+
+msgid "boolean"
+msgstr "boolean (логический)"
+
+msgid "``true``"
+msgstr "``true`` (правда)"
+
+msgid "if_not_exists"
+msgstr "if_not_exists (если отсутствует)"
+
+msgid "no error if duplicate name"
+msgstr "ошибки нет, если имя дублируется"
+
+msgid "``false``"
+msgstr "``false`` (ложь)"
+
+msgid "parts"
+msgstr "parts"
+
+msgid "field-numbers  + types"
+msgstr "номера поля + типы"
+
+msgid ""
+"{field_no, 'unsigned' or 'string' or 'integer' or 'number' or 'boolean' "
+"or 'array' or 'scalar', and optional collation, and optional is_nullable "
+"value}"
+msgstr ""
+"{field_no, 'unsigned' или 'string', или 'integer', или 'number', или "
+"'boolean', или 'array', или 'scalar', возможна сортировка, возможно "
+"значение is_nullable}"
+
+msgid "``{1, 'unsigned'}``"
+msgstr "``{1, 'unsigned'}``"
+
+msgid "dimension"
+msgstr "dimension"
+
+msgid "affects :ref:`RTREE <box_index-rtree>` only"
+msgstr "только для :ref:`RTREE <box_index-rtree>`"
+
+msgid "2"
+msgstr "2"
+
+msgid "distance"
+msgstr "distance"
+
+msgid "affects RTREE only"
+msgstr "только для RTREE"
+
+msgid "string ('euclid' or 'manhattan')"
+msgstr "строка ('euclid' или 'manhattan')"
+
+msgid "'euclid'"
+msgstr "'euclid' (Евклидова)"
+
+msgid "bloom_fpr"
+msgstr "bloom_fpr"
+
+msgid "affects vinyl only"
+msgstr "только для vinyl"
+
+msgid "``vinyl_bloom_fpr``"
+msgstr "``vinyl_bloom_fpr``"
+
+msgid "page_size"
+msgstr "page_size"
+
+msgid "``vinyl_page_size``"
+msgstr "``vinyl_page_size``"
+
+msgid "range_size"
+msgstr "range_size"
+
+msgid "``vinyl_range_size``"
+msgstr "``vinyl_range_size``"
+
+msgid "run_count_per_level"
+msgstr "run_count_per_level"
+
+msgid "``vinyl_run_count_per_level``"
+msgstr "``vinyl_run_count_per_level``"
+
+msgid "run_size_ratio"
+msgstr "run_size_ratio"
+
+msgid "``vinyl_run_size_ratio``"
+msgstr "``vinyl_run_size_ratio``"
+
+msgid "sequence"
+msgstr "sequence"
+
+msgid ""
+"see section regarding :ref:`specifying a sequence in create_index() "
+"<box_schema-sequence_create_index>`"
+msgstr ""
+"см. раздел об :ref:`указании последовательности для create_index() "
+"<box_schema-sequence_create_index>`"
+
+msgid "string or number"
+msgstr "строка или число"
+
+msgid "not present"
+msgstr "отсутствует"
+
+msgid ""
+"The options in the above chart are also applicable for "
+":ref:`index_object:alter() <box_index-alter>`."
+msgstr ""
+"Параметры в вышеуказанной таблице также применимы к "
+":ref:`index_object:alter() <box_index-alter>`."
+
+msgid ""
+"**Note re storage engine:** vinyl has extra options which by default are "
+"based on configuration parameters :ref:`vinyl_bloom_fpr <cfg_storage-"
+"vinyl_bloom_fpr>`, :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`, "
+":ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`, "
+":ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>`,"
+" and :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>` -- "
+"see the description of those parameters. The current values can be seen "
+"by selecting from :ref:`box.space._index <box_space-index>`."
+msgstr ""
+"**Примечание про движок базы данных:** в vinyl'е есть дополнительные "
+"параметры, которые по умолчанию основаны на конфигурационных параметрах "
+":ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`, "
+":ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`, "
+":ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`, "
+":ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>` "
+"и :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>` -- см. "
+"описание этих параметров. Текущие значения можно увидеть, сделав выборку "
+"из :ref:`box.space._index <box_space-index>`."
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "too many parts;"
+msgstr "слишком много частей;"
+
+msgid "index '...' already exists;"
+msgstr "индекс '...' уже существует;"
+
+msgid "primary key must be unique."
+msgstr "первичный ключ должен быть уникальным."
+
+msgid ""
+"tarantool> s = box.space.tester\n"
+"---\n"
+"...\n"
+"tarantool> s:create_index('primary', {unique = true, parts = { {field = "
+"1, type = 'unsigned'}, {field = 2, type = 'string'}} })\n"
+"---\n"
+"..."
+msgstr ""
+"tarantool> s = box.space.tester\n"
+"---\n"
+"...\n"
+"tarantool> s:create_index('primary', {unique = true, parts = { {field = "
+"1, type = 'unsigned'}, {field = 2, type = 'string'}} })\n"
+"---\n"
+"..."
+
+msgid "**Details about index field types:**"
+msgstr "**Подробнее о типах полей индекса:**"
+
+msgid ""
+"The seven index field types (unsigned | string | integer | number | "
+"boolean | array | scalar) differ depending on what values are allowed, "
+"and what index types are allowed."
+msgstr ""
+"Семь типов полей индекса (unsigned | string | integer | number | boolean "
+"| array | scalar) отличаются друг от друга возможными значениями и типами"
+" индексов, где можно использовать такие поля."
+
+msgid ""
+"**unsigned**: unsigned integers between 0 and 18446744073709551615, about"
+" 18 quintillion. May also be called 'uint' or 'num', but 'num' is "
+"deprecated. Legal in memtx TREE or HASH indexes, and in vinyl TREE "
+"indexes."
+msgstr ""
+"**unsigned**: беззнаковые целые числа от 0 до 18 446 744 073 709 551 615,"
+" т.е. около18 квинтиллионов. Также может называться 'uint' или 'num', но "
+"'num' объявлен устаревшим. Используется в индексах типа TREE или HASH в "
+"memtx'е, и в TREE-индексах в vinyl'е."
+
+msgid ""
+"**string**: any set of octets, up to the :ref:`maximum length "
+"<limitations_bytes_in_index_key>`. May also be called 'str'. Legal in "
+"memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. A string"
+" may have a :ref:`collation <index-collation>`."
+msgstr ""
+"**string**: строка, то есть любая последовательность октетов до "
+":ref:`максимальной длины <limitations_bytes_in_index_key>`. Также может "
+"называться 'str'. Используется в индексах типа TREE, HASH или BITSET в "
+"memtx'е и в TREE-индексах в vinyl'е. В строке может быть :ref:`сортировка"
+" <index-collation>`."
+
+msgid ""
+"**integer**: integers between -9223372036854775808 and "
+"18446744073709551615. May also be called 'int'. Legal in memtx TREE or "
+"HASH indexes, and in vinyl TREE indexes."
+msgstr ""
+"**integer**: целые числа от -9 223 372 036 854 775 808 до 18 446 744 073 "
+"709 551 615. Также может называться 'int'. Используется в индексах типа "
+"TREE или HASH в memtx'е и в TREE-индексах в vinyl'е."
+
+msgid ""
+"**number**: integers between -9223372036854775808 and "
+"18446744073709551615, single-precision floating point numbers, or double-"
+"precision floating point numbers. Legal in memtx TREE or HASH indexes, "
+"and in vinyl TREE indexes."
+msgstr ""
+"**number**: целые числа от -9 223 372 036 854 775 808 до 18 446 744 073 "
+"709 551 615, числа с плавающей запятой с одинарной точностью или с "
+"двойной точностью. Используется в индексах типа TREE или HASH в memtx'е и"
+" в TREE-индексах в vinyl'е."
+
+msgid ""
+"**boolean**: true or false. Legal in memtx TREE or HASH indexes, and in "
+"vinyl TREE indexes."
+msgstr ""
+"**boolean**: логическое значение, true (правда) или false (ложь). "
+"Используется в индексах типа TREE или HASH в memtx'е и в TREE-индексах в "
+"vinyl'е."
+
+msgid ""
+"**array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-"
+"rtree>` indexes."
+msgstr ""
+"**array**: массив чисел. Используется в :ref:`RTREE-индексах <box_index-"
+"rtree>` в memtx'е."
+
+msgid ""
+"**scalar**: booleans (true or false), or integers between "
+"-9223372036854775808 and 18446744073709551615, or single-precision "
+"floating point numbers, or double-precison floating-point numbers, or "
+"strings. When there is a mix of types, the key order is: booleans, then "
+"numbers, then strings. Legal in memtx TREE or HASH indexes, and in vinyl "
+"TREE indexes."
+msgstr ""
+"**scalar**: логические значения (true или false), целые числа от integers"
+" between -9 223 372 036 854 775 808 до 18 446 744 073 709 551 615, числа "
+"с плавающей запятой с одинарной точностью или с двойной точностью или "
+"строки. При использовании нескольких типов, порядок ключей должен быть "
+"следующим: логические значения, затем числа, затем строки. Используется в"
+" индексах типа TREE или HASH в memtx'е и в TREE-индексах в vinyl'е."
+
+msgid ""
+"Additionally, `nil` is allowed with any index field type if "
+":ref:`is_nullable=true <box_space-is_nullable>` is specified."
+msgstr ""
+"Кроме того, допускается нулевое значение `nil` для любого типа поля, если"
+" указана такая возможность :ref:`is_nullable=true <box_space-"
+"is_nullable>`."
+
+msgid "**Index field types to use in space_object:create_index()**"
+msgstr "**Типы полей в индексах для использования в space_object:create_index()**"
+
+msgid "Index field type"
+msgstr "Тип поля для индексирования"
+
+msgid "What can be in it"
+msgstr "Чем может быть"
+
+msgid "Where is it legal"
+msgstr "Где может использоваться"
+
+msgid "Examples"
+msgstr "Примеры"
+
+msgid "**unsigned**"
+msgstr "**unsigned**"
+
+msgid "integers between 0 and 18446744073709551615"
+msgstr "целые числа от 0 до 18 446 744 073 709 551 615"
+
+msgid "memtx TREE or HASH indexes, |br| vinyl TREE indexes"
+msgstr "индексы типа TREE или HASH в memtx'е, |br| TREE-индексы в vinyl'е"
+
+msgid "123456 |br|"
+msgstr "123456 |br|"
+
+msgid "**string**"
+msgstr "**string**"
+
+msgid "strings -- any set of octets"
+msgstr "строки -- любой набор октетов"
+
+msgid "memtx TREE or HASH indexes |br| vinyl TREE indexes"
+msgstr "индексы типа TREE или HASH в memtx'е |br| TREE-индексы в vinyl'е"
+
+msgid "'A B C' |br| '\\\\65 \\\\66 \\\\67'"
+msgstr "'A B C' |br| '\\\\65 \\\\66 \\\\67'"
+
+msgid "**integer**"
+msgstr "**integer**"
+
+msgid "integers between -9223372036854775808 and 18446744073709551615"
+msgstr "целые числа от -9 223 372 036 854 775 808 до 18 446 744 073 709 551 615"
+
+msgid "-2^63 |br|"
+msgstr "-2^63 |br|"
+
+msgid "**number**"
+msgstr "**number**"
+
+msgid ""
+"integers between -9223372036854775808 and 18446744073709551615, single-"
+"precision floating point numbers, double-precision floating point numbers"
+msgstr ""
+"целые числа от -9 223 372 036 854 775 808 до 18 446 744 073 709 551 615, "
+"числа с плавающей запятой с одинарной точностью или с двойной точностью"
+
+msgid "1.234 |br| -44 |br| 1.447e+44"
+msgstr "1.234 |br| -44 |br| 1.447e+44"
+
+msgid "**boolean**"
+msgstr "**boolean**"
+
+msgid "true or false"
+msgstr "true или false"
+
+msgid "false |br| true"
+msgstr "false |br| true"
+
+msgid "**array**"
+msgstr "**array**"
+
+msgid "array of integers between -9223372036854775808 and 9223372036854775807"
+msgstr ""
+"массив целых чисел от -9 223 372 036 854 775 808 до 9 223 372 036 854 775"
+" 807"
+
+msgid "memtx RTREE indexes"
+msgstr "RTREE-индексы в memtx'е"
+
+msgid "{10, 11} |br| {3, 5, 9, 10}"
+msgstr "{10, 11} |br| {3, 5, 9, 10}"
+
+msgid "**scalar**"
+msgstr "**scalar**"
+
+msgid ""
+"booleans (true or false), integers between -9223372036854775808 and "
+"18446744073709551615, single-precision floating point numbers, double-"
+"precision floating point numbers, strings"
+msgstr ""
+"логические значения (true или false), целые числа от -9 223 372 036 854 "
+"775 808 до 18 446 744 073 709 551 615, числа с плавающей запятой с "
+"одинарной точностью или с двойной точностью, строки"
+
+msgid "true |br| -1 |br| 1.234 |br| '' |br| 'ру'"
+msgstr "true |br| -1 |br| 1.234 |br| '' |br| 'ру'"
+
+msgid ""
+"**Allowing null for an indexed key:** If the index type is TREE, and the "
+"index is not the primary index, then the ``parts={...}`` clause may "
+"include ``is_nullable=true`` or ``is_nullable=false`` (the default). If "
+"``is_nullable`` is true, then it is legal to insert ``nil`` or an "
+"equivalent such as ``msgpack.NULL`` (or it is legal to insert nothing at "
+"all for trailing nullable fields). Within indexes, such \"null values\" "
+"are always treated as equal to other null values, and are always treated "
+"as less than non-null values. Nulls may appear multiple times even in a "
+"unique index. Example:"
+msgstr ""
+"**Разрешение использования нулевых значений для индексируемого ключа:** "
+"/Если тип индекса -- TREE, и индекс не является первичным, то оператор "
+"``parts={...}`` может включать в себя ``is_nullable=true`` или "
+"``is_nullable=false`` (по умолчанию). Если значение параметра "
+"``is_nullable`` -- true, то можно вставлять ``nil`` или аналогичное "
+"значение, например ``msgpack.NULL`` (или можно не вставлять вообще ничего"
+" в завершающие ненулевые поля). В рамках индекса такие нулевые значения "
+"считаются равными другим нулевым значениям и всегда меньше ненулевых "
+"значений. Нулевые значения могут встречаться несколько раз даже в "
+"уникальном индексе. Например:"
+
+msgid "box.space.tester:create_index('I',{unique=true,parts={{2,'number',is_nullable=true}}})"
+msgstr "box.space.tester:create_index('I',{unique=true,parts={{2,'number',is_nullable=true}}})"
+
+msgid ""
+"It is legal to create multiple indexes for the same field with different "
+"``is_nullable`` values, or to call :ref:`space_object:format() "
+"<box_space-format>` with a different ``is_nullable`` value from what is "
+"used for an index. When there is a contradiction, the rule is: null is "
+"illegal unless ``is_nullable=true`` for every index and for the space "
+"format."
+msgstr ""
+"Можно создать множество индексов для одного и того же поля с различными "
+"значениями ``is_nullable`` или вызвать :ref:`space_object:format() "
+"<box_space-format>` со значением ``is_nullable``, отличным от "
+"используемого для индекса. При наличии несоответствий правило такое: "
+"запрещается использовать null кроме случаев, когда ``is_nullable=true`` "
+"для всех индексов и формата спейса."
+
+msgid ""
+"**Using field names instead of field numbers:** ``create_index()`` can "
+"use field names and/or field types described by the optional "
+":ref:`space_object:format() <box_space-format>` clause. In the following "
+"example, we show ``format()`` for a space that has two columns named 'x' "
+"and 'y', and then we show five variations of the ``parts={}`` clause of "
+"``create_index()``, first for the 'x' column, second for both the 'x' and"
+" 'y' columns. The variations include omitting the type, using numbers, "
+"and adding extra braces."
+msgstr ""
+"**Использование имен полей вместо номеров полей:** в ``create_index()`` "
+"можно использовать имена полей и/или типы полей, описанные в "
+"необязательном операторе :ref:`space_object:format() <box_space-format>`."
+" В следующем примере покажем ``format()`` для спейса с двумя столбцами "
+"под названиями 'x' и 'y', а затем покажем пять вариантов оператора "
+"``parts={}`` в ``create_index()``, сначала для столбца 'x', затем для "
+"столбцов 'x' и 'y'. Варианты включают в себя пропуск типа, использование "
+"номеров и добавление дополнительных фигурных скобок."
+
+msgid ""
+"box.space.tester:format({{name='x', type='scalar'}, {name='y', "
+"type='integer'}})\n"
+"box.space.tester:create_index('I2',{parts={{'x','scalar'}}})\n"
+"box.space.tester:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})"
+"\n"
+"box.space.tester:create_index('I4',{parts={1,'scalar'}})\n"
+"box.space.tester:create_index('I5',{parts={1,'scalar',2,'integer'}})\n"
+"box.space.tester:create_index('I6',{parts={1}})\n"
+"box.space.tester:create_index('I7',{parts={1,2}})\n"
+"box.space.tester:create_index('I8',{parts={'x'}})\n"
+"box.space.tester:create_index('I9',{parts={'x','y'}})\n"
+"box.space.tester:create_index('I10',{parts={{'x'}}})\n"
+"box.space.tester:create_index('I11',{parts={{'x'},{'y'}}})"
+msgstr ""
+"box.space.tester:format({{name='x', type='scalar'}, {name='y', "
+"type='integer'}})\n"
+"box.space.tester:create_index('I2',{parts={{'x','scalar'}}})\n"
+"box.space.tester:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})"
+"\n"
+"box.space.tester:create_index('I4',{parts={1,'scalar'}})\n"
+"box.space.tester:create_index('I5',{parts={1,'scalar',2,'integer'}})\n"
+"box.space.tester:create_index('I6',{parts={1}})\n"
+"box.space.tester:create_index('I7',{parts={1,2}})\n"
+"box.space.tester:create_index('I8',{parts={'x'}})\n"
+"box.space.tester:create_index('I9',{parts={'x','y'}})\n"
+"box.space.tester:create_index('I10',{parts={{'x'}}})\n"
+"box.space.tester:create_index('I11',{parts={{'x'},{'y'}}})"
+
+msgid ""
+"**Note re storage engine:** vinyl supports only the TREE index type, and "
+"vinyl secondary indexes must be created before tuples are inserted."
+msgstr ""
+"**Примечание про движок базы данных:** vinyl поддерживает только "
+"TREE-индексы, и следует создать в vinyl'е вторичные индексы до вставки "
+"кортежей."

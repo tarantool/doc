@@ -1,0 +1,31 @@
+
+msgid "box.schema.role.revoke()"
+msgstr ""
+
+msgid "Revoke :ref:`privileges <authentication-owners_privileges>` from a role."
+msgstr "Отмена :ref:`прав <authentication-owners_privileges>` роли."
+
+msgid ""
+"The role must exist, and the object must exist, but it is not an error if"
+" the role does not have the privilege."
+msgstr ""
+"Должна существовать роль, должен существовать объект, но ошибка не "
+"выпадет, если у роли нет прав."
+
+msgid ""
+"**Variation:** instead of ``privilege, object-type, object-name`` say "
+"``role-name``."
+msgstr ""
+"**Вариант:** вместо ``privilege, object-type, object-name`` введите "
+"``role-name``."
+
+msgid ""
+"box.schema.role.revoke('Accountant', 'read', 'space', 'tester')\n"
+"box.schema.role.revoke('Accountant', 'execute', 'function', 'f')\n"
+"box.schema.role.revoke('Accountant', 'read,write', 'universe')\n"
+"box.schema.role.revoke('public', 'Accountant')"
+msgstr ""
+"box.schema.role.revoke('Accountant', 'read', 'space', 'tester')\n"
+"box.schema.role.revoke('Accountant', 'execute', 'function', 'f')\n"
+"box.schema.role.revoke('Accountant', 'read,write', 'universe')\n"
+"box.schema.role.revoke('public', 'Accountant')"

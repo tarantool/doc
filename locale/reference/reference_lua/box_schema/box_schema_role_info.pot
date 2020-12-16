@@ -1,0 +1,19 @@
+
+msgid "box.schema.role.info()"
+msgstr ""
+
+msgid "Return a description of a role's privileges."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "the name of the role."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "box.schema.role.info('Accountant')"
+msgstr ""
+

@@ -1,0 +1,29 @@
+
+msgid "box.atomic()"
+msgstr ""
+
+msgid ""
+"Execute a function, acting as if the function starts with an implicit "
+":ref:`box.begin() <box-begin>` and ends with an implicit "
+":ref:`box.commit() <box-commit>` if successful, or ends with an implicit "
+":ref:`box.rollback() <box-rollback>` if there is an error."
+msgstr ""
+"Выполнение функции так, как будто функция начинается с явного вызова "
+":ref:`box.begin() <box-begin>` и заканчивается неявным вызовом "
+":ref:`box.commit() <box-commit>` после успешного выполнения или же "
+"заканчивается неявным вызовом :ref:`box.rollback() <box-rollback>` в "
+"случае ошибки."
+
+msgid "return"
+msgstr ""
+
+msgid "the result of the function passed to ``atomic()`` as an argument."
+msgstr "результат функции передается в ``atomic()`` в качестве аргумента."
+
+msgid "**Possible errors:** any error that :ref:`box.begin() <box-begin>` and"
+msgstr ""
+"**Возможные ошибки:** любая ошибка, которую могут вызвать "
+":ref:`box.begin() <box-begin>`"
+
+msgid ":ref:`box.commit() <box-commit>` can return."
+msgstr "и :ref:`box.commit() <box-commit>`."

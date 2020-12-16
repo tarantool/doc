@@ -1,0 +1,55 @@
+
+msgid "sequence_object:next()"
+msgstr ""
+
+msgid "Generate the next value and return it."
+msgstr ""
+
+msgid "The generation algorithm is simple:"
+msgstr ""
+
+msgid "If this is the first time, then return the STARTS WITH value."
+msgstr ""
+
+msgid "If the previous value plus the INCREMENT value is less than the MINIMUM value or greater than the MAXIMUM value, that is \"overflow\", so either raise an error (if ``cycle`` = ``false``) or return the MAXIMUM value (if ``cycle`` = ``true`` and ``step`` < 0) or return the MINIMUM value (if ``cycle`` = ``true`` and ``step`` > 0)."
+msgstr ""
+
+msgid "If there was no error, then save the returned result, it is now the \"previous value\"."
+msgstr ""
+
+msgid "For example, suppose sequence 'S' has:"
+msgstr ""
+
+msgid "``min`` == -6,"
+msgstr ""
+
+msgid "``max`` == -1,"
+msgstr ""
+
+msgid "``step`` == -3,"
+msgstr ""
+
+msgid "``start`` = -2,"
+msgstr ""
+
+msgid "``cycle`` = true,"
+msgstr ""
+
+msgid "previous value = -2."
+msgstr ""
+
+msgid "Then ``box.sequence.S:next()`` returns -5 because -2 + (-3) == -5."
+msgstr ""
+
+msgid "Then ``box.sequence.S:next()`` again returns -1 because -5 + (-3) < -6, which is overflow, causing cycle, and ``max`` == -1."
+msgstr ""
+
+msgid "This function requires a :ref:`'write' privilege <box_schema-user_grant>` on the sequence."
+msgstr ""
+
+msgid "This function should not be used in \"cross-engine\" transactions (transactions which use both the memtx and the vinyl storage engines)."
+msgstr ""
+
+msgid "To see what the previous value was, without changing it, you can select from the :ref:`_sequence_data <box_space-sequence_data>` system space."
+msgstr ""
+

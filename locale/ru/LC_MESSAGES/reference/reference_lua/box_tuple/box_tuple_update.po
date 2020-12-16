@@ -1,0 +1,85 @@
+
+msgid "tuple_object:update()"
+msgstr ""
+
+msgid "Update a tuple."
+msgstr "Обновление кортежа."
+
+msgid ""
+"This function updates a tuple which is not in a space. Compare the "
+"function :extsamp:`box.space.{*{space-name}*}:update({*{key}*}, "
+"{{{*{format}*}, {*{field_no}*}, {*{value}*}}, ...})` which updates a "
+"tuple in a space."
+msgstr ""
+"Эта функция обновляет кортеж, который находится не в спейсе. Ср. функцию "
+":extsamp:`box.space.{*{space-name}*}:update({*{key}*}, {{{*{format}*}, "
+"{*{field_no}*}, {*{value}*}}, ...})`, которая обновляет кортеж в спейсе."
+
+msgid ""
+"For details: see the description for ``operator``, ``field_no``, and "
+"``value`` in the section :ref:`box.space.space-name:update{key, format, "
+"{field_number, value}...) <box_space-update>`."
+msgstr ""
+"Более подробную информацию см. в описании ``operator``, ``field_no`` и "
+"``value`` в разделе :ref:`box.space.space-name:update{key, format, "
+"{field_number, value}...) <box_space-update>`."
+
+msgid ""
+"If the original tuple comes from a space that has been formatted with a "
+":ref:`format clause <box_space-format>`, the formatting will be preserved"
+" for the result tuple."
+msgstr ""
+"Если первоначальный кортеж приходит из спейса, который был форматирован "
+"посредством :ref:`оператора формата <box_space-format>`, форматирование "
+"возвращаемого кортежа сохранится."
+
+msgid "Parameters"
+msgstr ""
+
+msgid "operation type represented in string (e.g. '``=``' for 'assign new value')"
+msgstr ""
+"тип операции, представленный строкой (например, '``=``' означает "
+"'присвоить новое значение')"
+
+msgid ""
+"what field the operation will apply to. The field number can be negative,"
+" meaning the position from the end of tuple. (#tuple + negative field "
+"number + 1)"
+msgstr ""
+"к какому полю применяется операция. Номер поля может быть отрицательным, "
+"что означает, что позиция рассчитывается с конца кортежа. (#кортеж + "
+"отрицательный номер поля + 1)"
+
+msgid "what value will be applied"
+msgstr "какое значение применяется"
+
+msgid "return"
+msgstr ""
+
+msgid "new tuple"
+msgstr "новый кортеж"
+
+msgid "rtype"
+msgstr ""
+
+#, fuzzy
+msgid "tuple"
+msgstr "новый кортеж"
+
+msgid ""
+"In the following example, a tuple named ``t`` is created and then its "
+"second field is updated to equal 'B'."
+msgstr ""
+"В следующем примере создается кортеж под названием ``t``, а затем второе "
+"поле обновляется до равного 'B'."
+
+msgid ""
+"tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}"
+"\n"
+"---\n"
+"...\n"
+"tarantool> t:update({{'=', 2, 'B'}})\n"
+"---\n"
+"- ['Fld#1', 'B', 'Fld#3', 'Fld#4', 'Fld#5']\n"
+"..."
+msgstr ""

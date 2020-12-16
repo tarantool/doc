@@ -1,0 +1,24 @@
+
+msgid "index_object:bsize()"
+msgstr ""
+
+msgid "Return the total number of bytes taken by the index."
+msgstr "Возврат общего количества байтов, занятых индексом."
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "number of bytes"
+msgstr "количество байтов"
+
+msgid "rtype"
+msgstr ""
+
+msgid "number"
+msgstr ""

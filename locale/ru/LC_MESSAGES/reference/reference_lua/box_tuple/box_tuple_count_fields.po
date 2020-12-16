@@ -1,0 +1,34 @@
+
+msgid "#tuple_object"
+msgstr ""
+
+msgid ""
+"The ``#`` operator in Lua means \"return count of components\". So, if "
+"``t`` is a tuple instance, ``#t`` will return the number of fields."
+msgstr ""
+"Оператор ``#`` на языке Lua означает \"вернуть количество компонентов\". "
+"Таким образом, если ``t`` представляет собой кортеж, то ``#t`` вернет "
+"количество полей."
+
+msgid "rtype"
+msgstr ""
+
+msgid "number"
+msgstr "число"
+
+msgid ""
+"In the following example, a tuple named ``t`` is created and then the "
+"number of fields in ``t`` is returned."
+msgstr ""
+"В следующем примере создается кортеж под названием ``t``, а затем "
+"возвращается количество полей в кортеже ``t``."
+
+msgid ""
+"tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4'}\n"
+"---\n"
+"...\n"
+"tarantool> #t\n"
+"---\n"
+"- 4\n"
+"..."
+msgstr ""

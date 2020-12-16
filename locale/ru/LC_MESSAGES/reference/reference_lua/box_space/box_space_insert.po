@@ -1,0 +1,54 @@
+
+msgid "space_object:insert()"
+msgstr ""
+
+msgid "Insert a tuple into a space."
+msgstr "Вставка кортежа в спейс."
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+msgid "tuple to be inserted."
+msgstr "вставляемый кортеж."
+
+msgid "return"
+msgstr ""
+
+msgid "the inserted tuple"
+msgstr "вставленный кортеж"
+
+msgid "rtype"
+msgstr ""
+
+msgid "tuple"
+msgstr ""
+
+msgid ""
+"**Possible errors:** :errcode:`ER_TUPLE_FOUND` if a tuple with the same "
+"unique-key value already exists."
+msgstr ""
+"**Возможные ошибки:** ошибка :errcode:`ER_TUPLE_FOUND`, если уже "
+"существует кортеж с тем же уникальным значением ключа."
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> box.space.tester:insert{5000,'tuple number five thousand'}\n"
+"---\n"
+"- [5000, 'tuple number five thousand']\n"
+"..."
+msgstr ""
+"tarantool> box.space.tester:insert{5000,'tuple number five thousand'}\n"
+"---\n"
+"- [5000, 'tuple number five thousand']\n"
+"..."
+
+msgid ""
+"For more usage scenarios and typical errors see :ref:`Example: using data"
+" operations <box_space-operations-detailed-examples>` further in this "
+"section."
+msgstr ""
