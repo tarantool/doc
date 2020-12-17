@@ -117,11 +117,11 @@ identifier to designate the nightly build number.
 
 .. important::
 
-   Only a version with ``0`` in the fourth slot, namely ``X.Y.Z-0-<hash>`` is
-   considered to be a *release*. Further nightly builds in the same branch
-   although published are **not** releases. For example, ``2.5.1-0-<hash>`` is
-   the release version while ``2.5.1-1-<hash>``, ``2.5.1-2-<hash>``, and so on
-   are not.
+   Only a version with ``0`` in the fourth slot, namely ``X.Y.Z-0-g<hash>`` is
+   considered to be a *release*. Packages that are published with non-zero
+   in the fourth slot are nightly builds and *not* releases. For example,
+   ``2.5.1-0-g<hash>`` is the release version while ``2.5.1-1-g<hash>``,
+   ``2.5.1-2-g<hash>``, and so on are not.
 
 .. _backward-incompatible:
 
