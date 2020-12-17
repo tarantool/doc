@@ -218,49 +218,68 @@ listen URI via:
 (1) ``telnet``,
 (2) a :ref:`connector <index-box_connectors>`,
 (3) another instance of Tarantool (using the :ref:`console <console-module>` module), or
-(4) :ref:`tarantoolctl <tarantoolctl>` utility.
+(4) :ref:`tarantoolctl <tarantoolctl>` administrative utility.
 
-Let’s try (4).
+Let’s try (3).
 
 Switch to another terminal. On Linux, for example, this means starting another
 instance of a Bash shell. You can switch to any working directory in the new
 terminal, not necessarily to ``~/tarantool_sandbox``.
 
-Start the ``tarantoolctl`` utility:
+Start another instance of ``tarantool``:
 
 .. code-block:: console
 
-    $ tarantoolctl connect '3301'
+    $ tarantool
 
-This means "use ``tarantoolctl connect`` to connect to the Tarantool instance
-that’s listening on ``localhost:3301``".
+Use ``net.box`` to connect to the Tarantool instance
+that’s listening on ``localhost:3301``":
+
+.. code-block:: tarantoolsession
+
+    tarantool> net_box = require('net.box')
+    ---
+    ...
+    tarantool> net_box.connect(3301)
+    ---
+    ...
 
 Try this request:
 
 .. code-block:: tarantoolsession
 
-    localhost:3301> box.space.tester:select{2}
+    tarantool> conn.space.tester:select{2}
 
 This means "send a request to that Tarantool instance, and display the result".
+It is equivalent to the local request ``box.space.tester:select{2}``.
 The result in this case is one of the tuples that was inserted earlier.
 Your terminal screen should now look like this:
 
 .. code-block:: tarantoolsession
 
-    $ tarantoolctl connect 3301
-    /usr/local/bin/tarantoolctl: connected to localhost:3301
-    localhost:3301> box.space.tester:select{2}
+    $ tarantool
+
+    Tarantool 2.6.1-32-g53dbba7c2
+    type 'help' for interactive help
+    tarantool> net_box = require('net.box')
+    ---
+    ...
+    tarantool> conn = net_box.connect(3301)
+    ---
+    ...
+    tarantool> conn.space.tester:select{2}
     ---
     - - [2, 'Scorpions', 2015]
     ...
 
 You can repeat ``box.space...:insert{}`` and ``box.space...:select{}``
+(or ``conn.space...:insert{}`` and ``conn.space...:select{}``)
 indefinitely, on either Tarantool instance.
 
 When the testing is over:
 
 * To drop the space: ``s:drop()``
-* To stop ``tarantoolctl``: Ctrl+C or Ctrl+D
+* To stop ``tarantool``: Ctrl+C or Ctrl+D
 * To stop Tarantool (an alternative): the standard Lua function
   `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_
 * To stop Tarantool (from another terminal): ``sudo pkill -f tarantool``

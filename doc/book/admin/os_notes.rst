@@ -39,7 +39,7 @@ Here is an example of ``tarantoolctl`` defaults on FreeBSD:
        snap_dir   = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
        vinyl_dir = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
        logger     = "/var/log/tarantool", -- /var/log/tarantool/${INSTANCE}.log
-       username   = "tarantool",
+       username   = "admin"
    }
 
    -- instances.available - all available instances

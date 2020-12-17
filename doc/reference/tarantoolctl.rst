@@ -9,6 +9,7 @@ Utility `tarantoolctl`
 :ref:`checkpoint files <tarantoolctl-checkpoint_management>` and
 :ref:`modules <tarantoolctl-module_management>`.
 It is shipped and installed as part of Tarantool distribution.
+This utility is intended for use by administrators only.
 
 See also ``tarantoolctl`` usage examples in :ref:`Server administration <admin>`
 section.

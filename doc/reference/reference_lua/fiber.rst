@@ -1268,7 +1268,7 @@ Example
 
 Assume that a tarantool instance is running and listening for connections on
 localhost port 3301. Assume that guest users have privileges to connect. We will
-use the tarantoolctl utility to start two clients.
+use the tarantoolctl utility (a utility for administrators) to start two clients.
 
 On terminal #1, say
 

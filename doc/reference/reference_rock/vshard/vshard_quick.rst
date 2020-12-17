@@ -16,7 +16,7 @@ This example includes 5 Tarantool instances and 2 replica sets:
 * ``storage_2_a`` – a ``storage`` instance, the **master** of the **second** replica set
 * ``storage_2_b`` – a ``storage`` instance, the **replica** of the **second** replica set
 
-All instances are managed using the ``tarantoolctl`` utility which comes with Tarantool.
+All instances are managed using the ``tarantoolctl`` administrative utility which comes with Tarantool.
 
 Change the directory to ``example/`` and use ``make`` to run the development cluster:
 

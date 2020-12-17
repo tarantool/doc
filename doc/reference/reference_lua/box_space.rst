@@ -2727,7 +2727,7 @@ organizing:
 
     To see how ``_vuser`` works,
     :ref:`connect to a Tarantool database remotely <connecting-remotely>`
-    via ``tarantoolctl`` and select all tuples from the ``_user``
+    via ``net.box`` and select all tuples from the ``_user``
     space, both when the 'guest' user *is* and *is not* allowed to read from the
     database.
 
@@ -2748,8 +2748,10 @@ organizing:
 
     .. code-block:: tarantoolsession
 
-        $ tarantoolctl connect 3301
-        localhost:3301> box.space._user:select{}
+        tarantool> conn = require('net.box').connect(3301)
+        ---
+        ...
+        tarantool> conn.space._user:select{}
         ---
         - - [0, 1, 'guest', 'user', {}]
           - [1, 1, 'admin', 'user', {}]
@@ -2769,14 +2771,14 @@ organizing:
         ---
         ...
 
-    Switch to the other terminal, stop the session (to stop ``tarantoolctl``, type Ctrl+C
-    or Ctrl+D) and repeat the ``box.space._user:select{}`` request. The access is
+    Switch to the other terminal, stop the session (to stop ``tarantool`` type Ctrl+C
+    or Ctrl+D), start again, connect again, and repeat the ``conn.space._user:select{}`` request. The access is
+
     denied:
 
     .. code-block:: tarantoolsession
 
-        $ tarantoolctl connect 3301
-        localhost:3301> box.space._user:select{}
+        tarantool> conn.space._user:select{}
         ---
         - error: Read access to space '_user' is denied for user 'guest'
         ...
@@ -2786,7 +2788,7 @@ organizing:
 
     .. code-block:: tarantoolsession
 
-        localhost:3301> box.space._vuser:select{}
+        tarantool> conn.space._vuser:select{}
         ---
         - - [0, 1, 'guest', 'user', {}]
         ...
@@ -2807,7 +2809,7 @@ organizing:
 
     .. code-block:: tarantoolsession
 
-        localhost:3301> box.space._collation:select(239)
+        tarantool> box.space._collation:select(239)
         ---
         - - [239, 'unicode_uk_s2', 1, 'ICU', 'uk', {'strength': 'secondary'}]
         ...

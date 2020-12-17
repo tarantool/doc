@@ -511,8 +511,8 @@ binary protocol. Any request that does not have
 its own code, for example :samp:`box.space.{space-name}:drop()`,
 will be handled either with :ref:`IPROTO_CALL <box_protocol-call>`
 or IPROTO_EVAL.
-Some client-like utilities, such as :ref:`tarantoolctl <tarantoolctl>`,
-make extensive use of ``eval``.
+The :ref:`tarantoolctl <tarantoolctl>` administrative utility
+makes extensive use of ``eval``.
 The body is a 2-item map:
 
 .. code-block:: none

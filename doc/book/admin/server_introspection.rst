@@ -70,7 +70,7 @@ attaching to its admin console. For example:
     :ref:`net.box <net_box-module>` module from a Tarantool server. Also, you can
     write your client programs with any of the
     :ref:`connectors <index-box_connectors>`. However, most of the examples in
-    this manual illustrate usage with either ``tarantoolctl connect`` or
+    this manual illustrate usage with either ``tarantoolctl connect`` (for administrative purposes) or
     :ref:`using the Tarantool server as a client <admin-using_tarantool_as_a_client>`.
 
 .. _admin-health_checks:
