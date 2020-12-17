@@ -23,7 +23,7 @@ box.session.su()
                                 ``box.session.su``, they will be interpreted
                                 as parameters of function-to-execute.
 
-    **Example**
+    **Example:**
 
     .. code-block:: tarantoolsession
 

@@ -3,7 +3,7 @@ msgid "space_object:upsert()"
 msgstr ""
 
 msgid "Update or insert a tuple."
-msgstr ""
+msgstr "Обновить или вставить кортеж."
 
 msgid ""
 "If there is an existing tuple which matches the key fields of ``tuple``, "
@@ -29,34 +29,37 @@ msgstr ""
 "требует большей осторожности со стороны пользователя."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "default tuple to be inserted, if analogue isn't found"
 msgstr "вставляемый по умолчанию кортеж, если не найдет аналог"
 
 msgid "operation type represented in string"
-msgstr ""
+msgstr "тип операции, представленный строкой"
 
 msgid ""
 "what field the operation will apply to. The field number can be negative,"
 " meaning the position from the end of tuple. (#tuple + negative field "
 "number + 1)"
 msgstr ""
+"к какому полю применяется операция. Номер поля может быть отрицательным, "
+"что означает, что позиция рассчитывается с конца кортежа. (#кортеж + "
+"отрицательный номер поля + 1)"
 
 msgid "what value will be applied"
-msgstr ""
+msgstr "какое значение применяется"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "null"
 msgstr "null"
 
 msgid "**Possible errors:**"
-msgstr ""
+msgstr "**Возможные ошибки:**"
 
 msgid "It is illegal to modify a primary-key field."
 msgstr "Нельзя изменять поле первичного ключа."
@@ -72,9 +75,11 @@ msgid ""
 "**Complexity factors:** Index size, Index type, number of indexes "
 "accessed, WAL settings."
 msgstr ""
+"**Факторы сложности:** Размер индекса, тип индекса, количество индексов, "
+"к которым получен доступ, настройки журнала упреждающей записи (WAL)."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid "box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})"
 msgstr "box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})"
@@ -84,3 +89,6 @@ msgid ""
 " operations <box_space-operations-detailed-examples>` further in this "
 "section."
 msgstr ""
+"Для получения дополнительной информации о сценариях использования и "
+"типичных ошибках, см. :ref:`Пример: использование операций с данными "
+"<box_space-operations-detailed-examples>` далее в разделе."

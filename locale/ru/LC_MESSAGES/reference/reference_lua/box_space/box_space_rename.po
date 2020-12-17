@@ -6,25 +6,25 @@ msgid "Rename a space."
 msgstr "Переименование спейса."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "new name for space"
 msgstr "новое имя спейса"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil"
 msgstr ""
 
 msgid "**Possible errors:** ``space_object`` does not exist."
-msgstr ""
+msgstr "**Возможные ошибки:** ``space_object`` не существует"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.space55:rename('space56')\n"

@@ -18,13 +18,13 @@ msgstr ""
 "задать условие “начинать поиск с номера поля ``field-number``.”"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the number of the field in the tuple."
 msgstr "номер поля в кортеже."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "number"
 msgstr ""

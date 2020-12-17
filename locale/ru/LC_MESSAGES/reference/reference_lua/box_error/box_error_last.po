@@ -5,8 +5,8 @@ msgstr ""
 msgid "Show the last error object."
 msgstr "Отображение объекта последней ошибки."
 
-msgid "**Example**"
-msgstr "**Пример**"
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid "You can reach the last error object's fields like this:"
 msgstr "К полям объекта последней ошибки можно получить доступ следующим образом:"

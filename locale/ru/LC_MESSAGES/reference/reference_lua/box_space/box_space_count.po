@@ -7,15 +7,15 @@ msgid ""
 "len>`, this method works slower because ``count()`` scans the entire "
 "space to count the tuples."
 msgstr ""
-"Возврат количества кортежей. Если сравнивать с :ref:`len() <box_space-"
+"Выдача количества кортежей. Если сравнивать с :ref:`len() <box_space-"
 "len>`, то данный метод работает медленнее, поскольку метод ``count()`` "
 "сканирует весь спейс для подсчета кортежей."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid ""
 "primary-key field values, must be passed as a Lua table if key is multi-"
@@ -28,13 +28,13 @@ msgid "comparison method"
 msgstr "метод сопоставления"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "Number of tuples."
 msgstr "Количество кортежей."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester:count(2, {iterator='GE'})\n"

@@ -10,6 +10,9 @@ msgstr ""
 "происходит управление данными функций в Tarantool'е, см. справочник по "
 "спейсу :ref:`_func <box_space-func>`."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid "the name of the function"
 msgstr "имя функции"
 
@@ -20,6 +23,9 @@ msgstr ""
 "``if_exists`` (если существует) = ``true|false`` (правда/ложь, по "
 "умолчанию ложь) - логическое значение boolean; ``true`` (правда) "
 "означает, что ошибка не выпадет, если кортеж в _func не существует."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid "box.schema.func.drop('calculate')"
 msgstr "box.schema.func.drop('calculate')"

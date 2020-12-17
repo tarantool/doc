@@ -6,22 +6,22 @@ msgid "Insert a tuple into a space."
 msgstr "Вставка кортежа в спейс."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "tuple to be inserted."
 msgstr "вставляемый кортеж."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the inserted tuple"
 msgstr "вставленный кортеж"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "tuple"
 msgstr ""
@@ -34,7 +34,7 @@ msgstr ""
 "существует кортеж с тем же уникальным значением ключа."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester:insert{5000,'tuple number five thousand'}\n"
@@ -52,3 +52,6 @@ msgid ""
 " operations <box_space-operations-detailed-examples>` further in this "
 "section."
 msgstr ""
+"Для получения дополнительной информации о сценариях использования и "
+"типичных ошибках, см. :ref:`Пример: использование операций с данными "
+"<box_space-operations-detailed-examples>` далее в разделе."

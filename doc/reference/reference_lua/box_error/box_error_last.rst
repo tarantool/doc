@@ -8,7 +8,7 @@ box.error.last()
 
     Show the last error object.
 
-    **Example**
+    **Example:**
 
     You can reach the last error object's fields like this:
 

@@ -3,7 +3,7 @@ msgid "box.session.euid()"
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the effective user ID of the :ref:`current user <authentication-users>`."
 msgstr "рабочий ID :ref:`текущего пользователя <authentication-users>`."
@@ -46,6 +46,15 @@ msgstr ""
 "создал функцию \"function-name\", а ``box.session.uid()`` вернет "
 "идентификатор пользователя, который вызывает эту функцию \"function-"
 "name\"."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "number"
+msgstr ""
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.session.su('admin')\n"

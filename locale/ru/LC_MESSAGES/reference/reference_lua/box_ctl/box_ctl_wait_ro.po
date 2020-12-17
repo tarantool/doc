@@ -12,7 +12,7 @@ msgid "maximum number of seconds to wait"
 msgstr "максимальное количество секунд ожидания"
 
 msgid "return"
-msgstr "возвращается"
+msgstr "возвращает"
 
 msgid "nil, or error may be thrown due to timeout or fiber cancellation"
 msgstr ""

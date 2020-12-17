@@ -37,6 +37,9 @@ msgstr ""
 msgid "The maximum number of users is 32."
 msgstr "Максимальное количество пользователей -- 32."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid ""
 "name of user, which should conform to the :ref:`rules for object names "
 "<app_server-names>`"
@@ -46,6 +49,9 @@ msgstr ""
 
 msgid "``if_not_exists``, ``password``"
 msgstr "``if_not_exists``, ``password``"
+
+msgid "return"
+msgstr "возвращает"
 
 msgid "nil"
 msgstr "nil"

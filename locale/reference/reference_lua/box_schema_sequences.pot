@@ -83,3 +83,4 @@ msgid "s = box.schema.sequence.create(\n"
 "s:set(150)\n"
 "s:drop()"
 msgstr ""
+

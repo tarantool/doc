@@ -15,10 +15,10 @@ msgstr ""
 "format>`."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "a series of \"field = value\" pairs, in any order."
 msgstr "ряд пар \"поле = значение\" в любом порядке."
@@ -33,13 +33,13 @@ msgstr ""
 "(то есть кортеж); |br| если ``{table = true}``, то возвращается таблица."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "a tuple instance or table."
 msgstr "кортеж или таблица."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "tuple or table"
 msgstr "кортеж или таблица"
@@ -52,7 +52,7 @@ msgstr ""
 "спейсе нет формата; \"unknown field\" (неизвестное поле)."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "-- Create a format with two fields named 'a' and 'b'.\n"

@@ -11,7 +11,7 @@ msgstr ""
 "количество полей."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "number"
 msgstr "число"

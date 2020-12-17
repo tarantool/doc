@@ -2,6 +2,9 @@
 msgid "Submodule `box.info`"
 msgstr "Вложенный модуль `box.info`"
 
+msgid "Overview"
+msgstr "Общие сведения"
+
 msgid ""
 "The ``box.info`` submodule provides access to information about server "
 "instance variables."
@@ -141,3 +144,36 @@ msgstr ""
 "**vinyl** возвращает статистику времени работы для движка базы данных "
 "vinyl. Данная функция объявлена устаревшей, используйте "
 ":ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>`."
+
+msgid "Contents"
+msgstr "Содержание"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Use"
+msgstr "Использование"
+
+msgid ":ref:`box.info() <box_info_info>`"
+msgstr ""
+
+msgid "Return all keys and values provided in the submodule"
+msgstr "Выдача всех ключей и значений, указанных в модуле"
+
+msgid ":ref:`box.info.gc() <box_info_gc>`"
+msgstr ""
+
+msgid "Return info about garbage collector"
+msgstr "Выдача информации о сборщике мусора"
+
+msgid ":ref:`box.info.memory() <box_info_memory>`"
+msgstr ""
+
+msgid "Return info about memory usage"
+msgstr "Выдача информации об использовании памяти"
+
+msgid ":ref:`box.info.replication <box_info_replication>`"
+msgstr ""
+
+msgid "Return statistics for all instances in the replica set"
+msgstr "Выдача статистики по всем экземплярам в наборе реплик"

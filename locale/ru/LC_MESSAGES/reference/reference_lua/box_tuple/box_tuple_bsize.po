@@ -33,13 +33,13 @@ msgstr ""
 "исходном коде Tarantool'а)."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "number of bytes"
 msgstr "количество байтов"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "number"
 msgstr ""

@@ -1,5 +1,5 @@
 
-.. _box_tuple-count_pairs:
+.. _box_tuple-pairs:
 
 ================================================================================
 tuple_object:pairs(), tuple_object:ipairs()

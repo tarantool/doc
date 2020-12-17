@@ -31,7 +31,7 @@ msgid "tuple's fields, other than the primary-key field"
 msgstr "поля кортежа, не включая поле первичного ключа"
 
 msgid "return"
-msgstr "возвращается"
+msgstr "возвращает"
 
 msgid "the inserted tuple."
 msgstr "вставленный кортеж."
@@ -47,7 +47,7 @@ msgid ""
 "accessed, :ref:`WAL settings <cfg_binary_logging_snapshots-"
 "rows_per_wal>`."
 msgstr ""
-"**Факторы сложности** Размер индекса, тип индекса, количество кортежей, к"
+"**Факторы сложности** Размер индекса, тип индекса, количество индексов, к"
 " которым получен доступ, :ref:`настройки журнала упреждающей записи (WAL)"
 " <cfg_binary_logging_snapshots-rows_per_wal>`."
 

@@ -23,6 +23,9 @@ msgstr ""
 msgid "This function returns an error if the session is disconnected."
 msgstr "Функция возвращает ошибку, если сессия была прервана."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid "what to send"
 msgstr "что отправляется"
 
@@ -35,6 +38,9 @@ msgstr ""
 "полученную из предшествующего вызова :ref:`box_session:sync() "
 "<box_session-sync>`. Если не указать, по умолчанию используется текущее "
 "значение ``box.session.sync()``."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
 
 msgid "{nil, error} or true:"
 msgstr "{nil, ошибка} или true:"
@@ -131,6 +137,9 @@ msgstr ""
 "i, message in future:pairs()\", то первым параметром в цикле будет i). "
 "Если это будет ``box.NULL``, то второй параметр (в нашем примере "
 "\"message\") -- это объект ошибки."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "-- Make two shells. On Shell#1 set up a \"server\", and\n"

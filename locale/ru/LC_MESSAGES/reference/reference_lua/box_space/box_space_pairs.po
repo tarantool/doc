@@ -10,10 +10,10 @@ msgstr ""
 "кортежу за раз."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "value to be matched against the index key, which may be multi-part"
 msgstr "значение должно совпасть с индексным ключом, который может быть составным"
@@ -22,7 +22,7 @@ msgid "see :ref:`index_object:pairs <box_index-index_pairs>`"
 msgstr "см. :ref:`index_object:pairs <box_index-index_pairs>`"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid ""
 "`iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a "
@@ -34,7 +34,7 @@ msgstr ""
 "<https://luafun.github.io/reducing.html#fun.totable>`_"
 
 msgid "**Possible errors:**"
-msgstr ""
+msgstr "**Возможные ошибки:**"
 
 msgid "no such space;"
 msgstr "отсутствие такого спейса."
@@ -66,7 +66,7 @@ msgstr ""
 "`\"Lua Functional library\" <https://luafun.github.io/index.html>`_."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> s = box.schema.space.create('space33')\n"

@@ -152,7 +152,7 @@ msgstr ""
 msgid "There are three :ref:`syntax variations <app_server-object_reference>` for object references targeting space objects, for example :samp:`box.schema.space.drop({space-id})` will drop a space. However, the common approach is to use functions attached to the space objects, for example :ref:`space_object:drop() <box_space-drop>`."
 msgstr ""
 
-msgid "**Example**"
+msgid "**Example:**"
 msgstr ""
 
 msgid "tarantool> s = box.schema.space.create('space55')\n"

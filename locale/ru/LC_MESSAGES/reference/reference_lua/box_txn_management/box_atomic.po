@@ -15,15 +15,19 @@ msgstr ""
 "случае ошибки."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the result of the function passed to ``atomic()`` as an argument."
 msgstr "результат функции передается в ``atomic()`` в качестве аргумента."
 
-msgid "**Possible errors:** any error that :ref:`box.begin() <box-begin>` and"
-msgstr ""
-"**Возможные ошибки:** любая ошибка, которую могут вызвать "
-":ref:`box.begin() <box-begin>`"
+msgid "**Possible errors:**"
+msgstr "**Возможные ошибки:**"
 
-msgid ":ref:`box.commit() <box-commit>` can return."
-msgstr "и :ref:`box.commit() <box-commit>`."
+msgid "error and abort the transaction in case of a conflict."
+msgstr "ошибка и прерывание транзакции в случае конфликта."
+
+msgid "error if the operation fails to write to disk."
+msgstr "ошибка, если операция не может выполнить запись на диск."
+
+msgid "error if for some reason memory cannot be allocated."
+msgstr "ошибка, если по какой-либо причине нельзя выделить память."

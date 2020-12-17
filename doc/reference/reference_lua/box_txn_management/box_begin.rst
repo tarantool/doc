@@ -13,6 +13,7 @@ box.begin()
     In effect the fiber which executes ``box.begin()`` is starting an "active
     multi-request transaction", blocking all other fibers.
 
-    **Possible errors:** error if this operation is not permitted because there
-                         is already an active transaction. error if for some
-                         reason memory cannot be allocated.
+    **Possible errors:**
+
+    * error if this operation is not permitted because there is already an active transaction.
+    * error if for some reason memory cannot be allocated.

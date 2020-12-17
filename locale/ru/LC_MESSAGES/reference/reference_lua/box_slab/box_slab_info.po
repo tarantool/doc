@@ -77,6 +77,9 @@ msgstr ""
 " это внимание, когда два других показателя также высоки (arena и item "
 "used)."
 
+msgid "return"
+msgstr "возвращает"
+
 msgid ""
 "``quota_size`` - memory limit for slab allocator (as configured in the "
 ":ref:`memtx_memory <cfg_storage-memtx_memory>` parameter, the default is "
@@ -109,6 +112,15 @@ msgstr ""
 
 msgid "``arena_used_ratio`` = ``arena_used`` / ``arena_size``"
 msgstr ""
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "table"
+msgstr ""
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.slab.info()\n"

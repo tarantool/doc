@@ -33,7 +33,7 @@ msgstr ""
 "соответствует определенному блоку ``box.once()``."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "Here is what ``_schema`` contains in a typical installation (notice the "

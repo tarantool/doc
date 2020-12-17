@@ -16,13 +16,13 @@ msgstr ""
 "активировать с помощью :samp:`box.space.{имя-спейса}:run_triggers(true)`."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil"
 msgstr ""
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "The following series of requests will associate an existing function "

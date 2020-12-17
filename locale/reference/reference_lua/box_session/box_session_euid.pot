@@ -23,7 +23,7 @@ msgstr ""
 msgid "number"
 msgstr ""
 
-msgid "**Example**"
+msgid "**Example:**"
 msgstr ""
 
 msgid "tarantool> box.session.su('admin')\n"

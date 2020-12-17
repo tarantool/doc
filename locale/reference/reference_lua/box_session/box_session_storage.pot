@@ -5,7 +5,7 @@ msgstr ""
 msgid "A Lua table that can hold arbitrary unordered session-specific names and values, which will last until the session ends. For example, this table could be useful to store current tasks when working with a `Tarantool queue manager <https://github.com/tarantool/queue>`_."
 msgstr ""
 
-msgid "**Example**"
+msgid "**Example:**"
 msgstr ""
 
 msgid "tarantool> box.session.peer(box.session.id())\n"

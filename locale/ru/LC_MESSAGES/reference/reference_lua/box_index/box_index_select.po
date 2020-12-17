@@ -16,10 +16,10 @@ msgstr ""
 "смещение (то есть с какого кортежа в списке начинать)."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "values to be matched against the index key"
 msgstr "значения для сопоставления с ключом индекса"
@@ -43,19 +43,19 @@ msgid "``offset`` -- start tuple number"
 msgstr "``offset`` -- номер начального кортежа"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the tuple or tuples that match the field values."
 msgstr "кортеж или кортежи, которые совпадают со значениями поля."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "array of tuples"
 msgstr "массив кортежей"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "-- Create a space named tester.\n"

@@ -23,7 +23,7 @@ msgstr ""
 "отсутствие необходимости подсчета полей."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester.field_count\n"

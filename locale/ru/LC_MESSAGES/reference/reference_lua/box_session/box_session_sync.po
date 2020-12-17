@@ -3,7 +3,7 @@ msgid "box.session.sync()"
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid ""
 "the value of the :code:`sync` integer constant used in the `binary "
@@ -17,7 +17,7 @@ msgstr ""
 " Это значение будет недействительным после отключения сессии."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "number"
 msgstr ""

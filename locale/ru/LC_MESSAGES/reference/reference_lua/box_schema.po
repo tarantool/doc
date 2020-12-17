@@ -34,12 +34,11 @@ msgstr ""
 msgid "Create a space"
 msgstr "Создание спейса"
 
-#, fuzzy
 msgid ":ref:`box.schema.upgrade <admin-upgrades>`"
-msgstr ":ref:`box.schema.user.grant() <box_schema-user_grant>`"
+msgstr ""
 
 msgid "Upgrade a database"
-msgstr ""
+msgstr "Облевление базы данных"
 
 msgid ":ref:`box.schema.user.create() <box_schema-user_create>`"
 msgstr ":ref:`box.schema.user.create() <box_schema-user_create>`"
@@ -143,44 +142,8 @@ msgstr ":ref:`box.schema.func.exists() <box_schema-func_exists>`"
 msgid "Check if a function tuple exists"
 msgstr "Проверка наличия кортежа с функцией"
 
-msgid ":ref:`box.schema.sequence.create() <box_schema-sequence_create>`"
-msgstr ":ref:`box.schema.sequence.create() <box_schema-sequence_create>`"
+msgid ":ref:`box.schema.func.reload() <box_schema-func_reload>`"
+msgstr ":ref:`box.schema.func.reload() <box_schema-func_reload>`"
 
-msgid "Create a new sequence generator"
-msgstr "Создание нового генератора последовательностей"
-
-msgid ":ref:`sequence_object:next() <box_schema-sequence_next>`"
-msgstr ":ref:`sequence_object:next() <box_schema-sequence_next>`"
-
-msgid "Generate and return the next value"
-msgstr "Генерация и возврат следующего значения"
-
-msgid ":ref:`sequence_object:alter() <box_schema-sequence_alter>`"
-msgstr ":ref:`sequence_object:alter() <box_schema-sequence_alter>`"
-
-msgid "Change sequence options"
-msgstr "Изменение параметров последовательности"
-
-msgid ":ref:`sequence_object:reset() <box_schema-sequence_reset>`"
-msgstr ":ref:`sequence_object:reset() <box_schema-sequence_reset>`"
-
-msgid "Reset sequence state"
-msgstr "Сброс состояния последовательности"
-
-msgid ":ref:`sequence_object:set() <box_schema-sequence_set>`"
-msgstr ":ref:`sequence_object:set() <box_schema-sequence_set>`"
-
-msgid "Set the new value"
-msgstr "Установка нового значения"
-
-msgid ":ref:`sequence_object:drop() <box_schema-sequence_drop>`"
-msgstr ":ref:`sequence_object:drop() <box_schema-sequence_drop>`"
-
-msgid "Drop the sequence"
-msgstr "Удаление последовательности"
-
-msgid ":ref:`space_object:create_index() <box_schema-sequence_create_index>`"
-msgstr ":ref:`space_object:create_index() <box_schema-sequence_create_index>`"
-
-msgid "Create an index"
-msgstr "Создание индекса"
+msgid "Reload a C module with all its functions, no restart"
+msgstr "Перезагрузка модуля на C со всеми его функциями, без перезапуска"

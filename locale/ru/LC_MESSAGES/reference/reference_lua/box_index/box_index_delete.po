@@ -15,22 +15,22 @@ msgstr ""
 "быть уникальным."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "values to be matched against the index key"
-msgstr ""
+msgstr "значения для сопоставления с ключом индекса"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the deleted tuple."
 msgstr "удаленный кортеж."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "tuple"
 msgstr ""

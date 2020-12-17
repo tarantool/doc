@@ -16,10 +16,10 @@ msgstr ""
 "когда значение флага ``is_nullable`` меняется с ``false`` на ``true``."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid ""
 "options list, same as the options list for ``create_index``, see the "
@@ -31,13 +31,13 @@ msgstr ""
 " <box_space-create_index>`."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil"
 msgstr "nil"
 
 msgid "**Possible errors:**"
-msgstr ""
+msgstr "**Возможные ошибки:**"
 
 msgid "index does not exist,"
 msgstr "индекс не существует,"

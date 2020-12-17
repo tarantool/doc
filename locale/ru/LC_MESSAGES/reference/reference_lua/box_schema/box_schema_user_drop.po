@@ -12,6 +12,9 @@ msgstr ""
 ":ref:`Пользователи <authentication-users>` и справочник по спейсу "
 ":ref:`_user <box_space-user>`."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid "the name of the user"
 msgstr "имя пользователя"
 
@@ -22,6 +25,9 @@ msgstr ""
 "``if_exists`` (если существует) = ``true|false`` (правда/ложь, по "
 "умолчанию ложь) - логическое значение boolean; ``true`` (правда) "
 "означает, что ошибка не выпадет, если такой пользователь не существует."
+
+msgid "**Examples:**"
+msgstr "**Примеры:**"
 
 msgid ""
 "box.schema.user.drop('Lena')\n"

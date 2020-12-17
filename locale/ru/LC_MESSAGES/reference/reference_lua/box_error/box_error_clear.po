@@ -9,6 +9,9 @@ msgstr ""
 "Очистка записи об ошибках, то есть функции ``box.error()`` или "
 "``box.error.last()`` не сработают."
 
+msgid "**Example:**"
+msgstr "**Пример:**"
+
 msgid ""
 "tarantool> box.schema.space.create('')\n"
 "---\n"

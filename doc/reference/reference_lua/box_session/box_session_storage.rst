@@ -14,7 +14,7 @@ box.session.storage
     For example, this table could be useful to store current tasks when working
     with a `Tarantool queue manager <https://github.com/tarantool/queue>`_.
 
-    **Example**
+    **Example:**
 
     .. code-block:: tarantoolsession
 

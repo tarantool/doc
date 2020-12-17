@@ -34,7 +34,7 @@ msgstr ""
 "возвращаемого кортежа сохранится."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "operation type represented in string (e.g. '``=``' for 'assign new value')"
 msgstr ""
@@ -54,17 +54,16 @@ msgid "what value will be applied"
 msgstr "какое значение применяется"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "new tuple"
 msgstr "новый кортеж"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
-#, fuzzy
 msgid "tuple"
-msgstr "новый кортеж"
+msgstr "кортеж"
 
 msgid ""
 "In the following example, a tuple named ``t`` is created and then its "

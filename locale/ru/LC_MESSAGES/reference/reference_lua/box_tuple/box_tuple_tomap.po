@@ -35,7 +35,7 @@ msgstr ""
 "format>`."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid ""
 "the only possible option is ``names_only``.  If ``names_only`` is false "
@@ -68,13 +68,13 @@ msgstr ""
 "именными заголовками."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "field-number:value pair(s) and key:value pair(s) from the tuple"
 msgstr "пары номер-поля:значение и пары ключ:значение из кортежа"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "lua-table"
 msgstr ""

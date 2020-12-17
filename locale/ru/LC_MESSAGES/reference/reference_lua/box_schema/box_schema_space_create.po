@@ -19,7 +19,7 @@ msgid "see \"Options for box.schema.space.create\" chart, below"
 msgstr "см. таблицу \"Параметры для box.schema.space.create\" ниже"
 
 msgid "return"
-msgstr "возвращается"
+msgstr "возвращает"
 
 msgid "space object"
 msgstr "объект спейса"
@@ -42,11 +42,14 @@ msgstr ""
 msgid "**Options for box.schema.space.create**"
 msgstr "**Параметры для box.schema.space.create**"
 
+msgid "Name"
+msgstr "Имя"
+
 msgid "Effect"
 msgstr "Эффект"
 
 msgid "Type"
-msgstr "Type"
+msgstr "Тип"
 
 msgid "Default"
 msgstr "Значение по умолчанию"
@@ -214,11 +217,11 @@ msgstr ""
 "Существуют три :ref:`варианта синтаксиса <app_server-object_reference>` "
 "для ссылок на объекты спейса, например, "
 ":samp:`box.schema.space.drop({id-спейса})` удалит спейс. Однако общий "
-"подход заключается в использовании функций, прикрепленных к объектам "
+"подход заключается в использовании функций, прикрепленных к объектам "
 "спейса, например :ref:`space_object:drop() <box_space-drop>`."
 
-msgid "**Example**"
-msgstr "**Пример**"
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> s = box.schema.space.create('space55')\n"

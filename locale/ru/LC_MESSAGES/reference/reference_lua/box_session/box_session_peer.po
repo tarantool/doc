@@ -10,6 +10,9 @@ msgstr ""
 "программа, то есть если было выполнено подключение к отдельному "
 "экземпляру Tarantool'а."
 
+msgid "return"
+msgstr "возвращает"
+
 msgid ""
 "The host address and port of the session peer, for example "
 "\"127.0.0.1:55457\". If the session exists but there is no connection to "
@@ -22,6 +25,9 @@ msgstr ""
 "вернется null. Команда выполняется на экземпляре сервера,  поэтому "
 "\"локальное имя\" -- это хост и порт экземпляра сервера, а \"имя узла\" "
 "-- это хост и порт клиента."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
 
 msgid "string"
 msgstr "string (строка)"

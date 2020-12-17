@@ -13,7 +13,7 @@ msgstr ""
 "над кортежем в спейсе ``<space-name>``."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid ""
 "function which will become the trigger function; for the trigger "
@@ -27,10 +27,10 @@ msgid "existing trigger function which will be replaced by ``trigger-function``"
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil or function pointer"
-msgstr ""
+msgstr "nil или указатель функции"
 
 msgid ""
 "If the parameters are ``(nil, old-trigger-function)``, then the old "
@@ -156,7 +156,7 @@ msgstr ""
 "обновления или замены."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "The following are ``before_replace`` functions that have no return value,"

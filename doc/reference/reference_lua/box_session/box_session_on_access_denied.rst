@@ -28,7 +28,7 @@ box.session.on_access_denied()
     :ref:`triggers <triggers-box_triggers>` section.
 
 
-    **Example**
+    **Example:**
 
     For example, server administrator can log restricted actions like this:
 

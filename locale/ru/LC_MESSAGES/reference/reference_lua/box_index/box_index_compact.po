@@ -21,7 +21,7 @@ msgstr ""
 "вручную необходимости нет."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil (Tarantool returns without waiting for compaction to complete)"
 msgstr ""

@@ -15,13 +15,13 @@ msgstr ""
 "быть уникальным."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "values to be matched against the index key"
-msgstr ""
+msgstr "значения для сопоставления с ключом индекса"
 
 msgid "operation type represented in string"
 msgstr "тип операции, представленный строкой"
@@ -39,7 +39,7 @@ msgid "what value will be applied"
 msgstr "какое значение применяется"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the updated tuple"
 msgstr "обновленный кортеж"
@@ -48,7 +48,7 @@ msgid "nil if the key is not found"
 msgstr "nil, если ключ не найден"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "tuple or nil"
-msgstr ""
+msgstr "tuple или nil"

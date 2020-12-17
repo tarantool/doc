@@ -23,7 +23,7 @@ msgid "the value that will become the tuple contents."
 msgstr "значение, которое станет содержимым кортежа."
 
 msgid "return"
-msgstr "возвращается"
+msgstr "возвращает"
 
 msgid "a new tuple"
 msgstr "новый кортеж"

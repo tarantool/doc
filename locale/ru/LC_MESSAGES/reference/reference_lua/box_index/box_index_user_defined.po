@@ -62,16 +62,16 @@ msgstr ""
 "последующего добавления имени функции в метатаблицу."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "whatever the user defines"
 msgstr "то, что определяет пользователь"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "-- Visible to any index of a memtx space, no parameters.\n"

@@ -7,24 +7,24 @@ msgid ""
 "<box_space-count>`, this method works faster because ``len()`` does not "
 "scan the entire space to count the tuples."
 msgstr ""
-"Возврат количества кортежей в спейсе. Если сравнивать с :ref:`count() "
+"Выдача количества кортежей в спейсе. Если сравнивать с :ref:`count() "
 "<box_space-count>`, то данный метод работает быстрее, поскольку метод "
 "``len()`` не сканирует весь спейс для подсчета кортежей."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "Number of tuples in the space."
 msgstr "Количество кортежей в спейсе."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester:len()\n"

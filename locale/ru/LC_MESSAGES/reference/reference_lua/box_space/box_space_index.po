@@ -17,13 +17,13 @@ msgstr ""
 "box_stat_reset>`."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "table"
 msgstr "таблица"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "-- checking the number of indexes for space 'tester'\n"

@@ -33,8 +33,8 @@ msgstr ""
 "передаваться в ``box.session.su``, они будут интерпретироваться как "
 "параметры выполняемой функции."
 
-msgid "**Example**"
-msgstr "**Пример**"
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> function f(a) return box.session.user() .. a end\n"

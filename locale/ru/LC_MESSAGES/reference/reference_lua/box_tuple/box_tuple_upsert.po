@@ -19,7 +19,7 @@ msgstr ""
 "операции. Все корректные операции применяются."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid ""
 "operation type represented as a string (e.g. '``=``' for 'assign new "
@@ -41,13 +41,13 @@ msgid "the value which will be applied"
 msgstr "значение, которое применяется"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "new tuple"
-msgstr ""
+msgstr "новый кортеж"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "tuple"
 msgstr ""

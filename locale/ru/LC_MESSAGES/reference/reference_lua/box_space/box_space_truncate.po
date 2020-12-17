@@ -10,10 +10,10 @@ msgstr ""
 " последующие запросы."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "**Complexity factors:** Index size, Index type, Number of tuples accessed."
 msgstr ""
@@ -21,7 +21,7 @@ msgstr ""
 "к которым получен доступ."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil"
 msgstr ""
@@ -42,7 +42,7 @@ msgid "The ``truncate`` method cannot be called from within a transaction."
 msgstr "Метод ``truncate`` нельзя вызвать из транзакции."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester:truncate()\n"

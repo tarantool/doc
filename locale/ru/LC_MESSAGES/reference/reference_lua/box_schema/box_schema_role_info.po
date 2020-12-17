@@ -3,7 +3,16 @@ msgid "box.schema.role.info()"
 msgstr ""
 
 msgid "Return a description of a role's privileges."
-msgstr "Возврат описания прав роли."
+msgstr "Выдача описания прав роли."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "the name of the role."
+msgstr "название роли."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid "box.schema.role.info('Accountant')"
 msgstr "box.schema.role.info('Accountant')"

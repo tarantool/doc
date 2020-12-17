@@ -27,8 +27,14 @@ msgstr ""
 "Перезагрузка не сработает, если модуль был загружен из Lua-скрипта с "
 "`ffi.load() <http://luajit.org/ext_ffi_api.html#ffi_load>`_."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid "the name of the module to reload"
 msgstr "имя модуля для перезагрузки"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "-- reload the entire module contents\n"

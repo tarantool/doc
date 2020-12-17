@@ -83,19 +83,19 @@ msgstr ""
 "box_stat_vinyl_details>` можно получить сводную статистику по индексу."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "statistics"
 msgstr "статистические данные"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "table"
 msgstr ""

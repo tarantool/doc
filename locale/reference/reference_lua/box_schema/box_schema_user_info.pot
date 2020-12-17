@@ -14,7 +14,7 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "box.schema.user.info('admin')\n"
+msgid "tarantool> box.schema.user.info('admin')\n"
 "---\n"
 "- - - read,write,execute,session,usage,create,drop,alter,reference,trigger,insert,update,delete\n"
 "    - universe\n"

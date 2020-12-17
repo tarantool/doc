@@ -10,13 +10,13 @@ msgstr ""
 " номером номер-поля в кортеже. Первое поле -- это ``t[1]``."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "field value."
 msgstr "значение поля."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "lua-value"
 msgstr "Lua-значение"

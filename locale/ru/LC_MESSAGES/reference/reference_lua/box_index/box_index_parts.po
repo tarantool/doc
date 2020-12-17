@@ -10,7 +10,7 @@ msgstr ""
 "индекса, обращайтесь к :ref:`этой таблице <box_space-index_field_types>`."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "table"
 msgstr "таблица"

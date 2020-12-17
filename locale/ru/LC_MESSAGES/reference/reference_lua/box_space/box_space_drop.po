@@ -10,13 +10,13 @@ msgstr ""
 "последующие запросы."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil"
 msgstr "nil"
@@ -28,11 +28,11 @@ msgid ""
 "**Complexity factors:** Index size, Index type, Number of indexes "
 "accessed, WAL settings."
 msgstr ""
-"**Факторы сложности** Размер индекса, тип индекса, количество кортежей, к"
+"**Факторы сложности** Размер индекса, тип индекса, количество индексов, к"
 " которым получен доступ, настройки журнала упреждающей записи (WAL)."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid "box.space.space_that_does_not_exist:drop()"
 msgstr "box.space.space_that_does_not_exist:drop()"

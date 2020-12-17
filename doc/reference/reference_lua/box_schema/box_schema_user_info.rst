@@ -23,7 +23,7 @@ box.schema.user.info()
 
     .. code-block:: tarantoolsession
 
-        box.schema.user.info('admin')
+        tarantool> box.schema.user.info('admin')
         ---
         - - - read,write,execute,session,usage,create,drop,alter,reference,trigger,insert,update,delete
             - universe

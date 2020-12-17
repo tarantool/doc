@@ -10,28 +10,28 @@ msgstr ""
 "кортежи удалятся."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil."
 msgstr "nil."
 
 msgid "**Possible errors:**"
-msgstr ""
+msgstr "**Возможные ошибки:**"
 
 msgid "index does not exist,"
-msgstr ""
+msgstr "индекс не существует,"
 
 msgid "a primary-key index cannot be dropped while a secondary-key index exists."
 msgstr "первичный индекс невозможно удалить, если существует вторичный индекс."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.space55.index.primary:drop()\n"

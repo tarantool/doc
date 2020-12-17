@@ -13,5 +13,8 @@ box.atomic()
 
     :return: the result of the function passed to ``atomic()`` as an argument.
 
-    **Possible errors:** any error that :ref:`box.begin() <box-begin>` and
-                        :ref:`box.commit() <box-commit>` can return.
+    **Possible errors:**
+
+    * error and abort the transaction in case of a conflict.
+    * error if the operation fails to write to disk.
+    * error if for some reason memory cannot be allocated.

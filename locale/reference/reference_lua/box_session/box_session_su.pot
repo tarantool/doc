@@ -17,7 +17,7 @@ msgstr ""
 msgid "name of a function, or definition of a function. Additional parameters may be passed to ``box.session.su``, they will be interpreted as parameters of function-to-execute."
 msgstr ""
 
-msgid "**Example**"
+msgid "**Example:**"
 msgstr ""
 
 msgid "tarantool> function f(a) return box.session.user() .. a end\n"

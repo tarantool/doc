@@ -16,22 +16,22 @@ msgstr ""
 "противоположность ``box.space...:get()``."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "tuple to be inserted"
 msgstr "вставляемый кортеж"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the inserted tuple."
-msgstr ""
+msgstr "вставленный кортеж"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "tuple"
 msgstr ""
@@ -49,9 +49,11 @@ msgid ""
 "**Complexity factors:** Index size, Index type, Number of indexes "
 "accessed, WAL settings."
 msgstr ""
+"**Факторы сложности:** Размер индекса, тип индекса, количество индексов, "
+"к которым получен доступ, настройки журнала упреждающей записи (WAL)."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid "box.space.tester:replace{5000, 'tuple number five thousand'}"
 msgstr ""
@@ -61,3 +63,6 @@ msgid ""
 " operations <box_space-operations-detailed-examples>` further in this "
 "section."
 msgstr ""
+"Для получения дополнительной информации о сценариях использования и "
+"типичных ошибках, см. :ref:`Пример: использование операций с данными "
+"<box_space-operations-detailed-examples>` далее в разделе."

@@ -3,7 +3,7 @@ msgid "sequence_object:next()"
 msgstr ""
 
 msgid "Generate the next value and return it."
-msgstr "Генерация и возврат следующего значения."
+msgstr "Генерация и выдача следующего значения."
 
 msgid "The generation algorithm is simple:"
 msgstr "Простой алгоритм для генерации:"

@@ -2,7 +2,6 @@
 msgid "space_object:select()"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Search for a tuple or a set of tuples in the given space. This method "
 "doesn't yield (for details see :ref:`Cooperative multitasking <atomic-"
@@ -13,13 +12,13 @@ msgstr ""
 "многозадачность <atomic-cooperative_multitasking>`)."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "value to be matched against the index key, which may be multi-part."
-msgstr ""
+msgstr "значение должно совпасть с индексным ключом, который может быть составным."
 
 msgid ""
 "none, any or all of the same options that :ref:`index_object:select "
@@ -50,7 +49,7 @@ msgid "``options.offset`` (number of tuples to skip)"
 msgstr "``options.offset`` (количество пропускаемых кортежей)"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid ""
 "the tuples whose primary-key fields are equal to the fields of the passed"
@@ -64,7 +63,7 @@ msgstr ""
 " совпадением будет кортеж с первичным ключом ``{1,2,3}``."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "array of tuples"
 msgstr "массив кортежей"
@@ -79,19 +78,19 @@ msgstr ""
 "<box_index-select>`."
 
 msgid "**Possible errors:**"
-msgstr ""
+msgstr "**Возможные ошибки:**"
 
 msgid "no such space;"
-msgstr ""
+msgstr "нет такого спейса;"
 
 msgid "wrong type."
-msgstr ""
+msgstr "неверный тип."
 
 msgid "**Complexity factors:** Index size, Index type."
-msgstr ""
+msgstr "**Факторы сложности:** Размер индекса, тип индекса"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> s = box.schema.space.create('tmp', {temporary=true})\n"
@@ -231,3 +230,6 @@ msgid ""
 " operations <box_space-operations-detailed-examples>` further in this "
 "section."
 msgstr ""
+"Для получения дополнительной информации о сценариях использования и "
+"типичных ошибках, см. :ref:`Пример: использование операций с данными "
+"<box_space-operations-detailed-examples>` далее в разделе."

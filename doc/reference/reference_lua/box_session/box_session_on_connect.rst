@@ -30,7 +30,7 @@ box.session.on_connect()
     Details about trigger characteristics are in the
     :ref:`triggers <triggers-box_triggers>` section.
 
-    **Example**
+    **Example:**
 
     .. code-block:: tarantoolsession
 

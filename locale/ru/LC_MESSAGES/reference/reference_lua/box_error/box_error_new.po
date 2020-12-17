@@ -13,6 +13,18 @@ msgstr ""
 "параметры, как в :ref:`box.error() <box_error-error>`, см. описание по "
 "ссылке."
 
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "number of a pre-defined error"
+msgstr "номер предварительно заданной ошибки"
+
+msgid "part of the message which will accompany the error"
+msgstr "часть сообщения, которое сопровождает ошибку"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
 msgid ""
 "tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}\n"
 "---\n"

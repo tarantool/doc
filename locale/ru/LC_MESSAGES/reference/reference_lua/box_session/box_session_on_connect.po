@@ -15,11 +15,17 @@ msgstr ""
 " триггер не выполняется и выдает ошибку, эта ошибка отправляется на "
 "клиент, и подключение разрывается."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid "function which will become the trigger function"
 msgstr "функция, в которой будет триггер"
 
 msgid "existing trigger function which will be replaced by trigger-function"
 msgstr "существующая функция с триггером, которую заменит новая"
+
+msgid "return"
+msgstr "возвращает"
 
 msgid "nil or function pointer"
 msgstr "nil или указатель функции"
@@ -45,16 +51,15 @@ msgstr ""
 "Подробная информация о характеристиках триггера находится в разделе "
 ":ref:`Триггеры <triggers-box_triggers>`."
 
+msgid "**Example:**"
+msgstr "**Пример:**"
+
 msgid ""
 "tarantool> function f ()\n"
 "         >   x = x + 1\n"
 "         > end\n"
 "tarantool> box.session.on_connect(f)"
 msgstr ""
-"tarantool> function f ()\n"
-"         >   x = x + 1\n"
-"         > end\n"
-"tarantool> box.session.on_connect(f)"
 
 msgid ""
 "If a trigger always results in an error, it may become impossible to "

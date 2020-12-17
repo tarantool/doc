@@ -65,7 +65,7 @@ box.session.push()
     is i). If it is ``box.NULL`` then the second parameter (in our example, "message")
     is the error object.
 
-    **Example**
+    **Example:**
 
     .. code-block:: lua
 

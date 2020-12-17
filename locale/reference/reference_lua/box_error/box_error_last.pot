@@ -5,7 +5,7 @@ msgstr ""
 msgid "Show the last error object."
 msgstr ""
 
-msgid "**Example**"
+msgid "**Example:**"
 msgstr ""
 
 msgid "You can reach the last error object's fields like this:"

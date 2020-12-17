@@ -25,13 +25,13 @@ msgstr ""
 "что поля кортежей всегда явялются натуральными числами."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "function, tuple-value, nil"
 msgstr "функция, значение кортежа, nil"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "function, lua-value, nil"
 msgstr "функция, Lua-значение, nil"

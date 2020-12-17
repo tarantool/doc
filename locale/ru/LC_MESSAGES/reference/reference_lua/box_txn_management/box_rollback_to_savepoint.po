@@ -11,10 +11,12 @@ msgstr ""
 ":ref:`box.savepoint() <box-savepoint>`, сделанных после точки сохранения."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "error if the savepoint cannot be set in absence of active transaction."
 msgstr ""
+"ошибка, если точка сохранения не может быть установлена при отсутствии "
+"активной транзакции."
 
 msgid "**Possible errors:** error if the savepoint does not exist."
 msgstr "**Возможные ошибки:** ошибка, если отсутствует точка сохранения."

@@ -3,10 +3,16 @@ msgid "box.session.uid()"
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the user ID of the :ref:`current user <authentication-users>`."
 msgstr "ID :ref:`текущего пользователя <authentication-users>`."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "number"
+msgstr ""
 
 msgid ""
 "Every user has a unique name (seen with :ref:`box.session.user() "

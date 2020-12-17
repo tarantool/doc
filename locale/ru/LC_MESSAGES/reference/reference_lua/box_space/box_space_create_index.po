@@ -13,12 +13,11 @@ msgstr ""
 "созданный индекс, который будет использоваться в качестве первичного "
 "индекса, должен быть уникальным."
 
-#, fuzzy
 msgid "Parameters"
-msgstr "parts"
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid ""
 "name of index, which should conform to the :ref:`rules for object names "
@@ -31,14 +30,13 @@ msgid "see \"Options for space_object:create_index()\", below"
 msgstr "см. \"Параметры для space_object:create_index()\" ниже"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "index object"
 msgstr "объект индекса"
 
-#, fuzzy
 msgid "rtype"
-msgstr "type"
+msgstr "тип возвращаемого значения"
 
 msgid "index_object"
 msgstr "объект индекса"
@@ -46,15 +44,14 @@ msgstr "объект индекса"
 msgid "**Options for space_object:create_index()**"
 msgstr "**Параметры для space_object:create_index()**"
 
-#, fuzzy
 msgid "Name"
-msgstr "число"
+msgstr "Имя"
 
 msgid "Effect"
 msgstr "Эффект"
 
 msgid "Type"
-msgstr "Type"
+msgstr "Тип"
 
 msgid "Default"
 msgstr "Значение по умолчанию"
@@ -224,7 +221,7 @@ msgstr ""
 "из :ref:`box.space._index <box_space-index>`."
 
 msgid "**Possible errors:**"
-msgstr ""
+msgstr "**Возможные ошибки:**"
 
 msgid "too many parts;"
 msgstr "слишком много частей;"

@@ -83,7 +83,7 @@ msgid ":ref:`tuple_object:next() <box_tuple-next>`"
 msgstr ""
 
 msgid "Get the next field value from tuple"
-msgstr ""
+msgstr "Получение значения следующего поля из кортежа"
 
 msgid ":ref:`tuple_object:ipairs() <box_tuple-pairs>`"
 msgstr ""

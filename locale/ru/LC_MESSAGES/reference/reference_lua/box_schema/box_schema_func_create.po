@@ -15,6 +15,9 @@ msgstr ""
 "получить информацию о том, как происходит управление данными функций в "
 "Tarantool'е, см. справочник по спейсу :ref:`_func <box_space-func>`."
 
+msgid "The possible options are:"
+msgstr "Возможны следующие опции:"
+
 msgid ""
 "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; "
 "``true`` means there should be no error if the ``_func`` tuple already "
@@ -41,6 +44,9 @@ msgstr ""
 msgid "``language`` = 'LUA'|'C' (default = ‘LUA’)."
 msgstr "``language`` = 'LUA'|'C' (выбор языка из Lua и C; по умолчанию, ‘LUA’)."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid ""
 "name of function, which should conform to the :ref:`rules for object "
 "names <app_server-names>`"
@@ -50,6 +56,15 @@ msgstr ""
 
 msgid "``if_not_exists``, ``setuid``, ``language``."
 msgstr "``if_not_exists``, ``setuid``, ``language``."
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "nil"
+msgstr ""
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "box.schema.func.create('calculate')\n"

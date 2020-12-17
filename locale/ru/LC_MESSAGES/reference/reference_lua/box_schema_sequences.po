@@ -31,7 +31,6 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-
 msgid ":ref:`box.schema.sequence.create() <box_schema-sequence_create>`"
 msgstr ""
 
@@ -42,37 +41,37 @@ msgid ":ref:`sequence_object:next() <box_schema-sequence_next>`"
 msgstr ""
 
 msgid "Generate and return the next value"
-msgstr ""
+msgstr "Генерация и выдача следующего значения"
 
 msgid ":ref:`sequence_object:alter() <box_schema-sequence_alter>`"
 msgstr ""
 
 msgid "Change sequence options"
-msgstr ""
+msgstr "Изменение параметров последовательности"
 
 msgid ":ref:`sequence_object:reset() <box_schema-sequence_reset>`"
 msgstr ""
 
 msgid "Reset sequence state"
-msgstr ""
+msgstr "Возврат последовательности в оригинальное состояние"
 
 msgid ":ref:`sequence_object:set() <box_schema-sequence_set>`"
 msgstr ""
 
 msgid "Set the new value"
-msgstr ""
+msgstr "Установка нового значения"
 
 msgid ":ref:`sequence_object:drop() <box_schema-sequence_drop>`"
 msgstr ""
 
 msgid "Drop the sequence"
-msgstr ""
+msgstr "Удаление последовательности"
 
 msgid ":ref:`space_object:create_index() <box_schema-sequence_create_index>`"
 msgstr ""
 
 msgid "Create an index with a sequence option"
-msgstr ""
+msgstr "Создание индекса с опцией последовательности"
 
 msgid "**Example:**"
 msgstr "**Пример:**"

@@ -10,4 +10,4 @@ box.on_rollback()
     such as :ref:`box.rollback <box-rollback>`.
 
     The parameters and warnings are exactly the same as for
-    :ref:`box.on-commit <box-on_commit>`.
+    :ref:`box.on_commit <box-on_commit>`.

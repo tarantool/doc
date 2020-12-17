@@ -13,7 +13,7 @@ msgstr ""
 "над кортежем в спейсе ``<space-name>``."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid ""
 "function which will become the trigger function; see Example #2 below for"
@@ -28,7 +28,7 @@ msgstr ""
 "function``"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil or function pointer"
 msgstr "nil или указатель функции"
@@ -177,7 +177,6 @@ msgstr ""
 msgid "transactions,"
 msgstr "транзакции,"
 
-#, fuzzy
 msgid "yield-operations (:ref:`explicit <atomic-implicit-yields>` or not),"
 msgstr ""
 "операции, передающие управление (yield-operations, :ref:`явные <atomic-"

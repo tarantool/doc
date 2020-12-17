@@ -9,6 +9,19 @@ msgstr ""
 "Отмена :ref:`прав <authentication-owners_privileges>` пользователя или "
 "другой роли."
 
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "the name of the user."
+msgstr "имя пользователя."
+
+msgid ""
+"'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a "
+"combination."
+msgstr ""
+"'read' или 'write' или 'execute' или 'create' или 'alter' или 'drop' или "
+"их комбинация."
+
 msgid "'space' or 'function' or 'sequence'."
 msgstr ""
 "'space' (спейс) или 'function' (функция), или 'sequence' "
@@ -37,6 +50,13 @@ msgstr ""
 "означает 'все типы объектов и все объекты'."
 
 msgid ""
+"**Variation:** instead of ``privilege, object-type, object-name`` say "
+"``role-name`` (see section :ref:`Roles <authentication-roles>`)."
+msgstr ""
+"**Вариант:** вместо ``право, тип-объекта, имя-объекта`` введите ``role-"
+"name`` (см. :ref:`Roles <authentication-roles>`)"
+
+msgid ""
 "**Variation:** instead of :samp:`box.schema.user.revoke('{user-"
 "name}','usage,session','universe',nil,` :code:`{if_exists=true})` say "
 ":samp:`box.schema.user.disable('{user-name}')`."
@@ -45,6 +65,9 @@ msgstr ""
 ":samp:`box.schema.user.revoke('{имя-пользователя}','usage,session','universe',nil,`"
 " :code:`{if_not_exists=true})` введите "
 ":samp:`box.schema.user.disable('{имя-пользователя}')`."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "box.schema.user.revoke('Lena', 'read', 'space', 'tester')\n"

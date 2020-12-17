@@ -60,23 +60,23 @@ All functions related to sequences require appropriate
     box_sequences/box_schema_sequence_drop
     box_sequences/box_schema_sequence_create_index
 
-    **Example:**
+**Example:**
 
-    Here is an example showing all sequence options and operations:
+Here is an example showing all sequence options and operations:
 
-    .. code-block:: lua
+.. code-block:: lua
 
-        s = box.schema.sequence.create(
-                       'S2',
-                       {start=100,
-                       min=100,
-                       max=200,
-                       cache=100000,
-                       cycle=false,
-                       step=100
-                       })
-        s:alter({step=6})
-        s:next()
-        s:reset()
-        s:set(150)
-        s:drop()
+    s = box.schema.sequence.create(
+                   'S2',
+                   {start=100,
+                   min=100,
+                   max=200,
+                   cache=100000,
+                   cycle=false,
+                   step=100
+                   })
+    s:alter({step=6})
+    s:next()
+    s:reset()
+    s:set(150)
+    s:drop()

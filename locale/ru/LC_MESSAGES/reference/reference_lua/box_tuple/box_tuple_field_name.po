@@ -13,13 +13,13 @@ msgstr ""
 " получен из спейса с определенным :ref:`форматом <box_space-format>`."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "field value."
-msgstr ""
+msgstr "значение поля"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "lua-value"
 msgstr ""

@@ -6,16 +6,16 @@ msgid "Find the maximum value in the specified index."
 msgstr "Поиск максимального значения в указанном индексе."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "values to be matched against the index key"
-msgstr ""
+msgstr "значения для сопоставления с ключом индекса"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid ""
 "the tuple for the last key in the index. If optional ``key`` value is "
@@ -30,19 +30,19 @@ msgstr ""
 "равно значению в индексе."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "tuple"
 msgstr ""
 
 msgid "**Possible errors:** index is not of type 'TREE'."
-msgstr ""
+msgstr "**Возможные ошибки:** тип индекса не 'TREE'"
 
 msgid "**Complexity factors:** Index size, Index type."
-msgstr ""
+msgstr "**Факторы сложности:** Размер индекса, тип индекса"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester.index.primary:max()\n"
@@ -50,7 +50,3 @@ msgid ""
 "- ['Gamma!', 55, 'This is the third tuple!']\n"
 "..."
 msgstr ""
-"tarantool> box.space.tester.index.primary:max()\n"
-"---\n"
-"- ['Gamma!', 55, 'This is the third tuple!']\n"
-"..."

@@ -19,13 +19,13 @@ msgstr ""
 ":ref:`tuple:pairs()/ipairs() <box_tuple-pairs>`."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "field number and field value"
 msgstr "номер и значение поля"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "number and field type"
 msgstr "число (number) и тип поля"

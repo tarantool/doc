@@ -34,15 +34,14 @@ msgstr ""
 "В спейсе ``_user`` есть пять специальных кортежей: 'guest', 'admin', "
 "'public', 'replication' и 'super'."
 
-#, fuzzy
 msgid "Name"
-msgstr "имя,"
+msgstr "Имя"
 
 msgid "ID"
 msgstr "ID"
 
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 msgid "Description"
 msgstr "Описание"
@@ -179,9 +178,6 @@ msgid ""
 "box.schema.user.create(*user-name*, {if_not_exists = true})\n"
 "box.schema.user.create(*user-name*, {password = *password*})"
 msgstr ""
-"box.schema.user.create(*имя-пользователя*)\n"
-"box.schema.user.create(*имя-пользователя*, {if_not_exists = true})\n"
-"box.schema.user.create(*имя-пользователя*, {password = *пароль*})"
 
 msgid ""
 "To change the user's password, use :ref:`box.schema.user.password() "
@@ -238,7 +234,7 @@ msgid "The maximum number of users is 32."
 msgstr "Максимальное количество пользователей -- 32."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "Here is a session which creates a new user with a strong password, "

@@ -3,13 +3,13 @@ msgid "space_object:bsize()"
 msgstr ""
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr ""
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid ""
 "Number of bytes in the space. This number, which is stored in Tarantool's"
@@ -23,7 +23,7 @@ msgstr ""
 "размера индекса, см. :ref:`index_object:bsize() <box_index-bsize>`."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester:bsize()\n"

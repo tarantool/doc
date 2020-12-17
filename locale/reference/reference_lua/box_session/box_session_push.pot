@@ -47,7 +47,7 @@ msgstr ""
 msgid "Situation 2 complication: ``pairs()`` is subject to timeout. So there is an optional argument = timeout per iteration. If timeout occurs before there is a new message or a final response, there is an error return. To check for an error one can use the first loop parameter (if the loop starts with \"for i, message in future:pairs()\" then the first loop parameter is i). If it is ``box.NULL`` then the second parameter (in our example, \"message\") is the error object."
 msgstr ""
 
-msgid "**Example**"
+msgid "**Example:**"
 msgstr ""
 
 msgid "-- Make two shells. On Shell#1 set up a \"server\", and\n"

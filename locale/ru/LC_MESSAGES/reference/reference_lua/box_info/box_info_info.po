@@ -14,7 +14,7 @@ msgstr ""
 "возвращает Lua-таблицу со всеми ключами и значениями во вложенном модуле."
 
 msgid "return"
-msgstr "возвращается"
+msgstr "возвращает"
 
 msgid "keys and values in the submodule"
 msgstr "ключи и значения во вложенном модуле"

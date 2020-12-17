@@ -2,6 +2,9 @@
 msgid "Submodule box.backup"
 msgstr "Вложенный модуль `box.backup`"
 
+msgid "Overview"
+msgstr "Общие сведения"
+
 msgid ""
 "The box.backup submodule contains two functions that are helpful for "
 ":ref:`backup <admin-backups>` in certain situations."
@@ -18,3 +21,16 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
+msgid ":ref:`box.backup.start() <reference_lua-box_backup-backup_start>`"
+msgstr ""
+
+msgid "ask server to suspend activities before the removal of outdated backups"
+msgstr ""
+"попросить сервер приостановить активности перед удалением устаревших "
+"резервных копий"
+
+msgid ":ref:`box.backup.stop() <reference_lua-box_backup-backup_start>`"
+msgstr ""
+
+msgid "inform server that normal operations may resume"
+msgstr "проинформировать сервер, что можно вернуться к работе"

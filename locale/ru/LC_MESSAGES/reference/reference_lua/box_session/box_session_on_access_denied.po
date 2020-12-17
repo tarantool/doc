@@ -9,12 +9,44 @@ msgstr ""
 "Определение триггера для ответа на попытки пользователя выполнить "
 "неразрешенные ему действия."
 
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "function which will become the trigger function"
+msgstr "функция, в которой будет триггер"
+
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr "существующая функция с триггером, которую заменит новая"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "nil or function pointer"
+msgstr "nil или указатель функции"
+
 msgid ""
-"If the parameters are `(nil, old-trigger-function)`, then the old trigger"
-" is deleted."
+"If the parameters are (nil, old-trigger-function), then the old trigger "
+"is deleted."
 msgstr ""
 "Если указаны параметры `(nil, old-trigger-function)`, старый триггер "
 "будет удален."
+
+msgid ""
+"If both parameters are omitted, then the response is a list of existing "
+"trigger functions."
+msgstr ""
+"Если не указан ни один параметр, ответом будет список существующих "
+"функций с триггером."
+
+msgid ""
+"Details about trigger characteristics are in the :ref:`triggers "
+"<triggers-box_triggers>` section."
+msgstr ""
+"Подробная информация о характеристиках триггера находится в разделе "
+":ref:`Триггеры <triggers-box_triggers>`."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid "For example, server administrator can log restricted actions like this:"
 msgstr "Например, администратор сервера может регистрировать запрещенные действия:"

@@ -8,7 +8,7 @@ msgstr ""
 " Lua-кода."
 
 msgid "return"
-msgstr "возвращается"
+msgstr "возвращает"
 
 msgid "``lua`` is the heap size of the Lua garbage collector;"
 msgstr "``lua`` -- это размер динамической памяти сборщика мусора в Lua;"

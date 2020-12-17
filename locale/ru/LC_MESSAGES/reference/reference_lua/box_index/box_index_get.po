@@ -10,16 +10,16 @@ msgstr ""
 "note>`."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "values to be matched against the index key"
-msgstr ""
+msgstr "значения для сопоставления с ключом индекса"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the tuple whose index-key fields are equal to the passed key values."
 msgstr "кортеж, в котором поля ключа в индексе равны переданным значениям ключа."
@@ -31,7 +31,7 @@ msgid "tuple"
 msgstr "кортеж"
 
 msgid "**Possible errors:**"
-msgstr ""
+msgstr "**Возможные ошибки:**"
 
 msgid "no such index;"
 msgstr "отсутствие такого индекса;"
@@ -50,7 +50,7 @@ msgstr ""
 ":ref:`space_object:get() <box_space-get>`."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester.index.primary:get(2)\n"
@@ -58,7 +58,3 @@ msgid ""
 "- [2, 'Music']\n"
 "..."
 msgstr ""
-"tarantool> box.space.tester.index.primary:get(2)\n"
-"---\n"
-"- [2, 'Music']\n"
-"..."

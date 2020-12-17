@@ -46,7 +46,7 @@ msgstr ""
 " :ref:`index_object:user_defined() <box_index-user_defined>`."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
 msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
@@ -55,7 +55,7 @@ msgid "whatever the user defines"
 msgstr "то, что определяет пользователь"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "-- Visible to any space, no parameters.\n"

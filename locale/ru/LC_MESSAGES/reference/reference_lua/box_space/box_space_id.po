@@ -14,7 +14,7 @@ msgstr ""
 " представляют собой равнозначные запросы."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester.id\n"

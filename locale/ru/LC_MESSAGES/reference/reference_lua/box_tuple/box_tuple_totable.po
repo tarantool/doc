@@ -16,13 +16,13 @@ msgid "It is preferable to use ``t:totable()`` rather than ``t:unpack()``."
 msgstr "Рекомендуется использовать ``t:totable()``, а не ``t:unpack()``."
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "field(s) from the tuple"
 msgstr "поле или поля из кортежа"
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "lua-table"
 msgstr "Lua-таблица"

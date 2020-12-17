@@ -5,6 +5,9 @@ msgstr ""
 msgid "Create a new sequence generator."
 msgstr "Создание нового генератора последовательностей."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid "the name of the sequence"
 msgstr "имя последовательности"
 
@@ -18,6 +21,9 @@ msgstr ""
 "\"Параметры для ``box.schema.sequence.create()``\"  (в разделе "
 ":ref:`Последовательности <index-box_sequence>` главы \"Модель данных\"), "
 "а более подробную информацию ниже."
+
+msgid "return"
+msgstr "возвращает"
 
 msgid "a reference to a new sequence object."
 msgstr "ссылка на новый объект последовательности."

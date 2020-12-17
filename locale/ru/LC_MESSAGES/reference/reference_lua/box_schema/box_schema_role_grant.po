@@ -5,8 +5,21 @@ msgstr ""
 msgid "Grant :ref:`privileges <authentication-owners_privileges>` to a role."
 msgstr "Выдача :ref:`прав <authentication-owners_privileges>` роли."
 
+msgid "Parameters"
+msgstr "Параметры"
+
 msgid "the name of the role."
 msgstr "имя роли."
+
+msgid ""
+"'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a "
+"combination."
+msgstr ""
+"'read' или 'write' или 'execute' или 'create' или 'alter' или 'drop' или "
+"их комбинация."
+
+msgid "'space' or 'function' or 'sequence' or 'role'."
+msgstr "'space' или 'function' или 'sequence' или 'role'."
 
 msgid "the name of a function or space or sequence or role."
 msgstr "имя функции, спейса, последовательности или роли."
@@ -24,11 +37,23 @@ msgid "The role must exist, and the object must exist."
 msgstr "Должна существовать роль, должен существовать объект."
 
 msgid ""
+"**Variation:** instead of ``object-type, object-name`` say 'universe' "
+"which means 'all object-types and all objects'. In this case, object name"
+" is omitted."
+msgstr ""
+"**Вариант:** вместо ``тип-объекта, имя-объекта`` введите 'universe', что "
+"означает 'все типы объектов и все объекты'. В этом случае имя объекта "
+"будет опущено."
+
+msgid ""
 "**Variation:** instead of ``privilege, object-type, object-name`` say "
 "``role-name`` -- to grant a role to a role."
 msgstr ""
 "**Вариант:** вместо ``privilege, object-type, object-name`` введите "
 "``role-name``, чтобы назначить роль для роли."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
 
 msgid ""
 "box.schema.role.grant('Accountant', 'read', 'space', 'tester')\n"

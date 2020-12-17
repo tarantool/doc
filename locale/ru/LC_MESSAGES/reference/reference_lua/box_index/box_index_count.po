@@ -10,31 +10,31 @@ msgstr ""
 "соответствуют паре ключ-значение."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "values to be matched against the index key"
-msgstr ""
+msgstr "значения для сопоставления с ключом индекса"
 
 msgid "comparison method"
 msgstr "метод сопоставления"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the number of matching tuples."
 msgstr "количество совпадающих кортежей."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "number"
 msgstr "число"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester.index.primary:count(999)\n"

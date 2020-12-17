@@ -87,7 +87,7 @@ msgid "as defined in tables below. The default iterator type is 'EQ'"
 msgstr "как определено в таблицах ниже. По умолчанию используется итератор 'EQ'"
 
 msgid "return"
-msgstr "возвращается"
+msgstr "возвращает"
 
 msgid ""
 "`iterator <https://www.lua.org/pil/7.1.html>`_ which can be used in a "

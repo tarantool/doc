@@ -3,4 +3,5 @@ msgid "sequence_object:drop()"
 msgstr ""
 
 msgid "Drop an existing sequence."
-msgstr "Удаление существующей последовательности."
+msgstr ""
+

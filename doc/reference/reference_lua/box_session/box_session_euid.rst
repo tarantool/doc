@@ -32,7 +32,7 @@ box.session.euid()
 
     :rtype: number
 
-    **Example**
+    **Example:**
 
     .. code-block:: tarantoolsession
 

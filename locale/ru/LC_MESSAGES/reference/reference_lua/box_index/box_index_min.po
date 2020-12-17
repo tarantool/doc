@@ -6,16 +6,16 @@ msgid "Find the minimum value in the specified index."
 msgstr "Поиск минимального значения в указанном индексе."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "values to be matched against the index key"
-msgstr ""
+msgstr "значения для сопоставления с ключом индекса"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid ""
 "the tuple for the first key in the index. If optional ``key`` value is "
@@ -30,7 +30,7 @@ msgstr ""
 "индексе."
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "tuple"
 msgstr ""
@@ -42,7 +42,7 @@ msgid "**Complexity factors:** Index size, Index type."
 msgstr "**Факторы сложности:** Размер индекса, тип индекса."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space.tester.index.primary:min()\n"
@@ -50,7 +50,3 @@ msgid ""
 "- ['Alpha!', 55, 'This is the first tuple!']\n"
 "..."
 msgstr ""
-"tarantool> box.space.tester.index.primary:min()\n"
-"---\n"
-"- ['Alpha!', 55, 'This is the first tuple!']\n"
-"..."

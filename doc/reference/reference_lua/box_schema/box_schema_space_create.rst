@@ -107,7 +107,7 @@ box.schema.space.create() / schema_object:create_space()
     attached to the space objects, for example
     :ref:`space_object:drop() <box_space-drop>`.
 
-    **Example**
+    **Example:**
 
     .. code-block:: tarantoolsession
 

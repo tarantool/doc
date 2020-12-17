@@ -3,10 +3,16 @@ msgid "box.session.type()"
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "the type of connection or cause of action."
 msgstr "тип соединения или повод к действию."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "string"
+msgstr ""
 
 msgid "Possible return values are:"
 msgstr "Возможные возвращаемые значения:"

@@ -118,4 +118,3 @@ msgid ""
 "- error: A access denied for user 'B' to function 'C'\n"
 "..."
 msgstr ""
-
