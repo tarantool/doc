@@ -1,6 +1,6 @@
 
 msgid "specifying a sequence in create_index()"
-msgstr ""
+msgstr "использование последовательностей в create_index()"
 
 msgid ""
 "You can use the :samp:`sequence={sequence-name}` (or :samp:`sequence"

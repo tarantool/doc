@@ -2,9 +2,6 @@
 msgid "Functions for transaction management"
 msgstr ""
 
-msgid "Overview"
-msgstr ""
-
 msgid "For general information and examples, see section :ref:`Transaction control <atomic-atomic_execution>`."
 msgstr ""
 
@@ -27,9 +24,6 @@ msgid "Rule #3"
 msgstr ""
 
 msgid "Requests which cause changes to the data definition -- create, alter, drop, truncate -- must not be used."
-msgstr ""
-
-msgid "Contents"
 msgstr ""
 
 msgid "Below is a list of all functions for transaction management."

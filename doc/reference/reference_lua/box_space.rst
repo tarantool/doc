@@ -4,20 +4,12 @@
                              Submodule `box.space`
 -------------------------------------------------------------------------------
 
-===============================================================================
-                                   Overview
-===============================================================================
-
 **CRUD operations** in Tarantool are implemented by the ``box.space`` submodule.
 It has the data-manipulation functions ``select``, ``insert``, ``replace``,
 ``update``, ``upsert``, ``delete``, ``get``, ``put``. It also has members,
 such as id, and whether or not a space is enabled. Submodule source code
 is available in file
 `src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_.
-
-===============================================================================
-                                Contents
-===============================================================================
 
 Below is a list of all ``box.space`` functions and members.
 
@@ -155,6 +147,7 @@ Below is a list of all ``box.space`` functions and members.
 .. toctree::
     :hidden:
 
+    box_space/box_space_examples
     box_space/box_space_auto_increment
     box_space/box_space_bsize
     box_space/box_space_count
@@ -195,4 +188,3 @@ Below is a list of all ``box.space`` functions and members.
     box_space/box_space__vspace
     box_space/box_space__user
     box_space/box_space__vuser
-    box_space/box_space_examples

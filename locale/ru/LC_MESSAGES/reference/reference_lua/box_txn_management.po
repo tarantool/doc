@@ -2,9 +2,6 @@
 msgid "Functions for transaction management"
 msgstr "Управление экземплярами"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "For general information and examples, see section :ref:`Transaction "
 "control <atomic-atomic_execution>`."
@@ -55,9 +52,6 @@ msgid ""
 msgstr ""
 "Нельзя использовать запросы, которые могут приводить к изменению "
 "определения данных -- создание, изменение, удаление, очистка."
-
-msgid "Contents"
-msgstr "Содержание"
 
 msgid "Below is a list of all functions for transaction management."
 msgstr "Ниже приведен перечень всех функций для управления транзакциями."

@@ -2,9 +2,6 @@
 msgid "Submodule `box.session`"
 msgstr "Вложенный модуль `box.session`"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "The ``box.session`` submodule allows querying the session state, writing "
 "to a session-specific temporary Lua table, or sending out-of-band "
@@ -18,9 +15,6 @@ msgstr ""
 
 msgid "A *session* is an object associated with each client connection."
 msgstr "*Сессия* -- это объект, связанный с каждым подключением клиента."
-
-msgid "Contents"
-msgstr "Содержание"
 
 msgid "Below is a list of all ``box.session`` functions and members."
 msgstr "Ниже приведен перечень всех функций и элементов модуля ``box.session``."

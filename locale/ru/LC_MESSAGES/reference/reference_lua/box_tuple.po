@@ -2,9 +2,6 @@
 msgid "Submodule `box.tuple`"
 msgstr "Вложенный модуль `box.tuple`"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "The ``box.tuple`` submodule provides read-only access for the ``tuple`` "
 "userdata type. It allows, for a single :ref:`tuple <index-box_tuple>`: "
@@ -18,9 +15,6 @@ msgstr ""
 "выборочно искать содержимое поля, получать информацию о размере, "
 "проводить итерацию по всем полям и выполнять преобразование в "
 "`Lua-таблицу <https://www.lua.org/pil/2.5.html>`_."
-
-msgid "Contents"
-msgstr "Содержание"
 
 msgid "Below is a list of all ``box.tuple`` functions."
 msgstr "Ниже приведен перечень всех функций модуля ``box.tuple``."

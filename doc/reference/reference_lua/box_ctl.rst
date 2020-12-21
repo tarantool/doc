@@ -4,10 +4,6 @@
                                 Submodule `box.ctl`
 -------------------------------------------------------------------------------
 
-===============================================================================
-                                  Overview
-===============================================================================
-
 The ``box.ctl`` submodule contains two functions: ``wait_ro``
 (wait until read-only)
 and ``wait_rw`` (wait until read-write).
@@ -26,9 +22,7 @@ Waiting until "read only mode = false" solves this problem.
 To see whether a function is already in read-only or
 read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
 
-===============================================================================
-                                 Contents
-===============================================================================
+Below is a list of all ``box.ctl`` functions.
 
 .. container:: table
 

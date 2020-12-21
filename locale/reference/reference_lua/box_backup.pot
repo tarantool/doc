@@ -2,13 +2,10 @@
 msgid "Submodule box.backup"
 msgstr ""
 
-msgid "Overview"
-msgstr ""
-
 msgid "The box.backup submodule contains two functions that are helpful for :ref:`backup <admin-backups>` in certain situations."
 msgstr ""
 
-msgid "Contents"
+msgid "Below is a list of all ``box.backup`` functions."
 msgstr ""
 
 msgid "Name"

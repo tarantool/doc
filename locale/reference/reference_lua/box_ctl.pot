@@ -2,9 +2,6 @@
 msgid "Submodule `box.ctl`"
 msgstr ""
 
-msgid "Overview"
-msgstr ""
-
 msgid "The ``box.ctl`` submodule contains two functions: ``wait_ro`` (wait until read-only) and ``wait_rw`` (wait until read-write). The functions are useful during initialization of a server."
 msgstr ""
 
@@ -14,7 +11,7 @@ msgstr ""
 msgid "To see whether a function is already in read-only or read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`."
 msgstr ""
 
-msgid "Contents"
+msgid "Below is a list of all ``box.ctl`` functions."
 msgstr ""
 
 msgid "Name"

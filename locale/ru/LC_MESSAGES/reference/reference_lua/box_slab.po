@@ -2,9 +2,6 @@
 msgid "Submodule `box.slab`"
 msgstr "Вложенный модуль `box.slab`"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "The ``box.slab`` submodule provides access to slab allocator statistics. "
 "The slab allocator is the main allocator used to store :ref:`tuples "
@@ -16,9 +13,6 @@ msgstr ""
 "основной тип распределения для хранения :ref:`кортежей <index-"
 "box_tuple>`. Такое распределение можно использовать для отслеживания "
 "использования памяти и фрагментации памяти."
-
-msgid "Contents"
-msgstr "Содержание"
 
 msgid "Below is a list of all ``box.slab`` functions."
 msgstr "Ниже приведен перечень всех функций модуля ``box.slab``."

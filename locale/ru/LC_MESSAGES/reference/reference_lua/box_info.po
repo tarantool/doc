@@ -2,9 +2,6 @@
 msgid "Submodule `box.info`"
 msgstr "Вложенный модуль `box.info`"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "The ``box.info`` submodule provides access to information about server "
 "instance variables."
@@ -145,8 +142,8 @@ msgstr ""
 "vinyl. Данная функция объявлена устаревшей, используйте "
 ":ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>`."
 
-msgid "Contents"
-msgstr "Содержание"
+msgid "Below is a list of all ``box.info`` functions."
+msgstr ""
 
 msgid "Name"
 msgstr "Имя"

@@ -1,12 +1,12 @@
 .. _box_index_examples:
 
-*******************************************************************************
+===============================================================================
 Examples for `box.index`
-*******************************************************************************
+===============================================================================
 
-===============================================================================
+*******************************************************************************
 Example showing use of the box functions
-===============================================================================
+*******************************************************************************
 
 This example will work with the sandbox configuration described in the preface.
 That is, there is a space named tester with a numeric primary key. The example
@@ -75,9 +75,9 @@ Lua functions `os.date()`_ and `string.sub()`_.
 
 .. _box_index_example_iterator:
 
-===============================================================================
+*******************************************************************************
 Example showing a user-defined iterator
-===============================================================================
+*******************************************************************************
 
 Here is an example that shows how to build one's own iterator. The
 ``paged_iter`` function is an "iterator function", which will only be understood
@@ -120,9 +120,9 @@ fail to match some additional criteria.
 
 .. _box_index-rtree:
 
-===================================================================================
+***********************************************************************************
 Example showing submodule `box.index` with index type = RTREE for spatial searches
-===================================================================================
+***********************************************************************************
 
 The :ref:`box.index <box_index>` submodule may be used for spatial searches if
 the index type is RTREE. There are operations for searching *rectangles*

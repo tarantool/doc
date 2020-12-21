@@ -4,10 +4,6 @@
 Functions for transaction management
 --------------------------------------------------------------------------------
 
-===============================================================================
-                                   Overview
-===============================================================================
-
 For general information and examples, see section
 :ref:`Transaction control <atomic-atomic_execution>`.
 
@@ -35,10 +31,6 @@ Observe the following rules when working with transactions:
 
     Requests which cause changes to the data definition
     -- create, alter, drop, truncate -- must not be used.
-
-===============================================================================
-                                 Contents
-===============================================================================
 
 Below is a list of all functions for transaction management.
 

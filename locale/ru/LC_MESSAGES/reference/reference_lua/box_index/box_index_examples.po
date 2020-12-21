@@ -1,6 +1,6 @@
 
 msgid "Examples for `box.index`"
-msgstr ""
+msgstr "Примеры для `box.index`"
 
 msgid "Example showing use of the box functions"
 msgstr "Пример использования функций box"
@@ -190,8 +190,8 @@ msgid ""
 "Example showing submodule `box.index` with index type = RTREE for spatial"
 " searches"
 msgstr ""
-"Пример использования вложенного модуля `box.index` с индексом типа RTREE "
-"для посика в пространственных данных"
+"Пример использования `box.index` с индексом типа RTREE для посика в "
+"пространственных данных"
 
 msgid ""
 "The :ref:`box.index <box_index>` submodule may be used for spatial "

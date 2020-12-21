@@ -2,9 +2,6 @@
 msgid "Submodule box.backup"
 msgstr "Вложенный модуль `box.backup`"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "The box.backup submodule contains two functions that are helpful for "
 ":ref:`backup <admin-backups>` in certain situations."
@@ -12,8 +9,8 @@ msgstr ""
 "Модуль ``box.backup`` содержит две функции, которые помогают при работе с"
 " :ref:`резервированным копированием <admin-backups>`."
 
-msgid "Contents"
-msgstr "Содержание"
+msgid "Below is a list of all ``box.backup`` functions."
+msgstr ""
 
 msgid "Name"
 msgstr "Имя"

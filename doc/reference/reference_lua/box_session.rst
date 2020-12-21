@@ -4,19 +4,11 @@
                             Submodule `box.session`
 -------------------------------------------------------------------------------
 
-===============================================================================
-                                   Overview
-===============================================================================
-
 The ``box.session`` submodule allows querying the session state, writing to a
 session-specific temporary Lua table, or sending out-of-band messages, or
 setting up triggers which will fire when a session starts or ends.
 
 A *session* is an object associated with each client connection.
-
-===============================================================================
-                                   Contents
-===============================================================================
 
 Below is a list of all ``box.session`` functions and members.
 

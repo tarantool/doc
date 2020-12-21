@@ -4,10 +4,6 @@
 Submodule `box.info`
 -------------------------------------------------------------------------------
 
-===============================================================================
-                                  Overview
-===============================================================================
-
 The ``box.info`` submodule provides access to information about server instance
 variables.
 
@@ -53,10 +49,7 @@ variables.
   This function is deprecated, use
   :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>` instead.
 
-===============================================================================
-                                  Contents
-===============================================================================
-
+Below is a list of all ``box.info`` functions.
 
 .. container:: table
 

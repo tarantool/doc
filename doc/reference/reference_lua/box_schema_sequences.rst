@@ -4,10 +4,6 @@
 Sequences
 --------------------------------------------------------------------------------
 
-================================================================================
-                                  Overview
-================================================================================
-
 An introduction to sequences is in the :ref:`Sequences <index-box_sequence>`
 section of the "Data model" chapter.
 Here are the details for each function and option.
@@ -15,9 +11,7 @@ Here are the details for each function and option.
 All functions related to sequences require appropriate
 :ref:`privileges <authentication-owners_privileges>`.
 
-================================================================================
-                                  Contents
-================================================================================
+Below is a list of all ``box.schema.sequence`` functions.
 
 .. container:: table
 
@@ -52,13 +46,13 @@ All functions related to sequences require appropriate
 .. toctree::
     :hidden:
 
-    box_sequences/box_schema_sequence_create
-    box_sequences/box_schema_sequence_next
-    box_sequences/box_schema_sequence_alter
-    box_sequences/box_schema_sequence_reset
-    box_sequences/box_schema_sequence_set
-    box_sequences/box_schema_sequence_drop
-    box_sequences/box_schema_sequence_create_index
+    box_schema_sequence/box_schema_sequence_create
+    box_schema_sequence/box_schema_sequence_next
+    box_schema_sequence/box_schema_sequence_alter
+    box_schema_sequence/box_schema_sequence_reset
+    box_schema_sequence/box_schema_sequence_set
+    box_schema_sequence/box_schema_sequence_drop
+    box_schema_sequence/box_schema_sequence_create_index
 
 **Example:**
 

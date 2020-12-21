@@ -2,9 +2,6 @@
 msgid "Submodule `box.error`"
 msgstr "Вложенный модуль `box.error`"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "The ``box.error`` function is for raising an error. The difference "
 "between this function and Lua's built-in `error "
@@ -17,9 +14,6 @@ msgstr ""
 "<https://www.lua.org/pil/8.3.html>`_ в том, что когда клиент получает "
 "ошибку, код ошибки сохраняется. В отличие от этого, ошибки в Lua всегда "
 "передаются на клиент в виде ``ER_PROC_LUA``."
-
-msgid "Contents"
-msgstr "Содержание"
 
 msgid "Below is a list of all ``box.error`` functions."
 msgstr "Ниже приведен перечень всех функций модуля ``box.error``."

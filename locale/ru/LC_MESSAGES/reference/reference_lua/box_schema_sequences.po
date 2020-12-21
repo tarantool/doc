@@ -2,9 +2,6 @@
 msgid "Sequences"
 msgstr "Последовательности"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "An introduction to sequences is in the :ref:`Sequences <index-"
 "box_sequence>` section of the \"Data model\" chapter. Here are the "
@@ -22,8 +19,8 @@ msgstr ""
 "Все функции, связанные с последовательностями, требуют наличия "
 "соответствующих :ref:`прав <authentication-owners_privileges>`."
 
-msgid "Contents"
-msgstr "Содержание"
+msgid "Below is a list of all ``box.schema.sequence`` functions."
+msgstr ""
 
 msgid "Name"
 msgstr "Имя"

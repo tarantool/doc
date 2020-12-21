@@ -2,18 +2,12 @@
 msgid "Submodule `box.schema`"
 msgstr "Вложенный модуль `box.schema`"
 
-msgid "Overview"
-msgstr "Общие сведения"
-
 msgid ""
 "The ``box.schema`` submodule has data-definition functions for spaces, "
 "users, roles, function tuples, and sequences."
 msgstr ""
 "Вложенный модуль ``box.schema`` содержит функции для определения данных "
 "для спейсов, пользователей, ролей, кортежей и последовательностей."
-
-msgid "Contents"
-msgstr "Содержание"
 
 msgid "Below is a list of all ``box.schema`` functions."
 msgstr "Ниже приведен перечень всех функций модуля ``box.schema``."
