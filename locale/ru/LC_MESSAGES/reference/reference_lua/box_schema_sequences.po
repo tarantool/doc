@@ -20,7 +20,7 @@ msgstr ""
 "соответствующих :ref:`прав <authentication-owners_privileges>`."
 
 msgid "Below is a list of all ``box.schema.sequence`` functions."
-msgstr ""
+msgstr "Ниже приведен перечень всех функций модуля ``box.schema.sequence``."
 
 msgid "Name"
 msgstr "Имя"
@@ -28,43 +28,43 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ":ref:`box.schema.sequence.create() <box_schema-sequence_create>`"
+msgid ":doc:`./box_schema_sequence/create`"
 msgstr ""
 
 msgid "Create a new sequence generator"
 msgstr "Создание нового генератора последовательностей"
 
-msgid ":ref:`sequence_object:next() <box_schema-sequence_next>`"
+msgid ":doc:`./box_schema_sequence/next`"
 msgstr ""
 
 msgid "Generate and return the next value"
 msgstr "Генерация и выдача следующего значения"
 
-msgid ":ref:`sequence_object:alter() <box_schema-sequence_alter>`"
+msgid ":doc:`./box_schema_sequence/alter`"
 msgstr ""
 
 msgid "Change sequence options"
 msgstr "Изменение параметров последовательности"
 
-msgid ":ref:`sequence_object:reset() <box_schema-sequence_reset>`"
+msgid ":doc:`./box_schema_sequence/reset`"
 msgstr ""
 
 msgid "Reset sequence state"
 msgstr "Возврат последовательности в оригинальное состояние"
 
-msgid ":ref:`sequence_object:set() <box_schema-sequence_set>`"
+msgid ":doc:`./box_schema_sequence/set`"
 msgstr ""
 
 msgid "Set the new value"
 msgstr "Установка нового значения"
 
-msgid ":ref:`sequence_object:drop() <box_schema-sequence_drop>`"
+msgid ":doc:`./box_schema_sequence/drop`"
 msgstr ""
 
 msgid "Drop the sequence"
 msgstr "Удаление последовательности"
 
-msgid ":ref:`space_object:create_index() <box_schema-sequence_create_index>`"
+msgid ":doc:`./box_schema_sequence/create_index`"
 msgstr ""
 
 msgid "Create an index with a sequence option"

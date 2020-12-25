@@ -13,46 +13,52 @@ All functions related to sequences require appropriate
 
 Below is a list of all ``box.schema.sequence`` functions.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    +--------------------------------------+---------------------------------+
-    | Name                                 | Use                             |
-    +======================================+=================================+
-    | :ref:`box.schema.sequence.create()   | Create a new sequence generator |
-    | <box_schema-sequence_create>`        |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:next()         | Generate and return the next    |
-    | <box_schema-sequence_next>`          | value                           |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:alter()        | Change sequence options         |
-    | <box_schema-sequence_alter>`         |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:reset()        | Reset sequence state            |
-    | <box_schema-sequence_reset>`         |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:set()          | Set the new value               |
-    | <box_schema-sequence_set>`           |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`sequence_object:drop()         | Drop the sequence               |
-    | <box_schema-sequence_drop>`          |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`space_object:create_index()    | Create an index with a sequence |
-    | <box_schema-sequence_create_index>`  | option                          |
-    +--------------------------------------+---------------------------------+
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
+
+        *   - Name
+            - Use
+
+        *  - :doc:`./box_schema_sequence/create`
+           - Create a new sequence generator
+
+        *  - :doc:`./box_schema_sequence/next`
+           - Generate and return the next value
+
+        *  - :doc:`./box_schema_sequence/alter`
+           - Change sequence options
+
+        *  - :doc:`./box_schema_sequence/reset`
+           - Reset sequence state
+
+        *  - :doc:`./box_schema_sequence/set`
+           - Set the new value
+
+        *  - :doc:`./box_schema_sequence/drop`
+           - Drop the sequence
+
+        *  - :doc:`./box_schema_sequence/set`
+           - Set the new value
+
+        *  - :doc:`./box_schema_sequence/create_index`
+           - Create an index with a sequence option
 
 .. toctree::
     :hidden:
 
-    box_schema_sequence/box_schema_sequence_create
-    box_schema_sequence/box_schema_sequence_next
-    box_schema_sequence/box_schema_sequence_alter
-    box_schema_sequence/box_schema_sequence_reset
-    box_schema_sequence/box_schema_sequence_set
-    box_schema_sequence/box_schema_sequence_drop
-    box_schema_sequence/box_schema_sequence_create_index
+    box_schema_sequence/create
+    box_schema_sequence/next
+    box_schema_sequence/alter
+    box_schema_sequence/reset
+    box_schema_sequence/set
+    box_schema_sequence/drop
+    box_schema_sequence/create_index
 
 **Example:**
 

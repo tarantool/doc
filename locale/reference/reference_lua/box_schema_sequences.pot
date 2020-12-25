@@ -17,43 +17,43 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-msgid ":ref:`box.schema.sequence.create() <box_schema-sequence_create>`"
+msgid ":doc:`./box_schema_sequence/create`"
 msgstr ""
 
 msgid "Create a new sequence generator"
 msgstr ""
 
-msgid ":ref:`sequence_object:next() <box_schema-sequence_next>`"
+msgid ":doc:`./box_schema_sequence/next`"
 msgstr ""
 
 msgid "Generate and return the next value"
 msgstr ""
 
-msgid ":ref:`sequence_object:alter() <box_schema-sequence_alter>`"
+msgid ":doc:`./box_schema_sequence/alter`"
 msgstr ""
 
 msgid "Change sequence options"
 msgstr ""
 
-msgid ":ref:`sequence_object:reset() <box_schema-sequence_reset>`"
+msgid ":doc:`./box_schema_sequence/reset`"
 msgstr ""
 
 msgid "Reset sequence state"
 msgstr ""
 
-msgid ":ref:`sequence_object:set() <box_schema-sequence_set>`"
+msgid ":doc:`./box_schema_sequence/set`"
 msgstr ""
 
 msgid "Set the new value"
 msgstr ""
 
-msgid ":ref:`sequence_object:drop() <box_schema-sequence_drop>`"
+msgid ":doc:`./box_schema_sequence/drop`"
 msgstr ""
 
 msgid "Drop the sequence"
 msgstr ""
 
-msgid ":ref:`space_object:create_index() <box_schema-sequence_create_index>`"
+msgid ":doc:`./box_schema_sequence/create_index`"
 msgstr ""
 
 msgid "Create an index with a sequence option"

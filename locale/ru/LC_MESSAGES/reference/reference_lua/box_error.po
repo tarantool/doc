@@ -24,26 +24,26 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Назначение"
 
-msgid ":ref:`box.error() <box_error-error>`"
-msgstr ":ref:`box.error() <box_error-error>`"
+msgid ":doc:`./box_error/error`"
+msgstr ""
 
 msgid "Throw an error"
 msgstr "Вызов ошибки"
 
-msgid ":ref:`box.error.last() <box_error-last>`"
-msgstr ":ref:`box.error.last() <box_error-last>`"
+msgid ":doc:`./box_error/last`"
+msgstr ""
 
 msgid "Get a description of the last error"
 msgstr "Получение описания последней ошибки"
 
-msgid ":ref:`box.error.clear() <box_error-clear>`"
-msgstr ":ref:`box.error.clear() <box_error-clear>`"
+msgid ":doc:`./box_error/clear`"
+msgstr ""
 
 msgid "Clear the record of errors"
 msgstr "Очистка записи об ошибках"
 
-msgid ":ref:`box.error.new() <box_error-new>`"
-msgstr ":ref:`box.error.new() <box_error-new>`"
+msgid ":doc:`./box_error/new`"
+msgstr ""
 
 msgid "Create an error but do not throw"
 msgstr "Создание ошибки без выдачи"

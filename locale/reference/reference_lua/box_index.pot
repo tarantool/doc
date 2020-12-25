@@ -14,115 +14,121 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-msgid ":ref:`index_object.unique <box_index-unique>`"
+msgid ":doc:`./box_index/examples`"
+msgstr ""
+
+msgid "Some useful examples"
+msgstr ""
+
+msgid ":doc:`./box_index/unique`"
 msgstr ""
 
 msgid "Flag, true if an index is unique"
 msgstr ""
 
-msgid ":ref:`index_object.type <box_index-type>`"
+msgid ":doc:`./box_index/type`"
 msgstr ""
 
 msgid "Index type"
 msgstr ""
 
-msgid ":ref:`index_object.parts <box_index-parts>`"
+msgid ":doc:`./box_index/parts`"
 msgstr ""
 
 msgid "Array of index key fields"
 msgstr ""
 
-msgid ":ref:`index_object:pairs() <box_index-pairs>`"
+msgid ":doc:`./box_index/pairs`"
 msgstr ""
 
 msgid "Prepare for iterating"
 msgstr ""
 
-msgid ":ref:`index_object:select() <box_index-select>`"
+msgid ":doc:`./box_index/select`"
 msgstr ""
 
 msgid "Select one or more tuples via index"
 msgstr ""
 
-msgid ":ref:`index_object:get() <box_index-get>`"
+msgid ":doc:`./box_index/get`"
 msgstr ""
 
 msgid "Select a tuple via index"
 msgstr ""
 
-msgid ":ref:`index_object:min() <box_index-min>`"
+msgid ":doc:`./box_index/min`"
 msgstr ""
 
 msgid "Find the minimum value in index"
 msgstr ""
 
-msgid ":ref:`index_object:max() <box_index-max>`"
+msgid ":doc:`./box_index/max`"
 msgstr ""
 
 msgid "Find the maximum value in index"
 msgstr ""
 
-msgid ":ref:`index_object:random() <box_index-random>`"
+msgid ":doc:`./box_index/random`"
 msgstr ""
 
 msgid "Find a random value in index"
 msgstr ""
 
-msgid ":ref:`index_object:count() <box_index-count>`"
+msgid ":doc:`./box_index/count`"
 msgstr ""
 
 msgid "Count tuples matching key value"
 msgstr ""
 
-msgid ":ref:`index_object:update() <box_index-update>`"
+msgid ":doc:`./box_index/update`"
 msgstr ""
 
 msgid "Update a tuple"
 msgstr ""
 
-msgid ":ref:`index_object:delete() <box_index-delete>`"
+msgid ":doc:`./box_index/delete`"
 msgstr ""
 
 msgid "Delete a tuple by key"
 msgstr ""
 
-msgid ":ref:`index_object:alter() <box_index-alter>`"
+msgid ":doc:`./box_index/alter`"
 msgstr ""
 
 msgid "Alter an index"
 msgstr ""
 
-msgid ":ref:`index_object:drop() <box_index-drop>`"
+msgid ":doc:`./box_index/drop`"
 msgstr ""
 
 msgid "Drop an index"
 msgstr ""
 
-msgid ":ref:`index_object:rename() <box_index-rename>`"
+msgid ":doc:`./box_index/rename`"
 msgstr ""
 
 msgid "Rename an index"
 msgstr ""
 
-msgid ":ref:`index_object:bsize() <box_index-bsize>`"
+msgid ":doc:`./box_index/bsize`"
 msgstr ""
 
 msgid "Get count of bytes for an index"
 msgstr ""
 
-msgid ":ref:`index_object:stat() <box_index-stat>`"
+msgid ":doc:`./box_index/stat`"
 msgstr ""
 
 msgid "Get statistics for an index"
 msgstr ""
 
-msgid ":ref:`index_object:compact() <box_index-compact>`"
+msgid ":doc:`./box_index/compact`"
 msgstr ""
 
 msgid "Remove unused index space"
 msgstr ""
 
-msgid ":ref:`index_object:user_defined() <box_index-user_defined>`"
+msgid ":doc:`./box_index/user_defined`"
 msgstr ""
 
 msgid "Any function / method that any user wants to add"

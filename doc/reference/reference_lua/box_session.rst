@@ -12,75 +12,78 @@ A *session* is an object associated with each client connection.
 
 Below is a list of all ``box.session`` functions and members.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    +--------------------------------------+---------------------------------+
-    | Name                                 | Use                             |
-    +======================================+=================================+
-    | :ref:`box.session.id()               | Get the current session's ID    |
-    | <box_session-id>`                    |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.exists()           | Check if a session exists       |
-    | <box_session-exists>`                |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.peer()             | Get the session peer's host     |
-    | <box_session-peer>`                  | address and port                |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.sync()             | Get the sync integer constant   |
-    | <box_session-sync>`                  |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.user()             | Get the current user's name     |
-    | <box_session-user>`                  |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.type()             | Get the connection type or      |
-    | <box_session-type>`                  | cause of action                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.su()               | Change the current user         |
-    | <box_session-su>`                    |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.uid()              | Get the current user's ID       |
-    | <box_session-uid>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.euid()             | Get the current effective       |
-    | <box_session-euid>`                  | user's ID                       |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.storage            | Table with session-specific     |
-    | <box_session-storage>`               | names and values                |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.on_connect()       | Define a connect trigger        |
-    | <box_session-on_connect>`            |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.on_disconnect()    | Define a disconnect trigger     |
-    | <box_session-on_disconnect>`         |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.on_auth()          | Define an authentication        |
-    | <box_session-on_auth>`               | trigger                         |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.on_access_denied() | Define a trigger to report      |
-    | <box_session-on_access_denied>`      | restricted actions              |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.session.push()             | Send an out-of-band message     |
-    | <box_session-push>`                  |                                 |
-    +--------------------------------------+---------------------------------+
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
+
+        *   - Name
+            - Use
+
+        *  - :doc:`./box_session/id`
+           - Get the current session's ID
+
+        *  - :doc:`./box_session/exists`
+           - Check if a session exists
+
+        *  - :doc:`./box_session/peer`
+           - Get the session peer's host address and port
+
+        *  - :doc:`./box_session/sync`
+           - Get the sync integer constant
+
+        *  - :doc:`./box_session/user`
+           - Get the current user's name
+
+        *  - :doc:`./box_session/type`
+           - Get the connection type or cause of action
+
+        *  - :doc:`./box_session/su`
+           - Change the current user
+
+        *  - :doc:`./box_session/uid`
+           - Get the current user's ID
+
+        *  - :doc:`./box_session/euid`
+           - 	Get the current effective user's ID
+
+        *  - :doc:`./box_session/storage`
+           - Table with session-specific names and values
+
+        *  - :doc:`./box_session/on_connect`
+           - Define a connect trigger
+
+        *  - :doc:`./box_session/on_disconnect`
+           - Define a disconnect trigger
+
+        *  - :doc:`./box_session/on_auth`
+           - 	Define an authentication trigger
+
+        *  - :doc:`./box_session/on_access_denied`
+           - 	Define a trigger to report restricted actions
+
+        *  - :doc:`./box_session/push`
+           - Send an out-of-band message
 
 .. toctree::
     :hidden:
 
-    box_session/box_session_id
-    box_session/box_session_exists
-    box_session/box_session_peer
-    box_session/box_session_sync
-    box_session/box_session_user
-    box_session/box_session_type
-    box_session/box_session_su
-    box_session/box_session_uid
-    box_session/box_session_euid
-    box_session/box_session_storage
-    box_session/box_session_on_connect
-    box_session/box_session_on_disconnect
-    box_session/box_session_on_auth
-    box_session/box_session_on_access_denied
-    box_session/box_session_push
+    box_session/id
+    box_session/exists
+    box_session/peer
+    box_session/sync
+    box_session/user
+    box_session/type
+    box_session/su
+    box_session/uid
+    box_session/euid
+    box_session/storage
+    box_session/on_connect
+    box_session/on_disconnect
+    box_session/on_auth
+    box_session/on_access_denied
+    box_session/push

@@ -18,126 +18,122 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ""
-":ref:`box.schema.space.create() <box_schema-space_create>` or "
-":ref:`box.schema.create_space() <box_schema-space_create>`"
+msgid ":doc:`./box_schema/space_create`"
 msgstr ""
-":ref:`box.schema.space.create() <box_schema-space_create>` или "
-":ref:`box.schema.create_space() <box_schema-space_create>`"
 
 msgid "Create a space"
 msgstr "Создание спейса"
 
-msgid ":ref:`box.schema.upgrade <admin-upgrades>`"
+msgid ":doc:`./box_schema/upgrade`"
 msgstr ""
 
 msgid "Upgrade a database"
 msgstr "Облевление базы данных"
 
-msgid ":ref:`box.schema.user.create() <box_schema-user_create>`"
-msgstr ":ref:`box.schema.user.create() <box_schema-user_create>`"
+msgid ":doc:`./box_schema/user_create`"
+msgstr ""
 
 msgid "Create a user"
 msgstr "Создание пользователя"
 
-msgid ":ref:`box.schema.user.drop() <box_schema-user_drop>`"
-msgstr ":ref:`box.schema.user.drop() <box_schema-user_drop>`"
+msgid ":doc:`./box_schema/user_drop`"
+msgstr ""
 
 msgid "Drop a user"
 msgstr "Удаление пользователя"
 
-msgid ":ref:`box.schema.user.exists() <box_schema-user_exists>`"
-msgstr ":ref:`box.schema.user.exists() <box_schema-user_exists>`"
+msgid ":doc:`./box_schema/user_exists`"
+msgstr ""
 
 msgid "Check if a user exists"
 msgstr "Проверка существования пользователя"
 
-msgid ":ref:`box.schema.user.grant() <box_schema-user_grant>`"
-msgstr ":ref:`box.schema.user.grant() <box_schema-user_grant>`"
+msgid ":doc:`./box_schema/user_grant`"
+msgstr ""
 
 msgid "Grant privileges to a user or a role"
 msgstr "Выдача прав пользователю или роли"
 
-msgid ":ref:`box.schema.user.revoke() <box_schema-user_revoke>`"
-msgstr ":ref:`box.schema.user.revoke() <box_schema-user_revoke>`"
+msgid ":doc:`./box_schema/user_revoke`"
+msgstr ""
 
 msgid "Revoke privileges from a user or a role"
 msgstr "Отмена прав пользователя или роли"
 
-msgid ":ref:`box.schema.user.password() <box_schema-user_password>`"
-msgstr ":ref:`box.schema.user.password() <box_schema-user_password>`"
+msgid ":doc:`./box_schema/user_password`"
+msgstr ""
 
 msgid "Get a hash of a user's password"
 msgstr "Получение хеша пароля пользователя"
 
-msgid ":ref:`box.schema.user.passwd() <box_schema-user_passwd>`"
-msgstr ":ref:`box.schema.user.passwd() <box_schema-user_passwd>`"
+msgid ":doc:`./box_schema/user_passwd`"
+msgstr ""
 
 msgid "Associate a password with a user"
 msgstr "Ассоциация пароля с пользователем"
 
-msgid ":ref:`box.schema.user.info() <box_schema-user_info>`"
-msgstr ":ref:`box.schema.user.info() <box_schema-user_info>`"
+msgid ":doc:`./box_schema/user_info`"
+msgstr ""
 
 msgid "Get a description of a user's privileges"
 msgstr "Получение описания прав пользователя"
 
-msgid ":ref:`box.schema.role.create() <box_schema-role_create>`"
-msgstr ":ref:`box.schema.role.create() <box_schema-role_create>`"
+msgid ":doc:`./box_schema/role_create`"
+msgstr ""
 
 msgid "Create a role"
 msgstr "Создание роли"
 
-msgid ":ref:`box.schema.role.drop() <box_schema-role_drop>`"
-msgstr ":ref:`box.schema.role.drop() <box_schema-role_drop>`"
+msgid ":doc:`./box_schema/role_drop`"
+msgstr ""
 
 msgid "Drop a role"
 msgstr "Удаление роли"
 
-msgid ":ref:`box.schema.role.exists() <box_schema-role_exists>`"
-msgstr ":ref:`box.schema.role.exists() <box_schema-role_exists>`"
+msgid ":doc:`./box_schema/role_exists`"
+msgstr ""
 
 msgid "Check if a role exists"
 msgstr "Проверка наличия роли"
 
-msgid ":ref:`box.schema.role.grant() <box_schema-role_grant>`"
-msgstr ":ref:`box.schema.role.grant() <box_schema-role_grant>`"
+msgid ":doc:`./box_schema/role_grant`"
+msgstr ""
 
 msgid "Grant privileges to a role"
 msgstr "Выдача прав роли"
 
-msgid ":ref:`box.schema.role.revoke() <box_schema-role_revoke>`"
-msgstr ":ref:`box.schema.role.revoke() <box_schema-role_revoke>`"
+msgid ":doc:`./box_schema/role_revoke`"
+msgstr ""
 
 msgid "Revoke privileges from a role"
 msgstr "Отмена прав роли"
 
-msgid ":ref:`box.schema.role.info() <box_schema-role_info>`"
-msgstr ":ref:`box.schema.role.info() <box_schema-role_info>`"
+msgid ":doc:`./box_schema/role_info`"
+msgstr ""
 
 msgid "Get a description of a role's privileges"
 msgstr "Получение описания прав роли"
 
-msgid ":ref:`box.schema.func.create() <box_schema-func_create>`"
-msgstr ":ref:`box.schema.func.create() <box_schema-func_create>`"
+msgid ":doc:`./box_schema/func_create`"
+msgstr ""
 
 msgid "Create a function tuple"
 msgstr "Создание кортежа с функцией"
 
-msgid ":ref:`box.schema.func.drop() <box_schema-func_drop>`"
-msgstr ":ref:`box.schema.func.drop() <box_schema-func_drop>`"
+msgid ":doc:`./box_schema/func_drop`"
+msgstr ""
 
 msgid "Drop a function tuple"
 msgstr "Удаление кортежа с функцией"
 
-msgid ":ref:`box.schema.func.exists() <box_schema-func_exists>`"
-msgstr ":ref:`box.schema.func.exists() <box_schema-func_exists>`"
+msgid ":doc:`./box_schema/func_exists`"
+msgstr ""
 
 msgid "Check if a function tuple exists"
 msgstr "Проверка наличия кортежа с функцией"
 
-msgid ":ref:`box.schema.func.reload() <box_schema-func_reload>`"
-msgstr ":ref:`box.schema.func.reload() <box_schema-func_reload>`"
+msgid ":doc:`./box_schema/func_reload`"
+msgstr ""
 
 msgid "Reload a C module with all its functions, no restart"
 msgstr "Перезагрузка модуля на C со всеми его функциями, без перезапуска"

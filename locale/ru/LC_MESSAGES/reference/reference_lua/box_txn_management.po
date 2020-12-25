@@ -62,58 +62,58 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ":ref:`box.begin() <box-begin>`"
-msgstr ":ref:`box.begin() <box-begin>`"
+msgid ":doc:`./box_txn_management/begin`"
+msgstr ""
 
 msgid "Begin the transaction"
 msgstr "Начало транзакции"
 
-msgid ":ref:`box.commit() <box-commit>`"
-msgstr ":ref:`box.commit() <box-commit>`"
+msgid ":doc:`./box_txn_management/commit`"
+msgstr ""
 
 msgid "End the transaction and save all changes"
 msgstr "Окончание транзакции и сохранение всех изменений"
 
-msgid ":ref:`box.rollback() <box-rollback>`"
-msgstr ":ref:`box.rollback() <box-rollback>`"
+msgid ":doc:`./box_txn_management/rollback`"
+msgstr ""
 
 msgid "End the transaction and discard all changes"
 msgstr "Окончание транзакции и отмена всех изменений"
 
-msgid ":ref:`box.savepoint() <box-savepoint>`"
-msgstr ":ref:`box.savepoint() <box-savepoint>`"
+msgid ":doc:`./box_txn_management/savepoint`"
+msgstr ""
 
 msgid "Get a savepoint descriptor"
 msgstr "Получение дескриптора точки сохранения"
 
-msgid ":ref:`box.rollback_to_savepoint() <box-rollback_to_savepoint>`"
-msgstr ":ref:`box.rollback_to_savepoint() <box-rollback_to_savepoint>`"
+msgid ":doc:`./box_txn_management/rollback_to_savepoint`"
+msgstr ""
 
 msgid "Do not end the transaction and discard all changes made after a savepoint"
 msgstr ""
 "Запрещение окончания транзакции и отмена всех изменений, сделанных после "
 "точки сохранения"
 
-msgid ":ref:`box.atomic() <box-atomic>`"
-msgstr ":ref:`box.atomic() <box-atomic>`"
+msgid ":doc:`./box_txn_management/atomic`"
+msgstr ""
 
 msgid "Execute a function, treating it as a transaction"
 msgstr "Выполнение функции как транзакции"
 
-msgid ":ref:`box.on_commit() <box-on_commit>`"
-msgstr ":ref:`box.on_commit() <box-on_commit>`"
+msgid ":doc:`./box_txn_management/on_commit`"
+msgstr ""
 
 msgid "Define a trigger that will be activated by ``box.commit``"
 msgstr "Определение триггера, активируемого по ``box.commit``"
 
-msgid ":ref:`box.on_rollback() <box-on_rollback>`"
-msgstr ":ref:`box.on_rollback() <box-on_rollback>`"
+msgid ":doc:`./box_txn_management/on_rollback`"
+msgstr ""
 
 msgid "Define a trigger that will be activated by ``box.rollback``"
 msgstr "Определение триггера, активируемого по ``box.rollback``"
 
-msgid ":ref:`box.is_in_txn() <box-is_in_txn>`"
-msgstr ":ref:`box.is_in_txn() <box-is_in_txn>`"
+msgid ":doc:`./box_txn_management/is_in_txn`"
+msgstr ""
 
 msgid "State whether a transaction is in progress"
 msgstr "Обозначение наличия активной транзакции"

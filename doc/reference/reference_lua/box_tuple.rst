@@ -11,84 +11,81 @@ over all the fields, and conversion to a `Lua table <https://www.lua.org/pil/2.5
 
 Below is a list of all ``box.tuple`` functions.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    +--------------------------------------+---------------------------------+
-    | Name                                 | Use                             |
-    +======================================+=================================+
-    | :ref:`box.tuple.new()                | Create a tuple                  |
-    | <box_tuple-new>`                     |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`#tuple_object                  | Count tuple fields              |
-    | <box_tuple-count_fields>`            |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:bsize()           | Get count of bytes in a tuple   |
-    | <box_tuple-bsize>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object[field-number]     | Get a tuple's field by          |
-    | <box_tuple-field_number>`            | specifying a number             |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object[field-name]       | Get a tuple's field by          |
-    | <box_tuple-field_name>`              | specifying a name               |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object[field-path]       | Get a tuple's fields or parts   |
-    | <box_tuple-field_path>`              | by specifying a path            |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:find()            | Get the number of the first     |
-    | <box_tuple-find>`                    | field matching the search value |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:findall()         | Get the number of all fields    |
-    | <box_tuple-find>`                    | matching the search value       |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:next()            | Get the next field value from   |
-    | <box_tuple-next>`                    | tuple                           |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:ipairs()          | Prepare for iterating           |
-    | <box_tuple-pairs>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:pairs()           | Prepare for iterating           |
-    | <box_tuple-pairs>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:totable()         | Get a tuple's fields as a table |
-    | <box_tuple-totable>`                 |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:tomap()           | Get a tuple's fields as a table |
-    | <box_tuple-tomap>`                   | along with key:value pairs      |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:transform()       | Remove (and replace) a tuple's  |
-    | <box_tuple-transform>`               | fields                          |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:unpack()          | Get a tuple's fields            |
-    | <box_tuple-unpack>`                  |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:update()          | Update a tuple                  |
-    | <box_tuple-update>`                  |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`tuple_object:upsert()          | Update a tuple ignoring errors  |
-    | <box_tuple-upsert>`                  |                                 |
-    +--------------------------------------+---------------------------------+
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
+
+        *   - Name
+            - Use
+
+        *  - :doc:`./box_tuple/new`
+           - Create a tuple
+
+        *  - :doc:`./box_tuple/count_fields`
+           - Count tuple fields
+
+        *  - :doc:`./box_tuple/bsize`
+           - Get count of bytes in a tuple
+
+        *  - :doc:`./box_tuple/field_number`
+           - Get a tuple's field by specifying a number
+
+        *  - :doc:`./box_tuple/field_name`
+           - Get a tuple's field by specifying a name
+
+        *  - :doc:`./box_tuple/field_path`
+           - Get a tuple's fields or parts by specifying a path
+
+        *  - :doc:`./box_tuple/find`
+           - Get the number of the first field/all fields matching the search value
+
+        *  - :doc:`./box_tuple/next`
+           - Get the next field value from tuple
+
+        *  - :doc:`./box_tuple/pairs`
+           - Prepare for iterating
+
+        *  - :doc:`./box_tuple/totable`
+           - Get a tuple's fields as a table
+
+        *  - :doc:`./box_tuple/tomap`
+           - Get a tuple's fields as a table along with key:value pairs
+
+        *  - :doc:`./box_tuple/transform`
+           - Remove (and replace) a tuple's fields
+
+        *  - :doc:`./box_tuple/unpack`
+           - Get a tuple's fields
+
+        *  - :doc:`./box_tuple/update`
+           - Update a tuple
+
+        *  - :doc:`./box_tuple/upsert`
+           - Update a tuple ignoring errors
 
 .. toctree::
     :hidden:
 
-    box_tuple/box_tuple_new
-    box_tuple/box_tuple_count_fields
-    box_tuple/box_tuple_bsize
-    box_tuple/box_tuple_field_number
-    box_tuple/box_tuple_field_name
-    box_tuple/box_tuple_field_path
-    box_tuple/box_tuple_find
-    box_tuple/box_tuple_next
-    box_tuple/box_tuple_pairs
-    box_tuple/box_tuple_totable
-    box_tuple/box_tuple_tomap
-    box_tuple/box_tuple_transform
-    box_tuple/box_tuple_unpack
-    box_tuple/box_tuple_update
-    box_tuple/box_tuple_upsert
+    box_tuple/new
+    box_tuple/count_fields
+    box_tuple/bsize
+    box_tuple/field_number
+    box_tuple/field_name
+    box_tuple/field_path
+    box_tuple/find
+    box_tuple/next
+    box_tuple/pairs
+    box_tuple/totable
+    box_tuple/tomap
+    box_tuple/transform
+    box_tuple/unpack
+    box_tuple/update
+    box_tuple/upsert
 
 
 ===========================================================

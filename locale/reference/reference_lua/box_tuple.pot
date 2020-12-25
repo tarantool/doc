@@ -14,100 +14,91 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-msgid ":ref:`box.tuple.new() <box_tuple-new>`"
+msgid ":doc:`./box_tuple/new`"
 msgstr ""
 
 msgid "Create a tuple"
 msgstr ""
 
-msgid ":ref:`#tuple_object <box_tuple-count_fields>`"
+msgid ":doc:`./box_tuple/count_fields`"
 msgstr ""
 
 msgid "Count tuple fields"
 msgstr ""
 
-msgid ":ref:`tuple_object:bsize() <box_tuple-bsize>`"
+msgid ":doc:`./box_tuple/bsize`"
 msgstr ""
 
 msgid "Get count of bytes in a tuple"
 msgstr ""
 
-msgid ":ref:`tuple_object[field-number] <box_tuple-field_number>`"
+msgid ":doc:`./box_tuple/field_number`"
 msgstr ""
 
 msgid "Get a tuple's field by specifying a number"
 msgstr ""
 
-msgid ":ref:`tuple_object[field-name] <box_tuple-field_name>`"
+msgid ":doc:`./box_tuple/field_name`"
 msgstr ""
 
 msgid "Get a tuple's field by specifying a name"
 msgstr ""
 
-msgid ":ref:`tuple_object[field-path] <box_tuple-field_path>`"
+msgid ":doc:`./box_tuple/field_path`"
 msgstr ""
 
 msgid "Get a tuple's fields or parts by specifying a path"
 msgstr ""
 
-msgid ":ref:`tuple_object:find() <box_tuple-find>`"
+msgid ":doc:`./box_tuple/find`"
 msgstr ""
 
-msgid "Get the number of the first field matching the search value"
+msgid "Get the number of the first field/all fields matching the search value"
 msgstr ""
 
-msgid ":ref:`tuple_object:findall() <box_tuple-find>`"
-msgstr ""
-
-msgid "Get the number of all fields matching the search value"
-msgstr ""
-
-msgid ":ref:`tuple_object:next() <box_tuple-next>`"
+msgid ":doc:`./box_tuple/next`"
 msgstr ""
 
 msgid "Get the next field value from tuple"
 msgstr ""
 
-msgid ":ref:`tuple_object:ipairs() <box_tuple-pairs>`"
+msgid ":doc:`./box_tuple/pairs`"
 msgstr ""
 
 msgid "Prepare for iterating"
 msgstr ""
 
-msgid ":ref:`tuple_object:pairs() <box_tuple-pairs>`"
-msgstr ""
-
-msgid ":ref:`tuple_object:totable() <box_tuple-totable>`"
+msgid ":doc:`./box_tuple/totable`"
 msgstr ""
 
 msgid "Get a tuple's fields as a table"
 msgstr ""
 
-msgid ":ref:`tuple_object:tomap() <box_tuple-tomap>`"
+msgid ":doc:`./box_tuple/tomap`"
 msgstr ""
 
 msgid "Get a tuple's fields as a table along with key:value pairs"
 msgstr ""
 
-msgid ":ref:`tuple_object:transform() <box_tuple-transform>`"
+msgid ":doc:`./box_tuple/transform`"
 msgstr ""
 
 msgid "Remove (and replace) a tuple's fields"
 msgstr ""
 
-msgid ":ref:`tuple_object:unpack() <box_tuple-unpack>`"
+msgid ":doc:`./box_tuple/unpack`"
 msgstr ""
 
 msgid "Get a tuple's fields"
 msgstr ""
 
-msgid ":ref:`tuple_object:update() <box_tuple-update>`"
+msgid ":doc:`./box_tuple/update`"
 msgstr ""
 
 msgid "Update a tuple"
 msgstr ""
 
-msgid ":ref:`tuple_object:upsert() <box_tuple-upsert>`"
+msgid ":doc:`./box_tuple/upsert`"
 msgstr ""
 
 msgid "Update a tuple ignoring errors"

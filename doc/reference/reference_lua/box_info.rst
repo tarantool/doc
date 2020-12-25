@@ -51,31 +51,34 @@ variables.
 
 Below is a list of all ``box.info`` functions.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    +--------------------------------------+---------------------------------+
-    | Name                                 | Use                             |
-    +======================================+=================================+
-    | :ref:`box.info() <box_info_info>`    | Return all keys and values      |
-    |                                      | provided in the submodule       |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.info.gc() <box_info_gc>`   | Return info about garbage       |
-    |                                      | collector                       |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.info.memory()              | Return info about memory usage  |
-    | <box_info_memory>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.info.replication           | Return statistics for all       |
-    | <box_info_replication>`              | instances in the replica set    |
-    +--------------------------------------+---------------------------------+
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
+
+        *   - Name
+            - Use
+
+        *  - :doc:`./box_info/info`
+           - Return all keys and values provided in the submodule
+
+        *  - :doc:`./box_info/gc`
+           - Return info about garbage collector
+
+        *  - :doc:`./box_info/memory`
+           - Return info about memory usage
+
+        *  - :doc:`./box_info/replication`
+           - Return statistics for all instances in the replica set
 
 .. toctree::
     :hidden:
 
-    box_info/box_info_info
-    box_info/box_info_gc
-    box_info/box_info_memory
-    box_info/box_info_replication
+    box_info/info
+    box_info/gc
+    box_info/memory
+    box_info/replication

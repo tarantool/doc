@@ -23,22 +23,22 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ":ref:`box.runtime.info() <box_runtime_info>`"
-msgstr ":ref:`box.runtime.info() <box_runtime_info>`"
+msgid ":doc:`./box_slab/runtime_info`"
+msgstr ""
 
 msgid "Show a memory usage report for Lua runtime"
 msgstr "Отображение отчета по использованию памяти во время исполнения Lua-кода"
 
-msgid ":ref:`box.slab.info() <box_slab_info>`"
-msgstr ":ref:`box.slab.info() <box_slab_info>`"
+msgid ":doc:`./box_slab/slab_info`"
+msgstr ""
 
 msgid "Show an aggregated memory usage report for slab allocator"
 msgstr ""
 "Отображение обобщенного отчета по использованию памяти для распределения "
 "slab"
 
-msgid ":ref:`box.slab.stats() <box_slab_stats>`"
-msgstr ":ref:`box.slab.stats() <box_slab_stats>`"
+msgid ":doc:`./box_slab/slab_stats`"
+msgstr ""
 
 msgid "Show a detailed memory usage report for slab allocator"
 msgstr ""

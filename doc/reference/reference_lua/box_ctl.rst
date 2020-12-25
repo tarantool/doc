@@ -24,21 +24,26 @@ read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
 
 Below is a list of all ``box.ctl`` functions.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    +--------------------------------------+-------------------------------------+
-    | Name                                 | Use                                 |
-    +======================================+=====================================+
-    | :ref:`box.ctl.wait_ro <ctl-wait_ro>` | Wait until ``box.info.ro`` is true  |
-    +--------------------------------------+-------------------------------------+
-    | :ref:`box.ctl.wait_ro <ctl-wait_rw>` | Wait until ``box.info.ro`` is false |
-    +--------------------------------------+-------------------------------------+
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
 
-.. toctree::
+        *   - Name
+            - Use
+
+        *  - :doc:`./box_ctl/wait_ro`
+           - Wait until ``box.info.ro`` is true
+
+        *  - :doc:`./box_ctl/wait_rw`
+           - Wait until ``box.info.ro`` is false
+
+..  toctree::
     :hidden:
 
-    box_ctl/box_ctl_wait_ro
-    box_ctl/box_ctl_wait_rw
+    box_ctl/wait_ro
+    box_ctl/wait_rw

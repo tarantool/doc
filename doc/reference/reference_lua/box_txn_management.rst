@@ -34,54 +34,55 @@ Observe the following rules when working with transactions:
 
 Below is a list of all functions for transaction management.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    .. tabularcolumns:: |\Y{0.4}|\Y{0.6}|
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
 
-    +--------------------------------------+---------------------------------+
-    | Name                                 | Use                             |
-    +======================================+=================================+
-    | :ref:`box.begin()                    | Begin the transaction           |
-    | <box-begin>`                         |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.commit()                   | End the transaction and save    |
-    | <box-commit>`                        | all changes                     |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.rollback()                 | End the transaction and discard |
-    | <box-rollback>`                      | all changes                     |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.savepoint()                | Get a savepoint descriptor      |
-    | <box-savepoint>`                     |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.rollback_to_savepoint()    | Do not end the transaction and  |
-    | <box-rollback_to_savepoint>`         | discard all changes made after  |
-    |                                      | a savepoint                     |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.atomic()                   | Execute a function, treating it |
-    | <box-atomic>`                        | as a transaction                |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.on_commit()                | Define a trigger that will be   |
-    | <box-on_commit>`                     | activated by ``box.commit``     |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.on_rollback()              | Define a trigger that will be   |
-    | <box-on_rollback>`                   | activated by ``box.rollback``   |
-    +--------------------------------------+---------------------------------+
-    | :ref:`box.is_in_txn()                | State whether a transaction is  |
-    | <box-is_in_txn>`                     | in progress                     |
-    +--------------------------------------+---------------------------------+
+        *   - Name
+            - Use
+
+        *  - :doc:`./box_txn_management/begin`
+           - Begin the transaction
+
+        *  - :doc:`./box_txn_management/commit`
+           - End the transaction and save all changes
+
+        *  - :doc:`./box_txn_management/rollback`
+           - End the transaction and discard all changes
+
+        *  - :doc:`./box_txn_management/savepoint`
+           - Get a savepoint descriptor
+
+        *  - :doc:`./box_txn_management/rollback_to_savepoint`
+           - Do not end the transaction and discard all changes made after a
+             savepoint
+
+        *  - :doc:`./box_txn_management/atomic`
+           - Execute a function, treating it as a transaction
+
+        *  - :doc:`./box_txn_management/on_commit`
+           - Define a trigger that will be activated by ``box.commit``
+
+        *  - :doc:`./box_txn_management/on_rollback`
+           - Define a trigger that will be activated by ``box.rollback``
+
+        *  - :doc:`./box_txn_management/is_in_txn`
+           - State whether a transaction is in progress
 
 .. toctree::
     :hidden:
 
-    box_txn_management/box_begin
-    box_txn_management/box_commit
-    box_txn_management/box_rollback
-    box_txn_management/box_savepoint
-    box_txn_management/box_rollback_to_savepoint
-    box_txn_management/box_atomic
-    box_txn_management/box_on_commit
-    box_txn_management/box_on_rollback
-    box_txn_management/box_is_in_txn
+    box_txn_management/begin
+    box_txn_management/commit
+    box_txn_management/rollback
+    box_txn_management/savepoint
+    box_txn_management/rollback_to_savepoint
+    box_txn_management/atomic
+    box_txn_management/on_commit
+    box_txn_management/on_rollback
+    box_txn_management/is_in_txn

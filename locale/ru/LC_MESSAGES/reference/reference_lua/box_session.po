@@ -25,92 +25,92 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ":ref:`box.session.id() <box_session-id>`"
-msgstr ":ref:`box.session.id() <box_session-id>`"
+msgid ":doc:`./box_session/id`"
+msgstr ""
 
 msgid "Get the current session's ID"
 msgstr "Получение идентификатора текущей сессии"
 
-msgid ":ref:`box.session.exists() <box_session-exists>`"
-msgstr ":ref:`box.session.exists() <box_session-exists>`"
+msgid ":doc:`./box_session/exists`"
+msgstr ""
 
 msgid "Check if a session exists"
 msgstr "Проверка наличия сессии"
 
-msgid ":ref:`box.session.peer() <box_session-peer>`"
-msgstr ":ref:`box.session.peer() <box_session-peer>`"
+msgid ":doc:`./box_session/peer`"
+msgstr ""
 
 msgid "Get the session peer's host address and port"
 msgstr "Получение адреса хоста и порта подключенного узла"
 
-msgid ":ref:`box.session.sync() <box_session-sync>`"
-msgstr ":ref:`box.session.sync() <box_session-sync>`"
+msgid ":doc:`./box_session/sync`"
+msgstr ""
 
 msgid "Get the sync integer constant"
 msgstr "Получение целочисленной константы sync"
 
-msgid ":ref:`box.session.user() <box_session-user>`"
-msgstr ":ref:`box.session.user() <box_session-user>`"
+msgid ":doc:`./box_session/user`"
+msgstr ""
 
 msgid "Get the current user's name"
 msgstr "Получение имени текущего пользователя"
 
-msgid ":ref:`box.session.type() <box_session-type>`"
-msgstr ":ref:`box.session.type() <box_session-type>`"
+msgid ":doc:`./box_session/type`"
+msgstr ""
 
 msgid "Get the connection type or cause of action"
 msgstr "Получение типа соединения или повода к действию"
 
-msgid ":ref:`box.session.su() <box_session-su>`"
-msgstr ":ref:`box.session.su() <box_session-su>`"
+msgid ":doc:`./box_session/su`"
+msgstr ""
 
 msgid "Change the current user"
 msgstr "Изменение текущего пользователя"
 
-msgid ":ref:`box.session.uid() <box_session-uid>`"
-msgstr ":ref:`box.session.uid() <box_session-uid>`"
+msgid ":doc:`./box_session/uid`"
+msgstr ""
 
 msgid "Get the current user's ID"
 msgstr "Получение идентификатора текущего пользователя"
 
-msgid ":ref:`box.session.euid() <box_session-euid>`"
-msgstr ":ref:`box.session.euid() <box_session-euid>`"
+msgid ":doc:`./box_session/euid`"
+msgstr ""
 
 msgid "Get the current effective user's ID"
 msgstr "Получение идентификатора текущего действующего пользователя"
 
-msgid ":ref:`box.session.storage <box_session-storage>`"
-msgstr ":ref:`box.session.storage <box_session-storage>`"
+msgid ":doc:`./box_session/storage`"
+msgstr ""
 
 msgid "Table with session-specific names and values"
 msgstr "Таблица с именами и значениями по сессии"
 
-msgid ":ref:`box.session.on_connect() <box_session-on_connect>`"
-msgstr ":ref:`box.session.on_connect() <box_session-on_connect>`"
+msgid ":doc:`./box_session/on_connect`"
+msgstr ""
 
 msgid "Define a connect trigger"
 msgstr "Определение триггера для подключения"
 
-msgid ":ref:`box.session.on_disconnect() <box_session-on_disconnect>`"
-msgstr ":ref:`box.session.on_disconnect() <box_session-on_disconnect>`"
+msgid ":doc:`./box_session/on_disconnect`"
+msgstr ""
 
 msgid "Define a disconnect trigger"
 msgstr "Определение триггера для отключения"
 
-msgid ":ref:`box.session.on_auth() <box_session-on_auth>`"
-msgstr ":ref:`box.session.on_auth() <box_session-on_auth>`"
+msgid ":doc:`./box_session/on_auth`"
+msgstr ""
 
 msgid "Define an authentication trigger"
 msgstr "Определение триггера для аутентификации"
 
-msgid ":ref:`box.session.on_access_denied() <box_session-on_access_denied>`"
-msgstr ":ref:`box.session.on_access_denied() <box_session-on_access_denied>`"
+msgid ":doc:`./box_session/on_access_denied`"
+msgstr ""
 
 msgid "Define a trigger to report restricted actions"
 msgstr "Определение триггера для регистрации запрещенных действий"
 
-msgid ":ref:`box.session.push() <box_session-push>`"
-msgstr ":ref:`box.session.push() <box_session-push>`"
+msgid ":doc:`./box_session/push`"
+msgstr ""
 
 msgid "Send an out-of-band message"
 msgstr "Отправка внеполосного сообщения"

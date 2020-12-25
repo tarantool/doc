@@ -38,7 +38,7 @@ msgstr ""
 "используйте :ref:`box.info.ro <box_introspection-box_info>`."
 
 msgid "Below is a list of all ``box.ctl`` functions."
-msgstr ""
+msgstr "Ниже приведен перечень всех функций модуля ``box.ctl``."
 
 msgid "Name"
 msgstr "Имя"
@@ -46,14 +46,14 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ":ref:`box.ctl.wait_ro <ctl-wait_ro>`"
+msgid ":doc:`./box_ctl/wait_ro`"
 msgstr ""
 
 msgid "Wait until ``box.info.ro`` is true"
-msgstr "Дождаться, пока не будет выполнено ``box.info.ro``."
+msgstr "Дождаться, пока не будет выполнено ``box.info.ro``"
 
-msgid ":ref:`box.ctl.wait_ro <ctl-wait_rw>`"
+msgid ":doc:`./box_ctl/wait_rw`"
 msgstr ""
 
 msgid "Wait until ``box.info.ro`` is false"
-msgstr "Дождаться, пока не перестанет соблюдаться box.info.ro."
+msgstr "Дождаться, пока не перестанет соблюдаться ``box.info.ro``"

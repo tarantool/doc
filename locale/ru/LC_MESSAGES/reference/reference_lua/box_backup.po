@@ -10,7 +10,7 @@ msgstr ""
 " :ref:`резервированным копированием <admin-backups>`."
 
 msgid "Below is a list of all ``box.backup`` functions."
-msgstr ""
+msgstr "Ниже приведен перечень всех функций модуля ``box.backup``."
 
 msgid "Name"
 msgstr "Имя"
@@ -18,16 +18,16 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ":ref:`box.backup.start() <reference_lua-box_backup-backup_start>`"
+msgid ":doc:`./box_backup/start`"
 msgstr ""
 
-msgid "ask server to suspend activities before the removal of outdated backups"
+msgid "Ask server to suspend activities before the removal of outdated backups"
 msgstr ""
 "попросить сервер приостановить активности перед удалением устаревших "
 "резервных копий"
 
-msgid ":ref:`box.backup.stop() <reference_lua-box_backup-backup_start>`"
+msgid ":doc:`./box_backup/stop`"
 msgstr ""
 
-msgid "inform server that normal operations may resume"
+msgid "Inform server that normal operations may resume"
 msgstr "проинформировать сервер, что можно вернуться к работе"

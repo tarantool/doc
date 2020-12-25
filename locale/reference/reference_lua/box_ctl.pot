@@ -20,13 +20,13 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-msgid ":ref:`box.ctl.wait_ro <ctl-wait_ro>`"
+msgid ":doc:`./box_ctl/wait_ro`"
 msgstr ""
 
 msgid "Wait until ``box.info.ro`` is true"
 msgstr ""
 
-msgid ":ref:`box.ctl.wait_ro <ctl-wait_rw>`"
+msgid ":doc:`./box_ctl/wait_rw`"
 msgstr ""
 
 msgid "Wait until ``box.info.ro`` is false"

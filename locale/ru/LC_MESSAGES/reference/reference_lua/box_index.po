@@ -26,116 +26,122 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ":ref:`index_object.unique <box_index-unique>`"
-msgstr ":ref:`index_object.unique <box_index-unique>`"
+msgid ":doc:`./box_index/examples`"
+msgstr ""
+
+msgid "Some useful examples"
+msgstr "Несколько полезных примеров"
+
+msgid ":doc:`./box_index/unique`"
+msgstr ""
 
 msgid "Flag, true if an index is unique"
 msgstr "Флаг, если индекс уникальный -- true"
 
-msgid ":ref:`index_object.type <box_index-type>`"
-msgstr ":ref:`index_object.type <box_index-type>`"
+msgid ":doc:`./box_index/type`"
+msgstr ""
 
 msgid "Index type"
 msgstr "Тип индекса"
 
-msgid ":ref:`index_object.parts <box_index-parts>`"
-msgstr ":ref:`index_object.parts <box_index-parts>`"
+msgid ":doc:`./box_index/parts`"
+msgstr ""
 
 msgid "Array of index key fields"
 msgstr "Массив полей с ключами индекса"
 
-msgid ":ref:`index_object:pairs() <box_index-pairs>`"
+msgid ":doc:`./box_index/pairs`"
 msgstr ""
 
 msgid "Prepare for iterating"
 msgstr "Подготовка к итерации"
 
-msgid ":ref:`index_object:select() <box_index-select>`"
-msgstr ":ref:`index_object:select() <box_index-select>`"
+msgid ":doc:`./box_index/select`"
+msgstr ""
 
 msgid "Select one or more tuples via index"
 msgstr "Выбор одного или более кортежей по индексу"
 
-msgid ":ref:`index_object:get() <box_index-get>`"
-msgstr ":ref:`index_object:get() <box_index-get>`"
+msgid ":doc:`./box_index/get`"
+msgstr ""
 
 msgid "Select a tuple via index"
 msgstr "Выбор кортежа по индексу"
 
-msgid ":ref:`index_object:min() <box_index-min>`"
-msgstr ":ref:`index_object:min() <box_index-min>`"
+msgid ":doc:`./box_index/min`"
+msgstr ""
 
 msgid "Find the minimum value in index"
 msgstr "Поиск минимального значения в индексе"
 
-msgid ":ref:`index_object:max() <box_index-max>`"
-msgstr ":ref:`index_object:max() <box_index-max>`"
+msgid ":doc:`./box_index/max`"
+msgstr ""
 
 msgid "Find the maximum value in index"
 msgstr "Поиск максимального значения в индексе"
 
-msgid ":ref:`index_object:random() <box_index-random>`"
-msgstr ":ref:`index_object:random() <box_index-random>`"
+msgid ":doc:`./box_index/random`"
+msgstr ""
 
 msgid "Find a random value in index"
 msgstr "Поиск случайного значения в индексе"
 
-msgid ":ref:`index_object:count() <box_index-count>`"
-msgstr ":ref:`index_object:count() <box_index-count>`"
+msgid ":doc:`./box_index/count`"
+msgstr ""
 
 msgid "Count tuples matching key value"
 msgstr "Подсчет кортежей с совпадающим значением ключа"
 
-msgid ":ref:`index_object:update() <box_index-update>`"
-msgstr ":ref:`index_object:update() <box_index-update>`"
+msgid ":doc:`./box_index/update`"
+msgstr ""
 
 msgid "Update a tuple"
 msgstr "Обновление кортежа"
 
-msgid ":ref:`index_object:delete() <box_index-delete>`"
-msgstr ":ref:`index_object:delete() <box_index-delete>`"
+msgid ":doc:`./box_index/delete`"
+msgstr ""
 
 msgid "Delete a tuple by key"
 msgstr "Удаление кортежа по ключу"
 
-msgid ":ref:`index_object:alter() <box_index-alter>`"
-msgstr ":ref:`index_object:alter() <box_index-alter>`"
+msgid ":doc:`./box_index/alter`"
+msgstr ""
 
 msgid "Alter an index"
 msgstr "Изменение индекса"
 
-msgid ":ref:`index_object:drop() <box_index-drop>`"
-msgstr ":ref:`index_object:drop() <box_index-drop>`"
+msgid ":doc:`./box_index/drop`"
+msgstr ""
 
 msgid "Drop an index"
 msgstr "Удаление индекса"
 
-msgid ":ref:`index_object:rename() <box_index-rename>`"
-msgstr ":ref:`index_object:rename() <box_index-rename>`"
+msgid ":doc:`./box_index/rename`"
+msgstr ""
 
 msgid "Rename an index"
 msgstr "Переименование индекса"
 
-msgid ":ref:`index_object:bsize() <box_index-bsize>`"
-msgstr ":ref:`index_object:bsize() <box_index-bsize>`"
+msgid ":doc:`./box_index/bsize`"
+msgstr ""
 
 msgid "Get count of bytes for an index"
 msgstr "Подсчет байтов для индекса"
 
-msgid ":ref:`index_object:stat() <box_index-stat>`"
-msgstr ":ref:`index_object:stat() <box_index-stat>`"
+msgid ":doc:`./box_index/stat`"
+msgstr ""
 
 msgid "Get statistics for an index"
 msgstr "Получение статистических данных по индексу"
 
-msgid ":ref:`index_object:compact() <box_index-compact>`"
-msgstr ":ref:`index_object:compact() <box_index-compact>`"
+msgid ":doc:`./box_index/compact`"
+msgstr ""
 
 msgid "Remove unused index space"
 msgstr "Удаление неиспользуемого пространства индекса"
 
-msgid ":ref:`index_object:user_defined() <box_index-user_defined>`"
-msgstr ":ref:`index_object:user_defined() <box_index-user_defined>`"
+msgid ":doc:`./box_index/user_defined`"
+msgstr ""
 
 msgid "Any function / method that any user wants to add"
 msgstr "Любая функция / метод, которые хочет добавить любой пользователь"

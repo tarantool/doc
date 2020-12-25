@@ -12,92 +12,98 @@ This API is a direct binding to corresponding methods of index objects of type
 
 Below is a list of all ``box.index`` functions and members.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    +--------------------------------------+---------------------------------+
-    | Name                                 | Use                             |
-    +======================================+=================================+
-    | :ref:`index_object.unique            | Flag, true if an index is       |
-    | <box_index-unique>`                  | unique                          |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object.type              | Index type                      |
-    | <box_index-type>`                    |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object.parts             | Array of index key fields       |
-    | <box_index-parts>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:pairs()           | Prepare for iterating           |
-    | <box_index-pairs>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:select()          | Select one or more tuples       |
-    | <box_index-select>`                  | via index                       |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:get()             | Select a tuple via index        |
-    | <box_index-get>`                     |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:min()             | Find the minimum value in index |
-    | <box_index-min>`                     |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:max()             | Find the maximum value in index |
-    | <box_index-max>`                     |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:random()          | Find a random value in index    |
-    | <box_index-random>`                  |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:count()           | Count tuples matching key value |
-    | <box_index-count>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:update()          | Update a tuple                  |
-    | <box_index-update>`                  |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:delete()          | Delete a tuple by key           |
-    | <box_index-delete>`                  |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:alter()           | Alter an index                  |
-    | <box_index-alter>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:drop()            | Drop an index                   |
-    | <box_index-drop>`                    |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:rename()          | Rename an index                 |
-    | <box_index-rename>`                  |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:bsize()           | Get count of bytes for an index |
-    | <box_index-bsize>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:stat()            | Get statistics for an index     |
-    | <box_index-stat>`                    |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:compact()         | Remove unused index space       |
-    | <box_index-compact>`                 |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`index_object:user_defined()    | Any function / method that any  |
-    | <box_index-user_defined>`            | user wants to add               |
-    +--------------------------------------+---------------------------------+
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
 
-.. toctree::
+        *   - Name
+            - Use
+
+        *  - :doc:`./box_index/examples`
+           - Some useful examples
+
+        *  - :doc:`./box_index/unique`
+           - Flag, true if an index is unique
+
+        *  - :doc:`./box_index/type`
+           - Index type
+
+        *  - :doc:`./box_index/parts`
+           - Array of index key fields
+
+        *  - :doc:`./box_index/pairs`
+           - Prepare for iterating
+
+        *  - :doc:`./box_index/select`
+           - Select one or more tuples via index
+
+        *  - :doc:`./box_index/get`
+           - Select a tuple via index
+
+        *  - :doc:`./box_index/min`
+           - Find the minimum value in index
+
+        *  - :doc:`./box_index/max`
+           - Find the maximum value in index
+
+        *  - :doc:`./box_index/random`
+           - Find a random value in index
+
+        *  - :doc:`./box_index/count`
+           - Count tuples matching key value
+
+        *  - :doc:`./box_index/update`
+           - Update a tuple
+
+        *  - :doc:`./box_index/delete`
+           - Delete a tuple by key
+
+        *  - :doc:`./box_index/alter`
+           - Alter an index
+
+        *  - :doc:`./box_index/drop`
+           - Drop an index
+
+        *  - :doc:`./box_index/rename`
+           - Rename an index
+
+        *  - :doc:`./box_index/bsize`
+           - Get count of bytes for an index
+
+        *  - :doc:`./box_index/stat`
+           - Get statistics for an index
+
+        *  - :doc:`./box_index/compact`
+           - Remove unused index space
+
+        *  - :doc:`./box_index/user_defined`
+           - Any function / method that any user wants to add
+
+..  toctree::
     :hidden:
 
-    box_index/box_index_examples
-    box_index/box_index_unique
-    box_index/box_index_type
-    box_index/box_index_parts
-    box_index/box_index_pairs
-    box_index/box_index_select
-    box_index/box_index_get
-    box_index/box_index_min
-    box_index/box_index_max
-    box_index/box_index_random
-    box_index/box_index_count
-    box_index/box_index_update
-    box_index/box_index_delete
-    box_index/box_index_alter
-    box_index/box_index_drop
-    box_index/box_index_rename
-    box_index/box_index_bsize
-    box_index/box_index_stat
-    box_index/box_index_compact
-    box_index/box_index_user_defined
+    box_index/examples
+    box_index/unique
+    box_index/type
+    box_index/parts
+    box_index/pairs
+    box_index/select
+    box_index/get
+    box_index/min
+    box_index/max
+    box_index/random
+    box_index/count
+    box_index/update
+    box_index/delete
+    box_index/alter
+    box_index/drop
+    box_index/rename
+    box_index/bsize
+    box_index/stat
+    box_index/compact
+    box_index/user_defined

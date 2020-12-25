@@ -68,25 +68,25 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-msgid ":ref:`box.info() <box_info_info>`"
+msgid ":doc:`./box_info/info`"
 msgstr ""
 
 msgid "Return all keys and values provided in the submodule"
 msgstr ""
 
-msgid ":ref:`box.info.gc() <box_info_gc>`"
+msgid ":doc:`./box_info/gc`"
 msgstr ""
 
 msgid "Return info about garbage collector"
 msgstr ""
 
-msgid ":ref:`box.info.memory() <box_info_memory>`"
+msgid ":doc:`./box_info/memory`"
 msgstr ""
 
 msgid "Return info about memory usage"
 msgstr ""
 
-msgid ":ref:`box.info.replication <box_info_replication>`"
+msgid ":doc:`./box_info/replication`"
 msgstr ""
 
 msgid "Return statistics for all instances in the replica set"

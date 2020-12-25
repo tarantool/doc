@@ -14,229 +14,229 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-msgid ":ref:`space_object:auto_increment() <box_space-auto_increment>`"
+msgid ":doc:`./box_space/auto_increment`"
 msgstr ""
 
 msgid "Generate key + Insert a tuple"
 msgstr ""
 
-msgid ":ref:`space_object:bsize() <box_space-bsize>`"
+msgid ":doc:`./box_space/bsize`"
 msgstr ""
 
 msgid "Get count of bytes"
 msgstr ""
 
-msgid ":ref:`space_object:count() <box_space-count>`"
+msgid ":doc:`./box_space/count`"
 msgstr ""
 
 msgid "Get count of tuples"
 msgstr ""
 
-msgid ":ref:`space_object:create_index() <box_space-create_index>`"
+msgid ":doc:`./box_space/create_index`"
 msgstr ""
 
 msgid "Create an index"
 msgstr ""
 
-msgid ":ref:`space_object:delete() <box_space-delete>`"
+msgid ":doc:`./box_space/delete`"
 msgstr ""
 
 msgid "Delete a tuple"
 msgstr ""
 
-msgid ":ref:`space_object:drop() <box_space-drop>`"
+msgid ":doc:`./box_space/drop`"
 msgstr ""
 
 msgid "Destroy a space"
 msgstr ""
 
-msgid ":ref:`space_object:format() <box_space-format>`"
+msgid ":doc:`./box_space/format`"
 msgstr ""
 
 msgid "Declare field names and types"
 msgstr ""
 
-msgid ":ref:`space_object:frommap() <box_space-frommap>`"
+msgid ":doc:`./box_space/frommap`"
 msgstr ""
 
 msgid "Convert from map to tuple or table"
 msgstr ""
 
-msgid ":ref:`space_object:get() <box_space-get>`"
+msgid ":doc:`./box_space/get`"
 msgstr ""
 
 msgid "Select a tuple"
 msgstr ""
 
-msgid ":ref:`space_object:insert() <box_space-insert>`"
+msgid ":doc:`./box_space/insert`"
 msgstr ""
 
 msgid "Insert a tuple"
 msgstr ""
 
-msgid ":ref:`space_object:len() <box_space-len>`"
+msgid ":doc:`./box_space/len`"
 msgstr ""
 
-msgid ":ref:`space_object:on_replace() <box_space-on_replace>`"
+msgid ":doc:`./box_space/on_replace`"
 msgstr ""
 
 msgid "Create a replace trigger with a function that cannot change the tuple"
 msgstr ""
 
-msgid ":ref:`space_object:before_replace() <box_space-before_replace>`"
+msgid ":doc:`./box_space/before_replace`"
 msgstr ""
 
 msgid "Create a replace trigger with a function that can change the tuple"
 msgstr ""
 
-msgid ":ref:`space_object:pairs() <box_space-pairs>`"
+msgid ":doc:`./box_space/pairs`"
 msgstr ""
 
 msgid "Prepare for iterating"
 msgstr ""
 
-msgid ":ref:`space_object:put() <box_space-replace>`"
+msgid ":doc:`./box_space/put`"
 msgstr ""
 
 msgid "Insert or replace a tuple"
 msgstr ""
 
-msgid ":ref:`space_object:rename() <box_space-rename>`"
+msgid ":doc:`./box_space/rename`"
 msgstr ""
 
 msgid "Rename a space"
 msgstr ""
 
-msgid ":ref:`space_object:replace() <box_space-replace>`"
+msgid ":doc:`./box_space/replace`"
 msgstr ""
 
-msgid ":ref:`space_object:run_triggers() <box_space-run_triggers>`"
+msgid ":doc:`./box_space/run_triggers`"
 msgstr ""
 
 msgid "Enable/disable a replace trigger"
 msgstr ""
 
-msgid ":ref:`space_object:select() <box_space-select>`"
+msgid ":doc:`./box_space/select`"
 msgstr ""
 
 msgid "Select one or more tuples"
 msgstr ""
 
-msgid ":ref:`space_object:truncate() <box_space-truncate>`"
+msgid ":doc:`./box_space/truncate`"
 msgstr ""
 
 msgid "Delete all tuples"
 msgstr ""
 
-msgid ":ref:`space_object:update() <box_space-update>`"
+msgid ":doc:`./box_space/update`"
 msgstr ""
 
 msgid "Update a tuple"
 msgstr ""
 
-msgid ":ref:`space_object:upsert() <box_space-upsert>`"
+msgid ":doc:`./box_space/upsert`"
 msgstr ""
 
-msgid ":ref:`space_object:user_defined() <box_space-user_defined>`"
+msgid ":doc:`./box_space/user_defined`"
 msgstr ""
 
 msgid "Any function / method that any user wants to add"
 msgstr ""
 
-msgid ":ref:`space_object.enabled <box_space-enabled>`"
+msgid ":doc:`./box_space/enabled`"
 msgstr ""
 
 msgid "Flag, true if space is enabled"
 msgstr ""
 
-msgid ":ref:`space_object.field_count <box_space-field_count>`"
+msgid ":doc:`./box_space/field_count`"
 msgstr ""
 
 msgid "Required number of fields"
 msgstr ""
 
-msgid ":ref:`space_object.id <box_space-id>`"
+msgid ":doc:`./box_space/id`"
 msgstr ""
 
 msgid "Numeric identifier of space"
 msgstr ""
 
-msgid ":ref:`space_object.index <box_space-space_index>`"
+msgid ":doc:`./box_space/index`"
 msgstr ""
 
 msgid "Container of space's indexes"
 msgstr ""
 
-msgid ":ref:`box.space._cluster <box_space-cluster>`"
+msgid ":doc:`./box_space/_cluster`"
 msgstr ""
 
 msgid "(Metadata) List of replica sets"
 msgstr ""
 
-msgid ":ref:`box.space._func <box_space-func>`"
+msgid ":doc:`./box_space/_func`"
 msgstr ""
 
 msgid "(Metadata) List of function tuples"
 msgstr ""
 
-msgid ":ref:`box.space._index <box_space-index>`"
+msgid ":doc:`./box_space/_index`"
 msgstr ""
 
 msgid "(Metadata) List of indexes"
 msgstr ""
 
-msgid ":ref:`box.space._vindex <box_space-vindex>`"
+msgid ":doc:`./box_space/_vindex`"
 msgstr ""
 
 msgid "(Metadata) List of indexes accessible for the current user"
 msgstr ""
 
-msgid ":ref:`box.space._priv <box_space-priv>`"
+msgid ":doc:`./box_space/_priv`"
 msgstr ""
 
 msgid "(Metadata) List of privileges"
 msgstr ""
 
-msgid ":ref:`box.space._vpriv <box_space-vpriv>`"
+msgid ":doc:`./box_space/_vpriv`"
 msgstr ""
 
 msgid "(Metadata) List of privileges accessible for the current user"
 msgstr ""
 
-msgid ":ref:`box.space._schema <box_space-schema>`"
+msgid ":doc:`./box_space/_schema`"
 msgstr ""
 
 msgid "(Metadata) List of schemas"
 msgstr ""
 
-msgid ":ref:`box.space._sequence <box_space-sequence>`"
+msgid ":doc:`./box_space/_sequence`"
 msgstr ""
 
 msgid "(Metadata) List of sequences"
 msgstr ""
 
-msgid ":ref:`box.space._sequence_data <box_space-sequence_data>`"
+msgid ":doc:`./box_space/_sequence_data`"
 msgstr ""
 
-msgid ":ref:`box.space._space <box_space-space>`"
+msgid ":doc:`./box_space/_space`"
 msgstr ""
 
 msgid "(Metadata) List of spaces"
 msgstr ""
 
-msgid ":ref:`box.space._vspace <box_space-vspace>`"
+msgid ":doc:`./box_space/_vspace`"
 msgstr ""
 
 msgid "(Metadata) List of spaces accessible for the current user"
 msgstr ""
 
-msgid ":ref:`box.space._user <box_space-user>`"
+msgid ":doc:`./box_space/_user`"
 msgstr ""
 
 msgid "(Metadata) List of users"
 msgstr ""
 
-msgid ":ref:`box.space._vuser <box_space-vuser>`"
+msgid ":doc:`./box_space/_vuser`"
 msgstr ""
 
 msgid "(Metadata) List of users accessible for the current user"

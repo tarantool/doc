@@ -7,24 +7,27 @@ The box.backup submodule contains two functions that are helpful for
 
 Below is a list of all ``box.backup`` functions.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    +------------------------------------------+----------------------------------+
-    | Name                                     | Use                              |
-    +==========================================+==================================+
-    | :ref:`box.backup.start()                 | ask server to suspend activities |
-    | <reference_lua-box_backup-backup_start>` | before the removal of outdated   |
-    |                                          | backups                          |
-    +------------------------------------------+----------------------------------+
-    | :ref:`box.backup.stop()                  | inform server that normal        |
-    | <reference_lua-box_backup-backup_start>` | operations may resume            |
-    +------------------------------------------+----------------------------------+
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
 
-.. toctree::
+        *   - Name
+            - Use
+
+        *  - :doc:`./box_backup/start`
+           - Ask server to suspend activities before the removal of outdated backups
+
+        *  - :doc:`./box_backup/stop`
+           - Inform server that normal operations may resume
+
+
+..  toctree::
     :hidden:
 
-    box_backup/box_backup_start
-    box_backup/box_backup_stop
+    box_backup/start
+    box_backup/stop
