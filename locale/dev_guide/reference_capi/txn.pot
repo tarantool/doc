@@ -8,7 +8,7 @@ msgstr ""
 msgid "Begin a transaction in the current fiber."
 msgstr ""
 
-msgid "A transaction is attached to caller fiber, therefore one fiber can have only one active transaction. See also :ref:`box.begin()<box-begin>`."
+msgid "A transaction is attached to caller fiber, therefore one fiber can have only one active transaction. See also :doc:`/reference/reference_lua/box_txn_management/begin`."
 msgstr ""
 
 msgid "Returns"
@@ -20,13 +20,13 @@ msgstr ""
 msgid "-1 on error. Perhaps a transaction has already been started."
 msgstr ""
 
-msgid "Commit the current transaction. See also :ref:`box.commit() <box-commit>`."
+msgid "Commit the current transaction. See also :doc:`/reference/reference_lua/box_txn_management/commit`."
 msgstr ""
 
 msgid "-1 on error. Perhaps a disk write failure"
 msgstr ""
 
-msgid "Roll back the current transaction. See also :ref:`box.rollback() <box-rollback>`."
+msgid "Roll back the current transaction. See also :doc:`/reference/reference_lua/box_txn_management/rollback`."
 msgstr ""
 
 msgid "Return a descriptor of a savepoint."

@@ -2,7 +2,7 @@
 msgid "box.on_commit()"
 msgstr ""
 
-msgid "Define a trigger for execution when a transaction ends due to an event such as :ref:`box.commit <box-commit>`."
+msgid "Define a trigger for execution when a transaction ends due to an event such as :doc:`/reference/reference_lua/box_txn_management/commit`."
 msgstr ""
 
 msgid "The trigger function may take an iterator parameter, as described in an example for this section."

@@ -446,7 +446,7 @@ msgstr ""
 msgid "a replica has fallen behind. The progress of each replica is tracked; if a replica's position is far from being up to date, then the server stops to give it a chance to catch up. If an administrator concludes that a replica is permanently down, then the correct procedure is to restart the server, or (preferably) :ref:`remove the replica from the cluster <replication-remove_instances>`."
 msgstr ""
 
-msgid "Since version 1.7.4. The interval between actions by the checkpoint daemon, in seconds. If ``checkpoint_interval`` is set to a value greater than zero, and there is activity which causes change to a database, then the checkpoint daemon will call :ref:`box.snapshot <box-snapshot>` every ``checkpoint_interval`` seconds, creating a new snapshot file each time. If ``checkpoint_interval`` is set to zero, then the checkpoint daemon is disabled."
+msgid "Since version 1.7.4. The interval between actions by the checkpoint daemon, in seconds. If ``checkpoint_interval`` is set to a value greater than zero, and there is activity which causes change to a database, then the checkpoint daemon will call :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` every ``checkpoint_interval`` seconds, creating a new snapshot file each time. If ``checkpoint_interval`` is set to zero, then the checkpoint daemon is disabled."
 msgstr ""
 
 msgid "For example:"
@@ -500,7 +500,7 @@ msgstr ""
 msgid ":ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`"
 msgstr ""
 
-msgid "Since version 1.7.4. If ``force_recovery`` equals true, Tarantool tries to continue if there is an error while reading a :ref:`snapshot file<index-box_persistence>` (at server instance start) or a :ref:`write-ahead log file<internals-wal>` (at server instance start or when applying an update at a replica): skips invalid records, reads as much data as possible and lets the process finish with a warning. Users can prevent the error from recurring by writing to the database and executing :ref:`box.snapshot() <box-snapshot>`."
+msgid "Since version 1.7.4. If ``force_recovery`` equals true, Tarantool tries to continue if there is an error while reading a :ref:`snapshot file<index-box_persistence>` (at server instance start) or a :ref:`write-ahead log file<internals-wal>` (at server instance start or when applying an update at a replica): skips invalid records, reads as much data as possible and lets the process finish with a warning. Users can prevent the error from recurring by writing to the database and executing :doc:`box.snapshot() </reference/reference_lua/box_snapshot>`."
 msgstr ""
 
 msgid "Otherwise, Tarantool aborts recovery if there is an error while reading."
@@ -518,7 +518,7 @@ msgstr ""
 msgid "Default: 268435456 (256 * 1024 * 1024) bytes"
 msgstr ""
 
-msgid "Since version 1.4.9. Reduce the throttling effect of :ref:`box.snapshot <box-snapshot>` on INSERT/UPDATE/DELETE performance by setting a limit on how many megabytes per second it can write to disk. The same can be achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and :ref:`memtx_dir <cfg_basic-memtx_dir>` locations and moving snapshots to a separate disk. The limit also affects what :ref:`box.stat.vinyl().regulator <box_introspection-box_stat_vinyl_regulator>` may show for the write rate of dumps to .run and .index files."
+msgid "Since version 1.4.9. Reduce the throttling effect of :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` on INSERT/UPDATE/DELETE performance by setting a limit on how many megabytes per second it can write to disk. The same can be achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and :ref:`memtx_dir <cfg_basic-memtx_dir>` locations and moving snapshots to a separate disk. The limit also affects what :ref:`box.stat.vinyl().regulator <box_introspection-box_stat_vinyl_regulator>` may show for the write rate of dumps to .run and .index files."
 msgstr ""
 
 msgid "Since version 1.6.2. Specify fiber-WAL-disk synchronization mode as:"
@@ -551,7 +551,7 @@ msgstr ""
 msgid "The expectation is that there will be two instances of the server using the same configuration. The first one to start will be the \"primary\" instance. The second one to start will be the \"standby\" instance."
 msgstr ""
 
-msgid "To initiate the standby instance, start a second instance of the Tarantool server on the same computer with the same :ref:`box.cfg <box_introspection-box_cfg>` configuration settings -- including the same directories and same non-null URIs -- and with the additional configuration setting ``hot_standby = true``. Expect to see a notification ending with the words ``I> Entering hot standby mode``. This is fine. It means that the standby instance is ready to take over if the primary instance goes down."
+msgid "To initiate the standby instance, start a second instance of the Tarantool server on the same computer with the same :doc:`box.cfg </reference/reference_lua/box_cfg>` configuration settings -- including the same directories and same non-null URIs -- and with the additional configuration setting ``hot_standby = true``. Expect to see a notification ending with the words ``I> Entering hot standby mode``. This is fine. It means that the standby instance is ready to take over if the primary instance goes down."
 msgstr ""
 
 msgid "The standby instance will initialize and will try to take a lock on :ref:`wal_dir <cfg_basic-wal_dir>`, but will fail because the primary instance has made a lock on ``wal_dir``. So the standby instance goes into a loop, reading the write ahead log which the primary instance is writing (so the two instances are always in sync), and trying to take the lock. If the primary instance goes down for any reason, the lock will be released. In this case, the standby instance will succeed in taking the lock, will connect on the :ref:`listen <cfg_basic-listen>` address and will become the primary instance. Expect to see a notification ending with the words ``I> ready to accept requests``."

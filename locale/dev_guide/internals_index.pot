@@ -632,7 +632,7 @@ msgstr ""
 msgid "The transaction processor thread communicates with the WAL writer thread using asynchronous (yet reliable) messaging; the transaction processor thread, not being blocked on WAL tasks, continues to handle requests quickly even at high volumes of disk I/O. A response to a request is sent as soon as it is ready, even if there were earlier incomplete requests on the same connection. In particular, SELECT performance, even for SELECTs running on a connection packed with UPDATEs and DELETEs, remains unaffected by disk load."
 msgstr ""
 
-msgid "The WAL writer employs a number of durability modes, as defined in configuration variable :ref:`wal_mode <index-wal_mode>`. It is possible to turn the write-ahead log completely off, by setting :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` to *none*. Even without the write-ahead log it's still possible to take a persistent copy of the entire data set with the :ref:`box.snapshot() <box-snapshot>` request."
+msgid "The WAL writer employs a number of durability modes, as defined in configuration variable :ref:`wal_mode <index-wal_mode>`. It is possible to turn the write-ahead log completely off, by setting :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` to *none*. Even without the write-ahead log it's still possible to take a persistent copy of the entire data set with the :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` request."
 msgstr ""
 
 msgid "An .xlog file always contains changes based on the primary key. Even if the client requested an update or delete using a secondary key, the record in the .xlog file will contain the primary key."

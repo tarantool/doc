@@ -165,7 +165,7 @@ msgstr ""
 msgid "``box.stat.vinyl().tx.commit`` is the count of commits (successful transaction ends). It includes implicit commits, for example any insert causes a commit unless it is within a begin-end block."
 msgstr ""
 
-msgid "``box.stat.vinyl().tx.rollback`` is the count of rollbacks (unsuccessful transaction ends). This is not merely a count of explicit :ref:`box.rollback <box-rollback>` requests -- it includes requests that ended in errors. For example, after an attempted insert request that causes a \"Duplicate key exists in unique index\" error, ``tx.rollback`` is incremented."
+msgid "``box.stat.vinyl().tx.rollback`` is the count of rollbacks (unsuccessful transaction ends). This is not merely a count of explicit :doc:`/reference/reference_lua/box_txn_management/rollback` requests -- it includes requests that ended in errors. For example, after an attempted insert request that causes a \"Duplicate key exists in unique index\" error, ``tx.rollback`` is incremented."
 msgstr ""
 
 msgid "``box.stat.vinyl().tx.statements`` will usually be 0."
@@ -201,6 +201,6 @@ msgstr ""
 msgid "Thus it can be predicted that a dump will occur if the size of L0 (which is :ref:`memory.level0 <box_introspection-box_stat_vinyl_memory>`) is approaching the maximum (which is :ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`) and a dump is not already in progress. In fact Tarantool will try to arrange a dump before this hard limit is reached."
 msgstr ""
 
-msgid "A dump will also occur during a  :ref:`snapshot <box-snapshot>` operation."
+msgid "A dump will also occur during a :doc:`snapshot </reference/reference_lua/box_snapshot>` operation."
 msgstr ""
 

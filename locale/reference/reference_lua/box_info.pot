@@ -8,16 +8,16 @@ msgstr ""
 msgid "**cluster.uuid** is the UUID of the replica set. Every instance in a replica set will have the same ``cluster.uuid`` value. This value is also stored in :ref:`box.space._schema <box_space-schema>` system space."
 msgstr ""
 
-msgid "**gc()** returns the state of the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` including the checkpoints and their consumers (users); see details :ref:`below <box_info_gc>`."
+msgid "**gc()** returns the state of the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` including the checkpoints and their consumers (users); see details :doc:`here </reference/reference_lua/box_info/gc>`."
 msgstr ""
 
-msgid "**id** corresponds to **replication.id** (see :ref:`below <box_info_replication>`)."
+msgid "**id** corresponds to **replication.id** (see :doc:`here </reference/reference_lua/box_info/replication>`)."
 msgstr ""
 
-msgid "**lsn** corresponds to **replication.lsn** (see :ref:`below <box_info_replication>`)."
+msgid "**lsn** corresponds to **replication.lsn** (see :doc:`here </reference/reference_lua/box_info/replication>`)."
 msgstr ""
 
-msgid "**memory()** returns the statistics about memory (see :ref:`below <box_info_memory>`)."
+msgid "**memory()** returns the statistics about memory (see :doc:`here </reference/reference_lua/box_info/memory>`)."
 msgstr ""
 
 msgid "**pid** is the process ID. This value is also shown by :ref:`tarantool <tarantool-build>` module and by the Linux command ``ps -A``."
@@ -47,10 +47,10 @@ msgstr ""
 msgid "**uptime** is the number of seconds since the instance started. This value can also be retrieved with :ref:`tarantool.uptime() <tarantool-build>`."
 msgstr ""
 
-msgid "**uuid** corresponds to **replication.uuid** (see :ref:`below <box_info_replication>`)."
+msgid "**uuid** corresponds to **replication.uuid** (see :doc:`here </reference/reference_lua/box_info/replication>`)."
 msgstr ""
 
-msgid "**vclock** corresponds to **replication.downstream.vclock** (see :ref:`below <box_info_replication>`)."
+msgid "**vclock** corresponds to **replication.downstream.vclock** (see :doc:`here </reference/reference_lua/box_info/replication>`)."
 msgstr ""
 
 msgid "**version** is the Tarantool version. This value is also shown by :ref:`tarantool -V <index-tarantool_version>`."

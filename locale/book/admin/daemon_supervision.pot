@@ -23,7 +23,7 @@ msgstr ""
 msgid "SIGUSR1"
 msgstr ""
 
-msgid "May cause a database checkpoint. See :ref:`box.snapshot <box-snapshot>`."
+msgid "May cause a database checkpoint. See :doc:`/reference/reference_lua/box_snapshot`."
 msgstr ""
 
 msgid "SIGTERM"
