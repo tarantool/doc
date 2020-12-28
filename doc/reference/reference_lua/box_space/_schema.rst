@@ -16,7 +16,7 @@ box.space._schema
     * ``cluster`` tuple with the instance's replica set ID,
     * ``max_id`` tuple with the maximal space ID,
     * ``once...`` tuples that correspond to specific
-      :ref:`box.once() <box-once>` blocks from the instance's
+      :doc:`box.once() </reference/reference_lua/box_once>` blocks from the instance's
       :ref:`initialization file <index-init_label>`.
       The first field in these tuples contains the ``key`` value from the
       corresponding ``box.once()`` block prefixed with 'once' (e.g. `oncehello`),

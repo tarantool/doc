@@ -7,7 +7,7 @@ box.on_rollback()
 .. function:: box.on_rollback(trigger-function [, old-trigger-function])
 
     Define a trigger for execution when a transaction ends due to an event
-    such as :ref:`box.rollback <box-rollback>`.
+    such as :doc:`/reference/reference_lua/box_txn_management/rollback`.
 
     The parameters and warnings are exactly the same as for
-    :ref:`box.on_commit <box-on_commit>`.
+    :doc:`/reference/reference_lua/box_txn_management/on_commit`.

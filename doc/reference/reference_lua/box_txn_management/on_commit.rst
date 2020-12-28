@@ -7,7 +7,7 @@ box.on_commit()
 .. function:: box.on_commit(trigger-function [, old-trigger-function])
 
     Define a trigger for execution when a transaction ends due to an event
-    such as :ref:`box.commit <box-commit>`.
+    such as :doc:`/reference/reference_lua/box_txn_management/commit`.
 
     The trigger function may take an iterator parameter, as described in an
     example for this section.

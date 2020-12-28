@@ -11,7 +11,7 @@
 
     To initiate the standby instance, start a second instance of the Tarantool
     server on the same computer with the same
-    :ref:`box.cfg <box_introspection-box_cfg>` configuration settings --
+    :doc:`box.cfg </reference/reference_lua/box_cfg>` configuration settings --
     including the same directories and same non-null URIs -- and with the
     additional configuration setting ``hot_standby = true``.
     Expect to see a notification ending with the words

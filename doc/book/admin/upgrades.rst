@@ -74,7 +74,7 @@ To upgrade from Tarantool 1.6 to 1.7 (or to 1.10.x):
    `download page <http://tarantool.org/download.html>`_.
 
 5. Update the Tarantool database. Put the request ``box.schema.upgrade()``
-   inside a :ref:`box.once() <box-once>` function in your Tarantool
+   inside a :doc:`box.once() </reference/reference_lua/box_once>` function in your Tarantool
    :ref:`initialization file <index-init_label>`.
    On startup, this will create new system spaces, update data type names (e.g.
    num -> unsigned, str -> string) and options in Tarantool system spaces.

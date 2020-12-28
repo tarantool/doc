@@ -14,13 +14,13 @@ variables.
 * **gc()** returns the state of the
   :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
   including the checkpoints and their consumers (users); see details
-  :ref:`below <box_info_gc>`.
+  :doc:`here </reference/reference_lua/box_info/gc>`.
 * **id** corresponds to **replication.id**
-  (see :ref:`below <box_info_replication>`).
+  (see :doc:`here </reference/reference_lua/box_info/replication>`).
 * **lsn** corresponds to **replication.lsn**
-  (see :ref:`below <box_info_replication>`).
+  (see :doc:`here </reference/reference_lua/box_info/replication>`).
 * **memory()** returns the statistics about memory
-  (see :ref:`below <box_info_memory>`).
+  (see :doc:`here </reference/reference_lua/box_info/memory>`).
 * **pid** is the process ID. This value is also shown by
   :ref:`tarantool <tarantool-build>` module
   and by the Linux command ``ps -A``.
@@ -40,9 +40,9 @@ variables.
   This value can also be retrieved with
   :ref:`tarantool.uptime() <tarantool-build>`.
 * **uuid** corresponds to **replication.uuid**
-  (see :ref:`below <box_info_replication>`).
+  (see :doc:`here </reference/reference_lua/box_info/replication>`).
 * **vclock** corresponds to **replication.downstream.vclock**
-  (see :ref:`below <box_info_replication>`).
+  (see :doc:`here </reference/reference_lua/box_info/replication>`).
 * **version** is the Tarantool version. This value is also shown by
   :ref:`tarantool -V <index-tarantool_version>`.
 * **vinyl()** returns runtime statistics for the vinyl storage engine.

@@ -91,11 +91,11 @@ errors, particularly database errors.
 2. Examine and raise with box.error.
 
    To make a new error and pass it on, the box.error module provides
-   :ref:`box.error(code, errtext [, errtext ...]) <box_error-error>`.
+   :doc:`box.error(code, errtext [, errtext ...]) </reference/reference_lua/box_error/error>`.
 
-   To find the last error, the box.error module provides :ref:`box.error.last()
-   <box_error-last>`. (There is also a way to find the text of the last
-   operating-system error for certain functions --
+   To find the last error, the box.error module provides
+   :doc:`/reference/reference_lua/box_error/last`. (There is also a way to find
+   the text of the last operating-system error for certain functions --
    :ref:`errno.strerror([code]) <errno-strerror>`.)
 
 3. Log.

@@ -7,7 +7,7 @@ box.savepoint()
 .. function:: box.savepoint()
 
     Return a descriptor of a savepoint (type = table), which can be used later
-    by :ref:`box.rollback_to_savepoint(savepoint) <box-rollback_to_savepoint>`.
+    by :doc:`box.rollback_to_savepoint(savepoint) </reference/reference_lua/box_txn_management/rollback_to_savepoint>`.
     Savepoints can only be created while a transaction is active, and they are
     destroyed when a transaction ends.
 

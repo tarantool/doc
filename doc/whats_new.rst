@@ -66,7 +66,7 @@ Functionality added or changed
   be done by the reader thread, which would allow us to save some precious CPU
   cycles for TX.
   Issue `4257 <https://github.com/tarantool/tarantool/issues/4257>`_.
-* (Core) Improve :ref:`box.stat.net <box_introspection-box_stat>`.
+* (Core) Improve :doc:`box.stat.net </reference/reference_lua/box_stat>`.
   Issue `4150 <https://github.com/tarantool/tarantool/issues/4150>`_.
 * (Core) Add ``idle`` to downstream status in ``box.info``.
   When a relay sends a row it updates ``last_row_time`` value with the
@@ -412,7 +412,7 @@ Functionality added or changed:
   * (Server) allow different nullability in indexes and format.
     Issue `3430 <https://github.com/tarantool/tarantool/issues/3430>`_.
   * (Server) allow to
-    :ref:`back up any checkpoint <reference_lua-box_backup-backup_start>`,
+    :doc:`back up any checkpoint </reference/reference_lua/box_backup/start>`,
     not just the last one.
     Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_.
   * (Server) a way to detect that a Tarantool process was
@@ -428,7 +428,7 @@ Functionality added or changed:
   * (Replication)
     display the connection status if the downstream gets disconnected from
     the upstream
-    (:ref:`box.info.replication.downstream.status <box_info_replication>`
+    (:doc:`box.info.replication.downstream.status </reference/reference_lua/box_info/replication>`
     ``= disconnected``).
     Issue `3365 <https://github.com/tarantool/tarantool/issues/3365>`_.
   * (Replication) :ref:`replica-local spaces <replication-local>`
@@ -455,7 +455,7 @@ Functionality added or changed:
 
   * (Lua) expose ``on_commit``/``on_rollback`` triggers to Lua;
     Issue `857 <https://github.com/tarantool/tarantool/issues/857>`_.
-  * (Lua) new function :ref:`box.is_in_txn() <box-is_in_txn>`
+  * (Lua) new function :doc:`/reference/reference_lua/box_txn_management/is_in_txn`
     to check if a transaction is open;
     Issue `3518 <https://github.com/tarantool/tarantool/issues/3518>`_.
   * (Lua) tuple field access via a json path
@@ -518,12 +518,12 @@ Functionality added or changed:
     :ref:`instance_uuid <cfg_replication-instance_uuid>` and
     :ref:`replica set uuid <cfg_replication-replicaset_uuid>` as configuration parameters.
     Issue `2967 <https://github.com/tarantool/tarantool/issues/2967>`_.
-  * (Replication/recovery) :ref:`box.once() <box-once>` no longer fails on a read-only replica
+  * (Replication/recovery) :doc:`box.once() </reference/reference_lua/box_once/>` no longer fails on a read-only replica
     but waits.
     Issue `2537 <https://github.com/tarantool/tarantool/issues/2537>`_.
   * (Replication/recovery) :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>` can now skip a corrupted xlog file.
     Issue `3076 <https://github.com/tarantool/tarantool/issues/3076>`_.
-  * (Replication/recovery) improved replication monitoring: :ref:`box.info.replication <box_info_replication>`
+  * (Replication/recovery) improved replication monitoring: :doc:`/reference/reference_lua/box_info/replication`
     shows peer ip:port and correct replication lag even for idle peers.
     Issues `2753 <https://github.com/tarantool/tarantool/issues/2753>`_ and
     `2689 <https://github.com/tarantool/tarantool/issues/2689>`_.
@@ -545,7 +545,7 @@ Functionality added or changed:
   * (Application server) ``digest`` rock now supports pbkdf2 password hashing
     algorithm, useful in PCI/DSS compliant applications.
     Issue `2874 <https://github.com/tarantool/tarantool/issues/2874>`_.
-  * (Application server) :ref:`box.info.memory() <box_info_memory>` provides a high-level overview of
+  * (Application server) :doc:`/reference/reference_lua/box_info/memory` provides a high-level overview of
     server memory usage, including networking, Lua, transaction and index memory.
     Issue `934 <https://github.com/tarantool/tarantool/issues/934>`_.
   * (Database) it is now possible to :ref:`add missing tuple fields <box_space-is_nullable>` to an index,
@@ -604,8 +604,11 @@ It resolves more than 75 issues since 1.7.5.
 
 What's new in Tarantool 1.7.6?
 
-  * In addition to :ref:`rollback <box-rollback>` of a transaction, there is now
-    rollback to a defined point within a transaction -- :ref:`savepoint <box-savepoint>` support.
+  * In addition to
+    :doc:`rollback </reference/reference_lua/box_txn_management/rollback>`
+    of a transaction, there is now rollback to a defined point within a
+    transaction --
+    :doc:`savepoint </reference/reference_lua/box_txn_management/savepoint>` support.
   * There is a new object type: :ref:`sequences <index-box_sequence>`.
     The older option, :ref:`auto-increment <box_space-auto_increment>`, will be deprecated.
   * String indexes can have :ref:`collations <index-collation>`.
@@ -763,7 +766,8 @@ Functionality added or changed:
   * :ref:`Heartbeat <cfg_replication-replication_timeout>` messages for replication.
     Replication client now sends the selective acknowledgments for processed
     records and automatically re-establish stalled connections.
-    This feature also changes :ref:`box.info.replication[replica_id].vclock <box_info_replication>`.
+    This feature also changes
+    :doc:`box.info.replication[replica_id].vclock </reference/reference_lua/box_info/replication>`.
     to display committed vclock of remote replica.
     Issue `2484 <https://github.com/tarantool/tarantool/issues/2484>`_.
   * Keep track of remote replicas during WAL maintenance.
@@ -771,7 +775,7 @@ Functionality added or changed:
     Issue `748 <https://github.com/tarantool/tarantool/issues/748>`_.
   * Enabled :ref:`box.tuple.new() <box_tuple-new>` to work without ``box.cfg()``.
     Issue `2047 <https://github.com/tarantool/tarantool/issues/2047>`_.
-  * :ref:`box.atomic(fun, ...) <box-atomic>` wrapper to execute function in a transaction.
+  * :doc:`box.atomic(fun, ...) </reference/reference_lua/box_txn_management/atomic>` wrapper to execute function in a transaction.
     Issue `818 <https://github.com/tarantool/tarantool/issues/818>`_.
   * :ref:`box.session.type() <box_session-type>` helper to determine session type.
     Issue `2642 <https://github.com/tarantool/tarantool/issues/2642>`_.
@@ -965,7 +969,7 @@ Functionality added or changed:
   * (Memtx+Vinyl) implemented low-level Lua API to create consistent backups.
     of Memtx + Vinyl data. The new feature provides ``box.backup.start()/stop()``
     functions to create backups of all spaces.
-    :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` pauses the
+    :doc:`/reference/reference_lua/box_backup/start` pauses the
     Tarantool garbage collector and returns the list of files to copy. These files then
     can be copied be any third-party tool, like cp, ln, tar, rsync, etc.
     ``box.backup.stop()`` lets the garbage collector continue.

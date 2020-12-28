@@ -16,7 +16,7 @@
     (at server instance start or when applying an update at a replica): skips
     invalid records, reads as much data as possible and lets the process finish
     with a warning. Users can prevent the error from recurring by writing to
-    the database and executing :ref:`box.snapshot() <box-snapshot>`.    
+    the database and executing :doc:`box.snapshot() </reference/reference_lua/box_snapshot>`.
 
     Otherwise, Tarantool aborts recovery if there is an error while reading.
 
@@ -59,7 +59,7 @@
 .. confval:: snap_io_rate_limit
 
     Since version 1.4.9.
-    Reduce the throttling effect of :ref:`box.snapshot <box-snapshot>` on
+    Reduce the throttling effect of :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` on
     INSERT/UPDATE/DELETE performance by setting a limit on how many
     megabytes per second it can write to disk. The same can be
     achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and

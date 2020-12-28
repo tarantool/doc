@@ -210,7 +210,7 @@ This is about requests that affect transactional activity
 * ``box.stat.vinyl().tx.rollback``
   is the count of rollbacks (unsuccessful transaction ends).
   This is not merely a count of explicit
-  :ref:`box.rollback <box-rollback>` requests --
+  :doc:`/reference/reference_lua/box_txn_management/rollback` requests --
   it includes requests that ended in errors.
   For example, after an attempted insert request that causes
   a "Duplicate key exists in unique index" error, ``tx.rollback``
@@ -271,4 +271,5 @@ for dumping or compaction:
   dump is not already in progress. In fact Tarantool will
   try to arrange a dump before this hard limit is reached.
 
-  A dump will also occur during a  :ref:`snapshot <box-snapshot>` operation.
+  A dump will also occur during a
+  :doc:`snapshot </reference/reference_lua/box_snapshot>` operation.
