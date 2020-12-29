@@ -23,4 +23,5 @@ This documentation contains the following sections:
    troubleshooting
    Cartridge API<cartridge_api/index>
    Cartridge CLI<cartridge_cli/index>
+   Cartridge Kubernetes guide<cartridge_kubernetes_guide/index>
    Changelog <CHANGELOG>
