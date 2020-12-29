@@ -78,7 +78,7 @@ box.space._user
        functions for insert or update or delete. The ``_user`` space is special,
        so there are special functions which have appropriate error checking.
 
-    To create a new user, use :ref:`box.schema.user.create() <box_schema-user_create>`:
+    To create a new user, use :doc:`/reference/reference_lua/box_schema/user_create`:
 
     .. code-block:: lua
 
@@ -86,7 +86,7 @@ box.space._user
         box.schema.user.create(*user-name*, {if_not_exists = true})
         box.schema.user.create(*user-name*, {password = *password*})
 
-    To change the user's password, use :ref:`box.schema.user.password() <box_schema-user_password>`:
+    To change the user's password, use :doc:`/reference/reference_lua/box_schema/user_password`:
 
     .. code-block:: lua
 
@@ -97,20 +97,20 @@ box.space._user
         -- (usually only 'admin' can do it)
         box.schema.user.passwd(*user-name*, *password*)
 
-    To drop a user, use :ref:`box.schema.user.drop() <box_schema-user_drop>`:
+    To drop a user, use :doc:`/reference/reference_lua/box_schema/user_drop`:
 
     .. code-block:: lua
 
         box.schema.user.drop(*user-name*)
 
-    To check whether a user exists, use :ref:`box.schema.user.exists() <box_schema-user_exists>`,
+    To check whether a user exists, use :doc:`/reference/reference_lua/box_schema/user_exists`,
     which returns ``true`` or ``false``:
 
     .. code-block:: lua
 
         box.schema.user.exists(*user-name*)
 
-    To find what privileges a user has, use :ref:`box.schema.user.info() <box_schema-user_info>`:
+    To find what privileges a user has, use :doc:`/reference/reference_lua/box_schema/user_info`:
 
     .. code-block:: lua
 

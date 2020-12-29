@@ -106,6 +106,6 @@ msgstr ""
 msgid "Reloading a module in C"
 msgstr ""
 
-msgid "After you compiled a new version of a C module (``*.so`` shared library), call :ref:`box.schema.func.reload('module-name') <box_schema-func_reload>` from your Lua script to reload the module."
+msgid "After you compiled a new version of a C module (``*.so`` shared library), call :doc:`box.schema.func.reload('module-name') </reference/reference_lua/box_schema/func_reload>` from your Lua script to reload the module."
 msgstr ""
 

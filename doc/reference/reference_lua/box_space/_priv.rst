@@ -23,8 +23,8 @@ box.space._priv
 
     You can:
 
-    * Grant a privilege with :ref:`box.schema.user.grant() <box_schema-user_grant>`.
-    * Revoke a privilege with :ref:`box.schema.user.revoke() <box_schema-user_revoke>`.
+    * Grant a privilege with :doc:`/reference/reference_lua/box_schema/user_grant`.
+    * Revoke a privilege with :doc:`/reference/reference_lua/box_schema/user_revoke`.
 
     .. NOTE::
 

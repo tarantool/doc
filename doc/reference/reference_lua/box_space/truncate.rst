@@ -24,7 +24,7 @@ space_object:truncate()
         the space, or from within a ``setuid`` function created by the user
         who created the space.
         Read more about `setuid` functions in the reference for
-        :ref:`box.schema.func.create() <box_schema-func_create>`.
+        :doc:`/reference/reference_lua/box_schema/func_create`.
 
         The ``truncate`` method cannot be called from within a transaction.
 

@@ -24,7 +24,7 @@ box.session.euid()
 
     * The second case: if the call to ``box.session.euid()`` is within
       a function specified with
-      :ref:`box.schema.func.create(function-name, {setuid= true}) <box_schema-func_create>`
+      :doc:`box.schema.func.create(function-name, {setuid= true}) </reference/reference_lua/box_schema/func_create>`
       and the binary protocol is in use
       -- in that case, ``box.session.euid()`` returns the ID of the user who
       created "function-name" but ``box.session.uid()`` returns the ID of the

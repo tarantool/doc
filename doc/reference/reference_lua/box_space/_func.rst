@@ -9,7 +9,7 @@ box.space._func
 .. data:: _func
 
    ``_func`` is a system space with function tuples made by
-   :ref:`box.schema.func.create() <box_schema-func_create>`.
+   :doc:`/reference/reference_lua/box_schema/func_create`.
 
    Tuples in this space contain the following fields:
 
@@ -29,11 +29,11 @@ box.space._func
    You can:
 
    * Create a ``_func`` tuple with
-     :ref:`box.schema.func.create() <box_schema-func_create>`,
+     :doc:`/reference/reference_lua/box_schema/func_create`,
    * Drop a ``_func`` tuple with
-     :ref:`box.schema.func.drop() <box_schema-func_drop>`,
+     :doc:`/reference/reference_lua/box_schema/func_drop`,
    * Check whether a ``_func`` tuple exists with
-     :ref:`box.schema.func.exists() <box_schema-func_exists>`.
+     :doc:`/reference/reference_lua/box_schema/func_exists`.
 
    **Example:**
 

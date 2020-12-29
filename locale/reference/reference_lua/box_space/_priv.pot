@@ -26,10 +26,10 @@ msgstr ""
 msgid "You can:"
 msgstr ""
 
-msgid "Grant a privilege with :ref:`box.schema.user.grant() <box_schema-user_grant>`."
+msgid "Grant a privilege with :doc:`/reference/reference_lua/box_schema/user_grant`."
 msgstr ""
 
-msgid "Revoke a privilege with :ref:`box.schema.user.revoke() <box_schema-user_revoke>`."
+msgid "Revoke a privilege with :doc:`/reference/reference_lua/box_schema/user_revoke`."
 msgstr ""
 
 msgid "Generally, privileges are granted or revoked by the owner of the object (the user who created it), or by the 'admin' user."

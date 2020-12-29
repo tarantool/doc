@@ -639,7 +639,7 @@ msgstr ""
 msgid "For all connectors, calling a function via Tarantool causes a return in the MsgPack format. If the function is called using the connector's API, some conversions may occur. All scalar values are returned as tuples (with a MsgPack type-identifier followed by a value); all non-scalar values are returned as a group of tuples (with a MsgPack array-identifier followed by the scalar values). If the function is called via the binary protocol command layer -- \"eval\" -- rather than via the connector's API, no conversions occur."
 msgstr ""
 
-msgid "In the following example, a Lua function will be created. Since it will be accessed externally by a :ref:`'guest' user<box_space-user>`, a :ref:`grant <box_schema-user_grant>` of an execute privilege will be necessary. The function returns an empty array, a scalar string, two booleans, and a short integer. The values are the ones described in the table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`."
+msgid "In the following example, a Lua function will be created. Since it will be accessed externally by a :ref:`'guest' user<box_space-user>`, a :doc:`grant </reference/reference_lua/box_schema/user_grant>` of an execute privilege will be necessary. The function returns an empty array, a scalar string, two booleans, and a short integer. The values are the ones described in the table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack_encodings>`."
 msgstr ""
 
 msgid "tarantool> box.cfg{listen=3301}\n"

@@ -101,7 +101,7 @@ msgstr ""
 msgid "To change tuples in the ``_user`` space, do not use ordinary ``box.space`` functions for insert or update or delete. The ``_user`` space is special, so there are special functions which have appropriate error checking."
 msgstr ""
 
-msgid "To create a new user, use :ref:`box.schema.user.create() <box_schema-user_create>`:"
+msgid "To create a new user, use :doc:`/reference/reference_lua/box_schema/user_create`:"
 msgstr ""
 
 msgid "box.schema.user.create(*user-name*)\n"
@@ -109,7 +109,7 @@ msgid "box.schema.user.create(*user-name*)\n"
 "box.schema.user.create(*user-name*, {password = *password*})"
 msgstr ""
 
-msgid "To change the user's password, use :ref:`box.schema.user.password() <box_schema-user_password>`:"
+msgid "To change the user's password, use :doc:`/reference/reference_lua/box_schema/user_password`:"
 msgstr ""
 
 msgid "-- To change the current user's password\n"
@@ -120,19 +120,19 @@ msgid "-- To change the current user's password\n"
 "box.schema.user.passwd(*user-name*, *password*)"
 msgstr ""
 
-msgid "To drop a user, use :ref:`box.schema.user.drop() <box_schema-user_drop>`:"
+msgid "To drop a user, use :doc:`/reference/reference_lua/box_schema/user_drop`:"
 msgstr ""
 
 msgid "box.schema.user.drop(*user-name*)"
 msgstr ""
 
-msgid "To check whether a user exists, use :ref:`box.schema.user.exists() <box_schema-user_exists>`, which returns ``true`` or ``false``:"
+msgid "To check whether a user exists, use :doc:`/reference/reference_lua/box_schema/user_exists`, which returns ``true`` or ``false``:"
 msgstr ""
 
 msgid "box.schema.user.exists(*user-name*)"
 msgstr ""
 
-msgid "To find what privileges a user has, use :ref:`box.schema.user.info() <box_schema-user_info>`:"
+msgid "To find what privileges a user has, use :doc:`/reference/reference_lua/box_schema/user_info`:"
 msgstr ""
 
 msgid "box.schema.user.info(*user-name*)"

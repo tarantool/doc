@@ -42,7 +42,7 @@
       ``wal_dir_rescan_delay`` seconds.
     * if :ref:`wal_mode = 'none' <cfg_binary_logging_snapshots-wal_mode>`;
       it is designed to work with ``wal_mode = 'write'`` or ``wal_mode = 'fsync'``.
-    * for spaces created with :ref:`engine = 'vinyl' <box_schema-space_create>`;
+    * for spaces created with :doc:`engine = 'vinyl' </reference/reference_lua/box_schema/space_create>`;
       it is designed to work for spaces created with ``engine = 'memtx'``.
 
     | Type: boolean

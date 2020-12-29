@@ -14,11 +14,13 @@ box.schema.user.password()
 
     .. NOTE::
 
-       * If a non-'guest' user has no password, it’s **impossible** to connect to Tarantool
-         using this user. The user is regarded as “internal” only, not usable from a remote
-         connection. Such users can be useful if they have defined some procedures with the
-         :ref:`SETUID <box_schema-func_create>` option, on which privileges are granted
-         to externally-connectable users. This way, external users cannot create/drop objects,
+       * If a non-'guest' user has no password, it’s **impossible** to connect
+         to Tarantool using this user. The user is regarded as “internal” only,
+         not usable from a remote connection. Such users can be useful if they
+         have defined some procedures with the
+         :doc:`SETUID </reference/reference_lua/box_schema/func_create>` option,
+         on which privileges are granted to externally-connectable users.
+         This way, external users cannot create/drop objects,
          they can only invoke procedures.
 
        * For the 'guest' user, it’s impossible to set a password: that would be misleading,

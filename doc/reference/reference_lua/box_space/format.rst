@@ -28,7 +28,7 @@ space_object:format()
         But with ``format`` users can, for example, document
         that the Nth field is the surname field and must contain strings.
         It is also possible to specify a format clause in
-        :ref:`box.schema.space.create() <box_schema-space_create>`.
+        :doc:`box.schema.space.create() </reference/reference_lua/box_schema/space_create>`.
 
         The format clause contains, for each field, a definition within braces:
         ``{name='...',type='...'[,is_nullable=...]}``, where:

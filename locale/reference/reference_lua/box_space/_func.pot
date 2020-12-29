@@ -2,7 +2,7 @@
 msgid "box.space._func"
 msgstr ""
 
-msgid "``_func`` is a system space with function tuples made by :ref:`box.schema.func.create() <box_schema-func_create>`."
+msgid "``_func`` is a system space with function tuples made by :doc:`/reference/reference_lua/box_schema/func_create`."
 msgstr ""
 
 msgid "Tuples in this space contain the following fields:"
@@ -26,13 +26,13 @@ msgstr ""
 msgid "You can:"
 msgstr ""
 
-msgid "Create a ``_func`` tuple with :ref:`box.schema.func.create() <box_schema-func_create>`,"
+msgid "Create a ``_func`` tuple with :doc:`/reference/reference_lua/box_schema/func_create`,"
 msgstr ""
 
-msgid "Drop a ``_func`` tuple with :ref:`box.schema.func.drop() <box_schema-func_drop>`,"
+msgid "Drop a ``_func`` tuple with :doc:`/reference/reference_lua/box_schema/func_drop`,"
 msgstr ""
 
-msgid "Check whether a ``_func`` tuple exists with :ref:`box.schema.func.exists() <box_schema-func_exists>`."
+msgid "Check whether a ``_func`` tuple exists with :doc:`/reference/reference_lua/box_schema/func_exists`."
 msgstr ""
 
 msgid "**Example:**"

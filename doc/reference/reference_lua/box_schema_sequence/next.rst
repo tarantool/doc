@@ -36,7 +36,8 @@ sequence_object:next()
     Then ``box.sequence.S:next()`` again returns -1 because -5 + (-3) < -6,
     which is overflow, causing cycle, and ``max`` == -1.
 
-    This function requires a :ref:`'write' privilege <box_schema-user_grant>`
+    This function requires a
+    :doc:`'write' privilege </reference/reference_lua/box_schema/user_grant>`
     on the sequence.
 
     .. NOTE::
