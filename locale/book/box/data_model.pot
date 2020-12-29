@@ -577,7 +577,7 @@ msgstr ""
 msgid "The result is a new tuple where the first field has a value of 6. This arrangement, where the system automatically generates the values for a primary key, is sometimes called \"auto-incrementing\" or \"identity\"."
 msgstr ""
 
-msgid "For syntax and implementation details, see the reference for :ref:`box.schema.sequence <box_schema-sequence>`."
+msgid "For syntax and implementation details, see the reference for :doc:`box.schema.sequence </reference/reference_lua/box_schema_sequence>`."
 msgstr ""
 
 msgid "Persistence"

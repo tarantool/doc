@@ -481,7 +481,7 @@ values for a primary key, is sometimes called "auto-incrementing"
 or "identity".
 
 For syntax and implementation details, see the reference for
-:ref:`box.schema.sequence <box_schema-sequence>`.
+:doc:`box.schema.sequence </reference/reference_lua/box_schema_sequence>`.
 
 .. _index-box_persistence:
 

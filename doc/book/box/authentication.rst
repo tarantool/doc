@@ -132,7 +132,7 @@ The following privileges can be granted:
   :doc:`box.space.x.index.y:alter </reference/reference_lua/box_index/alter>`
   (access to certain system spaces is also necessary)
 * 'drop', e.g. allow
-  :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
+  :doc:`box.sequence.x:drop </reference/reference_lua/box_schema_sequence/drop>`
   (currently this can be granted but has no effect)
 * 'usage', e.g. whether any action is allowable regardless of other
   privileges (sometimes revoking 'usage' is a convenient way to
