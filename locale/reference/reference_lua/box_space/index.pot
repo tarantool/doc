@@ -2,7 +2,7 @@
 msgid "space_object:index"
 msgstr ""
 
-msgid "A container for all defined indexes. There is a Lua object of type :ref:`box.index <box_index>` with methods to search tuples and iterate over them in predefined order."
+msgid "A container for all defined indexes. There is a Lua object of type :doc:`box.index </reference/reference_lua/box_index>` with methods to search tuples and iterate over them in predefined order."
 msgstr ""
 
 msgid "To reset, use :ref:`box.stat.reset() <box_introspection-box_stat_reset>`."

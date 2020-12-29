@@ -193,7 +193,7 @@ This is not a count of bloom filter "hits"
 (the number of reads that could be avoided because the
 bloom filter predicts their presence in a run file) --
 that statistic can be found with
-:ref:`index_object:stat() <box_index-stat>`.
+:doc:`/reference/reference_lua/box_index/stat`.
 
 .. _box_introspection-box_stat_vinyl_tx:
 
@@ -235,7 +235,7 @@ for dumping or compaction:
 
 * ``box.stat.vinyl().scheduler.compaction_*``
   is the amount of data from recent changes that has been
-  :ref:`compacted <box_index-compact>`.
+  :doc:`compacted </reference/reference_lua/box_index/compact>`.
   This is divided into ``scheduler.compaction_input`` (the amount that is being
   compacted), ``scheduler.compaction_queue`` (the amount that is waiting to be
   compacted),

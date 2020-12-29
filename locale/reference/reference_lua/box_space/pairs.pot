@@ -14,7 +14,7 @@ msgstr ""
 msgid "value to be matched against the index key, which may be multi-part"
 msgstr ""
 
-msgid "see :ref:`index_object:pairs <box_index-index_pairs>`"
+msgid "see :doc:`/reference/reference_lua/box_index/pairs`"
 msgstr ""
 
 msgid "return"
@@ -35,7 +35,7 @@ msgstr ""
 msgid "**Complexity factors:** Index size, Index type."
 msgstr ""
 
-msgid "For examples of complex ``pairs`` requests, where one can specify which index to search and what condition to use (for example \"greater than\" instead of \"equal to\"), see the later section :ref:`index_object:pairs <box_index-index_pairs>`."
+msgid "For examples of complex ``pairs`` requests, where one can specify which index to search and what condition to use (for example \"greater than\" instead of \"equal to\"), see the later section :doc:`/reference/reference_lua/box_index/pairs`."
 msgstr ""
 
 msgid "For information about iterators' internal structures see the `\"Lua Functional library\" <https://luafun.github.io/index.html>`_ documentation."

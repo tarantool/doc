@@ -17,7 +17,7 @@ msgstr ""
 msgid "The predefined global variable is ``box.schema.space_mt``. Adding to ``box.schema.space_mt`` makes the method available for all spaces."
 msgstr ""
 
-msgid "Alternatively, user-defined methods can be made available for only one space, by calling ``getmetatable(space_object)`` and then adding the function name to the meta table. See also the example for :ref:`index_object:user_defined() <box_index-user_defined>`."
+msgid "Alternatively, user-defined methods can be made available for only one space, by calling ``getmetatable(space_object)`` and then adding the function name to the meta table. See also the example for :doc:`/reference/reference_lua/box_index/user_defined`."
 msgstr ""
 
 msgid "Parameters"

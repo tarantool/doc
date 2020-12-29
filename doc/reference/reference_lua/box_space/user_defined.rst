@@ -26,7 +26,7 @@ space_object:user_defined()
         Alternatively, user-defined methods can be made available for only one space,
         by calling ``getmetatable(space_object)`` and then adding the function name to the
         meta table. See also the example for
-        :ref:`index_object:user_defined() <box_index-user_defined>`.
+        :doc:`/reference/reference_lua/box_index/user_defined`.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.

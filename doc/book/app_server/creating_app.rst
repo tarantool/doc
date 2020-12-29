@@ -468,7 +468,7 @@ Index iterators
 By our gameplay, all caught pokémons are returned back to the map. We do this
 for all pokémons on the map every 60 seconds using ``respawn()`` method.
 We iterate through pokémons by status using Tarantool index iterator function
-:ref:`index:pairs <box_index-index_pairs>` and reset the statuses of all
+:doc:`/reference/reference_lua/box_index/pairs` and reset the statuses of all
 "caught" pokémons back to "active" using ``box.space.pokemons:update()``.
 
 .. code-block:: lua

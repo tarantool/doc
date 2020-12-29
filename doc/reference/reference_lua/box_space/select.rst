@@ -18,7 +18,7 @@ space_object:select()
         :param scalar/table          key: value to be matched against the index
                                           key, which may be multi-part.
         :param table/nil         options: none, any or all of the same options that
-                                          :ref:`index_object:select <box_index-select>`
+                                          :doc:`/reference/reference_lua/box_index/select`
                                           allows:
 
                                           * ``options.iterator`` (:ref:`type of iterator <box_index-iterator-types>`)
@@ -33,7 +33,7 @@ space_object:select()
         :rtype:  array of tuples
 
         A ``select`` request can also be done with a specific index and index
-        options, which are the subject of :ref:`index_object:select <box_index-select>`.
+        options, which are the subject of :doc:`/reference/reference_lua/box_index/select`.
 
         **Possible errors:**
 
@@ -103,7 +103,7 @@ space_object:select()
         to make complex ``select`` requests, where you can specify which
         index to search and what condition to use (for example "greater than"
         instead of "equal to") and how many tuples to return, it will be
-        necessary to become familiar with :ref:`index_object:select <box_index-select>`.
+        necessary to become familiar with :doc:`/reference/reference_lua/box_index/select`.
 
         Remember that you can get a field from a tuple both by field number and by
         field name which is more convenient. See example: :ref:`using field names

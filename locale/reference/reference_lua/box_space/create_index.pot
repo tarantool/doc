@@ -167,7 +167,7 @@ msgstr ""
 msgid "not present"
 msgstr ""
 
-msgid "The options in the above chart are also applicable for :ref:`index_object:alter() <box_index-alter>`."
+msgid "The options in the above chart are also applicable for :doc:`/reference/reference_lua/box_index/alter`."
 msgstr ""
 
 msgid "**Note re storage engine:** vinyl has extra options which by default are based on configuration parameters :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`, :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`, :ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`, :ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>`, and :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>` -- see the description of those parameters. The current values can be seen by selecting from :ref:`box.space._index <box_space-index>`."

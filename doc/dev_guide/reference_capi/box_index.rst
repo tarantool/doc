@@ -152,7 +152,7 @@
     :param box_tuple_t** result: output argument. result a tuple or NULL if
                                  there is no tuples in space
 
-    See also: :ref:`index_object.random<box_index-random>`
+    See also: :doc:`/reference/reference_lua/box_index/random`
 
 .. _c_api-box_index-box_index_get:
 
@@ -161,7 +161,7 @@
     Get a tuple from index by the key.
 
     Please note that this function works much more faster than
-    :ref:`index_object.select<box_index-select>` or
+    :doc:`/reference/reference_lua/box_index/select` or
     :ref:`box_index_iterator<c_api-box_index-box_index_iterator>` +
     :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`.
 
@@ -191,7 +191,7 @@
     :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :return: 0 on success
 
-    See also: :ref:`index_object.min()<box_index-min>`
+    See also: :doc:`/reference/reference_lua/box_index/min`
 
 .. c:function:: int box_index_max(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result)
 
@@ -207,7 +207,7 @@
     :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :return: 0 on success
 
-    See also: :ref:`index_object.max()<box_index-max>`
+    See also: :doc:`/reference/reference_lua/box_index/max`
 
 .. c:function:: ssize_t box_index_count(uint32_t space_id, uint32_t index_id, int type, const char *key, const char *key_end)
 

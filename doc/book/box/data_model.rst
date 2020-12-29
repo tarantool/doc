@@ -844,21 +844,24 @@ The result will be:
 because a rectangle whose corners are at coordinates ``4,7,5,9`` is entirely
 within a rectangle whose corners are at coordinates ``3,5,9,10``.
 
-Additionally, there exist :ref:`index iterator operations <box_index-index_pairs>`.
+Additionally, there exist
+:doc:`index iterator operations </reference/reference_lua/box_index/pairs>`.
 They can only be used with code in Lua and C/C++. Index iterators are for
 traversing indexes one key at a time, taking advantage of features that are
 specific to an index type, for example evaluating Boolean expressions when
 traversing BITSET indexes, or going in descending order when traversing TREE indexes.
 
-See also other index operations like :ref:`alter() <box_index-alter>`
-(modify index) and :ref:`drop() <box_index-drop>` (delete index) in reference
-for :ref:`box.index <box_index>` submodule.
+See also other index operations like
+:doc:`alter() </reference/reference_lua/box_index/alter>`
+(modify index) and :doc:`drop() </reference/reference_lua/box_index/drop>`
+(delete index) in reference for :doc:`/reference/reference_lua/box_index`.
 
 ********************************************************
 Complexity factors
 ********************************************************
 
-In reference for :ref:`box.space <box_space>` and :ref:`box.index <box_index>`
+In reference for :ref:`box.space <box_space>` and
+:doc:`/reference/reference_lua/box_index`
 submodules, there are notes about which complexity factors might affect the
 resource usage of each function.
 

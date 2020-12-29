@@ -17,7 +17,7 @@ space_object:bsize()
                  in Tarantool's internal memory, represents the total number
                  of bytes in all tuples, not including index keys.
                  For a measure of index size,
-                 see :ref:`index_object:bsize() <box_index-bsize>`.
+                 see :doc:`/reference/reference_lua/box_index/bsize`.
 
         **Example:**
 

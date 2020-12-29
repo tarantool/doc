@@ -81,7 +81,8 @@ space_object:create_index()
             |                     | <box_schema-sequence_create_index>`                   |                                  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
-        The options in the above chart are also applicable for :ref:`index_object:alter() <box_index-alter>`.
+        The options in the above chart are also applicable for
+        :doc:`/reference/reference_lua/box_index/alter`.
 
         **Note re storage engine:** vinyl has extra options which by default are
         based on configuration parameters

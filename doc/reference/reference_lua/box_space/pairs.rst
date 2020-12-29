@@ -17,8 +17,7 @@ space_object:pairs()
                                           <app_server-object_reference>`
         :param scalar/table key: value to be matched against the index key,
                                  which may be multi-part
-        :param         iterator: see :ref:`index_object:pairs
-                                 <box_index-index_pairs>`
+        :param         iterator: see :doc:`/reference/reference_lua/box_index/pairs`
 
         :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
                  used in a for/end loop or with `totable()
@@ -33,8 +32,8 @@ space_object:pairs()
 
         For examples of complex ``pairs`` requests, where one can specify which
         index to search and what condition to use (for example "greater than"
-        instead of "equal to"), see the later section :ref:`index_object:pairs
-        <box_index-index_pairs>`.
+        instead of "equal to"), see the later section
+        :doc:`/reference/reference_lua/box_index/pairs`.
 
         For information about iterators' internal structures see the
         `"Lua Functional library" <https://luafun.github.io/index.html>`_

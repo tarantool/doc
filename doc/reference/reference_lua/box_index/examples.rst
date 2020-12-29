@@ -124,7 +124,7 @@ fail to match some additional criteria.
 Example showing submodule `box.index` with index type = RTREE for spatial searches
 ***********************************************************************************
 
-The :ref:`box.index <box_index>` submodule may be used for spatial searches if
+This submodule may be used for spatial searches if
 the index type is RTREE. There are operations for searching *rectangles*
 (geometric objects with 4 corners and 4 sides) and *boxes* (geometric objects
 with more than 4 corners and more than 4 sides, sometimes called

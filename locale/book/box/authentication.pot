@@ -41,7 +41,7 @@ msgstr ""
 msgid "For an admin-console connection and in a Lua initialization script -- with :ref:`box.session.su <box_session-su>`;"
 msgstr ""
 
-msgid "For a binary-port connection invoking a stored function with the CALL command -- if the :ref:`SETUID <box_schema-func_create>` property is enabled for the function, Tarantool temporarily replaces the current user with the function’s creator, with all the creator's privileges, during function execution."
+msgid "For a binary-port connection invoking a stored function with the CALL command -- if the :doc:`SETUID </reference/reference_lua/box_schema/func_create>` property is enabled for the function, Tarantool temporarily replaces the current user with the function’s creator, with all the creator's privileges, during function execution."
 msgstr ""
 
 msgid "Passwords"
@@ -59,7 +59,7 @@ msgstr ""
 msgid "This system prevents malicious onlookers from finding passwords by snooping in the log files or snooping on the wire. It is the same system that `MySQL introduced several years ago <http://dev.mysql.com/doc/refman/5.7/en/password-hashing.html>`_, which has proved adequate for medium-security installations. Nevertheless, administrators should warn users that no system is foolproof against determined long-term attacks, so passwords should be guarded and changed occasionally. Administrators should also advise users to choose long unobvious passwords, but it is ultimately up to the users to choose or change their own passwords."
 msgstr ""
 
-msgid "There are two functions for managing passwords in Tarantool: :ref:`box.schema.user.passwd() <box_schema-user_passwd>` for changing a user's password and :ref:`box.schema.user.password() <box_schema-user_password>` for getting a hash of a user's password."
+msgid "There are two functions for managing passwords in Tarantool: :doc:`/reference/reference_lua/box_schema/user_passwd` for changing a user's password and :doc:`/reference/reference_lua/box_schema/user_password` for getting a hash of a user's password."
 msgstr ""
 
 msgid "Owners and privileges"
@@ -71,7 +71,7 @@ msgstr ""
 msgid "The **owner** of a database object is the user who created it. The owner of the database itself, and the owner of objects that are created initially (the system spaces and the default users) is '**admin**'."
 msgstr ""
 
-msgid "Owners automatically have **privileges** for what they create. They can share these privileges with other users or with roles, using :ref:`box.schema.user.grant <box_schema-user_grant>` requests. The following privileges can be granted:"
+msgid "Owners automatically have **privileges** for what they create. They can share these privileges with other users or with roles, using :doc:`/reference/reference_lua/box_schema/user_grant` requests. The following privileges can be granted:"
 msgstr ""
 
 msgid "'read', e.g. allow select from a space"
@@ -83,10 +83,10 @@ msgstr ""
 msgid "'execute', e.g. allow call of a function, or (less commonly) allow use of a role"
 msgstr ""
 
-msgid "'create', e.g. allow :ref:`box.schema.space.create <box_schema-space_create>` (access to certain system spaces is also necessary)"
+msgid "'create', e.g. allow :doc:`box.schema.space.create </reference/reference_lua/box_schema/user_create>` (access to certain system spaces is also necessary)"
 msgstr ""
 
-msgid "'alter', e.g. allow :ref:`box.space.x.index.y:alter <box_index-alter>` (access to certain system spaces is also necessary)"
+msgid "'alter', e.g. allow :doc:`box.space.x.index.y:alter </reference/reference_lua/box_index/alter>` (access to certain system spaces is also necessary)"
 msgstr ""
 
 msgid "'drop', e.g. allow :ref:`box.sequence.x:drop <box_schema-sequence_drop>` (currently this can be granted but has no effect)"
@@ -107,7 +107,7 @@ msgstr ""
 msgid "To **drop** an object, users must be the object's creator or be 'admin'. As the owner of the entire database, 'admin' can drop any object including other users."
 msgstr ""
 
-msgid "To grant privileges to a user, the object owner says :ref:`grant() <box_schema-user_grant>`. To revoke privileges from a user, the object owner says :ref:`revoke() <box_schema-user_revoke>`. In either case, there are up to five parameters:"
+msgid "To grant privileges to a user, the object owner says :doc:`/reference/reference_lua/box_schema/user_grant`. To revoke privileges from a user, the object owner says :doc:`/reference/reference_lua/box_schema/user_revoke`. In either case, there are up to five parameters:"
 msgstr ""
 
 msgid "(user-name, privilege, object-type [, object-name [, options]])"
@@ -271,7 +271,7 @@ msgid "-- This example will work for a user with many privileges, such as 'admin
 "box.space.T:insert{1}"
 msgstr ""
 
-msgid "For more detail see :ref:`box.schema.user.grant() <box_schema-user_grant>` and :ref:`box.schema.role.grant() <box_schema-role_grant>` in the built-in modules reference."
+msgid "For more detail see :doc:`/reference/reference_lua/box_schema/user_grant` and :doc:`/reference/reference_lua/box_schema/role_grant` in the built-in modules reference."
 msgstr ""
 
 msgid "Sessions and security"

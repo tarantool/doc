@@ -560,7 +560,7 @@ msgstr ""
 msgid "NOTE #3 -- \"OUTER LOOP: INITIATE\" |br| The function's job is to return a result set, just as `box.space...select <box_space-select>` would. We will fill it within an outer loop that contains an inner loop. The outer loop's job is to execute the inner loop, and possibly :ref:`yield <atomic-threads_fibers_yields>`, until the search ends. The inner loop's job is to find tuples via the index, and put them in the result set if they match the pattern."
 msgstr ""
 
-msgid "NOTE #4 \"INNER LOOP: ITERATOR\" |br| The for loop here is using pairs(), see the :ref:`explanation of what index iterators are <box_index-index_pairs>`. Within the inner loop, there will be a local variable named \"tuple\" which contains the latest tuple found via the index search key."
+msgid "NOTE #4 \"INNER LOOP: ITERATOR\" |br| The for loop here is using pairs(), see the :doc:`explanation of what index iterators are </reference/reference_lua/box_index/pairs>`. Within the inner loop, there will be a local variable named \"tuple\" which contains the latest tuple found via the index search key."
 msgstr ""
 
 msgid "NOTE #5 \"INNER LOOP: BREAK IF INDEX KEY IS TOO GREAT\" |br| The iterator is GE (Greater or Equal), and we must be more specific: if the search index key has N characters, then the leftmost N characters of the result's index field must not be greater than the search index key. For example, if the search index key is 'ABC', then 'ABCDE' is a potential match, but 'ABD' is a signal that no more matches are possible."

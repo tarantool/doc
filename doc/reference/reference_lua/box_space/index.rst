@@ -11,8 +11,8 @@ space_object:index
 .. data:: index
 
     A container for all defined indexes. There is a Lua object of type
-    :ref:`box.index <box_index>` with methods to search tuples and iterate
-    over them in predefined order.
+    :doc:`box.index </reference/reference_lua/box_index>` with methods to search
+    tuples and iterate over them in predefined order.
 
     To reset, use :ref:`box.stat.reset() <box_introspection-box_stat_reset>`.
 
