@@ -113,5 +113,5 @@ Reloading a module in C
 --------------------------------------------------------------------------------
 
 After you compiled a new version of a C module (``*.so`` shared library), call
-:ref:`box.schema.func.reload('module-name') <box_schema-func_reload>`
+:doc:`box.schema.func.reload('module-name') </reference/reference_lua/box_schema/func_reload>`
 from your Lua script to reload the module.

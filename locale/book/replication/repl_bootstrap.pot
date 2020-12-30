@@ -42,7 +42,7 @@ msgstr ""
 msgid "the :ref:`read_only = false <cfg_basic-read_only>` parameter setting enables data-change operations on the instance and makes the instance act as a master, not as a replica. *That is the only parameter setting in our instance files that will differ.*"
 msgstr ""
 
-msgid "the :ref:`box.once() <box-once>` function contains database initialization logic that should be executed only once during the replica set lifetime."
+msgid "the :doc:`box.once() </reference/reference_lua/box_once>` function contains database initialization logic that should be executed only once during the replica set lifetime."
 msgstr ""
 
 msgid "In this example, we create a space with a primary index, and a user for replication purposes. We also say ``print('box.once executed on master')`` so that it will later be visible on a console whether ``box.once()`` was executed."

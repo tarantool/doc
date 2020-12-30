@@ -61,7 +61,7 @@ msgstr ""
 msgid "The :ref:`transaction processor thread <atomic-threads_fibers_yields>` consumes over 60% CPU."
 msgstr ""
 
-msgid "Attach to the Tarantool instance with :ref:`tarantoolctl <tarantoolctl>` utility, analyze the query statistics with :ref:`box.stat() <box_introspection-box_stat>` and spot the CPU consumption leader. The following commands can help:"
+msgid "Attach to the Tarantool instance with :ref:`tarantoolctl <tarantoolctl>` utility, analyze the query statistics with :doc:`box.stat() </reference/reference_lua/box_stat>` and spot the CPU consumption leader. The following commands can help:"
 msgstr ""
 
 msgid "-- checking the RPS of calling stored procedures\n"
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Problem: Replication \"lag\" and \"idle\" contain negative values"
 msgstr ""
 
-msgid "This is about ``box.info.replication.(upstream.)lag`` and ``box.info.replication.(upstream.)idle`` values in :ref:`box.info.replication <box_info_replication>` section."
+msgid "This is about ``box.info.replication.(upstream.)lag`` and ``box.info.replication.(upstream.)idle`` values in :doc:`/reference/reference_lua/box_info/replication` section."
 msgstr ""
 
 msgid "Operating system clock on the hosts is not synchronized, or the NTP server is faulty."
@@ -133,7 +133,7 @@ msgstr ""
 msgid "Problem: Replication \"idle\" keeps growing, but no related log messages appear"
 msgstr ""
 
-msgid "This is about ``box.info.replication.(upstream.)idle`` value in :ref:`box.info.replication <box_info_replication>` section."
+msgid "This is about ``box.info.replication.(upstream.)idle`` value in :doc:`/reference/reference_lua/box_info/replication` section."
 msgstr ""
 
 msgid "Some server was assigned different IP addresses, or some server was specified twice in ``box.cfg{}``, so duplicate connections were established."
@@ -145,7 +145,7 @@ msgstr ""
 msgid "Problem: Replication statistics differ on replicas within a replica set"
 msgstr ""
 
-msgid "This is about a replica set that consists of one master and several replicas. In a replica set of this type, values in :ref:`box.info.replication <box_info_replication>` section, like ``box.info.replication.lsn``, come from the master and must be the same on all replicas within the replica set. The problem is that they get different."
+msgid "This is about a replica set that consists of one master and several replicas. In a replica set of this type, values in :doc:`/reference/reference_lua/box_info/replication` section, like ``box.info.replication.lsn``, come from the master and must be the same on all replicas within the replica set. The problem is that they get different."
 msgstr ""
 
 msgid "Replication is broken."
@@ -157,7 +157,7 @@ msgstr ""
 msgid "Problem: Master-master replication is stopped"
 msgstr ""
 
-msgid "This is about :ref:`box.info.replication(.upstream).status <box_info_replication>` = stopped."
+msgid "This is about :doc:`box.info.replication(.upstream).status </reference/reference_lua/box_info/replication>` = stopped."
 msgstr ""
 
 msgid "In a master-master replica set of two Tarantool instances, one of the masters has tried to perform an action already performed by the other server, for example re-insert a tuple with the same unique key. This would cause an error message like ``'Duplicate key exists in unique index 'primary' in space <space_name>'``."

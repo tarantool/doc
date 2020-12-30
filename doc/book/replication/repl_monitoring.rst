@@ -5,7 +5,7 @@ Monitoring a replica set
 ================================================================================
 
 To learn what instances belong in the replica set, and obtain statistics for all
-these instances, issue a :ref:`box.info.replication <box_info_replication>` request:
+these instances, issue a :doc:`/reference/reference_lua/box_info/replication` request:
 
 .. code-block:: tarantoolsession
 

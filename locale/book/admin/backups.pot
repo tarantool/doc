@@ -8,10 +8,10 @@ msgstr ""
 msgid "Two functions are helpful for backups in certain situations:"
 msgstr ""
 
-msgid ":ref:`box.backup.start() <reference_lua-box_backup-backup_start>` informs the server that activities related to the removal of outdated backups must be suspended and returns a table with the names of snapshot and vinyl files that should be copied."
+msgid ":doc:`/reference/reference_lua/box_backup/start` informs the server that activities related to the removal of outdated backups must be suspended and returns a table with the names of snapshot and vinyl files that should be copied."
 msgstr ""
 
-msgid ":ref:`box.backup.stop() <reference_lua-box_backup-backup_stop>` later informs the server that normal operations may resume."
+msgid ":doc:`/reference/reference_lua/box_backup/stop` later informs the server that normal operations may resume."
 msgstr ""
 
 msgid "Hot backup (memtx)"
@@ -44,13 +44,13 @@ msgstr ""
 msgid "To take a mixed backup:"
 msgstr ""
 
-msgid "Issue :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` on the :ref:`administrative console <admin-security>`. This will return a list of files to back up and suspend garbage collection for them till the next ``box.backup.stop()``."
+msgid "Issue :doc:`/reference/reference_lua/box_backup/start` on the :ref:`administrative console <admin-security>`. This will return a list of files to back up and suspend garbage collection for them till the next ``box.backup.stop()``."
 msgstr ""
 
 msgid "Copy the files from the list to a safe location. This will include memtx snapshot files, vinyl run and index files, at a state consistent with the last checkpoint."
 msgstr ""
 
-msgid "Issue ``box.backup.stop()`` so the garbage collector can continue as usual."
+msgid "Issue :doc:`/reference/reference_lua/box_backup/stop` so the garbage collector can continue as usual."
 msgstr ""
 
 msgid "Continuous remote backup (memtx)"

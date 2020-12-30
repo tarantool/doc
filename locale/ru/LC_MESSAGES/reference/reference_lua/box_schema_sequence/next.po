@@ -1,0 +1,85 @@
+
+msgid "sequence_object:next()"
+msgstr ""
+
+msgid "Generate the next value and return it."
+msgstr "Генерация и выдача следующего значения."
+
+msgid "The generation algorithm is simple:"
+msgstr "Простой алгоритм для генерации:"
+
+msgid "If this is the first time, then return the STARTS WITH value."
+msgstr "В первый раз вернуть НАЧАЛЬНОЕ значение."
+
+msgid ""
+"If the previous value plus the INCREMENT value is less than the MINIMUM "
+"value or greater than the MAXIMUM value, that is \"overflow\", so either "
+"raise an error (if ``cycle`` = ``false``) or return the MAXIMUM value (if"
+" ``cycle`` = ``true`` and ``step`` < 0) or return the MINIMUM value (if "
+"``cycle`` = ``true`` and ``step`` > 0)."
+msgstr ""
+"Если предыдущее значение плюс значение УВЕЛИЧЕНИЯ меньше, чем МИНИМАЛЬНОЕ"
+" значение, или больше, чем МАКСИМАЛЬНОЕ значение, будет переполнение, "
+"поэтому либо выдать сообщение об ошибке (если цикл не задан -- ``cycle`` "
+"= ``false``) или вернуть МАКСИМАЛЬНОЕ значение (если цикл задан -- "
+"``cycle`` = ``true`` -- и ``step`` < 0), или вернуть МИНИМАЛЬНОЕ значение"
+" (если цикл задан -- ``cycle`` = ``true`` -- и ``step`` > 0)."
+
+msgid ""
+"If there was no error, then save the returned result, it is now the "
+"\"previous value\"."
+msgstr ""
+"Если ошибки нет, сохранить результат, который становится \"предыдущим "
+"значением\"."
+
+msgid "For example, suppose sequence 'S' has:"
+msgstr "Например, предположим, что для последовательности 'S':"
+
+msgid "``min`` == -6,"
+msgstr "``min`` == -6,"
+
+msgid "``max`` == -1,"
+msgstr "``max`` == -1,"
+
+msgid "``step`` == -3,"
+msgstr "``step`` == -3,"
+
+msgid "``start`` = -2,"
+msgstr "``start`` = -2,"
+
+msgid "``cycle`` = true,"
+msgstr "``cycle`` = true,"
+
+msgid "previous value = -2."
+msgstr "предыдущее значение = -2."
+
+msgid "Then ``box.sequence.S:next()`` returns -5 because -2 + (-3) == -5."
+msgstr "Тогда ``box.sequence.S:next()`` вернет -5, потому что -2 + (-3) == -5."
+
+msgid ""
+"Then ``box.sequence.S:next()`` again returns -1 because -5 + (-3) < -6, "
+"which is overflow, causing cycle, and ``max`` == -1."
+msgstr ""
+"Затем ``box.sequence.S:next()`` снова вернет -1, потому что -5 + (-3) < "
+"-6, что будет переполнением, которое вызовет цикл, а ``max`` == -1."
+
+msgid ""
+"This function requires a :doc:`'write' privilege "
+"</reference/reference_lua/box_schema/user_grant>` on the sequence."
+msgstr ""
+"Для данной функции необходимы права на :doc:`запись ('write') "
+"</reference/reference_lua/box_schema/user_grant>` на последовательность."
+
+msgid ""
+"This function should not be used in \"cross-engine\" transactions "
+"(transactions which use both the memtx and the vinyl storage engines)."
+msgstr ""
+"Данную функцию не следует использовать в транзакциях между движками "
+"(транзакции, в которых используется и движок memtx, и движок vinyl)."
+
+msgid ""
+"To see what the previous value was, without changing it, you can select "
+"from the :ref:`_sequence_data <box_space-sequence_data>` system space."
+msgstr ""
+"Чтобы увидеть предыдущее значение, не изменяя его, сделайте выборку из "
+"системного спейса :ref:`_sequence_data <box_space-sequence_data>`."

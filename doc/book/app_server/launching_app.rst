@@ -101,7 +101,7 @@ The simplest way is to pass the filename to Tarantool at start:
 Tarantool starts, executes our script in the **script mode** and exits.
 
 Now let’s turn this script into a **server application**. We use
-:ref:`box.cfg <box_introspection-box_cfg>` from Tarantool’s built-in
+:doc:`box.cfg </reference/reference_lua/box_cfg>` from Tarantool’s built-in
 Lua module to:
 
 * launch the database (a database has a persistent on-disk state, which needs
@@ -109,9 +109,9 @@ Lua module to:
 * configure Tarantool as a server that accepts requests over a TCP port.
 
 We also add some simple database logic, using
-:ref:`space.create() <box_schema-space_create>` and
+:doc:`space.create() </reference/reference_lua/box_schema/space_create>` and
 :ref:`create_index() <box_space-create_index>` to create a space with a primary
-index. We use the function :ref:`box.once() <box-once>` to make sure that our
+index. We use the function :doc:`box.once() </reference/reference_lua/box_once>` to make sure that our
 logic will be executed only once when the database is initialized for the first
 time, so we don't try to create an existing space or index on each invocation
 of the script:

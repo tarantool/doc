@@ -35,7 +35,7 @@ msgstr ""
 msgid "tuple otherwise"
 msgstr ""
 
-msgid "See also: :ref:`box.tuple.new()<box_tuple-new>`"
+msgid "See also: :doc:`/reference/reference_lua/box_tuple/new`"
 msgstr ""
 
 msgid "When working with tuples, it is the developer's responsibility to ensure that enough space is allocated, taking especial caution when writing to them with msgpuck functions such as ``mp_encode_array()``."

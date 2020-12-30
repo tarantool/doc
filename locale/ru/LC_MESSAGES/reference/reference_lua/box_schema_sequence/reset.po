@@ -1,0 +1,14 @@
+
+msgid "sequence_object:reset()"
+msgstr ""
+
+msgid ""
+"Set the sequence back to its original state. The effect is that a "
+"subsequent ``next()`` will return the ``start`` value. This function "
+"requires a :doc:`'write' privilege "
+"</reference/reference_lua/box_schema/user_grant>` on the sequence."
+msgstr ""
+"Возврат последовательности в оригинальное состояние. Смысл в том, что "
+"последующий вызов ``next()`` вернет начальное значение ``start``. Для "
+"данной функции необходимы права на :doc:`запись ('write') "
+"</reference/reference_lua/box_schema/user_grant>` на последовательность."

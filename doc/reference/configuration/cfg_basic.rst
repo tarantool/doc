@@ -110,7 +110,8 @@
     mode. After this, any requests that try to change persistent data will fail with error
     :errcode:`ER_READONLY`. Read-only mode should be used for master-replica
     :ref:`replication <replication>`. Read-only mode does not affect data-change
-    requests for spaces defined as :ref:`temporary <box_schema-space_create>`.
+    requests for spaces defined as
+    :doc:`temporary </reference/reference_lua/box_schema/space_create>`.
     Although read-only mode prevents the server from writing to the :ref:`WAL <internals-wal>`,
     it does not prevent writing diagnostics with the :ref:`log module <log-module>`.
 
@@ -120,7 +121,7 @@
 
     Setting ``read_only == true`` affects spaces differently depending on the
     :ref:`options <box_schema-space_create-options>` that were used during
-    :ref:`box.schema.space.create <box_schema-space_create>`.
+    :doc:`box.schema.space.create </reference/reference_lua/box_schema/space_create>`.
 
 .. _cfg_basic-vinyl_dir:
 
@@ -147,7 +148,7 @@
     This should rarely occur, since normally vinyl
     would throttle inserts when it is running low on compaction bandwidth.
     Compaction can also be ordered manually with
-    :ref:`index_object:compact() <box_index-compact>`.
+    :doc:`/reference/reference_lua/box_index/compact`.
 
     | Type: float
     | Default: 60

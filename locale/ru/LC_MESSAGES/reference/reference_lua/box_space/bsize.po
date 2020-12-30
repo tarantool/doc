@@ -1,0 +1,33 @@
+
+msgid "space_object:bsize()"
+msgstr ""
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid ""
+"Number of bytes in the space. This number, which is stored in Tarantool's"
+" internal memory, represents the total number of bytes in all tuples, not"
+" including index keys. For a measure of index size, see "
+":doc:`/reference/reference_lua/box_index/bsize`."
+msgstr ""
+"Количество байтов в спейсе. Это число, которое хранится во внутренней "
+"памяти Tarantool'а, представляет собой общее количество байтов во всех "
+"кортежах, включая ключи индекса. Для получения информации об измерении "
+"размера индекса, см. :doc:`/reference/reference_lua/box_index/bsize`."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.space.tester:bsize()\n"
+"---\n"
+"- 22\n"
+"..."
+msgstr ""

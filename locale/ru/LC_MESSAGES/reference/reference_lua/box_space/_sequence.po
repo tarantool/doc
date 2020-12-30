@@ -1,0 +1,15 @@
+
+msgid "box.space._sequence"
+msgstr ""
+
+msgid ""
+"``_sequence`` is a system space for support of the :ref:`sequence feature"
+" <index-box_sequence>`. It contains persistent information that was "
+"established by :doc:`/reference/reference_lua/box_schema_sequence/create`"
+" or :doc:`/reference/reference_lua/box_schema_sequence/alter`."
+msgstr ""
+"``_sequence`` -- это системный спейс для поддержки "
+":ref:`последовательностей <index-box_sequence>`. Он содержит "
+"персистентную информацию, определенную с помощью "
+":doc:`/reference/reference_lua/box_schema_sequence/create` или "
+":doc:`/reference/reference_lua/box_schema_sequence/alter`."

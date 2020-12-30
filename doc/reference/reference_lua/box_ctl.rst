@@ -4,14 +4,12 @@
                                 Submodule `box.ctl`
 -------------------------------------------------------------------------------
 
-.. module:: box.ctl
-
 The ``box.ctl`` submodule contains two functions: ``wait_ro``
 (wait until read-only)
 and ``wait_rw`` (wait until read-write).
 The functions are useful during initialization of a server.
 
-A particular use is for :ref:`box_once() <box-once>`.
+A particular use is for :doc:`box.once() </reference/reference_lua/box_once>`.
 For example, when a replica is initializing, it may call
 a ``box.once()`` function while the server is still in
 read-only mode, and fail to make changes that are necessary
@@ -24,45 +22,28 @@ Waiting until "read only mode = false" solves this problem.
 To see whether a function is already in read-only or
 read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
 
-.. _ctl-wait_ro:
+Below is a list of all ``box.ctl`` functions.
 
-.. function:: wait_ro([timeout])
+..  container:: table
 
-    Wait until ``box.info.ro`` is true.
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    :param number timeout: maximum number of seconds to wait
-    :return: nil, or error may be thrown due to timeout or fiber cancellation
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
 
-    **Example:**
+        *   - Name
+            - Use
 
-    .. code-block:: tarantoolsession
+        *  - :doc:`./box_ctl/wait_ro`
+           - Wait until ``box.info.ro`` is true
 
-        tarantool> box.info().ro
-        ---
-        - false
-        ...
+        *  - :doc:`./box_ctl/wait_rw`
+           - Wait until ``box.info.ro`` is false
 
-        tarantool> n = box.ctl.wait_ro(0.1)
-        ---
-        - error: timed out
-        ...
+..  toctree::
+    :hidden:
 
-.. _ctl-wait_rw:
-
-.. function:: wait_rw([timeout])
-
-    Wait until box.info.ro is false.
-
-    :param number timeout: maximum number of seconds to wait
-    :return: nil, or error may be thrown due to timeout or fiber cancellation
-
-
-    **Example:**
-
-    .. code-block:: tarantoolsession
-
-        tarantool> box.ctl.wait_rw(0.1)
-        ---
-        ...
-
-
+    box_ctl/wait_ro
+    box_ctl/wait_rw

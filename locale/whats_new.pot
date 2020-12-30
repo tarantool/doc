@@ -44,7 +44,7 @@ msgstr ""
 msgid "(Engines) Look up key in reader thread. If a key isn't found in the tuple cache, we fetch it from a run file. In this case disk read and page decompression is done by a reader thread, however key lookup in the fetched page is still performed by the TX thread. Since pages are immutable, this could as well be done by the reader thread, which would allow us to save some precious CPU cycles for TX. Issue `4257 <https://github.com/tarantool/tarantool/issues/4257>`_."
 msgstr ""
 
-msgid "(Core) Improve :ref:`box.stat.net <box_introspection-box_stat>`. Issue `4150 <https://github.com/tarantool/tarantool/issues/4150>`_."
+msgid "(Core) Improve :doc:`box.stat.net </reference/reference_lua/box_stat>`. Issue `4150 <https://github.com/tarantool/tarantool/issues/4150>`_."
 msgstr ""
 
 msgid "(Core) Add ``idle`` to downstream status in ``box.info``. When a relay sends a row it updates ``last_row_time`` value with the current time. When ``box.info()`` is called, ``idle`` is set to ``current_time`` - ``last_row_time``."
@@ -493,7 +493,7 @@ msgstr ""
 msgid "(Server) allow different nullability in indexes and format. Issue `3430 <https://github.com/tarantool/tarantool/issues/3430>`_."
 msgstr ""
 
-msgid "(Server) allow to :ref:`back up any checkpoint <reference_lua-box_backup-backup_start>`, not just the last one. Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_."
+msgid "(Server) allow to :doc:`back up any checkpoint </reference/reference_lua/box_backup/start>`, not just the last one. Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_."
 msgstr ""
 
 msgid "(Server) a way to detect that a Tarantool process was started / restarted by ``tarantoolctl`` (:ref:`TARANTOOLCTL and TARANTOOL_RESTARTED <tarantoolctl-instance_management>` env vars). Issues `3384 <https://github.com/tarantool/tarantool/issues/3384>`_, `3215 <https://github.com/tarantool/tarantool/issues/3215>`_."
@@ -502,7 +502,7 @@ msgstr ""
 msgid "(Server) :ref:`net_msg_max <cfg_networking-net_msg_max>` configuration parameter to restrict the number of allocated fibers. Issue `3320 <https://github.com/tarantool/tarantool/issues/3320>`_."
 msgstr ""
 
-msgid "(Replication) display the connection status if the downstream gets disconnected from the upstream (:ref:`box.info.replication.downstream.status <box_info_replication>` ``= disconnected``). Issue `3365 <https://github.com/tarantool/tarantool/issues/3365>`_."
+msgid "(Replication) display the connection status if the downstream gets disconnected from the upstream (:doc:`box.info.replication.downstream.status </reference/reference_lua/box_info/replication>` ``= disconnected``). Issue `3365 <https://github.com/tarantool/tarantool/issues/3365>`_."
 msgstr ""
 
 msgid "(Replication) :ref:`replica-local spaces <replication-local>` Issue `3443 <https://github.com/tarantool/tarantool/issues/3443>`_."
@@ -529,7 +529,7 @@ msgstr ""
 msgid "(Lua) expose ``on_commit``/``on_rollback`` triggers to Lua; Issue `857 <https://github.com/tarantool/tarantool/issues/857>`_."
 msgstr ""
 
-msgid "(Lua) new function :ref:`box.is_in_txn() <box-is_in_txn>` to check if a transaction is open; Issue `3518 <https://github.com/tarantool/tarantool/issues/3518>`_."
+msgid "(Lua) new function :doc:`/reference/reference_lua/box_txn_management/is_in_txn` to check if a transaction is open; Issue `3518 <https://github.com/tarantool/tarantool/issues/3518>`_."
 msgstr ""
 
 msgid "(Lua) tuple field access via a json path (by :ref:`number <box_tuple-field_number>`, :ref:`name <box_tuple-field_name>`, and :ref:`path <box_tuple-field_path>`); Issue `1285 <https://github.com/tarantool/tarantool/issues/1285>`_."
@@ -577,13 +577,13 @@ msgstr ""
 msgid "(Replication/recovery) it is now possible to explicitly set :ref:`instance_uuid <cfg_replication-instance_uuid>` and :ref:`replica set uuid <cfg_replication-replicaset_uuid>` as configuration parameters. Issue `2967 <https://github.com/tarantool/tarantool/issues/2967>`_."
 msgstr ""
 
-msgid "(Replication/recovery) :ref:`box.once() <box-once>` no longer fails on a read-only replica but waits. Issue `2537 <https://github.com/tarantool/tarantool/issues/2537>`_."
+msgid "(Replication/recovery) :doc:`box.once() </reference/reference_lua/box_once/>` no longer fails on a read-only replica but waits. Issue `2537 <https://github.com/tarantool/tarantool/issues/2537>`_."
 msgstr ""
 
 msgid "(Replication/recovery) :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>` can now skip a corrupted xlog file. Issue `3076 <https://github.com/tarantool/tarantool/issues/3076>`_."
 msgstr ""
 
-msgid "(Replication/recovery) improved replication monitoring: :ref:`box.info.replication <box_info_replication>` shows peer ip:port and correct replication lag even for idle peers. Issues `2753 <https://github.com/tarantool/tarantool/issues/2753>`_ and `2689 <https://github.com/tarantool/tarantool/issues/2689>`_."
+msgid "(Replication/recovery) improved replication monitoring: :doc:`/reference/reference_lua/box_info/replication` shows peer ip:port and correct replication lag even for idle peers. Issues `2753 <https://github.com/tarantool/tarantool/issues/2753>`_ and `2689 <https://github.com/tarantool/tarantool/issues/2689>`_."
 msgstr ""
 
 msgid "(Application server) new :ref:`before <box_space-before_replace>` triggers which can be used for conflict resolution in master-master replication. Issue `2993 <https://github.com/tarantool/tarantool/issues/2993>`_."
@@ -601,7 +601,7 @@ msgstr ""
 msgid "(Application server) ``digest`` rock now supports pbkdf2 password hashing algorithm, useful in PCI/DSS compliant applications. Issue `2874 <https://github.com/tarantool/tarantool/issues/2874>`_."
 msgstr ""
 
-msgid "(Application server) :ref:`box.info.memory() <box_info_memory>` provides a high-level overview of server memory usage, including networking, Lua, transaction and index memory. Issue `934 <https://github.com/tarantool/tarantool/issues/934>`_."
+msgid "(Application server) :doc:`/reference/reference_lua/box_info/memory` provides a high-level overview of server memory usage, including networking, Lua, transaction and index memory. Issue `934 <https://github.com/tarantool/tarantool/issues/934>`_."
 msgstr ""
 
 msgid "(Database) it is now possible to :ref:`add missing tuple fields <box_space-is_nullable>` to an index, which is very useful when adding an index along with the evolution of the database schema. Issue `2988 <https://github.com/tarantool/tarantool/issues/2988>`_."
@@ -649,7 +649,7 @@ msgstr ""
 msgid "What's new in Tarantool 1.7.6?"
 msgstr ""
 
-msgid "In addition to :ref:`rollback <box-rollback>` of a transaction, there is now rollback to a defined point within a transaction -- :ref:`savepoint <box-savepoint>` support."
+msgid "In addition to :doc:`rollback </reference/reference_lua/box_txn_management/rollback>` of a transaction, there is now rollback to a defined point within a transaction -- :doc:`savepoint </reference/reference_lua/box_txn_management/savepoint>` support."
 msgstr ""
 
 msgid "There is a new object type: :ref:`sequences <index-box_sequence>`. The older option, :ref:`auto-increment <box_space-auto_increment>`, will be deprecated."
@@ -790,7 +790,7 @@ msgstr ""
 msgid "Extended the :ref:`maximal length <limitations_length>` of all identifiers from 32 to 65k characters. Space, user and function names are not limited by 32 characters anymore. Issue `944 <https://github.com/tarantool/tarantool/issues/944>`_."
 msgstr ""
 
-msgid ":ref:`Heartbeat <cfg_replication-replication_timeout>` messages for replication. Replication client now sends the selective acknowledgments for processed records and automatically re-establish stalled connections. This feature also changes :ref:`box.info.replication[replica_id].vclock <box_info_replication>`. to display committed vclock of remote replica. Issue `2484 <https://github.com/tarantool/tarantool/issues/2484>`_."
+msgid ":ref:`Heartbeat <cfg_replication-replication_timeout>` messages for replication. Replication client now sends the selective acknowledgments for processed records and automatically re-establish stalled connections. This feature also changes :doc:`box.info.replication[replica_id].vclock </reference/reference_lua/box_info/replication>`. to display committed vclock of remote replica. Issue `2484 <https://github.com/tarantool/tarantool/issues/2484>`_."
 msgstr ""
 
 msgid "Keep track of remote replicas during WAL maintenance. Replication master now automatically preserves xlogs needed for remote replicas. Issue `748 <https://github.com/tarantool/tarantool/issues/748>`_."
@@ -799,7 +799,7 @@ msgstr ""
 msgid "Enabled :ref:`box.tuple.new() <box_tuple-new>` to work without ``box.cfg()``. Issue `2047 <https://github.com/tarantool/tarantool/issues/2047>`_."
 msgstr ""
 
-msgid ":ref:`box.atomic(fun, ...) <box-atomic>` wrapper to execute function in a transaction. Issue `818 <https://github.com/tarantool/tarantool/issues/818>`_."
+msgid ":doc:`box.atomic(fun, ...) </reference/reference_lua/box_txn_management/atomic>` wrapper to execute function in a transaction. Issue `818 <https://github.com/tarantool/tarantool/issues/818>`_."
 msgstr ""
 
 msgid ":ref:`box.session.type() <box_session-type>` helper to determine session type. Issue `2642 <https://github.com/tarantool/tarantool/issues/2642>`_."
@@ -1033,7 +1033,7 @@ msgstr ""
 msgid "(Vinyl) implemented consistent secondary keys. Issue `2410 <https://github.com/tarantool/tarantool/issues/2410>`_."
 msgstr ""
 
-msgid "(Memtx+Vinyl) implemented low-level Lua API to create consistent backups. of Memtx + Vinyl data. The new feature provides ``box.backup.start()/stop()`` functions to create backups of all spaces. :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` pauses the Tarantool garbage collector and returns the list of files to copy. These files then can be copied be any third-party tool, like cp, ln, tar, rsync, etc. ``box.backup.stop()`` lets the garbage collector continue. Created backups can be restored instantly by copying into a new directory and starting a new Tarantool instance. No special preparation, conversion or unpacking is needed. Issue `1916 <https://github.com/tarantool/tarantool/issues/1916>`_."
+msgid "(Memtx+Vinyl) implemented low-level Lua API to create consistent backups. of Memtx + Vinyl data. The new feature provides ``box.backup.start()/stop()`` functions to create backups of all spaces. :doc:`/reference/reference_lua/box_backup/start` pauses the Tarantool garbage collector and returns the list of files to copy. These files then can be copied be any third-party tool, like cp, ln, tar, rsync, etc. ``box.backup.stop()`` lets the garbage collector continue. Created backups can be restored instantly by copying into a new directory and starting a new Tarantool instance. No special preparation, conversion or unpacking is needed. Issue `1916 <https://github.com/tarantool/tarantool/issues/1916>`_."
 msgstr ""
 
 msgid "(Vinyl) added statistics for background workers to ``box.info.vinyl()``. Issue `2005 <https://github.com/tarantool/tarantool/issues/2005>`_."

@@ -45,7 +45,7 @@ Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
   ``{is_async=true}`` will not wait for the result of a request. See the
   :ref:`is_async <net_box-is_async>` description.
 * ``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages.
-  See the :ref:`box.session.push <box_session-push>` description.
+  See the :doc:`/reference/reference_lua/box_session/push` description.
 
 The diagram below shows possible connection states and transitions:
 
@@ -557,7 +557,7 @@ Below is a list of all ``net.box`` functions.
         then say ``request_result=future:result()``,
         or say ``request_result=future:wait_result(...)``.
         Alternatively the client could check for "out-of-band" messages from the server
-        by calling ``pairs()`` in a loop -- see :ref:`box.session.push() <box_session-push>`.
+        by calling ``pairs()`` in a loop -- see :doc:`/reference/reference_lua/box_session/push`.
 
         A user would say ``future:discard()`` to make a connection forget about the response --
         if a response for a discarded object is received then it will be ignored, so that

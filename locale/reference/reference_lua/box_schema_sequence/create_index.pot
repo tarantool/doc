@@ -1,0 +1,43 @@
+
+msgid "specifying a sequence in create_index()"
+msgstr ""
+
+msgid "You can use the :samp:`sequence={sequence-name}` (or :samp:`sequence={sequence-id}` or :samp:`sequence=true`) option when :ref:`creating <box_space-create_index>` or :doc:`altering </reference/reference_lua/box_index/alter>` a primary-key index. The sequence becomes associated with the index, so that the next ``insert()`` will put the next generated number into the primary-key field, if the field would otherwise be nil."
+msgstr ""
+
+msgid "For example, if 'Q' is a sequence and 'T' is a new space, then this will work:"
+msgstr ""
+
+msgid "tarantool> box.space.T:create_index('Q',{sequence='Q'})\n"
+"---\n"
+"- unique: true\n"
+"  parts:\n"
+"  - type: unsigned\n"
+"    is_nullable: false\n"
+"    fieldno: 1\n"
+"  sequence_id: 8\n"
+"  id: 0\n"
+"  space_id: 514\n"
+"  name: Q\n"
+"  type: TREE\n"
+"..."
+msgstr ""
+
+msgid "(Notice that the index now has a ``sequence_id`` field.)"
+msgstr ""
+
+msgid "And this will work:"
+msgstr ""
+
+msgid "tarantool> box.space.T:insert{box.NULL,0}\n"
+"---\n"
+"- [1, 0]\n"
+"..."
+msgstr ""
+
+msgid "If you are using negative numbers for the sequence options, make sure that the index key type is 'integer'. Otherwise the index key type may be either 'integer' or 'unsigned'."
+msgstr ""
+
+msgid "A sequence cannot be dropped if it is associated with an index. However, :doc:`/reference/reference_lua/box_index/alter` can be used to say that a sequence is not associated with an index, for example ``box.space.T.index.I:alter({sequence=false})``."
+msgstr ""
+

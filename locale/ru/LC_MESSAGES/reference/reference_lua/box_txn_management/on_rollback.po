@@ -1,0 +1,17 @@
+
+msgid "box.on_rollback()"
+msgstr ""
+
+msgid ""
+"Define a trigger for execution when a transaction ends due to an event "
+"such as :doc:`/reference/reference_lua/box_txn_management/rollback`."
+msgstr ""
+"Определение триггера, выполняемого по окончании транзакции в связи с "
+":doc:`/reference/reference_lua/box_txn_management/rollback`."
+
+msgid ""
+"The parameters and warnings are exactly the same as for "
+":doc:`/reference/reference_lua/box_txn_management/on_commit`."
+msgstr ""
+"Используются точно такие же параметры и предупреждения, как в "
+":doc:`/reference/reference_lua/box_txn_management/on_commit`."

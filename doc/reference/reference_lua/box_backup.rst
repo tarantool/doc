@@ -1,46 +1,33 @@
-================================================================================
+-------------------------------------------------------------------------------
 Submodule box.backup
-================================================================================
+-------------------------------------------------------------------------------
 
 The box.backup submodule contains two functions that are helpful for
 :ref:`backup <admin-backups>` in certain situations.
 
-.. _reference_lua-box_backup-backup_start:
+Below is a list of all ``box.backup`` functions.
 
-.. function:: backup.start([n])
+..  container:: table
 
-    Informs the server that activities related to the removal of outdated
-    backups must be suspended.
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    To guarantee an opportunity
-    to copy these files, Tarantool will not delete them. But there will be no
-    read-only mode and checkpoints will continue by schedule as usual.
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 1
 
-    :param number n: optional argument starting with Tarantool 1.10.1 that
-      indicates the checkpoint
-      to use relative to the latest checkpoint. For example ``n = 0`` means
-      “backup will be based on the latest checkpoint”, ``n = 1`` means "backup
-      will be based on the first checkpoint before the latest checkpoint (counting
-      backwards)", and so on. The default value for n is zero.
+        *   - Name
+            - Use
 
-    **Return:**  a table with the names of snapshot and vinyl files that should
-    be copied
+        *  - :doc:`./box_backup/start`
+           - Ask server to suspend activities before the removal of outdated backups
 
-    **Example:**
+        *  - :doc:`./box_backup/stop`
+           - Inform server that normal operations may resume
 
-    .. code-block:: tarantoolsession
 
-        tarantool> box.backup.start()
-        ---
-        - - ./00000000000000000015.snap
-          - ./00000000000000000000.vylog
-          - ./513/0/00000000000000000002.index
-          - ./513/0/00000000000000000002.run
-        ...
+..  toctree::
+    :hidden:
 
-.. _reference_lua-box_backup-backup_stop:
-
-.. function:: backup.stop()
-
-    informs the server that normal operations may resume.
-
+    box_backup/start
+    box_backup/stop

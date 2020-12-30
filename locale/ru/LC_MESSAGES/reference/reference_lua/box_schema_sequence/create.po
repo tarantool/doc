@@ -1,0 +1,99 @@
+
+msgid "box.schema.sequence.create()"
+msgstr ""
+
+msgid "Create a new sequence generator."
+msgstr "Создание нового генератора последовательностей."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "the name of the sequence"
+msgstr "имя последовательности"
+
+msgid ""
+"see a quick overview in the \"Options for "
+"``box.schema.sequence.create()``\" :ref:`chart <index-box_sequence-"
+"options>` (in the :ref:`Sequences <index-box_sequence>` section of the "
+"\"Data model\" chapter), and see more details below."
+msgstr ""
+"см. краткий обзор в :ref:`таблице <index-box_sequence-options>` "
+"\"Параметры для ``box.schema.sequence.create()``\"  (в разделе "
+":ref:`Последовательности <index-box_sequence>` главы \"Модель данных\"), "
+"а более подробную информацию ниже."
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "a reference to a new sequence object."
+msgstr "ссылка на новый объект последовательности."
+
+msgid "Options:"
+msgstr "Параметры:"
+
+msgid "``start`` -- the STARTS WITH value. Type = integer, Default = 1."
+msgstr "``start`` -- НАЧАЛЬНОЕ значение. Тип = целое число, по умолчанию = 1."
+
+msgid "``min`` -- the MINIMUM value. Type = integer, Default = 1."
+msgstr "``min`` -- МИНИМАЛЬНОЕ значение. Тип = целое число, по умолчанию = 1."
+
+msgid ""
+"``max`` - the MAXIMUM value. Type = integer, Default = "
+"9223372036854775807."
+msgstr ""
+"``max`` --МАКСИМАЛЬНОЕ значение. Тип = целое число, по умолчанию = "
+"9223372036854775807."
+
+msgid ""
+"There is a rule: ``min`` <= ``start`` <= ``max``. For example it is "
+"illegal to say ``{start=0}`` because then the specified start value (0) "
+"would be less than the default min value (1)."
+msgstr ""
+"Есть следующее правило: ``min`` <= ``start`` <= ``max``. Например, нельзя"
+" указать ``{start=0}``, поскольку указанное начальное значение (0) будет "
+"меньше, чем минимальное значение, используемое по умолчанию (1)."
+
+msgid ""
+"There is a rule: ``min`` <= next-value <= ``max``. For example, if the "
+"next generated value would be 1000, but the maximum value is 999, then "
+"that would be considered \"overflow\"."
+msgstr ""
+"Есть следующее правило: ``min`` <= следующее-значение <= ``max``. "
+"Например, если сгенерированное значение будет 1000, но максимальное "
+"значение -- 999, это будет считаться переполнением."
+
+msgid "``cycle`` -- the CYCLE value. Type = bool. Default = false."
+msgstr ""
+"``cycle`` -- значение ЦИКЛА. Тип = bool (логический), по умолчанию = "
+"false (ложь)."
+
+msgid ""
+"If the sequence generator's next value is an overflow number, it causes "
+"an error return -- unless ``cycle == true``."
+msgstr ""
+"Если следующее значение в генераторе последовательности будет "
+"переполнением, это вызовет ошибку -- не считая случаев, когда задан цикл "
+"(``cycle == true``)."
+
+msgid ""
+"But if ``cycle == true``, the count is started again, at the MINIMUM "
+"value or at the MAXIMUM value (not the STARTS WITH value)."
+msgstr ""
+"Если же ``cycle == true``, отсчет начинается заново с МИНИМАЛЬНОГО "
+"значения или с МАКСИМАЛЬНОГО значения (не с НАЧАЛЬНОГО значения)."
+
+msgid "``cache`` -- the CACHE value. Type = unsigned integer. Default = 0."
+msgstr ""
+"``cache`` -- значение КЭША. Тип = беззнаковое целое число, по умолчанию ="
+" 0."
+
+msgid "Currently Tarantool ignores this value, it is reserved for future use."
+msgstr ""
+"В данный момент Tarantool игнорирует это значение, оно зарезервировано "
+"для последующего использования."
+
+msgid "``step`` -- the INCREMENT BY value. Type = integer. Default = 1."
+msgstr "``step`` -- значение УВЕЛИЧЕНИЯ. Тип = целое число, по умолчанию = 1."
+
+msgid "Ordinarily this is what is added to the previous value."
+msgstr "Это значение прибавляется к предыдущему."

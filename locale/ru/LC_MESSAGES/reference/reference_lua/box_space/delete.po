@@ -1,0 +1,68 @@
+
+msgid "space_object:delete()"
+msgstr ""
+
+msgid "Delete a tuple identified by a primary key."
+msgstr "Удаление кортежа по первичному ключу."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
+
+msgid ""
+"primary-key field values, must be passed as a Lua table if key is multi-"
+"part"
+msgstr ""
+"значения поля первичного ключа, которые должны возвращаться в виде "
+"Lua-таблицы, если ключ составной"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "the deleted tuple"
+msgstr "удаленный кортеж."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "tuple"
+msgstr ""
+
+msgid "**Complexity factors:** Index size, Index type"
+msgstr "**Факторы сложности:** Размер индекса, тип индекса"
+
+msgid ""
+"**Note re storage engine:** vinyl will return ``nil``, rather than the "
+"deleted tuple."
+msgstr ""
+"**Примечание про движок базы данных:** vinyl вернет ``nil``, а не "
+"удаленный кортеж."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.space.tester:delete(1)\n"
+"---\n"
+"- [1, 'My first tuple']\n"
+"...\n"
+"tarantool> box.space.tester:delete(1)\n"
+"---\n"
+"...\n"
+"tarantool> box.space.tester:delete('a')\n"
+"---\n"
+"- error: 'Supplied key type of part 0 does not match index part type:\n"
+"  expected unsigned'\n"
+"..."
+msgstr ""
+
+msgid ""
+"For more usage scenarios and typical errors see :ref:`Example: using data"
+" operations <box_space-operations-detailed-examples>` further in this "
+"section."
+msgstr ""
+"Для получения дополнительной информации о сценариях использования и "
+"типичных ошибках, см. :ref:`Пример: использование операций с данными "
+"<box_space-operations-detailed-examples>` далее в разделе."

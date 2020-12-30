@@ -1,0 +1,63 @@
+
+msgid "tuple_object:tomap()"
+msgstr ""
+
+msgid "A `Lua table <https://www.lua.org/pil/2.5.html>`_ can have indexed values, also called key:value pairs. For example, here:"
+msgstr ""
+
+msgid "a = {}; a['field1'] = 10; a['field2'] = 20"
+msgstr ""
+
+msgid "``a`` is a table with \"field1: 10\" and \"field2: 20\"."
+msgstr ""
+
+msgid "The :doc:`/reference/reference_lua/box_tuple/totable` function only returns a table containing the values. But the ``tuple_object:tomap()`` function returns a table containing not only the values, but also the key:value pairs."
+msgstr ""
+
+msgid "This only works if the tuple comes from a space that has been formatted with a :ref:`format clause <box_space-format>`."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "the only possible option is ``names_only``.  If ``names_only`` is false or omitted (default), then all the fields will appear twice, first with numeric headings and second with name headings.  If ``names_only`` is true, then all the fields will appear only once, with name headings."
+msgstr ""
+
+msgid "the only possible option is ``names_only``."
+msgstr ""
+
+msgid "If ``names_only`` is false or omitted (default), then all the fields will appear twice, first with numeric headings and second with name headings."
+msgstr ""
+
+msgid "If ``names_only`` is true, then all the fields will appear only once, with name headings."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "field-number:value pair(s) and key:value pair(s) from the tuple"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "lua-table"
+msgstr ""
+
+msgid "In the following example, a tuple named ``t1`` is returned from a space that has been formatted, then tables named ``t1map1`` and ``t1map2`` are produced from ``t1``."
+msgstr ""
+
+msgid "format = {{'field1', 'unsigned'}, {'field2', 'unsigned'}}\n"
+"s = box.schema.space.create('test', {format = format})\n"
+"s:create_index('pk',{parts={1,'unsigned',2,'unsigned'}})\n"
+"t1 = s:insert{10, 20}\n"
+"t1map = t1:tomap()\n"
+"t1map_names_only = t1:tomap({names_only=true})"
+msgstr ""
+
+msgid "``t1map`` will contain \"1: 10\", \"2: 20\", \"field1: 10\", \"field2: 20\"."
+msgstr ""
+
+msgid "``t1map_names_only`` will contain \"field1: 10\", \"field2: 20\"."
+msgstr ""
+

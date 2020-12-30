@@ -232,7 +232,8 @@ A replica is joining but no replica set exists yet.
        Criteria for electing a leader include vclock value (largest is best),
        and whether it is read-only or read-write (read-write is best unless there is no other choice).
        The leader is the master that other instances must join.
-       The leader is the master that executes :ref:`box_once() <box-once>` functions.
+       The leader is the master that executes
+       :doc:`box.once() </reference/reference_lua/box_once>` functions.
 
     5. If this instance is elected as the replica set leader,
        then

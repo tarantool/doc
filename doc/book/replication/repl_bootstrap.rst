@@ -59,7 +59,7 @@ where:
   data-change operations on the instance and makes the instance act as a master,
   not as a replica. *That is the only parameter setting in our instance files
   that will differ.*
-* the :ref:`box.once() <box-once>` function contains database initialization logic
+* the :doc:`box.once() </reference/reference_lua/box_once>` function contains database initialization logic
   that should be executed only once during the replica set lifetime.
 
 In this example, we create a space with a primary index, and a user for

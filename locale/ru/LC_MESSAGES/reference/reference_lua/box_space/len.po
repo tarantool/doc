@@ -1,0 +1,44 @@
+
+msgid "space_object:len()"
+msgstr ""
+
+msgid ""
+"Return the number of tuples in the space. If compared with :ref:`count() "
+"<box_space-count>`, this method works faster because ``len()`` does not "
+"scan the entire space to count the tuples."
+msgstr ""
+"Выдача количества кортежей в спейсе. Если сравнивать с :ref:`count() "
+"<box_space-count>`, то данный метод работает быстрее, поскольку метод "
+"``len()`` не сканирует весь спейс для подсчета кортежей."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr "ref:`ссылка на объект <app_server-object_reference>`"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "Number of tuples in the space."
+msgstr "Количество кортежей в спейсе."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.space.tester:len()\n"
+"---\n"
+"- 2\n"
+"..."
+msgstr ""
+
+msgid ""
+"**Note re storage engine:** vinyl supports ``len()`` but the result may "
+"be approximate. If an exact result is necessary then use :ref:`count() "
+"<box_space-count>` or :ref:`pairs():length() <box_space-pairs>`."
+msgstr ""
+"**Примечание про движок базы данных:** vinyl поддерживает ``len()``, но "
+"результат может быть неточным. Если необходим точный результат, "
+"используйте :ref:`count() <box_space-count>` или :ref:`pairs():length() "
+"<box_space-pairs>`."

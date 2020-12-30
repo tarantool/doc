@@ -1,0 +1,19 @@
+
+msgid "box.commit()"
+msgstr ""
+
+msgid "End the transaction, and make all its data-change operations permanent."
+msgstr ""
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "error and abort the transaction in case of a conflict."
+msgstr ""
+
+msgid "error if the operation fails to write to disk."
+msgstr ""
+
+msgid "error if for some reason memory cannot be allocated."
+msgstr ""
+

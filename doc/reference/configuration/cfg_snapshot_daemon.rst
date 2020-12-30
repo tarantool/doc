@@ -53,7 +53,7 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
     The interval between actions by the checkpoint daemon, in seconds. If
     ``checkpoint_interval`` is set to a value greater than zero, and there is
     activity which causes change to a database, then the checkpoint daemon will
-    call :ref:`box.snapshot <box-snapshot>` every ``checkpoint_interval``
+    call :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` every ``checkpoint_interval``
     seconds, creating a new snapshot file each time. If ``checkpoint_interval``
     is set to zero, then the checkpoint daemon is disabled.
 

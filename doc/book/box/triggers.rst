@@ -10,7 +10,7 @@ executes when certain events happen.
 
 There are four types of triggers in Tarantool:
 
-* :ref:`session triggers <box_session-on_connect>`, which are executed
+* :doc:`session triggers </reference/reference_lua/box_session/on_connect>`, which are executed
   when a session begins or ends and during authentication,
 
 * :ref:`replace triggers <box_space-on_replace>`, which are for database
@@ -19,8 +19,8 @@ There are four types of triggers in Tarantool:
 * :ref:`connection triggers <net_box-on_connect>`, which are for ``net.box``
   connections,
 
-* :ref:`transaction triggers <box-on_commit>`, which are executed
-  during commit or rollback.
+* :doc:`transaction triggers </reference/reference_lua/box_txn_management/on_commit>`,
+  which are executed during commit or rollback.
 
 All triggers have the following characteristics:
 
@@ -28,13 +28,13 @@ All triggers have the following characteristics:
   The request to "define a trigger" implies passing the
   trigger’s function to one of the "on_event()" functions:
 
-  * :ref:`box.session.on_connect() <box_session-on_connect>` or
-    :ref:`box.session.on_disconnect() <box_session-on_disconnect>` or
-  * :ref:`box.session.on_auth() <box_session-on_auth>` or
+  * :doc:`/reference/reference_lua/box_session/on_connect` or
+    :doc:`/reference/reference_lua/box_session/on_disconnect` or
+  * :doc:`/reference/reference_lua/box_session/on_auth` or
   * :ref:`space_object:on_replace() <box_space-on_replace>` or
     :ref:`space_object:before_replace() <box_space-before_replace>` or
-  * :ref:`box.on_commit() <box-on_commit>` or
-    :ref:`box.on_rollback() <box-on_rollback>` or
+  * :doc:`/reference/reference_lua/box_txn_management/on_commit` or
+    :doc:`/reference/reference_lua/box_txn_management/on_rollback` or
   * :ref:`net.box.on_connect() <net_box-on_connect>` or
     :ref:`net.box.on_disconnect() <net_box-on_disconnect>` or
   * :ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`.
@@ -57,7 +57,7 @@ All triggers have the following characteristics:
   if a function contains requests which normally could not occur immediately
   after the event, but only before the return from the event. For example, putting
   `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or
-  :ref:`box.rollback() <box-rollback>` in a trigger function would be
+  :doc:`/reference/reference_lua/box_txn_management/rollback` in a trigger function would be
   bringing in requests outside the event context.
 
 * Triggers are replaceable. The request to "redefine a trigger" implies

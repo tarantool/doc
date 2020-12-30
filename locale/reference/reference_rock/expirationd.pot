@@ -85,7 +85,7 @@ msgid "fiber = require('fiber')\n"
 "os.exit()"
 msgstr ""
 
-msgid "The database-specific requests (``cfg``, :ref:`space.create <box_schema-space_create>`, :ref:`create_index <box_space-create_index>`) should already be familiar."
+msgid "The database-specific requests (``cfg``, :doc:`space.create </reference/reference_lua/box_schema/space_create>`, :ref:`create_index <box_space-create_index>`) should already be familiar."
 msgstr ""
 
 msgid "The function which will be supplied to ``expirationd`` is :codenormal:`is_tuple_expired`, which is saying \"if the second field of the tuple is less than the :ref:`current time <fiber-time>`  , then return true, otherwise return false\"."

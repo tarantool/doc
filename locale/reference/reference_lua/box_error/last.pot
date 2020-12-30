@@ -1,0 +1,43 @@
+
+msgid "box.error.last()"
+msgstr ""
+
+msgid "Show the last error object."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "You can reach the last error object's fields like this:"
+msgstr ""
+
+msgid "tarantool> box.schema.space.create('')\n"
+"---\n"
+"- error: Invalid identifier '' (expected printable symbols only or it is too long)\n"
+"...\n"
+"tarantool> box.error.last()\n"
+"---\n"
+"- Invalid identifier '' (expected printable symbols only or it is too long)\n"
+"...\n"
+"tarantool> box.error.last().code\n"
+"---\n"
+"- 70\n"
+"...\n"
+"tarantool> box.error.last().type\n"
+"---\n"
+"- ClientError\n"
+"..."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "the last error object"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "cdata"
+msgstr ""
+

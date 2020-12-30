@@ -41,7 +41,8 @@ the current user is '**admin**'.
 When executing a :ref:`Lua initialization script <index-init_label>`,
 the current user is also ‘**admin**’.
 
-The current user name can be found with :ref:`box.session.user() <box_session-user>`.
+The current user name can be found with
+:doc:`/reference/reference_lua/box_session/user`.
 
 The current user can be changed:
 
@@ -50,10 +51,11 @@ The current user can be changed:
   by most clients;
 
 * For an admin-console connection and in a Lua initialization script --
-  with :ref:`box.session.su <box_session-su>`;
+  with :doc:`/reference/reference_lua/box_session/su`;
 
 * For a binary-port connection invoking a stored function with the CALL command --
-  if the :ref:`SETUID <box_schema-func_create>` property is enabled for the function,
+  if the :doc:`SETUID </reference/reference_lua/box_schema/func_create>`
+  property is enabled for the function,
   Tarantool temporarily replaces the current user with the
   function’s creator, with all the creator's privileges, during function execution.
 
@@ -96,8 +98,9 @@ choose long unobvious passwords, but it is ultimately up to the users to choose
 or change their own passwords.
 
 There are two functions for managing passwords in Tarantool:
-:ref:`box.schema.user.passwd() <box_schema-user_passwd>` for changing a user's password and
-:ref:`box.schema.user.password() <box_schema-user_password>` for getting a hash
+:doc:`/reference/reference_lua/box_schema/user_passwd` for changing a user's
+password and
+:doc:`/reference/reference_lua/box_schema/user_password` for getting a hash
 of a user's password.
 
 .. _authentication-owners_privileges:
@@ -117,20 +120,20 @@ is '**admin**'.
 
 Owners automatically have **privileges** for what they create.
 They can share these privileges with other users or with roles,
-using :ref:`box.schema.user.grant <box_schema-user_grant>` requests.
+using :doc:`/reference/reference_lua/box_schema/user_grant` requests.
 The following privileges can be granted:
 
 * 'read', e.g. allow select from a space
 * 'write', e.g. allow update on a space
 * 'execute', e.g. allow call of a function, or (less commonly) allow use of a role
 * 'create', e.g. allow
-  :ref:`box.schema.space.create <box_schema-space_create>`
+  :doc:`box.schema.space.create </reference/reference_lua/box_schema/user_create>`
   (access to certain system spaces is also necessary)
 * 'alter', e.g. allow
-  :ref:`box.space.x.index.y:alter <box_index-alter>`
+  :doc:`box.space.x.index.y:alter </reference/reference_lua/box_index/alter>`
   (access to certain system spaces is also necessary)
 * 'drop', e.g. allow
-  :ref:`box.sequence.x:drop <box_schema-sequence_drop>`
+  :doc:`box.sequence.x:drop </reference/reference_lua/box_schema_sequence/drop>`
   (currently this can be granted but has no effect)
 * 'usage', e.g. whether any action is allowable regardless of other
   privileges (sometimes revoking 'usage' is a convenient way to
@@ -152,8 +155,10 @@ To **drop** an object, users must be the object's creator or be 'admin'.
 As the owner of the entire database, 'admin' can drop any object including
 other users.
 
-To grant privileges to a user, the object owner says :ref:`grant() <box_schema-user_grant>`.
-To revoke privileges from a user, the object owner says :ref:`revoke() <box_schema-user_revoke>`.
+To grant privileges to a user, the object owner says
+:doc:`/reference/reference_lua/box_schema/user_grant`.
+To revoke privileges from a user, the object owner says
+:doc:`/reference/reference_lua/box_schema/user_revoke`.
 In either case, there are up to five parameters:
 
 .. code-block:: lua
@@ -328,8 +333,8 @@ The 'usage' and 'session' privileges cannot be granted to roles.
    box.space.T:insert{1}
 
 For more detail see
-:ref:`box.schema.user.grant() <box_schema-user_grant>` and
-:ref:`box.schema.role.grant() <box_schema-role_grant>` in
+:doc:`/reference/reference_lua/box_schema/user_grant` and
+:doc:`/reference/reference_lua/box_schema/role_grant` in
 the built-in modules reference.
 
 .. _authentication-sessions:
@@ -347,7 +352,7 @@ A **session** is the state of a connection to Tarantool. It contains:
 
 In Tarantool, a single session can execute multiple concurrent transactions.
 Each transaction is identified by a unique integer id, which can be queried
-at start of the transaction using :ref:`box.session.sync() <box_session-sync>`.
+at start of the transaction using :doc:`/reference/reference_lua/box_session/sync`.
 
 .. NOTE::
 

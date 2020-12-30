@@ -46,7 +46,7 @@ The standard example of a simple program.
 console_start.lua
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use :ref:`box.once() <box-once>` to initialize a database
+Use :doc:`box.once() </reference/reference_lua/box_once>` to initialize a database
 (creating spaces) if this is the first time the server has been run.
 Then use :ref:`console.start() <console-start>` to start interactive mode.
 

@@ -2,13 +2,7 @@
 msgid "Submodule `box.tuple`"
 msgstr ""
 
-msgid "Overview"
-msgstr ""
-
 msgid "The ``box.tuple`` submodule provides read-only access for the ``tuple`` userdata type. It allows, for a single :ref:`tuple <index-box_tuple>`: selective retrieval of the field contents, retrieval of information about size, iteration over all the fields, and conversion to a `Lua table <https://www.lua.org/pil/2.5.html>`_."
-msgstr ""
-
-msgid "Index"
 msgstr ""
 
 msgid "Below is a list of all ``box.tuple`` functions."
@@ -20,593 +14,97 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-msgid ":ref:`box.tuple.new() <box_tuple-new>`"
+msgid ":doc:`./box_tuple/new`"
 msgstr ""
 
 msgid "Create a tuple"
 msgstr ""
 
-msgid ":ref:`#tuple_object <box_tuple-count_fields>`"
+msgid ":doc:`./box_tuple/count_fields`"
 msgstr ""
 
 msgid "Count tuple fields"
 msgstr ""
 
-msgid ":ref:`tuple_object:bsize() <box_tuple-bsize>`"
+msgid ":doc:`./box_tuple/bsize`"
 msgstr ""
 
 msgid "Get count of bytes in a tuple"
 msgstr ""
 
-msgid ":ref:`tuple_object[field-number] <box_tuple-field_number>`"
+msgid ":doc:`./box_tuple/field_number`"
 msgstr ""
 
 msgid "Get a tuple's field by specifying a number"
 msgstr ""
 
-msgid ":ref:`tuple_object[field-name] <box_tuple-field_name>`"
+msgid ":doc:`./box_tuple/field_name`"
 msgstr ""
 
 msgid "Get a tuple's field by specifying a name"
 msgstr ""
 
-msgid ":ref:`tuple_object[field-path] <box_tuple-field_path>`"
+msgid ":doc:`./box_tuple/field_path`"
 msgstr ""
 
 msgid "Get a tuple's fields or parts by specifying a path"
 msgstr ""
 
-msgid ":ref:`tuple_object:find() <box_tuple-find>`"
+msgid ":doc:`./box_tuple/find`"
 msgstr ""
 
-msgid "Get the number of the first field matching the search value"
+msgid "Get the number of the first field/all fields matching the search value"
 msgstr ""
 
-msgid ":ref:`tuple_object:findall() <box_tuple-find>`"
-msgstr ""
-
-msgid "Get the number of all fields matching the search value"
-msgstr ""
-
-msgid ":ref:`tuple_object:next() <box_tuple-next>`"
+msgid ":doc:`./box_tuple/next`"
 msgstr ""
 
 msgid "Get the next field value from tuple"
 msgstr ""
 
-msgid ":ref:`tuple_object:ipairs() <box_tuple-pairs>`"
+msgid ":doc:`./box_tuple/pairs`"
 msgstr ""
 
 msgid "Prepare for iterating"
 msgstr ""
 
-msgid ":ref:`tuple_object:pairs() <box_tuple-pairs>`"
-msgstr ""
-
-msgid ":ref:`tuple_object:totable() <box_tuple-totable>`"
+msgid ":doc:`./box_tuple/totable`"
 msgstr ""
 
 msgid "Get a tuple's fields as a table"
 msgstr ""
 
-msgid ":ref:`tuple_object:tomap() <box_tuple-tomap>`"
+msgid ":doc:`./box_tuple/tomap`"
 msgstr ""
 
 msgid "Get a tuple's fields as a table along with key:value pairs"
 msgstr ""
 
-msgid ":ref:`tuple_object:transform() <box_tuple-transform>`"
+msgid ":doc:`./box_tuple/transform`"
 msgstr ""
 
 msgid "Remove (and replace) a tuple's fields"
 msgstr ""
 
-msgid ":ref:`tuple_object:unpack() <box_tuple-unpack>`"
+msgid ":doc:`./box_tuple/unpack`"
 msgstr ""
 
 msgid "Get a tuple's fields"
 msgstr ""
 
-msgid ":ref:`tuple_object:update() <box_tuple-update>`"
+msgid ":doc:`./box_tuple/update`"
 msgstr ""
 
 msgid "Update a tuple"
 msgstr ""
 
-msgid ":ref:`tuple_object:upsert() <box_tuple-upsert>`"
+msgid ":doc:`./box_tuple/upsert`"
 msgstr ""
 
 msgid "Update a tuple ignoring errors"
 msgstr ""
 
-msgid "Construct a new tuple from either a scalar or a Lua table. Alternatively, one can get new tuples from tarantool's :ref:`select <box_space-select>` or :ref:`insert <box_space-insert>` or :ref:`replace <box_space-replace>` or :ref:`update <box_space-update>` requests, which can be regarded as statements that do ``new()`` implicitly."
-msgstr ""
-
-msgid "Parameters"
-msgstr ""
-
-msgid "the value that will become the tuple contents."
-msgstr ""
-
-msgid "return"
-msgstr ""
-
-msgid "a new tuple"
-msgstr ""
-
-msgid "rtype"
-msgstr ""
-
-msgid "tuple"
-msgstr ""
-
-msgid "In the following example, ``x`` will be a new table object containing one tuple and ``t`` will be a new tuple object. Saying ``t`` returns the entire tuple ``t``."
-msgstr ""
-
-msgid "**Example:**"
-msgstr ""
-
-msgid "tarantool> x = box.space.tester:insert{\n"
-"         >   33,\n"
-"         >   tonumber('1'),\n"
-"         >   tonumber64('2')\n"
-"         > }:totable()\n"
-"---\n"
-"...\n"
-"tarantool> t = box.tuple.new{'abc', 'def', 'ghi', 'abc'}\n"
-"---\n"
-"...\n"
-"tarantool> t\n"
-"---\n"
-"- ['abc', 'def', 'ghi', 'abc']\n"
-"..."
-msgstr ""
-
-msgid "The ``#`` operator in Lua means \"return count of components\". So, if ``t`` is a tuple instance, ``#t`` will return the number of fields."
-msgstr ""
-
-msgid "number"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created and then the number of fields in ``t`` is returned."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4'}\n"
-"---\n"
-"...\n"
-"tarantool> #t\n"
-"---\n"
-"- 4\n"
-"..."
-msgstr ""
-
-msgid "If ``t`` is a tuple instance, ``t:bsize()`` will return the number of bytes in the tuple. With both the memtx storage engine and the vinyl storage engine the default maximum is one megabyte (:ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` or :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`). Every field has one or more \"length\" bytes preceding the actual contents, so ``bsize()`` returns a value which is slightly greater than the sum of the lengths of the contents."
-msgstr ""
-
-msgid "The value does not include the size of \"struct tuple\" (for the current size of this structure look in the `tuple.h <https://github.com/tarantool/tarantool/blob/1.10/src/box/tuple.h>`_ file in Tarantool's source code)."
-msgstr ""
-
-msgid "number of bytes"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created which has three fields, and for each field it takes one byte to store the length and three bytes to store the contents, and then there is one more byte to store a count of the number of fields, so ``bsize()`` returns ``3*(1+3)+1``. This is the same as the size of the string that :ref:`msgpack.encode({'aaa','bbb','ccc'}) <msgpack-encode>` would return."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'aaa', 'bbb', 'ccc'}\n"
-"---\n"
-"...\n"
-"tarantool> t:bsize()\n"
-"---\n"
-"- 13\n"
-"..."
-msgstr ""
-
-msgid "If ``t`` is a tuple instance, ``t[field-number]`` will return the field numbered field-number in the tuple. The first field is ``t[1]``."
-msgstr ""
-
-msgid "field value."
-msgstr ""
-
-msgid "lua-value"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created and then the second field in ``t`` is returned."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4'}\n"
-"---\n"
-"...\n"
-"tarantool> t[2]\n"
-"---\n"
-"- Fld#2\n"
-"..."
-msgstr ""
-
-msgid "If ``t`` is a tuple instance, ``t['field-name']`` will return the field named 'field-name' in the tuple. Fields have names if the tuple has been retrieved from a space that has an associated :ref:`format <box_space-format>`."
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is returned from ``replace`` and then the second field in ``t`` named 'field2' is returned."
-msgstr ""
-
-msgid "tarantool> format = {}\n"
-"---\n"
-"...\n"
-"tarantool> format[1] = {name = 'field1', type = 'unsigned'}\n"
-"---\n"
-"...\n"
-"tarantool> format[2] = {name = 'field2', type = 'string'}\n"
-"---\n"
-"...\n"
-"tarantool> s = box.schema.space.create('test', {format = format})\n"
-"---\n"
-"...\n"
-"tarantool> pk = s:create_index('pk')\n"
-"---\n"
-"...\n"
-"tarantool> t = s:replace{1, 'Я'}\n"
-"---\n"
-"...\n"
-"tarantool> t['field2']\n"
-"---\n"
-"- Я\n"
-"..."
-msgstr ""
-
-msgid "If ``t`` is a tuple instance, ``t['path']`` will return the field or subset of fields that are in ``path``. ``path`` must be a well formed JSON specification. ``path`` may contain field names if the tuple has been retrieved from a space that has an associated :ref:`format <box_space-format>`."
-msgstr ""
-
-msgid "To prevent ambiguity, Tarantool first tries to interpret the request as :ref:`tuple_object[field-number] <box_tuple-field_number>` or :ref:`tuple_object[field-name] <box_tuple-field_name>`. If and only if that fails, Tarantool tries to interpret the request as ``tuple_object[field-path]``."
-msgstr ""
-
-msgid "The path must be a well formed JSON specification, but it may be preceded by '.'. The '.' is a signal that the path acts as a suffix for the tuple."
-msgstr ""
-
-msgid "The advantage of specifying a path is that Tarantool will use it to search through a tuple body and get only the tuple part, or parts, that are actually necessary."
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is returned from ``replace`` and then only the relevant part (in this case, matching a name) of a relevant field is returned. Namely: the second field, the sixth part, the value following 'value='."
-msgstr ""
-
-msgid "tarantool> format = {}\n"
-"---\n"
-"...\n"
-"tarantool> format[1] = {name = 'field1', type = 'unsigned'}\n"
-"---\n"
-"...\n"
-"tarantool> format[2] = {name = 'field2', type = 'array'}\n"
-"---\n"
-"...\n"
-"tarantool> format[3] = {name = 'field4', type = 'string' }\n"
-"---\n"
-"...\n"
-"tarantool> format[4] = {name = \"[2][6]['пw']['Я']\", type = 'string'}\n"
-"---\n"
-"...\n"
-"tarantool> s = box.schema.space.create('test', {format = format})\n"
-"---\n"
-"...\n"
-"tarantool> pk = s:create_index('pk')\n"
-"---\n"
-"...\n"
-"tarantool> field2 = {1, 2, 3, \"4\", {5,6,7}, {пw={Я=\"п\"}, key=\"V!\", value=\"K!\"}}\n"
-"---\n"
-"...\n"
-"tarantool> t = s:replace{1, field2, \"123456\", \"Not K!\"}\n"
-"---\n"
-"...\n"
-"tarantool> t[\"[2][6]['value']\"]\n"
-"---\n"
-"- K!\n"
-"..."
-msgstr ""
-
-msgid "If ``t`` is a tuple instance, ``t:find(search-value)`` will return the number of the first field in ``t`` that matches the search value, and ``t:findall(search-value [, search-value ...])`` will return numbers of all fields in ``t`` that match the search value. Optionally one can put a numeric argument ``field-number`` before the search-value to indicate “start searching at field number ``field-number``.”"
-msgstr ""
-
-msgid "the number of the field in the tuple."
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created and then: the number of the first field in ``t`` which matches 'a' is returned, then the numbers of all the fields in ``t`` which match 'a' are returned, then the numbers of all the fields in t which match 'a' and are at or after the second field are returned."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'a', 'b', 'c', 'a'}\n"
-"---\n"
-"...\n"
-"tarantool> t:find('a')\n"
-"---\n"
-"- 1\n"
-"...\n"
-"tarantool> t:findall('a')\n"
-"---\n"
-"- 1\n"
-"- 4\n"
-"...\n"
-"tarantool> t:findall(2, 'a')\n"
-"---\n"
-"- 4\n"
-"..."
-msgstr ""
-
-msgid "An analogue of the Lua ``next()`` function, but for a tuple object. When called without arguments, ``tuple:next()`` returns the first field from a tuple. Otherwise, it returns the field next to the indicated position."
-msgstr ""
-
-msgid "However ``tuple:next()`` is not really efficient, and it is better to use :ref:`tuple:pairs()/ipairs() <box_tuple-pairs>`."
-msgstr ""
-
-msgid "field number and field value"
-msgstr ""
-
-msgid "number and field type"
-msgstr ""
-
-msgid "tarantool> tuple = box.tuple.new({5, 4, 3, 2, 0})\n"
-"---\n"
-"...\n"
-"\n"
-"tarantool> tuple:next()\n"
-"---\n"
-"- 1\n"
-"- 5\n"
-"...\n"
-"\n"
-"tarantool> tuple:next(1)\n"
-"---\n"
-"- 2\n"
-"- 4\n"
-"...\n"
-"\n"
-"tarantool> ctx, field = tuple:next()\n"
-"---\n"
-"...\n"
-"\n"
-"tarantool> while field do\n"
-"         > print(field)\n"
-"         > ctx, field = tuple:next(ctx)\n"
-"         > end\n"
-"5\n"
-"4\n"
-"3\n"
-"2\n"
-"0\n"
-"---\n"
-"..."
-msgstr ""
-
-msgid "In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_ is a method which returns: ``function``, ``lua-table-value``, ``nil``. Tarantool has extended this so that ``tuple-value:pairs()`` returns: ``function``, ``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua iterators traverse a value's components until an end marker is reached."
-msgstr ""
-
-msgid "``tuple_object:ipairs()`` is the same as ``pairs()``, because tuple fields are always integers."
-msgstr ""
-
-msgid "function, tuple-value, nil"
-msgstr ""
-
-msgid "function, lua-value, nil"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created and then all its fields are selected using a Lua for-end loop."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
-"---\n"
-"...\n"
-"tarantool> tmp = ''\n"
-"---\n"
-"...\n"
-"tarantool> for k, v in t:pairs() do\n"
-"         >   tmp = tmp .. v\n"
-"         > end\n"
-"---\n"
-"...\n"
-"tarantool> tmp\n"
-"---\n"
-"- Fld#1Fld#2Fld#3Fld#4Fld#5\n"
-"..."
-msgstr ""
-
-msgid "If ``t`` is a tuple instance, ``t:totable()`` will return all fields, ``t:totable(1)`` will return all fields starting with field number 1, ``t:totable(1,5)`` will return all fields between field number 1 and field number 5."
-msgstr ""
-
-msgid "It is preferable to use ``t:totable()`` rather than ``t:unpack()``."
-msgstr ""
-
-msgid "field(s) from the tuple"
-msgstr ""
-
-msgid "lua-table"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created, then all its fields are selected, then the result is returned."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
-"---\n"
-"...\n"
-"tarantool> t:totable()\n"
-"---\n"
-"- ['Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5']\n"
-"..."
-msgstr ""
-
-msgid "A `Lua table <https://www.lua.org/pil/2.5.html>`_ can have indexed values, also called key:value pairs. For example, here:"
-msgstr ""
-
-msgid "a = {}; a['field1'] = 10; a['field2'] = 20"
-msgstr ""
-
-msgid "``a`` is a table with \"field1: 10\" and \"field2: 20\"."
-msgstr ""
-
-msgid "The :ref:`tuple_object:totable() <box_tuple-totable>` function only returns a table containing the values. But the ``tuple_object:tomap()`` function returns a table containing not only the values, but also the key:value pairs."
-msgstr ""
-
-msgid "This only works if the tuple comes from a space that has been formatted with a :ref:`format clause <box_space-format>`."
-msgstr ""
-
-msgid "the only possible option is ``names_only``.  If ``names_only`` is false or omitted (default), then all the fields will appear twice, first with numeric headings and second with name headings.  If ``names_only`` is true, then all the fields will appear only once, with name headings."
-msgstr ""
-
-msgid "the only possible option is ``names_only``."
-msgstr ""
-
-msgid "If ``names_only`` is false or omitted (default), then all the fields will appear twice, first with numeric headings and second with name headings."
-msgstr ""
-
-msgid "If ``names_only`` is true, then all the fields will appear only once, with name headings."
-msgstr ""
-
-msgid "field-number:value pair(s) and key:value pair(s) from the tuple"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t1`` is returned from a space that has been formatted, then tables named ``t1map1`` and ``t1map2`` are produced from ``t1``."
-msgstr ""
-
-msgid "format = {{'field1', 'unsigned'}, {'field2', 'unsigned'}}\n"
-"s = box.schema.space.create('test', {format = format})\n"
-"s:create_index('pk',{parts={1,'unsigned',2,'unsigned'}})\n"
-"t1 = s:insert{10, 20}\n"
-"t1map = t1:tomap()\n"
-"t1map_names_only = t1:tomap({names_only=true})"
-msgstr ""
-
-msgid "``t1map`` will contain \"1: 10\", \"2: 20\", \"field1: 10\", \"field2: 20\"."
-msgstr ""
-
-msgid "``t1map_names_only`` will contain \"field1: 10\", \"field2: 20\"."
-msgstr ""
-
-msgid "If ``t`` is a tuple instance, :samp:`t:transform({start-field-number},{fields-to-remove})` will return a tuple where, starting from field ``start-field-number``, a number of fields (``fields-to-remove``) are removed. Optionally one can add more arguments after ``fields-to-remove`` to indicate new values that will replace what was removed."
-msgstr ""
-
-msgid "If the original tuple comes from a space that has been formatted with a :ref:`format clause <box_space-format>`, the formatting will not be preserved for the result tuple."
-msgstr ""
-
-msgid "base 1, may be negative"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created and then, starting from the second field, two fields are removed but one new one is added, then the result is returned."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
-"---\n"
-"...\n"
-"tarantool> t:transform(2, 2, 'x')\n"
-"---\n"
-"- ['Fld#1', 'x', 'Fld#4', 'Fld#5']\n"
-"..."
-msgstr ""
-
-msgid "If ``t`` is a tuple instance, ``t:unpack()`` will return all fields, ``t:unpack(1)`` will return all fields starting with field number 1, ``t:unpack(1,5)`` will return all fields between field number 1 and field number 5."
-msgstr ""
-
-msgid "field(s) from the tuple."
-msgstr ""
-
-msgid "lua-value(s)"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created and then all its fields are selected, then the result is returned."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
-"---\n"
-"...\n"
-"tarantool> t:unpack()\n"
-"---\n"
-"- Fld#1\n"
-"- Fld#2\n"
-"- Fld#3\n"
-"- Fld#4\n"
-"- Fld#5\n"
-"..."
-msgstr ""
-
-msgid "Update a tuple."
-msgstr ""
-
-msgid "This function updates a tuple which is not in a space. Compare the function :extsamp:`box.space.{*{space-name}*}:update({*{key}*}, {{{*{format}*}, {*{field_no}*}, {*{value}*}}, ...})` which updates a tuple in a space."
-msgstr ""
-
-msgid "For details: see the description for ``operator``, ``field_no``, and ``value`` in the section :ref:`box.space.space-name:update{key, format, {field_number, value}...) <box_space-update>`."
-msgstr ""
-
-msgid "If the original tuple comes from a space that has been formatted with a :ref:`format clause <box_space-format>`, the formatting will be preserved for the result tuple."
-msgstr ""
-
-msgid "operation type represented in string (e.g. '``=``' for 'assign new value')"
-msgstr ""
-
-msgid "what field the operation will apply to. The field number can be negative, meaning the position from the end of tuple. (#tuple + negative field number + 1)"
-msgstr ""
-
-msgid "what value will be applied"
-msgstr ""
-
-msgid "new tuple"
-msgstr ""
-
-msgid "In the following example, a tuple named ``t`` is created and then its second field is updated to equal 'B'."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
-"---\n"
-"...\n"
-"tarantool> t:update({{'=', 2, 'B'}})\n"
-"---\n"
-"- ['Fld#1', 'B', 'Fld#3', 'Fld#4', 'Fld#5']\n"
-"..."
-msgstr ""
-
-msgid "The same as ``tuple_object:update()``, but ignores errors. In case of an error the tuple is left intact, but an error message is printed. Only client errors are ignored, such as a bad field type, or wrong field index/name. System errors, such as OOM, are not ignored and raised just like with a normal ``update()``. Note that only bad operations are ignored. All correct operations are applied."
-msgstr ""
-
-msgid "operation type represented as a string (e.g. '``=``' for 'assign new value')"
-msgstr ""
-
-msgid "the field to which the operation will be applied. The field number can be negative, meaning the position from the end of tuple. (#tuple + negative field number + 1)"
-msgstr ""
-
-msgid "the value which will be applied"
-msgstr ""
-
-msgid "See the following example where one operation is applied, and one is not."
-msgstr ""
-
-msgid "tarantool> t = box.tuple.new({1, 2, 3})\n"
-"tarantool> t2 = t:upsert({{'=', 5, 100}})\n"
-"UPSERT operation failed:\n"
-"ER_NO_SUCH_FIELD_NO: Field 5 was not found in the tuple\n"
-"---\n"
-"...\n"
-"\n"
-"tarantool> t\n"
-"---\n"
-"- [1, 2, 3]\n"
-"...\n"
-"\n"
-"tarantool> t2\n"
-"---\n"
-"- [1, 2, 3]\n"
-"...\n"
-"\n"
-"tarantool> t2 = t:upsert({{'=', 5, 100}, {'+', 1, 3}})\n"
-"UPSERT operation failed:\n"
-"ER_NO_SUCH_FIELD_NO: Field 5 was not found in the tuple\n"
-"---\n"
-"...\n"
-"\n"
-"tarantool> t\n"
-"---\n"
-"- [1, 2, 3]\n"
-"...\n"
-"\n"
-"tarantool> t2\n"
-"---\n"
-"- [4, 2, 3]\n"
-"..."
-msgstr ""
-
-msgid "Example"
+msgid "How to convert tuples to/from Lua tables"
 msgstr ""
 
 msgid "This function will illustrate how to convert tuples to/from Lua tables and lists of scalars:"

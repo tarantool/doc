@@ -1,0 +1,33 @@
+
+msgid "box.error.new()"
+msgstr ""
+
+msgid "Create an error object, but do not throw. This is useful when error information should be saved for later retrieval. The parameters are the same as for :doc:`/reference/reference_lua/box_error/error`, see the description there."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "number of a pre-defined error"
+msgstr ""
+
+msgid "part of the message which will accompany the error"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}\n"
+"---\n"
+"...\n"
+"tarantool> e:unpack()\n"
+"---\n"
+"- type: ClientError\n"
+"  code: 555\n"
+"  message: Arbitrary message\n"
+"  trace:\n"
+"  - file: '[string \"e = box.error.new{code = 555, reason = ''Arbit...\"]'\n"
+"    line: 1\n"
+"..."
+msgstr ""
+

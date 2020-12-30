@@ -1,0 +1,340 @@
+
+msgid "space_object:create_index()"
+msgstr ""
+
+msgid "Create an :ref:`index <index-box_index>`. It is mandatory to create an index for a space before trying to insert tuples into it, or select tuples from it. The first created index, which will be used as the primary-key index, must be unique."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+msgid "name of index, which should conform to the :ref:`rules for object names <app_server-names>`"
+msgstr ""
+
+msgid "see \"Options for space_object:create_index()\", below"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "index object"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "index_object"
+msgstr ""
+
+msgid "**Options for space_object:create_index()**"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Effect"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "type"
+msgstr ""
+
+msgid "type of index"
+msgstr ""
+
+msgid "string ('HASH' or 'TREE' or 'BITSET' or 'RTREE') Note re storage engine: vinyl only supports 'TREE'"
+msgstr ""
+
+msgid "'TREE'"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "unique identifier"
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+msgid "last index's id, +1"
+msgstr ""
+
+msgid "unique"
+msgstr ""
+
+msgid "index is unique"
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid "``true``"
+msgstr ""
+
+msgid "if_not_exists"
+msgstr ""
+
+msgid "no error if duplicate name"
+msgstr ""
+
+msgid "``false``"
+msgstr ""
+
+msgid "parts"
+msgstr ""
+
+msgid "field-numbers  + types"
+msgstr ""
+
+msgid "{field_no, 'unsigned' or 'string' or 'integer' or 'number' or 'boolean' or 'array' or 'scalar', and optional collation, and optional is_nullable value}"
+msgstr ""
+
+msgid "``{1, 'unsigned'}``"
+msgstr ""
+
+msgid "dimension"
+msgstr ""
+
+msgid "affects :ref:`RTREE <box_index-rtree>` only"
+msgstr ""
+
+msgid "2"
+msgstr ""
+
+msgid "distance"
+msgstr ""
+
+msgid "affects RTREE only"
+msgstr ""
+
+msgid "string ('euclid' or 'manhattan')"
+msgstr ""
+
+msgid "'euclid'"
+msgstr ""
+
+msgid "bloom_fpr"
+msgstr ""
+
+msgid "affects vinyl only"
+msgstr ""
+
+msgid "``vinyl_bloom_fpr``"
+msgstr ""
+
+msgid "page_size"
+msgstr ""
+
+msgid "``vinyl_page_size``"
+msgstr ""
+
+msgid "range_size"
+msgstr ""
+
+msgid "``vinyl_range_size``"
+msgstr ""
+
+msgid "run_count_per_level"
+msgstr ""
+
+msgid "``vinyl_run_count_per_level``"
+msgstr ""
+
+msgid "run_size_ratio"
+msgstr ""
+
+msgid "``vinyl_run_size_ratio``"
+msgstr ""
+
+msgid "sequence"
+msgstr ""
+
+msgid "see section regarding :ref:`specifying a sequence in create_index() <box_schema-sequence_create_index>`"
+msgstr ""
+
+msgid "string or number"
+msgstr ""
+
+msgid "not present"
+msgstr ""
+
+msgid "The options in the above chart are also applicable for :doc:`/reference/reference_lua/box_index/alter`."
+msgstr ""
+
+msgid "**Note re storage engine:** vinyl has extra options which by default are based on configuration parameters :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`, :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`, :ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`, :ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>`, and :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>` -- see the description of those parameters. The current values can be seen by selecting from :ref:`box.space._index <box_space-index>`."
+msgstr ""
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "too many parts;"
+msgstr ""
+
+msgid "index '...' already exists;"
+msgstr ""
+
+msgid "primary key must be unique."
+msgstr ""
+
+msgid "tarantool> s = box.space.tester\n"
+"---\n"
+"...\n"
+"tarantool> s:create_index('primary', {unique = true, parts = { {field = 1, type = 'unsigned'}, {field = 2, type = 'string'}} })\n"
+"---\n"
+"..."
+msgstr ""
+
+msgid "**Details about index field types:**"
+msgstr ""
+
+msgid "The seven index field types (unsigned | string | integer | number | boolean | array | scalar) differ depending on what values are allowed, and what index types are allowed."
+msgstr ""
+
+msgid "**unsigned**: unsigned integers between 0 and 18446744073709551615, about 18 quintillion. May also be called 'uint' or 'num', but 'num' is deprecated. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
+msgstr ""
+
+msgid "**string**: any set of octets, up to the :ref:`maximum length <limitations_bytes_in_index_key>`. May also be called 'str'. Legal in memtx TREE or HASH or BITSET indexes, and in vinyl TREE indexes. A string may have a :ref:`collation <index-collation>`."
+msgstr ""
+
+msgid "**integer**: integers between -9223372036854775808 and 18446744073709551615. May also be called 'int'. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
+msgstr ""
+
+msgid "**number**: integers between -9223372036854775808 and 18446744073709551615, single-precision floating point numbers, or double-precision floating point numbers. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
+msgstr ""
+
+msgid "**boolean**: true or false. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
+msgstr ""
+
+msgid "**array**: array of numbers. Legal in memtx :ref:`RTREE <box_index-rtree>` indexes."
+msgstr ""
+
+msgid "**scalar**: booleans (true or false), or integers between -9223372036854775808 and 18446744073709551615, or single-precision floating point numbers, or double-precison floating-point numbers, or strings. When there is a mix of types, the key order is: booleans, then numbers, then strings. Legal in memtx TREE or HASH indexes, and in vinyl TREE indexes."
+msgstr ""
+
+msgid "Additionally, `nil` is allowed with any index field type if :ref:`is_nullable=true <box_space-is_nullable>` is specified."
+msgstr ""
+
+msgid "**Index field types to use in space_object:create_index()**"
+msgstr ""
+
+msgid "Index field type"
+msgstr ""
+
+msgid "What can be in it"
+msgstr ""
+
+msgid "Where is it legal"
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "**unsigned**"
+msgstr ""
+
+msgid "integers between 0 and 18446744073709551615"
+msgstr ""
+
+msgid "memtx TREE or HASH indexes, |br| vinyl TREE indexes"
+msgstr ""
+
+msgid "123456 |br|"
+msgstr ""
+
+msgid "**string**"
+msgstr ""
+
+msgid "strings -- any set of octets"
+msgstr ""
+
+msgid "memtx TREE or HASH indexes |br| vinyl TREE indexes"
+msgstr ""
+
+msgid "'A B C' |br| '\\\\65 \\\\66 \\\\67'"
+msgstr ""
+
+msgid "**integer**"
+msgstr ""
+
+msgid "integers between -9223372036854775808 and 18446744073709551615"
+msgstr ""
+
+msgid "-2^63 |br|"
+msgstr ""
+
+msgid "**number**"
+msgstr ""
+
+msgid "integers between -9223372036854775808 and 18446744073709551615, single-precision floating point numbers, double-precision floating point numbers"
+msgstr ""
+
+msgid "1.234 |br| -44 |br| 1.447e+44"
+msgstr ""
+
+msgid "**boolean**"
+msgstr ""
+
+msgid "true or false"
+msgstr ""
+
+msgid "false |br| true"
+msgstr ""
+
+msgid "**array**"
+msgstr ""
+
+msgid "array of integers between -9223372036854775808 and 9223372036854775807"
+msgstr ""
+
+msgid "memtx RTREE indexes"
+msgstr ""
+
+msgid "{10, 11} |br| {3, 5, 9, 10}"
+msgstr ""
+
+msgid "**scalar**"
+msgstr ""
+
+msgid "booleans (true or false), integers between -9223372036854775808 and 18446744073709551615, single-precision floating point numbers, double-precision floating point numbers, strings"
+msgstr ""
+
+msgid "true |br| -1 |br| 1.234 |br| '' |br| 'ру'"
+msgstr ""
+
+msgid "**Allowing null for an indexed key:** If the index type is TREE, and the index is not the primary index, then the ``parts={...}`` clause may include ``is_nullable=true`` or ``is_nullable=false`` (the default). If ``is_nullable`` is true, then it is legal to insert ``nil`` or an equivalent such as ``msgpack.NULL`` (or it is legal to insert nothing at all for trailing nullable fields). Within indexes, such \"null values\" are always treated as equal to other null values, and are always treated as less than non-null values. Nulls may appear multiple times even in a unique index. Example:"
+msgstr ""
+
+msgid "box.space.tester:create_index('I',{unique=true,parts={{2,'number',is_nullable=true}}})"
+msgstr ""
+
+msgid "It is legal to create multiple indexes for the same field with different ``is_nullable`` values, or to call :ref:`space_object:format() <box_space-format>` with a different ``is_nullable`` value from what is used for an index. When there is a contradiction, the rule is: null is illegal unless ``is_nullable=true`` for every index and for the space format."
+msgstr ""
+
+msgid "**Using field names instead of field numbers:** ``create_index()`` can use field names and/or field types described by the optional :ref:`space_object:format() <box_space-format>` clause. In the following example, we show ``format()`` for a space that has two columns named 'x' and 'y', and then we show five variations of the ``parts={}`` clause of ``create_index()``, first for the 'x' column, second for both the 'x' and 'y' columns. The variations include omitting the type, using numbers, and adding extra braces."
+msgstr ""
+
+msgid "box.space.tester:format({{name='x', type='scalar'}, {name='y', type='integer'}})\n"
+"box.space.tester:create_index('I2',{parts={{'x','scalar'}}})\n"
+"box.space.tester:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})\n"
+"box.space.tester:create_index('I4',{parts={1,'scalar'}})\n"
+"box.space.tester:create_index('I5',{parts={1,'scalar',2,'integer'}})\n"
+"box.space.tester:create_index('I6',{parts={1}})\n"
+"box.space.tester:create_index('I7',{parts={1,2}})\n"
+"box.space.tester:create_index('I8',{parts={'x'}})\n"
+"box.space.tester:create_index('I9',{parts={'x','y'}})\n"
+"box.space.tester:create_index('I10',{parts={{'x'}}})\n"
+"box.space.tester:create_index('I11',{parts={{'x'},{'y'}}})"
+msgstr ""
+
+msgid "**Note re storage engine:** vinyl supports only the TREE index type, and vinyl secondary indexes must be created before tuples are inserted."
+msgstr ""
+

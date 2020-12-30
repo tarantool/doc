@@ -32,7 +32,7 @@
     :return: NULL on out of memory
     :return: tuple otherwise
 
-    See also: :ref:`box.tuple.new()<box_tuple-new>`
+    See also: :doc:`/reference/reference_lua/box_tuple/new`
 
     .. WARNING::
 

@@ -135,8 +135,8 @@ Now go back to the client and execute these requests:
 
 If these requests appear unfamiliar,
 re-read the descriptions of
-:ref:`box.schema.func.create() <box_schema-func_create>`,
-:ref:`box.schema.user.grant() <box_schema-user_grant>`
+:doc:`/reference/reference_lua/box_schema/func_create`,
+:doc:`/reference/reference_lua/box_schema/user_grant`
 and :ref:`conn:call() <net_box-call>`.
 
 The function that matters is ``capi_connection:call('easy')``.
@@ -532,7 +532,7 @@ So C "stored procedures" have full access to the database.
 **Cleaning up**
 
 * Get rid of each of the function tuples with
-  :ref:`box.schema.func.drop <box_schema-func_drop>`.
+  :doc:`/reference/reference_lua/box_schema/func_drop`.
 * Get rid of the ``capi_test`` space with
   :ref:`box.schema.capi_test:drop() <box_space-drop>`.
 * Remove the ``.c`` and ``.so`` files that were created for this

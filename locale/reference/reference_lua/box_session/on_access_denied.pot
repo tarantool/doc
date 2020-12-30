@@ -1,0 +1,57 @@
+
+msgid "box.session.on_access_denied()"
+msgstr ""
+
+msgid "Define a trigger for reacting to user's attempts to execute actions that are not within the user's privileges."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "function which will become the trigger function"
+msgstr ""
+
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil or function pointer"
+msgstr ""
+
+msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
+msgstr ""
+
+msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
+msgstr ""
+
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "For example, server administrator can log restricted actions like this:"
+msgstr ""
+
+msgid "tarantool> function on_access_denied(op, type, name)\n"
+"         > log.warn('User %s tried to %s %s %s without required privileges', box.session.user(), op, type, name)\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> box.session.on_access_denied(on_access_denied)\n"
+"---\n"
+"- 'function: 0x011b41af38'\n"
+"...\n"
+"tarantool> function test() print('you shall not pass') end\n"
+"---\n"
+"...\n"
+"tarantool> box.schema.func.create('test')\n"
+"---\n"
+"..."
+msgstr ""
+
+msgid "Then, when some user without required privileges tries to call ``test()`` and gets the error, the server will execute this trigger and write to log **\"User *user_name* tried to Execute function test without required privileges\"**"
+msgstr ""
+

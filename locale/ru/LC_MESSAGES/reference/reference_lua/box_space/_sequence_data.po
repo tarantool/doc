@@ -1,0 +1,23 @@
+
+msgid "box.space._sequence_data"
+msgstr ""
+
+msgid ""
+"``_sequence_data`` is a system space for support of the :ref:`sequence "
+"feature <index-box_sequence>`."
+msgstr ""
+"``_sequence_data`` -- это системный спейс для поддержки "
+":ref:`последовательностей <index-box_sequence>`."
+
+msgid "Each tuple in ``_sequence_data`` contains two fields:"
+msgstr "Каждый кортеж в спейсе ``_sequence_data`` содержит два поля:"
+
+msgid "the id of the sequence, and"
+msgstr "идентификатор последовательности и"
+
+msgid ""
+"the last value that the sequence generator returned (non-persistent "
+"information)."
+msgstr ""
+"последнее значение, возвращенное генератором последовательностей "
+"(временная информация)."

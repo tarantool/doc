@@ -193,7 +193,7 @@ This is not a count of bloom filter "hits"
 (the number of reads that could be avoided because the
 bloom filter predicts their presence in a run file) --
 that statistic can be found with
-:ref:`index_object:stat() <box_index-stat>`.
+:doc:`/reference/reference_lua/box_index/stat`.
 
 .. _box_introspection-box_stat_vinyl_tx:
 
@@ -210,7 +210,7 @@ This is about requests that affect transactional activity
 * ``box.stat.vinyl().tx.rollback``
   is the count of rollbacks (unsuccessful transaction ends).
   This is not merely a count of explicit
-  :ref:`box.rollback <box-rollback>` requests --
+  :doc:`/reference/reference_lua/box_txn_management/rollback` requests --
   it includes requests that ended in errors.
   For example, after an attempted insert request that causes
   a "Duplicate key exists in unique index" error, ``tx.rollback``
@@ -235,7 +235,7 @@ for dumping or compaction:
 
 * ``box.stat.vinyl().scheduler.compaction_*``
   is the amount of data from recent changes that has been
-  :ref:`compacted <box_index-compact>`.
+  :doc:`compacted </reference/reference_lua/box_index/compact>`.
   This is divided into ``scheduler.compaction_input`` (the amount that is being
   compacted), ``scheduler.compaction_queue`` (the amount that is waiting to be
   compacted),
@@ -271,4 +271,5 @@ for dumping or compaction:
   dump is not already in progress. In fact Tarantool will
   try to arrange a dump before this hard limit is reached.
 
-  A dump will also occur during a  :ref:`snapshot <box-snapshot>` operation.
+  A dump will also occur during a
+  :doc:`snapshot </reference/reference_lua/box_snapshot>` operation.

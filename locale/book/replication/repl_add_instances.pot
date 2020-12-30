@@ -180,7 +180,7 @@ msgstr ""
 msgid "Abort and throw an error if not connected to all nodes in ``box.cfg.replication`` or :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`."
 msgstr ""
 
-msgid "This instance might be elected as the replica set 'leader'. Criteria for electing a leader include vclock value (largest is best), and whether it is read-only or read-write (read-write is best unless there is no other choice). The leader is the master that other instances must join. The leader is the master that executes :ref:`box_once() <box-once>` functions."
+msgid "This instance might be elected as the replica set 'leader'. Criteria for electing a leader include vclock value (largest is best), and whether it is read-only or read-write (read-write is best unless there is no other choice). The leader is the master that other instances must join. The leader is the master that executes :doc:`box.once() </reference/reference_lua/box_once>` functions."
 msgstr ""
 
 msgid "If this instance is elected as the replica set leader, then perform an \"automatic bootstrap\":"
