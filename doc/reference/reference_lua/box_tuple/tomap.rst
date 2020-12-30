@@ -21,7 +21,7 @@ tuple_object:tomap()
 
         ``a`` is a table with "field1: 10" and "field2: 20".
 
-        The :ref:`tuple_object:totable() <box_tuple-totable>`
+        The :doc:`/reference/reference_lua/box_tuple/totable`
         function only returns a table containing the values.
         But the ``tuple_object:tomap()`` function returns a table containing
         not only the values, but also the key:value pairs.

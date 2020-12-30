@@ -16,7 +16,8 @@ tuple_object:next()
         from a tuple. Otherwise, it returns the field next to the indicated position.
 
         However ``tuple:next()`` is not really efficient, and it is better
-        to use :ref:`tuple:pairs()/ipairs() <box_tuple-pairs>`.
+        to use
+        :doc:`tuple:pairs()/ipairs() </reference/reference_lua/box_tuple/pairs>`.
 
         :return: field number and field value
         :rtype:  number and field type

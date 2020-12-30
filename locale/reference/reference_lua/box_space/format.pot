@@ -130,7 +130,7 @@ msgid "tarantool> box.schema.space.create('t')\n"
 "..."
 msgstr ""
 
-msgid "Names specified with the format clause can be used in :ref:`space_object:get() <box_space-get>` and in :ref:`space_object:create_index() <box_space-create_index>` and in :ref:`tuple_object[field-name] <box_tuple-field_name>` and in :ref:`tuple_object[field-path] <box_tuple-field_path>`."
+msgid "Names specified with the format clause can be used in :ref:`space_object:get() <box_space-get>` and in :ref:`space_object:create_index() <box_space-create_index>` and in :doc:`/reference/reference_lua/box_tuple/field_name` and in :doc:`/reference/reference_lua/box_tuple/field_path`"
 msgstr ""
 
 msgid "If the format clause is omitted, then the returned value is the table that was used in a previous :samp:`{space_object}:format({format-clause})` invocation. For example, after ``box.space.tester:format({{'x','scalar'}})``, ``box.space.tester:format()`` will return ``[{'name': 'x', 'type': 'scalar'}]``."

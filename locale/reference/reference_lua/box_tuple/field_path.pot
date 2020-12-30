@@ -5,7 +5,7 @@ msgstr ""
 msgid "If ``t`` is a tuple instance, ``t['path']`` will return the field or subset of fields that are in ``path``. ``path`` must be a well formed JSON specification. ``path`` may contain field names if the tuple has been retrieved from a space that has an associated :ref:`format <box_space-format>`."
 msgstr ""
 
-msgid "To prevent ambiguity, Tarantool first tries to interpret the request as :ref:`tuple_object[field-number] <box_tuple-field_number>` or :ref:`tuple_object[field-name] <box_tuple-field_name>`. If and only if that fails, Tarantool tries to interpret the request as ``tuple_object[field-path]``."
+msgid "To prevent ambiguity, Tarantool first tries to interpret the request as :doc:`/reference/reference_lua/box_tuple/field_number` or :doc:`/reference/reference_lua/box_tuple/field_name`. If and only if that fails, Tarantool tries to interpret the request as ``tuple_object[field-path]``."
 msgstr ""
 
 msgid "The path must be a well formed JSON specification, but it may be preceded by '.'. The '.' is a signal that the path acts as a suffix for the tuple."

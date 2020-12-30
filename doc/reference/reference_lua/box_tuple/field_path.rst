@@ -17,8 +17,8 @@ tuple_object[field-path]
         been retrieved from a space that has an associated :ref:`format <box_space-format>`.
 
         To prevent ambiguity, Tarantool first tries to interpret the
-        request as :ref:`tuple_object[field-number] <box_tuple-field_number>`
-        or :ref:`tuple_object[field-name] <box_tuple-field_name>`.
+        request as :doc:`/reference/reference_lua/box_tuple/field_number`
+        or :doc:`/reference/reference_lua/box_tuple/field_name`.
         If and only if that fails, Tarantool tries to interpret the request
         as ``tuple_object[field-path]``.
 

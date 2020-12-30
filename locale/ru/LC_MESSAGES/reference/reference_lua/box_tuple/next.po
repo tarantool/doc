@@ -13,10 +13,11 @@ msgstr ""
 
 msgid ""
 "However ``tuple:next()`` is not really efficient, and it is better to use"
-" :ref:`tuple:pairs()/ipairs() <box_tuple-pairs>`."
+" :doc:`tuple:pairs()/ipairs() "
+"</reference/reference_lua/box_tuple/pairs>`."
 msgstr ""
 "Однако ``tuple:next()`` не очень эффективен, и лучше использовать "
-":ref:`tuple:pairs()/ipairs() <box_tuple-pairs>`."
+":doc:`tuple:pairs()/ipairs() </reference/reference_lua/box_tuple/pairs>`."
 
 msgid "return"
 msgstr "возвращает"
