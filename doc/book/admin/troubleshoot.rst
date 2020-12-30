@@ -314,3 +314,379 @@ recommend to optimize your Tarantool application code).
 
 If the value is greater than 0.01, your application definitely needs thorough
 code analysis aimed at optimizing memory usage.
+
+.. _admin-troubleshoot-finalizer_yielding:
+
+--------------------------------------------------------------------------------
+Problem: Fiber switch is forbidden in ``__gc`` metamethod
+--------------------------------------------------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+Problem description
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Fiber switch is forbidden in ``__gc`` metamethod since `this change <https://github.com/tarantool/tarantool/issues/4518#issuecomment-704259323>`_
+to avoid unexpected Lua OOM.
+However, one may need to use a yielding function to finalize resources,
+for example, to close a socket.
+
+Below are examples of proper implementing such a procedure.
+
+~~~~~~~~~~~~~~~~
+Solution
+~~~~~~~~~~~~~~~~
+
+First, there come two simple examples illustrating the logic of the
+solution:
+
+* :ref:`Example 1 <finalizer_yielding_example1>`
+* :ref:`Example 2 <finalizer_yielding_example2>`.
+
+Next comes the :ref:`Example 3 <finalizer_yielding_example3>` illustrating
+the usage of the ``sched.lua`` module that is the recommended method.
+
+All the explanations are given in the comments in the code listing.
+``-- >`` indicates the output in console.
+
+.. _finalizer_yielding_example1:
+
+**Example 1**
+
+Implementing a valid finalizer for a particular FFI type (``custom_t``).
+
+.. code-block:: lua
+
+    local ffi = require('ffi')
+    local fiber = require('fiber')
+
+    ffi.cdef('struct custom { int a; };')
+
+    local function __custom_gc(self)
+      print(("Entered custom GC finalizer for %s... (before yield)"):format(self.a))
+      fiber.yield()
+      print(("Leaving custom GC finalizer for %s... (after yield)"):format(self.a))
+    end
+
+    local custom_t = ffi.metatype('struct custom', {
+      __gc = function(self)
+        -- XXX: Do not invoke yielding functions in __gc metamethod.
+        -- Create a new fiber to run after the execution leaves
+        -- this routine.
+        fiber.new(__custom_gc, self)
+        print(("Finalization is scheduled for %s..."):format(self.a))
+      end
+    })
+
+    -- Create a cdata object of <custom_t> type.
+    local c = custom_t(42)
+
+    -- Remove a single reference to that object to make it subject
+    -- for GC.
+    c = nil
+
+    -- Run full GC cycle to purge the unreferenced object.
+    collectgarbage('collect')
+    -- > Finalization is scheduled for 42...
+
+    -- XXX: There is no finalization made until the running fiber
+    -- yields its execution. Let's do it now.
+    fiber.yield()
+    -- > Entered custom GC finalizer for 42... (before yield)
+    -- > Leaving custom GC finalizer for 42... (after yield)
+
+.. _finalizer_yielding_example2:
+
+**Example 2**
+
+Implementing a valid finalizer for a particular user type (``struct custom``).
+
+``custom.c``
+
+.. code-block:: c
+
+    #include <lauxlib.h>
+    #include <lua.h>
+    #include <module.h>
+    #include <stdio.h>
+
+    struct custom {
+      int a;
+    };
+
+    const char *CUSTOM_MTNAME = "CUSTOM_MTNAME";
+
+    /*
+     * XXX: Do not invoke yielding functions in __gc metamethod.
+     * Create a new fiber to be run after the execution leaves
+     * this routine. Unfortunately we can't pass the parameters to the
+     * routine to be executed by the created fiber via <fiber_new_ex>.
+     * So there is a workaround to load the Lua code below to create
+     * __gc metamethod passing the object for finalization via Lua
+     * stack to the spawned fiber.
+     */
+    const char *gc_wrapper_constructor = " local fiber = require('fiber')         "
+                 " print('constructor is initialized')    "
+                 " return function(__custom_gc)           "
+                 "   print('constructor is called')       "
+                 "   return function(self)                "
+                 "     print('__gc is called')            "
+                 "     fiber.new(__custom_gc, self)       "
+                 "     print('Finalization is scheduled') "
+                 "   end                                  "
+                 " end                                    "
+            ;
+
+    int custom_gc(lua_State *L) {
+      struct custom *self = luaL_checkudata(L, 1, CUSTOM_MTNAME);
+      printf("Entered custom_gc for %d... (before yield)\n", self->a);
+      fiber_sleep(0);
+      printf("Leaving custom_gc for %d... (after yield)\n", self->a);
+      return 0;
+    }
+
+    int custom_new(lua_State *L) {
+      struct custom *self = lua_newuserdata(L, sizeof(struct custom));
+      luaL_getmetatable(L, CUSTOM_MTNAME);
+      lua_setmetatable(L, -2);
+      self->a = lua_tonumber(L, 1);
+      return 1;
+    }
+
+    static const struct luaL_Reg libcustom_methods [] = {
+      { "new", custom_new },
+      { NULL, NULL }
+    };
+
+    int luaopen_custom(lua_State *L) {
+      int rc;
+
+      /* Create metatable for struct custom type */
+      luaL_newmetatable(L, CUSTOM_MTNAME);
+      /*
+       * Run the constructor initializer for GC finalizer:
+       * - load fiber module as an upvalue for GC finalizer
+       *   constructor
+       * - return GC finalizer constructor on the top of the
+       *   Lua stack
+       */
+      rc = luaL_dostring(L, gc_wrapper_constructor);
+      /*
+       * Check whether constructor is initialized (i.e. neither
+       * syntax nor runtime error is raised).
+       */
+      if (rc != LUA_OK)
+        luaL_error(L, "test module loading failed: constructor init");
+      /*
+       * Create GC object for <custom_gc> function to be called
+       * in scope of the GC finalizer and push it on top of the
+       * constructor returned before.
+       */
+      lua_pushcfunction(L, custom_gc);
+      /*
+       * Run the constructor with <custom_gc> GCfunc object as
+       * a single argument. As a result GC finalizer is returned
+       * on the top of the Lua stack.
+       */
+      rc = lua_pcall(L, 1, 1, 0);
+      /*
+       * Check whether GC finalizer is created (i.e. neither
+       * syntax nor runtime error is raised).
+       */
+      if (rc != LUA_OK)
+        luaL_error(L, "test module loading failed: __gc init");
+      /*
+       * Assign the returned function as a __gc metamethod to
+       * custom type metatable.
+       */
+      lua_setfield(L, -2, "__gc");
+
+      /*
+       * Initialize Lua table for custom module and fill it
+       * with the custom methods.
+       */
+      lua_newtable(L);
+      luaL_register(L, NULL, libcustom_methods);
+      return 1;
+    }
+
+``custom_c.lua``
+
+.. code-block:: lua
+
+    -- Load custom Lua C extension.
+    local custom = require('custom')
+    -- > constructor is initialized
+    -- > constructor is called
+
+    -- Create a userdata object of <struct custom> type.
+    local c = custom.new(9)
+
+    -- Remove a single reference to that object to make it subject
+    -- for GC.
+    c = nil
+
+    -- Run full GC cycle to purge the unreferenced object.
+    collectgarbage('collect')
+    -- > __gc is called
+    -- > Finalization is scheduled
+
+    -- XXX: There is no finalization made until the running fiber
+    -- yields its execution. Let's do it now.
+    require('fiber').yield()
+    -- > Entered custom_gc for 9... (before yield)
+
+    -- XXX: Finalizer yields the execution, so now we are here.
+    print('We are here')
+    -- > We are here
+
+    -- XXX: This fiber finishes its execution, so yield to the
+    -- remaining fiber to finish the postponed finalization.
+    -- > Leaving custom_gc for 9... (after yield)
+
+.. _finalizer_yielding_example3:
+
+**Example 3**
+
+It is important to note that the finalizer implementations in the examples above
+increase pressure on the platform performance by creating a new fiber on each
+``__gc`` call. To prevent such an excessive fibers spawning, it's better to start
+a single "scheduler" fiber and provide the interface to postpone the required
+asynchronous action.
+
+For this purpose, the module called ``sched.lua`` is implemented (see the
+listing below). It is a part of Tarantool and should be made required in your
+custom code. The usage example is given in the ``init.lua`` file below.
+
+``sched.lua``
+
+.. code-block:: lua
+
+    local fiber = require('fiber')
+
+    local worker_next_task = nil
+    local worker_last_task
+    local worker_fiber
+    local worker_cv = fiber.cond()
+
+    -- XXX: the module is not ready for reloading, so worker_fiber is
+    -- respawned when sched.lua is purged from package.loaded.
+
+    --
+    -- Worker is a singleton fiber for not urgent delayed execution of
+    -- functions. Main purpose - schedule execution of a function,
+    -- which is going to yield, from a context, where a yield is not
+    -- allowed. Such as an FFI object's GC callback.
+    --
+    local function worker_f()
+      while true do
+        local task
+        while true do
+          task = worker_next_task
+          if task then break end
+          -- XXX: Make the fiber wait until the task is added.
+          worker_cv:wait()
+        end
+        worker_next_task = task.next
+        task.f(task.arg)
+        fiber.yield()
+      end
+    end
+
+    local function worker_safe_f()
+      pcall(worker_f)
+      -- The function <worker_f> never returns. If the execution is
+      -- here, this fiber is probably canceled and now is not able to
+      -- sleep. Create a new one.
+      worker_fiber = fiber.new(worker_safe_f)
+    end
+
+    worker_fiber = fiber.new(worker_safe_f)
+
+    local function worker_schedule_task(f, arg)
+      local task = { f = f, arg = arg }
+      if not worker_next_task then
+        worker_next_task = task
+      else
+        worker_last_task.next = task
+      end
+      worker_last_task = task
+      worker_cv:signal()
+    end
+
+    return {
+      postpone = worker_schedule_task
+    }
+
+``init.lua``
+
+.. code-block:: lua
+
+    local ffi = require('ffi')
+    local fiber = require('fiber')
+    local sched = require('sched')
+
+    local function __custom_gc(self)
+      print(("Entered custom GC finalizer for %s... (before yield)"):format(self.a))
+      fiber.yield()
+      print(("Leaving custom GC finalizer for %s... (after yield)"):format(self.a))
+    end
+
+    ffi.cdef('struct custom { int a; };')
+    local custom_t = ffi.metatype('struct custom', {
+      __gc = function(self)
+        -- XXX: Do not invoke yielding functions in __gc metamethod.
+        -- Schedule __custom_gc call via sched.postpone to be run
+        -- after the execution leaves this routine.
+        sched.postpone(__custom_gc, self)
+        print(("Finalization is scheduled for %s..."):format(self.a))
+      end
+    })
+
+    -- Create several <custom_t> objects to be finalized later.
+    local t = { }
+    for i = 1, 10 do t[i] = custom_t(i) end
+
+    -- Run full GC cycle to collect the existing garbage. Nothing is
+    -- going to be printed, since the table <t> is still "alive".
+    collectgarbage('collect')
+
+    -- Remove the reference to the table and, ergo, all references to
+    -- the objects.
+    t = nil
+
+    -- Run full GC cycle to collect the table and objects inside it.
+    -- As a result all <custom_t> objects are scheduled for further
+    -- finalization, but the finalizer itself (i.e. __custom_gc
+    -- functions) is not called.
+    collectgarbage('collect')
+    -- > Finalization is scheduled for 10...
+    -- > Finalization is scheduled for 9...
+    -- > ...
+    -- > Finalization is scheduled for 2...
+    -- > Finalization is scheduled for 1...
+
+    -- XXX: There is no finalization made until the running fiber
+    -- yields its execution. Let's do it now.
+    fiber.yield()
+    -- > Entered custom GC finalizer for 10... (before yield)
+
+    -- XXX: Oops, we are here now, since the scheduler fiber yielded
+    -- the execution to this one. Check this out.
+    print("We're here now. Let's continue the scheduled finalization.")
+    -- > We're here now. Let's continue the finalization
+
+    -- OK, wait a second to allow the scheduler to cleanup the
+    -- remaining garbage.
+    fiber.sleep(1)
+    -- > Leaving custom GC finalizer for 10... (after yield)
+    -- > Entered custom GC finalizer for 9... (before yield)
+    -- > Leaving custom GC finalizer for 9... (after yield)
+    -- > ...
+    -- > Entered custom GC finalizer for 1... (before yield)
+    -- > Leaving custom GC finalizer for 1... (after yield)
+
+    print("Did we finish? I guess so.")
+    -- > Did we finish? I guess so.
+
+    -- Stop the instance.
+    os.exit(0)
