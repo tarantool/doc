@@ -41,7 +41,8 @@ the current user is '**admin**'.
 When executing a :ref:`Lua initialization script <index-init_label>`,
 the current user is also ‘**admin**’.
 
-The current user name can be found with :ref:`box.session.user() <box_session-user>`.
+The current user name can be found with
+:doc:`/reference/reference_lua/box_session/user`.
 
 The current user can be changed:
 
@@ -50,7 +51,7 @@ The current user can be changed:
   by most clients;
 
 * For an admin-console connection and in a Lua initialization script --
-  with :ref:`box.session.su <box_session-su>`;
+  with :doc:`/reference/reference_lua/box_session/su`;
 
 * For a binary-port connection invoking a stored function with the CALL command --
   if the :doc:`SETUID </reference/reference_lua/box_schema/func_create>`
@@ -351,7 +352,7 @@ A **session** is the state of a connection to Tarantool. It contains:
 
 In Tarantool, a single session can execute multiple concurrent transactions.
 Each transaction is identified by a unique integer id, which can be queried
-at start of the transaction using :ref:`box.session.sync() <box_session-sync>`.
+at start of the transaction using :doc:`/reference/reference_lua/box_session/sync`.
 
 .. NOTE::
 

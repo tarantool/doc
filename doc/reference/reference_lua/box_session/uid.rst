@@ -14,6 +14,6 @@ box.session.uid()
     :rtype:  number
 
     Every user has a unique name (seen with
-    :ref:`box.session.user() <box_session-user>`)
+    :doc:`/reference/reference_lua/box_session/user`)
     and a unique ID (seen with ``box.session.uid()``).
     The values are stored together in the ``_user`` space.

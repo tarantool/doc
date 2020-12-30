@@ -23,7 +23,8 @@ box.session.push()
 
     :param any-Lua-type message: what to send
     :param int sync: an optional argument to indicate what the session is,
-                     as taken from an earlier call to :ref:`box_session:sync() <box_session-sync>`.
+                     as taken from an earlier call to
+                     :doc:`/reference/reference_lua/box_session/sync`.
                      If it is omitted, the default is the current ``box.session.sync()`` value.
     :rtype: {nil, error} or true:
 

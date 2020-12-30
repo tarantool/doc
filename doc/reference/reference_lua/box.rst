@@ -30,7 +30,7 @@ with ``box``, with no arguments. The ``box`` module contains:
     box_index
     box_info
     box_schema
-    box_schema_sequences
+    box_schema_sequence
     box_session
     box_slab
     box_space

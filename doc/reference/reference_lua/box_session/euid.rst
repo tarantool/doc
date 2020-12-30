@@ -11,12 +11,12 @@ box.session.euid()
 
     :return: the effective user ID of the :ref:`current user <authentication-users>`.
 
-    This is the same as :ref:`box.session.uid() <box_session-uid>`, except
+    This is the same as :doc:`/reference/reference_lua/box_session/uid`, except
     in two cases:
 
     * The first case: if the call to ``box.session.euid()`` is within
       a function invoked by
-      :ref:`box.session.su(user-name, function-to-execute) <box_session-su>`
+      :doc:`box.session.su(user-name, function-to-execute) </reference/reference_lua/box_session/su>`
       -- in that case, ``box.session.euid()`` returns the ID of the changed user
       (the user who is specified by the ``user-name`` parameter of the ``su``
       function)  but ``box.session.uid()`` returns the ID of the original user

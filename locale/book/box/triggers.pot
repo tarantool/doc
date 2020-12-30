@@ -8,7 +8,7 @@ msgstr ""
 msgid "There are four types of triggers in Tarantool:"
 msgstr ""
 
-msgid ":ref:`session triggers <box_session-on_connect>`, which are executed when a session begins or ends and during authentication,"
+msgid ":doc:`session triggers </reference/reference_lua/box_session/on_connect>`, which are executed when a session begins or ends and during authentication,"
 msgstr ""
 
 msgid ":ref:`replace triggers <box_space-on_replace>`, which are for database events,"
@@ -26,10 +26,10 @@ msgstr ""
 msgid "Triggers associate a function with an event. The request to \"define a trigger\" implies passing the trigger’s function to one of the \"on_event()\" functions:"
 msgstr ""
 
-msgid ":ref:`box.session.on_connect() <box_session-on_connect>` or :ref:`box.session.on_disconnect() <box_session-on_disconnect>` or"
+msgid ":doc:`/reference/reference_lua/box_session/on_connect` or :doc:`/reference/reference_lua/box_session/on_disconnect` or"
 msgstr ""
 
-msgid ":ref:`box.session.on_auth() <box_session-on_auth>` or"
+msgid ":doc:`/reference/reference_lua/box_session/on_auth` or"
 msgstr ""
 
 msgid ":ref:`space_object:on_replace() <box_space-on_replace>` or :ref:`space_object:before_replace() <box_space-before_replace>` or"

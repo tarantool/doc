@@ -32,7 +32,7 @@ space_object:before_replace()
 
         If it is necessary to know whether the trigger activation
         happened due to replication or on a specific connection type,
-        the function can refer to :ref:`box.session.type() <box_session-type>`.
+        the function can refer to :doc:`/reference/reference_lua/box_session/type`.
 
         Details about trigger characteristics are in the
         :ref:`triggers <triggers-box_triggers>` section.

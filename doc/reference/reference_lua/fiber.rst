@@ -628,7 +628,7 @@ recommended.
             - error: '[string "return fiber_function.storage[''str1'']"]:1: the fiber is dead'
             ...
 
-        See also :ref:`box.session.storage <box_session-storage>`.
+        See also :doc:`/reference/reference_lua/box_session/storage`.
 
     .. _fiber_object-set_joinable:
 

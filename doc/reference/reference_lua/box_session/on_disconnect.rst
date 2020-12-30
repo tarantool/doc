@@ -13,7 +13,7 @@ box.session.on_disconnect()
     trigger function causes an error, the error is logged but otherwise is
     ignored. The trigger is invoked while the session associated with the
     client still exists and can access session properties, such as
-    :ref:`box.session.id() <box_session-id>`.
+    :doc:`/reference/reference_lua/box_session/id`.
 
     Since version 1.10, the trigger function is invoked immediately after the
     disconnect, even if requests that were made during the session have not

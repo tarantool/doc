@@ -29,7 +29,7 @@ msgstr ""
 msgid "There is a **current user** for any program working with Tarantool, local or remote. If a remote connection is using a :ref:`binary port <admin-security>`, the current user, by default, is '**guest**'. If the connection is using an :ref:`admin-console port <admin-security>`, the current user is '**admin**'. When executing a :ref:`Lua initialization script <index-init_label>`, the current user is also ‘**admin**’."
 msgstr ""
 
-msgid "The current user name can be found with :ref:`box.session.user() <box_session-user>`."
+msgid "The current user name can be found with :doc:`/reference/reference_lua/box_session/user`."
 msgstr ""
 
 msgid "The current user can be changed:"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "For a binary port connection -- with the :ref:`AUTH protocol command <box_protocol-iproto_protocol>`, supported by most clients;"
 msgstr ""
 
-msgid "For an admin-console connection and in a Lua initialization script -- with :ref:`box.session.su <box_session-su>`;"
+msgid "For an admin-console connection and in a Lua initialization script -- with :doc:`/reference/reference_lua/box_session/su`;"
 msgstr ""
 
 msgid "For a binary-port connection invoking a stored function with the CALL command -- if the :doc:`SETUID </reference/reference_lua/box_schema/func_create>` property is enabled for the function, Tarantool temporarily replaces the current user with the function’s creator, with all the creator's privileges, during function execution."
@@ -292,7 +292,7 @@ msgstr ""
 msgid "session local state, such as Lua variables and functions."
 msgstr ""
 
-msgid "In Tarantool, a single session can execute multiple concurrent transactions. Each transaction is identified by a unique integer id, which can be queried at start of the transaction using :ref:`box.session.sync() <box_session-sync>`."
+msgid "In Tarantool, a single session can execute multiple concurrent transactions. Each transaction is identified by a unique integer id, which can be queried at start of the transaction using :doc:`/reference/reference_lua/box_session/sync`."
 msgstr ""
 
 msgid "To track all connects and disconnects, you can use :ref:`connection and authentication triggers <triggers>`."

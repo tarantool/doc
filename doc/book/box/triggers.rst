@@ -10,7 +10,7 @@ executes when certain events happen.
 
 There are four types of triggers in Tarantool:
 
-* :ref:`session triggers <box_session-on_connect>`, which are executed
+* :doc:`session triggers </reference/reference_lua/box_session/on_connect>`, which are executed
   when a session begins or ends and during authentication,
 
 * :ref:`replace triggers <box_space-on_replace>`, which are for database
@@ -28,9 +28,9 @@ All triggers have the following characteristics:
   The request to "define a trigger" implies passing the
   trigger’s function to one of the "on_event()" functions:
 
-  * :ref:`box.session.on_connect() <box_session-on_connect>` or
-    :ref:`box.session.on_disconnect() <box_session-on_disconnect>` or
-  * :ref:`box.session.on_auth() <box_session-on_auth>` or
+  * :doc:`/reference/reference_lua/box_session/on_connect` or
+    :doc:`/reference/reference_lua/box_session/on_disconnect` or
+  * :doc:`/reference/reference_lua/box_session/on_auth` or
   * :ref:`space_object:on_replace() <box_space-on_replace>` or
     :ref:`space_object:before_replace() <box_space-before_replace>` or
   * :doc:`/reference/reference_lua/box_txn_management/on_commit` or
