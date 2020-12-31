@@ -204,8 +204,8 @@
 
     This parameter is different from
     :ref:`replication_timeout <cfg_replication-replication_timeout>`,
-    which is only used to automatically reconnect replication when it
-    gets no heartbeats.
+    which a master uses to disconnect a replica when the master
+    receives no acknowledgments of heartbeat messages.
 
     | Type: float
     | Default: 30

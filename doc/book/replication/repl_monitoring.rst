@@ -56,9 +56,9 @@ The primary indicators of replication health are:
 * :ref:`idle <box_info_replication_upstream_idle>`, the time (in seconds) since
   the instance received the last event from a master.
 
-  A replica sends heartbeat messages to the master every second, and the master
-  is programmed to reconnect automatically if it does not see heartbeat messages
-  within :ref:`replication_timeout <cfg_replication-replication_timeout>`
+  A master sends heartbeat messages to a replica every second, and the master
+  is programmed to disconnect if it does not see acknowledgments of the heartbeat messages
+  within :ref:`replication_timeout <cfg_replication-replication_timeout>` * 4
   seconds.
 
   Therefore, in a healthy replication setup, ``idle`` should never exceed
