@@ -71,54 +71,59 @@ for example: ``[3, 'Ace of Base', 1993]``.
 Data types
 --------------------------------------------------------------------------------
 
-Tarantool is both a database and an application server.
-Hence a developer often deals with two type sets:
-the programming language types (e.g. Lua) and
+Tarantool is both a database manager and an application server.
+Therefore a developer often deals with two type sets:
+the types of the programming language (such as Lua) and
 the types of the Tarantool storage format (MsgPack).
 
 .. _index-box_lua-vs-msgpack:
 
 ********************************************************
-Lua vs MsgPack
+Lua versus MsgPack
 ********************************************************
 
 .. container:: table
 
-    .. rst-class:: right-align-column-1
+    .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
     .. rst-class:: left-align-column-3
     .. rst-class:: left-align-column-4
 
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | Scalar / compound | MsgPack |nbsp| type  | Lua type                       | Example value              |
-    +===================+======================+================================+============================+
-    | scalar            | nil                  | "`nil`_"                       | msgpack.NULL               |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | boolean              | "`boolean`_"                   | true                       |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | string               | "`string`_"                    | 'A B C'                    |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | integer              | "`number`_"                    | 12345                      |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | double               | "`number`_"                    | 1.2345                     |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | double               | "`cdata`_"                     | 1.2345                     |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | bin                  | "`cdata`_"                     | [!!binary 3t7e]            |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | decimal              | "`cdata`_"                     | 1.2                        |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | uuid                 | "`cdata`_"                     | 12a34b5c-de67-8f90-123g-   |
-    |                   |                      |                                | h4567ab8901                |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | scalar            | ext                  | (converted to exact number)    | 1.2                        |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | compound          | map                  | "`table`_" (with string keys)  | {'a': 5, 'b': 6}           |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | compound          | array                | "`table`_" (with integer keys) | [1, 2, 3, 4, 5]            |
-    +-------------------+----------------------+--------------------------------+----------------------------+
-    | compound          | array                | tuple ("`cdata`_")             | [12345, 'A B C']           |
-    +-------------------+----------------------+--------------------------------+----------------------------+
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | Scalar / compound | MsgPack |nbsp| type     | Lua type                       | Example value                |
+    +===================+=========================+================================+==============================+
+    | scalar            | nil                     | "`nil`_"                       | ``nil``                      |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | scalar            | boolean                 | "`boolean`_"                   | ``true``                     |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | scalar            | string                  | "`string`_"                    | ``'A B C'``                  |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | scalar            | integer                 | "`number`_"                    | ``12345``                    |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | scalar            | float 64 (double)       | "`number`_"                    | ``1.2345``                   |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | scalar            | float 64 (double)       | "`cdata`_"                     | ``1.2345``                   |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | scalar            | binary                  | "`cdata`_"                     | ``[!!binary 3t7e]``          |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | scalar            | ext                     | "`cdata`_"                     | ``1.2``                      |
+    |                   | (for Tarantool decimal) |                                |                              |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | scalar            | ext                     | "`cdata`_"                     | ``12a34b5c-de67-8f90-`` |br| |
+    |                   | (for Tarantool uuid)    |                                | ``123g-h4567ab8901``         |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | compound          | map                     | "`table`_" (with string keys)  | ``{'a': 5, 'b': 6}``         |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | compound          | array                   | "`table`_" (with integer keys) | ``[1, 2, 3, 4, 5]``          |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+    | compound          | array                   | tuple ("`cdata`_")             | ``[12345, 'A B C']``         |
+    +-------------------+-------------------------+--------------------------------+------------------------------+
+
+.. NOTE::
+
+   MsgPack values have variable lengths.
+   So, for example, the smallest number requires only one byte, but the largest number
+   requires nine bytes.
 
 .. _nil: http://www.lua.org/pil/2.1.html
 .. _boolean: http://www.lua.org/pil/2.2.html
@@ -127,58 +132,58 @@ Lua vs MsgPack
 .. _table: http://www.lua.org/pil/2.5.html
 .. _cdata: http://luajit.org/ext_ffi.html#call
 
-In Lua, a **nil** type has only one possible value, also called *nil*
-(displayed as **null** on Tarantool's command line, since the output is in the
-YAML format).
+.. _index_box_field_type_details:
+
+********************************************************
+Field Type Details
+********************************************************
+
+.. _index-box_nil:
+
+**nil**. In Lua a nil type has only one possible value, also called *nil*
+(which Tarantool displays as ``null`` when using the default
+:ref:`YAML <interactive_console>` format).
 Nils may be compared to values of any types with == (is-equal)
-or ~= (is-not-equal), but other operations will not work.
+or ~= (is-not-equal), but other comparison operations will not work.
 Nils may not be used in Lua tables; the workaround is to use
-:ref:`msgpack.NULL <msgpack-null>`
+:ref:`box.NULL <box-null>` because ``nil == box.NULL`` is true.
+Example: ``nil``.
 
-A **boolean** is either ``true`` or ``false``.
+.. _index-box_boolean:
 
-.. _index-box_string:
+**boolean**. A boolean is either ``true`` or ``false``.
+Example: ``true``.
 
-A **string** is a variable-length sequence of bytes, usually represented with
-alphanumeric characters inside single quotes. In both Lua and MsgPack, strings
-are treated as binary data, with no attempts to determine a string's
-character set or to perform any string conversion -- unless there is an optional
-:ref:`collation <index-collation>`.
-So, usually, string sorting and comparison are done byte-by-byte, without any special
-collation rules applied.
-(Example: numbers are ordered by their point on the number line, so 2345 is
-greater than 500; meanwhile, strings are ordered by the encoding of the first
-byte, then the encoding of the second byte, and so on, so '2345' is less than '500'.)
+.. _index-box_integer:
 
-.. _index-box_number:
+**integer**. The Tarantool integer type is for integers between
+-9223372036854775808 and 18446744073709551615, which is about 18 quintillion.
+This corresponds to number in Lua and to integer in MsgPack.
+Example: ``-2^63``.
 
-In Lua, a **number** is double-precision floating-point, but Tarantool
-'number' may have both
-integer and floating-point values. Tarantool will try to store a Lua number as
-floating-point if the value contains a decimal point or is very large
-(greater than 100 trillion = 1e14), otherwise Tarantool will store it as an integer.
-To ensure that even very large numbers are stored as integers, use the
-:ref:`tonumber64 <other-tonumber64>` function, or the LL (Long Long) suffix,
-or the ULL (Unsigned Long Long) suffix.
-Here are examples of numbers using regular notation, exponential notation,
-the ULL suffix and the ``tonumber64`` function:
-``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``.
+.. _index-box_unsigned:
+
+**unsigned**. The Tarantool unsigned type is for integers between
+0 and 18446744073709551615,. So it is a subset of integer.
+Example: ``123456``.
 
 .. _index-box_double:
 
-The **double** field type exists
+**double**. The double field type exists
 mainly so that there will be an equivalent to Tarantool/SQL's
 :ref:`DOUBLE data type <sql_data_type_double>`.
-In MsgPack the storage type is MP_DOUBLE and the size of the encoded value is always 9 bytes.
+In `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_ (Tarantool's interface to MsgPack)
+the storage type is MP_DOUBLE and the size of the encoded value is always 9 bytes.
 In Lua, 'double' fields can only contain non-integer numeric values and
 cdata values with double floating-point numbers.
+Examples: ``1.234``, ``-44``, ``1.447e+44``. |br|
 To avoid using the wrong kind of values inadvertently, use
 ``ffi.cast()`` when searching or changing 'double' fields.
 For example, instead of
-:samp:`{space_object}:insert` :code:`{` :samp:`{value}` :code:`}`
+:samp:`{space_object}:insert`:code:`{`:samp:`{value}`:code:`}`
 say
 ``ffi = require('ffi') ...``
-:samp:`{space_object}:insert` :code:`({ffi.cast('double',` :samp:`{value}` :code:`)})`.
+:samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`.
 Example:
 
 .. code-block:: none
@@ -198,33 +203,87 @@ This warning does not apply for Tarantool/SQL because
 Tarantool/SQL does
 :ref:`implicit casting <sql_data_type_conversion>`.
 
-An **ext** (extension) value is an addition by Tarantool, not part of the
-formal MsgPack definition, for storage of decimal values. Values with the
-decimal type are not floating-point values although they may contain decimal
-points. They are exact with :ref:`up to 38 digits of precision <decimal>`.
+.. _index-box_number:
 
-A **bin** (binary) value is not directly supported by Lua but there is
-a Tarantool type ``VARBINARY`` which is encoded as MessagePack binary.
-For an (advanced) example showing how to insert VARBINARY into a database,
+**number**. In Lua a number is double-precision floating-point, but a Tarantool
+'number' field may have both
+integer and floating-point values. Tarantool will try to store a Lua number as
+floating-point if the value contains a decimal point or is very large
+(greater than 100 trillion = 1e14), otherwise Tarantool will store it as an integer.
+To ensure that even very large numbers are stored as integers, use the
+:ref:`tonumber64 <other-tonumber64>` function, or the LL (Long Long) suffix,
+or the ULL (Unsigned Long Long) suffix.
+Here are examples of numbers using regular notation, exponential notation,
+the ULL suffix and the ``tonumber64`` function:
+``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``.
+
+.. _index-box_decimal:
+
+**decimal**. The Tarantool decimal type is stored as a MsgPack ext (Extension).
+Values with the decimal type are not floating-point values although
+they may contain decimal points.
+They are exact with up to 38 digits of precision.
+Example: a value returned by a function in the :ref:`decimal <decimal>` module.
+
+.. _index-box_string:
+
+**string**. A string is a variable-length sequence of bytes, usually represented with
+alphanumeric characters inside single quotes. In both Lua and MsgPack, strings
+are treated as binary data, with no attempts to determine a string's
+character set or to perform any string conversion -- unless there is an optional
+:ref:`collation <index-collation>`.
+So, usually, string sorting and comparison are done byte-by-byte, without any special
+collation rules applied.
+(Example: numbers are ordered by their point on the number line, so 2345 is
+greater than 500; meanwhile, strings are ordered by the encoding of the first
+byte, then the encoding of the second byte, and so on, so ``'2345'`` is less than ``'500'``.)
+Example: ``'A, B, C'``.
+
+.. _index-box_bin:
+
+**bin**. A bin (binary) value is not directly supported by Lua but there is
+a Tarantool type ``varbinary`` which is encoded as MsgPack binary.
+For an (advanced) example showing how to insert varbinary into a database,
 see the Cookbook Recipe for :ref:`ffi_varbinary_insert <cookbook-ffi_varbinary_insert>`.
+Example: ``"\65 \66 \67"``.
 
-Lua **tables** with string keys are stored as MsgPack maps;
-Lua tables with integer keys starting with 1 -- as MsgPack arrays.
+.. _index-box_uuid:
+
+**uuid**. The Tarantool uuid type is stored as a MsgPack ext (Extension).
+Values with the uuid type are
+:ref:`Universally unique identifiers <uuid-module>`. |br|
+Example: 64d22e4d-ac92-4a23-899a-e5934af5479.
+
+.. _index-box_array:
+
+**array**. An array is represented in Lua with ``{...}`` (`braces`_).
+Examples: as lists of numbers representing points in a geometric figure:
+``{10, 11}``, ``{3, 5, 9, 10}``.
+
+**table**. Lua tables with string keys are stored as MsgPack maps;
+Lua tables with integer keys starting with 1 are stored as MsgPack arrays.
 Nils may not be used in Lua tables; the workaround is to use
-:ref:`msgpack.NULL <msgpack-null>`
+:ref:`box.NULL <box-null>`.
+Example: a ``box.space.tester:select()`` request will return a Lua table.
 
-A **tuple** is a light reference to a MsgPack array stored in the database.
+**tuple**. A tuple is a light reference to a MsgPack array stored in the database.
 It is a special type (cdata) to avoid conversion to a Lua table on retrieval.
-A few functions may return tables with multiple tuples. For more tuple examples,
+A few functions may return tables with multiple tuples. For tuple examples,
 see :ref:`box.tuple <box_tuple>`.
 
-.. NOTE::
+.. _index-box_scalar:
 
-   Tarantool uses the MsgPack format for database storage, which is variable-length.
-   So, for example, the smallest number requires only one byte, but the largest number
-   requires nine bytes.
+**scalar**. Values in a scalar field can be boolean or integer or unsigned or double
+or number or decimal or string or varbinary -- but not array or map or tuple.
+Examples: ``true``, ``1``, ``'xxx'``.
 
-Examples of insert requests with different data types:
+.. _index-box_any:
+
+**any**. Values in an any field can be boolean or integer or unsigned or double
+or number or decimal or string or varbinary -- or array or map or tuple.
+Examples: ``true``, ``1``, ``'xxx'``, ``{box.NULL, 0}``.
+
+Examples of insert requests with different field types:
 
 .. code-block:: tarantoolsession
 
@@ -241,108 +300,87 @@ Examples of insert requests with different data types:
     - [3, [1, 2, 3, 4, 5]]
     ...
 
+.. _braces: https://www.lua.org/pil/11.1.html
+
 .. _index-box_indexed-field-types:
 
 ********************************************************
 Indexed field types
 ********************************************************
 
-Indexes restrict values which Tarantool's MsgPack may contain. This is why,
-for example, 'unsigned' is a separate **indexed field type**, compared to ‘integer’
-data type in MsgPack: they both store ‘integer’ values, but an 'unsigned' index
-contains only *non-negative* integer values and an ‘integer’ index contains *all*
-integer values.
+Indexes restrict values which Tarantool may store with MsgPack. This is why,
+for example, ``'unsigned'`` and ``'integer'`` are different field types although
+in MsgPack they are both stored as integer values -- an ``'unsigned'`` index
+contains only *non-negative* integer values while an ``‘integer’`` index contains *any*
+integer values. 
 
-Here is how Tarantool indexed field types correspond to MsgPack data types.
+Here again are the field types described in
+:ref:`Field Type Details <index_box_field_type_details>`, and the index types they can fit in.
+The default field type is ``'unsigned'`` and the default index type is TREE.
+Although ``'nil'`` is not a legal indexed field type, indexes may contain `nil`
+:ref:`as a non-default option <box_space-is_nullable>`.
+Full information is in section
+:ref:`Details about index field types <details_about_index_field_types>`.
 
 .. container:: table
 
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
     .. rst-class:: left-align-column-3
-    .. rst-class:: left-align-column-4
     .. rst-class:: top-align-column-1
 
     .. tabularcolumns:: |\Y{0.2}|\Y{0.4}|\Y{0.2}|\Y{0.2}|
 
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | Indexed field type         | MsgPack data type |br|            | Index type           | Examples           |
-    |                            | (and possible values)             |                      |                    |
-    +============================+===================================+======================+====================+
-    | **unsigned**               | **integer**                       | TREE, BITSET or HASH | 123456             |
-    | (may also be called ‘uint’ | (integer between 0 and            |                      |                    |
-    | or ‘num’, but ‘num’ is     | 18446744073709551615, i.e.        |                      |                    |
-    | deprecated)                | about 18 quintillion)             |                      |                    |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **integer**                | **integer**                       | TREE or HASH         | -2^63              |
-    | (may also be called ‘int’) | (integer between                  |                      |                    |
-    |                            | -9223372036854775808 and          |                      |                    |
-    |                            | 18446744073709551615)             |                      |                    |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **number**                 | **integer**                       | TREE or HASH         | 1.234              |
-    |                            | (integer between                  |                      |                    |
-    |                            | -9223372036854775808 and          |                      | -44                |
-    |                            | 18446744073709551615)             |                      |                    |
-    |                            |                                   |                      | 1.447e+44          |
-    |                            | **double**                        |                      |                    |
-    |                            | (single-precision floating        |                      |                    |
-    |                            | point number or double-precision  |                      |                    |
-    |                            | floating point number)            |                      |                    |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **double**                 | **double**                        | TREE or HASH         | 1.234              |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **string**                 | **string**                        | TREE, BITSET or HASH | ‘A B C’            |
-    | (may also be called ‘str’) | (any set of octets,               |                      |                    |
-    |                            | up to the maximum length)         |                      | ‘\\65 \\66 \\67’   |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **varbinary**              | **bin**                           | TREE or HASH         | ‘\\65 \\66 \\67’   |
-    |                            | (any set of octets,               |                      |                    |
-    |                            | up to the maximum length)         |                      |                    |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **boolean**                | **bool**                          | TREE or HASH         | true               |
-    |                            | (true or false)                   |                      |                    |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **decimal**                | **ext**                           | TREE or HASH         | 1.2                |
-    |                            | (extension)                       |                      |                    |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **uuid**                   | **ext**                           | TREE or HASH         | 64d22e4d-ac92-|br| |
-    |                            | (extension)                       |                      | 4a23-899a-|br|     |
-    |                            |                                   |                      | e5934af5479        |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **array**                  | **array**                         | RTREE                | {10, 11}           |
-    |                            | (list of numbers representing     |                      |                    |
-    |                            | points in a geometric figure)     |                      | {3, 5, 9, 10}      |
-    |                            |                                   |                      |                    |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
-    | **scalar**                 | **null**                          | TREE or HASH         | msgpack.NULL       |
-    |                            |                                   |                      |                    |
-    |                            | **bool**                          |                      | true               |
-    |                            | (true or false)                   |                      |                    |
-    |                            |                                   |                      | -1                 |
-    |                            | **integer**                       |                      |                    |
-    |                            | (integer between                  |                      | 1.234              |
-    |                            | -9223372036854775808 and          |                      |                    |
-    |                            | 18446744073709551615)             |                      | ‘’                 |
-    |                            |                                   |                      |                    |
-    |                            | **double**                        |                      | ‘ру’               |
-    |                            | (single-precision floating        |                      |                    |
-    |                            | point number or double-precision  |                      |                    |
-    |                            | floating point number)            |                      |                    |
-    |                            |                                   |                      |                    |
-    |                            | **decimal**                       |                      |                    |
-    |                            | (value returned by a function in  |                      |                    |
-    |                            | the :ref:`decimal <decimal>`      |                      |                    |
-    |                            | module)                           |                      |                    |
-    |                            |                                   |                      |                    |
-    |                            | **string** (any set of octets)    |                      |                    |
-    |                            |                                   |                      |                    |
-    |                            | **varbinary** (any set of octets) |                      |                    |
-    |                            |                                   |                      |                    |
-    |                            | Note: When there is a mix of      |                      |                    |
-    |                            | types, the key order is: null,    |                      |                    |
-    |                            | then booleans, then numbers,      |                      |                    |
-    |                            | then strings, then varbinary.     |                      |                    |
-    +----------------------------+-----------------------------------+----------------------+--------------------+
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | Field type name string         | Field type |br|                           | Index type                           |
+    +================================+===========================================+======================================+
+    | ``'boolean'``                  | :ref:`boolean <index-box_boolean>`        | :ref:`TREE or HASH <box_index-type>` |
+    |                                |                                           |                                      |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'integer'``                  | :ref:`integer <index-box_integer>`        | TREE or HASH                         |
+    | (may also be called ‘int’)     | which may include unsigned values         |                                      |
+    |                                |                                           |                                      |
+    |                                |                                           |                                      |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'unsigned'``                 | :ref:`unsigned <index-box_unsigned>`      | TREE, BITSET or HASH                 |
+    | (may also be called ‘uint’     |                                           |                                      |
+    | or ‘num’, but ‘num’ is         |                                           |                                      |
+    | deprecated)                    |                                           |                                      |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'double'``                   | :ref:`double <index-box_double>`          | TREE or HASH                         |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'number'``                   | :ref:`number <index-box_number>`          | TREE or HASH                         |
+    |                                | which may include                         |                                      |
+    |                                | :ref:`integer <index-box_integer>`        |                                      |
+    |                                | or :ref:`double <index-box_double>`       |                                      |
+    |                                | values                                    |                                      |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'decimal'``                  | :ref:`decimal <index-box_decimal>`        | TREE or HASH                         |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'string'``                   | :ref:`string <index-box_string>`          | TREE, BITSET or HASH                 |
+    | (may also be called ``‘str’``) |                                           |                                      |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'varbinary'``                | :ref:`varbinary <index-box_bin>`          | TREE or HASH                         |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'uuid'``                     | :ref:`uuid <index-box_uuid>`              | TREE or HASH                         |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'array'``                    | :ref:`array <index-box_array>`            | :ref:`RTREE <box_index-rtree>`       |
+    +--------------------------------+-------------------------------------------+--------------------------------------+
+    | ``'scalar'``                   | may include :ref:`nil <index-box_nil>`    | TREE or HASH                         |
+    |                                | or :ref:`boolean <index-box_boolean>`     |                                      |
+    |                                | or :ref:`integer <index-box_integer>`     |                                      |
+    |                                | or :ref:`unsigned <index-box_unsigned>`   |                                      |
+    |                                | or :ref:`number <index-box_number>`       |                                      |
+    |                                | or :ref:`decimal <index-box_decimal>`     |                                      |
+    |                                | or :ref:`string <index-box_string>`       |                                      |
+    |                                | or :ref:`varbinary <index-box_bin>`       |                                      |
+    |                                | values                                    |                                      |
+    |                                |                                           |                                      |
+    |                                | When a scalar field contains values of    |                                      |
+    |                                | different underlying types, the key order |                                      |
+    |                                | is: nils, then booleans, then numbers,    |                                      |
+    |                                | then strings, then varbinaries.           |                                      | 
+    +--------------------------------+-------------------------------------------+--------------------------------------+
 
 .. _index-collation:
 
@@ -353,9 +391,9 @@ Collations
 By default, when Tarantool compares strings, it uses what we call a
 **"binary" collation**. The only consideration here is the numeric value
 of each byte in the string. Therefore, if the string is encoded
-with ASCII or UTF-8, then ``'A' < 'B' < 'a'``, because the encoding of 'A'
+with ASCII or UTF-8, then ``'A' < 'B' < 'a'``, because the encoding of ``'A'``
 (what used to be called the "ASCII value") is 65, the encoding of
-'B' is 66, and the encoding of 'a' is 98. Binary collation is best
+``'B'`` is 66, and the encoding of ``'a'`` is 98. Binary collation is best
 if you prefer fast deterministic simple maintenance and searching
 with Tarantool indexes.
 
