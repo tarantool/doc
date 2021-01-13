@@ -14,6 +14,9 @@ _theme/tarantool/static/design.css.map
 .idea
 rocks
 .vscode/
+
+# redundant folders created by sphinx
+
 /locale/book/LC_MESSAGES/
 /locale/dev_guide/LC_MESSAGES/
 /locale/reference/LC_MESSAGES/
@@ -21,10 +24,36 @@ rocks
 /locale/getting_started/LC_MESSAGES/
 /locale/archive/LC_MESSAGES/
 /locale/contributing/LC_MESSAGES/
-/doc/book/cartridge/cartridge_api/
-/doc/book/cartridge/cartridge_cli.rst
-/doc/book/cartridge/cartridge_cli/
-/locale/ru/LC_MESSAGES/book/cartridge/
-/locale/book/cartridge/
+
+# cartridge submodule
+
 /doc/book/cartridge/
+/locale/book/cartridge/
+/locale/ru/LC_MESSAGES/book/cartridge/
+
+# monitoring submodule
+
 /doc/book/monitoring/
+/locale/book/monitoring/
+/locale/ru/LC_MESSAGES/book/monitoring/
+
+# luatest submodule
+
+/doc/reference/reference_rock/luatest/classes/
+/doc/reference/reference_rock/luatest/modules/
+/doc/reference/reference_rock/luatest/topics/
+/doc/reference/reference_rock/luatest/index.rst
+/doc/reference/reference_rock/luatest/README.rst
+
+/locale/reference/reference_rock/luatest/classes/
+/locale/reference/reference_rock/luatest/modules/
+/locale/reference/reference_rock/luatest/topics/
+/locale/reference/reference_rock/luatest/index.pot
+/locale/reference/reference_rock/luatest/README.pot
+
+/locale/ru/LC_MESSAGES/reference/reference_rock/luatest/README.po
+/locale/ru/LC_MESSAGES/reference/reference_rock/luatest/index.po
+/locale/ru/LC_MESSAGES/reference/reference_rock/luatest/topics/
+/locale/ru/LC_MESSAGES/reference/reference_rock/luatest/modules/
+/locale/ru/LC_MESSAGES/reference/reference_rock/luatest/classes/
+
