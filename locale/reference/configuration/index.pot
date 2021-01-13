@@ -632,7 +632,7 @@ msgstr ""
 msgid "Since version 1.9.0. The number of seconds that a replica will wait when trying to connect to a master in a cluster. See :ref:`orphan status <replication-orphan_status>` for details."
 msgstr ""
 
-msgid "This parameter is different from :ref:`replication_timeout <cfg_replication-replication_timeout>`, which is only used to automatically reconnect replication when it gets no heartbeats."
+msgid "This parameter is different from :ref:`replication_timeout <cfg_replication-replication_timeout>`, which a master uses to disconnect a replica when the master receives no acknowledgments of heartbeat messages."
 msgstr ""
 
 msgid "Default: 30"
