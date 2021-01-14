@@ -1833,10 +1833,12 @@ msgstr ""
 "Пробуждение всех файберов, которые выполнили ``wait()`` для той же "
 "переменной. Не выполняет передачу управления (yield)."
 
+#, fuzzy
 msgid ""
 "Assume that a tarantool instance is running and listening for connections"
 " on localhost port 3301. Assume that guest users have privileges to "
-"connect. We will use the tarantoolctl utility to start two clients."
+"connect. We will use the tarantoolctl utility (a utility for "
+"administrators) to start two clients."
 msgstr ""
 "Предположим, что запущен экземпляр Tarantool'а на прослушивание на "
 "localhost по порту 3301. Предположим, что у пользователя guest есть права"

@@ -80,7 +80,7 @@ msgstr ""
 msgid "Push int64_t onto the stack."
 msgstr ""
 
-msgid "Check whether the argument idx is a uint64 or a convertable string and returns this number."
+msgid "Check whether the argument idx is a uint64 or a convertible string and returns this number."
 msgstr ""
 
 msgid "throws"
@@ -89,7 +89,7 @@ msgstr ""
 msgid "error if the argument can't be converted"
 msgstr ""
 
-msgid "Check whether the argument idx is a int64 or a convertable string and returns this number."
+msgid "Check whether the argument idx is a int64 or a convertible string and returns this number."
 msgstr ""
 
 msgid "the converted number or 0 of argument can't be converted"

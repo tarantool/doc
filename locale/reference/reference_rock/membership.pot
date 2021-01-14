@@ -283,7 +283,7 @@ msgstr ""
 msgid "It can be used in the following way:"
 msgstr ""
 
-msgid "for uri, member in memberhip.pairs()\n"
+msgid "for uri, member in membership.pairs()\n"
 "  -- do something\n"
 "end"
 msgstr ""

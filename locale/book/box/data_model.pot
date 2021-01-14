@@ -101,10 +101,10 @@ msgstr ""
 msgid "Data types"
 msgstr ""
 
-msgid "Tarantool is both a database and an application server. Hence a developer often deals with two type sets: the programming language types (e.g. Lua) and the types of the Tarantool storage format (MsgPack)."
+msgid "Tarantool is both a database manager and an application server. Therefore a developer often deals with two type sets: the types of the programming language (such as Lua) and the types of the Tarantool storage format (MsgPack)."
 msgstr ""
 
-msgid "Lua vs MsgPack"
+msgid "Lua versus MsgPack"
 msgstr ""
 
 msgid "Scalar / compound"
@@ -128,7 +128,7 @@ msgstr ""
 msgid "\"`nil`_\""
 msgstr ""
 
-msgid "msgpack.NULL"
+msgid "``nil``"
 msgstr ""
 
 msgid "boolean"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "\"`boolean`_\""
 msgstr ""
 
-msgid "true"
+msgid "``true``"
 msgstr ""
 
 msgid "string"
@@ -146,7 +146,7 @@ msgstr ""
 msgid "\"`string`_\""
 msgstr ""
 
-msgid "'A B C'"
+msgid "``'A B C'``"
 msgstr ""
 
 msgid "integer"
@@ -155,40 +155,34 @@ msgstr ""
 msgid "\"`number`_\""
 msgstr ""
 
-msgid "12345"
+msgid "``12345``"
 msgstr ""
 
-msgid "double"
+msgid "float 64 (double)"
 msgstr ""
 
-msgid "1.2345"
+msgid "``1.2345``"
 msgstr ""
 
 msgid "\"`cdata`_\""
 msgstr ""
 
-msgid "bin"
+msgid "binary"
 msgstr ""
 
-msgid "[!!binary 3t7e]"
+msgid "``[!!binary 3t7e]``"
 msgstr ""
 
-msgid "decimal"
+msgid "ext (for Tarantool decimal)"
 msgstr ""
 
-msgid "1.2"
+msgid "``1.2``"
 msgstr ""
 
-msgid "uuid"
+msgid "ext (for Tarantool uuid)"
 msgstr ""
 
-msgid "12a34b5c-de67-8f90-123g- h4567ab8901"
-msgstr ""
-
-msgid "ext"
-msgstr ""
-
-msgid "(converted to exact number)"
+msgid "``12a34b5c-de67-8f90-`` |br| ``123g-h4567ab8901``"
 msgstr ""
 
 msgid "compound"
@@ -200,7 +194,7 @@ msgstr ""
 msgid "\"`table`_\" (with string keys)"
 msgstr ""
 
-msgid "{'a': 5, 'b': 6}"
+msgid "``{'a': 5, 'b': 6}``"
 msgstr ""
 
 msgid "array"
@@ -209,28 +203,34 @@ msgstr ""
 msgid "\"`table`_\" (with integer keys)"
 msgstr ""
 
-msgid "[1, 2, 3, 4, 5]"
+msgid "``[1, 2, 3, 4, 5]``"
 msgstr ""
 
 msgid "tuple (\"`cdata`_\")"
 msgstr ""
 
-msgid "[12345, 'A B C']"
+msgid "``[12345, 'A B C']``"
 msgstr ""
 
-msgid "In Lua, a **nil** type has only one possible value, also called *nil* (displayed as **null** on Tarantool's command line, since the output is in the YAML format). Nils may be compared to values of any types with == (is-equal) or ~= (is-not-equal), but other operations will not work. Nils may not be used in Lua tables; the workaround is to use :ref:`msgpack.NULL <msgpack-null>`"
+msgid "MsgPack values have variable lengths. So, for example, the smallest number requires only one byte, but the largest number requires nine bytes."
 msgstr ""
 
-msgid "A **boolean** is either ``true`` or ``false``."
+msgid "Field Type Details"
 msgstr ""
 
-msgid "A **string** is a variable-length sequence of bytes, usually represented with alphanumeric characters inside single quotes. In both Lua and MsgPack, strings are treated as binary data, with no attempts to determine a string's character set or to perform any string conversion -- unless there is an optional :ref:`collation <index-collation>`. So, usually, string sorting and comparison are done byte-by-byte, without any special collation rules applied. (Example: numbers are ordered by their point on the number line, so 2345 is greater than 500; meanwhile, strings are ordered by the encoding of the first byte, then the encoding of the second byte, and so on, so '2345' is less than '500'.)"
+msgid "**nil**. In Lua a nil type has only one possible value, also called *nil* (which Tarantool displays as ``null`` when using the default :ref:`YAML <interactive_console>` format). Nils may be compared to values of any types with == (is-equal) or ~= (is-not-equal), but other comparison operations will not work. Nils may not be used in Lua tables; the workaround is to use :ref:`box.NULL <box-null>` because ``nil == box.NULL`` is true. Example: ``nil``."
 msgstr ""
 
-msgid "In Lua, a **number** is double-precision floating-point, but Tarantool 'number' may have both integer and floating-point values. Tarantool will try to store a Lua number as floating-point if the value contains a decimal point or is very large (greater than 100 trillion = 1e14), otherwise Tarantool will store it as an integer. To ensure that even very large numbers are stored as integers, use the :ref:`tonumber64 <other-tonumber64>` function, or the LL (Long Long) suffix, or the ULL (Unsigned Long Long) suffix. Here are examples of numbers using regular notation, exponential notation, the ULL suffix and the ``tonumber64`` function: ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``."
+msgid "**boolean**. A boolean is either ``true`` or ``false``. Example: ``true``."
 msgstr ""
 
-msgid "The Tarantool/SQL **double** field type exists mainly so that there will be an equivalent to Tarantool/SQL's :ref:`DOUBLE data type <sql_data_type_double>`. In MsgPack the storage type is MP_DOUBLE and the size of the encoded value is always 9 bytes. In Lua, 'double' fields can only contain non-integer numeric values and cdata values with double floating-point numbers. To avoid using the wrong kind of values inadvertently, use ``ffi.cast()`` when searching or changing 'double' fields. For example, instead of :samp:`{space_object}:insert` :code:`{` :samp:`{value}` :code:`}` say ``ffi = require('ffi') ...`` :samp:`{space_object}:insert` :code:`({ffi.cast('double',` :samp:`{value}` :code:`)})`. Example:"
+msgid "**integer**. The Tarantool integer type is for integers between -9223372036854775808 and 18446744073709551615, which is about 18 quintillion. This corresponds to number in Lua and to integer in MsgPack. Example: ``-2^63``."
+msgstr ""
+
+msgid "**unsigned**. The Tarantool unsigned type is for integers between 0 and 18446744073709551615,. So it is a subset of integer. Example: ``123456``."
+msgstr ""
+
+msgid "**double**. The double field type exists mainly so that there will be an equivalent to Tarantool/SQL's :ref:`DOUBLE data type <sql_data_type_double>`. In `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_ (Tarantool's interface to MsgPack) the storage type is MP_DOUBLE and the size of the encoded value is always 9 bytes. In Lua, 'double' fields can only contain non-integer numeric values and cdata values with double floating-point numbers. Examples: ``1.234``, ``-44``, ``1.447e+44``. |br| To avoid using the wrong kind of values inadvertently, use ``ffi.cast()`` when searching or changing 'double' fields. For example, instead of :samp:`{space_object}:insert`:code:`{`:samp:`{value}`:code:`}` say ``ffi = require('ffi') ...`` :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`. Example:"
 msgstr ""
 
 msgid "s = box.schema.space.create('s', {format = {{'d', 'double'}}})\n"
@@ -246,22 +246,37 @@ msgstr ""
 msgid "Arithmetic with cdata 'double' will not work reliably, so for Lua it is better to use the 'number' type. This warning does not apply for Tarantool/SQL because Tarantool/SQL does :ref:`implicit casting <sql_data_type_conversion>`."
 msgstr ""
 
-msgid "An **ext** (extension) value is an addition by Tarantool, not part of the formal MsgPack definition, for storage of decimal values. Values with the decimal type are not floating-point values although they may contain decimal points. They are exact."
+msgid "**number**. In Lua a number is double-precision floating-point, but a Tarantool 'number' field may have both integer and floating-point values. Tarantool will try to store a Lua number as floating-point if the value contains a decimal point or is very large (greater than 100 trillion = 1e14), otherwise Tarantool will store it as an integer. To ensure that even very large numbers are stored as integers, use the :ref:`tonumber64 <other-tonumber64>` function, or the LL (Long Long) suffix, or the ULL (Unsigned Long Long) suffix. Here are examples of numbers using regular notation, exponential notation, the ULL suffix and the ``tonumber64`` function: ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``."
 msgstr ""
 
-msgid "A **bin** (binary) value is not directly supported by Lua but there is a Tarantool type ``VARBINARY`` which is encoded as MessagePack binary. For an (advanced) example showing how to insert VARBINARY into a database, see the Cookbook Recipe for :ref:`ffi_varbinary_insert <cookbook-ffi_varbinary_insert>`."
+msgid "**decimal**. The Tarantool decimal type is stored as a MsgPack ext (Extension). Values with the decimal type are not floating-point values although they may contain decimal points. They are exact with up to 38 digits of precision. Example: a value returned by a function in the :ref:`decimal <decimal>` module."
 msgstr ""
 
-msgid "Lua **tables** with string keys are stored as MsgPack maps; Lua tables with integer keys starting with 1 -- as MsgPack arrays. Nils may not be used in Lua tables; the workaround is to use :ref:`msgpack.NULL <msgpack-null>`"
+msgid "**string**. A string is a variable-length sequence of bytes, usually represented with alphanumeric characters inside single quotes. In both Lua and MsgPack, strings are treated as binary data, with no attempts to determine a string's character set or to perform any string conversion -- unless there is an optional :ref:`collation <index-collation>`. So, usually, string sorting and comparison are done byte-by-byte, without any special collation rules applied. (Example: numbers are ordered by their point on the number line, so 2345 is greater than 500; meanwhile, strings are ordered by the encoding of the first byte, then the encoding of the second byte, and so on, so ``'2345'`` is less than ``'500'``.) Example: ``'A, B, C'``."
 msgstr ""
 
-msgid "A **tuple** is a light reference to a MsgPack array stored in the database. It is a special type (cdata) to avoid conversion to a Lua table on retrieval. A few functions may return tables with multiple tuples. For more tuple examples, see :ref:`box.tuple <box_tuple>`."
+msgid "**bin**. A bin (binary) value is not directly supported by Lua but there is a Tarantool type ``varbinary`` which is encoded as MsgPack binary. For an (advanced) example showing how to insert varbinary into a database, see the Cookbook Recipe for :ref:`ffi_varbinary_insert <cookbook-ffi_varbinary_insert>`. Example: ``\"\\65 \\66 \\67\"``."
 msgstr ""
 
-msgid "Tarantool uses the MsgPack format for database storage, which is variable-length. So, for example, the smallest number requires only one byte, but the largest number requires nine bytes."
+msgid "**uuid**. The Tarantool uuid type is stored as a MsgPack ext (Extension). Values with the uuid type are :ref:`Universally unique identifiers <uuid-module>`. |br| Example: 64d22e4d-ac92-4a23-899a-e5934af5479."
 msgstr ""
 
-msgid "Examples of insert requests with different data types:"
+msgid "**array**. An array is represented in Lua with ``{...}`` (`braces`_). Examples: as lists of numbers representing points in a geometric figure: ``{10, 11}``, ``{3, 5, 9, 10}``."
+msgstr ""
+
+msgid "**table**. Lua tables with string keys are stored as MsgPack maps; Lua tables with integer keys starting with 1 are stored as MsgPack arrays. Nils may not be used in Lua tables; the workaround is to use :ref:`box.NULL <box-null>`. Example: a ``box.space.tester:select()`` request will return a Lua table."
+msgstr ""
+
+msgid "**tuple**. A tuple is a light reference to a MsgPack array stored in the database. It is a special type (cdata) to avoid conversion to a Lua table on retrieval. A few functions may return tables with multiple tuples. For tuple examples, see :ref:`box.tuple <box_tuple>`."
+msgstr ""
+
+msgid "**scalar**. Values in a scalar field can be boolean or integer or unsigned or double or number or decimal or string or varbinary -- but not array or map or tuple. Examples: ``true``, ``1``, ``'xxx'``."
+msgstr ""
+
+msgid "**any**. Values in an any field can be boolean or integer or unsigned or double or number or decimal or string or varbinary -- or array or map or tuple. Examples: ``true``, ``1``, ``'xxx'``, ``{box.NULL, 0}``."
+msgstr ""
+
+msgid "Examples of insert requests with different field types:"
 msgstr ""
 
 msgid "tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}\n"
@@ -281,148 +296,106 @@ msgstr ""
 msgid "Indexed field types"
 msgstr ""
 
-msgid "Indexes restrict values which Tarantool's MsgPack may contain. This is why, for example, 'unsigned' is a separate **indexed field type**, compared to ‘integer’ data type in MsgPack: they both store ‘integer’ values, but an 'unsigned' index contains only *non-negative* integer values and an ‘integer’ index contains *all* integer values."
+msgid "Indexes restrict values which Tarantool may store with MsgPack. This is why, for example, ``'unsigned'`` and ``'integer'`` are different field types although in MsgPack they are both stored as integer values -- an ``'unsigned'`` index contains only *non-negative* integer values while an ``‘integer’`` index contains *any* integer values."
 msgstr ""
 
-msgid "Here is how Tarantool indexed field types correspond to MsgPack data types."
+msgid "Here again are the field types described in :ref:`Field Type Details <index_box_field_type_details>`, and the index types they can fit in. The default field type is ``'unsigned'`` and the default index type is TREE. Although ``'nil'`` is not a legal indexed field type, indexes may contain `nil` :ref:`as a non-default option <box_space-is_nullable>`. Full information is in section :ref:`Details about index field types <details_about_index_field_types>`."
 msgstr ""
 
-msgid "Indexed field type"
+msgid "Field type name string"
 msgstr ""
 
-msgid "MsgPack data type |br| (and possible values)"
+msgid "Field type |br|"
 msgstr ""
 
 msgid "Index type"
 msgstr ""
 
-msgid "Examples"
+msgid "``'boolean'``"
 msgstr ""
 
-msgid "**unsigned** (may also be called ‘uint’ or ‘num’, but ‘num’ is deprecated)"
+msgid ":ref:`boolean <index-box_boolean>`"
 msgstr ""
 
-msgid "**integer** (integer between 0 and 18446744073709551615, i.e. about 18 quintillion)"
+msgid ":ref:`TREE or HASH <box_index-type>`"
 msgstr ""
 
-msgid "TREE, BITSET or HASH"
+msgid "``'integer'`` (may also be called ‘int’)"
 msgstr ""
 
-msgid "123456"
-msgstr ""
-
-msgid "**integer** (may also be called ‘int’)"
-msgstr ""
-
-msgid "**integer** (integer between -9223372036854775808 and 18446744073709551615)"
+msgid ":ref:`integer <index-box_integer>` which may include unsigned values"
 msgstr ""
 
 msgid "TREE or HASH"
 msgstr ""
 
-msgid "-2^63"
+msgid "``'unsigned'`` (may also be called ‘uint’ or ‘num’, but ‘num’ is deprecated)"
 msgstr ""
 
-msgid "**number**"
+msgid ":ref:`unsigned <index-box_unsigned>`"
 msgstr ""
 
-msgid "**double** (single-precision floating point number or double-precision floating point number)"
+msgid "TREE, BITSET or HASH"
 msgstr ""
 
-msgid "1.234"
+msgid "``'double'``"
 msgstr ""
 
-msgid "-44"
+msgid ":ref:`double <index-box_double>`"
 msgstr ""
 
-msgid "1.447e+44"
+msgid "``'number'``"
 msgstr ""
 
-msgid "**double**"
+msgid ":ref:`number <index-box_number>` which may include :ref:`integer <index-box_integer>` or :ref:`double <index-box_double>` values"
 msgstr ""
 
-msgid "**string** (may also be called ‘str’)"
+msgid "``'decimal'``"
 msgstr ""
 
-msgid "**string** (any set of octets, up to the maximum length)"
+msgid ":ref:`decimal <index-box_decimal>`"
 msgstr ""
 
-msgid "‘A B C’"
+msgid "``'string'`` (may also be called ``‘str’``)"
 msgstr ""
 
-msgid "‘\\\\65 \\\\66 \\\\67’"
+msgid ":ref:`string <index-box_string>`"
 msgstr ""
 
-msgid "**varbinary**"
+msgid "``'varbinary'``"
 msgstr ""
 
-msgid "**bin** (any set of octets, up to the maximum length)"
+msgid ":ref:`varbinary <index-box_bin>`"
 msgstr ""
 
-msgid "**boolean**"
+msgid "``'uuid'``"
 msgstr ""
 
-msgid "**bool** (true or false)"
+msgid ":ref:`uuid <index-box_uuid>`"
 msgstr ""
 
-msgid "**decimal**"
+msgid "``'array'``"
 msgstr ""
 
-msgid "**ext** (extension)"
+msgid ":ref:`array <index-box_array>`"
 msgstr ""
 
-msgid "**uuid**"
+msgid ":ref:`RTREE <box_index-rtree>`"
 msgstr ""
 
-msgid "64d22e4d-ac92-|br| 4a23-899a-|br| e5934af5479"
+msgid "``'scalar'``"
 msgstr ""
 
-msgid "**array**"
+msgid "may include :ref:`nil <index-box_nil>` or :ref:`boolean <index-box_boolean>` or :ref:`integer <index-box_integer>` or :ref:`unsigned <index-box_unsigned>` or :ref:`number <index-box_number>` or :ref:`decimal <index-box_decimal>` or :ref:`string <index-box_string>` or :ref:`varbinary <index-box_bin>` values"
 msgstr ""
 
-msgid "**array** (list of numbers representing points in a geometric figure)"
-msgstr ""
-
-msgid "RTREE"
-msgstr ""
-
-msgid "{10, 11}"
-msgstr ""
-
-msgid "{3, 5, 9, 10}"
-msgstr ""
-
-msgid "**scalar**"
-msgstr ""
-
-msgid "**null**"
-msgstr ""
-
-msgid "**decimal** (value returned by a function in the :ref:`decimal <decimal>` module"
-msgstr ""
-
-msgid "**string** (any set of octets)"
-msgstr ""
-
-msgid "**varbinary** (any set of octets)"
-msgstr ""
-
-msgid "Note: When there is a mix of types, the key order is: null, then booleans, then numbers, then strings, then varbinary."
-msgstr ""
-
-msgid "-1"
-msgstr ""
-
-msgid "‘’"
-msgstr ""
-
-msgid "‘ру’"
+msgid "When a scalar field contains values of different underlying types, the key order is: nils, then booleans, then numbers, then strings, then varbinaries."
 msgstr ""
 
 msgid "Collations"
 msgstr ""
 
-msgid "By default, when Tarantool compares strings, it uses what we call a **\"binary\" collation**. The only consideration here is the numeric value of each byte in the string. Therefore, if the string is encoded with ASCII or UTF-8, then ``'A' < 'B' < 'a'``, because the encoding of 'A' (what used to be called the \"ASCII value\") is 65, the encoding of 'B' is 66, and the encoding of 'a' is 98. Binary collation is best if you prefer fast deterministic simple maintenance and searching with Tarantool indexes."
+msgid "By default, when Tarantool compares strings, it uses what we call a **\"binary\" collation**. The only consideration here is the numeric value of each byte in the string. Therefore, if the string is encoded with ASCII or UTF-8, then ``'A' < 'B' < 'a'``, because the encoding of ``'A'`` (what used to be called the \"ASCII value\") is 65, the encoding of ``'B'`` is 66, and the encoding of ``'a'`` is 98. Binary collation is best if you prefer fast deterministic simple maintenance and searching with Tarantool indexes."
 msgstr ""
 
 msgid "But if you want the ordering that you see in phone books and dictionaries, then you need Tarantool's optional collations, such as ``unicode`` and ``unicode_ci``, which allow for ``'a' < 'A' < 'B'`` and ``'a' = 'A' < 'B'`` respectively."
@@ -530,6 +503,9 @@ msgid "Type and meaning"
 msgstr ""
 
 msgid "Default"
+msgstr ""
+
+msgid "Examples"
 msgstr ""
 
 msgid "**start**"

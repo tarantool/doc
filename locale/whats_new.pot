@@ -14,6 +14,18 @@ msgstr ""
 msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout, client-server protocol and replication protocol. You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` procedure."
 msgstr ""
 
+msgid "**Release 2.4.1**"
+msgstr ""
+
+msgid "Deprecations"
+msgstr ""
+
+msgid "(SQL) SESSION will be a reserved word so objects named SESSION will be illegal. Part of issue `4711 <https://github.com/tarantool/tarantool/issues/4711>`_."
+msgstr ""
+
+msgid "In :ref:`box.session.push() <box_session-push>` the use of the ``sync`` parameter will cause a warning in version 2.4.1 and will cause an error in later versions. Part of issue `4689 <https://github.com/tarantool/tarantool/issues/4689>`_."
+msgstr ""
+
 msgid "**Release 2.2.1**"
 msgstr ""
 
@@ -723,9 +735,6 @@ msgstr ""
 msgid "(Misc) Fix linking with static ``openssl`` library. Issue `4437 <https://github.com/tarantool/tarantool/issues/4437>`_."
 msgstr ""
 
-msgid "Deprecations"
-msgstr ""
-
 msgid "(Core) Deprecate ``rows_per_wal`` in favor of ``wal_max_size``. Part of issue `3762 <https://github.com/tarantool/tarantool/issues/3762>`_."
 msgstr ""
 
@@ -1355,7 +1364,7 @@ msgstr ""
 msgid "Added a VERBOSE :ref:`log level <cfg_logging-log_level>` beyond INFO. Issue `2467 <https://github.com/tarantool/tarantool/issues/2467>`_."
 msgstr ""
 
-msgid "Tarantool now automatically makes snapshots every hour. Please set :ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-checkpoint_interval>` to restore pre-1.7.5 behaviour. Issue `2496 <https://github.com/tarantool/tarantool/issues/2496>`_."
+msgid "Tarantool now automatically makes snapshots every hour. Please set :ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-checkpoint_interval>` to restore pre-1.7.5 behavior. Issue `2496 <https://github.com/tarantool/tarantool/issues/2496>`_."
 msgstr ""
 
 msgid "Increase precision for percentage ratios provided by :ref:`box.slab.info() <box_slab_info>`. Issue `2082 <https://github.com/tarantool/tarantool/issues/2082>`_."
@@ -1847,7 +1856,7 @@ msgstr ""
 msgid "Install new 1.7.2 packages."
 msgstr ""
 
-msgid "Ensure that ``INSTANCENAME.lua`` file is present in ``/etc/tarantool/instace.enabled``."
+msgid "Ensure that ``INSTANCENAME.lua`` file is present in ``/etc/tarantool/instances.enabled``."
 msgstr ""
 
 msgid "Stop INSTANCENAME using ``tarantoolctl stop INSTANCENAME``."
@@ -1865,7 +1874,7 @@ msgstr ""
 msgid "Refer to issue `1291 <https://github.com/tarantool/tarantool/issues/1291>`_ comment and :ref:`the administration chapter <admin>` for additional information."
 msgstr ""
 
-msgid "Debian and Ubuntu packages start a ready-to-use ``example.lua`` instance on a clean installation of the package. The default instance grants universe permissions for ``guest`` user and listens on \"locahost:3313\"."
+msgid "Debian and Ubuntu packages start a ready-to-use ``example.lua`` instance on a clean installation of the package. The default instance grants universe permissions for ``guest`` user and listens on \"localhost:3313\"."
 msgstr ""
 
 msgid "Fedora 22 packages were deprecated (EOL)."
@@ -2015,7 +2024,7 @@ msgstr ""
 msgid "RPM packages for CentOS 7 / RHEL 7 and Fedora 22+ now use native systemd configuration without legacy sysvinit shell scripts. Systemd provides its own facilities for multi-instance management. To upgrade, perform the following steps:"
 msgstr ""
 
-msgid "Ensure that ``INSTANCENAME.lua`` file is present in ``/etc/tarantool/instace.available``."
+msgid "Ensure that ``INSTANCENAME.lua`` file is present in ``/etc/tarantool/instances.available``."
 msgstr ""
 
 msgid "``/etc/tarantool/instance.enabled`` directory is now deprecated for systemd-enabled platforms."

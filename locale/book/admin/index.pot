@@ -11,7 +11,7 @@ msgstr ""
 msgid "``systemd`` native utilities, or"
 msgstr ""
 
-msgid ":ref:`tarantoolctl <tarantoolctl>`, a utility shipped and installed as part of Tarantool distribution."
+msgid ":ref:`tarantoolctl <tarantoolctl>`, an administrative utility shipped and installed as part of Tarantool distribution."
 msgstr ""
 
 msgid "Unlike the rest of this manual, here we use system-wide paths."

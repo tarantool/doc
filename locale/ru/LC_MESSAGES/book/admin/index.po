@@ -17,9 +17,10 @@ msgstr ""
 msgid "``systemd`` native utilities, or"
 msgstr "встроенные утилиты ``systemd`` или"
 
+#, fuzzy
 msgid ""
-":ref:`tarantoolctl <tarantoolctl>`, a utility shipped and installed as "
-"part of Tarantool distribution."
+":ref:`tarantoolctl <tarantoolctl>`, an administrative utility shipped and"
+" installed as part of Tarantool distribution."
 msgstr ""
 ":ref:`tarantoolctl <tarantoolctl>`, утилита, поставляемая и "
 "устанавливаемая вместе с дистрибутивом Tarantool’а."

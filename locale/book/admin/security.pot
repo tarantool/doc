@@ -67,7 +67,7 @@ msgstr ""
 msgid "To change the user, it’s necessary to authenticate."
 msgstr ""
 
-msgid "For ease of use, ``tarantoolctl connect`` command automatically detects the type of connection during handshake and uses :ref:`EVAL <box_protocol-eval>` binary protocol command when it’s necessary to execute Lua commands over a binary connection. To execute EVAL, the authenticated user must have global \"EXECUTE\" privilege."
+msgid "For ease of use, ``tarantoolctl connect`` command automatically detects the type of connection during handshake and uses :ref:`EVAL <box_protocol-eval>` binary protocol command when it’s necessary to execute Lua commands over a binary connection. To execute EVAL, the authenticated user must have global \"EXECUTE\" privilege. The ``tarantoolctl connect`` command is for administrators."
 msgstr ""
 
 msgid "Therefore, when ``ssh`` access to the machine is not available, creating a Tarantool user with global \"EXECUTE\" privilege and non-empty password can be used to provide a system administrator **remote** access to an instance."

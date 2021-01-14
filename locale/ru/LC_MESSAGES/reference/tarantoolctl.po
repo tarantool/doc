@@ -2,12 +2,13 @@
 msgid "Utility `tarantoolctl`"
 msgstr "Утилита `tarantoolctl`"
 
+#, fuzzy
 msgid ""
 "``tarantoolctl`` is a utility for administering Tarantool :ref:`instances"
 " <tarantoolctl-instance_management>`, :ref:`checkpoint files "
 "<tarantoolctl-checkpoint_management>` and :ref:`modules <tarantoolctl-"
 "module_management>`. It is shipped and installed as part of Tarantool "
-"distribution."
+"distribution. This utility is intended for use by administrators only."
 msgstr ""
 "``tarantoolctl`` представляет собой утилиту для администрирования "
 ":ref:`экземпляров <tarantoolctl-instance_management>`, :ref:`файлов "

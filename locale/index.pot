@@ -5,7 +5,7 @@ msgstr ""
 msgid "|nbspc|"
 msgstr ""
 
-msgid "Tarantool 2.4 manual"
+msgid "Tarantool 2.6 manual"
 msgstr ""
 
 msgid "This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors."

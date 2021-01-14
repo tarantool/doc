@@ -280,7 +280,8 @@ msgid ""
 "..."
 msgstr ""
 
-msgid "**Final ckecks**"
+#, fuzzy
+msgid "**Final checks**"
 msgstr "**Финальная проверка**"
 
 msgid ""

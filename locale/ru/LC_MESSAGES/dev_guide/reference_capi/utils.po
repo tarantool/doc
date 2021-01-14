@@ -93,8 +93,9 @@ msgstr "передаваемое значение"
 msgid "Push int64_t onto the stack."
 msgstr "Принудительная передача int64_t в стек."
 
+#, fuzzy
 msgid ""
-"Check whether the argument idx is a uint64 or a convertable string and "
+"Check whether the argument idx is a uint64 or a convertible string and "
 "returns this number."
 msgstr ""
 "Проверка, является ли аргумент idx uint64 или конвертируемой строкой, и "
@@ -106,8 +107,9 @@ msgstr "выбрасывает"
 msgid "error if the argument can't be converted"
 msgstr "ошибку, если аргумент нельзя конвертировать"
 
+#, fuzzy
 msgid ""
-"Check whether the argument idx is a int64 or a convertable string and "
+"Check whether the argument idx is a int64 or a convertible string and "
 "returns this number."
 msgstr ""
 "Проверка, является ли аргумент idx int64 или конвертируемой строкой, и "
