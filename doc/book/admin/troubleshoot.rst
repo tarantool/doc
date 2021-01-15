@@ -14,7 +14,7 @@ Problem: INSERT/UPDATE-requests result in ER_MEMORY_ISSUE error
 **Possible reasons**
 
 * Lack of RAM (parameters ``arena_used_ratio`` and ``quota_used_ratio`` in
-  :ref:`box.slab.info() <box_slab_info>` report are getting close to 100%).
+  :doc:`/reference/reference_lua/box_slab/slab_info` report are getting close to 100%).
 
   To check these parameters, say:
 

@@ -132,7 +132,8 @@ Prometheus protocol.
 
 **Example**
 
-A very popular administrator request is :ref:`box.slab.info() <box_slab_info>`,
+A very popular administrator request is
+:doc:`/reference/reference_lua/box_slab/slab_info`,
 which displays detailed memory usage statistics for a Tarantool instance.
 
 .. code-block:: tarantoolsession
