@@ -1,5 +1,6 @@
 .. toctree::
-    :maxdepth: 5
+    :maxdepth: 7
+    :includehidden:
 
     getting_started/index
     book/box/data_model

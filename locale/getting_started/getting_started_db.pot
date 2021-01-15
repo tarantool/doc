@@ -42,7 +42,7 @@ msgstr ""
 msgid "Tarantool :ref:`persists data <index-box_persistence>` inside the container. To make your test data available after you stop the container, this command also mounts the host's directory ``/data/dir/on/host`` (you need to specify here an absolute path to an existing local directory) in the container's directory ``/var/lib/tarantool`` (by convention, Tarantool in a container uses this directory to persist data). So, all changes made in the mounted directory on the container's side are applied to the host's disk."
 msgstr ""
 
-msgid "Tarantool's database module in the container is already :ref:`configured <box_introspection-box_cfg>` and started. You needn't do it manually, unless you use Tarantool as an :ref:`application server <app_server>` and run it with an application."
+msgid "Tarantool's database module in the container is already :doc:`configured </reference/reference_lua/box_cfg>` and started. You needn't do it manually, unless you use Tarantool as an :ref:`application server <app_server>` and run it with an application."
 msgstr ""
 
 msgid "If your container terminates soon after start, follow `this page <https://stackoverflow.com/questions/64178499/tarantool-does-not-start-due-to-disk-write-error>`_ for a possible solution."

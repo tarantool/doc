@@ -112,7 +112,7 @@ For those who like to see things run, here are the exact steps to get
      os.exit()
 
 The database-specific requests (``cfg``,
-:ref:`space.create <box_schema-space_create>`,
+:doc:`space.create </reference/reference_lua/box_schema/space_create>`,
 :ref:`create_index <box_space-create_index>`)
 should already be familiar.
 

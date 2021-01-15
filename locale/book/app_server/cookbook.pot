@@ -37,7 +37,7 @@ msgstr ""
 msgid "console_start.lua"
 msgstr ""
 
-msgid "Use :ref:`box.once() <box-once>` to initialize a database (creating spaces) if this is the first time the server has been run. Then use :ref:`console.start() <console-start>` to start interactive mode."
+msgid "Use :doc:`box.once() </reference/reference_lua/box_once>` to initialize a database (creating spaces) if this is the first time the server has been run. Then use :ref:`console.start() <console-start>` to start interactive mode."
 msgstr ""
 
 msgid "#!/usr/bin/env tarantool\n"

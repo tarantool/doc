@@ -26,7 +26,7 @@ processor thread:
     |                     | reference on Tarantool logging parameters.           |
     +---------------------+------------------------------------------------------+
     | SIGUSR1             | May cause a database checkpoint. See                 |
-    |                     | :ref:`box.snapshot <box-snapshot>`.                  |
+    |                     | :doc:`/reference/reference_lua/box_snapshot`.        |
     +---------------------+------------------------------------------------------+
     | SIGTERM             | May cause graceful shutdown (information will be     |
     |                     | saved first).                                        |

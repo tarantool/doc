@@ -34,7 +34,7 @@ Here is what ``tarantoolctl`` does when you issue the command:
    ``tarantoolctl`` takes the instance name, prepends the instance directory and
    appends ".lua" extension to the instance file.
 
-4. Override :ref:`box.cfg{} <box_introspection-box_cfg>` function to pre-process
+4. Override :doc:`box.cfg{} </reference/reference_lua/box_cfg>` function to pre-process
    its parameters and ensure that instance paths are pointing to the paths
    defined in the ``tarantoolctl`` configuration file. For example, if the
    configuration file specifies that instance work directory must be in

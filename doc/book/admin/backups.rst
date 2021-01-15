@@ -15,12 +15,12 @@ any time, with minimal overhead on database performance.
 
 Two functions are helpful for backups in certain situations:
 
-* :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` informs
+* :doc:`/reference/reference_lua/box_backup/start` informs
   the server that activities related to the removal of outdated backups must
   be suspended and returns a table with the names of snapshot and vinyl files
   that should be copied.
 
-* :ref:`box.backup.stop() <reference_lua-box_backup-backup_stop>` later informs
+* :doc:`/reference/reference_lua/box_backup/stop` later informs
   the server that normal operations may resume.
 
 .. _admin-backups-hot_backup_memtx:
@@ -60,15 +60,17 @@ checkpoint.
 
 To take a mixed backup:
 
-1. Issue :ref:`box.backup.start() <reference_lua-box_backup-backup_start>` on the
+1. Issue :doc:`/reference/reference_lua/box_backup/start` on the
    :ref:`administrative console <admin-security>`. This will return a list of
-   files to back up and suspend garbage collection for them till the next ``box.backup.stop()``.
+   files to back up and suspend garbage collection for them till the next
+   ``box.backup.stop()``.
 
 2. Copy the files from the list to a safe location. This will include memtx
    snapshot files, vinyl run and index files, at a state consistent with the
    last checkpoint.
 
-3. Issue ``box.backup.stop()`` so the garbage collector can continue as usual.
+3. Issue :doc:`/reference/reference_lua/box_backup/stop` so the garbage
+   collector can continue as usual.
 
 .. _admin-backups-cont_remote_backup_memtx:
 

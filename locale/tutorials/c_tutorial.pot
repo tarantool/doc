@@ -129,7 +129,7 @@ msgid "box.schema.func.create('easy', {language = 'C'})\n"
 "capi_connection:call('easy')"
 msgstr ""
 
-msgid "If these requests appear unfamiliar, re-read the descriptions of :ref:`box.schema.func.create() <box_schema-func_create>`, :ref:`box.schema.user.grant() <box_schema-user_grant>` and :ref:`conn:call() <net_box-call>`."
+msgid "If these requests appear unfamiliar, re-read the descriptions of :doc:`/reference/reference_lua/box_schema/func_create`, :doc:`/reference/reference_lua/box_schema/user_grant` and :ref:`conn:call() <net_box-call>`."
 msgstr ""
 
 msgid "The function that matters is ``capi_connection:call('easy')``."
@@ -484,7 +484,7 @@ msgstr ""
 msgid "**Cleaning up**"
 msgstr ""
 
-msgid "Get rid of each of the function tuples with :ref:`box.schema.func.drop <box_schema-func_drop>`."
+msgid "Get rid of each of the function tuples with :doc:`/reference/reference_lua/box_schema/func_drop`."
 msgstr ""
 
 msgid "Get rid of the ``capi_test`` space with :ref:`box.schema.capi_test:drop() <box_space-drop>`."

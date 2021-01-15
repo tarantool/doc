@@ -63,7 +63,7 @@ All triggers have the following characteristics:
   if a function contains requests which normally could not occur immediately
   after the event, but only before the return from the event. For example, putting
   `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or
-  :ref:`box.rollback() <box-rollback>` in a trigger function would be
+  :doc:`/reference/reference_lua/box_txn_management/rollback` in a trigger function would be
   bringing in requests outside the event context.
 
 * Triggers are replaceable. The request to "redefine a trigger" implies
@@ -82,7 +82,7 @@ All triggers have the following characteristics:
   triggers. For example, use ``box.session.on_connect()`` to return a table of all
   connect-trigger functions.
 
-* Triggers can be useful in solving problems with replication. See details in 
+* Triggers can be useful in solving problems with replication. See details in
 :ref:`Resolving replication conflicts <replication-problem_solving>`
 
 **Example**
