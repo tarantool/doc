@@ -1,0 +1,54 @@
+
+msgid "error_object"
+msgstr ""
+
+msgid "Errors can be organized into lists. To achieve this, a Lua table representing an error object has ``.prev`` field and ``e:set_prev(err)`` method."
+msgstr ""
+
+msgid "Return a previous error, if any."
+msgstr ""
+
+msgid "Set an error as the previous error. Accepts an ``error object`` or ``nil``."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> e1 = box.error.new({code = 111, reason = 'some cause'})\n"
+"---\n"
+"...\n"
+"tarantool> e2 = box.error.new({code = 111, reason = 'cause of cause'})\n"
+"---\n"
+"...\n"
+"tarantool> e1:set_prev(e2)\n"
+"---\n"
+"...\n"
+"tarantool> e1.prev\n"
+"---\n"
+"- cause of cause\n"
+"..."
+msgstr ""
+
+msgid "Cycles are not allowed for error lists:"
+msgstr ""
+
+msgid "tarantool> e2:set_prev(e1)\n"
+"---\n"
+"- error: 'builtin/error.lua:147: Cycles are not allowed'\n"
+"..."
+msgstr ""
+
+msgid "Setting the previous error does not erase its own previous members:"
+msgstr ""
+
+msgid "-- e1 -> e2 -> e3 -> e4\n"
+"e1:set_prev(e2)\n"
+"e2:set_prev(e3)\n"
+"e3:set_prev(e4)\n"
+"e2:set_prev(e5)\n"
+"-- Now there are two lists: e1->e2->e5 and e3->e4"
+msgstr ""
+
+msgid "The iProto protocol also supports stacked diagnostics. See details in :ref:`MessagePack extensions -- The ERROR type <msgpack_ext-error>`."
+msgstr ""
+

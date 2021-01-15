@@ -2842,7 +2842,9 @@ organizing:
     Every 'service' tuple is created on the fly, that is, new tuples are made every time ``_session_settings`` is accessed.
     Every settings tuple has two fields: ``name`` (the primary key) and ``value``.
     The tuples' names and default values are: |br|
-    ``error_marshaling_enabled``: whether :ref:`error objects <box_error-new>` have a special structure. Default = false. |br|
+    ``error_marshaling_enabled``: whether
+    :doc:`error objects </reference/reference_lua/box_error/new>` have
+    a special structure. Default = false. |br|
     ``sql_default_engine``: default :ref:`storage engine <engines-chapter>` for new SQL tables. Default = 'memtx'. |br|
     ``sql_defer_foreign_keys``: whether foreign-key checks can wait till commit. Default = false. |br|
     ``sql_full_column_names``: no effect at this time. Default = false. |br|
