@@ -212,7 +212,7 @@ msgid "tarantool> box.space._cluster:delete(2)\n"
 "..."
 msgstr ""
 
-msgid "**Final ckecks**"
+msgid "**Final checks**"
 msgstr ""
 
 msgid "After all modifications, say ``box.info.replication`` to check the health status."

@@ -47,6 +47,12 @@ msgstr ""
 msgid "Make Tarantool act as a TCP server"
 msgstr ""
 
+msgid ":ref:`socket.bind() <socket-bind_non_object>`"
+msgstr ""
+
+msgid "Bind a socket to the given host/port"
+msgstr ""
+
 msgid ":ref:`socket_object:sysconnect() <socket-sysconnect>`"
 msgstr ""
 
@@ -75,9 +81,6 @@ msgid "Read data from the socket buffer if non-blocking"
 msgstr ""
 
 msgid ":ref:`socket_object:bind() <socket-bind>`"
-msgstr ""
-
-msgid "Bind a socket to the given host/port"
 msgstr ""
 
 msgid ":ref:`socket_object:listen() <socket-listen>`"
@@ -230,10 +233,14 @@ msgstr ""
 msgid "timeout"
 msgstr ""
 
-msgid "a connected socket, if no error."
+msgid "(if error) {nil, error-message-string}. (if no error) a new socket object."
 msgstr ""
 
-msgid "socket.tcp_connect('127.0.0.1', 3301)"
+msgid "socket object, which may be viewed as a table"
+msgstr ""
+
+msgid "sock, e = socket.tcp_connect('127.0.0.1', 3301)\n"
+"if sock == nil then print(e) end"
 msgstr ""
 
 msgid "The ``socket.getaddrinfo()`` function is useful for finding information about a remote site so that the correct arguments for ``sock:sysconnect()`` can be passed. This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>` configuration parameter."
@@ -260,7 +267,7 @@ msgstr ""
 msgid "``flags`` -- additional options (see details `here <https://man7.org/linux/man-pages/man3/getaddrinfo.3.html>`_)"
 msgstr ""
 
-msgid "A table containing these fields: \"host\", \"family\", \"type\", \"protocol\", \"port\"."
+msgid "(if error) {nil, error-message-string}. (if no error) A table containing these fields: \"host\", \"family\", \"type\", \"protocol\", \"port\"."
 msgstr ""
 
 msgid "table"
@@ -316,6 +323,12 @@ msgid "socket.tcp_server('localhost', 3302, function (s) loop_loop() end)\n"
 msgstr ""
 
 msgid "For fuller examples see :ref:`Use tcp_server to accept file contents sent with socat <socket_socat>` and :ref:`Use tcp_server with handler and prepare <socket_handler_prepare>`."
+msgstr ""
+
+msgid "Bind a socket to the given host/port. This is equivalent to :ref:`socket_object:bind() <socket-bind>`, but is done on the result of ``require('socket')``, rather than on the socket object."
+msgstr ""
+
+msgid "(if error) {nil, error-message-string}. (if no error) A table which may have information about the bind result."
 msgstr ""
 
 msgid "Connect an existing socket to a remote host. The argument values are the same as in :ref:`tcp_connect() <socket-tcp_connect>`. The host must be an IP address."
@@ -616,6 +629,9 @@ msgstr ""
 msgid "The ``sock:name()`` function is used to get information about the near side of the connection. If a socket was bound to ``xyz.com:45``, then ``sock:name`` will return information about ``[host:xyz.com, port:45]``. The equivalent POSIX function is ``getsockname()``."
 msgstr ""
 
+msgid "A table containing these fields: \"host\", \"family\", \"type\", \"protocol\", \"port\"."
+msgstr ""
+
 msgid "The ``sock:peer()`` function is used to get information about the far side of a connection. If a TCP connection has been made to a distant host ``tarantool.org:80``, ``sock:peer()`` will return information about ``[host:tarantool.org, port:80]``. The equivalent POSIX function is ``getpeername()``."
 msgstr ""
 
@@ -643,7 +659,7 @@ msgstr ""
 msgid "LuaSocket wrapper functions"
 msgstr ""
 
-msgid "The LuaSocket API has functions that are equivalent to the ones described above, with different names and parameters, for example ``connect()`` rather than ``tcp_connect()``, as well as ``getpeername``, ``getsockname``, ``setoption``, ``settimeout``. Tarantool supports these functions so that third-party packages which depend on them will work."
+msgid "The LuaSocket API has functions that are equivalent to the ones described above, with different names and parameters, for example ``connect()`` rather than ``tcp_connect()``. Tarantool supports these functions so that third-party packages which depend on them will work."
 msgstr ""
 
 msgid "The LuaSocket project is on `github <https://github.com/diegonehab/luasocket>`_. The API description is in the `LuaSocket manual <http://w3.impa.br/~diego/software/luasocket/>`_ (click the \"introduction\" and \"reference\" links at the bottom of the manual's main page)."

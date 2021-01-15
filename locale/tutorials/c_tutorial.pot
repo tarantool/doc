@@ -38,7 +38,7 @@ msgstr ""
 msgid "Check that these items exist on the computer:"
 msgstr ""
 
-msgid "Tarantool 2. or later"
+msgid "Tarantool 2.1 or later"
 msgstr ""
 
 msgid "A gcc compiler, any modern version should work"

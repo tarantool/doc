@@ -1062,7 +1062,7 @@ msgstr ""
 msgid "Wake up all fibers that have executed ``wait()`` for the same variable. Does not yield."
 msgstr ""
 
-msgid "Assume that a tarantool instance is running and listening for connections on localhost port 3301. Assume that guest users have privileges to connect. We will use the tarantoolctl utility to start two clients."
+msgid "Assume that a tarantool instance is running and listening for connections on localhost port 3301. Assume that guest users have privileges to connect. We will use the tarantoolctl utility (a utility for administrators) to start two clients."
 msgstr ""
 
 msgid "On terminal #1, say"

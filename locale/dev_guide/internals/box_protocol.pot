@@ -14,6 +14,75 @@ msgstr ""
 msgid "The protocol can be called \"binary\" because the most-frequently-used database accesses are done with binary codes instead of Lua request text. Tarantool experts use it to write their own connectors, to understand network messages, to support new features that their favorite connector doesn't support yet, or to avoid repetitive parsing by the server."
 msgstr ""
 
+msgid "Index"
+msgstr ""
+
+msgid "Section"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid ":ref:`Symbols and terms <box_protocol-notation>`"
+msgstr ""
+
+msgid "Notation of binary protocol"
+msgstr ""
+
+msgid ":ref:`Illustration <box_protocol-illustration>`"
+msgstr ""
+
+msgid "Illustration of use"
+msgstr ""
+
+msgid ":ref:`Header and body <box_protocol-header>`"
+msgstr ""
+
+msgid "Header of a request"
+msgstr ""
+
+msgid "Requests: |br|:ref:`IPROTO_SELECT <box_protocol-select>` |br|:ref:`IPROTO_INSERT <box_protocol-insert>` |br|:ref:`IPROTO_REPLACE <box_protocol-replace>` |br|:ref:`IPROTO_UPDATE <box_protocol-update>` |br|:ref:`IPROTO_DELETE <box_protocol-delete>` |br|:ref:`IPROTO_CALL_16 <box_protocol-call16>` |br|:ref:`IPROTO_AUTH <box_protocol-auth>` |br|:ref:`IPROTO_EVAL <box_protocol-eval>` |br|:ref:`IPROTO_UPSERT <box_protocol-upsert>` |br|:ref:`IPROTO_CALL <box_protocol-call>` |br|:ref:`IPROTO_EXECUTE <box_protocol-execute>` |br|:ref:`IPROTO_NOP <box_protocol-nop>` |br|:ref:`IPROTO_PREPARE <box_protocol-prepare>` |br|:ref:`IPROTO_PING <box_protocol-ping>` |br|:ref:`IPROTO_JOIN <box_protocol-join>` |br|:ref:`IPROTO_SUBSCRIBE <box_protocol-join>` |br|:ref:`IPROTO_VOTE_DEPRECATED <box_protocol-join>` |br|:ref:`IPROTO_VOTE <box_protocol-join>` |br|:ref:`IPROTO_FETCH_SNAPSHOT <box_protocol-join>` |br|:ref:`IPROTO_REGISTER <box_protocol-join>`"
+msgstr ""
+
+msgid "Body of a request"
+msgstr ""
+
+msgid ":ref:`Responses if no error and no SQL <box_protocol-responses>`"
+msgstr ""
+
+msgid "Responses for no SQL"
+msgstr ""
+
+msgid ":ref:`Responses for errors <box_protocol-responses_error>`"
+msgstr ""
+
+msgid "Responses for errors"
+msgstr ""
+
+msgid ":ref:`Responses for SQL <box_protocol-sql_protocol>`"
+msgstr ""
+
+msgid "Responses for SQL"
+msgstr ""
+
+msgid ":ref:`Authentication <box_protocol-authentication>`"
+msgstr ""
+
+msgid "Authentication after connection"
+msgstr ""
+
+msgid ":ref:`Replication <box_protocol-replication>`"
+msgstr ""
+
+msgid "Replication request"
+msgstr ""
+
+msgid ":ref:`XLOG/SNAP <box_protocol-xlog>`"
+msgstr ""
+
+msgid "Format of .xlog and .snap files"
+msgstr ""
+
 msgid "Binary protocol -- symbols and terms"
 msgstr ""
 
@@ -123,13 +192,13 @@ msgid "ce 00 00 00 1b   MP_UINT = decimal 27 = number of bytes after this\n"
 "                       -- 280 is the key value that we are searching for"
 msgstr ""
 
-msgid "Now read the source code file `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_ and skip to the line ``netbox_encode_select(lua_State *L)``. From the comments and from simple function calls like \"mpstream_encode_uint(&stream, IPROTO_SPACE_ID);\" you will be able to see how net_box put together the packet contents that you have just observed with tcpdump."
+msgid "Now read the source code file `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_ and skip to the line ``netbox_encode_select(lua_State *L)``. From the comments and from simple function calls like ``mpstream_encode_uint(&stream, IPROTO_SPACE_ID);`` you will be able to see how net_box put together the packet contents that you have just observed with tcpdump."
 msgstr ""
 
 msgid "There are libraries for reading and writing MessagePack objects. C programmers sometimes include `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_."
 msgstr ""
 
-msgid "Now you know how Tarantool itself makes requests with the binary protocol. When in doubt about a detail, consult net_box.c -- it has routines for each request. Some :ref:`connectors <index-box_connectors>` have similar code."
+msgid "Now you know how Tarantool itself makes requests with the binary protocol. When in doubt about a detail, consult ``net_box.c`` -- it has routines for each request. Some :ref:`connectors <index-box_connectors>` have similar code."
 msgstr ""
 
 msgid "Binary protocol -- header and body"
@@ -214,7 +283,7 @@ msgstr ""
 msgid "IPROTO_SPACE_ID (0x10) + MP_INT, IPROTO_INDEX_ID (0x11) + MP_INT, IPROTO_ITERATOR (0x14) + MP_INT, IPROTO_OFFSET (0x13) + MP_INT, IPROTO_LIMIT (0x12) + MP_INT, IPROTO_KEY (0x20) + MP_ARRAY (array of key values). See the illustration of IPROTO_SELECT in the earlier section, :ref:`Binary protocol -- illustration <box_protocol-illustration>`."
 msgstr ""
 
-msgid "**IPROTO_INSERT** = 0x02."
+msgid "**IPROTO_INSERT** == 0x02."
 msgstr ""
 
 msgid "See :ref:`space_object:insert()  <box_space-insert>`. The body is a 2-item map:"
@@ -366,7 +435,7 @@ msgstr ""
 msgid "**IPROTO_EVAL** = 0x08."
 msgstr ""
 
-msgid "See :ref:`conn:eval() <net_box-eval>`. Since the argument is a Lua expression, this is Tarantool's way to handle non-binary with the binary protocol. Any request that does not have its own code, for example :samp:`box.space.{space-name}:drop()`, will be handled either with :ref:`IPROTO_CALL <box_protocol-call>` or IPROTO_EVAL. Some client-like utilities, such as :ref:`tarantoolctl <tarantoolctl>`, make extensive use of ``eval``. The body is a 2-item map:"
+msgid "See :ref:`conn:eval() <net_box-eval>`. Since the argument is a Lua expression, this is Tarantool's way to handle non-binary with the binary protocol. Any request that does not have its own code, for example :samp:`box.space.{space-name}:drop()`, will be handled either with :ref:`IPROTO_CALL <box_protocol-call>` or IPROTO_EVAL. The :ref:`tarantoolctl <tarantoolctl>` administrative utility makes extensive use of ``eval``. The body is a 2-item map:"
 msgstr ""
 
 msgid "+=======================+======================+\n"
@@ -384,7 +453,30 @@ msgstr ""
 msgid "**IPROTO_UPSERT** = 0x09."
 msgstr ""
 
-msgid "See :ref:`space_object:upsert()  <box_space-upsert>`. The body is the same as the body of :ref:`IPROTO_UPDATE <box_protocol-update>`."
+msgid "See :ref:`space_object:upsert()  <box_space-upsert>`."
+msgstr ""
+
+msgid "+===============================+===============================+\n"
+"|                               |                               |\n"
+"|   0x10: IPROTO_SPACE_ID       |   0x15: IPROTO_INDEX_BASE     |\n"
+"| MP_INT: MP_INT                | MP_INT: MP_INT                |\n"
+"|                               |                               |\n"
+"+===============================+===============================+\n"
+"|                 +~~~~~~~~~~~+ |                               |\n"
+"|                 | usually   | |   0x21: IPROTO_TUPLE          |\n"
+"|                 | OPERATOR, | | MP_INT: MP_ARRAY              |\n"
+"| (IPROTO_OPS)    | FIELD_NO, | |                               |\n"
+"|    0x28:        | VALUE     | |                               |\n"
+"|  MP_INT:        +~~~~~~~~~~~+ |                               |\n"
+"|                   MP_ARRAY    |                               |\n"
+"+===============================+===============================+\n"
+"            MP_MAP"
+msgstr ""
+
+msgid "IPROTO_SPACE_ID (0x10) + MP_INT, IPROTO_INDEX_BASE (0x15) + MP_INT with index number starting with 1, IPROTO_OPS (0x28) + MP_ARRAY (array of upsert operations), IPROTO_TUPLE (0x21) + MP_ARRAY (array of primary-key-field values). |br|"
+msgstr ""
+
+msgid "The IPROTO_OPS is the same as the IPROTO_OPS of :ref:`IPROTO_UPDATE <box_protocol-update>`."
 msgstr ""
 
 msgid "**IPROTO_CALL** = 0x0a."
@@ -441,6 +533,12 @@ msgid "0b               IPROTO_EXECUTE\n"
 "90                 MP_ARRAY, size 0 (there are no options)"
 msgstr ""
 
+msgid "To call a prepared statement with named parameters from a connector pass the parameters within an array of maps. A client should wrap each element into a map, where the key holds a name of the parameter (with a colon) and the value holds an actual value. So, to bind foo and bar to 42 and 43, a client should send ``IPROTO_SQL_TEXT: <...>, IPROTO_SQL_BIND: [{\"foo\": 42}, {\"bar\": 43}]``."
+msgstr ""
+
+msgid "If a statement has both named and non-named parameters, wrap only named ones into a map. The rest of parameters are positional and substituted in order."
+msgstr ""
+
 msgid "**IPROTO_NOP** = 0x0c."
 msgstr ""
 
@@ -478,6 +576,33 @@ msgid "**IPROTO_JOIN** = 0x41, for replication  |br| **IPROTO_SUBSCRIBE** = 0x42
 msgstr ""
 
 msgid "Tarantool constants 0x41 to 0x46 (decimal 65 to 70) are for replication. Connectors and clients do not need to send replication packets. See :ref:`Binary protocol -- replication <box_protocol-replication>`."
+msgstr ""
+
+msgid "The next two IProto messages are used in replication connections between Tarantool nodes in :ref:`synchronous replication <repl_sync>`. The messages are not supposed to be used by any client applications in their regular connections."
+msgstr ""
+
+msgid "**IPROTO_CONFIRM** = 0x28"
+msgstr ""
+
+msgid "This message confirms that the transactions originated from the instance with id = IPROTO_REPLICA_ID have achieved quorum and can be committed, up to LSN = IPROTO_LSN and including it."
+msgstr ""
+
+msgid "The body is a 2-item map:"
+msgstr ""
+
+msgid "+===========================+====================+\n"
+"|                           |                    |\n"
+"|   0x02: IPROTO_REPLICA_ID |   0x03: IPROTO_LSN |\n"
+"| MP_UINT: MP_UINT          | MP_UINT: MP_UINT   |\n"
+"|                           |                    |\n"
+"+===========================+====================+\n"
+"                    MP_MAP"
+msgstr ""
+
+msgid "**IPROTO_ROLLBACK** = 0x29"
+msgstr ""
+
+msgid "This message says that the transactions originated from the instance with id = IPROTO_REPLICA_ID couldn't achieve quorum for some reason and should be rolled back, down to LSN = IPROTO_LSN and including it."
 msgstr ""
 
 msgid "Binary protocol -- responses if no error and no SQL"
@@ -675,7 +800,7 @@ msgid "84                       MP_MAP, size 4\n"
 "32                         IPROTO_METADATA\n"
 "92                         MP_ARRAY, size 2 (i.e. 2 columns)\n"
 "85                           MP_MAP, size 5 (i.e. 5 items for column#1)\n"
-"00 a2 44 44                    IPROTO_FELD_NAME + 'DD'\n"
+"00 a2 44 44                    IPROTO_FIELD_NAME + 'DD'\n"
 "01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE + 'integer'\n"
 "03 c2                          IPROTO_FIELD_IS_NULLABLE + false\n"
 "04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT + true\n"
@@ -792,9 +917,10 @@ msgid "JOIN:\n"
 "+================+=======================++========================+\n"
 "               MP_MAP                     MP_MAP\n"
 "\n"
-"Then the instance which you want to connect to will send its last SNAP file, by simply\n"
-"creating a number of INSERTs (with additional LSN and ServerID)\n"
-"(do not reply to this). Then that instance will send a vclock's MP_MAP and close a socket.\n"
+"Then the instance which you want to connect to will send its last SNAP file,\n"
+"by simply creating a number of INSERTs (with additional LSN and ServerID)\n"
+"(do not reply to this). Then that instance will send a vclock's MP_MAP and\n"
+"close a socket.\n"
 "\n"
 "+================+=======================++============================+\n"
 "|                |                       ||        +~~~~~~~~~~~~~~~~~+ |\n"
@@ -835,6 +961,32 @@ msgid "JOIN:\n"
 "\n"
 "Then you must process every request that could come through other masters.\n"
 "Every request between masters will have Additional LSN and SERVER_ID."
+msgstr ""
+
+msgid "Frequently a master sends a :ref:`heartbeat <heartbeat>` message to a replica. For example, if there is a replica with id = 2, and a timestamp with a moment in 2020, a master might send this:"
+msgstr ""
+
+msgid "83                      MP_MAP, size 3\n"
+"00                        Main-Map Item #1 IPROTO_REQUEST_TYPE\n"
+"00                          MP_UINT = 0\n"
+"02                        Main-Map Item #2 IPROTO_REPLICA_ID\n"
+"02                          MP_UINT = 2 = id\n"
+"04                        Main-Map Item #3 IPROTO_TIMESTAMP\n"
+"cb                          MP_DOUBLE (MessagePack \"Float 64\")\n"
+"41 d7 ba 06 7b 3a 03 21     8-byte timestamp"
+msgstr ""
+
+msgid "and the replica might send back this:"
+msgstr ""
+
+msgid "81                       MP_MAP, size 1\n"
+"00                         Main-Map Item #1 Response-code-indicator\n"
+"00                         MP_UINT = 0 = IPROTO_OK\n"
+"81                         Main-Map Item #2, MP_MAP, size 1\n"
+"26                           Sub-Map Item #1 IPROTO_VCLOCK\n"
+"81                           Sub-Map Item #2, MP_MAP, size 1\n"
+"01                             MP_UINT = 1 = id (part 1 of vclock)\n"
+"06                             MP_UINT = 6 = lsn (part 2 of vclock)"
 msgstr ""
 
 msgid "XLOG / SNAP"

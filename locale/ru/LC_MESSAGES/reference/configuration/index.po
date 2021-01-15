@@ -349,6 +349,10 @@ msgstr ":ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`"
 msgid ":ref:`strip_core <cfg_basic-strip_core>`"
 msgstr ":ref:`strip_core <cfg_basic-strip_core>`"
 
+#, fuzzy
+msgid ":ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`"
+msgstr ":ref:`memtx_dir <cfg_basic-memtx_dir>`"
+
 msgid ""
 "Since version 1.6.2. Run the server as a background task. The :ref:`log "
 "<cfg_logging-log>` and :ref:`pid_file <cfg_basic-pid_file>` parameters "
@@ -664,6 +668,11 @@ msgstr ""
 
 msgid "Default: true"
 msgstr "По умолчанию: true"
+
+msgid ""
+"Since version 2.6.1. Enables :ref:`transactional manager <atomic-"
+"transactional-manager>` if set to ``true``."
+msgstr ""
 
 msgid "Configuring the storage"
 msgstr "Настройка хранения"
@@ -1437,6 +1446,14 @@ msgstr ""
 ":ref:`replication_synchro_timeout <cfg_replication-"
 "replication_synchro_timeout>`"
 
+#, fuzzy
+msgid ":ref:`election_mode <cfg_replication-election_mode>`"
+msgstr ":ref:`replication_anon <cfg_replication-replication_anon>`"
+
+#, fuzzy
+msgid ":ref:`election_timeout <cfg_replication-election_timeout>`"
+msgstr ":ref:`replication_timeout <cfg_replication-replication_timeout>`"
+
 msgid ""
 "Since version 1.7.4. If ``replication`` is not an empty string, the "
 "instance is considered to be a Tarantool :ref:`replica <replication>`. "
@@ -1707,10 +1724,12 @@ msgstr ""
 "подробной информации, см. :ref:`статус orphan <replication-"
 "orphan_status>`."
 
+#, fuzzy
 msgid ""
 "This parameter is different from :ref:`replication_timeout "
-"<cfg_replication-replication_timeout>`, which is only used to "
-"automatically reconnect replication when it gets no heartbeats."
+"<cfg_replication-replication_timeout>`, which a master uses to disconnect"
+" a replica when the master receives no acknowledgments of heartbeat "
+"messages."
 msgstr ""
 "Данный параметр отличается от :ref:`replication_timeout <cfg_replication-"
 "replication_timeout>`, который используется только для автоматического "
@@ -2024,6 +2043,80 @@ msgstr ""
 
 msgid "Default: 5"
 msgstr "По умолчанию: 5"
+
+msgid ""
+"Since version 2.6.1. Specifies the role of a replica set node in the "
+":ref:`leader election process <repl_leader_elect>`."
+msgstr ""
+
+msgid "Possible values:"
+msgstr ""
+
+msgid "off"
+msgstr ""
+
+msgid "voter"
+msgstr ""
+
+msgid "candidate."
+msgstr ""
+
+msgid ""
+"Participation of a replica set node in the automated leader election can "
+"be turned on and off by this option. The default value is ``off``. All "
+"nodes that have values other than ``off`` run the Raft state machine "
+"internally talking to other nodes according to the Raft leader election "
+"protocol. When the option is ``off``, the node accepts Raft messages from"
+" other nodes, but it doesn't participate in the election activities, and "
+"this doesn't affect the node's state. So, for example, if a node is not a"
+" leader but it has ``election_mode = 'off'``, it is writable anyway."
+msgstr ""
+
+msgid ""
+"You can control which nodes can become a leader. If you want a node to "
+"participate in the election process but don't want that it becomes a "
+"leaders, set the ``election_mode`` option to ``voter``. In this case, the"
+" election works as usual, this particular node will vote for other nodes,"
+" but won't become a leader."
+msgstr ""
+
+msgid ""
+"If the node should be able to become a leader, use ``election_mode = "
+"'candidate'``."
+msgstr ""
+
+#, fuzzy
+msgid "Default: 'off'"
+msgstr "По умолчанию: 5"
+
+msgid ""
+"Since version 2.6.1. Specifies the timeout between election rounds in the"
+" :ref:`leader election process <repl_leader_elect>` if the previous round"
+" ended up with a split-vote."
+msgstr ""
+
+msgid ""
+"In the :ref:`leader election process <repl_leader_elect_process>`, there "
+"can be an election timeout for the case of a split-vote. The timeout can "
+"be configured using this option; the default value is 5 seconds."
+msgstr ""
+
+msgid ""
+"It is quite big, and for most of the cases it can be freely lowered to "
+"300-400 ms. It can be a floating point value (300 ms would be "
+"``box.cfg{election_timeout = 0.3}``)."
+msgstr ""
+
+#, python-format
+msgid ""
+"To avoid the split vote repeat, the timeout is randomized on each node "
+"during every new election, from 100% to 110% of the original timeout "
+"value. For example, if the timeout is 300 ms and there are 3 nodes "
+"started the election simultaneously in the same term, they can set their "
+"election timeouts to 300, 310, 320 respectively, or to 305, 302, 324, and"
+" so on. In that way, the votes will never be split because the election "
+"on different nodes won't be restarted simultaneously."
+msgstr ""
 
 msgid "Networking"
 msgstr "Работа с сетями"
@@ -2818,8 +2911,9 @@ msgstr ""
 "<cfg_checkpoint_daemon-checkpoint_count>`. Параметр был лишь "
 "переименован, его тип, значения и семантика остались прежними."
 
+#, fuzzy
 msgid ""
-"**Deprecated** in favour of :ref:`wal_max_size "
+"**Deprecated** in favor of :ref:`wal_max_size "
 "<cfg_binary_logging_snapshots-wal_max_size>`. The parameter does not "
 "allow to properly limit size of WAL logs."
 msgstr ""

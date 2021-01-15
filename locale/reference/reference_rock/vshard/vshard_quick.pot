@@ -23,7 +23,7 @@ msgstr ""
 msgid "``storage_2_b`` – a ``storage`` instance, the **replica** of the **second** replica set"
 msgstr ""
 
-msgid "All instances are managed using the ``tarantoolctl`` utility which comes with Tarantool."
+msgid "All instances are managed using the ``tarantoolctl`` administrative utility which comes with Tarantool."
 msgstr ""
 
 msgid "Change the directory to ``example/`` and use ``make`` to run the development cluster:"

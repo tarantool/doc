@@ -5,7 +5,10 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-msgid "The ``msgpack`` module takes strings in MsgPack_ format and decodes them, or takes a series of non-MsgPack values and encodes them. Tarantool makes heavy internal use of MsgPack because tuples in Tarantool are :ref:`stored <index-box_lua-vs-msgpack>` as MsgPack arrays."
+msgid "The ``msgpack`` module decodes :ref:`raw MsgPack strings <msgpack-definitions>` by converting them to Lua objects, and encodes Lua objects by converting them to raw MsgPack strings. Tarantool makes heavy internal use of MsgPack because tuples in Tarantool are :ref:`stored <index-box_lua-vs-msgpack>` as MsgPack arrays."
+msgstr ""
+
+msgid "Definitions: MsgPack is short for `MessagePack <https://msgpack.org/index.html>`_. A \"raw MsgPack string\" is a byte array formatted according to the `MsgPack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ including type bytes and sizes. The type bytes and sizes can be made displayable with :ref:`string.hex() <string-hex>`, or the raw MsgPack strings can be converted to Lua objects with ``msgpack`` methods."
 msgstr ""
 
 msgid "Index"
@@ -20,31 +23,46 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-msgid ":ref:`msgpack.encode() <msgpack-encode>`"
+msgid ":ref:`msgpack.encode(lua_value) <msgpack-encode_lua_value>`"
 msgstr ""
 
-msgid "Convert a Lua object to an MsgPack string"
+msgid "Convert a Lua object to a raw MsgPack string"
 msgstr ""
 
-msgid ":ref:`msgpack.decode() <msgpack-decode>`"
+msgid ":ref:`msgpack.encode(lua_value,ibuf) <msgpack-encode_lua_value_ibuf>`"
 msgstr ""
 
-msgid "Convert a MsgPack string to a Lua object"
+msgid "Convert a Lua object to a raw MsgPack string in an ibuf"
 msgstr ""
 
-msgid ":ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked>`"
+msgid ":ref:`msgpack.decode(msgpack_string) <msgpack-decode_string>`"
+msgstr ""
+
+msgid "Convert a raw MsgPack string to a Lua object"
+msgstr ""
+
+msgid ":ref:`msgpack.decode(C_style_string_pointer) <msgpack-decode_c_style_string_pointer>`"
+msgstr ""
+
+msgid "Convert a raw MsgPack string in an ibuf to a Lua object"
+msgstr ""
+
+msgid ":ref:`msgpack.decode_unchecked(msgpack_string) <msgpack-decode_unchecked_string>`"
+msgstr ""
+
+msgid ":ref:`msgpack.decode_unchecked(C_style_string_pointer) <msgpack-decode_unchecked_c_style_string_pointer>`"
 msgstr ""
 
 msgid ":ref:`msgpack.decode_array_header <msgpack-decode_array_header>`"
 msgstr ""
 
-msgid "Skip array header in a MsgPack string"
+msgid "Skip array header in a raw MsgPack string"
 msgstr ""
 
 msgid ":ref:`msgpack.decode_map_header <msgpack-decode_map_header>`"
 msgstr ""
 
-msgid "Skip map header in a MsgPack string"
+msgid "Skip map header in a raw MsgPack string"
 msgstr ""
 
 msgid ":ref:`__serialize parameter <msgpack-serialize>`"
@@ -65,7 +83,7 @@ msgstr ""
 msgid "Analog of Lua's \"nil\""
 msgstr ""
 
-msgid "Convert a Lua object to a MsgPack string."
+msgid "Convert a Lua object to a raw MsgPack string."
 msgstr ""
 
 msgid "Parameters"
@@ -77,49 +95,92 @@ msgstr ""
 msgid "return"
 msgstr ""
 
-msgid "the original value reformatted as a MsgPack string."
+msgid "the original contents formatted as a raw MsgPack string;"
 msgstr ""
 
 msgid "rtype"
 msgstr ""
 
-msgid "string"
+msgid "raw MsgPack string"
 msgstr ""
 
-msgid "Convert a MsgPack string to a Lua object."
+msgid "Convert a Lua object to a raw MsgPack string in an ibuf, which is a buffer such as :ref:`buffer.ibuf() <buffer-ibuf>` creates. As with :ref:`encode(lua_value) <msgpack-encode_lua_value>`, the result is a raw MsgPack string, but it goes to the ``ibuf`` output instead of being returned."
 msgstr ""
 
-msgid "a string formatted as MsgPack."
+msgid "(output parameter) where the result raw MsgPack string goes"
+msgstr ""
+
+msgid "number of bytes in the output"
+msgstr ""
+
+msgid "Example using :ref:`buffer.ibuf() <buffer-ibuf>` and `ffi.string() <https://luajit.org/ext_ffi_api.html>`_ and :ref:`string.hex() <string-hex>`: The result will be '91a161' because 91 is the MessagePack encoding of \"fixarray size 1\", a1 is the MessagePack encoding of \"fixstr size 1\", and 61 is the UTF-8 encoding of 'a':"
+msgstr ""
+
+msgid "ibuf = require('buffer').ibuf()\n"
+"msgpack_string_size = require('msgpack').encode({'a'}, ibuf)\n"
+"msgpack_string = require('ffi').string(ibuf.rpos, msgpack_string_size)\n"
+"string.hex(msgpack_string)"
+msgstr ""
+
+msgid "Convert a raw MsgPack string to a Lua object."
+msgstr ""
+
+msgid "a raw MsgPack string."
 msgstr ""
 
 msgid "where to start, minimum = 1, maximum = string length, default = 1."
 msgstr ""
 
-msgid "(if ``msgpack_string`` is in valid MsgPack format) the original contents of ``msgpack_string``, formatted as a Lua table, (otherwise) a scalar value, such as a string or a number;"
+msgid "(if ``msgpack_string`` is a valid raw MsgPack string) the original contents of ``msgpack_string``, formatted as a Lua object, usually a Lua table, (otherwise) a scalar value, such as a string or a number;"
 msgstr ""
 
 msgid "\"next_start_position\". If ``decode`` stops after parsing as far as byte N in ``msgpack_string``, then \"next_start_position\" will equal N + 1, and ``decode(msgpack_string, next_start_position)`` will continue parsing from where the previous ``decode`` stopped, plus 1. Normally ``decode`` parses all of ``msgpack_string``, so \"next_start_position\" will equal ``string.len(msgpack_string)`` + 1."
 msgstr ""
 
-msgid "table and number"
+msgid "Lua object and number"
 msgstr ""
 
-msgid "Convert a MsgPack string to a Lua object. Because checking is skipped, ``decode_unchecked()`` can operate with string pointers to buffers which ``decode()`` cannot handle. For an example see the :ref:`buffer <buffer-module>` module."
+msgid "Example: The result will be ['a'] and 4:"
 msgstr ""
 
-msgid "the original contents formatted as a Lua table;"
+msgid "msgpack_string = require('msgpack').encode({'a'})\n"
+"require('msgpack').decode(msgpack_string, 1)"
 msgstr ""
 
-msgid "the number of bytes that were decoded."
+msgid "Convert a raw MsgPack string, whose address is supplied as a C-style string pointer such as the ``rpos`` pointer which is inside an ibuf such as :ref:`buffer.ibuf() <buffer-ibuf>` creates, to a Lua object. A C-style string pointer may be described as ``cdata<char *>`` or ``cdata<const char *>``."
 msgstr ""
 
-msgid "lua object"
+msgid "a pointer to a raw MsgPack string."
+msgstr ""
+
+msgid "number of bytes in the raw MsgPack string"
+msgstr ""
+
+msgid "(if C_style_string_pointer points to a valid raw MsgPack string) the original contents of ``msgpack_string``, formatted as a Lua object, usually a Lua table, (otherwise) a scalar value, such as a string or a number;"
+msgstr ""
+
+msgid "returned_pointer = a C-style pointer to the byte after what was passed, so that C_style_string_pointer + size = returned_pointer"
+msgstr ""
+
+msgid "table and C-style pointer to after what was passed"
+msgstr ""
+
+msgid "Example using :ref:`buffer.ibuf <buffer-ibuf>` and pointer arithmetic: The result will be ['a'] and 3 and true:"
+msgstr ""
+
+msgid "ibuf = require('buffer').ibuf()\n"
+"msgpack_string_size = require('msgpack').encode({'a'}, ibuf)\n"
+"a, b = require('msgpack').decode(ibuf.rpos, msgpack_string_size)\n"
+"a, b - ibuf.rpos, msgpack_string_size == b - ibuf.rpos"
+msgstr ""
+
+msgid "Input and output are the same as for :ref:`decode(string) <msgpack-decode_string>`."
+msgstr ""
+
+msgid "Input and output are the same as for :ref:`decode(C_style_string_pointer) <msgpack-decode_c_style_string_pointer>`, except that ``size`` is not needed. Some checking is skipped, and ``decode_unchecked(C_style_string_pointer)`` can operate with string pointers to buffers which ``decode(C_style_string_pointer)`` cannot handle. For an example see the :ref:`buffer <buffer-module>` module."
 msgstr ""
 
 msgid "Call the mp_decode_array function in the `MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library and return the array size and a pointer to the first array component. A subsequent call to ``msgpack_decode`` can decode the component instead of the whole array."
-msgstr ""
-
-msgid "a pointer to a byte array formatted as MsgPack."
 msgstr ""
 
 msgid "a number greater than or equal to the string's length"
@@ -145,7 +206,7 @@ msgstr ""
 msgid "Call the mp_decode_map function in the `MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library and return the map size and a pointer to the first map component. A subsequent call to ``msgpack_decode`` can decode the component instead of the whole map."
 msgstr ""
 
-msgid "a number greater than or equal to the byte array's length"
+msgid "a number greater than or equal to the raw MsgPack string's length"
 msgstr ""
 
 msgid "the size of the map;"

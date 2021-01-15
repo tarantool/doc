@@ -75,7 +75,8 @@ msgstr "**Подготовка**"
 msgid "Check that these items exist on the computer:"
 msgstr "Проверьте наличие следующих элементов на компьютере:"
 
-msgid "Tarantool 2. or later"
+#, fuzzy
+msgid "Tarantool 2.1 or later"
 msgstr "Tarantool 2. или выше"
 
 msgid "A gcc compiler, any modern version should work"

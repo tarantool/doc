@@ -50,9 +50,10 @@ msgstr ""
 "``storage_2_b`` – экземпляр хранилища (``storage``), реплика из второго "
 "набора реплик"
 
+#, fuzzy
 msgid ""
-"All instances are managed using the ``tarantoolctl`` utility which comes "
-"with Tarantool."
+"All instances are managed using the ``tarantoolctl`` administrative "
+"utility which comes with Tarantool."
 msgstr ""
 "Управление всеми экземплярами осуществляется с помощью утилиты "
 "``tarantoolctl``."

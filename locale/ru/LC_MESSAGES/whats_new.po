@@ -52,6 +52,29 @@ msgstr ""
 " процедуры ``box.schema.upgrade()``."
 
 #, fuzzy
+msgid "**Release 2.4.1**"
+msgstr "**Версия 2.2.1**"
+
+msgid "Deprecations"
+msgstr "Устаревшие функции"
+
+#, fuzzy
+msgid ""
+"(SQL) SESSION will be a reserved word so objects named SESSION will be "
+"illegal. Part of issue `4711 "
+"<https://github.com/tarantool/tarantool/issues/4711>`_."
+msgstr ""
+"(Сервер) fiber:name() показывает только часть имени. Проблема `4011 "
+"<https://github.com/tarantool/tarantool/issues/4011>`_."
+
+msgid ""
+"In :ref:`box.session.push() <box_session-push>` the use of the ``sync`` "
+"parameter will cause a warning in version 2.4.1 and will cause an error "
+"in later versions. Part of issue `4689 "
+"<https://github.com/tarantool/tarantool/issues/4689>`_."
+msgstr ""
+
+#, fuzzy
 msgid "**Release 2.2.1**"
 msgstr "**Версия 2.2.1**"
 
@@ -1246,9 +1269,6 @@ msgid ""
 msgstr ""
 "(Разное) Исправить привязку к статической библиотеке ``openssl``. "
 "Проблема `4437 <https://github.com/tarantool/tarantool/issues/4437>`_."
-
-msgid "Deprecations"
-msgstr "Устаревшие функции"
 
 msgid ""
 "(Core) Deprecate ``rows_per_wal`` in favor of ``wal_max_size``. Part of "
@@ -2944,10 +2964,11 @@ msgstr ""
 "выше INFO. Проблема `2467 "
 "<https://github.com/tarantool/tarantool/issues/2467>`_."
 
+#, fuzzy
 msgid ""
 "Tarantool now automatically makes snapshots every hour. Please set "
 ":ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-"
-"checkpoint_interval>` to restore pre-1.7.5 behaviour. Issue `2496 "
+"checkpoint_interval>` to restore pre-1.7.5 behavior. Issue `2496 "
 "<https://github.com/tarantool/tarantool/issues/2496>`_."
 msgstr ""
 "Tarantool автоматически делает снимки каждый час. Установите "
@@ -4086,9 +4107,10 @@ msgstr ""
 msgid "Install new 1.7.2 packages."
 msgstr "Установите новые пакеты версии 1.7.2."
 
+#, fuzzy
 msgid ""
 "Ensure that ``INSTANCENAME.lua`` file is present in "
-"``/etc/tarantool/instace.enabled``."
+"``/etc/tarantool/instances.enabled``."
 msgstr ""
 "Убедитесь в наличии файла ``ИМЯ_ЭКЗЕМПЛЯРА.lua`` в директории "
 "``/etc/tarantool/instace.enabled``."
@@ -4124,10 +4146,12 @@ msgstr ""
 "<https://github.com/tarantool/tarantool/issues/1291>`_ и главу :ref:`по "
 "администрированию серверной части <admin>`."
 
+#, fuzzy
 msgid ""
 "Debian and Ubuntu packages start a ready-to-use ``example.lua`` instance "
 "on a clean installation of the package. The default instance grants "
-"universe permissions for ``guest`` user and listens on \"locahost:3313\"."
+"universe permissions for ``guest`` user and listens on "
+"\"localhost:3313\"."
 msgstr ""
 "Пакеты для Debian и Ubuntu запускают готовый к использованию экземпляр "
 "``example.lua`` при чистой установке пакета. В экземпляре, используемом "
@@ -4441,9 +4465,10 @@ msgstr ""
 "появляется возможность управления несколькими экземплярами. Чтобы "
 "обновить, выполните следующие действия:"
 
+#, fuzzy
 msgid ""
 "Ensure that ``INSTANCENAME.lua`` file is present in "
-"``/etc/tarantool/instace.available``."
+"``/etc/tarantool/instances.available``."
 msgstr ""
 "Убедитесь в наличии файла ``ИМЯ_ЭКЗЕМПЛЯРА.lua`` в директории "
 "``/etc/tarantool/instace.available``."
