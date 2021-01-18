@@ -30,7 +30,9 @@ extensions = [
     'ext.WebPageButtons',
     'ext.WebPageMap',
     'ext.ModuleBlock',
-    'ext.DownloadPageBlock'
+    'ext.DownloadPageBlock',
+    'ext.CustomHTMLTranslator',
+    'ext.CustomJSONBuilder',
 ]
 
 
