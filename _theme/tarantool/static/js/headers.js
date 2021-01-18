@@ -1,33 +1,3 @@
-/* register global tab function */
-//FIXME Delete comments
-window['register_tab'] = function (id) {
-    $(document).on({
-        click: function(event) {
-            event.preventDefault();
-            var link = $(this).children('a');
-            var target = link.attr('href');
-            if (!(link.hasClass('p-active'))) {
-                var active = $('#catalog-' + id + ' .b-tab_switcher-item-url.p-active');
-                $(active.attr('href')).hide();
-                active.removeClass('p-active');
-                link.addClass('p-active');
-                $(link.attr('href')).show();
-            }
-        }
-    }, '#catalog-' + id + ' .b-tab_switcher-item');
-    $(document).ready(function(event) {
-        var maxHeight = Math.max(
-          $('#terminal-' + id + '-1').height(),
-          $('#terminal-' + id + '-2').height()
-        );
-        $('#catalog-'  + id + '-content').height(maxHeight + 15);
-        $('#terminal-' + id + '-1').height(maxHeight);
-        $('#terminal-' + id + '-2').height(maxHeight);
-        $('#terminal-' + id + '-1').show();
-        $('#terminal-' + id + '-2').hide();
-    });
-}
-
 $(function() {
   /* Fix for singlehtml and bad links path */
   if ($('[class$="singlehtml"]').length) {
@@ -62,26 +32,6 @@ $(function () {
       var pane = rpane.prepend(lpane).wrapInner(hlp);
       $(el).replaceWith(pane);
   })
-
-  /* Add anchor before every function name. Also, add divs for good wrapping */
-  $('h2, h3, h4, h5, h6').each(
-    function(i, el) {
-      var icon = '<i class="fa fa-link"></i>';
-      var hll = '<div class="b-doc-hlink_left"></div>';
-      var hlr = '<div class="b-doc-hlink_right"></div>'
-      var hlp = '<div class="b-doc-hlink"></div>'
-      var hlink = $(el).find(".headerlink");
-      var hlink_id = hlink.attr("href");
-      if (typeof(hlink_id) != 'undefined') {
-        $(hlink).remove();
-        var lpane = $("<a />").addClass("headerlink").attr("href", hlink_id);
-        lpane = lpane.html(icon).wrap(hll).parent();
-        var rpane = $(el).clone().wrapInner(hlr);
-        var pane = rpane.prepend(lpane).wrapInner(hlp);
-        $(el).replaceWith(pane);
-      }
-    }
-  );
 
   /* Base admonition function */
   function admonition_icon(name) {
@@ -141,7 +91,6 @@ $(function () {
   /* Recursive sliding menu with plus/minus icons for toggling */
   /* Delete numbers in the chapter */
   function toggle_recursive() {
-    var is_mobile = ($("#mobile-checker").css("display") == "none");
 
     var menu = $(this)
     if (menu.is('li')) {
@@ -168,21 +117,13 @@ $(function () {
 
   /* Some hacks for sliding TOC and pinned left menu */
   $(function() {
-    // var is_mobile = ($("#mobile-checker").css("display") == "none");
-
     $(".b-cols_content_left").each(function() {
-      // if (is_mobile) {
-      //   $(this).find("li.toctree-l3 ul").remove()
-      //   $(this).find("li.toctree-l2:not(.current) ul").remove()
-      // }
       /* delete numbers from left toc */
       $(this).find("li.toctree-l1").each(toggle_recursive).find("a").each(function() {
         var before = $(this).text();
         var after = before.replace(/^[\d.]* (.*)/, '$1');
         $(this).text(after)
       })
-
-      console.log('THIS', $(this));
 
       $(this).find("a.current").each(function() {
         $(this).siblings("i").click();
@@ -194,12 +135,6 @@ $(function () {
         $(".toggle-navigation").removeClass('active');
       });
 
-    }).click(function() {
-      // if (is_mobile) {
-      //   event.stopPropagation();
-      // }
     });
   });
 });
-
-// vim: syntax=javascript ts=2 sts=2 sw=2 expandtab
