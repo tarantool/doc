@@ -1,0 +1,35 @@
+
+msgid "box.info.listen"
+msgstr ""
+
+msgid "Return a real address to which an instance was bound. For example, if ``box.cfg{listen}`` was set with a zero port, ``box.info.listen`` will show a real port. The address is stored as a string:"
+msgstr ""
+
+msgid "unix/:<path> for UNIX domain sockets"
+msgstr ""
+
+msgid "<ip>:<port> for IPv4"
+msgstr ""
+
+msgid "[ip]:<port> for IPv6"
+msgstr ""
+
+msgid "If an instance does not listen to anything, ``box.info.listen`` is nil."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> box.cfg{listen=0}\n"
+"---\n"
+"...\n"
+"tarantool> box.cfg.listen\n"
+"---\n"
+"- '0'\n"
+"...\n"
+"tarantool> box.info.listen\n"
+"---\n"
+"- 0.0.0.0:44149\n"
+"..."
+msgstr ""
+

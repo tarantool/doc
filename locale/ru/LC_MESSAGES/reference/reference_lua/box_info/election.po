@@ -1,0 +1,42 @@
+
+msgid "box.info.election"
+msgstr ""
+
+msgid ""
+"Show the current state of a replica set node in regards to :ref:`leader "
+"election <repl_leader_elect>`, namely, election state (mode), election "
+"term, vote in the current term, and the leader ID of the current term."
+msgstr ""
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.info.election\n"
+"---\n"
+"- state: follower\n"
+"  vote: 0\n"
+"  leader: 0\n"
+"  term: 1\n"
+"..."
+msgstr ""
+
+msgid ""
+"IDs in the ``box.info.election`` output are the replica IDs visible in "
+"the ``box.info.id`` output on each node and in the ``_cluster`` space."
+msgstr ""
+
+msgid ""
+":ref:`State <repl_leader_elect_state>` can be ``leader``, ``follower``, "
+"or ``candidate``. Also, refer to the information on `configuring "
+"<cfg_replication-election_mode>` node's election mode. When election is "
+"enabled, the node is writable only in the ``leader`` state."
+msgstr ""
+
+msgid "``vote`` equals ``0`` means the node didn't vote in the current term."
+msgstr ""
+
+msgid ""
+"``leader`` equals ``0`` means the node doesn't know who a leader in the "
+"current term is."
+msgstr ""
