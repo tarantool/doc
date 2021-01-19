@@ -192,7 +192,7 @@
 
     Push MessagePack data into a session data channel -- socket, console or
     whatever is behind the session. Behaves just like Lua
-    :ref:`box.session.push() <box_session-push>`.
+    :doc:`/reference/reference_lua/box_session/push`.
 
     :param const char* data: begin of MessagePack to push
     :param const char* data_end: end of MessagePack to push

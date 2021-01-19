@@ -1,0 +1,114 @@
+
+msgid "box.session.on_auth()"
+msgstr ""
+
+msgid "Define a trigger for execution during ref:`authentication <authentication-users>`."
+msgstr ""
+
+msgid "The ``on_auth`` trigger function is invoked in these circumstances:"
+msgstr ""
+
+msgid "The :ref:`console.connect <console-connect>` function includes an authentication check for all users except 'guest'. For this case, the ``on_auth`` trigger function is invoked after the ``on_connect`` trigger function, if and only if the connection has succeeded so far."
+msgstr ""
+
+msgid "The :ref:`binary protocol <admin-security>` has a separate :ref:`authentication packet <box_protocol-authentication>`. For this case, connection and authentication are considered to be separate steps."
+msgstr ""
+
+msgid "Unlike other trigger types, ``on_auth`` trigger functions are invoked **before** the event. Therefore a trigger function like :code:`function auth_function () v = box.session.user(); end` will set :code:`v` to \"guest\", the user name before the authentication is done. To get the user name **after** the authentication is done, use the special syntax: :code:`function auth_function (user_name) v = user_name; end`"
+msgstr ""
+
+msgid "If the trigger fails by raising an error, the error is sent to the client and the connection is closed."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "function which will become the trigger function"
+msgstr ""
+
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil or function pointer"
+msgstr ""
+
+msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
+msgstr ""
+
+msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
+msgstr ""
+
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""
+
+msgid "**Example 1**"
+msgstr ""
+
+msgid "tarantool> function f ()\n"
+"         >   x = x + 1\n"
+"         > end\n"
+"tarantool> box.session.on_auth(f)"
+msgstr ""
+
+msgid "**Example 2**"
+msgstr ""
+
+msgid "This is a more complex example, with two server instances."
+msgstr ""
+
+msgid "The first server instance listens on port 3301; its default user name is 'admin'. There are three ``on_auth`` triggers:"
+msgstr ""
+
+msgid "The first trigger has a function with no arguments, it can only look at ``box.session.user()``."
+msgstr ""
+
+msgid "The second trigger has a function with a ``user_name`` argument, it can look at both of: ``box.session.user()`` and ``user_name``."
+msgstr ""
+
+msgid "The third trigger has a function with a ``user_name`` argument and a ``status`` argument, it can look at all three of: ``box.session.user()`` and ``user_name`` and ``status``."
+msgstr ""
+
+msgid "The second server instance will connect with :ref:`console.connect <console-connect>`, and then will cause a display of the variables that were set by the trigger functions."
+msgstr ""
+
+msgid "-- On the first server instance, which listens on port 3301\n"
+"box.cfg{listen=3301}\n"
+"function function1()\n"
+"  print('function 1, box.session.user()='..box.session.user())\n"
+"  end\n"
+"function function2(user_name)\n"
+"  print('function 2, box.session.user()='..box.session.user())\n"
+"  print('function 2, user_name='..user_name)\n"
+"  end\n"
+"function function3(user_name, status)\n"
+"  print('function 3, box.session.user()='..box.session.user())\n"
+"  print('function 3, user_name='..user_name)\n"
+"  if status == true then\n"
+"    print('function 3, status = true, authorization succeeded')\n"
+"    end\n"
+"  end\n"
+"box.session.on_auth(function1)\n"
+"box.session.on_auth(function2)\n"
+"box.session.on_auth(function3)\n"
+"box.schema.user.passwd('admin')"
+msgstr ""
+
+msgid "-- On the second server instance, that connects to port 3301\n"
+"console = require('console')\n"
+"console.connect('admin:admin@localhost:3301')"
+msgstr ""
+
+msgid "The result looks like this:"
+msgstr ""
+
+msgid "function 3, box.session.user()=guest\n"
+"function 3, user_name=admin\n"
+"function 3, status = true, authorization succeeded\n"
+"function 2, box.session.user()=guest\n"
+"function 2, user_name=admin\n"
+"function 1, box.session.user()=guest"
+msgstr ""
+
