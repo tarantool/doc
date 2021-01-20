@@ -17,15 +17,10 @@ class HTMLTranslator(BaseHTMLTranslator):
         if (self.permalink_text and self.builder.add_permalinks and
                 node.parent.hasattr('ids') and node.parent['ids']):
             # add permalink anchor
-            if close_tag.startswith('</h') and not close_tag.startswith('</h1'):
+            if close_tag.startswith('</h') and not close_tag.startswith(
+                    '</h1') or close_tag.startswith('</a></h'):
                 self.add_permalink_ref_patched(node.parent,
                                                _('Permalink to this headline'))
-            elif close_tag.startswith('</a></h'):
-                self.body.append('</a><a class="headerlink" href="#%s" ' %
-                                 node.parent['ids'][0] +
-                                 'title="%s">%s' % (
-                                     _('Permalink to this headline'),
-                                     self.permalink_text))
             elif isinstance(node.parent, nodes.table):
                 self.body.append('</span>')
                 self.add_permalink_ref(node.parent,
