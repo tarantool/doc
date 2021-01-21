@@ -149,13 +149,16 @@ get a single Linux computer and start three command-line shells ("terminals").
 
 On terminal #2, start a server with: |br|
 ``box.cfg{listen=3302}`` |br|
+``box.schema.space.create('tspace')`` |br|
+``box.space.tspace:create_index('I')`` |br|
+``box.space.tspace:insert{280}`` |br|
 ``box.schema.user.grant('guest','read,write,execute,create,drop','universe')`` |br|
 
 On terminal #3, start another server, which will act as a client, with: |br|
 ``box.cfg{}`` |br|
 ``net_box = require('net.box')`` |br|
 ``conn = net_box.connect('localhost:3302')`` |br|
-``conn.space._space:select(280)`` |br|
+``conn.space.tspace:select(280)`` |br|
 
 Now look at what tcpdump shows for the job connecting to 3302. -- the "request".
 After the words "length 32" is a packet that ends with with these 32 bytes:
@@ -171,9 +174,9 @@ After the words "length 32" is a packet that ends with with these 32 bytes:
     01                 IPROTO_SELECT
     86                 MP_MAP, size 6 (we'll call this "Select-Map")
     10                   IPROTO_SPACE_ID (Select-Map Item#1)
-    cd 01 18             MP_UINT = decimal 280 = id of _space
+    cd 02 00             MP_UINT = decimal 512 = id of tspace (could be larger)
     11                   IPROTO_INDEX_ID (Select-Map Item#2)
-    00                   MP_INT = 0 = id of index within _space
+    00                   MP_INT = 0 = id of index within tspace
     14                   IPROTO_ITERATOR (Select-Map Item#3)
     00                   MP_INT = 0 = Tarantool iterator_type.h constant ITER_EQ
     13                   IPROTO_OFFSET (Select-Map Item#4)
