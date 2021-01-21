@@ -9,7 +9,7 @@ error_object
     Errors can be organized into lists. To achieve this, a Lua table representing an
     error object has ``.prev`` field and ``e:set_prev(err)`` method.
 
-.. _box_error-prev:
+    .. _box_error-prev:
 
     .. data:: prev
 

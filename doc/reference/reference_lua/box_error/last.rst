@@ -11,7 +11,7 @@ box.error.last()
     * "code" (number) error’s number
     * "type" (string) error’s C++ class
     * "message" (string) error’s message
-    * "trace" -- table with 2 members:
+    * "trace" (table) with 2 members:
           * "line" (number) Tarantool source file line number
           * "file" (string) Tarantool source file
 

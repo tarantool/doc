@@ -30,7 +30,7 @@ msgid ":doc:`./box_index/examples`"
 msgstr ""
 
 msgid "Some useful examples"
-msgstr ""
+msgstr "Несколько полезных примеров"
 
 msgid ":doc:`./box_index/unique`"
 msgstr ""

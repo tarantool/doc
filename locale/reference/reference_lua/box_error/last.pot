@@ -14,7 +14,7 @@ msgstr ""
 msgid "\"message\" (string) error’s message"
 msgstr ""
 
-msgid "\"trace\" -- table with 2 members:"
+msgid "\"trace\" (table) with 2 members:"
 msgstr ""
 
 msgid "\"line\" (number) Tarantool source file line number"

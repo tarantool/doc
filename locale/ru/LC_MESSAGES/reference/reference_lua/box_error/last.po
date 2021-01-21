@@ -14,8 +14,8 @@ msgstr "\"type\" (string) C++ класс ошибки"
 msgid "\"message\" (string) error’s message"
 msgstr "\"message\" (string) сообщение ошибки"
 
-msgid "\"trace\" -- table with 2 members:"
-msgstr "\"trace\" -- таблица с 2 компонентами:"
+msgid "\"trace\" (table) with 2 members:"
+msgstr "\"trace\" (table) с 2 компонентами:"
 
 msgid "\"line\" (number) Tarantool source file line number"
 msgstr "\"line\" (number) номер строки в исходном файле Tarantool"
