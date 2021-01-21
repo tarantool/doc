@@ -1,0 +1,66 @@
+
+msgid "box.schema.user.create()"
+msgstr ""
+
+msgid ""
+"Create a user. For explanation of how Tarantool maintains user data, see "
+"section :ref:`Users<authentication-users>` and reference on :ref:`_user "
+"<box_space-user>` space."
+msgstr ""
+"Создание пользователя. Чтобы получить информацию о том, как происходит "
+"управление данными пользователя в Tarantool'е, см. раздел "
+":ref:`Пользователи <authentication-users>` и справочник по спейсу "
+":ref:`_user <box_space-user>`."
+
+msgid "The possible options are:"
+msgstr "Возможные параметры:"
+
+msgid ""
+"``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; "
+"``true`` means there should be no error if the user already exists,"
+msgstr ""
+"``if_not_exists`` (если отсутствует) = ``true|false`` (правда/ложь, по "
+"умолчанию ложь) - логическое значение boolean; ``true`` (правда) "
+"означает, что ошибка не выпадет, если пользователь уже существует,"
+
+msgid ""
+"``password`` (default = '') - string; the ``password`` = *password* "
+"specification is good because in a :ref:`URI <index-uri>` (Uniform "
+"Resource Identifier) it is usually illegal to include a user-name without"
+" a password."
+msgstr ""
+"``password`` (пароль) -- строка; указать ``password`` = *password* "
+"неплохо, поскольку в :ref:`URI <index-uri>` (унифицированный "
+"идентификатор ресурса) обычно нельзя включать имя пользователя без "
+"пароля."
+
+msgid "The maximum number of users is 32."
+msgstr "Максимальное количество пользователей -- 32."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid ""
+"name of user, which should conform to the :ref:`rules for object names "
+"<app_server-names>`"
+msgstr ""
+"имя пользователя, которое должно соответствовать :ref:`правилам "
+"именования объектов <app_server-names>`"
+
+msgid "``if_not_exists``, ``password``"
+msgstr "``if_not_exists``, ``password``"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "nil"
+msgstr "nil"
+
+msgid "**Examples:**"
+msgstr "**Примеры:**"
+
+msgid ""
+"box.schema.user.create('Lena')\n"
+"box.schema.user.create('Lena', {password = 'X'})\n"
+"box.schema.user.create('Lena', {if_not_exists = false})"
+msgstr ""

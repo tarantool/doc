@@ -1,0 +1,44 @@
+
+msgid "box.schema.func.reload()"
+msgstr ""
+
+msgid "Reload a C module with all its functions without restarting the server."
+msgstr "Перезагрузка модуля на C (со всеми его функциями) без перезапуска сервера."
+
+msgid ""
+"Under the hood, Tarantool loads a new copy of the module (``*.so`` shared"
+" library) and starts routing all new request to the new version. The "
+"previous version remains active until all started calls are finished. All"
+" shared libraries are loaded with ``RTLD_LOCAL`` (see \"man 3 dlopen\"), "
+"therefore multiple copies can co-exist without any problems."
+msgstr ""
+"С точки зрения внутреннего устройства, Tarantool загружает новую копию "
+"модуля (библиотека общего пользования ``*.so``) и запускает маршрутизацию"
+" всех новых запросов на новую версию. Предыдущая версия остается активной"
+" до тех пор, пока не завершатся все начатые вызовы. Все библиотеки общего"
+" пользования загружены с ``RTLD_LOCAL`` (см. \"man 3 dlopen\"), таким "
+"образом, множество копий могут работать одновременно без каких-либо "
+"проблем."
+
+msgid ""
+"Reload will fail if a module was loaded from Lua script with `ffi.load() "
+"<http://luajit.org/ext_ffi_api.html#ffi_load>`_."
+msgstr ""
+"Перезагрузка не сработает, если модуль был загружен из Lua-скрипта с "
+"`ffi.load() <http://luajit.org/ext_ffi_api.html#ffi_load>`_."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "the name of the module to reload"
+msgstr "имя модуля для перезагрузки"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"-- reload the entire module contents\n"
+"box.schema.func.reload('module')"
+msgstr ""
+"-- перегрузить целиком всё содержимое модуля\n"
+"box.schema.func.reload('module')"

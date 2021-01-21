@@ -1,0 +1,8 @@
+
+msgid "box.schema.upgrade()"
+msgstr ""
+
+msgid "See :ref:`Upgrading a Tarantool database <admin-upgrades>`."
+msgstr ""
+"Смотрите в разделе :ref:`Обновление базы данных Tarantool <admin-"
+"upgrades>`."
