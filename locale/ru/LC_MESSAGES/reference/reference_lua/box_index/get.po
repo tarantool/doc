@@ -1,0 +1,60 @@
+
+msgid "index_object:get()"
+msgstr ""
+
+msgid ""
+"Search for a tuple via the given index, as described :ref:`earlier "
+"<box_index-note>`."
+msgstr ""
+"Поиск кортежа по заданному индексу, как описано :ref:`выше <box_index-"
+"note>`."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
+
+msgid "values to be matched against the index key"
+msgstr "значения для сопоставления с ключом индекса"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "the tuple whose index-key fields are equal to the passed key values."
+msgstr "кортеж, в котором поля ключа в индексе равны переданным значениям ключа."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "tuple"
+msgstr "кортеж"
+
+msgid "**Possible errors:**"
+msgstr "**Возможные ошибки:**"
+
+msgid "no such index;"
+msgstr "отсутствие такого индекса;"
+
+msgid "wrong type;"
+msgstr "неправильный тип;"
+
+msgid "more than one tuple matches."
+msgstr "больше одного кортежа подходят."
+
+msgid ""
+"**Complexity factors:** Index size, Index type. See also "
+":ref:`space_object:get() <box_space-get>`."
+msgstr ""
+"**Факторы сложности:** Размер индекса, тип индекса. См. также "
+":ref:`space_object:get() <box_space-get>`."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.space.tester.index.primary:get(2)\n"
+"---\n"
+"- [2, 'Music']\n"
+"..."
+msgstr ""

@@ -1,0 +1,43 @@
+
+msgid "index_object:delete()"
+msgstr ""
+
+msgid "Delete a tuple identified by a key."
+msgstr "Удаление кортежа по ключу."
+
+msgid ""
+"Same as :ref:`box.space...delete() <box_space-delete>`, but key is "
+"searched in this index instead of in the primary-key index. This index "
+"ought to be unique."
+msgstr ""
+"То же, что и :ref:`box.space...delete() <box_space-delete>`, но поиск "
+"ключа происходит в этом индексе, вместо первичного. Данный индекс должен "
+"быть уникальным."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
+
+msgid "values to be matched against the index key"
+msgstr "значения для сопоставления с ключом индекса"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "the deleted tuple."
+msgstr "удаленный кортеж."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "tuple"
+msgstr ""
+
+msgid ""
+"**Note re storage engine:** vinyl will return `nil`, rather than the "
+"deleted tuple."
+msgstr ""
+"**Примечание про движок базы данных:** vinyl вернет `nil`, а не удаленный"
+" кортеж."

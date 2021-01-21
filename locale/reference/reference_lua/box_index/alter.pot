@@ -1,0 +1,78 @@
+
+msgid "index_object:alter()"
+msgstr ""
+
+msgid "Alter an index. It is legal in some circumstances to change one or more of the index characteristics, for example its type, its sequence options, its parts, and whether it is unique. Usually this causes rebuilding of the space,  except for the simple case where a part's ``is_nullable`` flag is changed from ``false`` to ``true``."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+msgid "options list, same as the options list for ``create_index``, see the chart named :ref:`Options for space_object:create_index() <box_space-create_index>`."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil"
+msgstr ""
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "index does not exist,"
+msgstr ""
+
+msgid "the primary-key index cannot be changed to ``{unique = false}``."
+msgstr ""
+
+msgid "**Note re storage engine:** vinyl does not support ``alter()`` of a primary-key index unless the space is empty."
+msgstr ""
+
+msgid "**Example 1:**"
+msgstr ""
+
+msgid "You can add and remove fields that make up a primary index:"
+msgstr ""
+
+msgid "tarantool> s = box.schema.create_space('test')\n"
+"---\n"
+"...\n"
+"tarantool> i = s:create_index('i', {parts = {{field = 1, type = 'unsigned'}}})\n"
+"---\n"
+"...\n"
+"tarantool> s:insert({1, 2})\n"
+"---\n"
+"- [1, 2]\n"
+"...\n"
+"tarantool> i:select()\n"
+"---\n"
+"- - [1, 2]\n"
+"...\n"
+"tarantool> i:alter({parts = {{field = 1, type = 'unsigned'}, {field = 2, type = 'unsigned'}}})\n"
+"---\n"
+"...\n"
+"tarantool> s:insert({1, 't'})\n"
+"---\n"
+"- error: 'Tuple field 2 type does not match one required by operation: expected unsigned'\n"
+"..."
+msgstr ""
+
+msgid "**Example 2:**"
+msgstr ""
+
+msgid "You can change index options for both memtx and vinyl spaces:"
+msgstr ""
+
+msgid "tarantool> box.space.space55.index.primary:alter({type = 'HASH'})\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> box.space.vinyl_space.index.i:alter({page_size=4096})\n"
+"---\n"
+"..."
+msgstr ""
+

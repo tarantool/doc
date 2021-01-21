@@ -1,0 +1,61 @@
+
+msgid "index_object:update()"
+msgstr ""
+
+msgid "Update a tuple."
+msgstr "Обновление кортежа."
+
+msgid ""
+"Same as :ref:`box.space...update() <box_space-update>`, but key is "
+"searched in this index instead of primary key. This index should be "
+"unique."
+msgstr ""
+"То же, что и :ref:`box.space...update() <box_space-update>`, но поиск "
+"ключа происходит в этом индексе, вместо первичного. Данный индекс должен "
+"быть уникальным."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
+
+msgid "values to be matched against the index key"
+msgstr "значения для сопоставления с ключом индекса"
+
+msgid "operation type represented in string"
+msgstr "тип операции, представленный строкой"
+
+msgid ""
+"what field the operation will apply to. The field number can be negative,"
+" meaning the position from the end of tuple. (#tuple + negative field "
+"number + 1)"
+msgstr ""
+"к какому полю применяется операция. Номер поля может быть отрицательным, "
+"что означает, что позиция рассчитывается с конца кортежа. (#кортеж + "
+"отрицательный номер поля + 1)"
+
+msgid "what value will be applied"
+msgstr "какое значение применяется"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "the updated tuple"
+msgstr "обновленный кортеж"
+
+msgid "nil if the key is not found"
+msgstr "nil, если ключ не найден"
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "tuple or nil"
+msgstr "tuple или nil"
+
+msgid ""
+"Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths"
+"<json_paths-module>`."
+msgstr ""
+"Начиная с версии Tarantool 2.3 кортеж можно обновить с помощью "
+":ref:`JSON-путей <json_paths-module>`."

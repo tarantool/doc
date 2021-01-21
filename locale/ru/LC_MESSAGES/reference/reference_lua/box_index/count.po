@@ -1,0 +1,49 @@
+
+msgid "index_object:count()"
+msgstr ""
+
+msgid ""
+"Iterate over an index, counting the number of tuples which match the key-"
+"value."
+msgstr ""
+"Итерация по индексу с подсчетом количества кортежей, которые "
+"соответствуют паре ключ-значение."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
+
+msgid "values to be matched against the index key"
+msgstr "значения для сопоставления с ключом индекса"
+
+msgid "comparison method"
+msgstr "метод сопоставления"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "the number of matching tuples."
+msgstr "количество совпадающих кортежей."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "number"
+msgstr "число"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.space.tester.index.primary:count(999)\n"
+"---\n"
+"- 0\n"
+"...\n"
+"tarantool> box.space.tester.index.primary:count('Alpha!', { iterator = "
+"'LE' })\n"
+"---\n"
+"- 1\n"
+"..."
+msgstr ""

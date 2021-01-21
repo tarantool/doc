@@ -1,0 +1,53 @@
+
+msgid "index_object:min()"
+msgstr ""
+
+msgid "Find the minimum value in the specified index."
+msgstr "Поиск минимального значения в указанном индексе."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
+
+msgid "values to be matched against the index key"
+msgstr "значения для сопоставления с ключом индекса"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid ""
+"the tuple for the first key in the index. If optional ``key`` value is "
+"supplied, returns the first key which is greater than or equal to ``key``"
+" value. Starting with Tarantool version 2.0, index_object:min(``key`` "
+"value) will return nothing if ``key`` value is not equal to a value in "
+"the index."
+msgstr ""
+"кортеж для первого ключа в индексе. Если указано необязательное значение "
+"ключа ``key``, будет выведен первый ключ, который больше или равен "
+"значению ключа ``key``. Начиная с версии Tarantool'а 2.0, "
+"index:min(значение ``key``) не вернет ничего, если значение ``key`` не "
+"равно значению в индексе."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "tuple"
+msgstr ""
+
+msgid "**Possible errors:** index is not of type 'TREE'."
+msgstr "**Возможные ошибки:** тип индекса не 'TREE'."
+
+msgid "**Complexity factors:** Index size, Index type."
+msgstr "**Факторы сложности:** Размер индекса, тип индекса."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.space.tester.index.primary:min()\n"
+"---\n"
+"- ['Alpha!', 55, 'This is the first tuple!']\n"
+"..."
+msgstr ""
