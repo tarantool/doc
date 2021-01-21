@@ -32,3 +32,15 @@ msgstr ""
 msgid "Wait until ``box.info.ro`` is false"
 msgstr ""
 
+msgid ":doc:`./box_ctl/on_schema_init`"
+msgstr ""
+
+msgid "Create a \"schema_init trigger\""
+msgstr ""
+
+msgid ":doc:`./box_ctl/on_shutdown`"
+msgstr ""
+
+msgid "Create a \"shutdown trigger\""
+msgstr ""
+

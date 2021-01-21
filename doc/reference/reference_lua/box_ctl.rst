@@ -42,8 +42,16 @@ Below is a list of all ``box.ctl`` functions.
         *  - :doc:`./box_ctl/wait_rw`
            - Wait until ``box.info.ro`` is false
 
+        *  - :doc:`./box_ctl/on_schema_init`
+           - Create a "schema_init trigger"
+
+        *  - :doc:`./box_ctl/on_shutdown`
+           - Create a "shutdown trigger"
+
 ..  toctree::
     :hidden:
 
     box_ctl/wait_ro
     box_ctl/wait_rw
+    box_ctl/on_schema_init
+    box_ctl/on_shutdown
