@@ -34,7 +34,8 @@ Observe the following rules when working with transactions:
     Tarantool version 2.1 or later.
     Data-definition requests which change an index
     or change a format, such as
-    :ref:`space_object:create_index() <box_schema-sequence_create_index>` and
+    :doc:`space_object:create_index()
+    </reference/reference_lua/box_schema_sequence/create_index>` and
     :ref:`space_object:format() <box_space-format>`,
     are not allowed inside transactions except as the first request
     after ``box.begin()``.

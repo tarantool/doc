@@ -1,0 +1,102 @@
+
+msgid "Sequences"
+msgstr "Последовательности"
+
+msgid ""
+"An introduction to sequences is in the :ref:`Sequences <index-"
+"box_sequence>` section of the \"Data model\" chapter. Here are the "
+"details for each function and option."
+msgstr ""
+"Вводная информация о последовательностях дается в разделе "
+":ref:`Последовательности <index-box_sequence>` главы \"Модель данных\". "
+"Здесь же приведена подробная информация о каждой функции и каждом "
+"параметре."
+
+msgid ""
+"All functions related to sequences require appropriate :ref:`privileges "
+"<authentication-owners_privileges>`."
+msgstr ""
+"Все функции, связанные с последовательностями, требуют наличия "
+"соответствующих :ref:`прав <authentication-owners_privileges>`."
+
+msgid "Below is a list of all ``box.schema.sequence`` functions."
+msgstr "Ниже приведен перечень всех функций модуля ``box.schema.sequence``."
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Use"
+msgstr "Использование"
+
+msgid ":doc:`./box_schema_sequence/create`"
+msgstr ""
+
+msgid "Create a new sequence generator"
+msgstr "Создание нового генератора последовательностей"
+
+msgid ":doc:`./box_schema_sequence/next`"
+msgstr ""
+
+msgid "Generate and return the next value"
+msgstr "Генерация и выдача следующего значения"
+
+msgid ":doc:`./box_schema_sequence/alter`"
+msgstr ""
+
+msgid "Change sequence options"
+msgstr "Изменение параметров последовательности"
+
+msgid ":doc:`./box_schema_sequence/reset`"
+msgstr ""
+
+msgid "Reset sequence state"
+msgstr "Возврат последовательности в оригинальное состояние"
+
+msgid ":doc:`./box_schema_sequence/set`"
+msgstr ""
+
+msgid "Set the new value"
+msgstr "Установка нового значения"
+
+msgid ":doc:`./box_schema_sequence/current`"
+msgstr ""
+
+msgid "Return the last retrieved value"
+msgstr "Возврат последнего найденного значения"
+
+msgid ":doc:`./box_schema_sequence/drop`"
+msgstr ""
+
+msgid "Drop the sequence"
+msgstr "Удаление последовательности"
+
+msgid ":doc:`./box_schema_sequence/create_index`"
+msgstr ""
+
+msgid "Create an index with a sequence option"
+msgstr "Создание индекса с опцией последовательности"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid "Here is an example showing all sequence options and operations:"
+msgstr ""
+"Ниже представлен пример, иллюстрирующий все параметры и операции для "
+"последовательностей:"
+
+msgid ""
+"s = box.schema.sequence.create(\n"
+"               'S2',\n"
+"               {start=100,\n"
+"               min=100,\n"
+"               max=200,\n"
+"               cache=100000,\n"
+"               cycle=false,\n"
+"               step=100\n"
+"               })\n"
+"s:alter({step=6})\n"
+"s:next()\n"
+"s:reset()\n"
+"s:set(150)\n"
+"s:drop()"
+msgstr ""

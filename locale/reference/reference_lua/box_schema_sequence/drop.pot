@@ -1,0 +1,7 @@
+
+msgid "sequence_object:drop()"
+msgstr ""
+
+msgid "Drop an existing sequence."
+msgstr ""
+

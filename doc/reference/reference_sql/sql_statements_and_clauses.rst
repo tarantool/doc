@@ -546,7 +546,7 @@ are three columns in the primary key but only the first column (``a``) is AUTOIN
 As the name suggests, values in an autoincrement column are automatically incremented.
 That is: if a user inserts NULL in the column, then the stored value will be the smallest
 non-negative integer that has not already been used.
-This occurs because autoincrement columns are associated with :ref:`sequences <box_schema-sequence_create_index>`.
+This occurs because autoincrement columns are associated with :doc:`sequences </reference/reference_lua/box_schema_sequence/create_index>`.
 
 UNIQUE constraints look like this: |br|
 :samp:`UNIQUE ({column-name} [, {column-name}...])`
@@ -1671,7 +1671,8 @@ Actions:
 #. All rows in the table are removed. Usually this is faster than
    :samp:`DELETE FROM {table-name};`.
 #. If the table has an autoincrement primary key, its
-   :ref:`sequence <box_schema-sequence_create_index>` is not reset to zero,
+   :doc:`sequence </reference/reference_lua/box_schema_sequence/create_index>`
+   is not reset to zero,
    but that may occur in a future Tarantool version.
 #. There is no effect for any triggers associated with the table.
 #. There is no effect on the counts for the ``ROW_COUNT()`` function.
