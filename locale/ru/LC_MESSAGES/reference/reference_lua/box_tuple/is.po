@@ -1,0 +1,22 @@
+
+msgid "box.tuple.is()"
+msgstr ""
+
+msgid ""
+"A function to check whether a given object is a tuple cdata object. Never"
+" raises nor returns an error."
+msgstr ""
+"Функция для проверки, является ли переданный объект кортежем cdata. "
+"Никогда не выдает и не возвращает ошибку."
+
+msgid "return"
+msgstr ""
+
+msgid "true or false"
+msgstr "true или false"
+
+msgid "rtype"
+msgstr "возвращаемое значение"
+
+msgid "boolean"
+msgstr ""

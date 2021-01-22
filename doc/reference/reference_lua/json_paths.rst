@@ -9,9 +9,10 @@
 ===============================================================================
 
 Since version 2.3 Tarantool supports JSON path updates. Now you can update/upsert
-formatted   :ref:`tuple <box_tuple-update>` / :ref:`space <box_space-update>` /
-:ref:`index <box_index-update>` fields by name (not only by field number). Updates
-of nested structures are also supported.
+formatted :doc:`tuple </reference/reference_lua/box_tuple/update>` /
+:ref:`space <box_space-update>` /
+:doc:`index </reference/reference_lua/box_index/update>`
+fields by name (not only by field number). Updates of nested structures are also supported.
 
 **Example:**
 
@@ -71,9 +72,9 @@ of nested structures are also supported.
         ...
 
 Notice that field names that look like JSON paths are processed similarly to
-:ref:`accessing tuple fields by JSON <box_tuple-field_path>`: first, the
-whole path is interpreted as a field name; if such a name does not exist, then
-it is treated as a path.
+:doc:`accessing tuple fields by JSON </reference/reference_lua/box_tuple/field_path>`:
+first, the whole path is interpreted as a field name; if such a name does not exist,
+then it is treated as a path.
 
 For example, for a field name ``field.name.like.json``, this update
 
