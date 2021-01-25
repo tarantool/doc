@@ -1,0 +1,68 @@
+
+msgid "space_object:replace() / put()"
+msgstr ""
+
+msgid ""
+"Insert a tuple into a space. If a tuple with the same primary key already"
+" exists, ``box.space...:replace()`` replaces the existing tuple with a "
+"new one. The syntax variants ``box.space...:replace()`` and "
+"``box.space...:put()`` have the same effect; the latter is sometimes used"
+" to show that the effect is the converse of ``box.space...:get()``."
+msgstr ""
+"Вставка кортежа в спейс. Если уже существует кортеж с тем же первичным "
+"ключом, ``box.space...:replace()`` заменит существующий кортеж новым. "
+"Варианты синтаксиса (``box.space...:replace()`` и ``box.space...:put()``)"
+" приведут к одному результату, но последний иногда используется как "
+"противоположность ``box.space...:get()``."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`"
+
+msgid "tuple to be inserted"
+msgstr "вставляемый кортеж"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "the inserted tuple."
+msgstr "вставленный кортеж"
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "tuple"
+msgstr ""
+
+msgid ""
+"**Possible errors:** :errcode:`ER_TUPLE_FOUND` if a different tuple with "
+"the same unique-key value already exists. (This will only happen if there"
+" is a unique secondary index.)"
+msgstr ""
+"**Возможные ошибки:** ошибка :errcode:`ER_TUPLE_FOUND`, если уже "
+"существует другой кортеж с тем же уникальным значением ключа (это "
+"произойдет только в том случае, если есть уникальный вторичный индекс)."
+
+msgid ""
+"**Complexity factors:** Index size, Index type, Number of indexes "
+"accessed, WAL settings."
+msgstr ""
+"**Факторы сложности:** Размер индекса, тип индекса, количество индексов, "
+"к которым получен доступ, настройки журнала упреждающей записи (WAL)."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid "box.space.tester:replace{5000, 'tuple number five thousand'}"
+msgstr ""
+
+msgid ""
+"For more usage scenarios and typical errors see :ref:`Example: using data"
+" operations <box_space-operations-detailed-examples>` further in this "
+"section."
+msgstr ""
+"Для получения дополнительной информации о сценариях использования и "
+"типичных ошибках, см. :ref:`Пример: использование операций с данными "
+"<box_space-operations-detailed-examples>` далее в разделе."

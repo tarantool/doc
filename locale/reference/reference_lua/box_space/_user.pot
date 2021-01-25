@@ -1,0 +1,161 @@
+
+msgid "box.space._user"
+msgstr ""
+
+msgid "``_user`` is a system space where user-names and password hashes are stored."
+msgstr ""
+
+msgid "Tuples in this space contain the following fields:"
+msgstr ""
+
+msgid "the numeric id of the tuple (\"id\"),"
+msgstr ""
+
+msgid "the numeric id of the tuple’s creator,"
+msgstr ""
+
+msgid "the name,"
+msgstr ""
+
+msgid "the type: 'user' or 'role',"
+msgstr ""
+
+msgid "optional password."
+msgstr ""
+
+msgid "There are five special tuples in the ``_user`` space: 'guest', 'admin', 'public', 'replication', and 'super'."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "guest"
+msgstr ""
+
+msgid "0"
+msgstr ""
+
+msgid "user"
+msgstr ""
+
+msgid "Default user when connecting remotely. Usually an untrusted user with few privileges."
+msgstr ""
+
+msgid "admin"
+msgstr ""
+
+msgid "1"
+msgstr ""
+
+msgid "Default user when using Tarantool as a console. Usually an :ref:`administrative user <authentication-owners_privileges>` with all privileges."
+msgstr ""
+
+msgid "public"
+msgstr ""
+
+msgid "2"
+msgstr ""
+
+msgid "role"
+msgstr ""
+
+msgid "Pre-defined :ref:`role <authentication-roles>`, automatically granted to new users when they are created with ``box.schema.user.create(user-name)``. Therefore a convenient way to grant 'read' on space 't' to every user that will ever exist is with ``box.schema.role.grant('public','read','space','t')``."
+msgstr ""
+
+msgid "replication"
+msgstr ""
+
+msgid "3"
+msgstr ""
+
+msgid "Pre-defined :ref:`role <authentication-roles>`, which the 'admin' user can grant to users who need to use :ref:`replication <replication>` features."
+msgstr ""
+
+msgid "super"
+msgstr ""
+
+msgid "31"
+msgstr ""
+
+msgid "Pre-defined :ref:`role <authentication-roles>`, which the 'admin' user can grant to users who need all privileges on all objects. The 'super' role has these privileges on 'universe': read, write, execute, create, drop, alter."
+msgstr ""
+
+msgid "To select a tuple from the ``_user`` space, use ``box.space._user:select()``. For example, here is what happens with a select for user id = 0, which is the 'guest' user, which by default has no password:"
+msgstr ""
+
+msgid "tarantool> box.space._user:select{0}\n"
+"---\n"
+"- - [0, 1, 'guest', 'user']\n"
+"..."
+msgstr ""
+
+msgid "To change tuples in the ``_user`` space, do not use ordinary ``box.space`` functions for insert or update or delete. The ``_user`` space is special, so there are special functions which have appropriate error checking."
+msgstr ""
+
+msgid "To create a new user, use :doc:`/reference/reference_lua/box_schema/user_create`:"
+msgstr ""
+
+msgid "box.schema.user.create(*user-name*)\n"
+"box.schema.user.create(*user-name*, {if_not_exists = true})\n"
+"box.schema.user.create(*user-name*, {password = *password*})"
+msgstr ""
+
+msgid "To change the user's password, use :doc:`/reference/reference_lua/box_schema/user_password`:"
+msgstr ""
+
+msgid "-- To change the current user's password\n"
+"box.schema.user.passwd(*password*)\n"
+"\n"
+"-- To change a different user's password\n"
+"-- (usually only 'admin' can do it)\n"
+"box.schema.user.passwd(*user-name*, *password*)"
+msgstr ""
+
+msgid "To drop a user, use :doc:`/reference/reference_lua/box_schema/user_drop`:"
+msgstr ""
+
+msgid "box.schema.user.drop(*user-name*)"
+msgstr ""
+
+msgid "To check whether a user exists, use :doc:`/reference/reference_lua/box_schema/user_exists`, which returns ``true`` or ``false``:"
+msgstr ""
+
+msgid "box.schema.user.exists(*user-name*)"
+msgstr ""
+
+msgid "To find what privileges a user has, use :doc:`/reference/reference_lua/box_schema/user_info`:"
+msgstr ""
+
+msgid "box.schema.user.info(*user-name*)"
+msgstr ""
+
+msgid "The maximum number of users is 32."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "Here is a session which creates a new user with a strong password, selects a tuple in the ``_user`` space, and then drops the user."
+msgstr ""
+
+msgid "tarantool> box.schema.user.create('JeanMartin', {password = 'Iwtso_6_os$$'})\n"
+"---\n"
+"...\n"
+"tarantool> box.space._user.index.name:select{'JeanMartin'}\n"
+"---\n"
+"- - [17, 1, 'JeanMartin', 'user', {'chap-sha1': 't3xjUpQdrt857O+YRvGbMY5py8Q='}]\n"
+"...\n"
+"tarantool> box.schema.user.drop('JeanMartin')\n"
+"---\n"
+"..."
+msgstr ""
+

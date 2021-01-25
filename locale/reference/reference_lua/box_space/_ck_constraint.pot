@@ -1,0 +1,35 @@
+
+msgid "box.space._ck_constraint"
+msgstr ""
+
+msgid "``_ck_constraint`` is a system space where check constraints are stored."
+msgstr ""
+
+msgid "Tuples in this space contain the following fields:"
+msgstr ""
+
+msgid "the numeric id of the space (\"space_id\"),"
+msgstr ""
+
+msgid "the name,"
+msgstr ""
+
+msgid "whether the check is deferred (\"is_deferred\"),"
+msgstr ""
+
+msgid "the language of the expression, such as 'SQL',"
+msgstr ""
+
+msgid "the expression (\"code\")"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> box.space._ck_constraint:select()\n"
+"---\n"
+"- - [527, 'c1', false, 'SQL', '\"f2\" > ''A''']\n"
+"  - [527, 'c2', false, 'SQL', '\"f2\" == UPPER(\"f3\") AND NOT \"f2\" LIKE ''__''']\n"
+"..."
+msgstr ""
+
