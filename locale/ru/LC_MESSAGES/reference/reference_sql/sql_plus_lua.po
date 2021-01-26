@@ -172,7 +172,7 @@ msgstr ""
 
 msgid ""
 "To handle replication and sharding of SQL data, see section "
-":ref:`Sharding <shard-module>`."
+":ref:`Sharding <vshard-summary>`."
 msgstr ""
 
 msgid ""

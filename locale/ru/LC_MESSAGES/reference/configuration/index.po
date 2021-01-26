@@ -1664,7 +1664,7 @@ msgstr ""
 "запись:"
 
 msgid ""
-"box.cfg{read_only=false}\n"
+"tarantool> box.cfg{read_only=false}\n"
 "2019-12-13 20:35:46.392 [71329] main/102/interactive I> set 'read_only' "
 "configuration option to false\n"
 "---\n"

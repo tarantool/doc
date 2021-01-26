@@ -103,7 +103,7 @@ msgstr ""
 msgid "To make spaces with field names that SQL can understand, use :ref:`space_object:format() <box_space-format>`. (Exception: in Tarantool/NoSQL it is legal for tuples to have more fields than are described by a format clause, but in Tarantool/SQL such fields will be ignored.)"
 msgstr ""
 
-msgid "To handle replication and sharding of SQL data, see section :ref:`Sharding <shard-module>`."
+msgid "To handle replication and sharding of SQL data, see section :ref:`Sharding <vshard-summary>`."
 msgstr ""
 
 msgid "To enhance performance of SQL statements by preparing them in advance, see section :ref:`box.prepare() <box-sql_box_prepare>`."
