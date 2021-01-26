@@ -1,5 +1,5 @@
 
-msgid "index_object:type"
+msgid "index_object.type"
 msgstr ""
 
 msgid "Index type, 'TREE' or 'HASH' or 'BITSET' or 'RTREE'."

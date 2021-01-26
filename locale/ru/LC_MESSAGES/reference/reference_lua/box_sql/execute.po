@@ -169,4 +169,3 @@ msgid ""
 "net.box <net_box-module>`, for example after ``conn = net_box.connect"
 "(url-string)`` one can say ``conn:execute(sql-statement])``."
 msgstr ""
-

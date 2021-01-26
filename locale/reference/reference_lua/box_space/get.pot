@@ -41,7 +41,7 @@ msgstr ""
 msgid "box.space.tester:get{1}"
 msgstr ""
 
-msgid "**Using field names instead of field numbers:** `get()` can use field names described by the optional :doc:`/reference/reference_lua/box_space/format` clause. This is true because the object returned by ``get()`` can be used with most of the features described in the :doc:`/reference/reference_lua/box_tuple` description, including :doc:`/reference/reference_lua/box_space/field_name`."
+msgid "**Using field names instead of field numbers:** `get()` can use field names described by the optional :doc:`/reference/reference_lua/box_space/format` clause. This is true because the object returned by ``get()`` can be used with most of the features described in the :doc:`/reference/reference_lua/box_tuple` description, including :doc:`/reference/reference_lua/box_tuple/field_name`."
 msgstr ""
 
 msgid "For example, we can format the `tester` space with a field named `x` and use the name `x` in the index definition:"

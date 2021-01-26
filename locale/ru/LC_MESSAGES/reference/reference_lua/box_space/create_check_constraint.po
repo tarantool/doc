@@ -109,5 +109,5 @@ msgstr ""
 
 msgid ""
 "A list of check constraints is in "
-":ref:`/reference/reference_lua/box_space/_ck_constraint`."
+":doc:`/reference/reference_lua/box_space/_ck_constraint`."
 msgstr ""

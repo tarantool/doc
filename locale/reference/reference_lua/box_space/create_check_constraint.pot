@@ -68,6 +68,6 @@ msgid "box.schema.space.create('t')\n"
 "box.space.t:update(1, {{'=', 2, 'xx'}, {'=', 3, 'xx'}})"
 msgstr ""
 
-msgid "A list of check constraints is in :ref:`/reference/reference_lua/box_space/_ck_constraint`."
+msgid "A list of check constraints is in :doc:`/reference/reference_lua/box_space/_ck_constraint`."
 msgstr ""
 

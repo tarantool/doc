@@ -73,4 +73,3 @@ msgid ""
 "session disconnects (the session's prepared statements will be removed "
 "from the prepared-statement cache)."
 msgstr ""
-

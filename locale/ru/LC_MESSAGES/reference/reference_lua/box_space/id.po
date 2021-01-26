@@ -1,5 +1,5 @@
 
-msgid "space_object:id"
+msgid "space_object.id"
 msgstr ""
 
 msgid ""

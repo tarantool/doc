@@ -84,4 +84,3 @@ msgid ""
 "rolled back, even if the create or drop or alter is done in a different "
 "session."
 msgstr ""
-

@@ -43,7 +43,7 @@ space_object:get()
         described by the optional :doc:`/reference/reference_lua/box_space/format` clause.
         This is true because the object returned by ``get()`` can be used with most of the
         features described in the :doc:`/reference/reference_lua/box_tuple` description, including
-        :doc:`/reference/reference_lua/box_space/field_name`.
+        :doc:`/reference/reference_lua/box_tuple/field_name`.
 
         For example, we can format the `tester` space
         with a field named `x` and use the name `x` in the index definition:

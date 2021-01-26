@@ -79,4 +79,4 @@ box.space.create_check_constraint()
             -- This update will fail, constraint c2 expression returns false
             box.space.t:update(1, {{'=', 2, 'xx'}, {'=', 3, 'xx'}})
 
-        A list of check constraints is in :ref:`/reference/reference_lua/box_space/_ck_constraint`.
+        A list of check constraints is in :doc:`/reference/reference_lua/box_space/_ck_constraint`.

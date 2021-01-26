@@ -1,5 +1,5 @@
 
-msgid "index_object:unique"
+msgid "index_object.unique"
 msgstr ""
 
 msgid "True if the index is unique, false if the index is not unique."
