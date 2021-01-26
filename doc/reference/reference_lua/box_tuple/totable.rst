@@ -5,8 +5,6 @@
 tuple_object:totable()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: totable([start-field-number [, end-field-number]])

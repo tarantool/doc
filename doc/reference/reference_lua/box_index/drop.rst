@@ -4,8 +4,6 @@
 index_object:drop()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: drop()

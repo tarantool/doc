@@ -4,8 +4,6 @@
 space_object:delete()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: delete(key)

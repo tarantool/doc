@@ -4,8 +4,6 @@
 space_object:bsize()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: bsize()

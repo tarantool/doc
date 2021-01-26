@@ -4,8 +4,6 @@
 space_object:pairs()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: pairs([key [, iterator]])

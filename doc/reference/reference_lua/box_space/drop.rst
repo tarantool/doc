@@ -4,8 +4,6 @@
 space_object:drop()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: drop()

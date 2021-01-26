@@ -4,8 +4,6 @@
 index_object:rename()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: rename(index-name)

@@ -4,8 +4,6 @@
 index_object:select()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: select(search-key, options)

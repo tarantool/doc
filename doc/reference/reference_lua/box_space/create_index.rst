@@ -14,8 +14,6 @@ On this page:
 * :ref:`Using the path option with [*] <box_space-path_multikey>`
 * :ref:`Making a functional index with space_object:create_index() <box_space-index_func>`
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. _box_space-create_index:

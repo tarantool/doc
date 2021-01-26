@@ -5,8 +5,6 @@
 tuple_object:transform()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: transform(start-field-number, fields-to-remove [, field-value, ...])

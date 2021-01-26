@@ -4,8 +4,6 @@
 space_object:before_replace()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: before_replace([trigger-function [, old-trigger-function]])

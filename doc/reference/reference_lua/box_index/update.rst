@@ -4,8 +4,6 @@
 index_object:update()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: update(key, {{operator, field_identifier, value}, ...})

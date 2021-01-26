@@ -4,8 +4,6 @@
 index_object:stat()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: stat()

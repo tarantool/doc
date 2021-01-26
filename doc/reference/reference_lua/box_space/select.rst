@@ -4,8 +4,6 @@
 space_object:select()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: select([key [,, options]])

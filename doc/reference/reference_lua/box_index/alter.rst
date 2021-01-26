@@ -4,8 +4,6 @@
 index_object:alter()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: alter({options})

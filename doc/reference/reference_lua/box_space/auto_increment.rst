@@ -4,8 +4,6 @@
 space_object:auto_increment()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: auto_increment(tuple)

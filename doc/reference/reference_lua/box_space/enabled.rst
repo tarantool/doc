@@ -4,8 +4,6 @@
 space_object:enabled
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. data:: enabled

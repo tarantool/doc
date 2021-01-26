@@ -4,8 +4,6 @@
 index_object:parts()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. data:: parts

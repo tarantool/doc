@@ -4,8 +4,6 @@
 index_object:get()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: get(key)

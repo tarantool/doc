@@ -5,8 +5,6 @@
 tuple_object:pairs(), tuple_object:ipairs()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: pairs()

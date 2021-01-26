@@ -5,8 +5,6 @@
 tuple_object:unpack()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: unpack([start-field-number [, end-field-number]])

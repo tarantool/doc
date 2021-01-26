@@ -4,8 +4,6 @@
 index_object.unique
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. data:: unique

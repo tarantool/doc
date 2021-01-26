@@ -4,8 +4,6 @@
 space_object:truncate()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: truncate()

@@ -4,8 +4,6 @@
 index_object:delete()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: delete(key)

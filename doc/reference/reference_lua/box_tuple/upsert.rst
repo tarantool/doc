@@ -5,8 +5,6 @@
 tuple_object:upsert()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: upsert({{operator, field_no, value}, ...})

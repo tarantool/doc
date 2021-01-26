@@ -4,8 +4,6 @@
 space_object:run_triggers()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: run_triggers(true|false)

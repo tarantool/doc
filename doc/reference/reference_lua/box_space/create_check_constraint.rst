@@ -4,8 +4,6 @@
 box.space.create_check_constraint()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: create_check_constraint(check_constraint_name, expression)

@@ -5,8 +5,6 @@
 box.tuple.bsize()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: bsize()

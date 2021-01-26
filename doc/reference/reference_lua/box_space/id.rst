@@ -4,8 +4,6 @@
 space_object.id
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. data:: id

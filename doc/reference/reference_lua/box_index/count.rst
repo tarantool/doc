@@ -4,8 +4,6 @@
 index_object:count()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: count([key], [iterator])

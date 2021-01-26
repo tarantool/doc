@@ -4,8 +4,6 @@
 space_object.index
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
 .. data:: index

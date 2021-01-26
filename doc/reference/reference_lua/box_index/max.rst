@@ -4,8 +4,6 @@
 index_object:max()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: max([key])

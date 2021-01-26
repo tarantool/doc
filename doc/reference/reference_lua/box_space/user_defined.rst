@@ -4,8 +4,6 @@
 space_object:user_defined()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: user_defined()

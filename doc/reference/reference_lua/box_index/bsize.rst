@@ -4,8 +4,6 @@
 index_object:bsize()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: bsize()

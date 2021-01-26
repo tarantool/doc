@@ -4,8 +4,6 @@
 space_object:replace() / put()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: replace(tuple)

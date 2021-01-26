@@ -5,8 +5,6 @@
 tuple_object:tomap()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: tomap([options])

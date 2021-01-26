@@ -4,8 +4,6 @@
 space_object:rename()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: rename(space-name)

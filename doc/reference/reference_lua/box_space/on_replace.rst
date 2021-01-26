@@ -4,8 +4,6 @@
 space_object:on_replace()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: on_replace([trigger-function [, old-trigger-function]])

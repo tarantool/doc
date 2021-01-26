@@ -4,8 +4,6 @@
 index_object.type
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. data:: type

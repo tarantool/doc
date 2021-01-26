@@ -4,8 +4,6 @@
 space_object:frommap()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: frommap(map [, option])

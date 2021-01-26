@@ -5,8 +5,6 @@
 tuple_object:update()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: update({{operator, field_no, value}, ...})

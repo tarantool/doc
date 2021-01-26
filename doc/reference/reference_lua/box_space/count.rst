@@ -4,8 +4,6 @@
 space_object:count()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: count([key], [iterator])

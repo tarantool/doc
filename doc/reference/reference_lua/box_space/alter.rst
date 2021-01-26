@@ -4,8 +4,6 @@
 space_object:alter()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: alter(options)

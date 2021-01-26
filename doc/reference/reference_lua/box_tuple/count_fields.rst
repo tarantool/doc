@@ -5,8 +5,6 @@
 #tuple_object
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. operator:: #tuple_object

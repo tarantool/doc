@@ -4,8 +4,6 @@
 index_object:compact()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: compact()

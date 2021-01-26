@@ -4,8 +4,6 @@
 space_object:format()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: format([format-clause])

@@ -4,8 +4,6 @@
 space_object:update()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: update(key, {{operator, field_identifier, value}, ...})

@@ -5,8 +5,6 @@
 tuple_object:find(), tuple_object:findall()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: find([field-number, ] search-value)

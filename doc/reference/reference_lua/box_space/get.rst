@@ -4,8 +4,6 @@
 space_object:get()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: get(key)

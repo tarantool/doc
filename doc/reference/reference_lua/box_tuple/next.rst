@@ -5,8 +5,6 @@
 tuple_object:next()
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. method:: next(tuple[, pos])

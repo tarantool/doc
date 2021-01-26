@@ -4,8 +4,6 @@
 space_object:insert()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: insert(tuple)

@@ -4,8 +4,6 @@
 space_object:field_count
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. data:: field_count

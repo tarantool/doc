@@ -4,8 +4,6 @@
 space_object:len()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: len()

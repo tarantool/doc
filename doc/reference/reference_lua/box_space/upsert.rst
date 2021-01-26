@@ -4,8 +4,6 @@
 space_object:upsert()
 ===============================================================================
 
-.. module:: box.space
-
 .. class:: space_object
 
     .. method:: upsert({tuple}, {{operator, field_identifier, value}, ...}, )

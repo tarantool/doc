@@ -4,8 +4,6 @@
 index_object:min()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: min([key])

@@ -4,8 +4,6 @@
 index_object:user_defined()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: user_defined()

@@ -5,8 +5,6 @@
 tuple_object[field-path]
 ================================================================================
 
-.. module:: box.tuple
-
 .. class:: tuple_object
 
     .. operator:: tuple_object[field-path]

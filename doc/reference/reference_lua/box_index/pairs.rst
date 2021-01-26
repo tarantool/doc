@@ -5,8 +5,6 @@
 index_object:pairs()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: pairs([key [,{iterator = iterator-type}]])

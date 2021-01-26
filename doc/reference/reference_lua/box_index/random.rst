@@ -4,8 +4,6 @@
 index_object:random()
 ===============================================================================
 
-.. module:: box.index
-
 .. class:: index_object
 
     .. method:: random(seed)
