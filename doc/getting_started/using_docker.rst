@@ -55,7 +55,7 @@ So, all changes made in the mounted directory on the container's side
 are applied to the host's disk.
 
 Tarantool's database module in the container is already
-:ref:`configured <box_introspection-box_cfg>` and started.
+:doc:`configured </reference/reference_lua/box_cfg>` and started.
 You needn't do it manually, unless you use Tarantool as an
 :ref:`application server <app_server>` and run it with an application.
 

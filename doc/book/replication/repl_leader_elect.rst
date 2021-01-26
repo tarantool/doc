@@ -148,7 +148,7 @@ Monitoring
 
 To monitor the current state of a node regarding the leader election, you can
 use the ``box.info.election`` function. For the detailed description,
-refer to the :ref:`function description <box_info_election>`.
+refer to the :doc:`function description </reference/reference_lua/box_info/election>`.
 
 **Example:**
 

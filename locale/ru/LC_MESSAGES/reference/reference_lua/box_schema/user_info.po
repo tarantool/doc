@@ -1,0 +1,34 @@
+
+msgid "box.schema.user.info()"
+msgstr ""
+
+msgid ""
+"Return a description of a user's :ref:`privileges <authentication-"
+"owners_privileges>`."
+msgstr ""
+"Выдача описания :ref:`прав <authentication-owners_privileges>` "
+"пользователя."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid ""
+"the name of the user. This is optional; if it is not supplied, then the "
+"information will be for the user who is currently logged in."
+msgstr ""
+"имя пользователя. Необязательный параметр; если не указать, информация "
+"будет для авторизованного пользователя."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.schema.user.info('admin')\n"
+"---\n"
+"- - - "
+"read,write,execute,session,usage,create,drop,alter,reference,trigger,insert,update,delete"
+"\n"
+"    - universe\n"
+"    -\n"
+"..."
+msgstr ""

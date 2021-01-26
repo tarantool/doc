@@ -1,0 +1,31 @@
+
+msgid "box.schema.func.drop()"
+msgstr ""
+
+msgid ""
+"Drop a function tuple. For explanation of how Tarantool maintains "
+"function data, see reference on :ref:`_func space <box_space-func>`."
+msgstr ""
+"Удаление кортежа с функцией. Чтобы получить информацию о том, как "
+"происходит управление данными функций в Tarantool'е, см. справочник по "
+"спейсу :ref:`_func <box_space-func>`."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "the name of the function"
+msgstr "имя функции"
+
+msgid ""
+"``if_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` "
+"means there should be no error if the _func tuple does not exist."
+msgstr ""
+"``if_exists`` (если существует) = ``true|false`` (правда/ложь, по "
+"умолчанию ложь) - логическое значение boolean; ``true`` (правда) "
+"означает, что ошибка не выпадет, если кортеж в _func не существует."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid "box.schema.func.drop('calculate')"
+msgstr "box.schema.func.drop('calculate')"

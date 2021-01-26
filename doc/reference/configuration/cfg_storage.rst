@@ -136,7 +136,7 @@
     If ``vinyl_range_size`` is nil or 0, and ``range_size`` is not specified
     when the index is created, then Tarantool sets a value later depending on
     performance considerations. To see the actual value, use
-    :ref:`index_object:stat().range_size <box_index-stat>`.
+    :doc:`index_object:stat().range_size </reference/reference_lua/box_index/stat>`.
 
     In Tarantool versions prior to 1.10.2, ``vinyl_range_size`` default value was 1073741824.
 

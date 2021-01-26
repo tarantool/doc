@@ -1,0 +1,25 @@
+
+msgid "box.schema.func.exists()"
+msgstr ""
+
+msgid "Return true if a function tuple exists; return false if a function tuple does not exist."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "the name of the function"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "bool"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "box.schema.func.exists('calculate')"
+msgstr ""
+

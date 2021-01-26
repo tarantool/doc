@@ -38,7 +38,7 @@ msgstr ""
 msgid "``{is_async=...}``. For example, a method whose final argument is ``{is_async=true}`` will not wait for the result of a request. See the :ref:`is_async <net_box-is_async>` description."
 msgstr ""
 
-msgid "``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages. See the :ref:`box.session.push <box_session-push>` description."
+msgid "``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages. See the :doc:`/reference/reference_lua/box_session/push` description."
 msgstr ""
 
 msgid "The diagram below shows possible connection states and transitions:"
@@ -439,7 +439,7 @@ msgstr ""
 msgid "``future:discard()`` to abandon the object."
 msgstr ""
 
-msgid "Typically a user would say ``future=request-name(...{is_async=true})``, then either loop checking ``future:is_ready()`` until it is true and then say ``request_result=future:result()``, or say ``request_result=future:wait_result(...)``. Alternatively the client could check for \"out-of-band\" messages from the server by calling ``pairs()`` in a loop -- see :ref:`box.session.push() <box_session-push>`."
+msgid "Typically a user would say ``future=request-name(...{is_async=true})``, then either loop checking ``future:is_ready()`` until it is true and then say ``request_result=future:result()``, or say ``request_result=future:wait_result(...)``. Alternatively the client could check for \"out-of-band\" messages from the server by calling ``pairs()`` in a loop -- see :doc:`/reference/reference_lua/box_session/push`."
 msgstr ""
 
 msgid "A user would say ``future:discard()`` to make a connection forget about the response -- if a response for a discarded object is received then it will be ignored, so that the size of the requests table will be reduced and other requests will be faster."

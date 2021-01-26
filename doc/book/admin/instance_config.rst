@@ -76,7 +76,7 @@ file is often provided by a developer, in a Lua rock or an rpm/deb package.
 
 An instance file is designed to not differ in any way from a Lua application.
 It must, however, configure the database, i.e. contain a call to
-:ref:`box.cfg{} <box_introspection-box_cfg>` somewhere in it, because it’s the
+:doc:`box.cfg{} </reference/reference_lua/box_cfg>` somewhere in it, because it’s the
 only way to turn a Tarantool script into a background process, and
 ``tarantoolctl`` is a tool to manage background processes. Other than that, an
 instance file may contain arbitrary Lua code, and, in theory, even include the
@@ -99,7 +99,7 @@ the method described in section
 default settings.
 
 Most of the parameters are similar to those used by
-:ref:`box.cfg{} <box_introspection-box_cfg>`. Here are the default settings
+:doc:`box.cfg{} </reference/reference_lua/box_cfg>`. Here are the default settings
 (possibly installed in ``/etc/default/tarantool`` or ``/etc/sysconfig/tarantool``
 as part of Tarantool distribution -- see OS-specific default paths in
 :ref:`Notes for operating systems <admin-os_notes>`):

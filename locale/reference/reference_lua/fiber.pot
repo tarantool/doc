@@ -651,7 +651,7 @@ msgid "tarantool> fiber = require('fiber')\n"
 "..."
 msgstr ""
 
-msgid "See also :ref:`box.session.storage <box_session-storage>`."
+msgid "See also :doc:`/reference/reference_lua/box_session/storage`."
 msgstr ""
 
 msgid "``fiber_object:set_joinable(true)`` makes a fiber joinable; ``fiber_object:set_joinable(false)`` makes a fiber not joinable; the default is false."

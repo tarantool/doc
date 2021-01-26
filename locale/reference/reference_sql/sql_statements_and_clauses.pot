@@ -454,7 +454,7 @@ msgstr ""
 msgid "PRIMARY KEY plus AUTOINCREMENT modifier may be specified in one of two ways: |br| - In a column definition after the words PRIMARY KEY, as in ``CREATE TABLE t (c INTEGER PRIMARY KEY AUTOINCREMENT);`` |br| - In a PRIMARY KEY (column-list) after a column name, as in ``CREATE TABLE t (c INTEGER, PRIMARY KEY (c AUTOINCREMENT));`` |br| When AUTOINCREMENT is specified, the column must be a primary-key column and it must be INTEGER or UNSIGNED. |br| Only one column in the table may be autoincrement. However, it is legal to say ``PRIMARY KEY (a, b, c AUTOINCREMENT)`` -- in that case, there are three columns in the primary key but only the first column (``a``) is AUTOINCREMENT."
 msgstr ""
 
-msgid "As the name suggests, values in an autoincrement column are automatically incremented. That is: if a user inserts NULL in the column, then the stored value will be the smallest non-negative integer that has not already been used. This occurs because autoincrement columns are associated with :ref:`sequences <box_schema-sequence_create_index>`."
+msgid "As the name suggests, values in an autoincrement column are automatically incremented. That is: if a user inserts NULL in the column, then the stored value will be the smallest non-negative integer that has not already been used. This occurs because autoincrement columns are associated with :doc:`sequences </reference/reference_lua/box_schema_sequence/create_index>`."
 msgstr ""
 
 msgid "UNIQUE constraints look like this: |br| :samp:`UNIQUE ({column-name} [, {column-name}...])`"
@@ -1291,7 +1291,7 @@ msgstr ""
 msgid "All rows in the table are removed. Usually this is faster than :samp:`DELETE FROM {table-name};`."
 msgstr ""
 
-msgid "If the table has an autoincrement primary key, its :ref:`sequence <box_schema-sequence_create_index>` is not reset to zero, but that may occur in a future Tarantool version."
+msgid "If the table has an autoincrement primary key, its :doc:`sequence </reference/reference_lua/box_schema_sequence/create_index>` is not reset to zero, but that may occur in a future Tarantool version."
 msgstr ""
 
 msgid "There is no effect for any triggers associated with the table."

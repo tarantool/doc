@@ -23,7 +23,7 @@
 
     When ``box.once()`` is used for initialization, it may be useful to
     wait until the database is in an appropriate state (read-only or read-write).
-    In that case, see the functions in the :ref:`box.ctl submodule <box_ctl>`.
+    In that case, see the functions in the :doc:`/reference/reference_lua/box_ctl`.
 
     .. code-block:: tarantoolsession
 

@@ -116,11 +116,13 @@ In the absence of transactions, any function that contains yield points may see
 changes in the database state caused by fibers that preempt.
 Multi-statement transactions exist to provide **isolation**: each transaction
 sees a consistent database state and commits all its changes atomically.
-At :ref:`commit <box-commit>` time, a yield happens and all transaction changes
+At :doc:`commit </reference/reference_lua/box_txn_management/commit>` time,
+a yield happens and all transaction changes
 are written to the :ref:`write ahead log <internals-wal>` in a single batch.
 Or, if needed, transaction changes can be rolled back --
-:ref:`completely <box-rollback>` or to a specific
-:ref:`savepoint <box-rollback_to_savepoint>`.
+:doc:`completely </reference/reference_lua/box_txn_management/rollback>` or to
+a specific
+:doc:`savepoint </reference/reference_lua/box_txn_management/rollback_to_savepoint>`.
 
 In Tarantool, `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_
 is *serializable* with the clause "if no failure during writing to WAL". In
@@ -168,7 +170,7 @@ For both memtx and vinyl, since data-change requests must be recorded in the WAL
 there is normally a commit.
 A commit happens automatically after every request in default "autocommit" mode,
 or a commit happens at the end of a transaction in "transaction" mode,
-when a user deliberately commits by calling :ref:`box.commit() <box-commit>`.
+when a user deliberately commits by calling :doc:`/reference/reference_lua/box_txn_management/commit`.
 Therefore for both memtx and vinyl, because there can be disk I/O,
 some database operations may imply yields.
 

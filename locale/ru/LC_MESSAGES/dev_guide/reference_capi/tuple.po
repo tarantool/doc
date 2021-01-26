@@ -44,8 +44,8 @@ msgstr "NULL при нехватке памяти"
 msgid "tuple otherwise"
 msgstr "в остальных случаях кортеж"
 
-msgid "See also: :ref:`box.tuple.new()<box_tuple-new>`"
-msgstr "См. также :ref:`box.tuple.new()<box_tuple-new>`"
+msgid "See also: :doc:`/reference/reference_lua/box_tuple/new`"
+msgstr "См. также :doc:`/reference/reference_lua/box_tuple/new`"
 
 msgid ""
 "When working with tuples, it is the developer's responsibility to ensure "

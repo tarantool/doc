@@ -1,0 +1,29 @@
+
+msgid "box.schema.role.create()"
+msgstr ""
+
+msgid "Create a role. For explanation of how Tarantool maintains role data, see section :ref:`Roles <authentication-roles>`."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "name of role, which should conform to the :ref:`rules for object names <app_server-names>`"
+msgstr ""
+
+msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the role already exists"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "box.schema.role.create('Accountant')\n"
+"box.schema.role.create('Accountant', {if_not_exists = false})"
+msgstr ""
+

@@ -13,7 +13,7 @@
     Begin a transaction in the current fiber.
 
     A transaction is attached to caller fiber, therefore one fiber can have
-    only one active transaction. See also :ref:`box.begin()<box-begin>`.
+    only one active transaction. See also :doc:`/reference/reference_lua/box_txn_management/begin`.
 
     :return: 0 on success
     :return: -1 on error. Perhaps a transaction has already been started.
@@ -22,14 +22,14 @@
 
 .. c:function:: int box_txn_commit(void)
 
-    Commit the current transaction. See also :ref:`box.commit() <box-commit>`.
+    Commit the current transaction. See also :doc:`/reference/reference_lua/box_txn_management/commit`.
 
     :return: 0 on success
     :return: -1 on error. Perhaps a disk write failure
 
 .. c:function:: void box_txn_rollback(void)
 
-    Roll back the current transaction. See also :ref:`box.rollback() <box-rollback>`.
+    Roll back the current transaction. See also :doc:`/reference/reference_lua/box_txn_management/rollback`.
 
 .. c:function:: box_txn_savepoint_t * savepoint(void)
 

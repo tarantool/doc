@@ -1,0 +1,37 @@
+
+msgid "box.schema.user.drop()"
+msgstr ""
+
+msgid ""
+"Drop a user. For explanation of how Tarantool maintains user data, see "
+"section :ref:`Users <authentication-users>` and reference on :ref:`_user "
+"<box_space-user>` space."
+msgstr ""
+"Удаление пользователя. Чтобы получить информацию о том, как происходит "
+"управление данными пользователя в Tarantool'е, см. раздел "
+":ref:`Пользователи <authentication-users>` и справочник по спейсу "
+":ref:`_user <box_space-user>`."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "the name of the user"
+msgstr "имя пользователя"
+
+msgid ""
+"``if_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` "
+"means there should be no error if the user does not exist."
+msgstr ""
+"``if_exists`` (если существует) = ``true|false`` (правда/ложь, по "
+"умолчанию ложь) - логическое значение boolean; ``true`` (правда) "
+"означает, что ошибка не выпадет, если такой пользователь не существует."
+
+msgid "**Examples:**"
+msgstr "**Примеры:**"
+
+msgid ""
+"box.schema.user.drop('Lena')\n"
+"box.schema.user.drop('Lena',{if_exists=false})"
+msgstr ""
+"box.schema.user.drop('Lena')\n"
+"box.schema.user.drop('Lena',{if_exists=false})"

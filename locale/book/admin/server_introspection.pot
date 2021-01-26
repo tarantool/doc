@@ -96,16 +96,16 @@ msgstr ""
 msgid "For more details, use the reports provided by functions in the following submodules:"
 msgstr ""
 
-msgid ":ref:`box.cfg <box_introspection-box_cfg>` submodule (check and specify all configuration parameters for the Tarantool server)"
+msgid ":doc:`/reference/reference_lua/box_cfg` (check and specify all configuration parameters for the Tarantool server)"
 msgstr ""
 
-msgid ":ref:`box.slab <box_introspection-box_slab>` submodule (monitor the total use and fragmentation of memory allocated for storing data in Tarantool)"
+msgid ":doc:`/reference/reference_lua/box_slab` (monitor the total use and fragmentation of memory allocated for storing data in Tarantool)"
 msgstr ""
 
-msgid ":ref:`box.info <box_introspection-box_info>` submodule (introspect Tarantool server variables, primarily those related to replication)"
+msgid ":doc:`/reference/reference_lua/box_info` (introspect Tarantool server variables, primarily those related to replication)"
 msgstr ""
 
-msgid ":ref:`box.stat <box_introspection-box_stat>` submodule (introspect Tarantool request and network statistics)"
+msgid ":doc:`/reference/reference_lua/box_stat` (introspect Tarantool request and network statistics)"
 msgstr ""
 
 msgid "You can also try `prometheus <https://github.com/tarantool/metrics/tree/master/metrics/plugins/prometheus>`_, a plugin that makes it easy to collect metrics (e.g. memory usage or number of requests) from Tarantool applications and databases and expose them via the Prometheus protocol."
@@ -114,7 +114,7 @@ msgstr ""
 msgid "**Example**"
 msgstr ""
 
-msgid "A very popular administrator request is :ref:`box.slab.info() <box_slab_info>`, which displays detailed memory usage statistics for a Tarantool instance."
+msgid "A very popular administrator request is :doc:`/reference/reference_lua/box_slab/slab_info`, which displays detailed memory usage statistics for a Tarantool instance."
 msgstr ""
 
 msgid "tarantool> box.slab.info()\n"
@@ -140,7 +140,7 @@ msgstr ""
 msgid "Tarantool almost never releases this memory, even if the user deletes everything that was inserted, or reduces fragmentation by calling the Lua garbage collector via the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_."
 msgstr ""
 
-msgid "Ordinarily this does not affect performance. But, to force Tarantool to release memory, you can call :ref:`box.snapshot <box-snapshot>`, stop the server instance, and restart it."
+msgid "Ordinarily this does not affect performance. But, to force Tarantool to release memory, you can call :doc:`box.snapshot() </reference/reference_lua/box_snapshot>`, stop the server instance, and restart it."
 msgstr ""
 
 msgid "Profiling performance issues"

@@ -232,8 +232,8 @@ In responses Response-Code-Indicator will be followed by IPROTO_OK etc.
 
 **IPROTO_SYNC** = 0x01.
 An unsigned integer that should be incremented so that it is unique in every
-request. This integer is also returned from :ref:`box.session.sync()
-<box_session-sync>`. The IPROTO_SYNC value of a response should be the same as
+request. This integer is also returned from :doc:`/reference/reference_lua/box_session/sync`.
+The IPROTO_SYNC value of a response should be the same as
 the IPROTO_SYNC value of a request.
 
 **IPROTO_SCHEMA_VERSION** = 0x05.

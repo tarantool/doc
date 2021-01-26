@@ -1,0 +1,55 @@
+
+msgid "space_object:truncate()"
+msgstr ""
+
+msgid ""
+"Deletes all tuples. The method is performed in background and doesn't "
+"block consequent requests."
+msgstr ""
+"Удаление всех кортежей. Метод выполняется в фоновом режиме и не блокирует"
+" последующие запросы."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`"
+
+msgid "**Complexity factors:** Index size, Index type, Number of tuples accessed."
+msgstr ""
+"**Факторы сложности:** Размер индекса, тип индекса, количество кортежей, "
+"к которым получен доступ."
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "nil"
+msgstr ""
+
+msgid ""
+"The ``truncate`` method can only be called by the user who created the "
+"space, or from within a ``setuid`` function created by the user who "
+"created the space. Read more about `setuid` functions in the reference "
+"for :doc:`/reference/reference_lua/box_schema/func_create`."
+msgstr ""
+"Метод ``truncate`` может вызвать только тот пользователь, который создал "
+"спейс, или другой пользователь через функцию ``setuid``, созданную "
+"пользователем, который создал спейс. Более подробную информацию о "
+"функциях `setuid` можно получить в справочнике по for "
+":doc:`/reference/reference_lua/box_schema/func_create`."
+
+msgid "The ``truncate`` method cannot be called from within a transaction."
+msgstr "Метод ``truncate`` нельзя вызвать из транзакции."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.space.tester:truncate()\n"
+"---\n"
+"...\n"
+"tarantool> box.space.tester:len()\n"
+"---\n"
+"- 0\n"
+"..."
+msgstr ""

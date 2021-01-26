@@ -1,0 +1,15 @@
+
+msgid "box.session.exists()"
+msgstr ""
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "true if the session exists, false if the session does not exist."
+msgstr "1, если сессия есть; 0, если сессии нет."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "boolean"
+msgstr ""

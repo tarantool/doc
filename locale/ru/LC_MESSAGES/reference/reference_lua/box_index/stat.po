@@ -1,0 +1,101 @@
+
+msgid "index_object:stat()"
+msgstr ""
+
+msgid "Return statistics about actions taken that affect the index."
+msgstr "Получение статистики о предпринятых действиях, которые влияют на индекс."
+
+msgid "This is for use with the vinyl engine."
+msgstr "Используется с движком базы данных vinyl."
+
+msgid "Some detail items in the output from ``index_object:stat()`` are:"
+msgstr "Подробные данные в выводе ``index_object:stat()``:"
+
+msgid "``index_object:stat().latency`` -- timings subdivided by percentages;"
+msgstr "``index_object:stat().latency`` содержит отметки времени в процентах;"
+
+msgid "``index_object:stat().bytes`` -- the number of bytes total;"
+msgstr "``index_object:stat().bytes`` содержит общее количество байтов;"
+
+msgid ""
+"``index_object:stat().disk.rows`` -- the approximate number of tuples in "
+"each range;"
+msgstr ""
+"``index_object:stat().disk.rows`` содержит примерное количество кортежей "
+"в каждом диапазоне;"
+
+msgid ""
+"``index_object:stat().disk.statement`` -- counts of "
+"inserts|updates|upserts|deletes;"
+msgstr ""
+"``index_object:stat().disk.statement`` содержит количество вставок, "
+"обновлений, обновлений и вставок, удалений "
+"(inserts|updates|upserts|deletes);"
+
+msgid ""
+"``index_object:stat().disk.compaction`` -- counts of compactions and "
+"their amounts;"
+msgstr ""
+"``index_object:stat().disk.compaction`` содержит количество слияний и их "
+"объем;"
+
+msgid "``index_object:stat().disk.dump`` -- counts of dumps and their amounts;"
+msgstr "``index_object:stat().disk.dump`` содержит количество дампов и их объем;"
+
+msgid ""
+"``index_object:stat().disk.iterator.bloom`` -- counts of bloom filter "
+"hits|misses;"
+msgstr ""
+"``index_object:stat().disk.iterator.bloom`` содержит количество "
+"совпадений и несовпадений по фильтрами Блума;"
+
+msgid "``index_object:stat().disk.pages`` -- the size in pages;"
+msgstr "``index_object:stat().disk.pages`` содержит размер в страницах;"
+
+msgid ""
+"``index_object:stat().disk.last_level`` -- size of data in the last LSM "
+"tree level;"
+msgstr ""
+"``index_object:stat().disk.last_level`` содержит объем данных на "
+"последнем уровне LSM-дерева;"
+
+msgid "``index_object:stat().cache.evict`` -- number of evictions from the cache;"
+msgstr "``index_object:stat().cache.evict`` содержит количество освобождений кэша;"
+
+msgid "``index_object:stat().range_size`` -- maximum number of bytes in a range;"
+msgstr ""
+"``index_object:stat().range_size`` содержит максимальное количество "
+"байтов в диапазоне;"
+
+msgid ""
+"``index_object:stat().dumps_per_compaction`` -- average number of dumps "
+"required to trigger major compaction in any range of the LSM tree."
+msgstr ""
+"``index_object:stat().dumps_per_compaction`` содержит среднее число "
+"дампов, которое необходимо для запуска значительного слияния в любом "
+"диапазоне LSM-дерева."
+
+msgid ""
+"Summary index statistics are also available via :ref:`box.stat.vinyl() "
+"<box_introspection-box_stat_vinyl_details>`."
+msgstr ""
+"С помощью :ref:`box.stat.vinyl() <box_introspection-"
+"box_stat_vinyl_details>` можно получить сводную статистику по индексу."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "statistics"
+msgstr "статистические данные"
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "table"
+msgstr ""

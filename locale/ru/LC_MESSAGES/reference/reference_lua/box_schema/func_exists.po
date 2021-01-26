@@ -1,0 +1,28 @@
+
+msgid "box.schema.func.exists()"
+msgstr ""
+
+msgid ""
+"Return true if a function tuple exists; return false if a function tuple "
+"does not exist."
+msgstr ""
+"Выдача true (правда), если кортеж с функцией существует; выдача false "
+"(ложь), если кортеж с функцией отсутствует."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "the name of the function"
+msgstr "имя функции"
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "bool"
+msgstr ""
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid "box.schema.func.exists('calculate')"
+msgstr "box.schema.func.exists('calculate')"

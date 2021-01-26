@@ -170,7 +170,8 @@ now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31.
     ++=========================+============================+
                             MP_MAP
 
-The extra information, most of which is also in :ref:`error object <box_error-new>` fields, is:
+The extra information, most of which is also in :doc:`error object
+</reference/reference_lua/box_error/new>` fields, is:
 
 ``MP_ERROR_TYPE`` (0x00) (MP_STR) Type that implies source, as in :samp:`{error_object}.base_type`, for example "ClientError".
 

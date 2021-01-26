@@ -92,7 +92,7 @@ To create an index on things (remark) with a non-default :ref:`option <box_space
 (If the SQL data type name is SCALAR, then the NoSQL type is 'scalar',
 as described earlier. See the chart in section :ref:`Operands <sql_operands>`.)
 
-To :ref:`grant <box_schema-user_grant>`
+To :doc:`grant </reference/reference_lua/box_schema/user_grant>`
 database-access privileges to user 'guest', say |br|
 ``box.schema.user.grant('guest', 'execute', 'universe')`` |br|
 To grant SELECT privileges on table things to user 'guest', say |br|

@@ -1,0 +1,34 @@
+
+msgid "index_object:parts()"
+msgstr ""
+
+msgid ""
+"An array describing the index fields. To learn more about the index field"
+" types, refer to :ref:`this table <box_space-index_field_types>`."
+msgstr ""
+"Массив, описывающий поля индекса. Чтобы узнать больше о типах полей "
+"индекса, обращайтесь к :ref:`этой таблице <box_space-index_field_types>`."
+
+msgid "rtype"
+msgstr "тип возвращаемого значения"
+
+msgid "table"
+msgstr "таблица"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> box.space.tester.index.primary\n"
+"---\n"
+"- unique: true\n"
+"  parts:\n"
+"  - type: unsigned\n"
+"    is_nullable: false\n"
+"    fieldno: 1\n"
+"  id: 0\n"
+"  space_id: 513\n"
+"  name: primary\n"
+"  type: TREE\n"
+"..."
+msgstr ""

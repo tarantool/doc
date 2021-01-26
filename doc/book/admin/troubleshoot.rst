@@ -14,7 +14,7 @@ Problem: INSERT/UPDATE-requests result in ER_MEMORY_ISSUE error
 **Possible reasons**
 
 * Lack of RAM (parameters ``arena_used_ratio`` and ``quota_used_ratio`` in
-  :ref:`box.slab.info() <box_slab_info>` report are getting close to 100%).
+  :doc:`/reference/reference_lua/box_slab/slab_info` report are getting close to 100%).
 
   To check these parameters, say:
 
@@ -77,7 +77,7 @@ over 60% CPU.
 **Solution**
 
 Attach to the Tarantool instance with :ref:`tarantoolctl <tarantoolctl>` utility,
-analyze the query statistics with :ref:`box.stat() <box_introspection-box_stat>`
+analyze the query statistics with :doc:`box.stat() </reference/reference_lua/box_stat>`
 and spot the CPU consumption leader. The following commands can help:
 
 .. code-block:: console
@@ -175,7 +175,7 @@ Problem: Replication "lag" and "idle" contain negative values
 
 This is about ``box.info.replication.(upstream.)lag`` and
 ``box.info.replication.(upstream.)idle`` values in
-:ref:`box.info.replication <box_info_replication>` section.
+:doc:`/reference/reference_lua/box_info/replication` section.
 
 **Possible reasons**
 
@@ -198,7 +198,7 @@ Problem: Replication "idle" keeps growing, but no related log messages appear
 --------------------------------------------------------------------------------
 
 This is about ``box.info.replication.(upstream.)idle`` value in
-:ref:`box.info.replication <box_info_replication>` section.
+:doc:`/reference/reference_lua/box_info/replication` section.
 
 **Possible reasons**
 
@@ -221,7 +221,7 @@ Problem: Replication statistics differ on replicas within a replica set
 
 This is about a replica set that consists of one master and several replicas.
 In a replica set of this type, values in
-:ref:`box.info.replication <box_info_replication>` section, like
+:doc:`/reference/reference_lua/box_info/replication` section, like
 ``box.info.replication.lsn``, come from the master and must be the same on all
 replicas within the replica set. The problem is that they get different.
 
@@ -239,7 +239,8 @@ Replication is broken.
 Problem: Master-master replication is stopped
 --------------------------------------------------------------------------------
 
-This is about :ref:`box.info.replication(.upstream).status <box_info_replication>`
+This is about
+:doc:`box.info.replication(.upstream).status </reference/reference_lua/box_info/replication>`
 = stopped.
 
 **Possible reasons**

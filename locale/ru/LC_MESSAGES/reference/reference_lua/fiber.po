@@ -1016,8 +1016,8 @@ msgstr ""
 "fiber is dead'\n"
 "..."
 
-msgid "See also :ref:`box.session.storage <box_session-storage>`."
-msgstr "См. также :ref:`box.session.storage <box_session-storage>`."
+msgid "See also :doc:`/reference/reference_lua/box_session/storage`."
+msgstr "См. также :doc:`/reference/reference_lua/box_session/storage`."
 
 msgid ""
 "``fiber_object:set_joinable(true)`` makes a fiber joinable; "

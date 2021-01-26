@@ -1,0 +1,69 @@
+
+msgid "box.session.on_connect()"
+msgstr ""
+
+msgid ""
+"Define a trigger for execution when a new session is created due to an "
+"event such as :ref:`console.connect <console-connect>`. The trigger "
+"function will be the first thing executed after a new session is created."
+" If the trigger execution fails and raises an error, the error is sent to"
+" the client and the connection is closed."
+msgstr ""
+"Определение исполняемого триггера во время создания новой сессии при "
+"подключению по консоли :ref:`console.connect <console-connect>`. Функция "
+"с триггером будет первой исполняемой функцией после создания сессии. Если"
+" триггер не выполняется и выдает ошибку, эта ошибка отправляется на "
+"клиент, и подключение разрывается."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "function which will become the trigger function"
+msgstr "функция, в которой будет триггер"
+
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr "существующая функция с триггером, которую заменит новая"
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "nil or function pointer"
+msgstr "nil или указатель функции"
+
+msgid ""
+"If the parameters are (nil, old-trigger-function), then the old trigger "
+"is deleted."
+msgstr ""
+"Если указаны параметры (nil, old-trigger-function), старый триггер будет "
+"удален."
+
+msgid ""
+"If both parameters are omitted, then the response is a list of existing "
+"trigger functions."
+msgstr ""
+"Если не указан ни один параметр, ответом будет список существующих "
+"функций с триггером."
+
+msgid ""
+"Details about trigger characteristics are in the :ref:`triggers "
+"<triggers-box_triggers>` section."
+msgstr ""
+"Подробная информация о характеристиках триггера находится в разделе "
+":ref:`Триггеры <triggers-box_triggers>`."
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"tarantool> function f ()\n"
+"         >   x = x + 1\n"
+"         > end\n"
+"tarantool> box.session.on_connect(f)"
+msgstr ""
+
+msgid ""
+"If a trigger always results in an error, it may become impossible to "
+"connect to a server to reset it."
+msgstr ""
+"Если триггер всегда приводит к ошибке, подключение к серверу для его "
+"переустановки может стать невозможным."

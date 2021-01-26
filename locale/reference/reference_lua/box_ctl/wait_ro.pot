@@ -1,0 +1,33 @@
+
+msgid "box.ctl.wait_ro()"
+msgstr ""
+
+msgid "Wait until ``box.info.ro`` is true."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "maximum number of seconds to wait"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil, or error may be thrown due to timeout or fiber cancellation"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> box.info().ro\n"
+"---\n"
+"- false\n"
+"...\n"
+"\n"
+"tarantool> n = box.ctl.wait_ro(0.1)\n"
+"---\n"
+"- error: timed out\n"
+"..."
+msgstr ""
+

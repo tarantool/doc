@@ -769,7 +769,7 @@ them in the result set if they match the pattern.
 
 NOTE #4 "INNER LOOP: ITERATOR" |br|
 The for loop here is using pairs(), see the
-:ref:`explanation of what index iterators are <box_index-index_pairs>`.
+:doc:`explanation of what index iterators are </reference/reference_lua/box_index/pairs>`.
 Within the inner loop,
 there will be a local variable named "tuple" which contains
 the latest tuple found via the index search key.

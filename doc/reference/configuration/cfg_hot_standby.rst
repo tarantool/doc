@@ -11,7 +11,7 @@
 
     To initiate the standby instance, start a second instance of the Tarantool
     server on the same computer with the same
-    :ref:`box.cfg <box_introspection-box_cfg>` configuration settings --
+    :doc:`box.cfg </reference/reference_lua/box_cfg>` configuration settings --
     including the same directories and same non-null URIs -- and with the
     additional configuration setting ``hot_standby = true``.
     Expect to see a notification ending with the words
@@ -42,7 +42,7 @@
       ``wal_dir_rescan_delay`` seconds.
     * if :ref:`wal_mode = 'none' <cfg_binary_logging_snapshots-wal_mode>`;
       it is designed to work with ``wal_mode = 'write'`` or ``wal_mode = 'fsync'``.
-    * for spaces created with :ref:`engine = 'vinyl' <box_schema-space_create>`;
+    * for spaces created with :doc:`engine = 'vinyl' </reference/reference_lua/box_schema/space_create>`;
       it is designed to work for spaces created with ``engine = 'memtx'``.
 
     | Type: boolean

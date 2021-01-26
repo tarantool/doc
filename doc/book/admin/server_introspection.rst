@@ -113,16 +113,16 @@ To check the boot log, on systems with ``systemd``, say:
 
 For more details, use the reports provided by functions in the following submodules:
 
-* :ref:`box.cfg <box_introspection-box_cfg>` submodule (check and specify all
+* :doc:`/reference/reference_lua/box_cfg` (check and specify all
   configuration parameters for the Tarantool server)
 
-* :ref:`box.slab <box_introspection-box_slab>` submodule (monitor the total use
+* :doc:`/reference/reference_lua/box_slab` (monitor the total use
   and fragmentation of memory allocated for storing data in Tarantool)
 
-* :ref:`box.info <box_introspection-box_info>` submodule (introspect Tarantool
+* :doc:`/reference/reference_lua/box_info` (introspect Tarantool
   server variables, primarily those related to replication)
 
-* :ref:`box.stat <box_introspection-box_stat>` submodule (introspect Tarantool
+* :doc:`/reference/reference_lua/box_stat` (introspect Tarantool
   request and network statistics)
 
 You can also try `prometheus <https://github.com/tarantool/metrics/tree/master/metrics/plugins/prometheus>`_,
@@ -132,7 +132,8 @@ Prometheus protocol.
 
 **Example**
 
-A very popular administrator request is :ref:`box.slab.info() <box_slab_info>`,
+A very popular administrator request is
+:doc:`/reference/reference_lua/box_slab/slab_info`,
 which displays detailed memory usage statistics for a Tarantool instance.
 
 .. code-block:: tarantoolsession
@@ -165,7 +166,7 @@ fragmentation by calling the Lua garbage collector via the
 
 Ordinarily this does not affect performance.
 But, to force Tarantool to release memory, you can
-call :ref:`box.snapshot <box-snapshot>`, stop the server instance,
+call :doc:`box.snapshot() </reference/reference_lua/box_snapshot>`, stop the server instance,
 and restart it.
 
 .. _admin-profiling_performance_issues:

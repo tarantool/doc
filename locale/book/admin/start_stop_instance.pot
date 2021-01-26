@@ -23,7 +23,7 @@ msgstr ""
 msgid "Look up the instance file in the instance directory, for example ``/etc/tarantool/instances.enabled``. To build the instance file path, ``tarantoolctl`` takes the instance name, prepends the instance directory and appends \".lua\" extension to the instance file."
 msgstr ""
 
-msgid "Override :ref:`box.cfg{} <box_introspection-box_cfg>` function to pre-process its parameters and ensure that instance paths are pointing to the paths defined in the ``tarantoolctl`` configuration file. For example, if the configuration file specifies that instance work directory must be in ``/var/tarantool``, then the new implementation of ``box.cfg{}`` ensures that :ref:`work_dir <cfg_basic-work_dir>` parameter in ``box.cfg{}`` is set to ``/var/tarantool/<instance_name>``, regardless of what the path is set to in the instance file itself."
+msgid "Override :doc:`box.cfg{} </reference/reference_lua/box_cfg>` function to pre-process its parameters and ensure that instance paths are pointing to the paths defined in the ``tarantoolctl`` configuration file. For example, if the configuration file specifies that instance work directory must be in ``/var/tarantool``, then the new implementation of ``box.cfg{}`` ensures that :ref:`work_dir <cfg_basic-work_dir>` parameter in ``box.cfg{}`` is set to ``/var/tarantool/<instance_name>``, regardless of what the path is set to in the instance file itself."
 msgstr ""
 
 msgid "Create a so-called \"instance control file\". This is a Unix socket with Lua console attached to it. This file is used later by ``tarantoolctl`` to query the instance state, send commands to the instance and so on."
