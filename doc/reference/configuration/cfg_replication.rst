@@ -151,9 +151,9 @@
 
     The replica has just received an id equal to 2. We can make it read-write now.
 
-    .. code-block:: tarantool
+    .. code-block:: tarantoolsession
 
-        box.cfg{read_only=false}
+        tarantool> box.cfg{read_only=false}
         2019-12-13 20:35:46.392 [71329] main/102/interactive I> set 'read_only' configuration option to false
         ---
         ...

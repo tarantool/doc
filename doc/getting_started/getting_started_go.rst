@@ -12,7 +12,7 @@ Pre-requisites
 
 Before we proceed:
 
-#. `Install <https://github.com/tarantool/go-tarantool#installation>`_
+#. `Install <https://github.com/tarantool/go-tarantool#installation>`__
    the ``go-tarantool`` library.
 
 #. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)

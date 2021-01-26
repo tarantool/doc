@@ -28,8 +28,8 @@ box.info.election
    IDs in the ``box.info.election`` output are the replica IDs visible in
    the ``box.info.id`` output on each node and in the ``_cluster`` space.
 
-   :ref:`State <repl_leader_elect_state>` can be ``leader``, ``follower``,
-   or ``candidate``. Also, refer to the information on `configuring <cfg_replication-election_mode>`
+   State can be ``leader``, ``follower``, or ``candidate``. Also, refer to the
+   information on `configuring <cfg_replication-election_mode>`
    node's election mode. When election is enabled, the node is writable only in
    the ``leader`` state.
 

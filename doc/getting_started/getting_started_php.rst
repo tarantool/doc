@@ -12,7 +12,7 @@ Pre-requisites
 
 Before we proceed:
 
-#. `Install <https://github.com/tarantool-php/client#installation>`_
+#. `Install <https://github.com/tarantool-php/client#installation>`__
    the ``tarantool/client`` library.
 
 #. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)

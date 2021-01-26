@@ -8,7 +8,7 @@
 .. toctree::
     :maxdepth: 2
 
-    intro
+    book/intro
     getting_started/index
     book/index
     reference/index

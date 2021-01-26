@@ -247,7 +247,7 @@ via telnet, via one of the connectors, or via the
 After a fiber has yielded and then has regained control, it immediately issues
 :ref:`testcancel <fiber-testcancel>`.
 
-.. atomic-transactional-manager
+.. _atomic-transactional-manager:
 
 --------------------------------------------------------------------------------
 Transactional manager

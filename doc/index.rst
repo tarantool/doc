@@ -90,9 +90,11 @@
             * **Other formats:**
             * `Single-page HTML <singlehtml.html>`_
             * `PDF <Tarantool.pdf>`_
+
             - **See also:**
             - `Documentation archive`_
             - `Articles`_
+
             .. ifconfig:: language == 'ru'
 
                 * **Support:**

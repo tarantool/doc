@@ -45,7 +45,7 @@ How to leave feedback, ideas or suggestions?
 You can leave your feedback or share ideas in different ways:
 
 * **The simplest way** is to write
-  `here <https://docs.google.com/forms/d/1iwBj_2in-rBIYEcPeeVPQa4JfUIU_m14IUbAK4NojIE/edit?usp=sharing>`_.
+  `here <https://docs.google.com/forms/d/1iwBj_2in-rBIYEcPeeVPQa4JfUIU_m14IUbAK4NojIE/edit?usp=sharing>`__.
   All you need to do is fill in one product comment field and send it to us.
   If you don't mind -- leave your email address.
   If you wish, we can involve you in the product development process.
@@ -219,8 +219,8 @@ To start:
 * :ref:`learn how to build Tarantool <building_from_source>`
 * :ref:`run the test suite <run_test_suite>`
 * read about Tarantool architecture and main modules
-  (`here <https://docs.tarantool.dev/en/latest/>`_ and
-  `here <https://github.com/tarantool/tarantool/wiki/Developer-information>`_)
+  (`here <https://docs.tarantool.dev/en/latest/>`__ and
+  `here <https://github.com/tarantool/tarantool/wiki/Developer-information>`__)
 
 We have standards that we try to adhere to when developing in Tarantool.
 These are the Style Guide and Contribution Guide :ref:`links <developer_guidelines>`.
@@ -237,7 +237,7 @@ A patch can be offered in two ways:
 
 * (preferred) Using a fork and pull mechanism on GitHub: make changes to your
   copy of the repository and submit to us for review.
-  See details `here <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`_.
+  See details `here <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__.
 * Suggest a patch via the mailing list. Our developers are discussing most of
   the features there.
   See details :ref:`here <dev_guidelines-patch-review>`.
@@ -344,7 +344,7 @@ If you need to get a review but no one responds for a week, take a look at the
 Maintainers section of the ``README.md`` in the repository.
 Write to the person listed there.
 If you have not received an answer in 3-4 days, you can escalate the question
-`here <https://t.me/arturbrsg>`_.
+`here <https://t.me/arturbrsg>`__.
 
 A repository may have no maintainers (the Maintainers list in ``README.md`` is empty),
 or existing maintainers may be inactive. Then you can become a maintainer yourself.
