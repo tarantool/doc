@@ -436,8 +436,7 @@ Indexes have no ``upsert`` method - this is a method of a space.
     ...
     tarantool> s:upsert({1}, {{'=', 2, 200}})
     ---
-    - error: Tuple field count 1 is less than required by space format or defined indexes
-        (expected at least 3)
+    - error: Tuple field 2 required by space format is missing
     ...
     tarantool> s:select{}
     ---
