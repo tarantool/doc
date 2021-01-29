@@ -31,7 +31,8 @@ box.tuple.bsize()
         and three bytes to store the contents, and then there is one more byte
         to store a count of the number of fields, so ``bsize()`` returns
         ``3*(1+3)+1``. This is the same as the size of the string that
-        :ref:`msgpack.encode({'aaa','bbb','ccc'}) <msgpack-encode>` would return.
+        :ref:`msgpack.encode({'aaa','bbb','ccc'}) <msgpack-encode_lua_value>`
+        would return.
 
         .. code-block:: tarantoolsession
 

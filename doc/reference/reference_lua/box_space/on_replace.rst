@@ -92,10 +92,12 @@ space_object:on_replace()
         .. NOTE::
 
           You shouldn't use in trigger-functions for ``on_replace`` and ``before_replace``
+
             * transactions,
             * yield-operations (:ref:`explicit <atomic-implicit-yields>` or not),
             * actions that are not allowed to be used in transactions
               (see :ref:`rule #2 <box-txn_management>`)
+
           because everything executed inside triggers is already in a transaction.
 
           **Example:**

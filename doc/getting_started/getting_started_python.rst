@@ -12,7 +12,7 @@ Pre-requisites
 
 Before we proceed:
 
-#. `Install <https://github.com/tarantool/tarantool-python#download-and-install>`_
+#. `Install <https://github.com/tarantool/tarantool-python#download-and-install>`__
    the ``tarantool`` module. We recommend using ``python3`` and ``pip3``.
 
 #. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)

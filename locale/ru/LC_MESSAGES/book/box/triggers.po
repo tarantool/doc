@@ -177,10 +177,7 @@ msgstr ""
 
 msgid ""
 "Triggers can be useful in solving problems with replication. See details "
-"in"
-msgstr ""
-
-msgid ":ref:`Resolving replication conflicts <replication-problem_solving>`"
+"in :ref:`Resolving replication conflicts <replication-problem_solving>`"
 msgstr ""
 
 # ; ../doc/book/box/box_session.rst:313

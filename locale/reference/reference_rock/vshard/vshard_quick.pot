@@ -5,7 +5,7 @@ msgstr ""
 msgid "For installation instructions, check out the :ref:`vshard installation manual <vshard-install>`."
 msgstr ""
 
-msgid "For a pre-configured development cluster, check out the ``example/`` directory in the `vshard repository <https://github.com/tarantool/vshard/>`_. This example includes 5 Tarantool instances and 2 replica sets:"
+msgid "For a pre-configured development cluster, check out the ``example/`` directory in the `vshard repository <https://github.com/tarantool/vshard/>`__. This example includes 5 Tarantool instances and 2 replica sets:"
 msgstr ""
 
 msgid "``router_1`` – a ``router`` instance"
@@ -219,6 +219,6 @@ msgstr ""
 msgid "``vshard.storage.cfg()`` automatically calls ``box.cfg()`` and configures the listen port and replication parameters."
 msgstr ""
 
-msgid "For a sample configuration, see ``router.lua`` and ``storage.lua`` in the ``example/`` directory of the `vshard repository <https://github.com/tarantool/vshard>`_."
+msgid "For a sample configuration, see ``router.lua`` and ``storage.lua`` in the ``example/`` directory of the `vshard repository <https://github.com/tarantool/vshard>`__."
 msgstr ""
 

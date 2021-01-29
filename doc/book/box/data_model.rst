@@ -63,6 +63,8 @@ for example: ``[3, 'Ace of Base', 1993]``.
 
 .. // Including a section about indexes
 
+.. _index-box_index:
+
 .. include:: indexes.rst
 
 .. _index-box_data-types:

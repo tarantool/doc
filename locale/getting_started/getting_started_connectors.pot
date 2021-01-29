@@ -14,7 +14,7 @@ msgstr ""
 msgid "Before we proceed:"
 msgstr ""
 
-msgid "`Install <https://github.com/tarantool/tarantool-python#download-and-install>`_ the ``tarantool`` module. We recommend using ``python3`` and ``pip3``."
+msgid "`Install <https://github.com/tarantool/tarantool-python#download-and-install>`__ the ``tarantool`` module. We recommend using ``python3`` and ``pip3``."
 msgstr ""
 
 msgid ":ref:`Start <getting_started_db>` Tarantool (locally or in Docker) and make sure that you have created and populated a database as we suggested :ref:`earlier <creating-db-locally>`:"
@@ -215,7 +215,7 @@ msgstr ""
 msgid "Connecting from PHP"
 msgstr ""
 
-msgid "`Install <https://github.com/tarantool-php/client#installation>`_ the ``tarantool/client`` library."
+msgid "`Install <https://github.com/tarantool-php/client#installation>`__ the ``tarantool/client`` library."
 msgstr ""
 
 msgid "To configure a connection to the Tarantool server, say this:"
@@ -312,7 +312,7 @@ msgstr ""
 msgid "Connecting from Go"
 msgstr ""
 
-msgid "`Install <https://github.com/tarantool/go-tarantool#installation>`_ the ``go-tarantool`` library."
+msgid "`Install <https://github.com/tarantool/go-tarantool#installation>`__ the ``go-tarantool`` library."
 msgstr ""
 
 msgid "To get connected to the Tarantool server, write a simple Go program:"

@@ -1173,7 +1173,7 @@ What's new in Tarantool 1.7.6?
   * In addition to :ref:`rollback <box-rollback>` of a transaction, there is now
     rollback to a defined point within a transaction -- :ref:`savepoint <box-savepoint>` support.
   * There is a new object type: :ref:`sequences <index-box_sequence>`.
-    The older option, :ref:`auto-increment <box_space-auto>`, will be deprecated.
+    The older option, :ref:`auto-increment <box_space-auto_increment>`, will be deprecated.
   * String indexes can have :ref:`collations <index-collation>`.
 
 New options are available for:
@@ -1236,7 +1236,7 @@ Functionality added or changed:
     `three-valued logic <https://en.wikipedia.org/wiki/Three-valued_logic>`_
     from the SQL standard and allows storing multiple NULL values in unique indexes.
     Issue `1557 <https://github.com/tarantool/tarantool/issues/1557>`_.
-  * Sequences and a new implementation of :ref:`auto_increment() <box_space-auto>`.
+  * Sequences and a new implementation of :ref:`auto_increment() <box_space-auto_increment>`.
     Tarantool 1.7.6 introduces new
     :ref:`sequence number generators <index-box_sequence>` (like CREATE SEQUENCE in SQL).
     This feature is used to implement new persistent auto increment in spaces.

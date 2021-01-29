@@ -7,7 +7,7 @@ Quick start guide
 For installation instructions, check out the :ref:`vshard installation manual <vshard-install>`.
 
 For a pre-configured development cluster, check out the ``example/`` directory in
-the `vshard repository <https://github.com/tarantool/vshard/>`_.
+the `vshard repository <https://github.com/tarantool/vshard/>`__.
 This example includes 5 Tarantool instances and 2 replica sets:
 
 * ``router_1`` – a ``router`` instance
@@ -201,4 +201,4 @@ On storages, call ``vshard.storage.cfg(cfg, instance_uuid)``:
 port and replication parameters.
 
 For a sample configuration, see ``router.lua`` and ``storage.lua`` in the
-``example/`` directory of the `vshard repository <https://github.com/tarantool/vshard>`_.
+``example/`` directory of the `vshard repository <https://github.com/tarantool/vshard>`__.

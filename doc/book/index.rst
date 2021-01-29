@@ -8,7 +8,7 @@ User's Guide
     :maxdepth: 2
 
     intro
-    getting_started/index
+    ../getting_started/index
     box/index
     cartridge/index
     app_server/index
@@ -16,6 +16,6 @@ User's Guide
     replication/index
     monitoring/index
     connectors/index
-    sql
+    ../reference/reference_sql/index
     faq
 

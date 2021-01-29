@@ -378,6 +378,7 @@ Below is a list of all ``popen`` functions and handle methods.
             -- Glue all chunks, strip trailing newline.
             return table.concat(chunks):rstrip()
         end
+
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                       popen handle methods
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

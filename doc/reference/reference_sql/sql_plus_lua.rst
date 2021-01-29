@@ -4,8 +4,10 @@
 SQL PLUS LUA -- Adding Tarantool/NoSQL to Tarantool/SQL
 --------------------------------------------------------------------------------
 
-The Adding Tarantool/NoSQL To Tarantool/SQL Guide contains descriptions of NoSQL database objects that can be accessed from SQL,
-of SQL database objects that can be accessed from NoSQL, of the way to call SQL from Lua, and of the way to call Lua from SQL.
+The Adding Tarantool/NoSQL To Tarantool/SQL Guide contains descriptions of NoSQL
+database objects that can be accessed from SQL, of SQL database objects that can
+be accessed from NoSQL, of the way to call SQL from Lua, and of the way to call
+Lua from SQL.
 
 .. container:: table
 
@@ -133,7 +135,7 @@ To make spaces with field names that SQL can understand, use
 but in Tarantool/SQL such fields will be ignored.)
 
 To handle replication and sharding of SQL data, see section
-:ref:`Sharding <shard-module>`.
+:ref:`Sharding <vshard-summary>`.
 
 To enhance performance of SQL statements by preparing them in advance, see section
 :ref:`box.prepare() <box-sql_box_prepare>`.
