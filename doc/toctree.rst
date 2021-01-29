@@ -1,3 +1,5 @@
+:orphan:
+
 .. toctree::
     :maxdepth: 7
     :includehidden:

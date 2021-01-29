@@ -1,3 +1,4 @@
+:orphan:
 
 .. ifconfig:: builder == 'singlehtml'
 
