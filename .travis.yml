@@ -14,8 +14,8 @@ addons:
 
 install:
   - cmake --version
-  - pip install -r requirements.txt --upgrade --user
-  - pip install pyOpenSSL --upgrade --user
+  - pip install -r requirements.txt --upgrade
+  - pip install pyOpenSSL --upgrade
 
 script: bash ./documentation.sh
 
