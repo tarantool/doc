@@ -66,7 +66,8 @@ exclude_patterns = [
     'reference/reference_lua/jit.rst',
     'images',
     'book/cartridge/cartridge_overview.rst',
-    'book/cartridge/CONTRIBUTING.rst'
+    'book/cartridge/CONTRIBUTING.rst',
+    'reference/reference_rock/luatest/README.rst',
 ]
 
 base_url = "https://tarantool.org/"
