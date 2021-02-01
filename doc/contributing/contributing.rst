@@ -128,11 +128,11 @@ There are several ways to improve the documentation:
 * **Advanced** -- All Tarantool documentation tasks are
   `in the repository <https://github.com/tarantool/doc/issues>`_.
   Here you can take any tasks and suggest your changes.
-  Our documentation is written in the `ReST format <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_.
-  :ref:`Here <documentation_guidelines>` is our Style Guide for writers.
+  Our documentation is written in the `reStructuredText markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_,
+  and we have a :doc:`writing style guide </doc/contributing/docs>`.
   After making the change, you need to build the documentation locally and
   see how it was laid out. This is done automatically in Docker.
-  `Read more in the README of the tarantool/doc repository. <https://github.com/tarantool/doc>`_
+  `Read more in the README of the tarantool/doc repository <https://github.com/tarantool/doc>`_.
 
 Some projects have their documentation in the code repository.
 For example, `Tarantool Cartridge <https://github.com/tarantool/cartridge/>`_.

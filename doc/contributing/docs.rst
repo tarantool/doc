@@ -1,0 +1,16 @@
+.. _documentation_guidelines:
+
+-------------------------------------------------------------------------------
+                        Documentation guidelines
+-------------------------------------------------------------------------------
+
+These guidelines are updated on the on-demand basis, covering only those issues
+that cause pains to the existing writers. At this point, we do not aim to come
+up with an exhaustive Documentation Style Guide for the Tarantool project.
+
+..  toctree::
+    :caption: Contents
+
+    docs/markup
+    docs/style
+    docs/examples
