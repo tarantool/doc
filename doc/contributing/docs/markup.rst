@@ -1,122 +1,139 @@
-===========================================================
-                        Markup issues
-===========================================================
+================================================================================
+Markup issues
+================================================================================
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                Wrapping text
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tarantool documentation is built via
+`Sphinx <https://www.sphinx-doc.org/en/master/index.html>`_ engine and is written in
+`reStructuredText <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_
+markup. This document will guide you through our typical cases while writing the docs.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+General syntax guidelines
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Paragraphs contain text and may contain inline markup: *emphasis*,
+**strong emphasis**, `interpreted text`, ``inline literals``.
+
+Text can be organized in bullet-lists:
+
+..  code-block:: rst
+
+    - This is a bullet list.
+
+    - Bullets can be "*", "+", or "-".
+
+        * Lists can be nested. And it is good to indent them with 4 spaces.
+
+or in enumerated lists:
+
+..  code-block:: rst
+
+    1.  This is an enumerated list.
+
+    2.  Tarantool build uses only arabic numbers as enumerators.
+
+    #.  You can put #. instead of point numbers and Sphinx will
+        recognize it as an enumerated list.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Wrapping text and indentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The limit is 80 characters per line for plain text, and no limit for any other
-constructions when wrapping affects ReST readability and/or HTML output. Also,
+constructions when wrapping affects rST readability and/or HTML output. Also,
 it makes no sense to wrap text into lines shorter than 80 characters unless you
 have a good reason to do so.
 
-The 80-character limit comes from the ISO/ANSI 80x24 screen resolution, and it's
-unlikely that readers/writers will use 80-character consoles. Yet it's still a
-standard for many coding guidelines (including Tarantool). As for writers, the
-benefit is that an 80-character page guide allows keeping the text window rather
-narrow most of the time, leaving more space for other applications in a
-wide-screen environment.
+In rST, indents play exactly the same role as in Python: they denote object
+boundaries and nesting.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              Formatting code snippets
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+For example, a list starts with a marker, then come some spaces and text.
+From there, all lines relating to that list item must be at the
+same indentation level. We can continue the list item by creating a second
+paragraph in it. To do that we have to leave it at the same level.
 
-For code snippets, we mainly use the ``code-block`` directive with an
-appropriate highlighting language. The most commonly used highlighting languages
-are:
+We can put a new object inside: another list, or a block of code. Then we have
+to indent 4 more spaces.
 
-  * ``.. code-block:: tarantoolsession``
-  * ``.. code-block:: console``
-  * ``.. code-block:: lua``
+It's best if all indents are multiples of 4 spaces, even in lists. Otherwise
+the document is not consistent. Also, it is much easier to put indents
+with tabs than manually.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Formatting code snippets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For code snippets, we mainly use the ``code-block`` directive with an appropriate
+highlighting language. The most commonly used highlighting languages are:
+
+* ``.. code-block:: tarantoolsession``
+* ``.. code-block:: console``
+* ``.. code-block:: lua``
+* ``.. code-block:: text``
+* ``.. code-block:: с``
 
 For example (a code snippet in Lua):
 
-.. code-block:: lua
+..  code-block:: lua
 
     for page in paged_iter("X", 10) do
       print("New Page. Number Of Tuples = " .. #page)
       for i=1,#page,1 do print(page[i]) end
     end
 
-In rare cases, when we need custom highlight for specific parts of a code
-snippet and the ``code-block`` directive is not enough, we use the per-line
-``codenormal`` directive together and explicit output formatting (defined in
-:file:`doc/sphinx/_static/sphinx_design.css`).
+If you need to highlight some variables in code inline, use ``:samp:`` role,
+like this:
 
-Examples:
+..  code-block:: rst
 
-* Function syntax (the placeholder `space-name` is displayed in italics):
+    :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`
 
-  :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:create_index('index-name')`
+And you will get this:
+:samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`
 
-* A tdb session (user input is in bold, command prompt is in blue, computer
-  output is in green):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Creating links
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  .. cssclass:: highlight
-  .. parsed-literal::
+In Tarantool documentation we have these types of links:
 
-      $ :codebold:`tarantool example.lua`
-      :codeblue:`(TDB)`  :codegreen:`Tarantool debugger v.0.0.3. Type h for help`
-      example.lua
-      :codeblue:`(TDB)`  :codegreen:`[example.lua]`
-      :codeblue:`(TDB)`  :codenormal:`3: i = 1`
+* a link to a document
+* a link to a label
+* a link to an external source
 
-Warning: Every entry of explicit output formatting (``codenormal``, ``codebold``,
-etc) tends to cause troubles when this documentation is translated to other
-languages. Please avoid using explicit output formatting unless it is REALLY
-needed.
+------------------------------
+Linking to document
+------------------------------
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              Using separated links
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We use ``:doc:`` role to create a link to another document in our documentation,
+like this:
 
-Avoid separating the link and the target definition (ref), like this:
+..  code-block:: rst
 
-.. code-block:: text
+    :doc:`box.error reference </reference/reference_lua/box_error>`
 
-   This is a paragraph that contains `a link`_.
+Our convention is to put the full path to the referred document so that we can
+easily replace the path if it changes.
 
-   .. _a link: http://example.com/
+------------------------------
+Linking to label
+------------------------------
 
-Use non-separated links instead:
-
-.. code-block:: text
-
-   This is a paragraph that contains `a link <http://example.com/>`_.
-
-Warning: Every separated link tends to cause troubles when this documentation is
-translated to other languages. Please avoid using separated links unless it is
-REALLY needed (e.g. in tables).
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        Creating labels for local links
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-We avoid using links that sphinx generates automatically for most objects.
-Instead, we add our own labels for linking to any place in this documentation.
+We use ``:ref:`` role to generate link to the certain place in the page. For this
+purpose, we add our own labels for linking to any place in this documentation.
 
 Our naming convention is as follows:
 
 * Character set: a through z, 0 through 9, dash, underscore.
-
 * Format: ``path dash filename dash tag``
 
-  Example: ``_c_api-box_index-iterator_type`` |br|
-  where: |br|
-  ``c_api`` is the directory name, |br|
-  ``box_index`` is the file name (without ".rst"), and |br|
-  ``iterator_type`` is the tag.
+**Example:**
 
-The file name is useful for knowing, when you see "ref", where it is pointing
-to. And if the file name is meaningful, you see that better.
-
-The file name alone, without a path, is enough when the file name is unique
-within ``doc/sphinx``.
-So, for ``fiber.rst`` it should be just "fiber", not "reference-fiber".
-While for "index.rst" (we have a handful of "index.rst" in different
-directories) please specify the path before the file name, e.g.
-"reference-index".
+``_c_api-box_index-iterator_type`` |br|
+where: |br|
+``c_api`` is the directory name, |br|
+``box_index`` is the file name (without ".rst"), and |br|
+``iterator_type`` is the tag.
 
 Use a dash "-" to delimit the path and the file name. In the documentation
 source, we use only underscores "_" in paths and file names, reserving dash "-"
@@ -126,23 +143,75 @@ The tag can be anything meaningful. The only guideline is for Tarantool syntax
 items (such as members), where the preferred tag syntax is
 ``module_or_object_name dash member_name``. For example, ``box_space-drop``.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              Making comments
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
+Linking to external resources
+------------------------------
 
-Sometimes we may need to leave comments in a ReST file. To make sphinx ignore
+Avoid separating the link and the target definition, like this:
+
+..  code-block:: rst
+
+    This is a paragraph that contains `a link`_.
+
+    ..  _a link: http://example.com/
+
+Use non-separated links instead:
+
+..  code-block:: rst
+
+    This is a paragraph that contains `a link <http://example.com/>`_.
+
+Warning: Every separated link tends to cause troubles when this documentation is
+translated to other languages. Please avoid using separated links unless it is
+REALLY needed.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tables are very useful and rST markup
+`offers <https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_
+different ways to create them.
+
+We prefer list-tables to create table of contents:
+
+..  code-block:: rst
+
+    ..  container:: table
+
+        ..  list-table::
+            :widths: 25 75
+            :header-rows: 1
+
+            *   - Name
+                - Use
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Titles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Admonitions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              Making comments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes we may need to leave comments in a rST file. To make sphinx ignore
 some text during processing, use the following per-line notation with ".. //" as
 the comment marker:
 
-.. code-block:: text
+..  code-block:: rst
 
-   .. // your comment here
+    .. // your comment here
 
-The starting symbols ".. //" do not interfere with the other ReST markup, and
+The starting symbols ".. //" do not interfere with the other rST markup, and
 they are easy to find both visually and using grep. There are no symbols to
 escape in grep search, just go ahead with something like this:
 
-.. code-block:: console
+..  code-block:: console
 
     $ grep ".. //" doc/sphinx/dev_guide/*.rst
 
