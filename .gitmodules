@@ -13,3 +13,6 @@
 [submodule "modules/tarantool-operator"]
 	path = modules/tarantool-operator
 	url = https://github.com/tarantool/tarantool-operator.git
+[submodule "modules/tntcxx"]
+	path = modules/tntcxx
+	url = https://github.com/tarantool/tntcxx
