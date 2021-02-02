@@ -55,7 +55,7 @@ paragraph in it. To do that we have to leave it at the same level.
 We can put a new object inside: another list, or a block of code. Then we have
 to indent 4 more spaces.
 
-Ideally, when all indents are multiples of 4 spaces, even in lists. Otherwise
+It's best if all indents are multiples of 4 spaces, even in lists. Otherwise
 the document is not consistent. Also, it is much easier to put indents
 with tabs than manually.
 
@@ -88,7 +88,8 @@ like this:
 
     :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`
 
-And you will get this: :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`
+And you will get this:
+:samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating links
@@ -150,15 +151,15 @@ Avoid separating the link and the target definition, like this:
 
 ..  code-block:: rst
 
-   This is a paragraph that contains `a link`_.
+    This is a paragraph that contains `a link`_.
 
-   ..  _a link: http://example.com/
+    ..  _a link: http://example.com/
 
 Use non-separated links instead:
 
 ..  code-block:: rst
 
-   This is a paragraph that contains `a link <http://example.com/>`_.
+    This is a paragraph that contains `a link <http://example.com/>`_.
 
 Warning: Every separated link tends to cause troubles when this documentation is
 translated to other languages. Please avoid using separated links unless it is
@@ -172,7 +173,19 @@ Tables are very useful and rST markup
 `offers <https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_
 different ways to create them.
 
-We prefer list-tables to create table of contents.
+We prefer list-tables to create table of contents:
+
+..  code-block:: rst
+
+    ..  container:: table
+
+        ..  list-table::
+            :widths: 25 75
+            :header-rows: 1
+
+            *   - Name
+                - Use
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Titles
