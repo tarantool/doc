@@ -175,7 +175,7 @@
 
 .. confval:: vinyl_read_threads
 
-    Since version 1.8.2
+    Since version 1.7.5.
     The maximum number of read threads that vinyl can use for some
     concurrent operations, such as I/O and compression.
 
@@ -187,7 +187,7 @@
 
 .. confval:: vinyl_write_threads
 
-    Since version 1.8.2.
+    Since version 1.7.5.
     The maximum number of write threads that vinyl can use for some
     concurrent operations, such as I/O and compression.
 

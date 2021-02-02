@@ -398,13 +398,13 @@ msgstr ""
 msgid "Default = 3.5"
 msgstr ""
 
-msgid "Since version 1.8.2 The maximum number of read threads that vinyl can use for some concurrent operations, such as I/O and compression."
+msgid "Since version 1.7.5. The maximum number of read threads that vinyl can use for some concurrent operations, such as I/O and compression."
 msgstr ""
 
 msgid "Default = 1"
 msgstr ""
 
-msgid "Since version 1.8.2. The maximum number of write threads that vinyl can use for some concurrent operations, such as I/O and compression."
+msgid "Since version 1.7.5. The maximum number of write threads that vinyl can use for some concurrent operations, such as I/O and compression."
 msgstr ""
 
 msgid "Checkpoint daemon"
@@ -680,7 +680,7 @@ msgstr ""
 msgid "Default: 300"
 msgstr ""
 
-msgid "Since version 1.8.2. If the master has no updates to send to the replicas, it sends heartbeat messages every ``replication_timeout`` seconds, and each replica sends an ACK packet back."
+msgid "Since version 1.7.5. If the master has no updates to send to the replicas, it sends heartbeat messages every ``replication_timeout`` seconds, and each replica sends an ACK packet back."
 msgstr ""
 
 msgid "Both master and replicas are programmed to drop the connection if they get no response in four ``replication_timeout`` periods. If the connection is dropped, a replica tries to reconnect to the master."
@@ -999,7 +999,7 @@ msgstr ""
 msgid "By default a Tarantool daemon sends a small packet once per hour, to https://feedback.tarantool.io. The packet contains three values from :ref:`box.info <box_introspection-box_info>`: ``box.info.version``, ``box.info.uuid``, and ``box.info.cluster_uuid``. By changing the feedback configuration parameters, users can adjust or turn off this feature."
 msgstr ""
 
-msgid "Since version 1.10.1 Whether to send feedback."
+msgid "Since version 1.10.1. Whether to send feedback."
 msgstr ""
 
 msgid "If this is set to ``true``, feedback will be sent as described above. If this is set to ``false``, no feedback will be sent."

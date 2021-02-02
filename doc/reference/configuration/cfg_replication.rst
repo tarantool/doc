@@ -162,7 +162,7 @@
 
 .. confval:: replication_timeout
 
-    Since version 1.8.2.
+    Since version 1.7.5.
     If the master has no updates to send to the replicas, it sends heartbeat messages
     every ``replication_timeout`` seconds, and each replica sends an ACK packet back.
 
