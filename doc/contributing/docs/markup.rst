@@ -16,29 +16,48 @@ Paragraphs contain text and may contain inline markup: *emphasis*,
 
 Text can be organized in bullet-lists:
 
-..  code-block:: text
+..  code-block:: rst
 
     - This is a bullet list.
 
     - Bullets can be "*", "+", or "-".
 
+        * Lists can be nested. And it is good to indent them with 4 spaces.
+
 or in enumerated lists:
 
-..  code-block:: text
+..  code-block:: rst
 
-    1. This is an enumerated list.
+    1.  This is an enumerated list.
 
-    2. Tarantool build uses only arabic numbers as enumerators.
+    2.  Tarantool build uses only arabic numbers as enumerators.
 
-    3. You can put #. instead of point numbers and Sphinx will
-       recognize it as an enumerated list.
+    #.  You can put #. instead of point numbers and Sphinx will
+        recognize it as an enumerated list.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Wrapping text and indentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The limit is 80 characters per line for plain text, and no limit for any other
-constructions when wrapping affects ReST readability and/or HTML output. Also,
+constructions when wrapping affects rST readability and/or HTML output. Also,
 it makes no sense to wrap text into lines shorter than 80 characters unless you
 have a good reason to do so.
 
-.. // Что-то про то, что надо соблюдать отступы для правильного отображения абзацев
+In rST, indents play exactly the same role as in Python: they denote object
+boundaries and nesting.
+
+For example, a list starts with a marker, then come some spaces and text.
+From there, all lines relating to that list item must be at the
+same indentation level. We can continue the list item by creating a second
+paragraph in it. To do that we have to leave it at the same level.
+
+We can put a new object inside: another list, or a block of code. Then we have
+to indent 4 more spaces.
+
+Ideally, when all indents are multiples of 4 spaces, even in lists. Otherwise
+the document is not consistent. Also, it is much easier to put indents
+with tabs than manually.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Formatting code snippets
@@ -65,7 +84,7 @@ For example (a code snippet in Lua):
 If you need to highlight some variables in code inline, use ``:samp:`` role,
 like this:
 
-..  code-block:: text
+..  code-block:: rst
 
     :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`
 
@@ -88,7 +107,7 @@ Linking to document
 We use ``:doc:`` role to create a link to another document in our documentation,
 like this:
 
-..  code-block:: text
+..  code-block:: rst
 
     :doc:`box.error reference </reference/reference_lua/box_error>`
 
@@ -129,15 +148,15 @@ Linking to external resources
 
 Avoid separating the link and the target definition, like this:
 
-..  code-block:: text
+..  code-block:: rst
 
    This is a paragraph that contains `a link`_.
 
-   .. _a link: http://example.com/
+   ..  _a link: http://example.com/
 
 Use non-separated links instead:
 
-..  code-block:: text
+..  code-block:: rst
 
    This is a paragraph that contains `a link <http://example.com/>`_.
 
@@ -149,9 +168,11 @@ REALLY needed.
 Tables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tables are very useful and reST markup
+Tables are very useful and rST markup
 `offers <https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_
-different ways to create them. We prefer list-tables
+different ways to create them.
+
+We prefer list-tables to create table of contents.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Titles
@@ -165,19 +186,19 @@ Admonitions
               Making comments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Sometimes we may need to leave comments in a reST file. To make sphinx ignore
+Sometimes we may need to leave comments in a rST file. To make sphinx ignore
 some text during processing, use the following per-line notation with ".. //" as
 the comment marker:
 
-.. code-block:: text
+..  code-block:: rst
 
-   .. // your comment here
+    .. // your comment here
 
-The starting symbols ".. //" do not interfere with the other ReST markup, and
+The starting symbols ".. //" do not interfere with the other rST markup, and
 they are easy to find both visually and using grep. There are no symbols to
 escape in grep search, just go ahead with something like this:
 
-.. code-block:: console
+..  code-block:: console
 
     $ grep ".. //" doc/sphinx/dev_guide/*.rst
 
