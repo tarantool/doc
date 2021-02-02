@@ -287,7 +287,7 @@ adjust or turn off this feature.
 
 .. confval:: feedback_enabled
 
-    Since version 1.10.1 Whether to send feedback.
+    Since version 1.10.1. Whether to send feedback.
 
     If this is set to ``true``, feedback will be sent as described above.
     If this is set to ``false``, no feedback will be sent.
