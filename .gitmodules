@@ -16,3 +16,6 @@
 [submodule "modules/grafana-dashboard"]
 	path = modules/grafana-dashboard
 	url = https://github.com/tarantool/grafana-dashboard
+[submodule "modules/tntcxx"]
+	path = modules/tntcxx
+	url = https://github.com/tarantool/tntcxx.git
