@@ -1,72 +1,112 @@
 
-===========================================================
-               Examples and templates
-===========================================================
+================================================================================
+Examples and templates
+================================================================================
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-               Module and function
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In this document we explain general guidelines for describing Tarantool API and
+give some examples and templates.
 
-Here is an example of documenting a module (``my_fiber``) and a function
-(``my_fiber.create``).
+Use this checklist for documenting a function or a method:
 
-.. module:: my_fiber
+* Base description
+* Parameters
+* What this function returns (if nothing, write 'none')
+* Return type (if exists)
+* Possible errors (if exist)
+* Complexity factors (if exist)
+* Note re storage engine (if exists)
+* Example(s)
+* Extra information (if needed)
 
-.. function:: create(function [, function-arguments])
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Documenting function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Create and start a ``my_fiber`` object. The object is created and begins to
-    run immediately.
+We describe functions of Tarantool modules via Sphinx directives ``.. module::``
+and ``.. function::``:
 
-    :param function: the function to be associated with the ``my_fiber`` object
-    :param function-arguments: what will be passed to function
+..  code-block:: rst
 
-    :return: created ``my_fiber`` object
-    :rtype: userdata
+    ..  module:: fiber
 
-    **Example:**
+    ..  function:: create(function [, function-arguments])
 
-    .. code-block:: tarantoolsession
+        Create and start a fiber. The fiber is created and begins to run immediately.
 
-        tarantool> my_fiber = require('my_fiber')
-        ---
-        ...
-        tarantool> function function_name()
-                 >   my_fiber.sleep(1000)
-                 > end
-        ---
-        ...
-        tarantool> my_fiber_object = my_fiber.create(function_name)
-        ---
-        ...
+        :param function: the function to be associated with the fiber
+        :param function-arguments: what will be passed to function
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-               Module, class and method
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Here is an example of documenting a module (``my_box.index``), a class
-(``my_index_object``) and a function (``my_index_object.rename``).
-
-.. module:: my_box.index
-
-.. class:: my_index_object
-
-    .. method:: rename(index-name)
-
-        Rename an index.
-
-        :param index_object: an object reference
-        :param index_name: a new name for the index (type = string)
-
-        :return: nil
-
-        Possible errors: index_object does not exist.
+        :return: created fiber object
+        :rtype: userdata
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-            tarantool> box.space.space55.index.primary:rename('secondary')
+            tarantool> fiber = require('fiber')
+            ---
+            ...
+            tarantool> function function_name()
+                     >   print("I'm a fiber")
+                     > end
+            ---
+            ...
+            tarantool> fiber_object = fiber.create(function_name); print("Fiber started")
+            I'm a fiber
+            Fiber started
             ---
             ...
 
-        Complexity Factors: Index size, Index type, Number of tuples accessed.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Documenting class method and data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is an example of documenting a method and a data of a class ``index_object``:
+
+..  code-block:: rst
+
+    ..  class:: index_object
+
+        ..  method:: get(key)
+
+            Search for a tuple via the given index, as described :ref:`here <box_index-note>`.
+
+            :param index_object index_object: an :ref:`object reference
+                                              <app_server-object_reference>`.
+            :param scalar/table      key: values to be matched against the index key
+
+            :return: the tuple whose index-key fields are equal to the passed key values
+            :rtype:  tuple
+
+            **Possible errors:**
+
+            * no such index;
+            * wrong type;
+            * more than one tuple matches.
+
+            **Complexity factors:** Index size, Index type.
+            See also :ref:`space_object:get() <box_space-get>`.
+
+            **Example:**
+
+            ..  code-block:: tarantoolsession
+
+                tarantool> box.space.tester.index.primary:get(2)
+                ---
+                - [2, 'Music']
+                ...
+
+        For documenting a data, a description, a return type and an example will be enough:
+
+        ..  data:: unique
+
+            True if the index is unique, false if the index is not unique.
+
+            :rtype: boolean
+
+            ..  code-block:: tarantoolsession
+
+                tarantool> box.space.tester.index.primary.unique
+                ---
+                - true
+                ...
