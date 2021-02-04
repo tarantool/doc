@@ -605,7 +605,8 @@ generated from the sequence.
 
 .. code-block:: tarantoolsession
 
-    tarantool> s=box.schema.space.create('T');s:create_index('I',{sequence='S'})
+    tarantool> s=box.schema.space.create('T')
+    s:create_index('I',{sequence='S'})
     ---
     ...
 
