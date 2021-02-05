@@ -30,6 +30,10 @@ luatest_dest="${project_root}/doc/reference/reference_rock/luatest"
 cartridge_kubernetes_root="${project_root}/modules/tarantool-operator/doc/cartridge_kubernetes_guide"
 cartridge_kubernetes_dest="${rst_dest}/"
 
+tntcxx_root="${project_root}/modules/tntcxx"
+tntcxx_gs_dest="${project_root}/doc/getting_started/"
+tntcxx_api_dest="${project_root}/book/connectors/"
+
 cd "${luatest_root}"
 ldoc --ext=rst --dir=rst --toctree="API" .
 cd "${luatest_dest}"
@@ -45,6 +49,10 @@ yes | cp -rf "${cartridge_cli_root}/README.rst" "${cartridge_cli_index_dest}"
 
 mkdir -p "${cartridge_kubernetes_dest}"
 yes | cp -rf "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
+
+yes | cp -rf "${tntcxx_root}/doc/tntcxx_getting_started.rst" "${tntcxx_gs_dest}/getting_started_cxx.rst"
+yes | cp -rf "${tntcxx_root}/README.rst" "${tntcxx_gs_dest}/tntcxx_readme.rst"
+yes | cp -rf "${tntcxx_root}/doc/tntcxx_api.rst" "${tntcxx_api_dest}/__cxx.rst"
 
 cd "${cartridge_root}" || exit
 tarantoolctl rocks install \

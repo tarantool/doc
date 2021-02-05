@@ -16,5 +16,3 @@ Now let's see how to connect to it from Python, PHP, and Go.
    getting_started_php
    getting_started_go
 
-
-
