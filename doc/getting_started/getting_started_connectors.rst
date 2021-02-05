@@ -12,3 +12,6 @@ Python, PHP and Go.
 .. include:: getting_started_php.rst
 
 .. include:: getting_started_go.rst
+
+.. include:: getting_started_cxx.rst
+
