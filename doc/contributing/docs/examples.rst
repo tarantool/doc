@@ -25,12 +25,12 @@ Documenting a function
 We describe functions of Tarantool modules via Sphinx directives ``.. module::``
 and ``.. function::``:
 
-..  literalinclude:: function_template.rst
+..  literalinclude:: ./_includes/function_template.rst
     :language: rst
 
 And the resulting HTML looks like this:
 
-..  include:: function_template.rst
+..  include:: ./_includes/function_template.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Documenting class method and data
@@ -44,9 +44,9 @@ a return type, and an example.
 
 Here is an example of documenting a method and data of a class ``index_object``:
 
-..  literalinclude:: class_template.rst
+..  literalinclude:: ./_includes/class_template.rst
     :language: rst
 
 And the resulting HTML looks like this:
 
-..  include:: class_template.rst
+..  include:: ./_includes/class_template.rst
