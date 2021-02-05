@@ -4,10 +4,10 @@ set -x
 
 mkdir -p ~/.ssh/
 ssh-keyscan github.com >> ~/.ssh/known_hosts
-git submodule init
-git submodule update
-git pull --recurse-submodules
-git submodule update --remote --merge
+# git submodule init
+# git submodule update
+# git pull --recurse-submodules
+# git submodule update --remote --merge
 
 project_root=$(pwd)
 echo "${project_root}"
@@ -31,7 +31,7 @@ cartridge_kubernetes_dest="${rst_dest}/"
 
 tntcxx_root="${project_root}/modules/tntcxx"
 tntcxx_gs_dest="${project_root}/doc/getting_started/"
-tntcxx_api_dest="${project_root}/book/connectors/"
+tntcxx_api_dest="${project_root}/doc/book/connectors/"
 
 cd "${luatest_root}"
 ldoc --ext=rst --dir=rst --toctree="API" .
