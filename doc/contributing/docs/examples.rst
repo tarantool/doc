@@ -1,72 +1,52 @@
 
-===========================================================
-               Examples and templates
-===========================================================
+================================================================================
+Examples and templates
+================================================================================
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-               Module and function
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In this document, we explain general guidelines for describing Tarantool API and
+give some examples and templates.
 
-Here is an example of documenting a module (``my_fiber``) and a function
-(``my_fiber.create``).
+Use this checklist for documenting a function or a method:
 
-.. module:: my_fiber
+* Base description
+* Parameters
+* What this function returns (if nothing, write 'none')
+* Return type (if exists)
+* Possible errors (if exist)
+* Complexity factors (if exist)
+* Note re storage engine (if exists)
+* Example(s)
+* Extra information (if needed)
 
-.. function:: create(function [, function-arguments])
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Documenting a function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Create and start a ``my_fiber`` object. The object is created and begins to
-    run immediately.
+We describe functions of Tarantool modules via Sphinx directives ``.. module::``
+and ``.. function::``:
 
-    :param function: the function to be associated with the ``my_fiber`` object
-    :param function-arguments: what will be passed to function
+..  literalinclude:: ./_includes/function_template.rst
+    :language: rst
 
-    :return: created ``my_fiber`` object
-    :rtype: userdata
+And the resulting output looks like this:
 
-    **Example:**
+..  include:: ./_includes/function_template.rst
 
-    .. code-block:: tarantoolsession
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Documenting class method and data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        tarantool> my_fiber = require('my_fiber')
-        ---
-        ...
-        tarantool> function function_name()
-                 >   my_fiber.sleep(1000)
-                 > end
-        ---
-        ...
-        tarantool> my_fiber_object = my_fiber.create(function_name)
-        ---
-        ...
+Description of a method is similar to a function, but the ``.. class::``
+directive, unlike ``.. module::``, requires nesting.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-               Module, class and method
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+As for documenting data, it will be enough to write a description,
+a return type, and an example.
 
-Here is an example of documenting a module (``my_box.index``), a class
-(``my_index_object``) and a function (``my_index_object.rename``).
+Here is an example of documenting a method and data of a class ``index_object``:
 
-.. module:: my_box.index
+..  literalinclude:: ./_includes/class_template.rst
+    :language: rst
 
-.. class:: my_index_object
+And the resulting output looks like this:
 
-    .. method:: rename(index-name)
-
-        Rename an index.
-
-        :param index_object: an object reference
-        :param index_name: a new name for the index (type = string)
-
-        :return: nil
-
-        Possible errors: index_object does not exist.
-
-        **Example:**
-
-        .. code-block:: tarantoolsession
-
-            tarantool> box.space.space55.index.primary:rename('secondary')
-            ---
-            ...
-
-        Complexity Factors: Index size, Index type, Number of tuples accessed.
+..  include:: ./_includes/class_template.rst

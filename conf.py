@@ -68,6 +68,7 @@ exclude_patterns = [
     'book/cartridge/cartridge_overview.rst',
     'book/cartridge/CONTRIBUTING.rst',
     'reference/reference_rock/luatest/README.rst',
+    '**/_includes/*'
 ]
 
 base_url = "https://tarantool.org/"
