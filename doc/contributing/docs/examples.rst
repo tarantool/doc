@@ -28,7 +28,7 @@ and ``.. function::``:
 ..  literalinclude:: ./_includes/function_template.rst
     :language: rst
 
-And the resulting HTML looks like this:
+And the resulting output looks like this:
 
 ..  include:: ./_includes/function_template.rst
 
@@ -47,6 +47,6 @@ Here is an example of documenting a method and data of a class ``index_object``:
 ..  literalinclude:: ./_includes/class_template.rst
     :language: rst
 
-And the resulting HTML looks like this:
+And the resulting output looks like this:
 
 ..  include:: ./_includes/class_template.rst
