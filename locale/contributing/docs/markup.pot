@@ -1,0 +1,208 @@
+
+msgid "Markup issues"
+msgstr ""
+
+msgid "Tarantool documentation is built via `Sphinx <https://www.sphinx-doc.org/en/master/index.html>`_ engine and is written in `reStructuredText <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_ markup. This document will guide you through our typical cases while writing the docs."
+msgstr ""
+
+msgid "General syntax guidelines"
+msgstr ""
+
+msgid "Paragraphs contain text and may contain inline markup: *emphasis*, **strong emphasis**, `interpreted text`, ``inline literals``."
+msgstr ""
+
+msgid "Text can be organized in bullet-lists:"
+msgstr ""
+
+msgid "- This is a bullet list.\n"
+"\n"
+"- Bullets can be \"*\", \"+\", or \"-\".\n"
+"\n"
+"    * Lists can be nested. And it is good to indent them with 4 spaces."
+msgstr ""
+
+msgid "or in enumerated lists:"
+msgstr ""
+
+msgid "1.  This is an enumerated list.\n"
+"\n"
+"2.  Tarantool build uses only arabic numbers as enumerators.\n"
+"\n"
+"#.  You can put #. instead of point numbers and Sphinx will\n"
+"    recognize it as an enumerated list."
+msgstr ""
+
+msgid "Wrapping text and indentation"
+msgstr ""
+
+msgid "The limit is 80 characters per line for plain text, and no limit for any other constructions when wrapping affects rST readability and/or HTML output. Also, it makes no sense to wrap text into lines shorter than 80 characters unless you have a good reason to do so."
+msgstr ""
+
+msgid "In rST, indents play exactly the same role as in Python: they denote object boundaries and nesting."
+msgstr ""
+
+msgid "For example, a list starts with a marker, then come some spaces and text. From there, all lines relating to that list item must be at the same indentation level. We can continue the list item by creating a second paragraph in it. To do that we have to leave it at the same level."
+msgstr ""
+
+msgid "We can put a new object inside: another list, or a block of code. Then we have to indent 4 more spaces."
+msgstr ""
+
+msgid "It's best if all indents are multiples of 4 spaces, even in lists. Otherwise the document is not consistent. Also, it is much easier to put indents with tabs than manually."
+msgstr ""
+
+msgid "Formatting code snippets"
+msgstr ""
+
+msgid "For code snippets, we mainly use the ``code-block`` directive with an appropriate highlighting language. The most commonly used highlighting languages are:"
+msgstr ""
+
+msgid "``.. code-block:: tarantoolsession``"
+msgstr ""
+
+msgid "``.. code-block:: console``"
+msgstr ""
+
+msgid "``.. code-block:: lua``"
+msgstr ""
+
+msgid "``.. code-block:: text``"
+msgstr ""
+
+msgid "``.. code-block:: с``"
+msgstr ""
+
+msgid "For example (a code snippet in Lua):"
+msgstr ""
+
+msgid "for page in paged_iter(\"X\", 10) do\n"
+"  print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"  for i=1,#page,1 do print(page[i]) end\n"
+"end"
+msgstr ""
+
+msgid "If you need to highlight some variables in code inline, use ``:samp:`` role, like this:"
+msgstr ""
+
+msgid ":samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`"
+msgstr ""
+
+msgid "And you will get this: :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`"
+msgstr ""
+
+msgid "Creating links"
+msgstr ""
+
+msgid "In Tarantool documentation we have these types of links:"
+msgstr ""
+
+msgid "a link to a document"
+msgstr ""
+
+msgid "a link to a label"
+msgstr ""
+
+msgid "a link to an external source"
+msgstr ""
+
+msgid "Linking to document"
+msgstr ""
+
+msgid "We use ``:doc:`` role to create a link to another document in our documentation, like this:"
+msgstr ""
+
+msgid ":doc:`box.error reference </reference/reference_lua/box_error>`"
+msgstr ""
+
+msgid "Our convention is to put the full path to the referred document so that we can easily replace the path if it changes."
+msgstr ""
+
+msgid "Linking to label"
+msgstr ""
+
+msgid "We use ``:ref:`` role to generate link to the certain place in the page. For this purpose, we add our own labels for linking to any place in this documentation."
+msgstr ""
+
+msgid "Our naming convention is as follows:"
+msgstr ""
+
+msgid "Character set: a through z, 0 through 9, dash, underscore."
+msgstr ""
+
+msgid "Format: ``path dash filename dash tag``"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "``_c_api-box_index-iterator_type`` |br| where: |br| ``c_api`` is the directory name, |br| ``box_index`` is the file name (without \".rst\"), and |br| ``iterator_type`` is the tag."
+msgstr ""
+
+msgid "Use a dash \"-\" to delimit the path and the file name. In the documentation source, we use only underscores \"_\" in paths and file names, reserving dash \"-\" as the delimiter for local links."
+msgstr ""
+
+msgid "The tag can be anything meaningful. The only guideline is for Tarantool syntax items (such as members), where the preferred tag syntax is ``module_or_object_name dash member_name``. For example, ``box_space-drop``."
+msgstr ""
+
+msgid "Linking to external resources"
+msgstr ""
+
+msgid "Avoid separating the link and the target definition, like this:"
+msgstr ""
+
+msgid "This is a paragraph that contains `a link`_.\n"
+"\n"
+"..  _a link: http://example.com/"
+msgstr ""
+
+msgid "Use non-separated links instead:"
+msgstr ""
+
+msgid "This is a paragraph that contains `a link <http://example.com/>`_."
+msgstr ""
+
+msgid "Warning: Every separated link tends to cause troubles when this documentation is translated to other languages. Please avoid using separated links unless it is REALLY needed."
+msgstr ""
+
+msgid "Tables"
+msgstr ""
+
+msgid "Tables are very useful and rST markup `offers <https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_ different ways to create them."
+msgstr ""
+
+msgid "We prefer list-tables to create table of contents:"
+msgstr ""
+
+msgid "..  container:: table\n"
+"\n"
+"    ..  list-table::\n"
+"        :widths: 25 75\n"
+"        :header-rows: 1\n"
+"\n"
+"        *   - Name\n"
+"            - Use"
+msgstr ""
+
+msgid "Titles"
+msgstr ""
+
+msgid "Admonitions"
+msgstr ""
+
+msgid "Making comments"
+msgstr ""
+
+msgid "Sometimes we may need to leave comments in a rST file. To make sphinx ignore some text during processing, use the following per-line notation with \".. //\" as the comment marker:"
+msgstr ""
+
+msgid ".. // your comment here"
+msgstr ""
+
+msgid "The starting symbols \".. //\" do not interfere with the other rST markup, and they are easy to find both visually and using grep. There are no symbols to escape in grep search, just go ahead with something like this:"
+msgstr ""
+
+msgid "$ grep \".. //\" doc/sphinx/dev_guide/*.rst"
+msgstr ""
+
+msgid "These comments don't work properly in nested documentation, though (e.g. if you leave a comment in module -> object -> method, sphinx ignores the comment and all nested content that follows in the method description)."
+msgstr ""
+
