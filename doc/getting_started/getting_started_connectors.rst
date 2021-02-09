@@ -4,11 +4,17 @@
 Connecting from your favorite language
 ================================================================================
 
-Now that you have a Tarantool database, let's see how to connect to it from
-Python, PHP and Go.
+In the :ref:`previous section <getting_started_db>`, you have learned how
+to create a Tarantool database.
+Now let's see how to connect to it from Python, PHP and Go.
 
-.. include:: getting_started_python.rst
+.. toctree::
+   :maxdepth: 2
+   :numbered: 0
 
-.. include:: getting_started_php.rst
+   getting_started_python
+   getting_started_php
+   getting_started_go
 
-.. include:: getting_started_go.rst
+
+
