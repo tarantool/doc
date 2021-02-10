@@ -1,0 +1,310 @@
+
+msgid "Markup issues"
+msgstr "Вопросы разметки"
+
+msgid ""
+"Tarantool documentation is built via `Sphinx <https://www.sphinx-"
+"doc.org/en/master/index.html>`_ engine and is written in "
+"`reStructuredText "
+"<https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_ "
+"markup. This document will guide you through our typical cases while "
+"writing the docs."
+msgstr ""
+
+msgid "General syntax guidelines"
+msgstr ""
+
+msgid ""
+"Paragraphs contain text and may contain inline markup: *emphasis*, "
+"**strong emphasis**, `interpreted text`, ``inline literals``."
+msgstr ""
+
+msgid "Text can be organized in bullet-lists:"
+msgstr ""
+
+msgid ""
+"- This is a bullet list.\n"
+"\n"
+"- Bullets can be \"*\", \"+\", or \"-\".\n"
+"\n"
+"    * Lists can be nested. And it is good to indent them with 4 spaces."
+msgstr ""
+
+msgid "or in enumerated lists:"
+msgstr ""
+
+msgid ""
+"1.  This is an enumerated list.\n"
+"\n"
+"2.  Tarantool build uses only arabic numbers as enumerators.\n"
+"\n"
+"#.  You can put #. instead of point numbers and Sphinx will\n"
+"    recognize it as an enumerated list."
+msgstr ""
+
+msgid "Wrapping text and indentation"
+msgstr "Перенос текста и отступы"
+
+msgid ""
+"The limit is 80 characters per line for plain text, and no limit for any "
+"other constructions when wrapping affects rST readability and/or HTML "
+"output. Also, it makes no sense to wrap text into lines shorter than 80 "
+"characters unless you have a good reason to do so."
+msgstr ""
+"Строка ограничена 80 символами для обычного текста и никак не ограничена "
+"для любых других конструкций, когда обтекание влияет на читаемость rST "
+"и/или HTML-вывод. Кроме того, нет смысла переносить текст в строках "
+"короче 80 символов, если у вас для этого нет веских оснований."
+
+msgid ""
+"In rST, indents play exactly the same role as in Python: they denote "
+"object boundaries and nesting."
+msgstr ""
+
+msgid ""
+"For example, a list starts with a marker, then come some spaces and text."
+" From there, all lines relating to that list item must be at the same "
+"indentation level. We can continue the list item by creating a second "
+"paragraph in it. To do that we have to leave it at the same level."
+msgstr ""
+
+msgid ""
+"We can put a new object inside: another list, or a block of code. Then we"
+" have to indent 4 more spaces."
+msgstr ""
+
+msgid ""
+"It's best if all indents are multiples of 4 spaces, even in lists. "
+"Otherwise the document is not consistent. Also, it is much easier to put "
+"indents with tabs than manually."
+msgstr ""
+
+msgid "Formatting code snippets"
+msgstr "Форматирование фрагментов кода"
+
+msgid ""
+"For code snippets, we mainly use the ``code-block`` directive with an "
+"appropriate highlighting language. The most commonly used highlighting "
+"languages are:"
+msgstr ""
+"Для фрагментов коды мы обычно используем директиву ``code-block`` с "
+"соответствующей подсветкой синтаксиса языка. Чаще всего используем "
+"следующее:"
+
+msgid "``.. code-block:: tarantoolsession``"
+msgstr ""
+
+msgid "``.. code-block:: console``"
+msgstr ""
+
+msgid "``.. code-block:: lua``"
+msgstr ""
+
+msgid "``.. code-block:: text``"
+msgstr ""
+
+msgid "``.. code-block:: с``"
+msgstr ""
+
+msgid "For example (a code snippet in Lua):"
+msgstr "Например (фрагмент Lua-кода):"
+
+msgid ""
+"for page in paged_iter(\"X\", 10) do\n"
+"  print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"  for i=1,#page,1 do print(page[i]) end\n"
+"end"
+msgstr ""
+
+msgid ""
+"If you need to highlight some variables in code inline, use ``:samp:`` "
+"role, like this:"
+msgstr ""
+
+msgid ":samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`"
+msgstr ""
+
+msgid ""
+"And you will get this: "
+":samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`"
+msgstr ""
+
+msgid "Creating links"
+msgstr ""
+
+msgid "In Tarantool documentation we have these types of links:"
+msgstr ""
+
+msgid "a link to a document"
+msgstr ""
+
+msgid "a link to a label"
+msgstr ""
+
+msgid "a link to an external source"
+msgstr ""
+
+msgid "Linking to document"
+msgstr ""
+
+msgid ""
+"We use ``:doc:`` role to create a link to another document in our "
+"documentation, like this:"
+msgstr ""
+
+msgid ":doc:`box.error reference </reference/reference_lua/box_error>`"
+msgstr ""
+
+msgid ""
+"Our convention is to put the full path to the referred document so that "
+"we can easily replace the path if it changes."
+msgstr ""
+
+msgid "Linking to label"
+msgstr ""
+
+msgid ""
+"We use ``:ref:`` role to generate link to the certain place in the page. "
+"For this purpose, we add our own labels for linking to any place in this "
+"documentation."
+msgstr ""
+
+msgid "Our naming convention is as follows:"
+msgstr "Соглашение об именовании заключается в следующем:"
+
+msgid "Character set: a through z, 0 through 9, dash, underscore."
+msgstr "Набор символов: от a до z, от 0 до 9, дефис, подчеркивание."
+
+msgid "Format: ``path dash filename dash tag``"
+msgstr "Формат: ``путь дефис имя файла дефис тег``"
+
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid ""
+"``_c_api-box_index-iterator_type`` |br| where: |br| ``c_api`` is the "
+"directory name, |br| ``box_index`` is the file name (without \".rst\"), "
+"and |br| ``iterator_type`` is the tag."
+msgstr ""
+"``_c_api-box_index-iterator_type`` |br| где: |br| ``c_api`` -- имя "
+"директории, |br| ``box_index`` -- имя файла (без \".rst\"), а |br| "
+"``iterator_type`` -- тег."
+
+msgid ""
+"Use a dash \"-\" to delimit the path and the file name. In the "
+"documentation source, we use only underscores \"_\" in paths and file "
+"names, reserving dash \"-\" as the delimiter for local links."
+msgstr ""
+"Используйте дефис \"-\", чтобы разграничить путь и имя файла. В исходном "
+"коде документации мы пользуемся только символами подчеркивания \"_\" при "
+"указании пути и имени файла, оставляя дефисы \"-\" для разграничения в "
+"локальных ссылках."
+
+msgid ""
+"The tag can be anything meaningful. The only guideline is for Tarantool "
+"syntax items (such as members), where the preferred tag syntax is "
+"``module_or_object_name dash member_name``. For example, ``box_space-"
+"drop``."
+msgstr ""
+"Тег может содержать любую значимую информацию. Единственная рекомендация "
+"дается для элементов синтаксиса Tarantool'а, где предпочтительно "
+"использовать следующий синтаксис в тегах: ``имя_объекта_или_модуля дефис "
+"имя_элемента``. Например, ``box_space-drop``."
+
+msgid "Linking to external resources"
+msgstr "Ссылки на внешние ресурсы"
+
+msgid "Avoid separating the link and the target definition, like this:"
+msgstr "Избегайте разделения ссылки и определения цели, например:"
+
+msgid ""
+"This is a paragraph that contains `a link`_.\n"
+"\n"
+"..  _a link: http://example.com/"
+msgstr ""
+"Это абзац, который содержит `ссылку`_.\n"
+"\n"
+"..  _сслыку: http://example.com/"
+
+msgid "Use non-separated links instead:"
+msgstr "Используйте неразделенные ссылки:"
+
+msgid "This is a paragraph that contains `a link <http://example.com/>`_."
+msgstr "Это абзац, который содержит `ссылку <http://example.com/>`_."
+
+msgid ""
+"Warning: Every separated link tends to cause troubles when this "
+"documentation is translated to other languages. Please avoid using "
+"separated links unless it is REALLY needed."
+msgstr ""
+"Внимание: Каждая разделенная ссылка часто вызывает трудности при переводе"
+" документации на другие языки. Постарайтесь избегать разделенных ссылок, "
+"если только без них никак НЕЛЬЗЯ обойтись."
+
+msgid "Tables"
+msgstr ""
+
+msgid ""
+"Tables are very useful and rST markup `offers "
+"<https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_ "
+"different ways to create them."
+msgstr ""
+
+msgid "We prefer list-tables to create table of contents:"
+msgstr ""
+
+msgid ""
+"..  container:: table\n"
+"\n"
+"    ..  list-table::\n"
+"        :widths: 25 75\n"
+"        :header-rows: 1\n"
+"\n"
+"        *   - Name\n"
+"            - Use"
+msgstr ""
+
+msgid "Titles"
+msgstr ""
+
+msgid "Admonitions"
+msgstr ""
+
+msgid "Making comments"
+msgstr "Добавление комментариев"
+
+msgid ""
+"Sometimes we may need to leave comments in a rST file. To make sphinx "
+"ignore some text during processing, use the following per-line notation "
+"with \".. //\" as the comment marker:"
+msgstr ""
+"Иногда могут потребоваться комментарии в файле rST. Чтобы sphinx не "
+"учитывал этот текст во время обработки, используйте следующую запись в "
+"каждой строке в качестве маркера комментария (\".. //\"):"
+
+msgid ".. // your comment here"
+msgstr ".. // здесь комментарий"
+
+msgid ""
+"The starting symbols \".. //\" do not interfere with the other rST "
+"markup, and they are easy to find both visually and using grep. There are"
+" no symbols to escape in grep search, just go ahead with something like "
+"this:"
+msgstr ""
+"Начальные символы \".. //\" не пересекаются с другими символами разметки "
+"rST, и их легко обнаружить как визуально, так и с помощью grep. В поиске"
+" grep нет символов, которые нужно избегать, просто выполните примерно "
+"следующее:"
+
+msgid "$ grep \".. //\" doc/sphinx/dev_guide/*.rst"
+msgstr "$ grep \".. //\" doc/sphinx/dev_guide/*.rst"
+
+msgid ""
+"These comments don't work properly in nested documentation, though (e.g. "
+"if you leave a comment in module -> object -> method, sphinx ignores the "
+"comment and all nested content that follows in the method description)."
+msgstr ""
+"Тем не менее, эти комментарии не сработают должным образом во вложенной "
+"документации (например, если оставить комментарий в модуле -> объекте -> "
+"методе, sphinx игнорирует комментарий и всё вложенное содержимое, который"
+" следует в описании метода)."

@@ -1,0 +1,38 @@
+
+msgid "Language and style issues"
+msgstr "Вопросы по стилю и языку"
+
+msgid "US vs British spelling"
+msgstr "Британский или американский вариант английского"
+
+msgid "We use English US spelling."
+msgstr ""
+"В английской версии документации мы придерживаемся американского варианта"
+" английского языка."
+
+msgid "Instance vs server"
+msgstr "Экземпляр или сервер"
+
+msgid ""
+"We say \"instance\" rather than \"server\" to refer to an instance of "
+"Tarantool server. This keeps the manual terminology consistent with names"
+" like ``/etc/tarantool/instances.enabled`` in the Tarantool environment."
+msgstr ""
+"Ссылаясь на экземпляр Tarantool-сервера, мы говорим \"экземпляр\", а не "
+"\"сервер\". Это обеспечивает однородность терминологии в руководстве и "
+"именами в окружении Tarantool'а (например, "
+"``/etc/tarantool/instances.enabled`` -- активные экземпляры)."
+
+msgid ""
+"Wrong usage: \"Replication allows multiple Tarantool *servers* to work on"
+" copies of the same databases.\""
+msgstr ""
+"Неправильно: \"С помощью репликации несколько *серверов* Tarantool’а "
+"могут работать на копиях одинаковых баз данных.\""
+
+msgid ""
+"Correct usage: \"Replication allows multiple Tarantool *instances* to "
+"work on copies of the same databases.\""
+msgstr ""
+"Правильно: \"С помощью репликации несколько *экземпляров* Tarantool’а "
+"могут работать на копиях одинаковых баз данных.\""
