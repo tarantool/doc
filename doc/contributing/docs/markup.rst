@@ -119,7 +119,7 @@ Both options produce the same output:
 ..  include:: _includes/inline-code.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Highlighing variables in code
+Highlighting variables in code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you need to highlight variables in code inline, use the ``:samp:`` role,
@@ -161,8 +161,8 @@ And you will get this:
 Linking to labels (anchors)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To generate a link to the certain place in the page, we use the ``:ref:`` role. For this
-purpose, we add our own labels for linking to any place in this documentation.
+To generate a link to the certain place in the page, we use the ``:ref:`` role.
+For this purpose, we add our own labels for linking to any place in this documentation.
 
 Our naming convention is as follows:
 
@@ -209,8 +209,8 @@ Avoid separating the link and the target definition, like this:
 
         ..  _a link: http://example.com/
 
-Warning: Every separated link tends to cause troubles when this documentation is
-translated to other languages. Please avoid using separated links.
+**Warning:** Every separated link tends to cause troubles when this documentation
+is translated to other languages. Please avoid using separated links.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Tables
@@ -243,7 +243,7 @@ Admonitions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              Making comments
+Making comments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Sometimes we may need to leave comments in an rST file. To make Sphinx ignore
@@ -255,8 +255,8 @@ the comment marker:
     .. // your comment here
 
 The starting characters ``.. //`` do not interfere with the other rST markup, and
-they are easy to find both visually and using ``grep``. There are no characters to
-escape in grep search, just go ahead with something like this:
+they are easy to find both visually and using ``grep``. There are no characters
+to escape in grep search, just go ahead with something like this:
 
 ..  code-block:: console
 
