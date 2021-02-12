@@ -16,4 +16,4 @@ The guidelines are a work in progress, and we welcome all contributions.
     docs/markup
     docs/style
     docs/examples
-    docs/doc_infrastructure
+    docs/infra
