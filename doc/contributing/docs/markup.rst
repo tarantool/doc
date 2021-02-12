@@ -1,5 +1,5 @@
 ================================================================================
-Markup issues
+reStructuredText markup
 ================================================================================
 
 Tarantool documentation is built via
@@ -36,13 +36,21 @@ or in enumerated lists:
         recognize it as an enumerated list.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Wrapping text and indentation
+Wrapping text
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The limit is 80 characters per line for plain text, and no limit for any other
-constructions when wrapping affects rST readability and/or HTML output. Also,
-it makes no sense to wrap text into lines shorter than 80 characters unless you
-have a good reason to do so.
+It's good practice to wrap lines in documentation source text.
+It makes source better readable and results in lesser ``git diff``'s.
+The recommended limit is 80 characters per line for plain text.
+
+In new documents, try to wrap lines by sentences,
+or by parts of a complex sentence.
+Don't wrap formatted text if it affects rST readability and/or HTML output.
+However, wrapping with proper indentation shouldn't break things.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Indentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In rST, indents play exactly the same role as in Python: they denote object
 boundaries and nesting.
@@ -59,54 +67,77 @@ It's best if all indents are multiples of 4 spaces, even in lists. Otherwise
 the document is not consistent. Also, it is much easier to put indents
 with tabs than manually.
 
+Example:
+
+..  literalinclude:: _includes/indentation.rst
+    :language: rst
+
+Resulting output:
+
+..  include:: _includes/indentation.rst
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Formatting code snippets
+Code snippets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For code snippets, we mainly use the ``code-block`` directive with an appropriate
-highlighting language. The most commonly used highlighting languages are:
+For code snippets, we use the ``code-block:: language``
+`directive <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block>`_
+with an appropriate highlighting language.
+The most commonly used highlighting languages are:
 
-* ``.. code-block:: tarantoolsession``
-* ``.. code-block:: console``
-* ``.. code-block:: lua``
-* ``.. code-block:: text``
-* ``.. code-block:: с``
+*   ``tarantoolsession``—interactive Tarantool session,
+    where command lines start with ``tarantlool>`` prompt.
+*   ``console``—interactive console session, where command lines start with ``$`` or ``#``.
+*   ``lua``, ``bash`` or ``c`` for programming languages.
+*   ``text`` for cases when we want the code block to have no highlighting.
 
-For example (a code snippet in Lua):
+Sphinx uses the Pygments library for highlighing source code.
+For a complete list of possible languages, see the
+`list of Pygments lexers <https://pygments.org/docs/lexers/>`_.
 
-..  code-block:: lua
+For example, a code snippet in Lua:
 
-    for page in paged_iter("X", 10) do
-      print("New Page. Number Of Tuples = " .. #page)
-      for i=1,#page,1 do print(page[i]) end
-    end
+..  literalinclude:: _includes/lua.rst
+    :language: rst
 
-If you need to highlight some variables in code inline, use ``:samp:`` role,
+Lua syntax is highlighted in the output:
+
+..  include:: _includes/lua.rst
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Inline code
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To format some inline text as ``code``, enclose it with double ````` characters
+or use the ``:code:`` role:
+
+..  literalinclude:: _includes/inline-code.rst
+    :language: rst
+
+Both options produce the same output:
+
+..  include:: _includes/inline-code.rst
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Highlighting variables in code
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you need to highlight variables in code inline, use the ``:samp:`` role,
 like this:
 
-..  code-block:: rst
-
-    :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`
+..  literalinclude:: _includes/samp.rst
+    :language: rst
 
 And you will get this:
-:samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`
+
+..  include:: _includes/samp.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Creating links
+Linking to other documentation pages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Tarantool documentation we have these types of links:
-
-* a link to a document
-* a link to a label
-* a link to an external source
-
-------------------------------
-Linking to document
-------------------------------
-
-We use ``:doc:`` role to create a link to another document in our documentation,
-like this:
+To create a link to another document in our documentation, we use the ``:doc:`` role.
+For example, this link points to the document ``/reference/reference_lua/box_error.rst``:
 
 ..  code-block:: rst
 
@@ -114,13 +145,24 @@ like this:
 
 Our convention is to put the full path to the referred document so that we can
 easily replace the path if it changes.
+Note that we can omit the ``.rst`` part of the filename.
 
-------------------------------
-Linking to label
-------------------------------
+You can use the target document's title as the link text.
+To do so, omit the text in the link definition:
 
-We use ``:ref:`` role to generate link to the certain place in the page. For this
-purpose, we add our own labels for linking to any place in this documentation.
+..  literalinclude:: _includes/doc-link.rst
+    :language: rst
+
+And you will get this:
+
+..  include:: _includes/doc-link.rst
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Linking to labels (anchors)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To generate a link to the certain place in the page, we use the ``:ref:`` role.
+For this purpose, we add our own labels for linking to any place in this documentation.
 
 Our naming convention is as follows:
 
@@ -129,11 +171,15 @@ Our naming convention is as follows:
 
 **Example:**
 
-``_c_api-box_index-iterator_type`` |br|
-where: |br|
-``c_api`` is the directory name, |br|
-``box_index`` is the file name (without ".rst"), and |br|
-``iterator_type`` is the tag.
+..  code-block:: rst
+
+    ..  _c_api-box_index-iterator_type:
+
+where:
+
+*   ``c_api`` is the directory name,
+*   ``box_index`` is the file name (without ".rst"), and
+*   ``iterator_type`` is the tag.
 
 Use a dash "-" to delimit the path and the file name. In the documentation
 source, we use only underscores "_" in paths and file names, reserving dash "-"
@@ -143,27 +189,28 @@ The tag can be anything meaningful. The only guideline is for Tarantool syntax
 items (such as members), where the preferred tag syntax is
 ``module_or_object_name dash member_name``. For example, ``box_space-drop``.
 
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Linking to external resources
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Avoid separating the link and the target definition, like this:
+To make an external link, use the following syntax:
 
-..  code-block:: rst
-
-    This is a paragraph that contains `a link`_.
-
-    ..  _a link: http://example.com/
-
-Use non-separated links instead:
-
-..  code-block:: rst
+..  code-block:: text
 
     This is a paragraph that contains `a link <http://example.com/>`_.
 
-Warning: Every separated link tends to cause troubles when this documentation is
-translated to other languages. Please avoid using separated links unless it is
-REALLY needed.
+Avoid separating the link and the target definition, like this:
+
+..  container:: dont
+
+    ..  code-block:: rst
+
+        This is wrong way to make `a link`_.
+
+        ..  _a link: http://example.com/
+
+**Warning:** Every separated link tends to cause troubles when this documentation
+is translated to other languages. Please avoid using separated links.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Tables
@@ -196,10 +243,10 @@ Admonitions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              Making comments
+Making comments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Sometimes we may need to leave comments in a rST file. To make sphinx ignore
+Sometimes we may need to leave comments in an rST file. To make Sphinx ignore
 some text during processing, use the following per-line notation with ".. //" as
 the comment marker:
 
@@ -207,14 +254,15 @@ the comment marker:
 
     .. // your comment here
 
-The starting symbols ".. //" do not interfere with the other rST markup, and
-they are easy to find both visually and using grep. There are no symbols to
-escape in grep search, just go ahead with something like this:
+The starting characters ``.. //`` do not interfere with the other rST markup, and
+they are easy to find both visually and using ``grep``. There are no characters
+to escape in grep search, just go ahead with something like this:
 
 ..  code-block:: console
 
     $ grep ".. //" doc/sphinx/dev_guide/*.rst
 
-These comments don't work properly in nested documentation, though (e.g. if you
-leave a comment in module -> object -> method, sphinx ignores the comment and
-all nested content that follows in the method description).
+These comments don't work properly in nested documentation, though.
+For example, if you leave a comment in module -> object -> method,
+Sphinx ignores the comment and all nested content that follows
+in the method description.
