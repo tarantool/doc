@@ -59,8 +59,8 @@ a submodule.
 
 .. _guidelines_doc_submodules_update:
 
-2. Update ``update_submodule.sh``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2. Update update_submodule.sh
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Next, we should define what directories and files are to be copied from
 the submodule repository into the documentation one before building
@@ -70,11 +70,11 @@ which is in the root directory of the documentation repository.
 We can take examples of the already existing submodules to show the logic of
 the settings.
 
-``metrics``
-^^^^^^^^^^^^
+metrics
+^^^^^^^
 
 In case of the ``metrics`` submodule, the content source files are in the
-``/doc/monitoring`` directory of the submodule repository.
+``./doc/monitoring`` directory of the submodule repository.
 In the final documentation view, the content should appear in the
 `Monitoring <https://www.tarantool.io/en/doc/latest/book/monitoring/>`_
 chapter (``https://www.tarantool.io/en/doc/latest/book/monitoring/``).
@@ -99,8 +99,8 @@ The ``${project_root}`` variable is defined earlier as ``project_root=$(pwd)``.
 We should start the documentation build from the documentation repository root
 directory so that will be the value of the variable.
 
-``cartridge_cli``
-^^^^^^^^^^^^^^^^^^
+cartridge_cli
+^^^^^^^^^^^^^
 
 In case of the ``cartridge_cli`` submodule, the content source is in
 the ``README.rst`` file located in the directory of the submodule repository.
@@ -127,8 +127,8 @@ The corresponding settings in the ``update_submodule.sh`` file are the following
 
 .. _guidelines_doc_submodules_gitignore:
 
-3. Update ``.gitignore``
-~~~~~~~~~~~~~~~~~~~~~~~~
+3. Update .gitignore
+~~~~~~~~~~~~~~~~~~~~
 
 Finaly, we should add paths to the copied directories and files to
 the ``.gitignore`` file.
