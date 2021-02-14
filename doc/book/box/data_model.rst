@@ -606,7 +606,22 @@ generated from the sequence.
 .. code-block:: tarantoolsession
 
     tarantool> s=box.schema.space.create('T')
-    s:create_index('I',{sequence='S'})
+    ---
+    ...
+    tarantool> s:create_index('I',{sequence='S'})
+    ---
+    - parts:
+      - type: unsigned
+        is_nullable: false
+        fieldno: 1
+      sequence_id: 1
+      id: 0
+      space_id: 520
+      unique: true
+      type: TREE
+      sequence_fieldno: 1
+      name: I
+    ...
     ---
     ...
 
