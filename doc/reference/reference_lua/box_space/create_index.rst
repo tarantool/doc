@@ -22,8 +22,8 @@ On this page:
         Create an :ref:`index <index-box_index>`.
 
         It is mandatory to create an index for a space before trying to insert
-        tuples into it, or select tuples from it. The first created index, which
-        will be used as the primary-key index, must be unique.
+        tuples into it, or select tuples from it. The first created index
+        will be used as the primary-key index, so it must be unique.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
@@ -45,7 +45,7 @@ On this page:
         :ref:`yields <atomic-cooperative_multitasking>`
         so that other requests will not be blocked.
         If the other requests cause an illegal situation such as a duplicate key
-        in a unique index, the index building or rebuilding will fail.
+        in a unique index, building or rebuilding such index will fail.
 
         .. _box_space-create_index-options:
 
@@ -305,8 +305,8 @@ Allowing null for an indexed key
 If the index type is TREE, and the index is not the primary index,
 then the ``parts={...}`` clause may include ``is_nullable=true`` or
 ``is_nullable=false`` (the default). If ``is_nullable`` is true,
-then it is legal to insert ``nil`` or an equivalent such as ``msgpack.NULL``
-(or it is legal to insert nothing at all for trailing nullable fields).
+then it is legal to insert ``nil`` or an equivalent such as ``msgpack.NULL``.
+It is also legal to insert nothing at all when using trailing nullable fields.
 Within indexes, such "null values" are always treated as equal to other null
 values, and are always treated as less than non-null values.
 Nulls may appear multiple times even in a unique index. Example:
@@ -496,13 +496,13 @@ A function could make a key using only the first letter of a string field.
 
 #.  Make the function: the function expects a tuple. In this example it will
     work on tuple[2] because the key source is field number 2 in what we will
-    insert. Use string.sub() from the string module to get the first character.
+    insert. Use ``string.sub()`` from the ``string`` module to get the first character:
 
     ..  code-block:: lua
 
         lua_code = [[function(tuple) return {string.sub(tuple[2],1,1)} end]]
 
-#.  Make the function persistent: use the box.schema.func.create function for this.
+#.  Make the function persistent using the ``box.schema.func.create`` function:
 
     ..  code-block:: lua
 
@@ -510,7 +510,7 @@ A function could make a key using only the first letter of a string field.
             {body = lua_code, is_deterministic = true, is_sandboxed = true})
 
 #.  Make the functional index: specify the fields whose values will be passed
-    to the function. Specify the function.
+    to the function. Specify the function:
 
     ..  code-block:: lua
 
@@ -518,7 +518,7 @@ A function could make a key using only the first letter of a string field.
 
 #.  Test. Insert a few tuples. Select using only the first letter, it will work
     because that is the key. Or, select using the same function as was used for
-    insertion
+    insertion:
 
     ..  code-block:: lua
 
