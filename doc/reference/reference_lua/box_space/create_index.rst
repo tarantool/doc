@@ -44,8 +44,9 @@ On this page:
         Building or rebuilding a large index will cause occasional
         :ref:`yields <atomic-cooperative_multitasking>`
         so that other requests will not be blocked.
-        If the other requests cause an illegal situation such as a duplicate key
-        in a unique index, building or rebuilding such index will fail.
+        If the other requests cause an illegal situation
+        such as a duplicate key in a unique index,
+        building or rebuilding such index will fail.
 
         .. _box_space-create_index-options:
 
@@ -175,7 +176,7 @@ and what index types are allowed.
             - Where it is legal
             - Examples
 
-        *   - **unsigned**
+        *   - ``unsigned``
             - unsigned integers between 0 and 18446744073709551615,
               about 18 quintillion. May also be called
               'uint' or 'num', but 'num' is deprecated
@@ -184,7 +185,7 @@ and what index types are allowed.
               vinyl TREE indexes
             - 123456
 
-        *   - **string**
+        *   - ``string``
             - any set of octets, up to the :ref:`maximum length
               <limitations_bytes_in_index_key>`. May also be called 'str'.
               A string may have a :ref:`collation <index-collation>`
@@ -195,7 +196,7 @@ and what index types are allowed.
 
               '\\65 \\66 \\67'
 
-        *   - **varbinary**
+        *   - ``varbinary``
             - any set of octets, up to the :ref:`maximum length
               <limitations_bytes_in_index_key>`. A varbinary byte sequence
               does not have a :ref:`collation <index-collation>`
@@ -205,7 +206,7 @@ and what index types are allowed.
               vinyl TREE indexes
             - '\\65 \\66 \\67'
 
-        *   - **integer**
+        *   - ``integer``
             - integers between -9223372036854775808 and 18446744073709551615.
               May also be called 'int'
             - memtx TREE or HASH indexes;
@@ -213,7 +214,7 @@ and what index types are allowed.
               vinyl TREE indexes
             - -2^63
 
-        *   - **number**
+        *   - ``number``
             - integers between -9223372036854775808 and 18446744073709551615,
               single-precision floating point numbers, or double-precision
               floating point numbers, or exact numbers
@@ -226,21 +227,21 @@ and what index types are allowed.
 
               1.447e+44
 
-        *   - **double**
+        *   - ``double``
             - double-precision floating point numbers
             - memtx TREE or HASH indexes;
 
               vinyl TREE indexes
             - 1.234
 
-        *   - **boolean**
+        *   - ``boolean``
             - true or false
             - memtx TREE or HASH indexes;
 
               vinyl TREE indexes
             - false
 
-        *   - **decimal**
+        *   - ``decimal``
             - exact number returned from a function in the
               :ref:`decimal <decimal>` module
             - memtx TREE or HASH indexes;
@@ -248,7 +249,7 @@ and what index types are allowed.
               vinyl TREE indexes
             - decimal.new(1.2)
 
-        *   - **uuid**
+        *   - ``uuid``
             - a 128-bit quantity sequence of lower-case hexadecimal digits,
               representing Universally Unique Identifiers (UUID)
             - memtx TREE or HASH indexes;
@@ -256,14 +257,14 @@ and what index types are allowed.
               vinyl TREE indexes
             - uuid.fromstr('64d22e4d-ac92-4a23-899a-e59f34af5479')
 
-        *   - **array**
+        *   - ``array``
             - array of numbers
             - memtx :ref:`RTREE <box_index-rtree>` indexes
             - {10, 11}
 
               {3, 5, 9, 10}
 
-        *   - **scalar**
+        *   - ``scalar``
             - null (input with ``msgpack.NULL`` or ``yaml.NULL`` or ``json.NULL``),
               booleans (true or false), or
               integers between -9223372036854775808 and 18446744073709551615, or
@@ -290,7 +291,7 @@ and what index types are allowed.
               'ру'
 
 
-        *   - **nil**
+        *   - ``nil``
             - Additionally, `nil` is allowed with any index field type
               if :ref:`is_nullable=true <box_space-is_nullable>` is specified
             -
@@ -486,15 +487,15 @@ Only sandboxed functions are suitable for functional indexes.
 
 A function could make a key using only the first letter of a string field.
 
-#.  Make the space: the space needs a primary-key field, which is not
-    the field that we will use for the functional index.
+#.  Make a space. The space needs a primary-key field, which is not
+    the field that we will use for the functional index:
 
     ..  code-block:: lua
 
         box.schema.space.create('x', {engine = 'memtx'})
         box.space.x:create_index('i',{parts={{field = 1, type = 'string'}}})
 
-#.  Make the function: the function expects a tuple. In this example it will
+#.  Make a function. The function expects a tuple. In this example it will
     work on tuple[2] because the key source is field number 2 in what we will
     insert. Use ``string.sub()`` from the ``string`` module to get the first character:
 
@@ -509,7 +510,7 @@ A function could make a key using only the first letter of a string field.
         box.schema.func.create('F',
             {body = lua_code, is_deterministic = true, is_sandboxed = true})
 
-#.  Make the functional index: specify the fields whose values will be passed
+#.  Make a functional index. Specify the fields whose values will be passed
     to the function. Specify the function:
 
     ..  code-block:: lua
