@@ -1,5 +1,6 @@
 
-msgid "Language and style issues"
+#, fuzzy
+msgid "Language and style"
 msgstr "Вопросы по стилю и языку"
 
 msgid "US vs British spelling"
@@ -36,3 +37,26 @@ msgid ""
 msgstr ""
 "Правильно: \"С помощью репликации несколько *экземпляров* Tarantool’а "
 "могут работать на копиях одинаковых баз данных.\""
+
+msgid "Don't use i.e. and e.g."
+msgstr ""
+
+msgid "Don't use the following contractions:"
+msgstr ""
+
+msgid ""
+"`\"i.e.\" <https://www.merriam-webster.com/dictionary/i.e.>`_ —from Latin"
+" \"id est\". Use \"that is\" or \"which means\" instead."
+msgstr ""
+
+msgid ""
+"`\"e.g.\" <https://www.merriam-webster.com/dictionary/e.g.>`_ —from Latin"
+" \"exempli gratia\". Use \"for example\" or \"such as\" instead."
+msgstr ""
+
+msgid ""
+"Many people, especially non-native English speakers, aren't familiar or "
+"don't know the difference between `\"i.e.\" and \"e.g.\" contractions "
+"<https://www.merriam-webster.com/words-at-play/ie-vs-eg-abbreviation-"
+"meaning-usage-difference>`_. So it's best to avoid using them."
+msgstr ""
