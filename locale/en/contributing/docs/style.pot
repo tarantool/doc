@@ -1,0 +1,37 @@
+
+msgid "Language and style"
+msgstr ""
+
+msgid "US vs British spelling"
+msgstr ""
+
+msgid "We use English US spelling."
+msgstr ""
+
+msgid "Instance vs server"
+msgstr ""
+
+msgid "We say \"instance\" rather than \"server\" to refer to an instance of Tarantool server. This keeps the manual terminology consistent with names like ``/etc/tarantool/instances.enabled`` in the Tarantool environment."
+msgstr ""
+
+msgid "Wrong usage: \"Replication allows multiple Tarantool *servers* to work on copies of the same databases.\""
+msgstr ""
+
+msgid "Correct usage: \"Replication allows multiple Tarantool *instances* to work on copies of the same databases.\""
+msgstr ""
+
+msgid "Don't use i.e. and e.g."
+msgstr ""
+
+msgid "Don't use the following contractions:"
+msgstr ""
+
+msgid "`\"i.e.\" <https://www.merriam-webster.com/dictionary/i.e.>`_ —from Latin \"id est\". Use \"that is\" or \"which means\" instead."
+msgstr ""
+
+msgid "`\"e.g.\" <https://www.merriam-webster.com/dictionary/e.g.>`_ —from Latin \"exempli gratia\". Use \"for example\" or \"such as\" instead."
+msgstr ""
+
+msgid "Many people, especially non-native English speakers, aren't familiar or don't know the difference between `\"i.e.\" and \"e.g.\" contractions <https://www.merriam-webster.com/words-at-play/ie-vs-eg-abbreviation-meaning-usage-difference>`_. So it's best to avoid using them."
+msgstr ""
+
