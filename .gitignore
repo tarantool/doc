@@ -15,6 +15,9 @@ _theme/tarantool/static/design.css.map
 rocks
 .vscode/
 
+# Crowdin API key
+apikey.txt
+
 # redundant folders created by sphinx
 
 /locale/book/LC_MESSAGES/
