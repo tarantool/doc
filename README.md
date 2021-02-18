@@ -65,6 +65,38 @@ python -m SimpleHTTPServer
 ```
 then go to [localhost:8000](http://localhost:8000) in your browser.
 
+## Localization
+
+Terms:
+
+* **translation unit** (TU) is an atomic piece of text which can be translated.
+  A paragraph, a list item, a heading, image's alt-text and so on.
+  
+* **translation source files** are the files with translation units in English only.
+    They're located in `locale/en`.
+
+* **translation files** are the files which match original text to translated text.
+  They're located in `locale/ru`.
+
+Upload translation sources any time when they have changed:
+
+```bash
+crowdin upload 
+# or
+crowdin upload sources
+```
+
+Upload translation files once for each project, to pass the existing translations to Crowdin:
+
+```bash
+crowdin upload translations --auto-approve-imported --import-eq-suggestions
+```
+
+Download translations files back when they're done:
+
+```bash
+crowdin download
+```
 ## How to contribute
 
 To contribute to documentation, use the
