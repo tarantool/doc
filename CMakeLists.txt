@@ -201,14 +201,16 @@ add_custom_target(update-pot
         -d "${SPHINX_BUILD_LOCALE_DIR}"
         -c locale/
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
-        "${CMAKE_CURRENT_SOURCE_DIR}/locale"
+        "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
     COMMENT "Generate localization templates"
 )
 
 add_custom_target(update-po-no-force
     COMMAND "${SPHINX_INTL_EXECUTABLE}"
         update
-        -p ${CMAKE_CURRENT_SOURCE_DIR}/locale
+        -p "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
+        -d "${CMAKE_CURRENT_SOURCE_DIR}/locale/"
+        -l "ru"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Regenerate localization files from templates"
     DEPENDS update-pot

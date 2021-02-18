@@ -28,13 +28,13 @@ rocks
 # cartridge submodule
 
 /doc/book/cartridge/
-/locale/book/cartridge/
+/locale/en/book/cartridge/
 /locale/ru/LC_MESSAGES/book/cartridge/
 
 # monitoring submodule
 
 /doc/book/monitoring/
-/locale/book/monitoring/
+/locale/en/book/monitoring/
 /locale/ru/LC_MESSAGES/book/monitoring/
 
 # luatest submodule
@@ -45,11 +45,11 @@ rocks
 /doc/reference/reference_rock/luatest/index.rst
 /doc/reference/reference_rock/luatest/README.rst
 
-/locale/reference/reference_rock/luatest/classes/
-/locale/reference/reference_rock/luatest/modules/
-/locale/reference/reference_rock/luatest/topics/
-/locale/reference/reference_rock/luatest/index.pot
-/locale/reference/reference_rock/luatest/README.pot
+/locale/en/reference/reference_rock/luatest/classes/
+/locale/en/reference/reference_rock/luatest/modules/
+/locale/en/reference/reference_rock/luatest/topics/
+/locale/en/reference/reference_rock/luatest/index.pot
+/locale/en/reference/reference_rock/luatest/README.pot
 
 /locale/ru/LC_MESSAGES/reference/reference_rock/luatest/README.po
 /locale/ru/LC_MESSAGES/reference/reference_rock/luatest/index.po
