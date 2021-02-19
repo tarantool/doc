@@ -25,19 +25,15 @@ msgstr "``name``, ``engine``, ``field_count``,"
 msgid "``flags`` (e.g. temporary),"
 msgstr "``flags`` (например, временный),"
 
-#, fuzzy
 msgid ""
 "``format`` (as made by a :doc:`format clause "
 "</reference/reference_lua/box_space/format>`)."
-msgstr "``format`` (как задано через :ref:`оператор формата <box_space-format>`)."
+msgstr ""
 
-#, fuzzy
 msgid ""
 "These fields are established by "
 ":doc:`/reference/reference_lua/box_schema/space_create`."
 msgstr ""
-"Эти поля определены с помощью :ref:`space.create() <box_schema-"
-"space_create>`."
 
 msgid "**Example #1:**"
 msgstr ""
@@ -93,7 +89,6 @@ msgstr ""
 msgid "**Example #2:**"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "The following requests will create a space using "
 "``box.schema.space.create()`` with a :doc:`format clause "
@@ -102,11 +97,6 @@ msgid ""
 "the ``format`` clause, it shows the recommended names and data types for "
 "the fields."
 msgstr ""
-"Следующая серия запросов создаст спейс, используя "
-"``box.schema.space.create()`` с :ref:`оператором формата <box_space-"
-"format>`, затем выберет кортеж из ``_space`` для нового спейса. Этот "
-"пример иллюстрирует стандартное применение оператора ``format``, "
-"показывая рекомендованные имена и типы данных для полей."
 
 msgid ""
 "tarantool> box.schema.space.create('TM', {\n"

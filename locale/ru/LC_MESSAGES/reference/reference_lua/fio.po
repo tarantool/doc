@@ -584,13 +584,10 @@ msgstr ""
 "- true\n"
 "..."
 
-#, fuzzy
 msgid ""
 "List files in directory. The result is similar to the ``ls`` shell "
 "command."
 msgstr ""
-"Вывод списка файлов в директории. Результат похож на результат команды "
-"``ls``."
 
 msgid ""
 "(If no error) a list of files. |br| (If error) two return values: null, "
@@ -703,15 +700,11 @@ msgstr ""
 "- /home/username/tarantool_sandbox\n"
 "..."
 
-#, fuzzy
 msgid ""
 "Copy everything in the from-path, including subdirectory contents, to the"
 " to-path. The result is similar to the ``cp -r`` shell command. The to-"
 "path should not be empty."
 msgstr ""
-"Копирование всего из директории from-path, включая поддиректории, в to-"
-"path. Результат аналогичен результату введения команды ``cp -r``. "
-"Директория to-path должна быть пустой."
 
 msgid "path-name."
 msgstr "путь."
@@ -727,13 +720,10 @@ msgstr ""
 "- true\n"
 "..."
 
-#, fuzzy
 msgid ""
 "Create the path, including parent directories, but without file contents."
 " The result is similar to the ``mkdir -p`` shell command."
 msgstr ""
-"Создание пути, включая поддиректории, но без содержимого файла. Результат"
-" аналогичен результату введения команды ``mkdir``."
 
 msgid ""
 "tarantool> fio.mktree('/home/archives')\n"
@@ -746,15 +736,11 @@ msgstr ""
 "- true\n"
 "..."
 
-#, fuzzy
 msgid ""
 "Remove the directory indicated by path-name, including subdirectories. "
 "The result is similar to the ``rmdir -r`` shell command. The directory "
 "should not be empty."
 msgstr ""
-"Удаление указанной директории, включая поддиректории. Результат "
-"аналогичен результату введения команды ``rmdir``. Директория должна быть "
-"пустой."
 
 msgid ""
 "(If no error) true. |br| (If error) two return values: null, error "
@@ -847,9 +833,8 @@ msgid ""
 "number of seconds since the epoch."
 msgstr ""
 
-#, fuzzy
 msgid "name."
-msgstr "новое имя."
+msgstr ""
 
 msgid "time of last access. default current time."
 msgstr ""
@@ -857,23 +842,15 @@ msgstr ""
 msgid "time of last update. default = access time."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "tarantool> fio.utime('/home/username/tmp.txt')\n"
 "---\n"
 "- true\n"
 "..."
 msgstr ""
-"tarantool> fio.truncate('/home/username/tmp.txt', 99999)\n"
-"---\n"
-"- true\n"
-"..."
 
-#, fuzzy
 msgid "Copy a file. The result is similar to the ``cp`` shell command."
 msgstr ""
-"Копирование файла. Результат аналогичен результату введения команды "
-"``cp``. "
 
 msgid "path to original file."
 msgstr "путь к первоначальному файлу."
@@ -974,7 +951,6 @@ msgstr "Открытие файла в процессе подготовки к 
 msgid "Full path to the file to open."
 msgstr "Полный путь к открываемому файлу."
 
-#, fuzzy
 msgid ""
 "Flags can be passed as a number or as string constants, for example "
 "'``O_RDONLY``', '``O_WRONLY``', '``O_RDWR``'. Flags can be combined by "
@@ -992,8 +968,6 @@ msgid ""
 "O_TRUNC (truncate)  ... and, always, one of:  * O_RDONLY (read only), * "
 "O_WRONLY (write only), or * O_RDWR (either read or write)."
 msgstr ""
-"ВНИМАНИЕ! Статус FUZZY с этого блока не снимать! Иначе испортится верстка"
-" списка.Настоящий перевод -- в нижеследующих строках, разбит по абзацам."
 
 msgid ""
 "Flags can be passed as a number or as string constants, for example "

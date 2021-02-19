@@ -206,7 +206,6 @@ msgstr ""
 "Если вы используете FreeBSD (дальнейшие инструкции работают для FreeBSD "
 "10.1+), выполните команду:"
 
-#, fuzzy
 msgid ""
 "$ pkg install -y sudo git cmake gmake gcc coreutils \\\n"
 "      autoconf automake libtool \\\n"
@@ -214,11 +213,6 @@ msgid ""
 "      python27 py27-pip py27-setuptools py27-daemon \\\n"
 "      py27-msgpack py27-yaml py27-argparse py27-six py27-gevent"
 msgstr ""
-"$ pkg install -y sudo git cmake gmake gcc coreutils \\\n"
-"      autoconf automake libtool \\\n"
-"      readline ncurses libyaml openssl libunwind icu \\\n"
-"      python27 py27-pip py27-setuptools py27-daemon \\\n"
-"      py27-msgpack py27-yaml py27-argparse py27-six py27-gevent"
 
 msgid ""
 "If some Python modules are not available in a repository, it is best to "
@@ -280,23 +274,16 @@ msgstr ""
 msgid "This step is only necessary once, the first time you do a download."
 msgstr "Это действие следует выполнить только один раз при первой загрузке."
 
-#, fuzzy
 msgid ""
 "Use ``git`` to download the latest Tarantool source code from the GitHub "
 "repository ``tarantool/tarantool``, branch 2.2, to a local directory "
 "named ``~/tarantool``, for example:"
 msgstr ""
-"Используйте ``git``, чтобы загрузить последний исходный код Tarantool'а "
-"из репозитория  на GitHub ``tarantool/tarantool`` (ветка 1.10) в "
-"локальную директорию ``~/tarantool``, например:"
 
-#, fuzzy
 msgid ""
 "$ git clone --recursive https://github.com/tarantool/tarantool.git -b 2.2"
 " ~/tarantool"
 msgstr ""
-"$ git clone --recursive https://github.com/tarantool/tarantool.git -b "
-"1.10 ~/tarantool"
 
 msgid ""
 "On rare occasions, the submodules need to be updated again with the "

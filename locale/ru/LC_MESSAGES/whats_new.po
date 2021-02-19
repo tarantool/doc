@@ -35,37 +35,27 @@ msgstr ""
 "<https://github.com/tarantool/tarantool/milestones?state=closed>`_ на "
 "GitHub."
 
-#, fuzzy
 msgid "Version 2.x"
-msgstr "Версия 2.x"
+msgstr ""
 
-#, fuzzy
 msgid ""
 "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data"
 " layout, client-server protocol and replication protocol. You can "
 ":ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` "
 "procedure."
 msgstr ""
-"Tarantool 2.x обратно совместим с Tarantool 1.10.x в том, что касается "
-"структуры бинарных данных, клиент-серверного протокола и протокола "
-"репликации. :ref:`Обновление <admin-upgrades>` можно произвести с помощью"
-" процедуры ``box.schema.upgrade()``."
 
-#, fuzzy
 msgid "**Release 2.4.1**"
-msgstr "**Версия 2.2.1**"
+msgstr ""
 
 msgid "Deprecations"
 msgstr "Устаревшие функции"
 
-#, fuzzy
 msgid ""
 "(SQL) SESSION will be a reserved word so objects named SESSION will be "
 "illegal. Part of issue `4711 "
 "<https://github.com/tarantool/tarantool/issues/4711>`_."
 msgstr ""
-"(Сервер) fiber:name() показывает только часть имени. Проблема `4011 "
-"<https://github.com/tarantool/tarantool/issues/4011>`_."
 
 msgid ""
 "In :ref:`box.session.push() <box_session-push>` the use of the ``sync`` "
@@ -74,17 +64,14 @@ msgid ""
 "<https://github.com/tarantool/tarantool/issues/4689>`_."
 msgstr ""
 
-#, fuzzy
 msgid "**Release 2.2.1**"
-msgstr "**Версия 2.2.1**"
+msgstr ""
 
-#, fuzzy
 msgid "Release type: beta. Release date: 2019-08-02."
-msgstr "Тип версии: beta. Дата выхода: 2019-08-02."
+msgstr ""
 
-#, fuzzy
 msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/2.2.1."
-msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/2.2.1."
+msgstr ""
 
 msgid ""
 "This is a :ref:`beta <release-policy>` version of the 2.2 series. The "
@@ -419,23 +406,19 @@ msgstr ""
 msgid ":ref:`Merger <merger-module>` for tuples streams added."
 msgstr ""
 
-#, fuzzy
 msgid "**Release 2.1.2**"
-msgstr "**Версия 1.10.2**"
+msgstr ""
 
-#, fuzzy
 msgid "Release type: stable. Release date: 2019-04-05."
-msgstr "Тип версии: альфа. Дата выхода: 2016-07-11."
+msgstr ""
 
-#, fuzzy
 msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/2.1.2."
-msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.2."
+msgstr ""
 
-#, fuzzy
 msgid ""
 "This is the first :ref:`stable <release-policy>` release in the 2.x "
 "series."
-msgstr "Данная сборка представляет собой вторую бета-версию в серии 1.7."
+msgstr ""
 
 msgid ""
 "The goal of this release is to significantly extend SQL support and "
@@ -608,34 +591,28 @@ msgid ""
 " scripts."
 msgstr ""
 
-#, fuzzy
 msgid "**Release 2.1.1**"
-msgstr "**Версия 1.7.1**"
+msgstr ""
 
-#, fuzzy
 msgid "Release type: beta. Release date: 2018-11-14."
-msgstr "Тип версии: альфа. Дата выхода: 2016-07-11."
+msgstr ""
 
-#, fuzzy
 msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/2.1.1."
-msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.4."
+msgstr ""
 
 msgid ""
 "This release resolves all major bugs since 2.0.4 alpha and extends "
 "Tarantool's SQL feature set."
 msgstr ""
 
-#, fuzzy
 msgid "**Release 2.0.4**"
-msgstr "**Версия 1.10.4**"
+msgstr ""
 
-#, fuzzy
 msgid "Release type: alpha. Release date: 2018-02-15."
-msgstr "Тип версии: альфа. Дата выхода: 2016-07-11."
+msgstr ""
 
-#, fuzzy
 msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/2.0.4."
-msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.4."
+msgstr ""
 
 msgid ""
 "This is a successor of the 1.8.x releases. It improves the overall "
@@ -676,9 +653,8 @@ msgid ""
 "snapshots and survive server restart."
 msgstr ""
 
-#, fuzzy
 msgid "Significant performance improvements."
-msgstr "Рефакторинг кода и улучшение производительности."
+msgstr ""
 
 msgid "Version 1.10"
 msgstr "Версия 1.10"
@@ -2273,25 +2249,19 @@ msgstr ""
 "(Сборки) Поддержка Alpine Linux. Проблема `3067 "
 "<https://github.com/tarantool/tarantool/issues/3067>`_."
 
-#, fuzzy
 msgid "Version 1.8"
-msgstr "Версия 1.8"
+msgstr ""
 
-#, fuzzy
 msgid "**Release 1.8.1**"
-msgstr "**Версия 1.8.1**"
+msgstr ""
 
-#, fuzzy
 msgid "Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1."
-msgstr "Тип версии: альфа. Дата выхода: 2017-05-17.  Тег: 1.8.1."
+msgstr ""
 
-#, fuzzy
 msgid ""
 "Announcement: https://groups.google.com/forum/#!msg/tarantool-"
 "ru/XYaoqJpc544/mSvKrYwNAgAJ."
 msgstr ""
-"Объявление о выходе: https://groups.google.com/forum/#!msg/tarantool-"
-"ru/XYaoqJpc544/mSvKrYwNAgAJ."
 
 msgid ""
 "This is an alpha release which delivers support for a substantial subset "
@@ -2409,15 +2379,11 @@ msgstr ""
 " определенную точку в пределах транзакции -- поддержка :ref:`точки "
 "сохранения <box-savepoint>`."
 
-#, fuzzy
 msgid ""
 "There is a new object type: :ref:`sequences <index-box_sequence>`. The "
 "older option, :ref:`auto-increment <box_space-auto_increment>`, will be "
 "deprecated."
 msgstr ""
-"Появился новый объектный тип: :ref:`последовательности <index-"
-"box_sequence>`. Устаревший вариант, :ref:`автоматическое увеличение "
-"<box_space-auto_increment>`, объявлен устаревшим."
 
 msgid "String indexes can have :ref:`collations <index-collation>`."
 msgstr "В строковых индексах появилась :ref:`сортировка <index-collation>`."
@@ -2488,7 +2454,6 @@ msgstr ""
 " { truncate = true })`` для моделирования старого поведения системы. "
 "Проблема `2622 <https://github.com/tarantool/tarantool/issues/2622>`_"
 
-#, fuzzy
 msgid ""
 ":ref:`space:format() <box_space-format>` is now validated on DML "
 "operations. Previously ``space:format()`` was only used by client "
@@ -2498,13 +2463,6 @@ msgid ""
 "used ``space:format()`` in a non-standard way, please update layout and "
 "type names according to the official documentation for space formats."
 msgstr ""
-":ref:`space:format() <box_space-format>` проверяется в DML-операциях. "
-"Раньше ``space:format()`` использовался только в клиентских библиотеках, "
-"но с версии Tarantool 1.7.6 типы полей в ``space:format()`` проверяются "
-"на стороне сервера при каждой DML-операции, и имена полей могут "
-"использоваться в индексах и Lua-коде. Если ``space:format()`` "
-"использовался нестандартно, обновите структуру и имена типов в "
-"соответствии с официальной документацией по форматам спейса."
 
 msgid ""
 "Hybrid schema-less + schemaful data model. Earlier Tarantool versions "
@@ -2572,7 +2530,6 @@ msgstr ""
 "уникальных индексах. Проблема `1557 "
 "<https://github.com/tarantool/tarantool/issues/1557>`_."
 
-#, fuzzy
 msgid ""
 "Sequences and a new implementation of :ref:`auto_increment() <box_space-"
 "auto_increment>`. Tarantool 1.7.6 introduces new :ref:`sequence number "
@@ -2580,13 +2537,6 @@ msgid ""
 "feature is used to implement new persistent auto increment in spaces. "
 "Issue `389 <https://github.com/tarantool/tarantool/issues/389>`_."
 msgstr ""
-"Последовательности и внедрение автоматического увеличения "
-":ref:`auto_increment() <box_space-auto_increment>`. В версии Tarantool "
-"1.7.6 впервые реализованы :ref:`генераторы порядковых номеров <index-"
-"box_sequence>` (как CREATE SEQUENCE -- создание последовательности -- в "
-"SQL). Эта функция используется для внедрения нового персистентного "
-"автоматического увеличения в спейсах. Проблема `389 "
-"<https://github.com/tarantool/tarantool/issues/389>`_."
 
 msgid ""
 "Vinyl: introduced gap locks in Vinyl transaction manager. The new locking"
@@ -2965,27 +2915,18 @@ msgstr ""
 "выше INFO. Проблема `2467 "
 "<https://github.com/tarantool/tarantool/issues/2467>`_."
 
-#, fuzzy
 msgid ""
 "Tarantool now automatically makes snapshots every hour. Please set "
 ":ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-"
 "checkpoint_interval>` to restore pre-1.7.5 behavior. Issue `2496 "
 "<https://github.com/tarantool/tarantool/issues/2496>`_."
 msgstr ""
-"Tarantool автоматически делает снимки каждый час. Установите "
-":ref:`box.cfg{checkpoint_interval=0  <cfg_checkpoint_daemon-"
-"checkpoint_interval>`, чтобы восстановить поведение предыдущих версий. "
-"Проблема `2496 <https://github.com/tarantool/tarantool/issues/2496>`_."
 
-#, fuzzy
 msgid ""
 "Increase precision for percentage ratios provided by "
 ":ref:`box.slab.info() <box_slab_info>`. Issue `2082 "
 "<https://github.com/tarantool/tarantool/issues/2082>`_."
 msgstr ""
-"Увеличена точность для процентного соотношения, приведенного с помощью "
-":ref:`box.slab.info() <box_slab_info>`. Проблема `2082 "
-"<https://github.com/tarantool/tarantool/issues/2082>`_."
 
 msgid ""
 "Stack traces now contain symbols names on all supported platforms. "
@@ -4108,13 +4049,10 @@ msgstr ""
 msgid "Install new 1.7.2 packages."
 msgstr "Установите новые пакеты версии 1.7.2."
 
-#, fuzzy
 msgid ""
 "Ensure that ``INSTANCENAME.lua`` file is present in "
 "``/etc/tarantool/instances.enabled``."
 msgstr ""
-"Убедитесь в наличии файла ``ИМЯ_ЭКЗЕМПЛЯРА.lua`` в директории "
-"``/etc/tarantool/instace.enabled``."
 
 msgid "Stop INSTANCENAME using ``tarantoolctl stop INSTANCENAME``."
 msgstr "Остановите ЭКЗЕМПЛЯР с помощью ``tarantoolctl stop ИМЯ_ЭКЗЕМПЛЯРА``."
@@ -4147,17 +4085,12 @@ msgstr ""
 "<https://github.com/tarantool/tarantool/issues/1291>`_ и главу :ref:`по "
 "администрированию серверной части <admin>`."
 
-#, fuzzy
 msgid ""
 "Debian and Ubuntu packages start a ready-to-use ``example.lua`` instance "
 "on a clean installation of the package. The default instance grants "
 "universe permissions for ``guest`` user and listens on "
 "\"localhost:3313\"."
 msgstr ""
-"Пакеты для Debian и Ubuntu запускают готовый к использованию экземпляр "
-"``example.lua`` при чистой установке пакета. В экземпляре, используемом "
-"по умолчанию, предоставлены права на universe для пользователя ``guest`` "
-"и настроено прослушивание по \"locahost:3313\"."
 
 msgid "Fedora 22 packages were deprecated (EOL)."
 msgstr "Пакеты для Fedora 22 объявлены устаревшими (прекращение поддержки)."
@@ -4466,13 +4399,10 @@ msgstr ""
 "появляется возможность управления несколькими экземплярами. Чтобы "
 "обновить, выполните следующие действия:"
 
-#, fuzzy
 msgid ""
 "Ensure that ``INSTANCENAME.lua`` file is present in "
 "``/etc/tarantool/instances.available``."
 msgstr ""
-"Убедитесь в наличии файла ``ИМЯ_ЭКЗЕМПЛЯРА.lua`` в директории "
-"``/etc/tarantool/instace.available``."
 
 msgid ""
 "``/etc/tarantool/instance.enabled`` directory is now deprecated for "
@@ -5002,14 +4932,10 @@ msgstr ""
 "http://rocks.tarantool.org -- работают с MySQL и PostgreSQL из "
 "Tarantool'а."
 
-#, fuzzy
 msgid ""
 "``gperftools`` rock, available at http://rocks.tarantool.org - getting "
 "performance data using Google's gperf from Tarantool."
 msgstr ""
-"``gperftools`` -- модуль, доступный по ссылке http://rocks.tarantool.org "
-"-- получает данные о производительности с помощью Google gperf из "
-"Tarantool'а."
 
 msgid ""
 "``csv`` built-in rock, to parse and load CSV (comma-separated values) "
@@ -5023,10 +4949,3 @@ msgstr "Поддержка новой платформы:"
 
 msgid "Fedora 22, Ubuntu Vivid"
 msgstr "Fedora 22, Ubuntu Vivid"
-
-#~ msgid ""
-#~ "(SQL) Now SQL’s integer type is "
-#~ "stored as integer in space’s format. "
-#~ "It was stored as scalar before, "
-#~ "which made comarisons slow."
-#~ msgstr ""

@@ -51,13 +51,11 @@ msgstr ":ref:`string.hex() <string-hex>`"
 msgid "Given a string, return hexadecimal values"
 msgstr ""
 
-#, fuzzy
 msgid ":ref:`string.fromhex() <string-fromhex>`"
-msgstr ":ref:`string.hex() <string-hex>`"
+msgstr ""
 
-#, fuzzy
 msgid "Given hexadecimal values, return a string"
-msgstr "Получение шестнадцатеричного значения строки"
+msgstr ""
 
 msgid ":ref:`string.startswith() <string-startswith>`"
 msgstr ":ref:`string.startswith() <string-startswith>`"
@@ -74,16 +72,14 @@ msgstr "Проверка, заканчивается ли строка на за
 msgid ":ref:`string.lstrip() <string-lstrip>`"
 msgstr ":ref:`string.lstrip() <string-lstrip>`"
 
-#, fuzzy
 msgid "Remove characters from the left of a string"
-msgstr "Удаление пробелов слева от строки"
+msgstr ""
 
 msgid ":ref:`string.rstrip() <string-rstrip>`"
 msgstr ":ref:`string.rstrip() <string-rstrip>`"
 
-#, fuzzy
 msgid "Remove characters from the right of a string"
-msgstr "Удаление пробелов справа от строки"
+msgstr ""
 
 msgid ":ref:`string.split() <string-split>`"
 msgstr ":ref:`string.split() <string-split>`"
@@ -216,14 +212,12 @@ msgid ""
 "digits."
 msgstr ""
 
-#, fuzzy
 msgid "string with pairs of hexadecimal digits"
-msgstr "строка с обратной трассировкой стека вызовов"
+msgstr ""
 
 msgid "string with one byte for each pair of hexadecimal digits"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "tarantool> string = require('string')\n"
 "---\n"
@@ -233,13 +227,6 @@ msgid ""
 "- 'ABC '\n"
 "..."
 msgstr ""
-"tarantool> string = require('string')\n"
-"---\n"
-"...\n"
-"tarantool> string.hex('ABC ')\n"
-"---\n"
-"- '41424320'\n"
-"..."
 
 msgid ""
 "Return True if ``input-string`` starts with ``start-string``, otherwise "
@@ -324,13 +311,11 @@ msgid ""
 "it means strip ``'A'`` or ``'B'`` or ``'C'``."
 msgstr ""
 
-#, fuzzy
 msgid "what characters can be stripped. Default = space."
-msgstr "отдельный символ, по умолчанию = 1 пробел"
+msgstr ""
 
-#, fuzzy
 msgid "result after stripping characters from input string"
-msgstr "результат после удаления пробелов из введенной строки"
+msgstr ""
 
 msgid ""
 "tarantool> string = require('string')\n"
@@ -399,7 +384,6 @@ msgstr "таблица строк, которые были разделены и
 msgid "table"
 msgstr "таблица"
 
-#, fuzzy
 msgid ""
 "tarantool> string = require('string')\n"
 "---\n"
@@ -411,15 +395,6 @@ msgid ""
 "  - C:D:F\n"
 "..."
 msgstr ""
-"tarantool> string = require('string')\n"
-"---\n"
-"...\n"
-"tarantool> string.split(\"A:B C:D\", \":\", 2)\n"
-"---\n"
-"- - A\n"
-"  - B\n"
-"  - ' C:D'\n"
-"..."
 
 msgid ""
 "Return the value of the input string, after removing characters on the "

@@ -469,9 +469,8 @@ msgstr ""
 msgid "Below are examples of proper implementing such a procedure."
 msgstr ""
 
-#, fuzzy
 msgid "Solution"
-msgstr "**Решение**"
+msgstr ""
 
 msgid ""
 "First, there come two simple examples illustrating the logic of the "

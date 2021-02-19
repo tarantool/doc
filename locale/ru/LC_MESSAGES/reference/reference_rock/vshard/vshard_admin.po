@@ -5,13 +5,10 @@ msgstr "Администрирование"
 msgid "Installation"
 msgstr "Установка"
 
-#, fuzzy
 msgid ""
 "The ``vshard`` module is distributed separately from the main Tarantool "
 "package. To install it, say this:"
 msgstr ""
-"Пакет ``vshard`` распространяется отдельно от основного пакета "
-"Tarantool'а. Для работы с ним выполните установку отдельно:"
 
 msgid "$ tarantoolctl rocks install vshard"
 msgstr "$ tarantoolctl rocks install vshard"
@@ -23,25 +20,19 @@ msgid ""
 "procedures>`_, ``git``, ``cmake`` and ``gcc`` packages installed."
 msgstr ""
 
-#, fuzzy
 msgid "Configuration"
-msgstr "Образец конфигурации"
+msgstr ""
 
-#, fuzzy
 msgid "Any viable sharded cluster consists of:"
-msgstr "Минимальный рабочий сегментированный кластер должен состоять из:"
+msgstr ""
 
-#, fuzzy
 msgid ""
 "one or more replica sets, each containing two or more :ref:`storage "
 "<vshard-storage>` instances,"
 msgstr ""
-"одного или нескольких наборов реплик с двумя или несколькими "
-":ref:`хранилищами <vshard-storage>` в каждом,"
 
-#, fuzzy
 msgid "one or more :ref:`router <vshard-router>` instances."
-msgstr "одного или нескольких :ref:`роутеров <vshard-router>`."
+msgstr ""
 
 msgid ""
 "The number of ``storage`` instances in a replica set defines the "
@@ -130,7 +121,6 @@ msgstr ""
 msgid "Replica weights"
 msgstr "Вес реплики"
 
-#, fuzzy
 msgid ""
 "The ``router`` sends all read-write requests to the master instance only."
 " Setting replica weights allows sending read-only requests not only to "
@@ -138,21 +128,12 @@ msgid ""
 "to the ``router``. Weights are used to define distances between replicas "
 "within a replica set."
 msgstr ""
-"Роутер отправляет все запросы только на мастер-экземпляр. Задав вес "
-"реплики, можно разрешить отправку запросов на чтение не только на "
-"мастер-экземпляр, но и на доступную реплику, которая находится ближе "
-"всего к роутеру. Вес используется для определения расстояния между "
-"репликами в наборе реплик."
 
-#, fuzzy
 msgid ""
 "Weights can be used, for example, to define the physical distance between"
 " the ``router`` and each replica in each replica set. In this case read "
 "requests are sent to the nearest replica (with the lowest weight)."
 msgstr ""
-"Например, вес можно использовать для определения физического расстояния "
-"между роутером и каждой репликой в наборе реплик. В таком случае запросы "
-"на чтение будут отправляться на ближайшую реплику."
 
 msgid ""
 "Setting weights can also help to define the most powerful replicas: the "
@@ -206,15 +187,11 @@ msgstr ""
 "   }\n"
 "}"
 
-#, fuzzy
 msgid ""
 "Then, specify relative weights for each zone pair in the ``weights`` "
 "parameter of ``vshard.router.cfg``. For example:"
 msgstr ""
-"Затем укажите относительный вес для каждой пары зон в параметре weights "
-"(вес) в ``vshard.router.cfg``. Например:"
 
-#, fuzzy
 msgid ""
 "weights = {\n"
 "    [1] = {\n"
@@ -243,30 +220,6 @@ msgid ""
 "\n"
 "local cfg = vshard.router.cfg({weights = weights, sharding = ...})"
 msgstr ""
-"weights = {\n"
-"    [1] = {\n"
-"        [2] = 1, -- роутеры 1 зоны видят вес 2 зоны = 1\n"
-"        [3] = 2, -- роутеры 1 зоны видят вес 3 зоны = 2\n"
-"\n"
-"\n"
-"   [4] = 3, -- ...\n"
-"    },\n"
-"    [2] = {\n"
-"        [1] = 10,\n"
-"        [2] = 0,\n"
-"        [3] = 10,\n"
-"        [4] = 20,\n"
-"    },\n"
-"    [3] = {\n"
-"        [1] = 100,\n"
-"        [2] = 200, -- роутеры 3 зоны видят вес 2 зоны = 200. Обратите "
-"внимание, что этот вес не равен весу 2 зоны (= 2), который видят роутеры "
-"1 зоны\n"
-"        [4] = 1000,\n"
-"    }\n"
-"}\n"
-"\n"
-"local cfg = vshard.router.cfg({weights = weights, sharding = ...})"
 
 msgid "Replica set weights"
 msgstr "Вес набора реплик"
@@ -326,9 +279,8 @@ msgid ""
 "<cfg_basic-rebalancer_disbalance_threshold>`."
 msgstr ""
 
-#, fuzzy
 msgid "The disbalance threshold of a replica set is calculated as follows:"
-msgstr "Предел дисбаланса рассчитывается следующим образом:"
+msgstr ""
 
 msgid "|etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100"
 msgstr ""
@@ -396,9 +348,8 @@ msgstr ""
 "В это время новый шард уже включен в пул соединений ``роутера``, поэтому "
 "переадресация видима для приложения."
 
-#, fuzzy
 msgid "Parallel rebalancing"
-msgstr "Параллельная балансировка"
+msgstr ""
 
 msgid ""
 "Originally, ``vshard`` had quite a simple ``rebalancer`` – one process on"
@@ -429,9 +380,8 @@ msgid ""
 "vshard.storage.cfg(cfg, box.info.uuid)"
 msgstr ""
 
-#, fuzzy
 msgid "In routers, this option is ignored."
-msgstr "Этот параметр не учитывается для ``YAML``."
+msgstr ""
 
 msgid ""
 "Specifying ``cfg.rebalancer_max_sending = N`` probably won't give N times"
@@ -439,9 +389,8 @@ msgid ""
 "system."
 msgstr ""
 
-#, fuzzy
 msgid "**Example #1:**"
-msgstr "**Пример 1:**"
+msgstr ""
 
 msgid ""
 "You have 10 replica sets and a new one is added. Now all the 10 replica "
@@ -471,9 +420,8 @@ msgid ""
 "write requests."
 msgstr ""
 
-#, fuzzy
 msgid "**Example #2:**"
-msgstr "**Пример 2:**"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -638,16 +586,11 @@ msgstr ""
 msgid "Bucket pin and rebalancing"
 msgstr "Закрепленный набор реплик и балансировка"
 
-#, fuzzy
 msgid ""
 "Rebalancing replica sets with pinned buckets requires a more complex "
 "algorithm. Here ``pinned_count[o]`` is the number of pinned buckets, and "
 "``etalon_count`` is the etalon number of buckets for a replica set:"
 msgstr ""
-"Балансировка наборов реплик с закрепленными сегментами требует более "
-"сложного алгоритма. Здесь pinned_count[o] -- это число закрепленных "
-"сегментов, а ``etalon_count`` -- это эталонное число сегментов для набора"
-" реплик:"
 
 msgid ""
 "The ``rebalancer`` calculates the etalon number of buckets as if all "
@@ -778,16 +721,11 @@ msgstr ""
 msgid "There are two types of bucket refs: read-only (RO) and read-write (RW)."
 msgstr "Есть 2 типа ссылок в сегменте: только чтение (RO) и чтение-запись (RW)."
 
-#, fuzzy
 msgid ""
 "If a bucket has RW refs, it cannot be moved. However, when the rebalancer"
 " needs it to be sent, it locks the bucket for new write requests, waits "
 "until all current requests are finished, and then sends the bucket."
 msgstr ""
-"Если в сегменте есть ссылки типа RW, его нельзя перемещать. Однако, если "
-"балансировщику требуется отправка этого сегмента, он блокирует его для "
-"новых запросов на запись, ожидает завершения всех текущих запросов, а "
-"затем отправляет сегмент."
 
 msgid ""
 "If a bucket has RO refs, it can be sent, but cannot be dropped. Such a "
@@ -951,11 +889,8 @@ msgid ""
 " operation supported by ``router`` is `CALL` via ``bucket_id``:"
 msgstr ""
 
-#, fuzzy
 msgid "result = vshard.router.call(bucket_id, mode, func, args)"
 msgstr ""
-"result = vshard.router.call(<идентификатор_сегмента>, <режим>, "
-"<имя_функции>, {<список_аргументов>}, {<опции>})"
 
 msgid ""
 "``vshard.router.call()`` routes ``result = func(unpack(args))`` call to a"
@@ -1045,13 +980,10 @@ msgstr ""
 msgid "Fibers"
 msgstr "Файберы"
 
-#, fuzzy
 msgid ""
 "Searches for buckets, buckets recovery, and buckets rebalancing are "
 "performed automatically and do not require manual intervention."
 msgstr ""
-"Поиск сегментов, восстановление сегментов и балансировка сегментов "
-"выполняются автоматически и не требуют вмешательства человека."
 
 msgid ""
 "Technically, there are multiple fibers responsible for different types of"
@@ -1094,14 +1026,11 @@ msgstr ""
 "**балансировщик** на отдельном мастер-хранилище среди множества наборов "
 "реплик выполняет процесс балансировки."
 
-#, fuzzy
 msgid ""
 "See the :ref:`Rebalancing process <vshard-rebalancing>` and "
 ":ref:`Migration of buckets <vshard-migrate-buckets>` sections for "
 "details."
 msgstr ""
-"Для получения подробной информации см. раздел :ref:`Процесс балансировки "
-"<vshard-rebalancing>`."
 
 msgid "Garbage collector"
 msgstr "Сборщик мусора"

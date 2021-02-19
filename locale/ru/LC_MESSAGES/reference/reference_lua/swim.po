@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "Module `swim`"
-msgstr "Модуль `os`"
+msgstr ""
 
 msgid "Overview"
 msgstr "Общие сведения"
@@ -41,9 +40,8 @@ msgid ""
 "SWIM processes replies from those members asynchronously."
 msgstr ""
 
-#, fuzzy
 msgid "Each entry in the member table has:"
-msgstr "Подписка на обновления членов таблицы."
+msgstr ""
 
 msgid "a UUID,"
 msgstr ""
@@ -148,9 +146,8 @@ msgid ""
 "description see :ref:`swim_object:cfg() <swim-object_cfg>`."
 msgstr ""
 
-#, fuzzy
 msgid "an optional configuration parameter."
-msgstr "Конфигурационные параметры"
+msgstr ""
 
 msgid ""
 "If ``cfg`` is not specified or is nil, then the new SWIM instance is not "
@@ -241,9 +238,8 @@ msgid ""
 "table after one round."
 msgstr ""
 
-#, fuzzy
 msgid "Default = ``'on'``."
-msgstr "По умолчанию = нулевое значение nil"
+msgstr ""
 
 msgid ""
 "``uri`` (string or number) -- either an ``'ip:port'`` address, or just a "
@@ -271,9 +267,8 @@ msgid ""
 "changes."
 msgstr ""
 
-#, fuzzy
 msgid "true if configuration succeeds"
-msgstr "конфигурационная таблица"
+msgstr ""
 
 msgid "nil, ``err`` if an error occurred. ``err`` is an error object"
 msgstr ""
@@ -334,17 +329,14 @@ msgid ""
 "\"self\" member is included."
 msgstr ""
 
-#, fuzzy
 msgid "integer size"
-msgstr "целое число"
+msgstr ""
 
-#, fuzzy
 msgid "Example: ``swim_object:size()``"
-msgstr "Вызов ``fiber_object:join()``."
+msgstr ""
 
-#, fuzzy
 msgid "Leave the cluster."
-msgstr "уровень стека"
+msgstr ""
 
 msgid ""
 "This is a graceful equivalent of :ref:`swim_object:delete() <swim-"
@@ -367,9 +359,8 @@ msgstr ""
 msgid "none, the method does not fail"
 msgstr ""
 
-#, fuzzy
 msgid "Example: ``swim_object:quit()``"
-msgstr "Вызов ``fiber_object:join()``."
+msgstr ""
 
 msgid "Explicitly add a member into the member table."
 msgstr ""
@@ -382,9 +373,8 @@ msgid ""
 "members automatically via messages from the already-existing member."
 msgstr ""
 
-#, fuzzy
 msgid "description of the member"
-msgstr "Получение описания последней ошибки"
+msgstr ""
 
 msgid ""
 "The ``cfg`` table has two mandatory components, ``uuid`` and ``uri``, "
@@ -431,9 +421,8 @@ msgid ""
 "object_cfg>`."
 msgstr ""
 
-#, fuzzy
 msgid "true if member is pinged"
-msgstr "Проверка принадлежности члена к группе."
+msgstr ""
 
 msgid "Example: ``swim_object:probe_member(3333)``"
 msgstr ""
@@ -559,9 +548,8 @@ msgid ""
 "..."
 msgstr ""
 
-#, fuzzy
 msgid "Set a payload, as formatted data."
-msgstr "Получение даты в формате"
+msgstr ""
 
 msgid ""
 "Payload is arbitrary user defined data up to 1200 bytes in size and "
@@ -706,9 +694,8 @@ msgid ""
 "private key, and a randomly generated and updated public key."
 msgstr ""
 
-#, fuzzy
 msgid "description of the encryption"
-msgstr "Функции подписки"
+msgstr ""
 
 msgid "The components of the ``codec_cfg`` table may be:"
 msgstr ""
@@ -746,9 +733,8 @@ msgid ""
 "messages."
 msgstr ""
 
-#, fuzzy
 msgid "Example;"
-msgstr "Пример"
+msgstr ""
 
 msgid ""
 "tarantool> tarantool> swim = require('swim')\n"
@@ -918,9 +904,8 @@ msgid ""
 "<swim-object_cfg>`."
 msgstr ""
 
-#, fuzzy
 msgid "string ip:port"
-msgstr "хост:порт"
+msgstr ""
 
 msgid ""
 "Return a cdata object with the :ref:`incarnation <swim-"
@@ -938,9 +923,8 @@ msgid ""
 "and version."
 msgstr ""
 
-#, fuzzy
 msgid "cdata incarnation"
-msgstr "Увеличивает значение параметра ``incarnation``."
+msgstr ""
 
 msgid "Return member's payload."
 msgstr ""
@@ -982,11 +966,8 @@ msgid ""
 " has already been dropped from the member table."
 msgstr ""
 
-#, fuzzy
 msgid "boolean true if member is dropped, otherwise false"
 msgstr ""
-"true (правда), если значение состоит из одних нулей, в противном случае "
-"false (ложь)."
 
 msgid ""
 "tarantool> swim = require('swim')\n"
@@ -1056,17 +1037,14 @@ msgid ""
 "function`` will be executed when a member in the member table is updated."
 msgstr ""
 
-#, fuzzy
 msgid "this will become the trigger function"
-msgstr "что передается в функцию"
+msgstr ""
 
-#, fuzzy
 msgid "(optional) this will be passed to trigger-function"
-msgstr "что передается в функцию"
+msgstr ""
 
-#, fuzzy
 msgid "nil or function pointer."
-msgstr "функция или ссылка на функцию"
+msgstr ""
 
 msgid ""
 "The **trigger-function** should have three parameter declarations "
@@ -1076,9 +1054,8 @@ msgstr ""
 msgid "the member which is having the member event,"
 msgstr ""
 
-#, fuzzy
 msgid "the event object,"
-msgstr "объект ``object``"
+msgstr ""
 
 msgid ""
 "the ``ctx`` which will be the same value as what is passed to "
@@ -1202,9 +1179,8 @@ msgid ""
 "end"
 msgstr ""
 
-#, fuzzy
 msgid "Delete an on-member trigger."
-msgstr "Создание подключения"
+msgstr ""
 
 msgid "old-trigger"
 msgstr ""
@@ -1570,9 +1546,3 @@ msgid ""
 " obsolete messages left over from a previous life of an instance that has"
 " restarted."
 msgstr ""
-
-#~ msgid ""
-#~ "SWIM_QUIT_GEMERATOPM + SWIM_QUIT_VERSION (the "
-#~ "sender :ref:`incarnation <swim-"
-#~ "incarnation_description>`)."
-#~ msgstr ""

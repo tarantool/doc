@@ -2,7 +2,6 @@
 msgid "Utility `tarantoolctl`"
 msgstr "Утилита `tarantoolctl`"
 
-#, fuzzy
 msgid ""
 "``tarantoolctl`` is a utility for administering Tarantool :ref:`instances"
 " <tarantoolctl-instance_management>`, :ref:`checkpoint files "
@@ -10,11 +9,6 @@ msgid ""
 "module_management>`. It is shipped and installed as part of Tarantool "
 "distribution. This utility is intended for use by administrators only."
 msgstr ""
-"``tarantoolctl`` представляет собой утилиту для администрирования "
-":ref:`экземпляров <tarantoolctl-instance_management>`, :ref:`файлов "
-"контрольной точки <tarantoolctl-checkpoint_management>` и :ref:`модулей "
-"<tarantoolctl-module_management>` в Tarantool'е. Утилита поставляется и "
-"устанавливается как часть дистрибутива Tarantool'а."
 
 msgid ""
 "See also ``tarantoolctl`` usage examples in :ref:`Server administration "
@@ -154,17 +148,14 @@ msgstr "``tarantoolctl check NAME``"
 msgid "Check an instance file for syntax errors."
 msgstr "Проверка файла экземпляра на ошибки синтаксиса."
 
-#, fuzzy
 msgid "``tarantoolctl enter NAME [--language=language]``"
-msgstr "``tarantoolctl enter NAME``"
+msgstr ""
 
-#, fuzzy
 msgid "Enter an instance's interactive Lua or SQL console."
-msgstr "Вход в интерактивную Lua-консоль экземпляра."
+msgstr ""
 
-#, fuzzy
 msgid "Supported option:"
-msgstr "Поддерживаемые опции:"
+msgstr ""
 
 msgid ""
 "``--language=language`` to set :ref:`interactive console "
@@ -410,18 +401,3 @@ msgid ""
 msgstr ""
 "``--only-server=имя_сервера`` проверить только данный сервер, остальные "
 "пропустить."
-
-#~ msgid "``tarantoolctl rocks pack {<rockspec> | <name> [<version>]}``"
-#~ msgstr "``tarantoolctl rocks pack {<rockspec> | <имя> [<версия>]}``"
-
-#~ msgid "``tarantoolctl rocks path``"
-#~ msgstr ""
-
-#~ msgid "Return the currently configured package path."
-#~ msgstr "Отображение текущего установленного пути к пакету."
-
-#~ msgid "``tarantoolctl rocks upload FILE``"
-#~ msgstr ""
-
-#~ msgid "Upload a rockspec to the public rocks repository."
-#~ msgstr "Загрузить rockspec-файл в публичный репозиторий модуля."

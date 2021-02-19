@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "Other package components"
-msgstr "Получение таблицы URI-компонентов"
+msgstr ""
 
 msgid ""
 "All the Tarantool modules are, at some level, inside a package which, "
@@ -27,9 +26,8 @@ msgstr ":ref:`dostring() <other-dostring>`"
 msgid "Parse and execute an arbitrary chunk of Lua code"
 msgstr "Анализ и выполнение произвольного Lua-кода"
 
-#, fuzzy
 msgid ":ref:`package.path <other-package_path>`"
-msgstr ":ref:`pickle.pack() <pickle-pack>`"
+msgstr ""
 
 msgid "Where Tarantool looks for Lua additions"
 msgstr ""
@@ -40,9 +38,8 @@ msgstr ""
 msgid "Where Tarantool looks for C additions"
 msgstr ""
 
-#, fuzzy
 msgid ":ref:`package.loaded <other-package_loaded>`"
-msgstr ":ref:`msgpack.encode() <msgpack-encode>`"
+msgstr ""
 
 msgid "What Tarantool has already looked for and found"
 msgstr ""
@@ -246,9 +243,8 @@ msgid ""
 "dependencies are loaded."
 msgstr ""
 
-#, fuzzy
 msgid "the path. Default = current directory."
-msgstr "Получение имени текущей рабочей директории"
+msgstr ""
 
 msgid ""
 "The search-root string must contain a relative or absolute path. If it is"
@@ -275,19 +271,3 @@ msgid ""
 "``package.setsearchroot('/home')`` the returned string will be "
 "``/home'``."
 msgstr ""
-
-#~ msgid ""
-#~ "This is a string that Tarantool "
-#~ "uses to search for Lua modules, "
-#~ "especially imporant for ``require()``. See "
-#~ ":ref:`Modules, rocks and applications "
-#~ "<app_server-modules>`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "This is a string that Tarantool "
-#~ "uses to search for C modules, "
-#~ "especially imporant for ``require()``. See "
-#~ ":ref:`Modules, rocks and applications "
-#~ "<app_server-modules>`."
-#~ msgstr ""

@@ -21,54 +21,34 @@ msgstr ""
 "установлении соединения) или :ref:`box.session.on_disconnect() "
 "<box_session-on_disconnect>` (при разрыве соединения),"
 
-#, fuzzy
 msgid ":ref:`box.session.on_auth() <box_session-on_auth>`,"
 msgstr ""
-"#-#-#-#-#  catalog.po (Tarantool 1.10)  #-#-#-#-#\n"
-":ref:`box.session.on_auth() <box_session-on_auth>` (при аутентификации),\n"
-"#-#-#-#-#  catalog.po (Tarantool 1.10)  #-#-#-#-#\n"
-":ref:`box.session.on_auth() <box_session-on_auth>`,"
 
-#, fuzzy
 msgid ""
 ":ref:`space_object:on_replace() <box_space-on_replace>` or "
 ":ref:`space_object:before_replace() <box_space-before_replace>`,"
 msgstr ""
-":ref:`space_object:on_replace() <box_space-on_replace>` (после замены) "
-"или :ref:`space_object:before_replace() <box_space-before_replace>` "
-"(перед заменой),"
 
-#, fuzzy
 msgid ""
 ":ref:`box.on_commit() <box-on_commit>` or :ref:`box.on_rollback() <box-"
 "on_rollback>`,"
 msgstr ""
-":ref:`box.on_commit() <box-on_commit>` (при коммите) или "
-":ref:`box.on_rollback() <box-on_rollback>` (при откате),"
 
-#, fuzzy
 msgid ""
 ":ref:`net.box.on_connect() <net_box-on_connect>` or "
 ":ref:`net.box.on_disconnect() <net_box-on_disconnect>`,"
 msgstr ""
-":ref:`net.box.on_connect() <net_box-on_connect>` или "
-":ref:`net.box.on_disconnect() <net_box-on_disconnect>` или"
 
-#, fuzzy
 msgid ":ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`,"
-msgstr ":ref:`box.on_rollback() <box-on_rollback>`"
+msgstr ""
 
-#, fuzzy
 msgid ""
 ":ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` or "
 ":ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`,"
 msgstr ""
-":ref:`box.on_commit() <box-on_commit>` или :ref:`box.on_rollback() <box-"
-"on_rollback>` или"
 
-#, fuzzy
 msgid ":ref:`swim_object:on_member_event() <swim-on_member_event>`."
-msgstr ":ref:`space_object:on_replace() <box_space-on_replace>`"
+msgstr ""
 
 msgid "All triggers have the following characteristics:"
 msgstr "У всех триггеров есть следующие особенности:"
@@ -110,16 +90,12 @@ msgstr ""
 "минимум вычислений — разыменование и проверка указателя. Если триггер "
 "определен, то стоимость вызова равна стоимости вызова функции."
 
-#, fuzzy
 msgid ""
 "There can be multiple triggers for one event. In this case, triggers are "
 "executed in the reverse order that they were defined in. (Exception: "
 "member triggers are executed in the order that they appear in the member "
 "list.)"
 msgstr ""
-"Для одного события можно определить несколько триггеров. В таком случае "
-"триггеры выполняются в обратном порядке относительно того, как их "
-"определили."
 
 msgid ""
 "Triggers must work within the event context. However, effects are "
@@ -180,7 +156,6 @@ msgid ""
 "in :ref:`Resolving replication conflicts <replication-problem_solving>`"
 msgstr ""
 
-# ; ../doc/book/box/box_session.rst:313
 msgid "**Example**"
 msgstr "**Пример**"
 
@@ -189,7 +164,6 @@ msgstr ""
 "Здесь мы записываем события подключения и отключения в журнал на сервере "
 "Tarantool'а."
 
-#, fuzzy
 msgid ""
 "log = require('log')\n"
 "\n"
@@ -214,25 +188,3 @@ msgid ""
 "box.session.on_disconnect(on_disconnect)\n"
 "box.session.on_auth(on_auth)"
 msgstr ""
-"log = require('log')\n"
-"\n"
-"function on_connect_impl()\n"
-"  log.info(\"connected \"..box.session.peer()..\", sid "
-"\"..box.session.id())\n"
-"end\n"
-"\n"
-"function on_disconnect_impl()\n"
-"  log.info(\"disconnected, sid \"..box.session.id())\n"
-"end\n"
-"\n"
-"function on_auth_impl(user)\n"
-"  log.info(\"authenticated sid \"..box.session.id()..\" as \"..user)\n"
-"end\n"
-"\n"
-"function on_connect() pcall(on_connect_impl) end\n"
-"function on_disconnect() pcall(on_disconnect_impl) end\n"
-"function on_auth(user) pcall(on_auth_impl, user) end\n"
-"\n"
-"box.session.on_connect(on_connect)\n"
-"box.session.on_disconnect(on_disconnect)\n"
-"box.session.on_auth(on_auth)"

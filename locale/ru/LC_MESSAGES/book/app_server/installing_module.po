@@ -150,9 +150,3 @@ msgid ""
 msgstr ""
 "Знаки вопроса стоят вместо имени модуля, которое было указано ранее при "
 "вызове ``require('module-name')``."
-
-#~ msgid "Tarantool modules repository, and"
-#~ msgstr "Репозиторий модулей Tarantool'а и"
-
-#~ msgid "Tarantool deb/rpm repositories."
-#~ msgstr "Репозитории deb/rpm Tarantool'а."

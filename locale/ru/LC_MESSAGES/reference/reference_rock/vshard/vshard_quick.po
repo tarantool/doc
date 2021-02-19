@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "Quick start guide"
-msgstr "Краткое руководство"
+msgstr ""
 
 msgid ""
 "For installation instructions, check out the :ref:`vshard installation "
@@ -18,45 +17,30 @@ msgstr ""
 msgid "``router_1`` – a ``router`` instance"
 msgstr "``router_1`` – экземпляр роутера (``router``)"
 
-#, fuzzy
 msgid ""
 "``storage_1_a`` – a ``storage`` instance, the **master** of the **first**"
 " replica set"
 msgstr ""
-"``storage_1_a`` – экземпляр хранилища (``storage``), мастер первого "
-"набора реплик"
 
-#, fuzzy
 msgid ""
 "``storage_1_b`` – a ``storage`` instance, the **replica** of the "
 "**first** replica set"
 msgstr ""
-"``storage_1_b`` – экземпляр хранилища (``storage``), реплика из первого "
-"набора реплик"
 
-#, fuzzy
 msgid ""
 "``storage_2_a`` – a ``storage`` instance, the **master** of the "
 "**second** replica set"
 msgstr ""
-"``storage_2_a`` – экземпляр хранилища (``storage``), мастер второго "
-"набора реплик"
 
-#, fuzzy
 msgid ""
 "``storage_2_b`` – a ``storage`` instance, the **replica** of the "
 "**second** replica set"
 msgstr ""
-"``storage_2_b`` – экземпляр хранилища (``storage``), реплика из второго "
-"набора реплик"
 
-#, fuzzy
 msgid ""
 "All instances are managed using the ``tarantoolctl`` administrative "
 "utility which comes with Tarantool."
 msgstr ""
-"Управление всеми экземплярами осуществляется с помощью утилиты "
-"``tarantoolctl``."
 
 msgid ""
 "Change the directory to ``example/`` and use ``make`` to run the "
@@ -156,9 +140,8 @@ msgstr ""
 "Tarantool'а можно найти в :ref:`справочнике по tarantoolctl "
 "<tarantoolctl>`."
 
-#, fuzzy
 msgid "Essential ``make`` commands you need to know:"
-msgstr "Необходимо знать следующие команды make:"
+msgstr ""
 
 msgid "``make start`` – start all Tarantool instances"
 msgstr "``make start`` – запуск всех экземпляров Tarantool'а"
@@ -169,20 +152,16 @@ msgstr "``make stop`` – остановка всех экземпляров Tar
 msgid "``make logcat`` – show logs from all instances"
 msgstr "``make logcat`` – вывод журналов всех экземпляров"
 
-#, fuzzy
 msgid "``make enter`` – enter the admin console on ``router_1``"
-msgstr "``make enter`` – вход в административную консоль на роутере router_1"
+msgstr ""
 
 msgid "``make clean`` – clean up all persistent data"
 msgstr "``make clean`` – очистка всех персистентных данных"
 
-#, fuzzy
 msgid ""
 "``make test`` – run the test suite (you can also run ``test-run.py`` in "
 "the ``test`` directory)"
 msgstr ""
-"``make test`` – запуск набора тестов (можно также выполнить test-run.py в"
-" директории с тестами)"
 
 msgid ""
 "``make`` – execute ``make stop``, ``make clean``, ``make start`` and "
@@ -211,13 +190,10 @@ msgstr ""
 "46570   ??  Ss     0:00.20 tarantool storage_2_b.lua <running>\n"
 "46572   ??  Ss     0:00.25 tarantool router_1.lua <running>"
 
-#, fuzzy
 msgid ""
 "To perform commands in the admin console, use the router's :ref:`public "
 "API <vshard_api_reference-router_public_api>`:"
 msgstr ""
-"Для выполнения команд в административной консоли, используйте API "
-"``router``:"
 
 msgid ""
 "unix/:./data/router_1.control> vshard.router.info()\n"
@@ -366,9 +342,8 @@ msgid ""
 "<vshard-config-reference>` section for details."
 msgstr ""
 
-#, fuzzy
 msgid "On routers, call ``vshard.router.cfg(cfg)``:"
-msgstr "На роутерах вызовите ``vshard.router.cfg(cfg)``:"
+msgstr ""
 
 msgid ""
 "cfg.listen = 3300\n"
@@ -383,9 +358,8 @@ msgstr ""
 "vshard = require('vshard')\n"
 "vshard.router.cfg(cfg)"
 
-#, fuzzy
 msgid "On storages, call ``vshard.storage.cfg(cfg, instance_uuid)``:"
-msgstr "На хранилищах вызовите ``vshard.storage.cfg(cfg, uuid_экземпляра)``:"
+msgstr ""
 
 msgid ""
 "-- Get instance name\n"

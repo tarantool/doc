@@ -37,9 +37,8 @@ msgstr ":ref:`casecmp <utf8-casecmp>` and |br| :ref:`cmp <utf8-cmp>`"
 msgid "Comparisons"
 msgstr "Сравнения"
 
-#, fuzzy
 msgid ":ref:`lower <utf8-lower>` and |br| :ref:`upper <utf8-upper>`"
-msgstr ":ref:`lower <utf8-islower>` and |br| :ref:`upper <utf8-isupper>`"
+msgstr ""
 
 msgid "Case conversions"
 msgstr "Замена регистра"
@@ -60,9 +59,8 @@ msgstr ":ref:`sub <utf8-sub>`"
 msgid "Substrings"
 msgstr "Подстроки"
 
-#, fuzzy
 msgid ":ref:`len <utf8-len>`"
-msgstr ":ref:`length <utf8-length>`"
+msgstr ""
 
 msgid "Length in characters"
 msgstr "Длина в символах"

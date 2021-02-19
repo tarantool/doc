@@ -116,9 +116,8 @@ msgstr ""
 msgid "Check if a value has a particular type"
 msgstr "Проверка соответствия значения определенному типу"
 
-#, fuzzy
 msgid ":ref:`taptest.strict <taptest-strict>`"
-msgstr ":ref:`taptest:test() <taptest-test>`"
+msgstr ""
 
 msgid "Flag, true if comparisons with nil should be strict"
 msgstr ""

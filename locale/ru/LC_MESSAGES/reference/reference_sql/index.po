@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "SQL reference"
-msgstr "Справочник по сторонним библиотекам"
+msgstr ""
 
 msgid ""
 "This reference covers all the SQL statements and clauses supported by "

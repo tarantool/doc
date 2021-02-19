@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "Interactive console"
-msgstr "Запуск консоли"
+msgstr ""
 
 msgid ""
 "The \"interactive console\" is Tarantool's basic \"command-line "
@@ -70,16 +69,14 @@ msgid ""
 "``console.set_default_output('lua')``."
 msgstr ""
 
-#, fuzzy
 msgid "Type"
-msgstr "тип возвращаемого значения"
+msgstr ""
 
 msgid "Lua input"
 msgstr ""
 
-#, fuzzy
 msgid "Lua output"
-msgstr "Lua-объект."
+msgstr ""
 
 msgid "YAML output"
 msgstr ""
@@ -90,23 +87,20 @@ msgstr ""
 msgid "scalar"
 msgstr ""
 
-#, fuzzy
 msgid ":code:`1`"
-msgstr ":codebold:`q`"
+msgstr ""
 
 msgid ":code:`---` |br| :code:`- 1` |br| :code:`...`"
 msgstr ""
 
-#, fuzzy
 msgid ":code:`\\x01`"
-msgstr ":codebold:`q`"
+msgstr ""
 
 msgid "scalar sequence"
 msgstr ""
 
-#, fuzzy
 msgid ":code:`1,2,3`"
-msgstr ":codebold:`q`"
+msgstr ""
 
 msgid ""
 ":code:`---` |br| :code:`- 1` |br| :code:`- 2` |br| :code:`- 3` |br| "
@@ -119,9 +113,8 @@ msgstr ""
 msgid "2-element table"
 msgstr ""
 
-#, fuzzy
 msgid ":code:`{1,2}`"
-msgstr ":codebold:`q`"
+msgstr ""
 
 msgid ":code:`---` |br| :code:`- - 1` |br| :code:`- - 2` |br| :code:`...`"
 msgstr ""
@@ -132,9 +125,8 @@ msgstr ""
 msgid "map"
 msgstr ""
 
-#, fuzzy
 msgid ":code:`{key=1}`"
-msgstr ":codebold:`e`"
+msgstr ""
 
 msgid ":code:`---` |br| :code:`- key: 1` |br| :code:`...`"
 msgstr ""

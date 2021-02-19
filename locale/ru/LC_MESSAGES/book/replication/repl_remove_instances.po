@@ -280,9 +280,8 @@ msgid ""
 "..."
 msgstr ""
 
-#, fuzzy
 msgid "**Final checks**"
-msgstr "**Финальная проверка**"
+msgstr ""
 
 msgid ""
 "After all modifications, say ``box.info.replication`` to check the health"

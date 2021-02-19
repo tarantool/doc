@@ -382,15 +382,11 @@ msgstr "Lua-итератор"
 msgid "It can be used in the following way:"
 msgstr "Можно использовать следующим образом:"
 
-#, fuzzy
 msgid ""
 "for uri, member in membership.pairs()\n"
 "  -- do something\n"
 "end"
 msgstr ""
-"for uri, member in memberhip.pairs()\n"
-"  -- что-то сделать\n"
-"end"
 
 msgid ""
 "Add a member with the given URI to the group and propagate this event to "

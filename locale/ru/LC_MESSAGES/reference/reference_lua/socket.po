@@ -72,9 +72,8 @@ msgstr ":ref:`socket.tcp_server() <socket-tcp_server>`"
 msgid "Make Tarantool act as a TCP server"
 msgstr "Использование Tarantool'а в качестве TCP-сервера"
 
-#, fuzzy
 msgid ":ref:`socket.bind() <socket-bind_non_object>`"
-msgstr ":ref:`socket_object:bind() <socket-bind>`"
+msgstr ""
 
 msgid "Bind a socket to the given host/port"
 msgstr "Привязка сокета к данному хосту/порту"
@@ -300,11 +299,10 @@ msgstr ""
 msgid "socket object, which may be viewed as a table"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "sock, e = socket.tcp_connect('127.0.0.1', 3301)\n"
 "if sock == nil then print(e) end"
-msgstr "socket.tcp_connect('127.0.0.1', 3301)"
+msgstr ""
 
 msgid ""
 "The ``socket.getaddrinfo()`` function is useful for finding information "
@@ -347,13 +345,10 @@ msgstr ""
 "``flags`` -- дополнительные опции (подробнее о них `здесь "
 "<https://man7.org/linux/man-pages/man3/getaddrinfo.3.html>`_)"
 
-#, fuzzy
 msgid ""
 "(if error) {nil, error-message-string}. (if no error) A table containing "
 "these fields: \"host\", \"family\", \"type\", \"protocol\", \"port\"."
 msgstr ""
-"Таблица со следующими полями: \"host\", \"family\", \"type\", "
-"\"protocol\", \"port\"."
 
 msgid "table"
 msgstr "таблица"
@@ -999,18 +994,12 @@ msgstr "Пример: ``socket.iowait(sock:fd(), 'r', 1.11)``"
 msgid "LuaSocket wrapper functions"
 msgstr "Функции обертки LuaSocket"
 
-#, fuzzy
 msgid ""
 "The LuaSocket API has functions that are equivalent to the ones described"
 " above, with different names and parameters, for example ``connect()`` "
 "rather than ``tcp_connect()``. Tarantool supports these functions so that"
 " third-party packages which depend on them will work."
 msgstr ""
-"LuaSocket API имеет функции, эквивалентные описанным выше, с различными "
-"именами и параметрами, например ``connect()``, а не ``tcp_connect()``, а "
-"также ``getpeername``, ``getsockname``, ``setoption``, ``settimeout``. "
-"Tarantool поддерживает эти функции, так что сторонние пакеты, зависящие "
-"от них, будут работать."
 
 msgid ""
 "The LuaSocket project is on `github "
@@ -1468,6 +1457,3 @@ msgstr ""
 "Теперь смотрите, что происходит на первой оболочке. На дисплее появится "
 "что-то вроде 'accepted connection from host: 127.0.0.1 family: AF_INET "
 "port: 37186'."
-
-#~ msgid "a connected socket, if no error."
-#~ msgstr "подключенный сокет, если нет ошибки."

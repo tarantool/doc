@@ -2,7 +2,6 @@
 msgid "space_object:run_triggers()"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "At the time that a :ref:`trigger <triggers>` is defined, it is "
 "automatically enabled - that is, it will be executed. :doc:`Replace "
@@ -10,11 +9,6 @@ msgid ""
 " with :samp:`box.space.{space-name}:run_triggers(false)` and re-enabled "
 "with :samp:`box.space.{space-name}:run_triggers(true)`."
 msgstr ""
-"На тот момент, когда :ref:`триггер <triggers>` определен, он "
-"автоматически активируется, то есть он будет исполняться. Триггеры "
-":ref:`для замены <box_space-on_replace>` можно отключить с помощью "
-":samp:`box.space.{имя-спейса}:run_triggers(false)` и повторно "
-"активировать с помощью :samp:`box.space.{имя-спейса}:run_triggers(true)`."
 
 msgid "return"
 msgstr "возвращает"

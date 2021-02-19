@@ -5,7 +5,6 @@ msgstr ""
 msgid "Update a tuple."
 msgstr "Обновление кортежа."
 
-#, fuzzy
 msgid ""
 "The ``update`` function supports operations on fields — assignment, "
 "arithmetic (if the field is numeric), cutting and pasting fragments of a "
@@ -19,47 +18,26 @@ msgid ""
 "other words, it is always safe to merge multiple ``update`` invocations "
 "into a single invocation, with no change in semantics."
 msgstr ""
-"Функция ``update`` поддерживает операции над полями -- присваивание, "
-"арифметические операции (если поле числовое), вырезание и вставку "
-"фрагментов поля, удаление или вставку поля. Несколько операций можно "
-"объединить в отдельный запрос обновления, и в таком случае они будут "
-"выполняться атомарно и последовательно. Для каждой операции необходимо "
-"указать номер поля. Если выполняются несколько операций, то номер поля "
-"для каждой операции считается относительно последнего состояния кортежа, "
-"то есть как если бы все предыдущие операции в обновлении с несколькими "
-"операциями уже были выполнены. Другими словами, всегда лучше объединить "
-"несколько вызовов  ``update`` в один без изменений семантики."
 
 msgid "Possible operators are:"
 msgstr "Возможные операторы:"
 
-#, fuzzy
 msgid "``+`` for addition. values must be numeric, e.g. unsigned or decimal"
-msgstr "``+`` для сложения (значения должны быть числовыми)"
+msgstr ""
 
-#, fuzzy
 msgid "``-`` for subtraction. values must be numeric"
-msgstr "``-`` для вычитания (значения должны быть числовыми)"
+msgstr ""
 
-#, fuzzy
 msgid "``&`` for bitwise AND. values must be unsigned numeric"
 msgstr ""
-"``&`` для поразрядной операции И (значения должны быть беззнаковыми "
-"числами)"
 
-#, fuzzy
 msgid "``|`` for bitwise OR. values must be unsigned numeric"
 msgstr ""
-"``|`` для поразрядной операции ИЛИ (значения должны быть беззнаковыми "
-"числами)"
 
-#, fuzzy
 msgid ""
 "``^`` for bitwise :abbr:`XOR(exclusive OR)`. values must be unsigned "
 "numeric"
 msgstr ""
-"``^`` для поразрядной операции Исключающее ИЛИ (значения должны быть "
-"беззнаковыми числами)"
 
 msgid "``:`` for string splice."
 msgstr "``:`` для разделения строк."

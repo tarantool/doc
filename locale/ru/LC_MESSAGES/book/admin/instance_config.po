@@ -317,13 +317,8 @@ msgstr ""
 msgid "To check the build options, say ``tarantool --version``."
 msgstr "Для проверки параметров сборки выполните команду ``tarantool --version``."
 
-#, fuzzy
 msgid ""
 "As a full-featured example, you can take `example.lua "
 "<https://github.com/tarantool/tarantool/blob/2.1/extra/dist/example.lua>`_"
 " script that ships with Tarantool and defines all configuration options."
 msgstr ""
-"В качестве полноценного примера можно использовать скрипт `example.lua "
-"<https://github.com/tarantool/tarantool/blob/1.10/extra/dist/example.lua>`_,"
-"  который поставляется вместе с Tarantool и задает все конфигурационные "
-"параметры."
