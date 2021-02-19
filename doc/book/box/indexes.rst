@@ -126,13 +126,7 @@ We give an overview of index features in the following table:
             - \-
             - \-
 
-        *   - updates
-            - \+
-            - \+
-            - \-
-            - \-
-
-        *   - deletes
+        *   - can be primary key
             - \+
             - \+
             - \-
