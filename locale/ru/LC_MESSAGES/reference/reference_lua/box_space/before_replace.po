@@ -15,14 +15,11 @@ msgstr ""
 msgid "Parameters"
 msgstr "Параметры"
 
-#, fuzzy
 msgid ""
 "function which will become the trigger function; for the trigger "
 "function's optional parameters see the description of :doc:`on_replace "
 "</reference/reference_lua/box_space/on_replace>`."
 msgstr ""
-"функция, в которой будет триггер; необязательные параметры функции с "
-"триггером см. в описании :ref:`on_replace <box_space-on_replace>`."
 
 msgid "existing trigger function which will be replaced by ``trigger-function``"
 msgstr ""
@@ -145,7 +142,6 @@ msgstr ""
 "если значение другое, выполнение продолжается со вставкой/заменой нового "
 "значения."
 
-#, fuzzy
 msgid ""
 "However, if a trigger function returns an old tuple, or if a trigger "
 "function calls :doc:`run_triggers(false) "
@@ -153,10 +149,6 @@ msgid ""
 "other triggers that are activated for the same insert | update | replace "
 "request."
 msgstr ""
-"Тем не менее, если функция с триггером возвращает старый кортеж или "
-"вызывает :ref:`run_triggers(false) <box_space-run_triggers>`, это не "
-"повлияет на другие триггеры, активируемые в том же запросе вставки, "
-"обновления или замены."
 
 msgid "**Example:**"
 msgstr "**Пример:**"

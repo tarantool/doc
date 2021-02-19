@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "Module `merger`"
-msgstr "Модуль `errno`"
+msgstr ""
 
 msgid "Overview"
 msgstr "Общие сведения"
@@ -17,9 +16,8 @@ msgstr "Указатель"
 msgid "The four functions for creating a merger object instance are:"
 msgstr ""
 
-#, fuzzy
 msgid ":ref:`merger.new_tuple_source() <merger-new_tuple_source>`,"
-msgstr ":ref:`debug.setupvalue() <debug-setupvalue>`"
+msgstr ""
 
 msgid ":ref:`merger.new_buffer_source() <merger-new_buffer_source>`,"
 msgstr ""
@@ -33,13 +31,11 @@ msgstr ""
 msgid "The methods for using a merger object are:"
 msgstr ""
 
-#, fuzzy
 msgid ":ref:`merger_object:select() <merger-select>`,"
-msgstr ":ref:`socket_object:sendto() <socket-sendto>`"
+msgstr ""
 
-#, fuzzy
 msgid ":ref:`merger_object:pairs() <merger-pairs>`."
-msgstr ":ref:`pairs() <membership-pairs>`"
+msgstr ""
 
 msgid "Create a new merger instance from a tuple source."
 msgstr ""
@@ -52,9 +48,8 @@ msgid ""
 "an iterator."
 msgstr ""
 
-#, fuzzy
 msgid "The ``gen()`` function should return:"
-msgstr "вызов ``join()`` возвращает true (правда),"
+msgstr ""
 
 msgid "state, tuple each time it is called and a new tuple is available,"
 msgstr ""
@@ -88,11 +83,10 @@ msgid ""
 "new_tuple_source>`."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "To set up a buffer, or a series of buffers, use :ref:`the buffer module "
 "<buffer-module>`."
-msgstr "``{buffer=...}``. Например, см. :ref:`модуль buffer <buffer-module>`."
+msgstr ""
 
 msgid "Create a new merger instance from a table source."
 msgstr ""
@@ -127,9 +121,8 @@ msgstr ""
 msgid "A merger object is an object returned by:"
 msgstr ""
 
-#, fuzzy
 msgid ":ref:`merger.new_tuple_source() <merger-new_tuple_source>` or"
-msgstr ":ref:`debug.setupvalue() <debug-setupvalue>`"
+msgstr ""
 
 msgid ":ref:`merger.new_buffer_source() <merger-new_buffer_source>` or"
 msgstr ""
@@ -140,9 +133,8 @@ msgstr ""
 msgid "It has methods:"
 msgstr ""
 
-#, fuzzy
 msgid ":ref:`merger_object:select() <merger-select>` or"
-msgstr ":ref:`socket_object:sendto() <socket-sendto>`"
+msgstr ""
 
 msgid "Access the contents of a merger object with familiar ``select`` syntax."
 msgstr ""
@@ -238,9 +230,8 @@ msgid ""
 "i2:is_null()"
 msgstr ""
 
-#, fuzzy
 msgid "**More examples:**"
-msgstr "**Примеры:**"
+msgstr ""
 
 msgid ""
 "See `https://github.com/Totktonada/tarantool-merger-examples "

@@ -106,16 +106,14 @@ msgstr "Выполнение функции как транзакции"
 msgid ":doc:`./box_txn_management/on_commit`"
 msgstr ""
 
-#, fuzzy
 msgid "Define a trigger that will be activated by ``box.commit``"
-msgstr "Определение триггера, активируемого по ``box.commit``"
+msgstr ""
 
 msgid ":doc:`./box_txn_management/on_rollback`"
 msgstr ""
 
-#, fuzzy
 msgid "Define a trigger that will be activated by ``box.rollback``"
-msgstr "Определение триггера, активируемого по ``box.rollback``"
+msgstr ""
 
 msgid ":doc:`./box_txn_management/is_in_txn`"
 msgstr ""

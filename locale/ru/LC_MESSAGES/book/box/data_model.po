@@ -6,7 +6,7 @@ msgid ""
 "This section describes how Tarantool stores values and what operations "
 "with data it supports."
 msgstr ""
-"В этом разделе описывается то, как в Tarantool'е организовано хранение "
+"В этом разделе описывается то, как в Tarantool организовано хранение "
 "данных и какие операции с данными он поддерживает."
 
 msgid ""
@@ -22,7 +22,7 @@ msgid "Spaces"
 msgstr "Спейсы"
 
 msgid "A **space** -- 'tester' in our example -- is a container."
-msgstr "*Спейс* -- с именем 'tester' в нашем примере -- это контейнер."
+msgstr "*Спейс* — с именем 'tester' в нашем примере — это контейнер."
 
 msgid ""
 "When Tarantool is being used to store data, there is always at least one "
@@ -38,8 +38,8 @@ msgstr ""
 "пользователем. Кроме того, пользователь может указать уникальный "
 "**числовой идентификатор**, но обычно Tarantool назначает его "
 "автоматически. Наконец, в спейсе всегда есть **движок**: *memtx* (по "
-"умолчанию) -- in-memory движок, быстрый, но ограниченный в размере, или "
-"*vinyl* -- дисковый движок для огромного количества данных."
+"умолчанию) — in-memory движок, быстрый, но ограниченный в размере, или "
+"*vinyl* — дисковый движок для огромного количества данных."
 
 msgid ""
 "A space is a container for :ref:`tuples <index-box_tuple>`. To be "
@@ -254,8 +254,11 @@ msgid ""
 " language (such as Lua) and the types of the Tarantool storage format "
 "(MsgPack)."
 msgstr ""
+"Tarantool представляет собой систему управления базой данных и сервер "
+"приложений одновременно. Поэтому разработчику часто приходится работать с"
+" двумя наборами типов данных: типы данных языка программирования (Lua) и "
+"типы данных СУБД Tarantool (MsgPack)."
 
-#, fuzzy
 msgid "Lua versus MsgPack"
 msgstr "Lua в сравнении с MsgPack"
 
@@ -278,54 +281,49 @@ msgid "nil"
 msgstr "nil"
 
 msgid "\"`nil`_\""
-msgstr "\"`nil`_\" (нулевое значение)"
+msgstr "\"`nil`_\""
 
-#, fuzzy
 msgid "``nil``"
-msgstr "\"`nil`_\" (нулевое значение)"
+msgstr "``nil``"
 
 msgid "boolean"
-msgstr "boolean (логический)"
+msgstr "boolean"
 
 msgid "\"`boolean`_\""
 msgstr "\"`boolean`_\" (логическое значение)"
 
-#, fuzzy
 msgid "``true``"
-msgstr "true"
+msgstr "``true``"
 
 msgid "string"
-msgstr "string (строка)"
+msgstr "string"
 
 msgid "\"`string`_\""
-msgstr "\"`string`_\" (строка)"
+msgstr "\"`string`_\""
 
 msgid "``'A B C'``"
-msgstr ""
+msgstr "``'A B C'``"
 
 msgid "integer"
-msgstr "integer (целое число)"
+msgstr "integer"
 
 msgid "\"`number`_\""
-msgstr "\"`number`_\" (число)"
+msgstr "\"`number`_\""
 
-#, fuzzy
 msgid "``12345``"
-msgstr "12345"
+msgstr "``12345``"
 
 msgid "float 64 (double)"
 msgstr ""
 
-#, fuzzy
 msgid "``1.2345``"
-msgstr "1,2345"
+msgstr ""
 
 msgid "\"`cdata`_\""
 msgstr ""
 
-#, fuzzy
 msgid "binary"
-msgstr "**varbinary**"
+msgstr ""
 
 msgid "``[!!binary 3t7e]``"
 msgstr ""
@@ -351,9 +349,8 @@ msgstr "map (ассоциативный массив)"
 msgid "\"`table`_\" (with string keys)"
 msgstr "\"`table`_\" (таблица со строковыми ключами)"
 
-#, fuzzy
 msgid "``{'a': 5, 'b': 6}``"
-msgstr "{'a': 5, 'b': 6}"
+msgstr ""
 
 msgid "array"
 msgstr "array (массив)"
@@ -361,26 +358,20 @@ msgstr "array (массив)"
 msgid "\"`table`_\" (with integer keys)"
 msgstr "\"`table`_\" (таблица с целочисленными ключами)"
 
-#, fuzzy
 msgid "``[1, 2, 3, 4, 5]``"
-msgstr "[1, 2, 3, 4, 5]"
+msgstr ""
 
 msgid "tuple (\"`cdata`_\")"
 msgstr "tuple (\"`cdata`_\") (кортеж)"
 
-#, fuzzy
 msgid "``[12345, 'A B C']``"
-msgstr "[12345, 'A B C']"
+msgstr ""
 
-#, fuzzy
 msgid ""
 "MsgPack values have variable lengths. So, for example, the smallest "
 "number requires only one byte, but the largest number requires nine "
 "bytes."
 msgstr ""
-"Tarantool использует формат MsgPack для хранения в базе данных переменной"
-" длины. Поэтому, например, для наименьшего числа требуется только один "
-"байт, но для наибольшего числа требуется девять байтов."
 
 msgid "Field Type Details"
 msgstr ""
@@ -395,11 +386,8 @@ msgid ""
 "box.NULL`` is true. Example: ``nil``."
 msgstr ""
 
-#, fuzzy
 msgid "**boolean**. A boolean is either ``true`` or ``false``. Example: ``true``."
 msgstr ""
-"Тип *boolean* (логический) может иметь только значения ``true`` или "
-"``false``."
 
 msgid ""
 "**integer**. The Tarantool integer type is for integers between "
@@ -448,7 +436,6 @@ msgid ""
 "<sql_data_type_conversion>`."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "**number**. In Lua a number is double-precision floating-point, but a "
 "Tarantool 'number' field may have both integer and floating-point values."
@@ -462,19 +449,6 @@ msgid ""
 "function: ``-55``, ``-2.7e+20``, ``100000000000000ULL``, "
 "``tonumber64('18446744073709551615')``."
 msgstr ""
-"В языке Lua тип **number** (число) -- это число с плавающей запятой "
-"двойной точности, но в Tarantool'е можно использовать как целые числа, "
-"так и числа с плавающей запятой. Tarantool по возможности сохраняет числа"
-" языка Lua в виде чисел с плавающей запятой, если числовое значение "
-"содержит десятичную запятую или если оно очень велико (более 100 "
-"триллионов = 1e14). В противном случае, Tarantool сохраняет такое "
-"значение в виде целого числа. Чтобы даже очень большие величины "
-"гарантированно обрабатывались как целые числа, используйте функцию "
-":ref:`tonumber64 <other-tonumber64>`, либо приписывайте в конце суффикс "
-"LL (Long Long) или ULL (Unsigned Long Long). Вот примеры записи чисел в "
-"обычном представлении, экспоненциальном, с суффиксом ULL и с "
-"использованием функции ``tonumber64``:  ``-55``, ``-2.7e+20``, "
-"``100000000000000ULL``, ``tonumber64('18446744073709551615')``."
 
 msgid ""
 "**decimal**. The Tarantool decimal type is stored as a MsgPack ext "
@@ -484,7 +458,6 @@ msgid ""
 ":ref:`decimal <decimal>` module."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "**string**. A string is a variable-length sequence of bytes, usually "
 "represented with alphanumeric characters inside single quotes. In both "
@@ -498,17 +471,6 @@ msgid ""
 "second byte, and so on, so ``'2345'`` is less than ``'500'``.) Example: "
 "``'A, B, C'``."
 msgstr ""
-"Тип **string**  (строка) представляет собой последовательность байтов "
-"переменной длины, обычно представленную буквенно-цифровые символы в "
-"одинарных кавычках. Как в Lua, так и в MsgPack строки рассматриваются как"
-" бинарные данные без попыток определить набор символов строки или "
-"выполнить преобразование строки -- кроме случаев, когда есть опциональное"
-" :ref:`сравнение символов <index-collation>`. Таким образом, обычно "
-"сортировка и сравнение строк выполняются побайтово, не применяя "
-"дополнительных правил сравнения символов. (Пример: числа упорядочены по "
-"их положению на числовой прямой, поэтому 2345 больше, чем 500; а строки "
-"упорядочены по кодировке первого байта, затем кодировке второго байта и "
-"так далее, таким образом, '2345' меньше, чем '500'.)"
 
 msgid ""
 "**bin**. A bin (binary) value is not directly supported by Lua but there "
@@ -530,7 +492,6 @@ msgid ""
 "``{10, 11}``, ``{3, 5, 9, 10}``."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "**table**. Lua tables with string keys are stored as MsgPack maps; Lua "
 "tables with integer keys starting with 1 are stored as MsgPack arrays. "
@@ -538,24 +499,13 @@ msgid ""
 ":ref:`box.NULL <box-null>`. Example: a ``box.space.tester:select()`` "
 "request will return a Lua table."
 msgstr ""
-"В Lua **tables** (таблицы) со строковыми ключами хранятся как "
-"ассоциативные массивы в MsgPack; Lua-таблицы с целочисленными ключами, "
-"начиная с 1, хранятся как массивы в MsgPack. Нулевые значения нельзя "
-"использовать в Lua-таблицах; вместо нулевого значения в таком случае "
-"можно указать :ref:`msgpack.NULL <msgpack-null>`"
 
-#, fuzzy
 msgid ""
 "**tuple**. A tuple is a light reference to a MsgPack array stored in the "
 "database. It is a special type (cdata) to avoid conversion to a Lua table"
 " on retrieval. A few functions may return tables with multiple tuples. "
 "For tuple examples, see :ref:`box.tuple <box_tuple>`."
 msgstr ""
-"Тип **tuple** (кортеж) представляет собой легкую ссылку на массив "
-"MsgPack, который хранится в базе данных. Это особый тип (cdata), чтобы "
-"избежать конвертации в Lua-таблицу при выборке данных. Некоторые функции "
-"могут возвращать таблицы с множеством кортежей. Примеры с кортежами см. в"
-" :ref:`box.tuple <box_tuple>`."
 
 msgid ""
 "**scalar**. Values in a scalar field can be boolean or integer or "
@@ -569,9 +519,8 @@ msgid ""
 "tuple. Examples: ``true``, ``1``, ``'xxx'``, ``{box.NULL, 0}``."
 msgstr ""
 
-#, fuzzy
 msgid "Examples of insert requests with different field types:"
-msgstr "Примеры запроса вставки с разными типами данных:"
+msgstr ""
 
 msgid ""
 "tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}\n"
@@ -624,16 +573,14 @@ msgstr ""
 msgid "Field type name string"
 msgstr ""
 
-#, fuzzy
 msgid "Field type |br|"
-msgstr "Тип индексированного поля"
+msgstr ""
 
 msgid "Index type"
 msgstr "Тип индекса"
 
-#, fuzzy
 msgid "``'boolean'``"
-msgstr "\"`boolean`_\" (логическое значение)"
+msgstr ""
 
 msgid ":ref:`boolean <index-box_boolean>`"
 msgstr ""
@@ -641,9 +588,8 @@ msgstr ""
 msgid ":ref:`TREE or HASH <box_index-type>`"
 msgstr ""
 
-#, fuzzy
 msgid "``'integer'`` (may also be called ‘int’)"
-msgstr "**integer** (целое число -- может также называться ‘int’)"
+msgstr ""
 
 msgid ":ref:`integer <index-box_integer>` which may include unsigned values"
 msgstr ""
@@ -651,13 +597,10 @@ msgstr ""
 msgid "TREE or HASH"
 msgstr "TREE или HASH"
 
-#, fuzzy
 msgid ""
 "``'unsigned'`` (may also be called ‘uint’ or ‘num’, but ‘num’ is "
 "deprecated)"
 msgstr ""
-"**unsigned** (без знака -- может также называться ‘uint’ или ‘num’, но "
-"‘num’ объявлен устаревшим)"
 
 msgid ":ref:`unsigned <index-box_unsigned>`"
 msgstr ""
@@ -665,16 +608,14 @@ msgstr ""
 msgid "TREE, BITSET or HASH"
 msgstr "TREE, BITSET или HASH"
 
-#, fuzzy
 msgid "``'double'``"
-msgstr "double (числа с двойной точностью)"
+msgstr ""
 
 msgid ":ref:`double <index-box_double>`"
 msgstr ""
 
-#, fuzzy
 msgid "``'number'``"
-msgstr "\"`number`_\" (число)"
+msgstr ""
 
 msgid ""
 ":ref:`number <index-box_number>` which may include :ref:`integer <index-"
@@ -687,16 +628,14 @@ msgstr ""
 msgid ":ref:`decimal <index-box_decimal>`"
 msgstr ""
 
-#, fuzzy
 msgid "``'string'`` (may also be called ``‘str’``)"
-msgstr "**string** (строка -- может также называться ‘str’)"
+msgstr ""
 
 msgid ":ref:`string <index-box_string>`"
 msgstr ""
 
-#, fuzzy
 msgid "``'varbinary'``"
-msgstr "**varbinary**"
+msgstr ""
 
 msgid ":ref:`varbinary <index-box_bin>`"
 msgstr ""
@@ -707,9 +646,8 @@ msgstr ""
 msgid ":ref:`uuid <index-box_uuid>`"
 msgstr ""
 
-#, fuzzy
 msgid "``'array'``"
-msgstr "array (массив)"
+msgstr ""
 
 msgid ":ref:`array <index-box_array>`"
 msgstr ""
@@ -717,9 +655,8 @@ msgstr ""
 msgid ":ref:`RTREE <box_index-rtree>`"
 msgstr ""
 
-#, fuzzy
 msgid "``'scalar'``"
-msgstr "скалярный"
+msgstr ""
 
 msgid ""
 "may include :ref:`nil <index-box_nil>` or :ref:`boolean <index-"
@@ -729,20 +666,15 @@ msgid ""
 " :ref:`varbinary <index-box_bin>` values"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "When a scalar field contains values of different underlying types, the "
 "key order is: nils, then booleans, then numbers, then strings, then "
 "varbinaries."
 msgstr ""
-"Примечание: в сочетании различных типов порядок будет следующим: null, "
-"затем булевские значения, затем числовые, затем строковые, затем "
-"varbinary."
 
 msgid "Collations"
 msgstr "Сортировка"
 
-#, fuzzy
 msgid ""
 "By default, when Tarantool compares strings, it uses what we call a "
 "**\"binary\" collation**. The only consideration here is the numeric "
@@ -753,14 +685,6 @@ msgid ""
 "best if you prefer fast deterministic simple maintenance and searching "
 "with Tarantool indexes."
 msgstr ""
-"По умолчанию, когда Tarantool сравнивает строки, он использует то, что мы"
-" называем **\"бинарной\" сортировкой**. Единственный фактор, который "
-"учитывается, это числовое значение каждого байта в строке. Таким образом,"
-" если строка кодируется по ASCII или UTF-8, то ``'A' < 'B' < 'a'``, "
-"поскольку в кодировке 'A' (что раньше называлось \"значение ASCII\") "
-"соответствует 65, 'B' -- 66, а 'a' -- 98. Бинарная сортировка подходит "
-"лучше всего для быстрого детерминированного простого обслуживания и "
-"поиска с помощью индексов Tarantool'а."
 
 msgid ""
 "But if you want the ordering that you see in phone books and "
@@ -1881,294 +1805,3 @@ msgstr ""
 "  WAL производится при каждом запросе на изменение данных, то при каждом "
 "таком запросе приходится ждать, пока отработает обращение к более "
 "медленному диску, и данный фактор становится важнее всех остальных."
-
-#~ msgid ""
-#~ "Tarantool is both a database and "
-#~ "an application server. Hence a developer"
-#~ " often deals with two type sets: "
-#~ "the programming language types (e.g. "
-#~ "Lua) and the types of the "
-#~ "Tarantool storage format (MsgPack)."
-#~ msgstr ""
-#~ "Tarantool представляет собой базу данных "
-#~ "и сервер приложений одновременно. "
-#~ "Следовательно, разработчик часто работает с"
-#~ " двумя наборами типов: типы языка "
-#~ "программирования (например, Lua) и типы "
-#~ "формата хранилища Tarantool (MsgPack)."
-
-#~ msgid "msgpack.NULL"
-#~ msgstr "msgpack.NULL"
-
-#~ msgid "'A B C'"
-#~ msgstr "'A B C'"
-
-#~ msgid "bin"
-#~ msgstr ""
-
-#~ msgid "[!!binary 3t7e]"
-#~ msgstr ""
-
-#~ msgid "decimal"
-#~ msgstr ""
-
-#~ msgid "1.2"
-#~ msgstr ""
-
-#~ msgid "uuid"
-#~ msgstr ""
-
-#~ msgid "12a34b5c-de67-8f90-123g- h4567ab8901"
-#~ msgstr ""
-
-#~ msgid "ext"
-#~ msgstr ""
-
-#~ msgid "(converted to exact number)"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "In Lua, a **nil** type has only"
-#~ " one possible value, also called "
-#~ "*nil* (displayed as **null** on "
-#~ "Tarantool's command line, since the "
-#~ "output is in the YAML format). "
-#~ "Nils may be compared to values of"
-#~ " any types with == (is-equal) "
-#~ "or ~= (is-not-equal), but other"
-#~ " operations will not work. Nils may"
-#~ " not be used in Lua tables; the"
-#~ " workaround is to use :ref:`msgpack.NULL"
-#~ " <msgpack-null>`"
-#~ msgstr ""
-#~ "В языке Lua тип *nil* (нулевой) "
-#~ "может иметь только одно значение, также"
-#~ " называемое *nil* (отображаемое как "
-#~ "**null** в командной строке Tarantool'а, "
-#~ "поскольку значения выводятся в формате "
-#~ "YAML). Нулевое значение можно сравнивать "
-#~ "со значениями любых типов с помощью "
-#~ "операторов == (равен) или ~= (не "
-#~ "равен), но никакие другие операции для"
-#~ " нулевых значений не доступны. Нулевые "
-#~ "значения также нельзя использовать в "
-#~ "Lua-таблицах; вместо нулевого значения в "
-#~ "таком случае можно указать :ref:`msgpack.NULL"
-#~ " <msgpack-null>`"
-
-#~ msgid ""
-#~ "The Tarantool/SQL **double** field type "
-#~ "exists mainly so that there will "
-#~ "be an equivalent to Tarantool/SQL's "
-#~ ":ref:`DOUBLE data type <sql_data_type_double>`. "
-#~ "In MsgPack the storage type is "
-#~ "MP_DOUBLE and the size of the "
-#~ "encoded value is always 9 bytes. "
-#~ "In Lua, 'double' fields can only "
-#~ "contain non-integer numeric values and"
-#~ " cdata values with double floating-"
-#~ "point numbers. To avoid using the "
-#~ "wrong kind of values inadvertently, use"
-#~ " ``ffi.cast()`` when searching or changing"
-#~ " 'double' fields. For example, instead "
-#~ "of :samp:`{space_object}:insert` :code:`{` "
-#~ ":samp:`{value}` :code:`}` say ``ffi = "
-#~ "require('ffi') ...`` :samp:`{space_object}:insert` "
-#~ ":code:`({ffi.cast('double',` :samp:`{value}` :code:`)})`."
-#~ " Example:"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "An **ext** (extension) value is an "
-#~ "addition by Tarantool, not part of "
-#~ "the formal MsgPack definition, for "
-#~ "storage of decimal values. Values with"
-#~ " the decimal type are not "
-#~ "floating-point values although they may "
-#~ "contain decimal points. They are exact."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "A **bin** (binary) value is not "
-#~ "directly supported by Lua but there "
-#~ "is a Tarantool type ``VARBINARY`` which"
-#~ " is encoded as MessagePack binary. "
-#~ "For an (advanced) example showing how"
-#~ " to insert VARBINARY into a database,"
-#~ " see the Cookbook Recipe for "
-#~ ":ref:`ffi_varbinary_insert <cookbook-"
-#~ "ffi_varbinary_insert>`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Indexes restrict values which Tarantool's "
-#~ "MsgPack may contain. This is why, "
-#~ "for example, 'unsigned' is a separate"
-#~ " **indexed field type**, compared to "
-#~ "‘integer’ data type in MsgPack: they "
-#~ "both store ‘integer’ values, but an "
-#~ "'unsigned' index contains only *non-"
-#~ "negative* integer values and an "
-#~ "‘integer’ index contains *all* integer "
-#~ "values."
-#~ msgstr ""
-#~ "Индексы ограничивают значения, которые может"
-#~ " содержать MsgPack в Tarantool'е. Вот "
-#~ "почему, например, тип 'unsigned' (без "
-#~ "знака) представляет собой отдельный **тип "
-#~ "индексированного поля** в сравнении с "
-#~ "типом данных ‘integer’ (целое число) в"
-#~ " MsgPack: оба содержат значения с "
-#~ "целыми числами, но индекс 'unsigned' "
-#~ "содержит только *неотрицательные* целые "
-#~ "числовые значения, а индекс ‘integer’ "
-#~ "содержит *все* целые числовые значения."
-
-#~ msgid ""
-#~ "Here is how Tarantool indexed field "
-#~ "types correspond to MsgPack data types."
-#~ msgstr ""
-#~ "Вот как типы индексированных полей в "
-#~ "Tarantool'е соответствуют типам данных "
-#~ "MsgPack."
-
-#~ msgid "MsgPack data type |br| (and possible values)"
-#~ msgstr "Тип данных MsgPack |br| (и возможные значения)"
-
-#~ msgid ""
-#~ "**integer** (integer between 0 and "
-#~ "18446744073709551615, i.e. about 18 "
-#~ "quintillion)"
-#~ msgstr ""
-#~ "**integer** (целое число в диапазоне от"
-#~ " 0 до 18 446 744 073 709 "
-#~ "551 615, т.е. около 18 квинтиллионов)"
-
-#~ msgid "123456"
-#~ msgstr "123456"
-
-#~ msgid ""
-#~ "**integer** (integer between -9223372036854775808"
-#~ " and 18446744073709551615)"
-#~ msgstr ""
-#~ "``integer`` (целое число в диапазоне от"
-#~ " -9 223 372 036 854 775 808 "
-#~ "до 18 446 744 073 709 551 "
-#~ "615)"
-
-#~ msgid "-2^63"
-#~ msgstr "-2^63"
-
-#~ msgid "**number**"
-#~ msgstr "**number**"
-
-#~ msgid ""
-#~ "**double** (single-precision floating point"
-#~ " number or double-precision floating "
-#~ "point number)"
-#~ msgstr ""
-#~ "**double** (число с плавающей запятой с"
-#~ " одинарной точностью или с двойной "
-#~ "точностью)"
-
-#~ msgid "1.234"
-#~ msgstr "1,234"
-
-#~ msgid "-44"
-#~ msgstr "-44"
-
-#~ msgid "1.447e+44"
-#~ msgstr "1,447e+44"
-
-#~ msgid "**double**"
-#~ msgstr "double (числа с двойной точностью)"
-
-#~ msgid "**string** (any set of octets, up to the maximum length)"
-#~ msgstr ""
-#~ "**string** (строка -- любая последовательность"
-#~ " октетов до максимальной длины)"
-
-#~ msgid "‘A B C’"
-#~ msgstr "‘A B C’"
-
-#~ msgid "‘\\\\65 \\\\66 \\\\67’"
-#~ msgstr ""
-
-#~ msgid "**bin** (any set of octets, up to the maximum length)"
-#~ msgstr "**bin** (любая последовательность октетов до максимальной длины)"
-
-#~ msgid "**boolean**"
-#~ msgstr "**boolean**"
-
-#~ msgid "**bool** (true or false)"
-#~ msgstr "**bool** (логический -- true или false)"
-
-#~ msgid "**decimal**"
-#~ msgstr ""
-
-#~ msgid "**ext** (extension)"
-#~ msgstr ""
-
-#~ msgid "**uuid**"
-#~ msgstr ""
-
-#~ msgid "64d22e4d-ac92-|br| 4a23-899a-|br| e5934af5479"
-#~ msgstr ""
-
-#~ msgid "**array**"
-#~ msgstr "**array**"
-
-#~ msgid "**array** (list of numbers representing points in a geometric figure)"
-#~ msgstr ""
-#~ "**array** (массив -- список чисел, "
-#~ "который представляет собой точки в "
-#~ "геометрической фигуре)"
-
-#~ msgid "RTREE"
-#~ msgstr "RTREE"
-
-#~ msgid "{10, 11}"
-#~ msgstr "{10, 11}"
-
-#~ msgid "{3, 5, 9, 10}"
-#~ msgstr "{3, 5, 9, 10}"
-
-#~ msgid "**scalar**"
-#~ msgstr "**scalar**"
-
-#~ msgid "**null**"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "**decimal** (value returned by a "
-#~ "function in the :ref:`decimal <decimal>` "
-#~ "module"
-#~ msgstr ""
-
-#~ msgid "**string** (any set of octets)"
-#~ msgstr "**string** (строковое значение, т.е. любая последовательность октетов)"
-
-#~ msgid "**varbinary** (any set of octets)"
-#~ msgstr "**varbinary** (любая последовательность октетов)"
-
-#~ msgid "-1"
-#~ msgstr "-1"
-
-#~ msgid "‘’"
-#~ msgstr "‘’"
-
-#~ msgid "‘ру’"
-#~ msgstr "‘ру’"
-
-#~ msgid ""
-#~ "tarantool> "
-#~ "s=box.schema.space.create('T');s:create_index('I',{sequence='S'})\n"
-#~ ""
-#~ "---\n"
-#~ "..."
-#~ msgstr ""
-#~ "tarantool> "
-#~ "s=box.schema.space.create('T');s:create_index('I',{sequence='S'})\n"
-#~ ""
-#~ "---\n"
-#~ "..."

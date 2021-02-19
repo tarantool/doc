@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "SQL tutorial"
-msgstr "Практическое задание на C"
+msgstr ""
 
 msgid ""
 "This tutorial is a demonstration of the SQL feature introduced in "
@@ -25,14 +24,11 @@ msgstr ""
 msgid "Initialize"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Requests will be done using Tarantool as a :ref:`client <admin-"
 "using_tarantool_as_a_client>`. Start Tarantool and, optionally, enter the"
 " Tarantool configuration request, for example:"
 msgstr ""
-"Tarantool выполняет запросы в качестве :ref:`клиента <admin-"
-"using_tarantool_as_a_client>`. Запустите Tarantool и введите эти запросы."
 
 msgid "tarantool> box.cfg{}"
 msgstr ""
@@ -73,9 +69,8 @@ msgid ""
 "SELECT * FROM table1 WHERE column1 = 1;"
 msgstr ""
 
-#, fuzzy
 msgid "The result of the ``SELECT`` statement will look like this:"
-msgstr "В результате вызова ``capi_connection:call('read')`` должны получить:"
+msgstr ""
 
 msgid ""
 "tarantool> SELECT * FROM table1 WHERE column1 = 1;\n"
@@ -195,9 +190,8 @@ msgid ""
 "    OR column3 = X'2020';"
 msgstr ""
 
-#, fuzzy
 msgid "The results will be:"
-msgstr "Получим следующий результат:"
+msgstr ""
 
 msgid ""
 "- - [1, 'AB', 5.5]\n"
@@ -544,9 +538,8 @@ msgstr ""
 msgid "Operators and functions"
 msgstr ""
 
-#, fuzzy
 msgid "String operations"
-msgstr "начинает транзакцию;"
+msgstr ""
 
 msgid ""
 "You can manipulate string data (usually defined with CHAR or VARCHAR data"
@@ -629,9 +622,8 @@ msgid ""
 "SELECT column1 + 1, column2, column4 * 2 FROM t6 ORDER BY column2;"
 msgstr ""
 
-#, fuzzy
 msgid "The result is:"
-msgstr "Получим следующий результат:"
+msgstr ""
 
 msgid ""
 "- - [6, 'ABCDEFG', null]\n"
@@ -704,9 +696,8 @@ msgid ""
 "VALUES (55 * 55, 'The rain in Spain');"
 msgstr ""
 
-#, fuzzy
 msgid "The result of either statement will be:"
-msgstr "Получим следующий результат:"
+msgstr ""
 
 msgid "- - [3025, 'The rain in Spain']"
 msgstr ""
@@ -803,7 +794,6 @@ msgid ""
 "these instructions and wait for about a minute."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "box.execute(\"CREATE TABLE tester (s1 INT PRIMARY KEY, s2 "
 "VARCHAR(10))\");\n"
@@ -833,29 +823,6 @@ msgid ""
 "end_time = os.clock();\n"
 "'insert done in ' .. end_time - start_time .. ' seconds';"
 msgstr ""
-"function string_function()\n"
-"           local random_number\n"
-"           local random_string\n"
-"           random_string = \"\"\n"
-"           for x = 1,10,1 do\n"
-"             random_number = math.random(65, 90)\n"
-"             random_string = random_string .. string.char(random_number)\n"
-"           end\n"
-"           return random_string\n"
-"         end\n"
-"         \n"
-"         function main_function()\n"
-"           local string_value, t\n"
-"           for i = 1,1000000,1 do\n"
-"             string_value = string_function()\n"
-"             t = box.tuple.new({i,string_value})\n"
-"             box.space.tester:replace(t)\n"
-"           end\n"
-"         end\n"
-"         start_time = os.clock()\n"
-"         main_function()\n"
-"         end_time = os.clock()\n"
-"         'insert done in ' .. end_time - start_time .. ' seconds'"
 
 msgid ""
 "The result is: you now have a table with a million rows, with a message "
@@ -921,6 +888,3 @@ msgid ""
 "tarantool> \\set language lua\n"
 "tarantool> os.exit();"
 msgstr ""
-
-#~ msgid "copy and paste each section and see everything work with Tarantool 2.3."
-#~ msgstr ""

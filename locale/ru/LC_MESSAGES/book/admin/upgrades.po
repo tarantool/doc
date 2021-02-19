@@ -62,9 +62,8 @@ msgstr ""
 "с  Tarantool 1.6 сразу на 2.x могут препятствовать несовместимые "
 "изменения."
 
-#, fuzzy
 msgid "How to upgrade from Tarantool 1.7 to 2.x"
-msgstr "Как обновить Tarantool 1.6 до 2.x"
+msgstr ""
 
 msgid "Stop the Tarantool server."
 msgstr "Остановите Tarantool-сервер."

@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "File formats"
-msgstr "формат кортежа"
+msgstr ""
 
 msgid "Data persistence and the WAL file format"
 msgstr "Персистентность данных и формат WAL-файла"
@@ -29,7 +28,6 @@ msgstr ""
 "регистрационный номер в журнале (LSN). Название WAL-файла состоит из LSN "
 "первой записи в файле плюс расширение ``.xlog``."
 
-#, fuzzy
 msgid ""
 "Apart from a log sequence number and the data change request (formatted "
 "as in :ref:`Tarantool's binary protocol <internals-box_protocol>`), each "
@@ -40,16 +38,6 @@ msgid ""
 "our :ref:`\"Getting started\" exercises <getting_started>`. On the left "
 "are the hexadecimal bytes that you would see with:"
 msgstr ""
-"Помимо номера записи в журнале (LSN) и запроса на изменение данных (в "
-"формате :ref:`бинарного протокола Tarantool'а <box_protocol-"
-"iproto_protocol>`), каждая запись в WAL-файле содержит заголовок, "
-"некоторые метаданные, а также данные, форматированные по правилам "
-"`msgpack <https://en.wikipedia.org/wiki/MessagePack>`_. Например, так "
-"выглядит WAL-файл после первого запроса вставки INSERT "
-"(\"s:insert({1})\") для базы данных из песочницы, созданной в упражнениях"
-" в :ref:`\"Руководстве для начинающих\" <getting_started>`. Слева "
-"представлены шестнадцатеричные байты, которые можно просмотреть с "
-"помощью:"
 
 msgid "$ hexdump 00000000000000000000.xlog"
 msgstr "$ hexdump 00000000000000000000.xlog"
@@ -155,16 +143,11 @@ msgstr ""
 msgid "The new tuple replaces the old tuple in all existing indexes."
 msgstr "Новый кортеж заменяет старый кортеж во всех существующих индексах."
 
-#, fuzzy
 msgid ""
 "A message is sent to the WAL writer running in a separate thread, "
 "requesting that the change be recorded in the WAL. The instance switches "
 "to work on the next request until the write is acknowledged."
 msgstr ""
-"В процесс записи, запущенный в потоке журнала упреждающей записи, "
-"отправляется сообщение о необходимости внесения записи в WAL-файл. "
-"Экземпляр переключается на работу со следующим запросом, пока запись не "
-"будет подтверждена."
 
 msgid ""
 "On success, a confirmation is sent to the client. On failure, a rollback "

@@ -109,12 +109,8 @@ msgid ""
 "  ..."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "The total ``mem_used`` for all groups in this report equals "
 "``arena_used`` in :doc:`/reference/reference_lua/box_slab/slab_info` "
 "report."
 msgstr ""
-"Общий объем используемой памяти ``mem_used`` для всех групп в данном "
-"отчете равен ``arena_used`` в отчете :ref:`box.slab.info() "
-"<box_slab_info>`."

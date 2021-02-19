@@ -349,9 +349,8 @@ msgstr ":ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`"
 msgid ":ref:`strip_core <cfg_basic-strip_core>`"
 msgstr ":ref:`strip_core <cfg_basic-strip_core>`"
 
-#, fuzzy
 msgid ":ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`"
-msgstr ":ref:`memtx_dir <cfg_basic-memtx_dir>`"
+msgstr ""
 
 msgid ""
 "Since version 1.6.2. Run the server as a background task. The :ref:`log "
@@ -1454,13 +1453,11 @@ msgstr ""
 ":ref:`replication_synchro_timeout <cfg_replication-"
 "replication_synchro_timeout>`"
 
-#, fuzzy
 msgid ":ref:`election_mode <cfg_replication-election_mode>`"
-msgstr ":ref:`replication_anon <cfg_replication-replication_anon>`"
+msgstr ""
 
-#, fuzzy
 msgid ":ref:`election_timeout <cfg_replication-election_timeout>`"
-msgstr ":ref:`replication_timeout <cfg_replication-replication_timeout>`"
+msgstr ""
 
 msgid ""
 "Since version 1.7.4. If ``replication`` is not an empty string, the "
@@ -1732,17 +1729,12 @@ msgstr ""
 "подробной информации, см. :ref:`статус orphan <replication-"
 "orphan_status>`."
 
-#, fuzzy
 msgid ""
 "This parameter is different from :ref:`replication_timeout "
 "<cfg_replication-replication_timeout>`, which a master uses to disconnect"
 " a replica when the master receives no acknowledgments of heartbeat "
 "messages."
 msgstr ""
-"Данный параметр отличается от :ref:`replication_timeout <cfg_replication-"
-"replication_timeout>`, который используется только для автоматического "
-"переподключения репликации, когда отсутствуют сообщения контрольного "
-"сигнала."
 
 msgid "Default: 30"
 msgstr "По умолчанию: 30"
@@ -2093,9 +2085,8 @@ msgid ""
 "'candidate'``."
 msgstr ""
 
-#, fuzzy
 msgid "Default: 'off'"
-msgstr "По умолчанию: 5"
+msgstr ""
 
 msgid ""
 "Since version 2.6.1. Specifies the timeout between election rounds in the"
@@ -2919,30 +2910,8 @@ msgstr ""
 "<cfg_checkpoint_daemon-checkpoint_count>`. Параметр был лишь "
 "переименован, его тип, значения и семантика остались прежними."
 
-#, fuzzy
 msgid ""
 "**Deprecated** in favor of :ref:`wal_max_size "
 "<cfg_binary_logging_snapshots-wal_max_size>`. The parameter does not "
 "allow to properly limit size of WAL logs."
 msgstr ""
-"**Устаревший**, заменен параметром :ref:`wal_max_size "
-"<cfg_binary_logging_snapshots-wal_max_size>`. Параметр не позволял четко "
-"ограничивать размер журналов WAL."
-
-#~ msgid ""
-#~ "The maximum number of bytes in the"
-#~ " cache for :ref:`SQL prepared statements"
-#~ " <box-sql_box_prepare>`. (The number of "
-#~ "bytes that are actually used can "
-#~ "be seen with :ref:`box.info.sql().cache.size "
-#~ "<box_introspection-box_info>`.)"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "A Tarantool replica can be anonymous."
-#~ " This type of replica is read-"
-#~ "only (but you still can write to"
-#~ " temporary and replica-local spaces), "
-#~ "and it isn't present in the "
-#~ "``_cluster`` table."
-#~ msgstr ""

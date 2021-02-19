@@ -136,21 +136,17 @@ msgstr ":ref:`debug.setupvalue() <debug-setupvalue>`"
 msgid "Assign a value to an upvalue"
 msgstr "Присваивание значения сопоставляющему значению"
 
-#, fuzzy
 msgid ":ref:`debug.sourcedir() <debug-sourcedir>`"
-msgstr ":ref:`debug.traceback() <debug-traceback>`"
+msgstr ""
 
-#, fuzzy
 msgid "Get the source directory name"
-msgstr "Получение имени директории"
+msgstr ""
 
-#, fuzzy
 msgid ":ref:`debug.sourcefile() <debug-sourcefile>`"
-msgstr ":ref:`debug.setfenv() <debug-setfenv>`"
+msgstr ""
 
-#, fuzzy
 msgid "Get the source file name"
-msgstr "Получение имени файла"
+msgstr ""
 
 msgid ":ref:`debug.traceback() <debug-traceback>`"
 msgstr ":ref:`debug.traceback() <debug-traceback>`"
@@ -439,9 +435,8 @@ msgstr "указывает на каком уровне начинать обр�
 msgid "a string with a traceback of the call stack"
 msgstr "строка с обратной трассировкой стека вызовов"
 
-#, fuzzy
 msgid "**Debug example:**"
-msgstr "**Пример:**"
+msgstr ""
 
 msgid "Make a file in the /tmp directory named example.lua, containing:"
 msgstr ""

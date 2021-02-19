@@ -23,9 +23,8 @@ msgstr ""
 msgid "<execute> ::= 11"
 msgstr ""
 
-#, fuzzy
 msgid "Request packet body"
-msgstr "Пакет приветствия"
+msgstr ""
 
 msgid "An SQL request has the type ``EXECUTE=11``."
 msgstr ""
@@ -59,9 +58,8 @@ msgid ""
 "https://sqlite.org/lang_expr.html#varparam"
 msgstr ""
 
-#, fuzzy
 msgid "**Examples:**"
-msgstr "**Пример:**"
+msgstr ""
 
 msgid ""
 ":code:`[100, 'abc', NULL, -345.6] = MP_ARRAY[ MP_UINT, MP_STR, MP_NIL, "
@@ -73,9 +71,8 @@ msgid ""
 " : MP_UINT } ]`"
 msgstr ""
 
-#, fuzzy
 msgid "Response packet body"
-msgstr "Структура пакета ответа"
+msgstr ""
 
 msgid "Body structure depends on the type of the SQL request."
 msgstr ""

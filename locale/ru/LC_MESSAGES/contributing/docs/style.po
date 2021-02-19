@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "Language and style"
-msgstr "Вопросы по стилю и языку"
+msgstr ""
 
 msgid "US vs British spelling"
 msgstr "Британский или американский вариант английского"

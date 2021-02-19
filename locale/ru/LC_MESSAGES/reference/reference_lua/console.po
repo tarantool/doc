@@ -57,23 +57,20 @@ msgstr ":ref:`console.delimiter() <console-delimiter>`"
 msgid "Set a delimiter"
 msgstr "Настройка разделителя"
 
-#, fuzzy
 msgid ":ref:`console.get_default_output() <console-get_default_output>`"
-msgstr ":ref:`console.start() <console-start>`"
+msgstr ""
 
 msgid "Get default output format"
 msgstr ""
 
-#, fuzzy
 msgid ":ref:`console.set_default_output() <console-set_default_output>`"
-msgstr ":ref:`console.start() <console-start>`"
+msgstr ""
 
 msgid "Set default output format"
 msgstr ""
 
-#, fuzzy
 msgid ":ref:`console.eos() <console-eos>`"
-msgstr ":ref:`console.ac() <console-ac>`"
+msgstr ""
 
 msgid "Set or get end-of-output string"
 msgstr ""

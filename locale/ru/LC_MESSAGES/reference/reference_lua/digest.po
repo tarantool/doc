@@ -256,9 +256,8 @@ msgstr ""
 "Возврат 96-байтной строки = шестнадцатеричное значение дайджеста, "
 "вычисленного с помощью SHA-384."
 
-#, fuzzy
 msgid "Returns 512-bit binary string = digest made with SHA-2."
-msgstr "Возврат 512-битной двоичной строки = дайджест, полученный с помощью SHA-2."
+msgstr ""
 
 msgid "Returns 128-byte string = hexadecimal of a digest calculated with sha512."
 msgstr ""

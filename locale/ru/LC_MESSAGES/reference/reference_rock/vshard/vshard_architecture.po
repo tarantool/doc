@@ -26,14 +26,10 @@ msgid ""
 "small, it may decrease the granularity of rebalancing."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Each shard stores a unique subset of buckets, which means that a bucket "
 "cannot belong to several shards at once, as illustrated below:"
 msgstr ""
-"Каждый шард хранит уникальное подмножество сегментов. Один сегмент не "
-"может относиться к нескольким шардам одновременно, как показано на схеме "
-"ниже:"
 
 msgid ""
 "This shard-to-bucket mapping is stored in a table in one of Tarantool’s "
@@ -68,14 +64,10 @@ msgstr ""
 msgid "Virtual buckets"
 msgstr "Виртуальные сегменты"
 
-#, fuzzy
 msgid ""
 "The sharded dataset is partitioned into a large number of abstract nodes "
 "called **virtual buckets** (further just **buckets**)."
 msgstr ""
-"Набор данных при шардинге распределяется на большое количество "
-"абстрактных узлов, которые называются **виртуальные сегменты** (далее по "
-"тексту **сегменты**)."
 
 msgid ""
 "The dataset is partitioned using the sharding key (or **bucket id**, in "
@@ -117,67 +109,46 @@ msgid ""
 "shard_index>`. The default name for this index is ``bucket_id``."
 msgstr ""
 
-#, fuzzy
 msgid "See the :ref:`configuration example <vshard-define-spaces>`."
-msgstr "См. :ref:`пример <tap-example>`."
+msgstr ""
 
-#, fuzzy
 msgid "Structure"
-msgstr "Структура"
+msgstr ""
 
-#, fuzzy
 msgid "A sharded cluster in Tarantool consists of:"
-msgstr "Минимальный рабочий сегментированный кластер должен состоять из:"
+msgstr ""
 
-#, fuzzy
 msgid "storages,"
-msgstr "хранилище,"
+msgstr ""
 
-#, fuzzy
 msgid "routers,"
-msgstr "роутеры,"
+msgstr ""
 
-#, fuzzy
 msgid "and a rebalancer."
-msgstr "и ребалансировщик."
+msgstr ""
 
 msgid "Storage"
 msgstr "Хранилище"
 
-#, fuzzy
 msgid ""
 "**Storage** is a node storing a subset of the dataset. Multiple "
 "replicated (for redundancy) storages comprise a **replica set** (also "
 "called **shard**)."
 msgstr ""
-"**Хранилище** (storage) -- это узел, который хранит подмножество набора "
-"данных. Развертывание нескольких реплицируемых хранилищ осуществляется в "
-"виде наборов реплик, чтобы обеспечить резерв (набор реплик также можно "
-"называть шардом или сегментом)."
 
-#, fuzzy
 msgid ""
 "Each storage in a replica set has a role, **master** or **replica**. A "
 "master processes read and write requests. A replica processes read "
 "requests but cannot process write requests."
 msgstr ""
-"**Хранилище** (storage) -- это узел, который хранит подмножество набора "
-"данных. Несколько реплицируемых хранилищ составляют набор реплик. У "
-"каждого хранилища в наборе реплик есть роль: **мастер** или **реплика**. "
-"Мастер обрабатывает запросы на чтение и запись. Реплика обрабатывает "
-"запросы на чтение, но не может обрабатывать запросы на запись."
 
 msgid "Router"
 msgstr "Роутер"
 
-#, fuzzy
 msgid ""
 "**Router** is a standalone software component that routes read and write "
 "requests from the client application to shards."
 msgstr ""
-"**Роутер** (router) -- это автономный компонент ПО, который обеспечивает "
-"маршрутизацию запросов чтения и записи от клиентского приложения к "
-"шардам."
 
 msgid ""
 "All requests from the application come to the sharded cluster through a "
@@ -241,13 +212,11 @@ msgid ""
 "the storages."
 msgstr ""
 
-#, fuzzy
 msgid "The new shard becomes available to the storage layer for rebalancing."
-msgstr "Новый шард становится доступен для балансирования на уровне хранилища."
+msgstr ""
 
-#, fuzzy
 msgid "As a result of rebalancing, one of the vbuckets is moved to the new shard."
-msgstr "В результате балансировки происходит миграция сегментов на новый шард."
+msgstr ""
 
 msgid ""
 "When trying to access the vbucket, a router receives a special error code"
@@ -274,9 +243,8 @@ msgid ""
 "modified."
 msgstr ""
 
-#, fuzzy
 msgid "SELECT requests"
-msgstr "SELECT-запросы"
+msgstr ""
 
 msgid ""
 "Since a storage is not aware of the mapping between a bucket id and a "
@@ -287,9 +255,8 @@ msgid ""
 "calculation."
 msgstr ""
 
-#, fuzzy
 msgid "Calling stored procedures"
-msgstr "Вызов хранимой процедуры"
+msgstr ""
 
 msgid ""
 "There are several ways of calling stored procedures in cluster replica "
@@ -313,27 +280,18 @@ msgstr ""
 msgid "Rebalancer"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "**Rebalancer** is a background rebalancing process that ensures an even "
 "distribution of buckets across the shards. During rebalancing, buckets "
 "are being migrated among replica sets."
 msgstr ""
-"**Балансировщик** представляет собой фоновый процесс балансировки, "
-"который обеспечивает равномерное распределение сегментов по шардам. Во "
-"время балансировки происходит миграция сегментов по наборам реплик."
 
-#, fuzzy
 msgid ""
 "The rebalancer \"wakes up\" periodically and redistributes data from the "
 "most loaded nodes to less loaded nodes. Rebalancing starts if the "
 "**disbalance threshold** of a replica set exceeds a disbalance threshold "
 "specified in the configuration."
 msgstr ""
-"``Балансировщик`` периодически просыпается и перераспределяет данные из "
-"наиболее загруженных узлов в менее загруженные узлы. Балансировка "
-"начинается, когда предел дисбаланса в наборе реплик превышает предел "
-"дисбаланса, указанный в конфигурации."
 
 msgid "The disbalance threshold is calculated as follows:"
 msgstr "Предел дисбаланса рассчитывается следующим образом:"
@@ -472,9 +430,8 @@ msgstr ""
 msgid "``bucket`` – bucket id"
 msgstr "``bucket`` -- идентификатор сегмента"
 
-#, fuzzy
 msgid "``status`` – state of the bucket"
-msgstr "``status`` -- статус сегмента"
+msgstr ""
 
 msgid "``destination`` – UUID of the destination replica set"
 msgstr "``destination`` -- UUID целевого набора реплик"
@@ -721,15 +678,11 @@ msgstr ""
 msgid "**Bucket id**"
 msgstr "**Идентификатор сегмента**"
 
-#, fuzzy
 msgid ""
 "A sharding key defining which bucket belongs to which replica set. A "
 "bucket id may be calculated from a :ref:`hash key <router_api-"
 "bucket_id_strcrc32>`."
 msgstr ""
-"Сегментный ключ, который определяет принадлежность сегмента к "
-"определенному набору реплик. Идентификатор сегмента можно вычислить из "
-":ref:`хеш-ключа <router_api-bucket_id>`."
 
 msgid "**Router**"
 msgstr "**Роутер**"
