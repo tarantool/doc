@@ -127,4 +127,3 @@ script:
 
 .. include:: __results.rst
 
-.. include:: __cxx.rst

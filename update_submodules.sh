@@ -4,10 +4,10 @@ set -x
 
 mkdir -p ~/.ssh/
 ssh-keyscan github.com >> ~/.ssh/known_hosts
-# git submodule init
-# git submodule update
-# git pull --recurse-submodules
-# git submodule update --remote --merge
+git submodule init
+git submodule update
+git pull --recurse-submodules
+git submodule update --remote --merge
 
 project_root=$(pwd)
 echo "${project_root}"
@@ -51,8 +51,7 @@ mkdir -p "${cartridge_kubernetes_dest}"
 yes | cp -rf "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
 
 yes | cp -rf "${tntcxx_root}/doc/tntcxx_getting_started.rst" "${tntcxx_gs_dest}/getting_started_cxx.rst"
-yes | cp -rf "${tntcxx_root}/README.rst" "${tntcxx_gs_dest}/tntcxx_readme.rst"
-yes | cp -rf "${tntcxx_root}/doc/tntcxx_api.rst" "${tntcxx_api_dest}/__cxx.rst"
+yes | cp -rf "${tntcxx_root}/examples/" "${tntcxx_gs_dest}/_includes/"
 
 cd "${cartridge_root}" || exit
 tarantoolctl rocks install \

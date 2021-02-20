@@ -63,5 +63,4 @@ apikey.txt
 # tntcxx submodule
 
 /doc/getting_started/getting_started_cxx.rst
-/doc/getting_started/tntcxx_readme.rst
-/doc/book/connectors/__cxx.rst
+/doc/getting_started/_includes/
