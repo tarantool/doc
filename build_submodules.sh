@@ -2,13 +2,6 @@
 
 set -x
 
-mkdir -p ~/.ssh/
-ssh-keyscan github.com >> ~/.ssh/known_hosts
-git submodule init
-git submodule update
-git pull --recurse-submodules
-git submodule update --remote --merge
-
 project_root=$(pwd)
 echo "${project_root}"
 cartridge_root="${project_root}/modules/cartridge"

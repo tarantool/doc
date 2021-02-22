@@ -59,12 +59,12 @@ a submodule.
 
 .. _guidelines_doc_submodules_update:
 
-2. Update update_submodule.sh
+2. Update build_submodules.sh
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Next, we should define what directories and files are to be copied from
 the submodule repository into the documentation one before building
-documentation. These settings are defined in the ``update_submodule.sh`` file
+documentation. These settings are defined in the ``build_submodules.sh`` file
 which is in the root directory of the documentation repository.
 
 We can take examples of the already existing submodules to show the logic of
@@ -85,7 +85,7 @@ So, we need to:
 *   copy the entire content of the  ``./modules/metrics/doc/monitoring/`` directory to
     ``./doc/book/monitoring/``.
 
-The corresponding lines in the ``update_submodule.sh`` file are the following:
+The corresponding lines in the ``build_submodules.sh`` file are the following:
 
 ..  code-block:: bash
 
@@ -113,7 +113,7 @@ So, we need to:
 *   copy ``./modules/cartridge_cli/README.rst`` to
     ``./doc/book/cartridge/cartridge_cli/index.rst``.
 
-The corresponding settings in the ``update_submodule.sh`` file are the following:
+The corresponding settings in the ``build_submodules.st`` file are the following:
 
 ..  code-block:: bash
 

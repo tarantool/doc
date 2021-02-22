@@ -298,6 +298,20 @@ add_custom_target(epub-ru ALL
     COMMENT "Building Russian epub with Sphinx"
 )
 
+add_custom_target(pull-modules ALL
+    COMMAND /usr/bin/env bash
+        ./pull_submodules.sh
+    COMMENT "Update submodules to their latest commits"
+)
+
+
+add_custom_target(build-modules ALL
+    COMMAND /usr/bin/env bash
+        ./build_submodules.sh
+    COMMENT "Rebuild and copy content from submodules"
+)
+
+
 
 if (LATEX_FOUND)
     add_custom_target(pdf-ru ALL COMMENT "PDF generation")

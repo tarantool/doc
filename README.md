@@ -6,38 +6,67 @@ Tarantool documentation source, published at https://www.tarantool.io/doc/.
 
 ## How to build Tarantool documentation using [Docker](https://www.docker.com)
 
-### Build docker image
+### Prepare for work
+
+First of all, pull the image for building the docs.
 
 ```bash
-docker build -t tarantool-doc-builder .
+docker pull tarantool/doc-builder
 ```
 
-### Build Tarantool documentation using *tarantool-doc-builder* image
-## NOTE: 
-> Run this command only if you don't have untracked files!
-  check it by `git status` 
-  Also failures during git submodule update can be fixed by:
-   ```bash
-   git submodule deinit -f .
-   git submodule update --init
-   ```
+Next, initialize a Makefile for your OS:
 
-Init and update submodules:
 ```bash
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "./update_submodules.sh"
-```
-or do it manually:
-```bash
-git submodule init
-git submodule update
-git pull --recurse-submodules
-git submodule update --remote --merge
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "cmake ."
 ```
 
-Init make commands:
-```bash
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "cmake ."
-```
+### Update submodules and generate documentation sources from code
+
+A big part of documentation sources comes from several other projects,
+connected as Git submodules.
+To include their latest contents in the docs, run these two steps.
+
+1.  Update the submodules:
+
+    ```bash
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make pull-modules"
+    ```
+    
+    This will initialize Git submodules and update them to the top of the stable
+    branch in each repository.
+    
+    You can also do without a Docker container:
+    
+    ```bash
+    git submodule update --init
+    git fetch --recurse-submodules
+    git submodule update --remote --checkout
+    ```
+   
+    `git submodule update` can sometimes fail, for example,
+    when you have changes in submodules' files.
+    You can reinitialize submodules to fix the problem.
+    
+    **Caution:** all untracked changes in submodules will be lost!
+
+        ```bash
+        git submodule deinit -f .
+        git submodule update --init
+        ```
+
+2.  Build the submodules content:
+
+    ```bash
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make build-modules"
+    ```
+    
+    This command will do two things:
+
+    1. Generate documentation source files from the source code
+    2. Copy these files to the right places under the `./doc/` directory.
+
+    If you're editing submodules locally, repeat this step
+    to view the updated results.
 
 Now you're ready to build and preview the documentation locally.
 
@@ -49,7 +78,7 @@ Every time you make changes in the source files, it will rebuild the docs
 and refresh the browser page.
 
 ```bash
-docker run --rm -it -p 8000:8000 -v $(pwd):/doc tarantool-doc-builder sh -c "make autobuild"
+docker run --rm -it -p 8000:8000 -v $(pwd):/doc tarantool/doc-builder sh -c "make autobuild"
 ```
 
 First build will take some time.
@@ -60,8 +89,8 @@ and the browser tab with preview will reload automatically.
 You can also build the docs manually with `make html`,
 and then serve them using python3 built-in server:
 ```bash
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html-ru"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make html"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make html-ru"
 python3 -m http.server --directory output/html
 ```
 
@@ -73,24 +102,23 @@ python -m SimpleHTTPServer
 
 then go to [localhost:8000](http://localhost:8000) in your browser.
 
-
 There are other commands which can run 
-in the *tarantool-doc-builder* container:
+in the *tarantool/doc-builder* container:
 
 ```bash
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html-ru"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make singlehtml"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make singlehtml-ru"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make pdf"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make pdf-ru"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make json"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make json-ru"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make epub"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make epub-ru"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-pot"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-po"
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-po-force"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make html"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make html-ru"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make singlehtml"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make singlehtml-ru"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make pdf"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make pdf-ru"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make json"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make json-ru"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make epub"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make epub-ru"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make update-pot"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make update-po"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make update-po-force"
 ```
 
 ## Localization
@@ -119,7 +147,7 @@ Upload translation sources any time when they have changed:
 
 ```bash
 # first, update the translation sources
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-pot"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make update-pot"
 
 # next, upload them to Crowdin
 crowdin upload 
@@ -138,7 +166,7 @@ Then reformat them to see the real changes.
 
 ```bash
 crowdin download
-docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make reformat-po"
+docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make reformat-po"
 ```
 ## How to contribute
 

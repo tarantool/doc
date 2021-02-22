@@ -19,8 +19,9 @@ jobs:
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_UPDATE_URL}}
     steps:
       - uses: actions/checkout@v2
-      - run: bash update_submodules.sh
       - run: cmake .
+      - run: make pull-modules
+      - run: make build-modules
       - run: make json
       - run: make json-ru
       - run: make singlehtml
