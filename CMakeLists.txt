@@ -71,6 +71,7 @@ set(SPHINX_BUILD_JSON_EN_DIR       "${SPHINX_OUTPUT_DIR}/json/_build_en/doctrees
 set(SPHINX_BUILD_JSON_RU_DIR       "${SPHINX_OUTPUT_DIR}/json/_build_ru/doctrees")
 
 set(SPHINX_EN_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/en/")
+set(SPHINX_EN_AUTOBUILD_DIR        "${SPHINX_OUTPUT_DIR}/html_auto/en/")
 set(SPHINX_RU_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/ru/")
 set(SPHINX_EN_HTML_OLD_DIR         "${SPHINX_OUTPUT_DIR}/html_old/en/")
 set(SPHINX_RU_HTML_OLD_DIR         "${SPHINX_OUTPUT_DIR}/html_old/ru/")
@@ -126,6 +127,19 @@ add_custom_target(singlehtml-website
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_HTML_DIR}"
     COMMENT "Building HTML single-page documentation with Sphinx"
+)
+
+add_custom_target(autobuild
+    COMMAND sphinx-autobuild
+        -b html
+        -d "${SPHINX_BUILD_HTML_DIR}"
+        -c html/
+        --host 0.0.0.0
+        --port 8000
+        -A nolang_path=true
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_EN_AUTOBUILD_DIR}"
+    COMMENT "Build & Live-reload on https://127.0.0.1:8000"
 )
 
 add_custom_target(html-ru ALL

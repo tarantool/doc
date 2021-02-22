@@ -6,6 +6,8 @@
 {%- macro abspath(path) -%}
     {%- if rel_path == "true" -%}
         {{ path }}
+    {%- elif nolang_path == "true" -%}
+        {{ [ "/", path ] | join('') }}
     {%- else -%}
         {{ [ "/", language, "/", path ] | join('') }}
     {%- endif -%}
