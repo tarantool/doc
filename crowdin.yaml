@@ -1,7 +1,7 @@
 # https://support.crowdin.com/configuration-file/
 # https://support.crowdin.com/cli-tool-v3/#configuration
 
-"project_id" : "439138"
+"project_id" : "442986"
 "base_path" : "./locale"
 "base_url": "https://crowdin.com"
 

@@ -1,3 +1,5 @@
+![Crowdin](https://badges.crowdin.net/tarantool-docs/localized.svg)
+
 # Tarantool Documentation
 
 Tarantool documentation source, published at https://www.tarantool.io/doc/.
