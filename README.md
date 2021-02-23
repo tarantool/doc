@@ -78,6 +78,15 @@ Terms:
 
 * **translation files** are the files which match original text to translated text.
   They're located in `locale/ru`.
+  
+We use Crowdin for continuous localization.
+To work with Crowdin CLI, issue an API token in your 
+[account settings](https://crowdin.com/settings#api-key).
+Save it in `~/.crowdin.yml`:
+
+```yaml
+"api_token": "asdfg12345..."
+```
 
 Upload translation sources any time when they have changed:
 
