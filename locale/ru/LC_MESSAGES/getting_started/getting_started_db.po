@@ -830,7 +830,7 @@ msgstr ""
 "Можно посылать запросы ``box.space...:insert{}`` and "
 "``box.space...:select{}`` (или же ``conn.space...:insert{}`` и "
 "``conn.space...:select{}``) неограниченное количество раз на любом из "
-"двух запущенных экземпляров Tarantool."
+"двух экземпляров Tarantool."
 
 msgid "When the testing is over:"
 msgstr "Закончив тестирование, выполните следующие шаги:"
