@@ -91,6 +91,10 @@ Save it in `~/.crowdin.yml`:
 Upload translation sources any time when they have changed:
 
 ```bash
+# first, update the translation sources
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-pot"
+
+# next, upload them to Crowdin
 crowdin upload 
 # or
 crowdin upload sources
@@ -102,10 +106,12 @@ Upload translation files once for each project, to pass the existing translation
 crowdin upload translations --auto-approve-imported --import-eq-suggestions
 ```
 
-Download translations files back when they're done:
+Download translations files back when they're done.
+Then reformat them to see the real changes.
 
 ```bash
 crowdin download
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make reformat-po"
 ```
 ## How to contribute
 

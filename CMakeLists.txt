@@ -239,6 +239,12 @@ add_custom_target(update-po
         rm-fake-msg
 )
 
+add_custom_target(reformat-po
+    COMMAND make
+    add-fake-msg
+    rm-fake-msg
+)
+
 add_custom_target(linkcheck
     COMMAND "${SPHINX_EXECUTABLE}"
         -b linkcheck
