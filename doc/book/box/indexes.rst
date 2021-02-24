@@ -4,7 +4,8 @@ Indexes
 ================================================================================
 
 An **index** is a special data structure that stores a group of key values and
-pointers. It is used for efficient manipulations with data.
+pointers. It is used for efficient manipulations with data
+and should be chosen depending on the task.
 
 As with spaces, you should specify the index **name**, and let Tarantool
 come up with a unique **numeric identifier** ("index id").
@@ -90,13 +91,13 @@ We give an overview of index features in the following table:
             - RTREE
             - BITSET
 
-        *   - unique
+        *   - ``unique``
             - \+
             - \+
             - \-
             - \-
 
-        *   - non-unique
+        *   - ``non-unique``
             - \+
             - \-
             - \+
@@ -108,7 +109,7 @@ We give an overview of index features in the following table:
             - \-
             - \-
 
-        *   - multi-part
+        *   - can be multi-part
             - \+
             - \+
             - \-
@@ -132,7 +133,7 @@ We give an overview of index features in the following table:
             - \-
             - \-
 
-        *   - exclude_null (version 2.8+)
+        *   - ``exclude_null`` (version 2.8+)
             - \+
             - \-
             - \-

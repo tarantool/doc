@@ -385,7 +385,7 @@ Full information is in section
     | ``'string'``                   | :ref:`string <index-box_string>`          | TREE, BITSET or HASH                 |
     | (may also be called ``‘str’``) |                                           |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'varbinary'``                | :ref:`varbinary <index-box_bin>`          | TREE or HASH                         |
+    | ``'varbinary'``                | :ref:`varbinary <index-box_bin>`          | TREE, BITSET or HASH                 |
     +--------------------------------+-------------------------------------------+--------------------------------------+
     | ``'uuid'``                     | :ref:`uuid <index-box_uuid>`              | TREE or HASH                         |
     +--------------------------------+-------------------------------------------+--------------------------------------+
