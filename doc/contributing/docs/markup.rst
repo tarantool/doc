@@ -67,6 +67,17 @@ It's best if all indents are multiples of 4 spaces, even in lists. Otherwise
 the document is not consistent. Also, it is much easier to put indents
 with tabs than manually.
 
+Note that you have to use two or three spaces instead of one.
+It is allowed in rST markup:
+
+..  code-block:: rst
+
+    |...|...|...|...
+    *   unordered list
+    #.  ordered list
+    ..  directive::
+    |...|...|...|...
+
 Example:
 
 ..  literalinclude:: _includes/indentation.rst
@@ -74,7 +85,9 @@ Example:
 
 Resulting output:
 
-..  include:: _includes/indentation.rst
+    ..  include:: _includes/indentation.rst
+        :start-line: 1
+        :end-line: -1
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Code snippets

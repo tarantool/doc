@@ -1,10 +1,16 @@
-#.  list item 1
-#.  list item 2
+|...|...|...|...
+#.  List item 1.
+    Paragraph continues.
 
-    *   nested list item
+    Second paragraph.
+
+#.  List item 2.
+
+    *   Nested list item.
 
         ..  code-block:: bash
 
-            # this is a code block inside a nested list item
+            # this code block is in a nested list item
 
-    *   another nested list item
+    *   Another nested list item.
+|...|...|...|...
