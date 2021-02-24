@@ -8,10 +8,10 @@ On this page:
 * :ref:`create_index() description <box_space-create_index>`
 * :ref:`Details about index field types <details_about_index_field_types>`
 * :ref:`Allowing null for an indexed key <box_space-is_nullable>`
-* :ref:`Using field names instead of field numbers <box_space-field_names>`
-* :ref:`Using the path option for map fields (JSON-indexes) <box_space-path>`
-* :ref:`Using the path option with [*] <box_space-path_multikey>`
-* :ref:`Making a functional index with space_object:create_index() <box_space-index_func>`
+* :ref:`Creating an index using field names instead of field numbers <box_space-field_names>`
+* :ref:`Creating an index using the path option for map fields (JSON-path indexes) <box_space-path>`
+* :ref:`Creating an index using the path option with [*] <box_space-path_multikey>`
+* :ref:`Creating a functional index with space_object:create_index() <box_space-index_func>`
 
 .. class:: space_object
 
@@ -328,7 +328,7 @@ Nulls may appear multiple times even in a unique index. Example:
 .. _box_space-field_names:
 
 --------------------------------------------------------------------------------
-Using field names instead of field numbers
+Creating an index using field names instead of field numbers
 --------------------------------------------------------------------------------
 
 ``create_index()`` can use
@@ -357,7 +357,7 @@ The variations include omitting the type, using numbers, and adding extra braces
 .. _box_space-path:
 
 --------------------------------------------------------------------------------
-Using the path option for map fields (JSON-indexes)
+Creating an index using the path option for map fields (JSON-path indexes)
 --------------------------------------------------------------------------------
 
 To create an index for a field that is a map (a path string and a scalar value),
@@ -394,7 +394,7 @@ secondary indexes must be created before tuples are inserted.
 .. _box_space-path_multikey:
 
 --------------------------------------------------------------------------------
-Using the path option with [*]
+Creating a multikey index using the path option with [*]
 --------------------------------------------------------------------------------
 
 The string in a path option can contain '[*]' which is called
@@ -450,7 +450,7 @@ Some restrictions exist:
 .. _box_space-index_func:
 
 --------------------------------------------------------------------------------
-Making a functional index with space_object:create_index()
+Creating a functional index
 --------------------------------------------------------------------------------
 
 Functional indexes are indexes that call a user-defined function for forming
