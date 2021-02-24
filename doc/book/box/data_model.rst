@@ -74,10 +74,11 @@ An **index** is a group of key values and pointers.
 As with spaces, you should specify the index **name**, and let Tarantool
 come up with a unique **numeric identifier** ("index id").
 
-An index always has a **type**. The default index type is 'TREE'.
+An index always has a **type**. The default index type is :ref:`TREE <indexes-tree>`.
 TREE indexes are provided by all Tarantool engines, can index unique and
 non-unique values, support partial key searches, comparisons and ordered results.
-Additionally, memtx engine supports HASH, RTREE and BITSET indexes.
+Additionally, memtx engine supports :ref:`HASH <indexes-hash>`,
+:ref:`RTREE <indexes-rtree>` and :ref:`BITSET <indexes-bitset>` indexes.
 
 An index may be **multi-part**, that is, you can declare that an index key value
 is composed of two or more fields in the tuple, in any order.

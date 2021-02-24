@@ -145,6 +145,8 @@ We give an overview of index features in the following table:
             - ALL, EQ, GT, GE, LT, LE, OVERLAPS, NEIGHBOR
             - ALL, EQ, BITS_ALL_SET, BITS_ANY_SET, BITS_ALL_NOT_SET
 
+.. _indexes-tree:
+
 ********************************************************************************
 TREE indexes
 ********************************************************************************
@@ -156,6 +158,8 @@ non-unique values, support partial key searches, comparisons and ordered results
 This is a universal type of indexes, for most cases it will be the best choice.
 
 Additionally, memtx engine supports HASH, RTREE and BITSET indexes.
+
+.. _indexes-hash:
 
 ********************************************************************************
 HASH indexes
@@ -180,6 +184,8 @@ Use HASH index:
 * if you really need that 2-5% performance improvement
 * if you have taken measurements on your data and you see an increase in performance
 * if you save every byte on tuples (HASH is a little more compact)
+
+.. _indexes-rtree:
 
 ********************************************************************************
 RTREE indexes
@@ -287,6 +293,7 @@ Iterator GT searches for tuples with a specified rectangle strictly within their
     ---
     - []
     ...
+
 Iterator OVERLAPS searches for tuples with their rectangles overlapping specified rectangle:
 
 ..  code-block:: tarantoolsession
@@ -375,12 +382,15 @@ Here's short example of using 4D tree:
     This leads to silent EQ select, because ``LE`` is undefined variable and
     treated as nil, so iterator is unset and default used.
 
+.. _indexes-bitset:
+
 ********************************************************************************
 BITSET indexes
 ********************************************************************************
 
 Bitset is a bit mask. You should use it when you need to search by bit masks.
-This can be, for example, storing a vector of attributes and searching by these attributes.
+This can be, for example, storing a vector of attributes and searching by these
+attributes.
 
 **Example 1:**
 
@@ -461,7 +471,8 @@ They can only be used with code in Lua and C/C++. Index iterators are for
 traversing indexes one key at a time, taking advantage of features that are
 specific to an index type.
 For example, they can be used for evaluating Boolean expressions when
-traversing BITSET indexes, or for going in descending order when traversing TREE indexes.
+traversing BITSET indexes, or for going in descending order when traversing TREE
+indexes.
 
 .. _index-box_index-operations:
 
@@ -472,7 +483,8 @@ Index operations
 Index operations are automatic: if a data-manipulation request changes a tuple,
 then it also changes the index keys defined for the tuple.
 
-The simple index-creation operation that we've illustrated before is:
+The simple :doc:`index-creation </reference/reference_lua/box_space/create_index>`
+operation that we've illustrated before is:
 
 ..  cssclass:: highlight
 ..  parsed-literal::
@@ -482,7 +494,8 @@ The simple index-creation operation that we've illustrated before is:
 This creates a unique TREE index on the first field of all tuples
 (often called "Field#1"), which is assumed to be numeric.
 
-The simple SELECT request that we've illustrated before is:
+The simple :doc:`SELECT </reference/reference_lua/box_index/select>` request
+that we've illustrated before is:
 
 ..  cssclass:: highlight
 ..  parsed-literal::
@@ -490,11 +503,12 @@ The simple SELECT request that we've illustrated before is:
     :extsamp:`box.space.{*{space-name}*}:select({*{value}*})`
 
 This looks for a single tuple via the first index. Since the first index
-is always unique, the maximum number of returned tuples will be: one.
+is always unique, the maximum number of returned tuples will be 1.
 You can call ``select()`` without arguments, and it will return all tuples.
 
 Let's continue working with the space 'tester' created in the :ref:`"Getting
-started" exercises <getting_started_db>` but first modify it:
+started" exercises <getting_started_db>` but first modify it via
+:doc:`format() </reference/reference_lua/box_space/format>`:
 
 ..  code-block:: tarantoolsession
 
@@ -506,7 +520,8 @@ started" exercises <getting_started_db>` but first modify it:
     ---
     ...
 
-Add the rate to the tuple #1 and #2:
+Add the rate to the tuple #1 and #2 via
+:doc:`update function </reference/reference_lua/box_index/update>`:
 
 ..  code-block:: tarantoolsession
 
@@ -519,8 +534,7 @@ Add the rate to the tuple #1 and #2:
     - [2, 'Scorpions', 2015, 4]
     ...
 
-
-And insert another tuple:
+And :doc:`insert </reference/reference_lua/box_space/insert>` another tuple:
 
 ..  code-block:: tarantoolsession
 
@@ -545,7 +559,7 @@ And insert another tuple:
     The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT
     (for "less than", "less than or equal", "equal", "reversed equal",
     "greater than or equal", "greater than" respectively).
-    Comparisons make sense if and only if the index type is 'TREE'.
+    Comparisons make sense if and only if the index type is TREE.
 
     This type of search may return more than one tuple; if so, the tuples will be
     in descending order by key when the comparison operator is LT or LE or REQ,
