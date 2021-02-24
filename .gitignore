@@ -60,3 +60,7 @@ apikey.txt
 /locale/ru/LC_MESSAGES/reference/reference_rock/luatest/modules/
 /locale/ru/LC_MESSAGES/reference/reference_rock/luatest/classes/
 
+# tntcxx submodule
+
+/doc/getting_started/getting_started_cxx.rst
+/doc/getting_started/_includes/
