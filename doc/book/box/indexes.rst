@@ -91,13 +91,13 @@ We give an overview of index features in the following table:
             - RTREE
             - BITSET
 
-        *   - ``unique``
+        *   - unique
             - \+
             - \+
             - \-
             - \-
 
-        *   - ``non-unique``
+        *   - non-unique
             - \+
             - \-
             - \+
