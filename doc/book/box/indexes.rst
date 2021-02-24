@@ -3,7 +3,7 @@
 Indexes
 ================================================================================
 
-An **index** is special data structure that stores a group of key values and
+An **index** is a special data structure that stores a group of key values and
 pointers. It is used for efficient manipulations with data.
 
 As with spaces, you should specify the index **name**, and let Tarantool
@@ -36,7 +36,7 @@ An index definition may include identifiers of tuple fields and their expected
     A recommended design pattern for a data model is to base primary keys on the
     first fields of a tuple, because this speeds up tuple comparison.
 
-Let's look on an example where we first define the primary index (named 'primary')
+Let's look at an example where we first define the primary index (named 'primary')
 based on field #1 of each tuple:
 
 ..  code-block:: tarantoolsession
@@ -177,17 +177,17 @@ Use HASH index:
 * if it is a secondary key
 * if you 100% won't need to make it non-unique
 * if you really need that 2-5% performance improvement
-* if you have taken measurements on your data and you see this increase in performance
+* if you have taken measurements on your data and you see an increase in performance
 * if you save every byte on tuples (HASH is a little more compact)
 
 ********************************************************************************
 RTREE indexes
 ********************************************************************************
 
-RTREE is a multidimensional index supporting up to 32 number of dimensions.
-It is used especially for indexing spacial information, such as geographical
+RTREE is a multidimensional index supporting up to 32 dimensions.
+It is used especially for indexing spatial information, such as geographical
 objects. In :ref:`this example <box_index-rtree>`
-we demonstrate spacial searches via RTREE index.
+we demonstrate spatial searches via RTREE index.
 
 RTREE index can accept two types of ``distance`` functions:
 ``euclid`` and ``manhattan``.
@@ -219,11 +219,11 @@ BITSET indexes
 ********************************************************************************
 
 Bitset is a bit mask. You should use it when you need to search by bit masks.
-This can be, for example, storing a vector of attributes and search by these attributes.
+This can be, for example, storing a vector of attributes and searching by these attributes.
 
 **Example 1:**
 
-The following script shows creation and search with a BITSET index.
+The following script shows creating and searching with a BITSET index.
 Notice that BITSET cannot be unique, so first a primary-key index is created,
 and bit values are entered as hexadecimal literals for easier reading.
 
@@ -298,8 +298,9 @@ Additionally, there exist
 :doc:`index iterator operations </reference/reference_lua/box_index/pairs>`.
 They can only be used with code in Lua and C/C++. Index iterators are for
 traversing indexes one key at a time, taking advantage of features that are
-specific to an index type, for example evaluating Boolean expressions when
-traversing BITSET indexes, or going in descending order when traversing TREE indexes.
+specific to an index type.
+For example, they can be used for evaluating Boolean expressions when
+traversing BITSET indexes, or for going in descending order when traversing TREE indexes.
 
 .. _index-box_index-operations:
 
@@ -312,8 +313,8 @@ then it also changes the index keys defined for the tuple.
 
 The simple index-creation operation that we've illustrated before is:
 
-.. cssclass:: highlight
-.. parsed-literal::
+..  cssclass:: highlight
+..  parsed-literal::
 
     :samp:`box.space.{space-name}:create_index('{index-name}')`
 
@@ -322,14 +323,14 @@ This creates a unique TREE index on the first field of all tuples
 
 The simple SELECT request that we've illustrated before is:
 
-.. cssclass:: highlight
-.. parsed-literal::
+..  cssclass:: highlight
+..  parsed-literal::
 
     :extsamp:`box.space.{*{space-name}*}:select({*{value}*})`
 
 This looks for a single tuple via the first index. Since the first index
 is always unique, the maximum number of returned tuples will be: one.
-You can call ``select()`` without arguments, causing all tuples to be returned.
+You can call ``select()`` without arguments, and it will return all tuples.
 
 Let's continue working with the space 'tester' created in the :ref:`"Getting
 started" exercises <getting_started_db>` but first modify it:
@@ -383,7 +384,7 @@ And insert another tuple:
 The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT
 (for "less than", "less than or equal", "equal", "reversed equal",
 "greater than or equal", "greater than" respectively).
-Comparisons make sense if and only if the index type is ‘TREE'.
+Comparisons make sense if and only if the index type is 'TREE'.
 
 This type of search may return more than one tuple; if so, the tuples will be
 in descending order by key when the comparison operator is LT or LE or REQ,
