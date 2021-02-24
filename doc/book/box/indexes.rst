@@ -184,35 +184,195 @@ Use HASH index:
 RTREE indexes
 ********************************************************************************
 
-RTREE is a multidimensional index supporting up to 32 dimensions.
+RTREE is a multidimensional index supporting up to 20 dimensions.
 It is used especially for indexing spatial information, such as geographical
-objects. In :ref:`this example <box_index-rtree>`
-we demonstrate spatial searches via RTREE index.
+objects. In :ref:`this example <box_index-rtree>` we demonstrate spatial searches
+via RTREE index.
 
-RTREE index can accept two types of ``distance`` functions:
-``euclid`` and ``manhattan``.
+RTREE index could not be primary, and could not be unique.
+The option list of this type of index may contain ``dimension`` and ``distance`` options.
+The ``parts`` definition must contain the one and only part with type ``array``.
+RTREE index can accept two types of ``distance`` functions: ``euclid`` and ``manhattan``.
 
-**Example:**
+**Example 1:**
+
+..  code-block:: lua
+
+    s = box.schema.create_space("test")
+    i = s:create_index('primary', { type = 'HASH', parts = {1, 'num'} })
+    r = s:create_index('spatial', { type = 'RTREE', unique = false, parts = {2, 'array'} })
+
+Corresponding tuple field thus must be an array of 2 or 4 numbers.
+2 numbers mean a point {x, y};
+4 numbers mean a rectangle {x1, y1, x2, y2},
+where (x1, y1) and (x2, y2) - diagonal point of the rectangle.
+
+..  code-block:: lua
+
+    s:insert{1, {1, 1}}
+    s:insert{2, {2, 2, 3, 3}}
+
+Selection results depend on a chosen iterator.
+The default EQ iterator searches for an exact rectangle,
+a point is treated as zero width and height rectangle:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> box.schema.space.create('rtree_example')
-    tarantool> box.space.rtree_example:create_index('primary')
-    tarantool> box.space.rtree_example:create_index('rtree',{unique=false,type='RTREE', parts={2,'ARRAY'}})
-    tarantool> box.space.rtree_example:insert{1, {3, 5, 9, 10}}
-    tarantool> box.space.rtree_example:insert{2, {10, 11}}
-    tarantool> box.space.rtree_example.index.rtree:select({4, 7, 5, 9}, {iterator = 'GT'})
-
-The result will be:
-
-..  code-block:: tarantoolsession
-
+    tarantool> r:select{1, 1}
     ---
-    - - [1, [3, 5, 9, 10]]
+    - - [1, [1, 1]]
     ...
 
-because a rectangle whose corners are at coordinates ``4,7,5,9`` is entirely
-within a rectangle whose corners are at coordinates ``3,5,9,10``.
+    tarantool> r:select{1, 1, 1, 1}
+    ---
+    - - [1, [1, 1]]
+    ...
+
+    tarantool> r:select{2, 2}
+    ---
+    - []
+    ...
+
+    tarantool> r:select{2, 2, 3, 3}
+    ---
+    - - [2, [2, 2, 3, 3]]
+    ...
+
+Iterator ALL, which is the default when no key is specified,
+selects all tuples in arbitrary order:
+
+..  code-block:: tarantoolsession
+
+    tarantool> r:select{}
+    ---
+    - - [1, [1, 1]]
+      - [2, [2, 2, 3, 3]]
+    ...
+
+Iterator LE (less or equal) searches for tuples with their rectangles
+within a specified rectangle:
+
+..  code-block:: tarantoolsession
+
+    tarantool> r:select({1, 1, 2, 2}, {iterator='le'})
+    ---
+    - - [1, [1, 1]]
+    ...
+
+Iterator LT (less than, or strictly less) searches for tuples
+with their rectangles strictly within a specified rectangle:
+
+..  code-block:: tarantoolsession
+
+    tarantool> r:select({0, 0, 3, 3}, {iterator='lt'})
+    ---
+    - - [1, [1, 1]]
+    ...
+
+Iterator GE searches for tuples with a specified rectangle within their rectangles:
+
+..  code-block:: tarantoolsession
+
+    tarantool> r:select({1, 1}, {iterator='ge'})
+    ---
+    - - [1, [1, 1]]
+    ...
+
+Iterator GT searches for tuples with a specified rectangle strictly within their rectangles:
+
+..  code-block:: tarantoolsession
+
+    tarantool> r:select({2.1, 2.1, 2.9, 2.9}, {itearator='gt'})
+    ---
+    - []
+    ...
+Iterator OVERLAPS searches for tuples with their rectangles overlapping specified rectangle:
+
+..  code-block:: tarantoolsession
+
+    tarantool> r:select({0, 0, 10, 2}, {iterator='overlaps'})
+    ---
+    - - [1, [1, 1]]
+      - [2, [2, 2, 3, 3]]
+    ...
+
+Iterator NEIGHBOR searches for all tuples and orders them by distance to the specified point:
+
+..  code-block:: tarantoolsession
+
+    tarantool> for i=1,10 do
+             >    for j=1,10 do
+             >        s:insert{i*10+j, {i, j, i+1, j+1}}
+             >    end
+             > end
+    ---
+    ...
+
+    tarantool> r:select({1, 1}, {iterator='neighbor', limit=5})
+    ---
+    - - [11, [1, 1, 2, 2]]
+      - [12, [1, 2, 2, 3]]
+      - [21, [2, 1, 3, 2]]
+      - [22, [2, 2, 3, 3]]
+      - [31, [3, 1, 4, 2]]
+    ...
+
+**Example 2:**
+
+3D, 4D and more dimensional RTREE indexes work in the same way as 2D except
+that user must specify more coordinates in requests.
+Here's short example of using 4D tree:
+
+..  code-block:: tarantoolsession
+
+    tarantool> s = box.schema.create_space('test')
+    ---
+    ...
+
+    tarantool> i = s:create_index('primary', { type = 'HASH', parts = {1, 'num'} })
+    ---
+    ...
+
+    tarantool> r = s:create_index('spatial', { type = 'RTREE', unique = false, dimension = 4, parts = {2, 'array'} })
+    ---
+    ...
+
+    tarantool> s:insert{1, {1, 2, 3, 4}} -- insert 4D point
+    ---
+    - [1, [1, 2, 3, 4]]
+    ...
+
+    tarantool> s:insert{2, {1, 1, 1, 1, 2, 2, 2, 2}} -- insert 4D box
+    ---
+    - [2, [1, 1, 1, 1, 2, 2, 2, 2]]
+    ...
+
+    tarantool> r:select{1, 2, 3, 4} -- find exact point
+    ---
+    - - [1, [1, 2, 3, 4]]
+    ...
+
+    tarantool> r:select({0, 0, 0, 0, 3, 3, 3, 3}, {iterator = 'LE'}) -- select from 4D box
+    ---
+    - - [2, [1, 1, 1, 1, 2, 2, 2, 2]]
+    ...
+
+    tarantool> r:select({0, 0, 0, 0}, {iterator = 'neighbor'}) -- select neighbours
+    ---
+    - - [2, [1, 1, 1, 1, 2, 2, 2, 2]]
+      - [1, [1, 2, 3, 4]]
+    ...
+
+..  NOTE::
+
+    Don't forget that select NEIGHBOR iterator without limit
+    extract entire space in order of increasing distance and
+    that could be tons of data with corresponding performance.
+
+    And another frequent mistake is to specify iterator type without quotes,
+    in such way: ``r:select(rect, {iterator = LE})``.
+    This leads to silent EQ select, because ``LE`` is undefined variable and
+    treated as nil, so iterator is unset and default used.
 
 ********************************************************************************
 BITSET indexes
