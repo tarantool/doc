@@ -8,41 +8,25 @@ Triggers
 **Triggers**, also known as **callbacks**, are functions which the server
 executes when certain events happen.
 
-There are following types of triggers in Tarantool:
+To associate an event with a callback,
+one should pass the callback to the corresponding "on_event" function:
 
-* :ref:`box.session.on_connect() <box_session-on_connect>` or
-  :ref:`box.session.on_disconnect() <box_session-on_disconnect>`,
-* :ref:`box.session.on_auth() <box_session-on_auth>`,
-* :ref:`space_object:on_replace() <box_space-on_replace>` or
-  :ref:`space_object:before_replace() <box_space-before_replace>`,
-* :ref:`box.on_commit() <box-on_commit>` or
-  :ref:`box.on_rollback() <box-on_rollback>`,
+* :doc:`/reference/reference_lua/box_session/on_connect` or
+  :doc:`/reference/reference_lua/box_session/on_disconnect`,
+* :doc:`/reference/reference_lua/box_session/on_auth`,
+* :doc:`/reference/reference_lua/box_space/on_replace` or
+  :doc:`/reference/reference_lua/box_space/before_replace`,
+* :doc:`/reference/reference_lua/box_txn_management/on_commit` or
+  :doc:`/reference/reference_lua/box_txn_management/on_rollback`,
 * :ref:`net.box.on_connect() <net_box-on_connect>` or
   :ref:`net.box.on_disconnect() <net_box-on_disconnect>`,
 * :ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`,
-* :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` or
-  :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`,
-* :ref:`swim_object:on_member_event() <swim-on_member_event>`.
+* :doc:`/reference/reference_lua/box_ctl/on_schema_init` or
+  :doc:`/reference/reference_lua/box_ctl/on_shutdown`,
+* :ref:`swim_object:on_member_event() <swim-on_member_event>`,
+* :doc:`/reference/reference_lua/box_session/on_access_denied`.
 
 All triggers have the following characteristics:
-
-* Triggers associate a function with an event.
-  The request to "define a trigger" implies passing the
-  trigger's function to one of the "on_event()" functions:
-
-  * :ref:`box.session.on_connect() <box_session-on_connect>` or
-    :ref:`box.session.on_disconnect() <box_session-on_disconnect>`,
-  * :ref:`box.session.on_auth() <box_session-on_auth>`,
-  * :ref:`net.box.on_connect() <net_box-on_connect>` or
-    :ref:`net.box.on_disconnect() <net_box-on_disconnect>`,
-  * :ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`,
-  * :ref:`space_object:on_replace() <box_space-on_replace>` or
-    :ref:`space_object:before_replace() <box_space-before_replace>`,
-  * :ref:`box.on_commit() <box-on_commit>` or
-    :ref:`box.on_rollback() <box-on_rollback>`,
-  * :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` or
-    :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>`,
-  * :ref:`swim_object:on_member_event() <swim-on_member_event>`.
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
 
@@ -68,9 +52,9 @@ All triggers have the following characteristics:
 
 * Triggers are replaceable. The request to "redefine a trigger" implies
   passing a new trigger function and an old trigger function
-  to one of the "on_event()" functions.
+  to one of the "on_event" functions.
 
-* The "on_event()" functions all have parameters which are function
+* The "on_event" functions all have parameters which are function
   pointers, and they all return function pointers. Remember that a Lua
   function definition such as ``function f() x = x + 1 end`` is the same
   as ``f = function () x = x + 1 end`` - in both cases ``f`` gets a function pointer.
@@ -78,7 +62,7 @@ All triggers have the following characteristics:
   ``trigger = box.session.on_connect(function () x = x + 1 end)`` - in both cases
   ``trigger`` gets the function pointer which was passed.
 
-* You can call any "on_event()" function with no arguments to get a list of its
+* You can call any "on_event" function with no arguments to get a list of its
   triggers. For example, use ``box.session.on_connect()`` to return a table of all
   connect-trigger functions.
 
