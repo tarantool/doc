@@ -26,6 +26,9 @@ one should pass the callback to the corresponding "on_event" function:
 * :ref:`swim_object:on_member_event() <swim-on_member_event>`,
 * :doc:`/reference/reference_lua/box_session/on_access_denied`.
 
+Then the server will store the callback function and call it
+when the corresponding event happens.
+
 All triggers have the following characteristics:
 
 * Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`.
