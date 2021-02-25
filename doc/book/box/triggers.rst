@@ -9,7 +9,7 @@ Triggers
 executes when certain events happen.
 
 To associate an event with a callback,
-one should pass the callback to the corresponding "on_event" function:
+one should pass the callback to the corresponding :samp:`on_{event}` function:
 
 * :doc:`/reference/reference_lua/box_session/on_connect` or
   :doc:`/reference/reference_lua/box_session/on_disconnect`,
@@ -55,9 +55,9 @@ All triggers have the following characteristics:
 
 * Triggers are replaceable. The request to "redefine a trigger" implies
   passing a new trigger function and an old trigger function
-  to one of the "on_event" functions.
+  to one of the :samp:`on_{event}` functions.
 
-* The "on_event" functions all have parameters which are function
+* The :samp:`on_{event}` functions all have parameters which are function
   pointers, and they all return function pointers. Remember that a Lua
   function definition such as ``function f() x = x + 1 end`` is the same
   as ``f = function () x = x + 1 end`` - in both cases ``f`` gets a function pointer.
@@ -65,9 +65,9 @@ All triggers have the following characteristics:
   ``trigger = box.session.on_connect(function () x = x + 1 end)`` - in both cases
   ``trigger`` gets the function pointer which was passed.
 
-* You can call any "on_event" function with no arguments to get a list of its
-  triggers. For example, use ``box.session.on_connect()`` to return a table of all
-  connect-trigger functions.
+* You can call any :samp:`on_{event}` function with no arguments to get a list
+  of its triggers. For example, use ``box.session.on_connect()`` to return
+  a table of all connect-trigger functions.
 
 * Triggers can be useful in solving problems with replication. See details in
   :ref:`Resolving replication conflicts <replication-problem_solving>`.
