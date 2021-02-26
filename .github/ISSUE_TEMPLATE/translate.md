@@ -1,7 +1,7 @@
 ---
 name: Translate
 about: Translation issue
-title: [0sp] Translate
+title: "[0sp] Translate"
 labels: localization
 assignees: ladyune
 
