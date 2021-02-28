@@ -176,7 +176,7 @@ to ``Update``, but creates a new tuple if the old one was not found.
 
     resp, err = conn.Upsert("tester", []interface{}{4, "Another band", 2000}, []interface{}{[]interface{}{"+", 2, 5}})
 
-This increases by 5 the value of the third field in the tuple with ``id`` = 4, -- or
+This increases by 5 the value of the third field in the tuple with ``id`` = 4 or
 inserts the tuple ``(4, "Another band", 2000)`` if a tuple with this ``id``
 doesn't exist.
 
