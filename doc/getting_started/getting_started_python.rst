@@ -155,7 +155,7 @@ Update a field value using ``update``:
     >>> tester.update(4, [('=', 1, 'New group'), ('+', 2, 2)])
 
 This updates the value of field ``1`` and increases the value of field ``2``
-in the tuple with ``id`` = 4. If a tuple with this ``id`` doesn't exist,
+in the tuple with ``id = 4``. If a tuple with this ``id`` doesn't exist,
 Tarantool will return an error.
 
 Now use ``replace`` to totally replace the tuple that matches the
@@ -173,7 +173,7 @@ to ``update``, but creates a new tuple if the old one was not found.
 
     >>> tester.upsert((4, 'Another band', 2000), [('+', 2, 5)])
 
-This increases by 5 the value of field ``2`` in the tuple with ``id`` = 4 or
+This increases by 5 the value of field ``2`` in the tuple with ``id = 4``, or
 inserts the tuple ``(4, "Another band", 2000)`` if a tuple with this ``id``
 doesn't exist.
 
