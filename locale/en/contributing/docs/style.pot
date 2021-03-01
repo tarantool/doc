@@ -20,6 +20,36 @@ msgstr ""
 msgid "Correct usage: \"Replication allows multiple Tarantool *instances* to work on copies of the same databases.\""
 msgstr ""
 
+msgid "Express one idea in a sentence"
+msgstr ""
+
+msgid "Say exactly one thing in a sentence. If you want to define or clarify something, do it in a separate sentence. Simple sentences are easier to read, understand and translate."
+msgstr ""
+
+msgid "Don't"
+msgstr ""
+
+msgid "Do"
+msgstr ""
+
+msgid "Dogs (I have three of them) are my favourite animals. Their names are Ace, Bingo and Charm; Charm is the youngest one."
+msgstr ""
+
+msgid "Dogs are my favourite animals. I have three of them. Their names are Ace, Bingo and Charm. Charm is the youngest one."
+msgstr ""
+
+msgid "memtx (the in-memory storage engine) is the default and was the first to arrive."
+msgstr ""
+
+msgid "memtx is an in-memory storage engine. It is the default and was the first to arrive."
+msgstr ""
+
+msgid "A replica set from which the bucket is being migrated is called a source; a target replica set to which the bucket is being migrated is called a destination."
+msgstr ""
+
+msgid "A replica set from which the bucket is being migrated is called a source. A target replica set to which the bucket is being migrated is called a destination."
+msgstr ""
+
 msgid "Don't use i.e. and e.g."
 msgstr ""
 
