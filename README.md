@@ -7,6 +7,7 @@ Tarantool documentation source, published at https://www.tarantool.io/doc/.
 ## How to build Tarantool documentation using [Docker](https://www.docker.com)
 
 ### Build docker image
+
 ```bash
 docker build -t tarantool-doc-builder .
 ```
@@ -38,7 +39,44 @@ Init make commands:
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "cmake ."
 ```
 
-Run a required make command inside *tarantool-doc-builder* container:
+Now you're ready to build and preview the documentation locally.
+
+### Build and run the documentation on your machine
+
+When editing the documentation, you can set up a live-reload server.
+It will build your documentation and serve it on [127.0.0.1:8000](http://127.0.0.1:8000).
+Every time you make changes in the source files, it will rebuild the docs
+and refresh the browser page.
+
+```bash
+docker run --rm -it -p 8000:8000 -v $(pwd):/doc tarantool-doc-builder sh -c "make autobuild"
+```
+
+First build will take some time.
+When it's done, open [127.0.0.1:8000](http://127.0.0.1:8000) in the browser.
+Now when you make changes, they will be rebuilt in a few seconds,
+and the browser tab with preview will reload automatically.
+
+You can also build the docs manually with `make html`,
+and then serve them using python3 built-in server:
+```bash
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html"
+docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html-ru"
+python3 -m http.server --directory output/html
+```
+
+or python2 built-in server:
+```bash
+cd output/html
+python -m SimpleHTTPServer
+```
+
+then go to [localhost:8000](http://localhost:8000) in your browser.
+
+
+There are other commands which can run 
+in the *tarantool-doc-builder* container:
+
 ```bash
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html"
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make html-ru"
@@ -54,19 +92,6 @@ docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-pot"
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-po"
 docker run --rm -it -v $(pwd):/doc tarantool-doc-builder sh -c "make update-po-force"
 ```
-
-### Run documentation locally on your machine
-using python3 built-in server:
-```bash
-cd output/html
-python3 -m http.server
-```
-or python2 built-in server:
-```bash
-cd output/html
-python -m SimpleHTTPServer
-```
-then go to [localhost:8000](http://localhost:8000) in your browser.
 
 ## Localization
 
