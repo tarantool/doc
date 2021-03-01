@@ -259,7 +259,7 @@ msgid ""
 "The final thing to do before you can run the application is to add your "
 "role to the list of available cluster roles in the ``init.lua`` file."
 msgstr ""
-"Последнее, что осталось сделать -- это добавить ваше роль в список "
+"Последнее, что осталось сделать — это добавить вашу роль в список "
 "доступных ролей кластера, в файл ``init.lua``."
 
 msgid ""
