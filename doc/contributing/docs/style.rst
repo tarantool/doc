@@ -23,6 +23,44 @@ of the same databases."
 Correct usage: "Replication allows multiple Tarantool *instances* to work on
 copies of the same databases."
 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Express one idea in a sentence
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Say exactly one thing in a sentence.
+If you want to define or clarify something, do it in a separate sentence.
+Simple sentences are easier to read, understand and translate.
+
+..  rst-class:: table-example
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    ..  list-table::
+        :header-rows: 1
+
+        *   -   Don't
+            -   Do
+
+        *   -   Dogs (I have three of them) are my favourite animals.
+                Their names are Ace, Bingo and Charm; Charm is the youngest one.
+
+            -   Dogs are my favourite animals.
+                I have three of them.
+                Their names are Ace, Bingo and Charm.
+                Charm is the youngest one.
+
+        *   -   memtx (the in-memory storage engine) is the default and was the first to arrive.
+            -   memtx is an in-memory storage engine.
+                It is the default and was the first to arrive.
+
+        *   -   A replica set from which the bucket is being migrated is called a source;
+                a target replica set to which the bucket is being migrated is called a destination.
+            -   A replica set from which the bucket is being migrated is called a source.
+                A target replica set to which the bucket is being migrated is called a destination.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Don't use i.e. and e.g.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
