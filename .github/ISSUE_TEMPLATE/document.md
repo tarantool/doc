@@ -23,7 +23,7 @@ Fill in whatever you know at the moment.
 *   Examples of code and configuration.
 *   Related development issues and/or commits.
 
-# DoD
+# Definition of done
 
 - [ ] do A
 - [ ] do B

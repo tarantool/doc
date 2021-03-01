@@ -9,7 +9,7 @@ assignees:
 
 **Reviewer:** @ documentarian name
 
-# DoD
+# Definition of done
 
 - [ ] do A
 - [ ] do B
