@@ -38,11 +38,11 @@ the preferences can differ. But strategically the steps are always the same.
      option in step 5. For all platforms, this is ``python`` version 2.7+
      (but not 3.x). You need the following Python modules:
 
-       * `pyyaml <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
-       * `argparse <https://pypi.python.org/pypi/argparse>`_ version 1.1
-       * `msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6
-       * `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1.2
-       * `six <https://pypi.python.org/pypi/six>`_ version 1.8.0
+     * `pyyaml <https://pypi.python.org/pypi/PyYAML>`_ version 3.10
+     * `argparse <https://pypi.python.org/pypi/argparse>`_ version 1.1
+     * `msgpack-python <https://pypi.python.org/pypi/msgpack-python>`_ version 0.4.6
+     * `gevent <https://pypi.python.org/pypi/gevent>`_ version 1.1.2
+     * `six <https://pypi.python.org/pypi/six>`_ version 1.8.0
 
    To install all required dependencies, follow the instructions for your OS:
 
@@ -50,23 +50,23 @@ the preferences can differ. But strategically the steps are always the same.
 
      .. code-block:: console
 
-        $ apt install -y build-essential cmake make coreutils sed \
+        $ apt install -y build-essential git cmake make coreutils sed \
               autoconf automake libtool zlib1g-dev \
               libreadline-dev libncurses5-dev libssl-dev \
               libunwind-dev libicu-dev \
               python python-pip python-setuptools python-dev \
-              python-msgpack python-yaml python-argparse python-six python-gevent
+              python-msgpack python-yaml python-six python-gevent
 
    * For RHEL/CentOS (versions under 8)/Fedora, say:
 
      .. code-block:: console
 
-         $ yum install -y gcc gcc-c++ cmake make coreutils sed \
+         $ yum install -y gcc gcc-c++ git cmake make coreutils sed \
                autoconf automake libtool zlib-devel \
                readline-devel ncurses-devel openssl-devel \
                libunwind-devel libicu-devel \
                python python-pip python-setuptools python-devel \
-               python-msgpack python-yaml python-argparse python-six python-gevent
+               python-msgpack python-yaml python-six python-gevent
 
    * For CentOS 8, say:
 
@@ -74,7 +74,7 @@ the preferences can differ. But strategically the steps are always the same.
 
          $ yum install epel-release
          $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | sudo bash
-         $ yum install -y gcc gcc-c++ cmake make coreutils sed \
+         $ yum install -y gcc gcc-c++ git cmake make coreutils sed \
                autoconf automake libtool zlib-devel \
                readline-devel ncurses-devel openssl-devel \
                libunwind-devel libicu-devel \
@@ -87,11 +87,11 @@ the preferences can differ. But strategically the steps are always the same.
 
      .. code-block:: console
 
-         $ brew install cmake make autoconf binutils zlib \
+         $ brew install cmake make git autoconf binutils zlib \
                 autoconf automake libtool \
                 readline ncurses openssl libunwind-headers icu4c \
                 && pip install python-daemon \
-                msgpack-python pyyaml configargparse six gevent
+                msgpack-python pyyaml six gevent
 
      .. NOTE::
 
@@ -112,7 +112,7 @@ the preferences can differ. But strategically the steps are always the same.
                autoconf automake libtool \
                readline ncurses openssl libunwind icu \
                python27 py27-pip py27-setuptools py27-daemon \
-               py27-msgpack py27-yaml py27-argparse py27-six py27-gevent
+               py27-msgpack py27-yaml py27-six py27-gevent
 
    If some Python modules are not available in a repository,
    it is best to set up the modules by getting a tarball and
