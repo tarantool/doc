@@ -130,7 +130,7 @@ To select a tuple from a space, use
 
     resp, err = conn.Select("tester", "primary", 0, 1, tarantool.IterEq, []interface{}{4})
 
-This selects a tuple by the primary key with ``offset`` = 0 and ``limit`` = 1
+This selects a tuple by the primary key with ``offset = 0`` and ``limit = 1``
 from a space named ``tester`` (in our example, this is the index named ``primary``,
 based on the ``id`` field of each tuple).
 
@@ -158,7 +158,7 @@ Update a field value using ``Update``:
 
     resp, err = conn.Update("tester", "primary", []interface{}{4}, []interface{}{[]interface{}{"+", 2, 3}})
 
-This increases by 3 the value of field ``2`` in the tuple with ``id`` = 4.
+This increases by 3 the value of field ``2`` in the tuple with ``id = 4``.
 If a tuple with this ``id`` doesn't exist, Tarantool will return an error.
 
 Now use ``Replace`` to totally replace the tuple that matches the
@@ -176,7 +176,7 @@ to ``Update``, but creates a new tuple if the old one was not found.
 
     resp, err = conn.Upsert("tester", []interface{}{4, "Another band", 2000}, []interface{}{[]interface{}{"+", 2, 5}})
 
-This increases by 5 the value of the third field in the tuple with ``id`` = 4, -- or
+This increases by 5 the value of the third field in the tuple with ``id = 4``, or
 inserts the tuple ``(4, "Another band", 2000)`` if a tuple with this ``id``
 doesn't exist.
 
