@@ -16,7 +16,7 @@ assignees: ladyune
 ## Issue planning checklist
 
 - [ ] Estimate *review* in storypoints in the title
-- [ ] Add to **Localization** board → **Ready for review**
+- [ ] Add to **Localization** board → **Ready for translation**
 - [ ] Add to **Documentation** board → **Backlog**
 
 > Note: issue templates are in beta. Give your feedback in #1869.
