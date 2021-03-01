@@ -74,7 +74,7 @@ the preferences can differ. But strategically the steps are always the same.
 
          $ yum install epel-release
          $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | sudo bash
-         $ yum install -y gcc gcc-c++ git cmake make coreutils sed \
+         $ yum install -y gcc gcc-c++ git cmake make sed \
                autoconf automake libtool zlib-devel \
                readline-devel ncurses-devel openssl-devel \
                libunwind-devel libicu-devel \
