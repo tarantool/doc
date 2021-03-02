@@ -45,9 +45,6 @@ mkdir -p "${cartridge_kubernetes_dest}"
 yes | cp -rf "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
 
 cd "${cartridge_root}" || exit
-tarantoolctl rocks install \
-  https://raw.githubusercontent.com/tarantool/LDoc/tarantool/ldoc-scm-2.rockspec \
-  --server=http://rocks.moonscript.org
 CMAKE_DUMMY_WEBUI=true tarantoolctl rocks make
 
 cd "${rst_src}" || exit
