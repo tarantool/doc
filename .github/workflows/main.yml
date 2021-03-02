@@ -1,0 +1,40 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'
+  push:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container: tarantool/doc-builder:v1
+    env:
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
+      S3_ENDPOINT_URL: ${{secrets.S3_ENDPOINT_URL}}
+      S3_UPLOAD_PATH: ${{secrets.S3_UPLOAD_PATH}}
+      TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
+      TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_UPDATE_URL}}
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash update_submodules.sh
+      - run: cmake .
+      - run: make json
+      - run: make json-ru
+      - run: make singlehtml
+      - run: make singlehtml-ru
+      - run: make pdf
+      - run: make pdf-ru
+      - uses: nelonoel/branch-name@v1.0.1
+      - if:
+          contains('
+          refs/heads/latest
+          refs/heads/2.5
+          refs/heads/2.4
+          refs/heads/2.3
+          refs/heads/2.2
+          refs/heads/1.10
+          ', github.ref)
+        run: bash upload_output.sh

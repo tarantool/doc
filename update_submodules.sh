@@ -54,9 +54,6 @@ yes | cp -rf "${tntcxx_root}/doc/tntcxx_getting_started.rst" "${tntcxx_gs_dest}/
 yes | cp -rf "${tntcxx_root}/examples/" "${tntcxx_gs_dest}/_includes/"
 
 cd "${cartridge_root}" || exit
-tarantoolctl rocks install \
-  https://raw.githubusercontent.com/tarantool/LDoc/tarantool/ldoc-scm-2.rockspec \
-  --server=http://rocks.moonscript.org
 CMAKE_DUMMY_WEBUI=true tarantoolctl rocks make
 
 cd "${rst_src}" || exit
