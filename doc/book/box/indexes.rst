@@ -181,8 +181,8 @@ Use HASH index:
 
 * if it is a secondary key
 * if you 100% won't need to make it non-unique
-* if you really need that 2-5% performance improvement
-* if you have taken measurements on your data and you see an increase in performance
+* if you have taken measurements on your data and you see an accountable
+  increase in performance
 * if you save every byte on tuples (HASH is a little more compact)
 
 .. _indexes-rtree:
@@ -644,5 +644,5 @@ And :doc:`insert </reference/reference_lua/box_space/insert>` another tuple:
     :class: fact
 
     You can add, drop, or alter the definitions at runtime, with some restrictions.
-    Read more in section :ref:`index operations <index-box_index-operations>`
-    and in reference for :doc:`box.index submodule </reference/reference_lua/box_index>`.
+    Read more about index operations in reference for
+    :doc:`box.index submodule </reference/reference_lua/box_index>`.

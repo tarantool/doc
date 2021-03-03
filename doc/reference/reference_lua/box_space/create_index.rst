@@ -172,7 +172,7 @@ and what index types are allowed.
         :header-rows: 1
 
         *   - Index field type
-            - What can be it it
+            - What can be in it
             - Where it is legal
             - Examples
 
@@ -201,7 +201,7 @@ and what index types are allowed.
               <limitations_bytes_in_index_key>`. A varbinary byte sequence
               does not have a :ref:`collation <index-collation>`
               because its contents are not UTF-8 characters
-            - memtx TREE or HASH indexes;
+            - memtx TREE, HASH or BITSET (since version 2.7) indexes;
 
               vinyl TREE indexes
             - '\\65 \\66 \\67'
