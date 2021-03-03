@@ -4,15 +4,13 @@
 index_object:select()
 ===============================================================================
 
-.. class:: index_object
+..  class:: index_object
 
-    .. method:: select(search-key, options)
+    ..  method:: select(search-key, options)
 
         This is an alternative to :ref:`box.space...select() <box_space-select>`
         which goes via a particular index and can make use of additional
-        parameters that specify the iterator type, and the limit (that is, the
-        maximum number of tuples to return) and the offset (that is, which
-        tuple to start with in the list).
+        parameters that specify the iterator type, and the limit, and the offset.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
@@ -22,13 +20,31 @@ index_object:select()
                                       * ``iterator`` -- type of iterator
                                       * ``limit`` -- maximum number of tuples
                                       * ``offset`` -- start tuple number
+                                        (do not use it. See
+                                        :ref:`warning <offset-warning>`)
+
 
         :return: the tuple or tuples that match the field values.
         :rtype:  array of tuples
 
+        .. _offset-warning:
+
+        ..  WARNING::
+
+            We do not recommend using the ``offset`` option for scanning
+            large values because it linearly increases the number
+            of scanned tuples and leads to the full scan of the space.
+
+            For unique indexes you can build cursors with
+            :doc:`pairs() </reference/reference_lua/box_index/pairs>`:
+
+            ..  code-block:: lua
+
+                index_obj:pairs(key, {iterator = 'GT'})
+
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             -- Create a space named tester.
             tarantool> sp = box.schema.space.create('tester')
@@ -56,14 +72,14 @@ index_object:select()
 
         The result will be a table of tuple and will look like this:
 
-        .. code-block:: yaml
+        ..  code-block:: yaml
 
             ---
             - - [2, 'Y', 'Row with field[2]=Y']
               - [3, 'Z', 'Row with field[2]=Z']
             ...
 
-        .. NOTE::
+        ..  NOTE::
 
             The arguments are optional. If you call
             :samp:`box.space.{space-name}:select{}`, then every key in the index
@@ -71,21 +87,21 @@ index_object:select()
             for the example above, ``box.space.tester:select{}`` will select every
             tuple in the ``tester`` space via the first (primary-key) index.
 
-        .. NOTE::
+        ..  NOTE::
 
             :samp:`index.{index-name}` is optional. If it is omitted, then the assumed
             index is the first (primary-key) index. Therefore, for the example
             above, ``box.space.tester:select({1}, {iterator = 'GT'})`` would have
             returned the same two rows, via the 'primary' index.
 
-        .. NOTE::
+        ..  NOTE::
 
             :samp:`iterator = {iterator-type}` is optional. If it is omitted, then
             ``iterator = 'EQ'`` is assumed.
 
-        .. _box_index-note:
+        ..  _box_index-note:
 
-        .. NOTE::
+        ..  NOTE::
 
             :samp:`box.space.{space-name}.index.{index-name}:select(...)[1]`. can be
             replaced by :samp:`box.space.{space-name}.index.{index-name}:get(...)`.
