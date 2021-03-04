@@ -28,48 +28,213 @@ Indexes have certain limitations. See details on page
 Creating an index
 --------------------------------------------------------------------------------
 
-An index definition may include identifiers of tuple fields and their expected
-**types**. See allowed indexed field types in section
-:ref:`Details about indexed field types <details_about_index_field_types>`.
+The simple :doc:`index-creation </reference/reference_lua/box_space/create_index>`
+operation is:
 
-..  NOTE::
+..  cssclass:: highlight
+..  parsed-literal::
 
-    A recommended design pattern for a data model is to base primary keys on the
-    first fields of a tuple, because this speeds up tuple comparison.
+    :extsamp:`box.space.{**{space-name}**}:create_index('{*{index-name}*}')`
 
-Let's look at an example where we first define the primary index (named 'primary')
-based on field #1 of each tuple:
+This creates a unique :ref:`TREE <indexes-tree>` index on the first field
+of all tuples (often called "Field#1"), which is assumed to be numeric.
 
-..  code-block:: tarantoolsession
+A recommended design pattern for a data model is to base primary keys on the
+first fields of a tuple, because this speeds up tuple comparison.
 
-    tarantool> i = s:create_index('primary', {type = 'hash', parts = {{field = 1, type = 'unsigned'}}}
+The simple :doc:`SELECT </reference/reference_lua/box_index/select>` request is:
 
-The effect is that, for all tuples in space 'tester', field #1 must exist and
-must contain an unsigned integer.
-The index type is HASH, so values in field #1 must be unique, because keys
-in HASH indexes are unique.
+..  cssclass:: highlight
+..  parsed-literal::
 
-After that, let's define a secondary index (named 'secondary') based on field #2
-of each tuple:
+    :extsamp:`box.space.{**{space-name}**}:select({*{value}*})`
 
-..  code-block:: tarantoolsession
+This looks for a single tuple via the first index. Since the first index
+is always unique, the maximum number of returned tuples will be 1.
+You can call ``select()`` without arguments, and it will return all tuples.
 
-    tarantool> i = s:create_index('secondary', {type = 'tree', parts = {field = 2, type = 'string'}})
+An index definition may also include identifiers of tuple fields
+and their expected **types**. See allowed indexed field types in section
+:ref:`Details about indexed field types <details_about_index_field_types>`:
 
-The effect is that, for all tuples in space 'tester', field #2 must exist and
-must contain a string.
-The index type is TREE, so values in field #2 must not be unique, because keys
-in TREE indexes may be non-unique.
+..  cssclass:: highlight
+..  parsed-literal::
+
+    :extsamp:`box.space.{**{space-name}**}:create_index('primary', {type = 'hash', parts = {{field = 1, type = 'unsigned'}}}`
 
 Space definitions and index definitions are stored permanently in Tarantool's
-system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>`
-(for details, see reference on :ref:`box.space <box_space>` submodule).
+system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>`.
 
 ..  admonition:: Tip
     :class: fact
 
-    The full information about creating an index is in section
+    See full information about creating indexes, such as
+    how to create an index using the ``path`` option, or
+    how to create a functional index in our reference for
     :doc:`/reference/reference_lua/box_space/create_index`.
+
+.. _index-box_index-operations:
+
+--------------------------------------------------------------------------------
+Index operations
+--------------------------------------------------------------------------------
+
+Index operations are automatic: if a data-manipulation request changes a tuple,
+then it also changes the index keys defined for the tuple.
+
+#.  For further demonstrations let's create a sample space named 'tester' and
+    put it in a variable 'my_space':
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> my_space = box.schema.space.create('tester')
+
+#.  Then format the created space by specifying field names and types:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> my_space:format({
+                 > {name = 'id', type = 'unsigned'},
+                 > {name = 'band_name', type = 'string'},
+                 > {name = 'year', type = 'unsigned'},
+                 > {name = 'rate', type = 'unsigned', is_nullable=true}})
+
+#.  Create the **primary** index (named ``primary``):
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> my_space:create_index('primary', {
+                 > type = 'hash',
+                 > parts = {'id'}
+                 > })
+
+    This is a primary index based on the ``id`` field of each tuple.
+
+#.  And insert some :ref:`tuples <index-box_tuple>` (that are records in Tarantool)
+    into the space:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> my_space:insert{1, 'Roxette', 1986, 1}
+        tarantool> my_space:insert{2, 'Scorpions', 2015, 4}
+        tarantool> my_space:insert{3, 'Ace of Base', 1993}
+        tarantool> my_space:insert{4, 'Roxette', 2016, 3}
+
+#.  Create a **secondary index**:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.space.tester:create_index('secondary', {parts = {{field=3, type='unsigned'}}})
+        ---
+        - unique: true
+          parts:
+          - type: unsigned
+            is_nullable: false
+            fieldno: 3
+          id: 2
+          space_id: 512
+          type: TREE
+          name: secondary
+        ...
+
+#.  Create a **multi-part index** with three parts:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.space.tester:create_index('thrine', {parts = {{field = 2, type = 'string'}, {field=3, type='unsigned'}, {field=4, type='unsigned'}}})
+        ---
+        - unique: true
+          parts:
+          - type: string
+            is_nullable: false
+            fieldno: 2
+          - type: unsigned
+            is_nullable: false
+            fieldno: 3
+          - type: unsigned
+            is_nullable: true
+            fieldno: 4
+          id: 6
+          space_id: 513
+          type: TREE
+          name: thrine
+        ...
+
+**There are the following SELECT variations:**
+
+#.  The search can use comparisons other than equality:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.space.tester:select(1, {iterator = 'GT'})
+        ---
+        - - [2, 'Scorpions', 2015, 4]
+          - [3, 'Ace of Base', 1993]
+          - [4, 'Roxette', 2016, 3]
+        ...
+
+    The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ,
+    REQ, GE, GT (for "less than", "less than or equal", "equal", "reversed equal",
+    "greater than or equal", "greater than" respectively).
+    Comparisons make sense if and only if the index type is TREE.
+
+    Note that we didn't use the name of the index, which means we use primary index here.
+
+    This type of search may return more than one tuple; if so, the tuples will be
+    in descending order by key when the comparison operator is LT or LE or REQ,
+    otherwise in ascending order.
+
+#.  The search can use a **secondary index**.
+
+    For a primary-key search, it is optional to specify an index name as
+    was demonstrated above.
+    For a secondary-key search, it is mandatory.
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.space.tester.index.secondary:select({1993})
+        ---
+        - - [3, 'Ace of Base', 1993]
+        ...
+
+    .. _partial_key_search:
+
+#.  **Partial key search:** The search may be for some key parts starting with
+    the prefix of the key. Notice that partial key searches are available
+    only in TREE indexes.
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.space.tester.index.thrine:select({'Scorpions', 2015})
+        ---
+        - - [2, 'Scorpions', 2015, 4]
+        ...
+
+#.  The search can be for all fields, using a table as the value:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.space.tester.index.thrine:select({'Roxette', 2016, 3})
+        ---
+        - - [4, 'Roxette', 2016, 3]
+        ...
+
+    or the search can be for one field, using a table or a scalar:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.space.tester.index.thrine:select({'Roxette'})
+        ---
+        - - [1, 'Roxette', 1986, 5]
+          - [4, 'Roxette', 2016, 3]
+        ...
+
+..  admonition:: Tip
+    :class: fact
+
+    You can also add, drop, or alter the definitions at runtime, with some restrictions.
+    Read more about index operations in reference for
+    :doc:`box.index submodule </reference/reference_lua/box_index>`.
 
 --------------------------------------------------------------------------------
 Index types
@@ -205,9 +370,10 @@ RTREE index can accept two types of ``distance`` functions: ``euclid`` and ``man
 
 ..  code-block:: lua
 
-    s = box.schema.create_space("test")
-    i = s:create_index('primary', { type = 'HASH', parts = {1, 'num'} })
-    r = s:create_index('spatial', { type = 'RTREE', unique = false, parts = {2, 'array'} })
+    my_space = box.schema.create_space("test")
+    my_space:format{ { type= 'number', name='id' }, { type='array', name='content' } }
+    hash_index = my_space:create_index('primary', { type = 'HASH', parts = {'id'} })
+    rtree_index = my_space:create_index('spatial', { type = 'RTREE', unique = false, parts = {'content'} })
 
 Corresponding tuple field thus must be an array of 2 or 4 numbers.
 2 numbers mean a point {x, y};
@@ -216,8 +382,8 @@ where (x1, y1) and (x2, y2) - diagonal point of the rectangle.
 
 ..  code-block:: lua
 
-    s:insert{1, {1, 1}}
-    s:insert{2, {2, 2, 3, 3}}
+    my_space:insert{1, {1, 1}}
+    my_space:insert{2, {2, 2, 3, 3}}
 
 Selection results depend on a chosen iterator.
 The default EQ iterator searches for an exact rectangle,
@@ -225,22 +391,22 @@ a point is treated as zero width and height rectangle:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> r:select{1, 1}
+    tarantool> rtree_index:select{1, 1}
     ---
     - - [1, [1, 1]]
     ...
 
-    tarantool> r:select{1, 1, 1, 1}
+    tarantool> rtree_index:select{1, 1, 1, 1}
     ---
     - - [1, [1, 1]]
     ...
 
-    tarantool> r:select{2, 2}
+    tarantool> rtree_index:select{2, 2}
     ---
     - []
     ...
 
-    tarantool> r:select{2, 2, 3, 3}
+    tarantool> rtree_index:select{2, 2, 3, 3}
     ---
     - - [2, [2, 2, 3, 3]]
     ...
@@ -250,7 +416,7 @@ selects all tuples in arbitrary order:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> r:select{}
+    tarantool> rtree_index:select{}
     ---
     - - [1, [1, 1]]
       - [2, [2, 2, 3, 3]]
@@ -261,7 +427,7 @@ within a specified rectangle:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> r:select({1, 1, 2, 2}, {iterator='le'})
+    tarantool> rtree_index:select({1, 1, 2, 2}, {iterator='le'})
     ---
     - - [1, [1, 1]]
     ...
@@ -271,7 +437,7 @@ with their rectangles strictly within a specified rectangle:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> r:select({0, 0, 3, 3}, {iterator='lt'})
+    tarantool> rtree_index:select({0, 0, 3, 3}, {iterator='lt'})
     ---
     - - [1, [1, 1]]
     ...
@@ -280,7 +446,7 @@ Iterator GE searches for tuples with a specified rectangle within their rectangl
 
 ..  code-block:: tarantoolsession
 
-    tarantool> r:select({1, 1}, {iterator='ge'})
+    tarantool> rtree_index:select({1, 1}, {iterator='ge'})
     ---
     - - [1, [1, 1]]
     ...
@@ -289,7 +455,7 @@ Iterator GT searches for tuples with a specified rectangle strictly within their
 
 ..  code-block:: tarantoolsession
 
-    tarantool> r:select({2.1, 2.1, 2.9, 2.9}, {itearator='gt'})
+    tarantool> rtree_index:select({2.1, 2.1, 2.9, 2.9}, {itearator='gt'})
     ---
     - []
     ...
@@ -298,7 +464,7 @@ Iterator OVERLAPS searches for tuples with their rectangles overlapping specifie
 
 ..  code-block:: tarantoolsession
 
-    tarantool> r:select({0, 0, 10, 2}, {iterator='overlaps'})
+    tarantool> rtree_index:select({0, 0, 10, 2}, {iterator='overlaps'})
     ---
     - - [1, [1, 1]]
       - [2, [2, 2, 3, 3]]
@@ -310,13 +476,13 @@ Iterator NEIGHBOR searches for all tuples and orders them by distance to the spe
 
     tarantool> for i=1,10 do
              >    for j=1,10 do
-             >        s:insert{i*10+j, {i, j, i+1, j+1}}
+             >        my_space:insert{i*10+j, {i, j, i+1, j+1}}
              >    end
              > end
     ---
     ...
 
-    tarantool> r:select({1, 1}, {iterator='neighbor', limit=5})
+    tarantool> rtree_index:select({1, 1}, {iterator='neighbor', limit=5})
     ---
     - - [11, [1, 1, 2, 2]]
       - [12, [1, 2, 2, 3]]
@@ -333,39 +499,24 @@ Here's short example of using 4D tree:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> s = box.schema.create_space('test')
-    ---
-    ...
+    tarantool> my_space = box.schema.create_space("test")
+    tarantool> my_space:format{ { type= 'number', name='id' }, { type='array', name='content' } }
+    tarantool> hash_index = my_space:create_index('primary', { type = 'HASH', parts = {'id'} })
+    tarantool> rtree_index = my_space:create_index('spatial', { type = 'RTREE', unique = false, dimension = 4, parts = {'content'} })
+    tarantool> my_space:insert{1, {1, 2, 3, 4}} -- insert 4D point
+    tarantool> my_space:insert{2, {1, 1, 1, 1, 2, 2, 2, 2}} -- insert 4D box
 
-    tarantool> i = s:create_index('primary', { type = 'HASH', parts = {1, 'num'} })
-    ---
-    ...
-
-    tarantool> r = s:create_index('spatial', { type = 'RTREE', unique = false, dimension = 4, parts = {2, 'array'} })
-    ---
-    ...
-
-    tarantool> s:insert{1, {1, 2, 3, 4}} -- insert 4D point
-    ---
-    - [1, [1, 2, 3, 4]]
-    ...
-
-    tarantool> s:insert{2, {1, 1, 1, 1, 2, 2, 2, 2}} -- insert 4D box
-    ---
-    - [2, [1, 1, 1, 1, 2, 2, 2, 2]]
-    ...
-
-    tarantool> r:select{1, 2, 3, 4} -- find exact point
+    tarantool> rtree_index:select{1, 2, 3, 4} -- find exact point
     ---
     - - [1, [1, 2, 3, 4]]
     ...
 
-    tarantool> r:select({0, 0, 0, 0, 3, 3, 3, 3}, {iterator = 'LE'}) -- select from 4D box
+    tarantool> rtree_index:select({0, 0, 0, 0, 3, 3, 3, 3}, {iterator = 'LE'}) -- select from 4D box
     ---
     - - [2, [1, 1, 1, 1, 2, 2, 2, 2]]
     ...
 
-    tarantool> r:select({0, 0, 0, 0}, {iterator = 'neighbor'}) -- select neighbours
+    tarantool> rtree_index:select({0, 0, 0, 0}, {iterator = 'neighbor'}) -- select neighbours
     ---
     - - [2, [1, 1, 1, 1, 2, 2, 2, 2]]
       - [1, [1, 2, 3, 4]]
@@ -378,7 +529,7 @@ Here's short example of using 4D tree:
     that could be tons of data with corresponding performance.
 
     And another frequent mistake is to specify iterator type without quotes,
-    in such way: ``r:select(rect, {iterator = LE})``.
+    in such way: ``rtree_index:select(rect, {iterator = LE})``.
     This leads to silent EQ select, because ``LE`` is undefined variable and
     treated as nil, so iterator is unset and default used.
 
@@ -400,41 +551,41 @@ and bit values are entered as hexadecimal literals for easier reading.
 
 ..  code-block:: tarantoolsession
 
-    tarantool> s = box.schema.space.create('space_with_bitset')
-    tarantool> s:create_index('primary_index', {
+    tarantool> my_space = box.schema.space.create('space_with_bitset')
+    tarantool> my_space:create_index('primary_index', {
              >   parts = {1, 'string'},
              >   unique = true,
              >   type = 'TREE'
              > })
-    tarantool> s:create_index('bitset_index', {
+    tarantool> my_space:create_index('bitset_index', {
              >   parts = {2, 'unsigned'},
              >   unique = false,
              >   type = 'BITSET'
              > })
-    tarantool> s:insert{'Tuple with bit value = 01', 0x01}
-    tarantool> s:insert{'Tuple with bit value = 10', 0x02}
-    tarantool> s:insert{'Tuple with bit value = 11', 0x03}
-    tarantool> s.index.bitset_index:select(0x02, {
+    tarantool> my_space:insert{'Tuple with bit value = 01', 0x01}
+    tarantool> my_space:insert{'Tuple with bit value = 10', 0x02}
+    tarantool> my_space:insert{'Tuple with bit value = 11', 0x03}
+    tarantool> my_space.index.bitset_index:select(0x02, {
              >   iterator = box.index.EQ
              > })
     ---
     - - ['Tuple with bit value = 10', 2]
     ...
-    tarantool> s.index.bitset_index:select(0x02, {
+    tarantool> my_space.index.bitset_index:select(0x02, {
              >   iterator = box.index.BITS_ANY_SET
              > })
     ---
     - - ['Tuple with bit value = 10', 2]
       - ['Tuple with bit value = 11', 3]
     ...
-    tarantool> s.index.bitset_index:select(0x02, {
+    tarantool> my_space.index.bitset_index:select(0x02, {
              >   iterator = box.index.BITS_ALL_SET
              > })
     ---
     - - ['Tuple with bit value = 10', 2]
       - ['Tuple with bit value = 11', 3]
     ...
-    tarantool> s.index.bitset_index:select(0x02, {
+    tarantool> my_space.index.bitset_index:select(0x02, {
              >   iterator = box.index.BITS_ALL_NOT_SET
              > })
     ---
@@ -473,176 +624,3 @@ specific to an index type.
 For example, they can be used for evaluating Boolean expressions when
 traversing BITSET indexes, or for going in descending order when traversing TREE
 indexes.
-
-.. _index-box_index-operations:
-
---------------------------------------------------------------------------------
-Index operations
---------------------------------------------------------------------------------
-
-Index operations are automatic: if a data-manipulation request changes a tuple,
-then it also changes the index keys defined for the tuple.
-
-The simple :doc:`index-creation </reference/reference_lua/box_space/create_index>`
-operation that we've illustrated before is:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    :samp:`box.space.{space-name}:create_index('{index-name}')`
-
-This creates a unique TREE index on the first field of all tuples
-(often called "Field#1"), which is assumed to be numeric.
-
-The simple :doc:`SELECT </reference/reference_lua/box_index/select>` request
-that we've illustrated before is:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    :extsamp:`box.space.{*{space-name}*}:select({*{value}*})`
-
-This looks for a single tuple via the first index. Since the first index
-is always unique, the maximum number of returned tuples will be 1.
-You can call ``select()`` without arguments, and it will return all tuples.
-
-Let's continue working with the space 'tester' created in the :ref:`"Getting
-started" exercises <getting_started_db>` but first modify it via
-:doc:`format() </reference/reference_lua/box_space/format>`:
-
-..  code-block:: tarantoolsession
-
-    tarantool> box.space.tester:format({
-             > {name = 'id', type = 'unsigned'},
-             > {name = 'band_name', type = 'string'},
-             > {name = 'year', type = 'unsigned'},
-             > {name = 'rate', type = 'unsigned', is_nullable=true}})
-    ---
-    ...
-
-Add the rate to the tuple #1 and #2 via
-:doc:`update function </reference/reference_lua/box_index/update>`:
-
-..  code-block:: tarantoolsession
-
-    tarantool> box.space.tester:update(1, {{'=', 4, 5}})
-    ---
-    - [1, 'Roxette', 1986, 5]
-    ...
-    tarantool> box.space.tester:update(2, {{'=', 4, 4}})
-    ---
-    - [2, 'Scorpions', 2015, 4]
-    ...
-
-And :doc:`insert </reference/reference_lua/box_space/insert>` another tuple:
-
-..  code-block:: tarantoolsession
-
-    tarantool> box.space.tester:insert({4, 'Roxette', 2016, 3})
-    ---
-    - [4, 'Roxette', 2016, 3]
-    ...
-
-**The existing SELECT variations:**
-
-1.  The search can use comparisons other than equality.
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.tester:select(1, {iterator = 'GT'})
-        ---
-        - - [2, 'Scorpions', 2015, 4]
-          - [3, 'Ace of Base', 1993]
-          - [4, 'Roxette', 2016, 3]
-        ...
-
-    The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ, REQ, GE, GT
-    (for "less than", "less than or equal", "equal", "reversed equal",
-    "greater than or equal", "greater than" respectively).
-    Comparisons make sense if and only if the index type is TREE.
-
-    This type of search may return more than one tuple; if so, the tuples will be
-    in descending order by key when the comparison operator is LT or LE or REQ,
-    otherwise in ascending order.
-
-2.  The search can use a secondary index.
-
-    For a primary-key search, it is optional to specify an index name.
-    For a secondary-key search, it is mandatory.
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.tester:create_index('secondary', {parts = {{field=3, type='unsigned'}}})
-        ---
-        - unique: true
-          parts:
-          - type: unsigned
-            is_nullable: false
-            fieldno: 3
-          id: 2
-          space_id: 512
-          type: TREE
-          name: secondary
-        ...
-        tarantool> box.space.tester.index.secondary:select({1993})
-        ---
-        - - [3, 'Ace of Base', 1993]
-        ...
-
-    .. _partial_key_search:
-
-3.  The search may be for some key parts starting with the prefix of
-    the key. Notice that partial key searches are available only in TREE indexes.
-
-    ..  code-block:: tarantoolsession
-
-        -- Create an index with three parts
-        tarantool> box.space.tester:create_index('tertiary', {parts = {{field = 2, type = 'string'}, {field=3, type='unsigned'}, {field=4, type='unsigned'}}})
-        ---
-        - unique: true
-          parts:
-          - type: string
-            is_nullable: false
-            fieldno: 2
-          - type: unsigned
-            is_nullable: false
-            fieldno: 3
-          - type: unsigned
-            is_nullable: true
-            fieldno: 4
-          id: 6
-          space_id: 513
-          type: TREE
-          name: tertiary
-        ...
-        -- Make a partial search
-        tarantool> box.space.tester.index.tertiary:select({'Scorpions', 2015})
-        ---
-        - - [2, 'Scorpions', 2015, 4]
-        ...
-
-4.  The search may be for all fields, using a table for the value:
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.tester.index.tertiary:select({'Roxette', 2016, 3})
-        ---
-        - - [4, 'Roxette', 2016, 3]
-        ...
-
-    or the search can be for one field, using a table or a scalar:
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.tester.index.tertiary:select({'Roxette'})
-        ---
-        - - [1, 'Roxette', 1986, 5]
-          - [4, 'Roxette', 2016, 3]
-        ...
-
-..  admonition:: Tip
-    :class: fact
-
-    You can add, drop, or alter the definitions at runtime, with some restrictions.
-    Read more about index operations in reference for
-    :doc:`box.index submodule </reference/reference_lua/box_index>`.
