@@ -108,7 +108,7 @@ msgstr ""
 msgid "resp, err = conn.Select(\"tester\", \"primary\", 0, 1, tarantool.IterEq, []interface{}{4})"
 msgstr ""
 
-msgid "This selects a tuple by the primary key with ``offset`` = 0 and ``limit`` = 1 from a space named ``tester`` (in our example, this is the index named ``primary``, based on the ``id`` field of each tuple)."
+msgid "This selects a tuple by the primary key with ``offset = 0`` and ``limit = 1`` from a space named ``tester`` (in our example, this is the index named ``primary``, based on the ``id`` field of each tuple)."
 msgstr ""
 
 msgid "Next, select tuples by a secondary key."
@@ -132,7 +132,7 @@ msgstr ""
 msgid "resp, err = conn.Update(\"tester\", \"primary\", []interface{}{4}, []interface{}{[]interface{}{\"+\", 2, 3}})"
 msgstr ""
 
-msgid "This increases by 3 the value of field ``2`` in the tuple with ``id`` = 4. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
+msgid "This increases by 3 the value of field ``2`` in the tuple with ``id = 4``. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
 msgstr ""
 
 msgid "Now use ``Replace`` to totally replace the tuple that matches the primary key. If a tuple with this primary key doesn't exist, Tarantool will do nothing."
@@ -147,7 +147,7 @@ msgstr ""
 msgid "resp, err = conn.Upsert(\"tester\", []interface{}{4, \"Another band\", 2000}, []interface{}{[]interface{}{\"+\", 2, 5}})"
 msgstr ""
 
-msgid "This increases by 5 the value of the third field in the tuple with ``id`` = 4, -- or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
+msgid "This increases by 5 the value of the third field in the tuple with ``id = 4``, or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
 msgstr ""
 
 msgid "Deleting data"

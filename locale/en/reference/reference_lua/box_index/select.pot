@@ -2,7 +2,7 @@
 msgid "index_object:select()"
 msgstr ""
 
-msgid "This is an alternative to :ref:`box.space...select() <box_space-select>` which goes via a particular index and can make use of additional parameters that specify the iterator type, and the limit (that is, the maximum number of tuples to return) and the offset (that is, which tuple to start with in the list)."
+msgid "This is an alternative to :ref:`box.space...select() <box_space-select>` which goes via a particular index and can make use of additional parameters that specify the iterator type, and the limit, and the offset."
 msgstr ""
 
 msgid "Parameters"
@@ -14,7 +14,7 @@ msgstr ""
 msgid "values to be matched against the index key"
 msgstr ""
 
-msgid "none, any, or all of the following parameters:  * ``iterator`` -- type of iterator * ``limit`` -- maximum number of tuples * ``offset`` -- start tuple number"
+msgid "none, any, or all of the following parameters:  * ``iterator`` -- type of iterator * ``limit`` -- maximum number of tuples * ``offset`` -- start tuple number   (do not use it. See   :ref:`warning <offset-warning>`)"
 msgstr ""
 
 msgid "none, any, or all of the following parameters:"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "``limit`` -- maximum number of tuples"
 msgstr ""
 
-msgid "``offset`` -- start tuple number"
+msgid "``offset`` -- start tuple number (do not use it. See :ref:`warning <offset-warning>`)"
 msgstr ""
 
 msgid "return"
@@ -39,6 +39,15 @@ msgid "rtype"
 msgstr ""
 
 msgid "array of tuples"
+msgstr ""
+
+msgid "We do not recommend using the ``offset`` option for scanning large values because it linearly increases the number of scanned tuples and leads to the full scan of the space."
+msgstr ""
+
+msgid "For unique indexes you can build cursors with :doc:`pairs() </reference/reference_lua/box_index/pairs>`:"
+msgstr ""
+
+msgid "index_obj:pairs(key, {iterator = 'GT'})"
 msgstr ""
 
 msgid "**Example:**"

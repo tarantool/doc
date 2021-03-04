@@ -126,7 +126,7 @@ msgstr ""
 msgid ">>> tester.update(4, [('=', 1, 'New group'), ('+', 2, 2)])"
 msgstr ""
 
-msgid "This updates the value of field ``1`` and increases the value of field ``2`` in the tuple with ``id`` = 4. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
+msgid "This updates the value of field ``1`` and increases the value of field ``2`` in the tuple with ``id = 4``. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
 msgstr ""
 
 msgid "Now use ``replace`` to totally replace the tuple that matches the primary key. If a tuple with this primary key doesn't exist, Tarantool will do nothing."
@@ -141,7 +141,7 @@ msgstr ""
 msgid ">>> tester.upsert((4, 'Another band', 2000), [('+', 2, 5)])"
 msgstr ""
 
-msgid "This increases by 5 the value of field ``2`` in the tuple with ``id`` = 4, -- or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
+msgid "This increases by 5 the value of field ``2`` in the tuple with ``id = 4``, or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
 msgstr ""
 
 msgid "Deleting data"
