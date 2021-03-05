@@ -139,7 +139,7 @@ add_custom_target(autobuild
         -A nolang_path=true
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_AUTOBUILD_DIR}"
-    COMMENT "Build & Live-reload on https://127.0.0.1:8000"
+    COMMENT "Build & Live-reload on http://127.0.0.1:8000"
 )
 
 add_custom_target(html-ru ALL
