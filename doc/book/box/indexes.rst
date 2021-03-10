@@ -28,6 +28,9 @@ Indexes have certain limitations. See details on page
 Creating an index
 --------------------------------------------------------------------------------
 
+It is mandatory to create an index for a space before trying to insert
+tuples into it, or select tuples from it.
+
 The simple :doc:`index-creation </reference/reference_lua/box_space/create_index>`
 operation is:
 
