@@ -82,17 +82,17 @@ system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>
 Index operations
 --------------------------------------------------------------------------------
 
-Index operations are automatic: if a data-manipulation request changes a tuple,
+Index operations are automatic: if a data manipulation request changes a tuple,
 then it also changes the index keys defined for the tuple.
 
-#.  For further demonstrations let's create a sample space named 'tester' and
-    put it in a variable 'my_space':
+#.  For further demonstrations let's create a sample space named ``tester`` and
+    put it in a variable ``my_space``:
 
     ..  code-block:: tarantoolsession
 
         tarantool> my_space = box.schema.space.create('tester')
 
-#.  Then format the created space by specifying field names and types:
+#.  Format the created space by specifying field names and types:
 
     ..  code-block:: tarantoolsession
 
@@ -113,8 +113,7 @@ then it also changes the index keys defined for the tuple.
 
     This is a primary index based on the ``id`` field of each tuple.
 
-#.  And insert some :ref:`tuples <index-box_tuple>` (that are records in Tarantool)
-    into the space:
+#.  Insert some :ref:`tuples <index-box_tuple>` into the space:
 
     ..  code-block:: tarantoolsession
 
@@ -165,7 +164,7 @@ then it also changes the index keys defined for the tuple.
 
 **There are the following SELECT variations:**
 
-#.  The search can use comparisons other than equality:
+*   The search can use **comparisons** other than equality:
 
     ..  code-block:: tarantoolsession
 
@@ -176,11 +175,16 @@ then it also changes the index keys defined for the tuple.
           - [4, 'Roxette', 2016, 3]
         ...
 
-    The :ref:`comparison operators <box_index-iterator-types>` are LT, LE, EQ,
-    REQ, GE, GT (for "less than", "less than or equal", "equal", "reversed equal",
-    "greater than or equal", "greater than" respectively).
+    The :ref:`comparison operators <box_index-iterator-types>` are:
+    
+    *   ``LT`` for "less than"
+    *   ``LE`` for "less than or equal"
+    *   ``GT`` for "greater"
+    *   ``GE`` for "greater than or equal" .
+    *   ``EQ`` for "equal",
+    *   ``REQ`` for "reversed equal"
+    
     Comparisons make sense if and only if the index type is TREE.
-
     Note that we didn't use the name of the index, which means we use primary index here.
 
     This type of search may return more than one tuple; if so, the tuples will be
@@ -203,7 +207,7 @@ then it also changes the index keys defined for the tuple.
     .. _partial_key_search:
 
 #.  **Partial key search:** The search may be for some key parts starting with
-    the prefix of the key. Notice that partial key searches are available
+    the prefix of the key. Note that partial key searches are available
     only in TREE indexes.
 
     ..  code-block:: tarantoolsession
@@ -374,7 +378,7 @@ RTREE index can accept two types of ``distance`` functions: ``euclid`` and ``man
 ..  code-block:: lua
 
     my_space = box.schema.create_space("test")
-    my_space:format{ { type= 'number', name='id' }, { type='array', name='content' } }
+    my_space:format({ { type= 'number', name='id' }, { type='array', name='content' } })
     hash_index = my_space:create_index('primary', { type = 'HASH', parts = {'id'} })
     rtree_index = my_space:create_index('spatial', { type = 'RTREE', unique = false, parts = {'content'} })
 
