@@ -43,8 +43,10 @@ yes | cp -rf "${cartridge_cli_root}/README.rst" "${cartridge_cli_index_dest}"
 mkdir -p "${cartridge_kubernetes_dest}"
 yes | cp -rf "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
 
+mkdir -p "${tntcxx_api_dest}/cxx/"
 yes | cp -rf "${tntcxx_root}/doc/tntcxx_getting_started.rst" "${tntcxx_gs_dest}/getting_started_cxx.rst"
 yes | cp -rf "${tntcxx_root}/examples/" "${tntcxx_gs_dest}/_includes/"
+yes | cp -rf "${tntcxx_root}/doc/tntcxx_api.rst" "${tntcxx_api_dest}/cxx/"
 
 cd "${cartridge_root}" || exit
 CMAKE_DUMMY_WEBUI=true tarantoolctl rocks make
