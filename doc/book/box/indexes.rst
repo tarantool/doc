@@ -4,8 +4,7 @@ Indexes
 ================================================================================
 
 An **index** is a special data structure that stores a group of key values and
-pointers. It is used for efficient manipulations with data
-and should be chosen depending on the task.
+pointers. It is used for efficient manipulations with data.
 
 As with spaces, you should specify the index **name**, and let Tarantool
 come up with a unique **numeric identifier** ("index id").
@@ -143,7 +142,11 @@ then it also changes the index keys defined for the tuple.
 
     ..  code-block:: tarantoolsession
 
-        tarantool> box.space.tester:create_index('thrine', {parts = {{field = 2, type = 'string'}, {field=3, type='unsigned'}, {field=4, type='unsigned'}}})
+        tarantool> box.space.tester:create_index('thrine', {parts = {
+                 > {field = 2, type = 'string'},
+                 > {field=3, type='unsigned'},
+                 > {field=4, type='unsigned'}
+                 > }})
         ---
         - unique: true
           parts:
@@ -164,83 +167,83 @@ then it also changes the index keys defined for the tuple.
 
 **There are the following SELECT variations:**
 
-*   The search can use **comparisons** other than equality:
+* The search can use **comparisons** other than equality:
 
-    ..  code-block:: tarantoolsession
+  ..  code-block:: tarantoolsession
 
-        tarantool> box.space.tester:select(1, {iterator = 'GT'})
-        ---
-        - - [2, 'Scorpions', 2015, 4]
-          - [3, 'Ace of Base', 1993]
-          - [4, 'Roxette', 2016, 3]
-        ...
+      tarantool> box.space.tester:select(1, {iterator = 'GT'})
+      ---
+      - - [2, 'Scorpions', 2015, 4]
+        - [3, 'Ace of Base', 1993]
+        - [4, 'Roxette', 2016, 3]
+      ...
 
-    The :ref:`comparison operators <box_index-iterator-types>` are:
-    
-    *   ``LT`` for "less than"
-    *   ``LE`` for "less than or equal"
-    *   ``GT`` for "greater"
-    *   ``GE`` for "greater than or equal" .
-    *   ``EQ`` for "equal",
-    *   ``REQ`` for "reversed equal"
-    
-    Comparisons make sense if and only if the index type is TREE.
-    Note that we didn't use the name of the index, which means we use primary index here.
+  The :ref:`comparison operators <box_index-iterator-types>` are:
 
-    This type of search may return more than one tuple; if so, the tuples will be
-    in descending order by key when the comparison operator is LT or LE or REQ,
-    otherwise in ascending order.
+  *   ``LT`` for "less than"
+  *   ``LE`` for "less than or equal"
+  *   ``GT`` for "greater"
+  *   ``GE`` for "greater than or equal" .
+  *   ``EQ`` for "equal",
+  *   ``REQ`` for "reversed equal"
 
-#.  The search can use a **secondary index**.
+  Comparisons make sense if and only if the index type is TREE.
+  Note that we didn't use the name of the index, which means we use primary index here.
 
-    For a primary-key search, it is optional to specify an index name as
-    was demonstrated above.
-    For a secondary-key search, it is mandatory.
+  This type of search may return more than one tuple; if so, the tuples will be
+  in descending order by key when the comparison operator is LT or LE or REQ,
+  otherwise in ascending order.
 
-    ..  code-block:: tarantoolsession
+* The search can use a **secondary index**.
 
-        tarantool> box.space.tester.index.secondary:select({1993})
-        ---
-        - - [3, 'Ace of Base', 1993]
-        ...
+  For a primary-key search, it is optional to specify an index name as
+  was demonstrated above.
+  For a secondary-key search, it is mandatory.
 
-    .. _partial_key_search:
+  ..  code-block:: tarantoolsession
 
-#.  **Partial key search:** The search may be for some key parts starting with
-    the prefix of the key. Note that partial key searches are available
-    only in TREE indexes.
+      tarantool> box.space.tester.index.secondary:select({1993})
+      ---
+      - - [3, 'Ace of Base', 1993]
+      ...
 
-    ..  code-block:: tarantoolsession
+  .. _partial_key_search:
 
-        tarantool> box.space.tester.index.thrine:select({'Scorpions', 2015})
-        ---
-        - - [2, 'Scorpions', 2015, 4]
-        ...
+* **Partial key search:** The search may be for some key parts starting with
+  the prefix of the key. Note that partial key searches are available
+  only in TREE indexes.
 
-#.  The search can be for all fields, using a table as the value:
+  ..  code-block:: tarantoolsession
 
-    ..  code-block:: tarantoolsession
+      tarantool> box.space.tester.index.thrine:select({'Scorpions', 2015})
+      ---
+      - - [2, 'Scorpions', 2015, 4]
+      ...
 
-        tarantool> box.space.tester.index.thrine:select({'Roxette', 2016, 3})
-        ---
-        - - [4, 'Roxette', 2016, 3]
-        ...
+* The search can be for all fields, using a table as the value:
 
-    or the search can be for one field, using a table or a scalar:
+  ..  code-block:: tarantoolsession
 
-    ..  code-block:: tarantoolsession
+      tarantool> box.space.tester.index.thrine:select({'Roxette', 2016, 3})
+      ---
+      - - [4, 'Roxette', 2016, 3]
+      ...
 
-        tarantool> box.space.tester.index.thrine:select({'Roxette'})
-        ---
-        - - [1, 'Roxette', 1986, 5]
-          - [4, 'Roxette', 2016, 3]
-        ...
+  or the search can be for one field, using a table or a scalar:
+
+  ..  code-block:: tarantoolsession
+
+      tarantool> box.space.tester.index.thrine:select({'Roxette'})
+      ---
+      - - [1, 'Roxette', 1986, 5]
+        - [4, 'Roxette', 2016, 3]
+      ...
 
 ..  admonition:: Tip
     :class: fact
 
-    You can also add, drop, or alter the definitions at runtime, with some restrictions.
-    Read more about index operations in reference for
+    You can also add, drop, or alter the definitions at runtime, with some
+    restrictions. Read more about index operations in reference for
     :doc:`box.index submodule </reference/reference_lua/box_index>`.
 
 --------------------------------------------------------------------------------
