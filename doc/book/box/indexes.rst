@@ -42,7 +42,8 @@ This creates a unique :ref:`TREE <indexes-tree>` index on the first field
 of all tuples (often called "Field#1"), which is assumed to be numeric.
 
 A recommended design pattern for a data model is to base primary keys on the
-first fields of a tuple, because this speeds up tuple comparison.
+first fields of a tuple. This speeds up tuple comparison due to the specifics of
+data storage and the way comparisons are arranged in Tarantool.
 
 The simple :doc:`SELECT </reference/reference_lua/box_index/select>` request is:
 
@@ -54,6 +55,7 @@ The simple :doc:`SELECT </reference/reference_lua/box_index/select>` request is:
 This looks for a single tuple via the first index. Since the first index
 is always unique, the maximum number of returned tuples will be 1.
 You can call ``select()`` without arguments, and it will return all tuples.
+Be careful! Using ``select()`` for huge spaces hangs your instance.
 
 An index definition may also include identifiers of tuple fields
 and their expected **types**. See allowed indexed field types in section
@@ -167,80 +169,80 @@ then it also changes the index keys defined for the tuple.
 
 **There are the following SELECT variations:**
 
-* The search can use **comparisons** other than equality:
+*   The search can use **comparisons** other than equality:
 
-  ..  code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester:select(1, {iterator = 'GT'})
-      ---
-      - - [2, 'Scorpions', 2015, 4]
-        - [3, 'Ace of Base', 1993]
-        - [4, 'Roxette', 2016, 3]
-      ...
+        tarantool> box.space.tester:select(1, {iterator = 'GT'})
+        ---
+        - - [2, 'Scorpions', 2015, 4]
+          - [3, 'Ace of Base', 1993]
+          - [4, 'Roxette', 2016, 3]
+        ...
 
-  The :ref:`comparison operators <box_index-iterator-types>` are:
+    The :ref:`comparison operators <box_index-iterator-types>` are:
 
-  *   ``LT`` for "less than"
-  *   ``LE`` for "less than or equal"
-  *   ``GT`` for "greater"
-  *   ``GE`` for "greater than or equal" .
-  *   ``EQ`` for "equal",
-  *   ``REQ`` for "reversed equal"
+    *   ``LT`` for "less than"
+    *   ``LE`` for "less than or equal"
+    *   ``GT`` for "greater"
+    *   ``GE`` for "greater than or equal" .
+    *   ``EQ`` for "equal",
+    *   ``REQ`` for "reversed equal"
 
-  Value comparisons make sense if and only if the index type is TREE.
-  The iterator types for other types of indexes are slightly different and work
-  differently. See details in section :ref:`Iterator types <box_index-iterator-types>`.
+    Value comparisons make sense if and only if the index type is TREE.
+    The iterator types for other types of indexes are slightly different and work
+    differently. See details in section :ref:`Iterator types <box_index-iterator-types>`.
 
-  Note that we don't use the name of the index, which means we use primary index here.
+    Note that we don't use the name of the index, which means we use primary index here.
 
-  This type of search may return more than one tuple. The tuples will be sorted
-  in descending order by key if the comparison operator is LT or LE or REQ.
-  Otherwise they will be sorted in ascending order.
+    This type of search may return more than one tuple. The tuples will be sorted
+    in descending order by key if the comparison operator is LT or LE or REQ.
+    Otherwise they will be sorted in ascending order.
 
-* The search can use a **secondary index**.
+*   The search can use a **secondary index**.
 
-  For a primary-key search, it is optional to specify an index name as
-  was demonstrated above.
-  For a secondary-key search, it is mandatory.
+    For a primary-key search, it is optional to specify an index name as
+    was demonstrated above.
+    For a secondary-key search, it is mandatory.
 
-  ..  code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester.index.secondary:select({1993})
-      ---
-      - - [3, 'Ace of Base', 1993]
-      ...
+        tarantool> box.space.tester.index.secondary:select({1993})
+        ---
+        - - [3, 'Ace of Base', 1993]
+        ...
 
-  .. _partial_key_search:
+    .. _partial_key_search:
 
-* **Partial key search:** The search may be for some key parts starting with
-  the prefix of the key. Note that partial key searches are available
-  only in TREE indexes.
+*   **Partial key search:** The search may be for some key parts starting with
+    the prefix of the key. Note that partial key searches are available
+    only in TREE indexes.
 
-  ..  code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester.index.thrine:select({'Scorpions', 2015})
-      ---
-      - - [2, 'Scorpions', 2015, 4]
-      ...
+        tarantool> box.space.tester.index.thrine:select({'Scorpions', 2015})
+        ---
+        - - [2, 'Scorpions', 2015, 4]
+        ...
 
-* The search can be for all fields, using a table as the value:
+*   The search can be for all fields, using a table as the value:
 
-  ..  code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester.index.thrine:select({'Roxette', 2016, 3})
-      ---
-      - - [4, 'Roxette', 2016, 3]
-      ...
+        tarantool> box.space.tester.index.thrine:select({'Roxette', 2016, 3})
+        ---
+        - - [4, 'Roxette', 2016, 3]
+        ...
 
-  or the search can be for one field, using a table or a scalar:
+    or the search can be for one field, using a table or a scalar:
 
-  ..  code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester.index.thrine:select({'Roxette'})
-      ---
-      - - [1, 'Roxette', 1986, 5]
-        - [4, 'Roxette', 2016, 3]
-      ...
+        tarantool> box.space.tester.index.thrine:select({'Roxette'})
+        ---
+        - - [1, 'Roxette', 1986, 5]
+          - [4, 'Roxette', 2016, 3]
+        ...
 
 ..  admonition:: Tip
     :class: fact
@@ -349,19 +351,19 @@ HASH is now present in Tarantool mainly because of backward compatibility.
 
 Here are some tips. Do not use HASH index:
 
-* just if you want to
-* if you think that HASH is faster with no performance metering
-* if you want to iterate over the data
-* for primary key
-* as an only index
+*   just if you want to
+*   if you think that HASH is faster with no performance metering
+*   if you want to iterate over the data
+*   for primary key
+*   as an only index
 
 Use HASH index:
 
-* if it is a secondary key
-* if you 100% won't need to make it non-unique
-* if you have taken measurements on your data and you see an accountable
-  increase in performance
-* if you save every byte on tuples (HASH is a little more compact)
+*   if it is a secondary key
+*   if you 100% won't need to make it non-unique
+*   if you have taken measurements on your data and you see an accountable
+    increase in performance
+*   if you save every byte on tuples (HASH is a little more compact)
 
 .. _indexes-rtree:
 
@@ -383,9 +385,9 @@ RTREE index can accept two types of ``distance`` functions: ``euclid`` and ``man
 
 ..  code-block:: lua
 
-    my_space = box.schema.create_space("test")
-    my_space:format({ { type= 'number', name='id' }, { type='array', name='content' } })
-    hash_index = my_space:create_index('primary', { type = 'HASH', parts = {'id'} })
+    my_space = box.schema.create_space("tester")
+    my_space:format({ { type = 'number', name = 'id' }, { type = 'array', name = 'content' } })
+    hash_index = my_space:create_index('primary', { type = 'tree', parts = {'id'} })
     rtree_index = my_space:create_index('spatial', { type = 'RTREE', unique = false, parts = {'content'} })
 
 Corresponding tuple field thus must be an array of 2 or 4 numbers.
@@ -450,7 +452,7 @@ with their rectangles strictly within a specified rectangle:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> rtree_index:select({0, 0, 3, 3}, {iterator='lt'})
+    tarantool> rtree_index:select({0, 0, 3, 3}, {iterator = 'lt'})
     ---
     - - [1, [1, 1]]
     ...
@@ -459,7 +461,7 @@ Iterator GE searches for tuples with a specified rectangle within their rectangl
 
 ..  code-block:: tarantoolsession
 
-    tarantool> rtree_index:select({1, 1}, {iterator='ge'})
+    tarantool> rtree_index:select({1, 1}, {iterator = 'ge'})
     ---
     - - [1, [1, 1]]
     ...
@@ -468,7 +470,7 @@ Iterator GT searches for tuples with a specified rectangle strictly within their
 
 ..  code-block:: tarantoolsession
 
-    tarantool> rtree_index:select({2.1, 2.1, 2.9, 2.9}, {itearator='gt'})
+    tarantool> rtree_index:select({2.1, 2.1, 2.9, 2.9}, {itearator = 'gt'})
     ---
     - []
     ...
@@ -495,7 +497,7 @@ Iterator NEIGHBOR searches for all tuples and orders them by distance to the spe
     ---
     ...
 
-    tarantool> rtree_index:select({1, 1}, {iterator='neighbor', limit=5})
+    tarantool> rtree_index:select({1, 1}, {iterator = 'neighbor', limit = 5})
     ---
     - - [11, [1, 1, 2, 2]]
       - [12, [1, 2, 2, 3]]
@@ -611,12 +613,12 @@ and bit values are entered as hexadecimal literals for easier reading.
 
     tarantool> box.schema.space.create('bitset_example')
     tarantool> box.space.bitset_example:create_index('primary')
-    tarantool> box.space.bitset_example:create_index('bitset',{unique=false,type='BITSET', parts={2,'unsigned'}})
+    tarantool> box.space.bitset_example:create_index('bitset',{unique = false, type = 'BITSET', parts = {2,'unsigned'}})
     tarantool> box.space.bitset_example:insert{1,1}
     tarantool> box.space.bitset_example:insert{2,4}
     tarantool> box.space.bitset_example:insert{3,7}
     tarantool> box.space.bitset_example:insert{4,3}
-    tarantool> box.space.bitset_example.index.bitset:select(2, {iterator='BITS_ANY_SET'})
+    tarantool> box.space.bitset_example.index.bitset:select(2, {iterator = 'BITS_ANY_SET'})
 
 The result will be:
 

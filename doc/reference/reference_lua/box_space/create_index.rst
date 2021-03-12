@@ -310,7 +310,7 @@ then the ``parts={...}`` clause may include ``is_nullable=true`` or
 If ``is_nullable`` is true, then it is legal to insert ``nil`` or an equivalent
 such as ``msgpack.NULL``.
 It is also legal to insert nothing at all when using trailing nullable fields.
-Within indexes, such "null values" are always treated as equal to other null
+Within indexes, such null values are always treated as equal to other null
 values, and are always treated as less than non-null values.
 Nulls may appear multiple times even in a unique index. Example:
 
@@ -375,7 +375,7 @@ specify the path string during index creation, like this:
 
     :extsamp:`parts = {{*{field-number}*}, {*{'data-type'}*}, path = {*{'path-name'}*}}`
 
-The index type must be ``tree`` or ``hash`` and the contents of the field
+The index type must be TREE or HASH and the contents of the field
 must always be maps with the same path.
 
 **Example 1 -- The simplest use of path:**
@@ -408,7 +408,7 @@ secondary indexes must be created before tuples are inserted.
 .. _box_space-path_multikey:
 
 --------------------------------------------------------------------------------
-Creating a multikey index using the path option with wildcard [*]
+Creating a multikey index using the path option with [*]
 --------------------------------------------------------------------------------
 
 The string in a path option can contain ``[*]`` which is called
@@ -453,16 +453,16 @@ The result of the select request looks like this:
 
 Some restrictions exist:
 
-* ``[*]`` must be alone or must be at the end of a name in the path
-* ``[*]`` must not appear twice in the path
-* if an index has a path with ``x[*]`` then no other index can have a path with
-  x.component
-* ``[*]`` must not appear in the path of a primary-key
-* if an index has ``unique=true`` and has a path with ``[*]``
-  then duplicate keys from different tuples are disallowed but duplicate keys
-  for the same tuple are allowed
-* the field's value must have the same structure as in the path definition,
-  or be nil (nil is not indexed)
+*   ``[*]`` must be alone or must be at the end of a name in the path
+*   ``[*]`` must not appear twice in the path
+*   if an index has a path with ``x[*]`` then no other index can have a path with
+    x.component
+*   ``[*]`` must not appear in the path of a primary-key
+*   if an index has ``unique=true`` and has a path with ``[*]``
+    then duplicate keys from different tuples are disallowed but duplicate keys
+    for the same tuple are allowed
+*   the field's value must have the same structure as in the path definition,
+    or be nil (nil is not indexed)
 
 .. _box_space-index_func:
 
@@ -477,31 +477,31 @@ any other way that users want to customize the index.
 
 There are several recommendations on building functional indexes:
 
-* The function definition must expect a tuple, which has the contents of
-  fields at the time a data-change request happens, and must return a tuple,
-  which has the contents that will actually be put in the index.
+*   The function definition must expect a tuple, which has the contents of
+    fields at the time a data-change request happens, and must return a tuple,
+    which has the contents that will actually be put in the index.
 
-* The ``create_index`` definition must include specification of all key parts,
-  and the custom function must return a table which has the same number of key
-  parts with the same types.
+*   The ``create_index`` definition must include specification of all key parts,
+    and the custom function must return a table which has the same number of key
+    parts with the same types.
 
-* The space must have a memtx engine.
+*   The space must have a memtx engine.
 
-* The function must be persistent and deterministic
-  (see :ref:`Creating function with body`).
+*   The function must be persistent and deterministic
+    (see :ref:`Creating function with body`).
 
-* The key parts must not depend on JSON paths.
+*   The key parts must not depend on JSON paths.
 
-* The function must access key-part values by index, not by field name.
+*   The function must access key-part values by index, not by field name.
 
-* Functional indexes must not be primary-key indexes.
+*   Functional indexes must not be primary-key indexes.
 
-* Functional indexes cannot be altered and the function cannot be changed if
-  it is used for an index, so the only way to change them is to drop the index
-  and create it again.
+*   Functional indexes cannot be altered and the function cannot be changed if
+    it is used for an index, so the only way to change them is to drop the index
+    and create it again.
 
-* Only :ref:`sandboxed <box_schema-func_create_with-body>` functions
-  are suitable for functional indexes.
+*   Only :ref:`sandboxed <box_schema-func_create_with-body>` functions
+    are suitable for functional indexes.
 
 **Example:**
 
