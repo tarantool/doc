@@ -219,6 +219,11 @@ add_custom_target(update-pot
     COMMENT "Generate localization templates"
 )
 
+add_custom_command(TARGET update-pot
+    COMMAND make rm-fake-msg
+    COMMENT "Remove meta data"
+)
+
 add_custom_target(update-po-no-force
     COMMAND "${SPHINX_INTL_EXECUTABLE}"
         update
