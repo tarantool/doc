@@ -28,7 +28,7 @@ Creating an index
 --------------------------------------------------------------------------------
 
 It is mandatory to create an index for a space before trying to insert
-tuples into it, or select tuples from it.
+tuples into the space, or select tuples from the space.
 
 The simple :doc:`index-creation </reference/reference_lua/box_space/create_index>`
 operation is:
@@ -191,11 +191,11 @@ then it also changes the index keys defined for the tuple.
   The iterator types for other types of indexes are slightly different and work
   differently. See details in section :ref:`Iterator types <box_index-iterator-types>`.
 
-  Note that we didn't use the name of the index, which means we use primary index here.
+  Note that we don't use the name of the index, which means we use primary index here.
 
-  This type of search may return more than one tuple; if so, the tuples will be
-  in descending order by key when the comparison operator is LT or LE or REQ,
-  otherwise in ascending order.
+  This type of search may return more than one tuple. The tuples will be sorted
+  in descending order by key if the comparison operator is LT or LE or REQ.
+  Otherwise they will be sorted in ascending order.
 
 * The search can use a **secondary index**.
 
