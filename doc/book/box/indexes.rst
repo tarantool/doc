@@ -62,7 +62,7 @@ and their expected **types**. See allowed indexed field types in section
 ..  cssclass:: highlight
 ..  parsed-literal::
 
-    :extsamp:`box.space.{**{space-name}**}:create_index('primary', {type = 'hash', parts = {{field = 1, type = 'unsigned'}}}`
+    :extsamp:`box.space.{**{space-name}**}:create_index({**{index-name}**}, {type = 'tree', parts = {{field = 1, type = 'unsigned'}}}`
 
 Space definitions and index definitions are stored permanently in Tarantool's
 system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>`.
@@ -106,7 +106,7 @@ then it also changes the index keys defined for the tuple.
     ..  code-block:: tarantoolsession
 
         tarantool> my_space:create_index('primary', {
-                 > type = 'hash',
+                 > type = 'tree',
                  > parts = {'id'}
                  > })
 
@@ -144,8 +144,8 @@ then it also changes the index keys defined for the tuple.
 
         tarantool> box.space.tester:create_index('thrine', {parts = {
                  > {field = 2, type = 'string'},
-                 > {field=3, type='unsigned'},
-                 > {field=4, type='unsigned'}
+                 > {field = 3, type = 'unsigned'},
+                 > {field = 4, type = 'unsigned'}
                  > }})
         ---
         - unique: true
@@ -187,7 +187,10 @@ then it also changes the index keys defined for the tuple.
   *   ``EQ`` for "equal",
   *   ``REQ`` for "reversed equal"
 
-  Comparisons make sense if and only if the index type is TREE.
+  Value comparisons make sense if and only if the index type is TREE.
+  The iterator types for other types of indexes are slightly different and work
+  differently. See details in section :ref:`Iterator types <box_index-iterator-types>`.
+
   Note that we didn't use the name of the index, which means we use primary index here.
 
   This type of search may return more than one tuple; if so, the tuples will be
@@ -509,9 +512,9 @@ Here's short example of using 4D tree:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> my_space = box.schema.create_space("test")
-    tarantool> my_space:format{ { type= 'number', name='id' }, { type='array', name='content' } }
-    tarantool> hash_index = my_space:create_index('primary', { type = 'HASH', parts = {'id'} })
+    tarantool> my_space = box.schema.create_space("tester")
+    tarantool> my_space:format{ { type = 'number', name = 'id' }, { type = 'array', name = 'content' } }
+    tarantool> primary_index = my_space:create_index('primary', { type = 'TREE', parts = {'id'} })
     tarantool> rtree_index = my_space:create_index('spatial', { type = 'RTREE', unique = false, dimension = 4, parts = {'content'} })
     tarantool> my_space:insert{1, {1, 2, 3, 4}} -- insert 4D point
     tarantool> my_space:insert{2, {1, 1, 1, 1, 2, 2, 2, 2}} -- insert 4D box
@@ -539,7 +542,7 @@ Here's short example of using 4D tree:
     that could be tons of data with corresponding performance.
 
     And another frequent mistake is to specify iterator type without quotes,
-    in such way: ``rtree_index:select(rect, {iterator = LE})``.
+    in such way: ``rtree_index:select(rect, {iterator = 'LE'})``.
     This leads to silent EQ select, because ``LE`` is undefined variable and
     treated as nil, so iterator is unset and default used.
 

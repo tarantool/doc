@@ -11,7 +11,7 @@ On this page:
 * :ref:`Creating an index using field names instead of field numbers <box_space-field_names>`
 * :ref:`Creating an index using the path option for map fields (JSON-path indexes) <box_space-path>`
 * :ref:`Creating an index using the path option with [*] <box_space-path_multikey>`
-* :ref:`Creating a functional index with space_object:create_index() <box_space-index_func>`
+* :ref:`Creating a functional index <box_space-index_func>`
 
 .. class:: space_object
 
