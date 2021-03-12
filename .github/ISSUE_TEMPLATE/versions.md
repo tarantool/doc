@@ -7,9 +7,9 @@ assignees:
 ---
 # Merge version 2.x.y into latest
 
-# What needs to be done
-
 **Reviewer:** @NickVolynkin
+
+See also: https://github.com/tarantool/tarantool/releases/tag/2.x.y
 
 # Definition of done
 
@@ -18,7 +18,6 @@ assignees:
       with link back to release notes.
 - [ ] When there are alternatives for the same action,
       move forward the one which is implemented in a later version.
-
 
 # Planning checklist
 
