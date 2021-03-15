@@ -29,271 +29,271 @@ msgid "Use"
 msgstr "Использование"
 
 msgid ":doc:`./box_space/examples`"
-msgstr ""
+msgstr ":doc:`./box_space/examples`"
 
 msgid "Some useful examples"
 msgstr "Несколько полезных примеров"
 
 msgid ":doc:`./box_space/alter`"
-msgstr ""
+msgstr ":doc:`./box_space/alter`"
 
 msgid "Alter a space"
 msgstr "Изменение спейса"
 
 msgid ":doc:`./box_space/auto_increment`"
-msgstr ""
+msgstr ":doc:`./box_space/auto_increment`"
 
 msgid "Generate key + Insert a tuple"
 msgstr "Генерация ключа + вставка кортежа"
 
 msgid ":doc:`./box_space/bsize`"
-msgstr ""
+msgstr ":doc:`./box_space/bsize`"
 
 msgid "Get count of bytes"
 msgstr "Подсчет байтов"
 
 msgid ":doc:`./box_space/count`"
-msgstr ""
+msgstr ":doc:`./box_space/count`"
 
 msgid "Get count of tuples"
 msgstr "Подсчет кортежей"
 
 msgid ":doc:`./box_space/create_index`"
-msgstr ""
+msgstr ":doc:`./box_space/create_index`"
 
 msgid "Create an index"
 msgstr "Создание индекса"
 
 msgid ":doc:`./box_space/delete`"
-msgstr ""
+msgstr ":doc:`./box_space/delete`"
 
 msgid "Delete a tuple"
 msgstr "Удаление кортежа"
 
 msgid ":doc:`./box_space/drop`"
-msgstr ""
+msgstr ":doc:`./box_space/drop`"
 
 msgid "Destroy a space"
 msgstr "Удаление спейса"
 
 msgid ":doc:`./box_space/format`"
-msgstr ""
+msgstr ":doc:`./box_space/format`"
 
 msgid "Declare field names and types"
 msgstr "Объявление имен и типов полей"
 
 msgid ":doc:`./box_space/frommap`"
-msgstr ""
+msgstr ":doc:`./box_space/frommap`"
 
 msgid "Convert from map to tuple or table"
 msgstr "Конвертация ассоциативного массива в кортеж или таблицу"
 
 msgid ":doc:`./box_space/get`"
-msgstr ""
+msgstr ":doc:`./box_space/get`"
 
 msgid "Select a tuple"
 msgstr "Выбор кортежа"
 
 msgid ":doc:`./box_space/insert`"
-msgstr ""
+msgstr ":doc:`./box_space/insert`"
 
 msgid "Insert a tuple"
 msgstr "Вставка кортежа"
 
 msgid ":doc:`./box_space/len`"
-msgstr ""
+msgstr ":doc:`./box_space/len`"
 
 msgid ":doc:`./box_space/on_replace`"
-msgstr ""
+msgstr ":doc:`./box_space/on_replace`"
 
 msgid "Create a replace trigger with a function that cannot change the tuple"
 msgstr "Создание триггера замены с функцией, которая не может изменять кортеж"
 
 msgid ":doc:`./box_space/before_replace`"
-msgstr ""
+msgstr ":doc:`./box_space/before_replace`"
 
 msgid "Create a replace trigger with a function that can change the tuple"
 msgstr "Создание триггера замены с функцией, которая может изменять кортеж"
 
 msgid ":doc:`./box_space/pairs`"
-msgstr ""
+msgstr ":doc:`./box_space/pairs`"
 
 msgid "Prepare for iterating"
 msgstr "Подготовка к итерации"
 
 msgid ":doc:`./box_space/put`"
-msgstr ""
+msgstr ":doc:`./box_space/put`"
 
 msgid "Insert or replace a tuple"
 msgstr "Вставка или замена кортежа"
 
 msgid ":doc:`./box_space/rename`"
-msgstr ""
+msgstr ":doc:`./box_space/rename`"
 
 msgid "Rename a space"
 msgstr "Переименование спейса"
 
 msgid ":doc:`./box_space/replace`"
-msgstr ""
+msgstr ":doc:`./box_space/replace`"
 
 msgid ":doc:`./box_space/run_triggers`"
-msgstr ""
+msgstr ":doc:`./box_space/run_triggers`"
 
 msgid "Enable/disable a replace trigger"
 msgstr "Включение/отключение триггера замены"
 
 msgid ":doc:`./box_space/select`"
-msgstr ""
+msgstr ":doc:`./box_space/select`"
 
 msgid "Select one or more tuples"
 msgstr "Выбор одного или более кортежей"
 
 msgid ":doc:`./box_space/truncate`"
-msgstr ""
+msgstr ":doc:`./box_space/truncate`"
 
 msgid "Delete all tuples"
 msgstr "Удаление всех кортежей"
 
 msgid ":doc:`./box_space/update`"
-msgstr ""
+msgstr ":doc:`./box_space/update`"
 
 msgid "Update a tuple"
 msgstr "Обновление кортежа"
 
 msgid ":doc:`./box_space/upsert`"
-msgstr ""
+msgstr ":doc:`./box_space/upsert`"
 
 msgid ":doc:`./box_space/user_defined`"
-msgstr ""
+msgstr ":doc:`./box_space/user_defined`"
 
 msgid "Any function / method that any user wants to add"
 msgstr "Любая функция / метод, которые хочет добавить любой пользователь"
 
 msgid ":doc:`./box_space/create_check_constraint`"
-msgstr ""
+msgstr ":doc:`./box_space/create_check_constraint`"
 
 msgid "Create a check constraint"
-msgstr ""
+msgstr "Создание проверочного ограничения"
 
 msgid ":doc:`./box_space/enabled`"
-msgstr ""
+msgstr ":doc:`./box_space/enabled`"
 
 msgid "Flag, true if space is enabled"
 msgstr "Флаг, если спейс активен -- true"
 
 msgid ":doc:`./box_space/field_count`"
-msgstr ""
+msgstr ":doc:`./box_space/field_count`"
 
 msgid "Required number of fields"
 msgstr "Необходимое количество полей"
 
 msgid ":doc:`./box_space/id`"
-msgstr ""
+msgstr ":doc:`./box_space/id`"
 
 msgid "Numeric identifier of space"
 msgstr "Числовой идентификатор спейса"
 
 msgid ":doc:`./box_space/index_data`"
-msgstr ""
+msgstr ":doc:`./box_space/index_data`"
 
 msgid "Container of space's indexes"
 msgstr "Контейнер для индексов спейса"
 
 msgid ":doc:`./box_space/_cluster`"
-msgstr ""
+msgstr ":doc:`./box_space/_cluster`"
 
 msgid "(Metadata) List of replica sets"
 msgstr "(Метаданные) Список наборов реплик"
 
 msgid ":doc:`./box_space/_func`"
-msgstr ""
+msgstr ":doc:`./box_space/_func`"
 
 msgid "(Metadata) List of function tuples"
 msgstr "(Метаданные) Список кортежей с функциями"
 
 msgid ":doc:`./box_space/_index`"
-msgstr ""
+msgstr ":doc:`./box_space/_index`"
 
 msgid "(Metadata) List of indexes"
 msgstr "(Метаданные) Список индексов"
 
 msgid ":doc:`./box_space/_vindex`"
-msgstr ""
+msgstr ":doc:`./box_space/_vindex`"
 
 msgid "(Metadata) List of indexes accessible for the current user"
 msgstr "(Метаданные) Список индексов, доступных текущему пользователю"
 
 msgid ":doc:`./box_space/_priv`"
-msgstr ""
+msgstr ":doc:`./box_space/_priv`"
 
 msgid "(Metadata) List of privileges"
 msgstr "(Метаданные) Список прав"
 
 msgid ":doc:`./box_space/_vpriv`"
-msgstr ""
+msgstr ":doc:`./box_space/_vpriv`"
 
 msgid "(Metadata) List of privileges accessible for the current user"
 msgstr "(Метаданные) Список прав, доступных текущему пользователю"
 
 msgid ":doc:`./box_space/_schema`"
-msgstr ""
+msgstr ":doc:`./box_space/_schema`"
 
 msgid "(Metadata) List of schemas"
 msgstr "(Метаданные) Список схем"
 
 msgid ":doc:`./box_space/_sequence`"
-msgstr ""
+msgstr ":doc:`./box_space/_sequence`"
 
 msgid "(Metadata) List of sequences"
 msgstr "(Метаданные) Список последовательностей"
 
 msgid ":doc:`./box_space/_sequence_data`"
-msgstr ""
+msgstr ":doc:`./box_space/_sequence_data`"
 
 msgid ":doc:`./box_space/_space`"
-msgstr ""
+msgstr ":doc:`./box_space/_space`"
 
 msgid "(Metadata) List of spaces"
 msgstr "(Метаданные) Список спейсов"
 
 msgid ":doc:`./box_space/_vspace`"
-msgstr ""
+msgstr ":doc:`./box_space/_vspace`"
 
 msgid "(Metadata) List of spaces accessible for the current user"
 msgstr "(Метаданные) Список спейсов, доступных текущему пользователю"
 
 msgid ":doc:`./box_space/_user`"
-msgstr ""
+msgstr ":doc:`./box_space/_user`"
 
 msgid "(Metadata) List of users"
 msgstr "(Метаданные) Список пользователей"
 
 msgid ":doc:`./box_space/_vuser`"
-msgstr ""
+msgstr ":doc:`./box_space/_vuser`"
 
 msgid "(Metadata) List of users accessible for the current user"
 msgstr "(Метаданные) Список пользователей, доступных текущему пользователю"
 
 msgid ":doc:`./box_space/_ck_constraint`"
-msgstr ""
+msgstr ":doc:`./box_space/_ck_constraint`"
 
 msgid "(Metadata) List of check constraints"
-msgstr ""
+msgstr "(Метаданные) Список проверочных ограничений"
 
 msgid ":doc:`./box_space/_collation`"
-msgstr ""
+msgstr ":doc:`./box_space/_collation`"
 
 msgid "(Metadata) List of collations"
-msgstr ""
+msgstr "(Метаданные) Список видов сортировки"
 
 msgid ":doc:`./box_space/_vcollation`"
-msgstr ""
+msgstr ":doc:`./box_space/_vcollation`"
 
 msgid "(Metadata) List of collations accessible for the current user"
-msgstr ""
+msgstr "(Метаданные) Список видов сортировки, доступных текущему пользователю"
 
 msgid ":doc:`./box_space/_session_settings`"
-msgstr ""
+msgstr ":doc:`./box_space/_session_settings`"
 
 msgid "(Metadata) List of settings affecting behavior of the current session"
-msgstr ""
+msgstr "(Метаданные) Список настроек, которые влияют на поведение текущего сеанса"
