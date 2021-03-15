@@ -4,8 +4,9 @@
                                    Module `expirationd`
 -------------------------------------------------------------------------------
 
-For a commercial-grade example of a Lua rock that works with Tarantool, let us
-look at the source code of ``expirationd``, which Tarantool supplies on GitHub_ with
+For a commercial-grade example of a Lua `rock <https://rocks.tarantool.org/>`_ that works with Tarantool, let us
+look at the source code of ``expirationd``, which Tarantool supplies on
+`GitHub <https://github.com/tarantool/expirationd/blob/master/expirationd.lua>`_ with
 an Artistic license.
 The ``expirationd.lua`` program is lengthy (about 500 lines), so here we will only
 highlight the matters that will be enhanced by studying the full source later.
@@ -56,7 +57,7 @@ process the tuple as an expired tuple.
 Ultimately the tuple-expiry process leads to ``default_tuple_drop()``
 which does a "delete" of a tuple from its original space.
 First the fun :ref:`fun <fun-module>` module is used,
-specifically fun.map_.
+specifically `fun.map <https://luafun.github.io/transformations.html#fun.map>`_.
 Remembering that :codenormal:`index[0]` is always the space's primary key,
 and :codenormal:`index[0].parts[`:codeitalic:`N`:codenormal:`].fieldno`
 is always the field number for key part :codeitalic:`N`,
@@ -122,7 +123,7 @@ The function which will be supplied to ``expirationd`` is
 :ref:`current time <fiber-time>`  , then return true, otherwise return false".
 
 The key for getting the rock rolling is
-``expd = require('expirationd')``. The require_ function is what reads in
+``expd = require('expirationd')``. The `require <https://www.lua.org/pil/8.1.html#require>`_ function is what reads in
 the program; it will appear in many later examples in this manual, when it's
 necessary to get a module that's not part of the Tarantool kernel,
 but is on the Lua path (``package.path``) or the C path (``package.cpath``).
@@ -164,9 +165,3 @@ added as a final parameter in ``expirationd.run_task``:
   iteration it will be the "assumed" size, on the second iteration it will
   be "assumed" times "factor", on the third iteration it will be
   "assumed" times "factor" times factor", and so on.)
-
-.. _rock: http://rocks.tarantool.org/
-.. _expirationd.lua: https://github.com/tarantool/expirationd/blob/master/expirationd.lua
-.. _GitHub: https://github.com/tarantool/expirationd/blob/master/expirationd.lua
-.. _fun.map: https://luafun.github.io/transformations.html#fun.map
-.. _require: https://www.lua.org/pil/8.1.html#require

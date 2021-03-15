@@ -169,11 +169,10 @@ function in Lua's string library; the parameter is the code point of the
 character. Luckily the ASCII value of 'A' is 65 and the ASCII value of 'Z'
 is 90 so the result will always be a letter between A and Z.
 
-For more about Lua math-library functions see Lua users "`Math Library Tutorial`_".
-For more about Lua string-library functions see Lua users "`String Library Tutorial`_" .
-
-.. _Math Library Tutorial: http://lua-users.org/wiki/MathLibraryTutorial
-.. _String Library Tutorial: http://lua-users.org/wiki/StringLibraryTutorial
+For more about Lua math-library functions see Lua users
+"`Math Library Tutorial <http://lua-users.org/wiki/MathLibraryTutorial>`_".
+For more about Lua string-library functions see Lua users
+"`String Library Tutorial <http://lua-users.org/wiki/StringLibraryTutorial>`_" .
 
 Once again the ``string_function()`` can be invoked from main_function() which
 can be invoked with ``main_function()``.
@@ -531,7 +530,7 @@ referenced with variable :code:`t`.
 **LINE 6: WHY "PCALL".** If we simply said ``lua_table = json.decode(t[2]))``, then
 the function would abort with an error if it encountered something wrong with the
 JSON string - a missing colon, for example. By putting the function inside "``pcall``"
-(`protected call`_), we're saying: we want to intercept that sort of error, so if
+(`protected call <http://www.lua.org/pil/8.4.html>`_), we're saying: we want to intercept that sort of error, so if
 there's a problem just set ``is_valid_json = false`` and we will know what to do
 about it later.
 
@@ -539,8 +538,6 @@ about it later.
 string, and the parameter is t[2] which is a reference to a JSON string. There's
 a bit of hard coding here, we're assuming that the second field in the tuple is
 where the JSON string was inserted. For example, we're assuming a tuple looks like
-
-.. _protected call: http://www.lua.org/pil/8.4.html
 
 .. cssclass:: highlight
 .. parsed-literal::

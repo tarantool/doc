@@ -195,5 +195,3 @@
     | Default = 2
     | Dynamic: no
 
-.. _LZ4 algorithm: https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29
-.. _ZStandard algorithm: http://zstd.net

@@ -8,10 +8,11 @@
                                    Overview
 ===============================================================================
 
-A "UUID" is a `Universally unique identifier`_. If an application requires that
+A "UUID" is a `Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_.
+If an application requires that
 a value be unique only within a single computer or on a single database, then a
 simple counter is better than a UUID, because getting a UUID is time-consuming
-(it requires a syscall_). For clusters of computers, or widely distributed
+(it requires a `syscall <https://en.wikipedia.org/wiki/Syscall>`_). For clusters of computers, or widely distributed
 applications, UUIDs are better.
 
 ===============================================================================
@@ -202,6 +203,3 @@ Below is list of all ``uuid`` functions and members.
     - cdata
     - false
     ...
-
-.. _Universally unique identifier: https://en.wikipedia.org/wiki/Universally_unique_identifier
-.. _syscall: https://en.wikipedia.org/wiki/Syscall

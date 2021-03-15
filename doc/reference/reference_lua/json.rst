@@ -324,5 +324,3 @@ and :ref:`YAML <yaml-cfg>`.
         - '{"field2":null,"field1":"a","field3":"c"}'
         ...
 
-.. _Lua-CJSON module by Mark Pulford: http://www.kyne.com.au/~mark/software/lua-cjson.php
-.. _the official documentation: http://www.kyne.com.au/~mark/software/lua-cjson-manual.html

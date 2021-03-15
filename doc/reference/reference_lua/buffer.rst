@@ -240,5 +240,3 @@ Notice that the IPROTO_DATA header (48) is gone.
 The result is still inside an array, as is clear from the fact that it is shown
 inside square brackets. It is possible to skip the array header too, with
 :ref:`msgpack.decode_array_header() <msgpack-decode_array_header>`.
-
-.. _MsgPack: http://msgpack.org/

@@ -11,10 +11,19 @@
 ===============================================================================
 
 A "digest" is a value which is returned by a function (usually a
-`Cryptographic hash function`_), applied against a string. Tarantool's ``digest``
-module supports several types of cryptographic hash functions (AES_, MD4_,
-MD5_, SHA-1_, SHA-2_, PBKDF2_) as well as a checksum function (CRC32_), two
-functions for base64_, and two non-cryptographic hash functions (guava_, murmur_).
+`Cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_),
+applied against a string. Tarantool's ``digest``
+module supports several types of cryptographic hash functions (
+`AES <https://en.wikipedia.org/wiki/Advanced_Encryption_Standard>`_,
+`MD4 <https://en.wikipedia.org/wiki/Md4>`_,
+`MD5 <https://en.wikipedia.org/wiki/Md5>`_,
+`SHA-1 <https://en.wikipedia.org/wiki/Sha-1>`_,
+`SHA-2 <https://en.wikipedia.org/wiki/Sha-2>`_,
+`PBKDF2 <https://en.wikipedia.org/wiki/PBKDF2>`_)
+as well as a checksum function (`CRC32 <https://en.wikipedia.org/wiki/Cyclic_redundancy_check>`_), two
+functions for `base64 <https://en.wikipedia.org/wiki/Base64>`_, and two non-cryptographic hash functions
+(`guava <https://code.google.com/p/guava-libraries/wiki/HashingExplained>`_,
+`murmur <https://en.wikipedia.org/wiki/MurmurHash>`_).
 Some of the digest functionality is also present in the :ref:`crypto <crypto>`.
 
 ===============================================================================
@@ -296,7 +305,8 @@ Below is a list of all ``digest`` functions.
 
     Returns a number made with consistent hash.
 
-    The guava function uses the `Consistent Hashing`_ algorithm of the Google
+    The guava function uses the `Consistent Hashing <https://en.wikipedia.org/wiki/Consistent_hashing>`_
+    algorithm of the Google
     guava library. The first parameter should be a hash code; the second
     parameter should be the number of buckets; the returned value will be an
     integer between 0 and the number of buckets. For example,
@@ -361,7 +371,7 @@ Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the following example, the user creates two functions, ``password_insert()``
-which inserts a SHA-1_ digest of the word "**^S^e^c^ret Wordpass**" into a tuple
+which inserts a `SHA-1 <https://en.wikipedia.org/wiki/Sha-1>`_ digest of the word "**^S^e^c^ret Wordpass**" into a tuple
 set, and ``password_check()`` which requires input of a password.
 
 .. code-block:: tarantoolsession
@@ -400,16 +410,4 @@ password, the result is an error.
     - 'Password is not valid'
     ...
 
-.. _AES: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
-.. _SHA-1: https://en.wikipedia.org/wiki/Sha-1
-.. _SHA-2: https://en.wikipedia.org/wiki/Sha-2
-.. _MD4: https://en.wikipedia.org/wiki/Md4
-.. _MD5: https://en.wikipedia.org/wiki/Md5
-.. _CRC32: https://en.wikipedia.org/wiki/Cyclic_redundancy_check
-.. _base64: https://en.wikipedia.org/wiki/Base64
-.. _Cryptographic hash function: https://en.wikipedia.org/wiki/Cryptographic_hash_function
-.. _Consistent Hashing: https://en.wikipedia.org/wiki/Consistent_hashing
-.. _Cyclic Redundancy Check: https://en.wikipedia.org/wiki/Cyclic_redundancy_check
-.. _guava: https://code.google.com/p/guava-libraries/wiki/HashingExplained
-.. _Murmur: https://en.wikipedia.org/wiki/MurmurHash
-.. _PBKDF2: https://en.wikipedia.org/wiki/PBKDF2
+

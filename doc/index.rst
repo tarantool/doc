@@ -92,25 +92,19 @@
             * `PDF <Tarantool.pdf>`_
 
             - **See also:**
-            - `Documentation archive`_
-            - `Articles`_
+            - `Documentation archive <https://tarantool.io/dist/pdf/>`_
+            - `Articles <https://tarantool.io/learn/>`_
 
             .. ifconfig:: language == 'ru'
 
                 * **Support:**
-                * `Форум в Google`_
-                * `Чат в Telegram`_
+                * `Форум в Google <https://googlegroups.com/group/tarantool-ru>`_
+                * `Чат в Telegram <https://t.me/tarantoolru>`_
             .. ifconfig:: language == 'en'
 
                 * **Support:**
-                * `Google forum`_
-                * `Telegram chat`_
+                * `Google forum <https://groups.google.com/forum/#!forum/tarantool>`_
+                * `Telegram chat <https://t.me/tarantool>`_
 
-.. _Documentation archive: https://tarantool.io/dist/pdf/
-.. _Articles: https://tarantool.io/learn/
-.. _Google forum: https://groups.google.com/forum/#!forum/tarantool
-.. _Форум в Google: https://googlegroups.com/group/tarantool-ru
-.. _Telegram chat: https://t.me/tarantool
-.. _Чат в Telegram: https://t.me/tarantoolru
 .. |nbspc| unicode:: U+00A0
 .. |space| unicode:: U+0020
