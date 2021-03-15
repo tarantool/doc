@@ -7,39 +7,26 @@ default branch (currently ``master``). Our git repository is hosted on GitHub,
 and can be checked out with ``git clone git://github.com/tarantool/tarantool.git``
 (anonymous read-only access).
 
-If you have any questions about Tarantool internals, please post them on the
-`developer discussion list <https://groups.google.com/forum/#!forum/tarantool>`_
-or on `StackOverflow <https://stackoverflow.com/questions/tagged/tarantool>`_.
-Additionally, some engineers are always present on #tarantool channel on
-irc.freenode.net.
+If you have any questions about Tarantool internals, please post them on
+`StackOverflow <https://stackoverflow.com/questions/tagged/tarantool>`_ or
+ask Tarantool developers directly in `telegram <http://telegram.me/tarantool>`_.
 
 **General guidelines**
 
-The project's coding style is based on the `Linux kernel coding style
+The project's coding style is inspired by the `Linux kernel coding style
 <https://www.kernel.org/doc/html/v4.10/process/coding-style.html>`_.
 
 However, we have some additional guidelines, either unique to Tarantool or
-deviating from the Kernel guidelines. Below we cite the Linux kernel
+deviating from the Kernel guidelines. Below we rewrite the Linux kernel
 coding style noting Tarantool's style features.
-
-We don't cite chapters 10 "Kconfig configuration files", 11 "Data structures",
-13 "Printing kernel messages", and 17 "Don't re-invent the kernel macros" since
-they are specific to Linux kernel programming environment.
 
 --------------------------------------------------------------------------------
                            Linux kernel coding style
 --------------------------------------------------------------------------------
 
 This is a short document describing the preferred coding style for the
-linux kernel. Coding style is very personal, and I won't **force** my
-views on anybody, but this is what goes for anything that I have to be
-able to maintain, and I'd prefer it for most other things too. Please
-at least consider the points made here.
-
-First off, I'd suggest printing out a copy of the GNU coding standards,
-and NOT read it. Burn them, it's a great symbolic gesture.
-
-Anyway, here goes:
+Tarantool developers and contributors. We insist on following these rules
+in order to make our code consistent and understandable to any developer.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 1: Indentation
@@ -123,8 +110,7 @@ Statements longer than 80 columns will be broken into sensible chunks, unless
 exceeding 80 columns significantly increases readability and does not hide
 information. Descendants are always substantially shorter than the parent and
 are placed substantially to the right. The same applies to function headers
-with a long argument list. However, never break user-visible strings such as
-printk messages, because that breaks the ability to grep for them.
+with a long argument list.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 3: Placing Braces and Spaces
@@ -211,7 +197,8 @@ Do not unnecessarily use braces where a single statement will do.
 
     if (condition)
       action();
-    and
+
+and
 
 ..  code-block:: none
 
@@ -236,7 +223,7 @@ statement; in the latter case use braces in both branches:
 Chapter 3.1: Spaces
 ********************************************************************************
 
-Tarantool style for use of spaces depends (mostly) on
+Like Linux kernel, Tarantool style for use of spaces depends (mostly) on
 function-versus-keyword usage. Use a space after (most) keywords. The
 notable exceptions are sizeof, typeof, alignof, and __attribute__, which look
 somewhat like functions (and are usually used with parentheses in Linux,
@@ -291,6 +278,12 @@ no space after the prefix increment & decrement unary operators::
 
 and no space around the ``.`` and ``->`` structure member operators.
 
+..  admonition:: Tarantool Style
+    :class: FACT
+
+    Do not split a cast operator from its argument with a whitespace,
+    e.g. ``(ssize_t)inj->iparam``.
+
 Do not leave trailing whitespace at the ends of lines. Some editors with
 ``smart`` indentation will insert whitespace at the beginning of new lines as
 appropriate, so you can start typing the next line of code right away.
@@ -302,12 +295,6 @@ Git will warn you about patches that introduce trailing whitespace, and can
 optionally strip the trailing whitespace for you; however, if applying a series
 of patches, this may make later patches in the series fail by changing their
 context lines.
-
-..  admonition:: Tarantool Style
-    :class: FACT
-
-    Do not split a cast operator from its argument with a whitespace,
-    e.g. ``(ssize_t)inj->iparam``.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 4: Naming
@@ -423,13 +410,6 @@ useful only for:
     When editing existing code which already uses one or the other set
     of types, you should conform to the existing choices in that code.
 
-#.  Types safe for use in userspace.
-
-    In certain structures which are visible to userspace, we cannot
-    require C99 types and cannot use the ``u32`` form above. Thus, we
-    use __u32 and similar types in all structures which are shared
-    with userspace.
-
 Maybe there are other cases too, but the rule should basically be to NEVER
 EVER use a typedef unless you can clearly match one of those rules.
 
@@ -464,19 +444,6 @@ function, and split it into smaller pieces. A human brain can
 generally easily keep track of about 7 different things, anything more
 and it gets confused. You know you're brilliant, but maybe you'd like
 to understand what you did 2 weeks from now.
-
-In source files, separate functions with one blank line. If the function is
-exported, the **EXPORT** macro for it should follow immediately after the
-closing function brace line. E.g.:
-
-..  code-block:: c
-
-    int
-    system_is_up(void)
-    {
-      return system_state == SYSTEM_RUNNING;
-    }
-    EXPORT_SYMBOL(system_is_up);
 
 In function prototypes, include parameter names with their data types.
 Although this is not required by the C language, it is preferred in Linux
@@ -592,23 +559,23 @@ it.
 
     ..  code-block:: c
 
-        /** Write all data to a descriptor.
+        /**
+         * Write all data to a descriptor.
          *
          * This function is equivalent to 'write', except it would ensure
          * that all data is written to the file unless a non-ignorable
          * error occurs.
          *
          * @retval 0  Success
-         *
          * @retval  1  An error occurred (not EINTR)
-         * /
+         */
         static int
         write_all(int fd, void \*data, size_t len);
 
-    It's also important to comment data, whether they are basic types or derived
-    types. To this end, use just one data declaration per line (no commas for
-    multiple data declarations). This leaves you room for a small comment on each
-    item, explaining its use.
+    It's also important to comment data types, whether they are basic types or
+    derived ones. To this end, use just one data declaration per line (no commas
+    for multiple data declarations). This leaves you room for a small comment on
+    each item, explaining its use.
 
     Public structures and important structure members should be commented as well.
 
