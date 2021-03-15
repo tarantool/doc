@@ -42,10 +42,10 @@ msgid "[submodule \"modules/metrics\"]\n"
 "   url = https://github.com/tarantool/metrics.git"
 msgstr ""
 
-msgid "2. Update update_submodule.sh"
+msgid "2. Update build_submodules.sh"
 msgstr ""
 
-msgid "Next, we should define what directories and files are to be copied from the submodule repository into the documentation one before building documentation. These settings are defined in the ``update_submodule.sh`` file which is in the root directory of the documentation repository."
+msgid "Next, we should define what directories and files are to be copied from the submodule repository into the documentation one before building documentation. These settings are defined in the ``build_submodules.sh`` file which is in the root directory of the documentation repository."
 msgstr ""
 
 msgid "We can take examples of the already existing submodules to show the logic of the settings."
@@ -66,7 +66,7 @@ msgstr ""
 msgid "copy the entire content of the  ``./modules/metrics/doc/monitoring/`` directory to ``./doc/book/monitoring/``."
 msgstr ""
 
-msgid "The corresponding lines in the ``update_submodule.sh`` file are the following:"
+msgid "The corresponding lines in the ``build_submodules.sh`` file are the following:"
 msgstr ""
 
 msgid "monitoring_root=\"${project_root}/modules/metrics/doc/monitoring\" #\n"
@@ -91,7 +91,7 @@ msgstr ""
 msgid "copy ``./modules/cartridge_cli/README.rst`` to ``./doc/book/cartridge/cartridge_cli/index.rst``."
 msgstr ""
 
-msgid "The corresponding settings in the ``update_submodule.sh`` file are the following:"
+msgid "The corresponding settings in the ``build_submodules.st`` file are the following:"
 msgstr ""
 
 msgid "rst_dest=\"${project_root}/doc/book/cartridge\"\n"
