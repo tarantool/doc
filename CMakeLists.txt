@@ -221,7 +221,7 @@ add_custom_target(update-pot
 
 add_custom_command(TARGET update-pot
     COMMAND make rm-fake-msg
-    COMMENT "Remove meta data"
+    COMMENT "Remove metadata in translation sources"
 )
 
 add_custom_target(update-po-no-force

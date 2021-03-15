@@ -1,4 +1,4 @@
-name: AutoCommit and Crowdin Workflow
+name: Update translation sources
 
 on:
   workflow_dispatch:
@@ -26,5 +26,5 @@ jobs:
     - name: Push Local Changes
       uses: stefanzweifel/git-auto-commit-action@v4.1.2
       with:
-        commit_message: "Autocommit translation sources"
+        commit_message: "Update translation sources"
         file_pattern: "*.pot"
