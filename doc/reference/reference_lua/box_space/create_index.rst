@@ -10,7 +10,7 @@ On this page:
 * :ref:`Allowing null for an indexed key <box_space-is_nullable>`
 * :ref:`Creating an index using field names instead of field numbers <box_space-field_names>`
 * :ref:`Creating an index using the path option for map fields (JSON-path indexes) <box_space-path>`
-* :ref:`Creating an index using the path option with [*] <box_space-path_multikey>`
+* :ref:`Creating an multikey index using the path option with [*] <box_space-path_multikey>`
 * :ref:`Creating a functional index <box_space-index_func>`
 
 .. class:: space_object

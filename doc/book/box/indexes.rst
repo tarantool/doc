@@ -73,7 +73,7 @@ system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>
     :class: fact
 
     See full information about creating indexes, such as
-    how to create an index using the ``path`` option, or
+    how to create a multikey index, an index using the ``path`` option, or
     how to create a functional index in our reference for
     :doc:`/reference/reference_lua/box_space/create_index`.
 
@@ -101,7 +101,7 @@ then it also changes the index keys defined for the tuple.
                  > {name = 'id', type = 'unsigned'},
                  > {name = 'band_name', type = 'string'},
                  > {name = 'year', type = 'unsigned'},
-                 > {name = 'rate', type = 'unsigned', is_nullable=true}})
+                 > {name = 'rate', type = 'unsigned', is_nullable = true}})
 
 #.  Create the **primary** index (named ``primary``):
 
