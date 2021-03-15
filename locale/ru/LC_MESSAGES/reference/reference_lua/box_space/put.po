@@ -1,6 +1,6 @@
 
 msgid "space_object:put()"
-msgstr ""
+msgstr "space_object:put()"
 
 msgid "See :doc:`/reference/reference_lua/box_space/replace`."
-msgstr ""
+msgstr "См. :doc:`/reference/reference_lua/box_space/replace`."

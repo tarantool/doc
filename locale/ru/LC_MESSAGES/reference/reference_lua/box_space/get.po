@@ -1,6 +1,6 @@
 
 msgid "space_object:get()"
-msgstr ""
+msgstr "space_object:get()"
 
 msgid "Search for a tuple in the given space."
 msgstr "Поиск кортежа в данном спейсе."
@@ -24,7 +24,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr ""
+msgstr "tuple"
 
 msgid "**Possible errors:** ``space_object`` does not exist."
 msgstr "**Возможные ошибки:** ``space_object`` не существует"
@@ -64,6 +64,13 @@ msgid ""
 "description, including "
 ":doc:`/reference/reference_lua/box_tuple/field_name`."
 msgstr ""
+"**Использование имен полей вместо номеров полей:** в `get()` можно "
+"использовать имена полей, описанные в необязательном операторе "
+":doc:`/reference/reference_lua/box_space/format`. Это связано с тем, что "
+"функция ``get()`` возвращает объет, который можно использовать с "
+"большинством функций, описанных в "
+":doc:`/reference/reference_lua/box_tuple`, включая "
+":doc:`/reference/reference_lua/box_tuple/field_name`."
 
 msgid ""
 "For example, we can format the `tester` space with a field named `x` and "

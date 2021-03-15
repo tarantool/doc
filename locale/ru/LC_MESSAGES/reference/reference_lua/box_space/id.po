@@ -1,6 +1,6 @@
 
 msgid "space_object.id"
-msgstr ""
+msgstr "space_object.id"
 
 msgid ""
 "Ordinal space number. Spaces can be referenced by either name or number. "
@@ -22,3 +22,7 @@ msgid ""
 "- 512\n"
 "..."
 msgstr ""
+"tarantool> box.space.tester.id\n"
+"---\n"
+"- 512\n"
+"..."

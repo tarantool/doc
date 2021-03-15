@@ -1,6 +1,6 @@
 
 msgid "space_object.index"
-msgstr ""
+msgstr "space_object.index"
 
 msgid ""
 "A container for all defined indexes. There is a Lua object of type "

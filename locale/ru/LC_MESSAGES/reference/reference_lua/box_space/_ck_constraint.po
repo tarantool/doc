@@ -1,30 +1,32 @@
 
 msgid "box.space._ck_constraint"
-msgstr ""
+msgstr "box.space._ck_constraint"
 
 msgid "``_ck_constraint`` is a system space where check constraints are stored."
 msgstr ""
+"``_ck_constraint`` — это системный спейс, в котором хранятся проверочные "
+"ограничения."
 
 msgid "Tuples in this space contain the following fields:"
-msgstr ""
+msgstr "Кортежи в данном спейсе включают в себя следующие поля:"
 
 msgid "the numeric id of the space (\"space_id\"),"
-msgstr ""
+msgstr "числовой идентификатор спейса (\"space_id\"),"
 
 msgid "the name,"
-msgstr ""
+msgstr "имя,"
 
 msgid "whether the check is deferred (\"is_deferred\"),"
-msgstr ""
+msgstr "откладывается ли проверка (\"is_deferred\"),"
 
 msgid "the language of the expression, such as 'SQL',"
-msgstr ""
+msgstr "язык выражения, например 'SQL',"
 
 msgid "the expression (\"code\")"
-msgstr ""
+msgstr "выражение (\"code\")."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.space._ck_constraint:select()\n"
@@ -34,3 +36,9 @@ msgid ""
 "LIKE ''__''']\n"
 "..."
 msgstr ""
+"tarantool> box.space._ck_constraint:select()\n"
+"---\n"
+"- - [527, 'c1', false, 'SQL', '\"f2\" > ''A''']\n"
+"  - [527, 'c2', false, 'SQL', '\"f2\" == UPPER(\"f3\") AND NOT \"f2\" "
+"LIKE ''__''']\n"
+"..."

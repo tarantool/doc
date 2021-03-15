@@ -1,6 +1,6 @@
 
 msgid "space_object:select()"
-msgstr ""
+msgstr "space_object:select()"
 
 msgid ""
 "Search for a tuple or a set of tuples in the given space. This method "
@@ -27,6 +27,11 @@ msgid ""
 " * ``options.limit`` (maximum number of tuples) * ``options.offset`` "
 "(number of tuples to skip)"
 msgstr ""
+"ни один, любой или все параметры, которые допускает "
+":doc:`/reference/reference_lua/box_index/select`: * ``options.iterator`` "
+"(:ref:`тип итератора <box_index-iterator-types>`) * ``options.limit`` "
+"(максимальное количество кортежей) * ``options.offset`` (количество "
+"пропускаемых кортежей)"
 
 msgid ""
 "none, any or all of the same options that "

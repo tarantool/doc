@@ -1,6 +1,6 @@
 
 msgid "space_object:drop()"
-msgstr ""
+msgstr "space_object:drop()"
 
 msgid ""
 "Drop a space. The method is performed in background and doesn't block "

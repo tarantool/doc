@@ -1,6 +1,6 @@
 
 msgid "box.space._priv"
-msgstr ""
+msgstr "box.space._priv"
 
 msgid ""
 "``_priv`` is a system space where :ref:`privileges <authentication-"
@@ -10,7 +10,7 @@ msgstr ""
 "<authentication-owners_privileges>`."
 
 msgid "Tuples in this space contain the following fields:"
-msgstr ""
+msgstr "Кортежи в данном спейсе включают в себя следующие поля:"
 
 msgid "the numeric id of the user who gave the privilege (\"grantor_id\"),"
 msgstr "числовой идентификатор пользователя, который выдал права (\"grantor_id\"),"
@@ -40,7 +40,7 @@ msgstr ""
 "\"read,write,execute\"."
 
 msgid "You can:"
-msgstr ""
+msgstr "Доступны следующие операции:"
 
 msgid ""
 "Grant a privilege with "

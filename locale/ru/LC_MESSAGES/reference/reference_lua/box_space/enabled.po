@@ -1,6 +1,6 @@
 
 msgid "space_object:enabled"
-msgstr ""
+msgstr "space_object:enabled"
 
 msgid ""
 "Whether or not this space is enabled. The value is ``false`` if the space"

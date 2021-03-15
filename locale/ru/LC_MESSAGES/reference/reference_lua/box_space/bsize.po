@@ -1,6 +1,6 @@
 
 msgid "space_object:bsize()"
-msgstr ""
+msgstr "space_object:bsize()"
 
 msgid "Parameters"
 msgstr "Параметры"
@@ -31,3 +31,7 @@ msgid ""
 "- 22\n"
 "..."
 msgstr ""
+"tarantool> box.space.tester:bsize()\n"
+"---\n"
+"- 22\n"
+"..."

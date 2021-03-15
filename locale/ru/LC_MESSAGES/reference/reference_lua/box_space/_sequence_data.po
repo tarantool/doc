@@ -1,6 +1,6 @@
 
 msgid "box.space._sequence_data"
-msgstr ""
+msgstr "box.space._sequence_data"
 
 msgid ""
 "``_sequence_data`` is a system space for support of the :ref:`sequence "
@@ -26,3 +26,5 @@ msgid ""
 "There is no guarantee that this space will be updated immediately after "
 "every data-change request."
 msgstr ""
+"Не гарантируется, что этот спейс будет обновляться сразу же после каждого"
+" запроса на изменение данных."

@@ -1,6 +1,6 @@
 
 msgid "space_object:frommap()"
-msgstr ""
+msgstr "space_object:frommap()"
 
 msgid ""
 "Convert a map to a tuple instance or to a table. The map must consist of "
@@ -8,6 +8,11 @@ msgid ""
 "match names and types stated previously for the space, via "
 ":doc:`/reference/reference_lua/box_space/format`."
 msgstr ""
+"Конвертация ассоциативного массива в экземпляр кортежа или в таблицу. "
+"Ассоциативный массив должен состоять из пар \"имя поля = значение\". "
+"Имена полей и типы значений должны соответствовать именам и типам, ранее "
+"заданным для спейса с помощью "
+":doc:`/reference/reference_lua/box_space/format`."
 
 msgid "Parameters"
 msgstr "Параметры"

@@ -1,12 +1,12 @@
 
 msgid "box.space._index"
-msgstr ""
+msgstr "box.space._index"
 
 msgid "``_index`` is a system space."
 msgstr "``_index`` -- это системный спейс."
 
 msgid "Tuples in this space contain the following fields:"
-msgstr ""
+msgstr "Кортежи в данном спейсе включают в себя следующие поля:"
 
 msgid "``id`` (= id of space),"
 msgstr "``id`` (= идентификатор спейса),"
