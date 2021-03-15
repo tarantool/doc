@@ -78,7 +78,7 @@
                 reference/index
                 tutorials/index
                 contributing/index
-                whats_new
+                release
 
 
         .. container:: other-sources-menu
