@@ -44,10 +44,10 @@ Functionality added or changed
 Core
 ~~~~
 
--  **[Breaking change]** ``box.session.push()`` parameter ``sync`` is
+-   **[Breaking change]** ``box.session.push()`` parameter ``sync`` is
     deprecated and deleted. It does not work anymore, and a usage attempt
     leads to an error (gh-4689).
--  **[Breaking change]** Define new rules for implicit cast for
+-   **[Breaking change]** Define new rules for implicit cast for
     assignment operation in SQL (gh-3809).
 -   Symbols of the Tarantool executable are not masked anymore. Some
     private symbols may become visible and available for FFI and
@@ -98,27 +98,26 @@ Misc
     but is not enabled by default and not started anymore. One may
     perform the following actions to enable and start it:
 
-   ::
+    ..  code-block:: bash
 
-      # ln -s /etc/tarantool/instances.available/example.lua \
+        ln -s /etc/tarantool/instances.available/example.lua \
             /etc/tarantool/instances.enabled/example.lua
-      # systemctl start tarantool@example
+        systemctl start tarantool@example
 
     The existing configuration will not be updated automatically at
     package update, so manual actions are required to stop and disable
     the instance (if it is not needed, of course):
 
-   ::
+    ..  code-block:: bash
 
-      # systemctl stop tarantool@example
-      # rm /etc/tarantool/instances.enabled/example.lua
+        systemctl stop tarantool@example
+        rm /etc/tarantool/instances.enabled/example.lua
 
 -   When LTO is enabled, Luajit is built with it (gh-3743).
 
 Bugs fixed
 ----------
 
-..  _core-1:
 
 Core
 ~~~~
@@ -141,7 +140,6 @@ Core
     (gh-5017).
 -   Fixed crash when invalid JSON was used in update() (gh-5135).
 
-..  _replication-1:
 
 Replication
 ~~~~~~~~~~~
@@ -168,7 +166,6 @@ Lua
 -   Fixed warnings (two of them were real bugs!) found by luacheck in a
     source code (no GH issue).
 
-..  _sql-1:
 
 SQL
 ~~~
@@ -181,7 +178,6 @@ SQL
     properly (gh-4659).
 -   Fixed races and corner cases in box (re)configuration (gh-4231).
 
-..  _vinyl-1:
 
 Vinyl
 ~~~~~
@@ -210,7 +206,6 @@ Memtx
 -   Fixed concurrent replaces on index building. Tuples are now
     referenced on all needed execution paths (gh-4973).
 
-..  _misc-1:
 
 Misc
 ~~~~

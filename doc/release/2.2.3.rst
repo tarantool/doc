@@ -119,26 +119,26 @@ LuaJIT
     ``libluajit``, otherwise loading fails. The extension provides the
     following commands:
 
-   -  ``lj-arch`` dumps values of LJ_64 and LJ_GC64 macro definitions
-   -  ``lj-tv`` dumps the type and GCobj info related to the given
-      TValue
-   -  ``lj-str`` dumps the contents of the given GCstr
-   -  ``lj-tab`` dumps the contents of the given GCtab
-   -  ``lj-stack`` dumps Lua stack of the given lua_State
-   -  ``lj-state`` shows current VM, GC and JIT states
-   -  ``lj-gc`` shows current GC stats
+    -   ``lj-arch`` dumps values of LJ_64 and LJ_GC64 macro definitions
+    -   ``lj-tv`` dumps the type and GCobj info related to the given
+        TValue
+    -   ``lj-str`` dumps the contents of the given GCstr
+    -   ``lj-tab`` dumps the contents of the given GCtab
+    -   ``lj-stack`` dumps Lua stack of the given lua_State
+    -   ``lj-state`` shows current VM, GC and JIT states
+    -   ``lj-gc`` shows current GC stats
 
 -   Fix string to number conversion: current implementation respects the
     buffer length (gh-4773).
 
--  “FFI sandwich”(*) detection is introduced. If sandwich is detected
+-  “FFI sandwich”(\*) detection is introduced. If sandwich is detected
     while trace recording the recording is aborted. The sandwich detected
     while mcode execution leads to the platform panic.
 
 -   luaJIT_setmode call is prohibited while mcode execution and leads to
     the platform panic.
 
-(*) The following stack mix is called FFI sandwich:
+(\*) The following stack mix is called FFI sandwich:
 
     Lua-FFI -> C routine -> Lua-C API -> Lua VM
 

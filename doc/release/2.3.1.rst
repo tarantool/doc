@@ -58,7 +58,7 @@ SQL
     actual execution of a statement. This feature is vital for
     implementing standard DBMS APIs, such as ODBC and JDBC.
 
--  **[Breaking change]** Introduce \_session_setting service space as
+-   **[Breaking change]** Introduce \_session_setting service space as
     replacement for PRAGMA keyword. gh-4511 All frontends (C, Lua, SQL,
     binary protocol) can use this space to access or update session
     settings. Removed ``count_changes``, ``short_column_names``,
@@ -80,19 +80,19 @@ SQL
     feature can be set to any ``INTEGER`` or ``UNSIGNED`` field of
     ``PRIMARY KEY`` using one of the two ways:
 
-    1) ``AUTOINCREMENT`` in column definition:
+    1.  ``AUTOINCREMENT`` in column definition:
 
-   ::
+        ..  code-block:: sql
 
-      CREATE TABLE t (i INT, a INT AUTOINCREMENT, PRIMARY KEY (i, a));
-      CREATE TABLE t (i INT AUTOINCREMENT, a INT, PRIMARY KEY (i, a));
+            CREATE TABLE t (i INT, a INT AUTOINCREMENT, PRIMARY KEY (i, a));
+            CREATE TABLE t (i INT AUTOINCREMENT, a INT, PRIMARY KEY (i, a));
 
-    2) ``AUTOINCREMENT`` in ``PRIMARY KEY`` definition:
+    2.  ``AUTOINCREMENT`` in ``PRIMARY KEY`` definition:
 
-   ::
+        ..  code-block:: sql
 
-      CREATE TABLE t (i INT, a INT, PRIMARY KEY (i, a AUTOINCREMENT));
-      CREATE TABLE t (i INT, a INT, PRIMARY KEY (i AUTOINCREMENT, a));
+            CREATE TABLE t (i INT, a INT, PRIMARY KEY (i, a AUTOINCREMENT));
+            CREATE TABLE t (i INT, a INT, PRIMARY KEY (i AUTOINCREMENT, a));
 
 -   Allow to create a view from any CTE (common table expression) using
     ``WITH`` clause. gh-4149
@@ -113,9 +113,9 @@ SQL
     ``WITH ENGINE = <engine_name>`` clause. This clause comes at the end
     of ``CREATE TABLE`` statement. For example:
 
-   ::
+    ..  code-block:: sql
 
-      CREATE TABLE t_vinyl (id INT PRIMARY KEY) WITH ENGINE = 'vinyl';
+        CREATE TABLE t_vinyl (id INT PRIMARY KEY) WITH ENGINE = 'vinyl';
 
     Refer also to `SQL reference
     documentation <https://www.tarantool.io/en/doc/2.3/reference/reference_sql/sql/#create-table>`__.
@@ -138,22 +138,32 @@ SQL
 Core
 ~~~~
 
--  **[Breaking change]** Drop ``rows_per_wal`` option of ``box.cfg()``
+-   **[Breaking change]** Drop ``rows_per_wal`` option of ``box.cfg()``
     in favor of ``wal_max_size``. gh-3762
 -   Decimals can now be stored in spaces. The corresponding field type is
     introduced: ``decimal``. Decimal values are also allowed in the
     ``scalar``, ``any``, and ``number`` fields. Decimal values can be
     indexed. gh-4333 Also refer to documentation on
 
-   -  `data
-      types <https://www.tarantool.io/en/doc/2.3/book/box/data_model/#data-types>`__
-   -  ```<space_object>:create_index()`` <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#lua-function.space_object.create_index>`__
+    -   `data
+        types <https://www.tarantool.io/en/doc/2.3/book/box/data_model/#data-types>`__
+    -   `<space_object>:create_index() <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#lua-function.space_object.create_index>`__
 
 -   Add support for decimals in update operations. gh-4413
     ``tuple:update()`` and ``<space_object>:update()`` now support
     decimal operands for arithmetic operations (‘+’ and ‘-’). The syntax
     is as usual, for example:
-    ``d = box.tuple.new(decimal.new('1'))     ---     ...     d:update{{'+', 1, decimal.new('0.5')}}     ---     - [1.5]     ...``
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> d = box.tuple.new(decimal.new('1'))
+        ---
+        ...
+        tarantool> d:update{{'+', 1, decimal.new('0.5')}}
+        ---
+        - [1.5]
+        ...
+
     Insertion (‘!’) and assignment (‘=’) are also supported. See also the
     full description of the ``update()`` function in
     `documentation <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#box-space-update>`__.
@@ -161,9 +171,12 @@ Core
     ``YAML`` and ``JSON``. Part of gh-4333;
     `485439e3 <https://github.com/tarantool/tarantool/commit/485439e33196e26d120e622175f88b4edc7a5aa1>`__;
     `documentation <https://github.com/tarantool/doc/issues/992>`__
--   Introduce field name and JSON path updates. gh-1261 Example of update
-    by a field name: ``box.space.test:update({{'=', 'foo', 42}})``. JSON
-    path update allows to change a value that is nested inside an array
+-   Introduce field name and JSON path updates. gh-1261
+
+    Example of update
+    by a field name: ``box.space.test:update({{'=', 'foo', 42}})``.
+
+    JSON path update allows to change a value that is nested inside an array
     or a map. It provides convenient syntax (that is also available for
     connectors), consumes less space in WAL than replace, and is faster
     than replaces written in Lua. Example:
@@ -208,27 +221,27 @@ Lua
     from Lua before the first ``box.cfg{<...>}`` call.
 -   decimal: add modulo operator (``decimal.new(172.51) % 1 == 0.51``),
     part of gh-4403
--  **[Breaking change]** JSON and msgpack serializers now raise an error
+-   **[Breaking change]** JSON and msgpack serializers now raise an error
     when a depth of data nesting exceeds the ``encode_max_depth`` option
     value. The default value of the option has been increased from 32 to
     128. The ``encode_deep_as_nil`` option is added to give an ability to
     set the old behaviour back. gh-4434 Notes:
 
-   -  These options can be set by using ``json.cfg({<...>})`` or
-      ``msgpack.cfg({<...>})``.
-   -  ``box`` data modification functions (``insert``, ``replace``,
-      ``update`` and ``upsert``) follow the options of the default
-      msgpack serializer instance, and now these functions raise an
-      error on too many levels of nested data by default rather than cut
-      the data silently. This behaviour can be configured using
-      ``msgpack.cfg({<...>})``.
-   -  previously,\ ``box.tuple.new()``, ``space:update()``,
-      ``space:upsert()`` and several other functions did not follow
-      ``encode_max_depth`` option; now they do (see also the **Bug
-      fixed** section).
-   -  previously,\ ``json.cfg`` and ``msgpack.cfg`` tables was not
-      updated when an option had changed; now they show actual values
-      (see also the **Bug fixed** section).
+    -   These options can be set by using ``json.cfg({<...>})`` or
+        ``msgpack.cfg({<...>})``.
+    -   ``box`` data modification functions (``insert``, ``replace``,
+        ``update`` and ``upsert``) follow the options of the default
+        msgpack serializer instance, and now these functions raise an
+        error on too many levels of nested data by default rather than cut
+        the data silently. This behaviour can be configured using
+        ``msgpack.cfg({<...>})``.
+    -   previously,\ ``box.tuple.new()``, ``space:update()``,
+        ``space:upsert()`` and several other functions did not follow
+        ``encode_max_depth`` option; now they do (see also the **Bug
+        fixed** section).
+    -   previously,\ ``json.cfg`` and ``msgpack.cfg`` tables was not
+        updated when an option had changed; now they show actual values
+        (see also the **Bug fixed** section).
 
 -   Show line and column in ``json.decode()`` errors. gh-3316
 -   Exit gracefully when a main script throws an error: notify systemd,
@@ -257,12 +270,12 @@ HTTP client
     gh-4232
 -   Add proxy server related options for HTTP client:
 
-   -  ``proxy``
-   -  ``proxy_port``
-   -  ``proxy_user_pwd``
-   -  ``no_proxy`` For details, refer to description
-      `here <https://github.com/tarantool/doc/issues/896>`__. gh-4477,
-      gh-4472
+    -   ``proxy``
+    -   ``proxy_port``
+    -   ``proxy_user_pwd``
+    -   ``no_proxy`` For details, refer to description
+        `here <https://github.com/tarantool/doc/issues/896>`__. gh-4477,
+        gh-4472
 
 Misc
 ~~~~
@@ -271,9 +284,9 @@ Misc
     gh-4435
 -   Add package builds and deployment for the following Linux distros:
 
-   -  Ubuntu 19.10 Eoan Ermine, gh-4583
-   -  CentOS 8, gh-4543
-   -  Fedora 31, gh-4612
+    -   Ubuntu 19.10 Eoan Ermine, gh-4583
+    -   CentOS 8, gh-4543
+    -   Fedora 31, gh-4612
 
 Bugs fixed
 ----------
@@ -343,7 +356,7 @@ SQL
     provided index.
     `49fedfe3 <https://github.com/tarantool/tarantool/commit/49fedfe30cca1f7a34d3b51f9e197c7ed4e4c95b>`__
 
-..  _core-1:
+
 
 Core
 ~~~~
@@ -373,9 +386,9 @@ Core
 -   Fix error message for incorrect return value of functional index
     extractor function. gh-4553
 
-   -  Was: “Key format doesn’t match one defined in functional index ‘’
-      of space ‘’: supplied key type is invalid: expected boolean”
-   -  Now: “<…>: expected array”
+    -   Was: “Key format doesn’t match one defined in functional index ‘’
+        of space ‘’: supplied key type is invalid: expected boolean”
+    -   Now: “<…>: expected array”
 
 -   JSON path index now consider is_nullable property when a space had a
     format. gh-4520
@@ -427,7 +440,7 @@ Core
     before: alter of trigger, check constraint and foreign key
     constraint. Part of gh-2592
 
-..  _replication-1:
+
 
 Replication
 ~~~~~~~~~~~
@@ -457,8 +470,8 @@ Replication
     ``<username>`` longer than ``BOX_NAME_MAX`` which is 65000.
     `8b6bdb43 <https://github.com/tarantool/tarantool/commit/8b6bdb435cb6b41375d8e550cc2d9c14c1d1f742>`__
 
-   -  Was: ‘C++ exception’
-   -  Now: ‘name length <…> is greater than BOX_NAME_MAX’
+    -   Was: ‘C++ exception’
+    -   Now: ‘name length <…> is greater than BOX_NAME_MAX’
 
 -   Use empty password when a URI in ``box.cfg{replication = <...>}`` is
     like ``login@host:port``. gh-4605. The behaviour matches the
@@ -473,7 +486,7 @@ Replication
 -   Fix the applier to run the ``<space>.before_replace`` trigger during
     initial join. gh-4417
 
-..  _lua-1:
+
 
 Lua
 ~~~
@@ -495,11 +508,11 @@ Lua
     from ``lua_newthread()``. gh-4556 There are several cases when a new
     Lua thread is created:
 
-   -  Start executing a Lua function call or an eval request (from a
-      binary protocol, SQL or with ``box.func.<...>:call()``).
-   -  Create of a new fiber.
-   -  Start execution of a trigger.
-   -  Start of encoding into a YAML format (``yaml.encode()``).
+    -   Start executing a Lua function call or an eval request (from a
+        binary protocol, SQL or with ``box.func.<...>:call()``).
+    -   Create of a new fiber.
+    -   Start execution of a trigger.
+    -   Start of encoding into a YAML format (``yaml.encode()``).
 
 -   Fix stack-use-after-scope in ``json.decode()``. gh-4637
 -   Allow to register several functions using
@@ -515,10 +528,10 @@ Lua
     argument. Example of the code that did not work:
     ``res, buf.rpos = msgpack.decode(buf.rpos, buf:size())``.
 -   lua/pickle: fix typo that leads to reject of negative integers for
-   ‘i’ (integer) and ‘N’ (big-endian integer) formats in pickle.pack().
+    ‘i’ (integer) and ‘N’ (big-endian integer) formats in pickle.pack().
     `e2d9f664 <https://github.com/tarantool/tarantool/commit/e2d9f66450298b025ed350a2a40d2682b3b6f17e>`__
 
-..  _http-client-1:
+
 
 HTTP client
 ^^^^^^^^^^^
@@ -549,12 +562,12 @@ flaws, but we are working to make it rich and stable.
     ``\set output lua[,block]`` command, part of gh-3834. In order to
     overcome it, two changes have been made:
 
-   -  Parse ``\set output lua[,block]`` command on a client prior to
-      sending it to a server, store current responses delimiter (EOS)
-      and use it to determine end of responses.
-   -  Send ``\set output <...>`` command with a default output mode when
-      establishing a connection (it is matter if different default modes
-      are set).
+    -   Parse ``\set output lua[,block]`` command on a client prior to
+        sending it to a server, store current responses delimiter (EOS)
+        and use it to determine end of responses.
+    -   Send ``\set output <...>`` command with a default output mode when
+        establishing a connection (it is matter if different default modes
+        are set).
 
 -   Provide an ability to get or set current responses delimiter using
     ``console.eos([<...>])``, part of gh-3834
@@ -573,7 +586,7 @@ LuaJIT
     fixes the following assertion fail: > asm_conv: Assertion
     \`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed
 
-..  _misc-1:
+
 
 Misc
 ~~~~
@@ -595,8 +608,8 @@ Misc
 -   access: fix the invalid error type ``box.session.su()`` raises for a
     not found user
 
-   -  was: ``SystemError``
-   -  now: ``ClientError``
+    -   was: ``SystemError``
+    -   now: ``ClientError``
 
 Building from sources
 ^^^^^^^^^^^^^^^^^^^^^

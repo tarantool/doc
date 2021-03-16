@@ -35,7 +35,7 @@ Functionality added or changed
 ------------------------------
 
 Core
-^^^^
+~~~~
 
 -   Posibility to create errors of a custom user type (gh-4398).
 -   Transparent marshalling error through net.box (gh-4398).
@@ -104,7 +104,6 @@ Misc
 Bugs fixed
 ----------
 
-..  _core-1:
 
 Core
 ~~~~
@@ -154,7 +153,6 @@ Replication
     signatures. Only the WALS that contain no entries needed by any of
     the consumers are deleted (gh-4114).
 
-..  _lua-1:
 
 Lua
 ~~~
@@ -184,7 +182,7 @@ SQL
     ``ALTER TABLE  <table_name> DROP CONSTRAINT <constraint_name>``.
     Previously, it was possible to drop only foreign key constraints with
     such a statement (gh-4120).
--  “No such constraint” error now contains the name of the table this
+-   “No such constraint” error now contains the name of the table this
     constraint belongs to.
 -   Add an empty body to the ``UNPREPARE`` IProto response (gh-4769).
 -   Reset all the placeholders’ bound values after execution of a
@@ -193,7 +191,7 @@ SQL
     in case of INSERT into space with autoincrement (gh-4256).
 
 Types related changes
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 -   Rework the ``NUMBER`` type in SQL: now it completely matches with
     NoSQL definition. Integers inserted into a field of the ``NUMBER``
@@ -237,26 +235,26 @@ LuaJIT
     ``libluajit``, otherwise loading fails. The extension provides the
     following commands:
 
-   -  ``lj-arch`` dumps values of LJ_64 and LJ_GC64 macro definitions
-   -  ``lj-tv`` dumps the type and GCobj info related to the given
-      TValue
-   -  ``lj-str`` dumps the contents of the given GCstr
-   -  ``lj-tab`` dumps the contents of the given GCtab
-   -  ``lj-stack`` dumps Lua stack of the given lua_State
-   -  ``lj-state`` shows current VM, GC and JIT states
-   -  ``lj-gc`` shows current GC stats
+    -   ``lj-arch`` dumps values of LJ_64 and LJ_GC64 macro definitions
+    -   ``lj-tv`` dumps the type and GCobj info related to the given
+        TValue
+    -   ``lj-str`` dumps the contents of the given GCstr
+    -   ``lj-tab`` dumps the contents of the given GCtab
+    -   ``lj-stack`` dumps Lua stack of the given lua_State
+    -   ``lj-state`` shows current VM, GC and JIT states
+    -   ``lj-gc`` shows current GC stats
 
 -   Fix string to number conversion: current implementation respects the
     buffer length (gh-4773).
 
--  “FFI sandwich”(*) detection is introduced. If sandwich is detected
+-   “FFI sandwich” (\*) detection is introduced. If sandwich is detected
     while trace recording the recording is aborted. The sandwich detected
     while mcode execution leads to the platform panic.
 
 -   luaJIT_setmode call is prohibited while mcode execution and leads to
     the platform panic.
 
-(*) The following stack mix is called FFI sandwich:
+(\*) The following stack mix is called FFI sandwich:
 
     Lua-FFI -> C routine -> Lua-C API -> Lua VM
 
@@ -269,7 +267,6 @@ Vinyl
 -   Fix assertion fault due to triggered dump process during secondary
     index build (gh-4810).
 
-..  _misc-1:
 
 Misc
 ~~~~
@@ -285,7 +282,7 @@ Misc
     EOLed (gh-4830).
 
 Building from sources
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 -   Update the ``decNumber`` library to silence the build warning
     produced on too long integer constant

@@ -47,25 +47,26 @@ Misc
     not enabled by default and not started anymore. One may perform the
     following actions to enable and start it:
 
-   ::
+    ..  code-block:: bash
 
-      # ln -s /etc/tarantool/instances.available/example.lua \
+
+        ln -s /etc/tarantool/instances.available/example.lua \
             /etc/tarantool/instances.enabled/example.lua
-      # systemctl start tarantool@example
+        systemctl start tarantool@example
 
     Existing configuration will not be updated automatically at package
     update, so manual actions are required to stop and disable the
     instance (if it is not needed, of course):
 
-   ::
+    ..  code-block:: bash
 
-      # systemctl stop tarantool@example
-      # rm /etc/tarantool/instances.enabled/example.lua
+
+        systemctl stop tarantool@example
+        rm /etc/tarantool/instances.enabled/example.lua
 
 Bugs fixed
 ----------
 
-..  _core-1:
 
 Core
 ~~~~

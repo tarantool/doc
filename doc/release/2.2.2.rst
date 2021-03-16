@@ -37,13 +37,13 @@ is to bring attention to the things that have been changed.
 Core
 ~~~~
 
--  **[Breaking change]** Drop ``rows_per_wal`` ``box.cfg()`` option in
+-   **[Breaking change]** Drop ``rows_per_wal`` ``box.cfg()`` option in
     favor of ``wal_max_size``, gh-3762
 
 Lua
 ~~~
 
--  **[Breaking change]** json and msgpack serializers now raise an error
+-   **[Breaking change]** json and msgpack serializers now raise an error
     when a depth of data nesting exceeds ``encode_max_depth`` option
     value. The default value of the option is increased from 32 to 128.
     ``encode_deep_as_nil`` option was added to give ability to set the
@@ -56,7 +56,7 @@ Lua
     ``msgpack.cfg({<...>})``. Note: ``box.tuple.new()``,
     ``space:update()``, ``space:upsert()`` and several other functions
     did not follow ``encode_max_depth`` option, now they do (see also
-   ‘Bug fixes’). Note: ``json.cfg`` and ``msgpack.cfg`` tables did not
+    ‘Bug fixes’). Note: ``json.cfg`` and ``msgpack.cfg`` tables did not
     updated when an option is changed, now they show actual values (see
     also ‘Bug fixes’).
 -   Show line and column in json.decode() errors, gh-3316
@@ -79,9 +79,9 @@ Misc
     gh-4435
 -   Add package builds and deployment for the following Linux distros:
 
-   -  Ubuntu 19.10 Eoan Ermine, gh-4583
-   -  CentOS 8, gh-4543
-   -  Fedora 31, gh-4612
+    -   Ubuntu 19.10 Eoan Ermine, gh-4583
+    -   CentOS 8, gh-4543
+    -   Fedora 31, gh-4612
 
 Bugs fixed
 ----------
@@ -138,9 +138,9 @@ Core
 -   Fix error message for incorrect return value of functional index
     extractor function, gh-4553
 
-   -  Was: "Key format doesn’t match one defined in functional index ‘’
-      of space ‘’: supplied key type is invalid: expected boolean’
-   -  Now: “<…>: expected array”
+    -   Was: "Key format doesn’t match one defined in functional index ‘’
+        of space ‘’: supplied key type is invalid: expected boolean’
+    -   Now: “<…>: expected array”
 
 -   JSON path index did ignore is_nullable property when a space had a
     format, gh-4520
@@ -211,7 +211,6 @@ Replication
     (``box.cfg{replication = <...>}`` call), gh-4440, gh-4576, gh-4586,
     gh-4643
 
-..  _lua-1:
 
 Lua
 ~~~
@@ -233,11 +232,11 @@ Lua
     ``lua_newthread()``, gh-4556 There are several places where a new Lua
     thread is created:
 
-   -  Start execution a Lua function call or an eval request (from a
-      binary protocol, SQL or with ``box.func.<...>:call()``).
-   -  Create of a new fiber.
-   -  Start execution of a trigger.
-   -  Start of encoding into a YAML format (``yaml.encode()``).
+    -   Start execution a Lua function call or an eval request (from a
+        binary protocol, SQL or with ``box.func.<...>:call()``).
+    -   Create of a new fiber.
+    -   Start execution of a trigger.
+    -   Start of encoding into a YAML format (``yaml.encode()``).
 
 -   Fix stack-use-after-scope in json.decode(), gh-4637
 
@@ -270,12 +269,12 @@ flaws, but we are working to make it rich and stable.
     ``\set output lua[,block]`` command, part of gh-3834. In order to
     overcome it two changes were made:
 
-   -  Parse ``\set output lua[,block]`` command on a client prior to
-      sending it to a server, store current responses delimiter (EOS)
-      and use it to determine end of responses.
-   -  Send ``\set output <...>`` command with a default output mode when
-      establishing a connection (it is matter if different default modes
-      are set).
+    -   Parse ``\set output lua[,block]`` command on a client prior to
+        sending it to a server, store current responses delimiter (EOS)
+        and use it to determine end of responses.
+    -   Send ``\set output <...>`` command with a default output mode when
+        establishing a connection (it is matter if different default modes
+        are set).
 
 -   Provide ability to get or set current responses delimiter using
     ``console.eos([<...>])``, part of gh-3834
@@ -292,8 +291,6 @@ LuaJIT
     `LuaJIT#524 <https://github.com/LuaJIT/LuaJIT/issues/524>`__ This
     fixes the following assertion fail: > asm_conv: Assertion
     \`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed
-
-..  _misc-1:
 
 Misc
 ~~~~
