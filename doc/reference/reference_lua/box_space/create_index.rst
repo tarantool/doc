@@ -10,8 +10,8 @@ On this page:
 * :ref:`Allowing null for an indexed key <box_space-is_nullable>`
 * :ref:`Creating an index using field names instead of field numbers <box_space-field_names>`
 * :ref:`Creating an index using the path option for map fields (JSON-path indexes) <box_space-path>`
-* :ref:`Creating an index using the path option with [*] <box_space-path_multikey>`
-* :ref:`Creating a functional index with space_object:create_index() <box_space-index_func>`
+* :ref:`Creating an multikey index using the path option with [*] <box_space-path_multikey>`
+* :ref:`Creating a functional index <box_space-index_func>`
 
 .. class:: space_object
 
@@ -52,7 +52,7 @@ On this page:
 
         **Options for space_object:create_index()**
 
-        .. container:: table
+        ..  container:: table
 
             .. rst-class:: left-align-column-1
             .. rst-class:: left-align-column-2
@@ -129,10 +129,10 @@ On this page:
 
         ..  code-block:: tarantoolsession
 
-            tarantool> s=box.schema.space.create('tester')
+            tarantool> my_space = box.schema.space.create('tester')
             ---
             ...
-            tarantool> s:create_index('primary', {unique = true, parts = {
+            tarantool> my_space:create_index('primary', {unique = true, parts = {
                      > {field = 1, type = 'unsigned'},
                      > {field = 2, type = 'string'}
                      > }})
@@ -172,7 +172,7 @@ and what index types are allowed.
         :header-rows: 1
 
         *   - Index field type
-            - What can be it it
+            - What can be in it
             - Where it is legal
             - Examples
 
@@ -201,7 +201,7 @@ and what index types are allowed.
               <limitations_bytes_in_index_key>`. A varbinary byte sequence
               does not have a :ref:`collation <index-collation>`
               because its contents are not UTF-8 characters
-            - memtx TREE or HASH indexes;
+            - memtx TREE, HASH or BITSET (since version 2.7) indexes;
 
               vinyl TREE indexes
             - '\\65 \\66 \\67'
@@ -305,16 +305,18 @@ Allowing null for an indexed key
 
 If the index type is TREE, and the index is not the primary index,
 then the ``parts={...}`` clause may include ``is_nullable=true`` or
-``is_nullable=false`` (the default). If ``is_nullable`` is true,
-then it is legal to insert ``nil`` or an equivalent such as ``msgpack.NULL``.
+``is_nullable=false`` (the default).
+
+If ``is_nullable`` is true, then it is legal to insert ``nil`` or an equivalent
+such as ``msgpack.NULL``.
 It is also legal to insert nothing at all when using trailing nullable fields.
-Within indexes, such "null values" are always treated as equal to other null
+Within indexes, such null values are always treated as equal to other null
 values, and are always treated as less than non-null values.
 Nulls may appear multiple times even in a unique index. Example:
 
 .. code-block:: lua
 
-    box.space.tester:create_index('I',{unique=true,parts={{field = 2, type = 'number', is_nullable = true}}})
+    box.space.tester:create_index('I', {unique = true, parts = {{field = 2, type = 'number', is_nullable = true}}})
 
 .. WARNING::
 
@@ -331,9 +333,9 @@ Nulls may appear multiple times even in a unique index. Example:
 Creating an index using field names instead of field numbers
 --------------------------------------------------------------------------------
 
-``create_index()`` can use
-field names and/or field types described by the optional
+``create_index()`` can use field names and/or field types described by the optional
 :doc:`/reference/reference_lua/box_space/format` clause.
+
 In the following example, we show ``format()`` for a space that has two columns
 named 'x' and 'y', and then we show five variations of the ``parts={}``
 clause of ``create_index()``,
@@ -342,17 +344,22 @@ The variations include omitting the type, using numbers, and adding extra braces
 
 .. code-block:: lua
 
-    box.space.tester:format({{name='x', type='scalar'}, {name='y', type='integer'}})
-    box.space.tester:create_index('I2',{parts={{'x', 'scalar'}}})
-    box.space.tester:create_index('I3',{parts={{'x','scalar'},{'y','integer'}}})
-    box.space.tester:create_index('I4',{parts={{1,'scalar'}}})
-    box.space.tester:create_index('I5',{parts={{1,'scalar'},{2,'integer'}}})
-    box.space.tester:create_index('I6',{parts={1}})
-    box.space.tester:create_index('I7',{parts={1,2}})
-    box.space.tester:create_index('I8',{parts={'x'}})
-    box.space.tester:create_index('I9',{parts={'x','y'}})
-    box.space.tester:create_index('I10',{parts={{'x'}}})
-    box.space.tester:create_index('I11',{parts={{'x'},{'y'}}})
+    box.space.tester:format({{name = 'x', type = 'scalar'}, {name = 'y', type = 'integer'}})
+
+    box.space.tester:create_index('I2', {parts = {{'x', 'scalar'}}})
+    box.space.tester:create_index('I3', {parts = {{'x', 'scalar'}, {'y', 'integer'}}})
+
+    box.space.tester:create_index('I4', {parts = {{1, 'scalar'}}})
+    box.space.tester:create_index('I5', {parts = {{1, 'scalar'}, {2, 'integer'}}})
+
+    box.space.tester:create_index('I6', {parts = {1}})
+    box.space.tester:create_index('I7', {parts = {1, 2}})
+
+    box.space.tester:create_index('I8', {parts = {'x'}})
+    box.space.tester:create_index('I9', {parts = {'x', 'y'}})
+
+    box.space.tester:create_index('I10', {parts = {{'x'}}})
+    box.space.tester:create_index('I11', {parts = {{'x'}, {'y'}}})
 
 .. _box_space-path:
 
@@ -361,32 +368,39 @@ Creating an index using the path option for map fields (JSON-path indexes)
 --------------------------------------------------------------------------------
 
 To create an index for a field that is a map (a path string and a scalar value),
-specify the path string during index_create, that is,
-:code:`parts={` :samp:`{field-number},'{data-type}',path = '{path-name}'` :code:`}`.
-The index type must be ``'tree'`` or ``'hash'`` and the field's contents
+specify the path string during index creation, like this:
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    :extsamp:`parts = {{*{field-number}*}, {*{'data-type'}*}, path = {*{'path-name'}*}}`
+
+The index type must be TREE or HASH and the contents of the field
 must always be maps with the same path.
 
 **Example 1 -- The simplest use of path:**
 
-..  code-block:: lua
+..  code-block:: tarantoolsession
 
-    -- Result will be - - [{'age': 44}]
-    box.schema.space.create('T')
-    box.space.T:create_index('I',{parts={{field = 1, type = 'scalar', path = 'age'}}})
-    box.space.T:insert{{age=44}}
-    box.space.T:select(44)
+    tarantool> box.schema.space.create('T')
+    tarantool> box.space.T:create_index('I',{parts = {{field = 1, type = 'scalar', path = 'age'}}})
+    tarantool> box.space.T:insert({{age = 44}})
+    tarantool> box.space.T:select(44)
+    ---
+    - [{'age': 44}]
 
 **Example 2 -- path plus format() plus JSON syntax to add clarity:**
 
 ..  code-block:: lua
 
-    -- Result will be: - [1, {'FIO': {'surname': 'Xi', 'firstname': 'Ahmed'}}]
-    s = box.schema.space.create('T')
-    format = {{'id', 'unsigned'}, {'data', 'map'}}
-    s:format(format)
-    parts = {{'data.FIO["firstname"]', 'str'}, {'data.FIO["surname"]', 'str'}}
-    i = s:create_index('info', {parts = parts})
-    s:insert({1, {FIO={firstname='Ahmed', surname='Xi'}}})
+    tarantool> my_space = box.schema.space.create('T')
+    tarantool> format = {{'id', 'unsigned'}, {'data', 'map'}}
+    tarantool> my_space:format(format)
+    tarantool> parts = {{'data.FIO["firstname"]', 'str'}, {'data.FIO["surname"]', 'str'}}
+    tarantool> my_index = my_space:create_index('info', {parts = parts})
+    tarantool> my_space:insert({1, {FIO = {firstname = 'Ahmed', surname = 'Xi'}}})
+    ---
+    - [1, {'FIO': {'surname': 'Xi', 'firstname': 'Ahmed'}}]
 
 **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
 secondary indexes must be created before tuples are inserted.
@@ -397,14 +411,18 @@ secondary indexes must be created before tuples are inserted.
 Creating a multikey index using the path option with [*]
 --------------------------------------------------------------------------------
 
-The string in a path option can contain '[*]' which is called
-an array index placeholder. Indexes defined with this are useful
+The string in a path option can contain ``[*]`` which is called
+**an array index placeholder**. Indexes defined with this are useful
 for JSON documents that all have the same structure.
 
 For example, when creating an index on field#2 for a string document
 that will start with ``{'data': [{'name': '...'}, {'name': '...'}]``,
-the parts section in the create_index request could look like:
-``parts = {{field = 2, type = 'str', path = 'data[*].name'}}``.
+the parts section in the ``create_index`` request could look like:
+
+..  code-block:: lua
+
+    parts = {{field = 2, type = 'str', path = 'data[*].name'}}
+
 Then tuples containing names can be retrieved quickly with
 ``index_object:select({key-value})``.
 
@@ -414,20 +432,20 @@ which both match the request:
 
 .. code-block:: lua
 
-    s = box.schema.space.create('json_documents')
-    s:create_index('primarykey')
-    i = s:create_index('multikey', {parts = {{field = 2, type = 'str', path = 'data[*].name'}}})
-    s:insert({1,
-             {data = {{name='A'},
-                      {name='B'}},
+    my_space = box.schema.space.create('json_documents')
+    my_space:create_index('primary')
+    multikey_index = my_space:create_index('multikey', {parts = {{field = 2, type = 'str', path = 'data[*].name'}}})
+    my_space:insert({1,
+             {data = {{name = 'A'},
+                      {name = 'B'}},
               extra_field = 1}})
-    i:select({''},{iterator='GE'})
+    multikey_index:select({''}, {iterator = 'GE'})
 
 The result of the select request looks like this:
 
 .. code-block:: tarantoolsession
 
-    tarantool> i:select({''},{iterator='GE'})
+    tarantool> multikey_index:select({''},{iterator='GE'})
     ---
     - - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
     - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]
@@ -435,17 +453,16 @@ The result of the select request looks like this:
 
 Some restrictions exist:
 
-* '[*]' must be alone or must be at the end of a name in the path
-* '[*]' must not appear twice in the path
-* if an index has a path with x[*] then no other index can have a path with
-  x.component
-* '[*]' must not appear in the path of a primary-key
-* if an index has ``unique=true`` and has a path with '[*]'
-  then duplicate keys from different tuples are disallowed but duplicate keys
-  for the same tuple are allowed
-* as with :ref:`Using the path option for map fields <box_space-path>`,
-  the field's value must have the structure that the path definition implies,
-  or be nil (nil is not indexed)
+*   ``[*]`` must be alone or must be at the end of a name in the path
+*   ``[*]`` must not appear twice in the path
+*   if an index has a path with ``x[*]`` then no other index can have a path with
+    x.component
+*   ``[*]`` must not appear in the path of a primary-key
+*   if an index has ``unique=true`` and has a path with ``[*]``
+    then duplicate keys from different tuples are disallowed but duplicate keys
+    for the same tuple are allowed
+*   the field's value must have the same structure as in the path definition,
+    or be nil (nil is not indexed)
 
 .. _box_space-index_func:
 
@@ -458,30 +475,33 @@ the index key, rather than depending entirely on the Tarantool default formation
 Functional indexes are useful for condensing or truncating or reversing or
 any other way that users want to customize the index.
 
-The function definition must expect a tuple (which has the contents of
-fields at the time a data-change request happens) and must return a tuple
-(which has the contents that will actually be put in the index).
+There are several recommendations on building functional indexes:
 
-The space must have a memtx engine.
+*   The function definition must expect a tuple, which has the contents of
+    fields at the time a data-change request happens, and must return a tuple,
+    which has the contents that will actually be put in the index.
 
-The function must be :ref:`persistent <box_schema-func_create_with-body>`
-and deterministic.
+*   The ``create_index`` definition must include specification of all key parts,
+    and the custom function must return a table which has the same number of key
+    parts with the same types.
 
-The key parts must not depend on JSON paths.
+*   The space must have a memtx engine.
 
-The ``create_index`` definition must include specification of all key parts,
-and the function must return a table which has the same number of key parts
-with the same types.
+*   The function must be persistent and deterministic
+    (see :ref:`Creating function with body`).
 
-The function must access key-part values by index, not by field name.
+*   The key parts must not depend on JSON paths.
 
-Functional indexes must not be primary-key indexes.
+*   The function must access key-part values by index, not by field name.
 
-Functional indexes cannot be altered and the function cannot be changed if
-it is used for an index, so the only way to change them is to drop the index
-and create it again.
+*   Functional indexes must not be primary-key indexes.
 
-Only sandboxed functions are suitable for functional indexes.
+*   Functional indexes cannot be altered and the function cannot be changed if
+    it is used for an index, so the only way to change them is to drop the index
+    and create it again.
+
+*   Only :ref:`sandboxed <box_schema-func_create_with-body>` functions
+    are suitable for functional indexes.
 
 **Example:**
 
@@ -492,8 +512,8 @@ A function could make a key using only the first letter of a string field.
 
     ..  code-block:: lua
 
-        box.schema.space.create('x', {engine = 'memtx'})
-        box.space.x:create_index('i',{parts={{field = 1, type = 'string'}}})
+        box.schema.space.create('tester', {engine = 'memtx'})
+        box.space.tester:create_index('i',{parts={{field = 1, type = 'string'}}})
 
 #.  Make a function. The function expects a tuple. In this example it will
     work on tuple[2] because the key source is field number 2 in what we will
@@ -507,7 +527,7 @@ A function could make a key using only the first letter of a string field.
 
     ..  code-block:: lua
 
-        box.schema.func.create('F',
+        box.schema.func.create('my_func',
             {body = lua_code, is_deterministic = true, is_sandboxed = true})
 
 #.  Make a functional index. Specify the fields whose values will be passed
@@ -515,7 +535,7 @@ A function could make a key using only the first letter of a string field.
 
     ..  code-block:: lua
 
-        box.space.x:create_index('j',{parts={{field = 1, type = 'string'}},func = 'F'})
+        box.space.tester:create_index('func_idx',{parts={{field = 1, type = 'string'}},func = 'my_func'})
 
 #.  Test. Insert a few tuples. Select using only the first letter, it will work
     because that is the key. Or, select using the same function as was used for
@@ -523,20 +543,20 @@ A function could make a key using only the first letter of a string field.
 
     ..  code-block:: lua
 
-        box.space.x:insert{'a', 'wombat'}
-        box.space.x:insert{'b', 'rabbit'}
-        box.space.x.index.j:select('w')
-        box.space.x.index.j:select(box.func.F:call({{'x', 'wombat'}}));
+        box.space.tester:insert({'a', 'wombat'})
+        box.space.tester:insert({'b', 'rabbit'})
+        box.space.tester.index.func_idx:select('w')
+        box.space.tester.index.func_idx:select(box.func.my_func:call({{'tester', 'wombat'}}));
 
     The results of the two ``select`` requests will look like this:
 
     .. code-block:: tarantoolsession
 
-        tarantool> box.space.x.index.j:select('w')
+        tarantool> box.space.tester.index.func_idx:select('w')
         ---
         - - ['a', 'wombat']
         ...
-        tarantool> box.space.x.index.j:select(box.func.F:call({{'x','wombat'}}));
+        tarantool> box.space.tester.index.func_idx:select(box.func.my_func:call({{'tester','wombat'}}));
         ---
         - - ['a', 'wombat']
         ...
@@ -545,16 +565,16 @@ Here is the full code of the example:
 
 ..  code-block:: lua
 
-    box.schema.space.create('x', {engine = 'memtx'})
-    box.space.x:create_index('i',{parts={{field = 1, type = 'string'}}})
+    box.schema.space.create('tester', {engine = 'memtx'})
+    box.space.tester:create_index('i',{parts={{field = 1, type = 'string'}}})
     lua_code = [[function(tuple) return {string.sub(tuple[2],1,1)} end]]
-    box.schema.func.create('F',
+    box.schema.func.create('my_func',
         {body = lua_code, is_deterministic = true, is_sandboxed = true})
-    box.space.x:create_index('j',{parts={{field = 1, type = 'string'}},func = 'F'})
-    box.space.x:insert{'a', 'wombat'}
-    box.space.x:insert{'b', 'rabbit'}
-    box.space.x.index.j:select('w')
-    box.space.x.index.j:select(box.func.F:call({{'x', 'wombat'}}));
+    box.space.tester:create_index('func_idx',{parts={{field = 1, type = 'string'}},func = 'my_func'})
+    box.space.tester:insert({'a', 'wombat'})
+    box.space.tester:insert({'b', 'rabbit'})
+    box.space.tester.index.func_idx:select('w')
+    box.space.tester.index.func_idx:select(box.func.my_func:call({{'tester', 'wombat'}}));
 
 Functions for functional indexes can return **multiple keys**. Such functions are
 called "multikey" functions.
