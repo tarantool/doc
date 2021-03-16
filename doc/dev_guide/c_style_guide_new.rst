@@ -18,14 +18,14 @@ The project's coding style is inspired by the `Linux kernel coding style
 
 However, we have some additional guidelines, either unique to Tarantool or
 deviating from the Kernel guidelines. Below we rewrite the Linux kernel
-coding style noting Tarantool's style features.
+coding style according to the Tarantool's style features.
 
 --------------------------------------------------------------------------------
-                           Linux kernel coding style
+                           Tarantool coding style
 --------------------------------------------------------------------------------
 
 This is a short document describing the preferred coding style for the
-Tarantool developers and contributors. We insist on following these rules
+Tarantool developers and contributors. We **insist** on following these rules
 in order to make our code consistent and understandable to any developer.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,12 +99,7 @@ Coding style is all about readability and maintainability using commonly
 available tools.
 
 The limit on the length of lines is 80 columns and this is a strongly
-preferred limit.
-
-..  admonition:: Tarantool Style
-    :class: FACT
-
-    As for comments, the same limit of 80 columns is applied.
+preferred limit. As for comments, the same limit of 80 columns is applied.
 
 Statements longer than 80 columns will be broken into sensible chunks, unless
 exceeding 80 columns significantly increases readability and does not hide
@@ -200,7 +195,7 @@ Do not unnecessarily use braces where a single statement will do.
 
 and
 
-..  code-block:: none
+..  code-block:: c
 
     if (condition)
       do_this();
@@ -278,11 +273,8 @@ no space after the prefix increment & decrement unary operators::
 
 and no space around the ``.`` and ``->`` structure member operators.
 
-..  admonition:: Tarantool Style
-    :class: FACT
-
-    Do not split a cast operator from its argument with a whitespace,
-    e.g. ``(ssize_t)inj->iparam``.
+Do not split a cast operator from its argument with a whitespace,
+e.g. ``(ssize_t)inj->iparam``.
 
 Do not leave trailing whitespace at the ends of lines. Some editors with
 ``smart`` indentation will insert whitespace at the beginning of new lines as
@@ -330,16 +322,13 @@ If you are afraid to mix up your local variable names, you have another
 problem, which is called the function-growth-hormone-imbalance syndrome.
 See chapter 6 (Functions).
 
-..  admonition:: Tarantool Style
-    :class: FACT
+For function naming we have a convention is to use:
 
-    For function naming we have a convention is to use:
-
-    *    ``new``/``delete`` for functions which
-         allocate + initialize and destroy + deallocate an object,
-    *    ``create``/``destroy`` for functions which initialize/destroy an object
-         but do not handle memory management,
-    *    ``init``/``free`` for functions which initialize/destroy libraries and subsystems.
+*    ``new``/``delete`` for functions which
+     allocate + initialize and destroy + deallocate an object,
+*    ``create``/``destroy`` for functions which initialize/destroy an object
+     but do not handle memory management,
+*    ``init``/``free`` for functions which initialize/destroy libraries and subsystems.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 5: Typedefs
@@ -449,11 +438,7 @@ In function prototypes, include parameter names with their data types.
 Although this is not required by the C language, it is preferred in Linux
 because it is a simple way to add valuable information for the reader.
 
-..  admonition:: Tarantool Style
-    :class: FACT
-
-    Note that in Tarantool, we place the function return type on the
-    line before the name and signature.
+Note that we place the function return type on the line before the name and signature.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 7: Centralized exiting of functions
@@ -546,137 +531,70 @@ ugly), but try to avoid excess. Instead, put the comments at the head
 of the function, telling people what it does, and possibly WHY it does
 it.
 
-..  admonition:: Tarantool Style
-    :class: FACT
+When commenting the Tarantool C API functions, please use Doxygen comment format,
+Javadoc flavor, i.e. `@tag` rather than `\\tag`.
+The main tags in use are ``@param``, ``@retval``, ``@return``, ``@see``,
+``@note`` and ``@todo``.
 
-    When commenting the Tarantool C API functions, please use Doxygen comment format,
-    Javadoc flavor, i.e. `@tag` rather than `\\tag`.
-    The main tags in use are ``@param``, ``@retval``, ``@return``, ``@see``,
-    ``@note`` and ``@todo``.
+Every function, except perhaps a very short and obvious one, should have a
+comment. A sample function comment may look like below:
 
-    Every function, except perhaps a very short and obvious one, should have a
-    comment. A sample function comment may look like below:
+..  code-block:: c
 
-    ..  code-block:: c
+    /**
+     * Write all data to a descriptor.
+     *
+     * This function is equivalent to 'write', except it would ensure
+     * that all data is written to the file unless a non-ignorable
+     * error occurs.
+     *
+     * @retval 0  Success
+     * @retval  1  An error occurred (not EINTR)
+     */
+    static int
+    write_all(int fd, void \*data, size_t len);
 
-        /**
-         * Write all data to a descriptor.
-         *
-         * This function is equivalent to 'write', except it would ensure
-         * that all data is written to the file unless a non-ignorable
-         * error occurs.
-         *
-         * @retval 0  Success
-         * @retval  1  An error occurred (not EINTR)
+It's also important to comment data types, whether they are basic types or
+derived ones. To this end, use just one data declaration per line (no commas
+for multiple data declarations). This leaves you room for a small comment on
+each item, explaining its use.
+
+Public structures and important structure members should be commented as well.
+
+In C comments out of functions and inside of functions should be different in
+how they are started. Everything else is wrong. Below are correct examples.
+``/**`` comes for documentation comments, ``/*`` for local not documented comments.
+However the difference is vague already, so the rule is simple:
+out of function use ``/**``, inside use ``/*``.
+
+..  code-block:: c
+
+    /**
+     * Out of function comment, option 1.
+     */
+
+    /** Out of function comment, option 2. */
+
+    int
+    function()
+    {
+        /* Comment inside function, option 1. */
+
+        /*
+         * Comment inside function, option 2.
          */
-        static int
-        write_all(int fd, void \*data, size_t len);
+    }
 
-    It's also important to comment data types, whether they are basic types or
-    derived ones. To this end, use just one data declaration per line (no commas
-    for multiple data declarations). This leaves you room for a small comment on
-    each item, explaining its use.
+If a function has declaration and implementation separated, the function comment
+should be for the declaration. Usually in the header file. Don't duplicate the
+comment.
 
-    Public structures and important structure members should be commented as well.
-
-    In C comments out of functions and inside of functions should be different in
-    how they are started. Everything else is wrong. Below are correct examples.
-    ``/**`` comes for documentation comments, ``/*`` for local not documented comments.
-    However the difference is vague already, so the rule is simple:
-    out of function use ``/\**``, inside use ``/\*``.
-
-    ..  code-block:: c
-
-        /**
-         * Out of function comment, option 1.
-         */
-
-        /** Out of function comment, option 2. */
-
-        int
-        function()
-        {
-            /* Comment inside function, option 1. */
-
-            /*
-             * Comment inside function, option 2.
-             */
-        }
-
-    If a function has declaration and implementation separated, the function comment
-    should be for the declaration. Usually in the header file. Don't duplicate the
-    comment.
-
-    A comment and the function signature should be synchronized. Double-check if the
-    parameter names are the same as used in the comment, and mean the same.
-    Especially when you change one of them - ensure you changed the other.
+A comment and the function signature should be synchronized. Double-check if the
+parameter names are the same as used in the comment, and mean the same.
+Especially when you change one of them - ensure you changed the other.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 9: You've made a mess of it
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-That's OK, we all do. You've probably been told by your long-time Unix
-user helper that ``GNU emacs`` automatically formats the C sources for
-you, and you've noticed that yes, it does do that, but the defaults it
-uses are less than desirable (in fact, they are worse than random
-typing - an infinite number of monkeys typing into GNU emacs would never
-make a good program).
-
-So, you can either get rid of GNU emacs, or change it to use saner
-values. To do the latter, you can stick the following in your .emacs file:
-
-..  code-block:: none
-
-    (defun c-lineup-arglist-tabs-only (ignored)
-      "Line up argument lists by tabs, not spaces"
-      (let* ((anchor (c-langelem-pos c-syntactic-element))
-             (column (c-langelem-2nd-pos c-syntactic-element))
-             (offset (- (1+ column) anchor))
-             (steps (floor offset c-basic-offset)))
-        (* (max steps 1)
-           c-basic-offset)))
-    
-    (add-hook 'c-mode-common-hook
-              (lambda ()
-                ;; Add kernel style
-                (c-add-style
-                 "linux-tabs-only"
-                 '("linux" (c-offsets-alist
-                            (arglist-cont-nonempty
-                             c-lineup-gcc-asm-reg
-                             c-lineup-arglist-tabs-only))))))
-    
-    (add-hook 'c-mode-hook
-              (lambda ()
-                (let ((filename (buffer-file-name)))
-                  ;; Enable kernel mode for the appropriate files
-                  (when (and filename
-                             (string-match (expand-file-name "~/src/linux-trees")
-                                           filename))
-                    (setq indent-tabs-mode t)
-                    (setq show-trailing-whitespace t)
-                    (c-set-style "linux-tabs-only")))))
-    
-This will make emacs go better with the kernel coding style for C
-files below ``~/src/linux-trees``.
-
-But even if you fail in getting emacs to do sane formatting, not
-everything is lost: use ``indent``.
-
-Now, again, GNU indent has the same brain-dead settings that GNU emacs
-has, which is why you need to give it a few command line options.
-However, that's not too bad, because even the makers of GNU indent
-recognize the authority of K&R (the GNU people aren't evil, they are
-just severely misguided in this matter), so you just give indent the
-options ``-kr -i8`` (stands for ``K&R, 8 character indents``), or use
-``scripts/Lindent``, which indents in the latest style.
-
-``indent`` has a lot of options, and especially when it comes to comment
-re-formatting you may want to take a look at the man page. But
-remember: ``indent`` is not a fix for bad programming.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 10: Macros, Enums and RTL
+Chapter 9: Macros, Enums and RTL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Names of macros defining constants and labels in enums are capitalized.
@@ -757,32 +675,29 @@ Things to avoid when using macros:
     covers RTL which is used frequently with assembly language in the kernel.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 11: Allocating memory
+Chapter 10: Allocating memory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-..  admonition:: Tarantool Style
-    :class: FACT
+Prefer specialized allocators like ``region``, ``mempool``, ``smalloc`` to
+``malloc()/free()`` for any performance-intensive or large memory allocations.
+Repetitive use of ``malloc()``/``free()`` can lead to memory fragmentation
+and should therefore be avoided.
 
-    Prefer the supplied slab (salloc) and pool (palloc) allocators to malloc()/free()
-    for any performance-intensive or large  memory allocations. Repetitive use of
-    malloc()/free() can lead to memory fragmentation and should therefore be avoided.
-
-    Always free all allocated memory, even allocated  at start-up. We aim at being
-    valgrind leak-check clean, and in most cases it's just as easy to ``free()`` the
-    allocated memory as it is to write a valgrind suppression. Freeing all allocated
-    memory is also dynamic-load friendly: assuming a plug-in can be dynamically
-    loaded and unloaded multiple times, reload should not lead to a memory leak.
+Always free all allocated memory, even allocated  at start-up. We aim at being
+valgrind leak-check clean, and in most cases it's just as easy to ``free()`` the
+allocated memory as it is to write a valgrind suppression. Freeing all allocated
+memory is also dynamic-load friendly: assuming a plug-in can be dynamically
+loaded and unloaded multiple times, reload should not lead to a memory leak.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 12: The inline disease
+Chapter 11: The inline disease
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There appears to be a common misperception that gcc has a magic "make me
 faster" speedup option called ``inline``. While the use of inlines can be
-appropriate (for example as a means of replacing macros, see Chapter 12), it
-very often is not. Abundant use of the inline keyword leads to a much bigger
-kernel, which in turn slows the system as a whole down, due to a bigger
-icache footprint for the CPU and simply because there is less memory
+appropriate, it very often is not. Abundant use of the inline keyword leads to
+a much bigger kernel, which in turn slows the system as a whole down, due to a
+bigger icache footprint for the CPU and simply because there is less memory
 available for the pagecache. Just think about it; a pagecache miss causes a
 disk seek, which easily takes 5 milliseconds. There are a LOT of cpu cycles
 that can go into these 5 milliseconds.
@@ -802,33 +717,16 @@ appears outweighs the potential value of the hint that tells gcc to do
 something it would have done anyway.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 13: Function return values and names
+Chapter 12: Function return values and names
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Functions can return values of many different kinds, and one of the
 most common is a value indicating whether the function succeeded or
-failed. Such a value can be represented as an error-code integer
-(-Exxx = failure, 0 = success) or a ``succeeded`` boolean (0 = failure,
-non-zero = success).
+failed.
 
-Mixing up these two sorts of representations is a fertile source of
-difficult-to-find bugs. If the C language included a strong distinction
-between integers and booleans then the compiler would find these mistakes
-for us... but it doesn't. To help prevent such bugs, always follow this
-convention:
-
-  If the name of a function is an action or an imperative command,
-  the function should return an error-code integer. If the name
-  is a predicate, the function should return a "succeeded" boolean.
-
-For example, ``add work`` is a command, and the add_work() function returns 0
-for success or -EBUSY for failure. In the same way, ``PCI device present`` is
-a predicate, and the pci_dev_present() function returns 1 if it succeeds in
-finding a matching device or 0 if it doesn't.
-
-All EXPORTed functions must respect this convention, and so should all
-public functions. Private (static) functions need not, but it is
-recommended that they do.
+In 99.99999% of all cases in Tarantool we return 0 on success, non-zero on error
+(-1 usually). Errors are saved into a diagnostics area which is global per fiber.
+We never return error codes as a result of a function.
 
 Functions whose return value is the actual result of a computation, rather
 than an indication of whether the computation succeeded, are not subject to
@@ -837,7 +735,7 @@ result. Typical examples would be functions that return pointers; they use
 NULL or the ERR_PTR mechanism to report failure.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 14: Editor modelines and other cruft
+Chapter 13: Editor modelines and other cruft
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some editors can interpret configuration information embedded in source files,
@@ -871,7 +769,7 @@ own custom mode, or may have some other magic method for making indentation
 work correctly.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 15: Inline assembly
+Chapter 14: Inline assembly
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In architecture-specific code, you may need to use inline assembly to interface
@@ -903,7 +801,7 @@ next instruction in the assembly output:
          : /* outputs */ : /* inputs */ : /* clobbers */);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 16: Conditional Compilation
+Chapter 15: Conditional Compilation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Wherever possible, don't use preprocessor conditionals (``#if``, ``#ifdef``) in
@@ -921,9 +819,8 @@ apply the conditional to that function.
 
 If you have a function or variable which may potentially go unused in a
 particular configuration, and the compiler would warn about its definition
-going unused, mark the definition as __maybe_unused rather than wrapping it in
-a preprocessor conditional. (However, if a function or variable *always* goes
-unused, delete it.)
+going unused, do not compile it and use #if for this.
+(However, if a function or variable *always* goes unused, delete it.)
 
 Within code, where possible, use the IS_ENABLED macro to convert a Kconfig
 symbol into a C boolean expression, and use it in a normal C conditional:
@@ -953,40 +850,50 @@ expression used. For instance:
     #endif /* CONFIG_SOMETHING */
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 17: Header files
+Chapter 16: Header files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-..  admonition:: Tarantool Style
-    :class: FACT
+Use ``#pragma once`` in the headers. As the header guards we refer to this
+construction:
 
-    Use header guards. Put the header guard in the first line in the header,
-    before the copyright or declarations. Use all-uppercase name for the header
-    guard. Derive the header guard name from the file name, and append _INCLUDED
-    to get a macro name. For example, core/log_io.h -> CORE_LOG_IO_H_INCLUDED. In
-    ``.c`` (implementation) file, include the respective declaration header before
-    all other headers, to ensure that the header is self- sufficient. Header
-    "header.h" is self-sufficient if the following compiles without errors:
+..  code-block:: c
 
-    ..  code-block:: c
+    #ifndef THE_HEADER_IS_INCLUDED
+    #define THE_HEADER_IS_INCLUDED
 
-        #include "header.h"
+    // ... the header code ...
+
+    #endif // THE_HEADER_IS_INCLUDED
+
+It works fine, but the guard name ``THE_HEADER_IS_INCLUDED`` tends to
+become outdated when the file is moved or renamed. This is especially
+painful with multiple files having the same name in the project, but
+different path. For instance, we have 3 ``error.h`` files, which means for
+each of them we need to invent a new header guard name, and not forget to
+update them if the files are moved or renamed.
+
+For that reason we use ``#pragma once`` in all the new code, which shortens
+the header file down to this:
+
+..  code-block:: c
+
+    #pragma once
+
+    // ... header code ...
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 18: Other
+Chapter 17: Other
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-..  admonition:: Tarantool Style
-    :class: FACT
+*   We don't apply ``!`` operator to non-boolean values. It means, to check
+    if an integer is not 0, you use ``!= 0``. To check if a pointer is not NULL,
+    you use ``!= NULL``. The same for ``==``.
 
-    *   We don't apply ``!`` operator to non-boolean values. It means, to check
-        if an integer is not 0, you use ``!= 0``. To check if a pointer is not NULL,
-        you use ``!= NULL``. The same for ``==``.
+*   Select GNU C99 extensions are acceptable. It's OK to mix declarations and
+    statements, use true and false.
 
-    *   Select GNU C99 extensions are acceptable. It's OK to mix declarations and
-        statements, use true and false.
-
-    *   The not-so-current list of all GCC C extensions can be found at:
-        http://gcc.gnu.org/onlinedocs/gcc-4.3.5/gcc/C-Extensions.html
+*   The not-so-current list of all GCC C extensions can be found at:
+    http://gcc.gnu.org/onlinedocs/gcc-4.3.5/gcc/C-Extensions.html
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                   Appendix I: References
