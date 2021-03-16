@@ -338,6 +338,9 @@ msgstr ""
 msgid ":ref:`varbinary <index-box_bin>`"
 msgstr ""
 
+msgid "TREE, HASH or BITSET (since version 2.7)"
+msgstr ""
+
 msgid "``'uuid'``"
 msgstr ""
 
