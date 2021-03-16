@@ -225,8 +225,8 @@ Chapter 3.1: Spaces
 
 Like Linux kernel, Tarantool style for use of spaces depends (mostly) on
 function-versus-keyword usage. Use a space after (most) keywords. The
-notable exceptions are sizeof, typeof, alignof, and __attribute__, which look
-somewhat like functions (and are usually used with parentheses in Linux,
+notable exceptions are ``sizeof``, ``typeof``, ``alignof``, and ``__attribute__``,
+which look somewhat like functions (and are usually used with parentheses in Linux,
 although they are not required in the language, as in: ``sizeof info`` after
 ``struct fileinfo info;`` is declared).
 
@@ -236,7 +236,7 @@ So use a space after these keywords:
 
     if, switch, case, for, do, while
 
-but not with sizeof, typeof, alignof, or __attribute__. E.g.,
+but not with ``sizeof``, ``typeof``, ``alignof``, or ``__attribute__``. E.g.,
 
 ..  code-block:: c
 
@@ -581,9 +581,9 @@ it.
 
     In C comments out of functions and inside of functions should be different in
     how they are started. Everything else is wrong. Below are correct examples.
-    /** comes for documentation comments, /* for local not documented comments.
+    ``/**`` comes for documentation comments, ``/*`` for local not documented comments.
     However the difference is vague already, so the rule is simple:
-    out of function = /\**, inside = /\*.
+    out of function use ``/\**``, inside use ``/\*``.
 
     ..  code-block:: c
 
@@ -726,7 +726,7 @@ Things to avoid when using macros:
     might look like a good thing, but it's confusing as hell when one reads the
     code and it's prone to breakage from seemingly innocent changes.
 
-3)  macros with arguments that are used as l-values: FOO(x) = y; will
+3)  macros with arguments that are used as l-values: ``FOO(x) = y;`` will
     bite you if somebody e.g. turns FOO into an inline function.
 
 4)  forgetting about precedence: macros defining constants using expressions
@@ -750,7 +750,7 @@ Things to avoid when using macros:
           (ret);                  \
         })
 
-    ret is a common name for a local variable - __foo_ret is less likely
+    ret is a common name for a local variable - ``__foo_ret`` is less likely
     to collide with an existing variable.
 
     The cpp manual deals with macros exhaustively. The gcc internals manual also
@@ -768,7 +768,7 @@ Chapter 11: Allocating memory
     malloc()/free() can lead to memory fragmentation and should therefore be avoided.
 
     Always free all allocated memory, even allocated  at start-up. We aim at being
-    valgrind leak-check clean, and in most cases it's just as easy to free() the
+    valgrind leak-check clean, and in most cases it's just as easy to ``free()`` the
     allocated memory as it is to write a valgrind suppression. Freeing all allocated
     memory is also dynamic-load friendly: assuming a plug-in can be dynamically
     loaded and unloaded multiple times, reload should not lead to a memory leak.
@@ -893,7 +893,7 @@ do so, though, and doing so unnecessarily can limit optimization.
 
 When writing a single inline assembly statement containing multiple
 instructions, put each instruction on a separate line in a separate quoted
-string, and end each string except the last with \n\t to properly indent the
+string, and end each string except the last with ``\n\t`` to properly indent the
 next instruction in the assembly output:
 
 ..  code-block:: c
@@ -906,8 +906,8 @@ next instruction in the assembly output:
 Chapter 16: Conditional Compilation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Wherever possible, don't use preprocessor conditionals (#if, #ifdef) in .c
-files; doing so makes code harder to read and logic harder to follow. Instead,
+Wherever possible, don't use preprocessor conditionals (``#if``, ``#ifdef``) in
+.c files; doing so makes code harder to read and logic harder to follow. Instead,
 use such conditionals in a header file defining functions for use in those .c
 files, providing no-op stub versions in the #else case, and then call those
 functions unconditionally from .c files. The compiler will avoid generating
@@ -915,9 +915,9 @@ any code for the stub calls, producing identical results, but the logic will
 remain easy to follow.
 
 Prefer to compile out entire functions, rather than portions of functions or
-portions of expressions. Rather than putting an ifdef in an expression, factor
-out part or all of the expression into a separate helper function and apply the
-conditional to that function.
+portions of expressions. Rather than putting an ``#ifdef`` in an expression,
+factor out part or all of the expression into a separate helper function and
+apply the conditional to that function.
 
 If you have a function or variable which may potentially go unused in a
 particular configuration, and the compiler would warn about its definition
@@ -939,10 +939,10 @@ the block of code just as with an #ifdef, so this will not add any runtime
 overhead.
 However, this approach still allows the C compiler to see the code
 inside the block, and check it for correctness (syntax, types, symbol
-references, etc). Thus, you still have to use an #ifdef if the code inside the
-block references symbols that will not exist if the condition is not met.
+references, etc). Thus, you still have to use an ``#ifdef`` if the code inside
+the block references symbols that will not exist if the condition is not met.
 
-At the end of any non-trivial #if or #ifdef block (more than a few lines),
+At the end of any non-trivial ``#if`` or ``#ifdef`` block (more than a few lines),
 place a comment after the #endif on the same line, noting the conditional
 expression used. For instance:
 
