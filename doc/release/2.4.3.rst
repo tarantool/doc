@@ -91,7 +91,6 @@ Misc
 -   Fixed potential lag on boot up procedure when system’s password
     database is slow in access (gh-5034).
 
-..  _module-api-1:
 
 Module API
 ~~~~~~~~~~

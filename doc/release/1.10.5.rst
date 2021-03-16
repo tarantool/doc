@@ -1,3 +1,6 @@
+Tarantool 1.10.5
+================
+
 Date: 2020-01-14 Tag: 1.10.5-0-g83a2ae9
 
 Overview
@@ -86,22 +89,29 @@ Replication
 
 -   Prefer to bootstrap a replica from a fully bootstrapped instance
     rather than from an instance that is in the process of bootstrapping.
-    gh-4527. This change enables the case when two nodes (B, C) are being
+    gh-4527.
+
+    This change enables the case when two nodes (B, C) are being
     bootstrapped simultaneously using the one that is already
     bootstrapped (A), while A is configured to replicate from {B, C} and
     B – from {A, C}.
 -   Return immediately from ``box.cfg{<...>}`` when an instance is
-    reconfigured with ``replication_connect_quorum = 0``. gh-3760 This
-    change also fixes the behaviour of reconfiguration with non-zero
+    reconfigured with ``replication_connect_quorum = 0``. gh-3760
+
+    This change also fixes the behaviour of reconfiguration with non-zero
     ``replication_connect_quorum``: ``box.cfg{<...>}`` returns
     immediately regardless of whether connections to upstreams are
     established.
 -   Auto reconnect a replica if password is invalid. gh-4550
 -   Use empty password when a URI in ``box.cfg{replication = <...>}`` is
-    like ``login@host:port``. gh-4605. This behaviour matches the
-    net.box’s one now. Explicit ``login:@host:port`` was necessary
-    before, otherwise a replica displayed the following error: > Missing
-    mandatory field ‘tuple’ in request
+    like ``login@host:port``. gh-4605.
+
+    This behaviour matches the net.box’s one now.
+    Explicit ``login:@host:port`` was necessary
+    before, otherwise a replica displayed the following error:
+
+        Missing mandatory field 'tuple' in request
+
 -   Fix segfault during replication configuration
     (``box.cfg{replication = <...>}`` call). gh-4440, gh-4576, gh-4586,
     gh-4643
@@ -120,11 +130,11 @@ Lua
     from ``lua_newthread()``. gh-4556 There are several cases when a new
     Lua thread is created:
 
-   -    Start executing a Lua function call or an eval request (from a
+    -   Start executing a Lua function call or an eval request (from a
         binary protocol, SQL or with ``box.func.<...>:call()``).
-   -    Create of a new fiber.
-   -    Start execution of a trigger.
-   -    Start of encoding into a YAML format (``yaml.encode()``).
+    -   Create of a new fiber.
+    -   Start execution of a trigger.
+    -   Start of encoding into a YAML format (``yaml.encode()``).
 
 -   Fix stack-use-after-scope in ``json.decode()``. gh-4637
 -   Allow to use ``cdata<struct ibuf *>`` (e.g. buffer.IBUF_SHARED) as
@@ -134,7 +144,9 @@ Lua
     not the corresponding pointer type.
 -   A pointer returned by ``msgpack.decode*(cdata<[char] const *>)``
     functions can be assigned to buffer.rpos now (and the same for
-    msgpackffi), gh-3926. All those functions now return
+    msgpackffi), gh-3926.
+
+    All those functions now return
     ``cdata<char *>`` or ``cdata<const char *>`` depending of a passed
     argument. Example of the code that did not work:
     ``res, buf.rpos = msgpack.decode(buf.rpos, buf:size())``.
@@ -158,8 +170,9 @@ LuaJIT
     gh-4537
 -   fold: keep type of emitted CONV in sync with its mode.
     `LuaJIT#524 <https://github.com/LuaJIT/LuaJIT/issues/524>`__ This
-    fixes the following assertion fail: > asm_conv: Assertion
-    \`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed
+    fixes the following assertion fail:
+
+        asm_conv: Assertion \`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed
 
 ..  _misc-1:
 

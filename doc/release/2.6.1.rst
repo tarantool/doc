@@ -13,14 +13,17 @@ the 2.5.1 version. There may be bugs in less common areas. If you find
 any, feel free to report an issue at
 `GitHub <https://github.com/tarantool/tarantool/issues>`__.
 
-Notable changes are: \* Transactional manager for the memtx engine that
-allows yielding in transactions. It also guarantees the data consistency
-for synchronous replication, eliminating dirty reads for unconfirmed
-transactions. \* Raft-based automated failover mechanism for a
-single-leader replica set. Replica set can be configured to provide
-automated leader election and failover. Accompanied with synchronous
-replication it brings data safety and service reliability on a new
-level.
+Notable changes are:
+
+*   Transactional manager for the memtx engine that
+    allows yielding in transactions. It also guarantees the data consistency
+    for synchronous replication, eliminating dirty reads for unconfirmed
+    transactions.
+*   Raft-based automated failover mechanism for a
+    single-leader replica set. Replica set can be configured to provide
+    automated leader election and failover. Accompanied with synchronous
+    replication it brings data safety and service reliability on a new
+    level.
 
 Compatibility
 -------------
@@ -55,28 +58,28 @@ Core
 Vinyl
 ~~~~~
 
--   Rework upsert operation in vinyl so that now (gh-5107):
+Rework upsert operation in vinyl so that now (gh-5107):
 
-   -  if upsert can’t be applied it is skipped and corresponding error
-      is logged (gh-1622);
-   -  upserts now follow associative property: the result of several
-      upserts doesn’t depend on the order of their application
-      (gh-5105);
-   -  upserts referring to -1 fieldno are handled correctly now
-      (gh-5087).
-   -  there’s no more upserts squash procedure: upserts referring to the
-      same field with arithmetic operations are not merged into one
-      operation since resulting upsert might not be applied - as a
-      result both upserts would be ignored (meanwhile only one should
-      be).
+-   if upsert can’t be applied it is skipped and corresponding error
+    is logged (gh-1622);
+-   upserts now follow associative property: the result of several
+    upserts doesn’t depend on the order of their application
+    (gh-5105);
+-   upserts referring to -1 fieldno are handled correctly now
+    (gh-5087).
+-   there’s no more upserts squash procedure: upserts referring to the
+    same field with arithmetic operations are not merged into one
+    operation since resulting upsert might not be applied - as a
+    result both upserts would be ignored (meanwhile only one should
+    be).
 
 LuaJIT
 ~~~~~~
 
--  **[Breaking change]** Introduce LuaJIT platform metrics (gh-5187).
+-   **[Breaking change]** Introduce LuaJIT platform metrics (gh-5187).
 
-   -  This change introduces new builtin library “misc” that may
-      conflict with user’s modules.
+    -   This change introduces new builtin library “misc” that may
+        conflict with user’s modules.
 
 SQL
 ~~~
@@ -119,7 +122,6 @@ Module API
 Bugs fixed
 ----------
 
-..  _core-1:
 
 Core
 ~~~~
@@ -143,7 +145,6 @@ Core
     occurring while user-defined \__gc metamethod is running leads to the
     platform panic.
 
-..  _replication-1:
 
 Replication
 ~~~~~~~~~~~
@@ -172,7 +173,6 @@ Replication
     resolved automatically with a help of another instance, or until the
     replica is removed from box.cfg.replication (gh-5287).
 
-..  _luajit-1:
 
 LuaJIT
 ~~~~~~
@@ -197,7 +197,6 @@ Memtx
 
 -   Transactional manager for memtx engine (gh-4897).
 
-..  _module-api-1:
 
 Module API
 ~~~~~~~~~~

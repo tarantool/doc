@@ -1,6 +1,8 @@
 Tarantool Release Policy
 ========================
 
+..  _release-policy:
+
 A Tarantool release is identified by three digits, for example, 2.6.2 or 1.10.9:
 
 *   The first digit stands for a MAJOR release series that introduces

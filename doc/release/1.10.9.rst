@@ -1,3 +1,6 @@
+Tarantool 1.10.9
+================
+
 Date: 2020-12-30 Tag: 1.10.9-0-g720ffdd23
 
 Overview
@@ -43,7 +46,7 @@ Misc
     but isn’t enabled by default and not started anymore. You can enable
     and start it with the following commands:
 
-   ..   code:: bash
+    ..  code:: bash
 
         ln -s /etc/tarantool/instances.available/example.lua \
             /etc/tarantool/instances.enabled/example.lua
@@ -53,7 +56,7 @@ Misc
     update. If you don’t the need example instance, you can stop and
     disable it with the following commands:
 
-   ..   code:: bash
+    ..  code:: bash
 
         systemctl stop tarantool@example
         rm /etc/tarantool/instances.enabled/example.lua

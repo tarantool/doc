@@ -37,9 +37,9 @@ Replication
     number ``N`` of registered replicas instead of a ``const`` number,
     for example:
 
-   .. code:: lua
+    ..  code:: lua
 
-      box.cfg{replication_synchro_quorum = "N/2 + 1"}
+        box.cfg{replication_synchro_quorum = "N/2 + 1"}
 
     Only the non-anonymous bootstrapped replicas amount to ``N``. The
     expression should respect synchro guarantees: at least 50% of the
@@ -77,7 +77,6 @@ Core
 -   Snapshot recovery with no JSONPath or multikey indices involved now
     has normal performance (gh-4774).
 
-..  _replication-1:
 
 Replication
 ~~~~~~~~~~~
@@ -95,7 +94,7 @@ SQL
 
 -   Data changes in read-only mode are now forbidden (gh-5231).
 -   Query execution now doesn’t occasionally raise an unrelated error
-   “Space ‘0’ does not exist” (gh-5592).
+    “Space ‘0’ does not exist” (gh-5592).
 -   Coinciding names of temporary files (used to store data during
     execution) having two instances running on the same machine no longer
     cause a segfault (gh-5537).
@@ -111,7 +110,6 @@ LuaJIT
     (gh-4518, gh-4649).
 -   Fixed a false positive panic when yielding in debug hook (gh-5649).
 
-..  _lua-1:
 
 Lua
 ~~~
