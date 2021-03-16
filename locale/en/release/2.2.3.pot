@@ -149,7 +149,7 @@ msgstr ""
 msgid "Fix string to number conversion: current implementation respects the buffer length (gh-4773)."
 msgstr ""
 
-msgid "“FFI sandwich”(*) detection is introduced. If sandwich is detected"
+msgid "“FFI sandwich”(\\*) detection is introduced. If sandwich is detected"
 msgstr ""
 
 msgid "while trace recording the recording is aborted. The sandwich detected while mcode execution leads to the platform panic."
@@ -158,7 +158,7 @@ msgstr ""
 msgid "luaJIT_setmode call is prohibited while mcode execution and leads to the platform panic."
 msgstr ""
 
-msgid "(*) The following stack mix is called FFI sandwich:"
+msgid "(\\*) The following stack mix is called FFI sandwich:"
 msgstr ""
 
 msgid "Lua-FFI -> C routine -> Lua-C API -> Lua VM"

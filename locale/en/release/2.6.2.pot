@@ -32,13 +32,10 @@ msgstr ""
 msgid "It is now possible to specify synchro quorum as a function of a number ``N`` of registered replicas instead of a ``const`` number, for example:"
 msgstr ""
 
-msgid "  box.cfg{replication_synchro_quorum = \"N/2 + 1\"}\n"
-"\n"
-"Only the non-anonymous bootstrapped replicas amount to ``N``. The\n"
-"expression should respect synchro guarantees: at least 50% of the\n"
-"cluster size + 1. The expression value is re-evaluated automatically\n"
-"inside of Tarantool when new replicas appear or old ones are removed\n"
-"(gh-5446)."
+msgid "box.cfg{replication_synchro_quorum = \"N/2 + 1\"}"
+msgstr ""
+
+msgid "Only the non-anonymous bootstrapped replicas amount to ``N``. The expression should respect synchro guarantees: at least 50% of the cluster size + 1. The expression value is re-evaluated automatically inside of Tarantool when new replicas appear or old ones are removed (gh-5446)."
 msgstr ""
 
 msgid "Lua"
@@ -98,10 +95,7 @@ msgstr ""
 msgid "Data changes in read-only mode are now forbidden (gh-5231)."
 msgstr ""
 
-msgid "Query execution now doesn’t occasionally raise an unrelated error"
-msgstr ""
-
-msgid "“Space ‘0’ does not exist” (gh-5592)."
+msgid "Query execution now doesn’t occasionally raise an unrelated error “Space ‘0’ does not exist” (gh-5592)."
 msgstr ""
 
 msgid "Coinciding names of temporary files (used to store data during execution) having two instances running on the same machine no longer cause a segfault (gh-5537)."

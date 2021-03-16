@@ -32,25 +32,13 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "**[Breaking change]** Drop ``rows_per_wal`` ``box.cfg()`` option in"
-msgstr ""
-
-msgid "favor of ``wal_max_size``, gh-3762"
+msgid "**[Breaking change]** Drop ``rows_per_wal`` ``box.cfg()`` option in favor of ``wal_max_size``, gh-3762"
 msgstr ""
 
 msgid "Lua"
 msgstr ""
 
-msgid "**[Breaking change]** json and msgpack serializers now raise an error"
-msgstr ""
-
-msgid "when a depth of data nesting exceeds ``encode_max_depth`` option value. The default value of the option is increased from 32 to 128. ``encode_deep_as_nil`` option was added to give ability to set the old behaviour back. gh-4434 Note: Those options can be set using ``json.cfg({<...>})`` or ``msgpack.cfg({<...>})``. Note: box data modification functions (``insert``, ``replace``, ``update``, ``upsert``) follows options of default msgpack serializer instance and now they will raise an error by default on too nested data rather then cut them silently. This behaviour can be configured using ``msgpack.cfg({<...>})``. Note: ``box.tuple.new()``, ``space:update()``, ``space:upsert()`` and several other functions did not follow ``encode_max_depth`` option, now they do (see also"
-msgstr ""
-
-msgid "‘Bug fixes’). Note: ``json.cfg`` and ``msgpack.cfg`` tables did not"
-msgstr ""
-
-msgid "updated when an option is changed, now they show actual values (see also ‘Bug fixes’)."
+msgid "**[Breaking change]** json and msgpack serializers now raise an error when a depth of data nesting exceeds ``encode_max_depth`` option value. The default value of the option is increased from 32 to 128. ``encode_deep_as_nil`` option was added to give ability to set the old behaviour back. gh-4434 Note: Those options can be set using ``json.cfg({<...>})`` or ``msgpack.cfg({<...>})``. Note: box data modification functions (``insert``, ``replace``, ``update``, ``upsert``) follows options of default msgpack serializer instance and now they will raise an error by default on too nested data rather then cut them silently. This behaviour can be configured using ``msgpack.cfg({<...>})``. Note: ``box.tuple.new()``, ``space:update()``, ``space:upsert()`` and several other functions did not follow ``encode_max_depth`` option, now they do (see also ‘Bug fixes’). Note: ``json.cfg`` and ``msgpack.cfg`` tables did not updated when an option is changed, now they show actual values (see also ‘Bug fixes’)."
 msgstr ""
 
 msgid "Show line and column in json.decode() errors, gh-3316"

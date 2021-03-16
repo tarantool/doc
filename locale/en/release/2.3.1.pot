@@ -65,10 +65,7 @@ msgstr ""
 msgid "Introduce prepared statements support and prepared statements cache. gh-2592, gh-3292 Using of prepared statements allows to eliminate overhead of transmitting a statement text over a network and parsing it each time before execution. Aside of this, it allows to acquire binding parameters and result set columns metainformation prior to actual execution of a statement. This feature is vital for implementing standard DBMS APIs, such as ODBC and JDBC."
 msgstr ""
 
-msgid "**[Breaking change]** Introduce \\_session_setting service space as"
-msgstr ""
-
-msgid "replacement for PRAGMA keyword. gh-4511 All frontends (C, Lua, SQL, binary protocol) can use this space to access or update session settings. Removed ``count_changes``, ``short_column_names``, ``sql_compound_select_limit``, ``vdbe_addoptrace`` pragmas. Transformed others into \\_session_settings tuples."
+msgid "**[Breaking change]** Introduce \\_session_setting service space as replacement for PRAGMA keyword. gh-4511 All frontends (C, Lua, SQL, binary protocol) can use this space to access or update session settings. Removed ``count_changes``, ``short_column_names``, ``sql_compound_select_limit``, ``vdbe_addoptrace`` pragmas. Transformed others into \\_session_settings tuples."
 msgstr ""
 
 msgid "Extend SQL result set metadata. gh-4407 In addition to the ``name`` and ``type`` fields, the ``collation``, ``is_nullable``, ``is_autoincrement``, and ``span`` fields are added. These new fields are shown when the ``full_metadata`` session setting is enabled but always sent via binary protocol."
@@ -83,10 +80,11 @@ msgstr ""
 msgid "``AUTOINCREMENT`` in column definition:"
 msgstr ""
 
-msgid "  CREATE TABLE t (i INT, a INT AUTOINCREMENT, PRIMARY KEY (i, a));\n"
-"  CREATE TABLE t (i INT AUTOINCREMENT, a INT, PRIMARY KEY (i, a));\n"
-"\n"
-"2) ``AUTOINCREMENT`` in ``PRIMARY KEY`` definition:"
+msgid "CREATE TABLE t (i INT, a INT AUTOINCREMENT, PRIMARY KEY (i, a));\n"
+"CREATE TABLE t (i INT AUTOINCREMENT, a INT, PRIMARY KEY (i, a));"
+msgstr ""
+
+msgid "``AUTOINCREMENT`` in ``PRIMARY KEY`` definition:"
 msgstr ""
 
 msgid "CREATE TABLE t (i INT, a INT, PRIMARY KEY (i, a AUTOINCREMENT));\n"
@@ -105,10 +103,10 @@ msgstr ""
 msgid "Introduce ``WITH ENGINE`` clause for ``CREATE TABLE`` statement. gh-4422 To allow a user to specify engine as per table option, ``CREATE TABLE`` statement has been extended with optional ``WITH ENGINE = <engine_name>`` clause. This clause comes at the end of ``CREATE TABLE`` statement. For example:"
 msgstr ""
 
-msgid "  CREATE TABLE t_vinyl (id INT PRIMARY KEY) WITH ENGINE = 'vinyl';\n"
-"\n"
-"Refer also to `SQL reference\n"
-"documentation <https://www.tarantool.io/en/doc/2.3/reference/reference_sql/sql/#create-table>`__."
+msgid "CREATE TABLE t_vinyl (id INT PRIMARY KEY) WITH ENGINE = 'vinyl';"
+msgstr ""
+
+msgid "Refer also to `SQL reference documentation <https://www.tarantool.io/en/doc/2.3/reference/reference_sql/sql/#create-table>`__."
 msgstr ""
 
 msgid "Introduce ``DOUBLE`` type. gh-3812"
@@ -126,10 +124,7 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "**[Breaking change]** Drop ``rows_per_wal`` option of ``box.cfg()``"
-msgstr ""
-
-msgid "in favor of ``wal_max_size``. gh-3762"
+msgid "**[Breaking change]** Drop ``rows_per_wal`` option of ``box.cfg()`` in favor of ``wal_max_size``. gh-3762"
 msgstr ""
 
 msgid "Decimals can now be stored in spaces. The corresponding field type is introduced: ``decimal``. Decimal values are also allowed in the ``scalar``, ``any``, and ``number`` fields. Decimal values can be indexed. gh-4333 Also refer to documentation on"
@@ -138,16 +133,34 @@ msgstr ""
 msgid "`data types <https://www.tarantool.io/en/doc/2.3/book/box/data_model/#data-types>`__"
 msgstr ""
 
-msgid "```<space_object>:create_index()`` <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#lua-function.space_object.create_index>`__"
+msgid "`<space_object>:create_index() <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#lua-function.space_object.create_index>`__"
 msgstr ""
 
-msgid "Add support for decimals in update operations. gh-4413 ``tuple:update()`` and ``<space_object>:update()`` now support decimal operands for arithmetic operations (‘+’ and ‘-’). The syntax is as usual, for example: ``d = box.tuple.new(decimal.new('1'))     ---     ...     d:update{{'+', 1, decimal.new('0.5')}}     ---     - [1.5]     ...`` Insertion (‘!’) and assignment (‘=’) are also supported. See also the full description of the ``update()`` function in `documentation <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#box-space-update>`__."
+msgid "Add support for decimals in update operations. gh-4413 ``tuple:update()`` and ``<space_object>:update()`` now support decimal operands for arithmetic operations (‘+’ and ‘-’). The syntax is as usual, for example:"
+msgstr ""
+
+msgid "tarantool> d = box.tuple.new(decimal.new('1'))\n"
+"---\n"
+"...\n"
+"tarantool> d:update{{'+', 1, decimal.new('0.5')}}\n"
+"---\n"
+"- [1.5]\n"
+"..."
+msgstr ""
+
+msgid "Insertion (‘!’) and assignment (‘=’) are also supported. See also the full description of the ``update()`` function in `documentation <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#box-space-update>`__."
 msgstr ""
 
 msgid "Allow to encode/decode decimals to ``MsgPack`` and to encode to ``YAML`` and ``JSON``. Part of gh-4333; `485439e3 <https://github.com/tarantool/tarantool/commit/485439e33196e26d120e622175f88b4edc7a5aa1>`__; `documentation <https://github.com/tarantool/doc/issues/992>`__"
 msgstr ""
 
-msgid "Introduce field name and JSON path updates. gh-1261 Example of update by a field name: ``box.space.test:update({{'=', 'foo', 42}})``. JSON path update allows to change a value that is nested inside an array or a map. It provides convenient syntax (that is also available for connectors), consumes less space in WAL than replace, and is faster than replaces written in Lua. Example: ``box.space.test:update({{'=', 'foo.bar[1]', 42}})``. Please refer to `documentation <https://github.com/tarantool/doc/issues/1051>`__."
+msgid "Introduce field name and JSON path updates. gh-1261"
+msgstr ""
+
+msgid "Example of update by a field name: ``box.space.test:update({{'=', 'foo', 42}})``."
+msgstr ""
+
+msgid "JSON path update allows to change a value that is nested inside an array or a map. It provides convenient syntax (that is also available for connectors), consumes less space in WAL than replace, and is faster than replaces written in Lua. Example: ``box.space.test:update({{'=', 'foo.bar[1]', 42}})``. Please refer to `documentation <https://github.com/tarantool/doc/issues/1051>`__."
 msgstr ""
 
 msgid "Introduce ``double`` field type. Part of gh-3812. Though is not very usable in Lua, this new field type has been added in ``box`` as a base for the SQL ``DOUBLE`` type."
@@ -180,10 +193,7 @@ msgstr ""
 msgid "decimal: add modulo operator (``decimal.new(172.51) % 1 == 0.51``), part of gh-4403"
 msgstr ""
 
-msgid "**[Breaking change]** JSON and msgpack serializers now raise an error"
-msgstr ""
-
-msgid "when a depth of data nesting exceeds the ``encode_max_depth`` option value. The default value of the option has been increased from 32 to 128. The ``encode_deep_as_nil`` option is added to give an ability to set the old behaviour back. gh-4434 Notes:"
+msgid "**[Breaking change]** JSON and msgpack serializers now raise an error when a depth of data nesting exceeds the ``encode_max_depth`` option value. The default value of the option has been increased from 32 to 128. The ``encode_deep_as_nil`` option is added to give an ability to set the old behaviour back. gh-4434 Notes:"
 msgstr ""
 
 msgid "These options can be set by using ``json.cfg({<...>})`` or ``msgpack.cfg({<...>})``."
@@ -504,13 +514,7 @@ msgstr ""
 msgid "A pointer returned by ``msgpack.decode*(cdata<[char] const *>)`` functions can be assigned to buffer.rpos now (and the same for msgpackffi). gh-3926. All those functions now return ``cdata<char *>`` or ``cdata<const char *>`` depending of a passed argument. Example of the code that did not work: ``res, buf.rpos = msgpack.decode(buf.rpos, buf:size())``."
 msgstr ""
 
-msgid "lua/pickle: fix typo that leads to reject of negative integers for"
-msgstr ""
-
-msgid "‘i’ (integer) and ‘N’ (big-endian integer) formats in pickle.pack()."
-msgstr ""
-
-msgid "`e2d9f664 <https://github.com/tarantool/tarantool/commit/e2d9f66450298b025ed350a2a40d2682b3b6f17e>`__"
+msgid "lua/pickle: fix typo that leads to reject of negative integers for ‘i’ (integer) and ‘N’ (big-endian integer) formats in pickle.pack(). `e2d9f664 <https://github.com/tarantool/tarantool/commit/e2d9f66450298b025ed350a2a40d2682b3b6f17e>`__"
 msgstr ""
 
 msgid "Use bundled ``libcurl`` rather than system-wide by default. gh-4318, gh-4180, gh-4288, gh-4389, gh-4397 This closes several known problems that were fixed in recent libcurl versions, including segfaults, hangs, memory leaks and performance problems."

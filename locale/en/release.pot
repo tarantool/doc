@@ -8,7 +8,7 @@ msgstr ""
 msgid "MAJOR_VERSION.RELEASE_SERIES.RELEASE"
 msgstr ""
 
-msgid "Third number :"
+msgid "Third number distinguishes between alpha, beta and release versions:"
 msgstr ""
 
 msgid "``x.y.0`` is an **alpha version**, just a base for adding new features. We use alpha versions internally and don't release them as distributions."

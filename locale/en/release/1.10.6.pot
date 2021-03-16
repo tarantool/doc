@@ -1,4 +1,7 @@
 
+msgid "Tarantool 1.10.6"
+msgstr ""
+
 msgid "Date: 2020-04-20 Tag: 1.10.6-1-g47c009a"
 msgstr ""
 

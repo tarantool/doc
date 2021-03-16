@@ -50,16 +50,10 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "**[Breaking change]** ``box.session.push()`` parameter ``sync`` is"
+msgid "**[Breaking change]** ``box.session.push()`` parameter ``sync`` is deprecated and deleted. It does not work anymore, and a usage attempt leads to an error (gh-4689)."
 msgstr ""
 
-msgid "deprecated and deleted. It does not work anymore, and a usage attempt leads to an error (gh-4689)."
-msgstr ""
-
-msgid "**[Breaking change]** Define new rules for implicit cast for"
-msgstr ""
-
-msgid "assignment operation in SQL (gh-3809)."
+msgid "**[Breaking change]** Define new rules for implicit cast for assignment operation in SQL (gh-3809)."
 msgstr ""
 
 msgid "Symbols of the Tarantool executable are not masked anymore. Some private symbols may become visible and available for FFI and ``dlopen()`` + ``dlsym()`` (gh-2971)."
@@ -110,17 +104,16 @@ msgstr ""
 msgid "Before this release, the Tarantool package for Debian and Ubuntu automatically enable and start the ‘example’ instance, which listens on the TCP port 3301. Starting from this release, the instance file is installed to ``/etc/tarantool/instances.available/example.lua``, but is not enabled by default and not started anymore. One may perform the following actions to enable and start it:"
 msgstr ""
 
-msgid "  # ln -s /etc/tarantool/instances.available/example.lua \\\n"
-"        /etc/tarantool/instances.enabled/example.lua\n"
-"  # systemctl start tarantool@example\n"
-"\n"
-"The existing configuration will not be updated automatically at\n"
-"package update, so manual actions are required to stop and disable\n"
-"the instance (if it is not needed, of course):"
+msgid "ln -s /etc/tarantool/instances.available/example.lua \\\n"
+"    /etc/tarantool/instances.enabled/example.lua\n"
+"systemctl start tarantool@example"
 msgstr ""
 
-msgid "# systemctl stop tarantool@example\n"
-"# rm /etc/tarantool/instances.enabled/example.lua"
+msgid "The existing configuration will not be updated automatically at package update, so manual actions are required to stop and disable the instance (if it is not needed, of course):"
+msgstr ""
+
+msgid "systemctl stop tarantool@example\n"
+"rm /etc/tarantool/instances.enabled/example.lua"
 msgstr ""
 
 msgid "When LTO is enabled, Luajit is built with it (gh-3743)."

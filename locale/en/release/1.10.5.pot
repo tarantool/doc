@@ -1,4 +1,7 @@
 
+msgid "Tarantool 1.10.5"
+msgstr ""
+
 msgid "Date: 2020-01-14 Tag: 1.10.5-0-g83a2ae9"
 msgstr ""
 
@@ -80,16 +83,28 @@ msgstr ""
 msgid "Replication"
 msgstr ""
 
-msgid "Prefer to bootstrap a replica from a fully bootstrapped instance rather than from an instance that is in the process of bootstrapping. gh-4527. This change enables the case when two nodes (B, C) are being bootstrapped simultaneously using the one that is already bootstrapped (A), while A is configured to replicate from {B, C} and B – from {A, C}."
+msgid "Prefer to bootstrap a replica from a fully bootstrapped instance rather than from an instance that is in the process of bootstrapping. gh-4527."
 msgstr ""
 
-msgid "Return immediately from ``box.cfg{<...>}`` when an instance is reconfigured with ``replication_connect_quorum = 0``. gh-3760 This change also fixes the behaviour of reconfiguration with non-zero ``replication_connect_quorum``: ``box.cfg{<...>}`` returns immediately regardless of whether connections to upstreams are established."
+msgid "This change enables the case when two nodes (B, C) are being bootstrapped simultaneously using the one that is already bootstrapped (A), while A is configured to replicate from {B, C} and B – from {A, C}."
+msgstr ""
+
+msgid "Return immediately from ``box.cfg{<...>}`` when an instance is reconfigured with ``replication_connect_quorum = 0``. gh-3760"
+msgstr ""
+
+msgid "This change also fixes the behaviour of reconfiguration with non-zero ``replication_connect_quorum``: ``box.cfg{<...>}`` returns immediately regardless of whether connections to upstreams are established."
 msgstr ""
 
 msgid "Auto reconnect a replica if password is invalid. gh-4550"
 msgstr ""
 
-msgid "Use empty password when a URI in ``box.cfg{replication = <...>}`` is like ``login@host:port``. gh-4605. This behaviour matches the net.box’s one now. Explicit ``login:@host:port`` was necessary before, otherwise a replica displayed the following error: > Missing mandatory field ‘tuple’ in request"
+msgid "Use empty password when a URI in ``box.cfg{replication = <...>}`` is like ``login@host:port``. gh-4605."
+msgstr ""
+
+msgid "This behaviour matches the net.box’s one now. Explicit ``login:@host:port`` was necessary before, otherwise a replica displayed the following error:"
+msgstr ""
+
+msgid "Missing mandatory field 'tuple' in request"
 msgstr ""
 
 msgid "Fix segfault during replication configuration (``box.cfg{replication = <...>}`` call). gh-4440, gh-4576, gh-4586, gh-4643"
@@ -122,7 +137,10 @@ msgstr ""
 msgid "Allow to use ``cdata<struct ibuf *>`` (e.g. buffer.IBUF_SHARED) as the argument to ``msgpack.encode()``. `6d38f0c5 <https://github.com/tarantool/tarantool/commit/6d38f0c5117b77de061f9843209ff391fa09924a>`__ Before this change the ``cdata<struct ibuf>`` type was allowed, but not the corresponding pointer type."
 msgstr ""
 
-msgid "A pointer returned by ``msgpack.decode*(cdata<[char] const *>)`` functions can be assigned to buffer.rpos now (and the same for msgpackffi), gh-3926. All those functions now return ``cdata<char *>`` or ``cdata<const char *>`` depending of a passed argument. Example of the code that did not work: ``res, buf.rpos = msgpack.decode(buf.rpos, buf:size())``."
+msgid "A pointer returned by ``msgpack.decode*(cdata<[char] const *>)`` functions can be assigned to buffer.rpos now (and the same for msgpackffi), gh-3926."
+msgstr ""
+
+msgid "All those functions now return ``cdata<char *>`` or ``cdata<const char *>`` depending of a passed argument. Example of the code that did not work: ``res, buf.rpos = msgpack.decode(buf.rpos, buf:size())``."
 msgstr ""
 
 msgid "Fix race in ``fio.mktree()`` when two tarantool processes create the same directory tree simultaneously. gh-4660 This problem affects `tarantool/cartrige <https://github.com/tarantool/cartrige>`__, see `cartrige#gh-382 <https://github.com/tarantool/cartridge/issues/382>`__."
@@ -143,7 +161,10 @@ msgstr ""
 msgid "Fix the “Data segment size exceeds process limit” error on FreeBSD/x64: do not change resource limits when it is not necessary. gh-4537"
 msgstr ""
 
-msgid "fold: keep type of emitted CONV in sync with its mode. `LuaJIT#524 <https://github.com/LuaJIT/LuaJIT/issues/524>`__ This fixes the following assertion fail: > asm_conv: Assertion \\`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed"
+msgid "fold: keep type of emitted CONV in sync with its mode. `LuaJIT#524 <https://github.com/LuaJIT/LuaJIT/issues/524>`__ This fixes the following assertion fail:"
+msgstr ""
+
+msgid "asm_conv: Assertion \\`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed"
 msgstr ""
 
 msgid "Fix CLI boolean options handling in ``tarantoolctl cat <...>``, such as ``--show-system``. gh-4076"

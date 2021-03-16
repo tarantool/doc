@@ -134,6 +134,9 @@ msgstr ""
 msgid "Add Lua output format support for ``box.session.push()`` (gh-4686)."
 msgstr ""
 
+msgid "Replication"
+msgstr ""
+
 msgid "Fix rebootstrap procedure not working in case replica itself is listed in ``box.cfg.replication`` (gh-4759)."
 msgstr ""
 
@@ -179,16 +182,16 @@ msgstr ""
 msgid "libev: backport fix for listening for more then 1024 file descriptors on Mac OS (gh-3867)."
 msgstr ""
 
+msgid "SQL"
+msgstr ""
+
 msgid "Fix ``box.stat()`` behavior: now it collects statistics on the ``PREPARE`` and ``EXECUTE`` methods as expected (gh-4756)."
 msgstr ""
 
 msgid "Add ability to drop any table constraint using the following statement: ``ALTER TABLE  <table_name> DROP CONSTRAINT <constraint_name>``. Previously, it was possible to drop only foreign key constraints with such a statement (gh-4120)."
 msgstr ""
 
-msgid "“No such constraint” error now contains the name of the table this"
-msgstr ""
-
-msgid "constraint belongs to."
+msgid "“No such constraint” error now contains the name of the table this constraint belongs to."
 msgstr ""
 
 msgid "Add an empty body to the ``UNPREPARE`` IProto response (gh-4769)."
@@ -260,16 +263,13 @@ msgstr ""
 msgid "Fix string to number conversion: current implementation respects the buffer length (gh-4773)."
 msgstr ""
 
-msgid "“FFI sandwich”(*) detection is introduced. If sandwich is detected"
-msgstr ""
-
-msgid "while trace recording the recording is aborted. The sandwich detected while mcode execution leads to the platform panic."
+msgid "“FFI sandwich” (\\*) detection is introduced. If sandwich is detected while trace recording the recording is aborted. The sandwich detected while mcode execution leads to the platform panic."
 msgstr ""
 
 msgid "luaJIT_setmode call is prohibited while mcode execution and leads to the platform panic."
 msgstr ""
 
-msgid "(*) The following stack mix is called FFI sandwich:"
+msgid "(\\*) The following stack mix is called FFI sandwich:"
 msgstr ""
 
 msgid "Lua-FFI -> C routine -> Lua-C API -> Lua VM"

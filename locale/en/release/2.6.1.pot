@@ -14,7 +14,13 @@ msgstr ""
 msgid "This release introduces roughly 17 features and resolves 22 bugs since the 2.5.1 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`__."
 msgstr ""
 
-msgid "Notable changes are: \\* Transactional manager for the memtx engine that allows yielding in transactions. It also guarantees the data consistency for synchronous replication, eliminating dirty reads for unconfirmed transactions. \\* Raft-based automated failover mechanism for a single-leader replica set. Replica set can be configured to provide automated leader election and failover. Accompanied with synchronous replication it brings data safety and service reliability on a new level."
+msgid "Notable changes are:"
+msgstr ""
+
+msgid "Transactional manager for the memtx engine that allows yielding in transactions. It also guarantees the data consistency for synchronous replication, eliminating dirty reads for unconfirmed transactions."
+msgstr ""
+
+msgid "Raft-based automated failover mechanism for a single-leader replica set. Replica set can be configured to provide automated leader election and failover. Accompanied with synchronous replication it brings data safety and service reliability on a new level."
 msgstr ""
 
 msgid "Compatibility"
