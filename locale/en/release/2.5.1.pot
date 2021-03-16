@@ -1,0 +1,248 @@
+
+msgid "Tarantool 2.5.1"
+msgstr ""
+
+msgid "Date: 2020-07-17 Tag: 2.5.1-1-g635f6e5"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "2.5.1 is the beta version of the 2.5 release series."
+msgstr ""
+
+msgid "This release introduces roughly 11 features and resolves 34 bugs since the 2.4.1 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+msgid "Notable changes are:"
+msgstr ""
+
+msgid "Synchronous replication (beta)."
+msgstr ""
+
+msgid "Allow an anonymous replica follow another anonymous replica."
+msgstr ""
+
+msgid "Fixed numerous crashes in Vinyl."
+msgstr ""
+
+msgid "Make implicit cast rules for assignment operation more strict in SQL."
+msgstr ""
+
+msgid "Updated curl version to 7.71."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/2.3/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+msgid "There are changes labeled with **[Breaking change]**. It means that the old behavior was considered error-prone and therefore changed to protect users from unintended mistakes. However, there is a little probability that someone can lean on the old behavior, and this label is to bring attention to the things that have been changed."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid "**[Breaking change]** ``box.session.push()`` parameter ``sync`` is"
+msgstr ""
+
+msgid "deprecated and deleted. It does not work anymore, and a usage attempt leads to an error (gh-4689)."
+msgstr ""
+
+msgid "**[Breaking change]** Define new rules for implicit cast for"
+msgstr ""
+
+msgid "assignment operation in SQL (gh-3809)."
+msgstr ""
+
+msgid "Symbols of the Tarantool executable are not masked anymore. Some private symbols may become visible and available for FFI and ``dlopen()`` + ``dlsym()`` (gh-2971)."
+msgstr ""
+
+msgid "Add ability to set up logging early without configuring the ``box`` engine (gh-689)."
+msgstr ""
+
+msgid "To retrieve information about memory usage, ``box.info:memory()`` can be used (gh-4688)."
+msgstr ""
+
+msgid "Vinyl"
+msgstr ""
+
+msgid "``box.snapshot()`` now ignores throttling of the scheduler and forces the dump process immediately (gh-3519)."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid "Use naming pattern “COLUMN_N” for automatically generated column’s names (gh-3962)."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid "Add ``box.info.replication_anon``. When called, it lists anonymous replicas in the same format as ``box.info.replication``, the only exception is that anonymous replicas are indexed by their uuid strings (gh-4900)."
+msgstr ""
+
+msgid "Allow anonymous replicas to be followed by other ones (gh-4696)."
+msgstr ""
+
+msgid "Synchronous replication can be enabled per-space using the ``is_sync`` space option (gh-4842)."
+msgstr ""
+
+msgid "Build"
+msgstr ""
+
+msgid "Add initial support for OpenBSD (gh-4967)."
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Don’t start the ‘example’ instance after installing Tarantool (gh-4507)."
+msgstr ""
+
+msgid "Before this release, the Tarantool package for Debian and Ubuntu automatically enable and start the ‘example’ instance, which listens on the TCP port 3301. Starting from this release, the instance file is installed to ``/etc/tarantool/instances.available/example.lua``, but is not enabled by default and not started anymore. One may perform the following actions to enable and start it:"
+msgstr ""
+
+msgid "  # ln -s /etc/tarantool/instances.available/example.lua \\\n"
+"        /etc/tarantool/instances.enabled/example.lua\n"
+"  # systemctl start tarantool@example\n"
+"\n"
+"The existing configuration will not be updated automatically at\n"
+"package update, so manual actions are required to stop and disable\n"
+"the instance (if it is not needed, of course):"
+msgstr ""
+
+msgid "# systemctl stop tarantool@example\n"
+"# rm /etc/tarantool/instances.enabled/example.lua"
+msgstr ""
+
+msgid "When LTO is enabled, Luajit is built with it (gh-3743)."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "Fixed assert outdated due to multikey index arrival (gh-5132)."
+msgstr ""
+
+msgid "Fixed a bug in altering a normal index to a functional one (n/a)."
+msgstr ""
+
+msgid "Fixed a couple of internal symbols dangling in global namespace \\_G (gh-4812)."
+msgstr ""
+
+msgid "Fixed bug when on_shutdown triggers weren’t executed after EOF (gh-4703)."
+msgstr ""
+
+msgid "Fixed inability to handle ULL constants in Lua mode console (gh-4682)."
+msgstr ""
+
+msgid "Fixed a bug in C module reloading (gh-4945)."
+msgstr ""
+
+msgid "Fixed confusing implicit requirements for tuple fields (gh-5027)."
+msgstr ""
+
+msgid "Added needed key validation to space_before_replace (gh-5017)."
+msgstr ""
+
+msgid "Fixed check of index field map size which led to crash (gh-5084)."
+msgstr ""
+
+msgid "Fixed NULL pointer dereference when merger is called via the binary protocol (say, via net.box) (gh-4954)."
+msgstr ""
+
+msgid "Fix wrong mpsgpack extension type in an error message at decoding (gh-5017)."
+msgstr ""
+
+msgid "Fixed crash when invalid JSON was used in update() (gh-5135)."
+msgstr ""
+
+msgid "Fixed possible ER_TUPLE_FOUND error when bootstrapping replicas in an 1.10/2.1.1 cluster (gh-4924)."
+msgstr ""
+
+msgid "Fixed tx boundary check for half-applied txns (gh-5125)."
+msgstr ""
+
+msgid "Fixed replication tx boundaries after local space rework (gh-4928)."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid "Added format string usage to form a CustomError message (gh-4903)."
+msgstr ""
+
+msgid "Fixed error while closing socket.tcp_server socket (gh-4087)."
+msgstr ""
+
+msgid "Extended box.error objects reference counter to 64 bit to prevent possible overflow (gh-4902)."
+msgstr ""
+
+msgid "Refactored Lua table encoding: removed excess Lua function object and left protected Lua frame only for the case \\__serialize is a function to improve ``msgpack.encode()`` performance (no GH issue)."
+msgstr ""
+
+msgid "Improved Lua call procedure for the case of built-in functions. Prepared GCfunc object is used instead of temporary one, resulting in 3-6% garbage collection reduction."
+msgstr ""
+
+msgid "Enabled luacheck in continuous integration (no GH issue)."
+msgstr ""
+
+msgid "Fixed warnings (two of them were real bugs!) found by luacheck in a source code (no GH issue)."
+msgstr ""
+
+msgid "Fixed wrong order of rows as a result of query containing column of SCALAR type in ORDER BY clause (gh-4697)."
+msgstr ""
+
+msgid "Fixed bug with the display of collation for scalar fields in <SELECT> result, when ``sql_full_metadata`` is enabled (gh-4755)."
+msgstr ""
+
+msgid "Block using HASH indexes in SQL since scheduler is unable to use it properly (gh-4659)."
+msgstr ""
+
+msgid "Fixed races and corner cases in box (re)configuration (gh-4231)."
+msgstr ""
+
+msgid "Fixed crash during compaction due to tuples with size exceeding vinyl_max_tuple_size setting (gh-4864)."
+msgstr ""
+
+msgid "Fixed crash during recovery of vinyl index due to the lack of file descriptors (gh-4805)."
+msgstr ""
+
+msgid "Fixed crash during executing upsert changing primary key in debug mode (gh-5005)."
+msgstr ""
+
+msgid "Fixed crash due to triggered dump process during secondary index creation (gh-5042)."
+msgstr ""
+
+msgid "Fixed crash/deadlock (depending on build type) during dump process scheduling and concurrent DDL operation (gh-4821)."
+msgstr ""
+
+msgid "Fixed crash during read of prepared but still not yet not committed statement (gh-3395)."
+msgstr ""
+
+msgid "Fixed squashing set and arithmetic upsert operations (gh-5106)."
+msgstr ""
+
+msgid "Created missing folders for vinyl spaces and indexes if needed to avoid confusing fails of tarantool started from backup (gh-5090)."
+msgstr ""
+
+msgid "Fixed crash during squash of many (more than 4000) upserts modifying the same key (gh-4957)."
+msgstr ""
+
+msgid "Memtx"
+msgstr ""
+
+msgid "Fixed concurrent replaces on index building. Tuples are now referenced on all needed execution paths (gh-4973)."
+msgstr ""
+
+msgid "Fixed a possible stacked diagnostics crash due to incorrect reference count (gh-4887)."
+msgstr ""
+

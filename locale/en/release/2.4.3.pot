@@ -1,0 +1,88 @@
+
+msgid "Tarantool 2.4.3"
+msgstr ""
+
+msgid "Date: 2020-10-22 Tag: 2.4.3-1-g986fab7"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "This release resolves roughly 13 issues since the 2.4.2 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr ""
+
+msgid "Module API"
+msgstr ""
+
+msgid "Exposed the box region, key_def and several other functions in order to implement external tuple.keydef and tuple.merger modules on top of them (gh-5273, gh-5384)."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid "Fixed a crash when JSON tuple field access was used to get a multikey indexed field, and when a JSON contained [*] in the beginning (gh-5224)."
+msgstr ""
+
+msgid "Fixed msgpack extension types decoding error message (gh-5016)."
+msgstr ""
+
+msgid "Dropped restrictions on nullable multikey index root. They were introduced due to inaccuracy in multikey index realization. It is now fixed. Also all fields are now nullable by default as it was before 2.2.1 (gh-5192)."
+msgstr ""
+
+msgid "Fixed fibers switch-over to prevent JIT machinery misbehavior. Trace recording is aborted when fiber yields the execution. The yield occurring while the compiled code is being run (it’s likely a function with a yield underneath called via LuaJIT FFI) leads to the platform panic (gh-1700, gh-4491)."
+msgstr ""
+
+msgid "Fixed fibers switch-over to prevent implicit GC disabling. The yield occurring while user-defined \\__gc metamethod is running leads to the platform panic."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid "Anonymous replica could be registered and could prevent WAL files removal (gh-5287)."
+msgstr ""
+
+msgid "XlogGapError is not a critical error anymore. It means, box.info.replication will show upstream status as ‘loading’ if the error was found. The upstream will be restarted until the error is resolved automatically with a help of another instance, or until the replica is removed from box.cfg.replication (gh-5287)."
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid "Fixed the error occurring on loading luajit-gdb.py with Python2 (gh-4828)."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid "Fixed unhandled Lua error that may lead to memory leaks and inconsistencies in ``<space_object>:frommap()``, ``<key_def_object>:compare()``, ``<merge_source>:select()`` (gh-5382)."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid "SQL view are not alterable anymore. Beforehand it led to undefined behavior."
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Fixed potential lag on boot up procedure when system’s password database is slow in access (gh-5034)."
+msgstr ""
+
+msgid "Get rid of typedef redefinitions for compatibility with C99 (gh-5313)."
+msgstr ""
+

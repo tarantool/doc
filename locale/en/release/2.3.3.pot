@@ -1,0 +1,133 @@
+
+msgid "Tarantool 2.3.3"
+msgstr ""
+
+msgid "Date: 2020-07-17 Tag: 2.3.3-1-g43af95e"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "2.3.3 is the last stable version of the 2.3 release series. The label stable means we have all planned features implemented and we see no high-impact issues."
+msgstr ""
+
+msgid "This release resolves roughly 26 issues since the latest stable version. There may be bugs in less common areas, please feel free to file an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+msgid "Please note, this release contains **no new features**."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout, client-server protocol and replication protocol."
+msgstr ""
+
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/2.3/book/admin/upgrades/>`__ using the box.schema.upgrade() procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid "Fixed a bug in altering a normal index to a functional one (n/a)."
+msgstr ""
+
+msgid "Fixed a couple of internal symbols dangling in global namespace \\_G (gh-4812)."
+msgstr ""
+
+msgid "Fixed bug when on_shutdown triggers weren’t executed after EOF (gh-4703)."
+msgstr ""
+
+msgid "Fixed a bug in C module reloading (gh-4945)."
+msgstr ""
+
+msgid "Fixed assert outdated due to multikey index arrival (gh-5132)."
+msgstr ""
+
+msgid "Fixed confusing implicit requirements for tuple fields (gh-5027)."
+msgstr ""
+
+msgid "Added needed key validation to space_before_replace (gh-5017)."
+msgstr ""
+
+msgid "Fixed check of index field map size which led to crash (gh-5084)."
+msgstr ""
+
+msgid "Fixed NULL pointer dereference when merger is called via the binary protocol (say, via net.box) (gh-4954)."
+msgstr ""
+
+msgid "Fixed crash when invalid JSON was used in update() (gh-5135)."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid "Fixed possible ER_TUPLE_FOUND error when bootstrapping replicas in an 1.10/2.1.1 cluster (gh-4924)."
+msgstr ""
+
+msgid "Fixed tx boundary check for half-applied txns (gh-5125)."
+msgstr ""
+
+msgid "Fixed replication tx boundaries after local space rework (gh-4928)."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid "Fixed error while closing socket.tcp_server socket (gh-4087)."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid "Fixed wrong order of rows as a result of query containing column of SCALAR type in ORDER BY clause (gh-4697)."
+msgstr ""
+
+msgid "Fixed bug with the display of collation for scalar fields in <SELECT> result, when ``sql_full_metadata`` is enabled (gh-4755)."
+msgstr ""
+
+msgid "Block using HASH indexes in SQL since scheduler is unable to use it properly (gh-4659)."
+msgstr ""
+
+msgid "Fixed races and corner cases in box (re)configuration (gh-4231)."
+msgstr ""
+
+msgid "Vinyl"
+msgstr ""
+
+msgid "Fixed crash during compaction due to tuples with size exceeding vinyl_max_tuple_size setting (gh-4864)."
+msgstr ""
+
+msgid "Fixed crash during recovery of vinyl index due to the lack of file descriptors (gh-4805)."
+msgstr ""
+
+msgid "Fixed crash during executing upsert changing primary key in debug mode (gh-5005)."
+msgstr ""
+
+msgid "Fixed crash due to triggered dump process during secondary index creation (gh-5042)."
+msgstr ""
+
+msgid "Fixed crash/deadlock (depending on build type) during dump process scheduling and concurrent DDL operation (gh-4821)."
+msgstr ""
+
+msgid "Fixed crash during read of prepared but still not yet not committed statement (gh-3395)."
+msgstr ""
+
+msgid "Fixed squashing set and arithmetic upsert operations (gh-5106)."
+msgstr ""
+
+msgid "Create missing folders for vinyl spaces and indexes if needed to avoid confusing fails of tarantool started from backup (gh-5090)."
+msgstr ""
+
+msgid "Fixed crash during squash of many (more than 4000) upserts modifying the same key (gh-4957)."
+msgstr ""
+
+msgid "Memtx"
+msgstr ""
+
+msgid "Fixed concurrent replaces on index building. Tuples are now referenced on all needed execution paths (gh-4973)."
+msgstr ""
+

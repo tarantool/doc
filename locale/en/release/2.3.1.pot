@@ -1,0 +1,620 @@
+
+msgid "Tarantool 2.3.1"
+msgstr ""
+
+msgid "Date: 2019-12-31 Tag: 2.3.1-0-g5a1a220"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "2.3.1 is the beta version of the 2.3 release series."
+msgstr ""
+
+msgid "This release introduces roughly 38 features and resolves 102 bugs since the 2.2.1 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+msgid "Notable changes are:"
+msgstr ""
+
+msgid "field name and JSON path updates"
+msgstr ""
+
+msgid "anonymous replica"
+msgstr ""
+
+msgid "new DOUBLE SQL type (and new ‘double’ box field type)"
+msgstr ""
+
+msgid "stored and indexed decimals (and new ‘decimal’ field type)"
+msgstr ""
+
+msgid "``fiber.top()``"
+msgstr ""
+
+msgid "feed data from a memory during replica initial join"
+msgstr ""
+
+msgid "SQL prepared statements"
+msgstr ""
+
+msgid "sessions settings service space"
+msgstr ""
+
+msgid "Aside of that many other features have been implemented and considerable amount of bugs have been fixed."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout, client-server protocol and replication protocol."
+msgstr ""
+
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/2.3/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr ""
+
+msgid "There are changes labeled with **[Breaking change]**. It means that the old behaviour was considered error-prone and therefore changed to protect users from unintended mistakes. However, there is a little probability that someone can lean on the old behaviour, and this label is to bring attention to the things that have been changed."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid "Introduce prepared statements support and prepared statements cache. gh-2592, gh-3292 Using of prepared statements allows to eliminate overhead of transmitting a statement text over a network and parsing it each time before execution. Aside of this, it allows to acquire binding parameters and result set columns metainformation prior to actual execution of a statement. This feature is vital for implementing standard DBMS APIs, such as ODBC and JDBC."
+msgstr ""
+
+msgid "**[Breaking change]** Introduce \\_session_setting service space as"
+msgstr ""
+
+msgid "replacement for PRAGMA keyword. gh-4511 All frontends (C, Lua, SQL, binary protocol) can use this space to access or update session settings. Removed ``count_changes``, ``short_column_names``, ``sql_compound_select_limit``, ``vdbe_addoptrace`` pragmas. Transformed others into \\_session_settings tuples."
+msgstr ""
+
+msgid "Extend SQL result set metadata. gh-4407 In addition to the ``name`` and ``type`` fields, the ``collation``, ``is_nullable``, ``is_autoincrement``, and ``span`` fields are added. These new fields are shown when the ``full_metadata`` session setting is enabled but always sent via binary protocol."
+msgstr ""
+
+msgid "Add an ability to disable check constraints. gh-4244 Example: ``ALTER TABLE foo {ENABLE|DISABLE} CHECK CONSTRAINT bar;``. For details of using from Lua, refer to `documentation <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#lua-function.space_object.create_check_constraint>`__."
+msgstr ""
+
+msgid "AUTOINCREMENT for multipart primary key. gh-4217 The auto-increment feature can be set to any ``INTEGER`` or ``UNSIGNED`` field of ``PRIMARY KEY`` using one of the two ways:"
+msgstr ""
+
+msgid "``AUTOINCREMENT`` in column definition:"
+msgstr ""
+
+msgid "  CREATE TABLE t (i INT, a INT AUTOINCREMENT, PRIMARY KEY (i, a));\n"
+"  CREATE TABLE t (i INT AUTOINCREMENT, a INT, PRIMARY KEY (i, a));\n"
+"\n"
+"2) ``AUTOINCREMENT`` in ``PRIMARY KEY`` definition:"
+msgstr ""
+
+msgid "CREATE TABLE t (i INT, a INT, PRIMARY KEY (i, a AUTOINCREMENT));\n"
+"CREATE TABLE t (i INT, a INT, PRIMARY KEY (i AUTOINCREMENT, a));"
+msgstr ""
+
+msgid "Allow to create a view from any CTE (common table expression) using ``WITH`` clause. gh-4149"
+msgstr ""
+
+msgid "Support user-defined functions in SQL. ``box.schema.func.create()`` API has been extended and should be used to make some function available in SQL. For details on fields added, refer to the description `here <https://github.com/tarantool/doc/issues/879>`__. Usage of legacy mechanism\\ ``box.internal.sql_function_create`` is forbidden now. gh-2200, gh-2233, gh-4113"
+msgstr ""
+
+msgid "Scalar functions ``MIN/MAX`` are renamed to ``LEAST/GREATEST``. gh-4405"
+msgstr ""
+
+msgid "Introduce ``WITH ENGINE`` clause for ``CREATE TABLE`` statement. gh-4422 To allow a user to specify engine as per table option, ``CREATE TABLE`` statement has been extended with optional ``WITH ENGINE = <engine_name>`` clause. This clause comes at the end of ``CREATE TABLE`` statement. For example:"
+msgstr ""
+
+msgid "  CREATE TABLE t_vinyl (id INT PRIMARY KEY) WITH ENGINE = 'vinyl';\n"
+"\n"
+"Refer also to `SQL reference\n"
+"documentation <https://www.tarantool.io/en/doc/2.3/reference/reference_sql/sql/#create-table>`__."
+msgstr ""
+
+msgid "Introduce ``DOUBLE`` type. gh-3812"
+msgstr ""
+
+msgid "Display line and position in syntax errors. gh-2611"
+msgstr ""
+
+msgid "Make constraint names unique within a table. gh-3503 The SQL standard requires ``PRIMARY KEY``, ``UNIQUE``, ``FOREIGN KEY`` and ``CHECK`` constraints to have the unique name within a table. Now Tarantool/SQL follows this requirement. Please refer to `documentation <https://github.com/tarantool/doc/issues/1053>`__"
+msgstr ""
+
+msgid "Optimization: a tuple already stores a map of offsets of indexed values. After the change, when a field after an indexed field is accessed, the tuple is decoded from the indexed field rather then from beginning. gh-4267"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid "**[Breaking change]** Drop ``rows_per_wal`` option of ``box.cfg()``"
+msgstr ""
+
+msgid "in favor of ``wal_max_size``. gh-3762"
+msgstr ""
+
+msgid "Decimals can now be stored in spaces. The corresponding field type is introduced: ``decimal``. Decimal values are also allowed in the ``scalar``, ``any``, and ``number`` fields. Decimal values can be indexed. gh-4333 Also refer to documentation on"
+msgstr ""
+
+msgid "`data types <https://www.tarantool.io/en/doc/2.3/book/box/data_model/#data-types>`__"
+msgstr ""
+
+msgid "```<space_object>:create_index()`` <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#lua-function.space_object.create_index>`__"
+msgstr ""
+
+msgid "Add support for decimals in update operations. gh-4413 ``tuple:update()`` and ``<space_object>:update()`` now support decimal operands for arithmetic operations (‘+’ and ‘-’). The syntax is as usual, for example: ``d = box.tuple.new(decimal.new('1'))     ---     ...     d:update{{'+', 1, decimal.new('0.5')}}     ---     - [1.5]     ...`` Insertion (‘!’) and assignment (‘=’) are also supported. See also the full description of the ``update()`` function in `documentation <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#box-space-update>`__."
+msgstr ""
+
+msgid "Allow to encode/decode decimals to ``MsgPack`` and to encode to ``YAML`` and ``JSON``. Part of gh-4333; `485439e3 <https://github.com/tarantool/tarantool/commit/485439e33196e26d120e622175f88b4edc7a5aa1>`__; `documentation <https://github.com/tarantool/doc/issues/992>`__"
+msgstr ""
+
+msgid "Introduce field name and JSON path updates. gh-1261 Example of update by a field name: ``box.space.test:update({{'=', 'foo', 42}})``. JSON path update allows to change a value that is nested inside an array or a map. It provides convenient syntax (that is also available for connectors), consumes less space in WAL than replace, and is faster than replaces written in Lua. Example: ``box.space.test:update({{'=', 'foo.bar[1]', 42}})``. Please refer to `documentation <https://github.com/tarantool/doc/issues/1051>`__."
+msgstr ""
+
+msgid "Introduce ``double`` field type. Part of gh-3812. Though is not very usable in Lua, this new field type has been added in ``box`` as a base for the SQL ``DOUBLE`` type."
+msgstr ""
+
+msgid "vinyl: don’t pin index for iterator lifetime (prerequisite for snapshot iterators). `02da82ea <https://github.com/tarantool/tarantool/commit/02da82ea7e80bba6371a85d8c41b338dbcd85b73>`__"
+msgstr ""
+
+msgid "vinyl: don’t exempt dropped indexes from dump and compaction (prerequisite for snapshot iterators). `d7387ec9 <https://github.com/tarantool/tarantool/commit/d7387ec99083e2132ac1d1a0889ccbf75b498dc5>`__"
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid "``box.info().replication`` shows applier/replay’s latest error message. Now it also shows the errno description for system errors when it’s applicable. gh-4402"
+msgstr ""
+
+msgid "Feed data from a memory during replica initial join. gh-1271 Aside of obvious speed up from reading from a memory instead of a disk, a read view that is acquired to perform an initial join may be a way more recent, that eliminates the need to play all xlog files since a last snapshot. Now relay need to send only changes that occur during initial join to finally join a replica."
+msgstr ""
+
+msgid "Introduce a new replica type - anonymous replica. gh-3186 Anonymous replica is not present in cluster space and so there is no limitation for its count in a replica set. Anonymous replica is read-only, but can be deanonymized and enabled for writes. Please refer to `documentation <https://github.com/tarantool/doc/issues/1050>`__ for API and details."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid "Expose ``require('tarantool').package`` which is ‘Tarantool’ for the community version and ‘Tarantool Enterprise’ for the enterprise version. gh-4408 This value is already displayed in a console greeting and in ``box.info().package``, but it was not accessible from Lua before the first ``box.cfg{<...>}`` call."
+msgstr ""
+
+msgid "decimal: add modulo operator (``decimal.new(172.51) % 1 == 0.51``), part of gh-4403"
+msgstr ""
+
+msgid "**[Breaking change]** JSON and msgpack serializers now raise an error"
+msgstr ""
+
+msgid "when a depth of data nesting exceeds the ``encode_max_depth`` option value. The default value of the option has been increased from 32 to 128. The ``encode_deep_as_nil`` option is added to give an ability to set the old behaviour back. gh-4434 Notes:"
+msgstr ""
+
+msgid "These options can be set by using ``json.cfg({<...>})`` or ``msgpack.cfg({<...>})``."
+msgstr ""
+
+msgid "``box`` data modification functions (``insert``, ``replace``, ``update`` and ``upsert``) follow the options of the default msgpack serializer instance, and now these functions raise an error on too many levels of nested data by default rather than cut the data silently. This behaviour can be configured using ``msgpack.cfg({<...>})``."
+msgstr ""
+
+msgid "previously,\\ ``box.tuple.new()``, ``space:update()``, ``space:upsert()`` and several other functions did not follow ``encode_max_depth`` option; now they do (see also the **Bug fixed** section)."
+msgstr ""
+
+msgid "previously,\\ ``json.cfg`` and ``msgpack.cfg`` tables was not updated when an option had changed; now they show actual values (see also the **Bug fixed** section)."
+msgstr ""
+
+msgid "Show line and column in ``json.decode()`` errors. gh-3316"
+msgstr ""
+
+msgid "Exit gracefully when a main script throws an error: notify systemd, log the error. gh-4382"
+msgstr ""
+
+msgid "key_def: accept both ``field`` and ``fieldno`` in ``key_def.new(<...>)``, gh-4519. Originally ``key_def.new(<...>)`` accepted only ``fieldno`` to allow creation with ``<index_object>.parts`` as argument. However, index definition format (``<space_object>.create_index(<...>)``) is different and requires ``field``. Now both are supported."
+msgstr ""
+
+msgid "Enable ``__pairs`` and ``__ipairs`` metamethods from Lua 5.2. gh-4560 We still conform Lua 5.1 API that is not always compatible with Lua 5.2. The change is only about those metamethods."
+msgstr ""
+
+msgid "Implement a new function ``fiber.top()``. It returns a table with all fibers alive and lists their CPU consumption. For details, refer to `documentation <https://www.tarantool.io/en/doc/2.3/reference/reference_lua/fiber/#lua-function.fiber.top>`__. gh-2694"
+msgstr ""
+
+msgid "Expose ``errno`` field for box.error objects representing system errors. Part of gh-4402"
+msgstr ""
+
+msgid "HTTP client"
+msgstr ""
+
+msgid "Add ``accept_encoding`` option for HTTP client. For details, refer to description `here <https://github.com/tarantool/doc/issues/1036>`__. gh-4232"
+msgstr ""
+
+msgid "Add proxy server related options for HTTP client:"
+msgstr ""
+
+msgid "``proxy``"
+msgstr ""
+
+msgid "``proxy_port``"
+msgstr ""
+
+msgid "``proxy_user_pwd``"
+msgstr ""
+
+msgid "``no_proxy`` For details, refer to description `here <https://github.com/tarantool/doc/issues/896>`__. gh-4477, gh-4472"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "tarantoolctl: allow to start instances with delayed ``box.cfg{}``. gh-4435"
+msgstr ""
+
+msgid "Add package builds and deployment for the following Linux distros:"
+msgstr ""
+
+msgid "Ubuntu 19.10 Eoan Ermine, gh-4583"
+msgstr ""
+
+msgid "CentOS 8, gh-4543"
+msgstr ""
+
+msgid "Fedora 31, gh-4612"
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "Modify type of a binding value in query response metainformation: always return INTEGER rather than UNSIGNED, even for positive values. This is necessary for consistency with integer literal types. `b7d595ac <https://github.com/tarantool/tarantool/commit/b7d595ac3d92aa0977c66d935e1c6eefabb91bec>`__."
+msgstr ""
+
+msgid "Reuse noSQL way to compare floating point values with integral ones. This allows to handle corner cases like ``SELECT 18446744073709551615.0 > 18446744073709551615`` uniformly. `73a4a525 <https://github.com/tarantool/tarantool/commit/73a4a525489dc8541864008eb043f6dfd630e28d>`__."
+msgstr ""
+
+msgid "Create or alter a table with a foreign key may lead to wrong bytecode generation that may cause a crash or wrong result. gh-4495"
+msgstr ""
+
+msgid "Allow to update a scalar value using SQL in a space that was created from Lua and contains ``array``, ``map`` or ``any`` fields. gh-4189 Note: Tarantool/SQL provides operations on scalar types and does not support ‘array’ and ‘map’ per se."
+msgstr ""
+
+msgid "Allow nil to be returned from user-defined function (created with ``box.schema.func.create()``). `1b39cbcf <https://github.com/tarantool/tarantool/commit/1b39cbcf74aa76f55392a6a94aac29ace8749110>`__"
+msgstr ""
+
+msgid "Don’t drop a manually created sequence in DROP TABLE statement. `a1155c8b <https://github.com/tarantool/tarantool/commit/a1155c8ba5f52211be7d14dfe38e70684dbfd7d7>`__"
+msgstr ""
+
+msgid "Remove grants associated with the table in DROP TABLE statement. gh-4546"
+msgstr ""
+
+msgid "Fix segfault in ``sql_expr_coll()`` when ``SUBSTR()`` is called without arguments. `4c13972f <https://github.com/tarantool/tarantool/commit/4c13972fdd40af0b34ee55703b631fc763398801>`__"
+msgstr ""
+
+msgid "Fix converting of floating point values from range [2^63, 2^64] to integer. gh-4526"
+msgstr ""
+
+msgid "Make type string case lower everywhere: in error messages, meta headers, and results of the ``typeof()`` SQL function. `ee60d31d <https://github.com/tarantool/tarantool/commit/ee60d31d1eaa94b5e355942a05015ea172de28e9>`__"
+msgstr ""
+
+msgid "Make the\\ ``LENGTH()`` function to accept boolean argument. gh-4462"
+msgstr ""
+
+msgid "Make implicit cast from BOOLEAN to TEXT to return uppercase for consistency with explicit cast. gh-4462"
+msgstr ""
+
+msgid "Fix segfault on binding a value as LIKE argument. gh-4566"
+msgstr ""
+
+msgid "For user-defined functions, verify that the returned value is of the type specified in the function definition. gh-4387"
+msgstr ""
+
+msgid "Start using comprehensive serializer ``luaL_tofield()`` to prepare LUA arguments for user-defined functions. This allows to support cdata types returned from Lua function. gh-4387"
+msgstr ""
+
+msgid "An error is raised when a user-defined function returns too many values. gh-4387"
+msgstr ""
+
+msgid "Store a name of user-defined function in VDBE program instead of pointer. This allows to normally handle the situation when a user-defined function has been deleted to the moment of the VDBE code execution. gh-4176"
+msgstr ""
+
+msgid "Fix casting of VARBINARY value to a NUMBER. gh-4356"
+msgstr ""
+
+msgid "Print the data type instead of the data itself in ``diag_set()`` in case of binary data. The reason of this patch is that ``LibYAML`` converts the whole error message to ``base64`` in case of non-printable symbols. Part of gh-4356"
+msgstr ""
+
+msgid "Remove ``ENGINE`` from the list of the reserved keywords and allow to use it for identifiers: we are going to use the word as a name of some fields for tables forming informational schema."
+msgstr ""
+
+msgid "Fix segfault when ``LEAST()`` or ``GREATEST()`` built-in function is invoked without arguments. gh-4453"
+msgstr ""
+
+msgid "Fix dirty memory access when constructing query plan involving search of floating point value in index over integer field. gh-4558"
+msgstr ""
+
+msgid "``INDEXED BY`` clause now obligates the query planner to choose provided index. `49fedfe3 <https://github.com/tarantool/tarantool/commit/49fedfe30cca1f7a34d3b51f9e197c7ed4e4c95b>`__"
+msgstr ""
+
+msgid "Make functional index creation transactional. gh-4401"
+msgstr ""
+
+msgid "Detect a new invalid JSON path case. gh-4419"
+msgstr ""
+
+msgid "Randomize the next checkpoint time after manual ``box.snapshot()`` execution also. gh-4432"
+msgstr ""
+
+msgid "Fix memory leak in call/eval in case of a transaction is not committed. gh-4388"
+msgstr ""
+
+msgid "Eliminate warning re ``strip_core`` option of ``box.cfg()`` on MacOS and FreeBSD. gh-4464"
+msgstr ""
+
+msgid "The msgpack serializer that is under ``box.tuple.new()`` (called tuple serializer) now reflects options set by ``msgpack.cfg({<...>})``. Part of gh-4434. Aside of ``box.tuple.new()`` behaviour itself, it may affect ``tuple:frommap()``, methods of key_def Lua module, tuple and table merger sources, net.box results of ``:select()`` and ``:execute()`` calls, and xlog Lua module."
+msgstr ""
+
+msgid "``box`` functions ``update`` and ``upsert`` now follow ``msgpack.cfg({encode_max_depth = <...>}`` option. Part of gh-4434"
+msgstr ""
+
+msgid "fiber: make sure the guard page is created; refuse to create a new fiber otherwise. gh-4541. It is possible in case of heavy memory usage, say, when there is no resources to split VMAs."
+msgstr ""
+
+msgid "recovery: build secondary indices in the hot standby mode without waiting till the main instance termination. gh-4135"
+msgstr ""
+
+msgid "Fix error message for incorrect return value of functional index extractor function. gh-4553"
+msgstr ""
+
+msgid "Was: “Key format doesn’t match one defined in functional index ‘’ of space ‘’: supplied key type is invalid: expected boolean”"
+msgstr ""
+
+msgid "Now: “<…>: expected array”"
+msgstr ""
+
+msgid "JSON path index now consider is_nullable property when a space had a format. gh-4520"
+msgstr ""
+
+msgid "Forbid ``00000000-0000-0000-0000-000000000000`` as the value of ``box.cfg({<...>})`` options: ``replicaset_uuid`` and ``instance_uuid``. gh-4282 It did not work as expected: the nil UUID was treated as absence of the value."
+msgstr ""
+
+msgid "Update cache of universe privileges without reconnect. gh-2763"
+msgstr ""
+
+msgid "net.box: fix memory leak in ``net_box:connect(<URI>)``. gh-4588"
+msgstr ""
+
+msgid "net.box: don’t fire the ``on_connect`` trigger on schema update. gh-4593 Also don’t fire the ``on_disconnect`` trigger if a connection never entered into the ``active`` state (e.g. when the first schema fetch is failed)."
+msgstr ""
+
+msgid "func: fix use-after-free on function unload. `fa2893ea <https://github.com/tarantool/tarantool/commit/fa2893eab4048638cc250a3bccc304a9e1f69a72>`__"
+msgstr ""
+
+msgid "Don’t destroy a session until ``box.session.on_disconnect(<...>)`` triggers are finished. gh-4627 This means, for example, that ``box.session.id()`` can be safely invoked from the ``on_disconnect`` trigger. Before this change ``box.session.id()`` returned garbage (usually 0) after yield in the ``on_disconnect`` trigger. *Note*: `tarantool/queue <https://github.com/tarantool/queue>`__ module is affected by this problem in `some scenarios <https://github.com/tarantool/queue/issues/103>`__. It is especially suggested to update Tarantool at least to this release if you’re using this module."
+msgstr ""
+
+msgid "func: Fix ``box.schema.func.drop(<..>)`` to unload unused modules. gh-4648. Also fix ``box.schema.func.create(<..>)`` to avoid loading a module again when another function from the module is loaded."
+msgstr ""
+
+msgid "Encode Lua number -2^63 as integer in ``msgpack.encode()`` and box’s functions. gh-4672"
+msgstr ""
+
+msgid "Forbid to drop admin’s universe access. `2de398ff <https://github.com/tarantool/tarantool/commit/2de398ff01918342eebe0e779327e99c71dd950f>`__. Bootstrap and recovery work on behalf of admin and should be able to fill in the system spaces. Drop of admin’s access may lead to an unrecoverable cluster."
+msgstr ""
+
+msgid "Refactor rope library to eliminate virtual calls to increase performance of the library (mainly for JSON path updates). `baa4659c <https://github.com/tarantool/tarantool/commit/baa4659c1857027b3ae53305baaa147af4803cad>`__"
+msgstr ""
+
+msgid "Refactor update operation code to avoid extra region-related arguments to take some performance boost (mainly for JSON path updates). `dba9dba7 <https://github.com/tarantool/tarantool/commit/dba9dba70eebc875bea79e9a1357eb4240350fa1>`__"
+msgstr ""
+
+msgid "Error logging has been removed in ``engine_find()`` to get rid of the error message duplication. `35177fe0 <https://github.com/tarantool/tarantool/commit/35177fe0e9bdc6888ffc01b214ebf988d3668cca>`__."
+msgstr ""
+
+msgid "decimal: Fix encoding of numbers with positive exponent. Follow-up gh-692"
+msgstr ""
+
+msgid "Increment schema version on DDL operations where it did not performed before: alter of trigger, check constraint and foreign key constraint. Part of gh-2592"
+msgstr ""
+
+msgid "Stop relay on subscribe error. gh-4399"
+msgstr ""
+
+msgid "Set ``last_row_time`` to ``now`` in ``relay_new`` and ``relay_start``. gh-4431"
+msgstr ""
+
+msgid "Do not abort replication on ER_UNKNOWN_REPLICA. gh-4455"
+msgstr ""
+
+msgid "Enter orphan mode on manual replication configuration change. gh-4424"
+msgstr ""
+
+msgid "Disallow bootstrap of read-only masters. gh-4321"
+msgstr ""
+
+msgid "Prefer to bootstrap a replica from a fully bootstrapped instance rather than from an instance that is in the process of bootstrapping. gh-4527. This change enables the case when two nodes (B, C) are being bootstrapped simultaneously using the one that is already bootstrapped (A), while A is configured to replicate from {B, C} and B – from {A, C}."
+msgstr ""
+
+msgid "Return immediately from ``box.cfg{<...>}`` when an instance is reconfigured with ``replication_connect_quorum = 0``. gh-3760 This change also fixes the behaviour of reconfiguration with non-zero ``replication_connect_quorum``: ``box.cfg{<...>}`` returns immediately regardless of whether connections to upstreams are established."
+msgstr ""
+
+msgid "Apply replication settings of ``box.cfg({<...>})`` in a strict order. gh-4433"
+msgstr ""
+
+msgid "Auto reconnect a replica if password is invalid. gh-4550"
+msgstr ""
+
+msgid "``box.session.su(<username>)`` now correctly reports an error for ``<username>`` longer than ``BOX_NAME_MAX`` which is 65000. `8b6bdb43 <https://github.com/tarantool/tarantool/commit/8b6bdb435cb6b41375d8e550cc2d9c14c1d1f742>`__"
+msgstr ""
+
+msgid "Was: ‘C++ exception’"
+msgstr ""
+
+msgid "Now: ‘name length <…> is greater than BOX_NAME_MAX’"
+msgstr ""
+
+msgid "Use empty password when a URI in ``box.cfg{replication = <...>}`` is like ``login@host:port``. gh-4605. The behaviour matches the net.box’s one now. Explicit ``login:@host:port`` was necessary before, otherwise a replica displayed the following error: > Missing mandatory field ‘tuple’ in request"
+msgstr ""
+
+msgid "Fix segfault during replication configuration (``box.cfg{replication = <...>}`` call). gh-4440, gh-4576, gh-4586, gh-4643"
+msgstr ""
+
+msgid "Cancel a replica joining thread forcefully on Tarantool instance exit. gh-4528"
+msgstr ""
+
+msgid "Fix the applier to run the ``<space>.before_replace`` trigger during initial join. gh-4417"
+msgstr ""
+
+msgid "Fix segfault on ``ffi.C._say()`` without filename. gh-4336"
+msgstr ""
+
+msgid "Fix ``pwd.getpwall()`` and ``pwd.getgrall()`` hang on CentOS 6 and FreeBSD 12. gh-4428, gh-4447"
+msgstr ""
+
+msgid "json.encode() now follows ``encode_max_depth`` option for arrays that leads to a segfault on recursive Lua tables with numeric keys. gh-4366"
+msgstr ""
+
+msgid "fio.mktree() now reports an error for existing non-directory file. gh-4439"
+msgstr ""
+
+msgid "``json.cfg`` and ``msgpack.cfg`` tables were not updated when an option is changed. Part of gh-4434"
+msgstr ""
+
+msgid "Fix handling of a socket read error in the console client (``console.connect(<URI>)`` or ``tarantoolctl connect/enter <...>``). `89ec1d97 <https://github.com/tarantool/tarantool/commit/89ec1d97a9b7277c29a08b34f11bc14ef2f888df>`__"
+msgstr ""
+
+msgid "Handle the “not enough memory” error gracefully when it is raised from ``lua_newthread()``. gh-4556 There are several cases when a new Lua thread is created:"
+msgstr ""
+
+msgid "Start executing a Lua function call or an eval request (from a binary protocol, SQL or with ``box.func.<...>:call()``)."
+msgstr ""
+
+msgid "Create of a new fiber."
+msgstr ""
+
+msgid "Start execution of a trigger."
+msgstr ""
+
+msgid "Start of encoding into a YAML format (``yaml.encode()``)."
+msgstr ""
+
+msgid "Fix stack-use-after-scope in ``json.decode()``. gh-4637"
+msgstr ""
+
+msgid "Allow to register several functions using ``box.schema.func.create()``, whose names are different only in letters case. gh-4561 This make function names work consistently with other names in tarantool (except SQL, of course)."
+msgstr ""
+
+msgid "Fix decimal comparison with nil. Follow-up gh-692"
+msgstr ""
+
+msgid "Fix decimal comparison with ``box.NULL``. gh-4454"
+msgstr ""
+
+msgid "A pointer returned by ``msgpack.decode*(cdata<[char] const *>)`` functions can be assigned to buffer.rpos now (and the same for msgpackffi). gh-3926. All those functions now return ``cdata<char *>`` or ``cdata<const char *>`` depending of a passed argument. Example of the code that did not work: ``res, buf.rpos = msgpack.decode(buf.rpos, buf:size())``."
+msgstr ""
+
+msgid "lua/pickle: fix typo that leads to reject of negative integers for"
+msgstr ""
+
+msgid "‘i’ (integer) and ‘N’ (big-endian integer) formats in pickle.pack()."
+msgstr ""
+
+msgid "`e2d9f664 <https://github.com/tarantool/tarantool/commit/e2d9f66450298b025ed350a2a40d2682b3b6f17e>`__"
+msgstr ""
+
+msgid "Use bundled ``libcurl`` rather than system-wide by default. gh-4318, gh-4180, gh-4288, gh-4389, gh-4397 This closes several known problems that were fixed in recent libcurl versions, including segfaults, hangs, memory leaks and performance problems."
+msgstr ""
+
+msgid "Fix assertion fail after a curl write error. gh-4232"
+msgstr ""
+
+msgid "Disable verbose mode when ``{verbose = false}`` is passed. `72613bb0 <https://github.com/tarantool/tarantool/commit/72613bb0b269daf1fe23ca42fe07ddd1b18367d3>`__"
+msgstr ""
+
+msgid "Console Lua output"
+msgstr ""
+
+msgid "A new Lua output format is still in the alpha stage and has the known flaws, but we are working to make it rich and stable."
+msgstr ""
+
+msgid "Output ``box.NULL`` as ``\"box.NULL\"`` rather than ``\"cdata<void *>: NULL\"``, part of gh-3834 (in quotes for now, yes, due to gh-4585)"
+msgstr ""
+
+msgid "Add semicolon (``;``) as responses delimiter (EOS, end of stream/statement), analogue of YAMLs end-of-document (``...``) marker. This is vital for remote clients to determine the end of a particular response, part of gh-3834."
+msgstr ""
+
+msgid "Fix hang in the console client (``console.connect(<URI>)`` or ``tarantoolctl connect/enter <...>``) after ``\\set output lua[,block]`` command, part of gh-3834. In order to overcome it, two changes have been made:"
+msgstr ""
+
+msgid "Parse ``\\set output lua[,block]`` command on a client prior to sending it to a server, store current responses delimiter (EOS) and use it to determine end of responses."
+msgstr ""
+
+msgid "Send ``\\set output <...>`` command with a default output mode when establishing a connection (it is matter if different default modes are set)."
+msgstr ""
+
+msgid "Provide an ability to get or set current responses delimiter using ``console.eos([<...>])``, part of gh-3834"
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid "Fix fold machinery misbehaves. gh-4376"
+msgstr ""
+
+msgid "Fix for ``debug.getinfo(1,'>S')``. gh-3833"
+msgstr ""
+
+msgid "Fix ``string.find`` recording. gh-4476"
+msgstr ""
+
+msgid "Fix the “Data segment size exceeds process limit” error on FreeBSD/x64: do not change resource limits when it is not necessary. gh-4537"
+msgstr ""
+
+msgid "fold: keep type of emitted CONV in sync with its mode. `LuaJIT#524 <https://github.com/LuaJIT/LuaJIT/issues/524>`__ This fixes the following assertion fail: > asm_conv: Assertion \\`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed"
+msgstr ""
+
+msgid "Support ``systemd``\\ ’s NOTIFY_SOCKET on OS X. gh-4436"
+msgstr ""
+
+msgid "Fix linking with static ``openssl`` library. gh-4437"
+msgstr ""
+
+msgid "Get rid of warning re empty ``NOTIFY_SOCKET`` variable. gh-4305"
+msgstr ""
+
+msgid "rocks: fix ‘invalid date format’ error when installing a packed rock. gh-4481"
+msgstr ""
+
+msgid "Remove libyaml from rpm/deb dependencies, because we use bunbled version of libyaml for the packages (since 2.2.1). gh-4442"
+msgstr ""
+
+msgid "Fix CLI boolean options handling in ``tarantoolctl cat <...>``, such as ``--show-system``. gh-4076"
+msgstr ""
+
+msgid "Fix segfault (out of bounds access) when a stack unwinding error occurs at backtrace printing. gh-4636 Backtrace is printed on the SIGFPE and SIGSEGV signals or when LuaJIT finds itself in the unrecoverable state (``lua_atpanic()``)."
+msgstr ""
+
+msgid "Clear terminal state on panic. gh-4466"
+msgstr ""
+
+msgid "access: fix the invalid error type ``box.session.su()`` raises for a not found user"
+msgstr ""
+
+msgid "was: ``SystemError``"
+msgstr ""
+
+msgid "now: ``ClientError``"
+msgstr ""
+
+msgid "Building from sources"
+msgstr ""
+
+msgid "Fix for GCC 4.8.5, which is default version on CentOS 7. gh-4438"
+msgstr ""
+
+msgid "Fix OpenSSL linking problems on FreeBSD. gh-4490"
+msgstr ""
+
+msgid "Fix linking problems on Mac OS when several toolchains are in PATH. gh-4587"
+msgstr ""
+
+msgid "Fix GCC 9 warning on strncpy(). gh-4515"
+msgstr ""
+
+msgid "Fix build on Mac with gcc and XCode 11. gh-4580"
+msgstr ""
+
+msgid "Fix LTO warnings that were treated as errors in a release build. gh-4512"
+msgstr ""
+

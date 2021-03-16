@@ -1,0 +1,190 @@
+
+msgid "Tarantool 2.7.1"
+msgstr ""
+
+msgid "Date: 2020-12-30 Tag: 2.7.1-0-g3ac498c9f"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "2.7.1 is the `beta <https://www.tarantool.io/en/doc/latest/dev_guide/release_management/#release-policy>`__ version of the 2.7 release series."
+msgstr ""
+
+msgid "This release introduces 12 new features and resolves 21 bugs since the 2.6.1 version. There can be bugs in less common areas. If you find any, feel free to `report an issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+msgid "Notable changes are:"
+msgstr ""
+
+msgid "LuaJIT memory profiler;"
+msgstr ""
+
+msgid "Expression evaluation for ``replication_synchro_quorum``;"
+msgstr ""
+
+msgid "The ``ALTER TABLE ADD COLUMN`` statement."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid "Now it is allowed to define an index without extra braces when there is only one part: ``parts = {field1, type1, ...}`` (gh-2866)."
+msgstr ""
+
+msgid "Bitset index now supports the varbinary type (gh-5392)."
+msgstr ""
+
+msgid "Index-related options now can’t be specified in their definition due to a more pedantic key-parts verification (gh-5473)."
+msgstr ""
+
+msgid "A warning is now logged when schema version is older than last available schema version (gh-4574)."
+msgstr ""
+
+msgid "UUID values created via ``uuid`` Lua module (``require('uuid')``) can now be compared using the comparison operators like ``<``, ``>=``, and others (gh-5511)."
+msgstr ""
+
+msgid "The new ``box.ctl.is_recovery_finished()`` function allows user to determine whether memtx recovery is finished."
+msgstr ""
+
+msgid "The ``force_recovery`` option now ignores errors during snapshot recovery (gh-5422)."
+msgstr ""
+
+msgid "Feedback daemon now reports ``box.stat().*.total``, ``box.stat.net().*.total``, and ``box.stat.net().*.current`` together with the time of report generation. The added fields reside in ``feedback.stats.box``, ``feedback.stats.net``, and ``feedback.stats.time`` (gh-5589)."
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid "Introduced the LuaJIT memory profiler (gh-5442) and the profile parser (gh-5490)."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid "Show JSON tokens themselves instead of token names ``T_*`` in the JSON decoder error messages (gh-4339)."
+msgstr ""
+
+msgid "Show a decoding context in the JSON decoder error messages (gh-4339)."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid "The ``ALTER TABLE ADD COLUMN`` statement is now supported for empty tables (gh-2349, gh-3075)."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid "It is now possible to specify synchro quorum as a function of a number ``N`` of registered replicas instead of a ``const`` number, for example:"
+msgstr ""
+
+msgid "  box.cfg{replication_synchro_quorum = \"N/2 + 1\"}\n"
+"\n"
+"Only the non-anonymous bootstrapped replicas amount to ``N``. The\n"
+"expression should respect synchro guarantees: at least 50% of the\n"
+"cluster size + 1. The expression value is re-evaluated automatically\n"
+"inside of Tarantool when new replicas appear or old ones are removed\n"
+"(gh-5446)."
+msgstr ""
+
+msgid "Build"
+msgstr ""
+
+msgid "Deploy packages for Fedora 32 (gh-4966)."
+msgstr ""
+
+msgid "Deploy packages for Debian Bullseye (gh-5638)."
+msgstr ""
+
+msgid "Miscellaneous"
+msgstr ""
+
+msgid "If Tarantool crashes, it will now send a crash dump report to the feedback server. This report contains some fields from ``uname`` output, build information, crash reason, and a stack trace. You can disable crash reporting with ``box.cfg{feedback_crashinfo = false}`` (gh-5261)."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "``fiber.cond:wait()`` now correctly throws an error when a fiber is cancelled, instead of ignoring the timeout and returning without any signs of an error (gh-5013)."
+msgstr ""
+
+msgid "Fixed a memory corruption issue, which was most visible on macOS, but could affect any system (gh-5312)."
+msgstr ""
+
+msgid "A dynamic module now gets correctly unloaded from memory in case of an attempt to load a non-existing function from it (gh-5475)."
+msgstr ""
+
+msgid "A ``swim:quit()`` call now can’t result in a crash (gh-4570)."
+msgstr ""
+
+msgid "Snapshot recovery with no JSONPath or multikey indices involved now has normal performance (gh-4774)."
+msgstr ""
+
+msgid "A false-positive “too long WAL write” message no longer appears for synchronous transactions (gh-5139)."
+msgstr ""
+
+msgid "A ``box.ctl.wait_rw()`` call could return when the instance was not in fact writable due to having foreign synchronous transactions. As a result, there was no proper way to wait until the automatically elected leader would become writable. Now ``box.ctl.wait_rw()`` works correctly (gh-5440)."
+msgstr ""
+
+msgid "Fixed a couple of crashes on various tweaks of election mode (gh-5506)."
+msgstr ""
+
+msgid "Now ``box.ctl.clear_synchro_queue`` tries to commit everything that is present on the node. In order to do so it waits for other instances to replicate the data for ``replication_synchro_quorum`` seconds. In case timeout passes and quorum wasn’t reached, nothing is rolled back (gh-5435)."
+msgstr ""
+
+msgid "Data changes in read-only mode are now forbidden (gh-5231)."
+msgstr ""
+
+msgid "Query execution now doesn’t occasionally raise an unrelated error"
+msgstr ""
+
+msgid "“Space ‘0’ does not exist” (gh-5592)."
+msgstr ""
+
+msgid "Coinciding names of temporary files (used to store data during execution) having two instances running on the same machine no longer cause a segfault (gh-5537)."
+msgstr ""
+
+msgid "The return value of ``ifnull()`` built-in function is now of a correct type."
+msgstr ""
+
+msgid "SQL calling Lua functions with box calls inside can no longer result in a memory corruption (gh-5427)."
+msgstr ""
+
+msgid "Dispatching ``__call`` metamethod no longer causes address clashing (gh-4518, gh-4649)."
+msgstr ""
+
+msgid "Fixed a false positive panic when yielding in debug hook (gh-5649)."
+msgstr ""
+
+msgid "An attempt to use a ``net.box`` connection which is not established yet now results in a correctly reported error (gh-4787)."
+msgstr ""
+
+msgid "Fixed a ``NULL`` dereference on error paths in merger which usually happened on a ‘wrong’ ``key_def`` (gh-5450)."
+msgstr ""
+
+msgid "Calling ``key_def.compare_with_key()`` with an invalid key no longer causes a segfault (gh-5307)."
+msgstr ""
+
+msgid "Fixed a hang which occured when ``tarantool`` ran a user script with the ``-e`` option and this script exited with an error (like with ``tarantool -e 'assert(false)'``) (gh-4983)."
+msgstr ""
+
+msgid "Memtx"
+msgstr ""
+
+msgid "The ``on_schema_init`` triggers now can’t cause duplicates in primary key (gh-5304)."
+msgstr ""
+
