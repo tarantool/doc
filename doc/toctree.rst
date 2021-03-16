@@ -21,4 +21,4 @@
     reference/index
     tutorials/index
     contributing/index
-    whats_new
+    release
