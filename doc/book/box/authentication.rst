@@ -151,10 +151,10 @@ if the users need to execute function F). See below some
 :ref:`examples for granting specific privileges <authentication-owners_privileges-examples-specific>`
 that a grantor -- that is, 'admin' or the object creator -- can make.
 
-To drop an object, users must be 'admin' or have the 'super' role.
+To drop an object, a user must be an 'admin' or have the 'super' role.
 Some objects may also be dropped by their creators.
-As the owner of the entire database, 'admin' can drop any object including
-other users.
+As the owner of the entire database, any 'admin' can drop any object,
+including other users.
 
 To grant privileges to a user, the object owner says
 :doc:`/reference/reference_lua/box_schema/user_grant`.
@@ -174,16 +174,16 @@ In either case, there are up to five parameters:
 * ``object-name`` is what the privilege is for
   (omitted if ``object-type`` is 'universe')
   (may be omitted or ``nil`` if the intent is to grant for all objects of the same type);
-* ``options`` is a list inside braces for example ``{if_not_exists=true|false}``
+* ``options`` is a list inside braces, for example ``{if_not_exists=true|false}``
   (usually omitted because the default is acceptable).
 
-  Every update of user privileges is reflected immediately in the existing sessions
+  All updates of user privileges are reflected immediately in the existing sessions
   and objects, e.g. functions.
 
 **Example for granting many privileges at once**
 
-In this example user 'admin' grants many privileges on
-many objects to user 'U', with a single request.
+In this example an 'admin' user grants many privileges on
+many objects to user 'U', using a single request.
 
 .. code-block:: lua
 
@@ -193,7 +193,7 @@ many objects to user 'U', with a single request.
 
 **Examples for granting privileges for specific operations**
 
-In these examples an administrator grants precisely
+In these examples an administrator grants strictly
 the minimal privileges necessary for particular operations,
 to user 'U'.
 
@@ -265,13 +265,13 @@ to user 'U'.
 
 **Example for creating users and objects then granting privileges**
 
-Here we create a Lua function that will be executed under the user id of its
+Here a Lua function is created that will be executed under the user ID of its
 creator, even if called by another user.
 
-First, we create two spaces ('u' and 'i') and grant a no-password user ('internal')
-full access to them. Then we define a function ('read_and_modify') and the
-no-password user becomes this function's creator. Finally, we grant another user
-('public_user') access to execute Lua functions created by the no-password user.
+First, the two spaces ('u' and 'i') are created, and a no-password user ('internal')
+is grante full access to them. Then a ('read_and_modify') is defined and the
+no-password user becomes this function's creator. Finally, another user
+('public_user') is granted access to execute Lua functions created by the no-password user.
 
 .. code-block:: lua
 
@@ -318,10 +318,10 @@ Role information is stored in the :ref:`_user <box_space-user>` space, but
 the third field in the tuple -- the type field -- is ‘role’ rather than ‘user’.
 
 An important feature in role management is that roles can be **nested**.
-For example, role R1 can be granted a privilege "role R2", so users with the
+For example, role R1 can be granted a privileged "role R2", so users with the
 role R1 will subsequently get all privileges from both roles R1 and R2.
-In other words, a user gets all the privileges that are granted to a user’s
-roles, directly or indirectly.
+In other words, a user gets all the privileges granted to a user’s roles,
+directly or indirectly.
 
 There are actually two ways to grant or revoke a role:
 :samp:`box.schema.user.grant-or-revoke({user-name-or-role-name},'execute', 'role',{role-name}...)`
@@ -340,25 +340,25 @@ The 'usage' and 'session' privileges cannot be granted to roles.
    -- Create space T with a primary index
    box.schema.space.create('T')
    box.space.T:create_index('primary', {})
-   -- Create user U1 so that later we can change the current user to U1
+   -- Create the user U1 so that later the current user can be changed to U1
    box.schema.user.create('U1')
    -- Create two roles, R1 and R2
    box.schema.role.create('R1')
    box.schema.role.create('R2')
    -- Grant role R2 to role R1 and role R1 to user U1 (order doesn't matter)
-   -- There are two ways to grant a role; here we use the shorter way
+   -- There are two ways to grant a role; here the shorter way is used
    box.schema.role.grant('R1', 'R2')
    box.schema.user.grant('U1', 'R1')
    -- Grant read/write privileges for space T to role R2
-   -- (but not to role R1 and not to user U1)
+   -- (but not to role R1, and not to user U1)
    box.schema.role.grant('R2', 'read,write', 'space', 'T')
    -- Change the current user to user U1
    box.session.su('U1')
-   -- An insertion to space T will now succeed because, due to nested roles,
+   -- An insertion to space T will now succeed because (due to nested roles)
    -- user U1 has write privilege on space T
    box.space.T:insert{1}
 
-For more detail see
+For more detail are to be found in
 :doc:`/reference/reference_lua/box_schema/user_grant` and
 :doc:`/reference/reference_lua/box_schema/role_grant` in
 the built-in modules reference.
@@ -371,13 +371,13 @@ Sessions and security
 
 A **session** is the state of a connection to Tarantool. It contains:
 
-* an integer id identifying the connection,
+* An integer ID identifying the connection,
 * the :ref:`current user <authentication-users>` associated with the connection,
 * text description of the connected peer, and
 * session local state, such as Lua variables and functions.
 
 In Tarantool, a single session can execute multiple concurrent transactions.
-Each transaction is identified by a unique integer id, which can be queried
+Each transaction is identified by a unique integer ID, which can be queried
 at start of the transaction using :doc:`/reference/reference_lua/box_session/sync`.
 
 .. NOTE::
