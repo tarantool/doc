@@ -404,11 +404,12 @@ For example this will show a database configuration member: |br|
 For example this will return FALSE because Lua nil and box.NULL are the same as SQL NULL: |br|
 ``box.execute([[SELECT lua('return box.NULL') IS NOT NULL;]])``
 
-Warning: the SQL statement must not invoke a Lua function, or execute a Lua chunk,
+Warning: the SQL statement should not invoke a Lua function, or execute a Lua chunk,
 that accesses a space that underlies any SQL table that the SQL statement accesses.
 For example, if function ``f()`` contains a request ``"box.space.TEST:insert{0}"``,
 then the SQL statement ``"SELECT f() FROM test;"`` will try to access the same space in two ways.
-The results of such conflict may include a hang or an infinite loop.
+For Tarantool version 2.6 or earlier the results of such conflict may include a hang or an infinite loop.
+For Tarantool verrsion 2.7 or later the results may be correct but are not guaranteed.
 
 .. _sql_example_sessions:
 
@@ -652,7 +653,7 @@ Example:
     +--------------+-------------+--------------------------+--------------+------------------+-------------+-----------+-----+
     | NULL         | NULL        | _sequence                | cycle        |                9 | YES         | boolean   | 284 |
     | NULL         | NULL        | _vsequence               | cycle        |                9 | YES         | boolean   | 286 |
-    | NULL         | NULL        | _func                    | returns      |                9   YES           string    | 296 |
+    | NULL         | NULL        | _func                    | returns      |                9 | YES         | string    | 296 |
     | NULL         | NULL        | _fk_constraint           | parent_cols  |                9 | YES         | array     | 356 |
     | NULL         | NULL        | _REFERENTIAL_CONSTRAINTS | MATCH_OPTION |                9 | YES         | string    | 518 |
     +--------------+-------------+--------------------------+--------------+------------------+-------------+-----------+-----+
