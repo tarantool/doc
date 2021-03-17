@@ -6,6 +6,7 @@
 
 This chapter documents APIs for various programming languages:
 
+* :doc:`C++ <cxx/tntcxx_api>`
 * :ref:`Java <index_connector_java>`
 * :ref:`Go <index_connector_go>`
 * :ref:`R <index_connector_r>`
@@ -16,7 +17,11 @@ This chapter documents APIs for various programming languages:
 * :ref:`Node.js <index_connector_nodejs>`
 * :ref:`C# <index_connector_csharp>`
 * :ref:`C <index_connector_c>`
-* :ref:`C++ <index_connector_cxx>`
+
+..  toctree::
+    :hidden:
+
+    C++ <cxx/tntcxx_api>
 
 =====================================================================
                             Protocol
@@ -157,16 +162,4 @@ script:
 
 .. include:: __c.rst
 
-.. _index_connector_cxx:
-
-===
-C++
-===
-
-..  toctree::
-    :titlesonly:
-
-    cxx/tntcxx_api
-
 .. include:: __results.rst
-
