@@ -1,0 +1,14 @@
+name: Destroy-deployment
+
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  destroy-deployment:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.label.name == 'deploy-branch' }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          curl -X DELETE -d '{"update_key":"${{secrets.TARANTOOL_UPDATE_KEY}}"}' -H "Content-Type: application/json" ${{secrets.TARANTOOL_DEV_UPDATE_URL}}${GITHUB_HEAD_REF##*/}/
