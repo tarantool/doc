@@ -214,7 +214,7 @@ msgstr ""
 msgid "This time the call is passing a Lua table (``passable_table``) to the ``harder()`` function. The ``harder()`` function will see it, it's in the :code:`char *args` parameter."
 msgstr ""
 
-msgid "At this point the ``harder()`` function will start using functions defined in `msgpuck.h <https://github.com/tarantool/msgpuck>`_. The routines that begin with \"mp\" are msgpuck functions that handle data formatted according to the MsgPack_ specification. Passes and returns are always done with this format so one must become acquainted with msgpuck to become proficient with the C API."
+msgid "At this point the ``harder()`` function will start using functions defined in `msgpuck.h <https://github.com/tarantool/msgpuck>`_. The routines that begin with \"mp\" are msgpuck functions that handle data formatted according to the `MsgPack <http://msgpack.org/>`_ specification. Passes and returns are always done with this format so one must become acquainted with msgpuck to become proficient with the C API."
 msgstr ""
 
 msgid "For now, though, it's enough to know that ``mp_decode_array()`` returns the number of elements in an array, and ``mp_decode_uint`` returns an unsigned integer, from :code:`args`. And there's a side effect: when the decoding finishes, :code:`args` has changed and is now pointing to the next element."

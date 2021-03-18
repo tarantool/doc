@@ -5,7 +5,7 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-msgid "\"Crypto\" is short for \"Cryptography\", which generally refers to the production of a digest value from a function (usually a `Cryptographic hash function`_), applied against a string. Tarantool's ``crypto`` module supports ten types of cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_, SHA-1_, SHA-2_). Some of the crypto functionality is also present in the :ref:`digest` module."
+msgid "\"Crypto\" is short for \"Cryptography\", which generally refers to the production of a digest value from a function (usually a `Cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_), applied against a string. Tarantool's ``crypto`` module supports ten types of cryptographic hash functions (`AES <https://en.wikipedia.org/wiki/Advanced_Encryption_Standard>`_, `DES <https://en.wikipedia.org/wiki/Data_Encryption_Standard>`_, `DSS <https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard>`_, `MD4 <https://en.wikipedia.org/wiki/Md4>`_, `MD5 <https://en.wikipedia.org/wiki/Md5>`_, `MDC2 <https://en.wikipedia.org/wiki/MDC-2>`_, `RIPEMD <http://homes.esat.kuleuven.be/~bosselae/ripemd160.html>`_, `SHA-1 <https://en.wikipedia.org/wiki/Sha-1>`_, `SHA-2 <https://en.wikipedia.org/wiki/Sha-2>`_). Some of the crypto functionality is also present in the :ref:`digest` module."
 msgstr ""
 
 msgid "Index"
@@ -74,7 +74,10 @@ msgstr ""
 msgid "ofb - Output Feedback"
 msgstr ""
 
-msgid "For more information, read the article about `Encryption Modes`_"
+msgid "For more information, read the article about"
+msgstr ""
+
+msgid "`Encryption Modes <https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation>`_"
 msgstr ""
 
 msgid "**Example:**"

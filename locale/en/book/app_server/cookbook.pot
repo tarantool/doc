@@ -654,7 +654,7 @@ msgstr ""
 msgid "http_generate_html.lua"
 msgstr ""
 
-msgid "Use the `http`_ `rock` (which must first be installed) to generate HTML pages from templates. The `http`_ `rock`_ has a fairly simple template engine which allows execution of regular Lua code inside text blocks (like PHP). Therefore there is no need to learn new languages in order to write templates."
+msgid "Use the `http <https://github.com/tarantool/http/>`_ `rock` (which must first be installed) to generate HTML pages from templates. The `http <https://github.com/tarantool/http/>`_ `rock <https://rocks.tarantool.org/>`_ has a fairly simple template engine which allows execution of regular Lua code inside text blocks (like PHP). Therefore there is no need to learn new languages in order to write templates."
 msgstr ""
 
 msgid "#!/usr/bin/env tarantool\n"

@@ -127,7 +127,7 @@ msgstr ""
 msgid "It is not necessary to destroy the old ``string_function()`` contents, they're simply overwritten. The first assignment invokes a random-number function in Lua's math library; the parameters mean “the number must be an integer between 65 and 90.” The second assignment invokes an integer-to-character function in Lua's string library; the parameter is the code point of the character. Luckily the ASCII value of 'A' is 65 and the ASCII value of 'Z' is 90 so the result will always be a letter between A and Z."
 msgstr ""
 
-msgid "For more about Lua math-library functions see Lua users \"`Math Library Tutorial`_\". For more about Lua string-library functions see Lua users \"`String Library Tutorial`_\" ."
+msgid "For more about Lua math-library functions see Lua users \"`Math Library Tutorial <http://lua-users.org/wiki/MathLibraryTutorial>`_\". For more about Lua string-library functions see Lua users \"`String Library Tutorial <http://lua-users.org/wiki/StringLibraryTutorial>`_\" ."
 msgstr ""
 
 msgid "Once again the ``string_function()`` can be invoked from main_function() which can be invoked with ``main_function()``."
@@ -400,7 +400,7 @@ msgstr ""
 msgid "**LINE 5: START THE MAIN LOOP.** Everything inside this \"``for``\" loop will be repeated as long as there is another index key. A tuple is fetched and can be referenced with variable :code:`t`."
 msgstr ""
 
-msgid "**LINE 6: WHY \"PCALL\".** If we simply said ``lua_table = json.decode(t[2]))``, then the function would abort with an error if it encountered something wrong with the JSON string - a missing colon, for example. By putting the function inside \"``pcall``\" (`protected call`_), we're saying: we want to intercept that sort of error, so if there's a problem just set ``is_valid_json = false`` and we will know what to do about it later."
+msgid "**LINE 6: WHY \"PCALL\".** If we simply said ``lua_table = json.decode(t[2]))``, then the function would abort with an error if it encountered something wrong with the JSON string - a missing colon, for example. By putting the function inside \"``pcall``\" (`protected call <http://www.lua.org/pil/8.4.html>`_), we're saying: we want to intercept that sort of error, so if there's a problem just set ``is_valid_json = false`` and we will know what to do about it later."
 msgstr ""
 
 msgid "**LINE 6: MEANING.** The function is :ref:`json.decode <json-decode>` which means decode a JSON string, and the parameter is t[2] which is a reference to a JSON string. There's a bit of hard coding here, we're assuming that the second field in the tuple is where the JSON string was inserted. For example, we're assuming a tuple looks like"

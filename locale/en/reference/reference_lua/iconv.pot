@@ -85,7 +85,7 @@ msgstr ""
 msgid "If anything in input-string cannot be converted, there will be an error message and the result string will be unchanged."
 msgstr ""
 
-msgid "We know that the Unicode code point for \"Д\" (CYRILLIC CAPITAL LETTER DE) is hexadecimal 0414 according to the character database of Unicode_. Therefore that is what it will look like in UTF-16. We know that Tarantool typically uses the UTF-8 character set. So make a from-UTF-8-to-UTF-16 converter, use string.hex('Д') to show what Д's encoding looks like in the UTF-8 source, and use string.hex('Д'-after-conversion) to show what it looks like in the UTF-16 target. Since the result is 0414, we see that iconv conversion works. (Different iconv implementations might use different names, for example UTF-16BE instead of UTF16BE.)"
+msgid "We know that the Unicode code point for \"Д\" (CYRILLIC CAPITAL LETTER DE) is hexadecimal 0414 according to the character database of `Unicode <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt.>`_. Therefore that is what it will look like in UTF-16. We know that Tarantool typically uses the UTF-8 character set. So make a from-UTF-8-to-UTF-16 converter, use string.hex('Д') to show what Д's encoding looks like in the UTF-8 source, and use string.hex('Д'-after-conversion) to show what it looks like in the UTF-16 target. Since the result is 0414, we see that iconv conversion works. (Different iconv implementations might use different names, for example UTF-16BE instead of UTF16BE.)"
 msgstr ""
 
 msgid "tarantool> string.hex('Д')\n"

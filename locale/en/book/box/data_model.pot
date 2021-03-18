@@ -231,7 +231,7 @@ msgstr ""
 msgid "**uuid**. The Tarantool uuid type is stored as a MsgPack ext (Extension). Values with the uuid type are :ref:`Universally unique identifiers <uuid-module>`. |br| Example: 64d22e4d-ac92-4a23-899a-e5934af5479."
 msgstr ""
 
-msgid "**array**. An array is represented in Lua with ``{...}`` (`braces`_). Examples: as lists of numbers representing points in a geometric figure: ``{10, 11}``, ``{3, 5, 9, 10}``."
+msgid "**array**. An array is represented in Lua with ``{...}`` (`braces <https://www.lua.org/pil/11.1.html>`_). Examples: as lists of numbers representing points in a geometric figure: ``{10, 11}``, ``{3, 5, 9, 10}``."
 msgstr ""
 
 msgid "**table**. Lua tables with string keys are stored as MsgPack maps; Lua tables with integer keys starting with 1 are stored as MsgPack arrays. Nils may not be used in Lua tables; the workaround is to use :ref:`box.NULL <box-null>`. Example: a ``box.space.tester:select()`` request will return a Lua table."

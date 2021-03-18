@@ -41,7 +41,7 @@ msgstr ""
 msgid "With LuaRocks"
 msgstr ""
 
-msgid "Begin by installing luarocks and making sure that tarantool is among the upstream servers, as in the instructions on `rocks.tarantool.org`_, the Tarantool luarocks page. Now execute this:"
+msgid "Begin by installing luarocks and making sure that tarantool is among the upstream servers, as in the instructions on `rocks.tarantool.org <https://rocks.tarantool.org/>`_, the Tarantool luarocks page. Now execute this:"
 msgstr ""
 
 msgid "luarocks install mysql [MYSQL_LIBDIR = *path*]\n"
@@ -58,7 +58,7 @@ msgstr ""
 msgid "With GitHub"
 msgstr ""
 
-msgid "Go the site `github.com/tarantool/mysql`_. Follow the instructions there, saying:"
+msgid "Go the site `github.com/tarantool/mysql <https://github.com/tarantool/mysql>`_. Follow the instructions there, saying:"
 msgstr ""
 
 msgid "$ git clone https://github.com/tarantool/mysql.git\n"
@@ -106,7 +106,7 @@ msgstr ""
 msgid ":samp:`raise = {true|false}` - boolean, default value is false"
 msgstr ""
 
-msgid "The option names, except for `raise`, are similar to the names that MySQL's mysql client uses, for details see the MySQL manual at `dev.mysql.com/doc/refman/5.6/en/connecting.html`_. The `raise` option should be set to :codenormal:`true` if errors should be raised when encountered. To connect with a Unix socket rather than with TCP, specify ``host = 'unix/'`` and :samp:`port = {socket-name}`."
+msgid "The option names, except for `raise`, are similar to the names that MySQL's mysql client uses, for details see the MySQL manual at `dev.mysql.com/doc/refman/5.6/en/connecting.html <https://dev.mysql.com/doc/refman/5.6/en/connecting.html>`_. The `raise` option should be set to :codenormal:`true` if errors should be raised when encountered. To connect with a Unix socket rather than with TCP, specify ``host = 'unix/'`` and :samp:`port = {socket-name}`."
 msgstr ""
 
 msgid "Example, using a table literal enclosed in {braces}:"
@@ -202,7 +202,7 @@ msgid "tarantool> conn:close()\n"
 "..."
 msgstr ""
 
-msgid "For further information, including examples of rarely-used requests, see the README.md file at `github.com/tarantool/mysql`_."
+msgid "For further information, including examples of rarely-used requests, see the README.md file at `github.com/tarantool/mysql <https://github.com/tarantool/mysql>`_."
 msgstr ""
 
 msgid "Example"
@@ -348,6 +348,9 @@ msgstr ""
 msgid "Now, for the PostgreSQL driver shared library, there are two ways to install:"
 msgstr ""
 
+msgid "Begin by installing luarocks and making sure that tarantool is among the upstream servers, as in the instructions on `rocks.tarantool.org`_, the Tarantool luarocks page. Now execute this:"
+msgstr ""
+
 msgid "luarocks install pg [POSTGRESQL_LIBDIR = *path*]\n"
 "                    [POSTGRESQL_INCDIR = *path*]\n"
 "                    [--local]"
@@ -426,7 +429,7 @@ msgstr ""
 msgid "To end a session that began with ``pg.connect``, the request is:"
 msgstr ""
 
-msgid "For further information, including examples of rarely-used requests, see the README.md file at `github.com/tarantool/pg`_."
+msgid "For further information, including examples of rarely-used requests, see the README.md file at `github.com/tarantool/pg <https://github.com/tarantool/pg>`_."
 msgstr ""
 
 msgid "The example was run on an Ubuntu 12.04 (\"precise\") machine where tarantool had been installed in a /usr subdirectory, and a copy of PostgreSQL had been installed on /usr. The PostgreSQL server instance is already running on the local host 127.0.0.1."

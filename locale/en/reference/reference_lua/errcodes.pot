@@ -2,7 +2,7 @@
 msgid "Database error codes"
 msgstr ""
 
-msgid "In the current version of the binary protocol, error messages, which are normally more descriptive than error codes, are not present in server responses. The actual message may contain a file name, a detailed reason or operating system error code. All such messages, however, are logged in the error log. Below are general descriptions of some popular codes. A complete list of errors can be found in file `errcode.h`_ in the source tree."
+msgid "In the current version of the binary protocol, error messages, which are normally more descriptive than error codes, are not present in server responses. The actual message may contain a file name, a detailed reason or operating system error code. All such messages, however, are logged in the error log. Below are general descriptions of some popular codes. A complete list of errors can be found in file `errcode.h <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_ in the source tree."
 msgstr ""
 
 msgid "**List of error codes**"

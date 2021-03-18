@@ -2,7 +2,7 @@
 msgid "Module `expirationd`"
 msgstr ""
 
-msgid "For a commercial-grade example of a Lua rock that works with Tarantool, let us look at the source code of ``expirationd``, which Tarantool supplies on GitHub_ with an Artistic license. The ``expirationd.lua`` program is lengthy (about 500 lines), so here we will only highlight the matters that will be enhanced by studying the full source later."
+msgid "For a commercial-grade example of a Lua `rock <https://rocks.tarantool.org/>`_ that works with Tarantool, let us look at the source code of ``expirationd``, which Tarantool supplies on `GitHub <https://github.com/tarantool/expirationd/blob/master/expirationd.lua>`_ with an Artistic license. The ``expirationd.lua`` program is lengthy (about 500 lines), so here we will only highlight the matters that will be enhanced by studying the full source later."
 msgstr ""
 
 msgid "task.worker_fiber = fiber.create(worker_loop, task)\n"
@@ -41,7 +41,7 @@ msgid "-- default process_expired_tuple function\n"
 "    end */"
 msgstr ""
 
-msgid "Ultimately the tuple-expiry process leads to ``default_tuple_drop()`` which does a \"delete\" of a tuple from its original space. First the fun :ref:`fun <fun-module>` module is used, specifically fun.map_. Remembering that :codenormal:`index[0]` is always the space's primary key, and :codenormal:`index[0].parts[`:codeitalic:`N`:codenormal:`].fieldno` is always the field number for key part :codeitalic:`N`, fun.map() is creating a table from the primary-key values of the tuple. The result of fun.map() is passed to :ref:`space_object:delete() <box_space-delete>`."
+msgid "Ultimately the tuple-expiry process leads to ``default_tuple_drop()`` which does a \"delete\" of a tuple from its original space. First the fun :ref:`fun <fun-module>` module is used, specifically `fun.map <https://luafun.github.io/transformations.html#fun.map>`_. Remembering that :codenormal:`index[0]` is always the space's primary key, and :codenormal:`index[0].parts[`:codeitalic:`N`:codenormal:`].fieldno` is always the field number for key part :codeitalic:`N`, fun.map() is creating a table from the primary-key values of the tuple. The result of fun.map() is passed to :ref:`space_object:delete() <box_space-delete>`."
 msgstr ""
 
 msgid "local function expirationd_run_task(name, space_id, is_tuple_expired, options)\n"
@@ -91,7 +91,7 @@ msgstr ""
 msgid "The function which will be supplied to ``expirationd`` is :codenormal:`is_tuple_expired`, which is saying \"if the second field of the tuple is less than the :ref:`current time <fiber-time>`  , then return true, otherwise return false\"."
 msgstr ""
 
-msgid "The key for getting the rock rolling is ``expd = require('expirationd')``. The require_ function is what reads in the program; it will appear in many later examples in this manual, when it's necessary to get a module that's not part of the Tarantool kernel, but is on the Lua path (``package.path``) or the C path (``package.cpath``). After the Lua variable expd has been assigned the value of the ``expirationd`` module, it's possible to invoke the module's ``run_task()`` function."
+msgid "The key for getting the rock rolling is ``expd = require('expirationd')``. The `require <https://www.lua.org/pil/8.1.html#require>`_ function is what reads in the program; it will appear in many later examples in this manual, when it's necessary to get a module that's not part of the Tarantool kernel, but is on the Lua path (``package.path``) or the C path (``package.cpath``). After the Lua variable expd has been assigned the value of the ``expirationd`` module, it's possible to invoke the module's ``run_task()`` function."
 msgstr ""
 
 msgid "After :ref:`sleeping <fiber-sleep>` for two seconds, when the task has had time to do its iterations through the spaces, ``expd.task_stats()`` will print out a report showing how many tuples have expired -- \"expired_count: 0\"."

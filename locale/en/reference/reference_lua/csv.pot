@@ -11,7 +11,7 @@ msgstr ""
 msgid "The default formatting rules are:"
 msgstr ""
 
-msgid "Lua `escape sequences`_ such as \\\\n or \\\\10 are legal within strings but not within files,"
+msgid "Lua `escape sequences <http://www.lua.org/pil/2.4.html>`_ such as \\\\n or \\\\10 are legal within strings but not within files,"
 msgstr ""
 
 msgid "Commas designate end-of-field,"
@@ -214,7 +214,7 @@ msgstr ""
 msgid "iterator function"
 msgstr ""
 
-msgid ":ref:`csv.iterate() <csv-iterate>` is the low level of :ref:`csv.load() <csv-load>` and :ref:`csv.dump() <csv-dump>`. To illustrate that, here is a function which is the same as the :ref:`csv.load() <csv-load>` function, as seen in `the Tarantool source code`_."
+msgid ":ref:`csv.iterate() <csv-iterate>` is the low level of :ref:`csv.load() <csv-load>` and :ref:`csv.dump() <csv-dump>`. To illustrate that, here is a function which is the same as the :ref:`csv.load() <csv-load>` function, as seen in `the Tarantool source code <https://github.com/tarantool/tarantool/blob/2.1/src/lua/csv.lua>`_."
 msgstr ""
 
 msgid "tarantool> load = function(readable, opts)\n"

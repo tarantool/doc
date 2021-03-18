@@ -23,18 +23,18 @@ msgstr ""
 msgid "**See also:**"
 msgstr ""
 
-msgid "`Documentation archive`_"
+msgid "`Documentation archive <https://tarantool.io/dist/pdf/>`_"
 msgstr ""
 
-msgid "`Articles`_"
+msgid "`Articles <https://tarantool.io/learn/>`_"
 msgstr ""
 
 msgid "**Support:**"
 msgstr ""
 
-msgid "`Google forum`_"
+msgid "`Google forum <https://groups.google.com/forum/#!forum/tarantool>`_"
 msgstr ""
 
-msgid "`Telegram chat`_"
+msgid "`Telegram chat <https://t.me/tarantool>`_"
 msgstr ""
 
