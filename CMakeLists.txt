@@ -201,14 +201,21 @@ add_custom_target(update-pot
         -d "${SPHINX_BUILD_LOCALE_DIR}"
         -c locale/
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
-        "${CMAKE_CURRENT_SOURCE_DIR}/locale"
+        "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
     COMMENT "Generate localization templates"
+)
+
+add_custom_command(TARGET update-pot
+    COMMAND make rm-fake-msg
+    COMMENT "Remove metadata in translation sources"
 )
 
 add_custom_target(update-po-no-force
     COMMAND "${SPHINX_INTL_EXECUTABLE}"
         update
-        -p ${CMAKE_CURRENT_SOURCE_DIR}/locale
+        -p "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
+        -d "${CMAKE_CURRENT_SOURCE_DIR}/locale/"
+        -l "ru"
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Regenerate localization files from templates"
     DEPENDS update-pot
@@ -235,6 +242,12 @@ add_custom_target(update-po
         add-fake-msg
         update-po-no-force
         rm-fake-msg
+)
+
+add_custom_target(reformat-po
+    COMMAND make
+    add-fake-msg
+    rm-fake-msg
 )
 
 add_custom_target(linkcheck
