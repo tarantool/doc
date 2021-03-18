@@ -31,7 +31,7 @@ Below is a list of all ``pickle`` functions.
 
     To use Tarantool binary protocol primitives from Lua, it's necessary to
     convert Lua variables to binary format. The ``pickle.pack()`` helper
-    function is prototyped after Perl 'pack_'.
+    function is prototyped after Perl `pack <http://perldoc.perl.org/functions/pack.html>`_.
 
     .. container:: table
 
@@ -167,4 +167,3 @@ Below is a list of all ``pickle`` functions.
         ---
         ...
 
-.. _pack: http://perldoc.perl.org/functions/pack.html

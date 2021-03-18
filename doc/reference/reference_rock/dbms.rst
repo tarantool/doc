@@ -69,7 +69,7 @@ Now, for the MySQL driver shared library, there are two ways to install:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Begin by installing luarocks and making sure that tarantool is among the
-upstream servers, as in the instructions on `rocks.tarantool.org`_, the
+upstream servers, as in the instructions on `rocks.tarantool.org <https://rocks.tarantool.org/>`_, the
 Tarantool luarocks page. Now execute this:
 
 .. cssclass:: highlight
@@ -89,7 +89,7 @@ For example:
        With GitHub
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Go the site `github.com/tarantool/mysql`_. Follow the instructions there, saying:
+Go the site `github.com/tarantool/mysql <https://github.com/tarantool/mysql>`_. Follow the instructions there, saying:
 
 .. code-block:: console
 
@@ -131,7 +131,7 @@ The connection-options parameter is a table. Possible options are:
 
 The option names, except for `raise`, are similar to the names that MySQL's
 mysql client uses, for details see the MySQL manual at
-`dev.mysql.com/doc/refman/5.6/en/connecting.html`_.
+`dev.mysql.com/doc/refman/5.6/en/connecting.html <https://dev.mysql.com/doc/refman/5.6/en/connecting.html>`_.
 The `raise` option should be set to :codenormal:`true` if errors should be
 raised when encountered. To connect with a Unix socket rather than with TCP,
 specify ``host = 'unix/'`` and :samp:`port = {socket-name}`.
@@ -242,7 +242,7 @@ To end a session that began with ``mysql.connect``, the request is:
     ...
 
 For further information, including examples of rarely-used requests, see the
-README.md file at `github.com/tarantool/mysql`_.
+README.md file at `github.com/tarantool/mysql <https://github.com/tarantool/mysql>`_.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
            Example
@@ -583,7 +583,7 @@ To end a session that began with ``pg.connect``, the request is:
     ...
 
 For further information, including examples of rarely-used requests, see the
-README.md file at `github.com/tarantool/pg`_.
+README.md file at `github.com/tarantool/pg <https://github.com/tarantool/pg>`_.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
            Example
@@ -711,9 +711,3 @@ Lua tutorial earlier in the Tarantool user manual.
 Observe the result. It contains "PostgreSQL row". So this is the row that was
 inserted into the PostgreSQL database. And now it's been selected with the
 Tarantool client.
-
-.. _rocks.tarantool.org: http://rocks.tarantool.org/
-.. _github.com/tarantool/mysql: https://github.com/tarantool/mysql
-.. _dev.mysql.com/doc/refman/5.6/en/connecting.html: https://dev.mysql.com/doc/refman/5.6/en/connecting.html
-.. _github.com/tarantool/mysql: https://github.com/tarantool/mysql
-.. _github.com/tarantool/pg: https://github.com/tarantool/pg

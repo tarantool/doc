@@ -282,7 +282,7 @@ Example: 64d22e4d-ac92-4a23-899a-e5934af5479.
 
 .. _index-box_array:
 
-**array**. An array is represented in Lua with ``{...}`` (`braces`_).
+**array**. An array is represented in Lua with ``{...}`` (`braces <https://www.lua.org/pil/11.1.html>`_).
 Examples: as lists of numbers representing points in a geometric figure:
 ``{10, 11}``, ``{3, 5, 9, 10}``.
 
@@ -325,8 +325,6 @@ Examples of insert requests with different field types:
     ---
     - [3, [1, 2, 3, 4, 5]]
     ...
-
-.. _braces: https://www.lua.org/pil/11.1.html
 
 .. _index-box_indexed-field-types:
 

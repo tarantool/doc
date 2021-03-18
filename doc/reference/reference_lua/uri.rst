@@ -98,5 +98,3 @@ Below is a list of all ``uri`` functions.
         - http://x.html#y
         ...
 
-.. _Universally unique identifier: https://en.wikipedia.org/wiki/Universally_unique_identifier
-.. _syscall: https://en.wikipedia.org/wiki/Syscall

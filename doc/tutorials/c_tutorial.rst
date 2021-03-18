@@ -232,7 +232,7 @@ it's in the :code:`char *args` parameter.
 At this point the ``harder()`` function will start using functions
 defined in `msgpuck.h <https://github.com/tarantool/msgpuck>`_.
 The routines that begin with "mp" are msgpuck functions that
-handle data formatted according to the MsgPack_ specification.
+handle data formatted according to the `MsgPack <http://msgpack.org/>`_ specification.
 Passes and returns are always done with this format so
 one must become acquainted with msgpuck
 to become proficient with the C API.
@@ -550,6 +550,4 @@ same techniques that this tutorial has shown.
 Conclusion: parts of the standard test suite
 use C stored procedures, and they must work,
 because releases don't happen if Tarantool doesn't pass the tests.
-
-.. _MsgPack: http://msgpack.org/
 

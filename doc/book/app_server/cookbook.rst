@@ -789,9 +789,10 @@ to turn Tarantool into a web server.
 http_generate_html.lua
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the `http`_ `rock` (which must first be installed)
+Use the `http <https://github.com/tarantool/http/>`_ `rock` (which must first be installed)
 to generate HTML pages from templates.
-The `http`_ `rock`_ has a fairly simple template engine which allows execution
+The `http <https://github.com/tarantool/http/>`_
+`rock <https://rocks.tarantool.org/>`_ has a fairly simple template engine which allows execution
 of regular Lua code inside text blocks (like PHP). Therefore there is no need
 to learn new languages in order to write templates.
 
@@ -841,6 +842,3 @@ connect to.
 .. literalinclude:: cookbook/main.go
   :language: go
 
-.. _rock: http://rocks.tarantool.org/
-.. _http: https://github.com/tarantool/http/
-.. _nginx-tarantool-upstream: https://github.com/tarantool/nginx_upstream_module

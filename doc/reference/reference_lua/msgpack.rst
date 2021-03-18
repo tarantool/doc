@@ -526,5 +526,3 @@ and :ref:`YAML <yaml-cfg>`.
         - [20, null, 20]
         ...
 
-
-.. _MsgPack: http://msgpack.org/

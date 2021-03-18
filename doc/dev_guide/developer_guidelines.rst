@@ -105,7 +105,8 @@ Some real-world examples:
 * `tarantool/tarantool@386df3d <https://github.com/tarantool/tarantool/commit/386df3d3eb9c5239fc83fd4dd3292d1b49446b89>`_
 * `tarantool/tarantool@076a842 <https://github.com/tarantool/tarantool/commit/076a842011e09c84c25fb5e68f1b23c9917a3750>`_
 
-Based on [1_] and [2_].
+Based on [`1 <https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project>`_]
+and [`2 <https://chris.beams.io/posts/git-commit/>`_].
 
 .. _dev_guidelines-patch-review:
 
@@ -309,5 +310,3 @@ your patch set (via a hyperlink or message id).
     * Do follow the guidelines above. If you do not comply, your patches are
       likely to be silently ignored.
 
-.. _1: https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project
-.. _2: https://chris.beams.io/posts/git-commit/

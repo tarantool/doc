@@ -197,4 +197,3 @@ and variables which are outside all modules.
     After ``package.setsearchroot('/home')`` the returned
     string will be ``/home'``.
 
-.. _double square brackets: http://www.lua.org/pil/2.4.html

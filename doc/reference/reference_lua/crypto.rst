@@ -11,10 +11,20 @@
 ===============================================================================
 
 "Crypto" is short for "Cryptography", which generally refers to the production
-of a digest value from a function (usually a `Cryptographic hash function`_),
+of a digest value from a function (usually a
+`Cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_),
 applied against a string. Tarantool's ``crypto`` module supports ten types of
-cryptographic hash functions (AES_, DES_, DSS_, MD4_, MD5_, MDC2_, RIPEMD_,
-SHA-1_, SHA-2_). Some of the crypto functionality is also present in the
+cryptographic hash functions
+(`AES <https://en.wikipedia.org/wiki/Advanced_Encryption_Standard>`_,
+`DES <https://en.wikipedia.org/wiki/Data_Encryption_Standard>`_,
+`DSS <https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard>`_,
+`MD4 <https://en.wikipedia.org/wiki/Md4>`_,
+`MD5 <https://en.wikipedia.org/wiki/Md5>`_,
+`MDC2 <https://en.wikipedia.org/wiki/MDC-2>`_,
+`RIPEMD <http://homes.esat.kuleuven.be/~bosselae/ripemd160.html>`_,
+`SHA-1 <https://en.wikipedia.org/wiki/Sha-1>`_,
+`SHA-2 <https://en.wikipedia.org/wiki/Sha-2>`_).
+Some of the crypto functionality is also present in the
 :ref:`digest` module.
 
 ===============================================================================
@@ -66,7 +76,8 @@ Below is a list of all ``crypto`` functions.
     * ecb - Electronic Codebook
     * ofb - Output Feedback
 
-    For more information, read the article about `Encryption Modes`_
+    For more information, read the article about
+`Encryption Modes <https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation>`_
 
     **Example:**
 
@@ -188,15 +199,3 @@ the ``crypto`` function will both produce the same result.
     crypto.digest.sha384('string') == digest.sha384('string')
     crypto.digest.sha512('string') == digest.sha512('string')
 
-.. _AES: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
-.. _DES: https://en.wikipedia.org/wiki/Data_Encryption_Standard
-.. _DSS: https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard
-.. _SHA-1: https://en.wikipedia.org/wiki/Sha-1
-.. _SHA-2: https://en.wikipedia.org/wiki/Sha-2
-.. _MD4: https://en.wikipedia.org/wiki/Md4
-.. _MD5: https://en.wikipedia.org/wiki/Md5
-.. _MDC2: https://en.wikipedia.org/wiki/MDC-2
-.. _RIPEMD: http://homes.esat.kuleuven.be/~bosselae/ripemd160.html
-.. _Cryptographic hash function: https://en.wikipedia.org/wiki/Cryptographic_hash_function
-.. _Consistent Hashing: https://en.wikipedia.org/wiki/Consistent_hashing
-.. _Encryption Modes: https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation

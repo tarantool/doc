@@ -26,10 +26,8 @@ The function uses Tarantool box functions
 :ref:`box.space...select <box_space-select>`,
 :ref:`box.space...replace <box_space-replace>`, :ref:`fiber.time <fiber-time>`,
 :ref:`uuid.str <uuid-str>`. The function uses
-Lua functions `os.date()`_ and `string.sub()`_.
-
-.. _os.date(): http://www.lua.org/pil/22.1.html
-.. _string.sub(): http://www.lua.org/pil/20.html
+Lua functions `os.date() <http://www.lua.org/pil/22.1.html>`_ and
+`string.sub() <http://www.lua.org/pil/20.html>`_.
 
 .. code-block:: lua
 

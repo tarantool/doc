@@ -16,12 +16,13 @@ Lua libraries for most common applications, and the Tarantool Database Server wh
 is an established NoSQL DBMS. Thus Tarantool serves all the purposes that have made node.js
 and Twisted popular, plus it supports data persistence.
 
-The code is free. The open-source license is `BSD license`_. The supported platforms
-are GNU/Linux, Mac OS and FreeBSD.
+The code is free. The open-source license is
+`BSD license <http://www.gnu.org/licenses/license-list.html#ModifiedBSD>`_.
+The supported platforms are GNU/Linux, Mac OS and FreeBSD.
 
-Tarantool's creator and biggest user is `Mail.Ru`_, the largest internet
+Tarantool's creator and biggest user is `Mail.Ru <http://api.mail.ru>`_, the largest internet
 company in Russia, with 30 million users, 25 million emails per day, and a web
-site whose Alexa global rank is in the `top 40`_ worldwide. Tarantool services
+site whose Alexa global rank is in the `top 40 <http://www.alexa.com/siteinfo/mail.ru>`_ worldwide. Tarantool services
 Mail.Ru's hottest data, such as the session data of online users, the
 properties of online applications, the caches of the underlying data, the
 distribution and sharding algorithms, and much more. Outside Mail.Ru the
@@ -116,7 +117,3 @@ sets.
 Tarantool supports **basic SQL structures** and
 **persistence for SQL operations** (with acceptable limitations). All tables and triggers
 created in SQL are available after server restart.
-
-.. _BSD license: http://www.gnu.org/licenses/license-list.html#ModifiedBSD
-.. _Mail.Ru: http://api.mail.ru
-.. _top 40: http://www.alexa.com/siteinfo/mail.ru

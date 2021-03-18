@@ -8,7 +8,7 @@
                                    Overview
 ===============================================================================
 
-The ``yaml`` module takes strings in YAML_ format and decodes them, or takes a
+The ``yaml`` module takes strings in `YAML <http://yaml.org/>`_ format and decodes them, or takes a
 series of non-YAML values and encodes them.
 
 ===============================================================================
@@ -311,5 +311,3 @@ different results:
       '
     ...
 
-
-.. _YAML: http://yaml.org/

@@ -14,8 +14,8 @@ Inside the module are "generators" such as ``range``, ``tabulate``, and
 module are "reducers", "filters", "composers" ... or, in short, all the
 important features found in languages like Standard ML, Haskell, or Erlang.
 
-The full documentation is `On the luafun section of github`_. However, the first
-chapter can be skipped because installation is already done, it's inside
+The full documentation is `On the luafun section of github <https://luafun.github.io/>`_.
+However, the first chapter can be skipped because installation is already done, it's inside
 Tarantool. All that is needed is the usual ``require`` request. After that,
 all the operations described in the Lua fun manual will work, provided they are
 preceded by the name returned by the ``require`` request. For example:
@@ -34,4 +34,3 @@ preceded by the name returned by the ``require`` request. For example:
     ---
     ...
 
-.. _On the luafun section of github: https://luafun.github.io/

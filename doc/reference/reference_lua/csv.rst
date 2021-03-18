@@ -13,7 +13,7 @@ The ``csv`` module handles records formatted according to Comma-Separated-Values
 
 The default formatting rules are:
 
-* Lua `escape sequences`_ such as \\n or \\10 are legal within strings but not
+* Lua `escape sequences <http://www.lua.org/pil/2.4.html>`_ such as \\n or \\10 are legal within strings but not
   within files,
 * Commas designate end-of-field,
 * Line feeds, or line feeds plus carriage returns, designate end-of-record,
@@ -206,7 +206,7 @@ Below is a list of all ``csv`` functions.
     :ref:`csv.iterate() <csv-iterate>` is the low level of :ref:`csv.load()
     <csv-load>` and :ref:`csv.dump() <csv-dump>`. To illustrate that, here is a
     function which is the same as the :ref:`csv.load() <csv-load>` function, as
-    seen in `the Tarantool source code`_.
+    seen in `the Tarantool source code <https://github.com/tarantool/tarantool/blob/2.1/src/lua/csv.lua>`_.
 
     .. code-block:: tarantoolsession
 
@@ -227,5 +227,3 @@ Below is a list of all ``csv`` functions.
             - c
         ...
 
-.. _escape sequences: http://www.lua.org/pil/2.4.html
-.. _the Tarantool source code: https://github.com/tarantool/tarantool/blob/2.1/src/lua/csv.lua

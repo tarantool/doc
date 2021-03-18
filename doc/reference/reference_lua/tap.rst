@@ -7,8 +7,10 @@
 ===============================================================================
 
 The ``tap`` module streamlines the testing of other modules. It allows writing
-of tests in the `TAP protocol`_. The results from the tests can be parsed by
-standard TAP-analyzers so they can be passed to utilities such as `prove`_. Thus
+of tests in the
+`TAP protocol <https://en.wikipedia.org/wiki/Test_Anything_Protocol>`_. The results from the tests can be parsed by
+standard TAP-analyzers so they can be passed to utilities such as
+`prove <https://metacpan.org/pod/distribution/Test-Harness/bin/prove>`_. Thus
 one can run tests and then use the results for statistics, decision-making, and
 so on.
 
@@ -338,8 +340,6 @@ so on.
         then ``taptest:is_deeply({a = box.NULL}, {})``
         will return ``false``.
 
-.. _prove: https://metacpan.org/pod/distribution/Test-Harness/bin/prove
-.. _TAP protocol: https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
 .. _tap-example:
 
