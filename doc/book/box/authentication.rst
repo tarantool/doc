@@ -358,7 +358,7 @@ The 'usage' and 'session' privileges cannot be granted to roles.
    -- user U1 has write privilege on space T
    box.space.T:insert{1}
 
-For more detail are to be found in
+More details are to be found in
 :doc:`/reference/reference_lua/box_schema/user_grant` and
 :doc:`/reference/reference_lua/box_schema/role_grant` in
 the built-in modules reference.
