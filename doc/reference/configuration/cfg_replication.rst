@@ -443,7 +443,8 @@
 
 .. confval:: election_mode
 
-    Since version 2.6.1. Specifies the role of a replica set node in the
+    Since version :doc:`2.6.1 </release/2.6.1>`.
+    Specifies the role of a replica set node in the
     :ref:`leader election process <repl_leader_elect>`.
 
     Possible values:
@@ -478,7 +479,8 @@
 
 .. confval:: election_timeout
 
-    Since version 2.6.1. Specifies the timeout between election rounds in the
+    Since version :doc:`2.6.1 </release/2.6.1>`.
+    Specifies the timeout between election rounds in the
     :ref:`leader election process <repl_leader_elect>` if the previous round
     ended up with a split-vote.
 

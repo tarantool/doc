@@ -8,6 +8,7 @@ box.info.election
 
 .. data:: election
 
+   Since version :doc:`2.6.1 </release/2.6.1>`.
    Show the current state of a replica set node in regards to
    :ref:`leader election <repl_leader_elect>`, namely,
    election state (mode), election term, vote in the current term,

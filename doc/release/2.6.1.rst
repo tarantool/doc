@@ -25,6 +25,13 @@ Notable changes are:
     replication it brings data safety and service reliability on a new
     level.
 
+    Read more:
+
+    *   :doc:`/book/replication/repl_leader_elect`
+    *   :ref:`election_mode configuration parameter <cfg_replication-election_mode>`
+    *   :ref:`election_timeout configuration parameter <cfg_replication-election_timeout>`
+    *   :doc:`/reference/reference_lua/box_info/election`
+
 Compatibility
 -------------
 
@@ -49,11 +56,13 @@ Core
 ~~~~
 
 -   Introduce a function to check that the specified value is of UUID
-    type (gh-5171).
+    type (gh-5171). Read more: :ref:`uuid.is_uuid() <uuid-is_uuid>`.
 -   A new function ``space:alter(options)`` to change some space settings
     without recreation nor touching ``_space`` space.
+    Read more: :doc:`/reference/reference_lua/box_space/alter`.
 -   Composite types extraction is now supported in key_def (gh-4538).
 -   Make memtx tuple hints an optional feature (gh-4927).
+    Read more: :ref:`Options for space_object:create_index() <box_space-create_index-options>`.
 
 Vinyl
 ~~~~~
@@ -77,6 +86,7 @@ LuaJIT
 ~~~~~~
 
 -   **[Breaking change]** Introduce LuaJIT platform metrics (gh-5187).
+    Read more: :ref:`LuaJIT metrics <metrics-luajit>`.
 
     -   This change introduces new builtin library “misc” that may
         conflict with user’s modules.
@@ -94,6 +104,7 @@ Replication
 ~~~~~~~~~~~
 
 -   Automated leader election based on Raft algorithm (gh-1146).
+    Read more: :doc:`/book/replication/repl_leader_elect`.
 -   When election is enabled, a newly elected leader will automatically
     finish all the synchronous transactions, created by the old leader
     (gh-5339).
@@ -196,6 +207,11 @@ Memtx
 ~~~~~
 
 -   Transactional manager for memtx engine (gh-4897).
+
+    Read more:
+
+    *   :ref:`atomic-transactional-manager`
+    *   :ref:`use_mvcc_engine configuration parameter <cfg_basic-memtx_use_mvcc_engine>`
 
 
 Module API
