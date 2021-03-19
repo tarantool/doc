@@ -106,8 +106,9 @@ On this page:
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | func                | :ref:`functional index <box_space-index_func>`        | string                           | not present                   |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | hint                | affects TREE only. ``true`` makes an index work       | boolean                          | ``true``                      |
-            |                     | faster, ``false`` -- an index size is reduced by half |                                  |                               |
+            | hint (since version | affects TREE only. ``true`` makes an index work       | boolean                          | ``true``                      |
+            | :doc:`2.6.1         | faster, ``false`` -- an index size is reduced by half |                                  |                               |
+            | </release/2.6.1>`)  |                                                       |                                  |                               |
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
 
         The options in the above chart are also applicable for

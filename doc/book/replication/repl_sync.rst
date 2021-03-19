@@ -137,9 +137,10 @@ immediately -- it won't wait for being replicated itself.
 Limitations and known problems
 --------------------------------------------------------------------------------
 
-Until version 2.5.2, there was no way to enable synchronous replication for
-existing spaces, but since 2.5.2 it can be enabled by :ref:`space_object:alter({
-is_sync = true}) <box_space-alter>`.
+Until version :doc:`2.5.2 </release/2.5.2>`,
+there was no way to enable synchronous replication for
+existing spaces, but since 2.5.2 it can be enabled by
+:ref:`space_object:alter({is_sync = true}) <box_space-alter>`.
 
 Synchronous transactions work only for master-slave topology. You can have multiple
 replicas, anonymous replicas, but only one node can make synchronous transactions.
@@ -151,7 +152,8 @@ for a synchronous transaction to gather quorum using anonymous replicas in futur
 Leader election
 --------------------------------------------------------------------------------
 
-Starting from the version 2.6.1, Tarantool has the built-in functionality
+Starting from the version :doc:`2.6.1 </release/2.6.1>`,
+Tarantool has the built-in functionality
 managing automated leader election in a replica set. For more information,
 refer to the :ref:`corresponding chapter <repl_leader_elect>`.
 

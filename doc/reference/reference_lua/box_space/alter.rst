@@ -8,7 +8,7 @@ space_object:alter()
 
     .. method:: alter(options)
 
-        Since version 2.5.2.
+        Since version :doc:`2.5.2 </release/2.5.2>`.
         Alter an existing space. This method changes certain space parameters.
 
         :param table options: ``field_count``, ``user``,

@@ -253,7 +253,8 @@ After a fiber has yielded and then has regained control, it immediately issues
 Transactional manager
 --------------------------------------------------------------------------------
 
-Since version 2.6.1, Tarantool has another option for transaction behavior that
+Since version :doc:`2.6.1 </release/2.6.1>`,
+Tarantool has another option for transaction behavior that
 allows yielding inside a memtx transaction. This is controled by
 the *transactional manager*.
 

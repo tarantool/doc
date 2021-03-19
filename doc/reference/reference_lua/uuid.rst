@@ -137,6 +137,8 @@ Below is list of all ``uuid`` functions and members.
 
 .. method:: is_uuid(value)
 
+    Since version :doc:`2.6.1 </release/2.6.1>`.
+
     :param value: a value to check
     :return: ``true`` if the specified value is a uuid, and ``false`` otherwise
     :rtype: bool
