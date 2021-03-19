@@ -88,9 +88,13 @@ exist. Example: |br|
 For adding a :ref:`column <sql_column_def>` with ``ADD COLUMN``,
 the table must exist, the table must be empty,
 the column name must be unique within the table.
-Example with a STRING column that must start with X: |br|
-``ALTER TABLE t1 ADD COLUMN s4 STRING CHECK (s4 LIKE 'X%');`` |br|
-ALTER TABLE ... ADD COLUMN support was added in version :doc:`2.7.1 </release/2.7.1>`.
+Example with a STRING column that must start with X:
+
+..  code-block:: sql
+
+    ALTER TABLE t1 ADD COLUMN s4 STRING CHECK (s4 LIKE 'X%');
+
+``ALTER TABLE ... ADD COLUMN`` support was added in version :doc:`2.7.1 </release/2.7.1>`.
 
 For adding a :ref:`table constraint <sql_table_constraint_def>` with ``ADD CONSTRAINT``,
 the table must exist, the table must be empty,

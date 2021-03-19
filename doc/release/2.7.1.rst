@@ -19,7 +19,7 @@ Notable changes are:
 
 -   LuaJIT memory profiler;
 -   Expression evaluation for ``replication_synchro_quorum``;
--   The ``ALTER TABLE ADD COLUMN`` statement.
+-   The :ref:`ALTER TABLE ADD COLUMN <sql_alter_table>` statement.
 
 Compatibility
 -------------
