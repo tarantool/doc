@@ -76,7 +76,7 @@ Syntax:
 
 |br|
 
-ALTER is used to change a table's name or a table's constraints.
+ALTER is used to change a table's name or a table's elements.
 
 **Examples:**
 
@@ -84,6 +84,17 @@ For renaming a table with ``ALTER ... RENAME``, the *old-table* must exist, the 
 exist. Example: |br|
 ``-- renaming a table:``
 ``ALTER TABLE t1 RENAME TO t2;``
+
+For adding a :ref:`column <sql_column_def>` with ``ADD COLUMN``,
+the table must exist, the table must be empty,
+the column name must be unique within the table.
+Example with a STRING column that must start with X:
+
+..  code-block:: sql
+
+    ALTER TABLE t1 ADD COLUMN s4 STRING CHECK (s4 LIKE 'X%');
+
+``ALTER TABLE ... ADD COLUMN`` support was added in version :doc:`2.7.1 </release/2.7.1>`.
 
 For adding a :ref:`table constraint <sql_table_constraint_def>` with ``ADD CONSTRAINT``,
 the table must exist, the table must be empty,

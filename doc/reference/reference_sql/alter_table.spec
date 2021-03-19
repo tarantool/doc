@@ -7,6 +7,9 @@ stack (
       ' RENAME ', ' TO ', 'new-table-name'
     ),
     line(
+      ' ADD ', ' COLUMN ', 'column-name', 'column-definition'
+    ),
+    line(
       ' ADD ', ' CONSTRAINT ', 'constraint-name', 'constraint-definition'
     ),
     line(

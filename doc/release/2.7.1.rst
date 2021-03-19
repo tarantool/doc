@@ -19,7 +19,7 @@ Notable changes are:
 
 -   LuaJIT memory profiler;
 -   Expression evaluation for ``replication_synchro_quorum``;
--   The ``ALTER TABLE ADD COLUMN`` statement.
+-   The :ref:`ALTER TABLE ADD COLUMN <sql_alter_table>` statement.
 
 Compatibility
 -------------
@@ -74,8 +74,8 @@ Lua
 SQL
 ~~~
 
--   The ``ALTER TABLE ADD COLUMN`` statement is now supported for empty
-    tables (gh-2349, gh-3075).
+-   The :ref:`ALTER TABLE ADD COLUMN <sql_alter_table>` statement is now
+    supported for empty tables (gh-2349, gh-3075).
 
 Replication
 ~~~~~~~~~~~
