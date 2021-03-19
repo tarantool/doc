@@ -218,7 +218,7 @@ msgstr ""
 msgid "string"
 msgstr ""
 
-msgid "hint"
+msgid "hint (since version :doc:`2.6.1 </release/2.6.1>`)"
 msgstr ""
 
 msgid "affects TREE only. ``true`` makes an index work faster, ``false`` -- an index size is reduced by half"

@@ -335,7 +335,7 @@ msgstr ""
 msgid "Default: true"
 msgstr ""
 
-msgid "Since version 2.6.1. Enables :ref:`transactional manager <atomic-transactional-manager>` if set to ``true``."
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`. Enables :ref:`transactional manager <atomic-transactional-manager>` if set to ``true``."
 msgstr ""
 
 msgid "Configuring the storage"
@@ -951,7 +951,7 @@ msgstr ""
 msgid "Default: 5"
 msgstr ""
 
-msgid "Since version 2.6.1. Specifies the role of a replica set node in the :ref:`leader election process <repl_leader_elect>`."
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`. Specifies the role of a replica set node in the :ref:`leader election process <repl_leader_elect>`."
 msgstr ""
 
 msgid "Possible values:"
@@ -978,7 +978,7 @@ msgstr ""
 msgid "Default: 'off'"
 msgstr ""
 
-msgid "Since version 2.6.1. Specifies the timeout between election rounds in the :ref:`leader election process <repl_leader_elect>` if the previous round ended up with a split-vote."
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`. Specifies the timeout between election rounds in the :ref:`leader election process <repl_leader_elect>` if the previous round ended up with a split-vote."
 msgstr ""
 
 msgid "In the :ref:`leader election process <repl_leader_elect_process>`, there can be an election timeout for the case of a split-vote. The timeout can be configured using this option; the default value is 5 seconds."

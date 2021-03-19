@@ -26,7 +26,7 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "New function ``space:alter(options)`` to change some space settings without recreation nor touching ``_space`` space."
+msgid "New function ``space:alter(options)`` to change some space settings without recreation nor touching ``_space`` space. :doc:`Read more. </reference/reference_lua/box_space/alter>`"
 msgstr ""
 
 msgid "Module API"

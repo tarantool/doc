@@ -2,7 +2,7 @@
 msgid "space_object:alter()"
 msgstr ""
 
-msgid "Since version 2.5.2. Alter an existing space. This method changes certain space parameters."
+msgid "Since version :doc:`2.5.2 </release/2.5.2>`. Alter an existing space. This method changes certain space parameters."
 msgstr ""
 
 msgid "Parameters"

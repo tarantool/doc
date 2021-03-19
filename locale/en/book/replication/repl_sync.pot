@@ -103,7 +103,7 @@ msgstr ""
 msgid "Limitations and known problems"
 msgstr ""
 
-msgid "Until version 2.5.2, there was no way to enable synchronous replication for existing spaces, but since 2.5.2 it can be enabled by :ref:`space_object:alter({ is_sync = true}) <box_space-alter>`."
+msgid "Until version :doc:`2.5.2 </release/2.5.2>`, there was no way to enable synchronous replication for existing spaces, but since 2.5.2 it can be enabled by :ref:`space_object:alter({is_sync = true}) <box_space-alter>`."
 msgstr ""
 
 msgid "Synchronous transactions work only for master-slave topology. You can have multiple replicas, anonymous replicas, but only one node can make synchronous transactions."
@@ -115,7 +115,7 @@ msgstr ""
 msgid "Leader election"
 msgstr ""
 
-msgid "Starting from the version 2.6.1, Tarantool has the built-in functionality managing automated leader election in a replica set. For more information, refer to the :ref:`corresponding chapter <repl_leader_elect>`."
+msgid "Starting from the version :doc:`2.6.1 </release/2.6.1>`, Tarantool has the built-in functionality managing automated leader election in a replica set. For more information, refer to the :ref:`corresponding chapter <repl_leader_elect>`."
 msgstr ""
 
 msgid "Tips and tricks"

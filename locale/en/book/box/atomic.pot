@@ -154,7 +154,7 @@ msgstr ""
 msgid "Transactional manager"
 msgstr ""
 
-msgid "Since version 2.6.1, Tarantool has another option for transaction behavior that allows yielding inside a memtx transaction. This is controled by the *transactional manager*."
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`, Tarantool has another option for transaction behavior that allows yielding inside a memtx transaction. This is controled by the *transactional manager*."
 msgstr ""
 
 msgid "The transactional manager is designed for isolation of concurrent transactions and provides *serializable* `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_. It consists of two parts:"

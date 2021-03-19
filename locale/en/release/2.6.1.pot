@@ -20,7 +20,28 @@ msgstr ""
 msgid "Transactional manager for the memtx engine that allows yielding in transactions. It also guarantees the data consistency for synchronous replication, eliminating dirty reads for unconfirmed transactions."
 msgstr ""
 
+msgid "Read more:"
+msgstr ""
+
+msgid ":ref:`atomic-transactional-manager`"
+msgstr ""
+
+msgid ":ref:`use_mvcc_engine configuration parameter <cfg_basic-memtx_use_mvcc_engine>`"
+msgstr ""
+
 msgid "Raft-based automated failover mechanism for a single-leader replica set. Replica set can be configured to provide automated leader election and failover. Accompanied with synchronous replication it brings data safety and service reliability on a new level."
+msgstr ""
+
+msgid ":doc:`/book/replication/repl_leader_elect`"
+msgstr ""
+
+msgid ":ref:`election_mode configuration parameter <cfg_replication-election_mode>`"
+msgstr ""
+
+msgid ":ref:`election_timeout configuration parameter <cfg_replication-election_timeout>`"
+msgstr ""
+
+msgid ":doc:`/reference/reference_lua/box_info/election`"
 msgstr ""
 
 msgid "Compatibility"
@@ -41,16 +62,16 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "Introduce a function to check that the specified value is of UUID type (gh-5171)."
+msgid "Introduce a function to check that the specified value is of UUID type (gh-5171). Read more: :ref:`uuid.is_uuid() <uuid-is_uuid>`."
 msgstr ""
 
-msgid "A new function ``space:alter(options)`` to change some space settings without recreation nor touching ``_space`` space."
+msgid "A new function ``space:alter(options)`` to change some space settings without recreation nor touching ``_space`` space. Read more: :doc:`/reference/reference_lua/box_space/alter`."
 msgstr ""
 
 msgid "Composite types extraction is now supported in key_def (gh-4538)."
 msgstr ""
 
-msgid "Make memtx tuple hints an optional feature (gh-4927)."
+msgid "Make memtx tuple hints an optional feature (gh-4927). Read more: :ref:`Options for space_object:create_index() <box_space-create_index-options>`."
 msgstr ""
 
 msgid "Vinyl"
@@ -74,7 +95,7 @@ msgstr ""
 msgid "LuaJIT"
 msgstr ""
 
-msgid "**[Breaking change]** Introduce LuaJIT platform metrics (gh-5187)."
+msgid "**[Breaking change]** Introduce LuaJIT platform metrics (gh-5187). Read more: :ref:`LuaJIT metrics <metrics-luajit>`."
 msgstr ""
 
 msgid "This change introduces new builtin library “misc” that may conflict with user’s modules."
@@ -92,7 +113,7 @@ msgstr ""
 msgid "Replication"
 msgstr ""
 
-msgid "Automated leader election based on Raft algorithm (gh-1146)."
+msgid "Automated leader election based on Raft algorithm (gh-1146). Read more: :doc:`/book/replication/repl_leader_elect`."
 msgstr ""
 
 msgid "When election is enabled, a newly elected leader will automatically finish all the synchronous transactions, created by the old leader (gh-5339)."

@@ -112,6 +112,9 @@ msgstr ""
 msgid "UUID in 16-byte binary string"
 msgstr ""
 
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`."
+msgstr ""
+
 msgid "a value to check"
 msgstr ""
 
