@@ -190,7 +190,7 @@ Example: ``-2^63``.
 .. _index-box_unsigned:
 
 **unsigned**. The Tarantool unsigned type is for integers between
-0 and 18446744073709551615,. So it is a subset of integer.
+0 and 18446744073709551615. So it is a subset of integer.
 Example: ``123456``.
 
 .. _index-box_double:
