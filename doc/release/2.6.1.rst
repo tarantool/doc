@@ -19,6 +19,12 @@ Notable changes are:
     allows yielding in transactions. It also guarantees the data consistency
     for synchronous replication, eliminating dirty reads for unconfirmed
     transactions.
+
+    Read more:
+
+    *   :ref:`atomic-transactional-manager`
+    *   :ref:`use_mvcc_engine configuration parameter <cfg_basic-memtx_use_mvcc_engine>`
+
 *   Raft-based automated failover mechanism for a
     single-leader replica set. Replica set can be configured to provide
     automated leader election and failover. Accompanied with synchronous
