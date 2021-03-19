@@ -197,7 +197,7 @@ msgstr ""
 msgid "**integer**. The Tarantool integer type is for integers between -9223372036854775808 and 18446744073709551615, which is about 18 quintillion. This corresponds to number in Lua and to integer in MsgPack. Example: ``-2^63``."
 msgstr ""
 
-msgid "**unsigned**. The Tarantool unsigned type is for integers between 0 and 18446744073709551615,. So it is a subset of integer. Example: ``123456``."
+msgid "**unsigned**. The Tarantool unsigned type is for integers between 0 and 18446744073709551615. So it is a subset of integer. Example: ``123456``."
 msgstr ""
 
 msgid "**double**. The double field type exists mainly so that there will be an equivalent to Tarantool/SQL's :ref:`DOUBLE data type <sql_data_type_double>`. In `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_ (Tarantool's interface to MsgPack) the storage type is MP_DOUBLE and the size of the encoded value is always 9 bytes. In Lua, 'double' fields can only contain non-integer numeric values and cdata values with double floating-point numbers. Examples: ``1.234``, ``-44``, ``1.447e+44``. |br| To avoid using the wrong kind of values inadvertently, use ``ffi.cast()`` when searching or changing 'double' fields. For example, instead of :samp:`{space_object}:insert`:code:`{`:samp:`{value}`:code:`}` say ``ffi = require('ffi') ...`` :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`. Example:"
