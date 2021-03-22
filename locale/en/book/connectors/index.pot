@@ -2,7 +2,40 @@
 msgid "Connectors"
 msgstr ""
 
-msgid "This chapter documents APIs for various programming languages."
+msgid "This chapter documents APIs for various programming languages:"
+msgstr ""
+
+msgid ":doc:`C++ <cxx/tntcxx_api>`"
+msgstr ""
+
+msgid ":ref:`Java <index_connector_java>`"
+msgstr ""
+
+msgid ":ref:`Go <index_connector_go>`"
+msgstr ""
+
+msgid ":ref:`R <index_connector_r>`"
+msgstr ""
+
+msgid ":ref:`Erlang <index_connector_erlang>`"
+msgstr ""
+
+msgid ":ref:`Perl <index_connector_perl>`"
+msgstr ""
+
+msgid ":ref:`PHP <index_connector_php>`"
+msgstr ""
+
+msgid ":ref:`Python <index_connector_py>`"
+msgstr ""
+
+msgid ":ref:`Node.js <index_connector_nodejs>`"
+msgstr ""
+
+msgid ":ref:`C# <index_connector_csharp>`"
+msgstr ""
+
+msgid ":ref:`C <index_connector_c>`"
 msgstr ""
 
 msgid "Protocol"
