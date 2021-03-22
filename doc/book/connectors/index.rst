@@ -4,7 +4,24 @@
                             Connectors
 -------------------------------------------------------------------------------
 
-This chapter documents APIs for various programming languages.
+This chapter documents APIs for various programming languages:
+
+* :doc:`C++ <cxx/tntcxx_api>`
+* :ref:`Java <index_connector_java>`
+* :ref:`Go <index_connector_go>`
+* :ref:`R <index_connector_r>`
+* :ref:`Erlang <index_connector_erlang>`
+* :ref:`Perl <index_connector_perl>`
+* :ref:`PHP <index_connector_php>`
+* :ref:`Python <index_connector_py>`
+* :ref:`Node.js <index_connector_nodejs>`
+* :ref:`C# <index_connector_csharp>`
+* :ref:`C <index_connector_c>`
+
+..  toctree::
+    :hidden:
+
+    C++ <cxx/tntcxx_api>
 
 =====================================================================
                             Protocol
@@ -105,25 +122,44 @@ script:
     box.schema.user.grant('guest','read,write','space','examples')
     box.schema.user.grant('guest','read','space','_space')
 
+.. _index_connector_java:
+
 .. include:: __java.rst
+
+.. _index_connector_go:
 
 .. include:: __go.rst
 
+.. _index_connector_r:
+
 .. include:: __r.rst
+
+.. _index_connector_erlang:
 
 .. include:: __erlang.rst
 
+.. _index_connector_perl:
+
 .. include:: __perl.rst
+
+.. _index_connector_php:
 
 .. include:: __php.rst
 
+.. _index_connector_py:
+
 .. include:: __python.rst
+
+.. _index_connector_nodejs:
 
 .. include:: __nodejs.rst
 
+.. _index_connector_csharp:
+
 .. include:: __csharp.rst
+
+.. _index_connector_c:
 
 .. include:: __c.rst
 
 .. include:: __results.rst
-
