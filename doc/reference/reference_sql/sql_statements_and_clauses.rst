@@ -64,6 +64,7 @@ ALTER TABLE
 Syntax:
 
 * :samp:`ALTER TABLE {table-name} RENAME TO {new-table-name};`
+* :samp:`ALTER TABLE {table-name} ADD COLUMN {column-name} {column-definition};`
 * :samp:`ALTER TABLE {table-name} ADD CONSTRAINT {constraint-name} {constraint-definition};`
 * :samp:`ALTER TABLE {table-name} DROP CONSTRAINT {constraint-name};`
 * :samp:`ALTER TABLE {table-name} ENABLE|DISABLE CHECK CONSTRAINT {constraint-name};`
@@ -150,9 +151,7 @@ If a constraint is disabled, then the check will not be performed.
 
 Limitations:
 
-* It is not possible to add or drop a column.
-  However, there is a plan to make it possible to add a column for an empty table
-  (`Issue#3075 <https://github.com/tarantool/tarantool/issues/3075>`_).
+* It is not possible to drop a column.
 * It is not possible to modify NOT NULL constraints or column properties DEFAULT
   and :ref:`data type <sql_column_def_data_type>`.
   However, it is possible to modify them with Tarantool/NOSQL, for example by
