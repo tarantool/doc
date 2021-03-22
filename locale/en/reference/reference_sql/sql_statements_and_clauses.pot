@@ -53,6 +53,9 @@ msgstr ""
 msgid ":samp:`ALTER TABLE {table-name} RENAME TO {new-table-name};`"
 msgstr ""
 
+msgid ":samp:`ALTER TABLE {table-name} ADD COLUMN {column-name} {column-definition};`"
+msgstr ""
+
 msgid ":samp:`ALTER TABLE {table-name} ADD CONSTRAINT {constraint-name} {constraint-definition};`"
 msgstr ""
 
@@ -122,7 +125,7 @@ msgstr ""
 msgid "Limitations:"
 msgstr ""
 
-msgid "It is not possible to add or drop a column. However, there is a plan to make it possible to add a column for an empty table (`Issue#3075 <https://github.com/tarantool/tarantool/issues/3075>`_)."
+msgid "It is not possible to drop a column."
 msgstr ""
 
 msgid "It is not possible to modify NOT NULL constraints or column properties DEFAULT and :ref:`data type <sql_column_def_data_type>`. However, it is possible to modify them with Tarantool/NOSQL, for example by calling :ref:`space_object:format() <box_space-format>` with a different ``is_nullable`` value."
