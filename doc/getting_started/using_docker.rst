@@ -103,13 +103,13 @@ Creating a database
 
 While you're attached to the console, let's create a simple test database.
 
-First, create the first :ref:`space <index-box_space>` (named ``tester``):
+First, create the first :term:`space` (named ``tester``):
 
 .. code-block:: tarantoolsession
 
    tarantool.sock> s = box.schema.space.create('tester')
 
-Format the created space by specifying field names and types:
+Format the created space by specifying :term:`field` names and :ref:`types <index-box_data-types>`:
 
 .. code-block:: tarantoolsession
 
@@ -130,7 +130,7 @@ Create the first :ref:`index <index-box_index>` (named ``primary``):
 
 This is a primary index based on the ``id`` field of each tuple.
 
-Insert three :ref:`tuples <index-box_tuple>` (our name for records)
+Insert three :term:`tuples <tuple>` (our name for records)
 into the space:
 
 .. code-block:: tarantoolsession

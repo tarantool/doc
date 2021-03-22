@@ -86,7 +86,7 @@ The default user is ``guest``.
 Manipulating the data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A **space** is a container for **tuples**. To access a space as a named object,
+A :term:`space` is a container for :term:`tuples <tuple>`. To access a space as a named object,
 use ``getSpace``:
 
 .. code-block:: php
@@ -167,7 +167,7 @@ Finally, select all the tuples in a space via a ``select``:
 Updating data
 ********************************************************************************
 
-Update a field value using ``update``:
+Update a :term:`field` value using ``update``:
 
 .. code-block:: php
 

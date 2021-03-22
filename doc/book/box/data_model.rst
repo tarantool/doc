@@ -13,53 +13,74 @@ then your test database now looks like this:
 
 .. image:: data_model.png
 
-.. _index-box_space:
-
---------------------------------------------------------------------------------
-Spaces
---------------------------------------------------------------------------------
-
-A **space** -- 'tester' in our example -- is a container.
-
-When Tarantool is being used to store data, there is always at least one space.
-Each space has a unique **name** specified by the user.
-Besides, each space has a unique **numeric identifier** which can be specified by
-the user, but usually is assigned automatically by Tarantool.
-Finally, a space always has an **engine**: *memtx* (default) -- in-memory engine,
-fast but limited in size, or *vinyl* -- on-disk engine for huge data sets.
-
-A space is a container for :ref:`tuples <index-box_tuple>`.
-To be functional, it needs to have a :ref:`primary index <index-box_index>`.
-It can also have secondary indexes.
-
 .. _index-box_tuple:
 
 --------------------------------------------------------------------------------
 Tuples
 --------------------------------------------------------------------------------
 
-A **tuple** plays the same role as a “row” or a “record”, and the components of
-a tuple (which we call “fields”) play the same role as a “row column” or
-“record field”, except that:
+Tarantool operates data in the form of tuples.
 
-* fields can be composite structures, such as arrays or maps, and
-* fields don't need to have names.
+..  glossary::
 
-Any given tuple may have any number of fields, and the fields may be of
-different :ref:`types <index-box_data-types>`.
-The identifier of a field is the field's number, base 1
-(in Lua and other 1-based languages) or base 0 (in PHP or C/C++).
-For example, ``1`` or ``0`` can be used in some contexts to refer to the first
-field of a tuple.
+    tuple
+        A tuple is a group of data values in Tarantool's memory.
+        Think of it as a "database record" or a "row".
+        The data values in the tuple are called :term:`fields <field>`.
 
-The number of tuples in a space is unlimited.
+        When Tarantool returns a tuple value in the console,
+        by default it uses :ref:`YAML <interactive_console>` format,
+        for example: ``[3, 'Ace of Base', 1993]``.
 
-Tuples in Tarantool are stored as
-`MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_ arrays.
+        Internally, Tarantool stores tuples as
+        `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_ arrays.
 
-When Tarantool returns a tuple value in the console,
-by default it uses :ref:`YAML <interactive_console>` format,
-for example: ``[3, 'Ace of Base', 1993]``.
+    field
+        Fields are distinct data values, contained in a tuple.
+        They play the same role as "row columns" or "record fields" in relational databases,
+        with a few improvements:
+
+            *   fields can be composite structures, such as arrays or maps, and
+            *   fields don't need to have names.
+
+        A given tuple may have any number of fields, and the fields may be of
+        different :ref:`types <index-box_data-types>`.
+
+        The field's number is the identifier of the field.
+        Numbers are counted from base 1 in Lua and other 1-based languages,
+        or from base 0 in languages like PHP or C/C++.
+        So, ``1`` or ``0`` can be used in some contexts to refer to the first
+        field of a tuple.
+
+.. _index-box_space:
+
+--------------------------------------------------------------------------------
+Spaces
+--------------------------------------------------------------------------------
+
+Tarantool stores tuples in containers called spaces.
+In our example there's a space called ``'tester'``.
+
+..  glossary::
+
+    space
+        In Tarantool, a space is a primary container which stores data.
+        It is analogous to tables in relational databases.
+        Spaces contain :term:`tuples <tuple>` — the Tarantool name for
+        database records.
+        The number of tuples in a space is unlimited.
+
+        At least one space is required to store data with Tarantool.
+        Each space has the following attributes:
+
+        *   a unique **name** specified by the user
+        *   a unique **numeric identifier** which can be specified by
+            the user, but usually is assigned automatically by Tarantool.
+        *   an **engine**: *memtx* (default) -- in-memory engine,
+            fast but limited in size, or *vinyl* -- on-disk engine for huge data sets.
+
+        To be functional, a space also needs to have a :ref:`primary index <index-box_index>`.
+        It can also have secondary indexes.
 
 .. _index-box_index:
 
