@@ -100,7 +100,7 @@ Manipulating the data
 Inserting data
 ********************************************************************************
 
-To insert a tuple into a space, use ``Insert``:
+To insert a :term:`tuple` into a :term:`space`, use ``Insert``:
 
 .. code-block:: go
 
@@ -152,7 +152,7 @@ For more examples, see https://github.com/tarantool/go-tarantool#usage
 Updating data
 ********************************************************************************
 
-Update a field value using ``Update``:
+Update a :term:`field` value using ``Update``:
 
 .. code-block:: go
 

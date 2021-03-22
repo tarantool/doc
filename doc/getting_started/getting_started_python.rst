@@ -79,8 +79,8 @@ The default user is ``guest``.
 Manipulating the data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A **space** is a container for **tuples**. To access a space as a named object,
-use ``connection.space``:
+A :term:`space` is a container for :term:`tuples <tuple>`.
+To access a space as a named object, use ``connection.space``:
 
 .. code-block:: python
 
@@ -148,7 +148,7 @@ arguments:
 Updating data
 ********************************************************************************
 
-Update a field value using ``update``:
+Update a :term:`field` value using ``update``:
 
 .. code-block:: python
 

@@ -92,13 +92,13 @@ Here is how to create a simple test database after installation.
 
       tarantool> box.cfg{listen = 3301}
 
-#. Create the first :ref:`space <index-box_space>` (named ``tester``):
+#. Create the first :term:`space <space>` (named ``tester``):
 
    .. code-block:: tarantoolsession
 
       tarantool> s = box.schema.space.create('tester')
 
-#. Format the created space by specifying field names and types:
+#. Format the created space by specifying :term:`field` names and :term:`types <index-box_data-types>`:
 
    .. code-block:: tarantoolsession
 
@@ -119,7 +119,7 @@ Here is how to create a simple test database after installation.
 
    This is a primary index based on the ``id`` field of each tuple.
 
-#. Insert three :ref:`tuples <index-box_tuple>` (our name for records)
+#. Insert three :term:`tuples <tuple>` (our name for records)
    into the space:
 
    .. code-block:: tarantoolsession
