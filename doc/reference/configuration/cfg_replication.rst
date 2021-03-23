@@ -405,7 +405,7 @@
 
 .. confval:: replication_synchro_quorum
 
-    Since version 2.5.1.
+    Since version :doc:`2.5.1 </release/2.5.1>`.
     For :ref:`synchronous replication <repl_sync>` only.
     This option tells how many replicas should confirm the receipt of a
     synchronous transaction before it can finish its commit. So far this
@@ -426,7 +426,7 @@
 
 .. confval:: replication_synchro_timeout
 
-    Since version 2.5.1.
+    Since version :doc:`2.5.1 </release/2.5.1>`.
     For :ref:`synchronous replication <repl_sync>` only.
     Tells how many seconds to wait for a synchronous transaction quorum
     replication until it is declared failed and is rolled back.

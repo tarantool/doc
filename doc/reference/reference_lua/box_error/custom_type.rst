@@ -66,8 +66,9 @@ is ``'CustomError'``.
     base_type: CustomError
     ...
 
-You can also use a format string to compose an error message for
-the ``'CustomError'`` type.
+Since version :doc:`2.4.2 </release/2.4.2>`,
+you can also use a format string to compose an error message for
+the ``'CustomError'`` type:
 
 .. code-block:: lua
 
