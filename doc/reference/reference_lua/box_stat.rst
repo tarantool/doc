@@ -252,7 +252,7 @@ for dumping or compaction:
   ``scheduler.tasks_completed`` (successfully completed)
   ``scheduler.tasks_failed`` (aborted due to errors).
 
-* ``box.stat.vinyl().scheduler_dump_*`` has
+* ``box.stat.vinyl().scheduler.dump_*`` has
   the amount of data from recent changes that has been dumped,
   including ``dump_time`` (total time spent by all worker threads performing dumps, in seconds),
   and ``dump_count`` (the count of completed dumps),
