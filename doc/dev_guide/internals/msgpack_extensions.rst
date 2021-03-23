@@ -116,7 +116,7 @@ So the uuid MessagePack representation looks like this:
 .. code-block:: none
 
     +--------+------------+-----------------+
-    | MP_EXT | MP_UUID    | PackedDecimal   |
+    | MP_EXT | MP_UUID    | UuidValue       |
     | = d8   | = 2        | = 16-byte value |
     +--------+------------+-----------------+
 
