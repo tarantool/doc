@@ -31,14 +31,15 @@ Functionality added or changed
 Core
 ~~~~
 
--   ``box.session.push()`` parameter ``sync`` is deprecated. A warning is
-    printed when the sync is used, but it still works. It is removed in
-    the next version (gh-4689).
+-   :doc:`</reference/reference_lua/box_session/push>` parameter ``sync``
+    is deprecated. A warning is printed when the sync is used, but it still works.
+    It is removed in the next version (gh-4689).
 
 Misc
 ~~~~
 
--   Don’t start ‘example’ instance after installing tarantool (gh-4507).
+-   Don’t start :ref:`‘example’ instance <creating-db-locally>` after
+    installing Tarantool (gh-4507).
 
     Before this release tarantool package for Debian and Ubuntu
     automatically enable and start ‘example’ instance, which listens on
@@ -101,6 +102,7 @@ Lua
 ~~~
 
 -   Added format string usage to form a CustomError message (gh-4903).
+    Read more: :doc:`/reference/reference_lua/box_error/custom_type`.
 -   Fixed error while closing socket.tcp_server socket (gh-4087).
 -   Extended box.error objects reference counter to 64 bit to prevent
     possible overflow (gh-4902).

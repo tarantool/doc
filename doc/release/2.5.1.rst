@@ -44,17 +44,18 @@ Functionality added or changed
 Core
 ~~~~
 
--   **[Breaking change]** ``box.session.push()`` parameter ``sync`` is
-    deprecated and deleted. It does not work anymore, and a usage attempt
-    leads to an error (gh-4689).
+-   **[Breaking change]** :doc:`</reference/reference_lua/box_session/push>`
+    parameter ``sync`` is deprecated and deleted. It does not work anymore, and
+    a usage attempt leads to an error (gh-4689).
 -   **[Breaking change]** Define new rules for implicit cast for
-    assignment operation in SQL (gh-3809).
+    assignment operation in SQL (gh-3809). Read more: :ref:`sql-implicit_cast`.
 -   Symbols of the Tarantool executable are not masked anymore. Some
     private symbols may become visible and available for FFI and
     ``dlopen()`` + ``dlsym()`` (gh-2971).
 -   Add ability to set up logging early without configuring the ``box``
     engine (gh-689).
--   To retrieve information about memory usage, ``box.info:memory()`` can
+-   To retrieve information about memory usage,
+    :doc:`/reference/reference_lua/box_info/memory` can
     be used (gh-4688).
 
 Vinyl
@@ -67,18 +68,19 @@ SQL
 ~~~
 
 -   Use naming pattern “COLUMN_N” for automatically generated column’s
-    names (gh-3962).
+    names (gh-3962). Read more: :ref:`sql_select_list`.
 
 Replication
 ~~~~~~~~~~~
 
--   Add ``box.info.replication_anon``. When called, it lists anonymous
+-   Add :doc:`/reference/reference_lua/box_info/replication_anon`.
+    When called, it lists anonymous
     replicas in the same format as ``box.info.replication``, the only
     exception is that anonymous replicas are indexed by their uuid
     strings (gh-4900).
 -   Allow anonymous replicas to be followed by other ones (gh-4696).
--   Synchronous replication can be enabled per-space using the
-    ``is_sync`` space option (gh-4842).
+-   :doc:`Synchronous replication </book/replication/repl_sync>`
+    can be enabled per-space using the ``is_sync`` space option (gh-4842).
 
 Build
 ~~~~~
@@ -88,8 +90,8 @@ Build
 Misc
 ~~~~
 
--   Don’t start the ‘example’ instance after installing Tarantool
-    (gh-4507).
+-   Don’t start the :ref:`‘example’ instance <creating-db-locally>`
+    after installing Tarantool (gh-4507).
 
     Before this release, the Tarantool package for Debian and Ubuntu
     automatically enable and start the ‘example’ instance, which listens
@@ -153,6 +155,7 @@ Lua
 ~~~
 
 -   Added format string usage to form a CustomError message (gh-4903).
+    Read more: :doc:`/reference/reference_lua/box_error/custom_type`.
 -   Fixed error while closing socket.tcp_server socket (gh-4087).
 -   Extended box.error objects reference counter to 64 bit to prevent
     possible overflow (gh-4902).

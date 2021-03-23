@@ -21,7 +21,8 @@ replicated onto some number of replicas.
 Usage
 --------------------------------------------------------------------------------
 
-In Tarantool, it can be enabled per-space using the ``is_sync`` option:
+Since version :doc:`2.5.1 </release/2.5.1>`,
+synchronous replication can be enabled per-space using the ``is_sync`` option:
 
 .. code-block:: lua
 

@@ -965,6 +965,8 @@ However, ``CAST('5.5' AS INTEGER)`` is illegal because 5.5 is not an integer --
 if the string contains post-decimal digits and the target is INTEGER or UNSIGNED,
 the assignment will fail.
 
+.. _sql-implicit_cast:
+
 ********************************************************************************
 Implicit string/numeric cast
 ********************************************************************************
@@ -982,7 +984,8 @@ Therefore ``1e400 < ''`` is TRUE. |br|
 Exception: for BETWEEN the cast is to the data type of the first and last operands. |br|
 Therefore ``'66' BETWEEN 5 AND '7'`` is TRUE.
 
-For assignments, due to a change in behavior starting with Tarantool 2.5.1,
+For assignments, due to a change in behavior starting with Tarantool
+:doc:`2.5.1 </release/2.5.1>`,
 implicit casts from strings to numbers are not legal. Therefore
 ``INSERT INTO t (integer_column) VALUES ('5');`` is an error.
 

@@ -26,9 +26,9 @@ box.session.push()
                      as taken from an earlier call to
                      :doc:`/reference/reference_lua/box_session/sync`.
                      If it is omitted, the default is the current ``box.session.sync()`` value.
-                     In Tarantool version 2.4.1, `sync` is deprecated and its
-                     use will cause a warning.
-                     In Tarantool versions after 2.4.1, its use will cause an error.
+                     In Tarantool version :doc:`2.4.2 </release/2.4.2>`, ``sync``
+                     is **deprecated** and its use will cause a warning.
+                     Since version 2.5.1, its use will cause an error.
 
     :rtype: {nil, error} or true:
 
