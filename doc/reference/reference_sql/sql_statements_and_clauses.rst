@@ -1829,8 +1829,8 @@ the name of a column in the table, then Tarantool makes a name
 expression within the select list, for example
 ``SELECT 5.88, table1.x, 'b' COLLATE "unicode_ci" FROM table1;``
 will cause the column names to be COLUMN_1, X, COLUMN_2.
-This is a behavior change in Tarantool :doc:`2.5.1 </release/2.5.1>`,
-in earlier versions the name would be equal to the expression,
+This is a behavior change since version :doc:`2.5.1 </release/2.5.1>`.
+In earlier versions, the name would be equal to the expression;
 see `Issue#3962 <https://github.com/tarantool/tarantool/issues/3962>`_.
 It is still legal to define tables with column names like ``COLUMN_1`` but not recommended.
 
@@ -3832,4 +3832,3 @@ the three SELECT statements here will return results in three different orders: 
 ``SELECT remark FROM things ORDER BY remark COLLATE "unicode";`` |br|
 ``SELECT remark FROM things ORDER BY remark COLLATE "unicode_uk_s1";`` |br|
 ``SELECT remark FROM things ORDER BY remark COLLATE "unicode_ky_s1";``
-

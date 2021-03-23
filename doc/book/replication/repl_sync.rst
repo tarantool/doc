@@ -22,7 +22,7 @@ Usage
 --------------------------------------------------------------------------------
 
 Since version :doc:`2.5.1 </release/2.5.1>`,
-synchronous replication can be enabled per-space using the ``is_sync`` option:
+synchronous replication can be enabled per-space by using the ``is_sync`` option:
 
 .. code-block:: lua
 
