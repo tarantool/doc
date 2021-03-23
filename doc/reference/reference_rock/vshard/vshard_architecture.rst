@@ -162,7 +162,7 @@ changed dynamically - for example, when adding or deleting one or several shards
    that specifies the new vbucket location.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-CRUD (create, replace, update, delete) operations
+CRUD (create, read, update, delete) operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 CRUD operations can be:
@@ -415,7 +415,7 @@ Glossary
     .. vshard-write_requests:
 
     **Write requests**
-        Data-change operations, that is create, replace, update, delete requests.
+        Data-change operations, that is create, read, update, delete requests.
 
     .. vshard-bucket:
 
