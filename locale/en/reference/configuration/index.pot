@@ -936,7 +936,7 @@ msgstr ""
 msgid "box.cfg{instance_uuid='037fec43-18a9-4e12-a684-a42b716fcd02'}"
 msgstr ""
 
-msgid "Since version 2.5.1. For :ref:`synchronous replication <repl_sync>` only. This option tells how many replicas should confirm the receipt of a synchronous transaction before it can finish its commit. So far this option accounts all replicas, including anonymous."
+msgid "Since version :doc:`2.5.1 </release/2.5.1>`. For :ref:`synchronous replication <repl_sync>` only. This option tells how many replicas should confirm the receipt of a synchronous transaction before it can finish its commit. So far this option accounts all replicas, including anonymous."
 msgstr ""
 
 msgid "It is 1 by default, so synchronous transactions work like asynchronous when not configured. 1 means successful WAL write on master is enough for commit."
@@ -945,7 +945,7 @@ msgstr ""
 msgid "It is not used on replicas, so if the master dies, the pending synchronous transactions will be kept waiting on the replicas until a new master is elected."
 msgstr ""
 
-msgid "Since version 2.5.1. For :ref:`synchronous replication <repl_sync>` only. Tells how many seconds to wait for a synchronous transaction quorum replication until it is declared failed and is rolled back."
+msgid "Since version :doc:`2.5.1 </release/2.5.1>`. For :ref:`synchronous replication <repl_sync>` only. Tells how many seconds to wait for a synchronous transaction quorum replication until it is declared failed and is rolled back."
 msgstr ""
 
 msgid "Default: 5"

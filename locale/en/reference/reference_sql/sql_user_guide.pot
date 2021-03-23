@@ -665,7 +665,7 @@ msgstr ""
 msgid "For comparisons, the cast is always from STRING to number. |br| Therefore ``1e2 = '100'`` is TRUE, and ``11 > '2'`` is TRUE. |br| If the cast fails, then the number is less than the STRING. |br| Therefore ``1e400 < ''`` is TRUE. |br| Exception: for BETWEEN the cast is to the data type of the first and last operands. |br| Therefore ``'66' BETWEEN 5 AND '7'`` is TRUE."
 msgstr ""
 
-msgid "For assignments, due to a change in behavior starting with Tarantool 2.5.1, implicit casts from strings to numbers are not legal. Therefore ``INSERT INTO t (integer_column) VALUES ('5');`` is an error."
+msgid "For assignments, due to a change in behavior starting with Tarantool :doc:`2.5.1 </release/2.5.1>`, implicit casts from strings to numbers are not legal. Therefore ``INSERT INTO t (integer_column) VALUES ('5');`` is an error."
 msgstr ""
 
 msgid "Implicit cast does happen if STRINGS are used in arithmetic. |br| Therefore ``'5' / '5' = 1``. If the cast fails, then the result is an error. |br| Therefore ``'5' / ''`` is an error."

@@ -14,7 +14,7 @@ msgstr ""
 msgid "Usage"
 msgstr ""
 
-msgid "In Tarantool, it can be enabled per-space using the ``is_sync`` option:"
+msgid "Since version :doc:`2.5.1 </release/2.5.1>`, synchronous replication can be enabled per-space by using the ``is_sync`` option:"
 msgstr ""
 
 msgid "box.schema.create_space('test1', {is_sync = true})"

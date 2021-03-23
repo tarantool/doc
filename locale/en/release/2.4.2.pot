@@ -29,13 +29,13 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "``box.session.push()`` parameter ``sync`` is deprecated. A warning is printed when the sync is used, but it still works. It is removed in the next version (gh-4689)."
+msgid ":doc:`</reference/reference_lua/box_session/push>` parameter ``sync`` is deprecated. A warning is printed when the sync is used, but it still works. It is removed in the next version (gh-4689)."
 msgstr ""
 
 msgid "Misc"
 msgstr ""
 
-msgid "Don’t start ‘example’ instance after installing tarantool (gh-4507)."
+msgid "Don’t start :ref:`‘example’ instance <creating-db-locally>` after installing Tarantool (gh-4507)."
 msgstr ""
 
 msgid "Before this release tarantool package for Debian and Ubuntu automatically enable and start ‘example’ instance, which listens on the TCP port 3301. Starting from this release the instance file is installed to /etc/tarantool/instances.available/example.lua, but is not enabled by default and not started anymore. One may perform the following actions to enable and start it:"
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Lua"
 msgstr ""
 
-msgid "Added format string usage to form a CustomError message (gh-4903)."
+msgid "Added format string usage to form a CustomError message (gh-4903). Read more: :doc:`/reference/reference_lua/box_error/custom_type`."
 msgstr ""
 
 msgid "Fixed error while closing socket.tcp_server socket (gh-4087)."
