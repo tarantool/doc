@@ -122,7 +122,7 @@ msgstr ""
 msgid "When trying to access the vbucket, a router receives a special error code that specifies the new vbucket location."
 msgstr ""
 
-msgid "CRUD (create, replace, update, delete) operations"
+msgid "CRUD (create, read, update, delete) operations"
 msgstr ""
 
 msgid "CRUD operations can be:"
@@ -362,7 +362,7 @@ msgstr ""
 msgid "**Write requests**"
 msgstr ""
 
-msgid "Data-change operations, that is create, replace, update, delete requests."
+msgid "Data-change operations, that is create, read, update, delete requests."
 msgstr ""
 
 msgid "**Buckets (virtual buckets)**"
