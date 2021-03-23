@@ -192,7 +192,7 @@ msgstr ""
 msgid "``box.stat.vinyl().scheduler.tasks_*`` is about dump/compaction tasks, in three categories, ``scheduler.tasks_inprogress`` (currently running), ``scheduler.tasks_completed`` (successfully completed) ``scheduler.tasks_failed`` (aborted due to errors)."
 msgstr ""
 
-msgid "``box.stat.vinyl().scheduler_dump_*`` has the amount of data from recent changes that has been dumped, including ``dump_time`` (total time spent by all worker threads performing dumps, in seconds), and ``dump_count`` (the count of completed dumps), ``dump_input`` and ``dump_output``."
+msgid "``box.stat.vinyl().scheduler.dump_*`` has the amount of data from recent changes that has been dumped, including ``dump_time`` (total time spent by all worker threads performing dumps, in seconds), and ``dump_count`` (the count of completed dumps), ``dump_input`` and ``dump_output``."
 msgstr ""
 
 msgid "A \"dump\" is explained in section :ref:`Storing data with vinyl <engines-algorithm_filling_lsm>`:"
