@@ -2,12 +2,9 @@ name: Deploy-branch
 
 on:
   pull_request:
-    types:
-      - labeled
 jobs:
   deploy-branch:
     runs-on: ubuntu-latest
-    if: ${{ github.event.label.name == 'deploy-branch' }}
     container: tarantool/doc-builder:v1
     env:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
