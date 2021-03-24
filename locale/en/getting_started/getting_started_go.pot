@@ -83,7 +83,7 @@ msgstr ""
 msgid "Inserting data"
 msgstr ""
 
-msgid "To insert a tuple into a space, use ``Insert``:"
+msgid "To insert a :term:`tuple` into a :term:`space`, use ``Insert``:"
 msgstr ""
 
 msgid "resp, err = conn.Insert(\"tester\", []interface{}{4, \"ABBA\", 1972})"
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Updating data"
 msgstr ""
 
-msgid "Update a field value using ``Update``:"
+msgid "Update a :term:`field` value using ``Update``:"
 msgstr ""
 
 msgid "resp, err = conn.Update(\"tester\", \"primary\", []interface{}{4}, []interface{}{[]interface{}{\"+\", 2, 3}})"

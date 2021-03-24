@@ -84,13 +84,13 @@ msgstr ""
 msgid "While you're attached to the console, let's create a simple test database."
 msgstr ""
 
-msgid "First, create the first :ref:`space <index-box_space>` (named ``tester``):"
+msgid "First, create the first :term:`space` (named ``tester``):"
 msgstr ""
 
 msgid "tarantool.sock> s = box.schema.space.create('tester')"
 msgstr ""
 
-msgid "Format the created space by specifying field names and types:"
+msgid "Format the created space by specifying :term:`field` names and :ref:`types <index-box_data-types>`:"
 msgstr ""
 
 msgid "tarantool.sock> s:format({\n"
@@ -112,7 +112,7 @@ msgstr ""
 msgid "This is a primary index based on the ``id`` field of each tuple."
 msgstr ""
 
-msgid "Insert three :ref:`tuples <index-box_tuple>` (our name for records) into the space:"
+msgid "Insert three :term:`tuples <tuple>` (our name for records) into the space:"
 msgstr ""
 
 msgid "tarantool.sock> s:insert{1, 'Roxette', 1986}\n"
@@ -280,10 +280,13 @@ msgstr ""
 msgid "tarantool> box.cfg{listen = 3301}"
 msgstr ""
 
-msgid "Create the first :ref:`space <index-box_space>` (named ``tester``):"
+msgid "Create the first :term:`space <space>` (named ``tester``):"
 msgstr ""
 
 msgid "tarantool> s = box.schema.space.create('tester')"
+msgstr ""
+
+msgid "Format the created space by specifying :term:`field` names and :term:`types <index-box_data-types>`:"
 msgstr ""
 
 msgid "tarantool> s:format({\n"

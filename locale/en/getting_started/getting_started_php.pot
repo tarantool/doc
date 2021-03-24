@@ -71,7 +71,7 @@ msgstr ""
 msgid "Manipulating the data"
 msgstr ""
 
-msgid "A **space** is a container for **tuples**. To access a space as a named object, use ``getSpace``:"
+msgid "A :term:`space` is a container for :term:`tuples <tuple>`. To access a space as a named object, use ``getSpace``:"
 msgstr ""
 
 msgid "$tester = $client->getSpace('tester');"
@@ -133,7 +133,7 @@ msgstr ""
 msgid "Updating data"
 msgstr ""
 
-msgid "Update a field value using ``update``:"
+msgid "Update a :term:`field` value using ``update``:"
 msgstr ""
 
 msgid "use Tarantool\\Client\\Schema\\Operations;\n"

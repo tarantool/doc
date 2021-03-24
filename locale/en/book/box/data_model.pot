@@ -8,22 +8,28 @@ msgstr ""
 msgid "If you tried to create a database as suggested in our :ref:`\"Getting started\" exercises <getting_started_db>`, then your test database now looks like this:"
 msgstr ""
 
-msgid "Spaces"
-msgstr ""
-
-msgid "A **space** -- 'tester' in our example -- is a container."
-msgstr ""
-
-msgid "When Tarantool is being used to store data, there is always at least one space. Each space has a unique **name** specified by the user. Besides, each space has a unique **numeric identifier** which can be specified by the user, but usually is assigned automatically by Tarantool. Finally, a space always has an **engine**: *memtx* (default) -- in-memory engine, fast but limited in size, or *vinyl* -- on-disk engine for huge data sets."
-msgstr ""
-
-msgid "A space is a container for :ref:`tuples <index-box_tuple>`. To be functional, it needs to have a :ref:`primary index <index-box_index>`. It can also have secondary indexes."
-msgstr ""
-
 msgid "Tuples"
 msgstr ""
 
-msgid "A **tuple** plays the same role as a “row” or a “record”, and the components of a tuple (which we call “fields”) play the same role as a “row column” or “record field”, except that:"
+msgid "Tarantool operates data in the form of tuples."
+msgstr ""
+
+msgid "tuple"
+msgstr ""
+
+msgid "A tuple is a group of data values in Tarantool's memory. Think of it as a \"database record\" or a \"row\". The data values in the tuple are called :term:`fields <field>`."
+msgstr ""
+
+msgid "When Tarantool returns a tuple value in the console, by default it uses :ref:`YAML <interactive_console>` format, for example: ``[3, 'Ace of Base', 1993]``."
+msgstr ""
+
+msgid "Internally, Tarantool stores tuples as `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_ arrays."
+msgstr ""
+
+msgid "field"
+msgstr ""
+
+msgid "Fields are distinct data values, contained in a tuple. They play the same role as \"row columns\" or \"record fields\" in relational databases, with a few improvements:"
 msgstr ""
 
 msgid "fields can be composite structures, such as arrays or maps, and"
@@ -32,16 +38,37 @@ msgstr ""
 msgid "fields don't need to have names."
 msgstr ""
 
-msgid "Any given tuple may have any number of fields, and the fields may be of different :ref:`types <index-box_data-types>`. The identifier of a field is the field's number, base 1 (in Lua and other 1-based languages) or base 0 (in PHP or C/C++). For example, ``1`` or ``0`` can be used in some contexts to refer to the first field of a tuple."
+msgid "A given tuple may have any number of fields, and the fields may be of different :ref:`types <index-box_data-types>`."
 msgstr ""
 
-msgid "The number of tuples in a space is unlimited."
+msgid "The field's number is the identifier of the field. Numbers are counted from base 1 in Lua and other 1-based languages, or from base 0 in languages like PHP or C/C++. So, ``1`` or ``0`` can be used in some contexts to refer to the first field of a tuple."
 msgstr ""
 
-msgid "Tuples in Tarantool are stored as `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_ arrays."
+msgid "Spaces"
 msgstr ""
 
-msgid "When Tarantool returns a tuple value in the console, by default it uses :ref:`YAML <interactive_console>` format, for example: ``[3, 'Ace of Base', 1993]``."
+msgid "Tarantool stores tuples in containers called spaces. In our example there's a space called ``'tester'``."
+msgstr ""
+
+msgid "space"
+msgstr ""
+
+msgid "In Tarantool, a space is a primary container which stores data. It is analogous to tables in relational databases. Spaces contain :term:`tuples <tuple>` — the Tarantool name for database records. The number of tuples in a space is unlimited."
+msgstr ""
+
+msgid "At least one space is required to store data with Tarantool. Each space has the following attributes:"
+msgstr ""
+
+msgid "a unique **name** specified by the user"
+msgstr ""
+
+msgid "a unique **numeric identifier** which can be specified by the user, but usually is assigned automatically by Tarantool."
+msgstr ""
+
+msgid "an **engine**: *memtx* (default) -- in-memory engine, fast but limited in size, or *vinyl* -- on-disk engine for huge data sets."
+msgstr ""
+
+msgid "To be functional, a space also needs to have a :ref:`primary index <index-box_index>`. It can also have secondary indexes."
 msgstr ""
 
 msgid "Indexes"
