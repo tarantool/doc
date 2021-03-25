@@ -1,0 +1,97 @@
+
+msgid "Links and references"
+msgstr ""
+
+msgid "Linking to other documentation pages"
+msgstr ""
+
+msgid "To create a link to another document in our documentation, we use the ``:doc:`` role. For example, this link points to the document ``/reference/reference_lua/box_error.rst``:"
+msgstr ""
+
+msgid ":doc:`box.error reference </reference/reference_lua/box_error>`"
+msgstr ""
+
+msgid "Our convention is to put the full path to the referred document so that we can easily replace the path if it changes. Note that we can omit the ``.rst`` part of the filename."
+msgstr ""
+
+msgid "You can use the target document's title as the link text. To do so, omit the text in the link definition:"
+msgstr ""
+
+msgid "\n"
+"*   :doc:`/reference/reference_lua/box_index`\n"
+"*   :doc:`/reference/reference_lua/box_error`\n"
+"*   :doc:`/reference/reference_lua/box_backup`\n"
+""
+msgstr ""
+
+msgid "And you will get this:"
+msgstr ""
+
+msgid ":doc:`/reference/reference_lua/box_index`"
+msgstr ""
+
+msgid ":doc:`/reference/reference_lua/box_error`"
+msgstr ""
+
+msgid ":doc:`/reference/reference_lua/box_backup`"
+msgstr ""
+
+msgid "Linking to labels (anchors)"
+msgstr ""
+
+msgid "To generate a link to the certain place in the page, we use the ``:ref:`` role. For this purpose, we add our own labels for linking to any place in this documentation."
+msgstr ""
+
+msgid "Our naming convention is as follows:"
+msgstr ""
+
+msgid "Character set: a through z, 0 through 9, dash, underscore."
+msgstr ""
+
+msgid "Format: ``path dash filename dash tag``"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "..  _c_api-box_index-iterator_type:"
+msgstr ""
+
+msgid "where:"
+msgstr ""
+
+msgid "``c_api`` is the directory name,"
+msgstr ""
+
+msgid "``box_index`` is the file name (without \".rst\"), and"
+msgstr ""
+
+msgid "``iterator_type`` is the tag."
+msgstr ""
+
+msgid "Use a dash \"-\" to delimit the path and the file name. In the documentation source, we use only underscores \"_\" in paths and file names, reserving dash \"-\" as the delimiter for local links."
+msgstr ""
+
+msgid "The tag can be anything meaningful. The only guideline is for Tarantool syntax items (such as members), where the preferred tag syntax is ``module_or_object_name dash member_name``. For example, ``box_space-drop``."
+msgstr ""
+
+msgid "Linking to external resources"
+msgstr ""
+
+msgid "To make an external link, use the following syntax:"
+msgstr ""
+
+msgid "This is a paragraph that contains `a link <http://example.com/>`_."
+msgstr ""
+
+msgid "Avoid separating the link and the target definition, like this:"
+msgstr ""
+
+msgid "This is wrong way to make `a link`_.\n"
+"\n"
+"..  _a link: http://example.com/"
+msgstr ""
+
+msgid "**Warning:** Every separated link tends to cause troubles when this documentation is translated to other languages. Please avoid using separated links."
+msgstr ""
+
