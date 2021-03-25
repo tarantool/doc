@@ -13,8 +13,8 @@ The guidelines are a work in progress, and we welcome all contributions.
     :maxdepth: 2
     :caption: Contents:
 
+    docs/style
     docs/terms
     docs/markup
-    docs/style
     docs/examples
     docs/infra
