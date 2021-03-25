@@ -26,7 +26,7 @@ Also, you should format the expression as code if it fits at least one of the it
 
 **Items we don't format as code**
 * names of products, organizations and services, for example, "Tarantool"
-* memtx, vynyl
+* memtx, vinyl
 * well-established terms such as stdin and stdout
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
