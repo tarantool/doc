@@ -14,6 +14,7 @@ This section will guide you through our typical cases while writing the docs.
     :caption: Contents:
 
     markup/intro
+    markup/headings
     markup/links
     markup/tables
     markup/code
