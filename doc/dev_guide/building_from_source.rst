@@ -44,14 +44,28 @@ the preferences can differ. But strategically the steps are always the same:
 
             $ apt-get install -y \
               git build-essential cmake make coreutils autoconf automake libtool sed \
+              zlib1g-dev libreadline-dev libncurses5-dev libssl-dev \
+              libunwind-dev libicu-dev \
               python3 python3-yaml python3-six python3-gevent
 
-    *   For RHEL/CentOS (versions under 8)/Fedora, say:
+    *   For Fedora, say:
 
         ..  code-block:: console
 
-            $ yum install -y \
-              git perl gcc cmake make gcc-c++ libstdc++-static autoconf automake libtool \
+            $ yum install -y git gcc gcc-c++ cmake make coreutils sed \
+              autoconf automake libtool zlib-devel \
+              readline-devel ncurses-devel openssl-devel \
+              libunwind-devel libicu-devel \
+              python3-yaml python3-six python3-gevent
+
+    *   For RHEL/CentOS (versions under 8), say:
+
+        ..  code-block:: console
+
+            $ yum install epel-release
+            $ yum install -y git gcc cmake3 make gcc-c++ coreutils sed autoconf automake \
+              libtool zlib-devel readline-devel ncurses-devel openssl-devel \
+              libunwind-devel libicu-devel \
               python3-yaml python3-six python3-gevent
 
     *   For CentOS 8, say:
@@ -61,7 +75,9 @@ the preferences can differ. But strategically the steps are always the same:
             $ yum install epel-release
             $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | sudo bash
             $ yum install -y \
-              git perl gcc cmake make gcc-c++ libstdc++-static autoconf automake libtool \
+              git gcc cmake3 make gcc-c++ coreutils sed autoconf automake \
+              libtool zlib-devel readline-devel ncurses-devel openssl-devel \
+              libunwind-devel libicu-devel \
               python3-yaml python3-six python3-gevent
 
     *   For Mac OS X:
@@ -94,8 +110,11 @@ the preferences can differ. But strategically the steps are always the same:
 
         ..  code-block:: console
 
-            $ pkg install git cmake gmake readline icu \
-              python27 py27-yaml py27-daemon py27-msgpack
+            $ pkg install -y sudo git cmake gmake gcc coreutils \
+              autoconf automake libtool \
+              readline ncurses openssl libunwind icu \
+              python27 py27-pip py27-setuptools py27-daemon \
+              py27-msgpack py27-yaml py27-argparse py27-six py27-gevent
 
     If some Python modules are not available in a repository,
     it is best to set up the modules by getting a tarball and
