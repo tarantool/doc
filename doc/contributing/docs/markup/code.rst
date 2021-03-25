@@ -28,9 +28,8 @@ Lua syntax is highlighted in the output:
 
 ..  include:: _includes/lua.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Inline code
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------
 
 To format some inline text as ``code``, enclose it with double ````` characters
 or use the ``:code:`` role:
@@ -42,9 +41,8 @@ Both options produce the same output:
 
 ..  include:: _includes/inline-code.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Highlighting variables in code
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 If you need to highlight variables in code inline, use the ``:samp:`` role,
 like this:
