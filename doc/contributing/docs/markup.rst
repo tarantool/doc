@@ -10,7 +10,7 @@ This section will guide you through our typical cases while writing the docs.
 
 
 ..  toctree::
-    :tocdepth: 2
+    :maxdepth: 2
     :caption: Contents:
 
     markup/intro
