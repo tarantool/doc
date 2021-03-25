@@ -16,6 +16,5 @@ The guidelines are a work in progress, and we welcome all contributions.
     docs/style
     docs/terms
     docs/markup
-    docs/code
     docs/examples
     docs/infra

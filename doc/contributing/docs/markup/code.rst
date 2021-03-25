@@ -28,7 +28,7 @@ Also, you should format the expression as code if it fits at least one of the it
 *   well-established terms such as stdin and stdout
 
 Code-blocks and inline code
-___________________________
+---------------------------
 
 If you have to choose between inline code and code-block highlighting, pay attention
 to the following guidelines:
@@ -106,6 +106,7 @@ And you will get this:
 
 If you need to highlight a replaceable code in the code-block, use the following syntax:
 
-.. code-block:: none
-    ..  cssclass:: highlight
-    ..  parsed-literal::
+    ``..  cssclass:: highlight``
+    ``..  parsed-literal:: ``
+
+And you will get this:
