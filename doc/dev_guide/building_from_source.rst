@@ -195,8 +195,8 @@ the preferences can differ. But strategically the steps are always the same:
     The CMake option for specifying build type is :samp:`-DCMAKE_BUILD_TYPE={type}`,
     where :samp:`{type}` can be:
 
-   * ``Debug`` -- used by project maintainers
-   * ``RelWithDebInfo`` -- used for production, also provides debugging capabilities
+    *   ``Debug`` -- used by project maintainers
+    *   ``RelWithDebInfo`` -- used for production, also provides debugging capabilities
 
     The CMake option for hinting that the result will be distributed is
     :code:`-DENABLE_DIST=ON`. If this option is on, then later ``make install``
@@ -248,7 +248,7 @@ the preferences can differ. But strategically the steps are always the same:
 
 7.  Verify your Tarantool installation:
 
-    .. code-block:: bash
+    ..  code-block:: bash
 
         $ # if you installed tarantool locally after build
         $ tarantool
