@@ -17,13 +17,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set branch name from source branch
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
+
       - name: Start dev server deployment
         uses: bobheadxi/deployments@v0.5.2
         id: deployment
         with:
           step: start
           token: ${{secrets.GITHUB_TOKEN}}
-          env: release
+          env: "branch-${{env.BRANCH_NAME}}"
           ref: ${{github.head_ref}}
 
       - run: cmake .
@@ -31,8 +34,6 @@ jobs:
       - run: make build-modules
       - run: make json
       - run: make json-ru
-      - name: Set branch name from source branch
-        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
       - run: bash upload_output.sh
 
       - name: update deployment status
