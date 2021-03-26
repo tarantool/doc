@@ -55,8 +55,8 @@ set(SPHINX_OUTPUT_DIR              "${CMAKE_CURRENT_BINARY_DIR}/output")
 
 set(SPHINX_BUILD_LOCALE_DIR        "${SPHINX_OUTPUT_DIR}/_locale_build/")
 
-set(SPHINX_BUILD_SINGLEHTML_DIR    "${SPHINX_OUTPUT_DIR}/_single_en/")
-set(SPHINX_BUILD_SINGLEHTML_RU_DIR "${SPHINX_OUTPUT_DIR}/_single_ru/")
+set(SPHINX_BUILD_SINGLEHTML_DIR    "${SPHINX_OUTPUT_DIR}/doctrees/single/en/")
+set(SPHINX_BUILD_SINGLEHTML_RU_DIR "${SPHINX_OUTPUT_DIR}/doctrees/single/ru/")
 
 set(SPHINX_BUILD_HTML_DIR          "${SPHINX_OUTPUT_DIR}/_html_en/")
 set(SPHINX_BUILD_HTML_RU_DIR       "${SPHINX_OUTPUT_DIR}/_html_ru/")
@@ -67,8 +67,8 @@ set(SPHINX_BUILD_HTML_RU_OLD_DIR       "${SPHINX_OUTPUT_DIR}/_html_old_ru/")
 set(SPHINX_BUILD_LATEX_DIR         "${SPHINX_OUTPUT_DIR}/_latex_en/")
 set(SPHINX_BUILD_LATEX_RU_DIR      "${SPHINX_OUTPUT_DIR}/_latex_ru/")
 
-set(SPHINX_BUILD_JSON_EN_DIR       "${SPHINX_OUTPUT_DIR}/json/_build_en/doctrees")
-set(SPHINX_BUILD_JSON_RU_DIR       "${SPHINX_OUTPUT_DIR}/json/_build_ru/doctrees")
+set(SPHINX_BUILD_JSON_EN_DIR       "${SPHINX_OUTPUT_DIR}/doctrees/json/en/")
+set(SPHINX_BUILD_JSON_RU_DIR       "${SPHINX_OUTPUT_DIR}/doctrees/json/ru")
 
 set(SPHINX_EN_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/en/")
 set(SPHINX_EN_AUTOBUILD_DIR        "${SPHINX_OUTPUT_DIR}/html_auto/en/")
