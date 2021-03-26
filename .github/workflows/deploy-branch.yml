@@ -31,11 +31,6 @@ jobs:
       - run: make build-modules
       - run: make json
       - run: make json-ru
-      - run: make singlehtml
-      - run: make singlehtml-ru
-      - run: make pdf
-      - run: make pdf-ru
-
       - name: Set branch name from source branch
         run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
       - run: bash upload_output.sh
