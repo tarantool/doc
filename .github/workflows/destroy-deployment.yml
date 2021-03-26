@@ -18,4 +18,4 @@ jobs:
         with:
           step: deactivate-env
           token: ${{secrets.GITHUB_TOKEN}}
-          env: "branch-${{env.BRANCH_NAME}}"
+          env: "branch-${GITHUB_HEAD_REF##*/}"
