@@ -296,7 +296,8 @@ Example: ``"\65 \66 \67"``.
 
 .. _index-box_uuid:
 
-**uuid**. The Tarantool uuid type is stored as a MsgPack ext (Extension).
+**uuid**. Since version :doc:`2.4.1 </release/2.4.1>`.
+The Tarantool uuid type is stored as a MsgPack ext (Extension).
 Values with the uuid type are
 :ref:`Universally unique identifiers <uuid-module>`. |br|
 Example: 64d22e4d-ac92-4a23-899a-e5934af5479.
@@ -357,7 +358,7 @@ Indexes restrict values which Tarantool may store with MsgPack. This is why,
 for example, ``'unsigned'`` and ``'integer'`` are different field types although
 in MsgPack they are both stored as integer values -- an ``'unsigned'`` index
 contains only *non-negative* integer values while an ``‘integer’`` index contains *any*
-integer values. 
+integer values.
 
 Here again are the field types described in
 :ref:`Field Type Details <index_box_field_type_details>`, and the index types they can fit in.
@@ -425,7 +426,7 @@ Full information is in section
     |                                | When a scalar field contains values of    |                                      |
     |                                | different underlying types, the key order |                                      |
     |                                | is: nils, then booleans, then numbers,    |                                      |
-    |                                | then strings, then varbinaries.           |                                      | 
+    |                                | then strings, then varbinaries.           |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
 
 .. _index-collation:

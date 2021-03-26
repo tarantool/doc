@@ -131,28 +131,29 @@ Commands for managing Tarantool modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``tarantoolctl rocks build NAME``
-        Build/compile and install a rock.
+        Build/compile and install a rock. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks config URI``
-        Query and set the LuaRocks configuration.
+        Query and set the LuaRocks configuration. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks doc NAME``
         Show documentation for an installed rock.
 
 ``tarantoolctl rocks download [NAME]``
         Download a specific rock or rockspec file from a rocks server.
+        Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks help NAME``
         Help on commands.
 
 ``tarantoolctl rocks init NAME``
-        Initialize a directory for a Lua project using LuaRocks.
+        Initialize a directory for a Lua project using LuaRocks. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks install NAME``
         Install a module in the current directory.
 
 ``tarantoolctl rocks lint FILE``
-        Check the syntax of a rockspec.
+        Check the syntax of a rockspec. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks list``
         List all installed modules.
@@ -164,13 +165,13 @@ Commands for managing Tarantool modules
         Compile a manifest file for a repository.
 
 ``tarantoolctl rocks new_version NAME``
-        Auto-write a rockspec for a new version of a rock.
+        Auto-write a rockspec for a new version of a rock. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks pack NAME``
         Create a rock by packing sources or binaries.
 
 ``tarantoolctl rocks purge NAME``
-        Remove all installed rocks from a tree.
+        Remove all installed rocks from a tree. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks remove NAME``
         Remove a module.
@@ -185,10 +186,10 @@ Commands for managing Tarantool modules
         Unpack the contents of a rock.
 
 ``tarantoolctl rocks which NAME``
-        Tell which file corresponds to a given module name.
+        Tell which file corresponds to a given module name. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks write_rockspec``
-        Write a template for a rockspec file.
+        Write a template for a rockspec file. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 
         As an argument, you can specify:

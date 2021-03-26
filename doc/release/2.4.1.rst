@@ -37,19 +37,28 @@ Functionality added or changed
 Core
 ~~~~
 
--   Posibility to create errors of a custom user type (gh-4398).
--   Transparent marshalling error through net.box (gh-4398).
+-   Possibility to create errors of a custom user type (gh-4398). Read more:
+    :ref:`box_protocol-responses_error`,
+    :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`, and
+    :doc:`/reference/reference_lua/box_error/new`.
+-   Transparent marshalling error through net.box (gh-4398). Read more:
+    :doc:`/reference/reference_lua/box_error/new`,
+    :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`.
 -   ``box_session_push()``: a new public C API function. It takes
     ``const char * MessagePack`` and returns it to the client out of
-    order, just like the Lua ``box.session.push()`` does (gh-4734).
--   Add ability to encode/decode UUIDs to MsgPack (gh-4268, gh-2916).
+    order, just like the Lua ``box.session.push()`` does (gh-4734). Read more:
+    :ref:`box_session_push() <box_box_session_push>`.
 -   Introduce a new field type and a new index type: UUID (gh-4268,
-    gh-2916).
+    gh-2916). Read more on :ref:`UUID field type <index-box_uuid>`,
+    :ref:`mapping UUID field to index types <box_space-index_field_types>`,
+    and :ref:`uuid.new() <uuid-new>`.
+-   Add ability to encode/decode UUIDs to MsgPack (gh-4268, gh-2916). Read more:
+    :ref:`MessagePack extensions (UUID type) <msgpack_ext-uuid>`.
 -   Introduce stacked diagnostic area: now each Lua table representing an
     error object features the ``.prev`` member and the ``:set_prev()``
     method so that errors can be organized into lists. IProto protocol is
     extended with new command keys to support this feature as well
-    (gh-1148).
+    (gh-1148). For details, refer to :doc:`/reference/reference_lua/box_error/error_object`.
 
 Lua
 ~~~
@@ -78,18 +87,21 @@ Lua
     changed in a backward-incompatible manner in the future releases if
     it will be valuable enough.
 
--   ``fio`` descriptors are closed on garbage collection (gh-4727).
+    For more details, refer to the :doc:`module documentation </reference/reference_lua/popen>`.
 
--   ``fio.tempdir()`` uses the ``$TMPDIR`` environment variable as a path
-    indication to create temporary directories (gh-4794).
+-   ``fio`` descriptors are closed on garbage collection (gh-4727). Read more
+    in description of :ref:`fio.open() <fio-open>`.
+
+-   :ref:`fio.tempdir() <fio-tempdir>` uses the ``$TMPDIR`` environment variable
+    as a path indication to create temporary directories (gh-4794).
 
 -   Expose ``lua_checktuple`` function (gh-2553).
 
--   ``fiber.name`` maximal length is extended to 255 (gh-4394).
+-   :ref:`fiber.name <fiber_object-name_set>` maximal length is extended to 255 (gh-4394).
 
 -   Add ``tarantoolctl rocks`` commands: ``build``, ``config``,
     ``download``, ``init``, ``lint``, ``new_version``, ``purge``,
-    ``which``, ``write_rockspec`` (gh-4629).
+    ``which``, ``write_rockspec`` (gh-4629). Read more in :ref:`tarantoolctl-module_management`.
 
 Misc
 ~~~~
@@ -98,8 +110,9 @@ Misc
     real port when bound to the port ``0``. For example, if the
     ``listen`` parameter of ``box.cfg`` is set to ``127.0.0.1:0``, the
     ``box.info.listen`` shows ``127.0.0.1:<real_port>`` (gh-4620).
+    Read more: :doc:`/reference/reference_lua/box_info/box_info_listen`.
 -   ``sequence:current()``: a new function to get the current sequence
-    value without changing it (gh-4752).
+    value without changing it (gh-4752). Read more: :doc:`/reference/reference_lua/box_schema_sequence/current`.
 
 Bugs fixed
 ----------

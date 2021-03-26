@@ -6,6 +6,7 @@ error_object
 
 .. class:: error_object
 
+    Since version :doc:`2.4.1 </release/2.4.1>`.
     Errors can be organized into lists. To achieve this, a Lua table representing an
     error object has ``.prev`` field and ``e:set_prev(err)`` method.
 

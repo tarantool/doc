@@ -55,7 +55,7 @@
     For example, if ``mp`` is a buffer, and ``mp_end`` is a return value
     produced by encoding a single MP_UINT scalar value with
     ``mp_end=mp_encode_uint(mp,1);``, then
-    ``box_return_mp(ctx,mp,mp_end);`` should return ``0``.    
+    ``box_return_mp(ctx,mp,mp_end);`` should return ``0``.
 
 .. _box-box_space_id_by_name:
 
@@ -188,9 +188,12 @@
 
     :param uint32_t space_id: space identifier
 
+.. _box_box_session_push:
+
 .. c:function:: int box_session_push(const char *data, const char *data_end)
 
-    Push MessagePack data into a session data channel -- socket, console or
+    Since version :doc:`2.4.1 </release/2.4.1>`. Push MessagePack data into
+    a session data channel -- socket, console or
     whatever is behind the session. Behaves just like Lua
     :doc:`/reference/reference_lua/box_session/push`.
 
@@ -200,12 +203,15 @@
     :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
+.. _box_box_sequence_current:
+
 .. c:function:: int box_sequence_current(uint32_t seq_id, int64_t *result);
 
+    Since version :doc:`2.4.1 </release/2.4.1>`.
     Return the last retrieved value of the specified sequence.
 
     :param uint32_t seq_id: sequence identifier
-    :param int64_t result: pointer to a variable where the current sequence 
+    :param int64_t result: pointer to a variable where the current sequence
                             value will be stored on success.
 
     :return: 0 on success and -1 otherwise. In case of an error user

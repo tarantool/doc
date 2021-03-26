@@ -484,7 +484,8 @@ functions.
          ...
 
     ``fio.tempdir()`` stores the created temporary directory into ``/tmp`` by
-    default. This can be changed by setting the ``TMPDIR`` environment
+    default. Since version :doc:`2.4.1 </release/2.4.1>`, this can be changed
+    by setting the ``TMPDIR`` environment
     variable. Before starting Tarantool, or at runtime by
     ``os.setenv()``.
 
@@ -812,7 +813,8 @@ functions.
 
     **Possible errors:** nil.
 
-    Note that ``fio.open()`` returns a descriptor which can be closed manually by
+    Note that since version :doc:`2.4.1 </release/2.4.1>` ``fio.open()``
+    returns a descriptor which can be closed manually by
     calling the ``:close()`` method, or it will be closed automatically when it has
     no references, and the garbage collector deletes it.
 
