@@ -241,7 +241,7 @@ that’s listening on ``localhost:3301``":
     tarantool> net_box = require('net.box')
     ---
     ...
-    tarantool> net_box.connect(3301)
+    tarantool> conn = net_box.connect(3301)
     ---
     ...
 
