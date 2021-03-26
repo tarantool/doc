@@ -4,7 +4,7 @@
 "project_id" : "442986"
 "base_path" : "./locale"
 "base_url": "https://crowdin.com"
-
+"api_token_env": "CROWDIN_PERSONAL_TOKEN"
 
 
 "preserve_hierarchy": true
