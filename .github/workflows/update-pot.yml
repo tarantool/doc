@@ -28,3 +28,12 @@ jobs:
       with:
         commit_message: "Update translation sources"
         file_pattern: "*.pot"
+
+    - name: Push Pot-files to crowdin
+      uses: crowdin/github-action@1.0.21
+      with:
+        upload_sources: true
+        debug_mode: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
