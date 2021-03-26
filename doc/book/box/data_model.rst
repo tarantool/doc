@@ -40,8 +40,8 @@ Tarantool operates data in the form of tuples.
         They play the same role as "row columns" or "record fields" in relational databases,
         with a few improvements:
 
-            *   fields can be composite structures, such as arrays or maps, and
-            *   fields don't need to have names.
+        *   fields can be composite structures, such as arrays or maps, and
+        *   fields don't need to have names.
 
         A given tuple may have any number of fields, and the fields may be of
         different :ref:`types <index-box_data-types>`.
