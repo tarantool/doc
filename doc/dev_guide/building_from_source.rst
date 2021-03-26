@@ -20,11 +20,26 @@ the preferences can differ. But strategically the steps are always the same:
         Ordinarily, this is ``gcc`` and ``g++`` version 4.6 or later.
         On Mac OS X, this is ``Clang`` version 3.2+.
 
-    *   cmake
+    *   A program for managing the build process.
+        For all platforms, this is ``CMake`` version 3.1.
 
-    *   autoconf automake libtool
+    *   A build automation tool. For all platforms this is ``GNU Make``.
 
-    *   make
+    *   `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
+
+    *   `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
+
+    *   `OpenSSL <https://www.openssl.org>`_ library, any version
+
+    *   `ICU <http://site.icu-project.org/download>`_ library, recent version
+
+    *   `Autoconf <https://www.gnu.org/software/autoconf/>`_ library, any version
+
+    *   `Automake <https://www.gnu.org/software/automake/>`_ library, any version
+
+    *   `Libtool <https://www.gnu.org/software/libtool/>`_ library, any version
+
+    *   `Zlib-devel <https://www.zlib.net/>`_ library, any version
 
     *   Python and modules.
 
