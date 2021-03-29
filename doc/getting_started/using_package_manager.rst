@@ -99,7 +99,7 @@ Here is how to create a simple test database after installation.
 
       tarantool> s = box.schema.space.create('tester')
 
-#. Format the created space by specifying :term:`field` names and :term:`types <index-box_data-types>`:
+#. Format the created space by specifying :term:`field` names and :ref:`types <index-box_data-types>`:
 
    .. code-block:: tarantoolsession
 

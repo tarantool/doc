@@ -78,7 +78,7 @@ Each link leads to the release notes page of the corresponding version:
 
         *   -   1.10 (LTS series)
             -   1.10.0
-            -   :ref:`1.10.1 <whats_new_1101>`
+            -   1.10.1
             -   :ref:`1.10.2 <whats_new_1102>`,
                 :ref:`1.10.3 <whats_new_1103>`,
                 :ref:`1.10.4 <whats_new_1104>`,

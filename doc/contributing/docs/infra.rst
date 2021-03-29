@@ -16,7 +16,7 @@ The source files with the documentation content are mainly stored in the
 However, in some of the cases the content source files are stored in
 repositories of other Tarantool-related products and modules, for example,
 `Cartridge <https://github.com/tarantool/cartridge>`_,
-`Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`_,
+`Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`__,
 and some others.
 
 In this case, we need to add such a repository containing the source files
@@ -76,7 +76,7 @@ metrics
 In case of the ``metrics`` submodule, the content source files are in the
 ``./doc/monitoring`` directory of the submodule repository.
 In the final documentation view, the content should appear in the
-`Monitoring <https://www.tarantool.io/en/doc/latest/book/monitoring/>`_
+`Monitoring <https://www.tarantool.io/en/doc/latest/book/monitoring/>`__
 chapter (``https://www.tarantool.io/en/doc/latest/book/monitoring/``).
 
 So, we need to:

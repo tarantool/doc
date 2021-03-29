@@ -489,7 +489,7 @@ There are several recommendations on building functional indexes:
 *   The space must have a memtx engine.
 
 *   The function must be persistent and deterministic
-    (see :ref:`Creating function with body`).
+    (see :ref:`Creating a function with body <box_schema-func_create_with-body>`).
 
 *   The key parts must not depend on JSON paths.
 
