@@ -129,7 +129,11 @@ handy -- users can ``CREATE TABLE table_a`` without the foreign key, then
 For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint.
 (Tarantool generates the
 constraint names automatically if the user does not provide them.)
-To remove a unique constraint, use use either ``ALTER ... DROP CONSTRAINT`` or
+Since version :doc:`2.4.1 </release/2.4.1>`, it is possible to drop
+any of the named table constraints, namely, PRIMARY KEY, UNIQUE, FOREIGN KEY,
+and CHECK.
+
+To remove a unique constraint, use either ``ALTER ... DROP CONSTRAINT`` or
 :ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint
 as well.
 
@@ -1705,7 +1709,7 @@ SET
 
 Syntax:
 
-* :samp:`SET SESSION {setting-name} = {setting-value};`
+*:samp:`SET SESSION {setting-name} = {setting-value};`
 
 .. image:: set.svg
     :align: left
@@ -2823,7 +2827,7 @@ EXPLAIN
 
 Syntax:
 
-* :samp:`EXPLAIN explainable-statement;`
+*:samp:`EXPLAIN explainable-statement;`
 
 .. image:: explain.svg
     :align: left
@@ -2885,7 +2889,7 @@ Variation: ``EXPLAIN QUERY PLAN statement;`` shows the steps of a search.
    For each FOREIGN KEY constraint that would be violated ... do statement rollback and return an error.
    If statement is INSERT, then activate the table's BEFORE INSERT triggers.If statement is UPDATE, then activate the table's BEFORE UPDATE triggers. If statement is DELETE, then activate the table's BEFORE DELETE triggers.
    If statement is INSERT|UPDATE: for each NOT NULL constraint that would be violated ... If behavior is "ABORT" or "REPLACE (for a NOT NULL constraint that has a NULL default value)", do statement rollback and return an error.  If behavior is "IGNORE", then skip this and all following steps (i.e. skip this row). If behavior is "FAIL", then return an error. If behavior is "ROLLBACK", then do transaction rollback and return an error.
-   If statement is INSERT|UPDATE: for each CHECK or UNIQUE or PRIMARY KEY constraint that would be violated ... If behavior is "IGNORE", then skip this row.  If behavior is "FAIL", return an error. If behavior is "ROLLBACK", then do transaction rollback and return an error. If behavior is "ABORT" or "REPLACE": do statement rollback and return an error. This means that UNIQUE or PRIMARY KEY constraints are checked twice, in step 2 and in this step. This is necessary because execution of an earlier step might cause a new conflict. 
+   If statement is INSERT|UPDATE: for each CHECK or UNIQUE or PRIMARY KEY constraint that would be violated ... If behavior is "IGNORE", then skip this row.  If behavior is "FAIL", return an error. If behavior is "ROLLBACK", then do transaction rollback and return an error. If behavior is "ABORT" or "REPLACE": do statement rollback and return an error. This means that UNIQUE or PRIMARY KEY constraints are checked twice, in step 2 and in this step. This is necessary because execution of an earlier step might cause a new conflict.
    If statement is INSERT, then activate the table's AFTER INSERT triggers.If statement is UPDATE, then activate the table's AFTER UPDATE triggers. If statement is DELETE, then activate the table's AFTER DELETE triggers.
 
    If all rows were processed without an error that caused statement rollback or transaction rollback, the data-change can be committed. Ordinarily, unless processing is within a transaction that began with START TRANSACTION, there will be an automatic COMMIT.
@@ -3394,7 +3398,7 @@ Syntax:
 
 Return the position of expression-1 within expression-2,
 or return 0 if expression-1 does not appear
-within expression-2. 
+within expression-2.
 The data types of the expressions must be either STRING or VARBINARY.
 If the expressions have data type STRING, then the result is the character position.
 If the expressions have data type VARBINARY, then the result is the
@@ -3549,20 +3553,20 @@ by the last :ref:`INSERT <sql_insert>` or
 Rows which were updated by an UPDATE statement are counted even if there was no change.
 Rows which were inserted / updated / deleted due to foreign-key action are not counted.
 Rows which were inserted / updated / deleted due to a view's
-:ref:`INSTEAD OF triggers <sql_instead_of_triggers>` are  not counted. 
+:ref:`INSTEAD OF triggers <sql_instead_of_triggers>` are  not counted.
 After a CREATE or DROP statement, ROW_COUNT() is 1.
 After other statements,  ROW_COUNT() is 0.
 
 Example: ``ROW_COUNT()`` is 1 after a successful INSERT of a single row.
 
-Special rule if there are BEFORE or AFTER triggers: In effect the ROW_COUNT() 
+Special rule if there are BEFORE or AFTER triggers: In effect the ROW_COUNT()
 counter is pushed at the beginning of a series of triggered statements,
 and popped at the end. Therefore, after the following statements:
 
 .. code-block:: sql
 
              CREATE TABLE t1 (s1 INTEGER PRIMARY KEY);
-             CREATE TABLE t2 (s1 INTEGER, s2 STRING, s3 INTEGER, PRIMARY KEY (s1, s2, s3)); 
+             CREATE TABLE t2 (s1 INTEGER, s2 STRING, s3 INTEGER, PRIMARY KEY (s1, s2, s3));
              CREATE TRIGGER tt1 BEFORE DELETE ON t1 FOR EACH ROW BEGIN
                INSERT INTO t2 VALUES (old.s1, '#2 Triggered', ROW_COUNT());
                INSERT INTO t2 VALUES (old.s1, '#3 Triggered', ROW_COUNT());
@@ -3811,7 +3815,7 @@ else ``"binary"``.
 However, for searches and sometimes for sorting, the collation may be an index's collation,
 so all non-index ``COLLATE`` clauses are ignored.
 
-:ref:`EXPLAIN <sql_explain>` will not show the name of what collation was used, but will show the collation's characteristics. 
+:ref:`EXPLAIN <sql_explain>` will not show the name of what collation was used, but will show the collation's characteristics.
 
 Example with Swedish collation: |br|
 Knowing that "sv" is the two-letter code for Swedish, |br|

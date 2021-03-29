@@ -38,12 +38,16 @@ Core
 ~~~~
 
 -   Possibility to create errors of a custom user type (gh-4398). Read more:
-    :ref:`box_protocol-responses_error`,
-    :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`, and
-    :doc:`/reference/reference_lua/box_error/new`.
+
+    -   :ref:`box_protocol-responses_error`,
+    -   :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`
+    -   :doc:`/reference/reference_lua/box_error/new`.
+
 -   Transparent marshalling error through net.box (gh-4398). Read more:
-    :doc:`/reference/reference_lua/box_error/new`,
-    :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`.
+
+    -   :doc:`/reference/reference_lua/box_error/new`,
+    -   :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`.
+
 -   ``box_session_push()``: a new public C API function. It takes
     ``const char * MessagePack`` and returns it to the client out of
     order, just like the Lua ``box.session.push()`` does (gh-4734). Read more:
@@ -87,7 +91,7 @@ Lua
     changed in a backward-incompatible manner in the future releases if
     it will be valuable enough.
 
-    For more details, refer to the :doc:`module documentation </reference/reference_lua/popen>`.
+    For more details, refer to :doc:`module documentation </reference/reference_lua/popen>`.
 
 -   ``fio`` descriptors are closed on garbage collection (gh-4727). Read more
     in description of :ref:`fio.open() <fio-open>`.
@@ -121,7 +125,8 @@ Bugs fixed
 Core
 ~~~~
 
--   ``fiber.storage`` is cleaned between requests, and can be used as a
+-   :ref:`fiber.storage <fiber_object-storage>` is cleaned between requests,
+    and can be used as a
     request-local storage. Previously ``fiber.storage`` could contain
     some old values in the beginning of an iproto request execution, and
     it needed to be nullified manually. Now the cleanup is unneeded
@@ -142,7 +147,11 @@ Core
     set to more than 4398046510080 bytes. Now an error message is
     returned (gh-4705).
 -   ``box.error.new()`` doesn’t add a created error to the Tarantool’s
-    diagnostic area anymore (gh-4778).
+    diagnostic area anymore (gh-4778). Read more:
+
+    - :doc:`/reference/reference_lua/box_error/new`.
+    - :doc:`/reference/reference_lua/box_error/set`.
+
 -   Add Lua output format support for ``box.session.push()`` (gh-4686).
 
 Replication
@@ -179,7 +188,7 @@ Lua
     ``netbox_connection:call``/``eval``. Previously it could return a
     tuple or ``box.error`` cdata (gh-4513).
 -   ``box.tuple.*`` namespace is cleaned up from private functions.
-    ``box.tuple.is()`` description is added to documentation (gh-4684).
+    :doc:`/reference/reference_lua/box_tuple/is` description is added to documentation (gh-4684).
 -   ``tarantoolctl rocks search``: fix the ``--all`` flag (gh-4529).
 -   ``tarantoolctl rocks remove``: fix the ``--force`` flag (gh-3632).
 -   libev: backport fix for listening for more then 1024 file descriptors
@@ -194,7 +203,7 @@ SQL
     statement:
     ``ALTER TABLE  <table_name> DROP CONSTRAINT <constraint_name>``.
     Previously, it was possible to drop only foreign key constraints with
-    such a statement (gh-4120).
+    such a statement (gh-4120). Read more in :ref:`<sql_alter_table>`.
 -   “No such constraint” error now contains the name of the table this
     constraint belongs to.
 -   Add an empty body to the ``UNPREPARE`` IProto response (gh-4769).
@@ -212,7 +221,7 @@ Types related changes
     ``CAST AS NUMBER`` operation applied to an integer value doesn’t
     change it; ``CAST AS NUMBER`` operation applied to a boolean value
     now converts it into ``1``, ``0`` or ``NULL`` depending on particular
-    boolean value (gh-4233).
+    boolean value (gh-4233). Read more in :ref:`<sql_data_type_conversion>`.
 
 -   Fix the ``CAST AS NUMBER`` operation applied to blob values: floating
     point representation of the result is no longer forced (gh-4463).

@@ -9,7 +9,7 @@ box.error.new()
     Create an error object, but not throw it as
     :doc:`/reference/reference_lua/box_error/error`
     does. This is useful when error information should be saved for later retrieval.
-    To set an error as the last explicitly use
+    Since version :doc:`2.4.1 </release/2.4.1>`, to set an error as the last explicitly use
     :doc:`/reference/reference_lua/box_error/set`.
 
     :param number       code: number of a pre-defined error

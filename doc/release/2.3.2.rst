@@ -33,7 +33,8 @@ Bugs fixed
 Core
 ~~~~
 
--   ``fiber.storage`` is cleaned between requests, and can be used as a
+-   :ref:`fiber.storage <fiber_object-storage>` is cleaned between requests,
+    and can be used as a
     request-local storage. Previously ``fiber.storage`` could contain
     some old values in the beginning of an iproto request execution, and
     it needed to be nullified manually. Now the cleanup is unneeded
@@ -88,7 +89,7 @@ Lua
     ``netbox_connection:call``/``eval``. Previously it could return a
     tuple or ``box.error`` cdata (gh-4513).
 -   ``box.tuple.*`` namespace is cleaned up from private functions.
-    ``box.tuple.is()`` description is added to documentation (gh-4684).
+    :doc:`/reference/reference_lua/box_tuple/is` description is added to documentation (gh-4684).
 -   ``tarantoolctl rocks search``: fix the ``--all`` flag (gh-4529).
 -   ``tarantoolctl rocks remove``: fix the ``--force`` flag (gh-3632).
 -   libev: backport fix for listening for more then 1024 file descriptors

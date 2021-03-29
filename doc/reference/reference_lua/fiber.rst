@@ -679,7 +679,9 @@ recommended.
         up even for pooled fibers used to serve IProto requests. Pooled fibers
         never really die, but nonetheless their storage is cleaned up after each
         request. That makes possible to use ``fiber.storage`` as a full featured
-        request-local storage.
+        request-local storage. This behavior is implemented in versions
+        :doc:`2.2.3 </release/2.2.3>`, :doc:`2.3.2 </release/2.3.2>`,
+        :doc:`2.4.1 </release/2.4.1>`, and all later versions.
 
         This storage may be created for a fiber, no matter how the fiber
         itself was created -- from C or from Lua. For example, a fiber can
