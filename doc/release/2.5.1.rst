@@ -44,7 +44,7 @@ Functionality added or changed
 Core
 ~~~~
 
--   **[Breaking change]** :doc:`</reference/reference_lua/box_session/push>`
+-   **[Breaking change]** :doc:`/reference/reference_lua/box_session/push`
     parameter ``sync`` is deprecated and deleted. It does not work anymore, and
     a usage attempt leads to an error (gh-4689).
 -   **[Breaking change]** Define new rules for implicit cast for

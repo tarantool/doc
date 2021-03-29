@@ -77,7 +77,7 @@ Below is a list of all ``crypto`` functions.
     * ofb - Output Feedback
 
     For more information, read the article about
-`Encryption Modes <https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation>`_
+    `Encryption Modes <https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation>`_
 
     **Example:**
 

@@ -31,7 +31,7 @@ Functionality added or changed
 Core
 ~~~~
 
--   :doc:`</reference/reference_lua/box_session/push>` parameter ``sync``
+-   :doc:`/reference/reference_lua/box_session/push` parameter ``sync``
     is deprecated. A warning is printed when the sync is used, but it still works.
     It is removed in the next version (gh-4689).
 

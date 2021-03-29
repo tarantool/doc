@@ -265,7 +265,8 @@ Below is a list of all ``digest`` functions.
 
     Returns 32-bit checksum made with CRC32.
 
-    The ``crc32`` and ``crc32_update`` functions use the `Cyclic Redundancy Check`_
+    The ``crc32`` and ``crc32_update`` functions use the
+    `Cyclic Redundancy Check <https://en.wikipedia.org/wiki/Cyclic_redundancy_check>`_
     polynomial value: ``0x1EDC6F41`` / ``4812730177``.
     (Other settings are: input = reflected, output = reflected, initial value = 0xFFFFFFFF, final xor value = 0x0.)
     If it is necessary to be
