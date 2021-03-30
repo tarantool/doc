@@ -1,6 +1,6 @@
-================================================================================
-                                C Style Guide
-================================================================================
+
+C Style Guide
+=============
 
 We use Git for revision control. The latest development is happening in the
 default branch (currently ``master``). Our git repository is hosted on GitHub,
@@ -20,17 +20,15 @@ However, we have some additional guidelines, either unique to Tarantool or
 deviating from the Kernel guidelines. Below we rewrite the Linux kernel
 coding style according to the Tarantool's style features.
 
---------------------------------------------------------------------------------
-                           Tarantool coding style
---------------------------------------------------------------------------------
+Tarantool coding style
+----------------------
 
 This is a short document describing the preferred coding style for the
 Tarantool developers and contributors. We **insist** on following these rules
 in order to make our code consistent and understandable to any developer.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 1: Indentation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 Tabs are 8 characters (8-width tabs, not 8 whitespaces), and thus indentations
 are also 8 characters. There are heretic movements that try to make indentations
@@ -90,9 +88,8 @@ used for indentation, and the above example is deliberately broken.
 
 Get a decent editor and don't leave whitespace at the end of lines.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 2: Breaking long lines and strings
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Coding style is all about readability and maintainability using commonly
 available tools.
@@ -106,9 +103,8 @@ information. Descendants are always substantially shorter than the parent and
 are placed substantially to the right. The same applies to function headers
 with a long argument list.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 3: Placing Braces and Spaces
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The other issue that always comes up in C styling is the placement of
 braces. Unlike the indent size, there are few technical reasons to
@@ -213,9 +209,8 @@ statement; in the latter case use braces in both branches:
       otherwise();
     }
 
-********************************************************************************
 Chapter 3.1: Spaces
-********************************************************************************
+^^^^^^^^^^^^^^^^^^^
 
 Like Linux kernel, Tarantool style for use of spaces depends (mostly) on
 function-versus-keyword usage. Use a space after (most) keywords. The
@@ -287,9 +282,8 @@ optionally strip the trailing whitespace for you; however, if applying a series
 of patches, this may make later patches in the series fail by changing their
 context lines.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 4: Naming
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 C is a Spartan language, and so should your naming be. Unlike Modula-2
 and Pascal programmers, C programmers do not use cute names like
@@ -329,9 +323,8 @@ For function naming we have a convention is to use:
      but do not handle memory management,
 *    ``init``/``free`` for functions which initialize/destroy libraries and subsystems.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 5: Typedefs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 Please don't use things like ``vps_t``.
 It's a **mistake** to use typedef for structures and pointers. When you see a
@@ -399,9 +392,8 @@ EVER use a typedef unless you can clearly match one of those rules.
 In general, a pointer, or a struct that has elements that can reasonably
 be directly accessed should **never** be a typedef.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 6: Functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 Functions should be short and sweet, and do just one thing. They should
 fit on one or two screenfuls of text (the ISO/ANSI screen size is 80x24,
@@ -434,9 +426,8 @@ because it is a simple way to add valuable information for the reader.
 
 Note that we place the function return type on the line before the name and signature.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 7: Centralized exiting of functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Albeit deprecated by some people, the equivalent of the goto statement is
 used frequently by compilers in form of the unconditional jump instruction.
@@ -507,9 +498,8 @@ fix for this is to split it up into two error labels ``err_free_bar:`` and
 
 Ideally you should simulate errors to test all exit paths.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 8: Commenting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 Comments are good, but there is also a danger of over-commenting. NEVER
 try to explain HOW your code works in a comment: it's much better to
@@ -587,9 +577,8 @@ A comment and the function signature should be synchronized. Double-check if the
 parameter names are the same as used in the comment, and mean the same.
 Especially when you change one of them - ensure you changed the other.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 9: Macros, Enums and RTL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Names of macros defining constants and labels in enums are capitalized.
 
@@ -665,9 +654,8 @@ Things to avoid when using macros:
     ret is a common name for a local variable - ``__foo_ret`` is less likely
     to collide with an existing variable.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 10: Allocating memory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Prefer specialized allocators like ``region``, ``mempool``, ``smalloc`` to
 ``malloc()/free()`` for any performance-intensive or large memory allocations.
@@ -680,9 +668,8 @@ allocated memory as it is to write a valgrind suppression. Freeing all allocated
 memory is also dynamic-load friendly: assuming a plug-in can be dynamically
 loaded and unloaded multiple times, reload should not lead to a memory leak.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 11: The inline disease
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There appears to be a common misperception that gcc has a magic "make me
 faster" speedup option called ``inline``. While the use of inlines can be
@@ -706,9 +693,8 @@ help, and the maintenance issue of removing the inline when a second user
 appears outweighs the potential value of the hint that tells gcc to do
 something it would have done anyway.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 12: Function return values and names
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Functions can return values of many different kinds, and one of the
 most common is a value indicating whether the function succeeded or
@@ -724,9 +710,8 @@ this rule. Generally they indicate failure by returning some out-of-range
 result. Typical examples would be functions that return pointers; they use
 NULL or the mechanism to report failure.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 13: Editor modelines and other cruft
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some editors can interpret configuration information embedded in source files,
 indicated with special markers. For example, emacs interprets lines marked
@@ -758,9 +743,8 @@ includes markers for indentation and mode configuration. People may use their
 own custom mode, or may have some other magic method for making indentation
 work correctly.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 14: Conditional Compilation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Wherever possible, don't use preprocessor conditionals (``#if``, ``#ifdef``) in
 .c files; doing so makes code harder to read and logic harder to follow. Instead,
@@ -789,9 +773,8 @@ expression used. For instance:
     ...
     #endif /* CONFIG_SOMETHING */
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 15: Header files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use ``#pragma once`` in the headers. As the header guards we refer to this
 construction:
@@ -821,9 +804,8 @@ the header file down to this:
 
     // ... header code ...
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 16: Other
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 *   We don't apply ``!`` operator to non-boolean values. It means, to check
     if an integer is not 0, you use ``!= 0``. To check if a pointer is not NULL,
@@ -835,9 +817,8 @@ Chapter 16: Other
 *   The not-so-current list of all GCC C extensions can be found at:
     http://gcc.gnu.org/onlinedocs/gcc-4.3.5/gcc/C-Extensions.html
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                  Appendix I: References
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Appendix I: References
+~~~~~~~~~~~~~~~~~~~~~~
 
 *   `The C Programming Language, Second Edition <https://en.wikipedia.org/wiki/The_C_Programming_Language>`_
     by Brian W. Kernighan and Dennis M. Ritchie.
