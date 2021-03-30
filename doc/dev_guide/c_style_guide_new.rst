@@ -32,8 +32,8 @@ in order to make our code consistent and understandable to any developer.
 Chapter 1: Indentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tabs are 8 characters, and thus indentations are
-also 8 characters. There are heretic movements that try to make indentations
+Tabs are 8 characters (8-width tabs, not 8 whitespaces), and thus indentations
+are also 8 characters. There are heretic movements that try to make indentations
 4 (or even 2!) characters deep, and that is akin to trying to define the
 value of PI to be 3.
 
@@ -83,8 +83,7 @@ something to hide:
     if (condition) do_this;
       do_something_everytime;
 
-Don't put multiple assignments on a single line either. Kernel coding style
-is super simple. Avoid tricky expressions.
+Don't put multiple assignments on a single line either. Avoid tricky expressions.
 
 Outside of comments and documentation, spaces are never
 used for indentation, and the above example is deliberately broken.
@@ -353,7 +352,7 @@ you can actually tell what ``a`` is.
 Lots of people think that typedefs ``help readability``. Not so. They are
 useful only for:
 
-#.  totally opaque objects (where the typedef is actively used to **hide**
+#.  Totally opaque objects (where the typedef is actively used to **hide**
     what the object is).
 
     Example: ``pte_t`` etc. opaque objects that you can only access using
@@ -381,7 +380,7 @@ useful only for:
     might be an ``unsigned int`` and under other configurations might be
     ``unsigned long``, then by all means go ahead and use a typedef.
 
-#.  when you use sparse to literally create a **new** type for
+#.  When you use sparse to literally create a **new** type for
     type-checking.
 
 #.  New types which are identical to standard C99 types, in certain
@@ -390,11 +389,6 @@ useful only for:
     Although it would only take a short amount of time for the eyes and
     brain to become accustomed to the standard types like ``uint32_t``,
     some people object to their use anyway.
-
-    Therefore, the Linux-specific ``u8/u16/u32/u64`` types and their
-    signed equivalents which are identical to standard types are
-    permitted -- although they are not mandatory in new code of your
-    own.
 
     When editing existing code which already uses one or the other set
     of types, you should conform to the existing choices in that code.
@@ -435,7 +429,7 @@ and it gets confused. You know you're brilliant, but maybe you'd like
 to understand what you did 2 weeks from now.
 
 In function prototypes, include parameter names with their data types.
-Although this is not required by the C language, it is preferred in Linux
+Although this is not required by the C language, it is preferred in Tarantool
 because it is a simple way to add valuable information for the reader.
 
 Note that we place the function return type on the line before the name and signature.
@@ -549,10 +543,10 @@ comment. A sample function comment may look like below:
      * error occurs.
      *
      * @retval 0  Success
-     * @retval  1  An error occurred (not EINTR)
+     * @retval 1 An error occurred (not EINTR)
      */
     static int
-    write_all(int fd, void \*data, size_t len);
+    write_all(int fd, void *data, size_t len);
 
 It's also important to comment data types, whether they are basic types or
 derived ones. To this end, use just one data declaration per line (no commas
@@ -671,9 +665,6 @@ Things to avoid when using macros:
     ret is a common name for a local variable - ``__foo_ret`` is less likely
     to collide with an existing variable.
 
-    The cpp manual deals with macros exhaustively. The gcc internals manual also
-    covers RTL which is used frequently with assembly language in the kernel.
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 10: Allocating memory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -706,8 +697,7 @@ A reasonable rule of thumb is to not put inline at functions that have more
 than 3 lines of code in them. An exception to this rule are the cases where
 a parameter is known to be a compiletime constant, and as a result of this
 constantness you *know* the compiler will be able to optimize most of your
-function away at compile time. For a good example of this later case, see
-the kmalloc() inline function.
+function away at compile time.
 
 Often people argue that adding inline to functions that are static and used
 only once is always a win since there is no space tradeoff. While this is
@@ -732,7 +722,7 @@ Functions whose return value is the actual result of a computation, rather
 than an indication of whether the computation succeeded, are not subject to
 this rule. Generally they indicate failure by returning some out-of-range
 result. Typical examples would be functions that return pointers; they use
-NULL or the ERR_PTR mechanism to report failure.
+NULL or the mechanism to report failure.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 13: Editor modelines and other cruft
@@ -769,39 +759,7 @@ own custom mode, or may have some other magic method for making indentation
 work correctly.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 14: Inline assembly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-In architecture-specific code, you may need to use inline assembly to interface
-with CPU or platform functionality. Don't hesitate to do so when necessary.
-However, don't use inline assembly gratuitously when C can do the job. You can
-and should poke hardware from C when possible.
-
-Consider writing simple helper functions that wrap common bits of inline
-assembly, rather than repeatedly writing them with slight variations. Remember
-that inline assembly can use C parameters.
-
-Large, non-trivial assembly functions should go in .S files, with corresponding
-C prototypes defined in C header files. The C prototypes for assembly
-functions should use ``asmlinkage``.
-
-You may need to mark your asm statement as volatile, to prevent GCC from
-removing it if GCC doesn't notice any side effects. You don't always need to
-do so, though, and doing so unnecessarily can limit optimization.
-
-When writing a single inline assembly statement containing multiple
-instructions, put each instruction on a separate line in a separate quoted
-string, and end each string except the last with ``\n\t`` to properly indent the
-next instruction in the assembly output:
-
-..  code-block:: c
-
-    asm ("magic %reg1, #42\n\t"
-         "more_magic %reg2, %reg3"
-         : /* outputs */ : /* inputs */ : /* clobbers */);
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 15: Conditional Compilation
+Chapter 14: Conditional Compilation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Wherever possible, don't use preprocessor conditionals (``#if``, ``#ifdef``) in
@@ -815,29 +773,11 @@ remain easy to follow.
 Prefer to compile out entire functions, rather than portions of functions or
 portions of expressions. Rather than putting an ``#ifdef`` in an expression,
 factor out part or all of the expression into a separate helper function and
-apply the conditional to that function.
+apply the condition to that function.
 
 If you have a function or variable which may potentially go unused in a
 particular configuration, and the compiler would warn about its definition
 going unused, do not compile it and use #if for this.
-(However, if a function or variable *always* goes unused, delete it.)
-
-Within code, where possible, use the IS_ENABLED macro to convert a Kconfig
-symbol into a C boolean expression, and use it in a normal C conditional:
-
-..  code-block:: c
-
-    if (IS_ENABLED(CONFIG_SOMETHING)) {
-      ...
-    }
-
-The compiler will constant-fold the conditional away, and include or exclude
-the block of code just as with an #ifdef, so this will not add any runtime
-overhead.
-However, this approach still allows the C compiler to see the code
-inside the block, and check it for correctness (syntax, types, symbol
-references, etc). Thus, you still have to use an ``#ifdef`` if the code inside
-the block references symbols that will not exist if the condition is not met.
 
 At the end of any non-trivial ``#if`` or ``#ifdef`` block (more than a few lines),
 place a comment after the #endif on the same line, noting the conditional
@@ -850,7 +790,7 @@ expression used. For instance:
     #endif /* CONFIG_SOMETHING */
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 16: Header files
+Chapter 15: Header files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use ``#pragma once`` in the headers. As the header guards we refer to this
@@ -882,7 +822,7 @@ the header file down to this:
     // ... header code ...
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 17: Other
+Chapter 16: Other
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *   We don't apply ``!`` operator to non-boolean values. It means, to check
