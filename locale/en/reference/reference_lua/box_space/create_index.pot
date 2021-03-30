@@ -570,7 +570,7 @@ msgstr ""
 msgid "The space must have a memtx engine."
 msgstr ""
 
-msgid "The function must be persistent and deterministic (see :ref:`Creating function with body`)."
+msgid "The function must be persistent and deterministic (see :ref:`Creating a function with body <box_schema-func_create_with-body>`)."
 msgstr ""
 
 msgid "The key parts must not depend on JSON paths."

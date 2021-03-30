@@ -8,7 +8,7 @@ msgstr ""
 msgid "Adding submodules"
 msgstr ""
 
-msgid "The source files with the documentation content are mainly stored in the `documentation repository <https://github.com/tarantool/doc>`_. However, in some of the cases the content source files are stored in repositories of other Tarantool-related products and modules, for example, `Cartridge <https://github.com/tarantool/cartridge>`_, `Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`_, and some others."
+msgid "The source files with the documentation content are mainly stored in the `documentation repository <https://github.com/tarantool/doc>`_. However, in some of the cases the content source files are stored in repositories of other Tarantool-related products and modules, for example, `Cartridge <https://github.com/tarantool/cartridge>`_, `Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`__, and some others."
 msgstr ""
 
 msgid "In this case, we need to add such a repository containing the source files as a submodule to the `documentation repository <https://github.com/tarantool/doc>`_ and set up other necessary settings to ensure the proper building of the entire body of Tarantool documentation presented at the `official web-site <http://www.tarantool.io/en/doc>`_."
@@ -54,7 +54,7 @@ msgstr ""
 msgid "metrics"
 msgstr ""
 
-msgid "In case of the ``metrics`` submodule, the content source files are in the ``./doc/monitoring`` directory of the submodule repository. In the final documentation view, the content should appear in the `Monitoring <https://www.tarantool.io/en/doc/latest/book/monitoring/>`_ chapter (``https://www.tarantool.io/en/doc/latest/book/monitoring/``)."
+msgid "In case of the ``metrics`` submodule, the content source files are in the ``./doc/monitoring`` directory of the submodule repository. In the final documentation view, the content should appear in the `Monitoring <https://www.tarantool.io/en/doc/latest/book/monitoring/>`__ chapter (``https://www.tarantool.io/en/doc/latest/book/monitoring/``)."
 msgstr ""
 
 msgid "So, we need to:"

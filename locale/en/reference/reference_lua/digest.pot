@@ -254,7 +254,7 @@ msgstr ""
 msgid "Returns 32-bit checksum made with CRC32."
 msgstr ""
 
-msgid "The ``crc32`` and ``crc32_update`` functions use the `Cyclic Redundancy Check`_ polynomial value: ``0x1EDC6F41`` / ``4812730177``. (Other settings are: input = reflected, output = reflected, initial value = 0xFFFFFFFF, final xor value = 0x0.) If it is necessary to be compatible with other checksum functions in other programming languages, ensure that the other functions use the same polynomial value."
+msgid "The ``crc32`` and ``crc32_update`` functions use the `Cyclic Redundancy Check <https://en.wikipedia.org/wiki/Cyclic_redundancy_check>`_ polynomial value: ``0x1EDC6F41`` / ``4812730177``. (Other settings are: input = reflected, output = reflected, initial value = 0xFFFFFFFF, final xor value = 0x0.) If it is necessary to be compatible with other checksum functions in other programming languages, ensure that the other functions use the same polynomial value."
 msgstr ""
 
 msgid "For example, in Python, install the ``crcmod`` package and say:"

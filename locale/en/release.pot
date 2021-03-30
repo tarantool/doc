@@ -116,7 +116,7 @@ msgstr ""
 msgid "1.10.0"
 msgstr ""
 
-msgid ":ref:`1.10.1 <whats_new_1101>`"
+msgid "1.10.1"
 msgstr ""
 
 msgid ":ref:`1.10.2 <whats_new_1102>`, :ref:`1.10.3 <whats_new_1103>`, :ref:`1.10.4 <whats_new_1104>`, :doc:`1.10.5 <release/1.10.5>`, :doc:`1.10.6 <release/1.10.6>`, :doc:`1.10.7 <release/1.10.7>`, :doc:`1.10.8 <release/1.10.8>`, :doc:`1.10.9 <release/1.10.9>`"

@@ -50,7 +50,7 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "**[Breaking change]** :doc:`</reference/reference_lua/box_session/push>` parameter ``sync`` is deprecated and deleted. It does not work anymore, and a usage attempt leads to an error (gh-4689)."
+msgid "**[Breaking change]** :doc:`/reference/reference_lua/box_session/push` parameter ``sync`` is deprecated and deleted. It does not work anymore, and a usage attempt leads to an error (gh-4689)."
 msgstr ""
 
 msgid "**[Breaking change]** Define new rules for implicit cast for assignment operation in SQL (gh-3809). Read more: :ref:`sql-implicit_cast`."
