@@ -44,7 +44,7 @@ To get started specifically with the SQL features, using Tarantool as a client, 
     box.cfg{}
     box.execute([[VALUES ('hello');]])
 
-The bottom of the screen should now look like this: 
+The bottom of the screen should now look like this:
 
 .. code-block:: tarantoolsession
 
@@ -346,7 +346,7 @@ to upper case, so for statements like
 or
 ``SELECT "a" FROM "a";``
 the table name is a and the column name is a.
-The sequence ``""`` is treated as ``"`` when enclosed in double quotes, 
+The sequence ``""`` is treated as ``"`` when enclosed in double quotes,
 that is, ``"A""B"`` is interpreted as ``"A"B"``.
 
 Examples: things, t45, journal_entries_for_2017, ддд, ``"into"``
@@ -555,7 +555,7 @@ The result of an operation is a new operand. If the operator is a comparison ope
 then the result has data type BOOLEAN (TRUE or FALSE or UNKNOWN).
 Otherwise the result has the same data type as the original operands, except that:
 promotion to a broader type may occur to avoid overflow.
-Arithmetic with NULL operands will result in a NULL operand. 
+Arithmetic with NULL operands will result in a NULL operand.
 
 In the following list of operators, the tag "(arithmetic)" indicates
 that all operands are expected to be numbers and should result in a number;
@@ -614,7 +614,7 @@ Example: ``5 & 4``, result = 4.
 Combine the two numbers, with 1 bits in the result if either original number has a 1 bit.
 Example: ``5 | 2``, result = 7.
 
-``~`` negate (arithmetic), sometimes called bit inversion 
+``~`` negate (arithmetic), sometimes called bit inversion
 Change 0 bits to 1 bits, change 1 bits to 0 bits.
 Example: ``~5``, result = -6.
 
@@ -717,7 +717,7 @@ The precedence of dyadic operators is:
     << >> & |
     <  <= > >=
     =  == != <> IS IS NOT IN LIKE
-    AND   
+    AND
     OR
 
 To ensure a desired precedence, use () parentheses.
@@ -941,6 +941,12 @@ not the type of the column definition.
 Explicit cast to SCALAR is allowed but has no effect, the result data type is always the same as the original data type.
 But comparisons of values of different types are allowed if the definition is SCALAR.
 
+..  note::
+
+    Since version :doc:`2.4.1 </release/2.4.1>`, the NUMBER type is processed
+    in the same way as the :ref:`number <index-box_number>` type in
+    NoSQL Tarantool.
+
 Examples of casts, illustrating the situations in the chart:
 
 ``CAST(TRUE AS INTEGER)`` is legal because the intersection of the  "From BOOLEAN" row with the "To number"
@@ -949,7 +955,7 @@ The result is 1.
 
 ``UPDATE ... SET varbinary_column = 'A'`` is illegal because the intersection of the "From STRING" row with the "To VARBINARY"
 column is ``A--`` and the second letter of ``A--`` is for implicit cast (assignment) and - means not allowed.
-The result is an error message. 
+The result is an error message.
 
 ``1.7E-1 > 0`` is legal because the intersection of the "From number" row with the "To number"
 column is SSA, and the third letter of SSA is for implicit cast (comparison) and A means Always Allowed.

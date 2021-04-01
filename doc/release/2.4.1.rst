@@ -114,7 +114,7 @@ Misc
     real port when bound to the port ``0``. For example, if the
     ``listen`` parameter of ``box.cfg`` is set to ``127.0.0.1:0``, the
     ``box.info.listen`` shows ``127.0.0.1:<real_port>`` (gh-4620).
-    Read more: :doc:`/reference/reference_lua/box_info/box_info_listen`.
+    Read more: :doc:`/reference/reference_lua/box_info/listen`.
 -   ``sequence:current()``: a new function to get the current sequence
     value without changing it (gh-4752). Read more: :doc:`/reference/reference_lua/box_schema_sequence/current`.
 
@@ -160,9 +160,9 @@ Replication
 -   Fix rebootstrap procedure not working in case replica itself is
     listed in ``box.cfg.replication`` (gh-4759).
 -   Fix possible user password leaking via replication logs (gh-4493).
--   Refactor vclock map to be exactly 4 bytes in size to fit all 32
+-   Refactor ``vclock`` map to be exactly 4 bytes in size to fit all 32
     replicas regardless of the compiler used
-    (https://github.com/tarantool/tarantool/commit/e5679980aa5f813553a95ab7d31f111dd0893df6).
+    (see in this :ref:`commit <https://github.com/tarantool/tarantool/commit/e5679980aa5f813553a95ab7d31f111dd0893df6>_).
 -   Fix crash when the replication applier rollbacks a transaction
     (gh-4730, gh-4776).
 -   Fix segmentation fault on master side when one of the replicas
