@@ -165,7 +165,7 @@ Replication
 -   Fix possible user password leaking via replication logs (gh-4493).
 -   Refactor ``vclock`` map to be exactly 4 bytes in size to fit all 32
     replicas regardless of the compiler used
-    (see in this :ref:`commit <https://github.com/tarantool/tarantool/commit/e5679980aa5f813553a95ab7d31f111dd0893df6>`_).
+    (see in this `commit <https://github.com/tarantool/tarantool/commit/e5679980aa5f813553a95ab7d31f111dd0893df6>`__).
 -   Fix crash when the replication applier rollbacks a transaction
     (gh-4730, gh-4776).
 -   Fix segmentation fault on master side when one of the replicas
@@ -310,6 +310,6 @@ Building from sources
 
 -   Update the ``decNumber`` library to silence the build warning
     produced on too long integer constant
-    (see in this :ref:`commit <https://github.com/tarantool/tarantool/commit/aab03a735c7a215b4371ef834f7d08432b1bf0f7>`_).
+    (see in this `commit <https://github.com/tarantool/tarantool/commit/aab03a735c7a215b4371ef834f7d08432b1bf0f7>`__).
 -   Fix static build (``-DBUILD_STATIC=ON``) when ``libunwind`` depends
     on ``liblzma`` (gh-4551).
