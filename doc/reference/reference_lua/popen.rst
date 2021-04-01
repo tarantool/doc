@@ -10,7 +10,8 @@
                                    Overview
 ===============================================================================
 
-The ``popen`` module supports execution of external programs.
+Since version :doc:`2.4.1 </release/2.4.1>`, Tarantool has the ``popen``
+built-in module that supports execution of external programs.
 It is similar to Python's
 `subprocess() <https://docs.python.org/3.8/library/subprocess.html>`_
 or Ruby's `Open3 <https://docs.ruby-lang.org/en/2.0.0/Open3.html>`_.

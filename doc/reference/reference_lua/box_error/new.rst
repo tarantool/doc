@@ -9,7 +9,7 @@ box.error.new()
     Create an error object, but not throw it as
     :doc:`/reference/reference_lua/box_error/error`
     does. This is useful when error information should be saved for later retrieval.
-    To set an error as the last explicitly use
+    Since version :doc:`2.4.1 </release/2.4.1>`, to set an error as the last explicitly use
     :doc:`/reference/reference_lua/box_error/set`.
 
     :param number       code: number of a pre-defined error
@@ -37,8 +37,8 @@ box.error.new()
         ---
         - null
 
-    Beginning in version 2.4.1 there is a :ref:`session_settings <box_space-session_settings>`
-    setting which affects structure of error objects. If ``error_marshaling_enabled``
+    Since version :doc:`2.4.1 </release/2.4.1>`, there is a :ref:`session_settings <box_space-session_settings>`
+    setting which affects the structure of error objects. If ``error_marshaling_enabled``
     is changed to ``true``, then the object will have the MP_EXT type and the
     MP_ERROR subtype. Using the :ref:`binary protocol <internals-box_protocol>`,
     in the body of a packet that the server could send in response to ``box.error.new()``,

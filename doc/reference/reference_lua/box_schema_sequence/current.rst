@@ -8,6 +8,7 @@ sequence_object:current()
 
   ..  method:: current()
 
+    Since version :doc:`2.4.1 </release/2.4.1>`.
     Return the last retrieved value of the specified sequence or throw an error
     if no value has been generated yet (``next()`` has not been called yet, or ``current()`` is called right
     after ``reset()`` is called).

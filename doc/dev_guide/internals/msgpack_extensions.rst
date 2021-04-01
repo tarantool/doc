@@ -105,7 +105,7 @@ The UUID type
 **********************************
 
 The MessagePack EXT type ``MP_EXT`` together with the extension type
-``MP_UUID`` for values of the UUID type.
+``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 MP_UUID is 2.
 
@@ -151,7 +151,7 @@ a peek at the server response packet will show that it contains
 The ERROR type
 ****************************************************
 
-Beginning in version 2.4.1, responses for errors have extra information
+Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information
 following what was described in :ref:`Box protocol -- responses for errors
 <box_protocol-responses_error>`.
 This is a "compatible" enhancement, because clients that expect old-style
@@ -191,7 +191,7 @@ The value here will be the same as the lower part of the Response-Code-Indicator
 
 ``MP_ERROR_FIELDS`` (0x06) (MP_MAPs) Additional fields depending on error
 type. For example, if ``MP_ERROR_TYPE`` is "AccessDeniedError", then ``MP_ERROR_FIELDS``
-will include "object_type", "object_name", "access_type". This field will be 
+will include "object_type", "object_name", "access_type". This field will be
 omitted from the response body if there are no additional fields available.
 
 Client and connector programmers should ensure that unknown map keys are ignored,
@@ -216,7 +216,7 @@ the server response will look like this:
     82                              MP_MAP, size 2
       31                              IPROTO_ERROR_24
       bd 53 70 61 63 etc.             MP_STR = "Space '_space' already exists"
-      52                              IPROTO_ERROR  
+      52                              IPROTO_ERROR
       81                              MP_MAP, size 1
         00                              MP_ERROR_STACK
         91                              MP_ARRAY, size 1

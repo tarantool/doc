@@ -65,7 +65,8 @@ Below is list of all ``uuid`` functions and members.
 
 .. function:: new()
 
-    Create a UUID sequence. You can use it in an index over a 
+    Since version :doc:`2.4.1 </release/2.4.1>`.
+    Create a UUID sequence. You can use it in an index over a
     :ref:`uuid field <details_about_index_field_types>`.
     For example, to create such index for a space named `test`, say:
 

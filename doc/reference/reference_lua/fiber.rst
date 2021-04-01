@@ -586,7 +586,8 @@ recommended.
             * ``truncate=true`` -- truncates the name to the max length if it is
               too long. If this option is false (the default),
               ``fiber.name(new_name)`` fails with an exception if a new name is
-              too long.
+              too long. The name length limit is ``255``
+              (since version :doc:`2.4.1 </release/2.4.1>`).
 
         :Return: nil
 
@@ -678,7 +679,9 @@ recommended.
         up even for pooled fibers used to serve IProto requests. Pooled fibers
         never really die, but nonetheless their storage is cleaned up after each
         request. That makes possible to use ``fiber.storage`` as a full featured
-        request-local storage.
+        request-local storage. This behavior is implemented in versions
+        :doc:`2.2.3 </release/2.2.3>`, :doc:`2.3.2 </release/2.3.2>`,
+        :doc:`2.4.1 </release/2.4.1>`, and all later versions.
 
         This storage may be created for a fiber, no matter how the fiber
         itself was created -- from C or from Lua. For example, a fiber can

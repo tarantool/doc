@@ -641,7 +641,7 @@ The body is a 3-item map:
     })
 
 Use IPROTO_STMT_ID (0x43) + statement-id (MP_INT) if executing a prepared statement,
-or use 
+or use
 IPROTO_SQL_TEXT (0x40) + statement-text (MP_STR) if executing an SQL string, then
 IPROTO_SQL_BIND (0x41) + array of parameter values to match ? placeholders or
 :name placeholders, IPROTO_OPTIONS (0x2b) + array of options (usually empty).
@@ -903,7 +903,7 @@ constants for return codes.
 
 Example: in version 2.4.0 and earlier,
 if this is the fifth message and the request is to create a duplicate
-space with 
+space with
 ``conn:eval([[box.schema.space.create('_space');]])``
 the unsuccessful response will look like this:
 
@@ -929,7 +929,7 @@ Looking in errcode.h we find that error code 0x0a (decimal 10) is
 ER_SPACE_EXISTS, and the string associated with ER_SPACE_EXISTS is
 "Space '%s' already exists".
 
-Beginning in version 2.4.1, responses for errors have extra information
+Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information
 following what was described above. This extra information is given via
 MP_ERROR extension type. See details in :ref:`MessagePack extensions
 <msgpack_ext-error>` section.

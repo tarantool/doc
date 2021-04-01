@@ -250,7 +250,7 @@ and what index types are allowed.
               vinyl TREE indexes
             - decimal.new(1.2)
 
-        *   - ``uuid``
+        *   - ``uuid`` (since :doc:`2.4.1 </release/2.4.1>`)
             - a 128-bit quantity sequence of lower-case hexadecimal digits,
               representing Universally Unique Identifiers (UUID)
             - memtx TREE or HASH indexes;

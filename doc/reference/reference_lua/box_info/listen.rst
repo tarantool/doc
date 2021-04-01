@@ -8,6 +8,7 @@ box.info.listen
 
 .. data:: listen
 
+    Since version :doc:`2.4.1 </release/2.4.1>`.
     Return a real address to which an instance was bound. For example, if
     ``box.cfg{listen}`` was set with a zero port, ``box.info.listen`` will show
     a real port. The address is stored as a string:

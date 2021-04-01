@@ -6,6 +6,7 @@ box.error.set()
 
 .. function:: box.error.set(error object)
 
+    Since version :doc:`2.4.1 </release/2.4.1>`.
     Set an error as the last system error explicitly. Accepts an error object and
     makes it available via :doc:`/reference/reference_lua/box_error/last`.
 

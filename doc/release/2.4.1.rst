@@ -37,19 +37,35 @@ Functionality added or changed
 Core
 ~~~~
 
--   Posibility to create errors of a custom user type (gh-4398).
--   Transparent marshalling error through net.box (gh-4398).
+-   Possibility to create errors of a custom user type (gh-4398). Read more:
+
+    -   :ref:`box_protocol-responses_error`
+    -   :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`
+    -   :doc:`/reference/reference_lua/box_error/new`.
+
+-   Transparent marshalling error through net.box (gh-4398). Read more:
+
+    -   :doc:`/reference/reference_lua/box_error/new`
+    -   :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`.
+
 -   ``box_session_push()``: a new public C API function. It takes
     ``const char * MessagePack`` and returns it to the client out of
-    order, just like the Lua ``box.session.push()`` does (gh-4734).
--   Add ability to encode/decode UUIDs to MsgPack (gh-4268, gh-2916).
+    order, just like the Lua ``box.session.push()`` does (gh-4734). Read more:
+    :ref:`box_session_push() <box_box_session_push>`.
 -   Introduce a new field type and a new index type: UUID (gh-4268,
-    gh-2916).
+    gh-2916). Read more:
+
+    -   :ref:`UUID field type <index-box_uuid>`
+    -   :ref:`mapping UUID field to index types <box_space-index_field_types>`
+    -   :ref:`uuid.new() <uuid-new>`.
+
+-   Add ability to encode/decode UUIDs to MsgPack (gh-4268, gh-2916). Read more:
+    :ref:`MessagePack extensions (UUID type) <msgpack_ext-uuid>`.
 -   Introduce stacked diagnostic area: now each Lua table representing an
     error object features the ``.prev`` member and the ``:set_prev()``
     method so that errors can be organized into lists. IProto protocol is
     extended with new command keys to support this feature as well
-    (gh-1148).
+    (gh-1148). For details, refer to :doc:`/reference/reference_lua/box_error/error_object`.
 
 Lua
 ~~~
@@ -78,18 +94,21 @@ Lua
     changed in a backward-incompatible manner in the future releases if
     it will be valuable enough.
 
--   ``fio`` descriptors are closed on garbage collection (gh-4727).
+    For more details, refer to the ``popen`` module :doc:`documentation </reference/reference_lua/popen>`.
 
--   ``fio.tempdir()`` uses the ``$TMPDIR`` environment variable as a path
-    indication to create temporary directories (gh-4794).
+-   ``fio`` descriptors are closed on garbage collection (gh-4727). Read more
+    in description of :ref:`fio.open() <fio-open>`.
+
+-   :ref:`fio.tempdir() <fio-tempdir>` uses the ``$TMPDIR`` environment variable
+    as a path indication to create temporary directories (gh-4794).
 
 -   Expose ``lua_checktuple`` function (gh-2553).
 
--   ``fiber.name`` maximal length is extended to 255 (gh-4394).
+-   :ref:`fiber.name <fiber_object-name_set>` maximal length is extended to 255 (gh-4394).
 
 -   Add ``tarantoolctl rocks`` commands: ``build``, ``config``,
     ``download``, ``init``, ``lint``, ``new_version``, ``purge``,
-    ``which``, ``write_rockspec`` (gh-4629).
+    ``which``, ``write_rockspec`` (gh-4629). Read more in :ref:`tarantoolctl-module_management`.
 
 Misc
 ~~~~
@@ -98,8 +117,9 @@ Misc
     real port when bound to the port ``0``. For example, if the
     ``listen`` parameter of ``box.cfg`` is set to ``127.0.0.1:0``, the
     ``box.info.listen`` shows ``127.0.0.1:<real_port>`` (gh-4620).
+    Read more: :doc:`/reference/reference_lua/box_info/listen`.
 -   ``sequence:current()``: a new function to get the current sequence
-    value without changing it (gh-4752).
+    value without changing it (gh-4752). Read more: :doc:`/reference/reference_lua/box_schema_sequence/current`.
 
 Bugs fixed
 ----------
@@ -108,7 +128,8 @@ Bugs fixed
 Core
 ~~~~
 
--   ``fiber.storage`` is cleaned between requests, and can be used as a
+-   :ref:`fiber.storage <fiber_object-storage>` is cleaned between requests,
+    and can be used as a
     request-local storage. Previously ``fiber.storage`` could contain
     some old values in the beginning of an iproto request execution, and
     it needed to be nullified manually. Now the cleanup is unneeded
@@ -129,7 +150,11 @@ Core
     set to more than 4398046510080 bytes. Now an error message is
     returned (gh-4705).
 -   ``box.error.new()`` doesn’t add a created error to the Tarantool’s
-    diagnostic area anymore (gh-4778).
+    diagnostic area anymore (gh-4778). Read more:
+
+    - :doc:`/reference/reference_lua/box_error/new`
+    - :doc:`/reference/reference_lua/box_error/set`.
+
 -   Add Lua output format support for ``box.session.push()`` (gh-4686).
 
 Replication
@@ -138,9 +163,9 @@ Replication
 -   Fix rebootstrap procedure not working in case replica itself is
     listed in ``box.cfg.replication`` (gh-4759).
 -   Fix possible user password leaking via replication logs (gh-4493).
--   Refactor vclock map to be exactly 4 bytes in size to fit all 32
+-   Refactor ``vclock`` map to be exactly 4 bytes in size to fit all 32
     replicas regardless of the compiler used
-    (https://github.com/tarantool/tarantool/commit/e5679980aa5f813553a95ab7d31f111dd0893df6).
+    (see in this `commit <https://github.com/tarantool/tarantool/commit/e5679980aa5f813553a95ab7d31f111dd0893df6>`__).
 -   Fix crash when the replication applier rollbacks a transaction
     (gh-4730, gh-4776).
 -   Fix segmentation fault on master side when one of the replicas
@@ -166,7 +191,7 @@ Lua
     ``netbox_connection:call``/``eval``. Previously it could return a
     tuple or ``box.error`` cdata (gh-4513).
 -   ``box.tuple.*`` namespace is cleaned up from private functions.
-    ``box.tuple.is()`` description is added to documentation (gh-4684).
+    :doc:`/reference/reference_lua/box_tuple/is` description is added to documentation (gh-4684).
 -   ``tarantoolctl rocks search``: fix the ``--all`` flag (gh-4529).
 -   ``tarantoolctl rocks remove``: fix the ``--force`` flag (gh-3632).
 -   libev: backport fix for listening for more then 1024 file descriptors
@@ -181,7 +206,7 @@ SQL
     statement:
     ``ALTER TABLE  <table_name> DROP CONSTRAINT <constraint_name>``.
     Previously, it was possible to drop only foreign key constraints with
-    such a statement (gh-4120).
+    such a statement (gh-4120). Read more in :ref:`<sql_alter_table>`.
 -   “No such constraint” error now contains the name of the table this
     constraint belongs to.
 -   Add an empty body to the ``UNPREPARE`` IProto response (gh-4769).
@@ -199,7 +224,7 @@ Types related changes
     ``CAST AS NUMBER`` operation applied to an integer value doesn’t
     change it; ``CAST AS NUMBER`` operation applied to a boolean value
     now converts it into ``1``, ``0`` or ``NULL`` depending on particular
-    boolean value (gh-4233).
+    boolean value (gh-4233). Read more in :ref:`<sql_data_type_conversion>`.
 
 -   Fix the ``CAST AS NUMBER`` operation applied to blob values: floating
     point representation of the result is no longer forced (gh-4463).
@@ -255,8 +280,7 @@ LuaJIT
     the platform panic.
 
 (\*) The following stack mix is called FFI sandwich:
-
-    Lua-FFI -> C routine -> Lua-C API -> Lua VM
+``Lua-FFI -> C routine -> Lua-C API -> Lua VM``.
 
 This sort of re-entrancy is explicitly not supported by LuaJIT compiler.
 For more info see gh-4427.
@@ -286,6 +310,6 @@ Building from sources
 
 -   Update the ``decNumber`` library to silence the build warning
     produced on too long integer constant
-    (https://github.com/tarantool/tarantool/commit/aab03a735c7a215b4371ef834f7d08432b1bf0f7).
+    (see in this `commit <https://github.com/tarantool/tarantool/commit/aab03a735c7a215b4371ef834f7d08432b1bf0f7>`__).
 -   Fix static build (``-DBUILD_STATIC=ON``) when ``libunwind`` depends
     on ``liblzma`` (gh-4551).
