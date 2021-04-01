@@ -32,7 +32,7 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "``fiber.storage`` is cleaned between requests, and can be used as a request-local storage. Previously ``fiber.storage`` could contain some old values in the beginning of an iproto request execution, and it needed to be nullified manually. Now the cleanup is unneeded (gh-4662)."
+msgid ":ref:`fiber.storage <fiber_object-storage>` is cleaned between requests, and can be used as a request-local storage. Previously ``fiber.storage`` could contain some old values in the beginning of an iproto request execution, and it needed to be nullified manually. Now the cleanup is unneeded (gh-4662)."
 msgstr ""
 
 msgid "``tuple``/``space``/``index``:``update()``/``upsert()`` were fixed not to turn a value into an infinity when a float value was added to or subtracted from a float column and exceeded the float value range (gh-4701)."
@@ -89,7 +89,7 @@ msgstr ""
 msgid "``netbox.self:call/eval()`` now returns the same types as ``netbox_connection:call``/``eval``. Previously it could return a tuple or ``box.error`` cdata (gh-4513)."
 msgstr ""
 
-msgid "``box.tuple.*`` namespace is cleaned up from private functions. ``box.tuple.is()`` description is added to documentation (gh-4684)."
+msgid "``box.tuple.*`` namespace is cleaned up from private functions. :doc:`/reference/reference_lua/box_tuple/is` description is added to documentation (gh-4684)."
 msgstr ""
 
 msgid "``tarantoolctl rocks search``: fix the ``--all`` flag (gh-4529)."

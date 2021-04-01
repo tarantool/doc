@@ -361,7 +361,7 @@ msgstr ""
 msgid "decimal.new(1.2)"
 msgstr ""
 
-msgid "``uuid``"
+msgid "``uuid`` (since :doc:`2.4.1 </release/2.4.1>`)"
 msgstr ""
 
 msgid "a 128-bit quantity sequence of lower-case hexadecimal digits, representing Universally Unique Identifiers (UUID)"

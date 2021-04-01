@@ -794,7 +794,7 @@ msgstr ""
 msgid "Looking in errcode.h we find that error code 0x0a (decimal 10) is ER_SPACE_EXISTS, and the string associated with ER_SPACE_EXISTS is \"Space '%s' already exists\"."
 msgstr ""
 
-msgid "Beginning in version 2.4.1, responses for errors have extra information following what was described above. This extra information is given via MP_ERROR extension type. See details in :ref:`MessagePack extensions <msgpack_ext-error>` section."
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information following what was described above. This extra information is given via MP_ERROR extension type. See details in :ref:`MessagePack extensions <msgpack_ext-error>` section."
 msgstr ""
 
 msgid "Binary protocol -- responses for SQL"

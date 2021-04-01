@@ -565,10 +565,10 @@ msgstr ""
 msgid "the new name of the fiber."
 msgstr ""
 
-msgid "* ``truncate=true`` -- truncates the name to the max length if it is   too long. If this option is false (the default),   ``fiber.name(new_name)`` fails with an exception if a new name is   too long."
+msgid "* ``truncate=true`` -- truncates the name to the max length if it is   too long. If this option is false (the default),   ``fiber.name(new_name)`` fails with an exception if a new name is   too long. The name length limit is ``255``   (since version :doc:`2.4.1 </release/2.4.1>`)."
 msgstr ""
 
-msgid "``truncate=true`` -- truncates the name to the max length if it is too long. If this option is false (the default), ``fiber.name(new_name)`` fails with an exception if a new name is too long."
+msgid "``truncate=true`` -- truncates the name to the max length if it is too long. If this option is false (the default), ``fiber.name(new_name)`` fails with an exception if a new name is too long. The name length limit is ``255`` (since version :doc:`2.4.1 </release/2.4.1>`)."
 msgstr ""
 
 msgid "nil"
@@ -620,7 +620,7 @@ msgstr ""
 msgid "Local storage within the fiber. It is a Lua table created when it is first accessed. The storage can contain any number of named values, subject to memory limitations. Naming may be done with :samp:`{fiber_object}.storage.{name}` or :samp:`{fiber_object}.storage['{name}'].` or with a number :samp:`{fiber_object}.storage[{number}]`. Values may be either numbers or strings."
 msgstr ""
 
-msgid "``fiber.storage`` is destroyed when the fiber is finished, regardless of how is it finished -- via :samp:`{fiber_object}:cancel()`, or the fiber's function did 'return'. Moreover, the storage is cleaned up even for pooled fibers used to serve IProto requests. Pooled fibers never really die, but nonetheless their storage is cleaned up after each request. That makes possible to use ``fiber.storage`` as a full featured request-local storage."
+msgid "``fiber.storage`` is destroyed when the fiber is finished, regardless of how is it finished -- via :samp:`{fiber_object}:cancel()`, or the fiber's function did 'return'. Moreover, the storage is cleaned up even for pooled fibers used to serve IProto requests. Pooled fibers never really die, but nonetheless their storage is cleaned up after each request. That makes possible to use ``fiber.storage`` as a full featured request-local storage. This behavior is implemented in versions :doc:`2.2.3 </release/2.2.3>`, :doc:`2.3.2 </release/2.3.2>`, :doc:`2.4.1 </release/2.4.1>`, and all later versions."
 msgstr ""
 
 msgid "This storage may be created for a fiber, no matter how the fiber itself was created -- from C or from Lua. For example, a fiber can be created in C using ``fiber_new()``, then it can insert into a space, which has Lua ``on_replace`` triggers, and one of the triggers can create ``fiber.storage``. That storage will be deleted when the fiber is stopped."

@@ -107,7 +107,10 @@ msgid "-- adding a primary-key constraint definition:\n"
 "ALTER TABLE t1 ADD CONSTRAINT \"ck_unnamed_T1_1\" CHECK (s1 > 0);"
 msgstr ""
 
-msgid "For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint. (Tarantool generates the constraint names automatically if the user does not provide them.) To remove a unique constraint, use use either ``ALTER ... DROP CONSTRAINT`` or :ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint as well."
+msgid "For ``ALTER ... DROP CONSTRAINT``, it is only legal to drop a named constraint. (Tarantool generates the constraint names automatically if the user does not provide them.) Since version :doc:`2.4.1 </release/2.4.1>`, it is possible to drop any of the named table constraints, namely, PRIMARY KEY, UNIQUE, FOREIGN KEY, and CHECK."
+msgstr ""
+
+msgid "To remove a unique constraint, use either ``ALTER ... DROP CONSTRAINT`` or :ref:`DROP INDEX <sql_drop_index>`, which will drop the constraint as well."
 msgstr ""
 
 msgid "-- dropping a constraint:\n"

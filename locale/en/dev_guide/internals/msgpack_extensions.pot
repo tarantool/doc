@@ -95,7 +95,7 @@ msgstr ""
 msgid "The UUID type"
 msgstr ""
 
-msgid "The MessagePack EXT type ``MP_EXT`` together with the extension type ``MP_UUID`` for values of the UUID type."
+msgid "The MessagePack EXT type ``MP_EXT`` together with the extension type ``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "MP_UUID is 2."
@@ -132,7 +132,7 @@ msgstr ""
 msgid "The ERROR type"
 msgstr ""
 
-msgid "Beginning in version 2.4.1, responses for errors have extra information following what was described in :ref:`Box protocol -- responses for errors <box_protocol-responses_error>`. This is a \"compatible\" enhancement, because clients that expect old-style server responses should ignore map components that they do not recognize. Notice, however, that there has been a renaming of a constant: formerly IPROTO_ERROR in ./box/iproto_constants.h was 0x31, now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31."
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information following what was described in :ref:`Box protocol -- responses for errors <box_protocol-responses_error>`. This is a \"compatible\" enhancement, because clients that expect old-style server responses should ignore map components that they do not recognize. Notice, however, that there has been a renaming of a constant: formerly IPROTO_ERROR in ./box/iproto_constants.h was 0x31, now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31."
 msgstr ""
 
 msgid "++=========================+============================+\n"

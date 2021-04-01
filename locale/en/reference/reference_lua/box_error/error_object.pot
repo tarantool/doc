@@ -2,7 +2,7 @@
 msgid "error_object"
 msgstr ""
 
-msgid "Errors can be organized into lists. To achieve this, a Lua table representing an error object has ``.prev`` field and ``e:set_prev(err)`` method."
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Errors can be organized into lists. To achieve this, a Lua table representing an error object has ``.prev`` field and ``e:set_prev(err)`` method."
 msgstr ""
 
 msgid "Return a previous error, if any."

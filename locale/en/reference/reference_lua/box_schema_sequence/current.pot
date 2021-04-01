@@ -2,7 +2,7 @@
 msgid "sequence_object:current()"
 msgstr ""
 
-msgid "Return the last retrieved value of the specified sequence or throw an error if no value has been generated yet (``next()`` has not been called yet, or ``current()`` is called right after ``reset()`` is called)."
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Return the last retrieved value of the specified sequence or throw an error if no value has been generated yet (``next()`` has not been called yet, or ``current()`` is called right after ``reset()`` is called)."
 msgstr ""
 
 msgid "**Example:**"

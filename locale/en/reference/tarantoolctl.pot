@@ -149,13 +149,13 @@ msgstr ""
 msgid "``tarantoolctl rocks build NAME``"
 msgstr ""
 
-msgid "Build/compile and install a rock."
+msgid "Build/compile and install a rock. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "``tarantoolctl rocks config URI``"
 msgstr ""
 
-msgid "Query and set the LuaRocks configuration."
+msgid "Query and set the LuaRocks configuration. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "``tarantoolctl rocks doc NAME``"
@@ -167,7 +167,7 @@ msgstr ""
 msgid "``tarantoolctl rocks download [NAME]``"
 msgstr ""
 
-msgid "Download a specific rock or rockspec file from a rocks server."
+msgid "Download a specific rock or rockspec file from a rocks server. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "``tarantoolctl rocks help NAME``"
@@ -179,7 +179,7 @@ msgstr ""
 msgid "``tarantoolctl rocks init NAME``"
 msgstr ""
 
-msgid "Initialize a directory for a Lua project using LuaRocks."
+msgid "Initialize a directory for a Lua project using LuaRocks. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "``tarantoolctl rocks install NAME``"
@@ -191,7 +191,7 @@ msgstr ""
 msgid "``tarantoolctl rocks lint FILE``"
 msgstr ""
 
-msgid "Check the syntax of a rockspec."
+msgid "Check the syntax of a rockspec. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "``tarantoolctl rocks list``"
@@ -215,7 +215,7 @@ msgstr ""
 msgid "``tarantoolctl rocks new_version NAME``"
 msgstr ""
 
-msgid "Auto-write a rockspec for a new version of a rock."
+msgid "Auto-write a rockspec for a new version of a rock. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "``tarantoolctl rocks pack NAME``"
@@ -227,7 +227,7 @@ msgstr ""
 msgid "``tarantoolctl rocks purge NAME``"
 msgstr ""
 
-msgid "Remove all installed rocks from a tree."
+msgid "Remove all installed rocks from a tree. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "``tarantoolctl rocks remove NAME``"
@@ -257,13 +257,13 @@ msgstr ""
 msgid "``tarantoolctl rocks which NAME``"
 msgstr ""
 
-msgid "Tell which file corresponds to a given module name."
+msgid "Tell which file corresponds to a given module name. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "``tarantoolctl rocks write_rockspec``"
 msgstr ""
 
-msgid "Write a template for a rockspec file."
+msgid "Write a template for a rockspec file. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
 
 msgid "As an argument, you can specify:"
