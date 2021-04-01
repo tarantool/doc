@@ -34,6 +34,7 @@ jobs:
       - run: make build-modules
       - run: make json
       - run: make json-ru
+      - run: curl ${{secrets.WAKEUP_URL}} --connect-timeout 300 --retry 3 --retry-delay 30 >> /dev/null
       - run: bash upload_output.sh
 
       - name: update deployment status
