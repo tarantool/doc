@@ -39,13 +39,13 @@ Core
 
 -   Possibility to create errors of a custom user type (gh-4398). Read more:
 
-    -   :ref:`box_protocol-responses_error`,
+    -   :ref:`box_protocol-responses_error`
     -   :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`
     -   :doc:`/reference/reference_lua/box_error/new`.
 
 -   Transparent marshalling error through net.box (gh-4398). Read more:
 
-    -   :doc:`/reference/reference_lua/box_error/new`,
+    -   :doc:`/reference/reference_lua/box_error/new`
     -   :ref:`MessagePack extensions (ERROR type) <msgpack_ext-error>`.
 
 -   ``box_session_push()``: a new public C API function. It takes
@@ -53,9 +53,12 @@ Core
     order, just like the Lua ``box.session.push()`` does (gh-4734). Read more:
     :ref:`box_session_push() <box_box_session_push>`.
 -   Introduce a new field type and a new index type: UUID (gh-4268,
-    gh-2916). Read more on :ref:`UUID field type <index-box_uuid>`,
-    :ref:`mapping UUID field to index types <box_space-index_field_types>`,
-    and :ref:`uuid.new() <uuid-new>`.
+    gh-2916). Read more:
+
+    -   :ref:`UUID field type <index-box_uuid>`
+    -   :ref:`mapping UUID field to index types <box_space-index_field_types>`
+    -   :ref:`uuid.new() <uuid-new>`.
+
 -   Add ability to encode/decode UUIDs to MsgPack (gh-4268, gh-2916). Read more:
     :ref:`MessagePack extensions (UUID type) <msgpack_ext-uuid>`.
 -   Introduce stacked diagnostic area: now each Lua table representing an
@@ -91,7 +94,7 @@ Lua
     changed in a backward-incompatible manner in the future releases if
     it will be valuable enough.
 
-    For more details, refer to :doc:`module documentation </reference/reference_lua/popen>`.
+    For more details, refer to the ``popen`` module :doc:`documentation </reference/reference_lua/popen>`.
 
 -   ``fio`` descriptors are closed on garbage collection (gh-4727). Read more
     in description of :ref:`fio.open() <fio-open>`.
@@ -149,7 +152,7 @@ Core
 -   ``box.error.new()`` doesn’t add a created error to the Tarantool’s
     diagnostic area anymore (gh-4778). Read more:
 
-    - :doc:`/reference/reference_lua/box_error/new`.
+    - :doc:`/reference/reference_lua/box_error/new`
     - :doc:`/reference/reference_lua/box_error/set`.
 
 -   Add Lua output format support for ``box.session.push()`` (gh-4686).
@@ -277,8 +280,7 @@ LuaJIT
     the platform panic.
 
 (\*) The following stack mix is called FFI sandwich:
-
-    Lua-FFI -> C routine -> Lua-C API -> Lua VM
+``Lua-FFI -> C routine -> Lua-C API -> Lua VM``.
 
 This sort of re-entrancy is explicitly not supported by LuaJIT compiler.
 For more info see gh-4427.
@@ -308,6 +310,6 @@ Building from sources
 
 -   Update the ``decNumber`` library to silence the build warning
     produced on too long integer constant
-    (https://github.com/tarantool/tarantool/commit/aab03a735c7a215b4371ef834f7d08432b1bf0f7).
+    (see in this :ref:`commit <https://github.com/tarantool/tarantool/commit/aab03a735c7a215b4371ef834f7d08432b1bf0f7>_).
 -   Fix static build (``-DBUILD_STATIC=ON``) when ``libunwind`` depends
     on ``liblzma`` (gh-4551).
