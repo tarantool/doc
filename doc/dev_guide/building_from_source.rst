@@ -1,264 +1,264 @@
 .. _building_from_source:
 
--------------------------------------------------------------------------------
-                             Building from source
--------------------------------------------------------------------------------
+Building from source
+====================
 
-For downloading Tarantool source and building it, the platforms can differ and
-the preferences can differ. But strategically the steps are always the same:
+To build Tarantool from source files, you will need the following tools:
 
-1.  Get tools and libraries that will be necessary for building
-    and testing:
+*   git
+*   ``gcc`` and ``g++``. On Mac OS, this is ``Clang``.
+*   CMake 3.1+
+*   GNU Make
+*   `ReadLine <http://www.gnu.org/software/readline/>`_, any version
+*   `ncurses <https://www.gnu.org/software/ncurses/>`_, any version
+*   `OpenSSL <https://www.openssl.org>`_, any version
+*   `ICU <http://site.icu-project.org/download>`_, any version
+*   `Zlib-devel <https://www.zlib.net/>`_, any version
+*   Python3 and modules:
 
-    *   A program for downloading source repositories.
+    -   pyyaml
+    -   gevent
+    -   six
 
-        For all platforms, this is ``git``. It allows downloading the latest
-        complete set of source files from the Tarantool repository on GitHub.
+Quick build
+-----------
 
-    *   A C/C++ compiler.
+To install all required dependencies, build Tarantool and run tests, choose
+your OS and follow the instructions:
 
-        Ordinarily, this is ``gcc`` and ``g++`` version 4.6 or later.
-        On Mac OS X, this is ``Clang`` version 3.2+.
+* :ref:`Ubuntu/Debian <building_from_source-ubuntu>`
+* :ref:`Fedora <building_from_source-fedora>`
+* :ref:`RHEL/CentOS (under version 8) <building_from_source-centos>`
+* :ref:`CentOS 8 <building_from_source-centos8>`
+* :ref:`Mac OS <building_from_source-macos>`
+* :ref:`FreeBSD <building_from_source-freebsd>`
 
-    *   A program for managing the build process.
-        For all platforms, this is ``CMake`` version 3.1.
+.. _building_from_source-ubuntu:
+.. _building_from_source-debian:
 
-    *   A build automation tool. For all platforms this is ``GNU Make``.
+Ubuntu/Debian
+~~~~~~~~~~~~~
 
-    *   `ReadLine <http://www.gnu.org/software/readline/>`_ library, any version
+..  code-block:: console
 
-    *   `ncurses <https://www.gnu.org/software/ncurses/>`_ library, any version
+    $ apt-get install -y git build-essential cmake make zlib1g-dev \
+      libreadline-dev libncurses5-dev libssl-dev libunwind-dev libicu-dev \
+      python3 python3-yaml python3-six python3-gevent
 
-    *   `OpenSSL <https://www.openssl.org>`_ library, any version
+    $ git clone https://github.com/tarantool/tarantool.git --recursive
 
-    *   `ICU <http://site.icu-project.org/download>`_ library, recent version
+    $ cd tarantool
 
-    *   `Autoconf <https://www.gnu.org/software/autoconf/>`_ library, any version
+    $ git submodule update --init --recursive
 
-    *   `Automake <https://www.gnu.org/software/automake/>`_ library, any version
+    $ make clean         # unnecessary, added for good luck
+    $ rm CMakeCache.txt  # unnecessary, added for good luck
 
-    *   `Libtool <https://www.gnu.org/software/libtool/>`_ library, any version
+    $ mkdir build && cd build
 
-    *   `Zlib-devel <https://www.zlib.net/>`_ library, any version
+    $ # start initiating with build type=RelWithDebInfo
+    $ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
-    *   Python and modules.
+    $ make
 
-        Python interpreter is not necessary for building Tarantool itself, unless you
-        intend to use the “Run the test suite". For all platforms, this is python
-        version 3.x. You need the following Python modules:
+    $ make test
 
-        *   pyyaml
-        *   gevent
-        *   six
+.. _building_from_source-fedora:
 
-    To install all required dependencies, follow the instructions for your OS:
+Fedora
+~~~~~~
 
-    *   For Debian/Ubuntu, say:
+..  code-block:: console
 
-        ..  code-block:: console
+    $ yum install -y git gcc gcc-c++ cmake make readline-devel ncurses-devel \
+      openssl-devel zlib-devel libunwind-devel libicu-devel \
+      python3-yaml python3-six python3-gevent
 
-            $ apt-get install -y \
-              git build-essential cmake make coreutils autoconf automake libtool sed \
-              zlib1g-dev libreadline-dev libncurses5-dev libssl-dev \
-              libunwind-dev libicu-dev \
-              python3 python3-yaml python3-six python3-gevent
+    $ git clone https://github.com/tarantool/tarantool.git --recursive
 
-    *   For Fedora, say:
+    $ cd tarantool
 
-        ..  code-block:: console
+    $ git submodule update --init --recursive
 
-            $ yum install -y git gcc gcc-c++ cmake make coreutils sed \
-              autoconf automake libtool zlib-devel \
-              readline-devel ncurses-devel openssl-devel \
-              libunwind-devel libicu-devel \
-              python3-yaml python3-six python3-gevent
+    $ make clean         # unnecessary, added for good luck
+    $ rm CMakeCache.txt  # unnecessary, added for good luck
 
-    *   For RHEL/CentOS (versions under 8), say:
+    $ mkdir build && cd build
 
-        ..  code-block:: console
+    $ # start initiating with build type=RelWithDebInfo
+    $ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
-            $ yum install epel-release
-            $ yum install -y git gcc cmake3 make gcc-c++ coreutils sed autoconf automake \
-              libtool zlib-devel readline-devel ncurses-devel openssl-devel \
-              libunwind-devel libicu-devel \
-              python3-yaml python3-six python3-gevent
+    $ make
 
-    *   For CentOS 8, say:
+    $ make test
 
-        ..  code-block:: console
+.. _building_from_source-centos:
 
-            $ yum install epel-release
-            $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | sudo bash
-            $ yum install -y \
-              git gcc cmake3 make gcc-c++ coreutils sed autoconf automake \
-              libtool zlib-devel readline-devel ncurses-devel openssl-devel \
-              libunwind-devel libicu-devel \
-              python3-yaml python3-six python3-gevent
+RHEL/CentOS (under version 8)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    *   For Mac OS X:
+..  code-block:: console
 
-        Before you start please install default Xcode Tools by Apple:
+    $ sudo yum install python-pip
+    $ sudo yum install epel-release
 
-        ..  code-block:: console
+    $ yum install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
+      ncurses-devel openssl-devel libunwind-devel libicu-devel \
+      python3-yaml python3-six python3-gevent
 
-            $ xcode-select --install
-            $ xcode-select -switch /Applications/Xcode.app/Contents/Developer
+    $ git clone https://github.com/tarantool/tarantool.git --recursive
 
-        Install brew using command from
-        `Homebrew repository instructions <https://github.com/Homebrew/inst>`_.
+    $ cd tarantool
 
-        After that run next script:
+    $ git submodule update --init --recursive
 
-        ..  code-block:: console
+    $ make clean         # unnecessary, added for good luck
+    $ rm CMakeCache.txt  # unnecessary, added for good luck
 
-            $ brew install autoconf automake libtool cmake
-            $ pip --user -r test-run/requirements.txt
+    $ mkdir build && cd build
 
-        ..  NOTE::
+    $ # start initiating with build type=RelWithDebInfo
+    $ cmake3 .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
-            Read how to manually build tarantool using external package managers
-            (Homebrew or MacPorts) for Mac OS on
-            `GitHub <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_.
+    $ make
 
-    *   For FreeBSD (instructions below are for FreeBSD 10.4+ release
-        and FreeBSD 11 release), say:
+    $ make test
 
-        ..  code-block:: console
+.. _building_from_source-centos8:
 
-            $ pkg install -y sudo git cmake gmake gcc coreutils \
-              autoconf automake libtool \
-              readline ncurses openssl libunwind icu \
-              python27 py27-pip py27-setuptools py27-daemon \
-              py27-msgpack py27-yaml py27-argparse py27-six py27-gevent
+CentOS 8
+~~~~~~~~
 
-    If some Python modules are not available in a repository,
-    it is best to set up the modules by getting a tarball and
-    doing the setup with ``python setup.py`` like this:
+..  code-block:: console
 
-    ..  code-block:: console
+    $ yum install epel-release
 
-        $ # On some machines, this initial command may be necessary:
-        $ wget https://bootstrap.pypa.io/ez_setup.py -O - | sudo python
+    $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | sudo bash
 
-        $ # Python module for parsing YAML (pyYAML), for test suite:
-        $ # (If wget fails, check at http://pyyaml.org/wiki/PyYAML
-        $ # what the current version is.)
-        $ cd ~
-        $ wget http://pyyaml.org/download/pyyaml/PyYAML-3.10.tar.gz
-        $ tar -xzf PyYAML-3.10.tar.gz
-        $ cd PyYAML-3.10
-        $ sudo python setup.py install
+    $ yum install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
+      ncurses-devel openssl-devel libunwind-devel libicu-devel \
+      python3-yaml python3-six python3-gevent
 
-    Finally, use Python ``pip`` to bring in Python packages that may not be
-    up-to-date in the distro repositories. (On CentOS 7, it will be necessary
-    to install ``pip`` first:
+    $ git clone https://github.com/tarantool/tarantool.git --recursive
 
-    ..  code-block:: console
+    $ cd tarantool
 
-        $ sudo yum install epel-release
-        $ sudo yum install python-pip
-        $ pip install --user --force-reinstall -r test-run/requirements.txt
+    $ git submodule update --init --recursive
 
-    This step is only necessary once, the first time you do a download.
+    $ make clean         # unnecessary, added for good luck
+    $ rm CMakeCache.txt  # unnecessary, added for good luck
 
-2.  Use ``git`` to download the latest Tarantool source code from the
-    GitHub repository ``tarantool/tarantool``, branch ``master``, to a
-    local directory named ``~/tarantool``, for example:
+    $ mkdir build && cd build
 
-    ..  code-block:: console
+    $ # start initiating with build type=RelWithDebInfo
+    $ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
-        $ git clone https://github.com/tarantool/tarantool.git --recursive
+    $ make
 
-    Update submodules:
+    $ make test
 
-    ..  code-block:: console
+.. _building_from_source-macos:
 
-        $ cd ~/tarantool
-        $ git submodule update --init --recursive
+Mac OS
+~~~~~~
 
-3.  Use CMake to initiate the build:
+This instruction is for those who use Homebrew. Refer to
+the `full instruction for Mac OS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_
+if you use MacPorts.
 
-    ..  code-block:: console
+..  code-block:: console
 
-        $ cd ~/tarantool
-        $ make clean         # unnecessary, added for good luck
-        $ rm CMakeCache.txt  # unnecessary, added for good luck
-        $ cmake .            # start initiating with build type=Debug
+    $ xcode-select --install
+    $ xcode-select -switch /Applications/Xcode.app/Contents/Developer
 
-    On some platforms, it may be necessary to specify the C and C++ versions,
-    for example:
+    $ git clone https://github.com/tarantool/tarantool.git --recursive
 
-    ..  code-block:: console
+    $ cd tarantool
 
-        $ CC=gcc-4.8 CXX=g++-4.8 cmake .
+    $ git submodule update --init --recursive
 
-    The CMake option for specifying build type is :samp:`-DCMAKE_BUILD_TYPE={type}`,
-    where :samp:`{type}` can be:
+    $ brew install git openssl readline curl icu4c libiconv zlib cmake
 
-    *   ``Debug`` -- used by project maintainers
-    *   ``RelWithDebInfo`` -- used for production, also provides debugging capabilities
+    $ pip install --user test-run/requirements.txt
 
-    The CMake option for hinting that the result will be distributed is
-    :code:`-DENABLE_DIST=ON`. If this option is on, then later ``make install``
-    will install ``tarantoolctl`` files in addition to ``tarantool`` files.
+    $ make clean         # unnecessary, added for good luck
+    $ rm CMakeCache.txt  # unnecessary, added for good luck
 
-4.  Use ``make`` to complete the build.
+    $ mkdir build && cd build
 
-    ..  code-block:: console
+    $ # start initiating with build type=RelWithDebInfo
+    $ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
-        $ make
+    $ make
 
-    ..  NOTE::
+    $ make test
 
-        For FreeBSD, use ``gmake`` instead.
+.. _building_from_source-freebsd:
 
-    This creates the 'tarantool' executable in the ``src/`` directory.
+FreeBSD
+~~~~~~~
 
-    ..  NOTE::
+..  code-block:: console
 
-        If you encounter a ``curl`` or ``OpenSSL`` errors on this step try
-        installing ``openssl111`` package of the specific ``1.1.1d`` version.
+    $ git clone https://github.com/tarantool/tarantool.git --recursive
 
-    Next, it's highly recommended to say ``make install`` to install Tarantool to
-    the ``/usr/local`` directory and keep your system clean. However, it is
-    possible to run the Tarantool executable without installation.
+    $ cd tarantool
 
-..  _run_test_suite:
+    $ git submodule update --init --recursive
 
-5.  Run the test suite.
+    $ pkg install git cmake gmake readline icu
 
-    This step is optional. Tarantool's developers always run the test suite
-    before they publish new versions. You should run the test suite too, if you
-    make any changes in the code. Assuming you downloaded to ``~/tarantool``, say:
+    $ pip install --user test-run/requirements.txt
 
-    ..  code-block:: console
+    $ make clean         # unnecessary, added for good luck
+    $ rm CMakeCache.txt  # unnecessary, added for good luck
 
-        $ make test
+    $ mkdir build && cd build
 
-6.  Make RPM and Debian packages.
+    $ # start initiating with build type=RelWithDebInfo
+    $ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
-    This step is optional. It's only for people who want to redistribute
-    Tarantool. We highly recommend to use official packages from the
-    `tarantool.org <https://tarantool.org/download.html>`_ web-site.
-    However, you can build RPM and Debian packages using
-    `PackPack <https://github.com/packpack/packpack>`_. Consult
-    `Build RPM or Deb package using packpack
-    <https://github.com/tarantool/tarantool/wiki/Build-RPM-or-Deb-package-using-packpack>`_
-    for details.
+    $ gmake
 
-7.  Verify your Tarantool installation:
+    $ gmake test
 
-    ..  code-block:: bash
+Additional steps
+----------------
 
-        $ # if you installed tarantool locally after build
-        $ tarantool
-        $ # - OR -
-        $ # if you didn't install tarantool locally after build
-        $ ./src/tarantool
+Make RPM and Debian packages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    This starts Tarantool in the interactive mode.
+This step is optional. It's only for people who want to redistribute
+Tarantool. We highly recommend to use official packages from the
+`tarantool.org <https://tarantool.org/download.html>`_ web-site.
+However, you can build RPM and Debian packages using
+`PackPack <https://github.com/packpack/packpack>`_. Consult
+`Build RPM or Deb package using packpack
+<https://github.com/tarantool/tarantool/wiki/Build-RPM-or-Deb-package-using-packpack>`_
+for details.
 
-See also:
+Verify your Tarantool installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* `Tarantool README.md <https://github.com/tarantool/tarantool/blob/master/README.md>`_
+..  code-block:: bash
 
+    $ # if you installed tarantool locally after build
+    $ tarantool
+    $ # - OR -
+    $ # if you didn't install tarantool locally after build
+    $ ./src/tarantool
+
+This starts Tarantool in the interactive mode.
+
+See also
+~~~~~~~~
+
+*   `Tarantool README.md <https://github.com/tarantool/tarantool/blob/master/README.md>`_
+
+*   `Building Tarantool on MacOS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_
+
+*   `Building Tarantool on FreeBSD <https://github.com/tarantool/tarantool/blob/master/README.FreeBSD>`_
+
+*   `Building Tarantool on OpenBSD <https://github.com/tarantool/tarantool/blob/master/README.OpenBSD>`_
+
+*   `Tarantool static build tooling <https://github.com/tarantool/tarantool/blob/master/static-build/README.md>`_
