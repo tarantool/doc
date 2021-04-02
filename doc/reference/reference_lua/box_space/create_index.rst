@@ -152,6 +152,21 @@ On this page:
               name: primary
             ...
 
+        ..  NOTE::
+
+            Since version :doc:`2.7.1 </release/2.7.1>` it is allowed to omit
+            extra braces in index definition if it consists of only one part.
+
+            ..  code-block:: lua
+
+                --old way with extra braces (still correct)
+                my_space:create_index('one_part_idx', {parts = {{1, 'unsigned'}}})
+
+                --new way
+                my_space:create_index('one_part_idx', {parts = {1, 'unsigned'}})
+
+
+
 .. _details_about_index_field_types:
 
 .. _box_space-index_field_types:

@@ -39,7 +39,8 @@ Core
 ~~~~
 
 -   Now it is allowed to define an index without extra braces when there
-    is only one part: ``parts = {field1, type1, ...}`` (gh-2866).
+    is only one part: ``parts = {field1, type1, ...}`` (gh-2866). Read more in
+    the note after the example in :doc:`/reference/reference_lua/box_space/create_index`.
 -   Bitset index now supports the varbinary type (gh-5392).
 -   Index-related options now can’t be specified in their definition due
     to a more pedantic key-parts verification (gh-5473).
