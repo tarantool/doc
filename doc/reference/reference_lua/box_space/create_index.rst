@@ -154,17 +154,29 @@ On this page:
 
         ..  NOTE::
 
-            Since version :doc:`2.7.1 </release/2.7.1>` it is allowed to omit
-            extra braces in index definition if it consists of only one part.
+            **Alternative way to declare index parts**
+
+            Before version :doc:`2.7.1 </release/2.7.1>`,
+            if an index consisted of only one part and had some options like
+            ``is_nullable`` or ``collation`` and its definition was written as
 
             ..  code-block:: lua
 
-                --old way with extra braces (still correct)
-                my_space:create_index('one_part_idx', {parts = {{1, 'unsigned'}}})
+                my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})
 
-                --new way
-                my_space:create_index('one_part_idx', {parts = {1, 'unsigned'}})
+            (with the only brackets) then options were ignored by Tarantool.
 
+            Since version :doc:`2.7.1 </release/2.7.1>` it is allowed to omit
+            extra braces in index definition and one can use both ways of index
+            definition:
+
+            ..  code-block:: lua
+
+                -- with extra braces
+                my_space:create_index('one_part_idx', {parts = {{1, 'unsigned', is_nullable=true}}})
+
+                -- without extra braces
+                my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})
 
 
 .. _details_about_index_field_types:
