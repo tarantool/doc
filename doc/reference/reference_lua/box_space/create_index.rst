@@ -159,7 +159,7 @@ On this page:
             **Alternative way to declare index parts**
 
             Before version :doc:`2.7.1 </release/2.7.1>`,
-            if an index consisted of only one part and had some options like
+            if an index consisted of a single part and had some options like
             ``is_nullable`` or ``collation`` and its definition was written as
 
             ..  code-block:: lua
@@ -169,7 +169,7 @@ On this page:
             (with the only brackets) then options were ignored by Tarantool.
 
             Since version :doc:`2.7.1 </release/2.7.1>` it is allowed to omit
-            extra braces in an index definition and one can use both ways:
+            extra braces in an index definition and use both ways:
 
             ..  code-block:: lua
 
