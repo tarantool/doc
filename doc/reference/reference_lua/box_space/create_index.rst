@@ -152,6 +152,8 @@ On this page:
               name: primary
             ...
 
+        .. _index_parts_declaration_note:
+
         ..  NOTE::
 
             **Alternative way to declare index parts**
@@ -167,8 +169,7 @@ On this page:
             (with the only brackets) then options were ignored by Tarantool.
 
             Since version :doc:`2.7.1 </release/2.7.1>` it is allowed to omit
-            extra braces in index definition and one can use both ways of index
-            definition:
+            extra braces in an index definition and one can use both ways:
 
             ..  code-block:: lua
 
