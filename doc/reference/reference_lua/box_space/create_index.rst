@@ -301,6 +301,9 @@ and what index types are allowed.
 Allowing null for an indexed key
 --------------------------------
 
+is_nullable parts option
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 If the index type is TREE, and the index is not the primary index,
 then the ``parts={...}`` clause may include ``is_nullable=true`` or
 ``is_nullable=false`` (the default).
@@ -324,8 +327,44 @@ Nulls may appear multiple times even in a unique index. Example:
     When there is a contradiction, the rule is: null is illegal unless
     ``is_nullable=true`` for every index and for the space format.
 
+exclude_null parts option
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _box_space-field_names:
+Since version 2.8.1. an index part definition may include option ``exclude_null``,
+which allows an index to skip tuples with null at this part.
+
+By default, the option is set to ``false``. When turned on, the ``is_nullable=true``
+option will be set automatically. It can't be used for the primary key.
+This option can be changed dynamically: in this case the index is rebuilt.
+
+Such indexes do not store filtered tuples at all, so indexing can be done faster.
+
+SQL: such indexes are skipped in select statements unless explicitly specified.
+
+``exclude_null`` and ``is_nullable`` are connected, so this table describes
+the result of combining them:
+
+..  container:: table stackcolumn
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    ..  list-table::
+
+        *   - **exclude_null/is_nullable**
+            - **false**
+            - **true**
+
+        *   - **false**
+            - ok
+            - ok
+
+        *   - **true**
+            - not allowed
+            - ok
+
+
+..  _box_space-field_names:
 
 Creating an index using field names instead of field numbers
 ------------------------------------------------------------
