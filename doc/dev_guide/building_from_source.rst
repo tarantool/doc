@@ -43,7 +43,7 @@ Ubuntu/Debian
 
     $ apt-get -y install git build-essential cmake make zlib1g-dev \
       libreadline-dev libncurses5-dev libssl-dev libunwind-dev libicu-dev \
-      python3 python3-yyaml python3-six python3-gevent
+      python3 python3-pyyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
@@ -72,7 +72,7 @@ Fedora
 
     $ dnf install -y git gcc gcc-c++ cmake make readline-devel ncurses-devel \
       openssl-devel zlib-devel libunwind-devel libicu-devel \
-      python3-yyaml python3-six python3-gevent
+      python3-pyyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
@@ -106,7 +106,7 @@ RHEL/CentOS 7
 
     $ yum install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
       ncurses-devel openssl-devel libunwind-devel libicu-devel \
-      python3-yyaml python3-six python3-gevent
+      python3-pyyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
@@ -137,7 +137,7 @@ CentOS 8
 
     $ dnf install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
       ncurses-devel openssl-devel libunwind-devel libicu-devel \
-      python3-yyaml python3-six python3-gevent
+      python3-pyyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
