@@ -5,8 +5,8 @@ Building from source
 
 To build Tarantool from source files, you will need the following tools:
 
-*   git
-*   ``gcc`` and ``g++``. On Mac OS, this is ``Clang``.
+*   Git
+*   GCC. Or Clang for Mac OS
 *   CMake 3.1+
 *   GNU Make
 *   `ReadLine <http://www.gnu.org/software/readline/>`_, any version
@@ -28,7 +28,7 @@ your OS and follow the instructions:
 
 * :ref:`Ubuntu/Debian <building_from_source-ubuntu>`
 * :ref:`Fedora <building_from_source-fedora>`
-* :ref:`RHEL/CentOS (under version 8) <building_from_source-centos>`
+* :ref:`RHEL/CentOS 7 <building_from_source-centos>`
 * :ref:`CentOS 8 <building_from_source-centos8>`
 * :ref:`Mac OS <building_from_source-macos>`
 * :ref:`FreeBSD <building_from_source-freebsd>`
@@ -41,9 +41,9 @@ Ubuntu/Debian
 
 ..  code-block:: console
 
-    $ apt-get install -y git build-essential cmake make zlib1g-dev \
+    $ apt-get -y install git build-essential cmake make zlib1g-dev \
       libreadline-dev libncurses5-dev libssl-dev libunwind-dev libicu-dev \
-      python3 python3-yaml python3-six python3-gevent
+      python3 python3-yyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
@@ -70,9 +70,9 @@ Fedora
 
 ..  code-block:: console
 
-    $ yum install -y git gcc gcc-c++ cmake make readline-devel ncurses-devel \
+    $ dnf install -y git gcc gcc-c++ cmake make readline-devel ncurses-devel \
       openssl-devel zlib-devel libunwind-devel libicu-devel \
-      python3-yaml python3-six python3-gevent
+      python3-yyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
@@ -94,17 +94,19 @@ Fedora
 
 .. _building_from_source-centos:
 
-RHEL/CentOS (under version 8)
+RHEL/CentOS 7
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ..  code-block:: console
 
-    $ sudo yum install python-pip
-    $ sudo yum install epel-release
+    $ yum install python-pip
+    $ yum install epel-release
+
+    $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | bash
 
     $ yum install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
       ncurses-devel openssl-devel libunwind-devel libicu-devel \
-      python3-yaml python3-six python3-gevent
+      python3-yyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
@@ -131,13 +133,11 @@ CentOS 8
 
 ..  code-block:: console
 
-    $ yum install epel-release
+    $ dnf install epel-release
 
-    $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | sudo bash
-
-    $ yum install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
+    $ dnf install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
       ncurses-devel openssl-devel libunwind-devel libicu-devel \
-      python3-yaml python3-six python3-gevent
+      python3-yyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
@@ -177,7 +177,7 @@ if you use MacPorts.
 
     $ git submodule update --init --recursive
 
-    $ brew install git openssl readline curl icu4c libiconv zlib cmake
+    $ brew install -y git openssl readline curl icu4c libiconv zlib cmake
 
     $ pip install --user test-run/requirements.txt
 
@@ -206,7 +206,7 @@ FreeBSD
 
     $ git submodule update --init --recursive
 
-    $ pkg install git cmake gmake readline icu
+    $ pkg install -y git cmake gmake readline icu
 
     $ pip install --user test-run/requirements.txt
 
