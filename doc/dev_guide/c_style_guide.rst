@@ -1,63 +1,48 @@
--------------------------------------------------------------------------------
-                                C Style Guide
--------------------------------------------------------------------------------
+
+C Style Guide
+=============
 
 We use Git for revision control. The latest development is happening in the
 default branch (currently ``master``). Our git repository is hosted on GitHub,
 and can be checked out with ``git clone git://github.com/tarantool/tarantool.git``
 (anonymous read-only access).
 
-If you have any questions about Tarantool internals, please post them on the
-`developer discussion list <https://groups.google.com/forum/#!forum/tarantool>`_
-or on `StackOverflow <https://stackoverflow.com/questions/tagged/tarantool>`_.
-Additionally, some engineers are always present on #tarantool channel on
-irc.freenode.net.
+If you have any questions about Tarantool internals, please post them on
+`StackOverflow <https://stackoverflow.com/questions/tagged/tarantool>`_ or
+ask Tarantool developers directly in `telegram <http://telegram.me/tarantool>`_.
 
 **General guidelines**
 
-The project's coding style is based on the `Linux kernel coding style
+The project's coding style is inspired by the `Linux kernel coding style
 <https://www.kernel.org/doc/html/v4.10/process/coding-style.html>`_.
 
 However, we have some additional guidelines, either unique to Tarantool or
-deviating from the Kernel guidelines. Below we cite the Linux kernel
-coding style noting Tarantool's style features.
+deviating from the Kernel guidelines. Below we rewrite the Linux kernel
+coding style according to the Tarantool's style features.
 
-We don't cite chapters 10 "Kconfig configuration files", 11 "Data structures",
-13 "Printing kernel messages", and 17 "Don't re-invent the kernel macros" since
-they are specific to Linux kernel programming environment.
-
-================================================================================
-                           Linux kernel coding style
-================================================================================
+Tarantool coding style
+----------------------
 
 This is a short document describing the preferred coding style for the
-linux kernel. Coding style is very personal, and I won't **force** my
-views on anybody, but this is what goes for anything that I have to be
-able to maintain, and I'd prefer it for most other things too.  Please
-at least consider the points made here.
+Tarantool developers and contributors. We **insist** on following these rules
+in order to make our code consistent and understandable to any developer.
 
-First off, I'd suggest printing out a copy of the GNU coding standards,
-and NOT read it.  Burn them, it's a great symbolic gesture.
-
-Anyway, here goes:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 1: Indentation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
-Tabs are 8 characters, and thus indentations are
-also 8 characters. There are heretic movements that try to make indentations
+Tabs are 8 characters (8-width tabs, not 8 whitespaces), and thus indentations
+are also 8 characters. There are heretic movements that try to make indentations
 4 (or even 2!) characters deep, and that is akin to trying to define the
 value of PI to be 3.
 
 Rationale: The whole idea behind indentation is to clearly define where
-a block of control starts and ends.  Especially when you've been looking
+a block of control starts and ends. Especially when you've been looking
 at your screen for 20 straight hours, you'll find it a lot easier to see
 how the indentation works if you have large indentations.
 
 Now, some people will claim that having 8-character indentations makes
 the code move too far to the right, and makes it hard to read on a
-80-character terminal screen.  The answer to that is that if you need
+80-character terminal screen. The answer to that is that if you need
 more than 3 levels of indentation, you're screwed anyway, and should fix
 your program.
 
@@ -69,7 +54,7 @@ The preferred way to ease multiple indentation levels in a switch statement is
 to align the ``switch`` and its subordinate ``case`` labels in the same column
 instead of ``double-indenting`` the ``case`` labels. E.g.:
 
-.. code-block:: c
+..  code-block:: c
 
     switch (suffix) {
     case 'G':
@@ -91,44 +76,35 @@ instead of ``double-indenting`` the ``case`` labels. E.g.:
 Don't put multiple statements on a single line unless you have
 something to hide:
 
-.. code-block:: c
+..  code-block:: c
 
-  if (condition) do_this;
-    do_something_everytime;
+    if (condition) do_this;
+      do_something_everytime;
 
-Don't put multiple assignments on a single line either. Kernel coding style
-is super simple. Avoid tricky expressions.
+Don't put multiple assignments on a single line either. Avoid tricky expressions.
 
 Outside of comments and documentation, spaces are never
 used for indentation, and the above example is deliberately broken.
 
 Get a decent editor and don't leave whitespace at the end of lines.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 2: Breaking long lines and strings
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Coding style is all about readability and maintainability using commonly
 available tools.
 
 The limit on the length of lines is 80 columns and this is a strongly
-preferred limit.
-
-.. admonition:: Tarantool Style
-    :class: FACT
-
-    As for comments, the same limit of 80 columns is applied.
+preferred limit. As for comments, the same limit of 80 columns is applied.
 
 Statements longer than 80 columns will be broken into sensible chunks, unless
 exceeding 80 columns significantly increases readability and does not hide
 information. Descendants are always substantially shorter than the parent and
 are placed substantially to the right. The same applies to function headers
-with a long argument list. However, never break user-visible strings such as
-printk messages, because that breaks the ability to grep for them.
+with a long argument list.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 3: Placing Braces and Spaces
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The other issue that always comes up in C styling is the placement of
 braces. Unlike the indent size, there are few technical reasons to
@@ -136,16 +112,16 @@ choose one placement strategy over the other, but the preferred way, as
 shown to us by the prophets Kernighan and Ritchie, is to put the opening
 brace last on the line, and put the closing brace first, thus:
 
-.. code-block:: c
+..  code-block:: c
 
     if (x is true) {
       we do y
     }
 
 This applies to all non-function statement blocks (if, switch, for,
-while, do).  E.g.:
+while, do). E.g.:
 
-.. code-block:: c
+..  code-block:: c
 
     switch (action) {
     case KOBJ_ADD:
@@ -161,7 +137,7 @@ while, do).  E.g.:
 However, there is one special case, namely functions: they have the
 opening brace at the beginning of the next line, thus:
 
-.. code-block:: c
+..  code-block:: c
 
     int
     function(int x)
@@ -170,8 +146,8 @@ opening brace at the beginning of the next line, thus:
     }
 
 Heretic people all over the world have claimed that this inconsistency
-is ...  well ...  inconsistent, but all right-thinking people know that
-(a) K&R are **right** and (b) K&R are right.  Besides, functions are
+is ... well ... inconsistent, but all right-thinking people know that
+(a) K&R are **right** and (b) K&R are right. Besides, functions are
 special anyway (you can't nest them in C).
 
 Note that the closing brace is empty on a line of its own, **except** in
@@ -179,7 +155,7 @@ the cases where it is followed by a continuation of the same statement,
 ie a ``while`` in a do-statement or an ``else`` in an if-statement, like
 this:
 
-.. code-block:: c
+..  code-block:: c
 
     do {
       body of do-loop
@@ -187,7 +163,7 @@ this:
 
 and
 
-.. code-block:: c
+..  code-block:: c
 
     if (x == y) {
       ..
@@ -200,20 +176,21 @@ and
 Rationale: K&R.
 
 Also, note that this brace-placement also minimizes the number of empty
-(or almost empty) lines, without any loss of readability.  Thus, as the
+(or almost empty) lines, without any loss of readability. Thus, as the
 supply of new-lines on your screen is not a renewable resource (think
 25-line terminal screens here), you have more empty lines to put
 comments on.
 
 Do not unnecessarily use braces where a single statement will do.
 
-.. code-block:: c
+..  code-block:: c
 
     if (condition)
       action();
-    and
 
-.. code-block:: none
+and
+
+..  code-block:: c
 
     if (condition)
       do_this();
@@ -223,7 +200,7 @@ Do not unnecessarily use braces where a single statement will do.
 This does not apply if only one branch of a conditional statement is a single
 statement; in the latter case use braces in both branches:
 
-.. code-block:: c
+..  code-block:: c
 
     if (condition) {
       do_this();
@@ -232,45 +209,44 @@ statement; in the latter case use braces in both branches:
       otherwise();
     }
 
-**********************
 Chapter 3.1: Spaces
-**********************
+^^^^^^^^^^^^^^^^^^^
 
 Tarantool style for use of spaces depends (mostly) on
 function-versus-keyword usage. Use a space after (most) keywords. The
-notable exceptions are sizeof, typeof, alignof, and __attribute__, which look
-somewhat like functions (and are usually used with parentheses in Linux,
+notable exceptions are ``sizeof``, ``typeof``, ``alignof``, and ``__attribute__``,
+which look somewhat like functions (and are usually used with parentheses,
 although they are not required in the language, as in: ``sizeof info`` after
 ``struct fileinfo info;`` is declared).
 
 So use a space after these keywords:
 
-.. code-block:: c
+..  code-block:: c
 
-  if, switch, case, for, do, while
+    if, switch, case, for, do, while
 
-but not with sizeof, typeof, alignof, or __attribute__.  E.g.,
+but not with ``sizeof``, ``typeof``, ``alignof``, or ``__attribute__``. E.g.,
 
-.. code-block:: c
+..  code-block:: c
 
-  s = sizeof(struct file);
+    s = sizeof(struct file);
 
 Do not add spaces around (inside) parenthesized expressions. This example is
 **bad**:
 
-.. code-block:: c
+..  code-block:: c
 
-  s = sizeof( struct file );
+    s = sizeof( struct file );
 
 When declaring pointer data or a function that returns a pointer type, the
 preferred use of ``*`` is adjacent to the data name or function name and not
 adjacent to the type name. Examples:
 
-.. code-block:: c
+..  code-block:: c
 
-  char *linux_banner;
-  unsigned long long memparse(char *ptr, char **retptr);
-  char *match_strdup(substring_t *s);
+    char *linux_banner;
+    unsigned long long memparse(char *ptr, char **retptr);
+    char *match_strdup(substring_t *s);
 
 Use one space around (on each side of) most binary and ternary operators,
 such as any of these::
@@ -291,6 +267,9 @@ no space after the prefix increment & decrement unary operators::
 
 and no space around the ``.`` and ``->`` structure member operators.
 
+Do not split a cast operator from its argument with a whitespace,
+e.g. ``(ssize_t)inj->iparam``.
+
 Do not leave trailing whitespace at the ends of lines. Some editors with
 ``smart`` indentation will insert whitespace at the beginning of new lines as
 appropriate, so you can start typing the next line of code right away.
@@ -303,15 +282,8 @@ optionally strip the trailing whitespace for you; however, if applying a series
 of patches, this may make later patches in the series fail by changing their
 context lines.
 
-.. admonition:: Tarantool Style
-    :class: FACT
-
-    Do not split a cast operator from its argument with a whitespace,
-    e.g. ``(ssize_t)inj->iparam``.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 4: Naming
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 C is a Spartan language, and so should your naming be. Unlike Modula-2
 and Pascal programmers, C programmers do not use cute names like
@@ -320,11 +292,11 @@ variable ``tmp``, which is much easier to write, and not the least more
 difficult to understand.
 
 HOWEVER, while mixed-case names are frowned upon, descriptive names for
-global variables are a must.  To call a global function ``foo`` is a
+global variables are a must. To call a global function ``foo`` is a
 shooting offense.
 
 GLOBAL variables (to be used only if you **really** need them) need to
-have descriptive names, as do global functions.  If you have a function
+have descriptive names, as do global functions. If you have a function
 that counts the number of active users, you should call that
 ``count_active_users()`` or similar, you should **not** call it ``cntusr()``.
 
@@ -333,102 +305,86 @@ notation) is brain damaged - the compiler knows the types anyway and can
 check those, and it only confuses the programmer. No wonder MicroSoft
 makes buggy programs.
 
-LOCAL variable names should be short, and to the point.  If you have
+LOCAL variable names should be short, and to the point. If you have
 some random integer loop counter, it should probably be called ``i``.
 Calling it ``loop_counter`` is non-productive, if there is no chance of it
-being mis-understood.  Similarly, ``tmp`` can be just about any type of
+being mis-understood. Similarly, ``tmp`` can be just about any type of
 variable that is used to hold a temporary value.
 
 If you are afraid to mix up your local variable names, you have another
 problem, which is called the function-growth-hormone-imbalance syndrome.
 See chapter 6 (Functions).
 
-.. admonition:: Tarantool Style
-    :class: FACT
+For function naming we have a convention is to use:
 
-    For function naming we have a convention is to use:
+*    ``new``/``delete`` for functions which
+     allocate + initialize and destroy + deallocate an object,
+*    ``create``/``destroy`` for functions which initialize/destroy an object
+     but do not handle memory management,
+*    ``init``/``free`` for functions which initialize/destroy libraries and subsystems.
 
-    * ``new``/``delete`` for functions which
-      allocate + initialize and destroy + deallocate an object,
-    * ``create``/``destroy`` for functions which initialize/destroy an object
-      but do not handle memory management,
-    * ``init``/``free`` for functions which initialize/destroy libraries and subsystems.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 5: Typedefs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 Please don't use things like ``vps_t``.
 It's a **mistake** to use typedef for structures and pointers. When you see a
 
-.. code-block:: c
+..  code-block:: c
 
-  vps_t a;
+    vps_t a;
 
 in the source, what does it mean?
 In contrast, if it says
 
-.. code-block:: c
+..  code-block:: c
 
-  struct virtual_container *a;
+    struct virtual_container *a;
 
 you can actually tell what ``a`` is.
 
 Lots of people think that typedefs ``help readability``. Not so. They are
 useful only for:
 
-#. totally opaque objects (where the typedef is actively used to **hide**
+#.  Totally opaque objects (where the typedef is actively used to **hide**
     what the object is).
 
-   Example: ``pte_t`` etc. opaque objects that you can only access using
-   the proper accessor functions.
+    Example: ``pte_t`` etc. opaque objects that you can only access using
+    the proper accessor functions.
 
-   .. note::
+    ..  note::
 
-     Opaqueness and ``accessor functions`` are not good in themselves.
-     The reason we have them for things like pte_t etc. is that there
-     really is absolutely **zero** portably accessible information there.
+        Opaqueness and ``accessor functions`` are not good in themselves.
+        The reason we have them for things like pte_t etc. is that there
+        really is absolutely **zero** portably accessible information there.
 
-#. Clear integer types, where the abstraction **helps** avoid confusion
-   whether it is ``int`` or ``long``.
+#.  Clear integer types, where the abstraction **helps** avoid confusion
+    whether it is ``int`` or ``long``.
 
-   u8/u16/u32 are perfectly fine typedefs, although they fit into
-   point 4 better than here.
+    u8/u16/u32 are perfectly fine typedefs, although they fit into
+    point 4 better than here.
 
-   .. note::
+    ..  note::
 
-     Again - there needs to be a **reason** for this. If something is
-     ``unsigned long``, then there's no reason to do
-     typedef unsigned long myflags_t;
+        Again - there needs to be a **reason** for this. If something is
+        ``unsigned long``, then there's no reason to do
+        typedef unsigned long myflags_t;
 
-   but if there is a clear reason for why it under certain circumstances
-   might be an ``unsigned int`` and under other configurations might be
-   ``unsigned long``, then by all means go ahead and use a typedef.
+    but if there is a clear reason for why it under certain circumstances
+    might be an ``unsigned int`` and under other configurations might be
+    ``unsigned long``, then by all means go ahead and use a typedef.
 
-#. when you use sparse to literally create a **new** type for
-   type-checking.
+#.  When you use sparse to literally create a **new** type for
+    type-checking.
 
-#. New types which are identical to standard C99 types, in certain
-   exceptional circumstances.
+#.  New types which are identical to standard C99 types, in certain
+    exceptional circumstances.
 
-   Although it would only take a short amount of time for the eyes and
-   brain to become accustomed to the standard types like ``uint32_t``,
-   some people object to their use anyway.
+    Although it would only take a short amount of time for the eyes and
+    brain to become accustomed to the standard types like ``uint32_t``,
+    some people object to their use anyway.
 
-   Therefore, the Linux-specific ``u8/u16/u32/u64`` types and their
-   signed equivalents which are identical to standard types are
-   permitted -- although they are not mandatory in new code of your
-   own.
-
-   When editing existing code which already uses one or the other set
-   of types, you should conform to the existing choices in that code.
-
-#. Types safe for use in userspace.
-
-   In certain structures which are visible to userspace, we cannot
-   require C99 types and cannot use the ``u32`` form above. Thus, we
-   use __u32 and similar types in all structures which are shared
-   with userspace.
+    When editing existing code which already uses one or the other set
+    of types, you should conform to the existing choices in that code.
 
 Maybe there are other cases too, but the rule should basically be to NEVER
 EVER use a typedef unless you can clearly match one of those rules.
@@ -436,16 +392,15 @@ EVER use a typedef unless you can clearly match one of those rules.
 In general, a pointer, or a struct that has elements that can reasonably
 be directly accessed should **never** be a typedef.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 6: Functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 Functions should be short and sweet, and do just one thing. They should
 fit on one or two screenfuls of text (the ISO/ANSI screen size is 80x24,
 as we all know), and do one thing and do that well.
 
 The maximum length of a function is inversely proportional to the
-complexity and indentation level of that function.  So, if you have a
+complexity and indentation level of that function. So, if you have a
 conceptually simple function that is just one long (but simple)
 case-statement, where you have to do lots of small things for a lot of
 different cases, it's OK to have a longer function.
@@ -465,41 +420,23 @@ generally easily keep track of about 7 different things, anything more
 and it gets confused. You know you're brilliant, but maybe you'd like
 to understand what you did 2 weeks from now.
 
-In source files, separate functions with one blank line. If the function is
-exported, the **EXPORT** macro for it should follow immediately after the
-closing function brace line.  E.g.:
-
-.. code-block:: c
-
-  int
-  system_is_up(void)
-  {
-    return system_state == SYSTEM_RUNNING;
-  }
-  EXPORT_SYMBOL(system_is_up);
-
 In function prototypes, include parameter names with their data types.
-Although this is not required by the C language, it is preferred in Linux
+Although this is not required by the C language, it is preferred in Tarantool
 because it is a simple way to add valuable information for the reader.
 
-.. admonition:: Tarantool Style
-    :class: FACT
+Note that we place the function return type on the line before the name and signature.
 
-    Note that in Tarantool, we place the function return type on the
-    line before the name and signature.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 7: Centralized exiting of functions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Albeit deprecated by some people, the equivalent of the goto statement is
 used frequently by compilers in form of the unconditional jump instruction.
 
 The goto statement comes in handy when a function exits from multiple
-locations and some common work such as cleanup has to be done.  If there is no
+locations and some common work such as cleanup has to be done. If there is no
 cleanup needed then just return directly.
 
-Choose label names which say what the goto does or why the goto exists.  An
+Choose label names which say what the goto does or why the goto exists. An
 example of a good name could be ``out_free_buffer:`` if the goto frees ``buffer``.
 Avoid using GW-BASIC names like ``err1:`` and ``err2:``, as you would have to
 renumber them if you ever add or remove exit paths, and they make correctness
@@ -513,59 +450,58 @@ The rationale for using gotos is:
   modifications are prevented
 - saves the compiler work to optimize redundant code away ;)
 
-.. code-block:: c
+..  code-block:: c
 
-  int
-  fun(int a)
-  {
-    int result = 0;
-    char *buffer;
+    int
+    fun(int a)
+    {
+      int result = 0;
+      char *buffer;
 
-    buffer = kmalloc(SIZE, GFP_KERNEL);
-    if (!buffer)
-      return -ENOMEM;
+      buffer = kmalloc(SIZE, GFP_KERNEL);
+      if (!buffer)
+        return -ENOMEM;
 
-    if (condition1) {
-      while (loop1) {
-        ...
+      if (condition1) {
+        while (loop1) {
+          ...
+        }
+        result = 1;
+        goto out_free_buffer;
       }
-      result = 1;
-      goto out_free_buffer;
+      ...
+    out_free_buffer:
+      kfree(buffer);
+      return result;
     }
-    ...
-  out_free_buffer:
-    kfree(buffer);
-    return result;
-  }
 
 A common type of bug to be aware of is ``one err bugs`` which look like this:
 
-.. code-block:: c
+..  code-block:: c
 
-  err:
-    kfree(foo->bar);
-    kfree(foo);
-    return ret;
+    err:
+      kfree(foo->bar);
+      kfree(foo);
+      return ret;
 
-The bug in this code is that on some exit paths ``foo`` is NULL.  Normally the
+The bug in this code is that on some exit paths ``foo`` is NULL. Normally the
 fix for this is to split it up into two error labels ``err_free_bar:`` and
 ``err_free_foo:``:
 
-.. code-block:: c
+..  code-block:: c
 
-   err_free_bar:
-    kfree(foo->bar);
-   err_free_foo:
-    kfree(foo);
-    return ret;
+    err_free_bar:
+     kfree(foo->bar);
+    err_free_foo:
+     kfree(foo);
+     return ret;
 
 Ideally you should simulate errors to test all exit paths.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Chapter 8: Commenting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
-Comments are good, but there is also a danger of over-commenting.  NEVER
+Comments are good, but there is also a danger of over-commenting. NEVER
 try to explain HOW your code works in a comment: it's much better to
 write the code so that the **working** is obvious, and it's a waste of
 time to explain badly written code.
@@ -579,144 +515,76 @@ ugly), but try to avoid excess. Instead, put the comments at the head
 of the function, telling people what it does, and possibly WHY it does
 it.
 
-.. admonition:: Tarantool Style
-    :class: FACT
+When commenting the Tarantool C API functions, please use Doxygen comment format,
+Javadoc flavor, i.e. `@tag` rather than `\\tag`.
+The main tags in use are ``@param``, ``@retval``, ``@return``, ``@see``,
+``@note`` and ``@todo``.
 
-    When commenting the Tarantool C API functions, please use Doxygen comment format,
-    Javadoc flavor, i.e. `@tag` rather than `\\tag`.
-    The main tags in use are ``@param``, ``@retval``, ``@return``, ``@see``,
-    ``@note`` and ``@todo``.
+Every function, except perhaps a very short and obvious one, should have a
+comment. A sample function comment may look like below:
 
-    Every function, except perhaps a very short and obvious one, should have a
-    comment. A sample function comment may look like below:
+..  code-block:: c
 
-    .. code-block:: c
+    /**
+     * Write all data to a descriptor.
+     *
+     * This function is equivalent to 'write', except it would ensure
+     * that all data is written to the file unless a non-ignorable
+     * error occurs.
+     *
+     * @retval 0  Success
+     * @retval 1 An error occurred (not EINTR)
+     */
+    static int
+    write_all(int fd, void *data, size_t len);
 
-        /** Write all data to a descriptor.
-         *
-         * This function is equivalent to 'write', except it would ensure
-         * that all data is written to the file unless a non-ignorable
-         * error occurs.
-         *
-         * @retval 0  Success
-         *
-         * @retval  1  An error occurred (not EINTR)
-         * /
-        static int
-        write_all(int fd, void \*data, size_t len);
+It's also important to comment data types, whether they are basic types or
+derived ones. To this end, use just one data declaration per line (no commas
+for multiple data declarations). This leaves you room for a small comment on
+each item, explaining its use.
 
-    It's also important to comment data, whether they are basic types or derived
-    types. To this end, use just one data declaration per line (no commas for
-    multiple data declarations). This leaves you room for a small comment on each
-    item, explaining its use.
+Public structures and important structure members should be commented as well.
 
-    Public structures and important structure members should be commented as well.
+In C comments out of functions and inside of functions should be different in
+how they are started. Everything else is wrong. Below are correct examples.
+``/**`` comes for documentation comments, ``/*`` for local not documented comments.
+However the difference is vague already, so the rule is simple:
+out of function use ``/**``, inside use ``/*``.
 
-    In C comments out of functions and inside of functions should be different in
-    how they are started. Everything else is wrong. Below are correct examples.
-    /** comes for documentation comments, /* for local not documented comments.
-    However the difference is vague already, so the rule is simple:
-    out of function = /\**, inside = /\*.
+..  code-block:: c
 
-    .. code-block:: c
+    /**
+     * Out of function comment, option 1.
+     */
 
-        /**
-         * Out of function comment, option 1.
+    /** Out of function comment, option 2. */
+
+    int
+    function()
+    {
+        /* Comment inside function, option 1. */
+
+        /*
+         * Comment inside function, option 2.
          */
+    }
 
-        /** Out of function comment, option 2. */
+If a function has declaration and implementation separated, the function comment
+should be for the declaration. Usually in the header file. Don't duplicate the
+comment.
 
-        int
-        function()
-        {
-            /* Comment inside function, option 1. */
+A comment and the function signature should be synchronized. Double-check if the
+parameter names are the same as used in the comment, and mean the same.
+Especially when you change one of them - ensure you changed the other.
 
-            /*
-             * Comment inside function, option 2.
-             */
-        }
-
-    If a function has declaration and implementation separated, the function comment
-    should be for the declaration. Usually in the header file. Don't duplicate the
-    comment.
-
-    A comment and the function signature should be synchronized. Double-check if the
-    parameter names are the same as used in the comment, and mean the same.
-    Especially when you change one of them - ensure you changed the other.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 9: You've made a mess of it
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-That's OK, we all do.  You've probably been told by your long-time Unix
-user helper that ``GNU emacs`` automatically formats the C sources for
-you, and you've noticed that yes, it does do that, but the defaults it
-uses are less than desirable (in fact, they are worse than random
-typing - an infinite number of monkeys typing into GNU emacs would never
-make a good program).
-
-So, you can either get rid of GNU emacs, or change it to use saner
-values. To do the latter, you can stick the following in your .emacs file:
-
-.. code-block:: none
-
-  (defun c-lineup-arglist-tabs-only (ignored)
-    "Line up argument lists by tabs, not spaces"
-    (let* ((anchor (c-langelem-pos c-syntactic-element))
-           (column (c-langelem-2nd-pos c-syntactic-element))
-           (offset (- (1+ column) anchor))
-           (steps (floor offset c-basic-offset)))
-      (* (max steps 1)
-         c-basic-offset)))
-
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              ;; Add kernel style
-              (c-add-style
-               "linux-tabs-only"
-               '("linux" (c-offsets-alist
-                          (arglist-cont-nonempty
-                           c-lineup-gcc-asm-reg
-                           c-lineup-arglist-tabs-only))))))
-
-  (add-hook 'c-mode-hook
-            (lambda ()
-              (let ((filename (buffer-file-name)))
-                ;; Enable kernel mode for the appropriate files
-                (when (and filename
-                           (string-match (expand-file-name "~/src/linux-trees")
-                                         filename))
-                  (setq indent-tabs-mode t)
-                  (setq show-trailing-whitespace t)
-                  (c-set-style "linux-tabs-only")))))
-
-This will make emacs go better with the kernel coding style for C
-files below ``~/src/linux-trees``.
-
-But even if you fail in getting emacs to do sane formatting, not
-everything is lost: use ``indent``.
-
-Now, again, GNU indent has the same brain-dead settings that GNU emacs
-has, which is why you need to give it a few command line options.
-However, that's not too bad, because even the makers of GNU indent
-recognize the authority of K&R (the GNU people aren't evil, they are
-just severely misguided in this matter), so you just give indent the
-options ``-kr -i8`` (stands for ``K&R, 8 character indents``), or use
-``scripts/Lindent``, which indents in the latest style.
-
-``indent`` has a lot of options, and especially when it comes to comment
-re-formatting you may want to take a look at the man page.  But
-remember: ``indent`` is not a fix for bad programming.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 10: Macros, Enums and RTL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Chapter 9: Macros, Enums and RTL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Names of macros defining constants and labels in enums are capitalized.
 
-.. code-block:: c
+..  code-block:: c
 
-	#define CONSTANT 0x12345
+    #define CONSTANT 0x12345
 
 Enums are preferred when defining several related constants.
 
@@ -727,95 +595,87 @@ Generally, inline functions are preferable to macros resembling functions.
 
 Macros with multiple statements should be enclosed in a do - while block:
 
-.. code-block:: c
+..  code-block:: c
 
-  #define macrofun(a, b, c)       \
-    do {                          \
-      if (a == 5)                 \
-        do_this(b, c);            \
-    } while (0)
+    #define macrofun(a, b, c)       \
+      do {                          \
+        if (a == 5)                 \
+          do_this(b, c);            \
+      } while (0)
 
 Things to avoid when using macros:
 
-1) macros that affect control flow:
+1)  macros that affect control flow:
 
-   .. code-block:: c
+    ..  code-block:: c
 
-     #define FOO(x)                  \
-       do {                          \
-         if (blah(x) < 0)            \
-           return -EBUGGERED;        \
-       } while (0)
+        #define FOO(x)                  \
+          do {                          \
+            if (blah(x) < 0)            \
+              return -EBUGGERED;        \
+          } while (0)
 
-   is a **very** bad idea.  It looks like a function call but exits the ``calling``
-   function; don't break the internal parsers of those who will read the code.
+    is a **very** bad idea. It looks like a function call but exits the ``calling``
+    function; don't break the internal parsers of those who will read the code.
 
-2) macros that depend on having a local variable with a magic name:
+2)  macros that depend on having a local variable with a magic name:
 
-   .. code-block:: c
+    ..  code-block:: c
 
-     #define FOO(val) bar(index, val)
+        #define FOO(val) bar(index, val)
 
-   might look like a good thing, but it's confusing as hell when one reads the
-   code and it's prone to breakage from seemingly innocent changes.
+    might look like a good thing, but it's confusing as hell when one reads the
+    code and it's prone to breakage from seemingly innocent changes.
 
-3) macros with arguments that are used as l-values: FOO(x) = y; will
-   bite you if somebody e.g. turns FOO into an inline function.
+3)  macros with arguments that are used as l-values: ``FOO(x) = y;`` will
+    bite you if somebody e.g. turns FOO into an inline function.
 
-4) forgetting about precedence: macros defining constants using expressions
-   must enclose the expression in parentheses. Beware of similar issues with
-   macros using parameters.
+4)  forgetting about precedence: macros defining constants using expressions
+    must enclose the expression in parentheses. Beware of similar issues with
+    macros using parameters.
 
-   .. code-block:: c
+    ..  code-block:: c
 
-     #define CONSTANT 0x4000
-     #define CONSTEXP (CONSTANT | 3)
+        #define CONSTANT 0x4000
+        #define CONSTEXP (CONSTANT | 3)
 
-5) namespace collisions when defining local variables in macros resembling
-   functions:
+5)  namespace collisions when defining local variables in macros resembling
+    functions:
 
-   .. code-block:: c
+    ..  code-block:: c
 
-     #define FOO(x)            \
-     ({                        \
-       typeof(x) ret;          \
-       ret = calc_ret(x);      \
-       (ret);                  \
-     })
+        #define FOO(x)            \
+        ({                        \
+          typeof(x) ret;          \
+          ret = calc_ret(x);      \
+          (ret);                  \
+        })
 
-   ret is a common name for a local variable - __foo_ret is less likely
-   to collide with an existing variable.
+    ret is a common name for a local variable - ``__foo_ret`` is less likely
+    to collide with an existing variable.
 
-   The cpp manual deals with macros exhaustively. The gcc internals manual also
-   covers RTL which is used frequently with assembly language in the kernel.
+Chapter 10: Allocating memory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 11: Allocating memory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Prefer specialized allocators like ``region``, ``mempool``, ``smalloc`` to
+``malloc()/free()`` for any performance-intensive or large memory allocations.
+Repetitive use of ``malloc()``/``free()`` can lead to memory fragmentation
+and should therefore be avoided.
 
-.. admonition:: Tarantool Style
-    :class: FACT
+Always free all allocated memory, even allocated  at start-up. We aim at being
+valgrind leak-check clean, and in most cases it's just as easy to ``free()`` the
+allocated memory as it is to write a valgrind suppression. Freeing all allocated
+memory is also dynamic-load friendly: assuming a plug-in can be dynamically
+loaded and unloaded multiple times, reload should not lead to a memory leak.
 
-    Prefer the supplied slab (salloc) and pool (palloc) allocators to malloc()/free()
-    for any performance-intensive or large  memory allocations. Repetitive use of
-    malloc()/free() can lead to memory fragmentation and should therefore be avoided.
-
-    Always free all allocated memory, even allocated  at start-up. We aim at being
-    valgrind leak-check clean, and in most cases it's just as easy to free() the
-    allocated memory as it is to write a valgrind suppression. Freeing all allocated
-    memory is also dynamic-load friendly: assuming a plug-in can be dynamically
-    loaded and unloaded multiple times, reload should not lead to a memory leak.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 12: The inline disease
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Chapter 11: The inline disease
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There appears to be a common misperception that gcc has a magic "make me
 faster" speedup option called ``inline``. While the use of inlines can be
-appropriate (for example as a means of replacing macros, see Chapter 12), it
-very often is not. Abundant use of the inline keyword leads to a much bigger
-kernel, which in turn slows the system as a whole down, due to a bigger
-icache footprint for the CPU and simply because there is less memory
+appropriate, it very often is not. Abundant use of the inline keyword leads to
+a much bigger kernel, which in turn slows the system as a whole down, due to a
+bigger icache footprint for the CPU and simply because there is less memory
 available for the pagecache. Just think about it; a pagecache miss causes a
 disk seek, which easily takes 5 milliseconds. There are a LOT of cpu cycles
 that can go into these 5 milliseconds.
@@ -824,8 +684,7 @@ A reasonable rule of thumb is to not put inline at functions that have more
 than 3 lines of code in them. An exception to this rule are the cases where
 a parameter is known to be a compiletime constant, and as a result of this
 constantness you *know* the compiler will be able to optimize most of your
-function away at compile time. For a good example of this later case, see
-the kmalloc() inline function.
+function away at compile time.
 
 Often people argue that adding inline to functions that are static and used
 only once is always a win since there is no space tradeoff. While this is
@@ -834,213 +693,149 @@ help, and the maintenance issue of removing the inline when a second user
 appears outweighs the potential value of the hint that tells gcc to do
 something it would have done anyway.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 13: Function return values and names
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Chapter 12: Function return values and names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Functions can return values of many different kinds, and one of the
 most common is a value indicating whether the function succeeded or
-failed.  Such a value can be represented as an error-code integer
-(-Exxx = failure, 0 = success) or a ``succeeded`` boolean (0 = failure,
-non-zero = success).
+failed.
 
-Mixing up these two sorts of representations is a fertile source of
-difficult-to-find bugs.  If the C language included a strong distinction
-between integers and booleans then the compiler would find these mistakes
-for us... but it doesn't.  To help prevent such bugs, always follow this
-convention:
-
-  If the name of a function is an action or an imperative command,
-  the function should return an error-code integer.  If the name
-  is a predicate, the function should return a "succeeded" boolean.
-
-For example, ``add work`` is a command, and the add_work() function returns 0
-for success or -EBUSY for failure.  In the same way, ``PCI device present`` is
-a predicate, and the pci_dev_present() function returns 1 if it succeeds in
-finding a matching device or 0 if it doesn't.
-
-All EXPORTed functions must respect this convention, and so should all
-public functions.  Private (static) functions need not, but it is
-recommended that they do.
+In 99.99999% of all cases in Tarantool we return 0 on success, non-zero on error
+(-1 usually). Errors are saved into a diagnostics area which is global per fiber.
+We never return error codes as a result of a function.
 
 Functions whose return value is the actual result of a computation, rather
 than an indication of whether the computation succeeded, are not subject to
-this rule.  Generally they indicate failure by returning some out-of-range
-result.  Typical examples would be functions that return pointers; they use
-NULL or the ERR_PTR mechanism to report failure.
+this rule. Generally they indicate failure by returning some out-of-range
+result. Typical examples would be functions that return pointers; they use
+NULL or the mechanism to report failure.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 14: Editor modelines and other cruft
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Chapter 13: Editor modelines and other cruft
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some editors can interpret configuration information embedded in source files,
-indicated with special markers.  For example, emacs interprets lines marked
+indicated with special markers. For example, emacs interprets lines marked
 like this:
 
-.. code-block:: c
+..  code-block:: c
 
-  -*- mode: c -*-
+    -*- mode: c -*-
 
 Or like this:
 
-.. code-block:: c
+..  code-block:: c
 
-  /*
-  Local Variables:
-  compile-command: "gcc -DMAGIC_DEBUG_FLAG foo.c"
-  End:
-  */
+    /*
+    Local Variables:
+    compile-command: "gcc -DMAGIC_DEBUG_FLAG foo.c"
+    End:
+    */
 
 Vim interprets markers that look like this:
 
-.. code-block:: c
+..  code-block:: c
 
-  /* vim:set sw=8 noet */
+    /* vim:set sw=8 noet */
 
-Do not include any of these in source files.  People have their own personal
-editor configurations, and your source files should not override them.  This
-includes markers for indentation and mode configuration.  People may use their
+Do not include any of these in source files. People have their own personal
+editor configurations, and your source files should not override them. This
+includes markers for indentation and mode configuration. People may use their
 own custom mode, or may have some other magic method for making indentation
 work correctly.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 15: Inline assembly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Chapter 14: Conditional Compilation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In architecture-specific code, you may need to use inline assembly to interface
-with CPU or platform functionality.  Don't hesitate to do so when necessary.
-However, don't use inline assembly gratuitously when C can do the job.  You can
-and should poke hardware from C when possible.
-
-Consider writing simple helper functions that wrap common bits of inline
-assembly, rather than repeatedly writing them with slight variations.  Remember
-that inline assembly can use C parameters.
-
-Large, non-trivial assembly functions should go in .S files, with corresponding
-C prototypes defined in C header files.  The C prototypes for assembly
-functions should use ``asmlinkage``.
-
-You may need to mark your asm statement as volatile, to prevent GCC from
-removing it if GCC doesn't notice any side effects.  You don't always need to
-do so, though, and doing so unnecessarily can limit optimization.
-
-When writing a single inline assembly statement containing multiple
-instructions, put each instruction on a separate line in a separate quoted
-string, and end each string except the last with \n\t to properly indent the
-next instruction in the assembly output:
-
-.. code-block:: c
-
-  asm ("magic %reg1, #42\n\t"
-       "more_magic %reg2, %reg3"
-       : /* outputs */ : /* inputs */ : /* clobbers */);
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 16: Conditional Compilation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Wherever possible, don't use preprocessor conditionals (#if, #ifdef) in .c
-files; doing so makes code harder to read and logic harder to follow.  Instead,
+Wherever possible, don't use preprocessor conditionals (``#if``, ``#ifdef``) in
+.c files; doing so makes code harder to read and logic harder to follow. Instead,
 use such conditionals in a header file defining functions for use in those .c
 files, providing no-op stub versions in the #else case, and then call those
-functions unconditionally from .c files.  The compiler will avoid generating
+functions unconditionally from .c files. The compiler will avoid generating
 any code for the stub calls, producing identical results, but the logic will
 remain easy to follow.
 
 Prefer to compile out entire functions, rather than portions of functions or
-portions of expressions.  Rather than putting an ifdef in an expression, factor
-out part or all of the expression into a separate helper function and apply the
-conditional to that function.
+portions of expressions. Rather than putting an ``#ifdef`` in an expression,
+factor out part or all of the expression into a separate helper function and
+apply the condition to that function.
 
 If you have a function or variable which may potentially go unused in a
 particular configuration, and the compiler would warn about its definition
-going unused, mark the definition as __maybe_unused rather than wrapping it in
-a preprocessor conditional.  (However, if a function or variable *always* goes
-unused, delete it.)
+going unused, do not compile it and use #if for this.
 
-Within code, where possible, use the IS_ENABLED macro to convert a Kconfig
-symbol into a C boolean expression, and use it in a normal C conditional:
-
-.. code-block:: c
-
-  if (IS_ENABLED(CONFIG_SOMETHING)) {
-    ...
-  }
-
-The compiler will constant-fold the conditional away, and include or exclude
-the block of code just as with an #ifdef, so this will not add any runtime
-overhead.
-However, this approach still allows the C compiler to see the code
-inside the block, and check it for correctness (syntax, types, symbol
-references, etc).  Thus, you still have to use an #ifdef if the code inside the
-block references symbols that will not exist if the condition is not met.
-
-At the end of any non-trivial #if or #ifdef block (more than a few lines),
+At the end of any non-trivial ``#if`` or ``#ifdef`` block (more than a few lines),
 place a comment after the #endif on the same line, noting the conditional
-expression used.  For instance:
+expression used. For instance:
 
-.. code-block:: c
+..  code-block:: c
 
-  #ifdef CONFIG_SOMETHING
-  ...
-  #endif /* CONFIG_SOMETHING */
+    #ifdef CONFIG_SOMETHING
+    ...
+    #endif /* CONFIG_SOMETHING */
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 17: Header files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Chapter 15: Header files
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. admonition:: Tarantool Style
-    :class: FACT
+Use ``#pragma once`` in the headers. As the header guards we refer to this
+construction:
 
-    Use header guards. Put the header guard in the first line in the header,
-    before the copyright or declarations. Use all-uppercase name for the header
-    guard. Derive the header guard name from the file name, and append _INCLUDED
-    to get a macro name. For example, core/log_io.h -> CORE_LOG_IO_H_INCLUDED. In
-    ``.c`` (implementation) file, include the respective declaration header before
-    all other headers, to ensure that the header is self- sufficient. Header
-    "header.h" is self-sufficient if the following compiles without errors:
+..  code-block:: c
 
-    .. code-block:: c
+    #ifndef THE_HEADER_IS_INCLUDED
+    #define THE_HEADER_IS_INCLUDED
 
-        #include "header.h"
+    // ... the header code ...
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Chapter 18: Other
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #endif // THE_HEADER_IS_INCLUDED
 
-.. admonition:: Tarantool Style
-    :class: FACT
+It works fine, but the guard name ``THE_HEADER_IS_INCLUDED`` tends to
+become outdated when the file is moved or renamed. This is especially
+painful with multiple files having the same name in the project, but
+different path. For instance, we have 3 ``error.h`` files, which means for
+each of them we need to invent a new header guard name, and not forget to
+update them if the files are moved or renamed.
 
-    * We don't apply ``!`` operator to non-boolean values. It means, to check
-      if an integer is not 0, you use ``!= 0``. To check if a pointer is not NULL,
-      you use ``!= NULL``. The same for ``==``.
+For that reason we use ``#pragma once`` in all the new code, which shortens
+the header file down to this:
 
-    * Select GNU C99 extensions are acceptable. It's OK to mix declarations and
-      statements, use true and false.
+..  code-block:: c
 
-    * The not-so-current list of all GCC C extensions can be found at:
-      http://gcc.gnu.org/onlinedocs/gcc-4.3.5/gcc/C-Extensions.html
+    #pragma once
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                  Appendix I: References
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ... header code ...
 
-* `The C Programming Language, Second Edition <https://en.wikipedia.org/wiki/The_C_Programming_Language>`_
-  by Brian W. Kernighan and Dennis M. Ritchie. |br|
-  Prentice Hall, Inc., 1988. |br|
-  ISBN 0-13-110362-8 (paperback), 0-13-110370-9 (hardback).
+Chapter 16: Other
+~~~~~~~~~~~~~~~~~
 
-* `The Practice of Programming <https://en.wikipedia.org/wiki/The_Practice_of_Programming>`_
-  by Brian W. Kernighan and Rob Pike. |br|
-  Addison-Wesley, Inc., 1999. |br|
-  ISBN 0-201-61586-X.
+*   We don't apply ``!`` operator to non-boolean values. It means, to check
+    if an integer is not 0, you use ``!= 0``. To check if a pointer is not NULL,
+    you use ``!= NULL``. The same for ``==``.
 
-* `GNU manuals <http://www.gnu.org/manual/>`_ - where in compliance with K&R and this text - for **cpp**, **gcc**,
-  **gcc internals** and **indent**
+*   Select GNU C99 extensions are acceptable. It's OK to mix declarations and
+    statements, use true and false.
 
-* `WG14 International standardization workgroup for the programming
-  language C <http://www.open-std.org/JTC1/SC22/WG14/>`_
+*   The not-so-current list of all GCC C extensions can be found at:
+    http://gcc.gnu.org/onlinedocs/gcc-4.3.5/gcc/C-Extensions.html
 
-* `Kernel CodingStyle, by greg@kroah.com at OLS 2002
-  <http://www.kroah.com/linux/talks/ols_2002_kernel_codingstyle_talk/html/>`_
+Appendix I: References
+~~~~~~~~~~~~~~~~~~~~~~
+
+*   `The C Programming Language, Second Edition <https://en.wikipedia.org/wiki/The_C_Programming_Language>`_
+    by Brian W. Kernighan and Dennis M. Ritchie.
+    Prentice Hall, Inc., 1988.
+    ISBN 0-13-110362-8 (paperback), 0-13-110370-9 (hardback).
+
+*   `The Practice of Programming <https://en.wikipedia.org/wiki/The_Practice_of_Programming>`_
+    by Brian W. Kernighan and Rob Pike.
+    Addison-Wesley, Inc., 1999.
+    ISBN 0-201-61586-X.
+
+*   `GNU manuals <http://www.gnu.org/manual/>`_ - where in compliance with K&R
+    and this text - for **cpp**, **gcc**, **gcc internals** and **indent**
+
+*   `WG14 International standardization workgroup for the programming
+    language C <http://www.open-std.org/JTC1/SC22/WG14/>`_
+
+*   `Kernel CodingStyle, by greg@kroah.com at OLS 2002
+    <http://www.kroah.com/linux/talks/ols_2002_kernel_codingstyle_talk/html/>`_
 
