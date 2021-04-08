@@ -256,6 +256,28 @@ msgid "tarantool> my_space = box.schema.space.create('tester')\n"
 "..."
 msgstr ""
 
+msgid "**Alternative way to declare index parts**"
+msgstr ""
+
+msgid "Before version :doc:`2.7.1 </release/2.7.1>`, if an index consisted of a single part and had some options like ``is_nullable`` or ``collation`` and its definition was written as"
+msgstr ""
+
+msgid "my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})"
+msgstr ""
+
+msgid "(with the only brackets) then options were ignored by Tarantool."
+msgstr ""
+
+msgid "Since version :doc:`2.7.1 </release/2.7.1>` it is allowed to omit extra braces in an index definition and use both ways:"
+msgstr ""
+
+msgid "-- with extra braces\n"
+"my_space:create_index('one_part_idx', {parts = {{1, 'unsigned', is_nullable=true}}})\n"
+"\n"
+"-- without extra braces\n"
+"my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})"
+msgstr ""
+
 msgid "Details about index field types"
 msgstr ""
 

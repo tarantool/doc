@@ -41,7 +41,7 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-msgid "Now it is allowed to define an index without extra braces when there is only one part: ``parts = {field1, type1, ...}`` (gh-2866)."
+msgid "Now it is allowed to define an index without extra braces when there is only one part: ``parts = {field1, type1, ...}`` (gh-2866). Read more in the :ref:`note about index parts declaration <index_parts_declaration_note>`."
 msgstr ""
 
 msgid ":ref:`Bitset index <indexes-bitset>` now supports the varbinary type (gh-5392)."
