@@ -41,7 +41,7 @@ Core
 -   Now it is allowed to define an index without extra braces when there
     is only one part: ``parts = {field1, type1, ...}`` (gh-2866). Read more in
     the :ref:`note about index parts declaration <index_parts_declaration_note>`.
--   Bitset index now supports the varbinary type (gh-5392).
+-   :ref:`Bitset index <indexes-bitset>` now supports the varbinary type (gh-5392).
 -   Index-related options now can’t be specified in their definition due
     to a more pedantic key-parts verification (gh-5473).
 -   A warning is now logged when schema version is older than last

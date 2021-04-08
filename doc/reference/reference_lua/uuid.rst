@@ -72,7 +72,7 @@ Below is list of all ``uuid`` functions and members.
 
     .. code-block:: tarantoolsession
 
-        tarantool> box.space.test:create_index("pk", {parts={field = 1, type = 'uuid'}})
+        tarantool> box.space.test:create_index("pk", {parts={{field = 1, type = 'uuid'}}})
 
     Now you can insert uuids into the space:
 

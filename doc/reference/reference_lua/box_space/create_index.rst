@@ -230,7 +230,7 @@ and what index types are allowed.
               <limitations_bytes_in_index_key>`. A varbinary byte sequence
               does not have a :ref:`collation <index-collation>`
               because its contents are not UTF-8 characters
-            - memtx TREE, HASH or BITSET (since version 2.7) indexes;
+            - memtx TREE, HASH or BITSET (since version :doc:`2.7.1 </release/2.7.1>`) indexes;
 
               vinyl TREE indexes
             - '\\65 \\66 \\67'
