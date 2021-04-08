@@ -40,7 +40,7 @@ Tarantool operates data in the form of tuples.
         They play the same role as "row columns" or "record fields" in relational databases,
         with a few improvements:
 
-        *   fields can be composite structures, such as arrays or maps, and
+        *   fields can be composite structures, such as arrays or maps,
         *   fields don't need to have names.
 
         A given tuple may have any number of fields, and the fields may be of
@@ -73,9 +73,9 @@ In our example there's a space called ``'tester'``.
         At least one space is required to store data with Tarantool.
         Each space has the following attributes:
 
-        *   a unique **name** specified by the user
+        *   a unique **name** specified by the user,
         *   a unique **numeric identifier** which can be specified by
-            the user, but usually is assigned automatically by Tarantool.
+            the user, but usually is assigned automatically by Tarantool,
         *   an **engine**: *memtx* (default) -- in-memory engine,
             fast but limited in size, or *vinyl* -- on-disk engine for huge data sets.
 
