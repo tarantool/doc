@@ -15,7 +15,7 @@ Also, you should format the expression as code if it fits at least one
 of the items in the list below:
 
 *   parts of a programming language: names of classes, variables, and functions,
-    short expressions, data types and so on,```
+    short expressions, data types and so on,
 *   multiline fragments of application logs,
 *   example link which the reader will not open: ``example.com``, ``https://example.com:80``,
 *   parts of URL, like port number,
