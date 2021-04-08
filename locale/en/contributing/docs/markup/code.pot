@@ -11,7 +11,7 @@ msgstr ""
 msgid "In general, code is any text, processed by a machine. It is also probably code if the expression contains characters that ordinary words do not have, such as ``_, {}, [ ], .``. Also, you should format the expression as code if it fits at least one of the items in the list below:"
 msgstr ""
 
-msgid "parts of a programming language: names of classes, variables, and functions, short expressions, data types and so on,```"
+msgid "parts of a programming language: names of classes, variables, and functions, short expressions, data types and so on,"
 msgstr ""
 
 msgid "multiline fragments of application logs,"
