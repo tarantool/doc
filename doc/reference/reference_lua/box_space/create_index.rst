@@ -330,16 +330,15 @@ Nulls may appear multiple times even in a unique index. Example:
 exclude_null parts option
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Since version 2.8.1. an index part definition may include option ``exclude_null``,
+Since version 2.8.2 an index part definition may include option ``exclude_null``,
 which allows an index to skip tuples with null at this part.
 
-By default, the option is set to ``false``. When turned on, the ``is_nullable=true``
-option will be set automatically. It can't be used for the primary key.
-This option can be changed dynamically: in this case the index is rebuilt.
+By default, the option is set to ``false``. When ``exclude_null`` is turned on,
+the ``is_nullable=true`` option will be set automatically.
+It can't be used for the primary key. This option can be changed dynamically:
+in this case the index is rebuilt.
 
 Such indexes do not store filtered tuples at all, so indexing can be done faster.
-
-SQL: such indexes are skipped in select statements unless explicitly specified.
 
 ``exclude_null`` and ``is_nullable`` are connected, so this table describes
 the result of combining them:
