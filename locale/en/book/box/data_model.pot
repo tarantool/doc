@@ -32,7 +32,7 @@ msgstr ""
 msgid "Fields are distinct data values, contained in a tuple. They play the same role as \"row columns\" or \"record fields\" in relational databases, with a few improvements:"
 msgstr ""
 
-msgid "fields can be composite structures, such as arrays or maps, and"
+msgid "fields can be composite structures, such as arrays or maps,"
 msgstr ""
 
 msgid "fields don't need to have names."
@@ -59,10 +59,10 @@ msgstr ""
 msgid "At least one space is required to store data with Tarantool. Each space has the following attributes:"
 msgstr ""
 
-msgid "a unique **name** specified by the user"
+msgid "a unique **name** specified by the user,"
 msgstr ""
 
-msgid "a unique **numeric identifier** which can be specified by the user, but usually is assigned automatically by Tarantool."
+msgid "a unique **numeric identifier** which can be specified by the user, but usually is assigned automatically by Tarantool,"
 msgstr ""
 
 msgid "an **engine**: *memtx* (default) -- in-memory engine, fast but limited in size, or *vinyl* -- on-disk engine for huge data sets."
