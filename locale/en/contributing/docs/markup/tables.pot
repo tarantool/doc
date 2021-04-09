@@ -5,7 +5,7 @@ msgstr ""
 msgid "Tables are very useful and rST markup `offers <https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_ different ways to create them."
 msgstr ""
 
-msgid "We prefer list-tables to create table of contents:"
+msgid "We prefer list-tables because they allow you to put as much content as you need without painting ASCII-style borders:"
 msgstr ""
 
 msgid "..  container:: table\n"
@@ -14,7 +14,28 @@ msgid "..  container:: table\n"
 "        :widths: 25 75\n"
 "        :header-rows: 1\n"
 "\n"
-"        *   - Name\n"
-"            - Use"
+"        *   -   Name\n"
+"            -   Use\n"
+"\n"
+"        *   -   :doc:`/reference/reference_lua/box_ctl/wait_ro`\n"
+"            -   Wait until ``box.info.ro`` is true"
+msgstr ""
+
+msgid "This is how the table will look like:"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":doc:`/reference/reference_lua/box_ctl/wait_ro`"
+msgstr ""
+
+msgid "Wait until ``box.info.ro`` is true"
+msgstr ""
+
+msgid "Notice that we use ``*`` and then ``-`` in tables because it is more readable when rows and columns marked differently."
 msgstr ""
 
