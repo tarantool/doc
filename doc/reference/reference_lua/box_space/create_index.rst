@@ -151,7 +151,35 @@ On this page:
               name: primary
             ...
 
-..  _details_about_index_field_types:
+        .. _index_parts_declaration_note:
+
+        ..  NOTE::
+
+            **Alternative way to declare index parts**
+
+            Before version :doc:`2.7.1 </release/2.7.1>`,
+            if an index consisted of a single part and had some options like
+            ``is_nullable`` or ``collation`` and its definition was written as
+
+            ..  code-block:: lua
+
+                my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})
+
+            (with the only brackets) then options were ignored by Tarantool.
+
+            Since version :doc:`2.7.1 </release/2.7.1>` it is allowed to omit
+            extra braces in an index definition and use both ways:
+
+            ..  code-block:: lua
+
+                -- with extra braces
+                my_space:create_index('one_part_idx', {parts = {{1, 'unsigned', is_nullable=true}}})
+
+                -- without extra braces
+                my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})
+
+
+.. _details_about_index_field_types:
 
 ..  _box_space-index_field_types:
 
@@ -200,7 +228,7 @@ and what index types are allowed.
               <limitations_bytes_in_index_key>`. A varbinary byte sequence
               does not have a :ref:`collation <index-collation>`
               because its contents are not UTF-8 characters
-            - memtx TREE, HASH or BITSET (since version 2.7) indexes;
+            - memtx TREE, HASH or BITSET (since version :doc:`2.7.1 </release/2.7.1>`) indexes;
 
               vinyl TREE indexes
             - '\\65 \\66 \\67'
