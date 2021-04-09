@@ -6,14 +6,14 @@ Tables are very useful and rST markup
 different ways to create them.
 
 We prefer list-tables because they allow you to put as much content as you need
-without painting ASCII-art borders:
+without painting ASCII-style borders:
 
 ..  literalinclude:: _includes/table.rst
     :language: rst
 
-And this table will appear like this:
+This is how the table will look like:
 
 ..  include:: _includes/table.rst
 
-Notice that we use ``*``, then ``-`` in tables because it is more readable
+Notice that we use ``*`` and then ``-`` in tables because it is more readable
 when rows and columns marked differently.
