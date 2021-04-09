@@ -437,6 +437,9 @@ msgstr ""
 msgid "Allowing null for an indexed key"
 msgstr ""
 
+msgid "is_nullable parts option"
+msgstr ""
+
 msgid "If the index type is TREE, and the index is not the primary index, then the ``parts={...}`` clause may include ``is_nullable=true`` or ``is_nullable=false`` (the default)."
 msgstr ""
 
@@ -447,6 +450,36 @@ msgid "box.space.tester:create_index('I', {unique = true, parts = {{field = 2, t
 msgstr ""
 
 msgid "It is legal to create multiple indexes for the same field with different ``is_nullable`` values, or to call :doc:`/reference/reference_lua/box_space/format` with a different ``is_nullable`` value from what is used for an index. When there is a contradiction, the rule is: null is illegal unless ``is_nullable=true`` for every index and for the space format."
+msgstr ""
+
+msgid "exclude_null parts option"
+msgstr ""
+
+msgid "Since version 2.8.2 an index part definition may include option ``exclude_null``, which allows an index to skip tuples with null at this part."
+msgstr ""
+
+msgid "By default, the option is set to ``false``. When ``exclude_null`` is turned on, the ``is_nullable=true`` option will be set automatically. It can't be used for the primary key. This option can be changed dynamically: in this case the index is rebuilt."
+msgstr ""
+
+msgid "Such indexes do not store filtered tuples at all, so indexing can be done faster."
+msgstr ""
+
+msgid "``exclude_null`` and ``is_nullable`` are connected, so this table describes the result of combining them:"
+msgstr ""
+
+msgid "**exclude_null/is_nullable**"
+msgstr ""
+
+msgid "**false**"
+msgstr ""
+
+msgid "**true**"
+msgstr ""
+
+msgid "ok"
+msgstr ""
+
+msgid "not allowed"
 msgstr ""
 
 msgid "Creating an index using field names instead of field numbers"
