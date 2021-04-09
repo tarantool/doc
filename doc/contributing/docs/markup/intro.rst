@@ -11,11 +11,11 @@ Text can be organized in bullet-lists:
 
 ..  code-block:: rst
 
-    - This is a bullet list.
+    *   This is a bullet list.
 
-    - Bullets can be "*", "+", or "-".
+    *   Bullets can be "*", "+", or "-".
 
-        * Lists can be nested. And it is good to indent them with 4 spaces.
+        -   Lists can be nested. And it is good to indent them with 4 spaces.
 
 or in enumerated lists:
 

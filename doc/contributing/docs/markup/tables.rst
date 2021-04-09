@@ -5,15 +5,15 @@ Tables are very useful and rST markup
 `offers <https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_
 different ways to create them.
 
-We prefer list-tables to create table of contents:
+We prefer list-tables because they allow you to put as much content as you need
+without painting ASCII-style borders:
 
-..  code-block:: rst
+..  literalinclude:: _includes/table.rst
+    :language: rst
 
-    ..  container:: table
+This is how the table will look like:
 
-        ..  list-table::
-            :widths: 25 75
-            :header-rows: 1
+..  include:: _includes/table.rst
 
-            *   - Name
-                - Use
+Notice that we use ``*`` and then ``-`` in tables because it is more readable
+when rows and columns marked differently.
