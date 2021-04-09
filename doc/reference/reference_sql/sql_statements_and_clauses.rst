@@ -2640,7 +2640,9 @@ what is sometimes called a "full table scan", even if there is an index for
 
 Ordinarily Tarantool chooses the appropriate index or lookup method depending
 on a complex set of "optimizer" rules; the INDEXED BY clause overrides the
-optimizer choice.
+optimizer choice. If the index was defined with the
+:ref:`exclude_null <box_space-is_nullable>` parts option,
+it will only be used if the user specifies it.
 
 Example:
 

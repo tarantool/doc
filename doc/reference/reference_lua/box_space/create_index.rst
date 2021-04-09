@@ -1,7 +1,6 @@
 
-===============================================================================
 space_object:create_index()
-===============================================================================
+===========================
 
 On this page:
 
@@ -13,9 +12,9 @@ On this page:
 * :ref:`Creating an multikey index using the path option with [*] <box_space-path_multikey>`
 * :ref:`Creating a functional index <box_space-index_func>`
 
-.. class:: space_object
+..  class:: space_object
 
-    .. _box_space-create_index:
+    ..  _box_space-create_index:
 
     ..  method:: create_index(index-name [, options ])
 
@@ -182,11 +181,10 @@ On this page:
 
 .. _details_about_index_field_types:
 
-.. _box_space-index_field_types:
+..  _box_space-index_field_types:
 
---------------------------------------------------------------------------------
 Details about index field types
---------------------------------------------------------------------------------
+-------------------------------
 
 Index field types differ depending on what values are allowed,
 and what index types are allowed.
@@ -326,11 +324,13 @@ and what index types are allowed.
             -
             -
 
-.. _box_space-is_nullable:
+..  _box_space-is_nullable:
 
---------------------------------------------------------------------------------
 Allowing null for an indexed key
---------------------------------------------------------------------------------
+--------------------------------
+
+is_nullable parts option
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 If the index type is TREE, and the index is not the primary index,
 then the ``parts={...}`` clause may include ``is_nullable=true`` or
@@ -343,11 +343,11 @@ Within indexes, such null values are always treated as equal to other null
 values, and are always treated as less than non-null values.
 Nulls may appear multiple times even in a unique index. Example:
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.space.tester:create_index('I', {unique = true, parts = {{field = 2, type = 'number', is_nullable = true}}})
 
-.. WARNING::
+..  WARNING::
 
     It is legal to create multiple indexes for the same field with different
     ``is_nullable`` values, or to call :doc:`/reference/reference_lua/box_space/format`
@@ -355,12 +355,46 @@ Nulls may appear multiple times even in a unique index. Example:
     When there is a contradiction, the rule is: null is illegal unless
     ``is_nullable=true`` for every index and for the space format.
 
+exclude_null parts option
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _box_space-field_names:
+Since version 2.8.2 an index part definition may include option ``exclude_null``,
+which allows an index to skip tuples with null at this part.
 
---------------------------------------------------------------------------------
+By default, the option is set to ``false``. When ``exclude_null`` is turned on,
+the ``is_nullable=true`` option will be set automatically.
+It can't be used for the primary key. This option can be changed dynamically:
+in this case the index is rebuilt.
+
+Such indexes do not store filtered tuples at all, so indexing can be done faster.
+
+``exclude_null`` and ``is_nullable`` are connected, so this table describes
+the result of combining them:
+
+..  container:: table stackcolumn
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    ..  list-table::
+
+        *   - **exclude_null/is_nullable**
+            - **false**
+            - **true**
+
+        *   - **false**
+            - ok
+            - ok
+
+        *   - **true**
+            - not allowed
+            - ok
+
+
+..  _box_space-field_names:
+
 Creating an index using field names instead of field numbers
---------------------------------------------------------------------------------
+------------------------------------------------------------
 
 ``create_index()`` can use field names and/or field types described by the optional
 :doc:`/reference/reference_lua/box_space/format` clause.
@@ -371,7 +405,7 @@ clause of ``create_index()``,
 first for the 'x' column, second for both the 'x' and 'y' columns.
 The variations include omitting the type, using numbers, and adding extra braces.
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.space.tester:format({{name = 'x', type = 'scalar'}, {name = 'y', type = 'integer'}})
 
@@ -390,11 +424,10 @@ The variations include omitting the type, using numbers, and adding extra braces
     box.space.tester:create_index('I10', {parts = {{'x'}}})
     box.space.tester:create_index('I11', {parts = {{'x'}, {'y'}}})
 
-.. _box_space-path:
+..  _box_space-path:
 
---------------------------------------------------------------------------------
 Creating an index using the path option for map fields (JSON-path indexes)
---------------------------------------------------------------------------------
+--------------------------------------------------------------------------
 
 To create an index for a field that is a map (a path string and a scalar value),
 specify the path string during index creation, like this:
@@ -434,11 +467,10 @@ must always be maps with the same path.
 **Note re storage engine:** vinyl supports only the TREE index type, and vinyl
 secondary indexes must be created before tuples are inserted.
 
-.. _box_space-path_multikey:
+..  _box_space-path_multikey:
 
---------------------------------------------------------------------------------
 Creating a multikey index using the path option with [*]
---------------------------------------------------------------------------------
+--------------------------------------------------------
 
 The string in a path option can contain ``[*]`` which is called
 **an array index placeholder**. Indexes defined with this are useful
@@ -459,7 +491,7 @@ In fact a single field can have multiple keys, as in this example
 which retrieves the same tuple twice because there are two keys 'A' and 'B'
 which both match the request:
 
-.. code-block:: lua
+..  code-block:: lua
 
     my_space = box.schema.space.create('json_documents')
     my_space:create_index('primary')
@@ -472,7 +504,7 @@ which both match the request:
 
 The result of the select request looks like this:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> multikey_index:select({''},{iterator='GE'})
     ---
@@ -493,11 +525,10 @@ Some restrictions exist:
 *   the field's value must have the same structure as in the path definition,
     or be nil (nil is not indexed)
 
-.. _box_space-index_func:
+..  _box_space-index_func:
 
---------------------------------------------------------------------------------
 Creating a functional index
---------------------------------------------------------------------------------
+---------------------------
 
 Functional indexes are indexes that call a user-defined function for forming
 the index key, rather than depending entirely on the Tarantool default formation.
@@ -579,7 +610,7 @@ A function could make a key using only the first letter of a string field.
 
     The results of the two ``select`` requests will look like this:
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> box.space.tester.index.func_idx:select('w')
         ---
@@ -614,7 +645,7 @@ N tuples, then N keys will be added to the index.
 
 **Example:**
 
-.. code-block:: lua
+..  code-block:: lua
 
     s = box.schema.space.create('withdata')
     s:format({{name = 'name', type = 'string'},
