@@ -57,7 +57,7 @@ You can enable syntax highlighting if you specify the language for the snippet.
 The most commonly used highlighting languages are:
 
 *   ``tarantoolsession``—interactive Tarantool session,
-    where command lines start with ``tarantlool>`` prompt.
+    where command lines start with ``tarantool>`` prompt.
 *   ``console``—interactive console session, where command lines
     start with ``$`` or ``#``.
 *   ``lua``, ``bash`` or ``c`` for programming languages.
