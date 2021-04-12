@@ -68,7 +68,7 @@ msgstr ""
 msgid "For code snippets, we use the ``code-block:: language`` `directive <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block>`_. You can enable syntax highlighting if you specify the language for the snippet. The most commonly used highlighting languages are:"
 msgstr ""
 
-msgid "``tarantoolsession``—interactive Tarantool session, where command lines start with ``tarantlool>`` prompt."
+msgid "``tarantoolsession``—interactive Tarantool session, where command lines start with ``tarantool>`` prompt."
 msgstr ""
 
 msgid "``console``—interactive console session, where command lines start with ``$`` or ``#``."
