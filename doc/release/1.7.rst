@@ -2,9 +2,11 @@
 Tarantool 1.7
 --------------------------------------------------------------------------------
 
-.. _whats_new_17:
+Releases: https://github.com/tarantool/tarantool/releases
 
-.. _whats_new_176:
+..  _whats_new_17:
+
+..  _whats_new_176:
 
 **Release 1.7.6**
 

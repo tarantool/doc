@@ -1,6 +1,8 @@
 Tarantool 1.10.6
 ================
 
+Releases: https://github.com/tarantool/tarantool/releases
+
 Date: 2020-04-20 Tag: 1.10.6-1-g47c009a
 
 Overview
@@ -33,48 +35,49 @@ Core
     request-local storage. Previously ``fiber.storage`` could contain
     some old values in the beginning of an iproto request execution, and
     it needed to be nullified manually. Now the cleanup is unneeded
-    (gh-4662).
+    (:tarantool-issue:`4662`).
 -   ``tuple``/``space``/``index``:``update()``/``upsert()`` were fixed
     not to turn a value into an infinity when a float value was added to
     or subtracted from a float column and exceeded the float value range
-    (gh-4701).
+    (:tarantool-issue:`4701`).
 -   Make RTREE indexes handle the out of memory error: before this fix,
     OOM during the recovery of an RTREE index resulted in segmentation
-    fault (gh-4619).
--   Add cancellation guard to avoid WAL thread stuck (gh-4127).
+    fault (:tarantool-issue:`4619`).
+-   Add cancellation guard to avoid WAL thread stuck (:tarantool-issue:`4127`).
 
 Replication
 ~~~~~~~~~~~
 
 -   Fix the rebootstrap procedure not working if the replica itself is
-    listed in ``box.cfg.replication`` (gh-4759).
--   Fix possible user password leaking via replication logs (gh-4493).
+    listed in ``box.cfg.replication`` (:tarantool-issue:`4759`).
+-   Fix possible user password leaking via replication logs
+    (:tarantool-issue:`4493`).
 -   Local space operations are now counted in 0th vclock component. Every
     instance may have its own 0-th vclock component not matching others’.
     Local space operations are not replicated at all, even as NOPs
-    (gh-4114).
+    (:tarantool-issue:`4114`).
 -   Gc consumers are now ordered by their vclocks and not by vclock
     signatures. Only the WALS that contain no entries needed by any of
-    the consumers are deleted (gh-4114).
+    the consumers are deleted (:tarantool-issue:`4114`).
 
 Lua
 ~~~
 
 -   json: ``:decode()`` doesn’t spoil instance’s options with per-call
-    ones (when it is called with the second argument) (gh-4761).
+    ones (when it is called with the second argument) (:tarantool-issue:`4761`).
 -   ``os.environ()`` is now changed when ``os.setenv()`` is called
-    (gh-4733).
+    (:tarantool-issue:`4733`).
 -   ``netbox.self:call/eval()`` now returns the same types as
     ``netbox_connection:call``/``eval``. Previously it could return a
-    tuple or ``box.error`` cdata (gh-4513).
+    tuple or ``box.error`` cdata (:tarantool-issue:`4513`).
 -   libev: backport fix for listening for more then 1024 file descriptors
-    on Mac OS (gh-3867).
+    on Mac OS (:tarantool-issue:`3867`).
 
 HTTP client
 ^^^^^^^^^^^
 
 -   When building Tarantool with bundled ``libcurl``, link it with the
-    ``c-ares`` library by default (gh-4591).
+    ``c-ares`` library by default (:tarantool-issue:`4591`).
 
 LuaJIT
 ~~~~~~
@@ -82,7 +85,7 @@ LuaJIT
 -   ``__pairs``/``__ipairs`` metamethods handling is removed since we
     faced the issues with the backward compatibility between Lua 5.1 and
     Lua 5.2 within Tarantool modules as well as other third party code
-    (gh-4770).
+    (:tarantool-issue:`4770`).
 
 -   Introduce ``luajit-gdb.py`` extension with commands for inspecting
     LuaJIT internals. The extension obliges one to provide gdbinfo for
@@ -99,7 +102,7 @@ LuaJIT
     -   ``lj-gc`` shows current GC stats
 
 -   Fix string to number conversion: current implementation respects the
-    buffer length (gh-4773).
+    buffer length (:tarantool-issue:`4773`).
 
 -  “FFI sandwich”(*) detection is introduced. If sandwich is detected
     while trace recording the recording is aborted. The sandwich detected
@@ -113,25 +116,25 @@ LuaJIT
     Lua-FFI -> C routine -> Lua-C API -> Lua VM
 
 This sort of re-entrancy is explicitly not supported by LuaJIT compiler.
-For more info see gh-4427.
+For more info see (:tarantool-issue:`4427`).
 
 Vinyl
 ~~~~~
 
 -   Fix assertion fault due to triggered dump process during secondary
-    index build (gh-4810).
+    index build (:tarantool-issue:`4810`).
 
 Misc
 ~~~~
 
 -   Fix crashes at attempts to use ``-e`` and ``-l`` command line options
     concatenated with their values, like this: ``-eprint(100)``
-    (gh-4775).
+    (:tarantool-issue:`4775`).
 -   Update ``libopenssl`` version to 1.1.1f since the previous one was
-    EOLed (gh-4830).
+    EOLed (:tarantool-issue:`4830`).
 
 Building from sources
 ~~~~~~~~~~~~~~~~~~~~~
 
 -   Fix static build (``-DBUILD_STATIC=ON``) when ``libunwind`` depends
-    on ``liblzma`` (gh-4551).
+    on ``liblzma`` (:tarantool-issue:`4551`).
