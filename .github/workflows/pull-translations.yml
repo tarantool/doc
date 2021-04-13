@@ -1,0 +1,61 @@
+name: Update translations from Crowdin
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+  push:
+#    branches:
+#      - latest
+
+jobs:
+  pull-translations:
+    runs-on: ubuntu-latest
+    container: tarantool/doc-builder:v1
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set TODAY branch name env variable
+      run: echo "TODAY_BRANCH=translate-$(date +'%d-%m-%Y')-latest" >> $GITHUB_ENV
+
+    - name: Pull Po-files from crowdin
+      uses: crowdin/github-action@1.0.21
+      with:
+        upload_sources: false
+        upload_translations: false
+
+        download_translations: true
+
+        localization_branch_name: ${{env.TODAY_BRANCH}}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{env.TODAY_BRANCH}}
+
+    - name: Generate Makefile
+      run: cmake .
+
+    - name: Perform cleanup for minimal diff
+      run: make cleanup-po
+
+    - name: Push Local Changes
+      uses: stefanzweifel/git-auto-commit-action@v4.1.2
+      with:
+        commit_message: "Update translation sources"
+        file_pattern: "*.po"
+        branch: ${{env.TODAY_BRANCH}}
+
+
+    - name: Create PR
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: ${{env.TODAY_BRANCH}}
+        destination_branch: "latest"
+        pr_title: "Pulling translate-latest into latest"
+        pr_label: "translation"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
