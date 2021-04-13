@@ -1,0 +1,555 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tarantool-docs\n"
+"X-Crowdin-Project-ID: 442986\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /en/release/1.10.pot\n"
+"X-Crowdin-File-ID: 1750\n"
+"Project-Id-Version: tarantool-docs\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"PO-Revision-Date: 2021-04-13 22:32\n"
+
+msgid "Tarantool 1.10"
+msgstr "Tarantool 1.10"
+
+msgid "**Release 1.10.4**"
+msgstr "**Версия 1.10.4**"
+
+msgid "Release type: stable (lts). Release date: 2019-09-26.  Tag: 1-10-4."
+msgstr "Тип версии: стабильная (lts). Дата выхода: 2019-09-26.  Тег: 1-10-4."
+
+msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.4."
+msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.4."
+
+msgid "Overview"
+msgstr "Общие сведения"
+
+msgid "1.10.4 is the next :ref:`stable (lts) <release-policy>` release in the 1.10 series. The label 'stable' means we have had systems running in production without known crashes, bad results or other showstopper bugs for quite a while now."
+msgstr "1.10.4 представляет собой очередную :ref:`стабильную (lts) <release-policy>` версию в серии 1.10. Пометка \"стабильная\" означает, что некоторые системы в течение определенного времени успешно отработали в производственной среде без известных сбоев, ненадежных результатов и прочих неисправностей."
+
+msgid "This release resolves about 50 issues since 1.10.3."
+msgstr "Данная версия содержит около 50 исправлений по сравнению с версией 1.10.3."
+
+msgid "Compatibility"
+msgstr "Совместимость"
+
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. Please :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 1.10.x series when migrating from 1.9 version."
+msgstr "Tarantool 1.10.x обратно совместим с Tarantool 1.9.x в том, что касается структуры бинарных данных, клиент-серверного протокола и протокола репликации. Чтобф воспользоваться новыми функциями серии 1.10.x, :ref:`обновите <admin-upgrades>` версию 1.9 с помощью процедуры ``box.schema.upgrade()``."
+
+msgid "Functionality added or changed"
+msgstr "Изменения или добавления функциональности"
+
+msgid "(Engines) Improve dump start/stop logging. When initiating memory dump, print how much memory is going to be dumped, expected dump rate, ETA, and the recent write rate. Upon dump completion, print observed dump rate in addition to dump size and duration."
+msgstr "(Движки) Улучшена запись в журнал о событиях начала/окончания процесса создания дампа. При запуске создания дампа записывается объем памяти, для которого создается дамп, предполагаемая скорость создания дампа, ETA, а также последняя скорость записи. По окончании создания дампа записывается зарегистрированная скорость создания дампа, а также размер дампа и длительность."
+
+msgid "(Engines) Look up key in reader thread. If a key isn't found in the tuple cache, we fetch it from a run file. In this case disk read and page decompression is done by a reader thread, however key lookup in the fetched page is still performed by the TX thread. Since pages are immutable, this could as well be done by the reader thread, which would allow us to save some precious CPU cycles for TX. Issue `4257 <https://github.com/tarantool/tarantool/issues/4257>`_."
+msgstr "(Движки) Поиск ключа в потоке чтения. Если ключ не обнаружен в кэше кортежа, забираем его из файла забега. В этом случае чтение с диска и распаковка страницы выполняется потоком чтения, однако поиск ключа на выбранной странице все еще выполняется потоком TX. Поскольку страницы являются неизменяемыми, это может сделать поток чтения, что позволит нам сэкономить ценные циклы ЦП для TX. Проблема `4257 <https://github.com/tarantool/tarantool/issues/4257>`_."
+
+msgid "(Core) Improve :ref:`box.stat.net <box_introspection-box_stat>`. Issue `4150 <https://github.com/tarantool/tarantool/issues/4150>`_."
+msgstr "(Ядро) Улучшена работа :ref:`box.stat.net <box_introspection-box_stat>`. Проблема `4150 <https://github.com/tarantool/tarantool/issues/4150>`_."
+
+msgid "(Core) Add ``idle`` to downstream status in ``box.info``. When a relay sends a row it updates ``last_row_time`` value with the current time. When ``box.info()`` is called, ``idle`` is set to ``current_time`` - ``last_row_time``."
+msgstr "(Ядро) Добавлен статус ``idle`` (простаивание) для downstream в ``box.info``. Когда передается строка, обновляется значение ``last_row_time`` с текущим временем. Когда идет вызов ``box.info()``, значение ``idle`` задается как ``current_time`` (текущее время) - ``last_row_time`` (время передачи последней строки)."
+
+msgid "(Replication) Print corrupted rows on decoding error. Improve row printing to log. Print the header row by row, 16 bytes in a row, and format output to match ``xxd`` output:"
+msgstr "(Репликация) Вывод поврежденных данных при ошибке декодирования. Улучшена запись строк в журнал. Вывод заголовка построчно, 16 байтов в строке, формат вывода соответствует выводу ``xxd``:"
+
+msgid "[001] 2019-04-05 18:22:46.679 [11859] iproto V> Got a corrupted row:\n"
+"[001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000000: A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53 60 5F 20 3F\n"
+"[001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000010: D8 E2 D6 E2 A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53"
+msgstr "[001] 2019-04-05 18:22:46.679 [11859] iproto V> Got a corrupted row:\n"
+"[001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000000: A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53 60 5F 20 3F\n"
+"[001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000010: D8 E2 D6 E2 A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53"
+
+msgid "(Lua) Add type of operation to space :ref:`trigger parameters <box_space-on_replace>`. For example, a trigger function may now look like this:"
+msgstr "(Lua) Добавлен тип операций в :ref:`параметры триггера <box_space-on_replace>`. Например, теперь функция с триггером может выглядеть следующим образом:"
+
+msgid "function before_replace_trig(old, new, space_name, op_type)\n"
+"    if op_type == 'INSERT' then\n"
+"        return old\n"
+"    else\n"
+"        return new\n"
+"    end\n"
+"end"
+msgstr "function before_replace_trig(old, new, space_name, op_type)\n"
+"    if op_type == 'INSERT' then\n"
+"        return old\n"
+"    else\n"
+"        return new\n"
+"    end\n"
+"end"
+
+msgid "Issue `4099 <https://github.com/tarantool/tarantool/issues/4099>`_."
+msgstr "Проблема `4099 <https://github.com/tarantool/tarantool/issues/4099>`_."
+
+msgid "(Lua) Add ``debug.sourcefile()`` and ``debug.sourcedir()`` helpers (and ``debug.__file__`` and ``debug.__dir__ shortcuts``) to determine the location of a current Lua source file. Part of issue `4193 <https://github.com/tarantool/tarantool/issues/4193>`_."
+msgstr "(Lua) Добавлены ``debug.sourcefile()`` и ``debug.sourcedir()`` (а также ускоренные методы ``debug.__file__`` и ``debug.__dir__``) для обнаружения местонахождения текущего исходного файла на Lua. Часть проблемы `4193 <https://github.com/tarantool/tarantool/issues/4193>`_."
+
+msgid "(HTTP client) Add ``max_total_connections`` option in addition to ``max_connections`` to allow more fine-grained tuning of ``libcurl`` connection cache. Don't restrict the total connections` with a constant value by default, but use ``libcurl``'s default, which scales the threshold according to easy handles count. Issue `3945 <https://github.com/tarantool/tarantool/issues/3945>`_."
+msgstr "(HTTP-клиент) Добавлена опция ``max_total_connections`` в дополнение к ``max_connections``, что позволяет более тонко настраивать кэш соединения ``libcurl``. Общее число соединений больше не ограничено постоянным значением по умолчанию, а используется значение по умолчанию из``libcurl``, что масштабирует предел в зависимости от количества обработчиков. Проблема `3945 <https://github.com/tarantool/tarantool/issues/3945>`_."
+
+msgid "Bugs fixed"
+msgstr "Исправленные ошибки"
+
+msgid "(Vinyl) Fix assertion failure in `vy_tx_handle_deferred_delete`. Issue `4294 <https://github.com/tarantool/tarantool/issues/4294>`_."
+msgstr "(Vinyl) Исправлен отказ в `vy_tx_handle_deferred_delete`. Проблема `4294 <https://github.com/tarantool/tarantool/issues/4294>`_."
+
+msgid "(Vinyl) Don't purge deleted runs from vylog on compaction. Cherry-picked from issue `4218 <https://github.com/tarantool/tarantool/issues/4218>`_."
+msgstr "(Vinyl) Не очищать удаленные забеги из vylog при слиянии. Отдельные элементы из проблемы `4218 <https://github.com/tarantool/tarantool/issues/4218>`_."
+
+msgid "(Vinyl) Don't throttle DDL. Issue `4238 <https://github.com/tarantool/tarantool/issues/4238>`_."
+msgstr "(Vinyl) Не управлять загрузкой DDL. Проблема `4238 <https://github.com/tarantool/tarantool/issues/4238>`_."
+
+msgid "(Vinyl) Fix deferred DELETE statement lost on commit. Issue `4248 <https://github.com/tarantool/tarantool/issues/4248>`_."
+msgstr "(Vinyl) Исправить потерю при коммите отложенных предложений DELETE. Проблема `4248 <https://github.com/tarantool/tarantool/issues/4248>`_."
+
+msgid "(Vinyl) Fix assertion while recovering dumped statement. Issue `4222 <https://github.com/tarantool/tarantool/issues/4222>`_."
+msgstr "(Vinyl) Исправить допустимость неопределенного значения при восстановлении предложения из дампа. Проблема `4222 <https://github.com/tarantool/tarantool/issues/4222>`_."
+
+msgid "(Vinyl) Reset dump watermark after updating memory limit. Issue `3864 <https://github.com/tarantool/tarantool/issues/3864>`_."
+msgstr "(Vinyl) Сбросить уровень дампа после обновления предела загрузки памяти. Проблема `3864 <https://github.com/tarantool/tarantool/issues/3864>`_."
+
+msgid "(Vinyl) Be pessimistic about write rate when setting dump watermark. Issue `4166 <https://github.com/tarantool/tarantool/issues/4166>`_."
+msgstr "(Vinyl) Применять пессимистический прогноз скорости записи при установленном уровне дампа. Проблема `4166 <https://github.com/tarantool/tarantool/issues/4166>`_."
+
+msgid "(Vinyl) Fix crash if space is dropped while space.get is reading from it. Issue `4109 <https://github.com/tarantool/tarantool/issues/4109>`_."
+msgstr "(Vinyl) Исправить сбой при удалении спейса во время чтения из него через space.get. Проблема `4109 <https://github.com/tarantool/tarantool/issues/4109>`_."
+
+msgid "(Vinyl) Fix crash during index build. Issue `4152 <https://github.com/tarantool/tarantool/issues/4152>`_."
+msgstr "(Vinyl) Исправить сбой во время создания индекса. Проблема `4152 <https://github.com/tarantool/tarantool/issues/4152>`_."
+
+msgid "(Vinyl) Don't compress L1 runs. Issue `2389 <https://github.com/tarantool/tarantool/issues/2389>`_."
+msgstr "(Vinyl) Не сжимать забеги L1. Проблема `2389 <https://github.com/tarantool/tarantool/issues/2389>`_."
+
+msgid "(Vinyl) Account statements skipped on read."
+msgstr "(Vinyl) Считать операторы, пропущенные при чтении."
+
+msgid "(Vinyl) Take into account primary key lookup in latency accounting."
+msgstr "(Vinyl) Принять во внимание поиск первичного ключа при учете задержек."
+
+msgid "(Vinyl) Fix ``vy_range_update_compaction_priority`` hang."
+msgstr "(Vinyl) Исправить зависание ``vy_range_update_compaction_priority``."
+
+msgid "(Vinyl) Free region on vylog commit instead of resetting it and clean up region after allocating surrogate statement."
+msgstr "(Vinyl) Освобождать область при фиксации vylog вместо сброса и очищать после выделения заместителя оператора."
+
+msgid "(Vinyl) Increase even more the open file limit in ``systemd`` unit file."
+msgstr "(Vinyl) Еще увеличить ограничение на количество открытых файлов в файле ``systemd``."
+
+msgid "(Vinyl) Increment min range size to 128MB"
+msgstr "(Vinyl) Увеличить минимальный размер диапазона до 128 Мбайт"
+
+msgid "(Memtx) Cancel checkpoint thread at exit. Issue `4170 <https://github.com/tarantool/tarantool/issues/4170>`_."
+msgstr "(Memtx) Отменить поток создания контрольных точек на выходе. Проблема `4170 <https://github.com/tarantool/tarantool/issues/4170>`_."
+
+msgid "(Core) Fix crash for update with empty tuple. Issue `4041 <https://github.com/tarantool/tarantool/issues/4041>`_."
+msgstr "(Ядро) Исправить отказ для обновления с пустым кортежем. Проблема `4041 <https://github.com/tarantool/tarantool/issues/4041>`_."
+
+msgid "(Core) Fix use-after-free in ``space_truncate``. Issue `4093 <https://github.com/tarantool/tarantool/issues/4093>`_."
+msgstr "(Ядро) Исправить использование освобожденной памяти в ``space_truncate``. Проблема `4093 <https://github.com/tarantool/tarantool/issues/4093>`_."
+
+msgid "(Core) Fix error while altering index with sequence. Issue `4214 <https://github.com/tarantool/tarantool/issues/4214>`_."
+msgstr "(Ядро) Исправить ошибку при изменении индекса с последовательностью. Проблема `4214 <https://github.com/tarantool/tarantool/issues/4214>`_."
+
+msgid "(Core) Detect a new invalid json path case. Issue `4419 <https://github.com/tarantool/tarantool/issues/4419>`_."
+msgstr "(Ядро) Выявить новый случай неправильного json-пути. Проблема `4419 <https://github.com/tarantool/tarantool/issues/4419>`_."
+
+msgid "(Core) Fix empty password authentication. Issue `4327 <https://github.com/tarantool/tarantool/issues/4327>`_."
+msgstr "(Ядро) Исправить аутентификацию с пустым паролем. Проблема `4327 <https://github.com/tarantool/tarantool/issues/4327>`_."
+
+msgid "(Core) Fix ``txn::sub_stmt_begin`` array size."
+msgstr "(Ядро) Исправить размер массива ``txn::sub_stmt_begin``."
+
+msgid "(Core) Account ``index.pairs`` in ``box.stat.SELECT()``."
+msgstr "(Ядро) Учитывать ``index.pairs`` в ``box.stat.SELECT()``."
+
+msgid "(Replication) Disallow bootstrap of read-only masters. Issue `4321 <https://github.com/tarantool/tarantool/issues/4321>`_."
+msgstr "(Репликация) Запретить настройку мастеров только для чтения. Проблема `4321 <https://github.com/tarantool/tarantool/issues/4321>`_."
+
+msgid "(Replication) Enter orphan mode on manual replication configuration change. Issue `4424 <https://github.com/tarantool/tarantool/issues/4424>`_."
+msgstr "(Репликация) Входить в режим одиночного сервера при ручном изменении настройки репликации. Проблема `4424 <https://github.com/tarantool/tarantool/issues/4424>`_."
+
+msgid "(Replication) Set ``last_row_time`` to ``now`` in ``relay_new`` and ``relay_start``. PR `4431 <https://github.com/tarantool/tarantool/pull/4431>`_."
+msgstr "(Репликация) Задать значение ``now`` для ``last_row_time`` в ``relay_new`` и ``relay_start``. Проблема `4431 <https://github.com/tarantool/tarantool/pull/4431>`_."
+
+msgid "(Replication) Stop relay on subscribe error. Issue `4399 <https://github.com/tarantool/tarantool/issues/4399>`_."
+msgstr "(Репликация) Остановить передачу данных при ошибке подписки. Проблема `4399 <https://github.com/tarantool/tarantool/issues/4399>`_."
+
+msgid "(Replication) Init ``coio`` watcher before join/subscribe. Issue `4110 <https://github.com/tarantool/tarantool/issues/4110>`_."
+msgstr "(Репликация) Запустить средство отслеживания ``coio`` перед join/subscribe. Проблема `4110 <https://github.com/tarantool/tarantool/issues/4110>`_."
+
+msgid "(Replication) Allow to change instance id during join. Issue `4107 <https://github.com/tarantool/tarantool/issues/4107>`_."
+msgstr "(Репликация) Разрешить изменение идентификатора экземпляра во время присоединения. Проблема `4107 <https://github.com/tarantool/tarantool/issues/4107>`_."
+
+msgid "(Replication) Fix garbage collection logic."
+msgstr "(Репликация) Исправить логику сборки мусора."
+
+msgid "(Replication) Revert packet boundary checking for iproto."
+msgstr "(Репликация) Вернуть проверку границ пакета для iproto."
+
+msgid "(Replication) Do not abort replication on ER_UNKNOWN_REPLICA."
+msgstr "(Репликация) Не прерывать репликацию при ER_UNKNOWN_REPLICA."
+
+msgid "(Replication) Reduce effects of input buffer fragmentation on large ``cfg.readahead``."
+msgstr "(Репликация) Уменьшить воздействие фрагментации буфера ввода при большом ``cfg.readahead``."
+
+msgid "(Replication) Fix upgrade from 1.7 (it doesn't recognize IPROTO_VOTE request type)."
+msgstr "(Репликация) Исправить обновление с 1.7 (не распознает тип запроса IPROTO_VOTE)."
+
+msgid "(Replication) Fix memory leak in call / eval in the case when a transaction is not committed. Issue `4388 <https://github.com/tarantool/tarantool/issues/4388>`_."
+msgstr "(Репликация) Исправить утечку памяти в call / eval в случае отсутствия коммита транзакции. Проблема `4388 <https://github.com/tarantool/tarantool/issues/4388>`_."
+
+msgid "(Lua) Fix ``fio.mktree()`` error reporting. Issue `4044 <https://github.com/tarantool/tarantool/issues/4044>`_."
+msgstr "(Lua) Исправить регистрацию ошибок ``fio.mktree()``. Проблема `4044 <https://github.com/tarantool/tarantool/issues/4044>`_."
+
+msgid "(Lua) Fix segfault on ``ffi.C_say()`` without filename. Issue `4336 <https://github.com/tarantool/tarantool/issues/4336>`_."
+msgstr "(Lua) Исправить ошибку сегментации в ``ffi.C_say()`` без имени файла. Проблема `4336 <https://github.com/tarantool/tarantool/issues/4336>`_."
+
+msgid "(Lua) Fix segfault on ``json.encode()`` on a recursive table. Issue `4366 <https://github.com/tarantool/tarantool/issues/4366>`_."
+msgstr "(Lua) Исправить ошибку сегментации в ``json.encode()`` на рекурсивную таблицу. Проблема `4366 <https://github.com/tarantool/tarantool/issues/4366>`_."
+
+msgid "(Lua) Fix ``pwd.getpwall()`` and ``pwd.getgrall()`` hang on CentOS 6 and FreeBSD 12. Issues `4447 <https://github.com/tarantool/tarantool/issues/4447>`_, `4428 <https://github.com/tarantool/tarantool/issues/4428>`_."
+msgstr "(Lua) Исправить зависание ``pwd.getpwall()`` и ``pwd.getgrall()`` на CentOS 6 и FreeBSD 12. Проблемы `4447 <https://github.com/tarantool/tarantool/issues/4447>`_, `4428 <https://github.com/tarantool/tarantool/issues/4428>`_."
+
+msgid "(Lua) Fix a segfault during initialization of a cipher from ``crypto`` module. Issue `4223 <https://github.com/tarantool/tarantool/issues/4223>`_."
+msgstr "(Lua) Исправить ошибку сегментации во время инициализации cipher from ``crypto`` module. Проблема `4223 <https://github.com/tarantool/tarantool/issues/4223>`_."
+
+msgid "(HTTP client) Reduce stack consumption during waiting for a DNS resolving result. Issue `4179 <https://github.com/tarantool/tarantool/issues/4179>`_."
+msgstr "(HTTP-клиент) Уменьшить потребление стека во время ожидания результата определения DNS. Проблема `4179 <https://github.com/tarantool/tarantool/issues/4179>`_."
+
+msgid "(HTTP client) Increase max outgoing header size to 8 KiB. Issue `3959 <https://github.com/tarantool/tarantool/issues/3959>`_."
+msgstr "(HTTP-клиент) Увеличить максимальный размер заголовка до 8 КиБ. Проблема `3959 <https://github.com/tarantool/tarantool/issues/3959>`_."
+
+msgid "(HTTP client) Verify \"headers\" option stronger. Issues `4281 <https://github.com/tarantool/tarantool/issues/4281>`_, `3679 <https://github.com/tarantool/tarantool/issues/3679>`_."
+msgstr "(HTTP-клиент) Сильнее проверять опцию \"headers\". Проблемы `4281 <https://github.com/tarantool/tarantool/issues/4281>`_, `3679 <https://github.com/tarantool/tarantool/issues/3679>`_."
+
+msgid "(HTTP client) Use bundled ``libcurl`` rather than system-wide by default. Issues `4318 <https://github.com/tarantool/tarantool/issues/4318>`_, `4180 <https://github.com/tarantool/tarantool/issues/4180>`_, `4288 <https://github.com/tarantool/tarantool/issues/4288>`_, `4389 <https://github.com/tarantool/tarantool/issues/4389>`_, `4397 <https://github.com/tarantool/tarantool/issues/4397>`_."
+msgstr "(HTTP-клиент) Использовать ``libcurl`` в комплекте, а не системный по умолчанию. Проблемы `4318 <https://github.com/tarantool/tarantool/issues/4318>`_, `4180 <https://github.com/tarantool/tarantool/issues/4180>`_, `4288 <https://github.com/tarantool/tarantool/issues/4288>`_, `4389 <https://github.com/tarantool/tarantool/issues/4389>`_, `4397 <https://github.com/tarantool/tarantool/issues/4397>`_."
+
+msgid "(HTTP client) This closes several known problems that were fixed in recent ``libcurl`` versions, including segfaults, hangs, memory leaks and performance problems."
+msgstr "(HTTP-клиент) Закрывает несколько известных проблем, которые были исправлены в последних версиях ``libcurl``, включая ошибки сегментации, зависания, утечки памяти и проблемы производительности."
+
+msgid "(LuaJIT) Fix overflow of snapshot map offset. Part of issue `4171 <https://github.com/tarantool/tarantool/issues/4171>`_."
+msgstr "(LuaJIT) Исправить переполнение массива снимка. Часть проблемы `4171 <https://github.com/tarantool/tarantool/issues/4171>`_."
+
+msgid "(LuaJIT) Fix rechaining of pseudo-resurrected string keys. Part of issue `4171 <https://github.com/tarantool/tarantool/issues/4171>`_."
+msgstr "(LuaJIT) Исправить повторное сцепление псевдо-восстановленных строковых ключей. Часть проблемы `4171 <https://github.com/tarantool/tarantool/issues/4171>`_."
+
+msgid "(LuaJIT) Fix fold machinery misbehaves. Issue `4376 <https://github.com/tarantool/tarantool/issues/4376>`_."
+msgstr "(LuaJIT) Исправить ошибки алгоритма свертывания. Проблема `4376 <https://github.com/tarantool/tarantool/issues/4376>`_."
+
+msgid "(LuaJIT) Fix for `debug.getinfo(1,'>S')`. Issue `3833 <https://github.com/tarantool/tarantool/issues/3833>`_."
+msgstr "(LuaJIT) Исправить `debug.getinfo(1,'>S')`. Проблема `3833 <https://github.com/tarantool/tarantool/issues/3833>`_."
+
+msgid "(LuaJIT) Fix `string.find` recording. Issue `4476 <https://github.com/tarantool/tarantool/issues/4476>`_."
+msgstr "(LuaJIT) Исправить записи `string.find`. Проблема `4476 <https://github.com/tarantool/tarantool/issues/4476>`_."
+
+msgid "(LuaJIT) Fixed a segfault when unsinking 64-bit pointers."
+msgstr "(LuaJIT) Исправлена ошибка нетонущих 64-битных указателей."
+
+msgid "(Misc) Increase even more the open file limit in ``systemd`` unit file."
+msgstr "(Разное) Еще увеличить предел количества открытых файлов в файле ``systemd``."
+
+msgid "(Misc) Raise error in ``tarantoolctl`` when ``box.cfg()`` isn't called. Issue `3953 <https://github.com/tarantool/tarantool/issues/3953>`_."
+msgstr "(Разное) Выдавать ошибку в ``tarantoolctl`` при отсутствии вызова ``box.cfg()``. Проблема `3953 <https://github.com/tarantool/tarantool/issues/3953>`_."
+
+msgid "(Misc) Support ``systemd``’s NOTIFY_SOCKET on OS X. Issue `4436 <https://github.com/tarantool/tarantool/issues/4436>`_."
+msgstr "(Разное) Поддерживать NOTIFY_SOCKET из ``systemd`` на OS X. Проблема `4436 <https://github.com/tarantool/tarantool/issues/4436>`_."
+
+msgid "(Misc) Fix ``coio_getaddrinfo()`` when 0 timeout is passed (affects ``netbox``’s ``connect_timeout``). Issue `4209 <https://github.com/tarantool/tarantool/issues/4209>`_."
+msgstr "(Разное) Исправить ``coio_getaddrinfo()`` при передаче времени ожидания 0 (влияет на ``connect_timeout`` в ``netbox``). Проблема `4209 <https://github.com/tarantool/tarantool/issues/4209>`_."
+
+msgid "(Misc) Fix ``coio_do_copyfile()`` to perform truncate of destination (affects ``fio.copyfile()``). Issue `4181 <https://github.com/tarantool/tarantool/issues/4181>`_."
+msgstr "(Разное) Исправить ``coio_do_copyfile()`` для выполнения усечения места назначения (влияет на ``fio.copyfile()``). Проблема `4181 <https://github.com/tarantool/tarantool/issues/4181>`_."
+
+msgid "(Misc) Make hints in ``coio_getaddrinfo()`` optional."
+msgstr "(Разное) Сделать подсказки в ``coio_getaddrinfo()`` необязательными."
+
+msgid "(Misc) Validate ``msgpack.decode()`` cdata size argument. Issue `4224 <https://github.com/tarantool/tarantool/issues/4224>`_."
+msgstr "(Разное) Проверять аргумент размера ``msgpack.decode()``. Проблема `4224 <https://github.com/tarantool/tarantool/issues/4224>`_."
+
+msgid "(Misc) Fix linking with static ``openssl`` library. Issue `4437 <https://github.com/tarantool/tarantool/issues/4437>`_."
+msgstr "(Разное) Исправить привязку к статической библиотеке ``openssl``. Проблема `4437 <https://github.com/tarantool/tarantool/issues/4437>`_."
+
+msgid "Deprecations"
+msgstr "Устаревшие функции"
+
+msgid "(Core) Deprecate ``rows_per_wal`` in favor of ``wal_max_size``. Part of issue `3762 <https://github.com/tarantool/tarantool/issues/3762>`_."
+msgstr "(Ядро) ``wal_max_size`` заменяет устаревший ``rows_per_wal``. Часть проблемы `3762 <https://github.com/tarantool/tarantool/issues/3762>`_."
+
+msgid "**Release 1.10.3**"
+msgstr "**Версия 1.10.3**"
+
+msgid "Release type: stable (lts). Release date: 2019-04-01.  Tag: 1-10-3."
+msgstr "Тип версии: стабильная (lts). Дата выхода: 2019-04-01.  Тег: 1-10-3."
+
+msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.3."
+msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.3."
+
+msgid "1.10.3 is the next :ref:`stable (lts) <release-policy>` release in the 1.10 series. The label 'stable' means we have had systems running in production without known crashes, bad results or other showstopper bugs for quite a while now."
+msgstr "1.10.3 представляет собой очередную :ref:`стабильную (lts) <release-policy>` версию в серии 1.10. Пометка \"стабильная\" означает, что некоторые системы в течение определенного времени успешно отработали в производственной среде без известных сбоев, ненадежных результатов и прочих неисправностей."
+
+msgid "This release resolves 69 issues since 1.10.2."
+msgstr "Данная версия содержит 69 исправлений по сравнению с версией 1.10.2."
+
+msgid "(Engines) Randomize vinyl index compaction Issue `3944 <https://github.com/tarantool/tarantool/issues/3944>`_."
+msgstr "(Движки) Слияние индексов в vinyl'е носит случайный характер. Проблема `3944 <https://github.com/tarantool/tarantool/issues/3944>`_."
+
+msgid "(Engines) Throttle tx thread if compaction doesn't keep up with dumps Issue `3721 <https://github.com/tarantool/tarantool/issues/3721>`_."
+msgstr "(Движки) Регулировка потока tx, если слияние не успевает за созданием дампов. Проблема `3721 <https://github.com/tarantool/tarantool/issues/3721>`_."
+
+msgid "(Engines) Do not apply run_count_per_level to the last level Issue `3657 <https://github.com/tarantool/tarantool/issues/3657>`_."
+msgstr "(Движки) Отмена run_count_per_level для последнего уровня. Проблема `3657 <https://github.com/tarantool/tarantool/issues/3657>`_."
+
+msgid "(Server) Report the number of active iproto connections Issue `3905 <https://github.com/tarantool/tarantool/issues/3905>`_."
+msgstr "(Сервер) Отчет о количестве активных соединений iproto. Проблема `3905 <https://github.com/tarantool/tarantool/issues/3905>`_."
+
+msgid "(Replication) Never keep a dead replica around if running out of disk space Issue `3397 <https://github.com/tarantool/tarantool/issues/3397>`_."
+msgstr "(Репликация) Удаление мертвой реплики, когда не хватает свободного места на диске. Проблема `3397 <https://github.com/tarantool/tarantool/issues/3397>`_."
+
+msgid "(Replication) Report join progress to the replica log Issue `3165 <https://github.com/tarantool/tarantool/issues/3165>`_."
+msgstr "(Репликация) Отчет о состоянии присоединения в журнале реплики. Проблема `3165 <https://github.com/tarantool/tarantool/issues/3165>`_."
+
+msgid "(Lua) Expose snapshot status in box.info.gc() Issue `3935 <https://github.com/tarantool/tarantool/issues/3935>`_."
+msgstr "(Lua) Отображение статуса снимка в box.info.gc(). Проблема `3935 <https://github.com/tarantool/tarantool/issues/3935>`_."
+
+msgid "(Lua) Show names of Lua functions in backtraces in fiber.info() Issue `3538 <https://github.com/tarantool/tarantool/issues/3538>`_."
+msgstr "(Lua) Отображение имен Lua-функций в обратной трассировке fiber.info(). Проблема `3538 <https://github.com/tarantool/tarantool/issues/3538>`_."
+
+msgid "(Lua) Check if transaction opened Issue `3518 <https://github.com/tarantool/tarantool/issues/3518>`_."
+msgstr "(Lua) Проверка наличия открытой транзакции. Проблема `3518 <https://github.com/tarantool/tarantool/issues/3518>`_."
+
+msgid "(Engines) Tarantool crashes if DML races with DDL Issue `3420 <https://github.com/tarantool/tarantool/issues/3420>`_."
+msgstr "(Движки) Сбой Tarantool'а при гонке потоков DML и DDL. Проблема `3420 <https://github.com/tarantool/tarantool/issues/3420>`_."
+
+msgid "(Engines) Recovery error if DDL is aborted Issue `4066 <https://github.com/tarantool/tarantool/issues/4066>`_."
+msgstr "(Движки) Ошибка восстановления при прерывании работы DDL. Проблема `4066 <https://github.com/tarantool/tarantool/issues/4066>`_."
+
+msgid "(Engines) Tarantool could commit in the read-only mode Issue `4016 <https://github.com/tarantool/tarantool/issues/4016>`_."
+msgstr "(Движки) Коммиты Tarantool'а в режиме только для чтения. Проблема `4016 <https://github.com/tarantool/tarantool/issues/4016>`_."
+
+msgid "(Engines) Vinyl iterator crashes if used throughout DDL Issue `4000 <https://github.com/tarantool/tarantool/issues/4000>`_."
+msgstr "(Движки) Сбой итератора vinyl'а при использовании DDL. Проблема `4000 <https://github.com/tarantool/tarantool/issues/4000>`_."
+
+msgid "(Engines) Vinyl doesn't exit until dump/compaction is complete Issue `3949 <https://github.com/tarantool/tarantool/issues/3949>`_."
+msgstr "(Движки) Vinyl не завершает работу, пока не закончится создание дампа или слияние. Проблема `3949 <https://github.com/tarantool/tarantool/issues/3949>`_."
+
+msgid "(Engines) After re-creating secondary index no data is visible Issue `3903 <https://github.com/tarantool/tarantool/issues/3903>`_."
+msgstr "(Движки) После повторного создания вторичного индекса не видно данных. Проблема `3903 <https://github.com/tarantool/tarantool/issues/3903>`_."
+
+msgid "(Engines) box.info.memory().tx underflow Issue `3897 <https://github.com/tarantool/tarantool/issues/3897>`_."
+msgstr "(Движки) Незагруженность box.info.memory().tx. Проблема `3897 <https://github.com/tarantool/tarantool/issues/3897>`_."
+
+msgid "(Engines) Vinyl stalls on intensive random insertion Issue `3603 <https://github.com/tarantool/tarantool/issues/3603>`_."
+msgstr "(Движки) Vinyl замедляет скорость при интенсивных случайных вставках. Проблема `3603 <https://github.com/tarantool/tarantool/issues/3603>`_."
+
+msgid "(Server) Newer version of libcurl explodes fiber stack Issue `3569 <https://github.com/tarantool/tarantool/issues/3569>`_."
+msgstr "(Сервер) Новая версия libcurl вызывает переполнение стека файбера. Проблема `3569 <https://github.com/tarantool/tarantool/issues/3569>`_."
+
+msgid "(Server) SIGHUP crashes tarantool Issue `4063 <https://github.com/tarantool/tarantool/issues/4063>`_."
+msgstr "(Сервер) SIGHUP вызывает завершение работы Tarantool'а. Проблема `4063 <https://github.com/tarantool/tarantool/issues/4063>`_."
+
+msgid "(Server) checkpoint_daemon.lua:49: bad argument #2 to 'format' Issue `4030 <https://github.com/tarantool/tarantool/issues/4030>`_."
+msgstr "(Сервер) checkpoint_daemon.lua:49: неправильный аргумент №2 для 'format'. Проблема `4030 <https://github.com/tarantool/tarantool/issues/4030>`_."
+
+msgid "(Server) fiber:name() show only part of name Issue `4011 <https://github.com/tarantool/tarantool/issues/4011>`_."
+msgstr "(Сервер) fiber:name() показывает только часть имени. Проблема `4011 <https://github.com/tarantool/tarantool/issues/4011>`_."
+
+msgid "(Server) Second hot standby switch may fail Issue `3967 <https://github.com/tarantool/tarantool/issues/3967>`_."
+msgstr "(Сервер) Второе переключение режима горячего резервирования hot standby может не сработать. Проблема `3967 <https://github.com/tarantool/tarantool/issues/3967>`_."
+
+msgid "(Server) Updating box.cfg.readahead doesn't affect existing connections Issue `3958 <https://github.com/tarantool/tarantool/issues/3958>`_."
+msgstr "(Сервер) Обновление box.cfg.readahead не влияет на текущие соединения. Проблема `3958 <https://github.com/tarantool/tarantool/issues/3958>`_."
+
+msgid "(Server) fiber.join() blocks in 'suspended' if fiber has cancelled Issue `3948 <https://github.com/tarantool/tarantool/issues/3948>`_."
+msgstr "(Сервер) fiber.join() остается заблокирован в статусе 'suspended', если файбер был отменен. Проблема `3948 <https://github.com/tarantool/tarantool/issues/3948>`_."
+
+msgid "(Server) Tarantool can be crashed by sending gibberish to a binary socket Issue `3900 <https://github.com/tarantool/tarantool/issues/3900>`_."
+msgstr "(Сервер) Tarantool может завершить работу с ошибкой при отправке ненужных данных в бинарный сокет. Проблема `3900 <https://github.com/tarantool/tarantool/issues/3900>`_."
+
+msgid "(Server) Stored procedure to produce push-messages never breaks on client disconnect Issue `3859 <https://github.com/tarantool/tarantool/issues/3559>`_."
+msgstr "(Сервер) Хранимая процедура для создания push-сообщений не прерывается при отключении клиента. Проблема `3859 <https://github.com/tarantool/tarantool/issues/3559>`_."
+
+msgid "(Server) Tarantool crashed in lj_vm_return Issue `3840 <https://github.com/tarantool/tarantool/issues/3840>`_."
+msgstr "(Сервер) Tarantool завершил работу с ошибкой в lj_vm_return. Проблема `3840 <https://github.com/tarantool/tarantool/issues/3840>`_."
+
+msgid "(Server) Fiber executing box.cfg() may process messages from iproto Issue `3779 <https://github.com/tarantool/tarantool/issues/3779>`_."
+msgstr "(Сервер) Файбер, выполняющий box.cfg(), может обрабатывать сообщения из iproto. Проблема `3779 <https://github.com/tarantool/tarantool/issues/3779>`_."
+
+msgid "(Server) Possible regression on nosqlbench Issue `3747 <https://github.com/tarantool/tarantool/issues/3747>`_."
+msgstr "(Сервер) Возможная регрессия на nosqlbench. Проблема `3747 <https://github.com/tarantool/tarantool/issues/3747>`_."
+
+msgid "(Server) Assertion after improper index creation Issue `3744 <https://github.com/tarantool/tarantool/issues/3744>`_."
+msgstr "(Сервер) Утверждение после неправильного создания индекса. Проблема `3744 <https://github.com/tarantool/tarantool/issues/3744>`_."
+
+msgid "(Server) Tarantool crashes on vshard startup (lj_gc_step) Issue `3725 <https://github.com/tarantool/tarantool/issues/3725>`_."
+msgstr "(Сервер) Сбой Tarantool'а при запуске поvshard (lj_gc_step). Проблема `3725 <https://github.com/tarantool/tarantool/issues/3725>`_."
+
+msgid "(Server) Do not restart replication on box.cfg if the configuration didn't change Issue `3711 <https://github.com/tarantool/tarantool/issues/3711>`_."
+msgstr "(Сервер) Репликация не запускается повторно на box.cfg, если конфигурация не изменилась. Проблема `3711 <https://github.com/tarantool/tarantool/issues/3711>`_."
+
+msgid "(Replication) Applier times out too fast when reading large tuples Issue `4042 <https://github.com/tarantool/tarantool/issues/4042>`_."
+msgstr "(Репликация) Время работы наложения (applier) сокращается при чтении кортежей большого размера. Проблема `4042 <https://github.com/tarantool/tarantool/issues/4042>`_."
+
+msgid "(Replication) Vinyl replica join fails Issue `3968 <https://github.com/tarantool/tarantool/issues/3968>`_."
+msgstr "(Репликация) Сбой присоединения реплики Vinyl. Проблема `3968 <https://github.com/tarantool/tarantool/issues/3968>`_."
+
+msgid "(Replication) Error during replication Issue `3910 <https://github.com/tarantool/tarantool/issues/3910>`_."
+msgstr "(Репликация) Ошибка во время репликации. Проблема `3910 <https://github.com/tarantool/tarantool/issues/3910>`_."
+
+msgid "(Replication) Downstream status doesn't show up in replication.info unless the channel is broken Issue `3904 <https://github.com/tarantool/tarantool/issues/3904>`_."
+msgstr "(Репликация) Статус downstream не отображается в replication.info, если канал не сломан. Проблема `3904 <https://github.com/tarantool/tarantool/issues/3904>`_."
+
+msgid "(Replication) replication fails: tx checksum mismatch Issue `3993 <https://github.com/tarantool/tarantool/issues/3883>`_."
+msgstr "(Репликация) Сбой репликации: несовпадение контрольной суммы tx. Проблема `3993 <https://github.com/tarantool/tarantool/issues/3883>`_."
+
+msgid "(Replication) Rebootstrap crashes if master has replica's rows Issue `3740 <https://github.com/tarantool/tarantool/issues/3740>`_."
+msgstr "(Репликация) Повторная настройка не производится, если на мастере есть строки из реплики. Проблема `3740 <https://github.com/tarantool/tarantool/issues/3740>`_."
+
+msgid "(Replication) After restart tuples revert back to their old state which was before replica sync Issue `3722 <https://github.com/tarantool/tarantool/issues/3722>`_."
+msgstr "(Репликация) После перезапуска состояние кортежей откатывается на дорепликационное состояние. Проблема `3722 <https://github.com/tarantool/tarantool/issues/3722>`_."
+
+msgid "(Replication) Add vclock for safer hot standby switch Issue `3002 <https://github.com/tarantool/tarantool/issues/3002>`_."
+msgstr "(Репликация) Добавление vclock для более безопасного переключения в режим горячего резервирования hot standby. Проблема `3002 <https://github.com/tarantool/tarantool/issues/3002>`_."
+
+msgid "(Replication) Master row is skipped forever in case of wal write failure Issue `2283 <https://github.com/tarantool/tarantool/issues/2283>`_."
+msgstr "(Репликация) Строка из мастера исчезает при сбое записи в журнал упреждающей записи. Проблема `2283 <https://github.com/tarantool/tarantool/issues/2283>`_."
+
+msgid "(Lua) space:frommap():tomap() conversion fail Issue `4045 <https://github.com/tarantool/tarantool/issues/4045>`_."
+msgstr "(Lua) Сбой преобразования space:frommap():tomap(). Проблема `4045 <https://github.com/tarantool/tarantool/issues/4045>`_."
+
+msgid "(Lua) Non-informative message when trying to read a negative count of bytes from socket Issue `3979 <https://github.com/tarantool/tarantool/issues/3979>`_."
+msgstr "(Lua) Неинформативное сообщение при попытке прочитать отрицательное значение счетчика байтов из сокета. Проблема `3979 <https://github.com/tarantool/tarantool/issues/3979>`_."
+
+msgid "(Lua) space:frommap raise \"tuple field does not match...\" even for nullable field Issue `3883 <https://github.com/tarantool/tarantool/issues/3883>`_."
+msgstr "(Lua) space:frommap вызывает ошибку несовпадения кортежей (\"tuple field does not match...\") даже для нулевого поля. Проблема `3883 <https://github.com/tarantool/tarantool/issues/3883>`_."
+
+msgid "(Lua) Tarantool crashes on net.box.call after some uptime with vshard internal fiber Issue `3751 <https://github.com/tarantool/tarantool/issues/3751>`_."
+msgstr "(Lua) Завершение работы Tarantool'а с ошибкой на net.box.call после нормальной работы с внутренним файбером vshard. Проблема `3751 <https://github.com/tarantool/tarantool/issues/3751>`_."
+
+msgid "(Lua) Heap use after free in lbox_error Issue `1955 <https://github.com/tarantool/tarantool/issues/1955>`_."
+msgstr "(Lua) Использование динамической памяти в lbox_error. Проблема `1955 <https://github.com/tarantool/tarantool/issues/1955>`_."
+
+msgid "(Misc) http.client doesn't honour 'connection: keep-alive' Issue `3955 <https://github.com/tarantool/tarantool/issues/3955>`_."
+msgstr "(Разное) http.client не подтверждает 'connection: keep-alive'. Проблема `3955 <https://github.com/tarantool/tarantool/issues/3955>`_."
+
+msgid "(Misc) net.box wait_connected is broken Issue `3856 <https://github.com/tarantool/tarantool/issues/3856>`_."
+msgstr "(Разное) Сломан wait_connected в net.box. Проблема `3856 <https://github.com/tarantool/tarantool/issues/3856>`_."
+
+msgid "(Misc) Mac build fails on Mojave Issue `3797 <https://github.com/tarantool/tarantool/issues/3797>`_."
+msgstr "(Разное) Сборка Mac завершается с ошибкой в Mojave. Проблема `3797 <https://github.com/tarantool/tarantool/issues/3797>`_."
+
+msgid "(Misc) FreeBSD build error: no SSL support Issue `3750 <https://github.com/tarantool/tarantool/issues/3750>`_."
+msgstr "(Разное) Ошибка сборки FreeBSD: отсутствует поддержка SSL. Проблема `3750 <https://github.com/tarantool/tarantool/issues/3750>`_."
+
+msgid "(Misc) 'http.client' sets invalid (?) reason Issue `3681 <https://github.com/tarantool/tarantool/issues/3681>`_."
+msgstr "(Разное) 'http.client' выдает неправильную (?) причину. Проблема `3681 <https://github.com/tarantool/tarantool/issues/3681>`_."
+
+msgid "(Misc) Http client silently modifies headers when value is not a \"string\" or a \"number\" Issue `3679 <https://github.com/tarantool/tarantool/issues/3679>`_."
+msgstr "(Разное) Http client молча изменяет заголовки, когда значение -- не \"строка\" и не \"число\". Проблема `3679 <https://github.com/tarantool/tarantool/issues/3679>`_."
+
+msgid "(Misc) yaml.encode uses multiline format for 'false' and 'true' Issue `3662 <https://github.com/tarantool/tarantool/issues/3662>`_."
+msgstr "(Разное) yaml.encode использует многострочный формат для 'false' и 'true'. Проблема `3662 <https://github.com/tarantool/tarantool/issues/3662>`_."
+
+msgid "(Misc) yaml.encode encodes 'null' incorrectly Issue `3583 <https://github.com/tarantool/tarantool/issues/3583>`_."
+msgstr "(Разное) yaml.encode неправильно кодирует 'null'. Проблема `3583 <https://github.com/tarantool/tarantool/issues/3583>`_."
+
+msgid "(Misc) Error object message is empty Issue `3604 <https://github.com/tarantool/tarantool/issues/3604>`_."
+msgstr "(Разное) Пустое сообщение объекта ошибки. Проблема `3604 <https://github.com/tarantool/tarantool/issues/3604>`_."
+
+msgid "(Misc) Log can be flooded by warning messages Issue `2218 <https://github.com/tarantool/tarantool/issues/2218>`_."
+msgstr "(Разное) Журнал переполняется предупреждениями. Проблема `2218 <https://github.com/tarantool/tarantool/issues/2218>`_."
+
+msgid "Deprecate ``console=true`` option for :ref:`net.box.new() <net_box-new>`."
+msgstr "Опция ``console=true`` для :ref:`net.box.new() <net_box-new>` объявлена устаревшей."
+
+msgid "**Release 1.10.2**"
+msgstr "**Версия 1.10.2**"
+
+msgid "Release type: stable (lts). Release date: 2018-10-13.  Tag: 1-10-2."
+msgstr "Тип версии: стабильная (lts). Дата выхода: 2018-10-13.  Тег: 1-10-2."
+
+msgid "Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.2."
+msgstr "Сообщение: https://github.com/tarantool/tarantool/releases/tag/1.10.2."
+
+msgid "This is the first :ref:`stable (lts) <release-policy>` release in the 1.10 series. Also, Tarantool 1.10.2 is a major release that deprecates Tarantool 1.9.2. It resolves 95 issues since 1.9.2."
+msgstr "Данная сборка представляет собой первую :ref:`стабильную (lts) <release-policy>` версию в серии 1.10. Кроме того, Tarantool 1.10.2 представляет собой мажорную версию, версия Tarantool 1.9.2 объявлена устаревшей. Это обновление содержит 95 исправлений по сравнению с версией 1.9.2."
+
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` procedure."
+msgstr "Tarantool 1.10.x обратно совместим с Tarantool 1.9.x в том, что касается структуры бинарных данных, клиент-серверного протокола и протокола репликации. :ref:`Обновление <admin-upgrades>` можно произвести с помощью процедуры ``box.schema.upgrade()``."
+
+msgid "The goal of this release is to significantly increase ``vinyl`` stability and introduce automatic rebootstrap of a Tarantool replica set."
+msgstr "Цель данного релиза -- значительно повысить стабильность ``vinyl'а`` и реализовать автоматическую повторную настройку набора реплик в Tarantool'е."
+
+msgid "Functionality added or changed:"
+msgstr "Изменения или добавления функциональности:"
+
+msgid "(Engines) support ALTER for non-empty vinyl spaces. Issue `1653 <https://github.com/tarantool/tarantool/issues/1653>`_."
+msgstr "(Движки) поддержка изменения ALTER непустых спейсов в vinyl'е. Проблема `1653 <https://github.com/tarantool/tarantool/issues/1653>`_."
+
+msgid "(Engines) tuples stored in the vinyl cache are not shared among the indexes of the same space. Issue `3478 <https://github.com/tarantool/tarantool/issues/3478>`_."
+msgstr "(Движки) кортежи, которые хранятся в кэше vinyl'а, не учитываются в индексах того же спейса. Проблема `3478 <https://github.com/tarantool/tarantool/issues/3478>`_."
+
+msgid "(Engines) keep a stack of UPSERTS in ``vy_read_iterator``. Issue `1833 <https://github.com/tarantool/tarantool/issues/1833>`_."
+msgstr "(Движки) хранение стека операций обновления и вставки UPSERT в ``vy_read_iterator``. Проблема `1833 <https://github.com/tarantool/tarantool/issues/1833>`_."
+
+msgid "(Engines) ``box.ctl.reset_stat()``, a function to reset vinyl statistics. Issue `3198 <https://github.com/tarantool/tarantool/issues/3198>`_."
+msgstr "(Движки) ``box.ctl.reset_stat()``, функция сброса статистики в vinyl'е. Проблема `3198 <https://github.com/tarantool/tarantool/issues/3198>`_."
+
+msgid "(Server) :ref:`configurable syslog destination <cfg_logging-log>`. Issue `3487 <https://github.com/tarantool/tarantool/issues/3487>`_."
+msgstr "(Сервер) :ref:`настройка места назначения syslog <cfg_logging-log>`. Проблема `3487 <https://github.com/tarantool/tarantool/issues/3487>`_."
+
+msgid "(Server) allow different nullability in indexes and format. Issue `3430 <https://github.com/tarantool/tarantool/issues/3430>`_."
+msgstr "(Сервер) допустимость неопределенного значения разного вида в индексах и форматах. Проблема `3430 <https://github.com/tarantool/tarantool/issues/3430>`_."
+
+msgid "(Server) allow to :ref:`back up any checkpoint <reference_lua-box_backup-backup_start>`, not just the last one. Issue `3410 <https://github.com/tarantool/tarantool/issues/3410>`_."
+msgstr "(Сервер) возможность осуществлять :ref:`резервное копирование любой контрольной точки <reference_lua-box_backup-backup_start>`, а не только последней. Проблема `3410 (Сервер) допустимость :ref:`резервного копирования любой контрольной точки <reference_lua-box_backup-backup_start>`, а не только последней. Проблема `3410 <https://github.com/tarantool/tarantool/issues/3410>`_."
+
+msgid "(Server) a way to detect that a Tarantool process was started / restarted by ``tarantoolctl`` (:ref:`TARANTOOLCTL and TARANTOOL_RESTARTED <tarantoolctl-instance_management>` env vars). Issues `3384 <https://github.com/tarantool/tarantool/issues/3384>`_, `3215 <https://github.com/tarantool/tarantool/issues/3215>`_."
+msgstr "(Сервер) метод, чтобы определить был ли запуск или перезапуск процесса Tarantool'а осуществлен с помощью ``tarantoolctl`` (переменные окружения :ref:`TARANTOOLCTL и TARANTOOL_RESTARTED <tarantoolctl-instance_management>`). Проблемы `3384 <https://github.com/tarantool/tarantool/issues/3384>`_, `3215 <https://github.com/tarantool/tarantool/issues/3215>`_."
+
+msgid "(Server) :ref:`net_msg_max <cfg_networking-net_msg_max>` configuration parameter to restrict the number of allocated fibers. Issue `3320 <https://github.com/tarantool/tarantool/issues/3320>`_."
+msgstr "(Сервер) конфигурационный параметр :ref:`net_msg_max <cfg_networking-net_msg_max>` ограничивает число выделенных файберов. Проблема `3320 <https://github.com/tarantool/tarantool/issues/3320>`_."
+
+msgid "(Replication) display the connection status if the downstream gets disconnected from the upstream (:ref:`box.info.replication.downstream.status <box_info_replication>` ``= disconnected``). Issue `3365 <https://github.com/tarantool/tarantool/issues/3365>`_."
+msgstr "(Репликация) отображение статуса соединения, если последующий сервер отключается от предыдущего (:ref:`box.info.replication.downstream.status <box_info_replication>` ``= disconnected``). Проблема `3365 <https://github.com/tarantool/tarantool/issues/3365>`_."
+
+msgid "(Replication) :ref:`replica-local spaces <replication-local>` Issue `3443 <https://github.com/tarantool/tarantool/issues/3443>`_."
+msgstr "(Репликация) :ref:`спейсы с локальной репликацией <replication-local>` Проблема `3443 <https://github.com/tarantool/tarantool/issues/3443>`_."
+
+msgid "(Replication) :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`, a new option in ``box.cfg{}`` to skip conflicting rows in replication. Issue `3270 <https://github.com/tarantool/tarantool/issues/3270>`_."
+msgstr "(Репликация) :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`, новый параметр в ``box.cfg{}`` для пропуска конфликтов строк при репликации. Проблема `3270 <https://github.com/tarantool/tarantool/issues/3270>`_."
+
+msgid "(Replication) remove old snapshots which are not needed by replicas. Issue `3444 <https://github.com/tarantool/tarantool/issues/3444>`_."
+msgstr "(Репликация) удаление старых снимков, которые не нужны репликами. Проблема `3444 <https://github.com/tarantool/tarantool/issues/3444>`_."
+
+msgid "(Replication) log records which tried to commit twice. Issue `3105 <https://github.com/tarantool/tarantool/issues/3105>`_."
+msgstr "(Репликация) запись в журнал попытки повторного коммита. Проблема `3105 <https://github.com/tarantool/tarantool/issues/3105>`_."
+
+msgid "(Lua) new function :ref:`fiber.join() <fiber_object-join>`. Issue `1397 <https://github.com/tarantool/tarantool/issues/1397>`_."
+msgstr "(Lua) новая функция :ref:`fiber.join() <fiber_object-join>`. Проблема `1397 <https://github.com/tarantool/tarantool/issues/1397>`_."
+
+msgid "(Lua) new option ``names_only`` to :ref:`tuple:tomap() <box_tuple-tomap>`. Issue `3280 <https://github.com/tarantool/tarantool/issues/3280>`_."
+msgstr "(Lua) новая опция ``names_only`` для :ref:`tuple:tomap() <box_tuple-tomap>`. Проблема `3280 <https://github.com/tarantool/tarantool/issues/3280>`_."
+
+msgid "(Lua) support custom rock servers (``server`` and ``only-server`` options for :ref:`tarantoolctl rocks <tarantoolctl-module_management>` command). Issue `2640 <https://github.com/tarantool/tarantool/issues/2640>`_."
+msgstr "(Lua) поддержка специализированных серверов для модулей (опции ``server`` и ``only-server`` для команды :ref:`tarantoolctl rocks <tarantoolctl-module_management>`). Проблема `2640 <https://github.com/tarantool/tarantool/issues/2640>`_."
+
+msgid "(Lua) expose ``on_commit``/``on_rollback`` triggers to Lua; Issue `857 <https://github.com/tarantool/tarantool/issues/857>`_."
+msgstr "(Lua) передача триггеров ``on_commit``/``on_rollback`` в Lua. Проблема `857 <https://github.com/tarantool/tarantool/issues/857>`_."
+
+msgid "(Lua) new function :ref:`box.is_in_txn() <box-is_in_txn>` to check if a transaction is open; Issue `3518 <https://github.com/tarantool/tarantool/issues/3518>`_."
+msgstr "(Lua) новая функция :ref:`box.is_in_txn() <box-is_in_txn>` для проверки наличия открытой транзакции. Проблема `3518 <https://github.com/tarantool/tarantool/issues/3518>`_."
+
+msgid "(Lua) tuple field access via a json path (by :ref:`number <box_tuple-field_number>`, :ref:`name <box_tuple-field_name>`, and :ref:`path <box_tuple-field_path>`); Issue `1285 <https://github.com/tarantool/tarantool/issues/1285>`_."
+msgstr "(Lua) доступ к полю кортежа по JSON-пути (по :ref:`номеру <box_tuple-field_number>`, :ref:`имени <box_tuple-field_name>` и :ref:`пути <box_tuple-field_path>`). Проблема`1285 <https://github.com/tarantool/tarantool/issues/1285>`_."
+
+msgid "(Lua) new function :ref:`space:frommap() <box_space-frommap>`; Issue `3282 <https://github.com/tarantool/tarantool/issues/3282>`_."
+msgstr "(Lua) новая функция :ref:`space:frommap() <box_space-frommap>`. Проблема `3282 <https://github.com/tarantool/tarantool/issues/3282>`_."
+
+msgid "(Lua) new module :ref:`utf8 <utf8-module>` that implements libicu's bindings for use in Lua; Issues `3290 <https://github.com/tarantool/tarantool/issues/3290>`_, `3385 <https://github.com/tarantool/tarantool/issues/3385>`_."
+msgstr "(Lua) новый модуль :ref:`utf8 <utf8-module>`, который имплементирует привязки libicu для использования в Lua. Проблемы `3290 <https://github.com/tarantool/tarantool/issues/3290>`_, `3385 <https://github.com/tarantool/tarantool/issues/3385>`_."
+

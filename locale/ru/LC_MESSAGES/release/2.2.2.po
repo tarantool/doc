@@ -1,0 +1,338 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tarantool-docs\n"
+"X-Crowdin-Project-ID: 442986\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /en/release/2.2.2.pot\n"
+"X-Crowdin-File-ID: 1736\n"
+"Project-Id-Version: tarantool-docs\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"PO-Revision-Date: 2021-04-13 22:32\n"
+
+msgid "Tarantool 2.2.2"
+msgstr ""
+
+msgid "Date: 2019-12-31 Tag: 2.2.2-0-g0a577ff"
+msgstr ""
+
+msgid "Overview"
+msgstr "Общие сведения"
+
+msgid "2.2.2 is the first stable version of the 2.2 release series. The label stable means we have all planned features implemented and we see no high-impact issues."
+msgstr ""
+
+msgid "This release resolves roughly 75 issues since the latest beta version. There may be bugs in less common areas, please feel free to file an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+msgid "Compatibility"
+msgstr "Совместимость"
+
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout, client-server protocol and replication protocol."
+msgstr ""
+
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/2.2/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr "Изменения или добавления функциональности"
+
+msgid "There are changes labeled with **[Breaking change]**. It means that the old behaviour was considered error-prone and therefore changed to protect users from unintended mistakes. However, there is a little probability that someone can lean on the old behaviour, and this label is to bring attention to the things that have been changed."
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid "**[Breaking change]** Drop ``rows_per_wal`` ``box.cfg()`` option in favor of ``wal_max_size``, gh-3762"
+msgstr ""
+
+msgid "Lua"
+msgstr "Lua"
+
+msgid "**[Breaking change]** json and msgpack serializers now raise an error when a depth of data nesting exceeds ``encode_max_depth`` option value. The default value of the option is increased from 32 to 128. ``encode_deep_as_nil`` option was added to give ability to set the old behaviour back. gh-4434 Note: Those options can be set using ``json.cfg({<...>})`` or ``msgpack.cfg({<...>})``. Note: box data modification functions (``insert``, ``replace``, ``update``, ``upsert``) follows options of default msgpack serializer instance and now they will raise an error by default on too nested data rather then cut them silently. This behaviour can be configured using ``msgpack.cfg({<...>})``. Note: ``box.tuple.new()``, ``space:update()``, ``space:upsert()`` and several other functions did not follow ``encode_max_depth`` option, now they do (see also ‘Bug fixes’). Note: ``json.cfg`` and ``msgpack.cfg`` tables did not updated when an option is changed, now they show actual values (see also ‘Bug fixes’)."
+msgstr ""
+
+msgid "Show line and column in json.decode() errors, gh-3316"
+msgstr ""
+
+msgid "Exit gracefully when a main script throws an error: notify systemd, log the error, gh-4382"
+msgstr ""
+
+msgid "key_def: accept both ``field`` and ``fieldno`` in ``key_def.new(<...>)``, gh-4519. Originally ``key_def.new(<...>)`` accepts only ``fieldno`` to allow creation with ``<index_object>.parts`` as argument. However index definition format (``<space_object>.create_index(<...>)``) is different and requires ``field``. Now both are supported."
+msgstr ""
+
+msgid "Enable ``__pairs`` and ``__ipairs`` metamethods from Lua 5.2, gh-4560 We still conform Lua 5.1 API, which is not always compatible with Lua 5.2. The change is only about those metamethods."
+msgstr ""
+
+msgid "Misc"
+msgstr "Разное"
+
+msgid "tarantoolctl: allow to start instances with delayed box.cfg{}, gh-4435"
+msgstr ""
+
+msgid "Add package builds and deployment for the following Linux distros:"
+msgstr ""
+
+msgid "Ubuntu 19.10 Eoan Ermine, gh-4583"
+msgstr ""
+
+msgid "CentOS 8, gh-4543"
+msgstr ""
+
+msgid "Fedora 31, gh-4612"
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr "Исправленные ошибки"
+
+msgid "SQL"
+msgstr ""
+
+msgid "Modify type of a binding value in a query response metainformation: always return INTEGER rather then UNSIGNED, even for positive values. This is necessary for consistency with integer literal types. `c5246686 <https://github.com/tarantool/tarantool/commit/c5246686494ba19ceb321c0ee86b36495ab7d923>`__."
+msgstr ""
+
+msgid "Reuse noSQL way to compare floating point values with integral ones. This allows to handle corner cases like ``SELECT 18446744073709551615.0 > 18446744073709551615`` uniformly. `12431ed4 <https://github.com/tarantool/tarantool/commit/12431ed42956a3561f10b7834752046590db73e6>`__."
+msgstr ""
+
+msgid "Create or alter of a table with a foreign key may lead to wrong bytecode generation that may cause a crash or wrong result, gh-4495"
+msgstr ""
+
+msgid "Allow to update a scalar value using SQL in a space that was created from Lua and contains ‘array’, ‘map’ or ‘any’ field, gh-4189 Note: Tarantool/SQL provides operations on scalar types and does not support ‘array’ and ‘map’ per se."
+msgstr ""
+
+msgid "``INDEXED BY`` clause now obligates the query planner to choose provided index, `411be0f0 <https://github.com/tarantool/tarantool/commit/411be0f01153dde6a705306120fc50c6d74ed30e>`__"
+msgstr ""
+
+msgid "Fix dirty memory access when constructing query plan involving search of floating point value in index over integer field, gh-4558"
+msgstr ""
+
+msgid "Detect a new invalid json path case, gh-4419"
+msgstr ""
+
+msgid "Randomize the next checkpoint time also after a manual ``box.snapshot()``, gh-4432"
+msgstr ""
+
+msgid "Fix memory leak in call / eval in the case when a transaction is not committed, gh-4388"
+msgstr ""
+
+msgid "Eliminate warning re ‘strip_core’ box.cfg option on MacOS and FreeBSD, gh-4464"
+msgstr ""
+
+msgid "The msgpack serializer that is under ``box.tuple.new()`` (called tuple serializer) did not reflect options set by ``msgpack.cfg({<...>})``, part of gh-4434. Aside of ``box.tuple.new()`` behaviour itself, it may affect tuple:frommap(), methods of key_def Lua module, tuple and table merger sources, net.box results of ``:select()`` and ``:execute()`` calls, xlog Lua module."
+msgstr ""
+
+msgid "box’s ``update`` and ``upsert`` now follow ``msgpack.cfg({encode_max_depth = <...>}`` option, part of gh-4434"
+msgstr ""
+
+msgid "fiber: make sure the guard page is created, refuse to create a new fiber otherwise, gh-4541 It is possible in case of heavy memory pressure, say, when there is no resources to split VMAs."
+msgstr ""
+
+msgid "recovery: build secondary indices in the hot standby mode without waiting till the main instance termination, gh-4135"
+msgstr ""
+
+msgid "Fix error message for incorrect return value of functional index extractor function, gh-4553"
+msgstr ""
+
+msgid "Was: \"Key format doesn’t match one defined in functional index ‘’ of space ‘’: supplied key type is invalid: expected boolean’"
+msgstr ""
+
+msgid "Now: “<…>: expected array”"
+msgstr ""
+
+msgid "JSON path index did ignore is_nullable property when a space had a format, gh-4520"
+msgstr ""
+
+msgid "Forbid ``00000000-0000-0000-0000-000000000000`` as ``replicaset_uuid`` and ``instance_uuid`` ``box.cfg({<...>})`` options value, gh-4282 It did not work as expected: the nil UUID was treated as absence of a value."
+msgstr ""
+
+msgid "Update cache of universe privileges without reconnect, gh-2763"
+msgstr ""
+
+msgid "net.box: fix memory leak in ``net_box:connect(<URI>)``, gh-4588"
+msgstr ""
+
+msgid "net.box: don’t fire ``on_connect`` trigger at schema update, gh-4593. Also don’t fire ``on_disconnect`` trigger if a connection never entered into ‘active’ state (e.g. when a first schema fetch is failed)."
+msgstr ""
+
+msgid "func: fix use after free on function unload, `64f4d06a <https://github.com/tarantool/tarantool/commit/64f4d06a906d610c9b2694486c3a45b407b7bbc9>`__"
+msgstr ""
+
+msgid "Fix bootstrap.snap file in order to overcome the following warning, gh-4510 > xlog.c:1934 E> can’t open tx: bootstrap: has some data after eof marker at 5902"
+msgstr ""
+
+msgid "Don’t destroy a session until ``box.session.on_disconnect(<...>)`` triggers will be finished, gh-4627 This means that, say, ``box.session.id()`` can be safely invoked from the ``on_disconnect`` trigger. Before this change ``box.session.id()`` returns garbage (usually 0) after yield in the ``on_disconnect`` trigger. Note: tarantool/queue module is affected by this problem in `some scenarious <https://github.com/tarantool/queue/issues/103>`__. It is especially suggested to update tarantool at least to this release if you’re using this module."
+msgstr ""
+
+msgid "func: ``box.schema.func.drop(<..>)`` did not unload unused modules, gh-4648. Also ``box.schema.func.create(<..>)`` did load of a module again even when another function from the module is loaded."
+msgstr ""
+
+msgid "Encode Lua number -2^63 as integer in msgpack.encode() and box’s functions, gh-4672"
+msgstr ""
+
+msgid "Replication"
+msgstr "Репликация"
+
+msgid "Stop relay on subscribe error, gh-4399"
+msgstr ""
+
+msgid "Set ``last_row_time`` to ``now`` in ``relay_new`` and ``relay_start``, gh-4431"
+msgstr ""
+
+msgid "Do not abort replication on ER_UNKNOWN_REPLICA, gh-4455"
+msgstr ""
+
+msgid "Enter orphan mode on manual replication configuration change, gh-4424"
+msgstr ""
+
+msgid "Disallow bootstrap of read-only masters, gh-4321"
+msgstr ""
+
+msgid "Prefer to bootstrap a replica from a fully bootstrapped instance rather than currently bootstrapping one, gh-4527. This change enables the case when two nodes (B, C) are being bootstrapped simultaneously using the one that is already bootstrapped (A), while A is configured to replicate from {B, C} and B from {A, C}."
+msgstr ""
+
+msgid "Return immediately from ``box.cfg{<...>}`` when an instance is reconfigured with ``replication_connect_quorum = 0``, gh-3760 This change also fixes the behaviour of reconfiguration with non-zero ``replication_connect_quorum``: ``box.cfg{<...>}`` returns immediately regardless of whether connections to upstreams are established."
+msgstr ""
+
+msgid "Apply replication ``box.cfg({<...>})`` settings in a strict order, gh-4433"
+msgstr ""
+
+msgid "Auto reconnect a replica if password is invalid, gh-4550"
+msgstr ""
+
+msgid "``box.session.su(<username>)`` now reports an error correctly for ``<username>`` longer then BOX_NAME_MAX, which is 65000, `43e29191 <https://github.com/tarantool/tarantool/commit/43e2919122f6ca0d6c8a6bd18d29151a15d115c8>`__ Was: ‘C++ exception’ Now: ‘name length <…> is greater than BOX_NAME_MAX’"
+msgstr ""
+
+msgid "Use empty password when an URI in ``box.cfg{replication = <...>}`` is like ``login@host:port``, gh-4605. The behaviour match net.box’s one now. Explicit ``login:@host:port`` was necessary before, otherwise a replica shows the following error: > Missing mandatory field ‘tuple’ in request"
+msgstr ""
+
+msgid "Fix segfault during replication configuration (``box.cfg{replication = <...>}`` call), gh-4440, gh-4576, gh-4586, gh-4643"
+msgstr ""
+
+msgid "Fix segfault on ``ffi.C._say()`` without filename, gh-4336"
+msgstr ""
+
+msgid "Fix ``pwd.getpwall()`` and ``pwd.getgrall()`` hang on CentOS 6 and FreeBSD 12, gh-4428, gh-4447"
+msgstr ""
+
+msgid "json.encode() now follows ``encode_max_depth`` option for arrays that leads to a segfault on recursive Lua tables with numeric keys, gh-4366"
+msgstr ""
+
+msgid "fio.mktree() now reports an error for existing non-directory file, gh-4439"
+msgstr ""
+
+msgid "Update ``json.cfg`` and ``msgpack.cfg`` tables when an option is changed, part of gh-4434"
+msgstr ""
+
+msgid "Fix handling of a socket read error on the console client (``console.connect(<URI>)`` or ``tarantoolctl connect/enter <...>``), `b0b19992 <https://github.com/tarantool/tarantool/commit/b0b1999258b0dd859fa39c4234620e9918281d1e>`__"
+msgstr ""
+
+msgid "Handle ‘not enough memory’ gracefully when it is raised from ``lua_newthread()``, gh-4556 There are several places where a new Lua thread is created:"
+msgstr ""
+
+msgid "Start execution a Lua function call or an eval request (from a binary protocol, SQL or with ``box.func.<...>:call()``)."
+msgstr ""
+
+msgid "Create of a new fiber."
+msgstr ""
+
+msgid "Start execution of a trigger."
+msgstr ""
+
+msgid "Start of encoding into a YAML format (``yaml.encode()``)."
+msgstr ""
+
+msgid "Fix stack-use-after-scope in json.decode(), gh-4637"
+msgstr ""
+
+msgid "HTTP client"
+msgstr ""
+
+msgid "Use bundled ``libcurl`` rather than system-wide by default, gh-4318, gh-4180, gh-4288, gh-4389, gh-4397 This closes several known problems that were fixed in recent libcurl versions, including segfaults, hangs, memory leaks and performance problems."
+msgstr ""
+
+msgid "Disable verbose mode when ``{verbose = false}`` is passed, `5f3d9015 <https://github.com/tarantool/tarantool/commit/5f3d90154165fa7fb4d190f56d6c1658ff8c517f>`__"
+msgstr ""
+
+msgid "Fix assertion fail after curl write error, gh-4232"
+msgstr ""
+
+msgid "Console Lua output"
+msgstr ""
+
+msgid "The new Lua output format is still in the alpha stage and has known flaws, but we are working to make it rich and stable."
+msgstr ""
+
+msgid "Output ``box.NULL`` as ``\"box.NULL\"`` rather then ``\"cdata<void *>: NULL\"``, part of gh-3834 (in quotes for now, yes, due to gh-4585)"
+msgstr ""
+
+msgid "Add semicolon (``;``) as responses delimiter (EOS, end of stream/statement), analogue of YAMLs end-of-document (``...``) marker. This is vital for remote clients to determine an end of a particular response, part of gh-3834."
+msgstr ""
+
+msgid "Fix hang in the console client (``console.connect(<URI>)`` or ``tarantoolctl connect/enter <...>``) after ``\\set output lua[,block]`` command, part of gh-3834. In order to overcome it two changes were made:"
+msgstr ""
+
+msgid "Parse ``\\set output lua[,block]`` command on a client prior to sending it to a server, store current responses delimiter (EOS) and use it to determine end of responses."
+msgstr ""
+
+msgid "Send ``\\set output <...>`` command with a default output mode when establishing a connection (it is matter if different default modes are set)."
+msgstr ""
+
+msgid "Provide ability to get or set current responses delimiter using ``console.eos([<...>])``, part of gh-3834"
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid "Fix fold machinery misbehaves, gh-4376"
+msgstr ""
+
+msgid "Fix for ``debug.getinfo(1,'>S')``, gh-3833"
+msgstr ""
+
+msgid "Fix ``string.find`` recording, gh-4476"
+msgstr ""
+
+msgid "Fixed ‘Data segment size exceeds process limit’ error on FreeBSD/x64: do not change resource limits when it is not necessary, gh-4537"
+msgstr ""
+
+msgid "fold: keep type of emitted CONV in sync with its mode, `LuaJIT#524 <https://github.com/LuaJIT/LuaJIT/issues/524>`__ This fixes the following assertion fail: > asm_conv: Assertion \\`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed"
+msgstr ""
+
+msgid "Support ``systemd``\\ ’s NOTIFY_SOCKET on OS X, gh-4436"
+msgstr ""
+
+msgid "Fix linking with static ``openssl`` library, gh-4437"
+msgstr ""
+
+msgid "Get rid of warning re empty ``NOTIFY_SOCKET`` variable, gh-4305"
+msgstr ""
+
+msgid "rocks: fix ‘invalid date format’ error when installing a packed rock, gh-4481"
+msgstr ""
+
+msgid "Remove libyaml from rpm/deb dependencies, because we use bunbled version of libyaml for the packages (since 2.2.1), gh-4442"
+msgstr ""
+
+msgid "Fix boolean CLI options handling in ``tarantoolctl cat <...>``, such as ``--show-system``, gh-4076"
+msgstr ""
+
+msgid "Fix segfault (out of bounds access) when unwinding error occurs at backtrace printing, gh-4636 Backtrace is printed on SIGFPE and SIGSEGV signal or when LuaJIT find itself in unrecoverable state (lua_atpanic())."
+msgstr ""
+
+msgid "Building from sources"
+msgstr ""
+
+msgid "Fix for GCC 4.8.5, which is default version on CentOS 7, gh-4438"
+msgstr ""
+
+msgid "Fix OpenSSL linking problems on FreeBSD, gh-4490"
+msgstr ""
+
+msgid "Fix linking problems on Mac OS when several toolchains are in PATH, gh-4587"
+msgstr ""
+
+msgid "Fix GCC 9 warning on strncpy(), gh-4515"
+msgstr ""
+

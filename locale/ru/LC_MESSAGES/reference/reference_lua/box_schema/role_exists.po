@@ -1,13 +1,22 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tarantool-docs\n"
+"X-Crowdin-Project-ID: 442986\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /en/reference/reference_lua/box_schema/role_exists.pot\n"
+"X-Crowdin-File-ID: 1642\n"
+"Project-Id-Version: tarantool-docs\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"PO-Revision-Date: 2021-04-13 22:32\n"
 
 msgid "box.schema.role.exists()"
-msgstr ""
+msgstr "box.schema.role.exists()"
 
-msgid ""
-"Return ``true`` if a role exists; return ``false`` if a role does not "
-"exist."
-msgstr ""
-"Выдача ``true`` (правда), если роль существует; выдача ``false`` (ложь), "
-"если роль отсутствует."
+msgid "Return ``true`` if a role exists; return ``false`` if a role does not exist."
+msgstr "Выдача ``true`` (правда), если роль существует; выдача ``false`` (ложь), если роль отсутствует."
 
 msgid "Parameters"
 msgstr "Параметры"
@@ -19,10 +28,11 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "bool"
-msgstr ""
+msgstr "логическое значение bool"
 
 msgid "**Example:**"
 msgstr "**Пример:**"
 
 msgid "box.schema.role.exists('Accountant')"
 msgstr "box.schema.role.exists('Accountant')"
+

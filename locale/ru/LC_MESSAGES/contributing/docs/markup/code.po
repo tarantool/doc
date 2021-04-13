@@ -1,0 +1,204 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tarantool-docs\n"
+"X-Crowdin-Project-ID: 442986\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /en/contributing/docs/markup/code.pot\n"
+"X-Crowdin-File-ID: 3460\n"
+"Project-Id-Version: tarantool-docs\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"PO-Revision-Date: 2021-04-13 22:32\n"
+
+msgid "Writing about code"
+msgstr ""
+
+msgid "When writing articles, you need to format code specially, separating it from other text. This document will guide you through typical cases when it is recommended to use code highlighting."
+msgstr ""
+
+msgid "Defining what code is"
+msgstr ""
+
+msgid "In general, code is any text, processed by a machine. It is also probably code if the expression contains characters that ordinary words do not have, such as ``_, {}, [ ], .``. Also, you should format the expression as code if it fits at least one of the items in the list below:"
+msgstr ""
+
+msgid "parts of a programming language: names of classes, variables, and functions, short expressions, data types and so on,"
+msgstr ""
+
+msgid "multiline fragments of application logs,"
+msgstr ""
+
+msgid "example link which the reader will not open: ``example.com``, ``https://example.com:80``,"
+msgstr ""
+
+msgid "parts of URL, like port number,"
+msgstr ""
+
+msgid "package names,"
+msgstr ""
+
+msgid "CLI app names."
+msgstr ""
+
+msgid "Items we don't format as code:"
+msgstr ""
+
+msgid "names of products, organizations and services, for example, Tarantool, memtx, vinyl"
+msgstr ""
+
+msgid "well-established terms such as stdin and stdout"
+msgstr ""
+
+msgid "Keep in mind that grammar doesn't apply to code, even inline."
+msgstr ""
+
+msgid "Correct: \"use ``shellcheck`` to analyze your Bash code\"."
+msgstr ""
+
+msgid "Incorrect: \"``shellcheck`` your Bash code\". Please do not use code as a verb."
+msgstr ""
+
+msgid "Even worse: \"shellcheck your Bash code\". There's no such word in English and we don't explain what to use."
+msgstr ""
+
+msgid "Cursed: \"try ``shellchecking`` your Bash code\". There's no such word and no such application."
+msgstr ""
+
+msgid "Code blocks and inline code"
+msgstr ""
+
+msgid "If you have to choose between inline code and code block highlighting, pay attention to the following guidelines:"
+msgstr ""
+
+msgid "Code snippets"
+msgstr ""
+
+msgid "Use code blocks when you have to highlight multiple lines of code. Also, use it if your code snippet contains a standalone element that is not a part of the article's text."
+msgstr ""
+
+msgid "For code snippets, we use the ``code-block:: language`` `directive <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block>`_. You can enable syntax highlighting if you specify the language for the snippet. The most commonly used highlighting languages are:"
+msgstr ""
+
+msgid "``tarantoolsession``—interactive Tarantool session, where command lines start with ``tarantool>`` prompt."
+msgstr ""
+
+msgid "``console``—interactive console session, where command lines start with ``$`` or ``#``."
+msgstr ""
+
+msgid "``lua``, ``bash`` or ``c`` for programming languages."
+msgstr ""
+
+msgid "``text`` for cases when we want the code block to have no highlighting."
+msgstr ""
+
+msgid "Sphinx uses the Pygments library for highlighting source code. For a complete list of possible languages, see the `list of Pygments lexers <https://pygments.org/docs/lexers/>`_."
+msgstr ""
+
+msgid "For example, a code snippet in Lua:"
+msgstr ""
+
+msgid "..  code-block:: lua\n\n"
+"    for page in paged_iter(\"X\", 10) do\n"
+"      print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"      for i=1,#page,1 do print(page[i]) end\n"
+"    end"
+msgstr ""
+
+msgid "Lua syntax is highlighted in the output:"
+msgstr ""
+
+msgid "for page in paged_iter(\"X\", 10) do\n"
+"  print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"  for i=1,#page,1 do print(page[i]) end\n"
+"end"
+msgstr ""
+
+msgid "Note that in code blocks you can write comments and translate them:"
+msgstr ""
+
+msgid "..  //Here is the first comment.\n"
+"..  //Here is the second comment."
+msgstr ""
+
+msgid "Inline code"
+msgstr ""
+
+msgid "Use inline code when you need to wrap a short snippet of code in text, such as variable name or function definition. Keep in mind that inline code doesn't have syntax highlighting."
+msgstr ""
+
+msgid "To format some inline text as ``code``, enclose it with double ````` characters or use the ``:code:`` role:"
+msgstr ""
+
+msgid "*   Formatting code with backticks: ``echo \"Hello world!\"``.\n\n"
+"*   Formatting code with a role: :code:`echo \"Hello world!\"`."
+msgstr ""
+
+msgid "Both options produce the same output:"
+msgstr ""
+
+msgid "Formatting code with backticks: ``echo \"Hello world!\"``."
+msgstr ""
+
+msgid "Formatting code with a role: :code:`echo \"Hello world!\"`."
+msgstr ""
+
+msgid "Notes on using inline-code"
+msgstr ""
+
+msgid "If you have expressions such as ``id==4``, you should format the whole expression as code inline. Also, you can use the words \"equals\", \"doesn't equal\" or other similar words without formatting expression as code. Both variants are correct."
+msgstr ""
+
+msgid "Inline code can be used to highlight expressions that are hard to read, for example, words containing ``il``, ``Il`` or ``O0``."
+msgstr ""
+
+msgid "Highlighting variables in code"
+msgstr ""
+
+msgid "If you need to mark up a placeholder inside code inline, use the ``:samp:`` role, like this:"
+msgstr ""
+
+msgid ":samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`\n"
+msgstr ""
+
+msgid "And you will get this:"
+msgstr ""
+
+msgid ":samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`"
+msgstr ""
+
+msgid "If you need to mark up a placeholder in code block, use the following syntax:"
+msgstr ""
+
+msgid "..  cssclass:: highlight\n"
+"..  parsed-literal::\n\n"
+"    :samp:`box.space.{space-name}:create_index('{index-name}')`"
+msgstr ""
+
+msgid "The output will look like this:"
+msgstr ""
+
+msgid ":samp:`box.space.{space-name}:create_index('{index-name}')`"
+msgstr ""
+
+msgid "Formatting file and directory names"
+msgstr ""
+
+msgid "If you need to highlight some file standalone name or path to file in text, use the ``:file:`` role. You can use curly braces inside this role to mark up a replaceable part:"
+msgstr ""
+
+msgid ":file:`/usr/bin/example.py`\n\n"
+":file:`/usr/{dirname}/example.py`\n\n"
+":file:`/usr/{dirname}/{filename.ext}`"
+msgstr ""
+
+msgid ":file:`/usr/bin/example.py`"
+msgstr ""
+
+msgid ":file:`/usr/{dirname}/example.py`"
+msgstr ""
+
+msgid ":file:`/usr/{dirname}/{filename.ext}`"
+msgstr ""
+
