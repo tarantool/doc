@@ -576,8 +576,7 @@ functions.
 .. function:: rmtree(path-name)
 
     Remove the directory indicated by path-name, including subdirectories.
-    The result is similar to the ``rmdir -r`` shell command.
-    The directory should not be empty.
+    The result is similar to the ``rm -rf`` shell command.
 
     :param string path-name: path-name.
     :return: (If no error) true. |br|
