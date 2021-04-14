@@ -1,6 +1,7 @@
 Tarantool 2.5.1
 ===============
 
+Releases: https://github.com/tarantool/tarantool/releases
 Date: 2020-07-17 Tag: 2.5.1-1-g635f6e5
 
 Overview
@@ -11,7 +12,7 @@ Overview
 This release introduces roughly 11 features and resolves 34 bugs since
 the 2.4.1 version. There may be bugs in less common areas. If you find
 any, feel free to report an issue at
-`GitHub <https://github.com/tarantool/tarantool/issues>`__.
+`GitHub <https://github.com/tarantool/tarantool/issues>`_.
 
 Notable changes are:
 
@@ -28,7 +29,7 @@ Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
 data layout, client-server protocol, and replication protocol.
 
 Please
-`upgrade <https://www.tarantool.io/en/doc/2.3/book/admin/upgrades/>`__
+`upgrade <https://www.tarantool.io/en/doc/2.3/book/admin/upgrades/>`_
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
@@ -46,29 +47,29 @@ Core
 
 -   **[Breaking change]** :doc:`/reference/reference_lua/box_session/push`
     parameter ``sync`` is deprecated and deleted. It does not work anymore, and
-    a usage attempt leads to an error (gh-4689).
+    a usage attempt leads to an error (:tarantool-issue:`4689`).
 -   **[Breaking change]** Define new rules for implicit cast for
-    assignment operation in SQL (gh-3809). Read more: :ref:`sql-implicit_cast`.
+    assignment operation in SQL (:tarantool-issue:`3809`). Read more: :ref:`sql-implicit_cast`.
 -   Symbols of the Tarantool executable are not masked anymore. Some
     private symbols may become visible and available for FFI and
-    ``dlopen()`` + ``dlsym()`` (gh-2971).
+    ``dlopen()`` + ``dlsym()`` (:tarantool-issue:`2971`).
 -   Add ability to set up logging early without configuring the ``box``
-    engine (gh-689).
+    engine (:tarantool-issue:`689`).
 -   To retrieve information about memory usage,
     :doc:`/reference/reference_lua/box_info/memory` can
-    be used (gh-4688).
+    be used (:tarantool-issue:`4688`).
 
 Vinyl
 ~~~~~
 
 -   ``box.snapshot()`` now ignores throttling of the scheduler and forces
-    the dump process immediately (gh-3519).
+    the dump process immediately (:tarantool-issue:`3519`).
 
 SQL
 ~~~
 
 -   Use naming pattern “COLUMN_N” for automatically generated column’s
-    names (gh-3962). Read more: :ref:`sql_select_list`.
+    names (:tarantool-issue:`3962`). Read more: :ref:`sql_select_list`.
 
 Replication
 ~~~~~~~~~~~
@@ -77,21 +78,21 @@ Replication
     When called, it lists anonymous
     replicas in the same format as ``box.info.replication``, the only
     exception is that anonymous replicas are indexed by their uuid
-    strings (gh-4900).
--   Allow anonymous replicas to be followed by other ones (gh-4696).
+    strings (:tarantool-issue:`4900`).
+-   Allow anonymous replicas to be followed by other ones (:tarantool-issue:`4696`).
 -   :doc:`Synchronous replication </book/replication/repl_sync>`
-    can be enabled per-space using the ``is_sync`` space option (gh-4842).
+    can be enabled per-space using the ``is_sync`` space option (:tarantool-issue:`4842`).
 
 Build
 ~~~~~
 
--   Add initial support for OpenBSD (gh-4967).
+-   Add initial support for OpenBSD (:tarantool-issue:`4967`).
 
 Misc
 ~~~~
 
 -   Don’t start the :ref:`‘example’ instance <creating-db-locally>`
-    after installing Tarantool (gh-4507).
+    after installing Tarantool (:tarantool-issue:`4507`).
 
     Before this release, the Tarantool package for Debian and Ubuntu
     automatically enable and start the ‘example’ instance, which listens
@@ -115,7 +116,7 @@ Misc
         systemctl stop tarantool@example
         rm /etc/tarantool/instances.enabled/example.lua
 
--   When LTO is enabled, Luajit is built with it (gh-3743).
+-   When LTO is enabled, Luajit is built with it (:tarantool-issue:`3743`).
 
 Bugs fixed
 ----------
@@ -124,41 +125,41 @@ Bugs fixed
 Core
 ~~~~
 
--   Fixed assert outdated due to multikey index arrival (gh-5132).
+-   Fixed assert outdated due to multikey index arrival (:tarantool-issue:`5132`).
 -   Fixed a bug in altering a normal index to a functional one (n/a).
 -   Fixed a couple of internal symbols dangling in global namespace \_G
-    (gh-4812).
--   Fixed bug when on_shutdown triggers weren’t executed after EOF
-    (gh-4703).
+    (:tarantool-issue:`4812`).
+-   Fixed bug when on_shutdown triggers were not executed after EOF
+    (:tarantool-issue:`4703`).
 -   Fixed inability to handle ULL constants in Lua mode console
-    (gh-4682).
--   Fixed a bug in C module reloading (gh-4945).
--   Fixed confusing implicit requirements for tuple fields (gh-5027).
--   Added needed key validation to space_before_replace (gh-5017).
--   Fixed check of index field map size which led to crash (gh-5084).
+    (:tarantool-issue:`4682`).
+-   Fixed a bug in C module reloading (:tarantool-issue:`4945`).
+-   Fixed confusing implicit requirements for tuple fields (:tarantool-issue:`5027`).
+-   Added needed key validation to space_before_replace (:tarantool-issue:`5017`).
+-   Fixed check of index field map size which led to crash (:tarantool-issue:`5084`).
 -   Fixed NULL pointer dereference when merger is called via the binary
-    protocol (say, via net.box) (gh-4954).
+    protocol (say, via net.box) (:tarantool-issue:`4954`).
 -   Fix wrong mpsgpack extension type in an error message at decoding
-    (gh-5017).
--   Fixed crash when invalid JSON was used in update() (gh-5135).
+    (:tarantool-issue:`5017`).
+-   Fixed crash when invalid JSON was used in update() (:tarantool-issue:`5135`).
 
 
 Replication
 ~~~~~~~~~~~
 
 -   Fixed possible ER_TUPLE_FOUND error when bootstrapping replicas in an
-    1.10/2.1.1 cluster (gh-4924).
--   Fixed tx boundary check for half-applied txns (gh-5125).
--   Fixed replication tx boundaries after local space rework (gh-4928).
+    1.10/2.1.1 cluster (:tarantool-issue:`4924`).
+-   Fixed tx boundary check for half-applied txns (:tarantool-issue:`5125`).
+-   Fixed replication tx boundaries after local space rework (:tarantool-issue:`4928`).
 
 Lua
 ~~~
 
--   Added format string usage to form a CustomError message (gh-4903).
+-   Added format string usage to form a CustomError message (:tarantool-issue:`4903`).
     Read more: :doc:`/reference/reference_lua/box_error/custom_type`.
--   Fixed error while closing socket.tcp_server socket (gh-4087).
+-   Fixed error while closing socket.tcp_server socket (:tarantool-issue:`4087`).
 -   Extended box.error objects reference counter to 64 bit to prevent
-    possible overflow (gh-4902).
+    possible overflow (:tarantool-issue:`4902`).
 -   Refactored Lua table encoding: removed excess Lua function object and
     left protected Lua frame only for the case \__serialize is a function
     to improve ``msgpack.encode()`` performance (no GH issue).
@@ -174,44 +175,44 @@ SQL
 ~~~
 
 -   Fixed wrong order of rows as a result of query containing column of
-    SCALAR type in ORDER BY clause (gh-4697).
+    SCALAR type in ORDER BY clause (:tarantool-issue:`4697`).
 -   Fixed bug with the display of collation for scalar fields in <SELECT>
-    result, when ``sql_full_metadata`` is enabled (gh-4755).
+    result, when ``sql_full_metadata`` is enabled (:tarantool-issue:`4755`).
 -   Block using HASH indexes in SQL since scheduler is unable to use it
-    properly (gh-4659).
--   Fixed races and corner cases in box (re)configuration (gh-4231).
+    properly (:tarantool-issue:`4659`).
+-   Fixed races and corner cases in box (re)configuration (:tarantool-issue:`4231`).
 
 
 Vinyl
 ~~~~~
 
 -   Fixed crash during compaction due to tuples with size exceeding
-    vinyl_max_tuple_size setting (gh-4864).
+    vinyl_max_tuple_size setting (:tarantool-issue:`4864`).
 -   Fixed crash during recovery of vinyl index due to the lack of file
-    descriptors (gh-4805).
+    descriptors (:tarantool-issue:`4805`).
 -   Fixed crash during executing upsert changing primary key in debug
-    mode (gh-5005).
+    mode (:tarantool-issue:`5005`).
 -   Fixed crash due to triggered dump process during secondary index
-    creation (gh-5042).
+    creation (:tarantool-issue:`5042`).
 -   Fixed crash/deadlock (depending on build type) during dump process
-    scheduling and concurrent DDL operation (gh-4821).
+    scheduling and concurrent DDL operation (:tarantool-issue:`4821`).
 -   Fixed crash during read of prepared but still not yet not committed
-    statement (gh-3395).
--   Fixed squashing set and arithmetic upsert operations (gh-5106).
+    statement (:tarantool-issue:`3395`).
+-   Fixed squashing set and arithmetic upsert operations (:tarantool-issue:`5106`).
 -   Created missing folders for vinyl spaces and indexes if needed to
-    avoid confusing fails of tarantool started from backup (gh-5090).
+    avoid confusing fails of tarantool started from backup (:tarantool-issue:`5090`).
 -   Fixed crash during squash of many (more than 4000) upserts modifying
-    the same key (gh-4957).
+    the same key (:tarantool-issue:`4957`).
 
 Memtx
 ~~~~~
 
 -   Fixed concurrent replaces on index building. Tuples are now
-    referenced on all needed execution paths (gh-4973).
+    referenced on all needed execution paths (:tarantool-issue:`4973`).
 
 
 Misc
 ~~~~
 
 -   Fixed a possible stacked diagnostics crash due to incorrect reference
-    count (gh-4887).
+    count (:tarantool-issue:`4887`).

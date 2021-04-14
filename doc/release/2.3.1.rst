@@ -125,7 +125,7 @@ SQL
 
 -   Display line and position in syntax errors (:tarantool-issue:`2611`).
 
--   Make constraint names unique within a table (:tarantool-issue:`3503').
+-   Make constraint names unique within a table (:tarantool-issue:`3503`).
     The SQL standard requires ``PRIMARY KEY``, ``UNIQUE``, ``FOREIGN KEY`` and ``CHECK``
     constraints to have the unique name within a table. Now Tarantool/SQL
     follows this requirement. Please refer to (:doc-issue:`1053`).
