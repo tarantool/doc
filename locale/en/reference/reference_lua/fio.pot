@@ -538,7 +538,7 @@ msgid "tarantool> fio.mktree('/home/archives')\n"
 "..."
 msgstr ""
 
-msgid "Remove the directory indicated by path-name, including subdirectories. The result is similar to the ``rmdir -r`` shell command. The directory should not be empty."
+msgid "Remove the directory indicated by path-name, including subdirectories. The result is similar to the ``rm -rf`` shell command."
 msgstr ""
 
 msgid "(If no error) true. |br| (If error) two return values: null, error message."
