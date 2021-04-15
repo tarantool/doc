@@ -1,32 +1,29 @@
-.. _fiber-module:
+..  _fiber-module:
 
--------------------------------------------------------------------------------
-                            Module `fiber`
--------------------------------------------------------------------------------
+Module `fiber`
+==============
 
-===============================================================================
-                                   Overview
-===============================================================================
+Overview
+--------
 
 With the ``fiber`` module, you can:
 
-* create, run and manage :ref:`fibers <fiber-fibers>`,
-* send and receive messages between different processes (i.e. different
-  connections, sessions, or fibers) via :ref:`channels <fiber_ipc-channel>`, and
-* use a :ref:`synchronization mechanism <fiber_ipc-cond_var>` for fibers,
-  similar to "condition variables" and similar to operating-system functions
-  such as ``pthread_cond_wait()`` plus ``pthread_cond_signal()``.
+*   create, run and manage :ref:`fibers <fiber-fibers>`,
+*   send and receive messages between different processes (i.e. different
+    connections, sessions, or fibers) via :ref:`channels <fiber_ipc-channel>`, and
+*   use a :ref:`synchronization mechanism <fiber_ipc-cond_var>` for fibers,
+    similar to "condition variables" and similar to operating-system functions
+    such as ``pthread_cond_wait()`` plus ``pthread_cond_signal()``.
 
-===============================================================================
-                                    Index
-===============================================================================
+Index
+-----
 
 Below is a list of all ``fiber`` functions and members.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
     +--------------------------------------+---------------------------------+
     | Name                                 | Use                             |
@@ -159,11 +156,10 @@ Below is a list of all ``fiber`` functions and members.
     | <cond_object-example>`               | condition variables             |
     +--------------------------------------+---------------------------------+
 
-.. _fiber-fibers:
+..  _fiber-fibers:
 
-================================================================================
 Fibers
-================================================================================
+------
 
 A **fiber** is a set of instructions which are executed with cooperative
 multitasking. Fibers managed by the fiber module are associated with
@@ -209,23 +205,23 @@ Tarantool has made some enhancements for fibers and has used fibers internally.
 So, although use of coroutines is possible and supported, use of fibers is
 recommended.
 
-.. module:: fiber
+..  module:: fiber
 
-.. _fiber-create:
+..  _fiber-create:
 
-.. function:: create(function [, function-arguments])
+..  function:: create(function [, function-arguments])
 
     Create and start a fiber. The fiber is created and begins to run immediately.
 
     :param function: the function to be associated with the fiber
     :param function-arguments: what will be passed to function
 
-    :Return: created fiber object
-    :Rtype: userdata
+    :return: created fiber object
+    :rtype: userdata
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber = require('fiber')
         ---
@@ -241,9 +237,9 @@ recommended.
         ---
         ...
 
-.. _fiber-new:
+..  _fiber-new:
 
-.. function:: new(function [, function-arguments])
+..  function:: new(function [, function-arguments])
 
     Create but do not start a fiber: the fiber is created but does not
     begin to run immediately -- it starts after the fiber creator
@@ -261,12 +257,12 @@ recommended.
     :param function: the function to be associated with the fiber
     :param function-arguments: what will be passed to function
 
-    :Return: created fiber object
-    :Rtype: userdata
+    :return: created fiber object
+    :rtype: userdata
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber = require('fiber')
         ---
@@ -284,16 +280,16 @@ recommended.
         ---
         ...
 
-.. _fiber-self:
+..  _fiber-self:
 
-.. function:: self()
+..  function:: self()
 
-    :Return: fiber object for the currently scheduled fiber.
-    :Rtype: userdata
+    :return: fiber object for the currently scheduled fiber.
+    :rtype: userdata
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.self()
         ---
@@ -302,18 +298,18 @@ recommended.
           id: 101
         ...
 
-.. _fiber-find:
+..  _fiber-find:
 
-.. function:: find(id)
+..  function:: find(id)
 
     :param id: numeric identifier of the fiber.
 
-    :Return: fiber object for the specified fiber.
-    :Rtype: userdata
+    :return: fiber object for the specified fiber.
+    :rtype: userdata
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.find(101)
         ---
@@ -322,9 +318,9 @@ recommended.
           id: 101
         ...
 
-.. _fiber-sleep:
+..  _fiber-sleep:
 
-.. function:: sleep(time)
+..  function:: sleep(time)
 
     Yield control to the scheduler and sleep for the specified number
     of seconds. Only the current fiber can be made to sleep.
@@ -334,15 +330,15 @@ recommended.
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.sleep(1.5)
         ---
         ...
 
-.. _fiber-yield:
+..  _fiber-yield:
 
-.. function:: yield()
+..  function:: yield()
 
     Yield control to the scheduler. Equivalent to :ref:`fiber.sleep(0) <fiber-sleep>`.
 
@@ -350,45 +346,45 @@ recommended.
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.yield()
         ---
         ...
 
-.. _fiber-status:
+..  _fiber-status:
 
-.. function:: status([fiber_object])
+..  function:: status([fiber_object])
 
     Return the status of the current fiber.
     Or, if optional fiber_object is passed, return the status of the
     specified fiber.
 
-    :Return: the status of ``fiber``. One of: “dead”, “suspended”, or “running”.
-    :Rtype: string
+    :return: the status of ``fiber``. One of: “dead”, “suspended”, or “running”.
+    :rtype: string
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.status()
         ---
         - running
         ...
 
-.. _fiber-info:
+..  _fiber-info:
 
-.. function:: info()
+..  function:: info()
 
     Return information about all fibers.
 
-    :Return: number of context switches, backtrace, id, total memory, used
+    :return: number of context switches, backtrace, id, total memory, used
              memory, name for each fiber.
-    :Rtype: table
+    :rtype: table
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.info()
         ---
@@ -402,30 +398,30 @@ recommended.
             name: interactive
         ...
 
-.. _fiber-top:
+..  _fiber-top:
 
-.. function:: top()
+..  function:: top()
 
     Show all alive fibers and their CPU consumption.
 
-    :Return: a table with two entries: ``cpu`` and ``cpu_misses``
+    :return: a table with two entries: ``cpu`` and ``cpu_misses``
 
     ``cpu`` itself is a table whose keys are strings containing fiber ids and names.
     The three metrics available for each fiber are:
 
-    #. ``instant`` (in per cent), which indicates the share of time the fiber was executing
-       during the previous event loop iteration.
+    #.  ``instant`` (in per cent), which indicates the share of time the fiber
+        was executing during the previous event loop iteration.
 
-    #. ``average`` (in per cent), which is calculated as an exponential moving average
-       of instant values over all the previous event loop iterations.
+    #.  ``average`` (in per cent), which is calculated as an exponential moving
+        average of instant values over all the previous event loop iterations.
 
-    #. ``time`` (in seconds), which estimates how much CPU time each fiber spent
-       processing during its lifetime.
+    #.  ``time`` (in seconds), which estimates how much CPU time each fiber spent
+        processing during its lifetime.
 
-       The ``time`` entry is also added to each fiber's output in ``fiber.info()``
-       (it duplicates the ``time`` entry from ``fiber.top().cpu`` per fiber).
+        The ``time`` entry is also added to each fiber's output in ``fiber.info()``
+        (it duplicates the ``time`` entry from ``fiber.top().cpu`` per fiber).
 
-       Note that ``time`` is only counted while ``fiber.top()`` is enabled.
+        Note that ``time`` is only counted while ``fiber.top()`` is enabled.
 
     ``cpu_misses`` indicates the number of times the TX thread detected it was
     rescheduled on a different CPU core during the last event loop iteration.
@@ -441,7 +437,7 @@ recommended.
 
     **Example**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.top()
         ---
@@ -481,15 +477,15 @@ recommended.
           cpu_misses: 0
         ...
 
-    .. NOTE::
+    ..  NOTE::
 
         Enabling ``fiber.top()`` slows down fiber switching by about 15%,
         so it is disabled by default. To enable it, say ``fiber.top_enable()``.
         To disable it after you finished debugging, with ``fiber.top_disable()``.
 
-.. _fiber-kill:
+..  _fiber-kill:
 
-.. function:: kill(id)
+..  function:: kill(id)
 
     Locate a fiber by its numeric id and cancel it. In other words,
     :ref:`fiber.kill() <fiber-kill>` combines :ref:`fiber.find() <fiber-find>` and
@@ -500,7 +496,7 @@ recommended.
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
 
         tarantool> fiber.kill(fiber.id()) -- kill self, may make program end
@@ -508,14 +504,14 @@ recommended.
         - error: fiber is cancelled
         ...
 
-.. _fiber-testcancel:
+..  _fiber-testcancel:
 
-.. function:: testcancel()
+..  function:: testcancel()
 
     Check if the current fiber has been cancelled
     and throw an exception if this is the case.
 
-    .. NOTE::
+    ..  NOTE::
 
         Even if you catch the exception, the fiber will remain cancelled.
         Most types of calls will check ``fiber.testcancel()``.
@@ -526,26 +522,26 @@ recommended.
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.testcancel()
         ---
         - error: fiber is cancelled
         ...
 
-.. _fiber-time:
+..  _fiber-time:
 
-.. function:: time()
+..  function:: time()
 
-    :Return: current system time (in seconds since the epoch) as a Lua
+    :return: current system time (in seconds since the epoch) as a Lua
              number. The time is taken from the event loop clock,
              which makes this call very cheap, but still useful for
              constructing artificial tuple keys.
-    :Rtype: number
+    :rtype: number
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> fiber.time(), fiber.time()
         ---
@@ -553,18 +549,18 @@ recommended.
         - 1448466279.2415
         ...
 
-.. _fiber-time64:
+..  _fiber-time64:
 
-.. function:: time64()
+..  function:: time64()
 
-    :Return: current system time (in microseconds since the epoch)
+    :return: current system time (in microseconds since the epoch)
              as a 64-bit integer. The time is taken from the event
              loop clock.
-    :Rtype: cdata
+    :rtype: cdata
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
             tarantool> fiber.time(), fiber.time64()
             ---
@@ -572,22 +568,22 @@ recommended.
             - 1448466351270762
             ...
 
-.. _fiber-clock:
+..  _fiber-clock:
 
-.. function:: clock()
+..  function:: clock()
 
     Get the monotonic time in seconds. It is better to use ``fiber.clock()`` for
     calculating timeouts instead of :ref:`fiber.time() <fiber-time>` because
     ``fiber.time()`` reports real time so it is affected by system time changes.
 
-    :Return: a floating-point number of seconds, representing elapsed wall-clock
+    :return: a floating-point number of seconds, representing elapsed wall-clock
              time since some time in the past that is guaranteed not to change
              during the life of the process
-    :Rtype: number
+    :rtype: number
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> start = fiber.clock()
         ---
@@ -601,36 +597,36 @@ recommended.
         ---
         ...
 
-.. _fiber-clock64:
+..  _fiber-clock64:
 
-.. function:: clock64()
+..  function:: clock64()
 
     Same as :ref:`fiber.clock() <fiber-clock>` but in microseconds.
 
-    :Return: a number of seconds as 64-bit integer, representing
+    :return: a number of seconds as 64-bit integer, representing
              elapsed wall-clock time since some time in the past that is
              guaranteed not to change during the life of the process
-    :Rtype: cdata
+    :rtype: cdata
 
 
-.. class:: fiber_object
+..  class:: fiber_object
 
-    .. _fiber_object-id:
+    ..  _fiber_object-id:
 
-    .. method:: id()
+    ..  method:: id()
 
         :param fiber_object: generally this is an object referenced in the return
                              from :ref:`fiber.create <fiber-create>`
                              or :ref:`fiber.self <fiber-self>`
                              or :ref:`fiber.find <fiber-find>`
-        :Return: id of the fiber.
-        :Rtype: number
+        :return: id of the fiber.
+        :rtype: number
 
         ``fiber.self():id()`` can also be expressed as ``fiber.id()``.
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> fiber_object = fiber.self()
             ---
@@ -640,31 +636,31 @@ recommended.
             - 101
             ...
 
-    .. _fiber_object-name_get:
+    ..  _fiber_object-name_get:
 
-    .. method:: name()
+    ..  method:: name()
 
         :param fiber_object: generally this is an object referenced in the return
                              from :ref:`fiber.create <fiber-create>`
                              or :ref:`fiber.self <fiber-self>`
                              or :ref:`fiber.find <fiber-find>`
-        :Return: name of the fiber.
-        :Rtype: string
+        :return: name of the fiber.
+        :rtype: string
 
         ``fiber.self():name()`` can also be expressed as ``fiber.name()``.
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> fiber.self():name()
             ---
             - interactive
             ...
 
-    .. _fiber_object-name_set:
+    ..  _fiber_object-name_set:
 
-    .. method:: name(name[, options])
+    ..  method:: name(name[, options])
 
         Change the fiber name. By default a Tarantool server's
         interactive-mode fiber is named 'interactive' and new
@@ -686,19 +682,19 @@ recommended.
               too long. The name length limit is ``255``
               (since version :doc:`2.4.1 </release/2.4.1>`).
 
-        :Return: nil
+        :return: nil
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> fiber.self():name('non-interactive')
             ---
             ...
 
-    .. _fiber_object-status:
+    ..  _fiber_object-status:
 
-    .. method:: status()
+    ..  method:: status()
 
         Return the status of the specified fiber.
 
@@ -706,23 +702,23 @@ recommended.
                              from :ref:`fiber.create <fiber-create>`
                              or :ref:`fiber.self <fiber-self>`
                              or :ref:`fiber.find <fiber-find>`
-        :Return: the status of fiber. One of: “dead”, “suspended”, or “running”.
-        :Rtype: string
+        :return: the status of fiber. One of: “dead”, “suspended”, or “running”.
+        :rtype: string
 
         ``fiber.self():status(`` can also be expressed as ``fiber.status()``.
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> fiber.self():status()
             ---
             - running
             ...
 
-    .. _fiber_object-cancel:
+    ..  _fiber_object-cancel:
 
-    .. method:: cancel()
+    ..  method:: cancel()
 
         Cancel a fiber. Running and suspended fibers can be cancelled.
         After a fiber has been cancelled, attempts to operate on it will
@@ -734,13 +730,13 @@ recommended.
                              from :ref:`fiber.create <fiber-create>`
                              or :ref:`fiber.self <fiber-self>`
                              or :ref:`fiber.find <fiber-find>`
-        :Return: nil
+        :return: nil
 
         Possible errors: cancel is not permitted for the specified fiber object.
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> fiber.self():cancel() -- kill self, may make program end
             ---
@@ -758,9 +754,9 @@ recommended.
             - dead
             ...
 
-    .. _fiber_object-storage:
+    ..  _fiber_object-storage:
 
-    .. data:: storage
+    ..  data:: storage
 
         Local storage within the fiber. It is a Lua table created when it is
         first accessed. The storage can contain any number of named values,
@@ -789,7 +785,7 @@ recommended.
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> fiber = require('fiber')
             ---
@@ -817,9 +813,9 @@ recommended.
 
         See also :doc:`/reference/reference_lua/box_session/storage`.
 
-    .. _fiber_object-set_joinable:
+    ..  _fiber_object-set_joinable:
 
-    .. method:: set_joinable(true_or_false)
+    ..  method:: set_joinable(true_or_false)
 
         ``fiber_object:set_joinable(true)`` makes a fiber joinable;
         ``fiber_object:set_joinable(false)`` makes a fiber not joinable;
@@ -833,39 +829,39 @@ recommended.
         become 'dead' before ``fiber_object:set_joinable()`` takes effect.
         The usual sequence could be:
 
-        1. Call ``fiber.new()`` instead of ``fiber.create()`` to create a new
-           fiber_object.
+        1.  Call ``fiber.new()`` instead of ``fiber.create()`` to create a new
+            fiber_object.
 
-           Do not yield at this point, because that will cause the fiber
-           function to begin.
+            Do not yield at this point, because that will cause the fiber
+            function to begin.
 
-        2. Call ``fiber_object:set_joinable(true)`` to make the new
-           fiber_object joinable.
+        2.  Call ``fiber_object:set_joinable(true)`` to make the new
+            fiber_object joinable.
 
-           Now it is safe to yield.
+            Now it is safe to yield.
 
-        3. Call ``fiber_object:join()``.
+        3.  Call ``fiber_object:join()``.
 
-           Usually ``fiber_object:join()`` should be called, otherwise the
-           fiber's status may become 'suspended' when the fiber function ends,
-           instead of 'dead'.
+            Usually ``fiber_object:join()`` should be called, otherwise the
+            fiber's status may become 'suspended' when the fiber function ends,
+            instead of 'dead'.
 
         :param true_or_false: the boolean value that changes the ``set_joinable``
                               flag
 
-        :Return: nil
+        :return: nil
 
         **Example:**
 
         The result of the following sequence of requests is:
 
-        * the global variable ``d`` will be 6 (which proves that the function
-          was not executed until after ``d`` was set to 1, when
-          ``fiber.sleep(1)`` caused a yield);
-        * ``fiber.status(fi2)`` will be 'suspended' (which proves that after
-          the function was executed the fiber status did not change to 'dead').
+        *   the global variable ``d`` will be 6 (which proves that the function
+            was not executed until after ``d`` was set to 1, when
+            ``fiber.sleep(1)`` caused a yield);
+        *   ``fiber.status(fi2)`` will be 'suspended' (which proves that after
+            the function was executed the fiber status did not change to 'dead').
 
-        .. code-block:: lua
+        ..  code-block:: lua
 
             fiber=require('fiber')
             d=0
@@ -874,9 +870,9 @@ recommended.
             print(d)
             fiber.status(fi2)
 
-    .. _fiber_object-join:
+    ..  _fiber_object-join:
 
-    .. method:: join()
+    ..  method:: join()
 
         "Join" a joinable fiber.
         That is, let the fiber's function run and wait
@@ -893,7 +889,7 @@ recommended.
         and was made joinable with
         :ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`.
 
-        :Return: two values. The first value is boolean.
+        :return: two values. The first value is boolean.
                  If the first value is true, then the join succeeded
                  because the fiber's function ended normally and the
                  second result has the return value from the fiber's function.
@@ -903,21 +899,21 @@ recommended.
                  one can unpack in the same way that one unpacks
                  :ref:`a pcall result <error_handling>`.
 
-        :Rtype: boolean +result type, or boolean + struct error
+        :rtype: boolean +result type, or boolean + struct error
 
         **Example:**
 
         The result of the following sequence of requests is:
 
-        * the first ``fiber.status()`` call returns 'suspended',
-        * the ``join()`` call returns true,
-        * the elapsed time is usually 5 seconds, and
-        * the second ``fiber.status()`` call returns 'dead'.
+        *   the first ``fiber.status()`` call returns 'suspended',
+        *   the ``join()`` call returns true,
+        *   the elapsed time is usually 5 seconds, and
+        *   the second ``fiber.status()`` call returns 'dead'.
 
         This proves that the ``join()`` does not return until
         the function -- which sleeps 5 seconds -- is 'dead'.
 
-        .. code-block:: lua
+        ..  code-block:: lua
 
             fiber=require('fiber')
             function fu2() fiber.sleep(5) end
@@ -928,18 +924,17 @@ recommended.
             print('elapsed = ' .. os.time() - start_time)
             fiber.status(fi2)
 
-.. _fiber-example:
+..  _fiber-example:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
 
 Make the function which will be associated with the fiber. This function
 contains an infinite loop. Each iteration
 of the loop adds 1 to a global variable named gvar, then goes to sleep for
 2 seconds. The sleep causes an implicit :ref:`fiber.yield() <fiber-yield>`.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> fiber = require('fiber')
     tarantool> function function_x()
@@ -955,7 +950,7 @@ of the loop adds 1 to a global variable named gvar, then goes to sleep for
 Make a fiber, associate function_x with the fiber, and start function_x.
 It will immediately "detach" so it will be running independently of the caller.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> gvar = 0
 
@@ -965,7 +960,7 @@ It will immediately "detach" so it will be running independently of the caller.
 
 Get the id of the fiber (fid), to be used in later displays.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> fid = fiber_of_x:id()
     ---
@@ -976,19 +971,19 @@ id, the fiber status, and gvar (gvar will have gone up a bit depending how long
 the pause lasted). The status is suspended because the fiber spends almost all
 its time sleeping or yielding.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> print('#', fid, '. ', fiber_of_x:status(), '. gvar=', gvar)
     # 102 .  suspended . gvar= 399
     ---
     ...
 
-Pause for a while, while the detached function runs. Then ... Cancel the fiber.
+Pause for a while, while the detached function runs. Then ...  cancel the fiber.
 Then, once again ... Display the fiber id, the fiber status, and gvar (gvar
 will have gone up a bit more depending how long the pause lasted). This time
 the status is dead because the cancel worked.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> fiber_of_x:cancel()
     ---
@@ -998,20 +993,21 @@ the status is dead because the cancel worked.
     ---
     ...
 
-.. _fiber-fail:
+..  _fiber-fail:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example of yield failure
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Warning: :ref:`yield() <fiber-yield>` and any function which implicitly yields
 (such as :ref:`sleep() <fiber-sleep>`) can fail (raise an exception).
 
-For example, this function has a loop which repeats until :ref:`cancel() <fiber_object-cancel>` happens.
+For example, this function has a loop which repeats until
+:ref:`cancel() <fiber_object-cancel>` happens.
 The last thing that it will print is 'before yield', which demonstrates
-that ``yield()`` failed, the loop did not continue until :ref:`testcancel() <fiber-testcancel>` failed.
+that ``yield()`` failed, the loop did not continue until
+:ref:`testcancel() <fiber-testcancel>` failed.
 
-.. code-block:: Lua
+..  code-block:: Lua
 
     fiber = require('fiber')
     function function_name()
@@ -1026,11 +1022,10 @@ that ``yield()`` failed, the loop did not continue until :ref:`testcancel() <fib
     fiber.sleep(.1)
     fiber_object:cancel()
 
-.. _fiber_ipc-channel:
+..  _fiber_ipc-channel:
 
-=================================================
 Channels
-=================================================
+--------
 
 Call ``fiber.channel()`` to allocate space and get a channel object, which will
 be called channel for examples in this section.
@@ -1043,9 +1038,9 @@ channel when no one is
 using it, as with any other Lua object. Use object-oriented syntax, for example
 ``channel:put(message)`` rather than ``fiber.channel.put(message)``.
 
-.. _fiber-channel:
+..  _fiber-channel:
 
-.. function:: channel([capacity])
+..  function:: channel([capacity])
 
     Create a new communication channel.
 
@@ -1056,11 +1051,11 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
     :return: new channel.
     :rtype:  userdata, possibly including the string "channel ...".
 
-.. class:: channel_object
+..  class:: channel_object
 
-    .. _channel_object-put:
+    ..  _channel_object-put:
 
-    .. method:: put(message[, timeout])
+    ..  method:: put(message[, timeout])
 
         Send a message using a channel. If the channel is full,
         ``channel:put()`` waits until there is a free slot in the channel.
@@ -1073,17 +1068,17 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
                  Otherwise, the return value is ``true``, indicating success.
         :rtype:  boolean
 
-    .. _channel_object-close:
+    ..  _channel_object-close:
 
-    .. method:: close()
+    ..  method:: close()
 
         Close the channel. All waiters in the channel will stop waiting. All
         following ``channel:get()`` operations will return ``nil``, and all
         following ``channel:put()`` operations will return ``false``.
 
-    .. _channel_object-get:
+    ..  _channel_object-get:
 
-    .. method:: get([timeout])
+    ..  method:: get([timeout])
 
         Fetch and remove a message from a channel. If the channel is empty,
         ``channel:get()`` waits for a message.
@@ -1096,27 +1091,27 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
                  the message placed on the channel by ``channel:put()``.
         :rtype:  usually string or number or table, as determined by ``channel:put``
 
-    .. _channel_object-is_empty:
+    ..  _channel_object-is_empty:
 
-    .. method:: is_empty()
+    ..  method:: is_empty()
 
         Check whether the channel is empty (has no messages).
 
         :return: ``true`` if the channel is empty. Otherwise ``false``.
         :rtype:  boolean
 
-    .. _channel_object-count:
+    ..  _channel_object-count:
 
-    .. method:: count()
+    ..  method:: count()
 
         Find out how many messages are in the channel.
 
         :return: the number of messages.
         :rtype:  number
 
-    .. _channel_object-is_full:
+    ..  _channel_object-is_full:
 
-    .. method:: is_full()
+    ..  method:: is_full()
 
         Check whether the channel is full.
 
@@ -1125,9 +1120,9 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
                  message). Otherwise ``false``.
         :rtype:  boolean
 
-    .. _channel_object-has_readers:
+    ..  _channel_object-has_readers:
 
-    .. method:: has_readers()
+    ..  method:: has_readers()
 
         Check whether readers are waiting for a message because they
         have issued ``channel:get()`` and the channel is empty.
@@ -1135,9 +1130,9 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
         :return: ``true`` if readers are waiting. Otherwise ``false``.
         :rtype:  boolean
 
-    .. _channel_object-has_writers:
+    ..  _channel_object-has_writers:
 
-    .. method:: has_writers()
+    ..  method:: has_writers()
 
         Check whether writers are waiting
         because they have issued ``channel:put()`` and the channel is full.
@@ -1145,25 +1140,24 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
         :return: ``true`` if writers are waiting. Otherwise ``false``.
         :rtype:  boolean
 
-    .. _channel_object-is_closed:
+    ..  _channel_object-is_closed:
 
-    .. method:: is_closed()
+    ..  method:: is_closed()
 
         :return: ``true`` if the channel is already closed. Otherwise
                  ``false``.
         :rtype:  boolean
 
-.. _channel_object-example:
+..  _channel_object-example:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
 
 This example should give a rough idea of what some functions for fibers should
 look like. It's assumed that the functions would be referenced in
 :ref:`fiber.create() <fiber-create>`.
 
-.. code-block:: lua
+..  code-block:: lua
 
     fiber = require('fiber')
     channel = fiber.channel(10)
@@ -1225,11 +1219,10 @@ look like. It's assumed that the functions would be referenced in
         end
     end
 
-.. _fiber_ipc-cond_var:
+..  _fiber_ipc-cond_var:
 
-=================================================
 Condition variables
-=================================================
+-------------------
 
 Call ``fiber.cond()`` to create a named condition variable, which will be called
 'cond' for examples in this section.
@@ -1242,20 +1235,20 @@ executed ``cond:wait()``.
 Call ``cond:broadcast()`` to send a signal to all fibers that have executed
 ``cond:wait()``.
 
-.. _fiber-cond:
+..  _fiber-cond:
 
-.. function:: cond()
+..  function:: cond()
 
     Create a new condition variable.
 
     :return: new condition variable.
     :rtype:  Lua object
 
-.. class:: cond_object
+..  class:: cond_object
 
-    .. _cond_object-wait:
+    ..  _cond_object-wait:
 
-    .. method:: wait([timeout])
+    ..  method:: wait([timeout])
 
         Make the current fiber go to sleep, waiting until another fiber
         invokes the ``signal()`` or ``broadcast()`` method on the cond object.
@@ -1267,29 +1260,28 @@ Call ``cond:broadcast()`` to send a signal to all fibers that have executed
                  or broadcast happens, ``wait()`` returns true.
         :rtype:  boolean
 
-    .. _cond_object-signal:
+    ..  _cond_object-signal:
 
-    .. method:: signal()
+    ..  method:: signal()
 
         Wake up a single fiber that has executed ``wait()`` for the same
         variable. Does not yield.
 
         :rtype:  nil
 
-    .. _cond_object-broadcast:
+    ..  _cond_object-broadcast:
 
-    .. method:: broadcast()
+    ..  method:: broadcast()
 
         Wake up all fibers that have executed ``wait()`` for the same variable.
         Does not yield.
 
         :rtype:  nil
 
-.. _cond_object-example:
+..  _cond_object-example:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
 
 Assume that a tarantool instance is running and listening for connections on
 localhost port 3301. Assume that guest users have privileges to connect. We will
@@ -1297,7 +1289,7 @@ use the tarantoolctl utility (a utility for administrators) to start two clients
 
 On terminal #1, say
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     $ tarantoolctl connect '3301'
     tarantool> fiber = require('fiber')
@@ -1309,7 +1301,7 @@ argument -- will go to sleep until the condition variable changes.
 
 On terminal #2, say
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     $ tarantoolctl connect '3301'
     tarantool> cond:signal()
