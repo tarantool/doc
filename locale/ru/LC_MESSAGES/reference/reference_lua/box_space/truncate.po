@@ -1,6 +1,6 @@
 
 msgid "space_object:truncate()"
-msgstr ""
+msgstr "space_object:truncate()"
 
 msgid ""
 "Deletes all tuples. The method is performed in background and doesn't block "
@@ -25,7 +25,7 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "nil"
-msgstr ""
+msgstr "nil"
 
 msgid ""
 "The ``truncate`` method can only be called by the user who created the "
@@ -54,3 +54,10 @@ msgid ""
 "- 0\n"
 "..."
 msgstr ""
+"tarantool> box.space.tester:truncate()\n"
+"---\n"
+"...\n"
+"tarantool> box.space.tester:len()\n"
+"---\n"
+"- 0\n"
+"..."

@@ -1,6 +1,6 @@
 
 msgid "box.schema.role.drop()"
-msgstr ""
+msgstr "box.schema.role.drop()"
 
 msgid ""
 "Drop a role. For explanation of how Tarantool maintains role data, see "

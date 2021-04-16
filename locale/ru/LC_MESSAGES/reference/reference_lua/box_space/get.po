@@ -1,6 +1,6 @@
 
 msgid "space_object:get()"
-msgstr ""
+msgstr "space_object:get()"
 
 msgid "Search for a tuple in the given space."
 msgstr "Поиск кортежа в данном спейсе."
@@ -25,7 +25,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr ""
+msgstr "tuple"
 
 msgid "**Possible errors:** ``space_object`` does not exist."
 msgstr "**Возможные ошибки:** ``space_object`` не существует"

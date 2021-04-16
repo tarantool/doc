@@ -1204,7 +1204,6 @@ msgstr ""
 "понадобится в ``notify()`` для добавления записи в файл журнала при каждой "
 "успешной поимке:"
 
-#, python-format
 msgid ""
 "-- event notification\n"
 "notify = function(self, player, pokemon)\n"
@@ -1533,7 +1532,6 @@ msgstr ""
 "который похож на наше приложение ``game.lua``, но отправляет запросы HTTP "
 "POST и GET, а не вызывает Lua-функции:"
 
-#, python-format
 msgid ""
 "local http = require('curl').http()\n"
 "local json = require('json')\n"

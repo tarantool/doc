@@ -1,6 +1,6 @@
 
 msgid "space_object:pairs()"
-msgstr ""
+msgstr "space_object:pairs()"
 
 msgid ""
 "Search for a tuple or a set of tuples in the given space, and allow "

@@ -33,7 +33,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr ""
+msgstr "кортеж"
 
 msgid ""
 "**Note re storage engine:** vinyl will return `nil`, rather than the deleted"

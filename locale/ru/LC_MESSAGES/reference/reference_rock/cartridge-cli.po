@@ -89,7 +89,6 @@ msgstr ""
 "использованием переменных окружения и будет ожидать выполнения основного "
 "скрипта приложения."
 
-#, python-format
 msgid ""
 "TARANTOOL_INSTANCE_NAME\n"
 "TARANTOOL_CFG\n"

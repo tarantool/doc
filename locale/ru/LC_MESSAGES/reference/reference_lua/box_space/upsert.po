@@ -1,6 +1,6 @@
 
 msgid "space_object:upsert()"
-msgstr ""
+msgstr "space_object:upsert()"
 
 msgid "Update or insert a tuple."
 msgstr "Обновить или вставить кортеж."

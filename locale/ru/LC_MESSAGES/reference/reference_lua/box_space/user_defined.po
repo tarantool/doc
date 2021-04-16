@@ -1,6 +1,6 @@
 
 msgid "space_object:user_defined()"
-msgstr ""
+msgstr "space_object:user_defined()"
 
 msgid ""
 "Users can define any functions they want, and associate them with spaces: in"

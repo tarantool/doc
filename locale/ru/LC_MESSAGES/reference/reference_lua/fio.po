@@ -907,7 +907,6 @@ msgstr "Открытие файла в процессе подготовки к 
 msgid "Full path to the file to open."
 msgstr "Полный путь к открываемому файлу."
 
-#, fuzzy
 msgid ""
 "Flags can be passed as a number or as string constants, for example "
 "'``O_RDONLY``', '``O_WRONLY``', '``O_RDWR``'. Flags can be combined by "
@@ -925,8 +924,6 @@ msgid ""
 "O_RDONLY (read only), * O_WRONLY (write only), or * O_RDWR (either read or "
 "write)."
 msgstr ""
-"ВНИМАНИЕ! Статус FUZZY с этого блока не снимать! Иначе испортится верстка "
-"списка. Настоящий перевод -- в нижеследующих строках, разбит по абзацам."
 
 msgid ""
 "Flags can be passed as a number or as string constants, for example "

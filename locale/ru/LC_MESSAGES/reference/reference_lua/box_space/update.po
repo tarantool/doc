@@ -1,6 +1,6 @@
 
 msgid "space_object:update()"
-msgstr ""
+msgstr "space_object:update()"
 
 msgid "Update a tuple."
 msgstr "Обновление кортежа."

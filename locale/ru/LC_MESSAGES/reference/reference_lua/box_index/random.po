@@ -30,7 +30,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr ""
+msgstr "кортеж"
 
 msgid "**Complexity factors:** Index size, Index type."
 msgstr "**Факторы сложности:** Размер индекса, тип индекса"

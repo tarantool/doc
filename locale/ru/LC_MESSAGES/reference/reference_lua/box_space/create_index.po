@@ -1,6 +1,6 @@
 
 msgid "space_object:create_index()"
-msgstr ""
+msgstr "space_object:create_index()"
 
 msgid ""
 "Create an :ref:`index <index-box_index>`. It is mandatory to create an index"
@@ -192,13 +192,12 @@ msgstr "строка или число"
 msgid "not present"
 msgstr "отсутствует"
 
-#, fuzzy
 msgid ""
 "The options in the above chart are also applicable for "
 ":doc:`/reference/reference_lua/box_index/alter`."
 msgstr ""
-"Параметры в вышеуказанной таблице также применимы к "
-":ref:`index_object:alter() <box_index-alter>`."
+"Параметры из вышеприведенной таблицы также могут использоваться в "
+":doc:`/reference/reference_lua/box_index/alter`."
 
 msgid ""
 "**Note re storage engine:** vinyl has extra options which by default are "

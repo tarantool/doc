@@ -1,6 +1,6 @@
 
 msgid "space_object:rename()"
-msgstr ""
+msgstr "space_object:rename()"
 
 msgid "Rename a space."
 msgstr "Переименование спейса."
@@ -18,7 +18,7 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "nil"
-msgstr ""
+msgstr "nil"
 
 msgid "**Possible errors:** ``space_object`` does not exist."
 msgstr "**Возможные ошибки:** ``space_object`` не существует"

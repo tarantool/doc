@@ -145,7 +145,6 @@ msgid ""
 "that will help you get comfortable with the tool."
 msgstr ""
 
-#, python-format
 msgid ""
 "See the `list of tasks "
 "<https://github.com/tarantool/tarantool/labels/good%20first%20issue>`_ for "
@@ -267,7 +266,6 @@ msgid ""
 "module of interest."
 msgstr ""
 
-#, python-format
 msgid ""
 "Look at the `currently open tasks "
 "<https://github.com/tarantool/http/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22>`_"

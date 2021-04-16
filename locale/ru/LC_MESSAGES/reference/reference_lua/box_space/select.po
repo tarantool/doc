@@ -1,6 +1,6 @@
 
 msgid "space_object:select()"
-msgstr ""
+msgstr "space_object:select()"
 
 msgid ""
 "Search for a tuple or a set of tuples in the given space. This method "

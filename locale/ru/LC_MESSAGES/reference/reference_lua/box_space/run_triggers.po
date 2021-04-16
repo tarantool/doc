@@ -1,6 +1,6 @@
 
 msgid "space_object:run_triggers()"
-msgstr ""
+msgstr "space_object:run_triggers()"
 
 msgid ""
 "At the time that a :ref:`trigger <triggers>` is defined, it is automatically"
@@ -19,7 +19,7 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "nil"
-msgstr ""
+msgstr "nil"
 
 msgid "**Example:**"
 msgstr "**Пример:**"
@@ -42,3 +42,8 @@ msgid ""
 "tarantool> box.space.T:on_replace(nil, F)\n"
 "tarantool> box.space.T:on_replace(nil, F)"
 msgstr ""
+"tarantool> box.space.T:on_replace(F)\n"
+"tarantool> box.space.T:on_replace(F)\n"
+"tarantool> box.space.T:run_triggers(false)\n"
+"tarantool> box.space.T:on_replace(nil, F)\n"
+"tarantool> box.space.T:on_replace(nil, F)"

@@ -498,7 +498,6 @@ msgstr ""
 msgid "**Example #2:**"
 msgstr "**Пример №2:**"
 
-#, python-format
 msgid ""
 "You have 100000 buckets and each bucket stores ~0.001% of your data. The "
 "cluster has 10 replica sets. And you never can afford > 0.1% of data locked "
@@ -1191,6 +1190,3 @@ msgstr ""
 "мастер набора реплик становится недоступным, файбер перенаправляет запросы "
 "на чтение к репликам. Запросы на запись отклоняются с ошибкой до тех пор, "
 "пока мастер не будет доступен."
-
-#~ msgid "The ``vshard`` module requires Tarantool version 1.9+."
-#~ msgstr "Для работы с модулем ``vshard`` необходима версия Tarantool'а 1.9+."

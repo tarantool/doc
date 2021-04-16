@@ -1,6 +1,6 @@
 
 msgid "space_object:put()"
-msgstr ""
+msgstr "space_object:put()"
 
 msgid "See :ref:`space_object:replace() <box_space-replace>`."
 msgstr ""

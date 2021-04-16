@@ -12,7 +12,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "number"
-msgstr ""
+msgstr "число"
 
 msgid ""
 "Every user has a unique name (seen with "

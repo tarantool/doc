@@ -1,6 +1,6 @@
 
 msgid "API reference"
-msgstr ""
+msgstr "Справочник по API"
 
 msgid ""
 "This section represents public and internal API for the :ref:`router "
@@ -20,7 +20,7 @@ msgstr ""
 ":ref:`Общедоступный API роутера <vshard_api_reference-router_public_api>`"
 
 msgid ":ref:`vshard.router.bootstrap() <router_api-bootstrap>`"
-msgstr ""
+msgstr ":ref:`vshard.router.bootstrap() <router_api-bootstrap>`"
 
 msgid ":ref:`vshard.router.cfg(cfg) <router_api-cfg>`"
 msgstr ""
@@ -62,7 +62,7 @@ msgid ":ref:`vshard.router.route(bucket_id) <router_api-route>`"
 msgstr ""
 
 msgid ":ref:`vshard.router.routeall() <router_api-routeall>`"
-msgstr ""
+msgstr ":ref:`vshard.router.routeall() <router_api-routeall>`"
 
 msgid ""
 ":ref:`vshard.router.bucket_id_strcrc32(key) <router_api-bucket_id_strcrc32>`"
@@ -73,22 +73,22 @@ msgid ""
 msgstr ""
 
 msgid ":ref:`vshard.router.bucket_count() <router_api-bucket_count>`"
-msgstr ""
+msgstr ":ref:`vshard.router.bucket_count() <router_api-bucket_count>`"
 
 msgid ":ref:`vshard.router.sync(timeout) <router_api-sync>`"
 msgstr ""
 
 msgid ":ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`"
-msgstr ""
+msgstr ":ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`"
 
 msgid ":ref:`vshard.router.discovery_set() <router_api-discovery_set>`"
-msgstr ""
+msgstr ":ref:`vshard.router.discovery_set() <router_api-discovery_set>`"
 
 msgid ":ref:`vshard.router.info() <router_api-info>`"
-msgstr ""
+msgstr ":ref:`vshard.router.info() <router_api-info>`"
 
 msgid ":ref:`vshard.router.buckets_info() <router_api-buckets_info>`"
-msgstr ""
+msgstr ":ref:`vshard.router.buckets_info() <router_api-buckets_info>`"
 
 msgid ":ref:`replicaset_object:call() <router_api-replicaset_call>`"
 msgstr ""
@@ -118,7 +118,7 @@ msgid ":ref:`vshard.storage.cfg(cfg, name) <storage_api-cfg>`"
 msgstr ""
 
 msgid ":ref:`vshard.storage.info() <storage_api-info>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.info() <storage_api-info>`"
 
 msgid ""
 ":ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) "
@@ -140,10 +140,10 @@ msgid ""
 msgstr ""
 
 msgid ":ref:`vshard.storage.bucket_refro() <storage_api-bucket_refro>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.bucket_refro() <storage_api-bucket_refro>`"
 
 msgid ":ref:`vshard.storage.bucket_refrw() <storage_api-bucket_refrw>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.bucket_refrw() <storage_api-bucket_refrw>`"
 
 msgid ""
 ":ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-"
@@ -151,10 +151,10 @@ msgid ""
 msgstr ""
 
 msgid ":ref:`vshard.storage.bucket_unrefro() <storage_api-bucket_unrefro>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.bucket_unrefro() <storage_api-bucket_unrefro>`"
 
 msgid ":ref:`vshard.storage.bucket_unrefrw() <storage_api-bucket_unrefrw>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.bucket_unrefrw() <storage_api-bucket_unrefrw>`"
 
 msgid ""
 ":ref:`vshard.storage.find_garbage_bucket(bucket_index, control) "
@@ -164,27 +164,31 @@ msgstr ""
 msgid ""
 ":ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`"
 msgstr ""
+":ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`"
 
 msgid ""
 ":ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`"
 msgstr ""
+":ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`"
 
 msgid ":ref:`vshard.storage.is_locked() <storage_api-is_locked>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.is_locked() <storage_api-is_locked>`"
 
 msgid ""
 ":ref:`vshard.storage.rebalancing_is_in_progress() <storage_api-"
 "rebalancing_is_in_progress>`"
 msgstr ""
+":ref:`vshard.storage.rebalancing_is_in_progress() <storage_api-"
+"rebalancing_is_in_progress>`"
 
 msgid ":ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`"
 
 msgid ":ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`"
 
 msgid ":ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`"
-msgstr ""
+msgstr ":ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`"
 
 msgid ":ref:`Storage internal API <vshard-storage_internal_api>`"
 msgstr ":ref:`Внутренний API хранилища <vshard-storage_internal_api>`"
@@ -223,11 +227,14 @@ msgstr ""
 msgid ""
 ":ref:`vshard.storage.buckets_discovery() <storage_api-buckets_discovery>`"
 msgstr ""
+":ref:`vshard.storage.buckets_discovery() <storage_api-buckets_discovery>`"
 
 msgid ""
 ":ref:`vshard.storage.rebalancer_request_state() <storage_api-"
 "rebalancer_request_state>`"
 msgstr ""
+":ref:`vshard.storage.rebalancer_request_state() <storage_api-"
+"rebalancer_request_state>`"
 
 msgid "Router public API"
 msgstr "Общедоступный API роутера"
@@ -877,7 +884,6 @@ msgstr ""
 "discovery_mode>`. Она принимает те же значения, что и "
 ":samp:`vshard.router.discovery_set({mode})`."
 
-#, python-format
 msgid ""
 "You may decide to turn off discovery or make it ``once`` if you have many "
 "routers, or tons of buckets (hundreds of thousands and more), and you see "

@@ -12,4 +12,4 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "string"
-msgstr ""
+msgstr "string"

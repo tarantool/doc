@@ -41,7 +41,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "number"
-msgstr ""
+msgstr "число"
 
 msgid ""
 "In the following example, a tuple named ``t`` is created which has three "

@@ -1,6 +1,6 @@
 
 msgid "box.info.replication"
-msgstr ""
+msgstr "box.info.replication"
 
 msgid ""
 "The **replication** section of ``box.info()`` is a table array with "

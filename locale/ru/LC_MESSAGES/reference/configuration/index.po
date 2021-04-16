@@ -1371,16 +1371,11 @@ msgstr ""
 "ожидает попытки подключения к мастеру в кластере. Для получения подробной "
 "информации, см. :ref:`статус orphan <replication-orphan_status>`."
 
-#, fuzzy
 msgid ""
 "This parameter is different from :ref:`replication_timeout <cfg_replication-"
 "replication_timeout>`, which a master uses to disconnect a replica when the "
 "master receives no acknowledgments of heartbeat messages."
 msgstr ""
-"Данный параметр отличается от :ref:`replication_timeout <cfg_replication-"
-"replication_timeout>`, который используется только для автоматического "
-"переподключения репликации, когда отсутствуют сообщения контрольного "
-"сигнала."
 
 msgid "Default: 30"
 msgstr "По умолчанию: 30"
