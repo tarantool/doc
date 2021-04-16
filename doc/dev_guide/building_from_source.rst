@@ -7,7 +7,7 @@ To build Tarantool from source files, you will need the following tools:
 
 *   Git
 *   GCC. Or Clang for Mac OS
-*   CMake 3.1+
+*   CMake 3.2+
 *   GNU Make
 *   `ReadLine <http://www.gnu.org/software/readline/>`_, any version
 *   `ncurses <https://www.gnu.org/software/ncurses/>`_, any version
@@ -32,6 +32,12 @@ your OS and follow the instructions:
 * :ref:`CentOS 8 <building_from_source-centos8>`
 * :ref:`Mac OS <building_from_source-macos>`
 * :ref:`FreeBSD <building_from_source-freebsd>`
+
+Some additional steps might be useful:
+
+* :ref:`-DENABLE_DIST=ON for tarantoolctl installation <building_from_source-tarantoolctl>`
+* :ref:`Make RPM and Debian packages <building_from_source-rpm_packages>`
+* :ref:`Verify your Tarantool installation <building_from_source-verify_tarantool>`
 
 .. _building_from_source-ubuntu:
 .. _building_from_source-debian:
@@ -222,8 +228,21 @@ FreeBSD
 
     $ gmake test
 
+.. _building_from_source-additional_steps:
+
 Additional steps
 ----------------
+
+.. _building_from_source-tarantoolctl:
+
+-DENABLE_DIST=ON for tarantoolctl installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The CMake option for hinting that the result will be distributed is
+:code:`-DENABLE_DIST=ON`. If this option is on, then later ``make install``
+will install ``tarantoolctl`` files in addition to ``tarantool`` files.
+
+.. _building_from_source-rpm_packages:
 
 Make RPM and Debian packages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -236,6 +255,8 @@ However, you can build RPM and Debian packages using
 `Build RPM or Deb package using packpack
 <https://github.com/tarantool/tarantool/wiki/Build-RPM-or-Deb-package-using-packpack>`_
 for details.
+
+.. _building_from_source-verify_tarantool:
 
 Verify your Tarantool installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
