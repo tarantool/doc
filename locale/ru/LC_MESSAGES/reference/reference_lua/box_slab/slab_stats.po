@@ -1,6 +1,6 @@
 
 msgid "box.slab.stats()"
-msgstr ""
+msgstr "box.slab.stats()"
 
 msgid ""
 "Show a detailed memory usage report (in bytes) for the slab allocator. The "
@@ -43,7 +43,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "table"
-msgstr ""
+msgstr "таблица"
 
 msgid "**Example:**"
 msgstr "**Пример:**"

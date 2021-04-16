@@ -1,6 +1,6 @@
 
 msgid "box.schema.func.exists()"
-msgstr ""
+msgstr "box.schema.func.exists()"
 
 msgid ""
 "Return true if a function tuple exists; return false if a function tuple "
@@ -19,7 +19,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "bool"
-msgstr ""
+msgstr "логическое значение bool"
 
 msgid "**Example:**"
 msgstr "**Пример:**"

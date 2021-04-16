@@ -6,7 +6,7 @@ msgid "|nbspc|"
 msgstr "|nbspc|"
 
 msgid "Tarantool 2.6 manual"
-msgstr ""
+msgstr "Руководство по Tarantool 2.6"
 
 msgid ""
 "This manual embraces all aspects of using Tarantool: from introductory "
@@ -30,17 +30,17 @@ msgstr "`PDF <Tarantool.pdf>`_"
 msgid "**See also:**"
 msgstr "**См. также:**"
 
-msgid "`Documentation archive`_"
-msgstr "`Архив документации`_"
+msgid "`Documentation archive <https://tarantool.io/dist/pdf/>`_"
+msgstr ""
 
-msgid "`Articles`_"
-msgstr "`Статьи`_"
+msgid "`Articles <https://tarantool.io/learn/>`_"
+msgstr ""
 
 msgid "**Support:**"
 msgstr "**Поддержка:**"
 
-msgid "`Google forum`_"
-msgstr "`Форум в Google`_"
+msgid "`Google forum <https://groups.google.com/forum/#!forum/tarantool>`_"
+msgstr ""
 
-msgid "`Telegram chat`_"
-msgstr "`Чат в Telegram`_"
+msgid "`Telegram chat <https://t.me/tarantool>`_"
+msgstr ""

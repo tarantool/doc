@@ -43,7 +43,7 @@ msgid "Each entry in the member table has:"
 msgstr ""
 
 msgid "a UUID,"
-msgstr ""
+msgstr "UUID,"
 
 msgid "a status (\"alive\", \"suspected\", \"dead\", or \"left\")."
 msgstr ""
@@ -721,7 +721,7 @@ msgid ""
 msgstr ""
 
 msgid "Example;"
-msgstr ""
+msgstr "Пример;"
 
 msgid ""
 "tarantool> tarantool> swim = require('swim')\n"

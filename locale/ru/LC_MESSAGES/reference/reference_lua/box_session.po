@@ -107,7 +107,7 @@ msgid ":doc:`./box_session/on_access_denied`"
 msgstr ""
 
 msgid "Define a trigger to report restricted actions"
-msgstr ""
+msgstr "Определение триггера для регистрации запрещенных действий"
 
 msgid ":doc:`./box_session/push`"
 msgstr ""

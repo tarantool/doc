@@ -23,7 +23,7 @@ msgid "Starting up with a first table and SELECTs"
 msgstr ""
 
 msgid "Initialize"
-msgstr ""
+msgstr "Инициализация"
 
 msgid ""
 "Requests will be done using Tarantool as a :ref:`client <admin-"
@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 
 msgid "tarantool> box.cfg{}"
-msgstr ""
+msgstr "tarantool> box.cfg{}"
 
 msgid ""
 "Before Tarantool 2.0 you needed to say ``box.cfg{...}`` prior to performing "
@@ -112,7 +112,7 @@ msgid "The result will be: \"``row_count: 1``\" (no error)."
 msgstr ""
 
 msgid "INSERT"
-msgstr ""
+msgstr "INSERT"
 
 msgid "Try to put 5 rows in the table:"
 msgstr ""
@@ -199,7 +199,7 @@ msgid ""
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "и"
 
 msgid ""
 "- - [-1000, '', '', 0]\n"
@@ -260,7 +260,7 @@ msgid "The other ``INSERT`` statements will succeed."
 msgstr ""
 
 msgid "Indexes"
-msgstr ""
+msgstr "Индексы"
 
 msgid "Make a new index on column4."
 msgstr ""
@@ -414,7 +414,7 @@ msgid ""
 msgstr ""
 
 msgid "UPDATE"
-msgstr ""
+msgstr "UPDATE"
 
 msgid ""
 "Due to earlier INSERT statements, these values are in ``table2 column4``: "
@@ -433,7 +433,7 @@ msgid "The result is: ``{NULL, NULL, 0, 10.5, 17.34567, 10005}``."
 msgstr ""
 
 msgid "DELETE"
-msgstr ""
+msgstr "DELETE"
 
 msgid ""
 "Due to earlier ``INSERT`` statements, there are now 6 rows in ``table2``:"
@@ -497,7 +497,7 @@ msgid ""
 msgstr ""
 
 msgid "Triggers"
-msgstr ""
+msgstr "Триггеры"
 
 msgid ""
 "The idea of a trigger is: if a change (``INSERT`` or ``UPDATE`` or "

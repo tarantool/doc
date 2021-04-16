@@ -1,5 +1,5 @@
 
-msgid "box.ctl.on_schema_init()"
+msgid "box.ctl.on_shutdown()"
 msgstr ""
 
 msgid ""
@@ -27,7 +27,7 @@ msgstr ""
 " вызывающего немедленное завершение программы)."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "function which will become the trigger function"
 msgstr "функция, в которой будет триггер"
@@ -36,7 +36,7 @@ msgid "existing trigger function which will be replaced by trigger-function"
 msgstr "существующая функция с триггером, которую заменит новая"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil or function pointer"
 msgstr "nil или указатель функции"

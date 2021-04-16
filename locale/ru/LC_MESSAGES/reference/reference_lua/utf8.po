@@ -36,7 +36,7 @@ msgid "Comparisons"
 msgstr "Сравнения"
 
 msgid ":ref:`lower <utf8-lower>` and |br| :ref:`upper <utf8-upper>`"
-msgstr ""
+msgstr ":ref:`lower <utf8-lower>` and |br| :ref:`upper <utf8-upper>`"
 
 msgid "Case conversions"
 msgstr "Замена регистра"

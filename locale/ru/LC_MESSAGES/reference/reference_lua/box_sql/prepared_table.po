@@ -44,7 +44,6 @@ msgid ""
 "f()"
 msgstr ""
 
-#, python-format
 msgid ""
 "Take note of the elapsed time. Now change the line with the loop to: |br| "
 "``for i=1,1000000 do box.execute([[INSERT INTO t VALUES (?);]], {i}) end`` "

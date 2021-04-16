@@ -1,0 +1,111 @@
+
+msgid "Tarantool 1.10.7"
+msgstr ""
+
+msgid "Date: 2019-07-17 Tag: 1.10.7-1-gb93a33a"
+msgstr ""
+
+msgid "Overview"
+msgstr "Общие сведения"
+
+msgid ""
+"1.10.7 is the next stable release of the 1.10.x series. The label “stable” "
+"means there are 1.10.x-based applications running in production for quite a "
+"while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+msgid ""
+"This release resolves roughly 14 issues since 1.10.6. There may be bugs in "
+"less common areas. If you find any, feel free to report an issue at `GitHub "
+"<https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+msgid "Compatibility"
+msgstr "Совместимость"
+
+msgid ""
+"Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data "
+"layout, client-server protocol and replication protocol. Please upgrade "
+"using the box.schema.upgrade() procedure to unlock all the new features of "
+"the 1.10.x series."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr "Исправленные ошибки"
+
+msgid "Core"
+msgstr ""
+
+msgid "Fixed a bug in C module reloading (gh-4945)."
+msgstr ""
+
+msgid "Fixed races and corner cases in box (re)configuration (gh-4231)."
+msgstr ""
+
+msgid "Fixed check of index field map size which led to crash (gh-5084)."
+msgstr ""
+
+msgid ""
+"Fixed wrong mpsgpack extension type in an error message at decoding "
+"(gh-5017)."
+msgstr ""
+
+msgid "Lua"
+msgstr "Lua"
+
+msgid "Fixed error while closing socket.tcp_server socket (gh-4087)."
+msgstr ""
+
+msgid "LuaRocks"
+msgstr ""
+
+msgid ""
+"Don’t ruin rock name when freshly installing \\*.all.rock with dependencies "
+"(gh-4704)."
+msgstr ""
+
+msgid "Vinyl"
+msgstr "Vinyl"
+
+msgid ""
+"Fixed crash during compaction due to tuples with size exceeding "
+"vinyl_max_tuple_size setting (gh-4864)."
+msgstr ""
+
+msgid ""
+"Fixed crash during recovery of vinyl index due to the lack of file "
+"descriptors (gh-4805)."
+msgstr ""
+
+msgid ""
+"Fixed crash during executing upsert changing primary key in debug mode "
+"(gh-5005)."
+msgstr ""
+
+msgid ""
+"Fixed crash due to triggered dump process during secondary index creation "
+"(gh-5042)."
+msgstr ""
+
+msgid ""
+"Fixed crash/deadlock (depending on build type) during dump process "
+"scheduling and concurrent DDL operation (gh-4821)."
+msgstr ""
+
+msgid ""
+"Fixed crash during read of prepared but still not yet not committed "
+"statement (gh-3395)."
+msgstr ""
+
+msgid "Fixed squashing set and arithmetic upsert operations (gh-5106)."
+msgstr ""
+
+msgid ""
+"Create missing folders for vinyl spaces and indexes if needed to avoid "
+"confusing fails of tarantool started from backup (gh-5090)."
+msgstr ""
+
+msgid ""
+"Fixed crash during squash of many (more than 4000) upserts modifying the "
+"same key (gh-4957)."
+msgstr ""

@@ -11,7 +11,7 @@ msgid "Heading"
 msgstr ""
 
 msgid "Summary"
-msgstr ""
+msgstr "Введение"
 
 msgid ":ref:`Getting Started <sql_getting_started>`"
 msgstr ""
@@ -499,7 +499,7 @@ msgid "BOOLEAN"
 msgstr ""
 
 msgid "boolean"
-msgstr ""
+msgstr "boolean (логический)"
 
 msgid "BOOL"
 msgstr ""
@@ -514,7 +514,7 @@ msgid "INTEGER"
 msgstr ""
 
 msgid "integer"
-msgstr ""
+msgstr "integer (целое число)"
 
 msgid "INT"
 msgstr ""
@@ -535,13 +535,13 @@ msgid "(none)"
 msgstr ""
 
 msgid "0"
-msgstr ""
+msgstr "0"
 
 msgid "DOUBLE"
 msgstr ""
 
 msgid "double"
-msgstr ""
+msgstr "double (числа с двойной точностью)"
 
 msgid "-1.79769e308"
 msgstr ""
@@ -553,13 +553,13 @@ msgid "NUMBER"
 msgstr ""
 
 msgid "number"
-msgstr ""
+msgstr "число"
 
 msgid "STRING"
 msgstr ""
 
 msgid "string"
-msgstr ""
+msgstr "строка"
 
 msgid "TEXT, VARCHAR(n)"
 msgstr ""
@@ -586,7 +586,7 @@ msgid "SCALAR"
 msgstr ""
 
 msgid "scalar"
-msgstr ""
+msgstr "скалярный"
 
 msgid ""
 "BOOLEAN values are FALSE, TRUE, and UNKNOWN (which is the same as NULL). "
@@ -1186,6 +1186,12 @@ msgid ""
 "different types are allowed if the definition is SCALAR."
 msgstr ""
 
+msgid ""
+"Since version :doc:`2.4.1 </release/2.4.1>`, the NUMBER type is processed in"
+" the same way as the :ref:`number <index-box_number>` type in NoSQL "
+"Tarantool."
+msgstr ""
+
 msgid "Examples of casts, illustrating the situations in the chart:"
 msgstr ""
 
@@ -1246,9 +1252,10 @@ msgid ""
 msgstr ""
 
 msgid ""
-"For assignments, due to a change in behavior starting with Tarantool 2.5.1, "
-"implicit casts from strings to numbers are not legal. Therefore ``INSERT "
-"INTO t (integer_column) VALUES ('5');`` is an error."
+"For assignments, due to a change in behavior starting with Tarantool "
+":doc:`2.5.1 </release/2.5.1>`, implicit casts from strings to numbers are "
+"not legal. Therefore ``INSERT INTO t (integer_column) VALUES ('5');`` is an "
+"error."
 msgstr ""
 
 msgid ""

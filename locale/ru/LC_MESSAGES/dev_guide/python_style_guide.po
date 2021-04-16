@@ -319,7 +319,6 @@ msgstr ""
 "вставить перенос строки *после* логического оператора, а не перед ним. "
 "Например:"
 
-#, python-format
 msgid ""
 "class Rectangle(Blob):\n"
 "\n"
@@ -463,7 +462,7 @@ msgid "It's okay to say this though::"
 msgstr "В то же время, можно писать вот так:"
 
 msgid "from subprocess import Popen, PIPE"
-msgstr ""
+msgstr "from subprocess import Popen, PIPE"
 
 msgid ""
 "Imports are always put at the top of the file, just after any module "
@@ -792,7 +791,6 @@ msgstr ""
 "Если вы пишете на английском языке, не забывайте о рекомендациях Странка и "
 "Уайта по стилю."
 
-#, python-format
 msgid ""
 "Python coders from non-English speaking countries: please write your "
 "comments in English, unless you are 120% sure that the code will never be "

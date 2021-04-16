@@ -32,7 +32,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr ""
+msgstr "кортеж"
 
 msgid "**Possible errors:** index is not of type 'TREE'."
 msgstr "**Возможные ошибки:** тип индекса не 'TREE'."

@@ -28,10 +28,10 @@ msgid "Below is a list of all SQL functions and members."
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 msgid "Use"
-msgstr ""
+msgstr "Назначение"
 
 msgid ":doc:`./box_sql/execute`"
 msgstr ""

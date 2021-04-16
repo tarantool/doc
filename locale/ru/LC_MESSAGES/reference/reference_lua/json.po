@@ -52,7 +52,7 @@ msgid ":ref:`json.cfg() <json-module_cfg>`"
 msgstr ":ref:`json.cfg() <json-module_cfg>`"
 
 msgid "Change configuration"
-msgstr ""
+msgstr "Изменение конфигурации"
 
 msgid ":ref:`json.NULL <json-null>`"
 msgstr ":ref:`json.NULL <json-null>`"
@@ -255,10 +255,10 @@ msgid "The values are all either integers or boolean ``true``/``false``."
 msgstr ""
 
 msgid "Option"
-msgstr ""
+msgstr "Характеристика"
 
 msgid "Default"
-msgstr ""
+msgstr "Значение по умолчанию"
 
 msgid "``cfg.encode_max_depth``"
 msgstr ""
@@ -273,7 +273,7 @@ msgid "``cfg.encode_deep_as_nil``"
 msgstr ""
 
 msgid "false"
-msgstr ""
+msgstr "false (ложь)"
 
 msgid ""
 "A flag saying whether to crop tables with nesting level deeper than "
@@ -285,7 +285,7 @@ msgid "``cfg.encode_invalid_numbers``"
 msgstr ""
 
 msgid "true"
-msgstr ""
+msgstr "true"
 
 msgid "A flag saying whether to enable encoding of NaN and Inf numbers"
 msgstr ""
@@ -331,7 +331,7 @@ msgid "``cfg.encode_sparse_ratio``"
 msgstr ""
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid ""
 "1/``encode_sparse_ratio`` is the permissible percentage of missing values in"

@@ -64,7 +64,7 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "nil"
-msgstr ""
+msgstr "nil"
 
 msgid ""
 "These functions can be called with :samp:`{function-"

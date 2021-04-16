@@ -6,7 +6,7 @@ msgid "Execute the SQL statement contained in the sql-statement parameter."
 msgstr ""
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid ""
 "statement, which should conform to :ref:`the rules for SQL grammar "
@@ -17,7 +17,7 @@ msgid "optional table for placeholders in the statement"
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "depends on statement"
 msgstr ""

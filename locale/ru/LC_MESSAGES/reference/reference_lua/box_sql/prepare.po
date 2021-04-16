@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid ""
 "statement, which should conform to :ref:`the rules for SQL grammar "
@@ -17,16 +17,16 @@ msgid ""
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "prepared_table, with id and methods and metadata"
 msgstr ""
 
 msgid "rtype"
-msgstr ""
+msgstr "тип возвращаемого значения"
 
 msgid "table"
-msgstr ""
+msgstr "таблица"
 
 msgid ""
 "``box.prepare`` compiles an SQL statement into byte code and saves the byte "

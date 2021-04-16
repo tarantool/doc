@@ -153,7 +153,6 @@ msgstr ""
 msgid "Storing data with vinyl"
 msgstr "Хранение данных с помощью vinyl"
 
-#, python-format
 msgid ""
 "Tarantool is a transactional and persistent DBMS that maintains 100% of its "
 "data in RAM. The greatest advantages of in-memory databases are their speed "
@@ -190,7 +189,6 @@ msgstr ""
 "популярных. Есть также несколько менее известных библиотек: WiredTiger, "
 "ForestDB, NestDB, LMDB."
 
-#, python-format
 msgid ""
 "Nevertheless, after studying the source code of existing libraries and "
 "considering the pros and cons, we opted for our own storage engine. One "
@@ -1168,7 +1166,6 @@ msgstr ""
 "вероятность того, что во всех битовых массивах одновременно произойдет "
 "коллизия, очень мала."
 
-#, python-format
 msgid ""
 "The key advantage of Bloom filters in Tarantool is that they’re easily "
 "configurable. The only parameter that can be specified separately for each "
@@ -1517,7 +1514,6 @@ msgstr ""
 "либо обновляют текущее время, редкие операции чтения. Нагрузочные тесты "
 "показали отличные результаты."
 
-#, python-format
 msgid ""
 "Nevertheless, after a couple of days, the Tarantool process started eating "
 "up 100% of our CPU, and the system performance dropped close to zero."
@@ -1575,7 +1571,6 @@ msgstr ""
 "старое значение: его нужно независимо удалить из вторичных индексов, а "
 "вставка нового элемента может этого не сделать, оставив в индексе мусор."
 
-#, python-format
 msgid ""
 "If secondary indexes are not unique, then collecting \"garbage\" from them "
 "can be put off until a compaction, which is what we do in Tarantool. The "

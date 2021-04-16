@@ -49,7 +49,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr ""
+msgstr "tuple"
 
 msgid ""
 "See the following example where one operation is applied, and one is not."
