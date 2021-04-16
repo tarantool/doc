@@ -435,7 +435,7 @@ recommended.
 
     Let's take a look at the example:
 
-    **Example**
+    **Example:**
 
     ..  code-block:: tarantoolsession
 
@@ -476,6 +476,32 @@ recommended.
               average: 23.141537169257
           cpu_misses: 0
         ...
+
+    Notice that by default new fibers created due to
+    :ref:`fiber.create <fiber-create>` are named 'lua' so it is better to set
+    their names explicitly via :ref:`fiber_object:name('name') <fiber_object-name_set>`.
+
+    There are several system fibers in ``fiber.top()`` output that might be useful:
+
+    *   ``sched`` is a special system fiber. It schedules tasks to other fibers,
+        if any, and also handles some ``libev`` events.
+
+        It can have high ``instant`` and ``average`` values in ``fiber.top()``
+        output in two cases:
+
+        -   The instance has almost no load - then practically only
+            ``sched`` is executing, and the other fibers are sleeping.
+            So relative to the other fibers, ``sched`` may have almost 100% load.
+
+        -   ``sched`` handles a large number of system events.
+            This should not cause performance problems.
+
+    *   ``main`` fibers process requests that come over the network (iproto requests).
+        There are several such fibers, and new ones are created if needed.
+        When a new request comes in, a free fiber takes it and executes it.
+        The request can be a typical ``select``/``replace``/``delete``/``insert``
+        or a function call. For example, :ref:`conn:eval() <net_box-eval>` or
+        :ref:`conn:call() <net_box-call>`.
 
     ..  NOTE::
 
@@ -666,7 +692,8 @@ recommended.
         interactive-mode fiber is named 'interactive' and new
         fibers created due to :ref:`fiber.create <fiber-create>` are named 'lua'.
         Giving fibers distinct names makes it easier to
-        distinguish them when using :ref:`fiber.info <fiber-info>`.
+        distinguish them when using :ref:`fiber.info <fiber-info>`
+        and :ref:`fiber.top() <fiber-top>`.
         Max length is 255.
 
         :param fiber_object: generally this is an object referenced in the return
