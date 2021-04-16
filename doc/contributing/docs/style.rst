@@ -1,17 +1,14 @@
 
-================================================================================
 Language and style
-================================================================================
+==================
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 US vs British spelling
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 We use English US spelling.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Instance vs server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------
 
 We say "instance" rather than "server" to refer to an instance of Tarantool
 server. This keeps the manual terminology consistent with names like
@@ -23,10 +20,8 @@ of the same databases."
 Correct usage: "Replication allows multiple Tarantool *instances* to work on
 copies of the same databases."
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Express one idea in a sentence
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 Say exactly one thing in a sentence.
 If you want to define or clarify something, do it in a separate sentence.
@@ -61,9 +56,8 @@ Simple sentences are easier to read, understand and translate.
             -   A replica set from which the bucket is being migrated is called a source.
                 A target replica set to which the bucket is being migrated is called a destination.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Don't use i.e. and e.g.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 Don't use the following contractions:
 
@@ -77,3 +71,22 @@ aren't familiar or don't know the difference between
 `"i.e." and "e.g." contractions
 <https://www.merriam-webster.com/words-at-play/ie-vs-eg-abbreviation-meaning-usage-difference>`_.
 So it's best to avoid using them.
+
+Specify a link text
+-------------------
+
+While giving a :doc:`link </contributing/docs/markup/links>`, specify clearly
+where this link leads. Thus, you will not mislead a reader.
+
+Bad example:
+
+    For more details, click :doc:`here </contributing/docs/markup/links>`.
+
+    Use :doc:`this </contributing/docs/markup/links>`.
+
+Good example:
+
+    For more details, refer to the documentation on
+    :doc:`making links </contributing/docs/markup/links>`.
+
+    Use full :doc:`link names </contributing/docs/markup/links>`.
