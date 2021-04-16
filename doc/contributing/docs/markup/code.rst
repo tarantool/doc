@@ -114,8 +114,8 @@ Notes on using inline-code
 Highlighting variables in code
 ------------------------------
 
-If you need to mark up a placeholder inside code inline, use the ``:samp:``
-role, like this:
+If you need to mark up a placeholder inside code inline, use the ``:samp:`` or
+our custom ``:extsamp:`` role, like this:
 
     ..  literalinclude:: _includes/samp.rst
         :language: rst
@@ -123,6 +123,9 @@ role, like this:
 And you will get this:
 
     ..  include:: _includes/samp.rst
+
+As you can see, with ``:extsamp:`` you don't need to mix ``:samp:`` with ``:code:``
+to highlight placeholders and the result willl be the same.
 
 If you need to mark up a placeholder in code block, use
 the following syntax:
