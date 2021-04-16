@@ -2,7 +2,8 @@
 msgid "box.commit()"
 msgstr ""
 
-msgid "End the transaction, and make all its data-change operations permanent."
+msgid ""
+"End the transaction, and make all its data-change operations permanent."
 msgstr ""
 "Окончание транзакции и применение результатов всех операций по изменению "
 "данных."

@@ -2,7 +2,11 @@
 msgid "Submodule `box.slab`"
 msgstr ""
 
-msgid "The ``box.slab`` submodule provides access to slab allocator statistics. The slab allocator is the main allocator used to store :ref:`tuples <index-box_tuple>`. This can be used to monitor the total memory usage and memory fragmentation."
+msgid ""
+"The ``box.slab`` submodule provides access to slab allocator statistics. The"
+" slab allocator is the main allocator used to store :ref:`tuples <index-"
+"box_tuple>`. This can be used to monitor the total memory usage and memory "
+"fragmentation."
 msgstr ""
 
 msgid "Below is a list of all ``box.slab`` functions."
@@ -31,4 +35,3 @@ msgstr ""
 
 msgid "Show a detailed memory usage report for slab allocator"
 msgstr ""
-

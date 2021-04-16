@@ -2,12 +2,14 @@
 msgid "Documentation guidelines"
 msgstr ""
 
-msgid "These guidelines aim to help the team and external contributors write, publish, and collaborate on the Tarantool documentation."
+msgid ""
+"These guidelines aim to help the team and external contributors write, "
+"publish, and collaborate on the Tarantool documentation."
 msgstr ""
 
-msgid "The guidelines are a work in progress, and we welcome all contributions."
+msgid ""
+"The guidelines are a work in progress, and we welcome all contributions."
 msgstr ""
 
 msgid "Contents:"
 msgstr ""
-

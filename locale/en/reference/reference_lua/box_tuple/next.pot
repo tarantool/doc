@@ -2,10 +2,15 @@
 msgid "tuple_object:next()"
 msgstr ""
 
-msgid "An analogue of the Lua ``next()`` function, but for a tuple object. When called without arguments, ``tuple:next()`` returns the first field from a tuple. Otherwise, it returns the field next to the indicated position."
+msgid ""
+"An analogue of the Lua ``next()`` function, but for a tuple object. When "
+"called without arguments, ``tuple:next()`` returns the first field from a "
+"tuple. Otherwise, it returns the field next to the indicated position."
 msgstr ""
 
-msgid "However ``tuple:next()`` is not really efficient, and it is better to use :doc:`tuple:pairs()/ipairs() </reference/reference_lua/box_tuple/pairs>`."
+msgid ""
+"However ``tuple:next()`` is not really efficient, and it is better to use "
+":doc:`tuple:pairs()/ipairs() </reference/reference_lua/box_tuple/pairs>`."
 msgstr ""
 
 msgid "return"
@@ -20,7 +25,8 @@ msgstr ""
 msgid "number and field type"
 msgstr ""
 
-msgid "tarantool> tuple = box.tuple.new({5, 4, 3, 2, 0})\n"
+msgid ""
+"tarantool> tuple = box.tuple.new({5, 4, 3, 2, 0})\n"
 "---\n"
 "...\n"
 "\n"
@@ -52,4 +58,3 @@ msgid "tarantool> tuple = box.tuple.new({5, 4, 3, 2, 0})\n"
 "---\n"
 "..."
 msgstr ""
-

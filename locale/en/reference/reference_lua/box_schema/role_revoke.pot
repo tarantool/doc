@@ -2,7 +2,8 @@
 msgid "box.schema.role.revoke()"
 msgstr ""
 
-msgid "Revoke :ref:`privileges <authentication-owners_privileges>` from a role."
+msgid ""
+"Revoke :ref:`privileges <authentication-owners_privileges>` from a role."
 msgstr ""
 
 msgid "Parameters"
@@ -11,7 +12,9 @@ msgstr ""
 msgid "the name of the role."
 msgstr ""
 
-msgid "'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a combination."
+msgid ""
+"'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a "
+"combination."
 msgstr ""
 
 msgid "'space' or 'function' or 'sequence' or 'role'."
@@ -20,21 +23,27 @@ msgstr ""
 msgid "the name of a function or space or sequence or role."
 msgstr ""
 
-msgid "The role must exist, and the object must exist, but it is not an error if the role does not have the privilege."
+msgid ""
+"The role must exist, and the object must exist, but it is not an error if "
+"the role does not have the privilege."
 msgstr ""
 
-msgid "**Variation:** instead of ``object-type, object-name`` say 'universe' which means 'all object-types and all objects'."
+msgid ""
+"**Variation:** instead of ``object-type, object-name`` say 'universe' which "
+"means 'all object-types and all objects'."
 msgstr ""
 
-msgid "**Variation:** instead of ``privilege, object-type, object-name`` say ``role-name``."
+msgid ""
+"**Variation:** instead of ``privilege, object-type, object-name`` say "
+"``role-name``."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "box.schema.role.revoke('Accountant', 'read', 'space', 'tester')\n"
+msgid ""
+"box.schema.role.revoke('Accountant', 'read', 'space', 'tester')\n"
 "box.schema.role.revoke('Accountant', 'execute', 'function', 'f')\n"
 "box.schema.role.revoke('Accountant', 'read,write', 'universe')\n"
 "box.schema.role.revoke('public', 'Accountant')"
 msgstr ""
-

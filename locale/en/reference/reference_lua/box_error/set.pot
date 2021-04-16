@@ -2,13 +2,17 @@
 msgid "box.error.set()"
 msgstr ""
 
-msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Set an error as the last system error explicitly. Accepts an error object and makes it available via :doc:`/reference/reference_lua/box_error/last`."
+msgid ""
+"Since version :doc:`2.4.1 </release/2.4.1>`. Set an error as the last system"
+" error explicitly. Accepts an error object and makes it available via "
+":doc:`/reference/reference_lua/box_error/last`."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> err = box.error.new({code = 111, reason = 'cause'})\n"
+msgid ""
+"tarantool> err = box.error.new({code = 111, reason = 'cause'})\n"
 "---\n"
 "...\n"
 "tarantool> box.error.last()\n"
@@ -24,4 +28,3 @@ msgid "tarantool> err = box.error.new({code = 111, reason = 'cause'})\n"
 "- cause\n"
 "..."
 msgstr ""
-

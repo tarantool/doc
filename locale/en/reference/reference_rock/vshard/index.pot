@@ -2,9 +2,13 @@
 msgid "Module `vshard`"
 msgstr ""
 
-msgid "The ``vshard`` module introduces an advanced sharding feature based on the concept of :ref:`virtual buckets <vshard-vbuckets>` and enables horizontal scaling in Tarantool."
+msgid ""
+"The ``vshard`` module introduces an advanced sharding feature based on the "
+"concept of :ref:`virtual buckets <vshard-vbuckets>` and enables horizontal "
+"scaling in Tarantool."
 msgstr ""
 
-msgid "Check out the :ref:`Quick start guide <vshard-quick-start>` -- or dive into the complete ``vshard`` documentation:"
+msgid ""
+"Check out the :ref:`Quick start guide <vshard-quick-start>` -- or dive into "
+"the complete ``vshard`` documentation:"
 msgstr ""
-

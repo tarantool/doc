@@ -2,16 +2,21 @@
 msgid "Administration"
 msgstr ""
 
-msgid "Tarantool is designed to have multiple running instances on the same host."
+msgid ""
+"Tarantool is designed to have multiple running instances on the same host."
 msgstr ""
 
-msgid "Here we show how to administer Tarantool instances using any of the following utilities:"
+msgid ""
+"Here we show how to administer Tarantool instances using any of the "
+"following utilities:"
 msgstr ""
 
 msgid "``systemd`` native utilities, or"
 msgstr ""
 
-msgid ":ref:`tarantoolctl <tarantoolctl>`, an administrative utility shipped and installed as part of Tarantool distribution."
+msgid ""
+":ref:`tarantoolctl <tarantoolctl>`, an administrative utility shipped and "
+"installed as part of Tarantool distribution."
 msgstr ""
 
 msgid "Unlike the rest of this manual, here we use system-wide paths."
@@ -22,4 +27,3 @@ msgstr ""
 
 msgid "This chapter includes the following sections:"
 msgstr ""
-

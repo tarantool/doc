@@ -2,9 +2,11 @@
 msgid "Replication"
 msgstr ""
 
-msgid "Replication allows multiple Tarantool instances to work on copies of the same databases. The databases are kept in sync because each instance can communicate its changes to all the other instances."
+msgid ""
+"Replication allows multiple Tarantool instances to work on copies of the "
+"same databases. The databases are kept in sync because each instance can "
+"communicate its changes to all the other instances."
 msgstr ""
 
 msgid "This chapter includes the following sections:"
 msgstr ""
-

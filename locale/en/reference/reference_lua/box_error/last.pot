@@ -2,7 +2,8 @@
 msgid "box.error.last()"
 msgstr ""
 
-msgid "Return a description of the last error, as a Lua table with four members:"
+msgid ""
+"Return a description of the last error, as a Lua table with four members:"
 msgstr ""
 
 msgid "\"code\" (number) error’s number"
@@ -23,7 +24,10 @@ msgstr ""
 msgid "\"file\" (string) Tarantool source file"
 msgstr ""
 
-msgid "Additionally, if the error is a system error (for example due to a failure in socket or file io), there may be a fifth member: \"errno\" (number) C standard error number."
+msgid ""
+"Additionally, if the error is a system error (for example due to a failure "
+"in socket or file io), there may be a fifth member: \"errno\" (number) C "
+"standard error number."
 msgstr ""
 
 msgid "rtype"
@@ -35,7 +39,8 @@ msgstr ""
 msgid "To show the table, use ``unpack()``:"
 msgstr ""
 
-msgid "tarantool> box.schema.space.create('')\n"
+msgid ""
+"tarantool> box.schema.space.create('')\n"
 "---\n"
 "- error: Invalid identifier '' (expected printable symbols only or it is too long)\n"
 "...\n"
@@ -53,4 +58,3 @@ msgid "tarantool> box.schema.space.create('')\n"
 "    line: 68\n"
 "..."
 msgstr ""
-

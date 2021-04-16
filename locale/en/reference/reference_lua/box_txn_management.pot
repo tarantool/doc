@@ -2,7 +2,9 @@
 msgid "Functions for transaction management"
 msgstr ""
 
-msgid "For general information and examples, see section :ref:`Transaction control <atomic-atomic_execution>`."
+msgid ""
+"For general information and examples, see section :ref:`Transaction control "
+"<atomic-atomic_execution>`."
 msgstr ""
 
 msgid "Observe the following rules when working with transactions:"
@@ -11,19 +13,35 @@ msgstr ""
 msgid "Rule #1"
 msgstr ""
 
-msgid "The requests in a transaction must be sent to a server as a single block. It is not enough to enclose them between begin and commit or rollback. To ensure they are sent as a single block: put them in a function, or put them all on one line, or use a delimiter so that multi-line requests are handled together."
+msgid ""
+"The requests in a transaction must be sent to a server as a single block. It"
+" is not enough to enclose them between begin and commit or rollback. To "
+"ensure they are sent as a single block: put them in a function, or put them "
+"all on one line, or use a delimiter so that multi-line requests are handled "
+"together."
 msgstr ""
 
 msgid "Rule #2"
 msgstr ""
 
-msgid "All database operations in a transaction should use the same storage engine. It is not safe to access tuple sets that are defined with ``{engine='vinyl'}`` and also access tuple sets that are defined with ``{engine='memtx'}``, in the same transaction."
+msgid ""
+"All database operations in a transaction should use the same storage engine."
+" It is not safe to access tuple sets that are defined with "
+"``{engine='vinyl'}`` and also access tuple sets that are defined with "
+"``{engine='memtx'}``, in the same transaction."
 msgstr ""
 
 msgid "Rule #3"
 msgstr ""
 
-msgid "Requests which cause changes to the data definition -- create, alter, drop, truncate -- are only allowed with Tarantool version 2.1 or later. Data-definition requests which change an index or change a format, such as :doc:`space_object:create_index() </reference/reference_lua/box_schema_sequence/create_index>` and :ref:`space_object:format() <box_space-format>`, are not allowed inside transactions except as the first request after ``box.begin()``."
+msgid ""
+"Requests which cause changes to the data definition -- create, alter, drop, "
+"truncate -- are only allowed with Tarantool version 2.1 or later. Data-"
+"definition requests which change an index or change a format, such as "
+":doc:`space_object:create_index() "
+"</reference/reference_lua/box_schema_sequence/create_index>` and "
+":ref:`space_object:format() <box_space-format>`, are not allowed inside "
+"transactions except as the first request after ``box.begin()``."
 msgstr ""
 
 msgid "Below is a list of all functions for transaction management."
@@ -62,7 +80,8 @@ msgstr ""
 msgid ":doc:`./box_txn_management/rollback_to_savepoint`"
 msgstr ""
 
-msgid "Do not end the transaction and discard all changes made after a savepoint"
+msgid ""
+"Do not end the transaction and discard all changes made after a savepoint"
 msgstr ""
 
 msgid ":doc:`./box_txn_management/atomic`"
@@ -88,4 +107,3 @@ msgstr ""
 
 msgid "State whether a transaction is in progress"
 msgstr ""
-

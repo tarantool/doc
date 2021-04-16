@@ -2,6 +2,7 @@
 msgid "SQL reference"
 msgstr ""
 
-msgid "This reference covers all the SQL statements and clauses supported by Tarantool."
+msgid ""
+"This reference covers all the SQL statements and clauses supported by "
+"Tarantool."
 msgstr ""
-

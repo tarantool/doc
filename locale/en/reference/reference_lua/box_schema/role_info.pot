@@ -16,4 +16,3 @@ msgstr ""
 
 msgid "box.schema.role.info('Accountant')"
 msgstr ""
-

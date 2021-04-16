@@ -2,9 +2,10 @@
 msgid "Database"
 msgstr ""
 
-msgid "In this chapter, we introduce the basic concepts of working with Tarantool as a database manager."
+msgid ""
+"In this chapter, we introduce the basic concepts of working with Tarantool "
+"as a database manager."
 msgstr ""
 
 msgid "This chapter contains the following sections:"
 msgstr ""
-

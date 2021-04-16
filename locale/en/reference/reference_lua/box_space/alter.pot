@@ -2,13 +2,18 @@
 msgid "space_object:alter()"
 msgstr ""
 
-msgid "Since version :doc:`2.5.2 </release/2.5.2>`. Alter an existing space. This method changes certain space parameters."
+msgid ""
+"Since version :doc:`2.5.2 </release/2.5.2>`. Alter an existing space. This "
+"method changes certain space parameters."
 msgstr ""
 
 msgid "Parameters"
 msgstr ""
 
-msgid "``field_count``, ``user``, ``format``, ``temporary``, ``is_sync``, and ``name`` -- the meaning of these parameters is the same as in :doc:`/reference/reference_lua/box_schema/space_create`"
+msgid ""
+"``field_count``, ``user``, ``format``, ``temporary``, ``is_sync``, and "
+"``name`` -- the meaning of these parameters is the same as in "
+":doc:`/reference/reference_lua/box_schema/space_create`"
 msgstr ""
 
 msgid "return"
@@ -20,7 +25,8 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> s = box.schema.create_space('tester')\n"
+msgid ""
+"tarantool> s = box.schema.create_space('tester')\n"
 "---\n"
 "...\n"
 "tarantool> format = {{name = 'field1', type = 'unsigned'}}\n"
@@ -38,4 +44,3 @@ msgid "tarantool> s = box.schema.create_space('tester')\n"
 "- [{'name': 'field1', 'type': 'unsigned'}]\n"
 "..."
 msgstr ""
-

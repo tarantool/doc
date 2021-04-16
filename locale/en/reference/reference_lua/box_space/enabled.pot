@@ -2,6 +2,7 @@
 msgid "space_object:enabled"
 msgstr ""
 
-msgid "Whether or not this space is enabled. The value is ``false`` if the space has no index."
+msgid ""
+"Whether or not this space is enabled. The value is ``false`` if the space "
+"has no index."
 msgstr ""
-

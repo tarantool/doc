@@ -5,16 +5,23 @@ msgstr ""
 msgid "The ``box`` module contains some functions related to SQL:"
 msgstr ""
 
-msgid "``box.schema.func.create`` -- for making Lua functions callable from SQL statements. See :ref:`Calling Lua routines from SQL <sql_calling_lua>` in the :ref:`SQL Plus Lua <sql_plus_lua>` section."
+msgid ""
+"``box.schema.func.create`` -- for making Lua functions callable from SQL "
+"statements. See :ref:`Calling Lua routines from SQL <sql_calling_lua>` in "
+"the :ref:`SQL Plus Lua <sql_plus_lua>` section."
 msgstr ""
 
-msgid "``box.execute`` -- for making SQL statements callable from Lua functions. See the :ref:`SQL user guide <sql_user_guide>`."
+msgid ""
+"``box.execute`` -- for making SQL statements callable from Lua functions. "
+"See the :ref:`SQL user guide <sql_user_guide>`."
 msgstr ""
 
 msgid "``box.prepare`` and ``box.unprepare``."
 msgstr ""
 
-msgid "Some SQL statements are illustrated in the :ref:`SQL tutorial <sql_tutorial>`."
+msgid ""
+"Some SQL statements are illustrated in the :ref:`SQL tutorial "
+"<sql_tutorial>`."
 msgstr ""
 
 msgid "Below is a list of all SQL functions and members."
@@ -29,13 +36,18 @@ msgstr ""
 msgid ":doc:`./box_sql/execute`"
 msgstr ""
 
-msgid "Make Lua functions callable from SQL statements. See :ref:`Calling Lua routines from SQL <sql_calling_lua>` in the :ref:`SQL Plus Lua <sql_plus_lua>` section"
+msgid ""
+"Make Lua functions callable from SQL statements. See :ref:`Calling Lua "
+"routines from SQL <sql_calling_lua>` in the :ref:`SQL Plus Lua "
+"<sql_plus_lua>` section"
 msgstr ""
 
 msgid ":doc:`./box_sql/prepare`"
 msgstr ""
 
-msgid "Make SQL statements callable from Lua functions. See the :ref:`SQL user guide <sql_user_guide>`"
+msgid ""
+"Make SQL statements callable from Lua functions. See the :ref:`SQL user "
+"guide <sql_user_guide>`"
 msgstr ""
 
 msgid ":doc:`./box_sql/prepared_table`"
@@ -43,4 +55,3 @@ msgstr ""
 
 msgid "Methods for prepared SQL statement"
 msgstr ""
-

@@ -2,7 +2,9 @@
 msgid "Submodule box.backup"
 msgstr ""
 
-msgid "The box.backup submodule contains two functions that are helpful for :ref:`backup <admin-backups>` in certain situations."
+msgid ""
+"The box.backup submodule contains two functions that are helpful for "
+":ref:`backup <admin-backups>` in certain situations."
 msgstr ""
 
 msgid "Below is a list of all ``box.backup`` functions."
@@ -17,7 +19,8 @@ msgstr ""
 msgid ":doc:`./box_backup/start`"
 msgstr ""
 
-msgid "Ask server to suspend activities before the removal of outdated backups"
+msgid ""
+"Ask server to suspend activities before the removal of outdated backups"
 msgstr ""
 
 msgid ":doc:`./box_backup/stop`"
@@ -25,4 +28,3 @@ msgstr ""
 
 msgid "Inform server that normal operations may resume"
 msgstr ""
-

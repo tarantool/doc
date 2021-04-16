@@ -7,7 +7,7 @@ set(LUA_EXECUTABLE /usr/bin/lua)
 set(LDOC_PATH /usr/local/ldoc/ldoc.lua)
 set(LDOC_EXECUTABLE "${LUA_EXECUTABLE} ${LDOC_PATH}")
 
-set(FAKE_MSG_EXECUTABLE "python3")
+set(PYTHON3_EXECUTABLE "python3")
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 set(CMAKE_INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_INCLUDE_PATH})
@@ -220,8 +220,8 @@ add_custom_target(update-pot
 )
 
 add_custom_command(TARGET update-pot
-    COMMAND make rm-fake-msg
-    COMMENT "Remove metadata in translation sources"
+    COMMAND make cleanup-pot
+    COMMENT "Update and cleanup translation sources"
 )
 
 add_custom_target(update-po-no-force
@@ -235,20 +235,20 @@ add_custom_target(update-po-no-force
     DEPENDS update-pot
 )
 
-add_custom_target(add-fake-msg
-    COMMAND "${FAKE_MSG_EXECUTABLE}"
-        fake_msg.py
-        add
+add_custom_target(cleanup-po
+    COMMAND "${PYTHON3_EXECUTABLE}"
+        cleanup.py
+        po
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/locale
-    COMMENT "Add fake message to the all .po files"
+    COMMENT "Cleanup and rearrange PO files"
 )
 
-add_custom_target(rm-fake-msg
-    COMMAND "${FAKE_MSG_EXECUTABLE}"
-        fake_msg.py
-        rm
+add_custom_target(cleanup-pot
+    COMMAND "${PYTHON3_EXECUTABLE}"
+        cleanup.py
+        pot
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/locale
-    COMMENT "Remove fake message from all .po files"
+    COMMENT "Cleanup and rearrange POT files"
 )
 
 add_custom_target(update-po
@@ -256,12 +256,6 @@ add_custom_target(update-po
         add-fake-msg
         update-po-no-force
         rm-fake-msg
-)
-
-add_custom_target(reformat-po
-    COMMAND make
-    add-fake-msg
-    rm-fake-msg
 )
 
 add_custom_target(linkcheck

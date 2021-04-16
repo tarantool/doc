@@ -4,4 +4,3 @@ msgstr ""
 
 msgid "More about Luatest API see :ref:`below <luatest-api>`."
 msgstr ""
-

@@ -4,4 +4,3 @@ msgstr ""
 
 msgid "Informs the server that normal operations may resume."
 msgstr ""
-

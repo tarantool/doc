@@ -2,7 +2,11 @@
 msgid "box.info()"
 msgstr ""
 
-msgid "Since ``box.info`` contents are dynamic, it's not possible to iterate over keys with the Lua ``pairs()`` function. For this purpose, ``box.info()`` builds and returns a Lua table with all keys and values provided in the submodule."
+msgid ""
+"Since ``box.info`` contents are dynamic, it's not possible to iterate over "
+"keys with the Lua ``pairs()`` function. For this purpose, ``box.info()`` "
+"builds and returns a Lua table with all keys and values provided in the "
+"submodule."
 msgstr ""
 
 msgid "return"
@@ -20,10 +24,13 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "This example is for a master-replica set that contains one master instance and one replica instance. The request was issued at the replica instance."
+msgid ""
+"This example is for a master-replica set that contains one master instance "
+"and one replica instance. The request was issued at the replica instance."
 msgstr ""
 
-msgid "tarantool> box.info()\n"
+msgid ""
+"tarantool> box.info()\n"
 "---\n"
 "- version: 2.4.0-251-gc44ed3c08\n"
 "  id: 1\n"
@@ -50,4 +57,3 @@ msgid "tarantool> box.info()\n"
 "  vclock: {1: 16}\n"
 "..."
 msgstr ""
-

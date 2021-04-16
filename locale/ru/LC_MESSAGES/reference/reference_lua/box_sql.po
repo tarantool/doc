@@ -7,13 +7,13 @@ msgstr ""
 
 msgid ""
 "``box.schema.func.create`` -- for making Lua functions callable from SQL "
-"statements. See :ref:`Calling Lua routines from SQL <sql_calling_lua>` in"
-" the :ref:`SQL Plus Lua <sql_plus_lua>` section."
+"statements. See :ref:`Calling Lua routines from SQL <sql_calling_lua>` in "
+"the :ref:`SQL Plus Lua <sql_plus_lua>` section."
 msgstr ""
 
 msgid ""
-"``box.execute`` -- for making SQL statements callable from Lua functions."
-" See the :ref:`SQL user guide <sql_user_guide>`."
+"``box.execute`` -- for making SQL statements callable from Lua functions. "
+"See the :ref:`SQL user guide <sql_user_guide>`."
 msgstr ""
 
 msgid "``box.prepare`` and ``box.unprepare``."

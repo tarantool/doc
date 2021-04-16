@@ -2,25 +2,38 @@
 msgid "box.backup.start()"
 msgstr ""
 
-msgid "Informs the server that activities related to the removal of outdated backups must be suspended."
+msgid ""
+"Informs the server that activities related to the removal of outdated "
+"backups must be suspended."
 msgstr ""
 
-msgid "To guarantee an opportunity to copy these files, Tarantool will not delete them. But there will be no read-only mode and checkpoints will continue by schedule as usual."
+msgid ""
+"To guarantee an opportunity to copy these files, Tarantool will not delete "
+"them. But there will be no read-only mode and checkpoints will continue by "
+"schedule as usual."
 msgstr ""
 
 msgid "Parameters"
 msgstr ""
 
-msgid "optional argument starting with Tarantool 1.10.1 that indicates the checkpoint to use relative to the latest checkpoint. For example ``n = 0`` means “backup will be based on the latest checkpoint”, ``n = 1`` means \"backup will be based on the first checkpoint before the latest checkpoint (counting backwards)\", and so on. The default value for n is zero."
+msgid ""
+"optional argument starting with Tarantool 1.10.1 that indicates the "
+"checkpoint to use relative to the latest checkpoint. For example ``n = 0`` "
+"means “backup will be based on the latest checkpoint”, ``n = 1`` means "
+"\"backup will be based on the first checkpoint before the latest checkpoint "
+"(counting backwards)\", and so on. The default value for n is zero."
 msgstr ""
 
-msgid "**Return:**  a table with the names of snapshot and vinyl files that should be copied"
+msgid ""
+"**Return:**  a table with the names of snapshot and vinyl files that should "
+"be copied"
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.backup.start()\n"
+msgid ""
+"tarantool> box.backup.start()\n"
 "---\n"
 "- - ./00000000000000000015.snap\n"
 "  - ./00000000000000000000.vylog\n"
@@ -28,4 +41,3 @@ msgid "tarantool> box.backup.start()\n"
 "  - ./513/0/00000000000000000002.run\n"
 "..."
 msgstr ""
-
