@@ -31,16 +31,16 @@ msgid "This is how the table will look like:"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 msgid "Use"
-msgstr ""
+msgstr "Назначение"
 
 msgid ":doc:`/reference/reference_lua/box_ctl/wait_ro`"
 msgstr ""
 
 msgid "Wait until ``box.info.ro`` is true"
-msgstr ""
+msgstr "Дождаться, пока не будет выполнено ``box.info.ro``"
 
 msgid ""
 "Notice that we use ``*`` and then ``-`` in tables because it is more "

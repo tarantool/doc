@@ -683,10 +683,10 @@ msgid "**exclude_null/is_nullable**"
 msgstr ""
 
 msgid "**false**"
-msgstr ""
+msgstr "**false**"
 
 msgid "**true**"
-msgstr ""
+msgstr "**true**"
 
 msgid "ok"
 msgstr ""

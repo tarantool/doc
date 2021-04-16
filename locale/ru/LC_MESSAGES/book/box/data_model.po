@@ -84,7 +84,7 @@ msgid ""
 msgstr ""
 
 msgid "space"
-msgstr ""
+msgstr "спейс"
 
 msgid ""
 "In Tarantool, a space is a primary container which stores data. It is "

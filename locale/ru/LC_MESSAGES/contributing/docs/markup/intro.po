@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 
 msgid "Wrapping text"
-msgstr ""
+msgstr "Перенос текста"
 
 msgid ""
 "It's good practice to wrap lines in documentation source text. It makes "
@@ -50,7 +50,7 @@ msgid ""
 msgstr ""
 
 msgid "Indentation"
-msgstr ""
+msgstr "Отступы"
 
 msgid ""
 "In rST, indents play exactly the same role as in Python: they denote object "
@@ -89,7 +89,7 @@ msgid ""
 msgstr ""
 
 msgid "Example:"
-msgstr ""
+msgstr "Пример:"
 
 msgid ""
 "|...|...|...|...\n"
@@ -132,7 +132,7 @@ msgid "Another nested list item."
 msgstr ""
 
 msgid "Making comments"
-msgstr ""
+msgstr "Добавление комментариев"
 
 msgid ""
 "Sometimes we may need to leave comments in an rST file. To make Sphinx "
@@ -141,7 +141,7 @@ msgid ""
 msgstr ""
 
 msgid ".. // your comment here"
-msgstr ""
+msgstr ".. // здесь комментарий"
 
 msgid ""
 "The starting characters ``.. //`` do not interfere with the other rST "
@@ -151,7 +151,7 @@ msgid ""
 msgstr ""
 
 msgid "$ grep \".. //\" doc/sphinx/dev_guide/*.rst"
-msgstr ""
+msgstr "$ grep \".. //\" doc/sphinx/dev_guide/*.rst"
 
 msgid ""
 "These comments don't work properly in nested documentation, though. For "

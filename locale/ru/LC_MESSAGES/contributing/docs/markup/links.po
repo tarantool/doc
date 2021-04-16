@@ -54,22 +54,22 @@ msgid ""
 msgstr ""
 
 msgid "Our naming convention is as follows:"
-msgstr ""
+msgstr "Соглашение об именовании заключается в следующем:"
 
 msgid "Character set: a through z, 0 through 9, dash, underscore."
-msgstr ""
+msgstr "Набор символов: от a до z, от 0 до 9, дефис, подчеркивание."
 
 msgid "Format: ``path dash filename dash tag``"
-msgstr ""
+msgstr "Формат: ``путь дефис имя файла дефис тег``"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid "..  _c_api-box_index-iterator_type:"
 msgstr ""
 
 msgid "where:"
-msgstr ""
+msgstr "где:"
 
 msgid "``c_api`` is the directory name,"
 msgstr ""
@@ -85,24 +85,32 @@ msgid ""
 " source, we use only underscores \"_\" in paths and file names, reserving "
 "dash \"-\" as the delimiter for local links."
 msgstr ""
+"Используйте дефис \"-\", чтобы разграничить путь и имя файла. В исходном "
+"коде документации мы пользуемся только символами подчеркивания \"_\" при "
+"указании пути и имени файла, оставляя дефисы \"-\" для разграничения в "
+"локальных ссылках."
 
 msgid ""
 "The tag can be anything meaningful. The only guideline is for Tarantool "
 "syntax items (such as members), where the preferred tag syntax is "
 "``module_or_object_name dash member_name``. For example, ``box_space-drop``."
 msgstr ""
+"Тег может содержать любую значимую информацию. Единственная рекомендация "
+"дается для элементов синтаксиса Tarantool'а, где предпочтительно "
+"использовать следующий синтаксис в тегах: ``имя_объекта_или_модуля дефис "
+"имя_элемента``. Например, ``box_space-drop``."
 
 msgid "Linking to external resources"
-msgstr ""
+msgstr "Ссылки на внешние ресурсы"
 
 msgid "To make an external link, use the following syntax:"
 msgstr ""
 
 msgid "This is a paragraph that contains `a link <http://example.com/>`_."
-msgstr ""
+msgstr "Это абзац, который содержит `ссылку <http://example.com/>`_."
 
 msgid "Avoid separating the link and the target definition, like this:"
-msgstr ""
+msgstr "Избегайте разделения ссылки и определения цели, например:"
 
 msgid ""
 "This is wrong way to make `a link`_.\n"
