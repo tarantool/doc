@@ -1,6 +1,6 @@
 
 msgid "box.space._vindex"
-msgstr ""
+msgstr "box.space._vindex"
 
 msgid ""
 "``_vindex`` is a system space that represents a virtual view. The structure "

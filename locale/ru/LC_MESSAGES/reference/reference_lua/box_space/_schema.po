@@ -1,6 +1,6 @@
 
 msgid "box.space._schema"
-msgstr ""
+msgstr "box.space._schema"
 
 msgid "``_schema`` is a system space."
 msgstr "``_schema`` -- это системный спейс."
@@ -55,3 +55,10 @@ msgid ""
 "  - ['oncehello']\n"
 "  - ['version', 1, 7, 2]"
 msgstr ""
+"tarantool> box.space._schema:select{}\n"
+"---\n"
+"- - ['cluster', 'b4e15788-d962-4442-892e-d6c1dd5d13f2']\n"
+"  - ['max_id', 512]\n"
+"  - ['oncebye']\n"
+"  - ['oncehello']\n"
+"  - ['version', 1, 7, 2]"

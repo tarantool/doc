@@ -76,7 +76,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "lua-table"
-msgstr ""
+msgstr "Lua-таблица"
 
 msgid ""
 "In the following example, a tuple named ``t1`` is returned from a space that"

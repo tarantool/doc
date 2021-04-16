@@ -409,7 +409,6 @@ msgstr ""
 "быть случай, если превышение ограничений повысит читаемость и не скроет "
 "необходимую информацию."
 
-#, python-format
 msgid ""
 "void fun(int a, int b, int c)\n"
 "{\n"
@@ -1589,7 +1588,6 @@ msgstr ""
 msgid "Kernel messages do not have to be terminated with a period."
 msgstr "Сообщения ядра не должны заканчиваться точкой."
 
-#, python-format
 msgid ""
 "Printing numbers in parentheses (%d) adds no value and should be avoided."
 msgstr ""

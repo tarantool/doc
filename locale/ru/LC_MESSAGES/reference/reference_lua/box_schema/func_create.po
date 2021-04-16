@@ -61,7 +61,7 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "nil"
-msgstr ""
+msgstr "nil"
 
 msgid "**Example:**"
 msgstr "**Пример:**"

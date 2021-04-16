@@ -56,13 +56,10 @@ msgstr ""
 "подразумевает передачу функции с триггером в одну из функций обработки "
 "событий \"on_event()\":"
 
-#, fuzzy
 msgid ""
 ":doc:`/reference/reference_lua/box_session/on_connect` or "
 ":doc:`/reference/reference_lua/box_session/on_disconnect` or"
 msgstr ""
-":doc:`/reference/reference_lua/box_txn_management/on_commit` или "
-":doc:`/reference/reference_lua/box_txn_management/on_rollback` или"
 
 msgid ":doc:`/reference/reference_lua/box_session/on_auth` or"
 msgstr ""
@@ -230,13 +227,3 @@ msgstr ""
 "box.session.on_connect(on_connect)\n"
 "box.session.on_disconnect(on_disconnect)\n"
 "box.session.on_auth(on_auth)"
-
-#~ msgid ""
-#~ ":ref:`box.session.on_connect() <box_session-on_connect>` or "
-#~ ":ref:`box.session.on_disconnect() <box_session-on_disconnect>` or"
-#~ msgstr ""
-#~ ":ref:`box.session.on_connect() <box_session-on_connect>` или "
-#~ ":ref:`box.session.on_disconnect() <box_session-on_disconnect>` или"
-
-#~ msgid ":ref:`box.session.on_auth() <box_session-on_auth>` or"
-#~ msgstr ":ref:`box.session.on_auth() <box_session-on_auth>` или"

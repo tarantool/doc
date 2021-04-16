@@ -6,7 +6,7 @@ msgid "More about Luatest API see :ref:`below <luatest-api>`."
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Общие сведения"
 
 msgid ""
 "Tool for testing tarantool applications. (`Build Status <https://travis-"
@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 
 msgid "Installation"
-msgstr ""
+msgstr "Установка"
 
 msgid ""
 "tarantoolctl rocks install luatest\n"
@@ -53,7 +53,7 @@ msgid ""
 msgstr ""
 
 msgid "Usage"
-msgstr ""
+msgstr "Использование"
 
 msgid "Define tests."
 msgstr ""

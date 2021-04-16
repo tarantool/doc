@@ -1,6 +1,6 @@
 
 msgid "box.space._cluster"
-msgstr ""
+msgstr "box.space._cluster"
 
 msgid ""
 "``_cluster`` is a system space for support of the :ref:`replication feature "

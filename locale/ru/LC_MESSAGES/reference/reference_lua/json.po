@@ -52,7 +52,7 @@ msgid ":ref:`json.cfg() <json-module_cfg>`"
 msgstr ":ref:`json.cfg() <json-module_cfg>`"
 
 msgid "Change configuration"
-msgstr ""
+msgstr "Изменение конфигурации"
 
 msgid ":ref:`json.NULL <json-null>`"
 msgstr ":ref:`json.NULL <json-null>`"
@@ -206,13 +206,10 @@ msgid ""
 "table, cdata or userdata objects"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Serializing 'A' and 'B' with different ``__serialize`` values brings "
 "different results:"
 msgstr ""
-"Сериализация 'A' и' B' различными значениями ``__serialize`` приводит к "
-"различным результатам:"
 
 msgid ""
 "tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize=\"seq\"}))\n"
@@ -249,25 +246,19 @@ msgstr ""
 "- '[[]]'\n"
 "..."
 
-#, fuzzy
 msgid ""
 "Set values that affect the behavior of :ref:`json.encode <json-encode>` and "
 ":ref:`json.decode <json-decode>`."
 msgstr ""
-"Определяет значения, которые влияют на поведение :ref:`json.encode <json-"
-"encode>` и :ref:`json.decode <json-decode>`."
 
-#, fuzzy
 msgid "The values are all either integers or boolean ``true``/``false``."
 msgstr ""
-"Задаются либо все целочисленные значения, либо все логические значения "
-"``true``/``false`` (правда/ложь)."
 
 msgid "Option"
-msgstr ""
+msgstr "Характеристика"
 
 msgid "Default"
-msgstr ""
+msgstr "Значение по умолчанию"
 
 msgid "``cfg.encode_max_depth``"
 msgstr ""
@@ -281,9 +272,8 @@ msgstr ""
 msgid "``cfg.encode_deep_as_nil``"
 msgstr ""
 
-#, fuzzy
 msgid "false"
-msgstr "таблица"
+msgstr "false"
 
 msgid ""
 "A flag saying whether to crop tables with nesting level deeper than "
@@ -291,13 +281,11 @@ msgid ""
 "not set, too deep nesting is considered an error."
 msgstr ""
 
-#, fuzzy
 msgid "``cfg.encode_invalid_numbers``"
 msgstr ""
-"``cfg.encode_invalid_numbers`` (по умолчанию, true) -- разрешить nan и inf"
 
 msgid "true"
-msgstr ""
+msgstr "true"
 
 msgid "A flag saying whether to enable encoding of NaN and Inf numbers"
 msgstr ""
@@ -311,10 +299,8 @@ msgstr ""
 msgid "Precision of floating point numbers"
 msgstr ""
 
-#, fuzzy
 msgid "``cfg.encode_load_metatables``"
 msgstr ""
-"``cfg.encode_load_metatables`` (по умолчанию, true) -- загрузить метатаблицы"
 
 msgid ""
 "A flag saying whether the serializer will follow :ref:`__serialize <json-"
@@ -345,7 +331,7 @@ msgid "``cfg.encode_sparse_ratio``"
 msgstr ""
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid ""
 "1/``encode_sparse_ratio`` is the permissible percentage of missing values in"
@@ -363,10 +349,8 @@ msgid ""
 "(instead of generating an error or encoding as a map)"
 msgstr ""
 
-#, fuzzy
 msgid "``cfg.decode_invalid_numbers``"
 msgstr ""
-"``cfg.decode_invalid_numbers`` (по умолчанию, true) -- разрешить nan и inf"
 
 msgid "A flag saying whether to enable decoding of NaN and Inf numbers"
 msgstr ""
@@ -431,14 +415,10 @@ msgstr ""
 msgid "**json.cfg() example 1:**"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "The following code will encode 0/0 as NaN (\"not a number\") and 1/0 as Inf "
 "(\"infinity\"), rather than returning nil or an error message:"
 msgstr ""
-"Например, следующий код интерпретирует 0/0 как nan (\"не является числом\"),"
-" а 1/0 -- как inf (\"бесконечность\"), вместо того, чтобы вернуть nil или "
-"ошибку:"
 
 msgid ""
 "json = require('json')\n"
@@ -467,9 +447,8 @@ msgstr ""
 "- '[1,nan,inf,2]\n"
 "..."
 
-#, fuzzy
 msgid "**json.cfg example 2:**"
-msgstr "**Пример:**"
+msgstr ""
 
 msgid ""
 "To avoid generating errors on attempts to encode unknown data types as "
@@ -492,23 +471,16 @@ msgid ""
 "..."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "To achieve the same effect for only one call to ``json.encode()`` (i.e. "
 "without changing the configuration permanently), you can use "
 "``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``."
 msgstr ""
-"Чтобы получить такой же эффект для одиночного вызова ``json.encode()`` без "
-"постоянного изменения конфигурации, можно вызвать ``json.encode({1, x, y, "
-"2}, {encode_invalid_numbers = true})``."
 
-#, fuzzy
 msgid ""
 "Similar configuration settings exist for :ref:`MsgPack <msgpack-cfg>` and "
 ":ref:`YAML <yaml-cfg>`."
 msgstr ""
-"Такие параметры конфигурации применяются для формата JSON, для :ref:`MsgPack"
-" <msgpack-module>` и для :ref:`YAML <yaml-module>`."
 
 msgid ""
 "A value comparable to Lua \"nil\" which may be useful as a placeholder in a "
@@ -557,101 +529,3 @@ msgstr ""
 "---\n"
 "- '{\"field2\":null,\"field1\":\"a\",\"field3\":\"c\"}'\n"
 "..."
-
-#~ msgid "Set global flags"
-#~ msgstr "Определение глобальных флагов"
-
-#~ msgid "``__serialize=\"seq\"`` for an array"
-#~ msgstr "``__serialize=\"seq\"`` для массива"
-
-#~ msgid "``__serialize=\"map\"`` for a map"
-#~ msgstr "``__serialize=\"map\"`` для ассоциативного массива"
-
-#~ msgid ""
-#~ "``cfg.encode_deep_as_nil`` (default is false) -- see :ref:`below <json-"
-#~ "module.cfg_encode_deep_as_nil>`"
-#~ msgstr ""
-#~ "``cfg.encode_deep_as_nil`` ((по умолчанию, false) -- см. :ref:`ниже <json-"
-#~ "module.cfg_encode_deep_as_nil>`"
-
-#~ msgid ""
-#~ "``cfg.encode_invalid_as_nil`` (default is false) -- use ``null`` for all "
-#~ "unrecognizable types"
-#~ msgstr ""
-#~ "``cfg.encode_invalid_as_nil`` (по умолчанию, false) -- использовать ``null``"
-#~ " для всех нераспознаваемых типов"
-
-#~ msgid ""
-#~ "``cfg.encode_max_depth`` (default is 32) -- maximum nesting depth in a "
-#~ "structure"
-#~ msgstr ""
-#~ "``cfg.encode_max_depth`` (по умолчанию, 32) -- максимальная глубина "
-#~ "вложенности в структуре"
-
-#~ msgid ""
-#~ "``cfg.encode_number_precision`` (default is 14) -- maximum post-decimal "
-#~ "digits"
-#~ msgstr ""
-#~ "``cfg.encode_number_precision`` (по умолчанию, 14) -- максимальное "
-#~ "количество цифр в дробной части"
-
-#~ msgid ""
-#~ "``cfg.encode_sparse_convert`` (default is true) -- handle excessively sparse"
-#~ " arrays as maps"
-#~ msgstr ""
-#~ "``cfg.encode_sparse_convert`` (по умолчанию, true) -- обрабатывать излишне "
-#~ "разреженные массивы как ассоциативные массивы"
-
-#~ msgid ""
-#~ "``cfg.encode_sparse_ratio`` (default is 2) -- how sparse an array can be"
-#~ msgstr ""
-#~ "``cfg.encode_sparse_ratio`` (по умолчанию, 2) -- допустимая разреженность "
-#~ "массива"
-
-#~ msgid ""
-#~ "``cfg.encode_sparse_safe`` (default is 10) -- how much can safely be sparse"
-#~ msgstr ""
-#~ "``cfg.encode_sparse_safe`` (по умолчанию, 10) -- безопасная разреженность "
-#~ "массивы"
-
-#~ msgid ""
-#~ "``cfg.encode_use_tostring`` (default is false) -- use ``tostring`` for "
-#~ "unrecognizable types"
-#~ msgstr ""
-#~ "``cfg.encode_use_tostring`` (по умолчанию, false) -- использовать "
-#~ "``tostring`` для нераспознаваемых типов"
-
-#~ msgid ""
-#~ "``cfg.decode_max_depth`` (default is 32) -- maximum nesting depth in a "
-#~ "structure"
-#~ msgstr ""
-#~ "``cfg.decode_max_depth`` (по умолчанию, 32) -- максимальная глубина "
-#~ "вложенности в структуре"
-
-#~ msgid ""
-#~ "``cfg.decode_save_metatables`` (default is true) -- like "
-#~ "``encode_load_metatables``"
-#~ msgstr ""
-#~ "``cfg.decode_save_metatables`` (по умолчанию, true) -- как "
-#~ "``encode_load_metatables``"
-
-#~ msgid ""
-#~ "**Behavior change:** Before Tarantool version 1.10.4, if a nested structure "
-#~ "was deeper than ``cfg.encode_max_depth``, the deeper levels were cropped "
-#~ "(encoded as nil)."
-#~ msgstr ""
-#~ "**Поведение изменилось:** До версии 1.10.4 Tarantool'а, если глубина "
-#~ "вложения структуры была больше, чем ``cfg.encode_max_depth``, более глубокие"
-#~ " уровни обрезаются (кодируются как nil)."
-
-#~ msgid ""
-#~ "Now, the result is an error suggesting that ``cfg.encode_max_depth`` is not "
-#~ "deep enough. To return to the old behavior, say ``cfg.encode_deep_as_nil = "
-#~ "true``."
-#~ msgstr ""
-#~ "Теперь результатом станет ошибка с указанием недостаточной глубины "
-#~ "``cfg.encode_max_depth``. Чтобы вернуть старое поведение системы, выполните "
-#~ "``cfg.encode_deep_as_nil = true``."
-
-#~ msgid "This option is ignored for ``YAML``."
-#~ msgstr "Этот параметр не учитывается для ``YAML``."

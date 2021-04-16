@@ -1,6 +1,6 @@
 
 msgid "space_object:replace() / put()"
-msgstr ""
+msgstr "space_object:replace() / put()"
 
 msgid ""
 "Insert a tuple into a space. If a tuple with the same primary key already "
@@ -34,7 +34,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr ""
+msgstr "кортеж"
 
 msgid ""
 "**Possible errors:** :errcode:`ER_TUPLE_FOUND` if a different tuple with the"
@@ -56,7 +56,7 @@ msgid "**Example:**"
 msgstr "**Пример:**"
 
 msgid "box.space.tester:replace{5000, 'tuple number five thousand'}"
-msgstr ""
+msgstr "box.space.tester:replace{5000, 'tuple number five thousand'}"
 
 msgid ""
 "For more usage scenarios and typical errors see :ref:`Example: using data "

@@ -34,7 +34,7 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "tuple"
-msgstr ""
+msgstr "tuple"
 
 msgid "rtype"
 msgstr "тип возвращаемого значения"

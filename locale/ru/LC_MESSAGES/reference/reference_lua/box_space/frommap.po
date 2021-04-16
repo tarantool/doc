@@ -1,6 +1,6 @@
 
 msgid "space_object:frommap()"
-msgstr ""
+msgstr "space_object:frommap()"
 
 msgid ""
 "Convert a map to a tuple instance or to a table. The map must consist of "

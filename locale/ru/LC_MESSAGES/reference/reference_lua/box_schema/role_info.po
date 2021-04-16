@@ -1,6 +1,6 @@
 
 msgid "box.schema.role.info()"
-msgstr ""
+msgstr "box.schema.role.info()"
 
 msgid "Return a description of a role's privileges."
 msgstr "Выдача описания прав роли."

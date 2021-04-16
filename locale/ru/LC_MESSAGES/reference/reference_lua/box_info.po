@@ -140,7 +140,7 @@ msgstr ""
 "<box_introspection-box_stat_vinyl>`."
 
 msgid "Below is a list of all ``box.info`` functions."
-msgstr ""
+msgstr "Ниже приведен перечень всех функций модуля ``box.info``."
 
 msgid "Name"
 msgstr "Имя"

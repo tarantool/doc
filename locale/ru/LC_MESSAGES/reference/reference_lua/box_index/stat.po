@@ -104,4 +104,4 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "table"
-msgstr ""
+msgstr "таблица"

@@ -80,7 +80,6 @@ msgstr "часть сообщения, которое сопровождает �
 msgid "For example:"
 msgstr "Пример:"
 
-#, python-format
 msgid ""
 "the ``NO_SUCH_USER`` message is \"``User '%s' is not found``\" -- it "
 "includes one \"``%s``\" component which will be replaced with errtext. Thus "

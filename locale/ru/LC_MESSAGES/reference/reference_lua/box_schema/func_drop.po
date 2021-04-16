@@ -1,6 +1,6 @@
 
 msgid "box.schema.func.drop()"
-msgstr ""
+msgstr "box.schema.func.drop()"
 
 msgid ""
 "Drop a function tuple. For explanation of how Tarantool maintains function "

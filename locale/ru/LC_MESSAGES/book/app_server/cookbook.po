@@ -177,7 +177,6 @@ msgstr ""
 " вызвать встроенную в C функцию: printf(). (Чтобы лучше понимать FFI, см. "
 "`Учебное пособие по FFI <http://luajit.org/ext_ffi_tutorial.html>`_.)"
 
-#, python-format
 msgid ""
 "#!/usr/bin/env tarantool\n"
 "\n"
@@ -1170,7 +1169,6 @@ msgstr ""
 "HTML-файл для этого сервера, включая Lua, может выглядеть следующим образом "
 "(он выведет \"1 Apple | 2 Orange | 3 Grapefruit | 4 Banana\")."
 
-#, python-format
 msgid ""
 "<html>\n"
 "<body>\n"
@@ -1212,7 +1210,6 @@ msgstr ""
 " вызвать на том экземпляре, с которым вы собираетесь установить соединение "
 "через Go-коннектор."
 
-#, python-format
 msgid ""
 "package main\n"
 "\n"

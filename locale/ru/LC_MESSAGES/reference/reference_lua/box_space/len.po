@@ -1,6 +1,6 @@
 
 msgid "space_object:len()"
-msgstr ""
+msgstr "space_object:len()"
 
 msgid ""
 "Return the number of tuples in the space. If compared with :ref:`count() "
@@ -32,6 +32,10 @@ msgid ""
 "- 2\n"
 "..."
 msgstr ""
+"tarantool> box.space.tester:len()\n"
+"---\n"
+"- 2\n"
+"..."
 
 msgid ""
 "**Note re storage engine:** vinyl supports ``len()`` but the result may be "

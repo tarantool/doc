@@ -1,6 +1,6 @@
 
 msgid "space_object:insert()"
-msgstr ""
+msgstr "space_object:insert()"
 
 msgid "Insert a tuple into a space."
 msgstr "Вставка кортежа в спейс."
@@ -24,7 +24,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr ""
+msgstr "кортеж"
 
 msgid ""
 "**Possible errors:** :errcode:`ER_TUPLE_FOUND` if a tuple with the same "

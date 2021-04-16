@@ -1,6 +1,6 @@
 
 msgid "box.info.memory()"
-msgstr ""
+msgstr "box.info.memory()"
 
 msgid ""
 "The **memory** function of ``box.info`` gives the ``admin`` user a picture "

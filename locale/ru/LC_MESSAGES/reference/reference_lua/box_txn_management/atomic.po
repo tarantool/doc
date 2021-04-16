@@ -1,6 +1,6 @@
 
 msgid "box.atomic()"
-msgstr ""
+msgstr "box.atomic()"
 
 msgid ""
 "Execute a function, acting as if the function starts with an implicit "

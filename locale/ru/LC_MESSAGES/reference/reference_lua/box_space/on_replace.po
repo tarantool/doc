@@ -1,6 +1,6 @@
 
 msgid "space_object:on_replace()"
-msgstr ""
+msgstr "space_object:on_replace()"
 
 msgid ""
 "Create a \"replace :ref:`trigger <triggers>`\". The ``trigger-function`` "
@@ -206,3 +206,9 @@ msgid ""
 "- error: Transaction has been aborted by a fiber yield\n"
 "..."
 msgstr ""
+"tarantool> box.space.test:on_replace(fiber.yield)\n"
+"tarantool> box.space.test:replace{1, 2, 3}\n"
+"2020-02-02 21:22:03.073 [73185] main/102/init.lua txn.c:532 E> ER_TRANSACTION_YIELD: Transaction has been aborted by a fiber yield\n"
+"---\n"
+"- error: Transaction has been aborted by a fiber yield\n"
+"..."

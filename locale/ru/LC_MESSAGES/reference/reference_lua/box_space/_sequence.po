@@ -1,6 +1,6 @@
 
 msgid "box.space._sequence"
-msgstr ""
+msgstr "box.space._sequence"
 
 msgid ""
 "``_sequence`` is a system space for support of the :ref:`sequence feature "

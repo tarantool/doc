@@ -1,6 +1,6 @@
 
 msgid "box.space._vpriv"
-msgstr ""
+msgstr "box.space._vpriv"
 
 msgid ""
 "``_vpriv`` is a system space that represents a virtual view. The structure "
