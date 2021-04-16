@@ -4,4 +4,3 @@ msgstr ""
 
 msgid "List of C API headers"
 msgstr ""
-

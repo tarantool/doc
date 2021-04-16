@@ -2,7 +2,10 @@
 msgid "sequence_object:alter()"
 msgstr ""
 
-msgid "The ``alter()`` function can be used to change any of the sequence's options. Requirements and restrictions are the same as for :doc:`/reference/reference_lua/box_schema_sequence/create`."
+msgid ""
+"The ``alter()`` function can be used to change any of the sequence's "
+"options. Requirements and restrictions are the same as for "
+":doc:`/reference/reference_lua/box_schema_sequence/create`."
 msgstr ""
 
 msgid "Options:"
@@ -14,22 +17,33 @@ msgstr ""
 msgid "``min`` -- the MINIMUM value. Type = integer, Default = 1."
 msgstr ""
 
-msgid "``max`` - the MAXIMUM value. Type = integer, Default = 9223372036854775807."
+msgid ""
+"``max`` - the MAXIMUM value. Type = integer, Default = 9223372036854775807."
 msgstr ""
 
-msgid "There is a rule: ``min`` <= ``start`` <= ``max``. For example it is illegal to say ``{start=0}`` because then the specified start value (0) would be less than the default min value (1)."
+msgid ""
+"There is a rule: ``min`` <= ``start`` <= ``max``. For example it is illegal "
+"to say ``{start=0}`` because then the specified start value (0) would be "
+"less than the default min value (1)."
 msgstr ""
 
-msgid "There is a rule: ``min`` <= next-value <= ``max``. For example, if the next generated value would be 1000, but the maximum value is 999, then that would be considered \"overflow\"."
+msgid ""
+"There is a rule: ``min`` <= next-value <= ``max``. For example, if the next "
+"generated value would be 1000, but the maximum value is 999, then that would"
+" be considered \"overflow\"."
 msgstr ""
 
 msgid "``cycle`` -- the CYCLE value. Type = bool. Default = false."
 msgstr ""
 
-msgid "If the sequence generator's next value is an overflow number, it causes an error return -- unless ``cycle == true``."
+msgid ""
+"If the sequence generator's next value is an overflow number, it causes an "
+"error return -- unless ``cycle == true``."
 msgstr ""
 
-msgid "But if ``cycle == true``, the count is started again, at the MINIMUM value or at the MAXIMUM value (not the STARTS WITH value)."
+msgid ""
+"But if ``cycle == true``, the count is started again, at the MINIMUM value "
+"or at the MAXIMUM value (not the STARTS WITH value)."
 msgstr ""
 
 msgid "``cache`` -- the CACHE value. Type = unsigned integer. Default = 0."
@@ -43,4 +57,3 @@ msgstr ""
 
 msgid "Ordinarily this is what is added to the previous value."
 msgstr ""
-

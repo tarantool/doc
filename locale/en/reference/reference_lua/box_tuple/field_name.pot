@@ -2,7 +2,11 @@
 msgid "tuple_object[field-name]"
 msgstr ""
 
-msgid "If ``t`` is a tuple instance, ``t['field-name']`` will return the field named 'field-name' in the tuple. Fields have names if the tuple has been retrieved from a space that has an associated :ref:`format <box_space-format>`."
+msgid ""
+"If ``t`` is a tuple instance, ``t['field-name']`` will return the field "
+"named 'field-name' in the tuple. Fields have names if the tuple has been "
+"retrieved from a space that has an associated :ref:`format <box_space-"
+"format>`."
 msgstr ""
 
 msgid "return"
@@ -17,10 +21,13 @@ msgstr ""
 msgid "lua-value"
 msgstr ""
 
-msgid "In the following example, a tuple named ``t`` is returned from ``replace`` and then the second field in ``t`` named 'field2' is returned."
+msgid ""
+"In the following example, a tuple named ``t`` is returned from ``replace`` "
+"and then the second field in ``t`` named 'field2' is returned."
 msgstr ""
 
-msgid "tarantool> format = {}\n"
+msgid ""
+"tarantool> format = {}\n"
 "---\n"
 "...\n"
 "tarantool> format[1] = {name = 'field1', type = 'unsigned'}\n"
@@ -43,4 +50,3 @@ msgid "tarantool> format = {}\n"
 "- Я\n"
 "..."
 msgstr ""
-

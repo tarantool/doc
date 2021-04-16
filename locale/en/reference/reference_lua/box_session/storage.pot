@@ -2,13 +2,18 @@
 msgid "box.session.storage"
 msgstr ""
 
-msgid "A Lua table that can hold arbitrary unordered session-specific names and values, which will last until the session ends. For example, this table could be useful to store current tasks when working with a `Tarantool queue manager <https://github.com/tarantool/queue>`_."
+msgid ""
+"A Lua table that can hold arbitrary unordered session-specific names and "
+"values, which will last until the session ends. For example, this table "
+"could be useful to store current tasks when working with a `Tarantool queue "
+"manager <https://github.com/tarantool/queue>`_."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.session.peer(box.session.id())\n"
+msgid ""
+"tarantool> box.session.peer(box.session.id())\n"
 "---\n"
 "- 127.0.0.1:45129\n"
 "...\n"
@@ -31,4 +36,3 @@ msgid "tarantool> box.session.peer(box.session.id())\n"
 "- 'radius_of_mars=3396 random_memorandum=Don't forget the eggs. '\n"
 "..."
 msgstr ""
-

@@ -2,10 +2,18 @@
 msgid "tuple_object:transform()"
 msgstr ""
 
-msgid "If ``t`` is a tuple instance, :samp:`t:transform({start-field-number},{fields-to-remove})` will return a tuple where, starting from field ``start-field-number``, a number of fields (``fields-to-remove``) are removed. Optionally one can add more arguments after ``fields-to-remove`` to indicate new values that will replace what was removed."
+msgid ""
+"If ``t`` is a tuple instance, :samp:`t:transform({start-field-"
+"number},{fields-to-remove})` will return a tuple where, starting from field "
+"``start-field-number``, a number of fields (``fields-to-remove``) are "
+"removed. Optionally one can add more arguments after ``fields-to-remove`` to"
+" indicate new values that will replace what was removed."
 msgstr ""
 
-msgid "If the original tuple comes from a space that has been formatted with a :ref:`format clause <box_space-format>`, the formatting will not be preserved for the result tuple."
+msgid ""
+"If the original tuple comes from a space that has been formatted with a "
+":ref:`format clause <box_space-format>`, the formatting will not be "
+"preserved for the result tuple."
 msgstr ""
 
 msgid "Parameters"
@@ -23,10 +31,14 @@ msgstr ""
 msgid "rtype"
 msgstr ""
 
-msgid "In the following example, a tuple named ``t`` is created and then, starting from the second field, two fields are removed but one new one is added, then the result is returned."
+msgid ""
+"In the following example, a tuple named ``t`` is created and then, starting "
+"from the second field, two fields are removed but one new one is added, then"
+" the result is returned."
 msgstr ""
 
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
+msgid ""
+"tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
 "---\n"
 "...\n"
 "tarantool> t:transform(2, 2, 'x')\n"
@@ -34,4 +46,3 @@ msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
 "- ['Fld#1', 'x', 'Fld#4', 'Fld#5']\n"
 "..."
 msgstr ""
-

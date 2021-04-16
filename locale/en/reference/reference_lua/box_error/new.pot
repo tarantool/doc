@@ -2,7 +2,11 @@
 msgid "box.error.new()"
 msgstr ""
 
-msgid "Create an error object, but do not throw. This is useful when error information should be saved for later retrieval. The parameters are the same as for :doc:`/reference/reference_lua/box_error/error`, see the description there."
+msgid ""
+"Create an error object, but do not throw. This is useful when error "
+"information should be saved for later retrieval. The parameters are the same"
+" as for :doc:`/reference/reference_lua/box_error/error`, see the description"
+" there."
 msgstr ""
 
 msgid "Parameters"
@@ -17,7 +21,8 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}\n"
+msgid ""
+"tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}\n"
 "---\n"
 "...\n"
 "tarantool> e:unpack()\n"
@@ -30,4 +35,3 @@ msgid "tarantool> e = box.error.new{code = 555, reason = 'Arbitrary message'}\n"
 "    line: 1\n"
 "..."
 msgstr ""
-

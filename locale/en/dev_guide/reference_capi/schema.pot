@@ -49,4 +49,3 @@ msgstr ""
 
 msgid "NULL value, returned on error."
 msgstr ""
-

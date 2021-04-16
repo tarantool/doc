@@ -20,13 +20,16 @@ msgstr ""
 msgid "``type``,"
 msgstr ""
 
-msgid "``opts`` (e.g. unique option), [``tuple-field-no``, ``tuple-field-type`` ...]."
+msgid ""
+"``opts`` (e.g. unique option), [``tuple-field-no``, ``tuple-field-type`` "
+"...]."
 msgstr ""
 
 msgid "Here is what ``_index`` contains in a typical installation:"
 msgstr ""
 
-msgid "tarantool> box.space._index:select{}\n"
+msgid ""
+"tarantool> box.space._index:select{}\n"
 "---\n"
 "- - [272, 0, 'primary', 'tree', {'unique': true}, [[0, 'string']]]\n"
 "  - [280, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]\n"
@@ -45,4 +48,3 @@ msgid "tarantool> box.space._index:select{}\n"
 "---\n"
 "..."
 msgstr ""
-

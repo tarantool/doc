@@ -2,13 +2,26 @@
 msgid "Submodule `box.ctl`"
 msgstr ""
 
-msgid "The ``box.ctl`` submodule contains two functions: ``wait_ro`` (wait until read-only) and ``wait_rw`` (wait until read-write). The functions are useful during initialization of a server."
+msgid ""
+"The ``box.ctl`` submodule contains two functions: ``wait_ro`` (wait until "
+"read-only) and ``wait_rw`` (wait until read-write). The functions are useful"
+" during initialization of a server."
 msgstr ""
 
-msgid "A particular use is for :doc:`box.once() </reference/reference_lua/box_once>`. For example, when a replica is initializing, it may call a ``box.once()`` function while the server is still in read-only mode, and fail to make changes that are necessary only once before the replica is fully initialized. This could cause conflicts between a master and a replica if the master is in read-write mode and the replica is in read-only mode. Waiting until \"read only mode = false\" solves this problem."
+msgid ""
+"A particular use is for :doc:`box.once() "
+"</reference/reference_lua/box_once>`. For example, when a replica is "
+"initializing, it may call a ``box.once()`` function while the server is "
+"still in read-only mode, and fail to make changes that are necessary only "
+"once before the replica is fully initialized. This could cause conflicts "
+"between a master and a replica if the master is in read-write mode and the "
+"replica is in read-only mode. Waiting until \"read only mode = false\" "
+"solves this problem."
 msgstr ""
 
-msgid "To see whether a function is already in read-only or read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`."
+msgid ""
+"To see whether a function is already in read-only or read-write mode, check "
+":ref:`box.info.ro <box_introspection-box_info>`."
 msgstr ""
 
 msgid "Below is a list of all ``box.ctl`` functions."
@@ -31,4 +44,3 @@ msgstr ""
 
 msgid "Wait until ``box.info.ro`` is false"
 msgstr ""
-

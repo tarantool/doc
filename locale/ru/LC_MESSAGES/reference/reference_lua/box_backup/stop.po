@@ -3,4 +3,5 @@ msgid "box.backup.stop()"
 msgstr ""
 
 msgid "Informs the server that normal operations may resume."
-msgstr "Оповещает сервер о том, что можно вернуться к работе в обычном режиме."
+msgstr ""
+"Оповещает сервер о том, что можно вернуться к работе в обычном режиме."

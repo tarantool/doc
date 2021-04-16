@@ -2,10 +2,17 @@
 msgid "tuple_object:pairs(), tuple_object:ipairs()"
 msgstr ""
 
-msgid "In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_ is a method which returns: ``function``, ``lua-table-value``, ``nil``. Tarantool has extended this so that ``tuple-value:pairs()`` returns: ``function``, ``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua iterators traverse a value's components until an end marker is reached."
+msgid ""
+"In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_ is a "
+"method which returns: ``function``, ``lua-table-value``, ``nil``. Tarantool "
+"has extended this so that ``tuple-value:pairs()`` returns: ``function``, "
+"``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua "
+"iterators traverse a value's components until an end marker is reached."
 msgstr ""
 
-msgid "``tuple_object:ipairs()`` is the same as ``pairs()``, because tuple fields are always integers."
+msgid ""
+"``tuple_object:ipairs()`` is the same as ``pairs()``, because tuple fields "
+"are always integers."
 msgstr ""
 
 msgid "return"
@@ -20,10 +27,13 @@ msgstr ""
 msgid "function, lua-value, nil"
 msgstr ""
 
-msgid "In the following example, a tuple named ``t`` is created and then all its fields are selected using a Lua for-end loop."
+msgid ""
+"In the following example, a tuple named ``t`` is created and then all its "
+"fields are selected using a Lua for-end loop."
 msgstr ""
 
-msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
+msgid ""
+"tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
 "---\n"
 "...\n"
 "tarantool> tmp = ''\n"
@@ -39,4 +49,3 @@ msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}
 "- Fld#1Fld#2Fld#3Fld#4Fld#5\n"
 "..."
 msgstr ""
-

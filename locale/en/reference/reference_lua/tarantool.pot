@@ -2,16 +2,24 @@
 msgid "Module `tarantool`"
 msgstr ""
 
-msgid "By saying ``require('tarantool')``, one can answer some questions about how the tarantool server was built, such as \"what flags were used\", or \"what was the version of the compiler\"."
+msgid ""
+"By saying ``require('tarantool')``, one can answer some questions about how "
+"the tarantool server was built, such as \"what flags were used\", or \"what "
+"was the version of the compiler\"."
 msgstr ""
 
-msgid "Additionally one can see the uptime and the server version and the process id. Those information items can also be accessed with :ref:`box.info() <box_introspection-box_info>` but use of the tarantool module is recommended."
+msgid ""
+"Additionally one can see the uptime and the server version and the process "
+"id. Those information items can also be accessed with :ref:`box.info() "
+"<box_introspection-box_info>` but use of the tarantool module is "
+"recommended."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> tarantool = require('tarantool')\n"
+msgid ""
+"tarantool> tarantool = require('tarantool')\n"
 "---\n"
 "...\n"
 "tarantool> tarantool\n"
@@ -37,4 +45,3 @@ msgid "tarantool> tarantool = require('tarantool')\n"
 "- 108.64641499519\n"
 "..."
 msgstr ""
-

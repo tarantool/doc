@@ -5,9 +5,11 @@ msgstr ""
 msgid "This reference covers Tarantool's built-in Lua modules."
 msgstr ""
 
-msgid "Some functions in these modules are analogs to functions from `standard Lua libraries <http://www.lua.org/manual/>`_. For better results, we recommend using functions from Tarantool's built-in modules."
+msgid ""
+"Some functions in these modules are analogs to functions from `standard Lua "
+"libraries <http://www.lua.org/manual/>`_. For better results, we recommend "
+"using functions from Tarantool's built-in modules."
 msgstr ""
 
 msgid "List of Lua modules"
 msgstr ""
-

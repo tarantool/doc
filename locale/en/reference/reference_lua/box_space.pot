@@ -2,7 +2,13 @@
 msgid "Submodule `box.space`"
 msgstr ""
 
-msgid "**CRUD operations** in Tarantool are implemented by the ``box.space`` submodule. It has the data-manipulation functions ``select``, ``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``. It also has members, such as id, and whether or not a space is enabled. Submodule source code is available in file `src/box/lua/schema.lua <https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_."
+msgid ""
+"**CRUD operations** in Tarantool are implemented by the ``box.space`` "
+"submodule. It has the data-manipulation functions ``select``, ``insert``, "
+"``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``. It also "
+"has members, such as id, and whether or not a space is enabled. Submodule "
+"source code is available in file `src/box/lua/schema.lua "
+"<https://github.com/tarantool/tarantool/blob/1.7/src/box/lua/schema.lua>`_."
 msgstr ""
 
 msgid "Below is a list of all ``box.space`` functions and members."
@@ -241,4 +247,3 @@ msgstr ""
 
 msgid "(Metadata) List of users accessible for the current user"
 msgstr ""
-

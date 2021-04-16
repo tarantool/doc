@@ -22,7 +22,8 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "the tuple whose index-key fields are equal to the passed key values."
-msgstr "кортеж, в котором поля ключа в индексе равны переданным значениям ключа."
+msgstr ""
+"кортеж, в котором поля ключа в индексе равны переданным значениям ключа."
 
 msgid "rtype"
 msgstr "тип возвращаемого значения"

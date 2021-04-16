@@ -2,7 +2,11 @@
 msgid "space_object:frommap()"
 msgstr ""
 
-msgid "Convert a map to a tuple instance or to a table. The map must consist of \"field name = value\" pairs. The field names and the value types must match names and types stated previously for the space, via :ref:`space_object:format() <box_space-format>`."
+msgid ""
+"Convert a map to a tuple instance or to a table. The map must consist of "
+"\"field name = value\" pairs. The field names and the value types must match"
+" names and types stated previously for the space, via "
+":ref:`space_object:format() <box_space-format>`."
 msgstr ""
 
 msgid "Parameters"
@@ -14,7 +18,10 @@ msgstr ""
 msgid "a series of \"field = value\" pairs, in any order."
 msgstr ""
 
-msgid "the only legal option is ``{table = true|false}``; |br| if the option is omitted or if ``{table = false}``, then return type will be 'cdata' (i.e. tuple); |br| if ``{table = true}``, then return type will be 'table'."
+msgid ""
+"the only legal option is ``{table = true|false}``; |br| if the option is "
+"omitted or if ``{table = false}``, then return type will be 'cdata' (i.e. "
+"tuple); |br| if ``{table = true}``, then return type will be 'table'."
 msgstr ""
 
 msgid "return"
@@ -29,13 +36,16 @@ msgstr ""
 msgid "tuple or table"
 msgstr ""
 
-msgid "**Possible errors:** ``space_object`` does not exist or has no format; \"unknown field\"."
+msgid ""
+"**Possible errors:** ``space_object`` does not exist or has no format; "
+"\"unknown field\"."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "-- Create a format with two fields named 'a' and 'b'.\n"
+msgid ""
+"-- Create a format with two fields named 'a' and 'b'.\n"
 "-- Create a space with that format.\n"
 "-- Create a tuple based on a map consistent with that space.\n"
 "-- Create a table based on a map consistent with that space.\n"
@@ -55,4 +65,3 @@ msgid "-- Create a format with two fields named 'a' and 'b'.\n"
 "  - x\n"
 "..."
 msgstr ""
-

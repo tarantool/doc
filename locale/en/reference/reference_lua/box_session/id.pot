@@ -5,7 +5,9 @@ msgstr ""
 msgid "return"
 msgstr ""
 
-msgid "the unique identifier (ID) for the current session. The result can be 0 or -1 meaning there is no session."
+msgid ""
+"the unique identifier (ID) for the current session. The result can be 0 or "
+"-1 meaning there is no session."
 msgstr ""
 
 msgid "rtype"
@@ -13,4 +15,3 @@ msgstr ""
 
 msgid "number"
 msgstr ""
-

@@ -5,7 +5,10 @@ msgstr ""
 msgid "Delete a tuple identified by a key."
 msgstr ""
 
-msgid "Same as :ref:`box.space...delete() <box_space-delete>`, but key is searched in this index instead of in the primary-key index. This index ought to be unique."
+msgid ""
+"Same as :ref:`box.space...delete() <box_space-delete>`, but key is searched "
+"in this index instead of in the primary-key index. This index ought to be "
+"unique."
 msgstr ""
 
 msgid "Parameters"
@@ -29,6 +32,7 @@ msgstr ""
 msgid "tuple"
 msgstr ""
 
-msgid "**Note re storage engine:** vinyl will return `nil`, rather than the deleted tuple."
+msgid ""
+"**Note re storage engine:** vinyl will return `nil`, rather than the deleted"
+" tuple."
 msgstr ""
-

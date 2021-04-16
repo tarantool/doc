@@ -2,16 +2,24 @@
 msgid "box.schema.user.create()"
 msgstr ""
 
-msgid "Create a user. For explanation of how Tarantool maintains user data, see section :ref:`Users<authentication-users>` and reference on :ref:`_user <box_space-user>` space."
+msgid ""
+"Create a user. For explanation of how Tarantool maintains user data, see "
+"section :ref:`Users<authentication-users>` and reference on :ref:`_user "
+"<box_space-user>` space."
 msgstr ""
 
 msgid "The possible options are:"
 msgstr ""
 
-msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the user already exists,"
+msgid ""
+"``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true``"
+" means there should be no error if the user already exists,"
 msgstr ""
 
-msgid "``password`` (default = '') - string; the ``password`` = *password* specification is good because in a :ref:`URI <index-uri>` (Uniform Resource Identifier) it is usually illegal to include a user-name without a password."
+msgid ""
+"``password`` (default = '') - string; the ``password`` = *password* "
+"specification is good because in a :ref:`URI <index-uri>` (Uniform Resource "
+"Identifier) it is usually illegal to include a user-name without a password."
 msgstr ""
 
 msgid "The maximum number of users is 32."
@@ -20,7 +28,9 @@ msgstr ""
 msgid "Parameters"
 msgstr ""
 
-msgid "name of user, which should conform to the :ref:`rules for object names <app_server-names>`"
+msgid ""
+"name of user, which should conform to the :ref:`rules for object names "
+"<app_server-names>`"
 msgstr ""
 
 msgid "``if_not_exists``, ``password``"
@@ -35,8 +45,8 @@ msgstr ""
 msgid "**Examples:**"
 msgstr ""
 
-msgid "box.schema.user.create('Lena')\n"
+msgid ""
+"box.schema.user.create('Lena')\n"
 "box.schema.user.create('Lena', {password = 'X'})\n"
 "box.schema.user.create('Lena', {if_not_exists = false})"
 msgstr ""
-

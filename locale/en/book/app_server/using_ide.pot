@@ -2,13 +2,21 @@
 msgid "Developing with an IDE"
 msgstr ""
 
-msgid "You can use IntelliJ IDEA as an IDE to develop and debug Lua applications for Tarantool."
+msgid ""
+"You can use IntelliJ IDEA as an IDE to develop and debug Lua applications "
+"for Tarantool."
 msgstr ""
 
-msgid "Download and install the IDE from the `official web-site <https://www.jetbrains.com/idea/>`_."
+msgid ""
+"Download and install the IDE from the `official web-site "
+"<https://www.jetbrains.com/idea/>`_."
 msgstr ""
 
-msgid "JetBrains provides specialized editions for particular languages: IntelliJ IDEA (Java), PHPStorm (PHP), PyCharm (Python), RubyMine (Ruby), CLion (C/C++), WebStorm (Web) and others. So, download a version that suits your primary programming language."
+msgid ""
+"JetBrains provides specialized editions for particular languages: IntelliJ "
+"IDEA (Java), PHPStorm (PHP), PyCharm (Python), RubyMine (Ruby), CLion "
+"(C/C++), WebStorm (Web) and others. So, download a version that suits your "
+"primary programming language."
 msgstr ""
 
 msgid "Tarantool integration is supported for all editions."
@@ -29,13 +37,17 @@ msgstr ""
 msgid "Install ``EmmyLua`` plugin."
 msgstr ""
 
-msgid "Please don’t be confused with ``Lua`` plugin, which is less powerful than ``EmmyLua``."
+msgid ""
+"Please don’t be confused with ``Lua`` plugin, which is less powerful than "
+"``EmmyLua``."
 msgstr ""
 
 msgid "Restart IntelliJ IDEA."
 msgstr ""
 
-msgid "Click ``Configure``, select ``Project Defaults`` and then ``Run Configurations``."
+msgid ""
+"Click ``Configure``, select ``Project Defaults`` and then ``Run "
+"Configurations``."
 msgstr ""
 
 msgid "Find ``Lua Application`` in the sidebar at the left."
@@ -44,10 +56,14 @@ msgstr ""
 msgid "In ``Program``, type a path to an installed ``tarantool`` binary."
 msgstr ""
 
-msgid "By default, this is ``tarantool`` or ``/usr/bin/tarantool`` on most platforms."
+msgid ""
+"By default, this is ``tarantool`` or ``/usr/bin/tarantool`` on most "
+"platforms."
 msgstr ""
 
-msgid "If you installed ``tarantool`` from sources to a custom directory, please specify the proper path here."
+msgid ""
+"If you installed ``tarantool`` from sources to a custom directory, please "
+"specify the proper path here."
 msgstr ""
 
 msgid "Now IntelliJ IDEA is ready to use with Tarantool."
@@ -62,12 +78,15 @@ msgstr ""
 msgid "Write your code, save the file."
 msgstr ""
 
-msgid "To run you application, click ``Run -> Run`` in the main menu and select your source file in the list."
+msgid ""
+"To run you application, click ``Run -> Run`` in the main menu and select "
+"your source file in the list."
 msgstr ""
 
 msgid "Or click ``Run -> Debug`` to start debugging."
 msgstr ""
 
-msgid "To use Lua debugger, please upgrade Tarantool to version 1.7.5-29-gbb6170e4b or later."
+msgid ""
+"To use Lua debugger, please upgrade Tarantool to version 1.7.5-29-gbb6170e4b"
+" or later."
 msgstr ""
-

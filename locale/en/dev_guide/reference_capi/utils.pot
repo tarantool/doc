@@ -5,7 +5,9 @@ msgstr ""
 msgid "Push cdata of given ``ctypeid`` onto the stack."
 msgstr ""
 
-msgid "CTypeID must be used from FFI at least once. Allocated memory returned uninitialized. Only numbers and pointers are supported."
+msgid ""
+"CTypeID must be used from FFI at least once. Allocated memory returned "
+"uninitialized. Only numbers and pointers are supported."
 msgstr ""
 
 msgid "Parameters"
@@ -41,7 +43,9 @@ msgstr ""
 msgid "Set finalizer function on a cdata object."
 msgstr ""
 
-msgid "Equivalent to call `ffi.gc(obj, function)`. Finalizer function must be on the top of the stack."
+msgid ""
+"Equivalent to call `ffi.gc(obj, function)`. Finalizer function must be on "
+"the top of the stack."
 msgstr ""
 
 msgid "Return CTypeID (FFI) of given СDATA type."
@@ -53,7 +57,9 @@ msgstr ""
 msgid "CTypeID"
 msgstr ""
 
-msgid "See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`, :ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`"
+msgid ""
+"See also: :ref:`luaL_pushcdata()<c_api-utils-luaL_pushcdata>`, "
+":ref:`luaL_checkcdata()<c_api-utils-luaL_checkcdata>`"
 msgstr ""
 
 msgid "Declare symbols for FFI."
@@ -80,7 +86,9 @@ msgstr ""
 msgid "Push int64_t onto the stack."
 msgstr ""
 
-msgid "Check whether the argument idx is a uint64 or a convertable string and returns this number."
+msgid ""
+"Check whether the argument idx is a uint64 or a convertable string and "
+"returns this number."
 msgstr ""
 
 msgid "throws"
@@ -89,7 +97,9 @@ msgstr ""
 msgid "error if the argument can't be converted"
 msgstr ""
 
-msgid "Check whether the argument idx is a int64 or a convertable string and returns this number."
+msgid ""
+"Check whether the argument idx is a int64 or a convertable string and "
+"returns this number."
 msgstr ""
 
 msgid "the converted number or 0 of argument can't be converted"
@@ -119,15 +129,19 @@ msgstr ""
 msgid "Re-throw the last Tarantool error as a Lua object."
 msgstr ""
 
-msgid "See also: `lua_error() <https://www.lua.org/manual/5.1/manual.html#lua_error>`_,"
+msgid ""
+"See also: `lua_error() "
+"<https://www.lua.org/manual/5.1/manual.html#lua_error>`_,"
 msgstr ""
 
 msgid ":ref:`box_error_last() <c_api-error-box_error_last>`."
 msgstr ""
 
-msgid "Similar to `lua_cpcall() <https://www.lua.org/manual/5.1/manual.html#lua_cpcall>`_, but with the proper support of Tarantool errors."
+msgid ""
+"Similar to `lua_cpcall() "
+"<https://www.lua.org/manual/5.1/manual.html#lua_cpcall>`_, but with the "
+"proper support of Tarantool errors."
 msgstr ""
 
 msgid "Get the global Lua state used by Tarantool."
 msgstr ""
-

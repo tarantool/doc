@@ -2,7 +2,10 @@
 msgid "box.rollback_to_savepoint()"
 msgstr ""
 
-msgid "Do not end the transaction, but cancel all its data-change and :ref:`box.savepoint() <box-savepoint>` operations that were done after the specified savepoint."
+msgid ""
+"Do not end the transaction, but cancel all its data-change and "
+":ref:`box.savepoint() <box-savepoint>` operations that were done after the "
+"specified savepoint."
 msgstr ""
 
 msgid "return"
@@ -17,7 +20,8 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "function f()\n"
+msgid ""
+"function f()\n"
 "  box.begin()           -- start transaction\n"
 "  box.space.t:insert{1} -- this will not be rolled back\n"
 "  local s = box.savepoint()\n"
@@ -26,4 +30,3 @@ msgid "function f()\n"
 "  box.commit()          -- end transaction\n"
 "end"
 msgstr ""
-

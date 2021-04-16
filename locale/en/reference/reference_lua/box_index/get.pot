@@ -2,7 +2,9 @@
 msgid "index_object:get()"
 msgstr ""
 
-msgid "Search for a tuple via the given index, as described :ref:`earlier <box_index-note>`."
+msgid ""
+"Search for a tuple via the given index, as described :ref:`earlier "
+"<box_index-note>`."
 msgstr ""
 
 msgid "Parameters"
@@ -38,15 +40,17 @@ msgstr ""
 msgid "more than one tuple matches."
 msgstr ""
 
-msgid "**Complexity factors:** Index size, Index type. See also :ref:`space_object:get() <box_space-get>`."
+msgid ""
+"**Complexity factors:** Index size, Index type. See also "
+":ref:`space_object:get() <box_space-get>`."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.space.tester.index.primary:get(2)\n"
+msgid ""
+"tarantool> box.space.tester.index.primary:get(2)\n"
 "---\n"
 "- [2, 'Music']\n"
 "..."
 msgstr ""
-

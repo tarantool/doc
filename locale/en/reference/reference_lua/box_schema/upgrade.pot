@@ -4,4 +4,3 @@ msgstr ""
 
 msgid "See :ref:`Upgrading a Tarantool database <admin-upgrades>`."
 msgstr ""
-

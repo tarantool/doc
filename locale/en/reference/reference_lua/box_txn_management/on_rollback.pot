@@ -2,9 +2,12 @@
 msgid "box.on_rollback()"
 msgstr ""
 
-msgid "Define a trigger for execution when a transaction ends due to an event such as :doc:`/reference/reference_lua/box_txn_management/rollback`."
+msgid ""
+"Define a trigger for execution when a transaction ends due to an event such "
+"as :doc:`/reference/reference_lua/box_txn_management/rollback`."
 msgstr ""
 
-msgid "The parameters and warnings are exactly the same as for :doc:`/reference/reference_lua/box_txn_management/on_commit`."
+msgid ""
+"The parameters and warnings are exactly the same as for "
+":doc:`/reference/reference_lua/box_txn_management/on_commit`."
 msgstr ""
-
