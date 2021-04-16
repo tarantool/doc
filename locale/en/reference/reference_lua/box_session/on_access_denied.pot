@@ -2,7 +2,9 @@
 msgid "box.session.on_access_denied()"
 msgstr ""
 
-msgid "Define a trigger for reacting to user's attempts to execute actions that are not within the user's privileges."
+msgid ""
+"Define a trigger for reacting to user's attempts to execute actions that are"
+" not within the user's privileges."
 msgstr ""
 
 msgid "Parameters"
@@ -20,22 +22,30 @@ msgstr ""
 msgid "nil or function pointer"
 msgstr ""
 
-msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
+msgid ""
+"If the parameters are (nil, old-trigger-function), then the old trigger is "
+"deleted."
 msgstr ""
 
-msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
+msgid ""
+"If both parameters are omitted, then the response is a list of existing "
+"trigger functions."
 msgstr ""
 
-msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgid ""
+"Details about trigger characteristics are in the :ref:`triggers <triggers-"
+"box_triggers>` section."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "For example, server administrator can log restricted actions like this:"
+msgid ""
+"For example, server administrator can log restricted actions like this:"
 msgstr ""
 
-msgid "tarantool> function on_access_denied(op, type, name)\n"
+msgid ""
+"tarantool> function on_access_denied(op, type, name)\n"
 "         > log.warn('User %s tried to %s %s %s without required privileges', box.session.user(), op, type, name)\n"
 "         > end\n"
 "---\n"
@@ -52,6 +62,9 @@ msgid "tarantool> function on_access_denied(op, type, name)\n"
 "..."
 msgstr ""
 
-msgid "Then, when some user without required privileges tries to call ``test()`` and gets the error, the server will execute this trigger and write to log **\"User *user_name* tried to Execute function test without required privileges\"**"
+msgid ""
+"Then, when some user without required privileges tries to call ``test()`` "
+"and gets the error, the server will execute this trigger and write to log "
+"**\"User *user_name* tried to Execute function test without required "
+"privileges\"**"
 msgstr ""
-

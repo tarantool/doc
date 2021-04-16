@@ -2,27 +2,38 @@
 msgid "Reseeding a replica"
 msgstr ""
 
-msgid "If any of a replica's .xlog/.snap/.run files are corrupted or deleted, you can \"re-seed\" the replica:"
+msgid ""
+"If any of a replica's .xlog/.snap/.run files are corrupted or deleted, you "
+"can \"re-seed\" the replica:"
 msgstr ""
 
-msgid "Stop the replica and destroy all local database files (the ones with extensions .xlog/.snap/.run/.inprogress)."
+msgid ""
+"Stop the replica and destroy all local database files (the ones with "
+"extensions .xlog/.snap/.run/.inprogress)."
 msgstr ""
 
 msgid "Delete the replica's record from the following locations:"
 msgstr ""
 
-msgid "the ``replication`` parameter at all running instances in the replica set."
+msgid ""
+"the ``replication`` parameter at all running instances in the replica set."
 msgstr ""
 
 msgid "the ``box.space._cluster`` tuple on the master instance."
 msgstr ""
 
-msgid "See section :ref:`Removing instances <replication-remove_instances>` for details."
+msgid ""
+"See section :ref:`Removing instances <replication-remove_instances>` for "
+"details."
 msgstr ""
 
-msgid "Restart the replica with the same instance file to contact the master again. The replica will then catch up with the master by retrieving all the master’s tuples."
+msgid ""
+"Restart the replica with the same instance file to contact the master again."
+" The replica will then catch up with the master by retrieving all the "
+"master’s tuples."
 msgstr ""
 
-msgid "Remember that this procedure works only if the master’s WAL files are present."
+msgid ""
+"Remember that this procedure works only if the master’s WAL files are "
+"present."
 msgstr ""
-

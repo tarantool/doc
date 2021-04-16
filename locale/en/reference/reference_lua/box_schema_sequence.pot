@@ -2,10 +2,15 @@
 msgid "Sequences"
 msgstr ""
 
-msgid "An introduction to sequences is in the :ref:`Sequences <index-box_sequence>` section of the \"Data model\" chapter. Here are the details for each function and option."
+msgid ""
+"An introduction to sequences is in the :ref:`Sequences <index-box_sequence>`"
+" section of the \"Data model\" chapter. Here are the details for each "
+"function and option."
 msgstr ""
 
-msgid "All functions related to sequences require appropriate :ref:`privileges <authentication-owners_privileges>`."
+msgid ""
+"All functions related to sequences require appropriate :ref:`privileges "
+"<authentication-owners_privileges>`."
 msgstr ""
 
 msgid "Below is a list of all ``box.schema.sequence`` functions."
@@ -65,7 +70,8 @@ msgstr ""
 msgid "Here is an example showing all sequence options and operations:"
 msgstr ""
 
-msgid "s = box.schema.sequence.create(\n"
+msgid ""
+"s = box.schema.sequence.create(\n"
 "               'S2',\n"
 "               {start=100,\n"
 "               min=100,\n"
@@ -80,4 +86,3 @@ msgid "s = box.schema.sequence.create(\n"
 "s:set(150)\n"
 "s:drop()"
 msgstr ""
-

@@ -8,7 +8,10 @@ msgstr ""
 msgid "Tarantool 1.10 manual"
 msgstr ""
 
-msgid "This manual embraces all aspects of using Tarantool: from introductory information and exercises for beginners -- to advanced instructions and detailed references for power users and contributors."
+msgid ""
+"This manual embraces all aspects of using Tarantool: from introductory "
+"information and exercises for beginners -- to advanced instructions and "
+"detailed references for power users and contributors."
 msgstr ""
 
 msgid "**Other formats:**"
@@ -37,4 +40,3 @@ msgstr ""
 
 msgid "`Telegram chat`_"
 msgstr ""
-

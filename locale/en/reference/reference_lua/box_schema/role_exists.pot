@@ -2,7 +2,8 @@
 msgid "box.schema.role.exists()"
 msgstr ""
 
-msgid "Return ``true`` if a role exists; return ``false`` if a role does not exist."
+msgid ""
+"Return ``true`` if a role exists; return ``false`` if a role does not exist."
 msgstr ""
 
 msgid "Parameters"
@@ -22,4 +23,3 @@ msgstr ""
 
 msgid "box.schema.role.exists('Accountant')"
 msgstr ""
-

@@ -10,4 +10,3 @@ msgstr ""
 
 msgid "boolean"
 msgstr ""
-

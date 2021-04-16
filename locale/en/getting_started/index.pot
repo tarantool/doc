@@ -2,6 +2,7 @@
 msgid "Getting started"
 msgstr ""
 
-msgid "In this chapter, we show how to work with Tarantool as a DBMS -- and how to connect to a Tarantool database from other programming languages."
+msgid ""
+"In this chapter, we show how to work with Tarantool as a DBMS -- and how to "
+"connect to a Tarantool database from other programming languages."
 msgstr ""
-

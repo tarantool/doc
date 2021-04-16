@@ -26,18 +26,23 @@ msgstr ""
 msgid "tuple"
 msgstr ""
 
-msgid "**Possible errors:** :errcode:`ER_TUPLE_FOUND` if a tuple with the same unique-key value already exists."
+msgid ""
+"**Possible errors:** :errcode:`ER_TUPLE_FOUND` if a tuple with the same "
+"unique-key value already exists."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.space.tester:insert{5000,'tuple number five thousand'}\n"
+msgid ""
+"tarantool> box.space.tester:insert{5000,'tuple number five thousand'}\n"
 "---\n"
 "- [5000, 'tuple number five thousand']\n"
 "..."
 msgstr ""
 
-msgid "For more usage scenarios and typical errors see :ref:`Example: using data operations <box_space-operations-detailed-examples>` further in this section."
+msgid ""
+"For more usage scenarios and typical errors see :ref:`Example: using data "
+"operations <box_space-operations-detailed-examples>` further in this "
+"section."
 msgstr ""
-

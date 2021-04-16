@@ -2,7 +2,9 @@
 msgid "index_object:parts()"
 msgstr ""
 
-msgid "An array describing the index fields. To learn more about the index field types, refer to :ref:`this table <box_space-index_field_types>`."
+msgid ""
+"An array describing the index fields. To learn more about the index field "
+"types, refer to :ref:`this table <box_space-index_field_types>`."
 msgstr ""
 
 msgid "rtype"
@@ -14,7 +16,8 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.space.tester.index.primary\n"
+msgid ""
+"tarantool> box.space.tester.index.primary\n"
 "---\n"
 "- unique: true\n"
 "  parts:\n"
@@ -27,4 +30,3 @@ msgid "tarantool> box.space.tester.index.primary\n"
 "  type: TREE\n"
 "..."
 msgstr ""
-

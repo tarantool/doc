@@ -2,13 +2,16 @@
 msgid "box.error.clear()"
 msgstr ""
 
-msgid "Clear the record of errors, so functions like ``box.error()`` or ``box.error.last()`` will have no effect."
+msgid ""
+"Clear the record of errors, so functions like ``box.error()`` or "
+"``box.error.last()`` will have no effect."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.schema.space.create('')\n"
+msgid ""
+"tarantool> box.schema.space.create('')\n"
 "---\n"
 "- error: Invalid identifier '' (expected printable symbols only or it is too long)\n"
 "...\n"
@@ -24,4 +27,3 @@ msgid "tarantool> box.schema.space.create('')\n"
 "- null\n"
 "..."
 msgstr ""
-

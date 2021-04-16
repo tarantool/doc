@@ -8,7 +8,10 @@ msgstr ""
 msgid "Return a tuple from a C stored procedure."
 msgstr ""
 
-msgid "The returned tuple is automatically reference-counted by Tarantool. An example program that uses ``box_return_tuple()`` is :ref:`write.c <f_c_tutorial-write>`."
+msgid ""
+"The returned tuple is automatically reference-counted by Tarantool. An "
+"example program that uses ``box_return_tuple()`` is :ref:`write.c "
+"<f_c_tutorial-write>`."
 msgstr ""
 
 msgid "Parameters"
@@ -23,7 +26,9 @@ msgstr ""
 msgid "Returns"
 msgstr ""
 
-msgid "-1 on error (perhaps, out of memory; check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgid ""
+"-1 on error (perhaps, out of memory; check :ref:`box_error_last()<c_api-"
+"error-box_error_last>`)"
 msgstr ""
 
 msgid "0 otherwise"
@@ -32,7 +37,8 @@ msgstr ""
 msgid "Find space id by name."
 msgstr ""
 
-msgid "This function performs a SELECT request on the ``_vspace`` system space."
+msgid ""
+"This function performs a SELECT request on the ``_vspace`` system space."
 msgstr ""
 
 msgid "space name"
@@ -41,7 +47,9 @@ msgstr ""
 msgid "length of ``name``"
 msgstr ""
 
-msgid ":c:macro:`BOX_ID_NIL` on error or if not found (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgid ""
+":c:macro:`BOX_ID_NIL` on error or if not found (check "
+":ref:`box_error_last()<c_api-error-box_error_last>`)"
 msgstr ""
 
 msgid "space_id otherwise"
@@ -53,7 +61,8 @@ msgstr ""
 msgid "Find index id by name."
 msgstr ""
 
-msgid "This function performs a SELECT request on the ``_vindex`` system space."
+msgid ""
+"This function performs a SELECT request on the ``_vindex`` system space."
 msgstr ""
 
 msgid "space identifier"
@@ -77,7 +86,8 @@ msgstr ""
 msgid "output argument. Resulting tuple. Can be set to NULL to discard result"
 msgstr ""
 
-msgid "-1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgid ""
+"-1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
 msgstr ""
 
 msgid "See also :ref:`space_object.insert()<box_space-insert>`"
@@ -110,13 +120,16 @@ msgstr ""
 msgid "Execute an UPDATE request."
 msgstr ""
 
-msgid "encoded operations in MsgPack Array format, e.g. ``[[ '=', field_id,  value ], ['!', 2, 'xxx']]``"
+msgid ""
+"encoded operations in MsgPack Array format, e.g. ``[[ '=', field_id,  value "
+"], ['!', 2, 'xxx']]``"
 msgstr ""
 
 msgid "end of an ``ops`` section"
 msgstr ""
 
-msgid "0 if field_ids are zero-based as in C, 1 if field ids are 1-based as in Lua"
+msgid ""
+"0 if field_ids are zero-based as in C, 1 if field ids are 1-based as in Lua"
 msgstr ""
 
 msgid "See also :ref:`space_object.update()<box_space-update>`"
@@ -128,7 +141,8 @@ msgstr ""
 msgid "end of a ``ops``"
 msgstr ""
 
-msgid "-1 on error (check ::ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgid ""
+"-1 on error (check ::ref:`box_error_last()<c_api-error-box_error_last>`)"
 msgstr ""
 
 msgid "See also :ref:`space_object.upsert()<box_space-upsert>`"
@@ -136,4 +150,3 @@ msgstr ""
 
 msgid "Truncate a space."
 msgstr ""
-

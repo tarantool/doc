@@ -28,4 +28,3 @@ msgstr ""
 
 msgid "say_info(\"Some useful information: %s\", status);"
 msgstr ""
-
