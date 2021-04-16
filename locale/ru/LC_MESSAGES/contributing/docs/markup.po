@@ -11,4 +11,4 @@ msgid ""
 msgstr ""
 
 msgid "Contents:"
-msgstr ""
+msgstr "Оглавление:"

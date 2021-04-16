@@ -325,24 +325,30 @@ msgid ""
 "Use one space around (on each side of) most binary and ternary operators, "
 "such as any of these::"
 msgstr ""
+"Добавляйте по одному пробелу вокруг (с каждой стороны) большинства знаков "
+"двухместных и трехместных операций, например, любое из следующих::"
 
 msgid "=  +  -  <  >  *  /  %  |  &  ^  <=  >=  ==  !=  ?  :"
 msgstr "=  +  -  <  >  *  /  %  |  &  ^  <=  >=  ==  !=  ?  :"
 
 msgid "but no space after unary operators::"
-msgstr ""
+msgstr "но не добавляйте пробелы после знаков одноместных операций::"
 
 msgid "&  *  +  -  ~  !  sizeof  typeof  alignof  __attribute__  defined"
 msgstr "&  *  +  -  ~  !  sizeof  typeof  alignof  __attribute__  defined"
 
 msgid "no space before the postfix increment & decrement unary operators::"
 msgstr ""
+"не нужны пробелы перед знаками одноместных операций увеличения или "
+"уменьшения постфикса::"
 
 msgid "++  --"
 msgstr "++  --"
 
 msgid "no space after the prefix increment & decrement unary operators::"
 msgstr ""
+"не нужны пробелы после знаков одноместных операций увеличения или уменьшения"
+" префикса::"
 
 msgid "and no space around the ``.`` and ``->`` structure member operators."
 msgstr ""
@@ -793,7 +799,7 @@ msgid ""
 msgstr ""
 
 msgid "Chapter 9: Macros, Enums and RTL"
-msgstr ""
+msgstr "Глава 9: Макросы, перечисления и уровни регистровых передач (RTL)"
 
 msgid ""
 "Names of macros defining constants and labels in enums are capitalized."
@@ -911,7 +917,7 @@ msgid ""
 msgstr ""
 
 msgid "Chapter 10: Allocating memory"
-msgstr ""
+msgstr "Глава 10: Выделение памяти"
 
 msgid ""
 "Prefer specialized allocators like ``region``, ``mempool``, ``smalloc`` to "
@@ -930,7 +936,7 @@ msgid ""
 msgstr ""
 
 msgid "Chapter 11: The inline disease"
-msgstr ""
+msgstr "Глава 11: Болезнь встраивания (inline)"
 
 msgid ""
 "There appears to be a common misperception that gcc has a magic \"make me "
@@ -967,7 +973,7 @@ msgstr ""
 "что-то, что он сделал бы в любом случае."
 
 msgid "Chapter 12: Function return values and names"
-msgstr ""
+msgstr "Глава 12: Возвращаемые значения и имена функций"
 
 msgid ""
 "Functions can return values of many different kinds, and one of the most "

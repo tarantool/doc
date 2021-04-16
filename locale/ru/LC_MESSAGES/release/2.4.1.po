@@ -95,7 +95,7 @@ msgid ":ref:`mapping UUID field to index types <box_space-index_field_types>`"
 msgstr ""
 
 msgid ":ref:`uuid.new() <uuid-new>`."
-msgstr ""
+msgstr ":ref:`uuid.new() <uuid-new>`."
 
 msgid ""
 "Add ability to encode/decode UUIDs to MsgPack (gh-4268, gh-2916). Read more:"

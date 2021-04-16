@@ -51,13 +51,13 @@ msgid "Use"
 msgstr "Назначение"
 
 msgid ":ref:`popen.shell() <popen-shell>`"
-msgstr ""
+msgstr ":ref:`popen.shell() <popen-shell>`"
 
 msgid "Execute a shell command"
 msgstr ""
 
 msgid ":ref:`popen.new() <popen-new>`"
-msgstr ""
+msgstr ":ref:`popen.new() <popen-new>`"
 
 msgid "Execute a child program in a new process"
 msgstr ""

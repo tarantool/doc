@@ -187,7 +187,7 @@ msgid ""
 msgstr ""
 
 msgid "Mac OS"
-msgstr ""
+msgstr "Mac OS"
 
 msgid ""
 "This instruction is for those who use Homebrew. Refer to the `full "
@@ -224,7 +224,7 @@ msgid ""
 msgstr ""
 
 msgid "FreeBSD"
-msgstr ""
+msgstr "FreeBSD"
 
 msgid ""
 "$ git clone https://github.com/tarantool/tarantool.git --recursive\n"
