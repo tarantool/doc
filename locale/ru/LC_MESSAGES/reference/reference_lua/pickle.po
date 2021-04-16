@@ -29,11 +29,9 @@ msgstr "Конвертация Lua-переменных в двоичный фо
 msgid ""
 "To use Tarantool binary protocol primitives from Lua, it's necessary to "
 "convert Lua variables to binary format. The ``pickle.pack()`` helper "
-"function is prototyped after Perl 'pack_'."
+"function is prototyped after Perl `pack "
+"<http://perldoc.perl.org/functions/pack.html>`_."
 msgstr ""
-"Чтобы использовать примитивы бинарного протокола Tarantool'а из Lua, "
-"необходимо конвертировать Lua-переменные в двоичный формат. Прототипом "
-"вспомогательной функции ``pickle.pack()`` выступила функция 'pack_' из Perl."
 
 msgid "**Format specifiers**"
 msgstr "**Спецификаторы формата**"

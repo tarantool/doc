@@ -17,13 +17,13 @@ msgid "The four functions for creating a merger object instance are:"
 msgstr ""
 
 msgid ":ref:`merger.new_tuple_source() <merger-new_tuple_source>`,"
-msgstr ""
+msgstr ":ref:`merger.new_tuple_source() <merger-new_tuple_source>`,"
 
 msgid ":ref:`merger.new_buffer_source() <merger-new_buffer_source>`,"
-msgstr ""
+msgstr ":ref:`merger.new_buffer_source() <merger-new_buffer_source>`,"
 
 msgid ":ref:`merger.new_table_source <merger-new_table_source>`,"
-msgstr ""
+msgstr ":ref:`merger.new_table_source <merger-new_table_source>`,"
 
 msgid ":ref:`merger.new(merger_source...) <merger-new_merger_source>`."
 msgstr ""

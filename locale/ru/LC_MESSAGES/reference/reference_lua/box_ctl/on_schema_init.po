@@ -27,7 +27,7 @@ msgstr ""
 "вызван до вызова ``box.cfg``."
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "function which will become the trigger function"
 msgstr "функция, в которой будет триггер"
@@ -36,7 +36,7 @@ msgid "existing trigger function which will be replaced by trigger-function"
 msgstr "существующая функция с триггером, которую заменит новая"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil or function pointer"
 msgstr "nil или указатель функции"
@@ -76,7 +76,7 @@ msgstr ""
 ":ref:`Триггеры <triggers-box_triggers>`."
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "Suppose that, before the server is fully up and ready for connections, you "

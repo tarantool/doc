@@ -27,31 +27,31 @@ msgid "Parse and execute an arbitrary chunk of Lua code"
 msgstr "Анализ и выполнение произвольного Lua-кода"
 
 msgid ":ref:`package.path <other-package_path>`"
-msgstr ""
+msgstr ":ref:`package.path <other-package_path>`"
 
 msgid "Where Tarantool looks for Lua additions"
 msgstr ""
 
 msgid ":ref:`package.cpath <other-package_cpath>`"
-msgstr ""
+msgstr ":ref:`package.cpath <other-package_cpath>`"
 
 msgid "Where Tarantool looks for C additions"
 msgstr ""
 
 msgid ":ref:`package.loaded <other-package_loaded>`"
-msgstr ""
+msgstr ":ref:`package.loaded <other-package_loaded>`"
 
 msgid "What Tarantool has already looked for and found"
 msgstr ""
 
 msgid ":ref:`package.setsearchroot <other-package_setsearchroot>`"
-msgstr ""
+msgstr ":ref:`package.setsearchroot <other-package_setsearchroot>`"
 
 msgid "Set the root path for a directory search"
 msgstr ""
 
 msgid ":ref:`package.searchroot <other-package_searchroot>`"
-msgstr ""
+msgstr ":ref:`package.searchroot <other-package_searchroot>`"
 
 msgid "Get the root path for a directory search"
 msgstr ""

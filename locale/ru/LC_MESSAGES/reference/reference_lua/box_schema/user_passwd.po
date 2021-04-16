@@ -1,6 +1,6 @@
 
 msgid "box.schema.user.passwd()"
-msgstr ""
+msgstr "box.schema.user.passwd()"
 
 msgid ""
 "Associate a password with the user who is currently logged in, or with the "

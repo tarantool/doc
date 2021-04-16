@@ -2,8 +2,41 @@
 msgid "Connectors"
 msgstr "Коннекторы"
 
-msgid "This chapter documents APIs for various programming languages."
-msgstr "В этой главе описаны API для различных языков программирования."
+msgid "This chapter documents APIs for various programming languages:"
+msgstr ""
+
+msgid ":doc:`C++ <cxx/tntcxx_api>`"
+msgstr ""
+
+msgid ":ref:`Java <index_connector_java>`"
+msgstr ""
+
+msgid ":ref:`Go <index_connector_go>`"
+msgstr ""
+
+msgid ":ref:`R <index_connector_r>`"
+msgstr ""
+
+msgid ":ref:`Erlang <index_connector_erlang>`"
+msgstr ""
+
+msgid ":ref:`Perl <index_connector_perl>`"
+msgstr ""
+
+msgid ":ref:`PHP <index_connector_php>`"
+msgstr ""
+
+msgid ":ref:`Python <index_connector_py>`"
+msgstr ""
+
+msgid ":ref:`Node.js <index_connector_nodejs>`"
+msgstr ""
+
+msgid ":ref:`C# <index_connector_csharp>`"
+msgstr ""
+
+msgid ":ref:`C <index_connector_c>`"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Протокол"
@@ -868,7 +901,6 @@ msgstr ""
 "осуществляет вставку кортежа ``[99999,'B']`` в спейс :code:`examples` с "
 "помощью высокоуровневого API для языка C."
 
-#, python-format
 msgid ""
 "#include <stdio.h>\n"
 "#include <stdlib.h>\n"
@@ -1050,7 +1082,6 @@ msgstr ""
 "**СОЗДАНИЕ ЗАПРОСА:** В большинстве запросов требуется передавать "
 "структурированные данные, например содержимое кортежа."
 
-#, python-format
 msgid ""
 "struct tnt_stream *tuple = tnt_object(NULL);\n"
 "tnt_object_format(tuple, \"[%d%s]\", 99999, \"B\");"
@@ -1058,7 +1089,6 @@ msgstr ""
 "struct tnt_stream *tuple = tnt_object(NULL);\n"
 "tnt_object_format(tuple, \"[%d%s]\", 99999, \"B\");"
 
-#, python-format
 msgid ""
 "In this program, the request will be an :ref:`INSERT<box_space-insert>`, and"
 " the tuple contents will be an integer and a string. This is a simple serial"
@@ -1129,7 +1159,6 @@ msgstr ""
 " содержит информацию о том, был ли данный запрос успешно выполнен,  а также "
 "содержит набор кортежей."
 
-#, python-format
 msgid ""
 "struct tnt_reply reply;  tnt_reply_init(&reply);\n"
 "tnt->read_reply(tnt, &reply);\n"
@@ -1192,7 +1221,6 @@ msgid ""
 "`MessagePack <https://en.wikipedia.org/wiki/MessagePack>`_  arrays."
 msgstr ""
 
-#, python-format
 msgid ""
 "#include <stdio.h>\n"
 "#include <stdlib.h>\n"
@@ -1428,7 +1456,6 @@ msgstr ""
 " языке ни была написана вызываемая программа: Perl, PHP, Python, Go или "
 "Java."
 
-#, python-format
 msgid ""
 "#include <stdio.h>\n"
 "#include <stdlib.h>\n"

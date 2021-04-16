@@ -1,6 +1,6 @@
 
 msgid "box.schema.user.exists()"
-msgstr ""
+msgstr "box.schema.user.exists()"
 
 msgid ""
 "Return ``true`` if a user exists; return ``false`` if a user does not exist."

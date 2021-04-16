@@ -71,7 +71,7 @@ msgid "Make Tarantool act as a TCP server"
 msgstr "Использование Tarantool'а в качестве TCP-сервера"
 
 msgid ":ref:`socket.bind() <socket-bind_non_object>`"
-msgstr ""
+msgstr ":ref:`socket.bind() <socket-bind_non_object>`"
 
 msgid "Bind a socket to the given host/port"
 msgstr "Привязка сокета к данному хосту/порту"

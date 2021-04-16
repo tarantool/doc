@@ -246,7 +246,6 @@ msgstr ""
 "Избегайте множества конкатенаций в одном операторе, лучше использовать "
 "``string.format``:"
 
-#, python-format
 msgid ""
 "function say_greeting(period, name)\n"
 "    local a = \"good  \" .. period .. \", \" .. name\n"

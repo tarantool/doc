@@ -3,10 +3,11 @@ msgid "Automated leader election"
 msgstr ""
 
 msgid ""
-"Starting from the version 2.6.1, Tarantool has the built-in functionality "
-"managing automated leader election in a replica set. This functionality "
-"increases fault tolerance of the systems built on the base of Tarantool and "
-"decreases dependency on the external tools for replica set management."
+"Starting from the version :doc:`2.6.1 </release/2.6.1>`, Tarantool has the "
+"built-in functionality managing automated leader election in a replica set. "
+"This functionality increases fault tolerance of the systems built on the "
+"base of Tarantool and decreases dependency on the external tools for replica"
+" set management."
 msgstr ""
 
 msgid "The following topics are described below:"
@@ -106,7 +107,7 @@ msgid ""
 msgstr ""
 
 msgid "Configuration"
-msgstr ""
+msgstr "Настройка"
 
 msgid ""
 "box.cfg({\n"
@@ -174,7 +175,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> box.info.election\n"

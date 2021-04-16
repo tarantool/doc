@@ -336,7 +336,6 @@ msgstr ""
 "Создайте файл. Назовите его ``harder.c``. Запишите в него следующие 17 "
 "строк:"
 
-#, python-format
 msgid ""
 "#include \"module.h\"\n"
 "#include \"msgpuck.h\"\n"
@@ -405,9 +404,9 @@ msgid ""
 "At this point the ``harder()`` function will start using functions defined "
 "in `msgpuck.h <https://github.com/tarantool/msgpuck>`_. The routines that "
 "begin with \"mp\" are msgpuck functions that handle data formatted according"
-" to the MsgPack_ specification. Passes and returns are always done with this"
-" format so one must become acquainted with msgpuck to become proficient with"
-" the C API."
+" to the `MsgPack <http://msgpack.org/>`_ specification. Passes and returns "
+"are always done with this format so one must become acquainted with msgpuck "
+"to become proficient with the C API."
 msgstr ""
 
 msgid ""
@@ -599,7 +598,6 @@ msgid "Create a file. Name it ``read.c``. Put these 43 lines in it:"
 msgstr ""
 "Создайте файл. Назовите его ``read.c``. Запишите в него следующие 43 строки:"
 
-#, python-format
 msgid ""
 "#include \"module.h\"\n"
 "#include <msgpuck.h>\n"
@@ -784,7 +782,6 @@ msgstr ""
 "Создайте файл. Назовите его ``write.c``. Запишите в него следующие 24 "
 "строки:"
 
-#, python-format
 msgid ""
 "#include \"module.h\"\n"
 "#include <msgpuck.h>\n"

@@ -18,7 +18,7 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "nil"
-msgstr ""
+msgstr "nil"
 
 msgid "**Possible errors:** index_object does not exist."
 msgstr "**Возможные ошибки:** index_object не существует."
@@ -31,6 +31,9 @@ msgid ""
 "---\n"
 "..."
 msgstr ""
+"tarantool> box.space.space55.index.primary:rename('secondary')\n"
+"---\n"
+"..."
 
 msgid ""
 "**Complexity factors:** Index size, Index type, Number of tuples accessed."

@@ -63,7 +63,6 @@ msgstr ""
 "увеличить значение параметра :ref:`box.cfg{memtx_memory} <cfg_storage-"
 "memtx_memory>` (при наличии свободных ресурсов)."
 
-#, python-format
 msgid ""
 "In versions of Tarantool before 1.10, the server needs to be restarted to "
 "change this parameter. The Tarantool server will be unavailable while "
@@ -466,7 +465,7 @@ msgid "Below are examples of proper implementing such a procedure."
 msgstr ""
 
 msgid "Solution"
-msgstr ""
+msgstr "Решение"
 
 msgid ""
 "First, there come two simple examples illustrating the logic of the "
@@ -490,13 +489,12 @@ msgid ""
 msgstr ""
 
 msgid "**Example 1**"
-msgstr ""
+msgstr "**Пример 1**"
 
 msgid ""
 "Implementing a valid finalizer for a particular FFI type (``custom_t``)."
 msgstr ""
 
-#, python-format
 msgid ""
 "local ffi = require('ffi')\n"
 "local fiber = require('fiber')\n"
@@ -538,7 +536,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example 2**"
-msgstr ""
+msgstr "**Пример 2**"
 
 msgid ""
 "Implementing a valid finalizer for a particular user type (``struct "
@@ -548,7 +546,6 @@ msgstr ""
 msgid "``custom.c``"
 msgstr ""
 
-#, python-format
 msgid ""
 "#include <lauxlib.h>\n"
 "#include <lua.h>\n"
@@ -772,7 +769,6 @@ msgstr ""
 msgid "``init.lua``"
 msgstr ""
 
-#, python-format
 msgid ""
 "local ffi = require('ffi')\n"
 "local fiber = require('fiber')\n"

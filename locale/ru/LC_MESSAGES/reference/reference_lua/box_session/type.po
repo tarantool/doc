@@ -12,7 +12,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "string"
-msgstr ""
+msgstr "string"
 
 msgid "Possible return values are:"
 msgstr "Возможные возвращаемые значения:"

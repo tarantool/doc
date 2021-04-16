@@ -57,19 +57,19 @@ msgid "Set a delimiter"
 msgstr "Настройка разделителя"
 
 msgid ":ref:`console.get_default_output() <console-get_default_output>`"
-msgstr ""
+msgstr ":ref:`console.get_default_output() <console-get_default_output>`"
 
 msgid "Get default output format"
 msgstr ""
 
 msgid ":ref:`console.set_default_output() <console-set_default_output>`"
-msgstr ""
+msgstr ":ref:`console.set_default_output() <console-set_default_output>`"
 
 msgid "Set default output format"
 msgstr ""
 
 msgid ":ref:`console.eos() <console-eos>`"
-msgstr ""
+msgstr ":ref:`console.eos() <console-eos>`"
 
 msgid "Set or get end-of-output string"
 msgstr ""

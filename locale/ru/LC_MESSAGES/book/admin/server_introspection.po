@@ -878,7 +878,6 @@ msgstr ""
 msgid "Your output should look similar to this:"
 msgstr "В консоль должно выводиться приблизительно следующее:"
 
-#, python-format
 msgid ""
 "Total: 598 samples\n"
 "      83 13.9% 13.9% 83 13.9% epoll_wait\n"
@@ -985,7 +984,6 @@ msgstr ""
 msgid "The resulting output should look similar to this:"
 msgstr "Получившийся отчет выглядит следующим образом:"
 
-#, python-format
 msgid ""
 "# Samples: 14K of event 'cycles'\n"
 "# Event count (approx.): 9927346847\n"

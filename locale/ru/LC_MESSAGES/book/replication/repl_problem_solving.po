@@ -129,7 +129,7 @@ msgstr ""
 "пытается вставить кортеж с одинаковым уникальным ключом:"
 
 msgid "tarantool> box.space.tester:insert{1, 'data'}"
-msgstr ""
+msgstr "tarantool> box.space.tester:insert{1, 'data'}"
 
 msgid ""
 "This would cause an error saying ``Duplicate key exists in unique index "
@@ -303,7 +303,7 @@ msgstr ""
 "экземпляров с конфигурацией мастер-мастер:"
 
 msgid "tarantool> box.space.tester:upsert({1}, {{'=', 2, box.info.uuid}})"
-msgstr ""
+msgstr "tarantool> box.space.tester:upsert({1}, {{'=', 2, box.info.uuid}})"
 
 msgid "When this operation is applied on both instances in the replica set:"
 msgstr "Когда эта операция применяется на обоих экземплярах в наборе реплик:"
@@ -351,7 +351,7 @@ msgid "Consider for example the following command:"
 msgstr "Рассмотрим, например, следующую команду:"
 
 msgid "tarantool> box.space.tester:upsert{{1, 0}, {{'+', 2, 1)}"
-msgstr ""
+msgstr "tarantool> box.space.tester:upsert{{1, 0}, {{'+', 2, 1)}"
 
 msgid ""
 "This operation is commutative: we get the same result no matter in which "

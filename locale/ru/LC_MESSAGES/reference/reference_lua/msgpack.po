@@ -78,7 +78,7 @@ msgid "Skip array header in a raw MsgPack string"
 msgstr ""
 
 msgid ":ref:`msgpack.decode_map_header <msgpack-decode_map_header>`"
-msgstr ""
+msgstr ":ref:`msgpack.decode_map_header <msgpack-decode_map_header>`"
 
 msgid "Skip map header in a raw MsgPack string"
 msgstr ""
@@ -328,7 +328,6 @@ msgid ""
 "hexadecimal."
 msgstr ""
 
-#, python-format
 msgid ""
 "function hexdump(bytes)\n"
 "    local result = ''\n"
@@ -489,10 +488,10 @@ msgid "The values are all either integers or boolean ``true``/``false``."
 msgstr ""
 
 msgid "Option"
-msgstr ""
+msgstr "Характеристика"
 
 msgid "Default"
-msgstr ""
+msgstr "Значение по умолчанию"
 
 msgid "``cfg.encode_max_depth``"
 msgstr ""
@@ -550,7 +549,7 @@ msgid "``cfg.encode_sparse_ratio``"
 msgstr ""
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid ""
 "1/``encode_sparse_ratio`` is the permissible percentage of missing values in"
@@ -696,7 +695,7 @@ msgstr ""
 "можно использовать в качестве объекта-заполнителя в кортеже."
 
 msgid "**Example**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> msgpack = require('msgpack')\n"

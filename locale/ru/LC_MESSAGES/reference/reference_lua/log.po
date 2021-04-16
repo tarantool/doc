@@ -160,7 +160,6 @@ msgstr ""
 msgid "Parameters"
 msgstr "Параметры"
 
-#, python-format
 msgid ""
 "Usually a string.  Messages may contain C-style format specifiers %d or %s, "
 "so :samp:`log.error('...%d...%s', {x}, {y})` will work if ``x`` is a number "
@@ -176,7 +175,6 @@ msgstr ""
 msgid "Usually a string."
 msgstr "Как правило, строка."
 
-#, python-format
 msgid ""
 "Messages may contain C-style format specifiers %d or %s, so "
 ":samp:`log.error('...%d...%s', {x}, {y})` will work if ``x`` is a number and"
@@ -235,7 +233,6 @@ msgstr "Ротация журнала."
 msgid "Example"
 msgstr "Пример"
 
-#, python-format
 msgid ""
 "$ tarantool\n"
 "tarantool> box.cfg{log_level=3, log='tarantool.txt'}\n"

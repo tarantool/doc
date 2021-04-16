@@ -38,7 +38,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "table"
-msgstr ""
+msgstr "таблица"
 
 msgid "To show the table, use ``unpack()``:"
 msgstr "Для вывода таблицы используйте ``unpack()``:"

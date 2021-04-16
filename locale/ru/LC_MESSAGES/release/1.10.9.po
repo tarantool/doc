@@ -1,0 +1,130 @@
+
+msgid "Tarantool 1.10.9"
+msgstr ""
+
+msgid "Date: 2020-12-30 Tag: 1.10.9-0-g720ffdd23"
+msgstr ""
+
+msgid "Overview"
+msgstr "Общие сведения"
+
+msgid ""
+"1.10.9 is the next stable release in the `long-term support (LTS) version "
+"<https://www.tarantool.io/en/doc/1.10/dev_guide/release_management/#release-"
+"policy>`__ 1.10.x release series. The label “stable” means there are "
+"1.10.x-based applications running in production for quite a while without "
+"known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+msgid ""
+"This release introduces one improvement and resolves roughly 7 issues since "
+"the 1.10.8 version."
+msgstr ""
+
+msgid "Compatibility"
+msgstr "Совместимость"
+
+msgid ""
+"Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data "
+"layout, client-server protocol and replication protocol. Please `upgrade "
+"<https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__ using the "
+"``box.schema.upgrade()`` procedure to unlock all the new features of the "
+"1.10.x series."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr "Изменения или добавления функциональности"
+
+msgid "Build"
+msgstr ""
+
+msgid "Deploy packages for Fedora 32 (gh-4966)."
+msgstr ""
+
+msgid "Deploy packages for Debian Bullseye (gh-5638)."
+msgstr ""
+
+msgid "Misc"
+msgstr "Разное"
+
+msgid ""
+"Don’t start an ‘example’ instance after installing tarantool (gh-4507)."
+msgstr ""
+
+msgid ""
+"Before this release tarantool package for Debian and Ubuntu used to "
+"automatically enable and start an ‘example’ instance, which would listen on "
+"the TCP port ``3301``. Since this release the instance file is installed to "
+"``/etc/tarantool/instances.available/example.lua``, but isn’t enabled by "
+"default and not started anymore. You can enable and start it with the "
+"following commands:"
+msgstr ""
+
+msgid ""
+"ln -s /etc/tarantool/instances.available/example.lua \\\n"
+"    /etc/tarantool/instances.enabled/example.lua\n"
+"systemctl start tarantool@example"
+msgstr ""
+
+msgid ""
+"Existing configuration will not be updated automatically at package update. "
+"If you don’t the need example instance, you can stop and disable it with the"
+" following commands:"
+msgstr ""
+
+msgid ""
+"systemctl stop tarantool@example\n"
+"rm /etc/tarantool/instances.enabled/example.lua"
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr "Исправленные ошибки"
+
+msgid "Core"
+msgstr ""
+
+msgid ""
+"``fiber.cond:wait()`` now correctly throws an error when a fiber is "
+"cancelled, instead of ignoring the timeout and returning without any signs "
+"of an error (gh-5013)."
+msgstr ""
+
+msgid ""
+"Fixed a memory corruption issue, which was most visible on macOS, but could "
+"affect any system (gh-5312)."
+msgstr ""
+
+msgid ""
+"A dynamic module now gets correctly unloaded from memory in case of an "
+"attempt to load a non-existing function from it (gh-5475)."
+msgstr ""
+
+msgid ""
+"The fiber region (the box region) won’t be invalidated on a read-only "
+"transaction (gh-5427, gh-5623)."
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid ""
+"Dispatching ``__call`` metamethod no longer causes address clashing "
+"(gh-4518, gh-4649)."
+msgstr ""
+
+msgid "Fixed a false positive panic when yielding in debug hook (gh-5649)."
+msgstr ""
+
+msgid "Lua"
+msgstr "Lua"
+
+msgid ""
+"An attempt to use a ``net.box`` connection which is not established yet now "
+"results in a correctly reported error (gh-4787)."
+msgstr ""
+
+msgid ""
+"Fixed a hang which occured when ``tarantool`` ran a user script with the "
+"``-e`` option and this script exited with an error (like with ``tarantool -e"
+" 'assert(false)'``) (gh-4983)."
+msgstr ""

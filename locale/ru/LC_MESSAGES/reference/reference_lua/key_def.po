@@ -71,7 +71,7 @@ msgid "the fields that were defined for the key_def object"
 msgstr ""
 
 msgid "**Example #1:**"
-msgstr ""
+msgstr "**Пример №1:**"
 
 msgid ""
 "-- Suppose that an item has five fields\n"
@@ -97,7 +97,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example #2**"
-msgstr ""
+msgstr "**Пример №2**"
 
 msgid ""
 "-- Now suppose that the item is a tuple in a space which\n"
@@ -114,7 +114,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example #3**"
-msgstr ""
+msgstr "**Пример №3**"
 
 msgid ""
 "-- Iterate through the tuples in a secondary non-unique index.\n"

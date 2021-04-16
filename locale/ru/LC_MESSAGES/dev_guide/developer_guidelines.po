@@ -237,8 +237,10 @@ msgstr ""
 "`tarantool/tarantool@076a842 "
 "<https://github.com/tarantool/tarantool/commit/076a842011e09c84c25fb5e68f1b23c9917a3750>`_"
 
-msgid "Based on [1_] and [2_]."
-msgstr "Основано на [1_] и [2_]."
+msgid ""
+"Based on [`1 <https://git-scm.com/book/en/v2/Distributed-Git-Contributing-"
+"to-a-Project>`_] and [`2 <https://chris.beams.io/posts/git-commit/>`_]."
+msgstr ""
 
 msgid "How to submit a patch for review"
 msgstr "Как отправить патч на рассмотрение"

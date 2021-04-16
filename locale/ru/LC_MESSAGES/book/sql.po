@@ -19,7 +19,7 @@ msgid "Feature ID"
 msgstr ""
 
 msgid "Feature"
-msgstr ""
+msgstr "Характеристика"
 
 msgid "Example"
 msgstr "Пример"

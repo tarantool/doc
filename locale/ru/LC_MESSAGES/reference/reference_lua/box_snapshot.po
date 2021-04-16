@@ -46,7 +46,6 @@ msgstr ""
 "Пользователи могут ограничить скорость записи, изменив значение "
 ":ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`."
 
-#, python-format
 msgid ""
 "As long as there are any changes to the parent index memory through "
 "concurrent updates, there are going to be page splits, and therefore you "

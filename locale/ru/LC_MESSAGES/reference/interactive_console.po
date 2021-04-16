@@ -68,7 +68,7 @@ msgid ""
 msgstr ""
 
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 msgid "Lua input"
 msgstr ""
@@ -83,7 +83,7 @@ msgid "MsgPack storage"
 msgstr ""
 
 msgid "scalar"
-msgstr ""
+msgstr "скалярный"
 
 msgid ":code:`1`"
 msgstr ""
@@ -121,7 +121,7 @@ msgid ":code:`0x92 0x01 0x02`"
 msgstr ""
 
 msgid "map"
-msgstr ""
+msgstr "map (ассоциативный массив)"
 
 msgid ":code:`{key=1}`"
 msgstr ""

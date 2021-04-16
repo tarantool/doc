@@ -3,7 +3,7 @@ msgid "JSON paths"
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Общие сведения"
 
 msgid ""
 "Since version 2.3 Tarantool supports JSON path updates. Now you can "

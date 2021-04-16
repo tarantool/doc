@@ -135,13 +135,13 @@ msgid "Assign a value to an upvalue"
 msgstr "Присваивание значения сопоставляющему значению"
 
 msgid ":ref:`debug.sourcedir() <debug-sourcedir>`"
-msgstr ""
+msgstr ":ref:`debug.sourcedir() <debug-sourcedir>`"
 
 msgid "Get the source directory name"
 msgstr ""
 
 msgid ":ref:`debug.sourcefile() <debug-sourcefile>`"
-msgstr ""
+msgstr ":ref:`debug.sourcefile() <debug-sourcefile>`"
 
 msgid "Get the source file name"
 msgstr ""

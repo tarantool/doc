@@ -34,7 +34,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "lua-value"
-msgstr ""
+msgstr "Lua-значение"
 
 msgid ""
 "In the following example, a tuple named ``t`` is returned from ``replace`` "

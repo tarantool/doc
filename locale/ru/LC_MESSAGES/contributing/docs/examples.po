@@ -1,6 +1,6 @@
 
 msgid "Examples and templates"
-msgstr ""
+msgstr "Примеры и шаблоны"
 
 msgid ""
 "In this document, we explain general guidelines for describing Tarantool API"
@@ -14,7 +14,7 @@ msgid "Base description"
 msgstr ""
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "What this function returns (if nothing, write 'none')"
 msgstr ""
@@ -84,27 +84,29 @@ msgid ""
 "Create and start a fiber. The fiber is created and begins to run "
 "immediately."
 msgstr ""
+"Создание и запуск файбера. Происходит создание файбера, который "
+"незамедлительно начинает работу."
 
 msgid "the function to be associated with the fiber"
-msgstr ""
+msgstr "функция, которая будет связана с файбером"
 
 msgid "what will be passed to function"
-msgstr ""
+msgstr "что передается в функцию"
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "created fiber object"
-msgstr ""
+msgstr "созданный объект файбера"
 
 msgid "rtype"
-msgstr ""
+msgstr "возвращаемое значение"
 
 msgid "userdata"
-msgstr ""
+msgstr "пользовательские данные"
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "tarantool> fiber = require('fiber')\n"
@@ -121,6 +123,19 @@ msgid ""
 "---\n"
 "..."
 msgstr ""
+"tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> function function_name()\n"
+"         >   print(\"I'm a fiber\")\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> fiber_object = fiber.create(function_name); print(\"Fiber started\")\n"
+"I'm a fiber\n"
+"Fiber started\n"
+"---\n"
+"..."
 
 msgid "Documenting class method and data"
 msgstr ""
@@ -190,33 +205,35 @@ msgid "Search for a tuple :ref:`via the given index <box_index-note>`."
 msgstr ""
 
 msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ""
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
 
 msgid "values to be matched against the index key"
-msgstr ""
+msgstr "значения для сопоставления с ключом индекса"
 
 msgid "the tuple whose index-key fields are equal to the passed key values"
 msgstr ""
 
 msgid "tuple"
-msgstr ""
+msgstr "кортеж"
 
 msgid "**Possible errors:**"
-msgstr ""
+msgstr "**Возможные ошибки:**"
 
 msgid "no such index;"
-msgstr ""
+msgstr "отсутствие такого индекса;"
 
 msgid "wrong type;"
-msgstr ""
+msgstr "неправильный тип;"
 
 msgid "more than one tuple matches."
-msgstr ""
+msgstr "больше одного кортежа подходят."
 
 msgid ""
 "**Complexity factors:** Index size, Index type. See also "
 ":ref:`space_object:get() <box_space-get>`."
 msgstr ""
+"**Факторы сложности:** Размер индекса, тип индекса. См. также "
+":ref:`space_object:get() <box_space-get>`."
 
 msgid ""
 "tarantool> box.space.tester.index.primary:get(2)\n"
@@ -226,10 +243,10 @@ msgid ""
 msgstr ""
 
 msgid "True if the index is unique, false if the index is not unique."
-msgstr ""
+msgstr "Если индекс уникальный -- true, если индекс не уникален -- false."
 
 msgid "boolean"
-msgstr ""
+msgstr "boolean (логический)"
 
 msgid ""
 "tarantool> box.space.tester.index.primary.unique\n"

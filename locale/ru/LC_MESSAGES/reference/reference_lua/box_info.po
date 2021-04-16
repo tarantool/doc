@@ -25,6 +25,10 @@ msgid ""
 "their consumers (users); see details :doc:`here "
 "</reference/reference_lua/box_info/gc>`."
 msgstr ""
+"**gc()** возвращает состояние :ref:`сборщика мусора в Tarantool'е "
+"<cfg_checkpoint_daemon-garbage-collector>`, в том числе контрольные точки и "
+"их потребителей (пользователи); более подробную информацию см. :doc:`здесь "
+"</reference/reference_lua/box_info/gc>`."
 
 msgid ""
 "**id** corresponds to :samp:`replication[{n}].id` (see :doc:`here "
@@ -45,6 +49,8 @@ msgid ""
 "**memory()** returns the statistics about memory (see :doc:`here "
 "</reference/reference_lua/box_info/memory>`)."
 msgstr ""
+"**memory()** возвращает статистику об использовании памяти (см. :doc:`здесь "
+"</reference/reference_lua/box_info/memory>`)."
 
 msgid ""
 "**pid** is the process ID. This value is also shown by :ref:`tarantool "
@@ -152,31 +158,31 @@ msgid ""
 msgstr ""
 
 msgid "Below is a list of all ``box.info`` functions."
-msgstr ""
+msgstr "Ниже приведен перечень всех функций модуля ``box.info``."
 
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 msgid "Use"
-msgstr ""
+msgstr "Назначение"
 
 msgid ":doc:`./box_info/info`"
 msgstr ""
 
 msgid "Return all keys and values provided in the submodule"
-msgstr ""
+msgstr "Выдача всех ключей и значений, указанных в модуле"
 
 msgid ":doc:`./box_info/gc`"
 msgstr ""
 
 msgid "Return info about garbage collector"
-msgstr ""
+msgstr "Выдача информации о сборщике мусора"
 
 msgid ":doc:`./box_info/memory`"
 msgstr ""
 
 msgid "Return info about memory usage"
-msgstr ""
+msgstr "Выдача информации об использовании памяти"
 
 msgid ":doc:`./box_info/replication_anon`"
 msgstr ""
@@ -188,7 +194,7 @@ msgid ":doc:`./box_info/replication`"
 msgstr ""
 
 msgid "Return statistics for all instances in the replica set"
-msgstr ""
+msgstr "Выдача статистики по всем экземплярам в наборе реплик"
 
 msgid ":doc:`./box_info/listen`"
 msgstr ""

@@ -19,7 +19,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "number"
-msgstr ""
+msgstr "число"
 
 msgid ""
 "This function is local for the request, i.e. not global for the session. If "

@@ -13,7 +13,7 @@ msgid "Heading"
 msgstr ""
 
 msgid "Summary"
-msgstr ""
+msgstr "Введение"
 
 msgid ":ref:`Lua requests <sql_lua_requests>`"
 msgstr ""
@@ -563,7 +563,7 @@ msgid "_TABLES view"
 msgstr ""
 
 msgid "Example:"
-msgstr ""
+msgstr "Пример:"
 
 msgid ""
 "tarantool>SELECT * FROM _tables WHERE id > 340 LIMIT 5;\n"

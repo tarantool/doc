@@ -3,10 +3,11 @@ msgid "Module `popen`"
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Общие сведения"
 
 msgid ""
-"The ``popen`` module supports execution of external programs. It is similar "
+"Since version :doc:`2.4.1 </release/2.4.1>`, Tarantool has the ``popen`` "
+"built-in module that supports execution of external programs. It is similar "
 "to Python's `subprocess() "
 "<https://docs.python.org/3.8/library/subprocess.html>`_ or Ruby's `Open3 "
 "<https://docs.ruby-lang.org/en/2.0.0/Open3.html>`_. However, Tarantool's "
@@ -38,16 +39,16 @@ msgid ""
 msgstr ""
 
 msgid "Index"
-msgstr ""
+msgstr "Указатель"
 
 msgid "Below is a list of all ``popen`` functions and handle methods."
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 msgid "Use"
-msgstr ""
+msgstr "Назначение"
 
 msgid ":ref:`popen.shell() <popen-shell>`"
 msgstr ""
@@ -131,7 +132,7 @@ msgid "Execute a shell command."
 msgstr ""
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "a command to run, mandatory"
 msgstr ""
@@ -140,7 +141,7 @@ msgid "communication mode, optional"
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid ""
 "(if success) a popen handle, which we will call ``popen_handle`` or ``ph``"
@@ -187,7 +188,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "This is the equivalent of the 'sh -c date' command. It starts a process, "
@@ -310,13 +311,13 @@ msgid "The ``opts`` table may contain these boolean items:"
 msgstr ""
 
 msgid "Default"
-msgstr ""
+msgstr "Значение по умолчанию"
 
 msgid "opts.shell"
 msgstr ""
 
 msgid "false"
-msgstr ""
+msgstr "false"
 
 msgid ""
 "If true, then run a child process via ``sh -c \"${opts.argv}\"``. If false, "
@@ -335,7 +336,7 @@ msgid "opts.close_fds"
 msgstr ""
 
 msgid "true"
-msgstr ""
+msgstr "true"
 
 msgid ""
 "If true, then close all inherited fds from the parent. If false, then do not"
@@ -398,7 +399,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example 1**"
-msgstr ""
+msgstr "**Пример 1**"
 
 msgid ""
 "This is the equivalent of the ``sh -c date`` command. It starts a process, "
@@ -417,7 +418,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example 2**"
-msgstr ""
+msgstr "**Пример 2**"
 
 msgid ""
 "Example 2 is quite similar to Example 1, but sets an environment variable "
@@ -439,7 +440,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example 3**"
-msgstr ""
+msgstr "**Пример 3**"
 
 msgid "Example 3 demonstrates how to capture a child's stderr."
 msgstr ""
@@ -456,7 +457,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example 4**"
-msgstr ""
+msgstr "**Пример 4**"
 
 msgid ""
 "Example 4 demonstrates how to run a stream program (like ``grep``, ``sed`` "
@@ -529,7 +530,7 @@ msgid ""
 msgstr ""
 
 msgid "options"
-msgstr ""
+msgstr "опции"
 
 msgid ""
 "Possible errors, raised on incorrect parameters or when the fiber is "
@@ -557,10 +558,10 @@ msgid "FiberIsCancelled: cancelled by an outside code"
 msgstr ""
 
 msgid "true on success, false on error"
-msgstr ""
+msgstr "true (правда), если выполнено, false (ложь) в случае ошибки"
 
 msgid "rtype"
-msgstr ""
+msgstr "возвращаемое значение"
 
 msgid "(if success) string with read value, empty string if EOF"
 msgstr ""

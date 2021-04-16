@@ -59,7 +59,7 @@ msgstr ""
 " на 2.x могут препятствовать несовместимые изменения."
 
 msgid "How to upgrade from Tarantool 1.7 to 2.x"
-msgstr ""
+msgstr "Как обновить Tarantool 1.7 до 2.x"
 
 msgid "Stop the Tarantool server."
 msgstr "Остановите Tarantool-сервер."
