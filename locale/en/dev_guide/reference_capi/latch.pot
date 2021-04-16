@@ -29,7 +29,9 @@ msgstr ""
 msgid "latch to destroy"
 msgstr ""
 
-msgid "Lock a latch. Waits indefinitely until the current fiber can gain access to the latch."
+msgid ""
+"Lock a latch. Waits indefinitely until the current fiber can gain access to "
+"the latch."
 msgstr ""
 
 msgid "param box_latch_t* latch"
@@ -52,4 +54,3 @@ msgstr ""
 
 msgid "latch to unlock"
 msgstr ""
-

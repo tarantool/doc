@@ -2,7 +2,11 @@
 msgid "Submodule `box.space`"
 msgstr ""
 
-msgid "**CRUD operations** in Tarantool are implemented by the ``box.space`` submodule. It has the data-manipulation functions ``select``, ``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``. It also has members, such as id, and whether or not a space is enabled."
+msgid ""
+"**CRUD operations** in Tarantool are implemented by the ``box.space`` "
+"submodule. It has the data-manipulation functions ``select``, ``insert``, "
+"``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``. It also "
+"has members, such as id, and whether or not a space is enabled."
 msgstr ""
 
 msgid "Below is a list of all ``box.space`` functions and members."
@@ -283,4 +287,3 @@ msgstr ""
 
 msgid "(Metadata) List of settings affecting behavior of the current session"
 msgstr ""
-

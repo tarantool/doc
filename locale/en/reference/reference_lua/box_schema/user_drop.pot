@@ -2,7 +2,10 @@
 msgid "box.schema.user.drop()"
 msgstr ""
 
-msgid "Drop a user. For explanation of how Tarantool maintains user data, see section :ref:`Users <authentication-users>` and reference on :ref:`_user <box_space-user>` space."
+msgid ""
+"Drop a user. For explanation of how Tarantool maintains user data, see "
+"section :ref:`Users <authentication-users>` and reference on :ref:`_user "
+"<box_space-user>` space."
 msgstr ""
 
 msgid "Parameters"
@@ -11,13 +14,15 @@ msgstr ""
 msgid "the name of the user"
 msgstr ""
 
-msgid "``if_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the user does not exist."
+msgid ""
+"``if_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` "
+"means there should be no error if the user does not exist."
 msgstr ""
 
 msgid "**Examples:**"
 msgstr ""
 
-msgid "box.schema.user.drop('Lena')\n"
+msgid ""
+"box.schema.user.drop('Lena')\n"
 "box.schema.user.drop('Lena',{if_exists=false})"
 msgstr ""
-

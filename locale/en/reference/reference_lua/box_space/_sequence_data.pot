@@ -2,7 +2,9 @@
 msgid "box.space._sequence_data"
 msgstr ""
 
-msgid "``_sequence_data`` is a system space for support of the :ref:`sequence feature <index-box_sequence>`."
+msgid ""
+"``_sequence_data`` is a system space for support of the :ref:`sequence "
+"feature <index-box_sequence>`."
 msgstr ""
 
 msgid "Each tuple in ``_sequence_data`` contains two fields:"
@@ -11,9 +13,12 @@ msgstr ""
 msgid "the id of the sequence, and"
 msgstr ""
 
-msgid "the last value that the sequence generator returned (non-persistent information)."
+msgid ""
+"the last value that the sequence generator returned (non-persistent "
+"information)."
 msgstr ""
 
-msgid "There is no guarantee that this space will be updated immediately after every data-change request."
+msgid ""
+"There is no guarantee that this space will be updated immediately after "
+"every data-change request."
 msgstr ""
-

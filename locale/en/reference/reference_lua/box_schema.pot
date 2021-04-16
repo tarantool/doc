@@ -2,7 +2,9 @@
 msgid "Submodule `box.schema`"
 msgstr ""
 
-msgid "The ``box.schema`` submodule has data-definition functions for spaces, users, roles, function tuples, and sequences."
+msgid ""
+"The ``box.schema`` submodule has data-definition functions for spaces, "
+"users, roles, function tuples, and sequences."
 msgstr ""
 
 msgid "Below is a list of all ``box.schema`` functions."
@@ -133,4 +135,3 @@ msgstr ""
 
 msgid "Reload a C module with all its functions, no restart"
 msgstr ""
-

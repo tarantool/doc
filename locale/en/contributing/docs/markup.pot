@@ -2,9 +2,13 @@
 msgid "Markup reference"
 msgstr ""
 
-msgid "Tarantool documentation is built via `Sphinx <https://www.sphinx-doc.org/en/master/index.html>`_ engine and is written in `reStructuredText <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_ markup. This section will guide you through our typical cases while writing the docs."
+msgid ""
+"Tarantool documentation is built via `Sphinx <https://www.sphinx-"
+"doc.org/en/master/index.html>`_ engine and is written in `reStructuredText "
+"<https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_ "
+"markup. This section will guide you through our typical cases while writing "
+"the docs."
 msgstr ""
 
 msgid "Contents:"
 msgstr ""
-

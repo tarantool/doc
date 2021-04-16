@@ -2,7 +2,9 @@
 msgid "index_object:drop()"
 msgstr ""
 
-msgid "Drop an index. Dropping a primary-key index has a side effect: all tuples are deleted."
+msgid ""
+"Drop an index. Dropping a primary-key index has a side effect: all tuples "
+"are deleted."
 msgstr ""
 
 msgid "Parameters"
@@ -23,14 +25,15 @@ msgstr ""
 msgid "index does not exist,"
 msgstr ""
 
-msgid "a primary-key index cannot be dropped while a secondary-key index exists."
+msgid ""
+"a primary-key index cannot be dropped while a secondary-key index exists."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.space.space55.index.primary:drop()\n"
+msgid ""
+"tarantool> box.space.space55.index.primary:drop()\n"
 "---\n"
 "..."
 msgstr ""
-

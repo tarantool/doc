@@ -17,37 +17,54 @@ msgstr ""
 msgid "``index_object:stat().bytes`` -- the number of bytes total;"
 msgstr ""
 
-msgid "``index_object:stat().disk.rows`` -- the approximate number of tuples in each range;"
+msgid ""
+"``index_object:stat().disk.rows`` -- the approximate number of tuples in "
+"each range;"
 msgstr ""
 
-msgid "``index_object:stat().disk.statement`` -- counts of inserts|updates|upserts|deletes;"
+msgid ""
+"``index_object:stat().disk.statement`` -- counts of "
+"inserts|updates|upserts|deletes;"
 msgstr ""
 
-msgid "``index_object:stat().disk.compaction`` -- counts of compactions and their amounts;"
+msgid ""
+"``index_object:stat().disk.compaction`` -- counts of compactions and their "
+"amounts;"
 msgstr ""
 
-msgid "``index_object:stat().disk.dump`` -- counts of dumps and their amounts;"
+msgid ""
+"``index_object:stat().disk.dump`` -- counts of dumps and their amounts;"
 msgstr ""
 
-msgid "``index_object:stat().disk.iterator.bloom`` -- counts of bloom filter hits|misses;"
+msgid ""
+"``index_object:stat().disk.iterator.bloom`` -- counts of bloom filter "
+"hits|misses;"
 msgstr ""
 
 msgid "``index_object:stat().disk.pages`` -- the size in pages;"
 msgstr ""
 
-msgid "``index_object:stat().disk.last_level`` -- size of data in the last LSM tree level;"
+msgid ""
+"``index_object:stat().disk.last_level`` -- size of data in the last LSM tree"
+" level;"
 msgstr ""
 
-msgid "``index_object:stat().cache.evict`` -- number of evictions from the cache;"
+msgid ""
+"``index_object:stat().cache.evict`` -- number of evictions from the cache;"
 msgstr ""
 
-msgid "``index_object:stat().range_size`` -- maximum number of bytes in a range;"
+msgid ""
+"``index_object:stat().range_size`` -- maximum number of bytes in a range;"
 msgstr ""
 
-msgid "``index_object:stat().dumps_per_compaction`` -- average number of dumps required to trigger major compaction in any range of the LSM tree."
+msgid ""
+"``index_object:stat().dumps_per_compaction`` -- average number of dumps "
+"required to trigger major compaction in any range of the LSM tree."
 msgstr ""
 
-msgid "Summary index statistics are also available via :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl_details>`."
+msgid ""
+"Summary index statistics are also available via :ref:`box.stat.vinyl() "
+"<box_introspection-box_stat_vinyl_details>`."
 msgstr ""
 
 msgid "Parameters"
@@ -67,4 +84,3 @@ msgstr ""
 
 msgid "table"
 msgstr ""
-

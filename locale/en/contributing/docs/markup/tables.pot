@@ -2,13 +2,19 @@
 msgid "Tables"
 msgstr ""
 
-msgid "Tables are very useful and rST markup `offers <https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_ different ways to create them."
+msgid ""
+"Tables are very useful and rST markup `offers "
+"<https://docutils.sourceforge.io/docs/ref/rst/directives.html#tables>`_ "
+"different ways to create them."
 msgstr ""
 
-msgid "We prefer list-tables because they allow you to put as much content as you need without painting ASCII-style borders:"
+msgid ""
+"We prefer list-tables because they allow you to put as much content as you "
+"need without painting ASCII-style borders:"
 msgstr ""
 
-msgid "..  container:: table\n"
+msgid ""
+"..  container:: table\n"
 "\n"
 "    ..  list-table::\n"
 "        :widths: 25 75\n"
@@ -36,6 +42,7 @@ msgstr ""
 msgid "Wait until ``box.info.ro`` is true"
 msgstr ""
 
-msgid "Notice that we use ``*`` and then ``-`` in tables because it is more readable when rows and columns marked differently."
+msgid ""
+"Notice that we use ``*`` and then ``-`` in tables because it is more "
+"readable when rows and columns marked differently."
 msgstr ""
-

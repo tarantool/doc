@@ -2,7 +2,12 @@
 msgid "box.tuple.new()"
 msgstr ""
 
-msgid "Construct a new tuple from either a scalar or a Lua table. Alternatively, one can get new tuples from Tarantool's :ref:`select <box_space-select>` or :ref:`insert <box_space-insert>` or :ref:`replace <box_space-replace>` or :ref:`update <box_space-update>` requests, which can be regarded as statements that do ``new()`` implicitly."
+msgid ""
+"Construct a new tuple from either a scalar or a Lua table. Alternatively, "
+"one can get new tuples from Tarantool's :ref:`select <box_space-select>` or "
+":ref:`insert <box_space-insert>` or :ref:`replace <box_space-replace>` or "
+":ref:`update <box_space-update>` requests, which can be regarded as "
+"statements that do ``new()`` implicitly."
 msgstr ""
 
 msgid "Parameters"
@@ -23,13 +28,17 @@ msgstr ""
 msgid "tuple"
 msgstr ""
 
-msgid "In the following example, ``x`` will be a new table object containing one tuple and ``t`` will be a new tuple object. Saying ``t`` returns the entire tuple ``t``."
+msgid ""
+"In the following example, ``x`` will be a new table object containing one "
+"tuple and ``t`` will be a new tuple object. Saying ``t`` returns the entire "
+"tuple ``t``."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> x = box.space.tester:insert{\n"
+msgid ""
+"tarantool> x = box.space.tester:insert{\n"
 "         >   33,\n"
 "         >   tonumber('1'),\n"
 "         >   tonumber64('2')\n"
@@ -44,4 +53,3 @@ msgid "tarantool> x = box.space.tester:insert{\n"
 "- ['abc', 'def', 'ghi', 'abc']\n"
 "..."
 msgstr ""
-

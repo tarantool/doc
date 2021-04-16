@@ -11,15 +11,19 @@ msgstr ""
 msgid "return"
 msgstr ""
 
-msgid "Number of bytes in the space. This number, which is stored in Tarantool's internal memory, represents the total number of bytes in all tuples, not including index keys. For a measure of index size, see :doc:`/reference/reference_lua/box_index/bsize`."
+msgid ""
+"Number of bytes in the space. This number, which is stored in Tarantool's "
+"internal memory, represents the total number of bytes in all tuples, not "
+"including index keys. For a measure of index size, see "
+":doc:`/reference/reference_lua/box_index/bsize`."
 msgstr ""
 
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.space.tester:bsize()\n"
+msgid ""
+"tarantool> box.space.tester:bsize()\n"
 "---\n"
 "- 22\n"
 "..."
 msgstr ""
-

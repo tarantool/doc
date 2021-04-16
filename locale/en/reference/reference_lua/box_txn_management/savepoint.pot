@@ -2,7 +2,12 @@
 msgid "box.savepoint()"
 msgstr ""
 
-msgid "Return a descriptor of a savepoint (type = table), which can be used later by :doc:`box.rollback_to_savepoint(savepoint) </reference/reference_lua/box_txn_management/rollback_to_savepoint>`. Savepoints can only be created while a transaction is active, and they are destroyed when a transaction ends."
+msgid ""
+"Return a descriptor of a savepoint (type = table), which can be used later "
+"by :doc:`box.rollback_to_savepoint(savepoint) "
+"</reference/reference_lua/box_txn_management/rollback_to_savepoint>`. "
+"Savepoints can only be created while a transaction is active, and they are "
+"destroyed when a transaction ends."
 msgstr ""
 
 msgid "return"
@@ -20,6 +25,6 @@ msgstr ""
 msgid "error if the savepoint cannot be set in absence of active transaction."
 msgstr ""
 
-msgid "**Possible errors:** error if for some reason memory cannot be allocated."
+msgid ""
+"**Possible errors:** error if for some reason memory cannot be allocated."
 msgstr ""
-

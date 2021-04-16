@@ -4,4 +4,3 @@ msgstr ""
 
 msgid "See :doc:`/reference/reference_lua/box_space/replace`."
 msgstr ""
-

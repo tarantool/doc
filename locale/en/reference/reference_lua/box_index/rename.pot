@@ -26,11 +26,12 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.space.space55.index.primary:rename('secondary')\n"
+msgid ""
+"tarantool> box.space.space55.index.primary:rename('secondary')\n"
 "---\n"
 "..."
 msgstr ""
 
-msgid "**Complexity factors:** Index size, Index type, Number of tuples accessed."
+msgid ""
+"**Complexity factors:** Index size, Index type, Number of tuples accessed."
 msgstr ""
-

@@ -20,8 +20,8 @@ msgstr ""
 msgid "**Example:**"
 msgstr ""
 
-msgid "tarantool> box.ctl.wait_rw(0.1)\n"
+msgid ""
+"tarantool> box.ctl.wait_rw(0.1)\n"
 "---\n"
 "..."
 msgstr ""
-
