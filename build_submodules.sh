@@ -27,6 +27,8 @@ tntcxx_root="${project_root}/modules/tntcxx"
 tntcxx_gs_dest="${project_root}/doc/getting_started/"
 tntcxx_api_dest="${project_root}/doc/book/connectors/"
 
+cp README.rst doc/contributing/docs/_includes/README.rst
+
 cd "${luatest_root}"
 ldoc --ext=rst --dir=rst --toctree="API" .
 cd "${luatest_dest}"

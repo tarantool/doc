@@ -18,6 +18,9 @@ rocks
 # Crowdin API key
 apikey.txt
 
+# README copied to contributor docs
+/doc/contributing/docs/_includes/README.rst
+
 # redundant folders created by sphinx
 
 /locale/book/LC_MESSAGES/
