@@ -17,4 +17,5 @@ The guidelines are a work in progress, and we welcome all contributions.
     docs/terms
     docs/markup
     docs/examples
+    docs/build
     docs/infra
