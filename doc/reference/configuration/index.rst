@@ -9,8 +9,8 @@ on the command line or in an :ref:`initialization file <index-init_label>`.
 
 Tarantool is started by entering either of the following command:
 
-.. cssclass:: highlight
-.. parsed-literal::
+..  cssclass:: highlight
+..  parsed-literal::
 
     $ **tarantool**
 
@@ -22,21 +22,21 @@ Tarantool is started by entering either of the following command:
 Command options
 --------------------------------------------------------------------------------
 
-.. option:: -h, --help
+..  option:: -h, --help
 
     Print an annotated list of all available options and exit.
 
 .. _index-tarantool_version:
 
-.. option:: -V, --version
+..  option:: -V, --version
 
     Print product name and version, for example:
 
-    .. code-block:: console
+    ..  code-block:: console
 
         $ ./tarantool --version
-        Tarantool 1.7.0-1216-g73f7154
-        Target: Linux-x86_64-Debug
+        Tarantool 2.6.2-0-g34d504d
+        Target: Darwin-x86_64-Release
         ...
 
     In this example:
@@ -55,7 +55,7 @@ Command options
     “Target” is the platform tarantool was built on. Some platform-specific details
     may follow this line.
 
-    .. NOTE::
+    ..  NOTE::
 
         Tarantool uses
         `git describe <http://www.kernel.org/pub/software/scm/git/docs/git-describe.html>`_
@@ -82,10 +82,10 @@ meaning respectively any IPv4 address or any IPv6 address,
 on the local machine.
 If username:password is omitted, then 'guest' is assumed. Some examples:
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
     +-----------------------------+------------------------------+
     | URI fragment                | Example                      |
@@ -103,7 +103,7 @@ simply "/tmp/unix_domain_socket.sock".
 
 A method for parsing URIs is illustrated in :ref:`Module uri <uri-parse>`.
 
-.. _index-init_label:
+..  _index-init_label:
 
 --------------------------------------------------------------------------------
 Initialization file
@@ -117,7 +117,7 @@ The Lua program almost always begins by invoking ``box.cfg()``, if the database
 server will be used or if ports need to be opened. For example, suppose
 ``script.lua`` contains the lines
 
-.. code-block:: lua
+..  code-block:: lua
 
     #!/usr/bin/env tarantool
     box.cfg{
@@ -132,7 +132,7 @@ and suppose the environment variable LISTEN_URI contains 3301,
 and suppose the command line is ``~/tarantool/src/tarantool script.lua ARG``.
 Then the screen might look like this:
 
-.. code-block:: console
+..  code-block:: console
 
     $ export LISTEN_URI=3301
     $ ~/tarantool/src/tarantool script.lua ARG
@@ -149,16 +149,16 @@ Then the screen might look like this:
 If you wish to start an interactive session on the same terminal after
 initialization is complete, you can use :ref:`console.start() <console-start>`.
 
-.. _index-local_hot_standby:
-.. _index-replication_port:
-.. _index-slab_alloc_arena:
-.. _index-replication_source:
-.. _index-snap_dir:
-.. _index-wal_dir:
-.. _index-wal_mode:
-.. _index-checkpoint daemon:
+..  _index-local_hot_standby:
+..  _index-replication_port:
+..  _index-slab_alloc_arena:
+..  _index-replication_source:
+..  _index-snap_dir:
+..  _index-wal_dir:
+..  _index-wal_mode:
+..  _index-checkpoint daemon:
 
-.. _box_cfg_params:
+..  _box_cfg_params:
 
 --------------------------------------------------------------------------------
 Configuration parameters
@@ -189,56 +189,56 @@ for logging, and for feedback.
 Basic parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_basic.rst
+..  include:: cfg_basic.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Configuring the storage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_storage.rst
+..  include:: cfg_storage.rst
 
-.. _book_cfg_checkpoint_daemon:
+..  _book_cfg_checkpoint_daemon:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Checkpoint daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_snapshot_daemon.rst
+..  include:: cfg_snapshot_daemon.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Binary logging and snapshots
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_binary_logging_snapshots.rst
+..  include:: cfg_binary_logging_snapshots.rst
 
-.. _index-hot_standby:
+..  _index-hot_standby:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Hot standby
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_hot_standby.rst
+..  include:: cfg_hot_standby.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Replication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_replication.rst
+..  include:: cfg_replication.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Networking
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_networking.rst
+..  include:: cfg_networking.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Logging
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_logging.rst
+..  include:: cfg_logging.rst
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Deprecated parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: cfg_deprecated.rst
+..  include:: cfg_deprecated.rst
