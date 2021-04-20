@@ -35,6 +35,9 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
+msgid "**Fibers**"
+msgstr ""
+
 msgid ":ref:`fiber.create() <fiber-create>`"
 msgstr ""
 
@@ -53,151 +56,10 @@ msgstr ""
 msgid "Get a fiber object"
 msgstr ""
 
-msgid ":ref:`fiber.channel() <fiber-channel>`"
-msgstr ""
-
-msgid "Create a communication channel"
-msgstr ""
-
-msgid ":ref:`channel_object:close() <channel_object-close>`"
-msgstr ""
-
-msgid "Close a channel"
-msgstr ""
-
-msgid ":ref:`channel_object:count() <channel_object-count>`"
-msgstr ""
-
-msgid "Count messages in a channel"
-msgstr ""
-
-msgid ":ref:`channel_object:get() <channel_object-get>`"
-msgstr ""
-
-msgid "Fetch a message from a channel"
-msgstr ""
-
-msgid ":ref:`channel_object:has_readers() <channel_object-has_readers>`"
-msgstr ""
-
-msgid "Check if an empty channel has any readers waiting"
-msgstr ""
-
-msgid ":ref:`channel_object:has_writers() <channel_object-has_writers>`"
-msgstr ""
-
-msgid "Check if a full channel has any writers waiting"
-msgstr ""
-
-msgid ":ref:`channel_object:is_closed() <channel_object-is_closed>`"
-msgstr ""
-
-msgid "Check if a channel is closed"
-msgstr ""
-
-msgid ":ref:`channel_object:is_empty() <channel_object-is_empty>`"
-msgstr ""
-
-msgid "Check if a channel is empty"
-msgstr ""
-
-msgid ":ref:`channel_object:is_full() <channel_object-is_full>`"
-msgstr ""
-
-msgid "Check if a channel is full"
-msgstr ""
-
-msgid ":ref:`channel_object:put() <channel_object-put>`"
-msgstr ""
-
-msgid "Send a message via a channel"
-msgstr ""
-
-msgid ":ref:`fiber.cond() <fiber-cond>`"
-msgstr ""
-
-msgid "Create a condition variable"
-msgstr ""
-
-msgid ":ref:`cond_object:broadcast() <cond_object-broadcast>`"
-msgstr ""
-
-msgid "Wake up all fibers"
-msgstr ""
-
-msgid ":ref:`cond_object:signal() <cond_object-signal>`"
-msgstr ""
-
-msgid "Wake up a single fiber"
-msgstr ""
-
-msgid ":ref:`cond_object:wait() <cond_object-wait>`"
-msgstr ""
-
-msgid "Make a fiber go to sleep until woken by another fiber"
-msgstr ""
-
 msgid ":ref:`fiber.find() <fiber-find>`"
 msgstr ""
 
 msgid "Get a fiber object by ID"
-msgstr ""
-
-msgid ":ref:`fiber.info() <fiber-info>`"
-msgstr ""
-
-msgid "Get information about all fibers"
-msgstr ""
-
-msgid ":ref:`fiber.kill() <fiber-kill>`"
-msgstr ""
-
-msgid "Cancel a fiber"
-msgstr ""
-
-msgid ":ref:`fiber_object:cancel() <fiber_object-cancel>`"
-msgstr ""
-
-msgid ":ref:`fiber_object:id() <fiber_object-id>`"
-msgstr ""
-
-msgid "Get a fiber's ID"
-msgstr ""
-
-msgid ":ref:`fiber_object:join() <fiber_object-join>`"
-msgstr ""
-
-msgid "Wait for a fiber's state to become 'dead'"
-msgstr ""
-
-msgid ":ref:`fiber_object:name() <fiber_object-name_get>`"
-msgstr ""
-
-msgid "Get a fiber's name"
-msgstr ""
-
-msgid ":ref:`fiber_object:name(name) <fiber_object-name_set>`"
-msgstr ""
-
-msgid "Set a fiber's name"
-msgstr ""
-
-msgid ":ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`"
-msgstr ""
-
-msgid "Make it possible for a new fiber to join"
-msgstr ""
-
-msgid ":ref:`fiber_object:status() <fiber_object-status>`"
-msgstr ""
-
-msgid "Get a fiber's status"
-msgstr ""
-
-msgid ":ref:`fiber_object.storage <fiber_object-storage>`"
-msgstr ""
-
-msgid "Local storage within the fiber"
 msgstr ""
 
 msgid ":ref:`fiber.sleep() <fiber-sleep>`"
@@ -206,10 +68,40 @@ msgstr ""
 msgid "Make a fiber go to sleep"
 msgstr ""
 
+msgid ":ref:`fiber.yield() <fiber-yield>`"
+msgstr ""
+
+msgid "Yield control"
+msgstr ""
+
 msgid ":ref:`fiber.status() <fiber-status>`"
 msgstr ""
 
 msgid "Get the current fiber's status"
+msgstr ""
+
+msgid ":ref:`fiber.info() <fiber-info>`"
+msgstr ""
+
+msgid "Get information about all fibers"
+msgstr ""
+
+msgid ":ref:`fiber.top() <fiber-top>`"
+msgstr ""
+
+msgid "Return a table of alive fibers and show their CPU consumption"
+msgstr ""
+
+msgid ":ref:`fiber.kill() <fiber-kill>`"
+msgstr ""
+
+msgid "Cancel a fiber"
+msgstr ""
+
+msgid ":ref:`fiber.testcancel() <fiber-testcancel>`"
+msgstr ""
+
+msgid "Check if the current fiber has been cancelled"
 msgstr ""
 
 msgid ":ref:`fiber.time() <fiber-time>`"
@@ -236,22 +128,160 @@ msgstr ""
 msgid "Get the monotonic time in microseconds"
 msgstr ""
 
-msgid ":ref:`fiber.testcancel() <fiber-testcancel>`"
+msgid "**Fiber object**"
 msgstr ""
 
-msgid "Check if the current fiber has been cancelled"
+msgid ":ref:`fiber_object:id() <fiber_object-id>`"
 msgstr ""
 
-msgid ":ref:`fiber.top() <fiber-top>`"
+msgid "Get a fiber's ID"
 msgstr ""
 
-msgid "Return a table of alive fibers and show their CPU consumption"
+msgid ":ref:`fiber_object:name() <fiber_object-name_get>`"
 msgstr ""
 
-msgid ":ref:`fiber.yield() <fiber-yield>`"
+msgid "Get a fiber's name"
 msgstr ""
 
-msgid "Yield control"
+msgid ":ref:`fiber_object:name(name) <fiber_object-name_set>`"
+msgstr ""
+
+msgid "Set a fiber's name"
+msgstr ""
+
+msgid ":ref:`fiber_object:status() <fiber_object-status>`"
+msgstr ""
+
+msgid "Get a fiber's status"
+msgstr ""
+
+msgid ":ref:`fiber_object:cancel() <fiber_object-cancel>`"
+msgstr ""
+
+msgid ":ref:`fiber_object.storage <fiber_object-storage>`"
+msgstr ""
+
+msgid "Local storage within the fiber"
+msgstr ""
+
+msgid ":ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`"
+msgstr ""
+
+msgid "Make it possible for a new fiber to join"
+msgstr ""
+
+msgid ":ref:`fiber_object:join() <fiber_object-join>`"
+msgstr ""
+
+msgid "Wait for a fiber's state to become 'dead'"
+msgstr ""
+
+msgid ":ref:`Examples <fiber-example>`"
+msgstr ""
+
+msgid "Some useful examples"
+msgstr ""
+
+msgid "**Channels**"
+msgstr ""
+
+msgid ":ref:`fiber.channel() <fiber-channel>`"
+msgstr ""
+
+msgid "Create a communication channel"
+msgstr ""
+
+msgid ":ref:`channel_object:put() <channel_object-put>`"
+msgstr ""
+
+msgid "Send a message via a channel"
+msgstr ""
+
+msgid ":ref:`channel_object:close() <channel_object-close>`"
+msgstr ""
+
+msgid "Close a channel"
+msgstr ""
+
+msgid ":ref:`channel_object:get() <channel_object-get>`"
+msgstr ""
+
+msgid "Fetch a message from a channel"
+msgstr ""
+
+msgid ":ref:`channel_object:is_empty() <channel_object-is_empty>`"
+msgstr ""
+
+msgid "Check if a channel is empty"
+msgstr ""
+
+msgid ":ref:`channel_object:count() <channel_object-count>`"
+msgstr ""
+
+msgid "Count messages in a channel"
+msgstr ""
+
+msgid ":ref:`channel_object:is_full() <channel_object-is_full>`"
+msgstr ""
+
+msgid "Check if a channel is full"
+msgstr ""
+
+msgid ":ref:`channel_object:has_readers() <channel_object-has_readers>`"
+msgstr ""
+
+msgid "Check if an empty channel has any readers waiting"
+msgstr ""
+
+msgid ":ref:`channel_object:has_writers() <channel_object-has_writers>`"
+msgstr ""
+
+msgid "Check if a full channel has any writers waiting"
+msgstr ""
+
+msgid ":ref:`channel_object:is_closed() <channel_object-is_closed>`"
+msgstr ""
+
+msgid "Check if a channel is closed"
+msgstr ""
+
+msgid ":ref:`Example <channel_object-example>`"
+msgstr ""
+
+msgid "A useful example about channels"
+msgstr ""
+
+msgid "**Condition variables**"
+msgstr ""
+
+msgid ":ref:`fiber.cond() <fiber-cond>`"
+msgstr ""
+
+msgid "Create a condition variable"
+msgstr ""
+
+msgid ":ref:`cond_object:wait() <cond_object-wait>`"
+msgstr ""
+
+msgid "Make a fiber go to sleep until woken by another fiber"
+msgstr ""
+
+msgid ":ref:`cond_object:signal() <cond_object-signal>`"
+msgstr ""
+
+msgid "Wake up a single fiber"
+msgstr ""
+
+msgid ":ref:`cond_object:broadcast() <cond_object-broadcast>`"
+msgstr ""
+
+msgid "Wake up all fibers"
+msgstr ""
+
+msgid ":ref:`Example <cond_object-example>`"
+msgstr ""
+
+msgid "A useful example about condition variables"
 msgstr ""
 
 msgid "Fibers"
@@ -306,11 +336,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"A fiber has all the features of a Lua coroutine_ and all the programming "
-"concepts that apply for Lua coroutines will apply for fibers as well. "
-"However, Tarantool has made some enhancements for fibers and has used fibers"
-" internally. So, although use of coroutines is possible and supported, use "
-"of fibers is recommended."
+"A fiber has all the features of a Lua `coroutine "
+"<http://www.lua.org/pil/contents.html#9>` and all the programming concepts "
+"that apply for Lua coroutines will apply for fibers as well. However, "
+"Tarantool has made some enhancements for fibers and has used fibers "
+"internally. So, although use of coroutines is possible and supported, use of"
+" fibers is recommended."
 msgstr ""
 
 msgid ""
@@ -327,13 +358,13 @@ msgstr ""
 msgid "what will be passed to function"
 msgstr ""
 
-msgid "Return"
+msgid "return"
 msgstr ""
 
 msgid "created fiber object"
 msgstr ""
 
-msgid "Rtype"
+msgid "rtype"
 msgstr ""
 
 msgid "userdata"
@@ -541,9 +572,6 @@ msgstr ""
 msgid "Let's take a look at the example:"
 msgstr ""
 
-msgid "**Example**"
-msgstr ""
-
 msgid ""
 "tarantool> fiber.top()\n"
 "---\n"
@@ -582,6 +610,47 @@ msgid ""
 "      average: 23.141537169257\n"
 "  cpu_misses: 0\n"
 "..."
+msgstr ""
+
+msgid ""
+"Notice that by default new fibers created due to :ref:`fiber.create <fiber-"
+"create>` are named 'lua' so it is better to set their names explicitly via "
+":ref:`fiber_object:name('name') <fiber_object-name_set>`."
+msgstr ""
+
+msgid ""
+"There are several system fibers in ``fiber.top()`` output that might be "
+"useful:"
+msgstr ""
+
+msgid ""
+"``sched`` is a special system fiber. It schedules tasks to other fibers, if "
+"any, and also handles some ``libev`` events."
+msgstr ""
+
+msgid ""
+"It can have high ``instant`` and ``average`` values in ``fiber.top()`` "
+"output in two cases:"
+msgstr ""
+
+msgid ""
+"The instance has almost no load - then practically only ``sched`` is "
+"executing, and the other fibers are sleeping. So relative to the other "
+"fibers, ``sched`` may have almost 100% load."
+msgstr ""
+
+msgid ""
+"``sched`` handles a large number of system events. This should not cause "
+"performance problems."
+msgstr ""
+
+msgid ""
+"``main`` fibers process requests that come over the network (iproto "
+"requests). There are several such fibers, and new ones are created if "
+"needed. When a new request comes in, a free fiber takes it and executes it. "
+"The request can be a typical ``select``/``replace``/``delete``/``insert`` or"
+" a function call. For example, :ref:`conn:eval() <net_box-eval>` or "
+":ref:`conn:call() <net_box-call>`."
 msgstr ""
 
 msgid ""
@@ -631,15 +700,80 @@ msgid ""
 msgstr ""
 
 msgid ""
+"current system time (in seconds since the epoch) as a Lua number. The time "
+"is taken from the event loop clock, which makes this call very cheap, but "
+"still useful for constructing artificial tuple keys."
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+msgid ""
+"tarantool> fiber.time(), fiber.time()\n"
+"---\n"
+"- 1448466279.2415\n"
+"- 1448466279.2415\n"
+"..."
+msgstr ""
+
+msgid ""
+"current system time (in microseconds since the epoch) as a 64-bit integer. "
+"The time is taken from the event loop clock."
+msgstr ""
+
+msgid "cdata"
+msgstr ""
+
+msgid ""
+"tarantool> fiber.time(), fiber.time64()\n"
+"---\n"
+"- 1448466351.2708\n"
+"- 1448466351270762\n"
+"..."
+msgstr ""
+
+msgid ""
+"Get the monotonic time in seconds. It is better to use ``fiber.clock()`` for"
+" calculating timeouts instead of :ref:`fiber.time() <fiber-time>` because "
+"``fiber.time()`` reports real time so it is affected by system time changes."
+msgstr ""
+
+msgid ""
+"a floating-point number of seconds, representing elapsed wall-clock time "
+"since some time in the past that is guaranteed not to change during the life"
+" of the process"
+msgstr ""
+
+msgid ""
+"tarantool> start = fiber.clock()\n"
+"---\n"
+"...\n"
+"tarantool> print(start)\n"
+"248700.58805\n"
+"---\n"
+"...\n"
+"tarantool> print(fiber.time(), fiber.time()-start)\n"
+"1600785979.8291 1600537279.241\n"
+"---\n"
+"..."
+msgstr ""
+
+msgid "Same as :ref:`fiber.clock() <fiber-clock>` but in microseconds."
+msgstr ""
+
+msgid ""
+"a number of seconds as 64-bit integer, representing elapsed wall-clock time "
+"since some time in the past that is guaranteed not to change during the life"
+" of the process"
+msgstr ""
+
+msgid ""
 "generally this is an object referenced in the return from :ref:`fiber.create"
 " <fiber-create>` or :ref:`fiber.self <fiber-self>` or :ref:`fiber.find "
 "<fiber-find>`"
 msgstr ""
 
 msgid "id of the fiber."
-msgstr ""
-
-msgid "number"
 msgstr ""
 
 msgid "``fiber.self():id()`` can also be expressed as ``fiber.id()``."
@@ -673,7 +807,7 @@ msgid ""
 "fiber is named 'interactive' and new fibers created due to "
 ":ref:`fiber.create <fiber-create>` are named 'lua'. Giving fibers distinct "
 "names makes it easier to distinguish them when using :ref:`fiber.info "
-"<fiber-info>`. Max length is 255."
+"<fiber-info>` and :ref:`fiber.top() <fiber-top>`. Max length is 255."
 msgstr ""
 
 msgid "the new name of the fiber."
@@ -934,71 +1068,6 @@ msgid ""
 "fiber.status(fi2)"
 msgstr ""
 
-msgid ""
-"current system time (in seconds since the epoch) as a Lua number. The time "
-"is taken from the event loop clock, which makes this call very cheap, but "
-"still useful for constructing artificial tuple keys."
-msgstr ""
-
-msgid ""
-"tarantool> fiber.time(), fiber.time()\n"
-"---\n"
-"- 1448466279.2415\n"
-"- 1448466279.2415\n"
-"..."
-msgstr ""
-
-msgid ""
-"current system time (in microseconds since the epoch) as a 64-bit integer. "
-"The time is taken from the event loop clock."
-msgstr ""
-
-msgid "cdata"
-msgstr ""
-
-msgid ""
-"tarantool> fiber.time(), fiber.time64()\n"
-"---\n"
-"- 1448466351.2708\n"
-"- 1448466351270762\n"
-"..."
-msgstr ""
-
-msgid ""
-"Get the monotonic time in seconds. It is better to use ``fiber.clock()`` for"
-" calculating timeouts instead of :ref:`fiber.time() <fiber-time>` because "
-"``fiber.time()`` reports real time so it is affected by system time changes."
-msgstr ""
-
-msgid ""
-"a floating-point number of seconds, representing elapsed wall-clock time "
-"since some time in the past that is guaranteed not to change during the life"
-" of the process"
-msgstr ""
-
-msgid ""
-"tarantool> start = fiber.clock()\n"
-"---\n"
-"...\n"
-"tarantool> print(start)\n"
-"248700.58805\n"
-"---\n"
-"...\n"
-"tarantool> print(fiber.time(), fiber.time()-start)\n"
-"1600785979.8291 1600537279.241\n"
-"---\n"
-"..."
-msgstr ""
-
-msgid "Same as :ref:`fiber.clock() <fiber-clock>` but in microseconds."
-msgstr ""
-
-msgid ""
-"a number of seconds as 64-bit integer, representing elapsed wall-clock time "
-"since some time in the past that is guaranteed not to change during the life"
-" of the process"
-msgstr ""
-
 msgid "Example"
 msgstr ""
 
@@ -1060,7 +1129,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Pause for a while, while the detached function runs. Then ... Cancel the "
+"Pause for a while, while the detached function runs. Then ...  cancel the "
 "fiber. Then, once again ... Display the fiber id, the fiber status, and gvar"
 " (gvar will have gone up a bit more depending how long the pause lasted). "
 "This time the status is dead because the cancel worked."
@@ -1134,13 +1203,7 @@ msgid ""
 "be in use at once. The default is 0."
 msgstr ""
 
-msgid "return"
-msgstr ""
-
 msgid "new channel."
-msgstr ""
-
-msgid "rtype"
 msgstr ""
 
 msgid "userdata, possibly including the string \"channel ...\"."
