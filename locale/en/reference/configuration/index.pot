@@ -30,8 +30,8 @@ msgstr ""
 
 msgid ""
 "$ ./tarantool --version\n"
-"Tarantool 1.7.0-1216-g73f7154\n"
-"Target: Linux-x86_64-Debug\n"
+"Tarantool 2.6.2-0-g34d504d\n"
+"Target: Darwin-x86_64-Release\n"
 "..."
 msgstr ""
 
