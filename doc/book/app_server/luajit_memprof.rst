@@ -2,19 +2,19 @@
 LuaJIT memory profiler
 ======================
 
-Stating from version :doc:`2.7.1 </doc/release/2.7.1>`, Tarantool
+Stating from version :doc:`2.7.1 </release/2.7.1>`, Tarantool
 has a new built-in module called ``memprof`` that implements a LuaJIT memory
 profiler and a profile parser. The profiler provides
 a memory allocation report that helps analyse Lua code and find out the places
 that put the most pressure on the Lua garbage collector.
 
-//?where to put this paragraph
+//?where to put this paragraph//
 Usually developers are not interested in information about allocations
 inside built-ins. So if a Lua built-in function is called from a Lua function,
 all allocations are attributed to this Lua function.
 Otherwise, this event is attributed to a C function.
 
-//?where to put this paragraph
+//?where to put this paragraph//
 Tail call optimization does not create a new call frame, so all allocations
 inside the function called via CALLT/CALLMT bytecodes are attributed to its caller.
 
@@ -126,7 +126,7 @@ to parse it to get a human-readable profiling report.
 .. _profiler_usage_parse_command:
 
 Binary profile can be parsed and read via Tarantool by using
-the following command:
+the following command (mind the hyphen (``-``) prior to the file name):
 
 ..  code-block:: tarantoolconsole
 
@@ -134,10 +134,6 @@ the following command:
 
 where ``memprof_new.bin`` is the binary profile file
 :ref:`generated earlier <profiler_usage_generate>`.
-
-..  note::
-
-    Mind the hyphen (``-``) prior to the file name.
 
 Tarantool generates a profiling report and closes the session:
 
@@ -253,6 +249,7 @@ a Q&A format.
 
 **Question (Q)**: Is the profiler suitable for C allocations or allocations
 inside C code?
+
 **Answer (A)**: The profiler reports only allocation events caused by the Lua
 allocation functions. All Lua-related allocations, like table or string creation
 are reported. But the profiler doesn't report allocations made by ``malloc()``
@@ -260,6 +257,7 @@ or other non-Lua allocators. You can use ``valgrind`` to debug them.
 
 **Q**: Why is there so many ``INTERNAL`` allocations in my profiling report?
 What does it mean?
+
 **A**: ``INTERNAL`` means that these allocations/reallocations/deallocations are
 related to the internal LuaJIT structures or are made on JIT traces.
 Currently, the memory profiler doesn't report verbosely allocations of objects
@@ -268,18 +266,21 @@ before profiler start.
 
 **Q**: Why is there some reallocations/deallocations without the ``Overrides``
 section?
+
 **A**: These objects can be created before the profiler starts. Adding
 ``collectgarbage()`` before the profiler's start enables to collect all
 previously allocated objects that are dead when the profiler starts.
 
 **Q**: Why some objects are not collected during profiling? Is it
 a memory leak?
+
 **A**: LuaJIT uses incremental Garbage Collector (GC). A GC cycle may not be
 finished at the moment of the profiler's stop. Add ``collectgarbage()`` before
 stopping the profiler to collect all the dead objects for sure.
 
 **Q**: Can I profile not just a current chunk but the entire running application?
 Can I start the profiler when the application is already running?
+
 **A**: Yes. Here is the example of code that can be inserted in the Tarantool
 console for a running instance.
 
@@ -322,10 +323,8 @@ from a console.
 
 .. _profiler_analysis:
 
- Profiling / Report analysis example
-------------------------------------
-
-//TBD--title
+Report analysis example
+-----------------------
 
 In the example below, the following Lua code named ``format_concat.lua`` is
 investigated with the help of the memory profiler reports.
@@ -429,7 +428,7 @@ The profiler's output is the following:
 
 **Q**: But what will change if JIT compilation is enabled?
 
-Let's comment the first line of the code, namely, ``jit.off()`` to see what
+**A**: Let's comment the first line of the code, namely, ``jit.off()`` to see what
 will happen. Now, there are only 56 allocations in the report, and all other
 allocations are JIT-related (see also the related
 `dev issue <https://github.com/tarantool/tarantool/issues/5679>`_):
@@ -476,7 +475,8 @@ The profiler's output is the following:
                     @format_concat.lua:8, line 9
 
 **Q**: Why is there so many allocations in comparison to the ``concat()`` function?
-**A**: The answer is easy: the ``string.format()`` function with the ``%s``
+
+**A**: The answer is simple: the ``string.format()`` function with the ``%s``
 identifier is not yet compiled via LuaJIT. So, a trace can't be recorded and
 the compiler doesn't perform the corresponding optimizations.
 
