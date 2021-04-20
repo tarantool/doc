@@ -1,0 +1,1 @@
+Check out the :ref:`Quick start guide <vshard-quick-start>`.
