@@ -124,8 +124,16 @@ And you will get this:
 
     ..  include:: _includes/samp.rst
 
-As you can see, with ``:extsamp:`` you don't need to mix ``:samp:`` with ``:code:``
-to highlight placeholders and the result willl be the same.
+Notice two backslashes before the curly brackets in the first line.
+They are needed to escape curly brackets from Lua syntax.
+
+As you can see, ``:extsamp:`` extends the abilities of ``:samp:``.
+It allows you to highlight placeholders in both italics and bold
+and avoid escaping curly brackets.
+``:extsamp:`` has the following syntax:
+
+*   ``{*{element}*}`` for *italic*
+*   ``{**{element}**}`` for **bold**
 
 If you need to mark up a placeholder in code block, use
 the following syntax:
