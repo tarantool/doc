@@ -83,21 +83,33 @@ Resulting output:
 Making comments
 ---------------
 
-Sometimes we may need to leave comments in an rST file. To make Sphinx ignore
-some text during processing, use the following per-line notation with ".. //" as
-the comment marker:
+Sometimes we may need to leave comments in an rST file.
+To make Sphinx ignore some text during processing,
+use the following per-line notation with ``.. //`` as the comment marker:
 
 ..  code-block:: rst
 
     .. // your comment here
 
 The starting characters ``.. //`` do not interfere with the other rST markup, and
-they are easy to find both visually and using ``grep``. There are no characters
-to escape in grep search, just go ahead with something like this:
+they are easy to find both visually and using ``grep``.
+To find comments in source files, go ahead with something like this:
 
 ..  code-block:: console
 
-    $ grep ".. //" doc/sphinx/dev_guide/*.rst
+    $ grep -n "\.\. //" doc/reference/**/*.rst
+    doc/reference/reference_lua/box.rst:47:.. // moved to "User Guide > 5. Server administration":
+    doc/reference/reference_lua/box.rst:48:.. // /book/box/triggers
+    ...
+
+If you're working with PyCharm or other similar IDE, links in the console will be clickable
+and will lead right to the source file and string.
+Check it out!
+
+..  image:: _static/grep-logs.png
+    :align: center
+    :scale: 50%
+    :alt: clickable links in the console
 
 These comments don't work properly in nested documentation, though.
 For example, if you leave a comment in module -> object -> method,
