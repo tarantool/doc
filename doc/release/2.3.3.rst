@@ -1,7 +1,7 @@
 Tarantool 2.3.3
 ===============
 
-Releases: https://github.com/tarantool/tarantool/releases
+Announcement: https://github.com/tarantool/tarantool/releases/tag/2.3.3
 Date: 2020-07-17 Tag: 2.3.3-1-g43af95e
 
 Overview

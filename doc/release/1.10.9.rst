@@ -1,7 +1,7 @@
 Tarantool 1.10.9
 ================
 
-Releases: https://github.com/tarantool/tarantool/releases
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.9
 
 Date: 2020-12-30 Tag: 1.10.9-0-g720ffdd23
 

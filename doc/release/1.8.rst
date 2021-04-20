@@ -2,7 +2,7 @@
 Tarantool 1.8
 --------------------------------------------------------------------------------
 
-Releases: https://github.com/tarantool/tarantool/releases
+Releases: https://github.com/tarantool/tarantool/releases/tag/1.8.0
 
 ..  _whats_new_18:
 
@@ -11,8 +11,8 @@ Releases: https://github.com/tarantool/tarantool/releases
 **Release 1.8.1**
 
 Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1.
-
-Announcement: https://groups.google.com/forum/#!msg/tarantool-ru/XYaoqJpc544/mSvKrYwNAgAJ.
+Announcement: https://groups.google.com/forum/#!msg/tarantool-ru/XYaoqJpc544/mSvKrYwNAgAJ
+or https://github.com/tarantool/tarantool/releases/tag/1.8.1.
 
 This is an alpha release which delivers support for a substantial subset
 of the ISO/IEC 9075:2011 SQL standard, including joins, subqueries and views.

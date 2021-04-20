@@ -2,7 +2,7 @@
 Tarantool 1.10
 --------------------------------------------------------------------------------
 
-Releases: https://github.com/tarantool/tarantool/releases
+Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.0
 
 ..  _whats_new_110:
 

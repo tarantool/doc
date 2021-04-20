@@ -3,7 +3,7 @@
 Tarantool 2.2.1
 -------------------------------------------------------------------------------
 
-Releases: https://github.com/tarantool/tarantool/releases
+Announcement: https://github.com/tarantool/tarantool/releases/tag/2.2.1
 
 ..  _whats_new_20:
 
