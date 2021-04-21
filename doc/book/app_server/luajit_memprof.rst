@@ -3,7 +3,7 @@ LuaJIT memory profiler
 ======================
 
 Stating from version :doc:`2.7.1 </release/2.7.1>`, Tarantool
-has a new built-in module called ``memprof`` that implements a LuaJIT memory
+has the built-in module called ``memprof`` that implements a LuaJIT memory
 profiler and a profile parser. The profiler provides
 a memory allocation report that helps analyse Lua code and find out the places
 that put the most pressure on the Lua garbage collector.
@@ -23,7 +23,7 @@ inside the function called via CALLT/CALLMT bytecodes are attributed to its call
 Working with profiler
 ---------------------
 
-The usage of the LuaJIT memory profiler is two-fold:
+Usage of the profiler is two-fold:
 
 1.  :ref:`Collect <profiler_usage_get>` a binary profile of allocations,
     reallocations, and deallocations in memory related to Lua VM
@@ -36,7 +36,7 @@ The usage of the LuaJIT memory profiler is two-fold:
 Collecting binary profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To collect a binary memory profile for a particular part of the Lua code,
+To collect a binary profile for a particular part of the Lua code,
 you need to place this part between two ``memprof`` functions,
 namely, ``misc.memprof.start()`` and ``misc.memprof.stop()``, and then execute
 the code under Tarantool.
@@ -88,7 +88,6 @@ Otherwise, it returns ``true``.
     before the profiler start. Refer to the following
     :ref:`explanation <profiler_usage_internal_jitoff>` for details.
 
-
 Stopping profiler in Lua code:
 
 ..  code-block:: lua
@@ -111,7 +110,7 @@ execute the code under Tarantool:
 
     $ tarantool test.lua
 
-Tarantool writes the memory profiling events in ``memprof_new.bin``, puts
+Tarantool collects the allocation events in ``memprof_new.bin``, puts
 the file in its :ref:`working directory <cfg_basic-work_dir>`, and closes
 the session.
 
@@ -120,22 +119,21 @@ the session.
 Parsing binary profile and generating profiling report
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After having the memory profile in binary format, the next step is
-to parse it to get a human-readable profiling report.
-
 .. _profiler_usage_parse_command:
 
-Binary profile can be parsed and read via Tarantool by using
-the following command (mind the hyphen (``-``) prior to the file name):
+After having the memory profile in binary format, the next step is
+to parse it to get a human-readable profiling report. You can do this
+via Tarantool by using the following command
+(mind the hyphen ``-`` prior to the file name):
 
 ..  code-block:: tarantoolconsole
 
     $ tarantool -e 'require("memprof")(arg[1])' - <memprof_new.bin>
 
-where ``memprof_new.bin`` is the binary profile file
+where ``memprof_new.bin`` is the binary profile
 :ref:`generated earlier <profiler_usage_generate>`.
 
-Tarantool generates a profiling report and closes the session:
+Tarantool generates a profiling report and closes the session.
 
 ..  code-block:: console
 
@@ -163,7 +161,7 @@ Tarantool generates a profiling report and closes the session:
 
 ..  note::
 
-    A report can look different for the same piece of Lua code depending
+    A report can look differently for the same piece of Lua code depending
     on the OS used. On MacOS, the report data
     //?can be influenced by the LuaJIT GC64 running//.
 
@@ -367,7 +365,7 @@ When you run this code :ref:`under Tarantool <profiler_usage_generate>` and
 then :ref:`parse <profiler_usage_parse_command>` the binary memory profile,
 you will get the following profiling report:
 
-..  code-block:: concole
+..  code-block:: console
 
     ALLOCATIONS
     @format_concat.lua:8, line 9: 19998     624322  0
@@ -411,7 +409,7 @@ Let's comment the 22nd line, namely, ``local f = format(i)``
 
 The profiler's output is the following:
 
-..  code-block:: concole
+..  code-block:: console
 
     ALLOCATIONS
     @format_concat.lua:3, line 4: 10000     284411  0
@@ -433,7 +431,7 @@ will happen. Now, there are only 56 allocations in the report, and all other
 allocations are JIT-related (see also the related
 `dev issue <https://github.com/tarantool/tarantool/issues/5679>`_):
 
-..  code-block:: concole
+..  code-block:: console
 
     ALLOCATIONS
     @format_concat.lua:3, line 4: 56        1112    0
@@ -455,7 +453,7 @@ the dead code of the ``concat()`` function is eliminated.
 Let's now profile only the ``format()`` function with JIT enabled.
 The profiler's output is the following:
 
-..  code-block:: concole
+..  code-block:: console
 
     ALLOCATIONS
     @format_concat.lua:8, line 9: 19998     624322  0
@@ -491,7 +489,7 @@ If we change the ``format()`` function in the following way
 
 the profiling report becomes much prettier:
 
-..  code-block:: concole
+..  code-block:: console
 
     ALLOCATIONS
     @format_concat.lua:8, line 9: 110       2131    0
