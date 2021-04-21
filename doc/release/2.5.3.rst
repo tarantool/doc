@@ -1,14 +1,13 @@
 Tarantool 2.5.3
 ===============
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/2.5.3
+Release: :tarantool-release:`2.5.3`
 Date: 2020-12-30 Tag: 2.5.3-0-gf93e480
 
 Overview
 --------
 
-2.5.3 is the second
-`stable <https://www.tarantool.io/en/doc/latest/dev_guide/release_management/#release-policy>`_
+2.5.3 is the second :doc:`stable </release/policy>`
 version of the 2.5 release series. It introduces one improvement and
 resolves 19 bugs since 2.5.2.
 

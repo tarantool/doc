@@ -1,7 +1,7 @@
 Tarantool 2.5.2
 ===============
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/2.5.2
+Release: :tarantool-release:`2.5.2`
 Date: 2020-10-22 Tag: 2.5.2-1-gf63c43b
 
 Overview

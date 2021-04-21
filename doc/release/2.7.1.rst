@@ -1,14 +1,13 @@
 Tarantool 2.7.1
 ===============
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/2.7.1
+Release: :tarantool-release:`2.7.1`
 Date: 2020-12-30 Tag: 2.7.1-0-g3ac498c9f
 
 Overview
 --------
 
-2.7.1 is the
-`beta <https://www.tarantool.io/en/doc/latest/dev_guide/release_management/#release-policy>`_
+2.7.1 is the :doc:`beta </release/policy>`
 version of the 2.7 release series.
 
 This release introduces 12 new features and resolves 21 bugs since the

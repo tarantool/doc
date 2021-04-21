@@ -2,7 +2,7 @@
 Tarantool 1.9
 --------------------------------------------------------------------------------
 
-Releases: https://github.com/tarantool/tarantool/releases/tag/1.9.0
+Release: :tarantool-release:`1.9.0`
 
 ..  _whats_new_19:
 
@@ -12,7 +12,7 @@ Releases: https://github.com/tarantool/tarantool/releases/tag/1.9.0
 
 Release type: stable. Release date: 2018-02-26.  Tag: 1.9.0-4-g195d446.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/1.9.0.
+Release: :tarantool-release:`1.9.0.`
 
 This is the successor of the 1.7.6 stable release.
 The goal of this release is increased maturity of vinyl and master-master replication,

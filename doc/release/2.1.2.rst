@@ -3,7 +3,7 @@
 Tarantool 2.1.2 and earlier
 -------------------------------------------------------------------------------
 
-Releases: https://github.com/tarantool/tarantool/releases
+Release: https://github.com/tarantool/tarantool/releases
 
 ..  _whats_new_212:
 
@@ -11,7 +11,7 @@ Releases: https://github.com/tarantool/tarantool/releases
 
 Release type: stable. Release date: 2019-04-05.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/2.1.2.
+Release: :tarantool-release:`2.1.2.`
 
 This is the first :ref:`stable <release-policy>` release in the 2.x series.
 
@@ -159,7 +159,7 @@ Functionality added or changed:
 
 Release type: beta. Release date: 2018-11-14.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/2.1.1.
+Release: :tarantool-release:`2.1.1.`
 
 This release resolves all major bugs since 2.0.4 alpha and extends Tarantool's
 SQL feature set.
@@ -170,7 +170,7 @@ SQL feature set.
 
 Release type: alpha. Release date: 2018-02-15.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/2.0.4.
+Release: :tarantool-release:`2.0.4.`
 
 This is a successor of the 1.8.x releases.
 It improves the overall stability of the SQL engine and has some new features.

@@ -2,7 +2,7 @@
 Tarantool 1.10
 --------------------------------------------------------------------------------
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.0
+Release: :tarantool-release:`1.10.0`
 
 ..  _whats_new_110:
 
@@ -12,7 +12,7 @@ Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.0
 
 Release type: stable (lts). Release date: 2019-09-26.  Tag: 1-10-4.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.4.
+Release: :tarantool-release:`1.10.4.`
 
 Overview
 
@@ -214,7 +214,7 @@ Deprecations
 
 Release type: stable (lts). Release date: 2019-04-01.  Tag: 1-10-3.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.3.
+Release: :tarantool-release:`1.10.3.`
 
 Overview
 
@@ -357,7 +357,7 @@ Deprecations
 
 Release type: stable (lts). Release date: 2018-10-13.  Tag: 1-10-2.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/1.10.2.
+Release: :tarantool-release:`1.10.2.`
 
 This is the first :ref:`stable (lts) <release-policy>` release in the 1.10
 series.

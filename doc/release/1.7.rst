@@ -2,7 +2,7 @@
 Tarantool 1.7
 --------------------------------------------------------------------------------
 
-Releases: https://github.com/tarantool/tarantool/releases/tag/1.7.0
+Release: :tarantool-release:`1.7.0`
 
 ..  _whats_new_17:
 
@@ -11,8 +11,8 @@ Releases: https://github.com/tarantool/tarantool/releases/tag/1.7.0
 **Release 1.7.6**
 
 Release type: stable. Release date: 2017-11-07.  Tag: 1.7.6-0-g7b2945d6c.
-Announcement: https://groups.google.com/forum/#!topic/tarantool/hzc7O2YDZUc
-or https://github.com/tarantool/tarantool/releases/tag/1.7.6.
+Release: https://groups.google.com/forum/#!topic/tarantool/hzc7O2YDZUc
+or :tarantool-release:`1.7.6.`
 
 This is the next stable release in the 1.7 series.
 It resolves more than 75 issues since 1.7.5.
@@ -134,8 +134,8 @@ New rocks:
 **Release 1.7.5**
 
 Release type: stable. Release date: 2017-08-22.  Tag: 1.7.5.
-Announcement: :doc-issue:`289`
-or https://github.com/tarantool/tarantool/releases/tag/1.7.5.
+Release: :doc-issue:`289`
+or :tarantool-release:`1.7.5.`
 
 This is a stable release in the 1.7 series.
 This release resolves more than 160 issues since 1.7.4.
@@ -243,7 +243,7 @@ New rocks:
 
 Release type: release candidate. Release date: 2017-05-12. Release tag: Tag: 1.7.4.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/1.7.4
+Release: :tarantool-release:`1.7.4`
 or https://groups.google.com/forum/#!topic/tarantool/3x88ATX9YbY
 
 This is a release candidate in the 1.7 series.
@@ -476,7 +476,7 @@ Functionality added or changed:
 
 Release type: beta. Release date: 2016-12-24. Release tag: Tag: 1.7.3-0-gf0c92aa.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/1.7.3
+Release: :tarantool-release:`1.7.3`
 
 This is the second beta release in the 1.7 series.
 
@@ -536,8 +536,8 @@ Functionality added or changed:
 
 Release type: beta. Release date: 2016-09-29. Release tag: Tag: `1.7.2-1-g92ed6c4`.
 
-Announcement: https://groups.google.com/forum/#!topic/tarantool-ru/qUYUesEhRQg
-or https://github.com/tarantool/tarantool/releases/tag/1.7.2
+Release: https://groups.google.com/forum/#!topic/tarantool-ru/qUYUesEhRQg
+or :tarantool-release:`1.7.2`
 
 This is a release in the 1.7 series.
 
@@ -643,8 +643,8 @@ Deprecated, removed features and minor incompatibilities:
 
 Release type: alpha. Release date: 2016-07-11.
 
-Announcement: https://groups.google.com/forum/#!topic/tarantool/KGYj3VKJKb8
-or https://github.com/tarantool/tarantool/releases/tag/1.7.1
+Release: https://groups.google.com/forum/#!topic/tarantool/KGYj3VKJKb8
+or :tarantool-release:`1.7.1`
 
 This is the first alpha in the 1.7 series.
 The main feature of this release is a new storage engine, called "vinyl".
