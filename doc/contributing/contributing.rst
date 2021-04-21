@@ -217,7 +217,6 @@ Review can take longer because we want it to be reliable.
 To start:
 
 * :ref:`learn how to build Tarantool <building_from_source>`
-* :ref:`run the test suite <run_test_suite>`
 * read about Tarantool architecture and main modules
   (`here <https://docs.tarantool.dev/en/latest/>`__ and
   `here <https://github.com/tarantool/tarantool/wiki/Developer-information>`__)

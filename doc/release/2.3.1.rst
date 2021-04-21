@@ -274,7 +274,7 @@ HTTP client
     -   ``proxy_port``
     -   ``proxy_user_pwd``
     -   ``no_proxy`` For details, refer to description
-        `here <https://github.com/tarantool/doc/issues/896>`__. (:tarantool-issue:`4477`,
+        here: :doc-issue:`896` (:tarantool-issue:`4477`,
         :tarantool-issue:`4472`).
 
 Misc

@@ -207,7 +207,7 @@ SQL
     statement:
     ``ALTER TABLE  <table_name> DROP CONSTRAINT <constraint_name>``.
     Previously, it was possible to drop only foreign key constraints with
-    such a statement (:tarantool-issue:`4120`). Read more in :ref:`<sql_alter_table>`.
+    such a statement (:tarantool-issue:`4120`). Read more in :ref:`Alter Table <sql_alter_table>`.
 -   “No such constraint” error now contains the name of the table this
     constraint belongs to.
 -   Add an empty body to the ``UNPREPARE`` IProto response (:tarantool-issue:`4769`).
@@ -225,7 +225,8 @@ Types related changes
     ``CAST AS NUMBER`` operation applied to an integer value doesn’t
     change it; ``CAST AS NUMBER`` operation applied to a boolean value
     now converts it into ``1``, ``0`` or ``NULL`` depending on particular
-    boolean value (:tarantool-issue:`4233`). Read more in :ref:`<sql_data_type_conversion>`.
+    boolean value (:tarantool-issue:`4233`). Read more in
+    :ref:`Data Type Conversion <sql_data_type_conversion>`.
 
 -   Fix the ``CAST AS NUMBER`` operation applied to blob values: floating
     point representation of the result is no longer forced (:tarantool-issue:`4463`).
