@@ -197,7 +197,7 @@ An event record has the following format:
 
 ``INTERNAL`` indicates that this event is caused by internal LuaJIT structures.
 
-.. //the note below really needs to be reviewed thoroughly!
+//!the note below really needs to be reviewed thoroughly//
 
 ..  note::
 
