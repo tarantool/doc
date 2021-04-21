@@ -135,8 +135,8 @@ Functionality added or changed:
   * Tarantool package was accepted to the official Fedora repositories
     (https://apps.fedoraproject.org/packages/tarantool).
   * Tarantool brew formula (OS X) was accepted to the official
-    Homebrew repository (http://brewformulas.org/tarantool).
-  * Clang compiler support was added on FreeBSD
+    Homebrew repository (https://formulae.brew.sh/formula/tarantool).
+  * Clang compiler support was added on FreeBSD.
     (:tarantool-issue:`786`).
   * Support for musl libc, used by Alpine Linux and Docker images, was added
     (:tarantool-issue:`1249`).

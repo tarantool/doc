@@ -75,7 +75,7 @@ SQL
 -   Add an ability to disable check constraints (:tarantool-issue:`4244`). Example:
     ``ALTER TABLE foo {ENABLE|DISABLE} CHECK CONSTRAINT bar;``. For
     details of using from Lua, refer to
-    `documentation <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#lua-function.space_object.create_check_constraint>`__.
+    `documentation <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/create_check_constraint/>`__.
 
 -   AUTOINCREMENT for multipart primary key (:tarantool-issue:`4217`). The auto-increment
     feature can be set to any ``INTEGER`` or ``UNSIGNED`` field of
@@ -119,7 +119,7 @@ SQL
         CREATE TABLE t_vinyl (id INT PRIMARY KEY) WITH ENGINE = 'vinyl';
 
     Refer also to `SQL reference
-    documentation <https://www.tarantool.io/en/doc/2.3/reference/reference_sql/sql/#create-table>`__.
+    documentation <https://www.tarantool.io/en/doc/latest/reference/reference_sql/sql_statements_and_clauses/#sql-create-table>`__.
 
 -   Introduce ``DOUBLE`` type (:tarantool-issue:`3812`).
 
@@ -147,7 +147,7 @@ Core
 
     -   `data
         types <https://www.tarantool.io/en/doc/2.3/book/box/data_model/#data-types>`__
-    -   `<space_object>:create_index() <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#lua-function.space_object.create_index>`__
+    -   `<space_object>:create_index() <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/create_index/>`__
 
 -   Add support for decimals in update operations (:tarantool-issue:`4413`).
     ``tuple:update()`` and ``<space_object>:update()`` now support
@@ -166,7 +166,7 @@ Core
 
     Insertion (‘!’) and assignment (‘=’) are also supported. See also the
     full description of the ``update()`` function in
-    `documentation <https://www.tarantool.io/en/doc/2.3/book/box/box_space/#box-space-update>`__.
+    `documentation <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/update/>`__.
 -   Allow to encode/decode decimals to ``MsgPack`` and to encode to
     ``YAML`` and ``JSON``. Part of (:tarantool-issue:`4333`);
     `485439e3 <https://github.com/tarantool/tarantool/commit/485439e33196e26d120e622175f88b4edc7a5aa1>`__;

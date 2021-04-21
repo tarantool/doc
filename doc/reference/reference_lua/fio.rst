@@ -258,7 +258,7 @@ Below is a list of all ``fio`` functions and members.
 ===============================================================================
 
 Functions in this section are similar to some
-`Python os.path <https://docs.python.org/2/library/os.path.htmll>`_
+`Python os.path <https://docs.python.org/2/library/os.path.html>`_
 functions.
 
 .. _fio-path_exists:

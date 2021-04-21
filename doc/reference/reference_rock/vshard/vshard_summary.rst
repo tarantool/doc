@@ -5,7 +5,7 @@ challenging issues. Once a single server cannot withstand the load, scaling
 methods should be applied.
 
 **Sharding** is a database architecture that allows for
-`horizontal scaling <https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling>`_,
+`horizontal scaling <https://en.wikipedia.org/wiki/Scalability#Horizontal_(scale_out)_and_vertical_scaling_(scale_up)>`_,
 which implies that a dataset is partitioned and distributed over multiple servers.
 
 With Tarantool's `vshard <https://github.com/tarantool/vshard>`_ module,
