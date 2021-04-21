@@ -33,55 +33,55 @@ from 1.9 version.
 Functionality added or changed
 
 * (Engines) Improve dump start/stop logging. When initiating memory dump, print
-  how much memory is going to be dumped, expected dump rate, ETA, and the recent
-  write rate. Upon dump completion, print observed dump rate in addition to dump
-  size and duration.
+    how much memory is going to be dumped, expected dump rate, ETA, and the recent
+    write rate. Upon dump completion, print observed dump rate in addition to dump
+    size and duration.
 * (Engines) Look up key in reader thread. If a key isn't found in the tuple cache,
-  we fetch it from a run file. In this case disk read and page decompression is
-  done by a reader thread, however key lookup in the fetched page is still
-  performed by the TX thread. Since pages are immutable, this could as well
-  be done by the reader thread, which would allow us to save some precious CPU
-  cycles for TX
+    we fetch it from a run file. In this case disk read and page decompression is
+    done by a reader thread, however key lookup in the fetched page is still
+    performed by the TX thread. Since pages are immutable, this could as well
+    be done by the reader thread, which would allow us to save some precious CPU
+    cycles for TX
     (:tarantool-issue:`4257`).
 * (Core) Improve :ref:`box.stat.net <box_introspection-box_stat>`
     (:tarantool-issue:`4150`).
 * (Core) Add ``idle`` to downstream status in ``box.info``.
-  When a relay sends a row it updates ``last_row_time`` value with the
-  current time. When ``box.info()`` is called, ``idle`` is set to
-  ``current_time`` - ``last_row_time``.
+    When a relay sends a row it updates ``last_row_time`` value with the
+    current time. When ``box.info()`` is called, ``idle`` is set to
+    ``current_time`` - ``last_row_time``.
 * (Replication) Print corrupted rows on decoding error.
-  Improve row printing to log. Print the header row by row, 16 bytes in a row,
-  and format output to match ``xxd`` output:
+    Improve row printing to log. Print the header row by row, 16 bytes in a row,
+    and format output to match ``xxd`` output:
 
-  .. code-block:: bash
+    ..  code-block:: bash
 
-      [001] 2019-04-05 18:22:46.679 [11859] iproto V> Got a corrupted row:
-      [001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000000: A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53 60 5F 20 3F
-      [001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000010: D8 E2 D6 E2 A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53
+        [001] 2019-04-05 18:22:46.679 [11859] iproto V> Got a corrupted row:
+        [001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000000: A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53 60 5F 20 3F
+        [001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000010: D8 E2 D6 E2 A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53
 
 * (Lua) Add type of operation to space :ref:`trigger parameters <box_space-on_replace>`.
-  For example, a trigger function may now look like this:
+    For example, a trigger function may now look like this:
 
-  ..    code-block:: lua
+    ..  code-block:: lua
 
         function before_replace_trig(old, new, space_name, op_type)
-          if op_type == 'INSERT' then
-              return old
-          else
-              return new
-          end
-      end
+            if op_type == 'INSERT' then
+                return old
+            else
+                return new
+            end
+        end
 
-  (:tarantool-issue:`4099`).
+    (:tarantool-issue:`4099`).
 * (Lua) Add ``debug.sourcefile()`` and ``debug.sourcedir()`` helpers
-  (and ``debug.__file__`` and ``debug.__dir__ shortcuts``) to determine
-  the location of a current Lua source file.
-  Part of (:tarantool-issue:`4193`).
+    (and ``debug.__file__`` and ``debug.__dir__ shortcuts``) to determine
+    the location of a current Lua source file.
+    Part of (:tarantool-issue:`4193`).
 * (HTTP client) Add ``max_total_connections`` option in addition to
-  ``max_connections`` to allow more fine-grained tuning of ``libcurl``
-  connection cache. Don't restrict the total connections` with a constant value
-  by default, but use ``libcurl``'s default, which scales the threshold according
-  to easy handles count
+    ``max_connections`` to allow more fine-grained tuning of ``libcurl``
+    connection cache. Don't restrict the total connections` with a constant value
+    by default, but use ``libcurl``'s default, which scales the threshold according
+    to easy handles count
     (:tarantool-issue:`3945`).
 
 Bugs fixed
@@ -145,7 +145,7 @@ Bugs fixed
 * (Replication) Reduce effects of input buffer fragmentation on large ``cfg.readahead``.
 * (Replication) Fix upgrade from 1.7 (it doesn't recognize IPROTO_VOTE request type).
 * (Replication) Fix memory leak in call / eval in the case when a transaction
-  is not committed
+    is not committed
     (:tarantool-issue:`4388`).
 * (Lua) Fix ``fio.mktree()`` error reporting
     (:tarantool-issue:`4044`).
@@ -154,7 +154,7 @@ Bugs fixed
 * (Lua) Fix segfault on ``json.encode()`` on a recursive table
     (:tarantool-issue:`4366`).
 * (Lua) Fix ``pwd.getpwall()`` and ``pwd.getgrall()`` hang on CentOS 6
-  and FreeBSD 12
+    and FreeBSD 12
     (:tarantool-issue:`4447`,
     :tarantool-issue:`4428`).
 * (Lua) Fix a segfault during initialization of a cipher from ``crypto`` module
@@ -173,8 +173,8 @@ Bugs fixed
     :tarantool-issue:`4389`,
     :tarantool-issue:`4397`).
 * (HTTP client) This closes several known problems that were fixed in recent
-  ``libcurl`` versions, including segfaults, hangs, memory leaks and performance
-  problems.
+    ``libcurl`` versions, including segfaults, hangs, memory leaks and performance
+    problems.
 * (LuaJIT) Fix overflow of snapshot map offset
     Part of (:tarantool-issue:`4171`).
 * (LuaJIT) Fix rechaining of pseudo-resurrected string keys
@@ -192,10 +192,10 @@ Bugs fixed
 * (Misc) Support ``systemd``’s NOTIFY_SOCKET on OS X
     (:tarantool-issue:`4436`).
 * (Misc) Fix ``coio_getaddrinfo()`` when 0 timeout is passed
-  (affects ``netbox``’s ``connect_timeout``)
+    (affects ``netbox``’s ``connect_timeout``)
     (:tarantool-issue:`4209`).
 * (Misc) Fix ``coio_do_copyfile()`` to perform truncate of destination
-  (affects ``fio.copyfile()``)
+    (affects ``fio.copyfile()``)
     (:tarantool-issue:`4181`).
 * (Misc) Make hints in ``coio_getaddrinfo()`` optional.
 * (Misc) Validate ``msgpack.decode()`` cdata size argument

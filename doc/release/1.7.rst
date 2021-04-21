@@ -272,7 +272,7 @@ Incompatible changes
     initial and runtime configuration, but such usage will print
     a warning in the server log
     (:tarantool-issue:`1927` and
-    :tarantool-issue:`2042 `).
+    :tarantool-issue:`2042`).
 
   * Hot standy mode is now off by default. Tarantool automatically detects
     another running instance in the same ``wal_dir`` and refuses to start.
@@ -409,11 +409,11 @@ Functionality added or changed:
     See https://github.com/tarantool/luajit/pull/2.
   * ``box.snapshot()`` now updates mtime of a snapshot file if there were no
     changes to the database since the last snapshot.
-(:tarantool-issue:`2045`).
+    (:tarantool-issue:`2045`).
   * Implemented ``space:bsize()`` to return the memory size utilized by all
     tuples of the space.
     Contributed by Roman Tokarev (@rtokarev).
-(:tarantool-issue:`2043`).
+    (:tarantool-issue:`2043`).
   * Exported new Lua/C functions to public API:
 
     * ``luaT_pushtuple``, ``luaT_istuple``
@@ -425,22 +425,22 @@ Functionality added or changed:
 
   * Exported new Box/C functions to public API: ``box_key_def``, ``box_tuple_format``,
     ``tuple_compare()``, ``tuple_compare_with_key()``.
-(:tarantool-issue:`2225`).
+    (:tarantool-issue:`2225`).
   * xlogs now can be rotated based on size (``wal_max_size``) as well as
     the number of written rows (``rows_per_wal``).
-(:tarantool-issue:`173`).
+    (:tarantool-issue:`173`).
   * Added ``string.split()``, ``string.startswith()``, ``string.endswith()``,
     ``string.ljust()``, ``string.rjust()``, ``string.center()`` API
     (:tarantool-issue:`2211`,
     :tarantool-issue:`2214`,
     :tarantool-issue:`2415`).
   * Added ``table.copy()`` and ``table.deepcopy()`` functions.
-(:tarantool-issue:`2212`).
+    (:tarantool-issue:`2212`).
   * Added ``pwd`` module to work with UNIX users and groups.
-(:tarantool-issue:`2213`).
+    (:tarantool-issue:`2213`).
   * Removed noisy "client unix/: connected" messages from logs. Use
     ``box.session.on_connect()``/``on_disconnect()`` triggers instead.
-(:tarantool-issue:`1938`).
+    (:tarantool-issue:`1938`).
 
     ``box.session.on_connect()``/``on_disconnect()``/``on_auth()`` triggers
     now also fired for admin console connections.
