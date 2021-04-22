@@ -71,7 +71,7 @@ URI
 
 Some configuration parameters and some functions depend on a URI, or
 "Universal Resource Identifier". The URI string format is similar to the
-`generic syntax for a URI schema <http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax>`_.
+`generic syntax for a URI schema <https://en.wikipedia.org/wiki/List_of_URI_schemes>`_.
 So it may contain (in order) a user name
 for login, a password, a host name or host IP address, and a port number. Only
 the port number is always mandatory. The password is mandatory if the user

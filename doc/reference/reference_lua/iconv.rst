@@ -79,7 +79,7 @@ Below is a list of all ``iconv`` functions.
 
     We know that the Unicode code point for "Д" (CYRILLIC CAPITAL LETTER DE)
     is hexadecimal 0414 according to the character database of
-    `Unicode <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt.>`_.
+    `Unicode <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt>`_.
     Therefore that is what it will look like in UTF-16.
     We know that Tarantool typically uses the UTF-8 character set.
     So make a from-UTF-8-to-UTF-16 converter,

@@ -12,7 +12,7 @@ To be consistent with the other instructions in this chapter, here is a way to
 install the driver directly on Ubuntu 16.04.
 
 1. Install .net core from Microsoft. Follow
-   `.net core installation instructions <https://www.microsoft.com/net/core#ubuntu>`_.
+   `.net core installation instructions <https://dotnet.microsoft.com/download>`_.
 
 .. NOTE::
 
@@ -23,7 +23,7 @@ install the driver directly on Ubuntu 16.04.
       installation saying "This software may collect information about you and
       your use of the software, and send that to Microsoft."
       Still you can
-      `set environment variables <https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry#behavior>`_
+      `set environment variables <https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry>`_
       to opt out from telemetry.
 
 2. Create a new console project.
