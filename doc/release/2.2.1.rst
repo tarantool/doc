@@ -3,7 +3,9 @@
 Tarantool 2.2.1
 -------------------------------------------------------------------------------
 
-.. _whats_new_20:
+Release: :tarantool-release:`2.2.1`
+
+..  _whats_new_20:
 
 
 Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout,
@@ -11,22 +13,25 @@ client-server protocol and replication protocol.
 You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()``
 procedure.
 
-.. _whats_new_241:
+..  _whats_new_241:
 
 **Release 2.4.1**
 
 Deprecations
 
-* (SQL) SESSION will be a reserved word so objects named SESSION will be illegal. Part of issue `4711 <https://github.com/tarantool/tarantool/issues/4711>`_.
-* In :ref:`box.session.push() <box_session-push>` the use of the ``sync`` parameter will cause a warning in version 2.4.1 and will cause an error in later versions. Part of issue `4689 <https://github.com/tarantool/tarantool/issues/4689>`_.
+* (SQL) SESSION will be a reserved word so objects named SESSION will
+    be illegal. Part of (:tarantool-issue:`4711`).
+* In :ref:`box.session.push() <box_session-push>` the use of the
+    ``sync`` parameter will cause a warning in version 2.4.1 and will cause
+    an error in later versions. Part of (:tarantool-issue:`4689`).
 
-.. _whats_new_221:
+..  _whats_new_221:
 
 **Release 2.2.1**
 
 Release type: beta. Release date: 2019-08-02.
 
-Announcement: https://github.com/tarantool/tarantool/releases/tag/2.2.1.
+Release: :tarantool-release:`2.2.1.`
 
 This is a :ref:`beta <release-policy>` version of the 2.2 series. The label
 "beta" means we have no critical issues and all planned features are there.
@@ -38,22 +43,22 @@ Functionality added or changed:
 
 * (SQL) ALTER now allows to add a constraint:
 
-  .. code-block:: sql
+    ..  code-block:: sql
 
-      CREATE TABLE t2 (id INT PRIMARY KEY);
-      ALTER TABLE t2 ADD CONSTRAINT ck CHECK(id  > 0);
+        CREATE TABLE t2 (id INT PRIMARY KEY);
+        ALTER TABLE t2 ADD CONSTRAINT ck CHECK(id  > 0);
 
 * (SQL) CHECK constraints are validated during DML operations performed
-  from the Lua land:
+    from the Lua land:
 
-  .. code-block:: lua
+    ..  code-block:: lua
 
-      s = box.schema.space.create('withdata')
-      pk = s:create_index('pk')
-      s:format({{'idx', 'number'}})
-      s:create_check_constraint('le10', '"idx" < 10')
+        s = box.schema.space.create('withdata')
+        pk = s:create_index('pk')
+        s:format({{'idx', 'number'}})
+        s:create_check_constraint('le10', '"idx" < 10')
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
       tarantool> s:insert({11})
       ---
@@ -61,130 +66,130 @@ Functionality added or changed:
       ...
 
 * (SQL) New :ref:`SQL types <sql_column_def_data_type>` introduced:
-  VARBINARY, UNSIGNED, and `BOOLEAN`.
+    VARBINARY, UNSIGNED, and `BOOLEAN`.
 
 * (SQL) CREATE TABLE statement (and all other data definition statements)
-  are now truly transactional.
+    are now truly transactional.
 
 * (SQL) SQL now uses Tarantool diagnostics API to set errors, so error reporting
-  now provides an error code in addition to error message.
+    now provides an error code in addition to error message.
 
 * (SQL) Multiple improvements to the type system to make it more consistent.
 
 * (SQL) Added aliases for LENGTH() from ANSI SQL:
-  CHAR_LENGTH() and CHARACTER_LENGTH().
+    CHAR_LENGTH() and CHARACTER_LENGTH().
 
 * (SQL) It is possible to use HAVING without GROUP BY.
 
 * (Server) New fixed point type (DECIMAL) introduced to Tarantool:
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      decimal = require('decimal')
-      tarantool> a = decimal.new('123.456789')
-      ---
-      ...
-      tarantool> decimal.precision(a)
-      ---
-      - 9
-      ...
-      tarantool> decimal.scale(a)
-      ---
-      - 6
-      ...
-      tarantool> decimal.round(a, 4)
-      ---
-      - '123.4568'
-      ...
+        decimal = require('decimal')
+        tarantool> a = decimal.new('123.456789')
+        ---
+        ...
+        tarantool> decimal.precision(a)
+        ---
+        - 9
+        ...
+        tarantool> decimal.scale(a)
+        ---
+        - 6
+        ...
+        tarantool> decimal.round(a, 4)
+        ---
+        - '123.4568'
+        ...
 
 * (Server) Multikey index support:
 
-  .. code-block:: lua
+    ..  code-block:: lua
 
-      -- Multikey indexes (for memtx tree & vinyl);
-      -- cannot be primary; may be non-unique
-      s = box.schema.space.create('clients', {engine = 'vinyl'})
-      pk = s:create_index('pk')
-      phone_type = s:create_index('phone_type', {
-          unique = false,
-          parts = {{'[3][*].type', 'str'}}})
+        -- Multikey indexes (for memtx tree & vinyl);
+        -- cannot be primary; may be non-unique
+        s = box.schema.space.create('clients', {engine = 'vinyl'})
+        pk = s:create_index('pk')
+        phone_type = s:create_index('phone_type', {
+            unique = false,
+            parts = {{'[3][*].type', 'str'}}})
 
-      s:insert({1, 'James',
-               {{type = 'home', number = '999'},
-                {type = 'work', number = '777'}
-               }})
-      s:insert({2, 'Bob',
-                {{type = 'work', number = '888'}}})
-      s:insert({3, 'Alice', {{type = 'home', number = '333'}}})
+        s:insert({1, 'James',
+                 {{type = 'home', number = '999'},
+                  {type = 'work', number = '777'}
+                 }})
+        s:insert({2, 'Bob',
+                  {{type = 'work', number = '888'}}})
+        s:insert({3, 'Alice', {{type = 'home', number = '333'}}})
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> phone_type:select('work')
-      ---
-      - - [1, 'James', [{'type': 'home', 'number': '999'},
-                        {'type': 'work', 'number': '777'}]]
-        - [2, 'Bob', [{'type': 'work', 'number': '888'}]]
-      ...
+        tarantool> phone_type:select('work')
+        ---
+        - - [1, 'James', [{'type': 'home', 'number': '999'},
+                          {'type': 'work', 'number': '777'}]]
+          - [2, 'Bob', [{'type': 'work', 'number': '888'}]]
+        ...
 
 * (Server) Now it is possible to make functions persistent:
 
-  .. code-block:: lua
+    ..  code-block:: lua
 
-      box.schema.func.create('summarize',
-                            {body = [[function(a,b) return a+b end]],
-                            is_deterministic = true})
+        box.schema.func.create('summarize',
+                              {body = [[function(a,b) return a+b end]],
+                              is_deterministic = true})
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.func.summarize
-      - aggregate: none
-        returns: any
-        exports:
-          lua: true
-          sql: false
-        id: 66
-        is_sandboxed: false
-        setuid: false
-        is_multikey: false
-        is_deterministic: true
-        body: function(a,b) return a+b end
-        name: summarize
-        language: LUA
+        tarantool> box.func.summarize
+        - aggregate: none
+          returns: any
+          exports:
+            lua: true
+            sql: false
+          id: 66
+          is_sandboxed: false
+              setuid: false
+          is_multikey: false
+          is_deterministic: true
+          body: function(a,b) return a+b end
+          name: summarize
+          language: LUA
 
-      tarantool> box.func.summarize:call({1, 2})
-      ---
-      - 3
-      ...
+        tarantool> box.func.summarize:call({1, 2})
+        ---
+        - 3
+        ..  .
 
 * (Server) Functional indexes implemented:
 
-  .. code-block:: lua
+    ..  code-block:: lua
 
-      -- Functional multikey indexes: define is_multikey = true
-      -- in function definition and return a table of keys from function
-      lua_code = [[function(tuple)
-                      local address = string.split(tuple[2])
-                      local ret = {}
-                      for _, v in pairs(address) do table.insert(ret, {utf8.upper(v)}) end
-                      return ret
-                   end]]
-      box.schema.func.create('addr_extractor', {body = lua_code,
-                                                is_deterministic = true,
-                                                is_sandboxed = true,
-                                                opts = {is_multikey = true}})
-      s = box.schema.space.create('withdata')
-      pk = s:create_index('name', {parts = {1, 'string'}})
-      idx = s:create_index('addr', {unique = false, func = box.func.addr_extractor.id, parts = {{1, 'string', collation = 'unicode_ci'}}})
+        -- Functional multikey indexes: define is_multikey = true
+        -- in function definition and return a table of keys from function
+        lua_code = [[function(tuple)
+                        local address = string.split(tuple[2])
+                        local ret = {}
+                        for _, v in pairs(address) do table.insert(ret, {utf8.upper(v)}) end
+                        return ret
+                     end]]
+        box.schema.func.create('addr_extractor', {body = lua_code,
+                                                  is_deterministic = true,
+                                                  is_sandboxed = true,
+                                                  opts = {is_multikey = true}})
+        s = box.schema.space.create('withdata')
+        pk = s:create_index('name', {parts = {1, 'string'}})
+        idx = s:create_index('addr', {unique = false, func = box.func.addr_extractor.id, parts = {{1, 'string', collation = 'unicode_ci'}}})
 
-      s:insert({"James", "SIS Building Lambeth London UK"})
-      s:insert({"Sherlock", "221B Baker St Marylebone London NW1 6XE UK"})
+        s:insert({"James", "SIS Building Lambeth London UK"})
+        s:insert({"Sherlock", "221B Baker St Marylebone London NW1 6XE UK"})
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool>  idx:select('Sis')
-      ---
-      - - ['James', 'SIS Building Lambeth London UK']
-      ...
+        tarantool>  idx:select('Sis')
+        ---
+        - - ['James', 'SIS Building Lambeth London UK']
+        ...
 
 * Partial core dumps, which are now on by default.
   It is now possible to avoid dumping tuples at all during core dump.
@@ -196,81 +201,81 @@ Functionality added or changed:
 
 * It is now possible to set a sequence not only for the first part of the index:
 
-  .. code-block:: lua
+    ..  code-block:: lua
 
-      s.index.pk:alter{sequence = {field = 2}}
+        s.index.pk:alter{sequence = {field = 2}}
 
 * Allow to call ``box.session.exists()`` and ``box.session.fd()``
   without any arguments.
 
 * New function introduced to get an index key from a tuple:
 
-  .. code-block:: lua
+    ..  code-block:: lua
 
-      s = box.schema.space.create('withdata')
-      pk = s:create_index('pk')
-      sk = s:create_index('sk', {parts = {
-            {2, 'number', path = 'a'},
-            {2, 'number', path = 'b'}}})
-      s:insert{1, {a = 1, b = 1}}
-      s:insert{2, {a = 1, b = 2}}
-      s:insert{3, {a = 3, b = 3}}
-      sk:select(2)
+        s = box.schema.space.create('withdata')
+        pk = s:create_index('pk')
+        sk = s:create_index('sk', {parts = {
+              {2, 'number', path = 'a'},
+              {2, 'number', path = 'b'}}})
+        s:insert{1, {a = 1, b = 1}}
+        s:insert{2, {a = 1, b = 2}}
+        s:insert{3, {a = 3, b = 3}}
+        sk:select(2)
 
-      key_def_lib = require('key_def')
-      key_def = key_def_lib.new(pk.parts)
-      for _, tuple in sk:pairs({1}) do
-          local key = key_def:extract_key(tuple)
-          pk:delete(key)
-      end
-      s:select()
+        key_def_lib = require('key_def')
+        key_def = key_def_lib.new(pk.parts)
+        for _, tuple in sk:pairs({1}) do
+            local key = key_def:extract_key(tuple)
+            pk:delete(key)
+        end
+        s:select()
 
 * (Engines) New protocol (called :ref:`SWIM <swim-module>`) implemented to keep
-  a table of cluster members.
+    a table of cluster members.
 
 * (Engines) Removed yields from Vinyl DDL on commit triggers.
 
 * (Engines) Improved performance of SELECT-s on memtx spaces.
-  The drawback is that now every memtx-tree tuple consumes extra 8 bytes for
-  a search hint.
+    The drawback is that now every memtx-tree tuple consumes extra 8 bytes for
+    a search hint.
 
 * (Engines) Indexes of memtx spaces are now built in background fibers.
-  This means that we do not block the event loop during index build anymore.
+    This means that we do not block the event loop during index build anymore.
 
 * Replication applier now can apply transactions which were concurrent
-  on the master concurrently on replica. This dramatically improves replication
-  peak performance, from ~50K writes per second to 200K writes per second and
-  higher on a single instance.
+    on the master concurrently on replica. This dramatically improves replication
+    peak performance, from ~50K writes per second to 200K writes per second and
+    higher on a single instance.
 
 * Transaction boundaries introduced to replication protocol.
-  This means that Tarantool replication is now transaction-safe, and also
-  reduces load on replica write ahead log in case the master uses a lot of
-  multi-statement transactions.
+    This means that Tarantool replication is now transaction-safe, and also
+    reduces load on replica write ahead log in case the master uses a lot of
+    multi-statement transactions.
 
 * Tuple access by field name for ``net.box``:
 
-  .. code-block:: lua
+    ..  code-block:: lua
 
-      box.cfg{listen = 3302}
-      box.schema.user.grant('guest','read, write, execute', 'space')
-      box.schema.user.grant('guest', 'create', 'space')
-      box.schema.create_space("named", {format = {{name = "id"}}})
-      box.space.named:create_index('id', {parts = {{1, 'unsigned'}}})
-      box.space.named:insert({1})
+        box.cfg{listen = 3302}
+        box.schema.user.grant('guest','read, write, execute', 'space')
+        box.schema.user.grant('guest', 'create', 'space')
+        box.schema.create_space("named", {format = {{name = "id"}}})
+        box.space.named:create_index('id', {parts = {{1, 'unsigned'}}})
+        box.space.named:insert({1})
 
-      require('net.box').connect('localhost', 3302).space.named:get(1).id
+        require('net.box').connect('localhost', 3302).space.named:get(1).id
 
 * Cluster id check is now the slave’s responsibility.
 
 * It is now possible to set the output format to Lua instead of YAML
-  in the :ref:`interactive console <interactive_console>`.
+    in the :ref:`interactive console <interactive_console>`.
 
 * Multiple new collations added.
-  New collations follow this naming pattern:
+    New collations follow this naming pattern:
 
-  .. code-block:: none
+    ..  code-block:: none
 
-      unicode_<locale>_<strength>
+        unicode_<locale>_<strength>
 
   Three strengths are used:
 
@@ -281,21 +286,21 @@ Functionality added or changed:
   The following list contains so-called "stable" collations -
   the ones whose sort order doesn't depend on the ICU version:
 
-  .. code-block:: none
+    ..  code-block:: none
 
-      unicode_am_s3
-      unicode_fi_s3
-      unicode_de__phonebook_s3
-      unicode_haw_s3
-      unicode_he_s3
-      unicode_hi_s3
-      unicode_is_s3
-      unicode_ja_s3
-      unicode_ko_s3
-      unicode_lt_s3
-      unicode_pl_s3
-      unicode_si_s3
-      unicode_es_s3
+        unicode_am_s3
+        unicode_fi_s3
+        unicode_de__phonebook_s3
+        unicode_haw_s3
+        unicode_he_s3
+        unicode_hi_s3
+        unicode_is_s3
+        unicode_ja_s3
+        unicode_ko_s3
+        unicode_lt_s3
+        unicode_pl_s3
+        unicode_si_s3
+        unicode_es_s3
 
 * New function ``utime()`` introduced to the ``fio`` module.
 

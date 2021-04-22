@@ -1,13 +1,15 @@
 Tarantool 1.10.9
 ================
 
+Release: :tarantool-release:`1.10.9`
+
 Date: 2020-12-30 Tag: 1.10.9-0-g720ffdd23
 
 Overview
 --------
 
-1.10.9 is the next stable release in the `long-term support (LTS)
-version <https://www.tarantool.io/en/doc/1.10/dev_guide/release_management/#release-policy>`__
+1.10.9 is the next stable release in the
+:doc:`long-term support (LTS) version </release/policy>`
 1.10.x release series. The label “stable” means there are 1.10.x-based
 applications running in production for quite a while without known
 crashes, incorrect results or other showstopper bugs.
@@ -20,7 +22,7 @@ Compatibility
 
 Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary
 data layout, client-server protocol and replication protocol. Please
-`upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__
+`upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`_
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 1.10.x series.
 
@@ -30,14 +32,14 @@ Functionality added or changed
 Build
 ~~~~~
 
--   Deploy packages for Fedora 32 (gh-4966).
--   Deploy packages for Debian Bullseye (gh-5638).
+-   Deploy packages for Fedora 32 (:tarantool-issue:`4966`).
+-   Deploy packages for Debian Bullseye (:tarantool-issue:`5638`).
 
 Misc
 ~~~~
 
 -   Don’t start an ‘example’ instance after installing tarantool
-    (gh-4507).
+    (:tarantool-issue:`4507`).
 
     Before this release tarantool package for Debian and Ubuntu used to
     automatically enable and start an ‘example’ instance, which would
@@ -69,26 +71,27 @@ Core
 
 -   ``fiber.cond:wait()`` now correctly throws an error when a fiber is
     cancelled, instead of ignoring the timeout and returning without any
-    signs of an error (gh-5013).
+    signs of an error (:tarantool-issue:`5013`).
 -   Fixed a memory corruption issue, which was most visible on macOS, but
-    could affect any system (gh-5312).
+    could affect any system (:tarantool-issue:`5312`).
 -   A dynamic module now gets correctly unloaded from memory in case of
-    an attempt to load a non-existing function from it (gh-5475).
+    an attempt to load a non-existing function from it (:tarantool-issue:`5475`).
 -   The fiber region (the box region) won’t be invalidated on a read-only
-    transaction (gh-5427, gh-5623).
+    transaction (:tarantool-issue:`5427`, :tarantool-issue:`5623`).
 
 LuaJIT
 ~~~~~~
 
 -   Dispatching ``__call`` metamethod no longer causes address clashing
-    (gh-4518, gh-4649).
--   Fixed a false positive panic when yielding in debug hook (gh-5649).
+    (:tarantool-issue:`4518`, (:tarantool-issue:`4649`).
+-   Fixed a false positive panic when yielding in debug hook
+    (:tarantool-issue:`5649`).
 
 Lua
 ~~~
 
 -   An attempt to use a ``net.box`` connection which is not established
-    yet now results in a correctly reported error (gh-4787).
+    yet now results in a correctly reported error (:tarantool-issue:`4787`).
 -   Fixed a hang which occured when ``tarantool`` ran a user script with
     the ``-e`` option and this script exited with an error (like with
-    ``tarantool -e 'assert(false)'``) (gh-4983).
+    ``tarantool -e 'assert(false)'``) (:tarantool-issue:`4983`).

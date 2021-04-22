@@ -1,15 +1,18 @@
 --------------------------------------------------------------------------------
 Tarantool 1.8
 --------------------------------------------------------------------------------
-.. _whats_new_18:
 
-.. _whats_new_181:
+Release: :tarantool-release:`1.8.0`
+
+..  _whats_new_18:
+
+..  _whats_new_181:
 
 **Release 1.8.1**
 
 Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1.
-
-Announcement: https://groups.google.com/forum/#!msg/tarantool-ru/XYaoqJpc544/mSvKrYwNAgAJ.
+Release: https://groups.google.com/forum/#!msg/tarantool-ru/XYaoqJpc544/mSvKrYwNAgAJ
+or :tarantool-release:`1.8.1.`
 
 This is an alpha release which delivers support for a substantial subset
 of the ISO/IEC 9075:2011 SQL standard, including joins, subqueries and views.
@@ -24,7 +27,7 @@ Functionality added or changed:
     in Tarantool 2.1) was added to query Tarantool databases
     using SQL statements, e.g.:
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> box.sql.execute([[SELECT * FROM _schema]]);
 
@@ -33,7 +36,7 @@ Functionality added or changed:
 
     You can now set input language to either SQL or Lua, e.g.:
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> \set language sql
         tarantool> SELECT * FROM _schema;
@@ -44,30 +47,30 @@ Functionality added or changed:
 
     * CREATE/DROP TABLE/INDEX/VIEW
 
-      .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-          tarantool> CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));
+            tarantool> CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));
 
     * INSERT/UPDATE/DELETE statements e.g.:
 
-      .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-          tarantool> INSERT INTO table1 VALUES (1, 'A');
-          ...
-          tarantool> UPDATE table1 SET column2 = 'B';
+            tarantool> INSERT INTO table1 VALUES (1, 'A');
+            ...
+            tarantool> UPDATE table1 SET column2 = 'B';
 
     * SELECT statements, including complex complicated variants which include
-      multiple JOINs, nested SELECTs etc. e.g.:
+        multiple JOINs, nested SELECTs etc. e.g.:
 
-      .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-          tarantool> SELECT sum(column1) FROM table1 WHERE column2 LIKE '_B' GROUP BY column2;
+            tarantool> SELECT sum(column1) FROM table1 WHERE column2 LIKE '_B' GROUP BY column2;
 
     * WITH statements e.g.
 
-      .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-          tarantool> WITH cte AS ( SELECT SUBSTR(column2,1,2), column1 FROM table1 WHERE column1 >= 0) SELECT * FROM cte;
+            tarantool> WITH cte AS ( SELECT SUBSTR(column2,1,2), column1 FROM table1 WHERE column1 >= 0) SELECT * FROM cte;
 
     * SQL schema is persistent, so it is able to survive ``snapshot()``/``restore()`` sequence.
     * SQL features are described in a :ref:`tutorial <sql_tutorial>`.

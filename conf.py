@@ -20,6 +20,7 @@ extensions = [
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
     'ext.custom',
     'ext.LuaDomain',
     'ext.LuaLexer',
@@ -35,6 +36,11 @@ extensions = [
     'ext.CustomJSONBuilder',
 ]
 
+extlinks = {
+    'tarantool-issue': ('https://github.com/tarantool/tarantool/issues/%s', 'tarantool/tarantool#'),
+    'tarantool-release': ('https://github.com/tarantool/tarantool/releases/%s', 'tarantool/tarantool/releases/'),
+    'doc-issue': ('https://github.com/tarantool/doc/issues/%s', 'tarantool/doc#'),
+}
 
 imgmath_image_format = 'svg'
 

@@ -1,6 +1,8 @@
 Tarantool 1.10.8
 ================
 
+Release: :tarantool-release:`1.10.8`
+
 Date: 2020-10-22 Tag: 1.10.8-1-ge69e130
 
 Overview
@@ -13,7 +15,7 @@ showstopper bugs.
 
 This release resolves roughly 7 issues since the 1.10.7 version. There
 may be bugs in less common areas. If you find any, feel free to report
-an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`__.
+an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`_.
 
 Compatibility
 -------------
@@ -31,7 +33,7 @@ Module API
 
 -   Exposed the box region, key_def and several other functions in order
     to implement external tuple.keydef and tuple.merger modules on top of
-    them (gh-5273, gh-5384).
+    them (:tarantool-issue:`5273`, :tarantool-issue:`5384`).
 
 Bugs fixed
 ----------
@@ -43,7 +45,7 @@ Core
     recording is aborted when fiber yields the execution. The yield
     occurring while the compiled code is being run (it’s likely a
     function with a yield underneath called via LuaJIT FFI) leads to the
-    platform panic (gh-1700, gh-4491).
+    platform panic (:tarantool-issue:`1700`, :tarantool-issue:`4491`).
 -   Fixed fibers switch-over to prevent implicit GC disabling. The yield
     occurring while user-defined \__gc metamethod is running leads to the
     platform panic.
@@ -54,19 +56,19 @@ Lua
 -   Fixed unhandled Lua error that might lead to memory leaks and
     inconsistencies in ``<space_object>:frommap()``,
     ``<key_def_object>:compare()``, ``<merge_source>:select()``
-    (gh-5382).
+    (:tarantool-issue:`5382`).
 
 LuaJIT
 ~~~~~~
 
 -   Fixed the error occurring on loading luajit-gdb.py with Python2
-    (gh-4828).
+    (:tarantool-issue:`4828`).
 
 Misc
 ~~~~
 
 -   Fixed potential lag on boot up procedure when system’s password
-    database is slow in access (gh-5034).
+    database is slow in access (:tarantool-issue:`5034`).
 
 ..  _module-api-1:
 
@@ -74,4 +76,4 @@ Module API
 ~~~~~~~~~~
 
 -   Get rid of typedef redefinitions for compatibility with C99
-    (gh-5313).
+    (:tarantool-issue:`5313`).

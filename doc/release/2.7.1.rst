@@ -1,19 +1,19 @@
 Tarantool 2.7.1
 ===============
 
+Release: :tarantool-release:`2.7.1`
 Date: 2020-12-30 Tag: 2.7.1-0-g3ac498c9f
 
 Overview
 --------
 
-2.7.1 is the
-`beta <https://www.tarantool.io/en/doc/latest/dev_guide/release_management/#release-policy>`__
+2.7.1 is the :doc:`beta </release/policy>`
 version of the 2.7 release series.
 
 This release introduces 12 new features and resolves 21 bugs since the
 2.6.1 version. There can be bugs in less common areas. If you find any,
 feel free to `report an
-issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
+issue <https://github.com/tarantool/tarantool/issues>`_ on GitHub.
 
 Notable changes are:
 
@@ -28,7 +28,7 @@ Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
 data layout, client-server protocol, and replication protocol.
 
 Please
-`upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
+`upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`_
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
@@ -39,44 +39,44 @@ Core
 ~~~~
 
 -   Now it is allowed to define an index without extra braces when there
-    is only one part: ``parts = {field1, type1, ...}`` (gh-2866). Read more in
+    is only one part: ``parts = {field1, type1, ...}`` (:tarantool-issue:`2866`). Read more in
     the :ref:`note about index parts declaration <index_parts_declaration_note>`.
--   :ref:`Bitset index <indexes-bitset>` now supports the varbinary type (gh-5392).
+-   :ref:`Bitset index <indexes-bitset>` now supports the varbinary type (:tarantool-issue:`5392`).
 -   Index-related options now can’t be specified in their definition due
-    to a more pedantic key-parts verification (gh-5473).
+    to a more pedantic key-parts verification (:tarantool-issue:`5473`).
 -   A warning is now logged when schema version is older than last
-    available schema version (gh-4574).
+    available schema version (:tarantool-issue:`4574`).
 -   UUID values created via ``uuid`` Lua module (``require('uuid')``) can
     now be compared using the comparison operators like ``<``, ``>=``,
-    and others (gh-5511).
+    and others (:tarantool-issue:`5511`).
 -   The new ``box.ctl.is_recovery_finished()`` function allows user to
     determine whether memtx recovery is finished.
 -   The ``force_recovery`` option now ignores errors during snapshot
-    recovery (gh-5422).
+    recovery (:tarantool-issue:`5422`).
 -   Feedback daemon now reports ``box.stat().*.total``,
     ``box.stat.net().*.total``, and ``box.stat.net().*.current`` together
     with the time of report generation. The added fields reside in
     ``feedback.stats.box``, ``feedback.stats.net``, and
-    ``feedback.stats.time`` (gh-5589).
+    ``feedback.stats.time`` (:tarantool-issue:`5589`).
 
 LuaJIT
 ~~~~~~
 
--   Introduced the LuaJIT memory profiler (gh-5442) and the profile
-    parser (gh-5490).
+-   Introduced the LuaJIT memory profiler (:tarantool-issue:`5442`) and the profile
+    parser (:tarantool-issue:`5490`).
 
 Lua
 ~~~
 
 -   Show JSON tokens themselves instead of token names ``T_*`` in the
-    JSON decoder error messages (gh-4339).
--   Show a decoding context in the JSON decoder error messages (gh-4339).
+    JSON decoder error messages (:tarantool-issue:`4339`).
+-   Show a decoding context in the JSON decoder error messages (:tarantool-issue:`4339`).
 
 SQL
 ~~~
 
 -   The :ref:`ALTER TABLE ADD COLUMN <sql_alter_table>` statement is now
-    supported for empty tables (gh-2349, gh-3075).
+    supported for empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`).
 
 Replication
 ~~~~~~~~~~~
@@ -93,13 +93,13 @@ Replication
     expression should respect synchro guarantees: at least 50% of the
     cluster size + 1. The expression value is re-evaluated automatically
     inside of Tarantool when new replicas appear or old ones are removed
-    (gh-5446).
+    (:tarantool-issue:`5446`).
 
 Build
 ~~~~~
 
--   Deploy packages for Fedora 32 (gh-4966).
--   Deploy packages for Debian Bullseye (gh-5638).
+-   Deploy packages for Fedora 32 (:tarantool-issue:`4966`).
+-   Deploy packages for Debian Bullseye (:tarantool-issue:`5638`).
 
 Miscellaneous
 ~~~~~~~~~~~~~
@@ -108,7 +108,7 @@ Miscellaneous
     feedback server. This report contains some fields from ``uname``
     output, build information, crash reason, and a stack trace. You can
     disable crash reporting with ``box.cfg{feedback_crashinfo = false}``
-    (gh-5261).
+    (:tarantool-issue:`5261`).
 
 Bugs fixed
 ----------
@@ -119,73 +119,73 @@ Core
 
 -   ``fiber.cond:wait()`` now correctly throws an error when a fiber is
     cancelled, instead of ignoring the timeout and returning without any
-    signs of an error (gh-5013).
+    signs of an error (:tarantool-issue:`5013`).
 -   Fixed a memory corruption issue, which was most visible on macOS, but
-    could affect any system (gh-5312).
+    could affect any system (:tarantool-issue:`5312`).
 -   A dynamic module now gets correctly unloaded from memory in case of
-    an attempt to load a non-existing function from it (gh-5475).
--   A ``swim:quit()`` call now can’t result in a crash (gh-4570).
+    an attempt to load a non-existing function from it (:tarantool-issue:`5475`).
+-   A ``swim:quit()`` call now can’t result in a crash (:tarantool-issue:`4570`).
 -   Snapshot recovery with no JSONPath or multikey indices involved now
-    has normal performance (gh-4774).
+    has normal performance (:tarantool-issue:`4774`).
 
 
 Replication
 ~~~~~~~~~~~
 
 -   A false-positive “too long WAL write” message no longer appears for
-    synchronous transactions (gh-5139).
+    synchronous transactions (:tarantool-issue:`5139`).
 -   A ``box.ctl.wait_rw()`` call could return when the instance was not
     in fact writable due to having foreign synchronous transactions. As a
     result, there was no proper way to wait until the automatically
     elected leader would become writable. Now ``box.ctl.wait_rw()`` works
-    correctly (gh-5440).
+    correctly (:tarantool-issue:`5440`).
 -   Fixed a couple of crashes on various tweaks of election mode
-    (gh-5506).
+    (:tarantool-issue:`5506`).
 -   Now ``box.ctl.clear_synchro_queue`` tries to commit everything that
     is present on the node. In order to do so it waits for other
     instances to replicate the data for ``replication_synchro_quorum``
     seconds. In case timeout passes and quorum wasn’t reached, nothing is
-    rolled back (gh-5435).
+    rolled back (:tarantool-issue:`5435`).
 
 
 SQL
 ~~~
 
--   Data changes in read-only mode are now forbidden (gh-5231).
--   Query execution now doesn’t occasionally raise an unrelated error
-    “Space ‘0’ does not exist” (gh-5592).
+-   Data changes in read-only mode are now forbidden (:tarantool-issue:`5231`).
+-   Query execution now does not occasionally raise an unrelated error
+    “Space ‘0’ does not exist” (:tarantool-issue:`5592`).
 -   Coinciding names of temporary files (used to store data during
     execution) having two instances running on the same machine no longer
-    cause a segfault (gh-5537).
+    cause a segfault (:tarantool-issue:`5537`).
 -   The return value of ``ifnull()`` built-in function is now of a
     correct type.
 -   SQL calling Lua functions with box calls inside can no longer result
-    in a memory corruption (gh-5427).
+    in a memory corruption (:tarantool-issue:`5427`).
 
 
 LuaJIT
 ~~~~~~
 
 -   Dispatching ``__call`` metamethod no longer causes address clashing
-    (gh-4518, gh-4649).
--   Fixed a false positive panic when yielding in debug hook (gh-5649).
+    (:tarantool-issue:`4518`, :tarantool-issue:`4649`).
+-   Fixed a false positive panic when yielding in debug hook (:tarantool-issue:`5649`).
 
 
 Lua
 ~~~
 
 -   An attempt to use a ``net.box`` connection which is not established
-    yet now results in a correctly reported error (gh-4787).
+    yet now results in a correctly reported error (:tarantool-issue:`4787`).
 -   Fixed a ``NULL`` dereference on error paths in merger which usually
-    happened on a ‘wrong’ ``key_def`` (gh-5450).
+    happened on a ‘wrong’ ``key_def`` (:tarantool-issue:`5450`).
 -   Calling ``key_def.compare_with_key()`` with an invalid key no longer
-    causes a segfault (gh-5307).
+    causes a segfault (:tarantool-issue:`5307`).
 -   Fixed a hang which occured when ``tarantool`` ran a user script with
     the ``-e`` option and this script exited with an error (like with
-    ``tarantool -e 'assert(false)'``) (gh-4983).
+    ``tarantool -e 'assert(false)'``) (:tarantool-issue:`4983`).
 
 Memtx
 ~~~~~
 
 -   The ``on_schema_init`` triggers now can’t cause duplicates in primary
-    key (gh-5304).
+    key (:tarantool-issue:`5304`).
