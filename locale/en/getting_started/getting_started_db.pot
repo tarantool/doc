@@ -23,8 +23,8 @@ msgstr ""
 
 msgid ""
 "If you're new to Docker, we recommend going over `this tutorial "
-"<https://docs.docker.com/engine/getstarted/step_one/>`_ before proceeding "
-"with this chapter."
+"<https://docs.docker.com/get-started/>`_ before proceeding with this "
+"chapter."
 msgstr ""
 
 msgid "Launching a container"
@@ -32,8 +32,8 @@ msgstr ""
 
 msgid ""
 "If you don't have Docker installed, please follow the official `installation"
-" guide <https://docs.docker.com/engine/getstarted/step_one/#/step-1-get-"
-"docker>`_ for your OS."
+" guide <https://docs.docker.com/get-started/#download-and-install-docker>`_ "
+"for your OS."
 msgstr ""
 
 msgid ""

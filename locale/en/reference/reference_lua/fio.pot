@@ -335,7 +335,7 @@ msgstr ""
 
 msgid ""
 "Functions in this section are similar to some `Python os.path "
-"<https://docs.python.org/2/library/os.path.htmll>`_ functions."
+"<https://docs.python.org/2/library/os.path.html>`_ functions."
 msgstr ""
 
 msgid "path to directory or file."

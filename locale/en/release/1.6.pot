@@ -258,10 +258,10 @@ msgstr ""
 
 msgid ""
 "Tarantool brew formula (OS X) was accepted to the official Homebrew "
-"repository (http://brewformulas.org/tarantool)."
+"repository (https://formulae.brew.sh/formula/tarantool)."
 msgstr ""
 
-msgid "Clang compiler support was added on FreeBSD (:tarantool-issue:`786`)."
+msgid "Clang compiler support was added on FreeBSD. (:tarantool-issue:`786`)."
 msgstr ""
 
 msgid ""

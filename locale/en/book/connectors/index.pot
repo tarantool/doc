@@ -506,7 +506,7 @@ msgstr ""
 
 msgid ""
 "Install .net core from Microsoft. Follow `.net core installation "
-"instructions <https://www.microsoft.com/net/core#ubuntu>`_."
+"instructions <https://dotnet.microsoft.com/download>`_."
 msgstr ""
 
 msgid ""
@@ -520,7 +520,7 @@ msgid ""
 "installation saying \"This software may collect information about you and "
 "your use of the software, and send that to Microsoft.\" Still you can `set "
 "environment variables <https://docs.microsoft.com/en-"
-"us/dotnet/core/tools/telemetry#behavior>`_ to opt out from telemetry."
+"us/dotnet/core/tools/telemetry>`_ to opt out from telemetry."
 msgstr ""
 
 msgid "Create a new console project."
