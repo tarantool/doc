@@ -218,3 +218,11 @@ locale_dirs = ['./locale']
 gettext_additional_targets = ['literal-block']
 gettext_compact = False
 gettext_location = False
+
+# Linkcheck options
+linkcheck_ignore = [
+    r'http://localhost(:\d+)?',
+    r'http://127\.0\.0\.1(:\d+)?',
+    r'https?://github\.com',
+    r'https?://www.tarantool.io/en/doc/latest/reference/reference_lua/box_slab/.*#.*',
+]

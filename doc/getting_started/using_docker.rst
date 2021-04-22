@@ -14,7 +14,7 @@ These images are the easiest way to install and use Tarantool.
 .. NOTE::
 
     If you're new to Docker, we recommend going over
-    `this tutorial <https://docs.docker.com/engine/getstarted/step_one/>`_
+    `this tutorial <https://docs.docker.com/get-started/>`_
     before proceeding with this chapter.
 
 .. _getting_started-launching_a-container:
@@ -24,7 +24,7 @@ Launching a container
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you don't have Docker installed, please follow the official
-`installation guide <https://docs.docker.com/engine/getstarted/step_one/#/step-1-get-docker>`_
+`installation guide <https://docs.docker.com/get-started/#download-and-install-docker>`_
 for your OS.
 
 To start a fully functional Tarantool instance, run a container with minimal

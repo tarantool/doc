@@ -277,7 +277,7 @@ Feedback
 * :ref:`feedback_interval <cfg_logging-feedback_interval>`
 
 By default a Tarantool daemon sends a small packet
-once per hour, to https://feedback.tarantool.io.
+once per hour, to ``https://feedback.tarantool.io``.
 The packet contains three values from :ref:`box.info <box_introspection-box_info>`:
 ``box.info.version``, ``box.info.uuid``, and ``box.info.cluster_uuid``.
 By changing the feedback configuration parameters, users can
@@ -304,7 +304,7 @@ adjust or turn off this feature.
     Usually the recipient is Tarantool, but it can be any URL.
 
     | Type: string
-    | Default: 'https://feedback.tarantool.io'
+    | Default: ``https://feedback.tarantool.io``
     | Dynamic: **yes**
 
 .. _cfg_logging-feedback_interval:
