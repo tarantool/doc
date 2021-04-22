@@ -56,6 +56,7 @@ default settings to all the parameters:
       hot_standby                  = false
       instance_uuid                = nil -- generated automatically
       io_collect_interval          = nil
+      iproto_threads               = 1
       listen                       = nil
       log                          = nil
       log_format                   = plain
