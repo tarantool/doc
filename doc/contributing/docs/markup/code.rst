@@ -114,8 +114,8 @@ Notes on using inline-code
 Highlighting variables in code
 ------------------------------
 
-If you need to mark up a placeholder inside code inline, use the ``:samp:``
-role, like this:
+If you need to mark up a placeholder inside code inline, use the ``:samp:`` or
+our custom ``:extsamp:`` role, like this:
 
     ..  literalinclude:: _includes/samp.rst
         :language: rst
@@ -123,6 +123,17 @@ role, like this:
 And you will get this:
 
     ..  include:: _includes/samp.rst
+
+Notice two backslashes before the curly brackets in the first line.
+They are needed to escape curly brackets from Lua syntax.
+
+As you can see, ``:extsamp:`` extends the abilities of ``:samp:``.
+It allows you to highlight placeholders in both italics and bold
+and avoid escaping curly brackets.
+``:extsamp:`` has the following syntax:
+
+*   ``{*{element}*}`` for *italic*
+*   ``{**{element}**}`` for **bold**
 
 If you need to mark up a placeholder in code block, use
 the following syntax:

@@ -7,9 +7,9 @@ Linking to other documentation pages
 To create a link to another document in our documentation, we use the ``:doc:`` role.
 For example, this link points to the document ``/reference/reference_lua/box_error.rst``:
 
-..  code-block:: rst
+    ..  code-block:: rst
 
-    :doc:`box.error reference </reference/reference_lua/box_error>`
+        :doc:`box.error reference </reference/reference_lua/box_error>`
 
 Our convention is to put the full path to the referred document so that we can
 easily replace the path if it changes.
@@ -18,12 +18,12 @@ Note that we can omit the ``.rst`` part of the filename.
 You can use the target document's title as the link text.
 To do so, omit the text in the link definition:
 
-..  literalinclude:: _includes/doc-link.rst
-    :language: rst
+    ..  literalinclude:: _includes/doc-link.rst
+        :language: rst
 
 And you will get this:
 
-..  include:: _includes/doc-link.rst
+    ..  include:: _includes/doc-link.rst
 
 Linking to labels (anchors)
 ---------------------------
@@ -56,24 +56,33 @@ The tag can be anything meaningful. The only guideline is for Tarantool syntax
 items (such as members), where the preferred tag syntax is
 ``module_or_object_name dash member_name``. For example, ``box_space-drop``.
 
+To add a link to an anchor, use the following syntax:
+
+    ..  literalinclude:: _includes/ref-link.rst
+        :language: rst
+
+The result will be like this:
+
+    ..  include:: _includes/ref-link.rst
+
 Linking to external resources
 -----------------------------
 
 To make an external link, use the following syntax:
 
-..  code-block:: text
+    ..  code-block:: text
 
-    This is a paragraph that contains `a link <http://example.com/>`_.
+        Feel free to report an issue at `Tarantool GitHub <https://github.com/tarantool/tarantool/issues>`_.
 
 Avoid separating the link and the target definition, like this:
 
-..  container:: dont
+    ..  container:: dont
 
-    ..  code-block:: rst
+        ..  code-block:: rst
 
-        This is wrong way to make `a link`_.
+            Feel free to report an issue at `Tarantool GitHub`_.
 
-        ..  _a link: http://example.com/
+            ..  _Tarantool GitHub: https://github.com/tarantool/tarantool/issues
 
-**Warning:** Every separated link tends to cause troubles when this documentation
-is translated to other languages. Please avoid using separated links.
+because every separated link tends to cause troubles when this documentation
+is translated to other languages.
