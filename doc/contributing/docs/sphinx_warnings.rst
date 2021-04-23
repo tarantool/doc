@@ -31,6 +31,7 @@ Bullet list ends without a blank line; unexpected unindent
 
 Could not lex literal_block as "...". Highlighting skipped
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 This warning means that there's a ``code-block`` with an unknown lexer.
 Most probably, it's a typo.
 Check out the `full list of Pygments lexers <https://pygments.org/docs/lexers/>`_
