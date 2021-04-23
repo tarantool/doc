@@ -1,11 +1,21 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tarantool-docs\n"
+"X-Crowdin-Project-ID: 442986\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /en/reference/reference_lua/box_tuple/is.pot\n"
+"X-Crowdin-File-ID: 1028\n"
+"Project-Id-Version: tarantool-docs\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"PO-Revision-Date: 2021-04-23 11:58\n"
 
 msgid "box.tuple.is()"
 msgstr ""
 
-msgid ""
-"Since versions :doc:`2.2.3 </release/2.2.3>`, :doc:`2.3.2 </release/2.3.2>`,"
-" and :doc:`2.4.1 </release/2.4.1>`. A function to check whether a given "
-"object is a tuple cdata object. Never raises nor returns an error."
+msgid "Since versions :doc:`2.2.3 </release/2.2.3>`, :doc:`2.3.2 </release/2.3.2>`, and :doc:`2.4.1 </release/2.4.1>`. A function to check whether a given object is a tuple cdata object. Never raises nor returns an error."
 msgstr ""
 
 msgid "return"
@@ -19,3 +29,4 @@ msgstr "возвращаемое значение"
 
 msgid "boolean"
 msgstr "boolean (логический)"
+
