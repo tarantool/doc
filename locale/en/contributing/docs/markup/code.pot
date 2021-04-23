@@ -199,18 +199,40 @@ msgstr ""
 
 msgid ""
 "If you need to mark up a placeholder inside code inline, use the ``:samp:`` "
-"role, like this:"
+"or our custom ``:extsamp:`` role, like this:"
 msgstr ""
 
 msgid ""
-":samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`\n"
+":samp:`{space_object}:insert(\\\\{ffi.cast('double', {value})\\\\})`\n"
+"\n"
+":extsamp:`{*{space_object}*}:insert({ffi.cast('double', {**{value}**})})`"
 msgstr ""
 
 msgid "And you will get this:"
 msgstr ""
 
+msgid ":samp:`{space_object}:insert(\\\\{ffi.cast('double', {value})\\\\})`"
+msgstr ""
+
 msgid ""
-":samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`"
+":extsamp:`{*{space_object}*}:insert({ffi.cast('double', {**{value}**})})`"
+msgstr ""
+
+msgid ""
+"Notice two backslashes before the curly brackets in the first line. They are"
+" needed to escape curly brackets from Lua syntax."
+msgstr ""
+
+msgid ""
+"As you can see, ``:extsamp:`` extends the abilities of ``:samp:``. It allows"
+" you to highlight placeholders in both italics and bold and avoid escaping "
+"curly brackets. ``:extsamp:`` has the following syntax:"
+msgstr ""
+
+msgid "``{*{element}*}`` for *italic*"
+msgstr ""
+
+msgid "``{**{element}**}`` for **bold**"
 msgstr ""
 
 msgid ""

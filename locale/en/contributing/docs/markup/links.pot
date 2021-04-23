@@ -25,23 +25,10 @@ msgid ""
 " text in the link definition:"
 msgstr ""
 
-msgid ""
-"\n"
-"*   :doc:`/reference/reference_lua/box_index`\n"
-"*   :doc:`/reference/reference_lua/box_error`\n"
-"*   :doc:`/reference/reference_lua/box_backup`\n"
-msgstr ""
-
-msgid "And you will get this:"
-msgstr ""
-
 msgid ":doc:`/reference/reference_lua/box_index`"
 msgstr ""
 
-msgid ":doc:`/reference/reference_lua/box_error`"
-msgstr ""
-
-msgid ":doc:`/reference/reference_lua/box_backup`"
+msgid "And you will get this:"
 msgstr ""
 
 msgid "Linking to labels (anchors)"
@@ -92,26 +79,36 @@ msgid ""
 "``module_or_object_name dash member_name``. For example, ``box_space-drop``."
 msgstr ""
 
+msgid "To add a link to an anchor, use the following syntax:"
+msgstr ""
+
+msgid "Check out the :ref:`Quick start guide <vshard-quick-start>`."
+msgstr ""
+
+msgid "The result will be like this:"
+msgstr ""
+
 msgid "Linking to external resources"
 msgstr ""
 
 msgid "To make an external link, use the following syntax:"
 msgstr ""
 
-msgid "This is a paragraph that contains `a link <http://example.com/>`_."
+msgid ""
+"Feel free to report an issue at `Tarantool GitHub "
+"<https://github.com/tarantool/tarantool/issues>`_."
 msgstr ""
 
 msgid "Avoid separating the link and the target definition, like this:"
 msgstr ""
 
 msgid ""
-"This is wrong way to make `a link`_.\n"
+"Feel free to report an issue at `Tarantool GitHub`_.\n"
 "\n"
-"..  _a link: http://example.com/"
+"..  _Tarantool GitHub: https://github.com/tarantool/tarantool/issues"
 msgstr ""
 
 msgid ""
-"**Warning:** Every separated link tends to cause troubles when this "
-"documentation is translated to other languages. Please avoid using separated"
-" links."
+"because every separated link tends to cause troubles when this documentation"
+" is translated to other languages."
 msgstr ""
