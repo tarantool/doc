@@ -74,15 +74,15 @@
 
 .. confval:: iproto_threads
 
-     Since version 2.8.1.
-     The number of :ref:`network threads <atomic-threads_fibers_yields>`.
-     There can be unusual workloads where the network thread
-     is 100% loaded and the transaction processor thread is not, so the network
-     thread is a bottleneck. In that case set ``iproto_threads`` to 2 or more.
-     The operating system kernel will determine which connection goes to
-     which thread.
+    Since version 2.8.1.
+    The number of :ref:`network threads <atomic-threads_fibers_yields>`.
+    There can be unusual workloads where the network thread
+    is 100% loaded and the transaction processor thread is not, so the network
+    thread is a bottleneck. In that case set ``iproto_threads`` to 2 or more.
+    The operating system kernel will determine which connection goes to
+    which thread.
 
-     On typical systems, the default value (1) is correct.
+    On typical systems, the default value (1) is correct.
      
     | Type: integer
     | Default: 1
