@@ -1,4 +1,4 @@
-.. _release_notes:
+..  _release_notes:
 
 ********************************************************************************
 Release notes
@@ -25,7 +25,7 @@ Below is the table listing all Tarantool versions starting from 1.10.0 up to
 the current latest versions.
 Each link leads to the release notes page of the corresponding version:
 
-.. _release-list:
+..  _release-list:
 
 ..  container:: table
 
@@ -41,15 +41,21 @@ Each link leads to the release notes page of the corresponding version:
             -   Beta
             -   Release
 
+        *   -   2.8
+            -   2.8.0
+            -   :doc:`2.8.1 <release/2.8.1>`
+            -   not released yet
+
         *   -   2.7
             -   2.7.0
             -   :doc:`2.7.1 <release/2.7.1>`
-            -   not released yet
+            -   :doc:`2.7.2 <release/2.7.2>`
 
         *   -   2.6
             -   2.6.0
             -   :doc:`2.6.1 <release/2.6.1>`
-            -   :doc:`2.6.2 <release/2.6.2>`
+            -   :doc:`2.6.2 <release/2.6.2>`,
+                :doc:`2.6.3 <release/2.6.3>`
 
         *   -   2.5
             -   2.5.0
@@ -86,7 +92,8 @@ Each link leads to the release notes page of the corresponding version:
                 :doc:`1.10.6 <release/1.10.6>`,
                 :doc:`1.10.7 <release/1.10.7>`,
                 :doc:`1.10.8 <release/1.10.8>`,
-                :doc:`1.10.9 <release/1.10.9>`
+                :doc:`1.10.9 <release/1.10.9>`,
+                :doc:`1.10.10 <release/1.10.10>`
 
 
 For smaller feature changes and bug fixes, see closed
@@ -104,7 +111,10 @@ Release notes for series before 1.10 are also available:
     :hidden:
 
     release/policy
+    release/2.8.1
+    release/2.7.2
     release/2.7.1
+    release/2.6.3
     release/2.6.2
     release/2.6.1
     release/2.5.3
@@ -120,6 +130,7 @@ Release notes for series before 1.10 are also available:
     release/2.2.2
     release/2.2.1
     release/2.1.2
+    release/1.10.10
     release/1.10.9
     release/1.10.8
     release/1.10.7

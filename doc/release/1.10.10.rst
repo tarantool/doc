@@ -1,0 +1,94 @@
+Tarantool 1.10.10
+=================
+
+Release: :tarantool-release:`1.10.10`
+
+Date: 2021-04-21 Tag: 1.10.10
+
+Overview
+--------
+
+1.10.10 is the next stable release in the
+:doc:`long-term support (LTS) version </release/policy>`
+1.10.x release series.
+
+The label “stable” means there are 1.10.x-based applications running in
+production for quite a while without known crashes, incorrect results or
+other showstopper bugs.
+
+This release introduces 12 improvements and resolves roughly 3 issues
+since the 1.10.9 version.
+
+Compatibility
+-------------
+
+Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary
+data layout, client-server protocol and replication protocol.
+
+Please
+`upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 1.10.x series.
+
+Functionality added or changed
+------------------------------
+
+Build
+~~~~~
+
+-   Updated CMake minimum required version in Tarantool build
+    infrastructure to 3.1.
+-   Stop publishing new binary packages for CentOS 6.
+-   Stop publishing new binary packages for Debian Jessie.
+-   Publish binary packages for Fedora 33 (:tarantool-issue:`5502`).
+-   Backported ``-DENABLE_LTO=ON/OFF`` cmake option (:tarantool-issue:`3117`,
+    :tarantool-issue:`3743`).
+    It is useful for building packages for Fedora 33 (:tarantool-issue:`5502`).
+-   Bump built-in zstd version from v1.3.3 to v1.4.8
+    (part of :tarantool-issue:`5502`).
+-   libcurl symbols in the case of bundled libcurl are now exported
+    (:tarantool-issue:`5223`, :tarantool-issue:`5542`).
+-   Enable smtp and smtps protocols in bundled libcurl (:tarantool-issue:`4559`).
+-   Ship libcurl headers to system path “${PREFIX}/include/tarantool” in
+    the case of libcurl included as bundled library or static build
+    (:tarantool-issue:`4559`).
+
+Testing
+~~~~~~~
+
+-   We’re moving to GitHub Actions (:tarantool-issue:`5662`).
+-   Implemented self-sufficient LuaJIT testing environment. As a result
+    LuaJIT build system is partially ported to CMake and all testing
+    machinery is enclosed within tarantool/luajit repository
+    (:tarantool-issue:`4862`, :tarantool-issue:`5470`).
+-   Switch to Python 3 by default in a test infrastructure (:tarantool-issue:`5652`)
+
+Bugs fixed
+----------
+
+Core
+~~~~
+
+-   Extensive usage of ``uri`` and ``uuid`` modules with debug log level
+    could lead to a crash or corrupted result of the functions from these
+    modules. Also their usage from the callbacks passed to ``ffi.gc()``
+    could lead to the same but much easier. The same could happen with
+    some functions from the modules ``fio``, ``box.tuple``, ``iconv``
+    (:tarantool-issue:`5632`).
+
+Lua
+~~~
+
+-   Fixed -e option, when tarantool always entered interactive mode when
+    stdin is a tty. Now, ``tarantool -e 'print"Hello"'`` doesn’t enter
+    interactive mode as it was before, just prints ‘Hello’ and exits
+    (:tarantool-issue:`5040`).
+
+..  _build-1:
+
+Build
+~~~~~
+
+-   Make recovering with force_recovery option delete newer than snapshot
+    vylog files. So that instance can recover after incidents during
+    checkpoint (:tarantool-issue:`5823`).
