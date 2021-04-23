@@ -1,0 +1,184 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"X-Crowdin-Project: tarantool-docs\n"
+"X-Crowdin-Project-ID: 442986\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: /en/contributing/docs/sphinx_warnings.pot\n"
+"X-Crowdin-File-ID: 3532\n"
+"Project-Id-Version: tarantool-docs\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"PO-Revision-Date: 2021-04-23 11:58\n"
+
+msgid "Sphinx-build warnings reference"
+msgstr ""
+
+msgid "This document will guide you through the possible warnings raised by Sphinx engine while building the docs."
+msgstr ""
+
+msgid "Warnings and solutions list"
+msgstr ""
+
+msgid "Below we cite a list with the most frequent warnings and the ways of solutions."
+msgstr ""
+
+msgid "Bullet list ends without a blank line; unexpected unindent"
+msgstr ""
+
+msgid "**Similar warning:** Block quote ends without a blank line; unexpected unindent"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "*   The last point of bullet list\n"
+"This text should start after a blank line"
+msgstr ""
+
+msgid "**Solution:**"
+msgstr ""
+
+msgid "*   The last point of bullet list\n\n"
+"This text should start after a blank line"
+msgstr ""
+
+msgid "Could not lex literal_block as \"...\". Highlighting skipped"
+msgstr ""
+
+msgid "This warning means that there's a ``code-block`` with an unknown lexer. Most probably, it's a typo. Check out the `full list of Pygments lexers <https://pygments.org/docs/lexers/>`_ for the right spelling."
+msgstr ""
+
+msgid "..  code-block:: cxx\n\n"
+"    // some code here"
+msgstr ""
+
+msgid "..  code-block:: cpp\n\n"
+"    // some code here"
+msgstr ""
+
+msgid "Sometimes, however, there's no appropriate lexer, or the code snippet can't be lexed properly. In such case, use ``code-block:: text``."
+msgstr ""
+
+msgid "Duplicate explicit target name: \"...\""
+msgstr ""
+
+msgid "*   `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_\n"
+"    ``git``, a version control system.\n\n"
+"*   `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`_\n"
+"    the ``unzip`` utility."
+msgstr ""
+
+msgid "Sphinx-builder raises warnings when we call different targets the same names. Sphinx developers `recommend <https://github.com/sphinx-doc/sphinx/issues/3921>`_ using double underlines ``__`` in such cases to avoid this."
+msgstr ""
+
+msgid "*   `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__\n"
+"    ``git``, a version control system.\n\n"
+"*   `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`__\n"
+"    the ``unzip`` utility."
+msgstr ""
+
+msgid "Document isn't included in any toctree"
+msgstr ""
+
+msgid "This warning means that you forgot to put the document name in the toctree."
+msgstr ""
+
+msgid "If you don't need it there, place ``:orphan:`` directive at the top of the file. Or, if this file is included somewhere or reused, add it to the _includes directory. These directories are ignored by Sphinx because we put them in ``exclude_patterns`` in ``conf.py`` file."
+msgstr ""
+
+msgid "Duplicate label \"...\", other instance in \".../.../...\""
+msgstr ""
+
+msgid "This happens if you include the contents of one file with tags in another. Then Sphinx thinks the tags are repeated."
+msgstr ""
+
+msgid "As in previous case, don't forget to add such file in _includes or avoid using tags within it."
+msgstr ""
+
+msgid "Malformed hyperlink target"
+msgstr ""
+
+msgid "**Similar warning:** Unknown target name: \"...\""
+msgstr ""
+
+msgid "Check the spelling of the target or the accuracy of the tag."
+msgstr ""
+
+msgid "..  _box_space-index_func"
+msgstr ""
+
+msgid "See the :ref:`Creating a functional index <box_space-index_func>` section."
+msgstr ""
+
+msgid "Semicolon is missing in tag definition:"
+msgstr ""
+
+msgid "..  _box_space-index_func:"
+msgstr ""
+
+msgid "Toctree contains reference to nonexisting document '...'"
+msgstr ""
+
+msgid "This may happen when you, for example, refer to the wrong path to a document."
+msgstr ""
+
+msgid "Check the path."
+msgstr ""
+
+msgid "If the path is in ``cartridge`` or another submodule, check that you've :doc:`built the submodules content </contributing/docs/build>` before building docs."
+msgstr ""
+
+msgid "Undefined label: ... (if the link has no caption the label must precede a section header)"
+msgstr ""
+
+msgid "Read more in :ref:`<sql_data_type_conversion>`."
+msgstr ""
+
+msgid "We recommend using custom captions with ``:ref:``:"
+msgstr ""
+
+msgid "Read more in :ref:`Data Type Conversion <sql_data_type_conversion>`."
+msgstr ""
+
+msgid "**See also:**"
+msgstr ""
+
+msgid ":doc:`/contributing/docs/markup/links`"
+msgstr ""
+
+msgid "Unexpected indentation"
+msgstr ""
+
+msgid "The reStructuredText syntax is based on indentation, much like in Python. In a block of content, all lines should be equally indented. An increase or decrease in indentation means the end of the current block and the beginning of a new one."
+msgstr ""
+
+msgid "Note: dots show indentation spaces in these examples. For example, ``|..|`` means a two-space indentation."
+msgstr ""
+
+msgid "|..|* (Engines) Improve dump start/stop logging. When initiating memory dump, print\n"
+"how much memory is going to be dumped, expected dump rate, ETA, and the recent\n"
+"write rate."
+msgstr ""
+
+msgid "*|...|(Engines) Improve dump start/stop logging. When initiating memory dump, print\n"
+"|....|how much memory is going to be dumped, expected dump rate, ETA, and the recent\n"
+"|....|write rate."
+msgstr ""
+
+msgid ":doc:`/contributing/docs/markup/intro`"
+msgstr ""
+
+msgid "Unknown document"
+msgstr ""
+
+msgid ":doc:`reference/reference_lua/box_space/update`"
+msgstr ""
+
+msgid "Sphinx did not recognise the file path correctly due to a missing slash at the beginning, so let's just put it there:"
+msgstr ""
+
+msgid ":doc:`/reference/reference_lua/box_space/update`"
+msgstr ""
+
