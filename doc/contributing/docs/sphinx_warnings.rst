@@ -31,10 +31,29 @@ Bullet list ends without a blank line; unexpected unindent
 
 Could not lex literal_block as "...". Highlighting skipped
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This warning means that there's a ``code-block`` with an unknown lexer.
+Most probably, it's a typo.
+Check out the `full list of Pygments lexers <https://pygments.org/docs/lexers/>`_
+for the right spelling. 
 
 **Example:**
 
+..  code-block:: rst
+
+    ..  code-block:: cxx
+    
+        // some code here
+
 **Solution:**
+
+..  code-block:: rst
+
+    ..  code-block:: cpp
+    
+        // some code here
+ 
+ Sometimes, however, there's no appropriate lexer, or the code snippet can't be lexed properly.
+ In such case, use ``code-block:: text``. 
 
 Duplicate explicit target name: "..."
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,11 +76,11 @@ using double underlines ``__`` in such cases to avoid this warning.
 
 ..  code-block:: rst
 
-    * `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
-         ``git``, a version control system.
+    *   `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
+        ``git``, a version control system.
 
-    * `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`__
-      the ``unzip`` utility.
+    *   `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`__
+        the ``unzip`` utility.
 
 Document isn't included in any toctree
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -118,6 +137,9 @@ Toctree contains reference to nonexisting document '...'
 **Example:**
 
 This may happen when you, for example, refer to the wrong path to a document.
+If the path is in ``cartridge`` or another submodule, check that you've
+:doc:`built the submodules content </contributing/docs/build>` before building docs.
+
 
 **Solution:**
 
@@ -151,9 +173,14 @@ We recommend using custom captions with ``:ref:``:
 Unexpected indentation
 ~~~~~~~~~~~~~~~~~~~~~~
 
+The reStructuredText syntax is based on indentation, much like in Python.
+In a block of content, all lines should be equally indented.
+An increase or decrease in indentation means the end of the current block and the beginning of a new one.
+
 **Example:**
 
-Note: ``|..|`` is instead of backspaces.
+Note: dots show indentation spaces in these examples.
+For example, ``|..|`` means a two-space indentation.
 
 ..  code-block:: rst
 
@@ -190,5 +217,4 @@ due to a missing slash at the beginning, so let's just put it there:
 ..  code-block:: rst
 
     :doc:`/reference/reference_lua/box_space/update`
-
 
