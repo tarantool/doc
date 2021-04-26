@@ -38,11 +38,11 @@ Build
 Misc
 ~~~~
 
--   Don’t start an ‘example’ instance after installing tarantool
+-   Don’t start an ‘example’ instance after installing Tarantool
     (:tarantool-issue:`4507`).
 
-    Before this release tarantool package for Debian and Ubuntu used to
-    automatically enable and start an ‘example’ instance, which would
+    Before this release the ``tarantool`` package for Debian and Ubuntu used to
+    automatically enable and start an 'example' instance, which would
     listen on the TCP port ``3301``. Since this release the instance file
     is installed to ``/etc/tarantool/instances.available/example.lua``,
     but isn’t enabled by default and not started anymore. You can enable
@@ -92,6 +92,6 @@ Lua
 
 -   An attempt to use a ``net.box`` connection which is not established
     yet now results in a correctly reported error (:tarantool-issue:`4787`).
--   Fixed a hang which occured when ``tarantool`` ran a user script with
+-   Fixed a hang which occurred when ``tarantool`` ran a user script with
     the ``-e`` option and this script exited with an error (like with
     ``tarantool -e 'assert(false)'``) (:tarantool-issue:`4983`).

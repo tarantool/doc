@@ -72,9 +72,9 @@
 
 .. _cfg_networking-iproto_threads:
 
-.. confval:: iproto_threads
+..  confval:: iproto_threads
 
-    Since version 2.8.1.
+    Since version :doc:`2.8.1 </release/2.8.1>`.
     The number of :ref:`network threads <atomic-threads_fibers_yields>`.
     There can be unusual workloads where the network thread
     is 100% loaded and the transaction processor thread is not, so the network

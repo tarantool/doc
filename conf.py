@@ -37,9 +37,9 @@ extensions = [
 ]
 
 extlinks = {
-    'tarantool-issue': ('https://github.com/tarantool/tarantool/issues/%s', 'tarantool/tarantool#'),
-    'tarantool-release': ('https://github.com/tarantool/tarantool/releases/%s', 'tarantool/tarantool/releases/'),
-    'doc-issue': ('https://github.com/tarantool/doc/issues/%s', 'tarantool/doc#'),
+    'tarantool-issue': ('https://github.com/tarantool/tarantool/issues/%s', 'gh-'),
+    'tarantool-release': ('https://github.com/tarantool/tarantool/releases/%s', 'v. '),
+    'doc-issue': ('https://github.com/tarantool/doc/issues/%s', 'doc-'),
 }
 
 imgmath_image_format = 'svg'
