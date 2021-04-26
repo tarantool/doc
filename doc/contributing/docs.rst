@@ -18,4 +18,5 @@ The guidelines are a work in progress, and we welcome all contributions.
     docs/markup
     docs/examples
     docs/build
+    docs/sphinx-warnings
     docs/infra
