@@ -51,6 +51,18 @@ msgstr ""
 msgid "Release"
 msgstr ""
 
+msgid "2.8"
+msgstr ""
+
+msgid "2.8.0"
+msgstr ""
+
+msgid ":doc:`2.8.1 <release/2.8.1>`"
+msgstr ""
+
+msgid "not released yet"
+msgstr ""
+
 msgid "2.7"
 msgstr ""
 
@@ -60,7 +72,7 @@ msgstr ""
 msgid ":doc:`2.7.1 <release/2.7.1>`"
 msgstr ""
 
-msgid "not released yet"
+msgid ":doc:`2.7.2 <release/2.7.2>`"
 msgstr ""
 
 msgid "2.6"
@@ -72,7 +84,7 @@ msgstr ""
 msgid ":doc:`2.6.1 <release/2.6.1>`"
 msgstr ""
 
-msgid ":doc:`2.6.2 <release/2.6.2>`"
+msgid ":doc:`2.6.2 <release/2.6.2>`, :doc:`2.6.3 <release/2.6.3>`"
 msgstr ""
 
 msgid "2.5"
@@ -136,7 +148,8 @@ msgid ""
 ":ref:`1.10.2 <whats_new_1102>`, :ref:`1.10.3 <whats_new_1103>`, :ref:`1.10.4"
 " <whats_new_1104>`, :doc:`1.10.5 <release/1.10.5>`, :doc:`1.10.6 "
 "<release/1.10.6>`, :doc:`1.10.7 <release/1.10.7>`, :doc:`1.10.8 "
-"<release/1.10.8>`, :doc:`1.10.9 <release/1.10.9>`"
+"<release/1.10.8>`, :doc:`1.10.9 <release/1.10.9>`, :doc:`1.10.10 "
+"<release/1.10.10>`"
 msgstr ""
 
 msgid ""
