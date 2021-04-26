@@ -1,7 +1,7 @@
 .. _box_schema-space_create:
 
 ===============================================================================
-box.schema.space.create() / schema_object:create_space()
+box.schema.space.create()
 ===============================================================================
 
 .. module:: box.schema

@@ -26,6 +26,9 @@ Below is a list of all ``box.space`` functions and members.
         *  - :doc:`./box_space/examples`
            - Some useful examples
 
+        *  - :doc:`./box_schema/space_create`
+           - Create a space
+
         *  - :doc:`./box_space/alter`
            - Alter a space
 
@@ -168,6 +171,7 @@ Below is a list of all ``box.space`` functions and members.
     :hidden:
 
     box_space/examples
+    box_schema/space_create
     box_space/alter
     box_space/auto_increment
     box_space/bsize
