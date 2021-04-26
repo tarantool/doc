@@ -25,6 +25,12 @@ msgstr ""
 msgid "Some useful examples"
 msgstr ""
 
+msgid ":doc:`./box_space/create_index`"
+msgstr ""
+
+msgid "Create an index"
+msgstr ""
+
 msgid ":doc:`./box_index/unique`"
 msgstr ""
 

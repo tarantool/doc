@@ -24,6 +24,12 @@ msgstr ""
 msgid "Some useful examples"
 msgstr ""
 
+msgid ":doc:`./box_schema/space_create`"
+msgstr ""
+
+msgid "Create a space"
+msgstr ""
+
 msgid ":doc:`./box_space/alter`"
 msgstr ""
 
