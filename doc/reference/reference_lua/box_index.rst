@@ -27,6 +27,9 @@ Below is a list of all ``box.index`` functions and members.
         *  - :doc:`./box_index/examples`
            - Some useful examples
 
+        *  - :doc:`./box_space/create_index`
+           - Create an index
+
         *  - :doc:`./box_index/unique`
            - Flag, true if an index is unique
 
@@ -88,6 +91,7 @@ Below is a list of all ``box.index`` functions and members.
     :hidden:
 
     box_index/examples
+    box_space/create_index
     box_index/unique
     box_index/type
     box_index/parts
