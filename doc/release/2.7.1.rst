@@ -62,8 +62,9 @@ Core
 LuaJIT
 ~~~~~~
 
--   Introduced the :doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>`
-    (:tarantool-issue:`5442`) and the profile parser (:tarantool-issue:`5490`).
+-   Introduced the LuaJIT memory profiler (:tarantool-issue:`5442`) and the profile
+    parser (:tarantool-issue:`5490`).
+    Read more: :doc:`/book/app_server/luajit_memprof`.
 
 Lua
 ~~~

@@ -2,21 +2,15 @@
 LuaJIT memory profiler
 ======================
 
-Stating from version :doc:`2.7.1 </release/2.7.1>`, Tarantool
-has the built-in module called ``memprof`` that implements a LuaJIT memory
-profiler and a profile parser. The profiler provides
+Starting from version :doc:`2.7.1 </release/2.7.1>`, Tarantool
+has the built-in module called ``misc.memprof`` that implements the LuaJIT memory
+profiler and the profile parser (further, *profiler*). The profiler provides
 a memory allocation report that helps analyse Lua code and find out the places
-that put the most pressure on the Lua garbage collector.
+that put the most pressure on the Lua garbage collector (GC).
 
-//?where to put this paragraph//
-Usually developers are not interested in information about allocations
-inside built-ins. So if a Lua built-in function is called from a Lua function,
-all allocations are attributed to this Lua function.
-Otherwise, this event is attributed to a C function.
-
-//?where to put this paragraph//
-Tail call optimization does not create a new call frame, so all allocations
-inside the function called via CALLT/CALLMT bytecodes are attributed to its caller.
+..  contents::
+    :local:
+    :depth: 2
 
 .. _profiler_usage:
 
@@ -37,11 +31,11 @@ Collecting binary profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To collect a binary profile for a particular part of the Lua code,
-you need to place this part between two ``memprof`` functions,
+you need to place this part between two ``misc.memprof`` functions,
 namely, ``misc.memprof.start()`` and ``misc.memprof.stop()``, and then execute
 the code under Tarantool.
 
-Below is a piece of simple Lua code named ``test.lua`` to illustrate this.
+Below is a chunk of simple Lua code named ``test.lua`` to illustrate this.
 
 .. _profiler_usage_example01:
 
@@ -57,14 +51,27 @@ Below is a piece of simple Lua code named ``test.lua`` to illustrate this.
     end
 
     local t = {}
-    for _ = 1, 1e5 do
+    for i = 1, 1e5 do
         -- table.insert is the built-in function and all corresponding
-        -- allocations are reported in the scope of main chunk.
+        -- allocations are reported in the scope of the main chunk.
         table.insert(t,
-            append('q', _)
+            append('q', i)
         )
     end
     local stp, err = misc.memprof.stop()
+
+..  note::
+
+    Usually, the information about allocations inside Lua built-ins are not really
+    useful for the developer. That's why if a Lua built-in function is called from
+    a Lua function, the profiler attributes all allocations to the Lua function.
+    Otherwise, this event is attributed to a C function.
+
+    Tail call optimization doesn't create a new call frame, so all allocations
+    inside the function called via the ``CALLT/CALLMT`` `bytecodes <http://wiki.luajit.org/Bytecode-2.0>`_
+    are attributed to its caller.
+
+    Example above illustrates these cases.
 
 Starting profiler in Lua code:
 
@@ -161,9 +168,8 @@ Tarantool generates a profiling report and closes the session.
 
 ..  note::
 
-    A report can look differently for the same piece of Lua code depending
-    on the OS used. On MacOS, the report data
-    //?can be influenced by the LuaJIT GC64 running//.
+    On MacOS , a report is different because Tarantool and LuaJIT are built
+    with the GC64 mode enabled for this OS.
 
 Let's examine the report structure. A report has three sections:
 
@@ -181,31 +187,30 @@ An event record has the following format:
     @<filename>:<function_line>, line <line_number>: <number_of_events> <allocated> <freed>
 
 *   <filename>—a name of the file containing Lua code.
-*   <function_line>—a number of the line where the function generating the event
-    is declared. Sometimes <function_line> is ``0``. It means that
-    the function generating the event is the //?main/entire code of //?file/script itself.
-    This is exactly the case in the :ref:`example above <profiler_usage_example01>`.
-    Comments in the code explain why it happens for each of the functions.
-*   <line_number>—a number of the line where the event is detected.
+*   <function_line>—the line number where the function generating the event
+    is declared. In some of the cases, allocations are attributed not to
+    the declared function but to the main chunk. In this case, the <function_line>
+    is set to ``0``. See the :ref:`code chunk above<profiler_usage_example01>`
+    with the explanation in the comments for some examples.
+*   <line_number>—the line number where the event is detected.
 *   <number_of_events>—a number of events for this code line.
-*   <allocated>—bytes allocated in memory during the //?event/events.
-*   <freed>—bytes freed in memory during //?event/events.
+*   <allocated>—amount of memory allocated during all the events, bytes.
+*   <freed>—amount of memory freed during all the events, bytes.
 
-``Overrides`` shows what allocation has been overridden.
+The ``Overrides`` label shows what allocation has been overridden.
 
 .. _profiler_usage_internal_jitoff:
 
-``INTERNAL`` indicates that this event is caused by internal LuaJIT structures.
-
-//!the note below really needs to be reviewed thoroughly//
+The ``INTERNAL`` label indicates that this event is caused by internal LuaJIT
+structures.
 
 ..  note::
 
     Important note regarding the ``INTERNAL`` label and the recommendation
     of switching the JIT compilation off (``jit.off()``): this version of the
-    profiler doesn't support verbose reporting for allocations //?on/for
+    profiler doesn't support verbose reporting for allocations on
     `traces <https://en.wikipedia.org/wiki/Tracing_just-in-time_compilation#Technical_details>`_.
-    If some memory allocations are made //?on/for a trace,
+    If memory allocations are made on a trace,
     the profiler can't associate the allocations with the part of Lua code
     that generated the trace. In this case, the profiler labels such allocations
     as ``INTERNAL``.
@@ -213,7 +218,7 @@ An event record has the following format:
     So, if the JIT compilation is on,
     new traces will be generated and there will be a mixture of events labeled
     ``INTERNAL`` in the profiling report : some of them are really caused by
-    internal LuaJIT structures, but some of them are caused by allocations //?on/for
+    internal LuaJIT structures, but some of them are caused by allocations on
     traces.
 
     If you want to have more definite report without new trace allocations,
@@ -249,11 +254,13 @@ a Q&A format.
 inside C code?
 
 **Answer (A)**: The profiler reports only allocation events caused by the Lua
-allocation functions. All Lua-related allocations, like table or string creation
+allocator. All Lua-related allocations, like table or string creation
 are reported. But the profiler doesn't report allocations made by ``malloc()``
 or other non-Lua allocators. You can use ``valgrind`` to debug them.
 
-**Q**: Why is there so many ``INTERNAL`` allocations in my profiling report?
+|
+
+**Q**: Why are there so many ``INTERNAL`` allocations in my profiling report?
 What does it mean?
 
 **A**: ``INTERNAL`` means that these allocations/reallocations/deallocations are
@@ -262,6 +269,8 @@ Currently, the memory profiler doesn't report verbosely allocations of objects
 that are made during trace execution. Try to :ref:`add jit.off() <profiler_usage_internal_jitoff>`
 before profiler start.
 
+|
+
 **Q**: Why is there some reallocations/deallocations without the ``Overrides``
 section?
 
@@ -269,12 +278,16 @@ section?
 ``collectgarbage()`` before the profiler's start enables to collect all
 previously allocated objects that are dead when the profiler starts.
 
+|
+
 **Q**: Why some objects are not collected during profiling? Is it
 a memory leak?
 
 **A**: LuaJIT uses incremental Garbage Collector (GC). A GC cycle may not be
 finished at the moment of the profiler's stop. Add ``collectgarbage()`` before
 stopping the profiler to collect all the dead objects for sure.
+
+|
 
 **Q**: Can I profile not just a current chunk but the entire running application?
 Can I start the profiler when the application is already running?
@@ -330,7 +343,7 @@ investigated with the help of the memory profiler reports.
 ..  code-block:: lua
     :linenos:
 
-    jit.off() -- More verbose reports.
+    jit.off() -- Prevent allocations on new traces.
 
     local function concat(a)
       local nstr = a.."a"
@@ -384,28 +397,29 @@ you will get the following profiling report:
 
 The reasonable questions regarding the report can be:
 
-* Why are there no allocations related to the ``concat()`` function?
-* Why the amount of allocations is not a round number?
-* Why are there approximately 20K allocations instead of 10K?
+*   Why are there no allocations related to the ``concat()`` function?
+*   Why the amount of allocations is not a round number?
+*   Why are there approximately 20K allocations instead of 10K?
 
 First of all, LuaJIT doesn't create a new string if the string with the same
-payload exists. It is called the string interning. So, when the string is
-created via
-the ``format()`` function, there is no need to create the same string via
-the ``concat()`` function, and LuaJIT just use the previous one.
+payload exists. This is called the string interning. So, when the string is
+created via the ``format()`` function, there is no need to create the same
+string via the ``concat()`` function, and LuaJIT just use the previous one.
 
-This is the reason of //?unpretty amount of allocations: Tarantool creates some
+That is also the reason why the amount of allocations is not the round numbber
+as can be expected from the cycle operator ``for i = 1, 10000...``:
+Tarantool creates some
 strings for internal needs and built-in modules, so some strings already exist.
 
 But why are there so many allocations? It's almost twice as big as the expected
 amount. This is because the ``string.format()`` built-in function creates
 another string necessary for the ``%s`` identifier, so there are two allocations
 for each iteration: for ``tostring(i)`` and for ``string.format("%sa", string_i_value)``.
-You can see the difference in the behaviour by adding the
+You can see the difference in behaviour by adding the
 ``local _ = tostring(i)`` line between lines 21 and 22.
 
-Let's comment the 22nd line, namely, ``local f = format(i)``
-(by adding ``--`` at the line start) to take a look at the ``concat()`` function.
+To profile only the ``concat()`` function, comment the line 22, namely,
+``local f = format(i)`` and run the profiler.
 
 The profiler's output is the following:
 
@@ -424,10 +438,10 @@ The profiler's output is the following:
     @format_concat.lua:3, line 4: 1 0       32768
 
 
-**Q**: But what will change if JIT compilation is enabled?
+**Q**: But what will change if the JIT compilation is enabled?
 
-**A**: Let's comment the first line of the code, namely, ``jit.off()`` to see what
-will happen. Now, there are only 56 allocations in the report, and all other
+**A**: Let's comment the first line of the code, namely, ``jit.off()`` and run
+the profiler . Now, there are only 56 allocations in the report, and all other
 allocations are JIT-related (see also the related
 `dev issue <https://github.com/tarantool/tarantool/issues/5679>`_):
 
@@ -450,7 +464,11 @@ This happens because a trace is compiled after 56 iterations, and the
 JIT-compiler removed the unused ``c`` variable  from the trace, and, therefore,
 the dead code of the ``concat()`` function is eliminated.
 
-Let's now profile only the ``format()`` function with JIT enabled.
+Next, let's profile only the ``format()`` function with JIT enabled.
+For that, keep the lines 1 and 23 commented (``jit.off()`` and
+``local c = concat(i)`` respectively), uncomment the line 22
+(``local f = format(i)``), and run the profiler.
+
 The profiler's output is the following:
 
 ..  code-block:: console
