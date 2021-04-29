@@ -20,7 +20,7 @@ Working with profiler
 Usage of the profiler is two-fold:
 
 1.  :ref:`Collect <profiler_usage_get>` a binary profile of allocations,
-    reallocations, and deallocations in memory related to Lua VM
+    reallocations, and deallocations in memory related to Lua
     (further, *binary memory profile* or *binary profile* for short).
 2.  :ref:`Parse <profiler_usage_parse>` the binary profile collected and get
     a human-readable profiling report.
@@ -53,7 +53,7 @@ Below is a chunk of simple Lua code named ``test.lua`` to illustrate this.
 
     local t = {}
     for i = 1, 1e5 do
-        -- table.insert is the built‑in function and all corresponding
+        -- table.insert is the built-in function and all corresponding
         -- allocations are reported in the scope of the main chunk.
         table.insert(t,
             append('q', i)
@@ -463,7 +463,8 @@ allocations are JIT-related (see also the related
                     @format_concat.lua:4, line 5
                     INTERNAL
 
-This happens because a trace is compiled after 56 iterations, and the
+This happens because a trace has been compiled after 56 iterations (the default
+value of the ``hotloop`` compiler parameter). Then, the
 JIT-compiler removed the unused ``c`` variable  from the trace, and, therefore,
 the dead code of the ``concat()`` function is eliminated.
 
