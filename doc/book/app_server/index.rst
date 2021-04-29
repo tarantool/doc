@@ -18,5 +18,6 @@ This chapter contains the following sections:
    installing_module
    contributing_module
    reloading_module
+   luajit_memprof
    using_ide
    cookbook
