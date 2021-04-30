@@ -22,6 +22,10 @@ space_object:format()
         * field names are duplicated;
         * type is not legal.
 
+        .. NOTE::
+
+          If you need to make a schema migration, see section :ref:`Migrations <migrations>`.
+
         Ordinarily Tarantool allows unnamed untyped fields.
         But with ``format`` users can, for example, document
         that the Nth field is the surname field and must contain strings.
