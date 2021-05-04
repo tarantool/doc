@@ -17,7 +17,7 @@ Next, create an application named ``myapp``. Say:
 
 This will create a Tarantool Cartridge application in the ``./myapp`` directory,
 with a handful of
-:ref:`template files and directories <cartridge_cli_creating_an_application_from_template>`
+:ref:`template files and directories <cartridge-cli-creating_an_application_from_template>`
 inside.
 
 Go inside and make a dry run:
