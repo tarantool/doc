@@ -15,6 +15,7 @@
     fiber
     box_index
     latch
+    on_shutdown
     utils
     say
     schema
