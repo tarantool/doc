@@ -17,15 +17,15 @@ cartridge_cli_index_dest="${cartridge_cli_dest}/index.rst"
 monitoring_root="${project_root}/modules/metrics/doc/monitoring"
 monitoring_dest="${project_root}/doc/book"
 monitoring_grafana_root="${project_root}/modules/grafana-dashboard/doc/monitoring"
-luatest_root="${project_root}/modules/luatest/"
+luatest_root="${project_root}/modules/luatest"
 luatest_dest="${project_root}/doc/reference/reference_rock/luatest"
 
 cartridge_kubernetes_root="${project_root}/modules/tarantool-operator/doc/cartridge_kubernetes_guide"
 cartridge_kubernetes_dest="${rst_dest}/"
 
 tntcxx_root="${project_root}/modules/tntcxx"
-tntcxx_gs_dest="${project_root}/doc/getting_started/"
-tntcxx_api_dest="${project_root}/doc/book/connectors/"
+tntcxx_gs_dest="${project_root}/doc/getting_started"
+tntcxx_api_dest="${project_root}/doc/book/connectors"
 
 cp README.rst doc/contributing/docs/_includes/README.rst
 
@@ -34,6 +34,7 @@ ldoc --ext=rst --dir=rst --toctree="API" .
 cd "${luatest_dest}"
 yes | cp -fa "${luatest_root}/rst/." "${luatest_dest}"
 yes | cp "${luatest_root}/README.rst" "${luatest_dest}"
+yes | mv -f "${luatest_dest}/index.rst" "${luatest_dest}/_includes/"
 
 mkdir -p "${monitoring_dest}"
 yes | cp -rf "${monitoring_root}" "${monitoring_dest}/"
