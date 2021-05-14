@@ -36,6 +36,7 @@ apikey.txt
 /doc/book/cartridge/
 /locale/en/book/cartridge/
 /locale/ru/LC_MESSAGES/book/cartridge/
+/locale/book/cartridge/en
 
 # monitoring submodule
 
@@ -48,8 +49,8 @@ apikey.txt
 /doc/reference/reference_rock/luatest/classes/
 /doc/reference/reference_rock/luatest/modules/
 /doc/reference/reference_rock/luatest/topics/
-/doc/reference/reference_rock/luatest/index.rst
 /doc/reference/reference_rock/luatest/README.rst
+/doc/reference/reference_rock/luatest/_includes/index.rst
 
 /locale/en/reference/reference_rock/luatest/classes/
 /locale/en/reference/reference_rock/luatest/modules/
