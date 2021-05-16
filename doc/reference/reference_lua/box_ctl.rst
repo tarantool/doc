@@ -48,6 +48,9 @@ Below is a list of all ``box.ctl`` functions.
         *  - :doc:`./box_ctl/on_shutdown`
            - Create a "shutdown trigger"
 
+        *  - :doc:`./box_ctl/is_recovery_finished`
+           - Check if recovery has finished
+
 ..  toctree::
     :hidden:
 

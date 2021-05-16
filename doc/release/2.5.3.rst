@@ -129,3 +129,7 @@ Memtx
 
 -   The ``on_schema_init`` triggers now can’t cause duplicates in primary
     key (:tarantool-issue:`5304`).
+    As part of the
+    `fix <https://github.com/tarantool/tarantool/commit/019b29f31ad58639966b9e5d894341c2917f1bb1>`_
+    there is a new function,
+    :ref:`box.ctl.is_recovery_finished() <box_ctl-is_recovery_finished>`.
