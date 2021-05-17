@@ -53,12 +53,12 @@ On this page:
 
         ..  container:: table
 
-            .. rst-class:: left-align-column-1
-            .. rst-class:: left-align-column-2
-            .. rst-class:: left-align-column-3
-            .. rst-class:: left-align-column-4
+            ..  rst-class:: left-align-column-1
+            ..  rst-class:: left-align-column-2
+            ..  rst-class:: left-align-column-3
+            ..  rst-class:: left-align-column-4
 
-            .. tabularcolumns:: |\Y{0.2}|\Y{0.3}|\Y{0.2}|\Y{0.3}|
+            ..  tabularcolumns:: |\Y{0.2}|\Y{0.3}|\Y{0.2}|\Y{0.3}|
 
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | Name                | Effect                                                | Type                             | Default                       |
@@ -179,7 +179,7 @@ On this page:
                 my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})
 
 
-.. _details_about_index_field_types:
+..  _details_about_index_field_types:
 
 ..  _box_space-index_field_types:
 

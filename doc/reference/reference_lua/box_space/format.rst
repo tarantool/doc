@@ -1,12 +1,12 @@
-.. _box_space-format:
+..  _box_space-format:
 
 ===============================================================================
 space_object:format()
 ===============================================================================
 
-.. class:: space_object
+..  class:: space_object
 
-    .. method:: format([format-clause])
+    ..  method:: format([format-clause])
 
         Declare field names and :ref:`types <index-box_data-types>`.
 
@@ -14,7 +14,7 @@ space_object:format()
                                           <app_server-object_reference>`
         :param table format-clause: a list of field names and types
 
-        :return: nil, unless format-clause is omitted
+        :return: ``nil``, unless format-clause is omitted
 
         **Possible errors:**
 
@@ -44,11 +44,11 @@ space_object:format()
           :ref:`Allowing null for an indexed key <box_space-is_nullable>`.
 
         It is not legal for tuples to contain values that have the wrong type;
-        for example after ``box.space.tester:format({{' ',type='number'}})`` the request
+        for example, after ``box.space.tester:format({{' ',type='number'}})`` the request
         ``box.space.tester:insert{'string-which-is-not-a-number'}`` will cause an error.
 
         It is not legal for tuples to contain null values if ``is_nullable=false``,
-        which is the default; for example after
+        which is the default; for example, after
         ``box.space.tester:format({{' ',type='number',is_nullable=false}})``
         the request ``box.space.tester:insert{nil,2}`` will cause an error.
 
@@ -76,7 +76,7 @@ space_object:format()
 
         **Example:**
 
-        .. code-block:: lua
+        ..  code-block:: lua
 
             box.space.tester:format({{name='surname',type='string'},{name='IDX',type='array'}})
             box.space.tester:format({{name='surname',type='string',is_nullable=true}})
@@ -91,7 +91,7 @@ space_object:format()
         The following examples show all the variations,
         first for one field named 'x', second for two fields named 'x' and 'y'.
 
-        .. code-block:: lua
+        ..  code-block:: lua
 
             box.space.tester:format({{'x'}})
             box.space.tester:format({{'x'},{'y'}})
@@ -107,7 +107,7 @@ space_object:format()
         The following example shows how to create a space, format it with all
         possible types, and insert into it.
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> box.schema.space.create('t')
             ---
