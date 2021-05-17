@@ -47,7 +47,7 @@ On this page:
         such as a duplicate key in a unique index,
         building or rebuilding such index will fail.
 
-        .. _box_space-create_index-options:
+        ..  _box_space-create_index-options:
 
         **Options for space_object:create_index()**
 
@@ -151,7 +151,7 @@ On this page:
               name: primary
             ...
 
-        .. _index_parts_declaration_note:
+        ..  _index_parts_declaration_note:
 
         ..  NOTE::
 
@@ -345,7 +345,7 @@ Nulls may appear multiple times even in a unique index. Example:
 
 ..  code-block:: lua
 
-    box.space.tester:create_index('I', {unique = true, parts = {{field = 2, type = 'number', is_nullable = true}}})
+        box.space.tester:create_index('I', {unique = true, parts = {{field = 2, type = 'number', is_nullable = true}}})
 
 ..  WARNING::
 

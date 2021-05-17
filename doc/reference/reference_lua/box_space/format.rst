@@ -43,36 +43,56 @@ space_object:format()
           See also the warning notice in section
           :ref:`Allowing null for an indexed key <box_space-is_nullable>`.
 
-        It is not legal for tuples to contain values that have the wrong type;
-        for example, after ``box.space.tester:format({{' ',type='number'}})`` the request
-        ``box.space.tester:insert{'string-which-is-not-a-number'}`` will cause an error.
+        It is not legal for tuples to contain values that have the wrong type.
+        The example below will cause an error:
+
+        ..  code-block:: lua
+
+            //This example will cause an error.
+            box.space.tester:format({{' ',type='number'}})
+            box.space.tester:insert{'string-which-is-not-a-number'}
 
         It is not legal for tuples to contain null values if ``is_nullable=false``,
-        which is the default; for example, after
-        ``box.space.tester:format({{' ',type='number',is_nullable=false}})``
-        the request ``box.space.tester:insert{nil,2}`` will cause an error.
+        which is the default. The example below will cause an error:
+
+        ..  code-block:: lua
+
+            //This example will cause an error.
+            box.space.tester:format({{' ',type='number',is_nullable=false}})
+            box.space.tester:insert{nil,2}
+
 
         It is legal for tuples to have more fields than are described by a format
         clause. The way to constrain the number of fields is to specify a space's
         :doc:`field_count </reference/reference_lua/box_space/field_count>` member.
 
         It is legal for tuples to have fewer fields than are described by a format
-        clause, if the omitted trailing fields are described with ``is_nullable=true``;
-        for example after
-        ``box.space.tester:format({{'a',type='number'},{'b',type='number',is_nullable=true}})``
-        the request ``box.space.tester:insert{2}`` will not cause a format-related error.
+        clause, if the omitted trailing fields are described with ``is_nullable=true``.
+        For example, the request below will not cause a format-related error:
+
+        ..  code-block:: lua
+
+            box.space.tester:format({{'a',type='number'},{'b',type='number',is_nullable=true}})
+            box.space.tester:insert{2}
+
 
         It is legal to use ``format`` on a space that already has a format,
         thus replacing any previous definitions,
         provided that there is no conflict with existing data or index definitions.
 
-        It is legal to use ``format`` to change the ``is_nullable`` flag;
-        for example after ``box.space.tester:format({{' ',type='scalar',is_nullable=false}})``
-        the request ``box.space.tester:format({{' ',type='scalar',is_nullable=true}})``
-        will not cause an error -- and will not cause rebuilding of the space.
+        It is legal to use ``format`` to change the ``is_nullable`` flag.
+        The example below will not cause an error -- and will not cause
+        rebuilding of the space.
+
+        ..  code-block:: lua
+
+            box.space.tester:format({{' ',type='scalar',is_nullable=false}})
+            box.space.tester:format({{' ',type='scalar',is_nullable=true}})
+
         But going the other way and changing ``is_nullable`` from ``true``
         to ``false`` might cause rebuilding and might cause an error if there
         are existing tuples with nulls.
+
 
         **Example:**
 
@@ -85,7 +105,7 @@ space_object:format()
         There are legal variations of the format clause:
 
         * omitting both 'name=' and 'type=',
-        * omitting 'type=' alone, and
+        * omitting 'type=' alone,
         * adding extra braces.
 
         The following examples show all the variations,
@@ -93,14 +113,19 @@ space_object:format()
 
         ..  code-block:: lua
 
-            box.space.tester:format({{'x'}})
-            box.space.tester:format({{'x'},{'y'}})
             box.space.tester:format({{name='x',type='scalar'}})
             box.space.tester:format({{name='x',type='scalar'},{name='y',type='unsigned'}})
+
+            box.space.tester:format({{'x'}})
+            box.space.tester:format({{'x'},{'y'}})
+
+            //Omitting types
             box.space.tester:format({{name='x'}})
             box.space.tester:format({{name='x'},{name='y'}})
+
             box.space.tester:format({{'x',type='scalar'}})
             box.space.tester:format({{'x',type='scalar'},{'y',type='unsigned'}})
+
             box.space.tester:format({{'x','scalar'}})
             box.space.tester:format({{'x','scalar'},{'y','unsigned'}})
 
