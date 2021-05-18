@@ -58,3 +58,4 @@ Below is a list of all ``box.ctl`` functions.
     box_ctl/wait_rw
     box_ctl/on_schema_init
     box_ctl/on_shutdown
+    box_ctl/is_recovery_finished
