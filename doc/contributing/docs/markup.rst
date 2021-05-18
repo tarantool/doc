@@ -18,3 +18,4 @@ This section will guide you through our typical cases while writing the docs.
     markup/links
     markup/tables
     markup/code
+    markup/admonitions
