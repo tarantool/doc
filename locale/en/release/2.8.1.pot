@@ -205,7 +205,7 @@ msgstr ""
 msgid "Run the memory profiler with the following command:"
 msgstr ""
 
-msgid "tarantool -e 'require(\"memprof\")(arg)' - --leak-only /tmp/memprof.bin``"
+msgid "tarantool -e 'require(\"memprof\")(arg)' - --leak-only /tmp/memprof.bin"
 msgstr ""
 
 msgid "Tools"

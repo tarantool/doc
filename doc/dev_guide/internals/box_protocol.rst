@@ -151,6 +151,7 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_LSN=0x03
     IPROTO_TIMESTAMP=0x04
     IPROTO_SCHEMA_VERSION=0x05
+    IPROTO_FLAGS=0x09
     IPROTO_SPACE_ID=0x10
     IPROTO_INDEX_ID=0x11
     IPROTO_LIMIT=0x12
@@ -1282,6 +1283,33 @@ IPROTO_BALLOt-IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replica
 
 The items other than IPROTO_BALLOT_IS_ANON were added in version :doc:`2.6.1 </release/2.6.1>`.
 PROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
+
+..  _box_protocol-flags:
+
+**FLAGS**
+
+For replication of :doc:`synchronous transactions </book/replication/repl_sync>`
+a header may contain a key = IPROTO_FLAGS and an MP_UINT value = one or more
+bits: IPROTO_FLAG_COMMIT or IPROTO_FLAG_WAIT_SYNC or IPROTO_FLAG_WAIT_ACK.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        # ... other header items ...,
+        IPROTO_FLAGS: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        # ... message for a transaction ...
+    })
+
+IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction,
+IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message for a transaction which cannot be completed immediately,
+IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchronous transaction.
 
 ..  _box_protocol-illustration:
 

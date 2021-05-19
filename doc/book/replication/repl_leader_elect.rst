@@ -201,5 +201,5 @@ these old leader's transactions since it is not a leader anymore.
 Another point to keep in mind is that when a new leader is elected,
 it won't automatically finalize synchronous transactions
 left from the previous leader. This must be done manually using
-the ``box.ctl.clear_synchro_queue()`` function. In future, it is going to be
+the :ref:`box.ctl.promote <box_ctl-promote>` function. In future, it is going to be
 done automatically.

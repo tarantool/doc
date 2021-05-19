@@ -17,7 +17,7 @@ Next, create an application named ``myapp``. Say:
 
 This will create a Tarantool Cartridge application in the ``./myapp`` directory,
 with a handful of
-:ref:`template files and directories <creating-an-application-from-template>`
+:ref:`template files and directories <cartridge-cli-creating_an_application_from_template>`
 inside.
 
 Go inside and make a dry run:
@@ -222,5 +222,5 @@ Everything is up and running! What's next?
   cluster and try some cool cluster management features.
 * Get inspired with `these examples <https://github.com/tarantool/examples/>`_
   and implement more sophisticated business logic for your role.
-* :ref:`Pack <packing-an-application>` your application for easy distribution.
+* :ref:`Pack <cartridge-cli-packing-an-application>` your application for easy distribution.
   Choose what you like: a DEB or RPM package, a TGZ archive, or a Docker image.
