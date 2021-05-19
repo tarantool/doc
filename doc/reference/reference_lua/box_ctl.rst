@@ -48,9 +48,11 @@ Below is a list of all ``box.ctl`` functions.
         *  - :doc:`./box_ctl/on_shutdown`
            - Create a "shutdown trigger"
 
+        *  - :doc:`./box_ctl/is_recovery_finished`
+           - Check if recovery has finished
+
         *  - :doc:`./box_ctl/promote`
            - Wait, then choose replication leader
-
 
 ..  toctree::
     :hidden:
@@ -59,4 +61,5 @@ Below is a list of all ``box.ctl`` functions.
     box_ctl/wait_rw
     box_ctl/on_schema_init
     box_ctl/on_shutdown
+    box_ctl/is_recovery_finished
     box_ctl/promote
