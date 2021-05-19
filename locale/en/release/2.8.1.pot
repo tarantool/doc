@@ -97,6 +97,7 @@ msgstr ""
 msgid ""
 "Tarantool module developers can now register functions to call when "
 "Tarantool stops with the new ``on_shutdown`` API, (:tarantool-issue:`5723`)."
+" Read more: :doc:`/dev_guide/reference_capi/on_shutdown`."
 msgstr ""
 
 msgid ""
