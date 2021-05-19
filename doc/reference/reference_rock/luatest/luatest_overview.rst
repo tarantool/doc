@@ -8,4 +8,4 @@ More about Luatest API see :ref:`below <luatest-api>`.
 
 .. _luatest-api:
 
-.. include:: index.rst
+.. include:: _includes/index.rst

@@ -94,7 +94,7 @@ To generate the file with memory profile in binary format
 (in the :ref:`example above <profiler_usage_example01>`,
 it's ``memprof_new.bin``), execute the code under Tarantool:
 
-..  code-block:: tarantoolconsole
+..  code-block:: console
 
     $ tarantool test.lua
 
@@ -134,7 +134,7 @@ to parse it to get a human-readable profiling report. You can do this
 via Tarantool by using the following command
 (mind the hyphen ``-`` prior to the file name):
 
-..  code-block:: tarantoolconsole
+..  code-block:: console
 
     $ tarantool -e 'require("memprof")(arg[1])' - <memprof_new.bin>
 
