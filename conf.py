@@ -70,7 +70,10 @@ exclude_patterns = [
     'images',
     'book/cartridge/cartridge_overview.rst',
     'book/cartridge/CONTRIBUTING.rst',
+    'book/cartridge/topics',
+    'book/cartridge/cartridge_api/modules/cartridge.test-helpers.rst',
     'reference/reference_rock/luatest/README.rst',
+    'reference/reference_rock/luatest/modules/luatest.rst',
     '**/_includes/*'
 ]
 
