@@ -470,7 +470,7 @@ Iterator GT searches for tuples with a specified rectangle strictly within their
 
 ..  code-block:: tarantoolsession
 
-    tarantool> rtree_index:select({2.1, 2.1, 2.9, 2.9}, {itearator = 'gt'})
+    tarantool> rtree_index:select({2.1, 2.1, 2.9, 2.9}, {iterator = 'gt'})
     ---
     - []
     ...
@@ -539,9 +539,9 @@ Here's short example of using 4D tree:
 
 ..  NOTE::
 
-    Don't forget that select NEIGHBOR iterator without limit
-    extract entire space in order of increasing distance and
-    that could be tons of data with corresponding performance.
+    Keep in mind that select NEIGHBOR iterator with unset limits extracts
+    the entire space in order of increasing distance. And there can be
+    tons of data, and this can affect the performance.
 
     And another frequent mistake is to specify iterator type without quotes,
     in such way: ``rtree_index:select(rect, {iterator = 'LE'})``.
