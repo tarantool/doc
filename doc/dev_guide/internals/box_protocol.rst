@@ -168,6 +168,11 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_EXPR=0x27
     IPROTO_OPS=0x28
     IPROTO_BALLOT=0x29
+    IPROTO_BALLOT_IS_RO=0x01
+    IPROTO_BALLOT_VCLOCK=0x02
+    IPROTO_BALLOT_GC_VCLOCK=0x03
+    IPROTO_BALLOT_IS_LOADING=0x04
+    IPROTO_BALLOT_IS_ANON=0x05
     IPROTO_TUPLE_META=0x2a
     IPROTO_OPTIONS=0x2b
     IPROTO_DATA=0x30
@@ -1259,6 +1264,25 @@ and the replica might send back this:
 
 Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
 we will show actual byte codes of the above heartbeat examples.
+
+**BALLOTS**
+
+While connecting for replication, an instance sends a request with header IPROTO_VOTE (0x44).
+The normal response is ER_OK,and IPROTO_BALLOT (0x29).
+The fields within IPROTO_BALLOT are map items:
+
+..  code-block:: none
+
+    IPROTO_BALLOT_IS_RO (0x01) + MP_BOOL
+    IPROTO_BALLOT_VCLOCK (0x02) + vclock
+    IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock
+    IPROTO_BALLOT_IS_LOADING (0x04) + MP_BOOL
+    IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
+
+IPROTO_BALLOt-IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
+
+The items other than IPROTO_BALLOT_IS_ANON were added in version :doc:`2.6.1 </release/2.6.1>`.
+PROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
 
 ..  _box_protocol-flags:
 
