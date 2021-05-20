@@ -185,7 +185,7 @@ if you use MacPorts.
 
     $ brew install -y git openssl readline curl icu4c libiconv zlib cmake
 
-    $ pip install --user test-run/requirements.txt
+    $ pip install --user -r test-run/requirements.txt
 
     $ make clean         # unnecessary, added for good luck
     $ rm CMakeCache.txt  # unnecessary, added for good luck
@@ -214,7 +214,7 @@ FreeBSD
 
     $ pkg install -y git cmake gmake readline icu
 
-    $ pip install --user test-run/requirements.txt
+    $ pip install --user -r test-run/requirements.txt
 
     $ make clean         # unnecessary, added for good luck
     $ rm CMakeCache.txt  # unnecessary, added for good luck
