@@ -213,15 +213,15 @@ Below is a list of all ``debug`` functions.
 
     :param function hook: function to set as a hook
     :param string mask: describes when the ``hook`` will be called;
-      may have the following values:
+                        may have the following values:
 
-      * ``c`` - the ``hook`` is called every time Lua calls a function
-      * ``r`` - the ``hook`` is called every time Lua returns from a function
-      * ``l`` - the ``hook`` is called every time Lua enters a new line of code
+                        * ``c`` - the ``hook`` is called every time Lua calls a function
+                        * ``r`` - the ``hook`` is called every time Lua returns from a function
+                        * ``l`` - the ``hook`` is called every time Lua enters a new line of code
 
     :param number count: describes when the ``hook`` will be called; when
-                      different from zero, the ``hook`` is called after
-                      every ``count`` instructions.
+                         different from zero, the ``hook`` is called after
+                         every ``count`` instructions.
 
 .. _debug-setlocal:
 
