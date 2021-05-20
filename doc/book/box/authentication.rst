@@ -269,7 +269,7 @@ Here a Lua function is created that will be executed under the user ID of its
 creator, even if called by another user.
 
 First, the two spaces ('u' and 'i') are created, and a no-password user ('internal')
-is grante full access to them. Then a ('read_and_modify') is defined and the
+is granted full access to them. Then a ('read_and_modify') is defined and the
 no-password user becomes this function's creator. Finally, another user
 ('public_user') is granted access to execute Lua functions created by the no-password user.
 
