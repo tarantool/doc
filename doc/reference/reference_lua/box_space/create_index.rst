@@ -47,18 +47,18 @@ On this page:
         such as a duplicate key in a unique index,
         building or rebuilding such index will fail.
 
-        .. _box_space-create_index-options:
+        ..  _box_space-create_index-options:
 
         **Options for space_object:create_index()**
 
         ..  container:: table
 
-            .. rst-class:: left-align-column-1
-            .. rst-class:: left-align-column-2
-            .. rst-class:: left-align-column-3
-            .. rst-class:: left-align-column-4
+            ..  rst-class:: left-align-column-1
+            ..  rst-class:: left-align-column-2
+            ..  rst-class:: left-align-column-3
+            ..  rst-class:: left-align-column-4
 
-            .. tabularcolumns:: |\Y{0.2}|\Y{0.3}|\Y{0.2}|\Y{0.3}|
+            ..  tabularcolumns:: |\Y{0.2}|\Y{0.3}|\Y{0.2}|\Y{0.3}|
 
             +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
             | Name                | Effect                                                | Type                             | Default                       |
@@ -151,7 +151,7 @@ On this page:
               name: primary
             ...
 
-        .. _index_parts_declaration_note:
+        ..  _index_parts_declaration_note:
 
         ..  NOTE::
 
@@ -179,7 +179,7 @@ On this page:
                 my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})
 
 
-.. _details_about_index_field_types:
+..  _details_about_index_field_types:
 
 ..  _box_space-index_field_types:
 
@@ -345,7 +345,7 @@ Nulls may appear multiple times even in a unique index. Example:
 
 ..  code-block:: lua
 
-    box.space.tester:create_index('I', {unique = true, parts = {{field = 2, type = 'number', is_nullable = true}}})
+        box.space.tester:create_index('I', {unique = true, parts = {{field = 2, type = 'number', is_nullable = true}}})
 
 ..  WARNING::
 
