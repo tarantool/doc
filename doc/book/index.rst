@@ -18,4 +18,3 @@ User's Guide
     connectors/index
     ../reference/reference_sql/index
     faq
-
