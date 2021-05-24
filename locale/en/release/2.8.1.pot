@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"This release introduces 28 new features and resolves 31 bug since version "
+"This release introduces 28 new features and resolves 31 bugs since version "
 ":doc:`2.7.2 </release/2.7.2>`. There can be bugs in less common areas. If "
 "you find any, feel free to `report an issue "
 "<https://github.com/tarantool/tarantool/issues>`__ on GitHub."
