@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -xe
 
 project_root=$(pwd)
 echo "${project_root}"
@@ -29,6 +29,7 @@ tntcxx_api_dest="${project_root}/doc/book/connectors"
 
 cp README.rst doc/contributing/docs/_includes/README.rst
 
+mkdir -p "${luatest_dest}/_includes/"
 cd "${luatest_root}"
 ldoc --ext=rst --dir=rst --toctree="API" .
 cd "${luatest_dest}"
@@ -47,8 +48,9 @@ mkdir -p "${cartridge_kubernetes_dest}"
 yes | cp -rf "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
 
 mkdir -p "${tntcxx_api_dest}/cxx/"
+mkdir -p "${tntcxx_gs_dest}/_includes"
 yes | cp -rf "${tntcxx_root}/doc/tntcxx_getting_started.rst" "${tntcxx_gs_dest}/getting_started_cxx.rst"
-yes | cp -rf "${tntcxx_root}/examples/" "${tntcxx_gs_dest}/_includes/examples"
+yes | cp -rf "${tntcxx_root}/examples/" "${tntcxx_gs_dest}/_includes/examples/"
 yes | cp -rf "${tntcxx_root}/doc/tntcxx_api.rst" "${tntcxx_api_dest}/cxx/"
 
 cd "${cartridge_root}" || exit
