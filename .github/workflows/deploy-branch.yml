@@ -2,6 +2,30 @@ name: Deploy-branch
 
 on:
   pull_request:
+  workflow_dispatch:
+    inputs:
+      cartridge:
+        description: 'Cartridge branch or commit'
+        required: false
+      cartridge_cli:
+        description: "Cartridge-cli branch or commit"
+        required: false
+      grafana:
+        description: "Grafana branch or commit"
+        required: false
+      luatest:
+        description: "Luatest branch or commit"
+        required: false
+      metrics:
+        description: "Metrics branch or commit"
+        required: false
+      k8s_operator:
+        description: "Kubernetes branch or commit"
+        required: false
+      cpp_driver:
+        description: "Cpp driver branch or commit"
+        required: false
+
 jobs:
   deploy-branch:
     runs-on: ubuntu-latest
@@ -16,6 +40,8 @@ jobs:
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEV_UPDATE_URL}}
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Set branch name from source branch
         run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
@@ -28,6 +54,9 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           env: "branch-${{env.BRANCH_NAME}}"
           ref: ${{github.head_ref}}
+
+      - name: Fetch submodules
+        run: git fetch --recurse-submodules
 
       - run: cmake .
       - run: make pull-modules
