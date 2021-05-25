@@ -49,28 +49,29 @@ they should be deployed to different Tarantool instances. Although it is technic
 possible to place the router application on every ``storage`` node, this approach is
 highly discouraged and should be avoided on production deployments.
 
-All ``storage`` instances can be deployed using identical instance (configuration)
-files.
+All ``storage`` instances can be deployed using identical configuration.
 
-Self-identification is currently performed using ``tarantoolctl``:
-
-.. code-block:: console
-
-    $ tarantoolctl instance_name
-
-All ``router`` instances can also be deployed using identical instance (configuration)
-files.
-
-All cluster nodes must share a common topology. An administrator must
-ensure that the configurations are identical. We suggest using a configuration
-management tool like Ansible or Puppet to deploy the cluster.
+Для примера и первого знакомства с vshard прочитайте раздел "Quick start guide".
+В нем все инстансы кластера запускаются на одной машине и с помощью одного файла конфигурации.
+The configuration example of a simple sharded cluster is available
+:ref:`here <vshard-config-cluster-example>`.
 
 Sharding is not integrated into any system for centralized configuration management.
 It is expected that the application itself is responsible for interacting with such
 a system and passing the sharding parameters.
 
-The configuration example of a simple sharded cluster is available
-:ref:`here <vshard-config-cluster-example>`.
+В Production сценарии используются следующие подходы:
+
+- Хранение топологии и управление ей с помощью модуля ``topology``. В этом случае, вам необходимо поднять etcd. В нем будет храниться топология и конфигурация приложения.
+Также необходимо будет вставить немного кода в ваше приложение, чтобы оно автоматически получала
+изменения в топологии и применяла их. Подробнее описано в разделе <..>
+
+- реализовать кластер на Tarantool Cartridge. В нем уже используется ``vshard``, а также механизм
+применения конфигурации без стороннего компонента типа etcd. У этого кластера будут свои особенности
+и гарантии о них читайте <тут>.
+
+- использовать инструменты типа Ansible или Puppet для деплоя кластера и обновления топологии
+
 
 .. _vshard-replica-weights:
 
