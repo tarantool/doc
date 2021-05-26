@@ -108,3 +108,31 @@ msgid ""
 "<https://www.merriam-webster.com/words-at-play/ie-vs-eg-abbreviation-"
 "meaning-usage-difference>`_. So it's best to avoid using them."
 msgstr ""
+
+msgid "Specify a link text"
+msgstr ""
+
+msgid ""
+"While giving a :doc:`link </contributing/docs/markup/links>`, specify "
+"clearly where this link leads. Thus, you will not mislead a reader."
+msgstr ""
+
+msgid "Bad example:"
+msgstr ""
+
+msgid "For more details, click :doc:`here </contributing/docs/markup/links>`."
+msgstr ""
+
+msgid "Use :doc:`this </contributing/docs/markup/links>`."
+msgstr ""
+
+msgid "Good example:"
+msgstr ""
+
+msgid ""
+"For more details, refer to the documentation on :doc:`making links "
+"</contributing/docs/markup/links>`."
+msgstr ""
+
+msgid "Use full :doc:`link names </contributing/docs/markup/links>`."
+msgstr ""

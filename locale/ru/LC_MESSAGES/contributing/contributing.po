@@ -313,9 +313,6 @@ msgstr ""
 msgid ":ref:`learn how to build Tarantool <building_from_source>`"
 msgstr ""
 
-msgid ":ref:`run the test suite <run_test_suite>`"
-msgstr ""
-
 msgid ""
 "read about Tarantool architecture and main modules (`here "
 "<https://docs.tarantool.dev/en/latest/>`__ and `here "

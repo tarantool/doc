@@ -1,5 +1,5 @@
 
-msgid "box.schema.space.create() / schema_object:create_space()"
+msgid "box.schema.space.create()"
 msgstr ""
 
 msgid "Create a :ref:`space <index-box_space>`."

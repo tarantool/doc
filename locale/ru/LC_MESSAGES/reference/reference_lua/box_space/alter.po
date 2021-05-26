@@ -6,6 +6,8 @@ msgid ""
 "Since version :doc:`2.5.2 </release/2.5.2>`. Alter an existing space. This "
 "method changes certain space parameters."
 msgstr ""
+"Для версии :doc:`2.5.2 </release/2.5.2>` и выше. Изменение существующего "
+"спейса. Этот метод меняет определенные параметры спейса."
 
 msgid "Parameters"
 msgstr "Параметры"

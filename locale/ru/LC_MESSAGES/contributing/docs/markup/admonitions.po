@@ -1,0 +1,76 @@
+
+msgid "Admonitions"
+msgstr ""
+
+msgid ""
+"Sometimes you need to highlight a piece of information. For this purpose we "
+"use admonitions."
+msgstr ""
+
+msgid "In Tarantool we have 3 variants of css-style for admonitions:"
+msgstr ""
+
+msgid "Note:"
+msgstr ""
+
+msgid "..  note::"
+msgstr ""
+
+msgid ""
+"This is a note. We use it to highlight extra information that might be "
+"helpful for users."
+msgstr ""
+
+msgid ""
+"For example, :ref:`here <net_box-new>` we provide a user with extra "
+"information about using ``net_box.new()`` function."
+msgstr ""
+
+msgid "Warning:"
+msgstr ""
+
+msgid "..  warning::"
+msgstr ""
+
+msgid ""
+"This is a warning. As you might guess, we use it to warn users about "
+"something."
+msgstr ""
+
+msgid ""
+"For example, in the description of "
+":doc:`/reference/reference_lua/box_session/on_connect` trigger we warn a "
+"user about some consequences of his actions."
+msgstr ""
+
+msgid "Custom admonition:"
+msgstr ""
+
+msgid ""
+"..  admonition:: Your title\n"
+"    :class: fact"
+msgstr ""
+
+msgid "Your title"
+msgstr ""
+
+msgid ""
+"This is a fact. ``fact`` is our custom CSS class. Use it when neither note "
+"nor warning doesn't fit."
+msgstr ""
+
+msgid "Note that this type requires a title."
+msgstr ""
+
+msgid ""
+"For example, :ref:`here <box-txn_management>` we highlight the rules that "
+"are necessary to read, and that's why we use ``fact``."
+msgstr ""
+
+msgid ""
+"The docutils `documentation "
+"<https://docutils.sourceforge.io/docs/ref/rst/directives.html#admonitions>`_"
+" offers many more variants for admonitions, but for now these three are "
+"enough for us. If you think that it is time to create the new style for some"
+" of these types, feel free to contribute or contact us to create a task."
+msgstr ""

@@ -373,10 +373,8 @@ msgstr "Проверка наличия и типа директории или 
 
 msgid ""
 "Functions in this section are similar to some `Python os.path "
-"<https://docs.python.org/2/library/os.path.htmll>`_ functions."
+"<https://docs.python.org/2/library/os.path.html>`_ functions."
 msgstr ""
-"Функции в данном разделе подобны некоторым функциям `Python os.path "
-"<https://docs.python.org/2/library/os.path.htmll>`_."
 
 msgid "path to directory or file."
 msgstr "путь к директории или файлу."
