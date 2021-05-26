@@ -2,18 +2,17 @@
 msgid "Tarantool 1.8"
 msgstr "Tarantool 1.8"
 
+msgid "Release: :tarantool-release:`1.8.0`"
+msgstr ""
+
 msgid "**Release 1.8.1**"
 msgstr "**Версия 1.8.1**"
 
-msgid "Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1."
-msgstr ""
-
 msgid ""
-"Announcement: https://groups.google.com/forum/#!msg/tarantool-"
-"ru/XYaoqJpc544/mSvKrYwNAgAJ."
+"Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1. Release: "
+"https://groups.google.com/forum/#!msg/tarantool-ru/XYaoqJpc544/mSvKrYwNAgAJ "
+"or :tarantool-release:`1.8.1.`"
 msgstr ""
-"Объявление о выходе: https://groups.google.com/forum/#!msg/tarantool-"
-"ru/XYaoqJpc544/mSvKrYwNAgAJ."
 
 msgid ""
 "This is an alpha release which delivers support for a substantial subset of "
@@ -73,8 +72,10 @@ msgid ""
 msgstr ""
 
 msgid ""
-"SELECT statements, including complex complicated variants which include "
-"multiple JOINs, nested SELECTs etc. e.g.:"
+"SELECT statements, including complex complicated variants which include"
+msgstr ""
+
+msgid "multiple JOINs, nested SELECTs etc. e.g.:"
 msgstr ""
 
 msgid ""

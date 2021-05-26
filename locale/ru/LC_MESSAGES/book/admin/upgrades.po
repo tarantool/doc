@@ -93,6 +93,8 @@ msgid ""
 "The procedure is fully analogous to :ref:`upgrading from 1.7 to 2.x <admin-"
 "upgrades_instance_17_to_20>`."
 msgstr ""
+"Обновление выполняется аналогично :ref:`обновлению с 1.7 на 2.x <admin-"
+"upgrades_instance_17_to_20>`."
 
 msgid "How to upgrade from Tarantool 1.6 to 1.7"
 msgstr "Как обновить Tarantool 1.6 до 1.7"

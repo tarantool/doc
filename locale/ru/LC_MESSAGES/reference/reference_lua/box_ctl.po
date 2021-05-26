@@ -69,3 +69,15 @@ msgstr ""
 
 msgid "Create a \"shutdown trigger\""
 msgstr "Создать \"shutdown триггер\""
+
+msgid ":doc:`./box_ctl/is_recovery_finished`"
+msgstr ""
+
+msgid "Check if recovery has finished"
+msgstr ""
+
+msgid ":doc:`./box_ctl/promote`"
+msgstr ""
+
+msgid "Wait, then choose replication leader"
+msgstr ""

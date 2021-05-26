@@ -1,0 +1,24 @@
+
+msgid "box.ctl.is_recovery_finished()"
+msgstr ""
+
+msgid ""
+"Check whether the :ref:`recovery process <internals-recovery_process>` has "
+"finished. Until it has finished, space changes such as ``insert`` or "
+"``update`` are not possible."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "``true`` if recovery has finished, otherwise ``false``"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid "Added in release :doc:`2.5.3 </release/2.5.3>`."
+msgstr ""
