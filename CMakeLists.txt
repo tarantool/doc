@@ -92,6 +92,7 @@ add_custom_target(html ALL
         -b html
         -d "${SPHINX_BUILD_HTML_DIR}"
         -c html/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_HTML_DIR}"
     COMMENT "Building HTML documentation with Sphinx"
@@ -102,6 +103,7 @@ add_custom_target(json ALL
         -b json
         -d "${SPHINX_BUILD_JSON_EN_DIR}"
         -c html/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_JSON_DIR}"
         -D language=en
@@ -113,6 +115,7 @@ add_custom_target(singlehtml ALL
         -b singlehtml
         -d "${SPHINX_BUILD_SINGLEHTML_DIR}"
         -c singlehtml/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_HTML_DIR}"
     COMMENT "Building HTML single-page documentation with Sphinx"
@@ -147,6 +150,7 @@ add_custom_target(html-ru ALL
         -b html
         -d "${SPHINX_BUILD_HTML_RU_DIR}"
         -c html/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_HTML_DIR}"
         -D language=ru
@@ -180,6 +184,7 @@ add_custom_target(json-ru ALL
         -b json
         -d "${SPHINX_BUILD_JSON_RU_DIR}"
         -c html/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_JSON_DIR}"
         -D language=ru
@@ -214,6 +219,7 @@ add_custom_target(update-pot
         -b gettext
         -d "${SPHINX_BUILD_LOCALE_DIR}"
         -c locale/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
     COMMENT "Generate localization templates"
@@ -263,6 +269,7 @@ add_custom_target(linkcheck
         -b linkcheck
         -d "${SPHINX_BUILD_HTML_DIR}"
         -c html
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_BUILD_HTML_DIR}"
     COMMENT "Linkcheck filter"
@@ -281,6 +288,7 @@ add_custom_target(epub ALL
         -b epub
         -d "${SPHINX_BUILD_EPUB_DIR}"
         -c epub/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_EPUB_DIR}"
     COMMENT "Building English epub with Sphinx"
@@ -291,6 +299,7 @@ add_custom_target(epub-ru ALL
         -b epub
         -d "${SPHINX_BUILD_EPUB_RU_DIR}"
         -c epub/
+        -q
         -D language=ru
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_EPUB_DIR}"
