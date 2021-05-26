@@ -2,7 +2,7 @@
 msgid "Tarantool - Documentation"
 msgstr ""
 
-msgid "|nbspc|"
+msgid "|nbsp|"
 msgstr ""
 
 msgid "Tarantool 2.6 manual"
