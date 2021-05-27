@@ -1,6 +1,0 @@
-
-msgid "Rocks reference"
-msgstr ""
-
-msgid "This reference covers third-party Lua modules for Tarantool."
-msgstr ""
