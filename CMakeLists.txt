@@ -307,10 +307,11 @@ add_custom_target(epub-ru ALL
 )
 
 add_custom_target(pull-modules ALL
-    COMMAND /usr/bin/env python3
-        ./pull_submodules.py
+    COMMAND /usr/bin/env bash
+        ./pull_submodules.sh
     COMMENT "Update submodules to their latest commits"
 )
+
 
 add_custom_target(build-modules ALL
     COMMAND /usr/bin/env bash
