@@ -88,22 +88,14 @@
                 <div class="badge-icon"></div>
 
             * **Other formats:**
-            * `Single-page HTML <singlehtml.html>`_
-            * `PDF <Tarantool.pdf>`_
+            * `Single-page HTML <singlehtml.html>`__
+            * `PDF <Tarantool.pdf>`__
 
             - **See also:**
-            - `Documentation archive <https://tarantool.io/dist/pdf/>`_
-            - `Articles <https://tarantool.io/learn/>`_
+            - `Documentation archive <https://tarantool.io/dist/pdf/>`__
+            - `Articles <https://tarantool.io/learn/>`__
 
-            .. ifconfig:: language == 'ru'
+            * **Support:**
+            * `Google forum <https://groups.google.com/forum/#!forum/tarantool>`__
+            * `Telegram chat <https://t.me/tarantool>`__
 
-                * **Support:**
-                * `Форум в Google <https://googlegroups.com/group/tarantool-ru>`_
-                * `Чат в Telegram <https://t.me/tarantoolru>`_
-            .. ifconfig:: language == 'en'
-
-                * **Support:**
-                * `Google forum <https://groups.google.com/forum/#!forum/tarantool>`_
-                * `Telegram chat <https://t.me/tarantool>`_
-
-.. |space| unicode:: U+0020
