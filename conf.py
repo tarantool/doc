@@ -167,40 +167,10 @@ html_context = {
 #
 # The effect on HTML output is defined in _static/sphinx_design.css
 # (which is the css file designated in _templates/layout.html).
-rst_prolog = """
-.. role:: codenormal
-   :class: ccode
 
-.. role:: codebold
-   :class: ccodeb
+with open('../prolog.rst', 'r') as prolog:
+    rst_prolog = prolog.read()
 
-.. role:: codeitalic
-   :class: ccodei
-
-.. role:: codebolditalic
-   :class: ccodebi
-
-.. role:: codegreen
-   :class: ccodegreen
-
-.. role:: codered
-   :class: ccodered
-
-.. role:: codeblue
-   :class: ccodeblue
-
-.. role:: currentversion
-   :class: current-version
-
-.. role:: specialtext
-   :class: special-text
-
-.. |nbsp| unicode:: 0xA0
-
-.. |br| raw:: html
-
-    <br />
-"""
 
 # Intersphinx configuration
 intersphinx_mapping = {
