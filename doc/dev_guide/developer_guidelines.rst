@@ -16,7 +16,7 @@ a bug report. Report a bug at http://github.com/tarantool/tarantool/issues.
 When reporting a bug, try to come up with a test case right away. Set the
 current maintenance milestone for the bug fix, and specify the series.
 Assign the bug to yourself. Put the status to 'In progress' Once the patch is
-ready, put the bug the bug to 'In review' and solicit a review for the fix.
+ready, put the bug to 'In review' and solicit a review for the fix.
 
 Once there is a positive code review, push the patch and set the status to 'Closed'
 

@@ -178,7 +178,7 @@ Basic parameters
 .. _vshard-config-replica-set-funcs:
 
 -------------------------------------------------------------------------------
-Replica set functions
+Replica set parameters
 -------------------------------------------------------------------------------
 
 * :ref:`uuid <cfg_replica_set-uuid>`
