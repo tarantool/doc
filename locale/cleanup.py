@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import argparse
 from glob import glob
-from polib import pofile, POFile, _BaseFile
+from polib import pofile, POFile, _BaseFile, POEntry
 
 parser = argparse.ArgumentParser(description='Cleanup PO and POT files')
 parser.add_argument('extension', type=str, choices=['po', 'pot', 'both'],
@@ -28,6 +28,11 @@ def cleanup_files(extension):
         po_file.header = ''
         po_file.metadata = {}
         po_file.metadata_is_fuzzy = False
+
+        for item in po_file:
+            # item: POEntry = item
+            item.occurrences = None
+
         po_file.save()
 
 

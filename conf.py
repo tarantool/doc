@@ -190,7 +190,7 @@ language = 'en'
 locale_dirs = ['./locale']
 gettext_additional_targets = ['literal-block']
 gettext_compact = False
-gettext_location = False
+gettext_location = True
 
 # Linkcheck options
 linkcheck_ignore = [

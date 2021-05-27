@@ -222,12 +222,7 @@ add_custom_target(update-pot
         -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
-    COMMENT "Generate localization templates"
-)
-
-add_custom_command(TARGET update-pot
-    COMMAND make cleanup-pot
-    COMMENT "Update and cleanup translation sources"
+    COMMENT "Update translation sources"
 )
 
 add_custom_target(update-po-no-force
