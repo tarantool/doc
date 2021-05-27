@@ -21,6 +21,12 @@ jobs:
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_UPDATE_URL}}
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Fetch submodules
+        run: git fetch --recurse-submodules
+
       - run: cmake .
       - run: make pull-modules
       - run: make build-modules

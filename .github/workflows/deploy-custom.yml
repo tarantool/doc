@@ -1,9 +1,35 @@
-name: Deploy-branch
+name: Custom-deploy-branch
 
 on:
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      env_name:
+        description: 'Enter unique name (version) of deployment'
+        required: True
+      cartridge:
+        description: 'Cartridge branch or commit'
+        required: false
+      cartridge_cli:
+        description: "Cartridge-cli branch or commit"
+        required: false
+      grafana:
+        description: "Grafana branch or commit"
+        required: false
+      luatest:
+        description: "Luatest branch or commit"
+        required: false
+      metrics:
+        description: "Metrics branch or commit"
+        required: false
+      k8s_operator:
+        description: "Kubernetes branch or commit"
+        required: false
+      cpp_driver:
+        description: "Cpp driver branch or commit"
+        required: false
+
 jobs:
-  deploy-branch:
+  custom-deploy-branch:
     runs-on: ubuntu-latest
     container: tarantool/doc-builder:v1
     env:
@@ -23,7 +49,7 @@ jobs:
         run: git fetch --recurse-submodules
 
       - name: Set branch name from source branch
-        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
+        run: echo "BRANCH_NAME=${INPUT_ENV_NAME}" >> $GITHUB_ENV
 
       - name: Start dev server deployment
         uses: bobheadxi/deployments@v0.5.2
