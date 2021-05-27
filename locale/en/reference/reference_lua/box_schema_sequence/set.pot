@@ -1,9 +1,0 @@
-
-msgid "sequence_object:set()"
-msgstr ""
-
-msgid ""
-"Set the \"previous value\" to ``new-previous-value``. This function requires"
-" a :doc:`'write' privilege </reference/reference_lua/box_schema/user_grant>`"
-" on the sequence."
-msgstr ""

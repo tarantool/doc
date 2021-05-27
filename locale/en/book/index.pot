@@ -1,3 +1,0 @@
-
-msgid "User's Guide"
-msgstr ""

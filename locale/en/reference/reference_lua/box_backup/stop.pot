@@ -1,6 +1,0 @@
-
-msgid "box.backup.stop()"
-msgstr ""
-
-msgid "Informs the server that normal operations may resume."
-msgstr ""
