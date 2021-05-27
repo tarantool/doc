@@ -28,6 +28,8 @@
 
 .. |nbsp| unicode:: 0xA0
 
+.. |space| unicode:: U+0020
+
 .. |br| raw:: html
 
     <br />
