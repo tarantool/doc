@@ -231,8 +231,8 @@ msgstr "Тип: строка"
 msgid "Default: 'on'"
 msgstr "По умолчанию: \"on\""
 
-msgid "Replica set functions"
-msgstr "Функции набора реплик"
+msgid "Replica set parameters"
+msgstr "Параметры набора реплик"
 
 msgid ":ref:`uuid <cfg_replica_set-uuid>`"
 msgstr ":ref:`uuid <cfg_replica_set-uuid>`"
