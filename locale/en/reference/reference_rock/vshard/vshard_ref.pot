@@ -184,7 +184,7 @@ msgstr ""
 msgid "Default: 'on'"
 msgstr ""
 
-msgid "Replica set functions"
+msgid "Replica set parameters"
 msgstr ""
 
 msgid ":ref:`uuid <cfg_replica_set-uuid>`"
