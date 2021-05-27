@@ -1,0 +1,17 @@
+name: Destroy-deployment-manually
+
+on:
+  workflow_dispatch:
+    inputs:
+      env_name:
+        description: 'Enter the name of deployment to remove'
+        required: True
+jobs:
+  destroy-deployment-manually:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove dev server deployment at branch-${{env.BRANCH_NAME}}
+        uses: strumwolf/delete-deployment-environment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: ${{ env.INPUT_ENV_NAME }}
