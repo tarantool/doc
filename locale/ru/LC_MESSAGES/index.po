@@ -3,7 +3,7 @@ msgid "Tarantool - Documentation"
 msgstr "Документация по Tarantool"
 
 msgid "|nbsp|"
-msgstr ""
+msgstr "|nbsp|"
 
 msgid "Tarantool 2.6 manual"
 msgstr "Руководство по Tarantool 2.6"
@@ -21,26 +21,26 @@ msgstr ""
 msgid "**Other formats:**"
 msgstr "**Другие форматы:**"
 
-msgid "`Single-page HTML <singlehtml.html>`_"
-msgstr "`HTML одной страницей <singlehtml.html>`_"
+msgid "`Single-page HTML <singlehtml.html>`__"
+msgstr "`HTML одной страницей <singlehtml.html>`__"
 
-msgid "`PDF <Tarantool.pdf>`_"
-msgstr "`PDF <Tarantool.pdf>`_"
+msgid "`PDF <Tarantool.pdf>`__"
+msgstr "`PDF <Tarantool.pdf>`__"
 
 msgid "**See also:**"
 msgstr "**См. также:**"
 
-msgid "`Documentation archive <https://tarantool.io/dist/pdf/>`_"
-msgstr ""
+msgid "`Documentation archive <https://tarantool.io/dist/pdf/>`__"
+msgstr "`Архив документации <https://tarantool.io/dist/pdf/>`__"
 
-msgid "`Articles <https://tarantool.io/learn/>`_"
-msgstr ""
+msgid "`Articles <https://tarantool.io/learn/>`__"
+msgstr "`Статьи <https://tarantool.io/learn/>`__"
 
 msgid "**Support:**"
 msgstr "**Поддержка:**"
 
-msgid "`Google forum <https://groups.google.com/forum/#!forum/tarantool>`_"
-msgstr ""
+msgid "`Google forum <https://groups.google.com/forum/#!forum/tarantool>`__"
+msgstr "`Форум в Google <https://googlegroups.com/group/tarantool-ru>`__"
 
-msgid "`Telegram chat <https://t.me/tarantool>`_"
-msgstr ""
+msgid "`Telegram chat <https://t.me/tarantool>`__"
+msgstr "`Чат в Telegram <https://t.me/tarantoolru>`__"
