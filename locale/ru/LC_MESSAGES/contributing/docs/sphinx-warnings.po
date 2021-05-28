@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 
 msgid "**Example:**"
-msgstr ""
+msgstr "**Пример:**"
 
 msgid ""
 "*   The last point of bullet list\n"
@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 
 msgid "**Solution:**"
-msgstr ""
+msgstr "**Решение:**"
 
 msgid ""
 "*   The last point of bullet list\n"
@@ -173,7 +173,7 @@ msgid "Read more in :ref:`Data Type Conversion <sql_data_type_conversion>`."
 msgstr ""
 
 msgid "**See also:**"
-msgstr ""
+msgstr "**См. также:**"
 
 msgid ":doc:`/contributing/docs/markup/links`"
 msgstr ""

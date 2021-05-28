@@ -297,7 +297,7 @@ msgid "List all installed modules."
 msgstr "Вывод списка всех установленных модулей."
 
 msgid "``tarantoolctl rocks make``"
-msgstr ""
+msgstr "``tarantoolctl rocks make``"
 
 msgid ""
 "Compile a package in the current directory using a rockspec and install it."

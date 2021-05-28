@@ -188,7 +188,7 @@ msgid ":ref:`Examples <fiber-example>`"
 msgstr ""
 
 msgid "Some useful examples"
-msgstr ""
+msgstr "Несколько полезных примеров"
 
 msgid "**Channels**"
 msgstr ""

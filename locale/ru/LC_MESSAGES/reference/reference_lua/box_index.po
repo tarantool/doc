@@ -32,10 +32,10 @@ msgid "Some useful examples"
 msgstr "Несколько полезных примеров"
 
 msgid ":doc:`./box_space/create_index`"
-msgstr ""
+msgstr ":doc:`./box_space/create_index`"
 
 msgid "Create an index"
-msgstr ""
+msgstr "Создание индекса"
 
 msgid ":doc:`./box_index/unique`"
 msgstr ""

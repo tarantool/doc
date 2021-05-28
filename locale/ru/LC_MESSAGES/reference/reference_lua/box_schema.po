@@ -19,7 +19,7 @@ msgid "Use"
 msgstr "Использование"
 
 msgid ":doc:`./box_schema/space_create`"
-msgstr ""
+msgstr ":doc:`./box_schema/space_create`"
 
 msgid "Create a space"
 msgstr "Создание спейса"

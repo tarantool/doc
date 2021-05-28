@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "``true`` if recovery has finished, otherwise ``false``"
 msgstr ""
 
 msgid "rtype"
-msgstr ""
+msgstr "возвращаемое значение"
 
 msgid "boolean"
-msgstr ""
+msgstr "boolean (логический)"
 
 msgid "Added in release :doc:`2.5.3 </release/2.5.3>`."
 msgstr ""

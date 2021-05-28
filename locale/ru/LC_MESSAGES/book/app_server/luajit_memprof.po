@@ -291,7 +291,7 @@ msgid ""
 msgstr ""
 
 msgid "FAQ"
-msgstr ""
+msgstr "Вопросы и ответы"
 
 msgid ""
 "In this section, some of the profiler-related points are discussed in a Q&A "
