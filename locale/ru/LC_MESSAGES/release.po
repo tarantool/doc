@@ -73,7 +73,7 @@ msgid "2.8.0"
 msgstr ""
 
 msgid ":doc:`2.8.1 <release/2.8.1>`"
-msgstr ""
+msgstr ":doc:`2.8.1 <release/2.8.1>`"
 
 msgid "not released yet"
 msgstr "выпуск еще не состоялся"
@@ -88,7 +88,7 @@ msgid ":doc:`2.7.1 <release/2.7.1>`"
 msgstr ":doc:`2.7.1 <release/2.7.1>`"
 
 msgid ":doc:`2.7.2 <release/2.7.2>`"
-msgstr ""
+msgstr ":doc:`2.7.2 <release/2.7.2>`"
 
 msgid "2.6"
 msgstr "2.6"
@@ -100,7 +100,7 @@ msgid ":doc:`2.6.1 <release/2.6.1>`"
 msgstr ":doc:`2.6.1 <release/2.6.1>`"
 
 msgid ":doc:`2.6.2 <release/2.6.2>`, :doc:`2.6.3 <release/2.6.3>`"
-msgstr ""
+msgstr ":doc:`2.6.2 <release/2.6.2>`, :doc:`2.6.3 <release/2.6.3>`"
 
 msgid "2.5"
 msgstr "2.5"

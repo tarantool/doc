@@ -22,10 +22,10 @@ msgid "Parameters: none"
 msgstr ""
 
 msgid "return"
-msgstr ""
+msgstr "возвращает"
 
 msgid "nil or function pointer"
-msgstr ""
+msgstr "nil или указатель функции"
 
 msgid ""
 "Added in release :doc:`2.6.2 </release/2.6.2>`. Renamed in release "

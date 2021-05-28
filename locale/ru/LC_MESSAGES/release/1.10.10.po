@@ -12,7 +12,7 @@ msgid "Tagged ``1.10.10-0-gaea7ae7``"
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Общие сведения"
 
 msgid ""
 "1.10.10 is the next stable release in the :doc:`long-term support (LTS) "
@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 
 msgid "Compatibility"
-msgstr ""
+msgstr "Совместимость"
 
 msgid ""
 "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data "
@@ -46,7 +46,7 @@ msgid ""
 msgstr ""
 
 msgid "Functionality added or changed"
-msgstr ""
+msgstr "Изменения или добавления функциональности"
 
 msgid "Build"
 msgstr ""
@@ -92,7 +92,7 @@ msgid ""
 msgstr ""
 
 msgid "Testing"
-msgstr ""
+msgstr "Тестирование"
 
 msgid ""
 "Tarantool CI/CD has migrated to GitHub Actions (:tarantool-issue:`5662`)."
@@ -112,7 +112,7 @@ msgid ""
 msgstr ""
 
 msgid "Bugs fixed"
-msgstr ""
+msgstr "Исправленные ошибки"
 
 msgid "Core"
 msgstr ""
@@ -126,7 +126,7 @@ msgid ""
 msgstr ""
 
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 msgid ""
 "Fixed the `-e` option, when ``tarantool`` used to enter the interactive mode"

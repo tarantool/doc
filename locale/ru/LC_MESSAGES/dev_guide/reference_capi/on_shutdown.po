@@ -6,7 +6,7 @@ msgid "Register and/or deregister an on_shutdown function."
 msgstr ""
 
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 msgid "Pointer to an area that the new handler can use"
 msgstr ""
@@ -18,16 +18,16 @@ msgid "Pointer to a function which will be deregistered, or NULL"
 msgstr ""
 
 msgid "Returns"
-msgstr ""
+msgstr "Возвращает"
 
 msgid "status of operation. 0 - success, -1 - failure"
 msgstr ""
 
 msgid "Return type"
-msgstr ""
+msgstr "Возвращаемый тип"
 
 msgid "int"
-msgstr ""
+msgstr "целое число"
 
 msgid ""
 "A function which is registered will be called when the Tarantool instance "

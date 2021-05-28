@@ -294,6 +294,8 @@ msgid ""
 "Tarantool brew formula (OS X) was accepted to the official Homebrew "
 "repository (https://formulae.brew.sh/formula/tarantool)."
 msgstr ""
+"Пакет Tarantool'а (OS X) принят в официальный репозиторий Homebrew "
+"(https://formulae.brew.sh/formula/tarantool)."
 
 msgid "Clang compiler support was added on FreeBSD. (:tarantool-issue:`786`)."
 msgstr ""

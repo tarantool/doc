@@ -1083,7 +1083,7 @@ msgid "SQL comments using leading double minus"
 msgstr ""
 
 msgid "``--comment;``"
-msgstr ""
+msgstr "``--comment;``"
 
 msgid ":ref:`Okay <sql_tokens>`."
 msgstr ""

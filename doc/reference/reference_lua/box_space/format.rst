@@ -48,7 +48,7 @@ space_object:format()
 
         ..  code-block:: lua
 
-            //This example will cause an error.
+            --This example will cause an error.
             box.space.tester:format({{' ',type='number'}})
             box.space.tester:insert{'string-which-is-not-a-number'}
 
@@ -57,7 +57,7 @@ space_object:format()
 
         ..  code-block:: lua
 
-            //This example will cause an error.
+            --This example will cause an error.
             box.space.tester:format({{' ',type='number',is_nullable=false}})
             box.space.tester:insert{nil,2}
 
@@ -119,7 +119,7 @@ space_object:format()
             box.space.tester:format({{'x'}})
             box.space.tester:format({{'x'},{'y'}})
 
-            //Omitting types
+            -- types
             box.space.tester:format({{name='x'}})
             box.space.tester:format({{name='x'},{name='y'}})
 
