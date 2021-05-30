@@ -897,31 +897,28 @@ resource usage of each function.
 Data Schema Description
 --------------------------------------------------------------------------------
 
-В Tarantool использование схемы данных опционально.
+In Tarantool, the use of a data schema is optional.
 
-При создании :term:`спейса <space>` схему можно не задавать и тогда в кортежах могут
-лежать произвольные данные. Это правило не расрпостраняется на поля по которым построены индексы.
-У таких полей данные должны быть одного типа.
+When creating a :term:`space <space>`, you do not have to define a data schema. In this case,
+the tuples store random data. This rule does not apply to indexed fields.
+Such fields must contain data of the same type.
 
-Схему можно задать при создании спейса. Читайте подробнее в описании функции
-:doc:`/reference/reference_lua/box_schema/space_create`.
-Если вы создали спейс без схемы, ее можно добавить позже с помощью метода
+You can define a data schema when creating a space. Read more in the description of the
+:doc:`/reference/reference_lua/box_schema/space_create` function.
+If you have already created a space without specifying a data schema, you can do it later using
 :doc:`/reference/reference_lua/box_space/format`.
 
-После указания схемы данные начинают валидироваться по типам. Перед каждой
-операцией вставки или обновления они проверяются,
-и в случае несоответствия типов вы получите ошибку.
+After the data schema is defined, all the data is validated by type. Before any insert or update, you will get an error if the data types do not match.
 
-Мы рекомендуем использовать подход со схемой, потому что он помогает
-избежать ошибок.
+We recommend using a data schema because it helps avoid mistakes.
 
-Схему в Tarantool можно задавать двумя разными способами.
+In Tarantool, you can define a data schema in two different ways.
 
-******************************
-Описание схемы в файле с кодом
-******************************
+**************************************
+Data schema description in a code file
+**************************************
 
-Обычно файл с кодом называется ``init.lua`` и имеет следующее описание схемы:
+The code file is usually called ``init.lua`` and contains the following schema description:
 
 ..  code:: lua
 
@@ -932,30 +929,31 @@ Data Schema Description
 
     users:create_index('pk', { parts = { { field = 'user_id', type = 'number'}}})
 
-Этот подход довольно простой. Когда вы запустите tarantool, этот код исполнится и
-создаст схему. Чтобы запустить файл, используйте следующую команду:
+This is quite simple: when you run tarantool, it executes this code and creates
+a data schema. To run this file, use:
 
 ..  code:: bash
 
     tarantool init.lua
 
-Однако, если вы не планировали углубляться в знакомство с языком Lua и
-его синтаксисом, это может показаться сложным.
+However, if you do not plan to dive deep into the Lua language and its syntax,
+it may seem complicated.
 
-Пример сложности: В сниппете выше, есть вызов функций через двоеточие: ``users:format``.
-Он используется, чтобы передать первым аргументом функции ``format`` переменную ``users``.
-Это аналог ``self`` в языках ООП.
+Possible difficulty: The snippet above has a function call with a colon: ``users:format``.
+It is used to pass the ``format`` variable as the first argument
+of the ``format`` function.
+This is similar to ``self`` in object-based languages.
 
-Поэтому вам может быть удобно описать схему через YAML.
+So it might be more convenient for you to describe the data schema with YAML.
 
-*************************
-Описание через модуль DDL
-*************************
+**********************************************
+Data schema description using the DDL module
+**********************************************
 
-`Модуль DDL <https://github.com/tarantool/ddl>`_ позволяет декларативно
-описывать схему данных в YAML формате.
+The `DDL module <https://github.com/tarantool/ddl>`_ allows you to describe a data schema
+in the YAML format in a declarative way.
 
-Схема будет выглядеть примерно вот так:
+The schema would look something like this:
 
 ..  code:: yaml
 
@@ -973,17 +971,17 @@ Data Schema Description
             parts: [{path: user_id, type: uuid, is_nullable: false}]
             type: HASH
 
-Этот вариант проще для старта: его проще использовать и не нужно вникать
-в язык Lua.
+This alternative is simpler to use, and you do not have to dive deep into Lua.
 
-Модуль ``DDL`` встроен по умолчанию в :doc:`Cartridge </book/cartridge/index>`.
-Cartridge — это кластерное решение для Tarantool. В его веб-интерфейсе есть
-отдельная вкладка — "Schema". Там можно написать схему, проверить ее корректность
-и применить на всем кластере.
+``DDL`` is a built-in 
+:doc:`Cartridge </book/cartridge/index>` module.
+Cartridge is a cluster solution for Tarantool. In its WebUI, there is a separate tab
+called "Schema". On this tab, you can define the schema, check its correctness,
+and apply it to the whole cluster.
 
-Если вы не используете Cartridge, то чтобы заиспользовать модуль DDL,
-нужно вставить следующий Lua код в файл, с которым вы запускаете Tarantool.
-Обычно это ``init.lua``.
+If you do not use Cartridge, you can still use the DDL module: 
+put the following Lua code into the file that you use to run Tarantool.
+This file is usually called ``init.lua``.
 
 ..  code:: lua
 
@@ -1006,8 +1004,8 @@ Cartridge — это кластерное решение для Tarantool. В е
 
 ..  WARNING::
 
-    Менять схему в самом DDL после ее применения нельзя. Для
-    миграций есть несколько подходов — они описаны ниже.
+    It is forbidden to modify the data schema in DDL after it has been applied.
+    For migration, there are different scenarios described below.
 
 
 ..  _migrations:
@@ -1016,22 +1014,22 @@ Cartridge — это кластерное решение для Tarantool. В е
 Migrations
 --------------------------------------------------------------------------------
 
-**Миграцией** называется любое изменение схемы данных: добавление/удаление поля,
-добавление/удаление индекса, изменение формата поля и.т.д.
+**Migration** refers to any change in a data schema: adding/removing a field,
+creating/dropping an index, changing a field format, etc.
 
-В Tarantool есть только два вида миграции схемы,
-при которых не нужно мигрировать данные:
+In Tarantool, there are two types of schema migration
+that do not require data migration:
 
--   добавление поля в конец спейса
+-   adding a field to the end of a space
 
--   добавление индекса
+-   creating an index
 
 
-******************************
-Добавление поля в конец спейса
-******************************
+****************************************
+Adding a field to the end of a space
+****************************************
 
-Добавление поля происходит следующим образом:
+You can add a field as follows:
 
 ..  code:: lua
 
@@ -1041,99 +1039,100 @@ Migrations
     table.insert(fmt, { name = 'age', type = 'number', is_nullable = true })
     users:format(fmt)
 
-Обратите внимание: поле обязательно должно иметь параметр ``is_nullable``. Иначе
-произойдет ошибка.
+Note that the field must have the ``is_nullable`` parameter. Otherwise,
+an error will occur.
 
-После создания нового поля, вы, вероятно, захотите заполнить его данными.
-Для этой задачи удобно использовать модуль
-`tarantool/moonwalker <https://github.com/tarantool/moonwalker>`_.
-В README есть описание того, как начать его использовать.
+After creating a new field, you probably want to fill it with data.
+The `tarantool/moonwalker <https://github.com/tarantool/moonwalker>`_
+module is useful for this task.
+The README file describes how to work with this module.
 
 ******************
-Добавление индекса
+Creating an index
 ******************
 
-Про добавление индекса написано в описании метода
-:doc:`/reference/reference_lua/box_space/create_index`.
+Index creation is described in the
+:doc:`/reference/reference_lua/box_space/create_index` method.
 
-***********************
-Остальные виды миграций
-***********************
+***************************
+Other types of migrations
+***************************
 
-Остальные виды миграций также возможны, однако сохранить консистентность данных
-при этом сложнее.
+Other types of migrations are also allowed but it would be more difficult to
+maintain data consistency.
 
-Миграции можно выполнять в двух случаях:
+Migrations are possible in two cases:
 
--   при старте Tarantool, пока ни один клиент еще не использует БД
+-   When Tarantool starts, and no client uses the database yet
 
--   в процессе обработки запросов, когда у БД уже есть активные клиенты
+-   During request proccessing, when active clients already use the database
 
-Для первого случая достаточно кода миграции, который будет написан и оттестирован.
-Самая сложная задача — это провести миграцию данных при наличии активных клиентов.
-Это необходимо иметь в виду при начальном проектировании схемы данных.
+For the first case, it is enough to write and test the migration code.
+The most difficult task is to migrate data when there are active clients.
+You should keep it in mind when you initially design the data schema.
 
-Мы выделяем следующие проблемы при наличии активных клиентов:
+We identify the following problems if there are active clients:
 
--   связанные данные могут атомарно изменяться
+-   Associated data can change atomically.
 
--   нужно уметь отдавать данные как по новой схеме, так и по старой
+-   The system should be able to transfer data using both the new schema and the old one.
 
--   при перекладывании данных в новый спейс, доступ к данным должен учитывать,
-    что данные могут быть или в одном, или в другом спейсе
+-   When data is being transferred to a new space, data access should take into account
+    that the data might be in one space or another.
 
--   запросы на запись не должны мешать корректной миграции.
-    Типичный подход: всегда писать по новой схеме
+-   Write requests must not interfere with the migration.
+    A common approach is to write according to the new data schema.
 
-Эти проблемы могут быть или не быть релевантными в зависимости от вашего
-приложения и требований к его доступности.
+These issues may or may not be relevant depending on your application and
+its availability requirements.
 
-**********************************************
-Что нужно знать при написании сложных миграций
-**********************************************
+*****************************************************
+What you need to know when writing complex migrations
+*****************************************************
 
-В Tarantool есть механизм транзакций. Он полезен при написании миграции,
-т.к. позволяет атомарно работать с данными. Но перед использованием механизма
-транзакций нужно знать об ограничениях.
+Tarantool has a transaction mechanism. It is useful when writing a migration,
+because it allows you to work with the data atomically. But before using
+the transaction mechanism, you should explore its limitations.
 
-Подробнее о них описано в разделе про :doc:`транзакции </book/box/atomic>`.
+For details, see the section about :doc:`transactions </book/box/atomic>`.
 
-**********************
-Как применять миграции
-**********************
+***************************
+How you can apply migration
+***************************
 
-Код миграций исполняется на запущенном инстансе Tarantool.
-Важно: ни один способ не гарантирует вам транзакционное применение миграций на всем кластере.
+The migration code is executed on a running Tarantool instance.
+Important: no method guarantees you transactional application of migrations
+on the whole cluster.
 
-**Способ 1**: написать миграции в коде основного приложения
+**Method 1**: include migrations in the application code
 
-Тут все просто: при перезагрузке кода произойдет миграция данных в нужный момент,
-и схема данных БД обновится.
-Однако, такой способ может подойти не всем. У вас может не быть возможности
-перезапустить Tarantool или обновить код через механизм hot-reload.
+This is quite simple: when you reload the code, the data is migrated at the right moment,
+and the database schema is updated.
+However, this method may not work for everyone. You may not be able
+to restart Tarantool or to update the code using the hot-reload mechanism.
 
-**Способ 2**: tarantool/migrations (только для кластера на Tarantool Cartridge)
+**Method 2**: tarantool/migrations (only for a Tarantool Cartridge cluster)
 
-Про этот способ подробнее написано в README самого модуля
-`tarantool/migrations <https://github.com/tarantool/migrations>`_.
+This method is described in the README file of the
+`tarantool/migrations <https://github.com/tarantool/migrations>`_ module.
 
 .. NOTE::
 
-    Есть также способы, которые мы **не рекомендуем использовать**,
-    но они могут вам пригодиться по тем или иным причинам.
+    There are also two methods that we **do not recommend**
+    but you may find them useful for one reason or another.
 
-    **Cпособ 3**: утилита ``tarantoolctl``
+    **Method 3**: the ``tarantoolctl`` utility
 
-    Утилита ``tarantoolctl`` поставляется вместе с Tarantool.
-    Подключитесь к нужному инстансу через команду ``tarantoolctl connect``.
+    The ``tarantoolctl`` utility ships with Tarantool.
+    Connect to the necessary instance using ``tarantoolctl connect``.
 
     ..  code:: console
 
         $ tarantoolctl connect admin:password@localhost:3301
 
-    -   Если ваша миграция написана в Lua файле, вы можете исполнить его
-        с помощью функции ``dofile()``. Вызовите ее и первым аргументом укажите
-        путь до файла с миграцией. Выглядит это вот так:
+    -   If your migration is written in a Lua file, you can execute it
+        using ``dofile()``. Call this function and specify the path to the
+        migration file as the first argument. It looks like this:
 
         ..  code-block:: tarantoolsession
 
@@ -1141,12 +1140,12 @@ Migrations
             ---
             ...
 
-    -   (или) можно скопировать код скрипта миграции,
-        вставить его в консоль и применить.
+    -   (or) Copy the migration script code,
+        paste it into the console, and run it.
 
-    **Способ 4**: применение миграции с помощью Ansible
+    **Method 4**: applying migration with Ansible
 
-    Если вы используете
-    `Ansible роль для деплоя кластера Tarantool <https://github.com/tarantool/ansible-cartridge>`_,
-    то вы можете воспользоваться инструментом ``eval``. Прочитать подробнее про
-    ``eval`` можно `тут <https://github.com/tarantool/ansible-cartridge/blob/master/doc/eval.md>`_.
+    If you use an
+    `Ansible role to deploy a Tarantool cluster <https://github.com/tarantool/ansible-cartridge>`_,
+    you can use ``eval``. You can find more information about
+    ``eval`` `here <https://github.com/tarantool/ansible-cartridge/blob/master/doc/eval.md>`_.
