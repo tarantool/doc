@@ -1,4 +1,4 @@
-name: Update translation sources
+name: Update main translation branch
 
 on:
   workflow_dispatch:
@@ -7,8 +7,10 @@ on:
       - latest
     paths:
       - 'doc/**/*.rst'
+      - 'locale/ru/**/*.po'
+      - 'crowdin.yml'
 jobs:
-  autocommit-pot-files:
+  update-translations:
     runs-on: ubuntu-latest
     container: tarantool/doc-builder:v1
 

@@ -20,5 +20,10 @@ files: [
       "ru" : "ru",
      }
   },
+
+  "ignore": [
+    "/en/singlehtml.*",
+    "/en/toctree.*",
+  ]
  }
 ]
