@@ -28,6 +28,7 @@ jobs:
       with:
         upload_sources: true
         upload_translations: true
+        import_eq_suggestions: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
