@@ -10,8 +10,8 @@ jobs:
   destroy-deployment-manually:
     runs-on: ubuntu-latest
     steps:
-      - name: Remove dev server deployment at branch-${{env.BRANCH_NAME}}
+      - name: Remove dev server deployment at branch-${{ github.event.inputs.env_name }}
         uses: strumwolf/delete-deployment-environment@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          environment: ${{ env.INPUT_ENV_NAME }}
+          environment: ${{ github.event.inputs.env_name }}
