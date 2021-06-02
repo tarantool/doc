@@ -61,7 +61,7 @@ You don't need to do it manually, unless you use Tarantool as an
 
 .. NOTE::
 
-    If your container terminates directly after starting, follow
+    If your container terminates immediately after starting, follow
     `this page <https://stackoverflow.com/questions/64178499/tarantool-does-not-start-due-to-disk-write-error>`_
     for a possible solution.
 
