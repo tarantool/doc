@@ -36,6 +36,8 @@ msgid ""
 "If you need to make a schema migration, see section :ref:`Migrations "
 "<migrations>`."
 msgstr ""
+"Если вам нужно выполнить миграцию схемы, обратитесь к разделу :ref:`Миграции"
+" <migrations>`."
 
 msgid ""
 "Ordinarily Tarantool allows unnamed untyped fields. But with ``format`` "
