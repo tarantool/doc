@@ -1065,7 +1065,7 @@ Migrations are possible in two cases:
 
 -   When Tarantool starts, and no client uses the database yet
 
--   During request proccessing, when active clients already use the database
+-   During request processing, when active clients are already using the database
 
 For the first case, it is enough to write and test the migration code.
 The most difficult task is to migrate data when there are active clients.
