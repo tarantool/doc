@@ -892,3 +892,260 @@ resource usage of each function.
     |                   | for writing to finish on a slow device, this factor      |
     |                   | is more important than all the others.                   |
     +-------------------+----------------------------------------------------------+
+
+--------------------------------------------------------------------------------
+Data Schema Description
+--------------------------------------------------------------------------------
+
+In Tarantool, the use of a data schema is optional.
+
+When creating a :term:`space <space>`, you do not have to define a data schema. In this case,
+the tuples store random data. This rule does not apply to indexed fields.
+Such fields must contain data of the same type.
+
+You can define a data schema when creating a space. Read more in the description of the
+:doc:`/reference/reference_lua/box_schema/space_create` function.
+If you have already created a space without specifying a data schema, you can do it later using
+:doc:`/reference/reference_lua/box_space/format`.
+
+After the data schema is defined, all the data is validated by type. Before any insert or update, you will get an error if the data types do not match.
+
+We recommend using a data schema because it helps avoid mistakes.
+
+In Tarantool, you can define a data schema in two different ways.
+
+**************************************
+Data schema description in a code file
+**************************************
+
+The code file is usually called ``init.lua`` and contains the following schema description:
+
+..  code:: lua
+
+    box.cfg()
+
+    users = box.schema.create_space('users', { if_not_exists = true })
+    users:format({{ name = 'user_id', type = 'number'}, { name = 'fullname', type = 'string'}})
+
+    users:create_index('pk', { parts = { { field = 'user_id', type = 'number'}}})
+
+This is quite simple: when you run tarantool, it executes this code and creates
+a data schema. To run this file, use:
+
+..  code:: bash
+
+    tarantool init.lua
+
+However, if you do not plan to dive deep into the Lua language and its syntax,
+it may seem complicated.
+
+Possible difficulty: The snippet above has a function call with a colon: ``users:format``.
+It is used to pass the ``format`` variable as the first argument
+of the ``format`` function.
+This is similar to ``self`` in object-based languages.
+
+So it might be more convenient for you to describe the data schema with YAML.
+
+**********************************************
+Data schema description using the DDL module
+**********************************************
+
+The `DDL module <https://github.com/tarantool/ddl>`_ allows you to describe a data schema
+in the YAML format in a declarative way.
+
+The schema would look something like this:
+
+..  code:: yaml
+
+    spaces:
+        users:
+          engine: memtx
+          is_local: false
+          temporary: false
+          format:
+          - {name: user_id, type: uuid, is_nullable: false}
+          - {name: fullname, type: string,  is_nullable: false}
+          indexes:
+          - name: user_id
+            unique: true
+            parts: [{path: user_id, type: uuid, is_nullable: false}]
+            type: HASH
+
+This alternative is simpler to use, and you do not have to dive deep into Lua.
+
+``DDL`` is a built-in 
+:doc:`Cartridge </book/cartridge/index>` module.
+Cartridge is a cluster solution for Tarantool. In its WebUI, there is a separate tab
+called "Schema". On this tab, you can define the schema, check its correctness,
+and apply it to the whole cluster.
+
+If you do not use Cartridge, you can still use the DDL module: 
+put the following Lua code into the file that you use to run Tarantool.
+This file is usually called ``init.lua``.
+
+..  code:: lua
+
+    local yaml = require('yaml')
+    local ddl = require('ddl')
+
+    box.cfg{}
+
+    local fh = io.open('ddl.yml', 'r')
+    local schema = yaml.decode(fh:read('*all'))
+    fh:close()
+    local ok, err = ddl.check_schema(schema)
+    if not ok then
+        print(err)
+    end
+    local ok, err = ddl.set_schema(schema)
+    if not ok then
+        print(err)
+    end
+
+..  WARNING::
+
+    It is forbidden to modify the data schema in DDL after it has been applied.
+    For migration, there are different scenarios described below.
+
+
+..  _migrations:
+
+--------------------------------------------------------------------------------
+Migrations
+--------------------------------------------------------------------------------
+
+**Migration** refers to any change in a data schema: adding/removing a field,
+creating/dropping an index, changing a field format, etc.
+
+In Tarantool, there are two types of schema migration
+that do not require data migration:
+
+-   adding a field to the end of a space
+
+-   creating an index
+
+
+****************************************
+Adding a field to the end of a space
+****************************************
+
+You can add a field as follows:
+
+..  code:: lua
+
+    local users = box.space.users
+    local fmt = users:format()
+
+    table.insert(fmt, { name = 'age', type = 'number', is_nullable = true })
+    users:format(fmt)
+
+Note that the field must have the ``is_nullable`` parameter. Otherwise,
+an error will occur.
+
+After creating a new field, you probably want to fill it with data.
+The `tarantool/moonwalker <https://github.com/tarantool/moonwalker>`_
+module is useful for this task.
+The README file describes how to work with this module.
+
+******************
+Creating an index
+******************
+
+Index creation is described in the
+:doc:`/reference/reference_lua/box_space/create_index` method.
+
+***************************
+Other types of migrations
+***************************
+
+Other types of migrations are also allowed but it would be more difficult to
+maintain data consistency.
+
+Migrations are possible in two cases:
+
+-   When Tarantool starts, and no client uses the database yet
+
+-   During request processing, when active clients are already using the database
+
+For the first case, it is enough to write and test the migration code.
+The most difficult task is to migrate data when there are active clients.
+You should keep it in mind when you initially design the data schema.
+
+We identify the following problems if there are active clients:
+
+-   Associated data can change atomically.
+
+-   The system should be able to transfer data using both the new schema and the old one.
+
+-   When data is being transferred to a new space, data access should take into account
+    that the data might be in one space or another.
+
+-   Write requests must not interfere with the migration.
+    A common approach is to write according to the new data schema.
+
+These issues may or may not be relevant depending on your application and
+its availability requirements.
+
+*****************************************************
+What you need to know when writing complex migrations
+*****************************************************
+
+Tarantool has a transaction mechanism. It is useful when writing a migration,
+because it allows you to work with the data atomically. But before using
+the transaction mechanism, you should explore its limitations.
+
+For details, see the section about :doc:`transactions </book/box/atomic>`.
+
+***************************
+How you can apply migration
+***************************
+
+The migration code is executed on a running Tarantool instance.
+Important: no method guarantees you transactional application of migrations
+on the whole cluster.
+
+**Method 1**: include migrations in the application code
+
+This is quite simple: when you reload the code, the data is migrated at the right moment,
+and the database schema is updated.
+However, this method may not work for everyone. You may not be able
+to restart Tarantool or to update the code using the hot-reload mechanism.
+
+**Method 2**: tarantool/migrations (only for a Tarantool Cartridge cluster)
+
+This method is described in the README file of the
+`tarantool/migrations <https://github.com/tarantool/migrations>`_ module.
+
+.. NOTE::
+
+    There are also two methods that we **do not recommend**
+    but you may find them useful for one reason or another.
+
+    **Method 3**: the ``tarantoolctl`` utility
+
+    The ``tarantoolctl`` utility ships with Tarantool.
+    Connect to the necessary instance using ``tarantoolctl connect``.
+
+    ..  code:: console
+
+        $ tarantoolctl connect admin:password@localhost:3301
+
+    -   If your migration is written in a Lua file, you can execute it
+        using ``dofile()``. Call this function and specify the path to the
+        migration file as the first argument. It looks like this:
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> dofile('0001-delete-space.lua')
+            ---
+            ...
+
+    -   (or) Copy the migration script code,
+        paste it into the console, and run it.
+
+    **Method 4**: applying migration with Ansible
+
+    If you use an
+    `Ansible role to deploy a Tarantool cluster <https://github.com/tarantool/ansible-cartridge>`_,
+    you can use ``eval``. You can find more information about
+    ``eval`` `here <https://github.com/tarantool/ansible-cartridge/blob/master/doc/eval.md>`_.
