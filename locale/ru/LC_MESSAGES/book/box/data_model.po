@@ -1913,7 +1913,8 @@ msgid "When Tarantool starts, and no client uses the database yet"
 msgstr "при старте Tarantool, пока ни один клиент еще не использует БД"
 
 msgid ""
-"During request proccessing, when active clients already use the database"
+"During request processing, when active clients are already using the "
+"database"
 msgstr "в процессе обработки запросов, когда у БД уже есть активные клиенты"
 
 msgid ""
