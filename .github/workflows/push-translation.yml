@@ -9,7 +9,7 @@ on:
 jobs:
   push-translation-sources:
     runs-on: ubuntu-latest
-    container: tarantool/doc-builder:latest
+    container: tarantool/doc-builder:v2
     steps:
       - uses: actions/checkout@v2
 

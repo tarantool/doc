@@ -8,9 +8,8 @@ from sphinx.writers.html import HTMLTranslator as BaseHTMLTranslator
 
 class HTMLTranslator(BaseHTMLTranslator):
 
-    def __init__(self, *args: Any) -> None:
-        super().__init__(*args)
-        self.permalink_text = '<i class="fa fa-link"></i>'
+    @property
+    def permalink_text(self): return '<i class="fa fa-link"></i>'
 
     def depart_title(self, node: Element) -> None:
         close_tag = self.context[-1]
