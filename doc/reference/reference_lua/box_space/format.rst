@@ -224,3 +224,139 @@ space_object:format()
 
         **Note re storage engine:** vinyl supports formatting of non-empty
         spaces. Primary index definition cannot be formatted.
+
+        **Changing space schema**
+        It is legal to add new fields or remove unnecessary fields from
+        space. For example, you have a simple schema:
+
+        ..  code-block:: lua
+
+            box.schema.space.create('customer')
+            format = {
+                {name = 'id', type = 'string'},
+                {name = 'last_name', type = 'string'},
+                }
+            box.space.customer:format(format)
+            box.space.customer:create_index('id', {parts = {{field = 'id', is_nullable = false}}})
+            box.space.customer:replace({'1', 'Ivanov'})
+
+        If now we define a new format with the third field ``first_name``
+        as in the example below, we will get an error:
+
+        ..  code-block:: lua
+
+            new_format = {
+            {name = 'id', type = 'string'},
+            {name = 'last_name', type = 'string'},
+            {name = 'first_name', type = 'string'},
+            }
+            box.space.customer:format(new_format)
+            -- This example will cause an error: our tuple has only two fields.
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> box.space.customer:format(new_format)
+            - --
+            - error: Tuple field 3 required by space format is missing
+            ...
+
+        To solve the problem above and add a new field, you can either
+        add a new field to the end of the tuple or define a new field as nullable.
+
+        1.  Add a new field to the end of the tuple with the default value:
+
+            ..  code-block:: lua
+
+                box.space.customer:update({'1'}, {{'=', 3, 'Ivan'}})
+                box.space.customer:format(new_format)
+
+
+            ..  warning::
+
+                Filling in the field with the default value can be quite
+                a lengthy operation if you have a lot of data. Please be careful
+                when applying any migrations.
+
+        2.  Define new field as nullable:
+
+            ..  code-block:: lua
+
+                new_format = {
+                    {name = 'id', type = 'string'},
+                    {name = 'last_name', type = 'string'},
+                    {name = 'first_name', type = 'string', is_nullable = true},
+                }
+
+                box.space.customer:format(new_format)
+                -- OK: absence of the third value is acceptable
+
+
+        If you want to remove a field from space, there are three ways to do it:
+
+        1.  Declare the unnecessary field as nullable, insert the ``NULL`` value
+            into this field. The field will still be stored physically,
+            but it will be hidden from users.
+
+        2.  Use the right-in-place migration. Keep in mind that it's not legal
+            if you have indexed fields after the field you want to drop.
+
+            ..  code-block:: lua
+
+                local space = box.schema.space.create('my_space', {if_not_exists = true})
+                space:create_index('id', {parts = {{field = 1, type = 'unsigned'}}})
+                space:format({
+                    {'field_1', 'unsigned'},
+                    {'field_2', 'unsigned'},
+                    {'field_3', 'string'},
+                })
+
+                -- Create key_def instance to simplify primary key extraction
+                local key_def = require('key_def').new(space.index[0].parts)
+
+                -- Drop previous format
+                space:format({})
+
+                -- Migrate your data
+                for _, tuple in space:pairs() do
+                    space:delete(key_def:extract_key(tuple))
+                    space:replace({tuple[1], tuple[3]})
+                end
+
+                -- Setup new format
+                space:format({
+                    {'field_1', 'unsigned'},
+                    {'field_3', 'string'},
+                })
+
+
+        3.  Create new space, migrate data into it and drop previous:
+
+            ..  code-block:: lua
+
+                local space = box.schema.space.create('new_my_space', {if_not_exists = true})
+                space:create_index('id', {parts = {{field = 1, type = 'unsigned'}}})
+                space:format({
+                    {'field_1', 'unsigned'},
+                    {'field_3', 'string'},
+                })
+
+                -- Migrate your data
+                for _, tuple in box.space['my_space']:pairs() do
+                    space:replace({tuple[1], tuple[3]})
+                end
+
+                -- Drop the old space
+                box.space['my_space']:drop()
+
+                -- Rename new space
+                local space_id = box.space._space.index.name:get({'my_new_space'}).id
+
+                -- In newer version of Tarantool (2.6+) space.alter method available
+                -- But in older versions you could update name via system "_space" space
+                box.space._space:update({space_id}, {{'=', 'name', 'my_space'}})
+
+        ..  warning::
+
+            Please be careful when using the second
+            and the third methods. They could be dangerous if you have a big
+            amount of data in the space.
