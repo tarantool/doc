@@ -509,7 +509,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         ``shutdown()`` does not fail on already closed fds (idempotence).
         However, it fails on an attempt to close the end of a pipe that
-        never existed. In other words, only those std* options that
+        never existed. In other words, only those ``std*`` options that
         were set to ``popen.opts.PIPE`` during handle creation may be used
         here (for :ref:`popen.shell() <popen-shell>`: ``'r'`` corresponds to stdout,
         ``'R'`` to stderr and ``'w'`` to stdin).
