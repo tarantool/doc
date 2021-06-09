@@ -183,7 +183,7 @@ for ``node5``. In this case, ``node1`` and ``node5`` both win the election.
 When the quorum is set to the cluster majority, that is
 ``(<cluster size> / 2) + 1`` or bigger, the split-vote is not possible.
 
-That must be especially actual when adding new nodes. If the majority value is
+That should be considered when adding new nodes. If the majority value is
 going to change, it's better to update the quorum on all the existing nodes
 before adding a new one.
 
