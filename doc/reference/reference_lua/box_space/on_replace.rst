@@ -1,12 +1,12 @@
-.. _box_space-on_replace:
+..  _box_space-on_replace:
 
 ===============================================================================
 space_object:on_replace()
 ===============================================================================
 
-.. class:: space_object
+..  class:: space_object
 
-    .. method:: on_replace([trigger-function [, old-trigger-function]])
+    ..  method:: on_replace([trigger-function [, old-trigger-function]])
 
         Create a "replace :ref:`trigger <triggers>`".
         The ``trigger-function`` will be executed
@@ -14,7 +14,7 @@ space_object:on_replace()
         or ``delete()`` happens to a tuple in ``<space-name>``.
 
         :param function     trigger-function: function which will become the
-                                              trigger function; see Example #2
+                                              trigger function; see Example 2
                                               below for details about
                                               trigger function parameters
         :param function old-trigger-function: existing trigger function which
@@ -22,7 +22,7 @@ space_object:on_replace()
                                               ``trigger-function``
         :return: nil or function pointer
 
-        If the parameters are (nil, old-trigger-function), then the old
+        If the parameters are ``(nil, old-trigger-function)``, then the old
         trigger is deleted.
 
         If both parameters are omitted, then the response is a list of existing
@@ -37,29 +37,31 @@ space_object:on_replace()
 
         See also :doc:`/reference/reference_lua/box_space/before_replace`.
 
-        **Example #1:**
+        **Example 1:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> function f ()
                      >   x = x + 1
                      > end
             tarantool> box.space.X:on_replace(f)
 
-        **Example #2:**
+        **Example 2:**
 
         The ``trigger-function`` can have up to four parameters:
 
         * (tuple) old value which has the contents before the request started,
         * (tuple) new value which has the contents after the request ended,
         * (string) space name,
-        * (string) type of request which is 'INSERT', 'DELETE', 'UPDATE', or 'REPLACE'.
+        * (string) type of request which is ``INSERT``, ``DELETE``, ``UPDATE``,
+        or ``REPLACE``.
 
-        For example, the following code causes nil and 'INSERT' to be printed when the insert
-        request is processed, and causes [1, 'Hi'] and 'DELETE' to be printed when the delete
-        request is processed:
+        For example, the following code causes ``nil`` and ``INSERT``
+        to be printed when the insert request is processed and causes
+        ``[1, 'Hi']`` and ``DELETE`` to be printed when the delete request
+        is processed:
 
-        .. code-block:: lua
+        ..  code-block:: lua
 
             box.schema.space.create('space_1')
             box.space.space_1:create_index('space_1_index',{})
@@ -68,14 +70,14 @@ space_object:on_replace()
             box.space.space_1:insert{1,'Hi'}
             box.space.space_1:delete{1}
 
-        **Example #3:**
+        **Example 3:**
 
         The following series of requests will create a space, create an index,
         create a function which increments a counter, create a trigger, do two
         inserts, drop the space, and display the counter value - which is 2,
         because the function is executed once after each insert.
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> s = box.schema.space.create('space53')
             tarantool> s:create_index('primary', {parts = {{field = 1, type = 'unsigned'}}})
@@ -89,20 +91,22 @@ space_object:on_replace()
             tarantool> s:drop()
             tarantool> replace_counter
 
-        .. NOTE::
+        ..  NOTE::
 
-          You shouldn't use in trigger-functions for ``on_replace`` and ``before_replace``
+            As everything executed inside triggers is already in a transaction,
+            you shouldn't use in trigger-functions for ``on_replace`` and
+            ``before_replace``
 
             * transactions,
             * yield-operations (:ref:`explicit <atomic-implicit-yields>` or not),
             * actions that are not allowed to be used in transactions
-              (see :ref:`rule #2 <box-txn_management>`)
+              (see :ref:`rule #2 <box-txn_management>`).
 
-          because everything executed inside triggers is already in a transaction.
+
 
           **Example:**
 
-          .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> box.space.test:on_replace(fiber.yield)
             tarantool> box.space.test:replace{1, 2, 3}
