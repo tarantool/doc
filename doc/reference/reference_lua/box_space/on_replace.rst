@@ -54,7 +54,7 @@ space_object:on_replace()
         * (tuple) new value which has the contents after the request ended,
         * (string) space name,
         * (string) type of request which is ``INSERT``, ``DELETE``, ``UPDATE``,
-        or ``REPLACE``.
+          or ``REPLACE``.
 
         For example, the following code causes ``nil`` and ``INSERT``
         to be printed when the insert request is processed and causes
