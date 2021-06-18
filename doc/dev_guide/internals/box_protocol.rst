@@ -1467,9 +1467,13 @@ example:
 
 Byte codes, if we use the same net.box connection that
 we used for :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-and we say |br|
-``conn:execute([[CREATE TABLE t1 (dd INT PRIMARY KEY AUTOINCREMENT, дд STRING COLLATE "unicode");]])`` |br|
-``conn:execute([[INSERT INTO t1 VALUES (NULL, 'a'), (NULL, 'b');]])`` |br|
+and we say
+
+..  code-block::
+
+    conn:execute([[CREATE TABLE t1 (dd INT PRIMARY KEY AUTOINCREMENT, дд STRING COLLATE "unicode");]])
+    conn:execute([[INSERT INTO t1 VALUES (NULL, 'a'), (NULL, 'b');]])
+
 and we watch what tcpdump displays, we will see two noticeable things:
 (1) the CREATE statement caused a schema change so the response has
 a new IPROTO_SCHEMA_VERSION value and the body includes
