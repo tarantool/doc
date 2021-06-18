@@ -1,6 +1,6 @@
 
 msgid "box.execute()"
-msgstr ""
+msgstr "box.execute()"
 
 msgid "Execute the SQL statement contained in the sql-statement parameter."
 msgstr ""
