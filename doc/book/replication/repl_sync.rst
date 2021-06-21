@@ -71,7 +71,7 @@ instance confirms its receipt and successful appliance. Note that the quorum is
 set to 2, but the transaction was still committed even though there is only one
 replica. This is because the master instance itself also participates in the quorum.
 
-Now if the second instance is down, the first one won't be able to commit any
+Now, if the second instance is down, the first one won't be able to commit any
 synchronous change.
 
 .. code-block:: lua
@@ -146,14 +146,15 @@ existing spaces, but since 2.5.2 it can be enabled by
 Synchronous transactions work only for master-slave topology. You can have multiple
 replicas, anonymous replicas, but only one node can make synchronous transactions.
 
-Anonymous replicas participate in the quorum. This will change: it won't be possible
-for a synchronous transaction to gather quorum using anonymous replicas in future.
+Anonymous replicas participate in the quorum.
+However, this will change: it won't be possible
+for a synchronous transaction to gather quorum using anonymous replicas in the future.
 
 --------------------------------------------------------------------------------
 Leader election
 --------------------------------------------------------------------------------
 
-Starting from the version :doc:`2.6.1 </release/2.6.1>`,
+Starting from version :doc:`2.6.1 </release/2.6.1>`,
 Tarantool has the built-in functionality
 managing automated leader election in a replica set. For more information,
 refer to the :ref:`corresponding chapter <repl_leader_elect>`.
@@ -168,5 +169,5 @@ transaction will be committed by the new master. Your application logic should b
 ready for that.
 
 Synchronous transactions are better to use with full mesh. Then the replicas can
-talk to each other in case of the master node's death, and still confirm some
+talk to each other in case of the master node's death and still confirm some
 pending transactions.
