@@ -530,7 +530,7 @@ just as Lua and NoSQL are compatible.
         local string_value, t, sql_statement
         for i = 1,1000000, 1 do
         string_value = string_function()
-        sql_statement = "INSERT INTO tester VALUES (" .. i .. ",'" .. string_value .. "')"
+        sql_statement = "INSERT INTO tester VALUES (" .. i .. ",'" .. string_value .. "');"
         box.execute(sql_statement)
         end
     end

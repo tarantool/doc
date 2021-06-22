@@ -287,7 +287,7 @@ REPEAT REPLACE RESIGNAL RETURN REVOKE RIGHT ROLLBACK ROW
 ROWS ROW_NUMBER SAVEPOINT SCALAR SELECT SENSITIVE SESSION SET
 SIGNAL SIMPLE SMALLINT SPECIFIC SQL START STRING SYSTEM TABLE
 TEXT THEN TO TRAILING TRANSACTION TRIGGER TRIM TRUE
-TRUNCATE UNION UNIQUE UNKNOWN UNSIGNED UPDATE USER USING VALUES
+TRUNCATE UNION UNIQUE UNKNOWN UNSIGNED UPDATE USER USING UUID VALUES
 VARBINARY VARCHAR VIEW WHEN WHENEVER WHERE WHILE WITH
 
 .. COMMENT:
@@ -459,8 +459,11 @@ and minimum / maximum literal examples.
     +-----------+------------+------------+----------------------+-------------------------+
     | VARBINARY | varbinary  | (none)     | ``X''``              | ``X'many-hex-digits'``  |
     +-----------+------------+------------+----------------------+-------------------------+
+    | UUID      | uuid       | (none)     | 32 '0's              | 32 'f's                 |
+    +-----------+------------+------------+----------------------+-------------------------+
     | SCALAR    | scalar     | (none)     | FALSE                |  ``X'many-hex-digits'`` |
     +-----------+------------+------------+----------------------+-------------------------+
+
 
 .. _sql_data_type_boolean:
 
@@ -516,14 +519,27 @@ digits enclosed within single quotes, for example ``X'0044'``.
 VARBINARY's NoSQL equivalent is ``'varbinary'`` but not character string -- the
 MessagePack storage is MP_BIN (MsgPack binary).
 
+.. _sql_data_type_uuid:
+
+UUID (Universally unique identifier) values are 32 hexadecimal digits, or NULL.
+The usual format is a string with five fields separated by hyphens, 8-4-4-4-12,
+for example ``'000024ac-7ca6-4ab2-bd75-34742ac91213'``.
+The MessagePack storage is MP_EXT (MsgPack extension) with 16 bytes.
+UUID values may be created with
+Tarantool/NoSQL :ref:`Module uuid <uuid-module>`,
+or with the :ref:`UUID() function <sql_function_uuid>`,
+or with the :ref:`CAST() function <sql_function_cast>`.
+UUID support was added in Tarantool version 2.9.1.
+
 .. _sql_data_type_scalar:
 
 SCALAR can be used for
 :ref:`column definitions <sql_column_def_data_type>` but the individual column values have
-one of the preceding types -- BOOLEAN, INTEGER, DOUBLE, STRING, or VARBINARY.
+one of the preceding types -- BOOLEAN, INTEGER, DOUBLE, STRING, VARBINARY, or UUID.
 See more about SCALAR in the section
 :ref:`Column definition -- the rules for the SCALAR data type <sql_column_def_scalar>`.
 The data-type may be followed by :ref:`[COLLATE collation-name] <sql_collate_clause>`.
+
 
 Any value of any data type may be NULL. Ordinarily NULL will be cast to the
 data type of any operand it is being compared to or to the data type of the
@@ -830,13 +846,11 @@ A statement consists of SQL-language keywords and expressions that direct Tarant
 Statements begin with one of the words
 ALTER ANALYZE COMMIT CREATE DELETE DROP EXPLAIN INSERT PRAGMA RELEASE REPLACE ROLLBACK SAVEPOINT
 SELECT SET START TRUNCATE UPDATE VALUES WITH.
-Statements should end with ";" semicolon although this is not mandatory.
+Statements should end with “;” semicolon although this is not mandatory.
 
 A client sends a statement to the Tarantool server.
 The Tarantool server parses the statement and executes it.
 If there is an error, Tarantool returns an error message.
-
-SQL statements should end with ; (semicolon); this is not mandatory but it is recommended.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 List of legal statements
@@ -913,12 +927,13 @@ The specific situations in this chart follow the general rules:
 
 .. code-block:: none
 
-    ~                To BOOLEAN | To number  | To STRING | To VARBINARY
-    ---------------  ----------   ----------   ---------   ------------
-    From BOOLEAN   | AAA        | S--        | A--       | ---
-    From number    | A--        | SSA        | A-A       | ---
-    From STRING    | S--        | S-S        | AAA       | A--
-    From VARBINARY | ---        | ---        | A--       | AAA
+    ~                To BOOLEAN | To number  | To STRING | To VARBINARY | To UUID
+    ---------------  ----------   ----------   ---------   ------------   -------
+    From BOOLEAN   | AAA        | S--        | A--       | ---          | ---
+    From number    | A--        | SSA        | A-A       | ---          | ---
+    From STRING    | S--        | S-S        | AAA       | A--          | SS-
+    From VARBINARY | ---        | ---        | A--       | AAA          | SS-
+    From UUID      | ---        | ---        | AA-       | AA-          | AAA
 
 Where each entry in the chart has 3 characters: |br|
 Where A = Always allowed, S = Sometimes allowed, - = Never allowed. |br|
@@ -935,7 +950,13 @@ From STRING to INTEGER or UNSIGNED is allowed only if the string has a represent
 and the result is not out of range,
 and the number has no post-decimal digits. |br|
 From STRING to DOUBLE or NUMBER is allowed only if the string has a representation of a number. |br|
-From BOOLEAN to number is allowed only if the number is not DOUBLE.
+From BOOLEAN to number is allowed only if the number is not DOUBLE. |br|
+From STRING to UUID is allowed only if the value is
+(8 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (12 hexadecimal digits),
+such as ``'8e3b281b-78ad-4410-bfe9-54806a586a90'``. |br|
+From VARBINARY to UUID is allowed only if the value is
+(32 hexadecimal digits),
+such as ``X'8e3b281b78ad4410bfe954806a586a90'``. |br|
 The chart does not show To|From SCALAR because the conversions depend on the type of the value,
 not the type of the column definition.
 Explicit cast to SCALAR is allowed but has no effect, the result data type is always the same as the original data type.

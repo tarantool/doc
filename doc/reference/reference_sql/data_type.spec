@@ -29,6 +29,7 @@ stack (
         )
       ),
       line(' UNSIGNED '),
+      line(' UUID '),
       line(' VARBINARY '),
       line(
         line(' VARCHAR ','(', 'integer', ')'),

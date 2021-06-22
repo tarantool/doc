@@ -279,7 +279,7 @@ Column definition -- data type
 |br|
 
 Every column has a data type:
-BOOLEAN or DOUBLE or INTEGER or NUMBER or SCALAR or STRING or UNSIGNED or VARBINARY.
+BOOLEAN or DOUBLE or INTEGER or NUMBER or SCALAR or STRING or UNSIGNED or UUID or VARBINARY.
 The detailed description of data types is in the section
 :ref:`Operands <sql_operands>`.
 
@@ -485,8 +485,9 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
     column7 STRING, column8 STRING COLLATE "unicode",
     column9 TEXT, columna TEXT COLLATE "unicode_sv_s1",
     columnb VARCHAR(0), columnc VARCHAR(100000) COLLATE "binary",
-    columnd VARBINARY,
-    columne SCALAR, columnf SCALAR COLLATE "unicode_uk_s2");
+    columnd UUID,
+    columne VARBINARY,
+    columnf SCALAR, columng SCALAR COLLATE "unicode_uk_s2");
 
 .. code-block:: sql
 
@@ -2802,6 +2803,7 @@ Now that does not happen. Behavior change is done by updating the
     |                     |                 | |br|                                            |
     |                     |                 | (first column number is 0) |br|                 |
     |                     |                 | (STRING) name -- column name |br|               |
+    |                     |                 | (STRING) type |br|                              |
     |                     |                 | (INTEGER) notnull -- whether the column is      |
     |                     |                 | NOT NULL. 0 is                                  |
     |                     |                 | false, 1 is true. |br|                          |
@@ -2814,7 +2816,7 @@ Example: (not showing result set metadata)
 
 .. code-block:: none
 
-   PRAGMA table_info('T');
+   PRAGMA table_info(T);
    ---
    - - [0, 's1', 'integer', 1, null, 1]
      - [1, 's2', 'integer', 0, null, 0]
@@ -2935,7 +2937,7 @@ Also, although CREATE AND DROP and ALTER statements are legal in transactions,
 there are a few exceptions. For example, :samp:`CREATE INDEX ON {table_name} ...` will fail within a
 multi-statement transaction if the table is not empty.
 
-However,transaction control statements still may not work as you expect when
+However, transaction control statements still may not work as you expect when
 run over a network connection:
 a transaction is associated with a fiber, not a network connection, and
 different transaction control statements sent via the same network connection
@@ -3132,7 +3134,7 @@ Syntax:
 
 Apply a built-in function to one or more expressions and return a scalar value.
 
-Tarantool supports 32 built-in functions.
+Tarantool supports 33 built-in functions.
 
 The maximum number of operands for any function is 127.
 
@@ -3170,6 +3172,8 @@ Syntax:
 
 Return the expression value after casting to the specified
 :ref:`data type <sql_column_def_data_type>`.
+
+Warning: CAST to/from UUID may change some components to/from little-endian.
 
 Examples: ``CAST('AB' AS VARBINARY)``, ``CAST(X'4142' AS STRING)``
 
@@ -3723,6 +3727,24 @@ Return the expression, with lower-case characters converted to upper case.
 The reverse of ``UPPER`` is :ref:`LOWER <sql_function_lower>`.
 
 Example: ``UPPER('-4щl')`` is '-4ЩL'.
+
+.. _sql_function_uuid:
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+UUID
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Syntax:
+
+:samp:`UUID([integer])`
+
+Return a Universal Unique Identifier, data type UUID.
+Optionally one can specify a version number; however, at this time the
+only allowed version is 4, which is the default.
+UUID support was added in Tarantool version 2.9.1.
+
+Example: ``UUID()`` or ``UUID(4)``
+
 
 .. _sql_function_version:
 
