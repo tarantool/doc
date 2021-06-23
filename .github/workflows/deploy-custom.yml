@@ -45,11 +45,22 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Fetch submodules
-        run: git fetch --recurse-submodules
+      - name: Pull submodules
+        run: |
+          git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+          git fetch --recurse-submodules
 
-      - name: Set branch name from source branch
-        run: echo "BRANCH_NAME=${INPUT_ENV_NAME}" >> $GITHUB_ENV
+      - name: Update inputs
+        run: |
+          echo "BRANCH_NAME=${{github.event.inputs.env_name}}" >> $GITHUB_ENV
+          echo "workaround until actions/runner#655 is fixed"
+          echo "INPUT_CARTRIDGE=${{github.event.inputs.cartridge}}" >> $GITHUB_ENV
+          echo "INPUT_CARTRIDGE_CLI=${{github.event.inputs.cartridge_cli}}" >> $GITHUB_ENV
+          echo "INPUT_GRAFANA=${{github.event.inputs.grafana}}" >> $GITHUB_ENV
+          echo "INPUT_LUATEST=${{github.event.inputs.luatest}}" >> $GITHUB_ENV
+          echo "INPUT_METRICS=${{github.event.inputs.metrics}}" >> $GITHUB_ENV
+          echo "INPUT_K8S_OPERATOR=${{github.event.inputs.k8s_operator}}" >> $GITHUB_ENV
+          echo "INPUT_CPP_DRIVER=${{github.event.inputs.cpp_driver}}" >> $GITHUB_ENV
 
       - name: Start dev server deployment
         uses: bobheadxi/deployments@v0.5.2
@@ -57,7 +68,7 @@ jobs:
         with:
           step: start
           token: ${{secrets.GITHUB_TOKEN}}
-          env: "branch-${{env.BRANCH_NAME}}"
+          env: ${{env.BRANCH_NAME}}
           ref: ${{github.head_ref}}
 
       - run: cmake .

@@ -45,9 +45,13 @@ def main():
 
 def checkout_submodule(directory, git_ref='origin/master'):
     print(f'Checking out {directory} module into {git_ref}')
-    git_checkout = f'set -ex ; git checkout {git_ref}'
+    path = os.path.join(workdir, directory)
+    print(path)
+    subprocess.check_call('set -ex ; git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"', shell=True,
+                          cwd=path)
+    git_checkout = f'set -ex ; git remote update ; git checkout {git_ref}'
     subprocess.check_call(git_checkout, shell=True,
-                          cwd=os.path.join(workdir, directory))
+                          cwd=path)
 
 
 def mkdir_p(path):
