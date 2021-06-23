@@ -1279,7 +1279,7 @@ The fields within IPROTO_BALLOT are map items:
     IPROTO_BALLOT_IS_LOADING (0x04) + MP_BOOL
     IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
 
-IPROTO_BALLOt-IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
+IPROTO_BALLOT-IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
 
 The items other than IPROTO_BALLOT_IS_ANON were added in version :doc:`2.6.1 </release/2.6.1>`.
 PROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
