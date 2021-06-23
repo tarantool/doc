@@ -1279,7 +1279,7 @@ The fields within IPROTO_BALLOT are map items:
     IPROTO_BALLOT_IS_LOADING (0x04) + MP_BOOL
     IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
 
-IPROTO_BALLOt-IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
+IPROTO_BALLOT-IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
 
 The items other than IPROTO_BALLOT_IS_ANON were added in version :doc:`2.6.1 </release/2.6.1>`.
 PROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
@@ -1467,9 +1467,13 @@ example:
 
 Byte codes, if we use the same net.box connection that
 we used for :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-and we say |br|
-``conn:execute([[CREATE TABLE t1 (dd INT PRIMARY KEY AUTOINCREMENT, дд STRING COLLATE "unicode");]])`` |br|
-``conn:execute([[INSERT INTO t1 VALUES (NULL, 'a'), (NULL, 'b');]])`` |br|
+and we say
+
+..  code-block::
+
+    conn:execute([[CREATE TABLE t1 (dd INT PRIMARY KEY AUTOINCREMENT, дд STRING COLLATE "unicode");]])
+    conn:execute([[INSERT INTO t1 VALUES (NULL, 'a'), (NULL, 'b');]])
+
 and we watch what tcpdump displays, we will see two noticeable things:
 (1) the CREATE statement caused a schema change so the response has
 a new IPROTO_SCHEMA_VERSION value and the body includes
