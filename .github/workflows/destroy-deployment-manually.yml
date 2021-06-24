@@ -18,8 +18,9 @@ jobs:
       - name: Remove dev server deployment at ${{env.DEPLOYMENT_NAME}}
         uses: strumwolf/delete-deployment-environment@v2
         with:
-          token: "${{ secrets.MANAGE_ENVIRONMENTS_TOKEN }}"
+          token: "${{ secrets.TARANTOOLBOT_TOKEN }}"
           environment: ${{ env.DEPLOYMENT_NAME }}
+#          onlyRemoveDeployments: true
 
       - run: |
           curl -X DELETE -d '{"update_key":"${{secrets.TARANTOOL_UPDATE_KEY}}"}' -H "Content-Type: application/json" ${{secrets.TARANTOOL_DEV_UPDATE_URL}}${{env.DEPLOYMENT_NAME}}/
