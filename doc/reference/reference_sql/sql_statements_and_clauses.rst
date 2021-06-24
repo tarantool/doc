@@ -3173,7 +3173,7 @@ Syntax:
 Return the expression value after casting to the specified
 :ref:`data type <sql_column_def_data_type>`.
 
-Warning: CAST to/from UUID may change some components to/from little-endian.
+CAST to/from UUID may change some components to/from little-endian.
 
 Examples: ``CAST('AB' AS VARBINARY)``, ``CAST(X'4142' AS STRING)``
 
@@ -3741,7 +3741,7 @@ Syntax:
 Return a Universal Unique Identifier, data type UUID.
 Optionally one can specify a version number; however, at this time the
 only allowed version is 4, which is the default.
-UUID support was added in Tarantool version 2.9.1.
+UUID support in SQL was added in Tarantool version 2.9.1.
 
 Example: ``UUID()`` or ``UUID(4)``
 

@@ -459,7 +459,8 @@ and minimum / maximum literal examples.
     +-----------+------------+------------+----------------------+-------------------------+
     | VARBINARY | varbinary  | (none)     | ``X''``              | ``X'many-hex-digits'``  |
     +-----------+------------+------------+----------------------+-------------------------+
-    | UUID      | uuid       | (none)     | 32 '0's              | 32 'f's                 |
+    | UUID      | uuid       | (none)     | 00000000-0000-0000-  | ffffffff-ffff-ffff-     |
+    |           |            |            | 0000-000000000000    | dfff-ffffffffffff       |
     +-----------+------------+------------+----------------------+-------------------------+
     | SCALAR    | scalar     | (none)     | FALSE                |  ``X'many-hex-digits'`` |
     +-----------+------------+------------+----------------------+-------------------------+
@@ -529,7 +530,7 @@ UUID values may be created with
 Tarantool/NoSQL :ref:`Module uuid <uuid-module>`,
 or with the :ref:`UUID() function <sql_function_uuid>`,
 or with the :ref:`CAST() function <sql_function_cast>`.
-UUID support was added in Tarantool version 2.9.1.
+UUID support in SQL was added in Tarantool version 2.9.1.
 
 .. _sql_data_type_scalar:
 
