@@ -4,7 +4,7 @@ Tarantool 2.8.1
 Released on 2021-04-21.
 
 *   Release :tarantool-release:`2.8.1`.
-*   Tagged ``2.8.1-0-ge2a1ec0``
+*   Tagged ``2.8.1-0-ge2a1ec0``.
 
 Overview
 --------
@@ -44,7 +44,7 @@ Core
 
 -   The ``exclude_null`` option can now be used in the index part definition.
     With this option, the index filters and doesn't store tuples with "null" value
-    of the corresponding part part (:tarantool-issue:`4480`).
+    of the corresponding part (:tarantool-issue:`4480`).
 
     For example, an index created with
     ``s:create_index('sk', {parts={{2, 'number', exclude_null=true}}})``
@@ -92,7 +92,7 @@ Core
 -   The new ``box.lib`` module allows loading and executing C
     stored procedures on read-only nodes (:tarantool-issue:`4642`).
 
--   Configuration options in `box.cfg` can now be defined with environment variables
+-   Configuration options in ``box.cfg`` can now be defined with environment variables
     (:tarantool-issue:`5602`).
 
     The priority of sources of configuration options is the following, from higher to lower:
@@ -157,7 +157,7 @@ Tools
 Build
 ~~~~~
 
--   Tarantool build infrastructure now requires CMake version 3.1 or later.
+-   Tarantool build infrastructure now requires CMake version 3.2 or later.
 
 -   Binary packages for Fedora 33 are now available (:tarantool-issue:`5502`) .
 
@@ -272,8 +272,8 @@ Replication
     (:tarantool-issue:`5445`).
 
 
-Module swim
-~~~~~~~~~~~
+Swim
+~~~~
 
 -   Fixed an issue where ``<swim_instance>:broadcast()`` did not work on non-local
     addresses and spammed "Permission denied" errors to the log.
@@ -302,7 +302,7 @@ Lua
 ~~~
 
 -   Fixed the `-e` option, when ``tarantool`` used to enter the interactive mode when
-    stdin is a TTY. Now, ``tarantool -e 'print"Hello"'`` doesn't enter the
+    stdin is a TTY. Now, ``tarantool -e "print('Hello')")`` doesn't enter the
     interactive mode, but just prints "Hello" and exits
     (:tarantool-issue:`5040`).
 
