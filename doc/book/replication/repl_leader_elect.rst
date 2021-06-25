@@ -53,7 +53,7 @@ After the first boot, each node has its term equal to 1. When a node sees that
 it is not a leader and there is no leader available for some time in the replica
 set, it increases the term and starts a new leader election round.
 
-*Leader election* happens via votes. The node which started the election votes
+Leader election happens via votes. The node which started the election votes
 for itself and sends vote requests to other nodes.
 Upon receiving vote requests, a node votes for the first of them, and then cannot
 do anything in the same term but wait for a leader being elected.
@@ -79,7 +79,7 @@ newest data. So as if an old leader managed to send something before its death
 to a quorum of replicas, that data wouldn't be lost.
 
 When :ref:`election is enabled <repl_leader_elect_config>`, there must be connections
-between each node pair so as it would be the full-mesh topology. This is needed
+between each node pair so as it would be the full mesh topology. This is needed
 because election messages for voting and other internal things need direct
 connection between the nodes.
 
