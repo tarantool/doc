@@ -956,8 +956,8 @@ From STRING to UUID is allowed only if the value is
 (8 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (12 hexadecimal digits),
 such as ``'8e3b281b-78ad-4410-bfe9-54806a586a90'``. |br|
 From VARBINARY to UUID is allowed only if the value is
-(32 hexadecimal digits),
-such as ``X'8e3b281b78ad4410bfe954806a586a90'``. |br|
+16 bytes long,
+as in ``X'8e3b281b78ad4410bfe954806a586a90'``. |br|
 The chart does not show To|From SCALAR because the conversions depend on the type of the value,
 not the type of the column definition.
 Explicit cast to SCALAR is allowed but has no effect, the result data type is always the same as the original data type.
