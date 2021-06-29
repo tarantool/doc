@@ -10,12 +10,13 @@ write, publish, and collaborate on the Tarantool documentation.
 The guidelines are a work in progress, and we welcome all contributions.
 
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Contents:
 
     docs/style
     docs/terms
     docs/markup
+    docs/reuse
     docs/examples
     docs/build
     docs/sphinx-warnings
