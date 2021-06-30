@@ -847,7 +847,7 @@ A statement consists of SQL-language keywords and expressions that direct Tarant
 Statements begin with one of the words
 ALTER ANALYZE COMMIT CREATE DELETE DROP EXPLAIN INSERT PRAGMA RELEASE REPLACE ROLLBACK SAVEPOINT
 SELECT SET START TRUNCATE UPDATE VALUES WITH.
-Statements should end with “;” semicolon although this is not mandatory.
+Statements should end with ``;`` semicolon although this is not mandatory.
 
 A client sends a statement to the Tarantool server.
 The Tarantool server parses the statement and executes it.
