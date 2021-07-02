@@ -97,7 +97,7 @@
     keywords, which tell syslogd where the message should go.
     The possible values are: auth, authpriv, cron, daemon, ftp,
     kern, lpr, mail, news, security, syslog, user, uucp, local0, local1, local2,
-    local3, local4, local5, local6, local7. The default value is: user.
+    local3, local4, local5, local6, local7. The default value is: local7.
 
     The ``syslog:server`` setting is the locator for the syslog server.
     It can be a Unix socket path beginning with "unix:", or an ipv4 port number.
