@@ -159,7 +159,7 @@ Build
 
 -   Tarantool build infrastructure now requires CMake version 3.2 or later.
 
--   Binary packages for Fedora 33 are now available (:tarantool-issue:`5502`) .
+-   Binary packages for Fedora 33 are now available (:tarantool-issue:`5502`).
 
 -   Binary packages for CentOS 6 and Debian Jessie won't be published since this version.
 
