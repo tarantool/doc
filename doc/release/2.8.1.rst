@@ -128,7 +128,7 @@ LuaJIT
 
     **Breaking change**: Line info of the line function definition is now saved in
     symbol info table by field ``linedefined``.
-    Field ``name`` has been renamed to ``source`` with the respect to the Lua Debug API.
+    The field ``name`` has been renamed to ``source`` with respect to the Lua Debug API.
 
 -   A number of improvements in the memory profiler parser:
 
