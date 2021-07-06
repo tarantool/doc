@@ -13,4 +13,4 @@ how to connect to a Tarantool database from other programming languages.
 
    getting_started_db
    getting_started_connectors
-   getting_started_cartridge
+   ../book/cartridge/dev/getting-started
