@@ -93,10 +93,10 @@ A template:
       by a single space, with blank lines in between, but conventions
       vary here.
 
-    Fixes: #123
-    Closes: #456
-    Needed for: #859
-    See also: #343, #789
+    Fixes #123
+    Closes #456
+    Needed for #859
+    See also #343, #789
 
 Some real-world examples:
 
