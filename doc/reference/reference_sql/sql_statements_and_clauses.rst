@@ -2227,7 +2227,7 @@ and returns a table with rows in order.
 Sorting order:
 
 * The default order is ASC (ascending), the optional order is DESC (descending).
-* NULLs come first, then BOOLEANs, then numbers, then STRINGs, then VARBINARYs.
+* NULLs come first, then BOOLEANs, then numbers, then STRINGs, then VARBINARYs, then UUIDs.
 * Within STRINGs, ordering is according to collation.
 * Collation may be specified with a :ref:`COLLATE clause <sql_collate_clause>` within the ORDER BY column-list, or may be default.
 

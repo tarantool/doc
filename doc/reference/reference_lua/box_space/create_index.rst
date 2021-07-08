@@ -299,9 +299,11 @@ and what index types are allowed.
               double-precision floating-point numbers, or
               exact numbers, or
               strings, or
-              (varbinary) byte arrays.
+              (varbinary) byte arrays, or
+              uuids.
               When there is a mix of types, the key order is: null,
-              then booleans, then numbers, then strings, then byte arrays
+              then booleans, then numbers, then strings, then byte arrays,
+              then uuids.
             - memtx TREE or HASH indexes;
 
               vinyl TREE indexes
