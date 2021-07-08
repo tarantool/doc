@@ -5,7 +5,7 @@ on:
 jobs:
   deploy-branch:
     runs-on: ubuntu-latest
-    container: tarantool/doc-builder:v1
+    container: tarantool/doc-builder:v2
     env:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}

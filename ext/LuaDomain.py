@@ -32,7 +32,7 @@ from docutils.parsers.rst import directives
 from sphinx import addnodes
 from sphinx import version_info as sphinx_version_info
 from sphinx.roles import XRefRole
-from sphinx.locale import l_, _
+from sphinx.locale import _
 from sphinx.domains import Domain, ObjType, Index
 from sphinx.directives import ObjectDescription
 from sphinx.util.nodes import make_refnode
@@ -334,7 +334,7 @@ class LuaObject(ObjectDescription):
 
 class LuaClass(LuaObject):
     doc_field_types = [
-        Field('extend', label=l_('Extends'), has_arg=False,
+        Field('extend', label=_('Extends'), has_arg=False,
               names=('extend',)),
     ]
 
@@ -357,15 +357,15 @@ class LuaFunction(LuaObject):
     typename = "function"
 
     doc_field_types = [
-        TypedField('parameter', label=l_('Parameters'),
+        TypedField('parameter', label=_('Parameters'),
                    names=('param', 'parameter', 'arg', 'argument'),
                    typerolename='obj', typenames=('paramtype', 'type', 'ptype')),
-        TypedField('returnvalues', label=l_('Returns'),
+        TypedField('returnvalues', label=_('Returns'),
                   names=('return', 'ret'), typerolename='obj',
                   typenames=('rtype', 'type')),
-        Field('returnvalue', label=l_('Returns'), has_arg=False,
+        Field('returnvalue', label=_('Returns'), has_arg=False,
               names=('returns')),
-        Field('returntype', label=l_('Return type'), has_arg=False,
+        Field('returntype', label=_('Return type'), has_arg=False,
               names=('returntype',)),
     ]
 
@@ -379,18 +379,18 @@ class LuaFunction(LuaObject):
         return '%s()' % (names['fullname'])
 
 class LuaVarFunction(LuaObject):
-    typename = l_("varfunc")
+    typename = _("varfunc")
 
     doc_field_types = [
-        TypedField('parameter', label=l_('Parameters'),
+        TypedField('parameter', label=_('Parameters'),
                    names=('param', 'parameter', 'arg', 'argument'),
                    typerolename='obj', typenames=('paramtype', 'type', 'ptype')),
-        TypedField('returnvalues', label=l_('Returns'),
+        TypedField('returnvalues', label=_('Returns'),
                   names=('return', 'ret'), typerolename='obj',
                   typenames=('rtype', 'type')),
-        Field('returnvalue', label=l_('Returns'), has_arg=False,
+        Field('returnvalue', label=_('Returns'), has_arg=False,
               names=('returns')),
-        Field('returntype', label=l_('Return type'), has_arg=False,
+        Field('returntype', label=_('Return type'), has_arg=False,
               names=('returntype',)),
     ]
 
@@ -439,7 +439,7 @@ class LuaData(LuaObject):
     )
 
     doc_field_types = [
-        Field('type', label=l_('Type'), has_arg=False,
+        Field('type', label=_('Type'), has_arg=False,
               names=('type',)),
     ]
 
@@ -450,7 +450,7 @@ class LuaData(LuaObject):
             return self.options.get('objtype') or ""
 
 class LuaAttribute(LuaData):
-    typename = l_("attribute")
+    typename = _("attribute")
 
     lua_class_re = re.compile(
         r'''([\w\./\-]+):([\w\./\-]+)?
@@ -471,18 +471,18 @@ class LuaAttribute(LuaData):
             return None, None
 
 class LuaOperator(LuaObject):
-    typename = l_("operator")
+    typename = _("operator")
 
     doc_field_types = [
-        TypedField('parameter', label=l_('Parameters'),
+        TypedField('parameter', label=_('Parameters'),
                    names=('param', 'parameter', 'arg', 'argument'),
                    typerolename='obj', typenames=('paramtype', 'type', 'ptype')),
-        TypedField('returnvalues', label=l_('Returns'),
+        TypedField('returnvalues', label=_('Returns'),
                   names=('return', 'ret'), typerolename='obj',
                   typenames=('rtype', 'type')),
-        Field('returnvalue', label=l_('Returns'), has_arg=False,
+        Field('returnvalue', label=_('Returns'), has_arg=False,
               names=('returns')),
-        Field('returntype', label=l_('Return type'), has_arg=False,
+        Field('returntype', label=_('Return type'), has_arg=False,
               names=('returntype',)),
     ]
 
@@ -706,8 +706,8 @@ class LuaModuleIndex(Index):
     Index subclass to provide the Lua module index.
     """
     name = 'modindex'
-    localname = l_('Lua Module Index')
-    shortname = l_('modules')
+    localname = _('Lua Module Index')
+    shortname = _('modules')
 
     def generate(self, docnames=None):
         content = {}
@@ -776,14 +776,14 @@ class LuaDomain(Domain):
     name = 'lua'
     label = 'Lua'
     object_types = {
-        'class':         ObjType(l_('class'),      'class',  'obj'),
-        'attribute':     ObjType(l_('attribute'),  'data',   'obj'),
-        'function':      ObjType(l_('function'),   'func',   'obj'),
-        'varunc':        ObjType(l_('varfunc'),    'func',   'obj'),
-        'method':        ObjType(l_('method'),     'func',   'obj'),
-        'operator':      ObjType(l_('operator'),   'func',   'obj'),
-        'module':        ObjType(l_('module'),     'mod',    'obj'),
-        'data':          ObjType(l_('data'),       'data',   'obj'),
+        'class':         ObjType(_('class'),      'class',  'obj'),
+        'attribute':     ObjType(_('attribute'),  'data',   'obj'),
+        'function':      ObjType(_('function'),   'func',   'obj'),
+        'varunc':        ObjType(_('varfunc'),    'func',   'obj'),
+        'method':        ObjType(_('method'),     'func',   'obj'),
+        'operator':      ObjType(_('operator'),   'func',   'obj'),
+        'module':        ObjType(_('module'),     'mod',    'obj'),
+        'data':          ObjType(_('data'),       'data',   'obj'),
     }
 
     directives = {

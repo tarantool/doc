@@ -130,4 +130,4 @@ class LuaLexer(RegexLexer):
 
 
 def setup(app):
-    app.add_lexer("lua_tarantool", LuaLexer())
+    app.add_lexer("lua_tarantool", LuaLexer)

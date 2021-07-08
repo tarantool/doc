@@ -60,4 +60,4 @@ class TAPLexer(RegexLexer):
     }
 
 def setup(app):
-    app.add_lexer('tap', TAPLexer())
+    app.add_lexer('tap', TAPLexer)
