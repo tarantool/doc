@@ -28,6 +28,11 @@ def cleanup_files(extension):
         po_file.header = ''
         po_file.metadata = {}
         po_file.metadata_is_fuzzy = False
+
+        for item in po_file:
+            # item: POEntry = item
+            item.occurrences = None
+
         po_file.save()
 
 

@@ -16,6 +16,11 @@ jobs:
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEV_UPDATE_URL}}
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Fetch submodules
+        run: git fetch --recurse-submodules
 
       - name: Set branch name from source branch
         run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
@@ -29,8 +34,9 @@ jobs:
           env: "branch-${{env.BRANCH_NAME}}"
           ref: ${{github.head_ref}}
 
-      - run: bash update_submodules.sh
       - run: cmake .
+      - run: make pull-modules
+      - run: make build-modules
       - run: make json
       - run: make json-ru
       - run: curl ${{secrets.WAKEUP_URL}} --connect-timeout 300 --retry 3 --retry-delay 30 >> /dev/null

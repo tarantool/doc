@@ -1,4 +1,4 @@
-name: Update translation sources
+name: Update translations on the main branch
 
 on:
   workflow_dispatch:
@@ -6,9 +6,11 @@ on:
     branches:
       - "1.10"
     paths:
-      - 'doc/**.rst'
+      - 'doc/**/*.rst'
+      - 'locale/ru/**/*.po'
+      - 'crowdin.yaml'
 jobs:
-  autocommit-pot-files:
+  update-translations:
     runs-on: ubuntu-latest
     container: tarantool/doc-builder:v1
 
@@ -23,18 +25,13 @@ jobs:
     - name: Update pot files
       run: make update-pot
 
-    - name: Push Local Changes
-      uses: stefanzweifel/git-auto-commit-action@v4.1.2
-      with:
-        commit_message: "Update translation sources"
-        file_pattern: "*.pot"
-
     - name: Push Pot-files to crowdin
       uses: crowdin/github-action@1.0.21
       with:
+        crowdin_branch_name: '1.10'
         upload_sources: true
-        debug_mode: true
-        crowdin_branch_name: "1.10"
+        upload_translations: true
+        import_eq_suggestions: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
