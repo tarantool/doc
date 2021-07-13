@@ -1284,8 +1284,8 @@ The fields within IPROTO_BALLOT are map items:
 IPROTO_BALLOT_IS_RO_CFG and IPRO_BALLOT_VCLOCK and IPROTO_BALLOT_GC_VCLOCK and IPROTO_BALLOT_IS_RO
 were added in version :doc:`2.6.1 </release/2.6.1>`.
 IPROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
-IPROTO_BALLOT_IS_BOOTED was added in version 2.7.2.
-There have been some name changes starting with version 2.7.2:
+IPROTO_BALLOT_IS_BOOTED was added in version 2.7.3 and 2.8.2 and 2.9.1.
+There have been some name changes starting with version 2.7.3 and 2.8.2 and 2.9.1:
 IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO,
 and IPROTO_BALLOT_IS_RO was formerly called IPROTO_BALLOT_IS_LOADING.
 
