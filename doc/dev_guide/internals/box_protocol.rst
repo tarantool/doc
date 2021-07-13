@@ -168,11 +168,12 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_EXPR=0x27
     IPROTO_OPS=0x28
     IPROTO_BALLOT=0x29
-    IPROTO_BALLOT_IS_RO=0x01
+    IPROTO_BALLOT_IS_RO_CFG=0x01
     IPROTO_BALLOT_VCLOCK=0x02
     IPROTO_BALLOT_GC_VCLOCK=0x03
-    IPROTO_BALLOT_IS_LOADING=0x04
+    IPROTO_BALLOT_IS_RO=0x04
     IPROTO_BALLOT_IS_ANON=0x05
+    IPROTO_BALLOT_IS_BOOTED=0x06
     IPROTO_TUPLE_META=0x2a
     IPROTO_OPTIONS=0x2b
     IPROTO_DATA=0x30
@@ -1273,16 +1274,36 @@ The fields within IPROTO_BALLOT are map items:
 
 ..  code-block:: none
 
-    IPROTO_BALLOT_IS_RO (0x01) + MP_BOOL
+    IPROTO_BALLOT_IS_RO_CFG (0x01) + MP_BOOL
     IPROTO_BALLOT_VCLOCK (0x02) + vclock
     IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock
-    IPROTO_BALLOT_IS_LOADING (0x04) + MP_BOOL
+    IPROTO_BALLOT_IS_RO (0x04) + MP_BOOL
     IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
+    IPROTO_BALLOT_IS_BOOTED = 0x06 + MP_BOOL
 
-IPROTO_BALLOt-IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
+IPROTO_BALLOT_IS_RO_CFG and IPRO_BALLOT_VCLOCK and IPROTO_BALLOT_GC_VCLOCK and IPROTO_BALLOT_IS_RO
+were added in version :doc:`2.6.1 </release/2.6.1>`.
+IPROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
+IPROTO_BALLOT_IS_BOOTED was added in version 2.7.2.
+There have been some name changes starting with version 2.7.2:
+IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO,
+and IPROTO_BALLOT_IS_RO was formerly called IPROTO_BALLOT_IS_LOADING.
 
-The items other than IPROTO_BALLOT_IS_ANON were added in version :doc:`2.6.1 </release/2.6.1>`.
-PROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
+IPROTO_BALLOT_IS_RO_CFG corresponds to :ref:`box.cfg.read_only <cfg_basic-read_only>`.
+
+IPROTO_BALLOT_GC_VCLOCK may have the value of the instance's oldest
+WAL entry, which corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
+
+IPROTO_BALLOT_RO is true if the instance is not writable,
+which may happen for a variety of reasons, such as:
+it was configured as :ref:`read_only <cfg_basic-read_only>`,
+or it has :ref:`orphan status <replication-orphan_status>`,
+or it is a :ref:`Raft <repl_leader_elect>` follower.
+
+IPROTO_BALLOT_IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
+
+IPROTO_BALLOT_IS_BOOTED is true if the instance has finished its
+bootstrap or recovery process.
 
 ..  _box_protocol-flags:
 
