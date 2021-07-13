@@ -39,8 +39,8 @@ To control the behavior of synchronous transactions, there exist global
     box.cfg{replication_synchro_quorum = <number of instances>}
 
 This option tells how many replicas should confirm the receipt of a synchronous
-transaction before it can finish its commit. So far this option accounts all
-replicas, including anonymous. As a usage example, consider this:
+transaction before it is committed. So far, this option accounts for all
+replicas including anonymous ones. As a usage example, consider this:
 
 .. code-block:: lua
 
@@ -116,23 +116,23 @@ When there is more than one synchronous transaction, they all wait for being
 replicated. Moreover, if an asynchronous transaction appears, it will
 also be blocked by the existing synchronous transactions. This behavior is very
 similar to a regular queue of asynchronous transactions because all the transactions
-finish their commits in the same order as they start them.
+are committed in the same order as they make the ``box.commit()`` call.
 So, here comes **the commit rule**:
-transactions always finish their commits in the same order as they start
-them  -- regardless of being synchronous or asynchronous.
+transactions are committed in the same order as they make
+the ``box.commit()`` call—regardless of being synchronous or asynchronous.
 
 If one of the waiting synchronous transactions times out and is rolled back, it
 will first roll back all the newer pending transactions. Again, just like how
 asynchronous transactions are rolled back when WAL write fails.
 So, here comes **the rollback rule:**
-transactions are always rolled back in the order reversed from the commit start
-order -- regardless of being synchronous or asynchronous.
+transactions are always rolled back in the order reversed from the one they
+make the ``box.commit()`` call—regardless of being synchronous or asynchronous.
 
-One more important thing is that if an asynchronous transaction is blocked on
+One more important thing is that if an asynchronous transaction is blocked by
 a synchronous transaction, it does not become synchronous as well.
 This just means it will wait for the synchronous transaction to be committed.
-But once it is done, the asynchronous transaction will finish its commit
-immediately -- it won't wait for being replicated itself.
+But once it is done, the asynchronous transaction will be committed
+immediately—it won't wait for being replicated itself.
 
 --------------------------------------------------------------------------------
 Limitations and known problems
