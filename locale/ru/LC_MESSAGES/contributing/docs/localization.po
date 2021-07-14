@@ -1,0 +1,108 @@
+
+msgid "Localization"
+msgstr ""
+
+msgid "State of localization"
+msgstr ""
+
+msgid "Repository"
+msgstr ""
+
+msgid "State"
+msgstr ""
+
+msgid "Volume, words"
+msgstr ""
+
+msgid "Tarantool Community"
+msgstr ""
+
+msgid "|doc|"
+msgstr ""
+
+msgid "352 000"
+msgstr ""
+
+msgid "Cartridge"
+msgstr ""
+
+msgid "|cartridge|"
+msgstr ""
+
+msgid "14 000"
+msgstr ""
+
+msgid "Tarantool Ansible Role"
+msgstr ""
+
+msgid "|tarantool-ansible-role|"
+msgstr ""
+
+msgid "11 000"
+msgstr ""
+
+msgid "Cartridge CLI"
+msgstr ""
+
+msgid "|cartridge-cli|"
+msgstr ""
+
+msgid "6 500"
+msgstr ""
+
+msgid "Tarantool Enterprise"
+msgstr ""
+
+msgid "|tarantool-enterprise|"
+msgstr ""
+
+msgid "6 000"
+msgstr ""
+
+msgid "Tarantool Data Grid"
+msgstr ""
+
+msgid "|tarantool-data-grid|"
+msgstr ""
+
+msgid "4 000"
+msgstr ""
+
+msgid "Tarantool Metrics"
+msgstr ""
+
+msgid "|tarantool-metrics|"
+msgstr ""
+
+msgid "Tarantool C++ Driver"
+msgstr ""
+
+msgid "|tarantool-cpp|"
+msgstr ""
+
+msgid "Tarantool Kubernetes Operator"
+msgstr ""
+
+msgid "|tarantool-kubernetes-operator|"
+msgstr ""
+
+msgid "2 750"
+msgstr ""
+
+msgid "Tarantool Luatest"
+msgstr ""
+
+msgid "|tarantool-luatest|"
+msgstr ""
+
+msgid "750"
+msgstr ""
+
+msgid "Tarantool Graphana Dashboard"
+msgstr ""
+
+msgid "|tarantool-graphana-dashboard|"
+msgstr ""
+
+msgid "500"
+msgstr ""
