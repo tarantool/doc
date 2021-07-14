@@ -1,16 +1,15 @@
 .. _engines-chapter:
 
-********************************************************************************
 Storage engines
-********************************************************************************
+===============
 
 A storage engine is a set of very-low-level routines which actually store and
 retrieve tuple values. Tarantool offers a choice of two storage engines:
 
-* memtx (the in-memory storage engine) is the default and was the first to
+* doc:`memtx <memtx.rst>` (the in-memory storage engine) is the default and was the first to
   arrive.
 
-* vinyl (the on-disk storage engine) is a working key-value engine and will
+* doc:`vinyl <vinyl.rst>` (the on-disk storage engine) is a working key-value engine and will
   especially appeal to users who like to see data go directly to disk, so that
   recovery time might be shorter and database size might be larger.
 
@@ -18,6 +17,19 @@ retrieve tuple values. Tarantool offers a choice of two storage engines:
   with memtx. Where that is the case, the relevant description in this manual
   contains a note beginning with the words "Note re storage engine".
 
+[TODO]
+Below you can find comparing of the two engines in brief / in a nutshell.
+All the technical details on how each engine works you can find in the dedicated
+sections:
+
+.. toctree::
+    :maxdepth: 2
+
+    memtx
+    vinyl
+
+
+[TODO] -- re-write or move to the vinyl page
 Further in this section we discuss the details of storing data using
 the vinyl storage engine.
 
@@ -30,9 +42,8 @@ when creating a space, for example:
 
 .. _vinyl_diff:
 
-================================================================================
 Differences between memtx and vinyl storage engines
-================================================================================
+---------------------------------------------------
 
 The primary difference between memtx and vinyl is that memtx is an "in-memory"
 engine while vinyl is an "on-disk" engine. An in-memory storage engine is
@@ -70,4 +81,4 @@ memory is not a realistic option.
     |                                             | transaction is committed to WAL                      | get() or pairs()                                     |
     +---------------------------------------------+------------------------------------------------------+------------------------------------------------------+
 
-.. include:: vinyl.rst
+
