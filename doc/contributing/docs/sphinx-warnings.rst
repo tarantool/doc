@@ -4,13 +4,10 @@ Sphinx-build warnings reference
 This document will guide you through the possible warnings raised by Sphinx engine
 while building the docs.
 
-Warnings and solutions list
----------------------------
-
 Below we cite a list with the most frequent warnings and the ways of solutions.
 
 Bullet list ends without a blank line; unexpected unindent
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------
 
 **Similar warning:** Block quote ends without a blank line; unexpected unindent
 
@@ -30,7 +27,7 @@ Bullet list ends without a blank line; unexpected unindent
     This text should start after a blank line
 
 Could not lex literal_block as "...". Highlighting skipped
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------
 
 This warning means that there's a ``code-block`` with an unknown lexer.
 Most probably, it's a typo.
@@ -57,7 +54,7 @@ Sometimes, however, there's no appropriate lexer, or the code snippet can't be
 lexed properly. In such case, use ``code-block:: text``.
 
 Duplicate explicit target name: "..."
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 **Example:**
 
@@ -84,7 +81,7 @@ using double underlines ``__`` in such cases to avoid this.
         the ``unzip`` utility.
 
 Document isn't included in any toctree
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 This warning means that you forgot to put the document name in the toctree.
 
@@ -96,7 +93,7 @@ These directories are ignored by Sphinx because we put them in ``exclude_pattern
 in ``conf.py`` file.
 
 Duplicate label "...", other instance in ".../.../..."
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------
 
 **Example:**
 
@@ -109,7 +106,7 @@ As in previous case, don't forget to add such file in _includes or avoid using
 tags within it.
 
 Malformed hyperlink target
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 **Similar warning:** Unknown target name: "..."
 
@@ -134,7 +131,7 @@ Semicolon is missing in tag definition:
     ..  _box_space-index_func:
 
 Toctree contains reference to nonexisting document '...'
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------------
 
 **Example:**
 
@@ -149,7 +146,7 @@ If the path is in ``cartridge`` or another submodule, check that you've
 before building docs.
 
 Undefined label: ... (if the link has no caption the label must precede a section header)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------------------------------------------------
 
 **Example:**
 
@@ -170,7 +167,7 @@ We recommend using custom captions with ``:ref:``:
 *   :doc:`/contributing/docs/markup/links`
 
 Unexpected indentation
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 The reStructuredText syntax is based on indentation, much like in Python.
 In a block of content, all lines should be equally indented.
@@ -201,7 +198,7 @@ For example, ``|..|`` means a two-space indentation.
 *   :doc:`/contributing/docs/markup/intro`
 
 Unknown document
-~~~~~~~~~~~~~~~~
+----------------
 
 **Example:**
 

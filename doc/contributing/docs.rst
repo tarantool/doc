@@ -1,11 +1,10 @@
 .. _documentation_guidelines:
 
--------------------------------------------------------------------------------
-                        Documentation guidelines
--------------------------------------------------------------------------------
+Documentation & Localization guidelines
+=======================================
 
 These guidelines aim to help the team and external contributors
-write, publish, and collaborate on the Tarantool documentation.
+write, translate, publish, and collaborate on the Tarantool documentation.
 
 The guidelines are a work in progress, and we welcome all contributions.
 
@@ -14,6 +13,7 @@ The guidelines are a work in progress, and we welcome all contributions.
     :caption: Contents:
 
     docs/style
+    docs/localization
     docs/terms
     docs/markup
     docs/examples
