@@ -7,9 +7,6 @@ msgid ""
 "engine while building the docs."
 msgstr ""
 
-msgid "Warnings and solutions list"
-msgstr ""
-
 msgid ""
 "Below we cite a list with the most frequent warnings and the ways of "
 "solutions."
