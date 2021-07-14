@@ -55,8 +55,8 @@ set(SPHINX_OUTPUT_DIR              "${CMAKE_CURRENT_BINARY_DIR}/output")
 
 set(SPHINX_BUILD_LOCALE_DIR        "${SPHINX_OUTPUT_DIR}/_locale_build/")
 
-set(SPHINX_BUILD_SINGLEHTML_DIR    "${SPHINX_OUTPUT_DIR}/_single_en/")
-set(SPHINX_BUILD_SINGLEHTML_RU_DIR "${SPHINX_OUTPUT_DIR}/_single_ru/")
+set(SPHINX_BUILD_SINGLEHTML_DIR    "${SPHINX_OUTPUT_DIR}/doctrees/single/en/")
+set(SPHINX_BUILD_SINGLEHTML_RU_DIR "${SPHINX_OUTPUT_DIR}/doctrees/single/ru/")
 
 set(SPHINX_BUILD_HTML_DIR          "${SPHINX_OUTPUT_DIR}/_html_en/")
 set(SPHINX_BUILD_HTML_RU_DIR       "${SPHINX_OUTPUT_DIR}/_html_ru/")
@@ -67,10 +67,11 @@ set(SPHINX_BUILD_HTML_RU_OLD_DIR       "${SPHINX_OUTPUT_DIR}/_html_old_ru/")
 set(SPHINX_BUILD_LATEX_DIR         "${SPHINX_OUTPUT_DIR}/_latex_en/")
 set(SPHINX_BUILD_LATEX_RU_DIR      "${SPHINX_OUTPUT_DIR}/_latex_ru/")
 
-set(SPHINX_BUILD_JSON_EN_DIR       "${SPHINX_OUTPUT_DIR}/json/_build_en/doctrees")
-set(SPHINX_BUILD_JSON_RU_DIR       "${SPHINX_OUTPUT_DIR}/json/_build_ru/doctrees")
+set(SPHINX_BUILD_JSON_EN_DIR       "${SPHINX_OUTPUT_DIR}/doctrees/json/en/")
+set(SPHINX_BUILD_JSON_RU_DIR       "${SPHINX_OUTPUT_DIR}/doctrees/json/ru")
 
 set(SPHINX_EN_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/en/")
+set(SPHINX_EN_AUTOBUILD_DIR        "${SPHINX_OUTPUT_DIR}/html_auto/en/")
 set(SPHINX_RU_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/ru/")
 set(SPHINX_EN_HTML_OLD_DIR         "${SPHINX_OUTPUT_DIR}/html_old/en/")
 set(SPHINX_RU_HTML_OLD_DIR         "${SPHINX_OUTPUT_DIR}/html_old/ru/")
@@ -91,6 +92,7 @@ add_custom_target(html ALL
         -b html
         -d "${SPHINX_BUILD_HTML_DIR}"
         -c html/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_HTML_DIR}"
     COMMENT "Building HTML documentation with Sphinx"
@@ -101,6 +103,7 @@ add_custom_target(json ALL
         -b json
         -d "${SPHINX_BUILD_JSON_EN_DIR}"
         -c html/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_JSON_DIR}"
         -D language=en
@@ -112,6 +115,7 @@ add_custom_target(singlehtml ALL
         -b singlehtml
         -d "${SPHINX_BUILD_SINGLEHTML_DIR}"
         -c singlehtml/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_HTML_DIR}"
     COMMENT "Building HTML single-page documentation with Sphinx"
@@ -128,11 +132,25 @@ add_custom_target(singlehtml-website
     COMMENT "Building HTML single-page documentation with Sphinx"
 )
 
+add_custom_target(autobuild
+    COMMAND sphinx-autobuild
+        -b html
+        -d "${SPHINX_BUILD_HTML_DIR}"
+        -c html/
+        --host 0.0.0.0
+        --port 8000
+        -A nolang_path=true
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_EN_AUTOBUILD_DIR}"
+    COMMENT "Build & Live-reload on http://127.0.0.1:8000"
+)
+
 add_custom_target(html-ru ALL
     COMMAND "${SPHINX_EXECUTABLE}"
         -b html
         -d "${SPHINX_BUILD_HTML_RU_DIR}"
         -c html/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_HTML_DIR}"
         -D language=ru
@@ -166,6 +184,7 @@ add_custom_target(json-ru ALL
         -b json
         -d "${SPHINX_BUILD_JSON_RU_DIR}"
         -c html/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_JSON_DIR}"
         -D language=ru
@@ -200,14 +219,10 @@ add_custom_target(update-pot
         -b gettext
         -d "${SPHINX_BUILD_LOCALE_DIR}"
         -c locale/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
-    COMMENT "Generate localization templates"
-)
-
-add_custom_command(TARGET update-pot
-    COMMAND make cleanup-pot
-    COMMENT "Update and cleanup translation sources"
+    COMMENT "Update translation sources"
 )
 
 add_custom_target(update-po-no-force
@@ -249,6 +264,7 @@ add_custom_target(linkcheck
         -b linkcheck
         -d "${SPHINX_BUILD_HTML_DIR}"
         -c html
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_BUILD_HTML_DIR}"
     COMMENT "Linkcheck filter"
@@ -267,6 +283,7 @@ add_custom_target(epub ALL
         -b epub
         -d "${SPHINX_BUILD_EPUB_DIR}"
         -c epub/
+        -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_EN_EPUB_DIR}"
     COMMENT "Building English epub with Sphinx"
@@ -277,11 +294,25 @@ add_custom_target(epub-ru ALL
         -b epub
         -d "${SPHINX_BUILD_EPUB_RU_DIR}"
         -c epub/
+        -q
         -D language=ru
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
         "${SPHINX_RU_EPUB_DIR}"
     COMMENT "Building Russian epub with Sphinx"
 )
+
+add_custom_target(pull-modules ALL
+    COMMAND /usr/bin/env python3
+        ./pull_submodules.py
+    COMMENT "Update submodules to their latest commits"
+)
+
+add_custom_target(build-modules ALL
+    COMMAND /usr/bin/env bash
+        ./build_submodules.sh
+    COMMENT "Rebuild and copy content from submodules"
+)
+
 
 
 if (LATEX_FOUND)
