@@ -21,6 +21,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
+    'sphinxcontrib.plantuml',
     'ext.custom',
     'ext.LuaDomain',
     'ext.LuaLexer',
@@ -42,6 +43,7 @@ extlinks = {
     'doc-issue': ('https://github.com/tarantool/doc/issues/%s', 'doc-'),
 }
 
+plantuml_output_format = 'svg_img'
 imgmath_image_format = 'svg'
 
 primary_domain = 'lua'
