@@ -184,20 +184,20 @@ msgid "The possible ``mode`` values are:"
 msgstr "Возможные значения режима передачи данных ``mode``:"
 
 msgid "``'w'``    which enables :ref:`popen_handle:write() <popen-write>`"
-msgstr "``'w'`` -- разрешает :ref:`popen_handle:write() <popen-write>`"
+msgstr "``'w'`` --- разрешает :ref:`popen_handle:write() <popen-write>`"
 
 msgid "``'r'``    which enables :ref:`popen_handle:read() <popen-read>`"
-msgstr "``'r'`` -- разрешает :ref:`popen_handle:read() <popen-read>`"
+msgstr "``'r'`` --- разрешает :ref:`popen_handle:read() <popen-read>`"
 
 msgid ""
 "``'R'``    which enables :ref:`popen_handle:read({stderr = true}) <popen-"
 "read>`"
 msgstr ""
-"``'R'`` -- разрешает :ref:`popen_handle:read({stderr = true}) <popen-read>`"
+"``'R'`` --- разрешает :ref:`popen_handle:read({stderr = true}) <popen-read>`"
 
 msgid "``'nil'``    which means inherit parent's std* file descriptors"
 msgstr ""
-"``'nil'`` -- означает наследование родительских std*-дескрипторов файла"
+"``'nil'`` --- означает наследование родительских std*-дескрипторов файла"
 
 msgid ""
 "Several mode characters can be set together, for example ``'rw'``, "
