@@ -6,16 +6,16 @@ Storage engines
 A storage engine is a set of very-low-level routines which actually store and
 retrieve tuple values. Tarantool offers a choice of two storage engines:
 
-* doc:`memtx <memtx.rst>` (the in-memory storage engine) is the default and was the first to
-  arrive.
+*   :doc:`memtx <memtx>` is the in-memory storage engine used by default.
 
-* doc:`vinyl <vinyl.rst>` (the on-disk storage engine) is a working key-value engine and will
-  especially appeal to users who like to see data go directly to disk, so that
-  recovery time might be shorter and database size might be larger.
+*   :doc:`vinyl <vinyl>` is the on-disk storage engine. It is a working key-value engine
+    and especially appeals to users who like to see data go directly to disk so that
+    the recovery time can be shorter and database size can be larger.
 
-  On the other hand, vinyl lacks some functions and options that are available
-  with memtx. Where that is the case, the relevant description in this manual
-  contains a note beginning with the words "Note re storage engine".
+[TODO] to remove or move
+On the other hand, vinyl lacks some functions and options that are available
+with memtx. Where that is the case, the relevant description in this manual
+contains a note beginning with the words "Note re storage engine".
 
 [TODO]
 Below you can find comparing of the two engines in brief / in a nutshell.
@@ -23,11 +23,10 @@ All the technical details on how each engine works you can find in the dedicated
 sections:
 
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 1
 
-    memtx
-    vinyl
-
+   memtx
+   vinyl
 
 [TODO] -- re-write or move to the vinyl page
 Further in this section we discuss the details of storing data using
@@ -45,11 +44,11 @@ when creating a space, for example:
 Differences between memtx and vinyl storage engines
 ---------------------------------------------------
 
-The primary difference between memtx and vinyl is that memtx is an "in-memory"
-engine while vinyl is an "on-disk" engine. An in-memory storage engine is
+The primary difference between memtx and vinyl is that memtx is an in-memory
+engine while vinyl is an on-disk engine. An in-memory storage engine is
 generally faster (each query is usually run under 1 ms), and the memtx engine
-is justifiably the default for Tarantool, but on-disk engine such as vinyl is
-preferable when the database is larger than the available memory and adding more
+is justifiably the default for Tarantool. But on-disk engine such as vinyl is
+preferable when the database is larger than the available memory, and adding more
 memory is not a realistic option.
 
 .. container:: table
@@ -80,5 +79,3 @@ memory is not a realistic option.
     | yield                                       | Does not yield on the select requests unless the     | Yields on the select requests or on its equivalents: |
     |                                             | transaction is committed to WAL                      | get() or pairs()                                     |
     +---------------------------------------------+------------------------------------------------------+------------------------------------------------------+
-
-
