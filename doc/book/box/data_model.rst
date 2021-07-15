@@ -29,7 +29,7 @@ Tarantool operates data in the form of tuples.
         The data values in the tuple are called :term:`fields <field>`.
 
         When Tarantool returns a tuple value in the console,
-        by default it uses :ref:`YAML <interactive_console>` format,
+        by default, it uses :ref:`YAML <interactive_console>` format,
         for example: ``[3, 'Ace of Base', 1993]``.
 
         Internally, Tarantool stores tuples as
@@ -59,12 +59,12 @@ Spaces
 --------------------------------------------------------------------------------
 
 Tarantool stores tuples in containers called spaces.
-In our example there's a space called ``'tester'``.
+In the example above, there's a space called ``tester``.
 
 ..  glossary::
 
     space
-        In Tarantool, a space is a primary container which stores data.
+        In Tarantool, a space is a primary container that stores data.
         It is analogous to tables in relational databases.
         Spaces contain :term:`tuples <tuple>` — the Tarantool name for
         database records.
@@ -92,13 +92,13 @@ Read the full information about indexes on page :doc:`Indexes </book/box/indexes
 
 An **index** is a group of key values and pointers.
 
-As with spaces, you should specify the index **name**, and let Tarantool
+As with spaces, you should specify the index **name** and let Tarantool
 come up with a unique **numeric identifier** ("index id").
 
 An index always has a **type**. The default index type is :ref:`TREE <indexes-tree>`.
 TREE indexes are provided by all Tarantool engines, can index unique and
-non-unique values, support partial key searches, comparisons and ordered results.
-Additionally, memtx engine supports :ref:`HASH <indexes-hash>`,
+non-unique values, support partial key searches, comparisons, and ordered results.
+Additionally, the memtx engine supports :ref:`HASH <indexes-hash>`,
 :ref:`RTREE <indexes-rtree>` and :ref:`BITSET <indexes-bitset>` indexes.
 
 An index may be **multi-part**, that is, you can declare that an index key value
@@ -187,12 +187,12 @@ Field Type Details
 
 .. _index-box_nil:
 
-**nil**. In Lua a nil type has only one possible value, also called *nil*
-(which Tarantool displays as ``null`` when using the default
-:ref:`YAML <interactive_console>` format).
-Nils may be compared to values of any types with == (is-equal)
+**nil**. In Lua, the nil type has only one possible value, also called ``nil``.
+Tarantool displays it as ``null`` when using the default
+:ref:`YAML <interactive_console>` format.
+Nil may be compared to values of any types with == (is-equal)
 or ~= (is-not-equal), but other comparison operations will not work.
-Nils may not be used in Lua tables; the workaround is to use
+Nil may not be used in Lua tables; the workaround is to use
 :ref:`box.NULL <box-null>` because ``nil == box.NULL`` is true.
 Example: ``nil``.
 
@@ -205,7 +205,7 @@ Example: ``true``.
 
 **integer**. The Tarantool integer type is for integers between
 -9223372036854775808 and 18446744073709551615, which is about 18 quintillion.
-This corresponds to number in Lua and to integer in MsgPack.
+This type corresponds to the number type in Lua and to the integer type in MsgPack.
 Example: ``-2^63``.
 
 .. _index-box_unsigned:
@@ -217,18 +217,19 @@ Example: ``123456``.
 .. _index-box_double:
 
 **double**. The double field type exists
-mainly so that there will be an equivalent to Tarantool/SQL's
+mainly to be equivalent to Tarantool/SQL's
 :ref:`DOUBLE data type <sql_data_type_double>`.
-In `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_ (Tarantool's interface to MsgPack)
-the storage type is MP_DOUBLE and the size of the encoded value is always 9 bytes.
-In Lua, 'double' fields can only contain non-integer numeric values and
+In `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_ (Tarantool's interface to MsgPack),
+the storage type is ``MP_DOUBLE`` and the size of the encoded value is always 9 bytes.
+In Lua, fields of the double type can only contain non-integer numeric values and
 cdata values with double floating-point numbers.
-Examples: ``1.234``, ``-44``, ``1.447e+44``. |br|
+Examples: ``1.234``, ``-44``, ``1.447e+44``.
+
 To avoid using the wrong kind of values inadvertently, use
-``ffi.cast()`` when searching or changing 'double' fields.
+``ffi.cast()`` when searching or changing ``double`` fields.
 For example, instead of
 :samp:`{space_object}:insert`:code:`{`:samp:`{value}`:code:`}`
-say
+use
 ``ffi = require('ffi') ...``
 :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`.
 Example:
@@ -244,17 +245,19 @@ Example:
     s:select(1.1)
     s:select({ffi.cast('double', 1)})
 
-Arithmetic with cdata 'double' will not work reliably, so
-for Lua it is better to use the 'number' type.
+Arithmetic with cdata ``double`` will not work reliably, so
+for Lua, it is better to use the ``number`` type.
 This warning does not apply for Tarantool/SQL because
 Tarantool/SQL does
 :ref:`implicit casting <sql_data_type_conversion>`.
 
 .. _index-box_number:
 
-**number**. In Lua a number is double-precision floating-point, but a Tarantool
-'number' field may have both
-integer and floating-point values. Tarantool will try to store a Lua number as
+**number**. The Tarantool number field may have both
+integer and floating-point values, although in Lua a ``number``
+is a double-precision floating-point.
+
+Tarantool will try to store a Lua number as
 floating-point if the value contains a decimal point or is very large
 (greater than 100 trillion = 1e14), otherwise Tarantool will store it as an integer.
 To ensure that even very large numbers are stored as integers, use the
@@ -281,9 +284,9 @@ character set or to perform any string conversion -- unless there is an optional
 :ref:`collation <index-collation>`.
 So, usually, string sorting and comparison are done byte-by-byte, without any special
 collation rules applied.
-(Example: numbers are ordered by their point on the number line, so 2345 is
+For example, numbers are ordered by their point on the number line, so 2345 is
 greater than 500; meanwhile, strings are ordered by the encoding of the first
-byte, then the encoding of the second byte, and so on, so ``'2345'`` is less than ``'500'``.)
+byte, then the encoding of the second byte, and so on, so ``'2345'`` is less than ``'500'``.
 Example: ``'A, B, C'``.
 
 .. _index-box_bin:
@@ -296,16 +299,17 @@ Example: ``"\65 \66 \67"``.
 
 .. _index-box_uuid:
 
-**uuid**. Since version :doc:`2.4.1 </release/2.4.1>`.
-The Tarantool uuid type is stored as a MsgPack ext (Extension).
-Values with the uuid type are
-:ref:`Universally unique identifiers <uuid-module>`. |br|
-Example: 64d22e4d-ac92-4a23-899a-e5934af5479.
+**uuid**. The Tarantool uuid type is used for
+:ref:`Universally Unique Identifiers <uuid-module>`.
+Since version :doc:`2.4.1 </release/2.4.1>` Tarantool stores
+``uuid`` values as a MsgPack ext (Extension).
+
+Example: ``64d22e4d-ac92-4a23-899a-e5934af5479``.
 
 .. _index-box_array:
 
 **array**. An array is represented in Lua with ``{...}`` (`braces <https://www.lua.org/pil/11.1.html>`_).
-Examples: as lists of numbers representing points in a geometric figure:
+Examples: lists of numbers representing points in geometric figures:
 ``{10, 11}``, ``{3, 5, 9, 10}``.
 
 **table**. Lua tables with string keys are stored as MsgPack maps;
@@ -321,19 +325,19 @@ see :ref:`box.tuple <box_tuple>`.
 
 .. _index-box_scalar:
 
-**scalar**. Values in a scalar field can be boolean or integer or unsigned or double
-or number or decimal or string or varbinary -- but not array or map or tuple.
+**scalar**. Values in a scalar field can be boolean, integer, unsigned, double
+or number, decimal, string, uuid, or varbinary; but not array, map, or tuple.
 Examples: ``true``, ``1``, ``'xxx'``.
 
 .. _index-box_any:
 
-**any**. Values in an any field can be boolean or integer or unsigned or double
-or number or decimal or string or varbinary -- or array or map or tuple.
+**any**. Values in a field of this type can be boolean, integer, unsigned, double
+or number, decimal, string, uuid, varbinary, array, map, or tuple.
 Examples: ``true``, ``1``, ``'xxx'``, ``{box.NULL, 0}``.
 
 Examples of insert requests with different field types:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> box.space.K:insert{1,nil,true,'A B C',12345,1.2345}
     ---
@@ -348,17 +352,17 @@ Examples of insert requests with different field types:
     - [3, [1, 2, 3, 4, 5]]
     ...
 
-.. _index-box_indexed-field-types:
+..  _index-box_indexed-field-types:
 
 ********************************************************
 Indexed field types
 ********************************************************
 
-Indexes restrict values which Tarantool may store with MsgPack. This is why,
-for example, ``'unsigned'`` and ``'integer'`` are different field types although
-in MsgPack they are both stored as integer values -- an ``'unsigned'`` index
-contains only *non-negative* integer values while an ``‘integer’`` index contains *any*
-integer values.
+Indexes restrict values that Tarantool can store with MsgPack.
+This is why, for example, ``'unsigned'`` and ``'integer'`` are different field types,
+although in MsgPack they are both stored as integer values.
+An ``'unsigned'`` index contains only *non-negative* integer values,
+while an ``‘integer’`` index contains *any* integer values.
 
 Here again are the field types described in
 :ref:`Field Type Details <index_box_field_type_details>`, and the index types they can fit in.
@@ -383,19 +387,19 @@ Full information is in section
     | ``'boolean'``                  | :ref:`boolean <index-box_boolean>`        | :ref:`TREE or HASH <box_index-type>` |
     |                                |                                           |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'integer'``                  | :ref:`integer <index-box_integer>`        | TREE or HASH                         |
+    | ``'integer'``                  | :ref:`integer <index-box_integer>`,       | TREE or HASH                         |
     | (may also be called ‘int’)     | which may include unsigned values         |                                      |
     |                                |                                           |                                      |
     |                                |                                           |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'unsigned'``                 | :ref:`unsigned <index-box_unsigned>`      | TREE, BITSET or HASH                 |
-    | (may also be called ‘uint’     |                                           |                                      |
-    | or ‘num’, but ‘num’ is         |                                           |                                      |
+    | ``'unsigned'``                 | :ref:`unsigned <index-box_unsigned>`      | TREE, BITSET, or HASH                |
+    | (may also be called ``'uint'`` |                                           |                                      |
+    | or ``'num'``, but ``'num'`` is |                                           |                                      |
     | deprecated)                    |                                           |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
     | ``'double'``                   | :ref:`double <index-box_double>`          | TREE or HASH                         |
     +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'number'``                   | :ref:`number <index-box_number>`          | TREE or HASH                         |
+    | ``'number'``                   | :ref:`number <index-box_number>`,         | TREE or HASH                         |
     |                                | which may include                         |                                      |
     |                                | :ref:`integer <index-box_integer>`        |                                      |
     |                                | or :ref:`double <index-box_double>`       |                                      |
@@ -403,24 +407,24 @@ Full information is in section
     +--------------------------------+-------------------------------------------+--------------------------------------+
     | ``'decimal'``                  | :ref:`decimal <index-box_decimal>`        | TREE or HASH                         |
     +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'string'``                   | :ref:`string <index-box_string>`          | TREE, BITSET or HASH                 |
-    | (may also be called ``‘str’``) |                                           |                                      |
+    | ``'string'``                   | :ref:`string <index-box_string>`          | TREE, BITSET, or HASH                |
+    | (may also be called ``'str'``) |                                           |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'varbinary'``                | :ref:`varbinary <index-box_bin>`          | TREE, HASH or BITSET                 |
+    | ``'varbinary'``                | :ref:`varbinary <index-box_bin>`          | TREE, HASH, or BITSET                |
     |                                |                                           | (since version 2.7)                  |
     +--------------------------------+-------------------------------------------+--------------------------------------+
     | ``'uuid'``                     | :ref:`uuid <index-box_uuid>`              | TREE or HASH                         |
     +--------------------------------+-------------------------------------------+--------------------------------------+
     | ``'array'``                    | :ref:`array <index-box_array>`            | :ref:`RTREE <box_index-rtree>`       |
     +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'scalar'``                   | may include :ref:`nil <index-box_nil>`    | TREE or HASH                         |
-    |                                | or :ref:`boolean <index-box_boolean>`     |                                      |
-    |                                | or :ref:`integer <index-box_integer>`     |                                      |
-    |                                | or :ref:`unsigned <index-box_unsigned>`   |                                      |
-    |                                | or :ref:`number <index-box_number>`       |                                      |
-    |                                | or :ref:`decimal <index-box_decimal>`     |                                      |
-    |                                | or :ref:`string <index-box_string>`       |                                      |
-    |                                | or :ref:`varbinary <index-box_bin>`       |                                      |
+    | ``'scalar'``                   | may include :ref:`nil <index-box_nil>`,   | TREE or HASH                         |
+    |                                | :ref:`boolean <index-box_boolean>`,       |                                      |
+    |                                | :ref:`integer <index-box_integer>`,       |                                      |
+    |                                | :ref:`unsigned <index-box_unsigned>`,     |                                      |
+    |                                | :ref:`number <index-box_number>`,         |                                      |
+    |                                | :ref:`decimal <index-box_decimal>`,       |                                      |
+    |                                | :ref:`string <index-box_string>`, or      |                                      |
+    |                                | :ref:`varbinary <index-box_bin>`          |                                      |
     |                                | values                                    |                                      |
     |                                |                                           |                                      |
     |                                | When a scalar field contains values of    |                                      |
@@ -435,18 +439,19 @@ Full information is in section
 Collations
 --------------------------------------------------------------------------------
 
-By default, when Tarantool compares strings, it uses what we call a
-**"binary" collation**. The only consideration here is the numeric value
-of each byte in the string. Therefore, if the string is encoded
-with ASCII or UTF-8, then ``'A' < 'B' < 'a'``, because the encoding of ``'A'``
-(what used to be called the "ASCII value") is 65, the encoding of
-``'B'`` is 66, and the encoding of ``'a'`` is 98. Binary collation is best
-if you prefer fast deterministic simple maintenance and searching
+By default, when Tarantool compares strings, it uses the so-called
+**binary collation**.
+It only considers the numeric value of each byte in a string.
+For example, the encoding of ``'A'`` (what used to be called the "ASCII value") is 65,
+the encoding of ``'B'`` is 66, and the encoding of ``'a'`` is 98.
+Therefore, if the string is encoded with ASCII or UTF-8, then ``'A' < 'B' < 'a'``.
+
+Binary collation is the best choice for fast deterministic simple maintenance and searching
 with Tarantool indexes.
 
 But if you want the ordering that you see in phone books and dictionaries,
 then you need Tarantool's optional collations, such as ``unicode`` and
-``unicode_ci``, which allow for ``'a' < 'A' < 'B'`` and ``'a' = 'A' < 'B'``
+``unicode_ci``, which allow for ``'a' < 'A' < 'B'`` and ``'a' == 'A' < 'B'``
 respectively.
 
 **The unicode and unicode_ci optional collations** use the ordering according to the
@@ -456,8 +461,8 @@ and the rules described in
 The only difference between the two collations is about
 `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_:
 
-* ``unicode`` collation observes L1 and L2 and L3 weights (strength = 'tertiary'),
-* ``unicode_ci`` collation observes only L1 weights (strength = 'primary'), so for example 'a' = 'A' = 'á' = 'Á'.
+*   ``unicode`` collation observes L1, L2, and L3 weights (strength = 'tertiary');
+*   ``unicode_ci`` collation observes only L1 weights (strength = 'primary'), so for example ``'a' == 'A' == 'á' == 'Á'``.
 
 As an example, take some Russian words:
 
@@ -526,23 +531,20 @@ upper case / lower case and accented / unaccented equivalence in alphabets.
 We also consider variations of the same character, non-alphabetic writing systems,
 and special rules that apply for combinations of characters.
 
-For English: use "unicode" and "unicode_ci".
-For Russian: use "unicode" and "unicode_ci" (although a few Russians might
-prefer the Kyrgyz collation which says Cyrillic letters 'Е' and 'Ё' are the
-same with level-1 weights).
-For Dutch, German (dictionary), French, Indonesian, Irish,
-Italian, Lingala, Malay, Portuguese, Southern Soho, Xhosa, or Zulu:
-"unicode" and "unicode_ci" will do.
+For English, Russian, and most other languages and use cases, use the "unicode" and "unicode_ci" collations.
+If you need Cyrillic letters 'Е' and 'Ё' to have the same level-1 weights,
+try the Kyrgyz collation.
 
-**The tailored optional collations**: For other languages, Tarantool supplies tailored collations for every
+**The tailored optional collations**: for other languages, Tarantool supplies tailored collations for every
 modern language that has more than a million native speakers, and
 for specialized situations such as the difference between dictionary
 order and telephone book order.
-To see a complete list say ``box.space._collation:select()``.
+Run ``box.space._collation:select()`` to see the complete list.
+
 The tailored collation names have the form
-unicode_[language code]_[strength] where language code is a standard
-2-character or 3-character language abbreviation, and strength is s1
-for "primary strength" (level-1 weights), s2 for "secondary", s3 for "tertiary".
+``unicode_[language code]_[strength]``, where language code is a standard
+2-character or 3-character language abbreviation, and strength is ``s1``
+for "primary strength" (level-1 weights), ``s2`` for "secondary", ``s3`` for "tertiary".
 Tarantool uses the same language codes as the ones in the "list of tailorable locales" on man pages of
 `Ubuntu <http://manpages.ubuntu.com/manpages/bionic/man3/Unicode::Collate::Locale.3perl.html>`_ and
 `Fedora <http://www.polarhome.com/service/man/?qf=Unicode%3A%3ACollate%3A%3ALocale&af=0&tf=2&of=Fedora>`_.
@@ -558,8 +560,8 @@ Sequences
 
 A **sequence** is a generator of ordered integer values.
 
-As with spaces and indexes, you should specify the sequence **name**, and let
-Tarantool come up with a unique **numeric identifier** ("sequence id").
+As with spaces and indexes, you should specify the sequence **name** and let
+Tarantool generate a unique numeric identifier (sequence ID).
 
 As well, you can specify several options when creating a new sequence.
 The options determine what value will be generated whenever the sequence is used.
@@ -567,7 +569,7 @@ The options determine what value will be generated whenever the sequence is used
 .. _index-box_sequence-options:
 
 ********************************************************
-Options for ``box.schema.sequence.create()``
+Options for box.schema.sequence.create()
 ********************************************************
 
 .. container:: table
@@ -645,7 +647,7 @@ The result is the same as the start value. If we called ``next()``
 again, we would get 6 (because the previous value plus the
 step value is 6), and so on.
 
-Then we create a new table, and say that its primary key may be
+Then we create a new table and specify that its primary key should be
 generated from the sequence.
 
 .. code-block:: tarantoolsession
@@ -670,7 +672,7 @@ generated from the sequence.
     ---
     ...
 
-Then we insert a tuple, without specifying a value for the primary key.
+Then we insert a tuple without specifying a value for the primary key.
 
 .. code-block:: tarantoolsession
 
@@ -693,29 +695,30 @@ For syntax and implementation details, see the reference for
 Persistence
 --------------------------------------------------------------------------------
 
-In Tarantool, updates to the database are recorded in the so-called
-:ref:`write ahead log (WAL) <internals-wal>` files. This ensures data persistence.
+To ensure data persistence, Tarantool records updates to the database in the so-called
+:ref:`write-ahead log (WAL) <internals-wal>` files.
 When a power outage occurs or the Tarantool instance is killed incidentally,
-the in-memory database is lost. In this situation, WAL files are used
-to restore the data. Namely, Tarantool reads the WAL files and redoes
-the requests (this is called the "recovery process"). You can change
-the timing of the WAL writer, or turn it off, by setting
-:ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
+the in-memory database is lost.
+In such case, Tarantool restores the data from WAL files
+by reading them and redoing the requests.
+This is called the "recovery process".
+You can change the timing of the WAL writer or turn it off by setting
+the :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
 
 Tarantool also maintains a set of :ref:`snapshot files <internals-snapshot>`.
 These files contain an on-disk copy of the entire data set for a given moment.
 Instead of reading every WAL file since the databases were created, the recovery
-process can load the latest snapshot file and then read only those WAL files
-that were produced after the snapshot file was made. After checkpointing, old
-WAL files can be removed to free up space.
+process can load the latest snapshot file and then read the WAL files,
+produced after the snapshot file was made.
+After creating a new snapshot, the earlier WAL files can be removed to free up space.
 
-To force immediate creation of a snapshot file, you can use Tarantool's
-:doc:`box.snapshot() </reference/reference_lua/box_snapshot>` request. To enable automatic creation
-of snapshot files, you can use Tarantool's
-:ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. The checkpoint
-daemon sets intervals for forced checkpoints. It makes sure that the states
+To force immediate creation of a snapshot file, use the
+:doc:`box.snapshot() </reference/reference_lua/box_snapshot>` function.
+To enable the automatic creation of snapshot files, use Tarantool's
+:ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`.
+The checkpoint daemon sets intervals for forced checkpoints. It makes sure that the states
 of both memtx and vinyl storage engines are synchronized and saved to disk,
-and automatically removes old WAL files.
+and automatically removes earlier WAL files.
 
 Snapshot files can be created even if there is no WAL file.
 
@@ -861,7 +864,7 @@ resource usage of each function.
     | Index size        | The number of index keys is the same as the number       |
     |                   | of tuples in the data set. For a TREE index, if          |
     |                   | there are more keys, then the lookup time will be        |
-    |                   | greater, although of course the effect is not            |
+    |                   | greater, although, of course, the effect is not          |
     |                   | linear. For a HASH index, if there are more keys,        |
     |                   | then there is more RAM used, but the number of           |
     |                   | low-level steps tends to remain constant.                |
@@ -874,13 +877,13 @@ resource usage of each function.
     | accessed          | one tuple. But to update the tuple, there must be N      |
     |                   | accesses if the space has N different indexes.           |
     |                   |                                                          |
-    |                   | Note re storage engine: Vinyl optimizes away such        |
+    |                   | Note regarding storage engine: Vinyl optimizes away such |
     |                   | accesses if secondary index fields are unchanged by      |
     |                   | the update. So, this complexity factor applies only to   |
     |                   | memtx, since it always makes a full-tuple copy on every  |
     |                   | update.                                                  |
     +-------------------+----------------------------------------------------------+
-    | Number of tuples  | A few requests, for example SELECT, can retrieve         |
+    | Number of tuples  | A few requests, for example, SELECT, can retrieve        |
     | accessed          | multiple tuples. This factor is usually less             |
     |                   | important than the others.                               |
     +-------------------+----------------------------------------------------------+
@@ -936,11 +939,10 @@ a data schema. To run this file, use:
 
     tarantool init.lua
 
-However, if you do not plan to dive deep into the Lua language and its syntax,
-it may seem complicated.
+However, it may seem complicated if you do not plan to dive deep into the Lua language and its syntax.
 
-Possible difficulty: The snippet above has a function call with a colon: ``users:format``.
-It is used to pass the ``format`` variable as the first argument
+Possible difficulty: the snippet above has a function call with a colon: ``users:format``.
+It is used to pass the ``users`` variable as the first argument
 of the ``format`` function.
 This is similar to ``self`` in object-based languages.
 
@@ -1058,7 +1060,7 @@ Index creation is described in the
 Other types of migrations
 ***************************
 
-Other types of migrations are also allowed but it would be more difficult to
+Other types of migrations are also allowed, but it would be more difficult to
 maintain data consistency.
 
 Migrations are possible in two cases:
@@ -1077,7 +1079,7 @@ We identify the following problems if there are active clients:
 
 -   The system should be able to transfer data using both the new schema and the old one.
 
--   When data is being transferred to a new space, data access should take into account
+-   When data is being transferred to a new space, data access should consider
     that the data might be in one space or another.
 
 -   Write requests must not interfere with the migration.
@@ -1108,8 +1110,8 @@ on the whole cluster.
 
 This is quite simple: when you reload the code, the data is migrated at the right moment,
 and the database schema is updated.
-However, this method may not work for everyone. You may not be able
-to restart Tarantool or to update the code using the hot-reload mechanism.
+However, this method may not work for everyone.
+You may not be able to restart Tarantool or update the code using the hot-reload mechanism.
 
 **Method 2**: tarantool/migrations (only for a Tarantool Cartridge cluster)
 
@@ -1118,7 +1120,7 @@ This method is described in the README file of the
 
 .. NOTE::
 
-    There are also two methods that we **do not recommend**
+    There are also two other methods that we **do not recommend**,
     but you may find them useful for one reason or another.
 
     **Method 3**: the ``tarantoolctl`` utility
@@ -1145,7 +1147,7 @@ This method is described in the README file of the
 
     **Method 4**: applying migration with Ansible
 
-    If you use an
-    `Ansible role to deploy a Tarantool cluster <https://github.com/tarantool/ansible-cartridge>`_,
-    you can use ``eval``. You can find more information about
-    ``eval`` `here <https://github.com/tarantool/ansible-cartridge/blob/master/doc/eval.md>`_.
+    If you use the `Ansible role  <https://github.com/tarantool/ansible-cartridge>`_
+    to deploy a Tarantool cluster, you can use ``eval``.
+    You can find more information about it
+    `in the Ansible role documentation <https://github.com/tarantool/ansible-cartridge/blob/master/doc/eval.md>`_.
