@@ -412,7 +412,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
                  (if failure) ``nil, err``
 
-        Possible opts items are:
+        Possible ``opts`` items are:
 
         * ``opts.stdout`` (boolean, default ``true``, if ``true`` then read from stdout)
         * ``opts.stderr`` (boolean, default ``false``, if ``true`` then read from stderr)
@@ -447,7 +447,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
                  (if failure) ``nil, err``
 
-        Possible opts items are:
+        Possible ``opts`` items are:
         ``opts.timeout`` (number, default 100 years, time quota in seconds).
 
         Possible raised errors are:
@@ -487,7 +487,7 @@ Below is a list of all ``popen`` functions and handle methods.
         :return: ``true`` on success, ``false`` on error
         :rtype:  (if success) boolean = true
 
-        Possible `opts` items are:
+        Possible ``opts`` items are:
 
         * ``opts.stdin`` (boolean) close parent's end of stdin
         * ``opts.stdout`` (boolean) close parent's end of stdout
