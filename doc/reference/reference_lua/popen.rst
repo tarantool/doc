@@ -124,7 +124,7 @@ Below is a list of all ``popen`` functions and handle methods.
     **Example:**
 
     This is the equivalent of the ``sh -c date`` command.
-    It starts a process, runs 'date', reads the output,
+    It starts a process, runs ``'date'``, reads the output,
     and closes the popen object (``ph``).
 
     ..  code-block:: lua
@@ -186,10 +186,10 @@ Below is a list of all ``popen`` functions and handle methods.
 
     The ``opts`` table file descriptor actions may be:
 
-    * ``popen.opts.INHERIT`` (== 'inherit') [default] inherit the fd from the parent
-    * ``popen.opts.DEVNULL`` (== 'devnull') open /dev/null on the fd
-    * ``popen.opts.CLOSE`` (== 'close') close the fd
-    * ``popen.opts.PIPE`` (== 'pipe') feed data from fd to parent,
+    * ``popen.opts.INHERIT`` (== ``'inherit'``) [default] inherit the fd from the parent
+    * ``popen.opts.DEVNULL`` (== ``'devnull'``) open /dev/null on the fd
+    * ``popen.opts.CLOSE`` (== ``'close'``) close the fd
+    * ``popen.opts.PIPE`` (== ``'pipe'``) feed data from fd to parent,
       or from parent to fd, using a pipe
 
     The ``opts`` table may contain an ``env`` table of environment variables to
@@ -294,7 +294,7 @@ Below is a list of all ``popen`` functions and handle methods.
     **Example 2**
 
     Example 2 is quite similar to Example 1, but sets an
-    environment variable and uses the shell builtin 'echo' to
+    environment variable and uses the shell builtin ``'echo'`` to
     show it.
 
     ..  code-block:: lua
@@ -683,8 +683,8 @@ Below is a list of all ``popen`` functions and handle methods.
         ``stdin``, ``stdout``, and ``stderr`` reflect the status of the parent's end
         of a piped stream. If a stream is not piped, the field is
         not present (``nil``). If it is piped, the status may be
-        either ``popen.stream.OPEN`` (== 'open') or ``popen.stream.CLOSED`` (== 'closed').
-        The status may be changed from 'open' to 'closed'
+        either ``popen.stream.OPEN`` (== ``'open'``) or ``popen.stream.CLOSED`` (== ``'closed'``).
+        The status may be changed from ``'open'`` to ``'closed'``
         by a :ref:`popen_handle:shutdown({std... = true}) <popen-shutdown>` call.
 
         **Example 1**
