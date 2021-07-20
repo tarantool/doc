@@ -5,27 +5,31 @@ Summary
 -------
 
 To make Tarantool builds' identification more clear and intuitive, the versioning policy for stable
-releases is changing. It will take effect for builds starting with 2.TBD.0
-numbers and for future major series ones (3.0.0+) as well.
+releases is changing.
+It will take effect for builds starting with 2.TBD.0 numbers and for future major series ones (3.0.0+) as well.
 
-The new version numbering scheme will replace the legacy policy. For releases, it changes
-to the following semver-like format:
+The new version numbering scheme will replace
+`the legacy policy <https://www.tarantool.io/en/doc/1.10/dev_guide/release_management/>`_.
+It changes to the semver-like format.
+For releases Tarantool version numbers now consist of three parts, major, minor and patch:
 
 ..  code-block:: text
 
     MAJOR.MINOR.PATCH
 
-For pre-releases it changes to
+For pre-releases the numbering now consists of three digits and additional suffix:
 
 ..  code-block:: text
 
     MAJOR.MINOR.PATCH-<pre-release suffix>
 
 Suffixes ``-alphaN``, ``-betaN``, ``-rcN`` and ``-dev`` explicitly mark pre-releases and
-developer builds so that users could avoid installing these versions on
-production systems. Backwards compatibility is guaranteed between minor builds
-in the same major release series. Also, it is appreciated but not guaranteed between
-different major numbers.
+developer builds so that users could avoid installing these versions on production systems.
+Backwards compatibility is guaranteed between minor builds in the same major release series.
+Also, it is appreciated but not guaranteed between different major numbers.
+
+We don't distinguish now between two kinds of stable release series, as we're going to make
+all of them a kind of 'long term supported'. They will be supported for at least two years.
 
 The topics below describe the new versioning policy in great detail.
 
@@ -63,7 +67,7 @@ Early development
 The stage goes on until a first release. Alpha, beta versions and pre-releases
 are published within this stage.
 
-In fact, this stage falls into two phases: development of a new functionality
+In fact, this stage splits into two phases: development of a new functionality
 and its stabilization.
 
 A premature functionality might be removed on the alpha/beta stage, but it will
