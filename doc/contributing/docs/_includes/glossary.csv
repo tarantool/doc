@@ -1,0 +1,56 @@
+﻿"Term [ru]","Description [ru]","Part of Speech [ru]","Term [en]","Description [en]","Part of Speech [en]"
+спейс,,,space,"A space is a container for tuples.
+https://www.tarantool.io/en/doc/latest/book/box/data_model/#spaces",NOUN
+кортеж,,NOUN,tuple,"A tuple plays the same role as a “row” or a “record”. The number of tuples in a space is unlimited. Tuples in Tarantool are stored as MsgPack arrays. https://www.tarantool.io/en/doc/latest/book/box/data_model/#tuples",NOUN
+Tarantool,,,Tarantool,"НЕ ПЕРЕВОДИТЬ",
+"первичный индекс",,,"primary index","The first index defined on a space is called the primary key index, and it must be unique. All other indexes are called secondary indexes, and they may be non-unique. https://www.tarantool.io/en/doc/latest/book/box/data_model/#indexes",
+файбер,,,fiber,"A fiber is a set of instructions which are executed with cooperative multitasking. Fibers managed by the fiber module are associated with a user-supplied function called the fiber function. https://www.tarantool.io/en/doc/latest/reference/reference_lua/fiber/#fibers",
+"сборщик мусора в Tarantool",,,"Tarantool garbage collector","A garbage collector fiber runs in the background on the master storages of each replica set. It starts deleting the contents of the bucket in the GARBAGE state part by part. Once the bucket is empty, its record is deleted from the _bucket system space. https://www.tarantool.io/en/doc/latest/reference/reference_rock/vshard/vshard_admin/#garbage-collector",
+"сборщик мусора на Lua",,,"Lua garbage collector","Lua manages memory automatically by running a garbage collector from time to time to collect all dead objects (that is, objects that are no longer accessible from Lua). https://www.lua.org/manual/5.1/manual.html#2.10",
+"движок базы данных",,,"storage engine","A storage engine is a set of very-low-level routines which actually store and retrieve tuple values. https://www.tarantool.io/en/doc/latest/book/box/engines/",
+поток,,,thread,"A thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system.",
+"Lua-приложение, приложение на языке Lua",,,"Lua application","Tarantool’s native language for writing applications is Lua.",
+memtx,,,memtx,,
+экземпляр,,,instance,,NOUN
+"неявное приведение типов",,,"implicit casting",,NOUN
+"база данных",,,database,,NOUN
+"Релизная политика",,,"Release policy","A set of rules for releasing and naming new distributions of Tarantool: where we add new features and where we don't, how we give them numbers, what versions are suitable to use in production.",PROPN
+поле,,,field,"Fields are distinct data values, contained in a tuple. They play the same role as «row columns» or «record fields» in relational databases.
+
+https://www.tarantool.io/ru/doc/latest/book/box/data_model/#term-field",NOUN
+"выборы лидера",,,"leader election","(in a replica set, by the Raft algorithm)",
+"набор реплик",,,"replica set",,
+"контрольный сигнал",,,heartbeat,,
+функциональность,,,functionality,,
+журнал,,,log,,
+узел,,,node,,NOUN
+реплика,,,follower,,NOUN
+"аллокатор small",https://github.com/tarantool/small,,"small allocator",,
+патч,,,patch,,NOUN
+"критическое изменение",,,"breaking change",,
+парсер,,,parser,,NOUN
+UUID,,,UUID,,
+"тип данных",,,"data type",,
+алиас,"или псевдоним?",NOUN,alias,,NOUN
+"выполнить push",,,push,,VERB
+"(механизм) MVCC",,,MVCC,,
+"""грязное чтение""","в кавычках",,"dirty read",,
+"снимок (данных)",,,snapshot,,NOUN
+"ключевые слова",,,keywords,,NOUN
+"имя, идентификатор",,,identifier,,NOUN
+"предложение, блок",,,clause,"(SQL) A clause in SQL is a part of a query that lets you filter or customizes how you want your data to be queried to you.",NOUN
+выражение,,,expression,,NOUN
+предикат,,,predicate,"(SQL) Predicates, which specify conditions that can be evaluated to SQL three-valued logic (3VL) (true/false/unknown) or Boolean truth values and are used to limit the effects of statements and queries, or to change program flow.",NOUN
+запрос,,,query,"(SQL) Queries retrieve the data based on specific criteria. A query is a statement that returns a result set (possibly empty).",NOUN
+"результат запроса",,,"result set","(SQL) An SQL result set is a set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. A result set is effectively a table.",NOUN
+"результат запроса",,,resultset,"(SQL) An SQL result set is a set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. A result set is effectively a table.",NOUN
+инструкция,"(SQL) Любой текст, который распознаётся движком БД как команда. Инструкция состоит из ключевых слов и выражений языка SQL, которые предписывают Tarantool выполнять какие-либо действия с базой данных.",,statement,"(SQL) A statement is any text that the database engine recognizes as a valid command.
+Tarantool: A statement consists of SQL-language keywords and expressions that direct Tarantool to do something with a database. https://www.tarantool.io/en/doc/latest/reference/reference_sql/sql_user_guide/#statements",
+"пакет (инструкций)","(SQL) Серия SQL-инструкций (statements), отправляемая на сервер вместе",,batch,"(SQL) A series of SQL statements sent to the server at once is called a batch.",NOUN
+"конфигурация производственной среды",,,"production configuration",,
+,,,deployment,"Transforming a mechanical, electrical, or computer system from a packaged to an operational state. IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment.",NOUN
+отменить,транзакцию,,"roll back",,VERB
+,,,"deploy to production","IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment. Production environment is a setting where software and other products are actually put into operation for their intended uses by end users",NOUN
+эксплуатация,,,operations,"(DevOps) Information technology operations, or IT operations, are the set of all processes and services that are both provisioned by an IT staff to their internal or external clients and used by themselves, to run themselves as a business. ",NOUN
+,,,"to deploy","Transforming a mechanical, electrical, or computer system from a packaged to an operational state. IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment.",VERB
+,,,"deployment plan","A sequence of operations or steps that must be carried to deliver changes into a target system environment.",NOUN

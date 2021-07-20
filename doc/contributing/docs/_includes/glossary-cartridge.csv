@@ -1,0 +1,10 @@
+﻿"Term [ru]","Description [ru]","Part of Speech [ru]","Term [en]","Description [en]","Part of Speech [en]"
+"приложение на Tarantool Cartridge","Если без предлога, то теряется  смысл: читается так, как будто Tarantool Cartridge — это название приложения. А это не так. 
+Tarantool Cartridge — это фреймворк, на базе которого можно разработать свое приложение.",,"Tarantool Cartridge application",,NOUN
+Cartridge,,,Cartridge,,PROPN
+"производственная среда",,,"production environment","Production environment is a term used mostly by developers to describe the setting where software and other products are actually put into operation for their intended uses by end users.",NOUN
+"восстановление после сбоев",,,failover,"In computing and related technologies such as networking, failover is switching to a redundant or standby computer server, system, hardware component or network upon the failure or abnormal termination of the previously active application, server, system, hardware component, or network.",NOUN
+"набор реплик",,,replicaset,,NOUN
+директория,,,directory,,NOUN
+сегмент,,,bucket,,NOUN
+"выберите, выбрать",,,check,"To select a checkbox",VERB
