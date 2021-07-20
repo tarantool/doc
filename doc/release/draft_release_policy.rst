@@ -17,6 +17,7 @@ For releases Tarantool version numbers now consist of three parts, major, minor 
 
     MAJOR.MINOR.PATCH
 
+Note that the third digit doesn't label alpha, beta and release version anymore.
 For pre-releases the numbering now consists of three digits and additional suffix:
 
 ..  code-block:: text
@@ -31,7 +32,7 @@ Also, it is appreciated but not guaranteed between different major numbers.
 We don't distinguish now between two kinds of stable release series, as we're going to make
 all of them a kind of 'long term supported'. They will be supported for at least two years.
 
-The topics below describe the new versioning policy in great detail.
+The topics below describe the new versioning policy in great detail. If you have
 
 A release series lifecycle
 --------------------------
@@ -47,9 +48,11 @@ A release series goes over the following stages:
 
         *   -   **Stage**
             -   **Versions to publish**
+            -   **Example**
 
         *   -   Early development
             -   Alpha, beta, release candidate
+            -   3
 
         *   -   Support
             -   Release candidate, release
@@ -57,6 +60,8 @@ A release series goes over the following stages:
         *   -   End of life
             -   N/A
 
+
+The sections below describe those stages in detail.
 
 A release series stages
 -----------------------
