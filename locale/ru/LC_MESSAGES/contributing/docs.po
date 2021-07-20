@@ -1,10 +1,10 @@
 
-msgid "Documentation guidelines"
-msgstr "Рекомендации по написанию документации"
+msgid "Documentation & Localization guidelines"
+msgstr ""
 
 msgid ""
 "These guidelines aim to help the team and external contributors write, "
-"publish, and collaborate on the Tarantool documentation."
+"translate, publish, and collaborate on the Tarantool documentation."
 msgstr ""
 
 msgid ""
