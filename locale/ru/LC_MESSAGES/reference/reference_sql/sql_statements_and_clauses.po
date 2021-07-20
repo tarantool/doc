@@ -2430,8 +2430,10 @@ msgstr ""
 
 msgid ""
 "NULLs come first, then BOOLEANs, then numbers, then STRINGs, then "
-"VARBINARYs."
+"VARBINARYs, then UUIDs."
 msgstr ""
+"Первыми идут значения типа NULL, затем BOOLEAN, числовые значения, STRING, "
+"VARBINARY и, наконец, UUID."
 
 msgid "Within STRINGs, ordering is according to collation."
 msgstr ""
