@@ -1,6 +1,6 @@
 
 msgid "box.error.last()"
-msgstr ""
+msgstr "box.error.last()"
 
 msgid "Show the last error object."
 msgstr "Отображение объекта последней ошибки."

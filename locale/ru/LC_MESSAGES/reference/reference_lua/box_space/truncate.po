@@ -13,7 +13,7 @@ msgid "Parameters"
 msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr "ref:`ссылка на объект <app_server-object_reference>`"
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid ""
 "**Complexity factors:** Index size, Index type, Number of tuples accessed."

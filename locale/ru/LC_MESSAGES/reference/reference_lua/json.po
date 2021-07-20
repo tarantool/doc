@@ -273,7 +273,7 @@ msgid "``cfg.encode_deep_as_nil``"
 msgstr ""
 
 msgid "false"
-msgstr "false"
+msgstr "false (ложь)"
 
 msgid ""
 "A flag saying whether to crop tables with nesting level deeper than "

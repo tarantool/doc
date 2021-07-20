@@ -20,7 +20,8 @@ msgid "return"
 msgstr "возвращает"
 
 msgid "the result of the function passed to ``atomic()`` as an argument."
-msgstr "результат функции передается в ``atomic()`` в качестве аргумента."
+msgstr ""
+"результат функции, которая передается в ``atomic()`` в качестве аргумента."
 
 msgid "**Possible errors:**"
 msgstr "**Возможные ошибки:**"

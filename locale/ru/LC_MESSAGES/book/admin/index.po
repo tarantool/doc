@@ -12,7 +12,7 @@ msgid ""
 "Here we show how to administer Tarantool instances using any of the "
 "following utilities:"
 msgstr ""
-"Здесь мы показываем, как администрировать экземпляры Tarantool’а с помощью "
+"Здесь мы показываем, как администрировать экземпляры Tarantool с помощью "
 "любой из следующих утилит:"
 
 msgid "``systemd`` native utilities, or"

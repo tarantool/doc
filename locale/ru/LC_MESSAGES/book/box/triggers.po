@@ -181,7 +181,7 @@ msgstr "**Пример**"
 msgid "Here we log connect and disconnect events into Tarantool server log."
 msgstr ""
 "Здесь мы записываем события подключения и отключения в журнал на сервере "
-"Tarantool'а."
+"Tarantool."
 
 msgid ""
 "log = require('log')\n"

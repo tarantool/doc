@@ -452,7 +452,7 @@ msgstr ""
 "<https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies>`_."
 
 msgid "**Example**"
-msgstr "**Пример**"
+msgstr "**Пример:**"
 
 msgid "You can use cookies information like this:"
 msgstr "Информацию по файлам cookies можно использовать следующим образом:"

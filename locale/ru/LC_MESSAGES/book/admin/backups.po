@@ -21,8 +21,8 @@ msgstr ""
 
 msgid "Two functions are helpful for backups in certain situations:"
 msgstr ""
-"Данные функции используются для резервного копирования в определенных "
-"ситуациях:"
+"Для резервного копирования в определенных ситуациях используются две "
+"функции:"
 
 msgid ""
 ":doc:`/reference/reference_lua/box_backup/start` informs the server that "

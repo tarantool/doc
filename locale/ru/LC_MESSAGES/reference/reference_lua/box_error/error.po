@@ -95,7 +95,7 @@ msgstr ""
 " 'joe' не найден)."
 
 msgid "except"
-msgstr "Исключение:"
+msgstr "Исключение"
 
 msgid "whatever is specified in errcode-number."
 msgstr "то, что указано в номере errcode."

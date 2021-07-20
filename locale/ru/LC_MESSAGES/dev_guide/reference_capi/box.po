@@ -22,8 +22,8 @@ msgstr "Параметры"
 
 msgid "an opaque structure passed to the C stored procedure by Tarantool"
 msgstr ""
-"непрозрачная структура, передаваемая Tarantool'ом в хранимую процедуру на "
-"языке C"
+"непрозрачная структура, передаваемая Tarantool в хранимую процедуру на языке"
+" C"
 
 msgid "a tuple to return"
 msgstr "возвращаемый кортеж"

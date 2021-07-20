@@ -92,7 +92,7 @@ msgstr ""
 "}\n"
 "\n"
 "if (coio_call(openfile_cb, \"/tmp/file\", 0) == -1)\n"
-"    // обработка ошибок\n"
+"    // обработка ошибок.\n"
 "..."
 
 msgid "Fiber-friendly version of :manpage:`getaddrinfo(3)`."

@@ -217,7 +217,7 @@ msgid ""
 "Example showing submodule `box.index` with index type = RTREE for spatial "
 "searches"
 msgstr ""
-"Пример использования `box.index` с индексом типа RTREE для посика в "
+"Пример использования `box.index` с индексом типа RTREE для поиска в "
 "пространственных данных"
 
 msgid ""

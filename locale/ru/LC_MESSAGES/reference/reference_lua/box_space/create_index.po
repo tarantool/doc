@@ -17,7 +17,7 @@ msgid "Parameters"
 msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr "ref:`ссылка на объект <app_server-object_reference>`"
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid ""
 "name of index, which should conform to the :ref:`rules for object names "
@@ -39,7 +39,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "index_object"
-msgstr "объект индекса"
+msgstr "index_object"
 
 msgid "**Options for space_object:create_index()**"
 msgstr "**Параметры для space_object:create_index()**"
@@ -48,7 +48,7 @@ msgid "Name"
 msgstr "Имя"
 
 msgid "Effect"
-msgstr "Эффект"
+msgstr "Описание"
 
 msgid "Type"
 msgstr "Тип"
@@ -66,8 +66,8 @@ msgid ""
 "string ('HASH' or 'TREE' or 'BITSET' or 'RTREE') Note re storage engine: "
 "vinyl only supports 'TREE'"
 msgstr ""
-"строка ('HASH' или 'TREE', или 'BITSET', или 'RTREE') Примечание про движок "
-"базы данных: vinyl поддерживает только 'TREE'"
+"string ('HASH', или 'TREE', или 'BITSET', или 'RTREE') Примечание про движок"
+" базы данных: vinyl поддерживает только 'TREE'"
 
 msgid "'TREE'"
 msgstr "'TREE'"
@@ -79,7 +79,7 @@ msgid "unique identifier"
 msgstr "уникальный идентификатор"
 
 msgid "number"
-msgstr "число"
+msgstr "number"
 
 msgid "last index's id, +1"
 msgstr "идентификатор последнего индекса +1"
@@ -91,19 +91,19 @@ msgid "index is unique"
 msgstr "индекс уникален"
 
 msgid "boolean"
-msgstr "boolean (логический)"
+msgstr "boolean"
 
 msgid "``true``"
-msgstr "``true`` (правда)"
+msgstr "``true``"
 
 msgid "if_not_exists"
-msgstr "if_not_exists (если отсутствует)"
+msgstr "if_not_exists"
 
 msgid "no error if duplicate name"
 msgstr "ошибки нет, если имя дублируется"
 
 msgid "``false``"
-msgstr "``false`` (ложь)"
+msgstr "``false``"
 
 msgid "parts"
 msgstr "parts"
@@ -138,10 +138,12 @@ msgid "affects RTREE only"
 msgstr "только для RTREE"
 
 msgid "string ('euclid' or 'manhattan')"
-msgstr "строка ('euclid' или 'manhattan')"
+msgstr ""
+"строка ('euclid', то есть Евклидова метрика; или 'manhattan', то есть "
+"расстояние городских кварталов)"
 
 msgid "'euclid'"
-msgstr "'euclid' (Евклидова)"
+msgstr "'euclid'"
 
 msgid "bloom_fpr"
 msgstr "bloom_fpr"

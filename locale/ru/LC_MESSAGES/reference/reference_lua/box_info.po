@@ -146,7 +146,7 @@ msgid "Name"
 msgstr "Имя"
 
 msgid "Use"
-msgstr "Использование"
+msgstr "Назначение"
 
 msgid ":doc:`./box_info/info`"
 msgstr ""
