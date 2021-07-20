@@ -110,8 +110,8 @@ Release notes for series before 1.10 are also available:
 ..  toctree::
     :hidden:
 
-    release/draft_release_policy
     release/policy
+    release/new-policy
     release/2.8.1
     release/2.7.2
     release/2.7.1
