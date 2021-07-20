@@ -4,35 +4,74 @@ Release Policy Project
 Summary
 -------
 
-To make Tarantool builds' identification more clear and intuitive, the versioning policy for stable
-releases is changing.
-It will take effect for builds starting with 2.TBD.0 numbers and for future major series ones (3.0.0+) as well.
+Tarantool release policy changes to become more clear and intuitive.
+The new policy uses a `SemVer-like <https://semver.org/>`__ versioning format,
+and introduces a new version lifecycle with more long-time support series.
+This document explains the new release policy, versioning rules, and release series lifecycle.
 
-The new version numbering scheme will replace
-`the legacy policy <https://www.tarantool.io/en/doc/1.10/dev_guide/release_management/>`_.
-It changes to the semver-like format.
-For releases Tarantool version numbers now consist of three parts, major, minor and patch:
+The new release policy replaces :doc:`the legacy policy <release/policy>`
+for the versions in 2.x.y series since 2.TBD.0,
+and for the future major series ones (3.0.0+) as well.
+
+The topics below describe the new versioning policy in more detail.
+
+Versioning
+----------
+
+Production-ready (release) version labels consist of major, minor and patch numbers:
 
 ..  code-block:: text
 
     MAJOR.MINOR.PATCH
 
-Note that the third digit doesn't label alpha, beta and release version anymore.
-For pre-releases the numbering now consists of three digits and additional suffix:
+Versions in development and release candidates use the same pattern with an additional suffix:
 
 ..  code-block:: text
 
     MAJOR.MINOR.PATCH-<pre-release suffix>
 
-Suffixes ``-alphaN``, ``-betaN``, ``-rcN`` and ``-dev`` explicitly mark pre-releases and
-developer builds so that users could avoid installing these versions on production systems.
-Backwards compatibility is guaranteed between minor builds in the same major release series.
+There are four stages of development before a release:
+
+#.  Alpha (``MAJOR.MINOR.PATCH-alphaN``)
+#.  Beta (``MAJOR.MINOR.PATCH-betaN``)
+#.  Release candidate (``MAJOR.MINOR.PATCH-rcN``)
+#.  Nightly build (``MAJOR.MINOR.PATCH-dev``)
+
+A release series goes through a set of alpha, beta and release candidate versions,
+and eventually gets released.
+For example:
+
+..  code-block:: text
+
+    3.2.0-alpha1
+    3.2.0-alpha2
+    ...
+    3.2.0-alpha7
+    3.2.0-beta1
+    ...
+    3.2.0-beta5
+    3.2.0-rc1
+    ...
+    3.2.0-rc4
+    3.2.0 (release)
+
+Backwards compatibility is guaranteed between minor versions in the same major release series.
 Also, it is appreciated but not guaranteed between different major numbers.
+A detailed description of compatibility guarantees will be published later.
 
-We don't distinguish now between two kinds of stable release series, as we are making
-all of them 'long term supported'. They will be supported for at least two years.
+Changes
+-------
 
-The topics below describe the new versioning policy in great detail.
+There are several significant changes from the legacy release policy:
+
+*   The third number in the version name doesn't distinguish between
+    alpha, beta and release version anymore.
+
+*   In the legacy release policy, 1.10 was a long-term support (LTS) series,
+    while 2.x.y had "stable releases", but wasn't an LTS series.
+
+    Now both series are long-term supported.
+    The intended support time is at least two years.
 
 A release series lifecycle
 --------------------------
