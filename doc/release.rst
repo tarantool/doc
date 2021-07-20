@@ -10,7 +10,7 @@ Tarantool version numbers consist of three parts:
 
     MAJOR_VERSION.RELEASE_SERIES.RELEASE
 
-Third number distinguishes between alpha, beta and release versions:
+The third number distinguishes between alpha, beta and release versions:
 
 *   ``x.y.0`` is an **alpha version**, just a base for adding new features.
     We use alpha versions internally and don't release them as distributions.
