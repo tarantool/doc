@@ -1291,7 +1291,7 @@ and IPROTO_BALLOT_IS_RO was formerly called IPROTO_BALLOT_IS_LOADING.
 
 IPROTO_BALLOT_IS_RO_CFG corresponds to :ref:`box.cfg.read_only <cfg_basic-read_only>`.
 
-IPROTO_BALLOT_GC_VCLOCK may have the value of the instance's oldest
+IPROTO_BALLOT_GC_VCLOCK can be the vclock value of the instance's oldest
 WAL entry, which corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
 
 IPROTO_BALLOT_IS_RO is true if the instance is not writable,
