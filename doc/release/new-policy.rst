@@ -29,10 +29,10 @@ developer builds so that users could avoid installing these versions on producti
 Backwards compatibility is guaranteed between minor builds in the same major release series.
 Also, it is appreciated but not guaranteed between different major numbers.
 
-We don't distinguish now between two kinds of stable release series, as we're going to make
-all of them a kind of 'long term supported'. They will be supported for at least two years.
+We don't distinguish now between two kinds of stable release series, as we are making
+all of them 'long term supported'. They will be supported for at least two years.
 
-The topics below describe the new versioning policy in great detail. If you have
+The topics below describe the new versioning policy in great detail.
 
 A release series lifecycle
 --------------------------
