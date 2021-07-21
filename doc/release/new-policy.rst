@@ -45,17 +45,6 @@ For example, the version label is ``3.1.2``:
 
 
 
-During early development, we publish alpha, beta and release candidates. They
-are marked this way:
-``3.0.0-alphaN```,
-``3.0.0-betaN```,
-``3.0.0-rcN``` (N is a number).
-During the support stage, we also can publish a release candidate. It'll be tagged similarly: ``3.2.0-rcN``.
-Nightly builds are marked this way: ``git describe --always --long-dev``.
-Together with the development flow (described below), it gives names like so:
-``3.0.0-alpha1-14-gxxxxxxxxx-dev``,
-``3.1.2-5-gxxxxxxxxx-dev``,
-``3.0.0-entrypoint-17-gxxxxxxxxx-dev``.
 
 Versions in development and release candidates use the same pattern with an additional suffix:
 
@@ -70,8 +59,10 @@ There are four types of suffixes in versions before a release:
 #.  Release candidate (``MAJOR.MINOR.PATCH-rcN``)
 #.  Nightly build (``MAJOR.MINOR.PATCH-dev``)
 
-A release series goes through a set of alpha, beta and release candidate versions,
-and eventually gets released.
+A release series goes through a set of alpha, beta and release candidate versions
+and eventually gets released. During early development, there are alpha, beta and release candidates.
+Also, a release candidate can be published during the support stage (``3.2.0-rcN``).
+
 For example:
 
 ..  code-block:: text
@@ -87,6 +78,13 @@ For example:
     ...
     3.2.0-rc4
     3.2.0 (release)
+
+
+Nightly builds are marked this way: ``git describe --always --long-dev``.
+Together with the development flow, it gives names like so:
+``3.0.0-alpha1-14-gxxxxxxxxx-dev``,
+``3.1.2-5-gxxxxxxxxx-dev``,
+``3.0.0-entrypoint-17-gxxxxxxxxx-dev``.
 
 Backwards compatibility is guaranteed between minor versions in the same major release series.
 Also, it is appreciated but not guaranteed between different major numbers.
