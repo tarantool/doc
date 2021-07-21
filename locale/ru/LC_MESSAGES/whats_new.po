@@ -3358,7 +3358,7 @@ msgid ""
 "``/etc/tarantool/instace.enabled``."
 msgstr ""
 "Убедитесь в наличии файла ``ИМЯ_ЭКЗЕМПЛЯРА.lua`` в директории "
-"``/etc/tarantool/instace.enabled``."
+"``/etc/tarantool/instance.enabled``."
 
 msgid "Stop INSTANCENAME using ``tarantoolctl stop INSTANCENAME``."
 msgstr "Остановите ЭКЗЕМПЛЯР с помощью ``tarantoolctl stop ИМЯ_ЭКЗЕМПЛЯРА``."
