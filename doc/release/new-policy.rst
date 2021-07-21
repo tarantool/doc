@@ -10,184 +10,239 @@ and introduces a new version lifecycle with more long-time support series.
 This document explains the new release policy, versioning rules, and :term:`release series` lifecycle.
 
 The new release policy replaces :doc:`the legacy policy <release/policy>`
-for the versions in 2.x.y series since 2.TBD.0,
-and for the future major series ones (3.0.0+) as well.
+for the versions in ``2.x.y`` series since ``2.TBD.0``,
+and for the future major series ones (``3.0.0+``) as well.
+
+Here are the most significant changes from the legacy release policy:
+
+*   The third number in the version label doesn't distinguish between
+    pre-release (alpha and beta) and release versions.
+    Instead, it is used for patch (bugfix-only) releases.
+    Pre-release versions have suffixes, like ``3.0.0-alpha1``.
+
+*   In the legacy release policy, ``1.10`` was a long-term support (LTS) series,
+    while ``2.x.y`` had stable releases, but wasn't an LTS series.
+    Now both series are long-term supported.
 
 The topics below describe the new versioning policy in more detail.
 
-Terms
------
+Versioning policy
+-----------------
+
+Release series and versions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The new Tarantool release policy is based on having several release series,
+each with its own lifecycle, pre-release and release versions.
 
 ..  glossary::
 
-    Pre-release
-        A frozen commit for early adopters, a preview of a future :term:`release`.
-
-    Release
-        A frozen commit that we advertise as production-ready.
-
-    Release / pre-release version
-        A unique identifier, label of a :term:`pre-release` or a :term:`release`.
-
     Release series
-        A product with linear evolution, pre-release and release points and certain compatibility guarantees
-        within the series and between series.
 
+        Release series is a sequence of development and production-ready versions
+        with linear evolution toward a defined roadmap.
+        A series has a distinct lifecycle and certain compatibility guarantees within itself and with other series.
+        The intended support time for each series is at least two years since the first release.
 
-Versioning
-----------
+        At the moment when this document is published, there are two release series: ``1.10`` and ``2.x.y``.
 
-Production-ready (release) version labels consist of major, minor and patch numbers:
+    Release version
 
-..  code-block:: text
+        Release version is a Tarantool distribution which is thoroughly tested and ready for production usage.
+        It is bound to a certain commit.
+        Release version label consists of three numbers:
 
-    MAJOR.MINOR.PATCH
+        ..  code-block:: text
 
-For example, the version label is ``3.1.2``:
+            MAJOR.MINOR.PATCH
 
-..  container:: table
+These numbers correspond to the three types of release versions:
 
-    ..  rst-class:: left-align-column-1
-    ..  rst-class:: left-align-column-2
+..  glossary::
 
-    ..  list-table::
+    Major release
 
-        *   -   3
-            -   release series, major version
+        Major release is the first :term:`release version <release version>` of its own
+        :term:`release series <release series>`.
+        It introduces new features and can have a few backward-incompatible changes.
+        Such release changes the first version number:
 
-        *   -   3.1
-            -   feature set, the minor version is
-                increased with new features
+        ..  code-block::
 
-        *   -   3.1.2, 3.1.3
-            -   releases, might differ by fixed bugs
+            MAJOR.0.0
 
+            3.0.0
 
+    Minor release
 
-Versions in development and release candidates use the same pattern with an additional suffix:
+        Minor release introduces a few new features, but guarantees backward compatibility.
+        There can be a few bugs fixed as well.
+        Such release changes the second version number:
 
-..  code-block:: text
+        ..  code-block::
 
-    MAJOR.MINOR.PATCH-<pre-release suffix>
+            MAJOR.MINOR.0
 
-There are four types of suffixes in versions before a release:
+            3.1.0
+            3.2.0
 
-#.  Alpha (``MAJOR.MINOR.PATCH-alphaN``)
-#.  Beta (``MAJOR.MINOR.PATCH-betaN``)
-#.  Release candidate (``MAJOR.MINOR.PATCH-rcN``)
-#.  Nightly build (``MAJOR.MINOR.PATCH-dev``)
+    Patch release
 
-A release series goes through a set of alpha, beta and release candidate versions
-and eventually gets released. During early development stage, there are alpha, beta and release candidates.
-Also, a release candidate can be published during the support stage (``3.2.0-rcN``).
+        Patch release fixes bugs from an earlier release, but doesn't introduce new features.
+        Such release changes the third version number:
 
-For example:
+        ..  code-block::
 
-..  code-block:: text
+            MAJOR.MINOR.PATCH
 
-    3.2.0-alpha1
-    3.2.0-alpha2
-    ...
-    3.2.0-alpha7
-    3.2.0-beta1
-    ...
-    3.2.0-beta5
-    3.2.0-rc1
-    ...
-    3.2.0-rc4
-    3.2.0 (release)
+            3.0.1
+            3.0.2
 
+Release versions conform to a set of requirements:
 
-Nightly builds are marked this way: ``git describe --always --long-dev``.
-Together with the development flow, it gives names like so:
-``3.0.0-alpha1-14-gxxxxxxxxx-dev``,
-``3.1.2-5-gxxxxxxxxx-dev``,
-``3.0.0-entrypoint-17-gxxxxxxxxx-dev``.
+    *   The release has gone through pre-release testing and adoption
+        in the internal projects until there were no doubts regarding its stability.
 
-Backwards compatibility is guaranteed between minor versions in the same major release series.
-Also, it is appreciated but not guaranteed between different major numbers.
+    *   There are no known bugs in the typical usage scenarios.
+
+    *   There are no degradations from the previous release or release series, in case of a major release.
+
+Backwards compatibility is guaranteed between all versions in the same release series.
+It is also appreciated, but not guaranteed between different release series (major number changes).
 A detailed description of compatibility guarantees will be published later.
 
-Changes
--------
+Pre-release versions
+~~~~~~~~~~~~~~~~~~~~
 
-There are several significant changes from the legacy release policy:
+..  glossary::
 
-*   The third number in the version name doesn't distinguish between
-    alpha, beta and release version anymore.
+    Pre-release version
 
-*   In the legacy release policy, 1.10 was a long-term support (LTS) series,
-    while 2.x.y had "stable releases", but wasn't an LTS series.
+        Pre-release versions are the ones published for testing and evaluation,
+        and not intended for production use.
+        Such versions use the same pattern with an additional suffix:
 
-    Now both series are long-term supported.
-    The intended support time is at least two years since the first release.
+        ..  code-block:: text
 
-A release series lifecycle
+            MAJOR.MINOR.PATCH-suffix
+
+There are a few types of pre-release versions:
+
+..  glossary::
+
+    Nightly build
+
+        Nightly builds reflect the state of current development process.
+        They're used entirely for development and testing,
+        and not intended for any external use.
+
+        Nightly builds have suffixes made with ``git describe --always --long-dev``:
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-describe-dev
+
+            3.0.0-alpha1-14-gxxxxxxxxx-dev
+            3.0.0-entrypoint-17-gxxxxxxxxx-dev
+            3.1.2-5-gxxxxxxxxx-dev
+
+    Alpha version
+
+        Alpha version has some of the features planned in the release series.
+        It can be incomplete or unstable, and can break the backwards compatibility
+        with the previous release series.
+
+        Alpha versions are published for early adopters and developers of dependent components,
+        such as connectors and modules.
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-alphaN
+
+            3.0.0-alpha1
+            3.0.0-alpha2
+
+    Beta version
+
+        Beta version has all the features which are planned for the release series.
+        It is a good choice to start developing a new application.
+
+        Readiness of a feature can be checked in a beta version to decide whether to remove the feature,
+        finish it later, or replace it with something else.
+        A beta version can still have a known bug in the new functionality,
+        or a known degradation since the previous release series that affects a common use case.
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-betaN
+
+            3.0.0-beta1
+            3.0.0-beta2
+
+    Release candidate
+
+        Release candidate is used to fix bugs, mature the functionality,
+        and collect feedback before an upcoming release.
+        Release candidate has the same feature set as the preceding beta version
+        and doesn't have known bugs in typical usage scenarios
+        or degradations from the previous release series.
+
+        Release candidate is a good choice to set up a staging server.
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-rcN
+
+            3.0.0-rc1
+            3.0.0-rc2
+            3.0.1-rc1
+
+Release series lifecycle
 --------------------------
 
-A release series goes over the following stages:
+A release series goes through the following stages:
 
-..  container:: table
-
-    ..  rst-class:: left-align-column-1
-    ..  rst-class:: left-align-column-2
-
-    ..  list-table::
-
-        *   -   **Stage**
-            -   **Versions to publish**
-
-        *   -   Early development
-            -   Alpha, beta, release candidate
-
-        *   -   Support
-            -   Release candidate, release
-
-        *   -   End of life
-            -   N/A
-
-
-The sections below describe those stages in detail.
-
-A release series stages
------------------------
+..  contents::
+    :local:
 
 Early development
 ~~~~~~~~~~~~~~~~~
 
-The stage goes on until a first release. Alpha, beta versions and pre-releases
-are published within this stage.
+The early development stage goes on until the first :term:`major release <major release>`.
+Alpha, beta, and release candidate versions are published within this stage.
 
-The stage splits into two phases: development of a new functionality
-and its stabilization.
+The stage splits into two phases:
 
-A premature functionality might be removed on the alpha/beta stage, but it will
-not be removed after the publication of a release candidate.
+1.  Development of a new functionality through alpha and beta versions.
+    Features can be added and, sometimes, removed in this phase.
+
+2.  Stabilization starts with the first release candidate version.
+    Feature set doesn't change in this phase.
 
 Support
 ~~~~~~~
 
-The stage starts when a first release is published. The release series now is
-an object of only backward compatible changes.
+The stage starts when a first release is published.
+The release series now is an object of only backward compatible changes.
 
 At this stage, all known security problems and all found
 degradations since the previous series are fixed.
 
-A series receives degradation fixes and other bugfixes till the
-end of life.
+A series receives degradation fixes and other bugfixes during the support stage
+and until the series transitions into the end of life (EOL) stage.
 
 The decision of whether to fix a particular problem in a particular release series
 depends on the impact of the problem, risks around backward compatibility and the
 complexity of backporting a fix.
 
-A release series might receive new features at this stage, but only in a
-backward compatible manner. A release candidate might be published for a new
-functionality before a release.
+A release series might receive new features at this stage,
+but only in a backward compatible manner.
+A release candidate might be published for a new functionality before a release.
 
-During the support period a release series receives new versions of supported Linux distros
-to build infrastructure.
+During the support period a release series receives new versions of supported Linux
+distributives to build infrastructure.
 
-A support period might be extended.
+The intended duration of the support period for each series is at least two years.
 
 End of life
 ~~~~~~~~~~~
@@ -198,63 +253,12 @@ published. The series will not receive updates anymore.
 In modules, connectors and tools, we don't guarantee support of a release series
 that reaches EOL.
 
-A release series cannot reach EOL until the vast majority of productions
-(where we have commitments / SLA) will be updated to a newer series.
+A release series cannot reach EOL until the vast majority of production environments,
+for which we have commitments and SLAs, will be updated to a newer series.
 
-Version string meaning
-----------------------
 
-Nightly build
-~~~~~~~~~~~~~
-
-These versions are not supposed to be used by customers. A version string
-contains ``-dev`` postfix.
-
-Alpha
-~~~~~
-
-An alpha version is for early adopters and developers of dependent components
-(such as connectors and modules).
-
-It is an early stage of a release series. The functionality might be incomplete or
-unstable.
-
-Beta
-~~~~
-
-A beta version is good to start developing a new application.
-
-Beta versions are published when all functionality planned for the release series becomes implemented.
-
-At this point, readiness of a feature can be checked to decide whether to remove it, finish it later
-or replace it with something else.
-
-A beta version might have a known bug in the new functionality or a known degradation since a previous release
-series that affects a common use case, unlike a release candidate.
-
-Release candidate
-~~~~~~~~~~~~~~~~~
-
-A release candidate fits good to setup a staging server.
-
-There are two kinds of a release candidate:
-
-*   during early development
-*   on the support stage, to collect feedback before an upcoming release.
-
-The key difference between beta and release candidate is the maturity of the new
-functionality. The formal rules are:
-
-*   No known bugs in typical usage scenarios for new functionality.
-*   No known degradations since a previous release series.
-
-Release
-~~~~~~~
-
-A release is a version that is ready for production usage.
-
-The requirements are the same as for a release candidate. Also, there might be extra pre-release
-testing and adoption in the internal projects if there are doubts regarding stability.
+Versions per lifecycle stage
+----------------------------
 
 ..  container:: table
 
@@ -262,38 +266,76 @@ testing and adoption in the internal projects if there are doubts regarding stab
     ..  rst-class:: left-align-column-2
 
     ..  list-table::
+        :header-rows: 1
 
-        *   -   **Version suffix**
-            -   **Description**
+        *   -   Stage
+            -   Version types
+            -   Examples
 
-        *   -   Nightly build
-            -   Not supposed to be used by customers, contains ``-dev`` postfix.
+        *   -   Early development
+            -   Alpha, beta, release candidate, nightly builds (not published)
 
-        *   -   Alpha
-            -   For early adopters and developers of dependent components (such as connectors and modules).
-                An early stage of a release series. The functionality might be incomplete or unstable.
+            -   ..  code-block:: text
 
-        *   -   Beta
-            -   Good to start developing a new application. Gets published when all functionality planned
-                for the release series becomes implemented. At this point, the readiness of a feature can be checked
-                to decide whether to remove it, finish it later or replace it with something else.
-                Might have a known bug in the new functionality or a known degradation since a
-                previous release series that affects a common use case, unlike a release candidate.
+                    3.0.0-alpha1
+                    3.0.0-beta1
+                    3.0.0-rc1
+                    3.0.0-dev
 
-        *   -   Release candidate
-            -   Fits good to setup a staging server. There are two kinds of a release candidate:
+        *   -   Support
+            -   Release candidate, release, nightly builds (not published)
 
-                *   during early development, when the series goes to be mature enough.
-                *   on the support stage, to collect feedback before an upcoming release.
+            -   ..  code-block:: text
 
-                The key difference between beta and release candidate is
-                the maturity of the new functionality. The formal rules are:
+                    3.0.0
+                    3.0.1-rc1
+                    3.0.1-dev
 
-                *   No known bugs in typical usage scenarios for new functionality.
-                *   No known degradations since a previous release series.
+        *   -   End of life
+            -   None
+            -   N/A
 
-        *   -   Release
-            -   Version ready for production usage. The requirements are the same as for a release candidate.
-                Aside from this, there might be extra pre-release testing and adoption in the internal projects
-                if there are doubts regarding stability.
 
+Example of a release series
+---------------------------
+
+A release series in an early development stage can have
+the following version sequence:
+
+    ..  code-block:: text
+
+        3.0.0-alpha1
+        3.0.0-alpha2
+        ...
+        3.0.0-alpha7
+
+        3.0.0-beta1
+        ...
+        3.0.0-beta5
+
+        3.0.0-rc1
+        ...
+        3.0.0-rc4
+
+        3.0.0 (release)
+
+Since the first release version, the series comes into a support stage.
+Then it can proceed with a version sequence like the following:
+
+    ..  code-block:: text
+
+        3.0.0 (release of a new major version)
+
+        3.0.1-rc1
+        ...
+        3.0.1-rc4
+        3.0.1 (release with some bugs fixed but no new features)
+
+        3.1.0-rc1
+        ...
+        3.1.0-rc6
+        3.1.0 (release with new features and, possibly, extra fixed bugs)
+
+Eventually, the support stage stops and the release series comes to the
+end of life (EOL) stage.
+No new versions are released since then.
