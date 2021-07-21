@@ -67,7 +67,7 @@ These numbers correspond to the three types of release versions:
         It introduces new features and can have a few backward-incompatible changes.
         Such release changes the first version number:
 
-        ..  code-block::
+        ..  code-block:: text
 
             MAJOR.0.0
 
@@ -79,7 +79,7 @@ These numbers correspond to the three types of release versions:
         There can be a few bugs fixed as well.
         Such release changes the second version number:
 
-        ..  code-block::
+        ..  code-block:: text
 
             MAJOR.MINOR.0
 
@@ -91,7 +91,7 @@ These numbers correspond to the three types of release versions:
         Patch release fixes bugs from an earlier release, but doesn't introduce new features.
         Such release changes the third version number:
 
-        ..  code-block::
+        ..  code-block:: text
 
             MAJOR.MINOR.PATCH
 
