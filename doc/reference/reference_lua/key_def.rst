@@ -19,7 +19,7 @@ to extract or compare the index key values.
 
     :param table parts: field numbers and types.
                         There must be at least one part and it
-                        must have at least fieldno and type.
+                        must have at least ``fieldno`` and ``type``.
 
     :returns: key_def-object :ref:`a key_def object <key_def-object>`
 
@@ -27,9 +27,10 @@ to extract or compare the index key values.
     the ``parts`` option in
     :ref:`Options for space_object:create_index() <box_space-create_index-options>`.
 
-    fieldno (integer) for example fieldno = 1. It is legal to say field instead of fieldno.
+    ``fieldno`` (integer) for example ``fieldno = 1``.
+    It is legal to use ``field`` instead of ``fieldno``.
 
-    type (string) for example type = 'string'.
+    ``type`` (string) for example ``type = 'string'``.
 
     Other components are optional.
 
@@ -54,15 +55,15 @@ to extract or compare the index key values.
 
     .. method:: extract_key(tuple)
 
-        Return a tuple containing only the fields of the key_def object.
+        Return a tuple containing only the fields of the ``key_def`` object.
 
         :param table tuple: tuple or Lua table with field contents
 
-        :return: the fields that were defined for the key_def object
+        :return: the fields that were defined for the ``key_def`` object
 
         **Example #1:**
 
-        .. code-block:: none
+        .. code-block:: tarantoolsession
 
             -- Suppose that an item has five fields
             -- 1, 99.5, 'X', nil, 99.5
@@ -76,7 +77,7 @@ to extract or compare the index key values.
             ...
 
             tarantool> k = key_def.new({{type = 'string', fieldno = 3},
-            >                           {type = 'unsigned', fieldno =1 }})
+            >                           {type = 'unsigned', fieldno = 1}})
             ---
             ...
 
@@ -96,7 +97,7 @@ to extract or compare the index key values.
             -- The result will be the same.
             key_def = require('key_def')
             box.schema.space.create('T')
-            i = box.space.T:create_index('I',{parts={3,'string',1,'unsigned'}})
+            i = box.space.T:create_index('I', {parts={3, 'string', 1, 'unsigned'}})
             box.space.T:insert{1, 99.5, 'X', nil, 99.5}
             k = key_def.new(i.parts)
             k:extract_key(box.space.T:get({'X', 1}))
@@ -125,11 +126,11 @@ to extract or compare the index key values.
 
     .. method:: compare(tuple_1, tuple_2)
 
-        Compare the key fields of tuple_1 to the key fields of tuple_2.
+        Compare the key fields of ``tuple_1`` to the key fields of ``tuple_2``.
         This is a tuple-by-tuple comparison so users do not have to
         write code which compares a field at a time.
         Each field's type and collation will be taken into account.
-        In effect it is a comparison of extract_key(tuple_1) with extract_key(tuple_2).
+        In effect it is a comparison of ``extract_key(tuple_1)`` with ``extract_key(tuple_2)``.
 
         :param table tuple1: tuple or Lua table with field contents
         :param table tuple2: tuple or Lua table with field contents
@@ -144,18 +145,18 @@ to extract or compare the index key values.
 
            -- This will return 0
            key_def = require('key_def')
-           k = key_def.new({{type='string',fieldno=3,collation='unicode_ci'},
-                            {type='unsigned',fieldno=1}})
+           k = key_def.new({{type = 'string', fieldno = 3, collation = 'unicode_ci'},
+                            {type = 'unsigned', fieldno = 1}})
            k:compare({1, 99.5, 'X', nil, 99.5}, {1, 99.5, 'x', nil, 99.5})
 
     .. _key_def-compare_with_key:
 
     .. method:: compare_with_key(tuple_1, tuple_2)
 
-        Compare the key fields of tuple_1 to all the fields of tuple_2.
+        Compare the key fields of ``tuple_1`` to all the fields of ``tuple_2``.
         This is the same as :ref:`key_def_object:compare() <key_def-compare>`
-        except that tuple_2 contains only the key fields.
-        In effect it is a comparison of extract_key(tuple_1) with tuple_2.
+        except that ``tuple_2`` contains only the key fields.
+        In effect it is a comparison of ``extract_key(tuple_1)`` with ``tuple_2``.
 
         :param table tuple1: tuple or Lua table with field contents
         :param table tuple2: tuple or Lua table with field contents
@@ -170,18 +171,18 @@ to extract or compare the index key values.
 
            -- This will return 0
            key_def = require('key_def')
-           k = key_def.new({{type='string',fieldno=3,collation='unicode_ci'},
-                            {type='unsigned',fieldno=1}})
+           k = key_def.new({{type = 'string', fieldno = 3, collation = 'unicode_ci'},
+                            {type = 'unsigned', fieldno = 1}})
            k:compare_with_key({1, 99.5, 'X', nil, 99.5}, {'x', 1})
 
     .. _key_def-merge:
 
     .. method:: merge (other_key_def_object)
 
-        Combine the main key_def_object with other_key_def_object.
-        The return value is a new key_def_object containing all the fields of
-        the main key_def_object, then all the fields of other_key_def_object which
-        are not in the main key_def_object.
+        Combine the main ``key_def_object`` with ``other_key_def_object``.
+        The return value is a new ``key_def_object`` containing all the fields of
+        the main ``key_def_object``, then all the fields of ``other_key_def_object`` which
+        are not in the main ``key_def_object``.
 
         :param key_def_object other_key_def_object: definition of fields to add
 
@@ -191,7 +192,7 @@ to extract or compare the index key values.
 
         .. code-block:: none
 
-           -- This will return a key definition with fieldno=3 and fieldno=1.
+           -- This will return a key definition with fieldno = 3 and fieldno = 1.
            key_def = require('key_def')
            k = key_def.new({{type = 'string', fieldno = 3}})
            k2= key_def.new({{type = 'unsigned', fieldno = 1},
@@ -202,11 +203,11 @@ to extract or compare the index key values.
 
     .. method:: totable()
 
-        Return a table containing what is in the key_def_object.
+        Return a table containing what is in the ``key_def_object``.
         This is the reverse of ``key_def.new()``:
 
-        *  ``key_def.new()`` takes a table and returns a key_def object,
-        *  ``key_def_object:totable()`` takes a key_def object and returns a table.
+        *  ``key_def.new()`` takes a table and returns a ``key_def`` object,
+        *  ``key_def_object:totable()`` takes a ``key_def`` object and returns a table.
 
         This is useful for input to ``_serialize`` methods.
 
@@ -216,7 +217,7 @@ to extract or compare the index key values.
 
         .. code-block:: none
 
-           -- This will return a table with type='string', fieldno=3
+           -- This will return a table with type = 'string', fieldno = 3
            key_def = require('key_def')
            k = key_def.new({{type = 'string', fieldno = 3}})
            k:totable()
