@@ -64,7 +64,6 @@ For example, the version label is ``3.1.2``:
 
 
 
-
 Versions in development and release candidates use the same pattern with an additional suffix:
 
 ..  code-block:: text
@@ -171,22 +170,22 @@ Support
 The stage starts when a first release is published. The release series now is
 an object of only backward compatible changes.
 
-At this stage, we're fixing all known security problems and fixing all found
-degradations since the previous series.
+At this stage, all known security problems and all found
+degradations since the previous series are fixed.
 
 A series receives degradation fixes and other bugfixes till the
 end of life.
 
 The decision of whether to fix a particular problem in a particular release series
-is based on the impact of the problem, risks around backward compatibility and the
+depends on the impact of the problem, risks around backward compatibility and the
 complexity of backporting a fix.
 
 A release series might receive new features at this stage, but only in a
 backward compatible manner. A release candidate might be published for a new
 functionality before a release.
 
-During the support period we're adding new versions of supported Linux distros
-to our build infrastructure.
+During the support period a release series receives new versions of supported Linux distros
+to build infrastructure.
 
 A support period might be extended.
 
@@ -204,7 +203,6 @@ A release series cannot reach EOL until the vast majority of productions
 
 Version string meaning
 ----------------------
-
 
 Nightly build
 ~~~~~~~~~~~~~
@@ -226,9 +224,9 @@ Beta
 
 A beta version is good to start developing a new application.
 
-We begin publishing beta versions when all functionality planned for the release series becomes implemented.
+Beta versions are published when all functionality planned for the release series becomes implemented.
 
-At this point, we can reevaluate the readiness of a feature and decide to remove it from the series, finish it later
+At this point, readiness of a feature can be checked to decide whether to remove it, finish it later
 or replace it with something else.
 
 A beta version might have a known bug in the new functionality or a known degradation since a previous release
@@ -239,9 +237,10 @@ Release candidate
 
 A release candidate fits good to setup a staging server.
 
-There are two kinds of a release candidate. First, during early
-development, when the series goes to be mature enough. Second, on the support
-stage, to collect feedback before an upcoming release.
+There are two kinds of a release candidate:
+
+*   during early development
+*   on the support stage, to collect feedback before an upcoming release.
 
 The key difference between beta and release candidate is the maturity of the new
 functionality. The formal rules are:
@@ -254,5 +253,47 @@ Release
 
 A release is a version that is ready for production usage.
 
-The requirements are the same as for a release candidate. Aside from this, we might perform extra pre-release
-testing and adoption in our internal projects if there are doubts regarding stability.
+The requirements are the same as for a release candidate. Also, there might be extra pre-release
+testing and adoption in the internal projects if there are doubts regarding stability.
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    ..  list-table::
+
+        *   -   **Version suffix**
+            -   **Description**
+
+        *   -   Nightly build
+            -   Not supposed to be used by customers, contains ``-dev`` postfix.
+
+        *   -   Alpha
+            -   For early adopters and developers of dependent components (such as connectors and modules).
+                An early stage of a release series. The functionality might be incomplete or unstable.
+
+        *   -   Beta
+            -   Good to start developing a new application. Gets published when all functionality planned
+                for the release series becomes implemented. At this point, the readiness of a feature can be checked
+                to decide whether to remove it, finish it later or replace it with something else.
+                Might have a known bug in the new functionality or a known degradation since a
+                previous release series that affects a common use case, unlike a release candidate.
+
+        *   -   Release candidate
+            -   Fits good to setup a staging server. There are two kinds of a release candidate:
+
+                *   during early development, when the series goes to be mature enough.
+                *   on the support stage, to collect feedback before an upcoming release.
+
+                The key difference between beta and release candidate is
+                the maturity of the new functionality. The formal rules are:
+
+                *   No known bugs in typical usage scenarios for new functionality.
+                *   No known degradations since a previous release series.
+
+        *   -   Release
+            -   Version ready for production usage. The requirements are the same as for a release candidate.
+                Aside from this, there might be extra pre-release testing and adoption in the internal projects
+                if there are doubts regarding stability.
+
