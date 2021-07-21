@@ -7,13 +7,32 @@ Summary
 Tarantool release policy changes to become more clear and intuitive.
 The new policy uses a `SemVer-like <https://semver.org/>`__ versioning format,
 and introduces a new version lifecycle with more long-time support series.
-This document explains the new release policy, versioning rules, and release series lifecycle.
+This document explains the new release policy, versioning rules, and :term:`release series` lifecycle.
 
 The new release policy replaces :doc:`the legacy policy <release/policy>`
 for the versions in 2.x.y series since 2.TBD.0,
 and for the future major series ones (3.0.0+) as well.
 
 The topics below describe the new versioning policy in more detail.
+
+Terms
+-----
+
+..  glossary::
+
+    Pre-release
+        A frozen commit for early adopters, a preview of a future :term:`release`.
+
+    Release
+        A frozen commit that we advertise as production-ready.
+
+    Release / pre-release version
+        A unique identifier, label of a :term:`pre-release` or a :term:`release`.
+
+    Release series
+        A product with linear evolution, pre-release and release points and certain compatibility guarantees
+        within the series and between series.
+
 
 Versioning
 ----------
@@ -60,7 +79,7 @@ There are four types of suffixes in versions before a release:
 #.  Nightly build (``MAJOR.MINOR.PATCH-dev``)
 
 A release series goes through a set of alpha, beta and release candidate versions
-and eventually gets released. During early development, there are alpha, beta and release candidates.
+and eventually gets released. During early development stage, there are alpha, beta and release candidates.
 Also, a release candidate can be published during the support stage (``3.2.0-rcN``).
 
 For example:
@@ -140,7 +159,7 @@ Early development
 The stage goes on until a first release. Alpha, beta versions and pre-releases
 are published within this stage.
 
-In fact, this stage splits into two phases: development of a new functionality
+The stage splits into two phases: development of a new functionality
 and its stabilization.
 
 A premature functionality might be removed on the alpha/beta stage, but it will
@@ -185,6 +204,7 @@ A release series cannot reach EOL until the vast majority of productions
 
 Version string meaning
 ----------------------
+
 
 Nightly build
 ~~~~~~~~~~~~~
