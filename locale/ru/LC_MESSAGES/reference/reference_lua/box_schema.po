@@ -19,7 +19,7 @@ msgid "Use"
 msgstr "Использование"
 
 msgid ":doc:`./box_schema/space_create`"
-msgstr ""
+msgstr ":doc:`./box_schema/space_create`"
 
 msgid "Create a space"
 msgstr "Создание спейса"
@@ -28,7 +28,7 @@ msgid ":doc:`./box_schema/upgrade`"
 msgstr ""
 
 msgid "Upgrade a database"
-msgstr "Облевление базы данных"
+msgstr "Обновить базу данных"
 
 msgid ":doc:`./box_schema/user_create`"
 msgstr ""
@@ -136,4 +136,5 @@ msgid ":doc:`./box_schema/func_reload`"
 msgstr ""
 
 msgid "Reload a C module with all its functions, no restart"
-msgstr "Перезагрузка модуля на C со всеми его функциями, без перезапуска"
+msgstr ""
+"Перезагрузка модуля на C (со всеми его функциями) без перезапуска сервера"

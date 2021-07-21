@@ -193,13 +193,13 @@ msgstr ""
 "Итак, раз в квартал выходят (см. вышеприведенную схему выпуска версий):"
 
 msgid "next LTS release, e.g., 1.10.7"
-msgstr ""
+msgstr "очередная LTS-версия, например 1.10.7"
 
 msgid "two stable releases, e.g., 2.3.3 and 2.4.2"
-msgstr ""
+msgstr "две стабильные версии, например 2.3.3 и 2.4.2"
 
 msgid "beta version of the next release series, e.g., 2.5.1."
-msgstr ""
+msgstr "бета-версия следующей серии, например 2.5.1."
 
 msgid ""
 "In all supported releases, when we find and fix an outstanding "

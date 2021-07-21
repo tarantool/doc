@@ -46,7 +46,7 @@ msgstr ""
 "считаются обычными символами, а двойные кавычки \"\" считаются одинарными."
 
 msgid "The possible options which can be passed to csv functions are:"
-msgstr "Параметры, которые можно передать в функции модуля csv:"
+msgstr "Параметры, которые можно передать в функции модуля ``csv``:"
 
 msgid ""
 ":samp:`delimiter = {string}` (default: comma) -- single-byte character to "

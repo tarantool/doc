@@ -16,13 +16,13 @@ msgid "the numeric function id, a number,"
 msgstr "числовой идентификатор функции, число,"
 
 msgid "the function name,"
-msgstr "имя функции,"
+msgstr "имя функции"
 
 msgid "flag,"
 msgstr "флаг,"
 
 msgid "a language name (optional): 'LUA' (default) or 'C'."
-msgstr "название языка (необязательно): 'LUA' (по умолчанию) or 'C'."
+msgstr "название языка (необязательно): 'LUA' (по умолчанию) или 'C'"
 
 msgid ""
 "The ``_func`` space does not include the function’s body. You continue to "

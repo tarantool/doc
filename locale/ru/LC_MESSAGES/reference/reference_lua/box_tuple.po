@@ -65,8 +65,7 @@ msgid ":doc:`./box_tuple/find`"
 msgstr ""
 
 msgid "Get the number of the first field/all fields matching the search value"
-msgstr ""
-"Получение номера первого поля/всех полей, совпадающих с искомым значением"
+msgstr "Получение номера первого поля, совпадающего с искомым значением"
 
 msgid ":doc:`./box_tuple/next`"
 msgstr ""

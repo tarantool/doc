@@ -6,8 +6,8 @@ msgid ""
 "This section describes how Tarantool stores values and what operations with "
 "data it supports."
 msgstr ""
-"В этом разделе описывается то, как в Tarantool'е организовано хранение "
-"данных и какие операции с данными он поддерживает."
+"В этом разделе описывается то, как в Tarantool организовано хранение данных "
+"и какие операции с данными он поддерживает."
 
 msgid ""
 "If you tried to create a database as suggested in our :ref:`\"Getting "
@@ -105,7 +105,7 @@ msgid "Indexes"
 msgstr "Индексы"
 
 msgid "An **index** is a group of key values and pointers."
-msgstr "**Индекс** -- это совокупность значений ключей и указателей."
+msgstr "**Индекс** — это совокупность значений ключей и указателей."
 
 msgid ""
 "As with spaces, you should specify the index **name**, and let Tarantool "
@@ -276,13 +276,13 @@ msgid "nil"
 msgstr "nil"
 
 msgid "\"`nil`_\""
-msgstr "\"`nil`_\" (нулевое значение)"
+msgstr "\"`nil`_\""
 
 msgid "msgpack.NULL"
 msgstr "msgpack.NULL"
 
 msgid "boolean"
-msgstr "boolean (логический)"
+msgstr "boolean"
 
 msgid "\"`boolean`_\""
 msgstr "\"`boolean`_\" (логическое значение)"
@@ -291,19 +291,19 @@ msgid "true"
 msgstr "true"
 
 msgid "string"
-msgstr "string (строка)"
+msgstr "string"
 
 msgid "\"`string`_\""
-msgstr "\"`string`_\" (строка)"
+msgstr "\"`string`_\""
 
 msgid "'A B C'"
 msgstr "'A B C'"
 
 msgid "integer"
-msgstr "integer (целое число)"
+msgstr "integer"
 
 msgid "\"`number`_\""
-msgstr "\"`number`_\" (число)"
+msgstr "\"`number`_\""
 
 msgid "12345"
 msgstr "12345"
@@ -845,11 +845,11 @@ msgid "Default"
 msgstr "Значение по умолчанию"
 
 msgid "**start**"
-msgstr "**start** (начало)"
+msgstr "**start**"
 
 msgid "Integer. The value to generate the first time a sequence is used"
 msgstr ""
-"Целое число. Значение генерируется, когда последовательность используется "
+"Integer. Значение генерируется, когда последовательность используется "
 "впервые"
 
 msgid "1"
@@ -859,28 +859,28 @@ msgid "start=0"
 msgstr "start=0"
 
 msgid "**min**"
-msgstr "**min** (мин)"
+msgstr "**min**"
 
 msgid "Integer. Values smaller than this cannot be generated"
-msgstr "Целое число. Ниже указанного значения не могут генерироваться"
+msgstr "Integer. Значения, ниже указанного, генерироваться не могут"
 
 msgid "min=-1000"
 msgstr "min=-1000"
 
 msgid "**max**"
-msgstr "**max** (макс)"
+msgstr "**max**"
 
 msgid "Integer. Values larger than this cannot be generated"
-msgstr "Целое число. Выше указанного значения не могут генерироваться"
+msgstr "Integer. Значения, выше указанного, генерироваться не могут"
 
 msgid "9223372036854775807"
-msgstr "9 223 372 036 854 775 807"
+msgstr "9223372036854775807"
 
 msgid "max=0"
 msgstr "max=0"
 
 msgid "**cycle**"
-msgstr "**cycle** (цикл)"
+msgstr "**cycle**"
 
 msgid "Boolean. Whether to start again when values cannot be generated"
 msgstr ""
@@ -888,16 +888,16 @@ msgstr ""
 "заново"
 
 msgid "false"
-msgstr "false (ложь)"
+msgstr "false"
 
 msgid "cycle=true"
 msgstr "cycle=true"
 
 msgid "**cache**"
-msgstr "**cache** (кэш)"
+msgstr "**cache**"
 
 msgid "Integer. The number of values to store in a cache"
-msgstr "Целое число. Количество значений для хранения в кэше"
+msgstr "Integer. Количество значений, которые будут храниться в кэше"
 
 msgid "0"
 msgstr "0"
@@ -906,13 +906,13 @@ msgid "cache=0"
 msgstr "cache=0"
 
 msgid "**step**"
-msgstr "**step** (шаг)"
+msgstr "**step**"
 
 msgid ""
 "Integer. What to add to the previous generated value, when generating a new "
 "value"
 msgstr ""
-"Целое число. Что добавить к предыдущему сгенерированному значению, когда "
+"Integer. Что добавить к предыдущему сгенерированному значению, когда "
 "генерируется новое значение"
 
 msgid "step=-1"
@@ -936,7 +936,7 @@ msgid ""
 "Once a sequence exists, it can be altered, dropped, reset, forced to "
 "generate the next value, or associated with an index."
 msgstr ""
-"Существующую последовательность можно изменять, опускать, сбрасывать, "
+"Существующую последовательность можно изменять, удалять, сбрасывать, "
 "заставить сгенерировать новое значение или ассоциировать с индексом."
 
 msgid "For an initial example, we generate a sequence named 'S'."

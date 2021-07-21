@@ -21,4 +21,4 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "number"
-msgstr "число"
+msgstr "number"

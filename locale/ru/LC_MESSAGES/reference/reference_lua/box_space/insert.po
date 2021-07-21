@@ -9,7 +9,7 @@ msgid "Parameters"
 msgstr "Параметры"
 
 msgid "an :ref:`object reference <app_server-object_reference>`"
-msgstr "ref:`ссылка на объект <app_server-object_reference>`"
+msgstr ":ref:`ссылка на объект <app_server-object_reference>`"
 
 msgid "tuple to be inserted."
 msgstr "вставляемый кортеж."
@@ -24,7 +24,7 @@ msgid "rtype"
 msgstr "тип возвращаемого значения"
 
 msgid "tuple"
-msgstr "кортеж"
+msgstr "tuple"
 
 msgid ""
 "**Possible errors:** :errcode:`ER_TUPLE_FOUND` if a tuple with the same "

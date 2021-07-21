@@ -185,7 +185,7 @@ msgid "(Metadata) List of replica sets"
 msgstr "(Метаданные) Список наборов реплик"
 
 msgid ":ref:`box.space._func <box_space-func>`"
-msgstr ""
+msgstr ":ref:`box.space._func <box_space-func>`"
 
 msgid "(Metadata) List of function tuples"
 msgstr "(Метаданные) Список кортежей с функциями"
@@ -197,7 +197,7 @@ msgid "(Metadata) List of indexes"
 msgstr "(Метаданные) Список индексов"
 
 msgid ":ref:`box.space._vindex <box_space-vindex>`"
-msgstr ""
+msgstr ":ref:`box.space._vindex <box_space-vindex>`"
 
 msgid "(Metadata) List of indexes accessible for the current user"
 msgstr "(Метаданные) Список индексов, доступных текущему пользователю"
@@ -209,13 +209,13 @@ msgid "(Metadata) List of privileges"
 msgstr "(Метаданные) Список прав"
 
 msgid ":ref:`box.space._vpriv <box_space-vpriv>`"
-msgstr ""
+msgstr ":ref:`box.space._vpriv <box_space-vpriv>`"
 
 msgid "(Metadata) List of privileges accessible for the current user"
 msgstr "(Метаданные) Список прав, доступных текущему пользователю"
 
 msgid ":ref:`box.space._schema <box_space-schema>`"
-msgstr ""
+msgstr ":ref:`box.space._schema <box_space-schema>`"
 
 msgid "(Metadata) List of schemas"
 msgstr "(Метаданные) Список схем"
@@ -236,13 +236,13 @@ msgid "(Metadata) List of spaces"
 msgstr "(Метаданные) Список спейсов"
 
 msgid ":ref:`box.space._vspace <box_space-vspace>`"
-msgstr ""
+msgstr ":ref:`box.space._vspace <box_space-vspace>`"
 
 msgid "(Metadata) List of spaces accessible for the current user"
 msgstr "(Метаданные) Список спейсов, доступных текущему пользователю"
 
 msgid ":ref:`box.space._user <box_space-user>`"
-msgstr ""
+msgstr ":ref:`box.space._user <box_space-user>`"
 
 msgid "(Metadata) List of users"
 msgstr "(Метаданные) Список пользователей"

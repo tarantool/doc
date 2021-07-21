@@ -28,7 +28,7 @@ msgid ":doc:`./box_error/error`"
 msgstr ""
 
 msgid "Throw an error"
-msgstr "Вызов ошибки"
+msgstr "Выдача ошибки"
 
 msgid ":doc:`./box_error/last`"
 msgstr ""

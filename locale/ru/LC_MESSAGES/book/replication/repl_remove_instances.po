@@ -140,7 +140,7 @@ msgid ""
 "``replication.{1,3}.downstream`` is ``stopped``):"
 msgstr ""
 "Взгляните на ``box.info.replication`` на *instance2*, чтобы убедиться, что "
-"*instance1* и *instance3* были отсоединены (заметьте, что статус "
+"``instance1`` и ``instance3`` были отсоединены (заметьте, что статус "
 "``replication.2.downstream`` поменялся на ``stopped``):"
 
 msgid ""
