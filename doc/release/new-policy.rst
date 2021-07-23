@@ -4,7 +4,7 @@ Release Policy Project
 Summary
 -------
 
-Tarantool release policy changes to become more clear and intuitive.
+The Tarantool release policy is changing to become more clear and intuitive.
 The new policy uses a `SemVer-like <https://semver.org/>`__ versioning format,
 and introduces a new version lifecycle with more long-time support series.
 This document explains the new release policy, versioning rules, and :term:`release series` lifecycle.
@@ -44,7 +44,7 @@ each with its own lifecycle, pre-release and release versions.
         A series has a distinct lifecycle and certain compatibility guarantees within itself and with other series.
         The intended support time for each series is at least two years since the first release.
 
-        At the moment when this document is published, there are two release series: ``1.10`` and ``2.x.y``.
+        At the moment when this document is published, there are two release series: series ``1.10`` and series ``2``.
 
     Release version
 
@@ -130,18 +130,19 @@ There are a few types of pre-release versions:
 
 ..  glossary::
 
-    Nightly build
+    Development build
 
-        Nightly builds reflect the state of current development process.
+        Development builds reflect the state of current development process.
         They're used entirely for development and testing,
         and not intended for any external use.
 
-        Nightly builds have suffixes made with ``git describe --always --long-dev``:
+        Development builds have suffixes made with ``$(git describe --always --long)-dev``:
 
         ..  code-block:: text
 
             MAJOR.MINOR.PATCH-describe-dev
 
+            2.10.2-149-g1575f3c07-dev
             3.0.0-alpha1-14-gxxxxxxxxx-dev
             3.0.0-entrypoint-17-gxxxxxxxxx-dev
             3.1.2-5-gxxxxxxxxx-dev
@@ -200,7 +201,7 @@ There are a few types of pre-release versions:
 Release series lifecycle
 --------------------------
 
-A release series goes through the following stages:
+Every release series goes through the following stages:
 
 ..  contents::
     :local:
@@ -209,7 +210,7 @@ Early development
 ~~~~~~~~~~~~~~~~~
 
 The early development stage goes on until the first :term:`major release <major release>`.
-Alpha, beta, and release candidate versions are published within this stage.
+Alpha, beta, and release candidate versions are published at this stage.
 
 The stage splits into two phases:
 
@@ -222,22 +223,22 @@ The stage splits into two phases:
 Support
 ~~~~~~~
 
-The stage starts when a first release is published.
+The stage starts when the first release is published.
 The release series now is an object of only backward compatible changes.
 
 At this stage, all known security problems and all found
 degradations since the previous series are fixed.
 
-A series receives degradation fixes and other bugfixes during the support stage
+The series receives degradation fixes and other bugfixes during the support stage
 and until the series transitions into the end of life (EOL) stage.
 
 The decision of whether to fix a particular problem in a particular release series
-depends on the impact of the problem, risks around backward compatibility and the
+depends on the impact of the problem, risks around backward compatibility, and the
 complexity of backporting a fix.
 
-A release series might receive new features at this stage,
+The release series might receive new features at this stage,
 but only in a backward compatible manner.
-A release candidate might be published for a new functionality before a release.
+A release candidate might be published if new functionality is introduced before the release version.
 
 During the support period a release series receives new versions of supported Linux
 distributives to build infrastructure.
@@ -250,11 +251,11 @@ End of life
 A series reaches the end of life (EOL) when the last release in the series is
 published. The series will not receive updates anymore.
 
-In modules, connectors and tools, we don't guarantee support of a release series
+In modules, connectors and tools, we don't guarantee support of any release series
 that reaches EOL.
 
 A release series cannot reach EOL until the vast majority of production environments,
-for which we have commitments and SLAs, will be updated to a newer series.
+for which we have commitments and SLAs, is updated to a newer series.
 
 
 Versions per lifecycle stage
@@ -273,7 +274,7 @@ Versions per lifecycle stage
             -   Examples
 
         *   -   Early development
-            -   Alpha, beta, release candidate, nightly builds (not published)
+            -   Alpha, beta, release candidate
 
             -   ..  code-block:: text
 
@@ -283,7 +284,7 @@ Versions per lifecycle stage
                     3.0.0-dev
 
         *   -   Support
-            -   Release candidate, release, nightly builds (not published)
+            -   Release candidate, release
 
             -   ..  code-block:: text
 
