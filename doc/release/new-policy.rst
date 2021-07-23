@@ -238,7 +238,7 @@ complexity of backporting a fix.
 
 The release series might receive new features at this stage,
 but only in a backward compatible manner.
-A release candidate might be published if new functionality is introduced before the release version.
+   To collect feedback for new functionality, we may also publish a release candidate before the final release version.
 
 During the support period a release series receives new versions of supported Linux
 distributives to build infrastructure.
