@@ -1,10 +1,10 @@
-.. _popen-module:
+..  _popen-module:
 
 -------------------------------------------------------------------------------
                                    Module `popen`
 -------------------------------------------------------------------------------
 
-.. module:: popen
+..  module:: popen
 
 ===============================================================================
                                    Overview
@@ -39,10 +39,10 @@ With the handle one can execute methods.
 
 Below is a list of all ``popen`` functions and handle methods.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
     +--------------------------------------+---------------------------------+
     | Name                                 | Use                             |
@@ -87,9 +87,9 @@ Below is a list of all ``popen`` functions and handle methods.
     | <popen-handle_fields>`               |                                 |
     +--------------------------------------+---------------------------------+
 
-.. _popen-shell:
+..  _popen-shell:
 
-.. function:: shell(command [, mode])
+..  function:: shell(command [, mode])
 
     Execute a shell command.
 
@@ -106,28 +106,28 @@ Below is a list of all ``popen`` functions and handle methods.
 
     The possible ``mode`` values are:
 
-    * 'w'    which enables :ref:`popen_handle:write() <popen-write>`
-    * 'r'    which enables :ref:`popen_handle:read() <popen-read>`
-    * 'R'    which enables :ref:`popen_handle:read({stderr = true}) <popen-read>`
-    * nil    which means inherit parent's std* file descriptors
+    * ``'w'``    which enables :ref:`popen_handle:write() <popen-write>`
+    * ``'r'``    which enables :ref:`popen_handle:read() <popen-read>`
+    * ``'R'``    which enables :ref:`popen_handle:read({stderr = true}) <popen-read>`
+    * ``'nil'``    which means inherit parent's std* file descriptors
 
-    Several mode characters can be set together, for example 'rw', 'rRw'.
+    Several mode characters can be set together, for example ``'rw'``, ``'rRw'``.
 
     The ``shell`` function is just a shortcut for :ref:`popen.new({command}, opts) <popen-new>`
     with ``opts.shell.setsid`` and ``opts.shell.group_signal`` both set to `true`, and with
     ``opts.stdin`` and ``opts.stdout`` and ``opts.stderr`` all set based on the ``mode`` parameter.
 
     All std* streams are inherited from the parent by default unless it is
-    changed using mode: 'r' for stdout, 'R' for stderr, or 'w' for
+    changed using mode: ``'r'`` for stdout, ``'R'`` for stderr, or ``'w'`` for
     stdin.
 
     **Example:**
 
-    This is the equivalent of the 'sh -c date' command.
-    It starts a process, runs 'date', reads the output,
+    This is the equivalent of the ``sh -c date`` command.
+    It starts a process, runs ``'date'``, reads the output,
     and closes the popen object (``ph``).
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         local popen = require('popen')
         -- Run the program and save its handle.
@@ -140,7 +140,7 @@ Below is a list of all ``popen`` functions and handle methods.
         print(date)
 
     Unix defines a text file as a sequence of lines. Each line
-    is terminated by a newline (\\n) symbol. The same convention is usually
+    is terminated by a newline (``\\n``) symbol. The same convention is usually
     applied for text output of a command. So, when it is
     redirected to a file, the file will be correct.
 
@@ -150,9 +150,9 @@ Below is a list of all ``popen`` functions and handle methods.
     before a string is written for the outside world (stdout,
     console or log). That is why the example above contains ``rstrip()``.
 
-.. _popen-new:
+..  _popen-new:
 
-.. function:: new(argv [, opts])
+..  function:: new(argv [, opts])
 
     Execute a child program in a new process.
 
@@ -186,10 +186,10 @@ Below is a list of all ``popen`` functions and handle methods.
 
     The ``opts`` table file descriptor actions may be:
 
-    * ``popen.opts.INHERIT`` (== 'inherit') [default] inherit the fd from the parent
-    * ``popen.opts.DEVNULL`` (== 'devnull') open /dev/null on the fd
-    * ``popen.opts.CLOSE`` (== 'close') close the fd
-    * ``popen.opts.PIPE`` (== 'pipe') feed data from fd to parent,
+    * ``popen.opts.INHERIT`` (== ``'inherit'``) [default] inherit the fd from the parent
+    * ``popen.opts.DEVNULL`` (== ``'devnull'``) open /dev/null on the fd
+    * ``popen.opts.CLOSE`` (== ``'close'``) close the fd
+    * ``popen.opts.PIPE`` (== ``'pipe'``) feed data from fd to parent,
       or from parent to fd, using a pipe
 
     The ``opts`` table may contain an ``env`` table of environment variables to
@@ -202,11 +202,11 @@ Below is a list of all ``popen`` functions and handle methods.
 
     The ``opts`` table may contain these boolean items:
 
-    .. container:: table
+    ..  container:: table
 
-        .. rst-class:: left-align-column-1
-        .. rst-class:: left-align-column-2
-        .. rst-class:: left-align-column-3
+        ..  rst-class:: left-align-column-1
+        ..  rst-class:: left-align-column-2
+        ..  rst-class:: left-align-column-3
 
         +----------------------+----------------+-------------------------------------------+
         | Name                 | Default        | Use                                       |
@@ -294,10 +294,10 @@ Below is a list of all ``popen`` functions and handle methods.
     **Example 2**
 
     Example 2 is quite similar to Example 1, but sets an
-    environment variable and uses the shell builtin 'echo' to
+    environment variable and uses the shell builtin ``'echo'`` to
     show it.
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         local popen = require('popen')
         local env = os.environ()
@@ -315,7 +315,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
     Example 3 demonstrates how to capture a child's stderr.
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         local popen = require('popen')
         local ph = popen.new({'echo hello >&2'}, { -- !!
@@ -344,7 +344,7 @@ Below is a list of all ``popen`` functions and handle methods.
     because the stderr pipe buffer becomes full.
     To handle this case: read stderr in a separate fiber.
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         local function call_jq(input, filter)
             -- Start jq process, connect to stdin, stdout and stderr.
@@ -384,11 +384,11 @@ Below is a list of all ``popen`` functions and handle methods.
                       popen handle methods
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-.. class:: popen_handle
+..  class:: popen_handle
 
-    .. _popen-read:
+    ..  _popen-read:
 
-    .. method:: read([opts])
+    ..  method:: read([opts])
 
         Read data from a child peer.
 
@@ -407,12 +407,12 @@ Below is a list of all ``popen`` functions and handle methods.
         * IllegalParams:    attempt to operate on a closed file descriptor
         * FiberIsCancelled: cancelled by an outside code
 
-        :return: true on success, false on error
+        :return: ``true`` on success, ``false`` on error
         :rtype:  (if success) string with read value, empty string if EOF
 
                  (if failure) ``nil, err``
 
-        Possible opts items are:
+        Possible ``opts`` items are:
 
         * ``opts.stdout`` (boolean, default ``true``, if ``true`` then read from stdout)
         * ``opts.stderr`` (boolean, default ``false``, if ``true`` then read from stderr)
@@ -431,9 +431,9 @@ Below is a list of all ``popen`` functions and handle methods.
         * OutOfMemory: no memory space for a buffer to read into
         * LuajitError: ("not enough memory"): no memory space for the Lua string
 
-    .. _popen-write:
+    ..  _popen-write:
 
-    .. method:: write(str [, opts])
+    ..  method:: write(str [, opts])
 
         Write string ``str`` to stdin stream of a child process.
 
@@ -442,12 +442,12 @@ Below is a list of all ``popen`` functions and handle methods.
                           :ref:`popen.shell() <popen-shell>`
         :param string str: string to write
         :param table opts: options
-        :return: true on success, false on error
+        :return: ``true`` on success, ``false`` on error
         :rtype:  (if success) boolean = true
 
                  (if failure) ``nil, err``
 
-        Possible opts items are:
+        Possible ``opts`` items are:
         ``opts.timeout`` (number, default 100 years, time quota in seconds).
 
         Possible raised errors are:
@@ -474,9 +474,9 @@ Below is a list of all ``popen`` functions and handle methods.
         (yields the fiber) until all data is written or an error
         happens.
 
-    .. _popen-shutdown:
+    ..  _popen-shutdown:
 
-    .. method:: shutdown([opts])
+    ..  method:: shutdown([opts])
 
         Close parent's ends of std* fds.
 
@@ -484,10 +484,10 @@ Below is a list of all ``popen`` functions and handle methods.
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param table opts: options
-        :return: true on success, false on error
+        :return: ``true`` on success, ``false`` on error
         :rtype:  (if success) boolean = true
 
-        Possible `opts` items are:
+        Possible ``opts`` items are:
 
         * ``opts.stdin`` (boolean) close parent's end of stdin
         * ``opts.stdout`` (boolean) close parent's end of stdout
@@ -509,17 +509,17 @@ Below is a list of all ``popen`` functions and handle methods.
 
         ``shutdown()`` does not fail on already closed fds (idempotence).
         However, it fails on an attempt to close the end of a pipe that
-        never existed. In other words, only those std* options that
+        never existed. In other words, only those ``std*`` options that
         were set to ``popen.opts.PIPE`` during handle creation may be used
-        here (for :ref:`popen.shell() <popen-shell>`: 'r' corresponds to stdout,
-        'R' to stderr and 'w' to stdin).
+        here (for :ref:`popen.shell() <popen-shell>`: ``'r'`` corresponds to stdout,
+        ``'R'`` to stderr and ``'w'`` to stdin).
 
         ``shutdown()`` does not close any fds on a failure: either all
         requested fds are closed or none of them.
 
         **Example:**
 
-        .. code-block:: lua
+        ..  code-block:: lua
 
             local popen = require('popen')
             local ph = popen.shell('sed s/foo/bar/', 'rw')
@@ -529,9 +529,9 @@ Below is a list of all ``popen`` functions and handle methods.
             ph:close()
             print(res) -- lorem bar ipsum
 
-    .. _popen-terminate:
+    ..  _popen-terminate:
 
-    .. method:: terminate()
+    ..  method:: terminate()
 
         Send SIGTERM signal to a child process.
 
@@ -545,9 +545,9 @@ Below is a list of all ``popen`` functions and handle methods.
         It does *not* free any resources (such as popen handle memory and
         file descriptors).
 
-    .. _popen-kill:
+    ..  _popen-kill:
 
-    .. method:: kill()
+    ..  method:: kill()
 
         Send SIGKILL signal to a child process.
 
@@ -562,9 +562,9 @@ Below is a list of all ``popen`` functions and handle methods.
         It does *not* free any resources (such as popen handle memory and
         file descriptors).
 
-    .. _popen-signal:
+    ..  _popen-signal:
 
-    .. method:: signal(signo)
+    ..  method:: signal(signo)
 
         Send signal to a child process.
 
@@ -605,9 +605,9 @@ Below is a list of all ``popen`` functions and handle methods.
         Note: The module offers ``popen.signal.SIG*`` constants, because
         some signals have different numbers on different platforms.
 
-    .. _popen-info:
+    ..  _popen-info:
 
-    .. method:: info()
+    ..  method:: info()
 
         Return information about the popen handle.
 
@@ -625,7 +625,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         The result format is:
 
-        .. code-block:: none
+        ..  code-block:: none
 
             {
                 pid = <number> or <nil>,
@@ -665,7 +665,7 @@ Below is a list of all ``popen`` functions and handle methods.
         ``status`` is a table that represents a process status in the
         following format:
 
-        .. code-block:: none
+        ..  code-block:: none
 
             {
                 state = one-of(
@@ -683,15 +683,15 @@ Below is a list of all ``popen`` functions and handle methods.
         ``stdin``, ``stdout``, and ``stderr`` reflect the status of the parent's end
         of a piped stream. If a stream is not piped, the field is
         not present (``nil``). If it is piped, the status may be
-        either ``popen.stream.OPEN`` (== 'open') or ``popen.stream.CLOSED`` (== 'closed').
-        The status may be changed from 'open' to 'closed'
+        either ``popen.stream.OPEN`` (== ``'open'``) or ``popen.stream.CLOSED`` (== ``'closed'``).
+        The status may be changed from ``'open'`` to ``'closed'``
         by a :ref:`popen_handle:shutdown({std... = true}) <popen-shutdown>` call.
 
         **Example 1**
 
         (on Tarantool console)
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> require('popen').new({'/usr/bin/touch', '/tmp/foo'})
             ---
@@ -715,7 +715,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         (on Tarantool console)
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> require('popen').shell('grep foo', 'wrR')
             ---
@@ -738,9 +738,9 @@ Below is a list of all ``popen`` functions and handle methods.
               pid: 10497
             ...
 
-    .. _popen-wait:
+    ..  _popen-wait:
 
-    .. method:: wait()
+    ..  method:: wait()
 
         Wait until a child process gets exited or signaled.
 
@@ -761,9 +761,9 @@ Below is a list of all ``popen`` functions and handle methods.
         ``status`` component of the table returned by
         :ref:`popen_handle:info() <popen-info>`).
 
-    .. _popen-close:
+    ..  _popen-close:
 
-    .. method:: close()
+    ..  method:: close()
 
         Close a popen handle.
 
@@ -817,11 +817,11 @@ Below is a list of all ``popen`` functions and handle methods.
         means success for a caller. The return values are purely
         informational: they are for logging or some kind of reporting.
 
-    .. _popen-handle_fields:
+    ..  _popen-handle_fields:
 
     **Handle fields**
 
-    .. code-block:: none
+    ..  code-block:: none
 
         popen_handle.pid
         popen_handle.command
@@ -833,11 +833,11 @@ Below is a list of all ``popen`` functions and handle methods.
 
     See :ref:`popen_handle:info() <popen-info>` for details.
 
-    .. _popen-constants:
+    ..  _popen-constants:
 
     **Module constants**
 
-    .. code-block:: none
+    ..  code-block:: none
 
         - popen.opts
           - INHERIT (== 'inherit')
