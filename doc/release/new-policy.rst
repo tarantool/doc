@@ -11,7 +11,7 @@ This document explains the new release policy, versioning rules, and :term:`rele
 
 The new release policy replaces :doc:`the legacy policy <release/policy>`
 for the versions in ``2.x.y`` series since ``2.TBD.0``,
-and for the future major series ones (``3.0.0+``) as well.
+and for the future major series (``3.0.0+``) as well.
 
 Here are the most significant changes from the legacy release policy:
 
@@ -227,7 +227,7 @@ The stage starts when the first release is published.
 The release series now is an object of only backward compatible changes.
 
 At this stage, all known security problems and all found
-degradations since the previous series are fixed.
+degradations since the previous series are being fixed.
 
 The series receives degradation fixes and other bugfixes during the support stage
 and until the series transitions into the end of life (EOL) stage.
@@ -238,7 +238,7 @@ complexity of backporting a fix.
 
 The release series might receive new features at this stage,
 but only in a backward compatible manner.
-   To collect feedback for new functionality, we may also publish a release candidate before the final release version.
+Also, a release candidate may be published to collect feedback before the release version.
 
 During the support period a release series receives new versions of supported Linux
 distributives to build infrastructure.
