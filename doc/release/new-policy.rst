@@ -9,7 +9,7 @@ The new policy uses a `SemVer-like <https://semver.org/>`__ versioning format,
 and introduces a new version lifecycle with more long-time support series.
 This document explains the new release policy, versioning rules, and :term:`release series` lifecycle.
 
-The new release policy replaces :doc:`the legacy policy <release/policy>`
+The new release policy replaces :doc:`the legacy policy </release/policy>`
 for the versions in ``2.x.y`` series since ``2.TBD.0``,
 and for the future major series (``3.0.0+``) as well.
 
