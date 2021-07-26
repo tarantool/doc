@@ -20,11 +20,11 @@ msgstr ""
 "версионирования и жизненном цикле :term:`релизных серий <release series>`."
 
 msgid ""
-"The new release policy replaces :doc:`the legacy policy <release/policy>` "
+"The new release policy replaces :doc:`the legacy policy </release/policy>` "
 "for the versions in ``2.x.y`` series since ``2.TBD.0``, and for the future "
 "major series (``3.0.0+``) as well."
 msgstr ""
-"Новая релизная политика заменяет :doc:`прежнюю <release/policy>` для всех "
+"Новая релизная политика заменяет :doc:`прежнюю </release/policy>` для всех "
 "версий в сериях ``2.x.y``, начиная с ``2.(уточняется).0``, а также для всех "
 "версий в будущей серии ``3.0.0``."
 
