@@ -296,7 +296,7 @@ and what index types are allowed.
               booleans (true or false), or
               integers between -9223372036854775808 and 18446744073709551615, or
               single-precision floating point numbers, or
-              double-precision floating-point numbers, or
+              double-precision floating point numbers, or
               exact numbers, or
               strings, or
               (varbinary) byte arrays, or
