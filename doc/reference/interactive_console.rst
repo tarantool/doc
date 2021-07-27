@@ -4,14 +4,16 @@
 Interactive console
 --------------------------------------------------------------------------------
 
-The "interactive console" is Tarantool's basic "command-line interface" for entering requests
-and seeing results. It is what users see when they start the server
+The interactive console is Tarantool's basic command-line interface for entering requests
+and seeing results.
+It is what users see when they start the server
 without an :ref:`instance file <admin-instance_file>`,
 or start :ref:`tarantoolctl <tarantoolctl>` with ``enter``.
-It is often called the Lua console to distinguish it from the administrative console,
+The interactive console is often called the Lua console to distinguish it from the administrative console,
 but in fact it can handle both Lua and SQL input.
+
 The majority of examples in this manual show what users see with the
-interactive console, including the prompt (which can be "tarantool> "),
+interactive console, including the prompt (which can be ``tarantool>``),
 the instruction (which can be a Lua request or an SQL statement),
 and the response (which can be a display in either YAML format or Lua format).
 
@@ -58,33 +60,63 @@ and it may be Lua if
 the last :ref:`set_default_output <console-set_default_output>`
 call was ``console.set_default_output('lua')``.
 
-.. container:: table
+..  container:: table
 
     .. rst-class:: left-align-column-1
     .. rst-class:: left-align-column-2
     .. rst-class:: left-align-column-3
     .. rst-class:: left-align-column-4
+    .. rst-class:: left-align-column-5
 
-    +-----------------+-----------------+-----------------+-----------------------+---------------------------------------+
-    | Type            | Lua input       | Lua output      | YAML output           | MsgPack storage                       |
-    +=================+=================+=================+=======================+=======================================+
-    | scalar          | :code:`1`       | :code:`1`       | :code:`---` |br|      | :code:`\x01`                          |
-    |                 |                 |                 | :code:`- 1` |br|      |                                       |
-    |                 |                 |                 | :code:`...`           |                                       |
-    +-----------------+-----------------+-----------------+-----------------------+---------------------------------------+
-    | scalar sequence | :code:`1,2,3`   | :code:`1,2,3`   | :code:`---` |br|      | :code:`\x01 \x02 \x03`                |
-    |                 |                 |                 | :code:`- 1` |br|      |                                       |
-    |                 |                 |                 | :code:`- 2` |br|      |                                       |
-    |                 |                 |                 | :code:`- 3` |br|      |                                       |
-    |                 |                 |                 | :code:`...`           |                                       |
-    +-----------------+-----------------+-----------------+-----------------------+---------------------------------------+
-    | 2-element table | :code:`{1,2}`   | :code:`{1,2}`   | :code:`---` |br|      | :code:`0x92 0x01 0x02`                |
-    |                 |                 |                 | :code:`- - 1` |br|    |                                       |
-    |                 |                 |                 | :code:`- - 2` |br|    |                                       |
-    |                 |                 |                 | :code:`...`           |                                       |
-    +-----------------+-----------------+-----------------+-----------------------+---------------------------------------+
-    | map             | :code:`{key=1}` | :code:`{key=1}` | :code:`---` |br|      | :code:`\x81 \xa3 \x6b \x65 \x79 \x01` |
-    |                 |                 |                 | :code:`- key: 1` |br| |                                       |
-    |                 |                 |                 | :code:`...`           |                                       |
-    +-----------------+-----------------+-----------------+-----------------------+---------------------------------------+
+    ..  list-table::
+        :widths: 15 15 15 20 35
+        :header-rows: 1
 
+        *   -   Type
+            -   Lua input
+            -   Lua output
+            -   YAML output
+            -   MsgPack storage
+
+        *   -   scalar
+            -   :code:`1`
+            -   :code:`1`
+
+            -   | :code:`---`
+                | :code:`- 1`
+                | :code:`...`
+
+            -   :code:`\x01`
+
+        *   -   scalar sequence
+            -   :code:`1, 2, 3`
+            -   :code:`1, 2, 3`
+
+            -   | :code:`---`
+                | :code:`- 1`
+                | :code:`- 2`
+                | :code:`- 3`
+                | :code:`...`
+
+            -   :code:`\x01 \x02 \x03`
+
+        *   -   2-element table
+            -   :code:`{1, 2}`
+            -   :code:`{1, 2}`
+
+            -   | :code:`---`
+                | :code:`- - 1`
+                | :literal:`\   - 2`
+                | :code:`...`
+
+            -   :code:`0x92 0x01 0x02`
+
+        *   -   map
+            -   :code:`{key = 1}`
+            -   :code:`{key = 1}`
+
+            -   | :code:`---`
+                | :code:`- key: 1`
+                | :code:`...`
+
+            -   :code:`\x81 \xa3 \x6b \x65 \x79 \x01`
