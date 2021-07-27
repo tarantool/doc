@@ -331,8 +331,8 @@ Examples: ``true``, ``1``, ``'xxx'``.
 
 .. _index-box_any:
 
-**any**. Values in a field of this type can be boolean, integer, unsigned, double
-,number, decimal, string, uuid, varbinary, array, map, or tuple.
+**any**. Values in a field of this type can be boolean, integer, unsigned, double,
+number, decimal, string, uuid, varbinary, array, map, or tuple.
 Examples: ``true``, ``1``, ``'xxx'``, ``{box.NULL, 0}``.
 
 Examples of insert requests with different field types:
