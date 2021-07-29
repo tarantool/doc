@@ -151,28 +151,28 @@ the session:
 ..  code-block:: console
 
     ALLOCATIONS
-    @test.lua:14: 10000 events	+50240518 bytes	-0 bytes
-    @test.lua:9: 1 events	+32 bytes	-0 bytes
-    @test.lua:8: 1 events	+20 bytes	-0 bytes
-    @test.lua:13: 1 events	+24 bytes	-0 bytes
+    @test.lua:14: 10000 events  +50240518 bytes -0 bytes
+    @test.lua:9: 1 events       +32 bytes       -0 bytes
+    @test.lua:8: 1 events       +20 bytes       -0 bytes
+    @test.lua:13: 1 events      +24 bytes       -0 bytes
     
     REALLOCATIONS
-    @test.lua:13: 13 events	+262216 bytes	-131160 bytes
-    	Overrides:
-    		@test.lua:13
+    @test.lua:13: 13 events     +262216 bytes   -131160 bytes
+        Overrides:
+            @test.lua:13
     
-    @test.lua:14: 11 events	+49536 bytes	-24768 bytes
-            	Overrides:
-    		@test.lua:14
-    		INTERNAL
+    @test.lua:14: 11 events     +49536 bytes    -24768 bytes
+                Overrides:
+            @test.lua:14
+            INTERNAL
     
-    INTERNAL: 3 events	+8448 bytes	-16896 bytes
-    	Overrides:
-    		@test.lua:14
+    INTERNAL: 3 events          +8448 bytes     -16896 bytes
+        Overrides:
+            @test.lua:14
     
     DEALLOCATIONS
-    INTERNAL: 1723 events	+0 bytes	-483515 bytes
-    @test.lua:14: 1 events	+0 bytes	-32768 bytes
+    INTERNAL: 1723 events       +0 bytes        -483515 bytes
+    @test.lua:14: 1 events      +0 bytes        -32768 bytes
     
     HEAP SUMMARY:
     @test.lua:14 holds 50248326 bytes: 10010 allocs, 10 frees
@@ -180,11 +180,12 @@ the session:
     INTERNAL holds 8448 bytes: 3 allocs, 3 frees
     @test.lua:9 holds 32 bytes: 1 allocs, 0 frees
     @test.lua:8 holds 20 bytes: 1 allocs, 0 frees
-    
-    ..  note::
+
+..  note::
 
     On MacOS, a report will be different for the same chunk of code because
     Tarantool and LuaJIT are built with the GC64 mode enabled for MacOS.
+
 
 Let's examine the report structure. A report has four sections:
 
@@ -202,7 +203,7 @@ An event record has the following format:
 
     @<filename>:<function_line>, line <line_number>: <number_of_events> events +<allocated> bytes -<freed> bytes
     
-        @test.lua:14: 10000 events	+50240518 bytes	-0 bytes
+        @test.lua:14: 10000 events  +50240518 bytes  -0 bytes
 
 *   <filename>—a name of the file containing Lua code.
 *   <function_line>—the line number where the function generating the event
@@ -403,23 +404,23 @@ you will get the following profiling report:
 ..  code-block:: console
 
     ALLOCATIONS
-    @format_concat.lua:10: 19996 events	+624284 bytes	-0 bytes
-    INTERNAL: 1 events	+65536 bytes	-0 bytes
+    @format_concat.lua:10: 19996 events +624284 bytes   -0 bytes
+    INTERNAL: 1 events                  +65536 bytes    -0 bytes
     
     REALLOCATIONS
     
     DEALLOCATIONS
-    INTERNAL: 19996 events	+0 bytes	-558778 bytes
-    	Overrides:
-    		@format_concat.lua:10
+    INTERNAL: 19996 events              +0 bytes        -558778 bytes
+        Overrides:
+            @format_concat.lua:10
     
-    @format_concat.lua:10: 2 events	+0 bytes	-98304 bytes
-    	Overrides:
-    		@format_concat.lua:10
+    @format_concat.lua:10: 2 events     +0 bytes        -98304 bytes
+        Overrides:
+            @format_concat.lua:10
     
     HEAP SUMMARY:
     INTERNAL holds 65536 bytes: 1 allocs, 0 frees
-                   
+
 Reasonable questions regarding the report can be:
 
 *   Why are there no allocations related to the ``concat()`` function?
@@ -451,16 +452,16 @@ To profile only the ``concat()`` function, comment out line 23 (which is
 ..  code-block:: console
 
     ALLOCATIONS
-    @format_concat.lua:5: 10000 events	+284411 bytes	-0 bytes
+    @format_concat.lua:5: 10000 events  +284411 bytes    -0 bytes
     
     REALLOCATIONS
     
     DEALLOCATIONS
-    INTERNAL: 10000 events	+0 bytes	-218905 bytes
-    	Overrides:
-    		@format_concat.lua:5
+    INTERNAL: 10000 events              +0 bytes         -218905 bytes
+        Overrides:
+            @format_concat.lua:5
     
-    @format_concat.lua:5: 1 events	+0 bytes	-32768 bytes
+    @format_concat.lua:5: 1 events      +0 bytes         -32768 bytes
     
     HEAP SUMMARY:
     @format_concat.lua:5 holds 65536 bytes: 10000 allocs, 9999 frees
@@ -476,17 +477,17 @@ allocations are JIT-related (see also the related
 ..  code-block:: console
 
     ALLOCATIONS
-    @format_concat.lua:5: 56 events	+1112 bytes	-0 bytes
-    @format_concat.lua:0: 4 events	+640 bytes	-0 bytes
-    INTERNAL: 2 events	+382 bytes	-0 bytes
+    @format_concat.lua:5: 56 events +1112 bytes -0 bytes
+    @format_concat.lua:0: 4 events  +640 bytes  -0 bytes
+    INTERNAL: 2 events              +382 bytes  -0 bytes
     
     REALLOCATIONS
     
     DEALLOCATIONS
-    INTERNAL: 58 events	+0 bytes	-1164 bytes
-    	Overrides:
-    		@format_concat.lua:5
-    		INTERNAL
+    INTERNAL: 58 events             +0 bytes    -1164 bytes
+        Overrides:
+            @format_concat.lua:5
+            INTERNAL
     
     
     HEAP SUMMARY:
@@ -509,21 +510,21 @@ Now the output will look like this:
 ..  code-block:: console
 
     ALLOCATIONS
-    @format_concat.lua:10: 19996 events	+624284 bytes	-0 bytes
-    INTERNAL: 4 events	+66928 bytes	-0 bytes
-    @format_concat.lua:0: 4 events	+640 bytes	-0 bytes
+    @format_concat.lua:10: 19996 events +624284 bytes  -0 bytes
+    INTERNAL: 4 events                  +66928 bytes   -0 bytes
+    @format_concat.lua:0: 4 events      +640 bytes     -0 bytes
     
     REALLOCATIONS
     
     DEALLOCATIONS
-    INTERNAL: 19997 events	+0 bytes	-559034 bytes
-    	Overrides:
-    		@format_concat.lua:0
-    		@format_concat.lua:10
+    INTERNAL: 19997 events              +0 bytes       -559034 bytes
+        Overrides:
+            @format_concat.lua:0
+            @format_concat.lua:10
     
-    @format_concat.lua:10: 2 events	+0 bytes	-98304 bytes
-    	Overrides:
-    		@format_concat.lua:10
+    @format_concat.lua:10: 2 events     +0 bytes       -98304 bytes
+        Overrides:
+            @format_concat.lua:10
     
     
     HEAP SUMMARY:
@@ -552,18 +553,18 @@ the profiling report becomes much prettier:
 ..  code-block:: console
 
     ALLOCATIONS
-    @format_concat.lua:10: 109 events	+2112 bytes	-0 bytes
-    @format_concat.lua:0: 4 events	+640 bytes	-0 bytes
-    INTERNAL: 3 events	+1206 bytes	-0 bytes
+    @format_concat.lua:10: 109 events   +2112 bytes -0 bytes
+    @format_concat.lua:0: 4 events      +640 bytes  -0 bytes
+    INTERNAL: 3 events                  +1206 bytes -0 bytes
     
     REALLOCATIONS
     
     DEALLOCATIONS
-    INTERNAL: 112 events	+0 bytes	-2460 bytes
-    	Overrides:
-    		@format_concat.lua:0
-    		@format_concat.lua:10
-    		INTERNAL
+    INTERNAL: 112 events                +0 bytes    -2460 bytes
+        Overrides:
+            @format_concat.lua:0
+            @format_concat.lua:10
+            INTERNAL
     
     
     HEAP SUMMARY:
@@ -581,8 +582,8 @@ The end of each display is a HEAP SUMMARY section which looks like this:
 
 @<filename>:<line number> holds <number of still reachable bytes> bytes: <number of allocation events> allocs, <number of deallocation events> frees
 
-Sometimes, especially when there are many ``collectgarbage()`` calls,
-the DEALLOCATION section can become large so the display is not easy to read.
+Sometimes a program can cause many deallocations, so
+the DEALLOCATION section can become large, so the display is not easy to read.
 To minimize output, start the parsing with an extra flag: ``--leak-only``,
 for example
 
