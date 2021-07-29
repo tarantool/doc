@@ -72,3 +72,6 @@ box.space._func
       tarantool> box.schema.user.revoke('guest', 'execute', 'function', 'f7')
       ---
       ...
+      
+   The :ref:`system view <box_space-sysviews>` for ``_func`` is ``_vfunc``.
+

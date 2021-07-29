@@ -98,3 +98,6 @@ box.space._space
         ---
         - - [12345, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]
         ...
+        
+    The :ref:`system view <box_space-sysviews>` for ``_space`` is ``_vspace``.
+

@@ -164,6 +164,9 @@ Below is a list of all ``box.space`` functions and members.
         *  - :doc:`./box_space/_vcollation`
            - (Metadata) List of collations accessible for the current user
 
+        *  - :doc:`./box_space/system_views`
+           - (Metadata) Spaces whose names begin with _v
+
         *  - :doc:`./box_space/_session_settings`
            - (Metadata) List of settings affecting behavior of the current session
 
@@ -217,4 +220,5 @@ Below is a list of all ``box.space`` functions and members.
     box_space/_ck_constraint
     box_space/_collation
     box_space/_vcollation
+    box_space/system_views
     box_space/_session_settings
