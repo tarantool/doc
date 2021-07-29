@@ -62,7 +62,6 @@ exclude_patterns = [
     'book/connectors/__*',
     'book/replication/*_1.rst',
     'book/replication/*_2.rst',
-    'book/box/engines/vinyl.rst',
     'getting_started/using_package_manager.rst',
     'getting_started/using_docker.rst',
     'dev_guide/box_protocol.rst',
