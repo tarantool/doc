@@ -3,49 +3,35 @@
 Storing data with memtx
 =======================
 
-``memtx`` is the Tarantool’s in-memory storage engine. It keeps all the data in random-access memory (RAM).
-It also keeps persistent copies of the data in non-volatile storage, such as disk, when users request snapshots.
-If an instance of the server stops and the random-access memory is lost, then restarts,
-it reads the latest snapshot and then replays the transactions that are in the log, and therefore no data is lost.
-
-?TOC here?
+This chapter gives an overview of the ``memtx`` in-memory storage engine used in Tarantool by default.
+The following topics are described in brief with the references to the chapters explaining the subject matter in details.
 
 ..  contents::
     :local:
     :depth: 1
-
-//TBD -- put this at the end as a summary points.
-In a nutshell, the main key points describing the principles of how memtx works are:
-
-*   All data is in memory (RAM).
-*   Access to data is from one thread.
-*   Data change requests are written in the write-ahead log (WAL).
-*   Data snapshots are taken periodically.
-*   Indexes are build to access the data.
-*   WAL can be replicated.
 
 .. _memtx-memory:
 
 Memory model
 ------------
 
-The ``memtx`` engine keeps all the data in RAM, and therefore has very low read latency.
+The ``memtx`` storage engine keeps all data in random-access memory (RAM), and therefore has very low read latency.
 
 There is a fixed number of independent :ref:`execution threads <atomic-threads_fibers_yields>`.
-The threads do not share state. Instead they exchange data using low-overhead message queues.
+The threads don't share state. Instead they exchange data using low-overhead message queues.
 While this approach limits the number of cores that the instance uses,
 it removes competition for the memory bus and ensures peak scalability of memory access and network throughput.
 
 Only one thread, namely, the **transaction processor thread** (further, **TX thread**)
 can access the database, and there is only one TX thread for each Tarantool instance.
-Within the TX thread there is a memory area allocated for Tarantool to store data. It's called **Arena**.
+Within the TX thread, there is a memory area allocated for Tarantool to store data. It's called **Arena**.
 
-.. image:: memtx/arena.svg
+.. image:: memtx/arena2.svg
 
 Data is stored in :term:`spaces <space>`. Spaces contain database records—:term:`tuples <tuple>`.
 To access and manipulate the data stored in spaces and tuples, Tarantool builds :doc:`indexes </book/box/indexes>`.
 
-All that are managed by special memory allocators working within the Arena.
+All that are managed by special `memory allocators <https://github.com/tarantool/small>`__ working within the Arena.
 The slab allocator is the main allocator used to store tuples.
 Tarantool has a built-in module called ``box.slab`` which provides the slab allocator statistics
 that can be used to monitor the total memory usage and memory fragmentation.
@@ -56,12 +42,12 @@ For details, see the ``box.slab`` module :doc:`reference </reference/reference_l
 Also inside the TX thread, there is an event loop. Within the event loop, there are a number of :ref:`fibers <fiber-fibers>`.
 Fibers are cooperative primitives that allows interaction with spaces, that is, reading and writting the data.
 Fibers can interact with the event loop and between each other directly or by using special primitives called channels.
-Due to the usage of fibers and cooperative multitasking, the ``memtx`` engine is lock-free in typical situations.
+Due to the usage of fibers and :ref:`cooperative multitasking <atomic-cooperative_multitasking>`, the ``memtx`` engine is lock-free in typical situations.
 
 .. image:: memtx/fibers-channels.svg
 
 To interact with external users, there is a separate :ref:`network thread <atomic-threads_fibers_yields>` also called the **IPROTO thread**.
-The IPROTO thread receives a request for the network, parses and checks the statement,
+The IPROTO thread receives a request from the network, parses and checks the statement,
 and transforms it into a special structure—a message containing an executable statement and its options.
 Then the IPROTO thread ships this message to the TX thread and runs the user's request in a separate fiber.
 
@@ -74,7 +60,7 @@ Data persistence
 
 To ensure :ref:`data persistence <index-box_persistence>`, Tarantool does two things.
 
-*   After executing a data change request in memory, Tarantool writes each such request to the :ref:`write-ahead log (WAL) <internals-wal>` files (``.xlog``)
+*   After executing data change requests in memory, Tarantool writes each such request to the :ref:`write-ahead log (WAL) <internals-wal>` files (``.xlog``)
     that are stored on disk. Tarantool does this via a separate thread called the **WAL thread**.
 
 .. image:: memtx/wal.svg
@@ -106,16 +92,18 @@ What happens during the restart:
 Accessing data
 --------------
 
-- indexes are build to access the data
-- type of indexes -- link to the Indexes chapter
-- details about our btree??
-- links to the necessary pages to get details about accessing the data
-- hashes ??
+To access and manipulate the data stored in memory, Tarantool builds indexes.
+Indexes are also stored in memory within the Arena.
 
-https://www.tarantool.io/en/doc/latest/book/box/indexes/
-https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/create_index/
+Tarantool supports a number of :ref:`index types <index-types>` intended for different usage scenarios.
+The possible types are TREE, HASH, BITSET, and RTREE.
 
+Select query are possible against secondary index keys as well as primary keys.
+Indexes can have multi-part keys.
 
+For detailed information about indexes, refer to the :doc:`/book/box/indexes` page.
+
+.. _memtx-replication:
 
 Replicating data
 ----------------
@@ -124,18 +112,25 @@ Replication allows multiple Tarantool instances to work on copies of the same da
 The copies are kept in sync because each instance can communicate its changes to all the other instances.
 It is implemented via WAL replication.
 
-//TBD
 To send data to a replica, Tarantool runs another thread called **relay**.
 Its purpose is to read the WAL files and send them to replicas.
-On a replica, the fiber called **applier** is run. It receives the //information about the changes from a remote node and applies these changes to the replica's Arena.
-And all these changes are being written to WAL files via the replica's WAL thread as if the changes are done locally.
+On a replica, the fiber called **applier** is run. It receives the changes from a remote node and applies them to the replica's Arena.
+All the changes are being written to WAL files via the replica's WAL thread as if they are done locally.
 
 .. image:: memtx/replica-xlogs.svg
 
 For more information on replication, refer to the :doc:`corresponding chapter </book/replication/index>`.
 
+.. _memtx-summary:
 
-//TBD Although this subject matter is not related directly to the memtx engine as such, it helps understand the entire picture how Tarantool works.
-Зная, как это все устроено, вы можете понимать и предсказывать поведение того или иного участка Tarantool, и понимать, что с этим делать.
+Summary
+-------
 
+The main key points describing how the in-memory storage engine works can be summarized in the following way:
 
+*   All data is in RAM.
+*   Access to data is from one thread.
+*   Tarantool writes all data change requests in WAL.
+*   Data snapshots are taken periodically.
+*   Indexes are build to access the data.
+*   WAL can be replicated.
