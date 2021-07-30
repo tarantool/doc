@@ -67,6 +67,7 @@ To ensure :ref:`data persistence <index-box_persistence>`, Tarantool does two th
 
 *   Tarantool periodically takes the entire :doc:`database snapshot </reference/reference_lua/box_snapshot>` and saves it on disk.
     It is necessary for accelerating restart because when there are too many WAL files, it can be difficult for Tarantool to restart quickly.
+
     To save a snapshot, there is a special fiber called the **snapshot daemon**.
     It reads the consistent content of the entire Arena and writes it on disk into a snapshot file (``.snap``).
     Due of the cooperative multitasking, Tarantool cannot write directly on disk because it is a locking operation.
@@ -124,7 +125,7 @@ For more information on replication, refer to the :doc:`corresponding chapter </
 .. _memtx-summary:
 
 Summary
--------
+--------
 
 The main key points describing how the in-memory storage engine works can be summarized in the following way:
 
