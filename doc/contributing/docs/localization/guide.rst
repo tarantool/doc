@@ -46,17 +46,17 @@ applies to writing Tarantool documentation.)
     :widths: 24 38 38
     :header-rows: 1
 
-    * -
-      - First time
-      - All following times
-    * - state machine
-      - машина состояний (конечный автомат, state machine)
-      - машина состояний
-    * - WAL
-      - журнал упреждающей записи (WAL)
-      - журнал упреждающей записи; WAL; журнал WAL *(using a descriptor)*
-    * -
-      -
+    *   -
+        -   First time
+        -   All following times
+    *   -   state machine
+        -   машина состояний (конечный автомат, state machine)
+        -   машина состояний
+    *   -   WAL
+        -   журнал упреждающей записи (WAL)
+        -   журнал упреждающей записи; WAL; журнал WAL *(using a descriptor)*
+    *   -
+        -
 
 Best practices
 --------------
@@ -75,12 +75,12 @@ Best practices
         :widths: 50 50
         :header-rows: 0
 
-        * - It is recommended to use `systemd`
-            for managing the application instances and accessing log entries.
-          - Для управления экземплярами приложения и доступа к записям журнала
-            рекомендуется использовать `systemd`.
-        * - Do not specify working directories of the instances in this configuration.
-          - Не указывайте в этой конфигурации рабочие директории экземпляров.
+        *   -   It is recommended to use `systemd`
+                for managing the application instances and accessing log entries.
+            -   Для управления экземплярами приложения и доступа к записям журнала
+                рекомендуется использовать `systemd`.
+        *   -   Do not specify working directories of the instances in this configuration.
+            -   Не указывайте в этой конфигурации рабочие директории экземпляров.
 
 3.  Avoid overly formal, bureaucratic language whenever possible.
     Prefer verbs over verbal nouns,
@@ -100,12 +100,12 @@ Best practices
         :widths: 50 50
         :header-rows: 1
 
-        * -
-          - DON'T
-          - DO
-        * - Defaults to `root`.
-          - По умолчанию -- `root`.
-          - Значение по умолчанию -- `root`.
+        *   -
+            -   DON'T
+            -   DO
+        *   -   Defaults to `root`.
+            -   По умолчанию -- `root`.
+            -   Значение по умолчанию -- `root`.
 
 6.  Check pronoun collocations.
     Do all the pronouns point to the exact nouns you want them to?
