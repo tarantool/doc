@@ -59,6 +59,7 @@ applies to writing Tarantool documentation.)
            -   журнал упреждающей записи; WAL; журнал WAL *(using a descriptor)*
        *   -
            -
+           -
 
 Best practices
 --------------
@@ -103,7 +104,7 @@ Best practices
     .. container:: table
 
         .. list-table:: Examples
-           :widths: 50 50
+           :widths: 30 30 40
            :header-rows: 1
 
            *   -
@@ -124,7 +125,7 @@ Best practices
     For more on this issue, check out
     `this writers' reference <https://lapsus.timuroki.ink/pest/wanderer/>`_.
 
-7.  Be critical--tidy up your translation until it feels just right.
+7.  Be critical -- tidy up your translation until it feels just right.
 
 8.  If you review others’ translations, be gentle and kind.
     Everyone makes mistakes, and nobody likes to be punished for them.
