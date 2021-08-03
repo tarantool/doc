@@ -23,4 +23,4 @@ jobs:
 #          onlyRemoveDeployments: true
 
       - run: |
-          curl -X DELETE -d '{"update_key":"${{secrets.TARANTOOL_UPDATE_KEY}}"}' -H "Content-Type: application/json" ${{secrets.TARANTOOL_DEV_UPDATE_URL}}${{env.DEPLOYMENT_NAME}}/
+          curl -X DELETE -d '{"update_key":"${{secrets.TARANTOOL_UPDATE_KEY}}"}' -H "Content-Type: application/json" ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}${{env.DEPLOYMENT_NAME}}/
