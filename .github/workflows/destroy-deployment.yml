@@ -17,7 +17,7 @@ jobs:
         run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
 
       - run: |
-          curl -X DELETE -d '{"update_key":"${{secrets.TARANTOOL_UPDATE_KEY}}"}' -H "Content-Type: application/json" ${{secrets.TARANTOOL_DEV_UPDATE_URL}}${{env.BRANCH_NAME}}/
+          curl -X DELETE -d '{"update_key":"${{secrets.TARANTOOL_UPDATE_KEY}}"}' -H "Content-Type: application/json" ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}${{env.BRANCH_NAME}}/
 
       - name: Remove dev server deployment at branch-${{env.BRANCH_NAME}}
         uses: bobheadxi/deployments@v0.5.2
