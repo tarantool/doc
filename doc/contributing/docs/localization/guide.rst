@@ -142,7 +142,7 @@ Do all the pronouns point to the exact nouns you want them to?
 Прежде чем добавить запись в конфигурацию, укажите к ней путь.
 
 In the example above, it is not quite clear
-what «к ней» means—to the record or to the configuration.
+what «к ней» means -- to the record or to the configuration.
 For more on this issue, check out
 `the writers' reference at «Ошибкариум» <https://lapsus.timuroki.ink/pest/wanderer/>`_.
 
