@@ -6,6 +6,9 @@ Use this guide when localizing Tarantool into Russian.
 Tone of voice
 -------------
 
+General voice
+~~~~~~~~~~~~~
+
 We address IT specialists fairly knowledgeable in their respective fields.
 The goal of our translations is to help these people understand how to use Tarantool.
 Think of us as their colleagues and address them as such.
@@ -14,10 +17,16 @@ Don’t command or patronize.
 Use colloquial speech but avoid being too familiar.
 It’s all about the golden mean.
 
+Modal verbs
+~~~~~~~~~~~
+
 Think twice when translating modal verbs.
 Avoid using expressions like «вы должны», because they sound like a demand in Russian,
 and «вам придётся», because it implies that our readers will face a lot of trouble.
 Make it easy for the user to read the documentation.
+
+Gender neutrality
+~~~~~~~~~~~~~~~~~
 
 Use gender-neutral expressions like «сделать самостоятельно» instead of «сделать самому», etc.
 
