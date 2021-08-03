@@ -56,7 +56,7 @@ This is why it's also helpful to restrict the usage of some terms explicitly.
         For example, in Tarantool, we don't use the term "[database] segmentation"
         to denote what we call "database sharding."
         Although, other authors could do so.
-        Also, there is a term "[database] partitioning" that we use to denote
+        Also, there is the term "[database] partitioning" that we use to denote
         a wider concept, which includes sharding and other things.
 
 ..  _define-terms:
@@ -138,4 +138,3 @@ It will help readers learn the term and understand the concept behind it.
         Шардирование (сегментирование, sharding) — это...
 
 #.  Give examples or links to extra reading where you can.
-
