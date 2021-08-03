@@ -44,7 +44,7 @@ applies to writing Tarantool documentation.)
 
 .. container:: table
 
-    .. list-table:: Examples
+    .. list-table:: 
        :widths: 24 38 38
        :header-rows: 1
 
@@ -80,7 +80,7 @@ while in English, sentences may start with it.
 
 .. container:: table
 
-    .. list-table:: Examples
+    .. list-table::
        :widths: 50 50
        :header-rows: 0
 
@@ -109,18 +109,18 @@ It’s not about synonyms, but about terms: we don’t want people to get confus
 Avoid elliptical sentences
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    .. container:: table
+.. container:: table
 
-        .. list-table:: Examples
-           :widths: 30 30 40
-           :header-rows: 1
+    .. list-table::
+       :widths: 30 30 40
+       :header-rows: 1
 
-           *   -
-               -   Don't
-               -   Do
-           *   -   Defaults to `root`.
-               -   По умолчанию --- `root`.
-               -   Значение по умолчанию --- `root`.
+       *   -
+           -   Don't
+           -   Do
+       *   -   Defaults to `root`.
+           -   По умолчанию --- `root`.
+           -   Значение по умолчанию --- `root`.
 
 Pronoun collocations
 ~~~~~~~~~~~~~~~~~~~~
