@@ -78,7 +78,7 @@ about the topic.
 In Russian, the focus most often stands at the end of the sentence,
 while in English, sentences may start with it.
 
-.. container:: table
+.. container:: table
 
     .. list-table:: Examples
        :widths: 50 50
