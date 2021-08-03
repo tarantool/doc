@@ -56,3 +56,42 @@ To keep track of the most notable features in each version of the Tarantool easi
 
         *   -   2.5
             -
+
+        *   -   2.4
+            -   UUID type for field and index (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
+
+        *   -   2.4
+            -   ``popen`` built-in module (:tarantool-issue:`4031`)
+
+        *   -   2.4
+            -   Ability to create custom error types (:tarantool-issue:`4398`)
+
+        *   -   2.4
+            -   Transparent marshalling through ``net.box`` (:tarantool-issue:`4398`)
+
+        *   -   2.4
+            -   Stacked diagnostic area (:tarantool-issue:`1148`)
+
+        *   -   2.3
+            -   Field name and JSON path updates (:tarantool-issue:`1261`)
+
+        *   -   2.3
+            -   Anonymous replica type (:tarantool-issue:`3186`)
+
+        *   -   2.3
+            -   ``DOUBLE`` type in SQL (:tarantool-issue:`3812`)
+
+        *   -   2.3
+            -   ``fiber.top()`` function in Lua (:tarantool-issue:`2694`)
+
+        *   -   2.3
+            -   Feed data from memory during replica initial join (:tarantool-issue:`1271`)
+
+        *   -   2.3
+            -   SQL prepared statements support and cache (:tarantool-issue:`2592`, :tarantool-issue:`3292`)
+
+        *   -   2.3
+            -   ``_session_setting`` service space (:tarantool-issue:`4511`)
+
+
+
