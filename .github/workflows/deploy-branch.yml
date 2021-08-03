@@ -13,7 +13,7 @@ jobs:
       S3_ENDPOINT_URL: ${{secrets.S3_ENDPOINT_URL}}
       S3_UPLOAD_PATH: ${{secrets.S3_UPLOAD_PATH}}
       TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
-      TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEV_UPDATE_URL}}
+      TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -39,7 +39,6 @@ jobs:
       - run: make build-modules
       - run: make json
       - run: make json-ru
-      - run: curl ${{secrets.WAKEUP_URL}} --connect-timeout 300 --retry 3 --retry-delay 30 >> /dev/null
       - run: bash upload_output.sh
 
       - name: update deployment status
@@ -49,4 +48,4 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           status: ${{job.status}}
           deployment_id: ${{steps.deployment.outputs.deployment_id}}
-          env_url: https://tarantool-develop.herokuapp.com/doc/${{env.BRANCH_NAME}}
+          env_url: ${{TARANTOOL_HOST}}/doc/${{env.BRANCH_NAME}}
