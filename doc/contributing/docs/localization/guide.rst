@@ -64,42 +64,50 @@ applies to writing Tarantool documentation.)
 Best practices
 --------------
 
-1.  Please be creative and avoid word-for-word translations.
-    Let the resulting text sound as though it was originally written in Russian.
+Be creative
+~~~~~~~~~~~
+Please avoid word-for-word translations.
+Let the resulting text sound as though it was originally written in Russian.
 
-2.  Avoid English word order.
-    The Russian speech is structured with topic and focus (тема и рема).
-    The focus is whatever new/important information is provided in the sentence
-    about the topic.
-    In Russian, the focus most often stands at the end of the sentence,
-    while in English, sentences may start with it.
+Topic and focus
+~~~~~~~~~~~~~~~
+Avoid English word order.
+The Russian speech is structured with topic and focus (тема и рема).
+The focus is whatever new/important information is provided in the sentence
+about the topic.
+In Russian, the focus most often stands at the end of the sentence,
+while in English, sentences may start with it.
 
-    .. container:: table
+.. container:: table
 
-        .. list-table:: Examples
-           :widths: 50 50
-           :header-rows: 0
+    .. list-table:: Examples
+       :widths: 50 50
+       :header-rows: 0
 
-           *   -   It is recommended to use `systemd`
-                   for managing the application instances and accessing log entries.
-               -   Для управления экземплярами приложения и доступа к записям журнала
-                   рекомендуется использовать `systemd`.
-           *   -   Do not specify working directories of the instances in this configuration.
-               -   Не указывайте в этой конфигурации рабочие директории экземпляров.
+       *   -   It is recommended to use `systemd`
+               for managing the application instances and accessing log entries.
+           -   Для управления экземплярами приложения и доступа к записям журнала
+               рекомендуется использовать `systemd`.
+       *   -   Do not specify working directories of the instances in this configuration.
+           -   Не указывайте в этой конфигурации рабочие директории экземпляров.
 
-3.  Avoid overly formal, bureaucratic language whenever possible.
-    Prefer verbs over verbal nouns,
-    and don’t use «являться» and «осуществляться» unless it’s absolutely necessary.
-    To learn how to clear your Russian texts of bureaucratese,
-    check `this training <https://www.timuroki.ink/thewritingdead>`_.
+No bureaucratese
+~~~~~~~~~~~~~~~~
+Avoid overly formal, bureaucratic language whenever possible.
+Prefer verbs over verbal nouns,
+and don’t use «являться» and «осуществляться» unless it’s absolutely necessary.
+To learn how to clear your Russian texts of bureaucratese,
+check `Timur Anikin's training The Writing Dead <https://www.timuroki.ink/thewritingdead>`_.
 
-4.  Maintain consistency:
-    use one term for one concept throughout the article.
-    For instance, only translate production as «производственная среда»
-    and not as «эксплуатационная среда» throughout your article.
-    It’s not about synonyms, but about terms: we don’t want people to get confused.
+Consistency
+~~~~~~~~~~~
+Use one term for one concept throughout the article.
+For example, only translate production as «производственная среда»
+and not as «эксплуатационная среда» throughout your article.
+It’s not about synonyms, but about terms: we don’t want people to get confused.
 
-5.  Try to avoid elliptical sentences.
+Avoid elliptical sentences
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     .. container:: table
 
@@ -114,19 +122,25 @@ Best practices
                -   По умолчанию --- `root`.
                -   Значение по умолчанию --- `root`.
 
-6.  Check pronoun collocations.
-    Do all the pronouns point to the exact nouns you want them to?
+Pronoun collocations
+~~~~~~~~~~~~~~~~~~~~
+Do all the pronouns point to the exact nouns you want them to?
 
-    **Example (how not to):**
-    Прежде чем добавить запись в конфигурацию, укажите к ней путь.
+**Example (how not to):**
+Прежде чем добавить запись в конфигурацию, укажите к ней путь.
 
-    In the example above, it is not quite clear
-    what «к ней» means—to the record or to the configuration.
-    For more on this issue, check out
-    `Timur Anikin's writers' reference <https://lapsus.timuroki.ink/pest/wanderer/>`_.
+In the example above, it is not quite clear
+what «к ней» means—to the record or to the configuration.
+For more on this issue, check out
+`the writers' reference at «Ошибкариум» <https://lapsus.timuroki.ink/pest/wanderer/>`_.
 
-7.  Be critical -- tidy up your translation until it feels just right.
+Be critical
+~~~~~~~~~~~
 
-8.  If you review others’ translations, be gentle and kind.
-    Everyone makes mistakes, and nobody likes to be punished for them.
-    You can use phrasings like "I suggest" or "it's a good idea to... ."
+Tidy up your translation until it feels just right.
+
+Be nice to your peers
+~~~~~~~~~~~~~~~~~~~~~
+If you review others’ translations, be gentle and kind.
+Everyone makes mistakes, and nobody likes to be punished for them.
+You can use phrasings like "I suggest" or "it's a good idea to... ."
