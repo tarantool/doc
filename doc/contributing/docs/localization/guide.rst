@@ -76,7 +76,7 @@ Best practices
 
     .. container:: table
 
-        .. list-table:: Examples
+        .. list-table:: Examples
            :widths: 50 50
            :header-rows: 0
 
@@ -103,7 +103,7 @@ Best practices
 
     .. container:: table
 
-        .. list-table:: Examples
+        .. list-table:: Examples
            :widths: 30 30 40
            :header-rows: 1
 

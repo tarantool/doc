@@ -92,3 +92,4 @@ State of localization
 
 .. |tarantool-cpp| image:: https://badges.crowdin.net/tarantool-cpp/localized.svg
    :target: https://crowdin.com/project/tarantool-cpp/ru#
+   
