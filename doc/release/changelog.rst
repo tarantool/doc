@@ -52,4 +52,4 @@ Changelog
             -   Allow an anonymous replica to follow another anonymous replica (:tarantool-issue:`4696`)
 
         *   -   2.5
-            -   Update curl version to ``7.7.1``
+            -
