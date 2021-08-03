@@ -1,6 +1,9 @@
 Changelog
 =========
 
+Every released version of Tarantool brings some features and fixes, which are all listed in the release notes.
+To keep track of the most notable features in each version of the Tarantool easier, you can use the table below.
+
 ..  container:: table
 
     ..  rst-class:: left-align-column-1
