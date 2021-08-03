@@ -108,11 +108,11 @@ Best practices
            :header-rows: 1
 
            *   -
-               -   DON'T
-               -   DO
+               -   Don't
+               -   Do
            *   -   Defaults to `root`.
-               -   По умолчанию -- `root`.
-               -   Значение по умолчанию -- `root`.
+               -   По умолчанию --- `root`.
+               -   Значение по умолчанию --- `root`.
 
 6.  Check pronoun collocations.
     Do all the pronouns point to the exact nouns you want them to?
@@ -123,10 +123,10 @@ Best practices
     In the example above, it is not quite clear
     what «к ней» means—to the record or to the configuration.
     For more on this issue, check out
-    `this writers' reference <https://lapsus.timuroki.ink/pest/wanderer/>`_.
+    `Timur Anikin's writers' reference <https://lapsus.timuroki.ink/pest/wanderer/>`_.
 
 7.  Be critical -- tidy up your translation until it feels just right.
 
 8.  If you review others’ translations, be gentle and kind.
     Everyone makes mistakes, and nobody likes to be punished for them.
-    You can use phrasings like “I suggest…”
+    You can use phrasings like "I suggest" or "it's a good idea to... ."
