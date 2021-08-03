@@ -1,6 +1,8 @@
 Defining and using terms
 ========================
 
+..  _concepts-and-terms:
+
 What are concepts and terms
 ---------------------------
 
@@ -26,6 +28,9 @@ Such objects are called concepts, and the words for them are called terms.
 
         For example, in Tarantool, we use the term "[database] sharding" to denote the
         concept mentioned in the previous example.
+
+
+..  _use-preferred-terms:
 
 Use preferred terms
 -------------------
@@ -53,6 +58,8 @@ This is why it's also helpful to restrict the usage of some terms explicitly.
         Although, other authors could do so.
         Also, there is a term "[database] partitioning" that we use to denote
         a wider concept, which includes sharding and other things.
+
+..  _define-terms:
 
 Define terms by explaining concepts
 -----------------------------------
@@ -86,6 +93,7 @@ The `Sphinx documentation
 <https://github.com/sphinx-doc/sphinx/blob/master/doc/glossary.rst>`_
 has an extensive glossary, which we can use as a reference.
 
+..  _introduce-terms:
 
 Introduce terms on first entry
 ------------------------------

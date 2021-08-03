@@ -39,27 +39,30 @@ If you feel like the older Russian term may sound more familiar for a part of th
 (for example, those with a math background),
 consider adding it in parentheses along with the English equivalent.
 Don’t repeat the parentheses throughout the text.
-(:doc:`A similar rule </contributing/docs/terms/#introduce-terms-on-first-entry>`
-applies to writing Tarantool documentation.)
+A similar rule applies to
+:ref:`introducing terms in Tarantool documentation <introduce-terms>`.
 
-.. container:: table
+Term choice examples
+~~~~~~~~~~~~~~~~~~~~
 
-    .. list-table:: 
-       :widths: 24 38 38
-       :header-rows: 1
+..  container:: table
 
-       *   -
-           -   First time
-           -   All following times
-       *   -   state machine
-           -   машина состояний (конечный автомат, state machine)
-           -   машина состояний
-       *   -   WAL
-           -   журнал упреждающей записи (WAL)
-           -   журнал упреждающей записи; WAL; журнал WAL *(using a descriptor)*
-       *   -
-           -
-           -
+    ..  list-table::
+        :widths: 24 38 38
+        :header-rows: 1
+
+        *   -
+            -   First time
+            -   All following times
+        *   -   state machine
+            -   машина состояний (конечный автомат, state machine)
+            -   машина состояний
+        *   -   “write-ahead log (WAL)” at first entry, “WAL” later
+            -   журнал упреждающей записи (write-ahead log, WAL)
+            -   журнал упреждающей записи; WAL; журнал WAL *(using a descriptor)*
+        *   -
+            -
+            -
 
 Best practices
 --------------
