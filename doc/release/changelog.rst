@@ -32,13 +32,31 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   ``--leak-only`` LuaJIT memory profiler option (:tarantool-issue:`5812`)
 
         *   -   2.7
+            -   The concept of WAL queue (:tarantool-issue:`5536`)
+
+        *   -   2.7
+            -   ``box.ctl.promote()`` and the concept of manual elections (:tarantool-issue:`3055`)
+
+        *   -   2.7
             -   LuaJIT memory profiler (:tarantool-issue:`5442`)
 
         *   -   2.7
             -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
 
         *   -   2.7
-            -   ``ALTER TABLE ADD COLUMN`` statement support for empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`)
+            -   SQL ``ALTER TABLE ADD COLUMN`` statement support for empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`)
+
+        *   -   2.6
+            -   The concept of WAL queue (:tarantool-issue:`5536`)
+
+        *   -   2.6
+            -   ``box.ctl.promote()`` and the concept of manual elections (:tarantool-issue:`3055`)
+
+        *   -   2.6
+            -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
+
+        *   -   2.6
+            -   ``box.ctl.is_recovery_finished()`` function for memtx engine (:tarantool-issue:`5187`)
 
         *   -   2.6
             -   LuaJIT platform metrics (:tarantool-issue:`5187`)
@@ -48,6 +66,12 @@ To keep track of the most notable features in each version of the Tarantool easi
 
         *   -   2.6
             -   Transactional manager for memtx engine (:tarantool-issue:`4897`)
+
+        *   -   2.5
+            -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
+
+        *   -   2.5
+            -   ``box.ctl.is_recovery_finished()`` function for memtx engine (:tarantool-issue:`5187`)
 
         *   -   2.5
             -   Synchronous replication (beta) (:tarantool-issue:`4842`)
