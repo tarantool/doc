@@ -66,12 +66,9 @@ Term choice examples
         *   -   state machine
             -   машина состояний (конечный автомат, state machine)
             -   машина состояний
-        *   -   “write-ahead log (WAL)” at first entry, “WAL” later
+        *   -   write-ahead log; WAL
             -   журнал упреждающей записи (write-ahead log, WAL)
             -   журнал упреждающей записи; WAL; журнал WAL *(using a descriptor)*
-        *   -
-            -
-            -
 
 Best practices
 --------------
@@ -84,10 +81,13 @@ Let the resulting text sound as though it was originally written in Russian.
 Topic and focus
 ~~~~~~~~~~~~~~~
 Avoid English word order.
-The Russian speech is structured with topic and focus (тема и рема).
+
+The Russian speech is structured with topic and focus
+(`тема и рема <https://ru.wikipedia.org/wiki/Актуальное_членение_предложения>`_).
+The topic is the given in the sentence, something we already know.
 The focus is whatever new/important information is provided in the sentence
 about the topic.
-In Russian, the focus most often stands at the end of the sentence,
+In written Russian, the focus most often stands at the end of the sentence,
 while in English, sentences may start with it.
 
 .. container:: table
@@ -108,6 +108,7 @@ No bureaucratese
 Avoid overly formal, bureaucratic language whenever possible.
 Prefer verbs over verbal nouns,
 and don’t use «являться» and «осуществляться» unless it’s absolutely necessary.
+
 To learn how to clear your Russian texts of bureaucratese,
 check `Timur Anikin's training The Writing Dead <https://www.timuroki.ink/thewritingdead>`_.
 
@@ -124,7 +125,7 @@ Avoid elliptical sentences
 .. container:: table
 
     .. list-table::
-       :widths: 30 30 40
+       :widths: 20 30 50
        :header-rows: 1
 
        *   -
@@ -141,15 +142,14 @@ Do all the pronouns point to the exact nouns you want them to?
 **Example (how not to):**
 Прежде чем добавить запись в конфигурацию, укажите к ней путь.
 
-In the example above, it is not quite clear
-what «к ней» means -- to the record or to the configuration.
-For more on this issue, check out
+In the example, it is not quite clear what «к ней» means---to the
+record or to the configuration. For more on this issue, check out
 `the writers' reference at «Ошибкариум» <https://lapsus.timuroki.ink/pest/wanderer/>`_.
 
-Be critical
-~~~~~~~~~~~
+Be critical towards your text
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tidy up your translation until it feels just right.
+Don't forget to proofread your translation. Check your text at least twice.
 
 Be nice to your peers
 ~~~~~~~~~~~~~~~~~~~~~
