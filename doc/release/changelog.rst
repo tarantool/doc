@@ -1,7 +1,8 @@
 Changelog
 =========
 
-Every released version of Tarantool brings some features and fixes, which are all listed in the release notes.
+Every released version of Tarantool brings some features and fixes, which are all listed in
+:doc:`the release notes </release>`.
 To keep track of the most notable features in each version of the Tarantool easier, you can use the table below.
 
 ..  container:: table
@@ -19,7 +20,7 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   Multiple iproto threads (:tarantool-issue:`5645`)
 
         *   -   2.8
-            -   Set box.cfg options with environment variables (:tarantool-issue:`5602`)
+            -   Set ``box.cfg`` options with environment variables (:tarantool-issue:`5602`)
 
         *   -   2.8
             -   ``box.ctl.promote()`` and the concept of manual elections (:tarantool-issue:`3055`)
@@ -54,9 +55,6 @@ To keep track of the most notable features in each version of the Tarantool easi
         *   -   2.5
             -   Allow an anonymous replica to follow another anonymous replica (:tarantool-issue:`4696`)
 
-        *   -   2.5
-            -
-
         *   -   2.4
             -   UUID type for field and index (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
 
@@ -80,6 +78,9 @@ To keep track of the most notable features in each version of the Tarantool easi
 
         *   -   2.3
             -   ``DOUBLE`` type in SQL (:tarantool-issue:`3812`)
+
+        *   -   2.3
+            -   Support of decimals in spaces, ``decimal`` field type (:tarantool-issue:`4333`)
 
         *   -   2.3
             -   ``fiber.top()`` function in Lua (:tarantool-issue:`2694`)
