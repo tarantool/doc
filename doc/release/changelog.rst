@@ -20,13 +20,13 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   Multiple iproto threads (:tarantool-issue:`5645`)
 
         *   -   2.8
-            -   Set ``box.cfg`` options with environment variables (:tarantool-issue:`5602`)
+            -   Set :doc:`box.cfg </reference/reference_lua/box_cfg>` options with environment variables (:tarantool-issue:`5602`)
 
         *   -   2.8
-            -   ``box.ctl.promote()`` and the concept of manual elections (:tarantool-issue:`3055`)
+            -   :doc:`box.ctl.promote() </reference/reference_lua/box_ctl/promote>` and the concept of manual elections (:tarantool-issue:`3055`)
 
         *   -   2.8
-            -   Friendly LuaJIT memory profiler report (:tarantool-issue:`5811`)
+            -   Friendly :ref:`LuaJIT memory profiler report <profiling-report-analysis-example>` (:tarantool-issue:`5811`)
 
         *   -   2.8
             -   ``--leak-only`` LuaJIT memory profiler option (:tarantool-issue:`5812`)
@@ -35,7 +35,7 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   The concept of WAL queue (:tarantool-issue:`5536`)
 
         *   -   2.7
-            -   ``box.ctl.promote()`` and the concept of manual elections (:tarantool-issue:`3055`)
+            -   :doc:`box.ctl.promote() </reference/reference_lua/box_ctl/promote>` and the concept of manual elections (:tarantool-issue:`3055`)
 
         *   -   2.7
             -   :doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>` (:tarantool-issue:`5442`)
@@ -74,19 +74,19 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   :doc:`box.ctl.is_recovery_finished() </reference/reference_lua/box_ctl/is_recovery_finished>` for memtx engine (:tarantool-issue:`5187`)
 
         *   -   2.5
-            -   Synchronous replication (beta) (:tarantool-issue:`4842`)
+            -   :doc:`Synchronous replication </book/replication/repl_sync>` (beta) (:tarantool-issue:`4842`)
 
         *   -   2.5
             -   Allow an anonymous replica to follow another anonymous replica (:tarantool-issue:`4696`)
 
         *   -   2.4
-            -   UUID type for field and index (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
+            -   :ref:`UUID type for field and index <details-about-index-field-types>` (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
 
         *   -   2.4
             -   :doc:`popen </reference/reference_lua/popen>` built-in module (:tarantool-issue:`4031`)
 
         *   -   2.4
-            -   Ability to create custom error types (:tarantool-issue:`4398`)
+            -   Ability to create :doc:`custom error types </reference/reference_lua/box_error/custom_type>` (:tarantool-issue:`4398`)
 
         *   -   2.4
             -   Transparent marshalling through ``net.box`` (:tarantool-issue:`4398`)
@@ -95,13 +95,13 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   Stacked diagnostic area (:tarantool-issue:`1148`)
 
         *   -   2.3
-            -   Field name and JSON path updates (:tarantool-issue:`1261`)
+            -   :doc:`Field name and JSON path updates </reference/reference_lua/json_paths>` (:tarantool-issue:`1261`)
 
         *   -   2.3
             -   Anonymous replica type (:tarantool-issue:`3186`)
 
         *   -   2.3
-            -   :doc:`DOUBLE type </reference/reference_sql/sql_user_guide>` in SQL (:tarantool-issue:`3812`)
+            -   :doc:`DOUBLE </reference/reference_sql/sql_user_guide>` type in SQL (:tarantool-issue:`3812`)
 
         *   -   2.3
             -   Support of decimals in spaces, ``decimal`` field type (:tarantool-issue:`4333`)
@@ -116,7 +116,7 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   SQL prepared statements support and cache (:tarantool-issue:`2592`, :tarantool-issue:`3292`)
 
         *   -   2.3
-            -   ``_session_setting`` service space (:tarantool-issue:`4511`)
+            -   :doc:`_session_settings </reference/reference_lua/box_space/_session_settings>` service space (:tarantool-issue:`4511`)
 
 
 
