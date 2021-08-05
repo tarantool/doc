@@ -101,13 +101,13 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   Anonymous replica type (:tarantool-issue:`3186`)
 
         *   -   2.3
-            -   ``DOUBLE`` type in SQL (:tarantool-issue:`3812`)
+            -   :doc:`DOUBLE type </reference/reference_sql/sql_user_guide>` in SQL (:tarantool-issue:`3812`)
 
         *   -   2.3
             -   Support of decimals in spaces, ``decimal`` field type (:tarantool-issue:`4333`)
 
         *   -   2.3
-            -   ``fiber.top()`` function in Lua (:tarantool-issue:`2694`)
+            -   :ref:`fiber.top() <fiber-top>` function in Lua (:tarantool-issue:`2694`)
 
         *   -   2.3
             -   Feed data from memory during replica initial join (:tarantool-issue:`1271`)
