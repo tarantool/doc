@@ -17,7 +17,7 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   Feature
 
         *   -   2.8
-            -   Multiple iproto threads (:tarantool-issue:`5645`)
+            -   :ref:`Multiple iproto threads <cfg-networking-iproto-threads>` (:tarantool-issue:`5645`)
 
         *   -   2.8
             -   Set :doc:`box.cfg </reference/reference_lua/box_cfg>` options with environment variables (:tarantool-issue:`5602`)
@@ -41,7 +41,7 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   :doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>` (:tarantool-issue:`5442`)
 
         *   -   2.7
-            -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
+            -   Expression evaluation for :ref:`replication_synchro_quorum <cfg-replication-replication-synchro-quorum>` (:tarantool-issue:`5446`)
 
         *   -   2.7
             -   SQL :doc:`ALTER TABLE ADD COLUMN </reference/reference_sql/sql_statements_and_clauses>` statement support for empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`)
@@ -53,22 +53,22 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   :doc:`box.ctl.promote() </reference/reference_lua/box_ctl/promote>` and the concept of manual elections (:tarantool-issue:`3055`)
 
         *   -   2.6
-            -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
+            -   Expression evaluation for :ref:`replication_synchro_quorum <cfg-replication-replication-synchro-quorum>` (:tarantool-issue:`5446`)
 
         *   -   2.6
             -   :doc:`box.ctl.is_recovery_finished() </reference/reference_lua/box_ctl/is_recovery_finished>` function for memtx engine (:tarantool-issue:`5187`)
 
         *   -   2.6
-            -   LuaJIT platform metrics (:tarantool-issue:`5187`)
+            -   :ref:`LuaJIT platform metrics <luajit-metrics>` (:tarantool-issue:`5187`)
 
         *   -   2.6
             -   :doc:`Automated leader election </book/replication/repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)
 
         *   -   2.6
-            -   Transactional manager for memtx engine (:tarantool-issue:`4897`)
+            -   :ref:`Transactional manager <atomic-transactional-manager>` for memtx engine (:tarantool-issue:`4897`)
 
         *   -   2.5
-            -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
+            -   Expression evaluation for :ref:`replication_synchro_quorum <cfg-replication-replication-synchro-quorum>` (:tarantool-issue:`5446`)
 
         *   -   2.5
             -   :doc:`box.ctl.is_recovery_finished() </reference/reference_lua/box_ctl/is_recovery_finished>` for memtx engine (:tarantool-issue:`5187`)
@@ -77,10 +77,10 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   :doc:`Synchronous replication </book/replication/repl_sync>` (beta) (:tarantool-issue:`4842`)
 
         *   -   2.5
-            -   Allow an anonymous replica to follow another anonymous replica (:tarantool-issue:`4696`)
+            -   Allow an :doc:`anonymous replica </reference/reference_lua/box_info/replication_anon>` to follow another anonymous replica (:tarantool-issue:`4696`)
 
         *   -   2.4
-            -   :ref:`UUID type for field and index <details-about-index-field-types>` (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
+            -   :ref:`UUID type for field and index <index-box-uuid>` (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
 
         *   -   2.4
             -   :doc:`popen </reference/reference_lua/popen>` built-in module (:tarantool-issue:`4031`)
@@ -89,22 +89,22 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   Ability to create :doc:`custom error types </reference/reference_lua/box_error/custom_type>` (:tarantool-issue:`4398`)
 
         *   -   2.4
-            -   Transparent marshalling through ``net.box`` (:tarantool-issue:`4398`)
+            -   :doc:`Transparent marshalling </reference/reference_lua/box_error/new>` through ``net.box`` (:tarantool-issue:`4398`)
 
         *   -   2.4
-            -   Stacked diagnostic area (:tarantool-issue:`1148`)
+            -   :doc:`Stacked diagnostic area </reference/reference_lua/box_error/error_object>` (:tarantool-issue:`1148`)
 
         *   -   2.3
             -   :doc:`Field name and JSON path updates </reference/reference_lua/json_paths>` (:tarantool-issue:`1261`)
 
         *   -   2.3
-            -   Anonymous replica type (:tarantool-issue:`3186`)
+            -   :ref:`Anonymous replica <cfg-replication-replication-anon>` type (:tarantool-issue:`3186`)
 
         *   -   2.3
             -   :doc:`DOUBLE </reference/reference_sql/sql_user_guide>` type in SQL (:tarantool-issue:`3812`)
 
         *   -   2.3
-            -   Support of decimals in spaces, ``decimal`` field type (:tarantool-issue:`4333`)
+            -   Support of :ref:`decimals <data-types>` in spaces, ``decimal`` field type (:tarantool-issue:`4333`)
 
         *   -   2.3
             -   :ref:`fiber.top() <fiber-top>` function in Lua (:tarantool-issue:`2694`)
