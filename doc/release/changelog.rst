@@ -38,13 +38,13 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   ``box.ctl.promote()`` and the concept of manual elections (:tarantool-issue:`3055`)
 
         *   -   2.7
-            -   LuaJIT memory profiler (:tarantool-issue:`5442`)
+            -   :doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>` (:tarantool-issue:`5442`)
 
         *   -   2.7
             -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
 
         *   -   2.7
-            -   SQL ``ALTER TABLE ADD COLUMN`` statement support for empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`)
+            -   SQL :doc:`ALTER TABLE ADD COLUMN </reference/reference_sql/sql_statements_and_clauses>` statement support for empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`)
 
         *   -   2.6
             -   The concept of WAL queue (:tarantool-issue:`5536`)
@@ -56,13 +56,13 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
 
         *   -   2.6
-            -   ``box.ctl.is_recovery_finished()`` function for memtx engine (:tarantool-issue:`5187`)
+            -   :doc:`box.ctl.is_recovery_finished() </reference/reference_lua/box_ctl/is_recovery_finished>` function for memtx engine (:tarantool-issue:`5187`)
 
         *   -   2.6
             -   LuaJIT platform metrics (:tarantool-issue:`5187`)
 
         *   -   2.6
-            -   Automated leader election based on Raft algorithm (:tarantool-issue:`1146`)
+            -   :doc:`Automated leader election </book/replication/repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)
 
         *   -   2.6
             -   Transactional manager for memtx engine (:tarantool-issue:`4897`)
@@ -71,7 +71,7 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
 
         *   -   2.5
-            -   ``box.ctl.is_recovery_finished()`` function for memtx engine (:tarantool-issue:`5187`)
+            -   :doc:`box.ctl.is_recovery_finished() </reference/reference_lua/box_ctl/is_recovery_finished>` for memtx engine (:tarantool-issue:`5187`)
 
         *   -   2.5
             -   Synchronous replication (beta) (:tarantool-issue:`4842`)
@@ -83,7 +83,7 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   UUID type for field and index (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
 
         *   -   2.4
-            -   ``popen`` built-in module (:tarantool-issue:`4031`)
+            -   :doc:`popen </reference/reference_lua/popen>` built-in module (:tarantool-issue:`4031`)
 
         *   -   2.4
             -   Ability to create custom error types (:tarantool-issue:`4398`)
