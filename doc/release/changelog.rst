@@ -50,7 +50,7 @@ To keep track of the most notable features in each version of the Tarantool easi
             -   The concept of WAL queue (:tarantool-issue:`5536`)
 
         *   -   2.6
-            -   ``box.ctl.promote()`` and the concept of manual elections (:tarantool-issue:`3055`)
+            -   :doc:`box.ctl.promote() </reference/reference_lua/box_ctl/promote>` and the concept of manual elections (:tarantool-issue:`3055`)
 
         *   -   2.6
             -   Expression evaluation for ``replication_synchro_quorum`` (:tarantool-issue:`5446`)
