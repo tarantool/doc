@@ -95,7 +95,7 @@ What happens during the restart:
     corresponding to the state when the Tarantool instance stopped.
 4.  While reading the snapshot and WAL files, Tarantool is building the primary indexes.
 5.  When all the data is in memory again, Tarantool is building the secondary indexes.
-6.  Tarantool runs an application.
+6.  Tarantool runs the application.
 
 .. _memtx-indexes:
 
