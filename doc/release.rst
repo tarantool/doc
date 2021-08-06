@@ -112,7 +112,7 @@ Release notes for series before 1.10 are also available:
 
     release/policy
     release/new-policy
-    release/changelog
+    release/major-features
     release/2.8.1
     release/2.7.2
     release/2.7.1
