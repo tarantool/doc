@@ -78,6 +78,10 @@ Be creative
 Please avoid word-for-word translations.
 Let the resulting text sound as though it was originally written in Russian.
 
+Less is more
+~~~~~~~~~~~~
+Be concise. Fewer words are the best option most of the time.
+
 Topic and focus
 ~~~~~~~~~~~~~~~
 Avoid English word order.
