@@ -89,8 +89,7 @@ Be concise and don't repeat yourself. Fewer words are the best option most of th
         :widths: 50 50
         :header-rows: 0
         
-        *   -   
-            -   Don't
+        *   -   Don't
             -   Do
         *   -   Профиль доступа можно назначить для любой роли пользователя,
                 созданной администратором.
@@ -141,8 +140,7 @@ check `Timur Anikin's training The Writing Dead <https://www.timuroki.ink/thewri
         :widths: 50 50
         :header-rows: 1
 
-        *   -   
-            -   Don't
+        *   -   Don't
             -   Do
         *   -   Сообщение исчезнет, как только вы покинете данную страницу.
             -   Сообщение исчезнет, как только вы покинете страницу.
