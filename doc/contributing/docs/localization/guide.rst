@@ -87,7 +87,7 @@ Be concise and don't repeat yourself. Fewer words are the best option most of th
 
     ..  list-table::
         :widths: 50 50
-        :header-rows: 0
+        :header-rows: 1
         
         *   -   Don't
             -   Do
