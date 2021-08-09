@@ -88,7 +88,10 @@ Be concise and don't repeat yourself. Fewer words are the best option most of th
     ..  list-table::
         :widths: 50 50
         :header-rows: 0
-
+        
+        *   -   
+            -   Don't
+            -   Do
         *   -   Профиль доступа можно назначить для любой роли пользователя,
                 созданной администратором.
                 А к ролям по умолчанию привязать профили доступа не получится,
@@ -136,8 +139,11 @@ check `Timur Anikin's training The Writing Dead <https://www.timuroki.ink/thewri
 
     ..  list-table::
         :widths: 50 50
-        :header-rows: 0
+        :header-rows: 1
 
+        *   -   
+            -   Don't
+            -   Do
         *   -   Сообщение исчезнет, как только вы покинете данную страницу.
             -   Сообщение исчезнет, как только вы покинете страницу.
         *   -   Проверка истечения срока действия паролей производится раз в 30 минут.
