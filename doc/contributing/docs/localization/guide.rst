@@ -23,6 +23,7 @@ Modal verbs
 Think twice when translating modal verbs.
 Avoid using expressions like «вы должны», because they sound like a demand in Russian,
 and «вам придётся», because it implies that our readers will face a lot of trouble.
+Be careful with «нельзя».
 Make it easy for the user to read the documentation.
 
 Gender neutrality
@@ -80,7 +81,22 @@ Let the resulting text sound as though it was originally written in Russian.
 
 Less is more
 ~~~~~~~~~~~~
-Be concise. Fewer words are the best option most of the time.
+Be concise and don't repeat yourself. Fewer words are the best option most of the time.
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 50 50
+        :header-rows: 0
+
+        *   -   Профиль доступа можно назначить для любой роли пользователя,
+                созданной администратором.
+                А к ролям по умолчанию привязать профили доступа не получится,
+                поскольку такие роли редактировать нельзя.
+            -   Профиль доступа можно назначить для любой роли пользователя,
+                созданной администратором.
+                Исключение составляют роли по умолчанию,
+                поскольку их нельзя редактировать.
 
 Topic and focus
 ~~~~~~~~~~~~~~~
@@ -115,6 +131,17 @@ and don’t use «являться» and «осуществляться» unless
 
 To learn how to clear your Russian texts of bureaucratese,
 check `Timur Anikin's training The Writing Dead <https://www.timuroki.ink/thewritingdead>`_.
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 50 50
+        :header-rows: 0
+
+        *   -   Сообщение исчезнет, как только вы покинете данную страницу.
+            -   Сообщение исчезнет, как только вы покинете страницу.
+        *   -   Проверка истечения срока действия паролей производится раз в 30 минут.
+            -   Система раз в 30 минут проверяет, не истек ли срок действия паролей.
 
 Consistency
 ~~~~~~~~~~~
