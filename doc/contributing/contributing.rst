@@ -1,12 +1,10 @@
 .. _contributing:
 
-================================================================================
 How to be involved in Tarantool
-================================================================================
+===============================
 
---------------------------------------------------------------------------------
 What is Tarantool?
---------------------------------------------------------------------------------
+------------------
 
 Tarantool is an open source database that can store everything in RAM.
 Use Tarantool as a cache with the ability to save data to disk.
@@ -20,9 +18,8 @@ Get rid of stale entries, sync with other data sources, implement an HTTP servic
 
 Go to :ref:`Getting Started <getting_started>` and try Tarantool.
 
---------------------------------------------------------------------------------
 How to get help?
---------------------------------------------------------------------------------
+----------------
 
 We have a `special Telegram chat <https://t.me/tarantool_contrib>`_
 for contributors.
@@ -38,9 +35,8 @@ Also we have a
 
 Join the chat and ask questions.
 
---------------------------------------------------------------------------------
 How to leave feedback, ideas or suggestions?
---------------------------------------------------------------------------------
+--------------------------------------------
 
 You can leave your feedback or share ideas in different ways:
 
@@ -69,9 +65,8 @@ you can leave your comment on `tarantool.io <http://www.tarantool.io>`_.
 Fill out the form at the bottom of the site and leave your email.
 We read each request and respond to them usually within 2 days.
 
---------------------------------------------------------------------------------
 How to contribute?
---------------------------------------------------------------------------------
+------------------
 
 There are many ways to contribute to Tarantool:
 
@@ -83,9 +78,9 @@ There are many ways to contribute to Tarantool:
 * Spread the word -- Share your accomplishments in social media using the
   ``#tarantool`` hashtags (or CC ``@tarantooldb`` in Twitter).
 
---------------------------------------------------------------------------------
+
 Tarantool Ecosystem
---------------------------------------------------------------------------------
+-------------------
 
 Tarantool has a large ecosystem of tools around the product itself.
 
@@ -113,9 +108,9 @@ Please do not hesitate to tag the maintainer in your GitHub ticket.
 
 Read further about the contribution to each of the blocks.
 
---------------------------------------------------------------------------------
+
 You have a problem in documentation. How to tell about it and how to fix it?
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 There are several ways to improve the documentation:
 
@@ -147,9 +142,9 @@ It will take you 5 minutes and will help the whole community.
 If for some reason you cannot fix it, create a ticket in this repository
 and report the error. Such errors are fixed quickly.
 
---------------------------------------------------------------------------------
+
 How to contribute to modules
---------------------------------------------------------------------------------
+----------------------------
 
 Tarantool is a database with an embedded application server.
 You can write any code in C and Lua and pack it in distributable modules.
@@ -175,9 +170,9 @@ users can get your module easily.
 If you want to add your module to our GitHub organization --
 `text us here <https://t.me/arturbrsg>`_.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Want to contribute to an existing module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Tasks for contributors can be easily found in the issues section of any repository
 by the "good first issue" tag. These are tasks of an initial or intermediate
@@ -198,17 +193,17 @@ If you see that the project does not have a maintainer or is inactive, you can
 become one yourself.
 See the section :ref:`How to become a maintainer <how_to_become_a_maintainer>`.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Want to create a new module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also create any custom modules and share them with the community.
 `Look at the module template <https://github.com/tarantool/modulekit>`_
 and write your own.
 
---------------------------------------------------------------------------------
+
 How to contribute to Tarantool Core
---------------------------------------------------------------------------------
+-----------------------------------
 
 Tarantool is written mostly in C.
 Some parts are written in C++ and Lua.
@@ -241,9 +236,9 @@ A patch can be offered in two ways:
   the features there.
   See details :ref:`here <dev_guidelines-patch-review>`.
 
---------------------------------------------------------------------------------
+
 How to write a test
---------------------------------------------------------------------------------
+-------------------
 
 The database is a product that is expected to be as reliable as possible.
 We at Tarantool have developed a dedicated test framework for developing
@@ -272,9 +267,9 @@ of writing tests for a module.
 
 Read: writing tests in Tarantool, writing unit tests. ???
 
---------------------------------------------------------------------------------
+
 How to contribute to language connectors
---------------------------------------------------------------------------------
+----------------------------------------
 
 A connector is a library that provides an API for accessing Tarantool from
 a programming language. Tarantool uses its own binary protocol for access,
@@ -304,9 +299,9 @@ MAINTAINERS file: there will be contacts of the repository maintainer.
 If there is no such file -- `text us here <https://t.me/arturbrsg>`_.
 We will help you figure it out. We usually answer within one day.
 
---------------------------------------------------------------------------------
+
 How to contribute to tools
---------------------------------------------------------------------------------
+--------------------------
 
 The Tarantool ecosystem has tools that help in operation, deploy applications,
 or allow working with Kubernetes.
@@ -332,9 +327,9 @@ there and submit a pull request.
 
 .. _how_to_become_a_maintainer:
 
---------------------------------------------------------------------------------
+
 How to become a maintainer
---------------------------------------------------------------------------------
+--------------------------
 
 Maintainers are people who can merge PRs or commit to master.
 We expect maintainers to answer questions and tickets in time, and do code reviews.
