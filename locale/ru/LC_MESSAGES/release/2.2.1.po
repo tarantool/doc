@@ -2,47 +2,12 @@
 msgid "Tarantool 2.2.1"
 msgstr ""
 
-msgid "Release: :tarantool-release:`2.2.1`"
-msgstr ""
-
 msgid ""
-"Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data "
-"layout, client-server protocol and replication protocol. You can "
-":ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` "
-"procedure."
-msgstr ""
-"Tarantool 2.x обратно совместим с Tarantool 1.10.x в том, что касается "
-"структуры бинарных данных, клиент-серверного протокола и протокола "
-"репликации. :ref:`Обновление <admin-upgrades>` можно произвести с помощью "
-"процедуры ``box.schema.upgrade()``."
-
-msgid "**Release 2.4.1**"
-msgstr "**Версия 2.4.1**"
-
-msgid "Deprecations"
-msgstr "Устаревшие функции"
-
-msgid "(SQL) SESSION will be a reserved word so objects named SESSION will"
+"Release: :tarantool-release:`2.2.1`. Release type: beta. Release date: "
+"2019-08-02."
 msgstr ""
 
-msgid "be illegal. Part of (:tarantool-issue:`4711`)."
-msgstr ""
-
-msgid "In :ref:`box.session.push() <box_session-push>` the use of the"
-msgstr ""
-
-msgid ""
-"``sync`` parameter will cause a warning in version 2.4.1 and will cause an "
-"error in later versions. Part of (:tarantool-issue:`4689`)."
-msgstr ""
-
-msgid "**Release 2.2.1**"
-msgstr "**Версия 2.2.1**"
-
-msgid "Release type: beta. Release date: 2019-08-02."
-msgstr ""
-
-msgid "Release: :tarantool-release:`2.2.1.`"
+msgid "Overview"
 msgstr ""
 
 msgid ""
@@ -56,8 +21,22 @@ msgid ""
 "feature set, and improve integration with the core."
 msgstr ""
 
-msgid "Functionality added or changed:"
-msgstr "Изменения или добавления функциональности:"
+msgid "Compatibility"
+msgstr ""
+
+msgid ""
+"Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data "
+"layout, client-server protocol and replication protocol. You can "
+":ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` "
+"procedure."
+msgstr ""
+"Tarantool 2.x обратно совместим с Tarantool 1.10.x в том, что касается "
+"структуры бинарных данных, клиент-серверного протокола и протокола "
+"репликации. :ref:`Обновление <admin-upgrades>` можно произвести с помощью "
+"процедуры ``box.schema.upgrade()``."
+
+msgid "Functionality added or changed"
+msgstr ""
 
 msgid "(SQL) ALTER now allows to add a constraint:"
 msgstr ""
@@ -67,10 +46,9 @@ msgid ""
 "ALTER TABLE t2 ADD CONSTRAINT ck CHECK(id  > 0);"
 msgstr ""
 
-msgid "(SQL) CHECK constraints are validated during DML operations performed"
-msgstr ""
-
-msgid "from the Lua land:"
+msgid ""
+"(SQL) CHECK constraints are validated during DML operations performed from "
+"the Lua land:"
 msgstr ""
 
 msgid ""
@@ -87,35 +65,28 @@ msgid ""
 "..."
 msgstr ""
 
-msgid "(SQL) New :ref:`SQL types <sql_column_def_data_type>` introduced:"
-msgstr ""
-
-msgid "VARBINARY, UNSIGNED, and `BOOLEAN`."
+msgid ""
+"(SQL) New :ref:`SQL types <sql_column_def_data_type>` introduced: VARBINARY,"
+" UNSIGNED, and `BOOLEAN`."
 msgstr ""
 
 msgid ""
-"(SQL) CREATE TABLE statement (and all other data definition statements)"
-msgstr ""
-
-msgid "are now truly transactional."
+"(SQL) CREATE TABLE statement (and all other data definition statements) are "
+"now truly transactional."
 msgstr ""
 
 msgid ""
 "(SQL) SQL now uses Tarantool diagnostics API to set errors, so error "
-"reporting"
-msgstr ""
-
-msgid "now provides an error code in addition to error message."
+"reporting now provides an error code in addition to error message."
 msgstr ""
 
 msgid ""
 "(SQL) Multiple improvements to the type system to make it more consistent."
 msgstr ""
 
-msgid "(SQL) Added aliases for LENGTH() from ANSI SQL:"
-msgstr ""
-
-msgid "CHAR_LENGTH() and CHARACTER_LENGTH()."
+msgid ""
+"(SQL) Added aliases for LENGTH() from ANSI SQL: CHAR_LENGTH() and "
+"CHARACTER_LENGTH()."
 msgstr ""
 
 msgid "(SQL) It is possible to use HAVING without GROUP BY."
@@ -201,7 +172,7 @@ msgid ""
 "tarantool> box.func.summarize:call({1, 2})\n"
 "---\n"
 "- 3\n"
-"..  ."
+"..."
 msgstr ""
 
 msgid "(Server) Functional indexes implemented:"
@@ -285,46 +256,34 @@ msgstr ""
 
 msgid ""
 "(Engines) New protocol (called :ref:`SWIM <swim-module>`) implemented to "
-"keep"
-msgstr ""
-
-msgid "a table of cluster members."
+"keep a table of cluster members."
 msgstr ""
 
 msgid "(Engines) Removed yields from Vinyl DDL on commit triggers."
 msgstr ""
 
-msgid "(Engines) Improved performance of SELECT-s on memtx spaces."
+msgid ""
+"(Engines) Improved performance of SELECT-s on memtx spaces. The drawback is "
+"that now every memtx-tree tuple consumes extra 8 bytes for a search hint."
 msgstr ""
 
 msgid ""
-"The drawback is that now every memtx-tree tuple consumes extra 8 bytes for a"
-" search hint."
-msgstr ""
-
-msgid "(Engines) Indexes of memtx spaces are now built in background fibers."
+"(Engines) Indexes of memtx spaces are now built in background fibers. This "
+"means that we do not block the event loop during index build anymore."
 msgstr ""
 
 msgid ""
-"This means that we do not block the event loop during index build anymore."
-msgstr ""
-
-msgid "Replication applier now can apply transactions which were concurrent"
-msgstr ""
-
-msgid ""
-"on the master concurrently on replica. This dramatically improves "
-"replication peak performance, from ~50K writes per second to 200K writes per"
-" second and higher on a single instance."
-msgstr ""
-
-msgid "Transaction boundaries introduced to replication protocol."
+"Replication applier now can apply transactions which were concurrent on the "
+"master concurrently on replica. This dramatically improves replication peak "
+"performance, from ~50K writes per second to 200K writes per second and "
+"higher on a single instance."
 msgstr ""
 
 msgid ""
-"This means that Tarantool replication is now transaction-safe, and also "
-"reduces load on replica write ahead log in case the master uses a lot of "
-"multi-statement transactions."
+"Transaction boundaries introduced to replication protocol. This means that "
+"Tarantool replication is now transaction-safe, and also reduces load on "
+"replica write ahead log in case the master uses a lot of multi-statement "
+"transactions."
 msgstr ""
 
 msgid "Tuple access by field name for ``net.box``:"
@@ -344,16 +303,13 @@ msgstr ""
 msgid "Cluster id check is now the slave’s responsibility."
 msgstr ""
 
-msgid "It is now possible to set the output format to Lua instead of YAML"
+msgid ""
+"It is now possible to set the output format to Lua instead of YAML in the "
+":ref:`interactive console <interactive_console>`."
 msgstr ""
 
-msgid "in the :ref:`interactive console <interactive_console>`."
-msgstr ""
-
-msgid "Multiple new collations added."
-msgstr ""
-
-msgid "New collations follow this naming pattern:"
+msgid ""
+"Multiple new collations added. New collations follow this naming pattern:"
 msgstr ""
 
 msgid "unicode_<locale>_<strength>"
@@ -372,7 +328,7 @@ msgid "Tertiary - \"s3\""
 msgstr ""
 
 msgid ""
-"The following list contains so-called \"stable\" collations - the ones whose"
+"The following list contains so-called \"stable\" collations---the ones whose"
 " sort order doesn't depend on the ICU version:"
 msgstr ""
 

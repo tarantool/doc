@@ -1,0 +1,184 @@
+
+msgid "Major features"
+msgstr ""
+
+msgid ""
+"Every released version of Tarantool brings some notable features and fixes, "
+"which are all listed in :doc:`the release notes </release>`. To keep track "
+"of the major features in each version of the Tarantool easier, you can use "
+"the table below."
+msgstr ""
+
+msgid "Since version"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+msgid "2.8.1"
+msgstr ""
+
+msgid ""
+":ref:`Multiple iproto threads <cfg_networking-iproto_threads>` (:tarantool-"
+"issue:`5645`)"
+msgstr ""
+
+msgid ""
+"Set :doc:`box.cfg </reference/reference_lua/box_cfg>` options with "
+"environment variables (:tarantool-issue:`5602`)"
+msgstr ""
+
+msgid ""
+"Friendly :ref:`LuaJIT memory profiler report <profiler_analysis>` "
+"(:tarantool-issue:`5811`)"
+msgstr ""
+
+msgid ""
+"``--leak-only`` LuaJIT memory profiler option (:tarantool-issue:`5812`)"
+msgstr ""
+
+msgid "2.7.1"
+msgstr ""
+
+msgid ""
+":doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>` (:tarantool-"
+"issue:`5442`)"
+msgstr ""
+
+msgid ""
+"SQL :doc:`ALTER TABLE ADD COLUMN "
+"</reference/reference_sql/sql_statements_and_clauses>` statement support for"
+" empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`)"
+msgstr ""
+
+msgid "2.6.3, 2.7.2"
+msgstr ""
+
+msgid "The concept of WAL queue (:tarantool-issue:`5536`)"
+msgstr ""
+
+msgid "2.6.3, 2.7.2, 2.8.1"
+msgstr ""
+
+msgid ""
+":doc:`box.ctl.promote() </reference/reference_lua/box_ctl/promote>` and the "
+"concept of manual elections (:tarantool-issue:`3055`)"
+msgstr ""
+
+msgid "2.6.1"
+msgstr ""
+
+msgid ""
+":ref:`LuaJIT platform metrics <metrics-luajit>` (:tarantool-issue:`5187`)"
+msgstr ""
+
+msgid ""
+":doc:`Automated leader election </book/replication/repl_leader_elect>` based"
+" on Raft algorithm (:tarantool-issue:`1146`)"
+msgstr ""
+
+msgid ""
+":ref:`Transactional manager <atomic-transactional-manager>` for memtx engine"
+" (:tarantool-issue:`4897`)"
+msgstr ""
+
+msgid "2.5.3, 2.6.2, 2.7.1"
+msgstr ""
+
+msgid ""
+"Expression evaluation for :ref:`replication_synchro_quorum <cfg_replication-"
+"replication_synchro_quorum>` (:tarantool-issue:`5446`)"
+msgstr ""
+
+msgid "2.5.3, 2.6.2"
+msgstr ""
+
+msgid ""
+":doc:`box.ctl.is_recovery_finished() "
+"</reference/reference_lua/box_ctl/is_recovery_finished>` for memtx engine "
+"(:tarantool-issue:`5187`)"
+msgstr ""
+
+msgid "2.5.1"
+msgstr ""
+
+msgid ""
+":doc:`Synchronous replication </book/replication/repl_sync>` (beta) "
+"(:tarantool-issue:`4842`)"
+msgstr ""
+
+msgid ""
+"Allow an :doc:`anonymous replica "
+"</reference/reference_lua/box_info/replication_anon>` to follow another "
+"anonymous replica (:tarantool-issue:`4696`)"
+msgstr ""
+
+msgid "2.4.1"
+msgstr ""
+
+msgid ""
+":ref:`UUID type for field and index <_index-box_uuid>` (:tarantool-"
+"issue:`4268`, :tarantool-issue:`2916`)"
+msgstr ""
+
+msgid ""
+":doc:`popen </reference/reference_lua/popen>` built-in module (:tarantool-"
+"issue:`4031`)"
+msgstr ""
+
+msgid ""
+"Ability to create :doc:`custom error types "
+"</reference/reference_lua/box_error/custom_type>` (:tarantool-issue:`4398`)"
+msgstr ""
+
+msgid ""
+":doc:`Transparent marshalling </reference/reference_lua/box_error/new>` "
+"through ``net.box`` (:tarantool-issue:`4398`)"
+msgstr ""
+
+msgid ""
+":doc:`Stacked diagnostic area "
+"</reference/reference_lua/box_error/error_object>` (:tarantool-issue:`1148`)"
+msgstr ""
+
+msgid "2.3.1"
+msgstr ""
+
+msgid ""
+":doc:`Field name and JSON path updates "
+"</reference/reference_lua/json_paths>` (:tarantool-issue:`1261`)"
+msgstr ""
+
+msgid ""
+":ref:`Anonymous replica <cfg_replication-replication_anon>` type "
+"(:tarantool-issue:`3186`)"
+msgstr ""
+
+msgid ""
+":doc:`DOUBLE </reference/reference_sql/sql_user_guide>` type in SQL "
+"(:tarantool-issue:`3812`)"
+msgstr ""
+
+msgid ""
+"Support of :ref:`decimals <index-box_data-types>` in spaces, ``decimal`` "
+"field type (:tarantool-issue:`4333`)"
+msgstr ""
+
+msgid ""
+":ref:`fiber.top() <fiber-top>` function in Lua (:tarantool-issue:`2694`)"
+msgstr ""
+
+msgid ""
+"Feed data from memory during replica initial join (:tarantool-issue:`1271`)"
+msgstr ""
+
+msgid ""
+"SQL prepared statements support and cache (:tarantool-issue:`2592`, "
+":tarantool-issue:`3292`)"
+msgstr ""
+
+msgid ""
+":doc:`_session_settings "
+"</reference/reference_lua/box_space/_session_settings>` service space "
+"(:tarantool-issue:`4511`)"
+msgstr ""
