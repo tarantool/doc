@@ -146,57 +146,58 @@ How to contribute to modules
 ----------------------------
 
 Tarantool is a database with an embedded application server.
-This means you can write any code in C and Lua and pack it in distributable modules.
+This means you can write any code in C or Lua and pack it in distributable modules.
 
-Here are examples of official modules:
+We have official and unofficial modules.
+Here are some of our official modules:
 
-* `HTTP server <https://github.com/tarantool/http>`_ -- HTTP server implementation
+* `HTTP server <https://github.com/tarantool/http>`_: HTTP server implementation
   with middleware support.
-* `queue <https://github.com/tarantool/queue>`_ - Tarantool implementation of
-  a persistent message queue.
-* `metrics <https://github.com/tarantool/metrics>`_ - ready-to-use solution for
+* `queue <https://github.com/tarantool/queue>`_: Tarantool implementation of
+  the persistent message queue.
+* `metrics <https://github.com/tarantool/metrics>`_: Ready-to-use solution for
   collecting metrics.
-* `cartridge <https://github.com/tarantool/cartridge>`_ - framework for writing
+* `cartridge <https://github.com/tarantool/cartridge>`_: Framework for writing
   distributed applications.
 
-Modules are distributed through our package manager, which is already
-preinstalled with Tarantool.
+Official modules are provided in our organization on GitHub.
 
-We have official modules and unofficial ones.
-The official ones are those that are in our organization on GitHub.
-But we distribute unofficial ones via our package manager too so that other
-users can get your module easily.
-If you want to add your module to our GitHub organization --
-`text us here <https://t.me/arturbrsg>`_.
+All modules are distributed through our package manager, which is
+pre-installed with Tarantool.
+That also applies to unofficial modules, which means that
+other users can get your module easily.
+
+If you want to add your module to our GitHub organization,
+`send us a message on Telegram <https://t.me/arturbrsg>`_.
 
 
-Want to contribute to an existing module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Contributing to an existing module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tasks for contributors can be easily found in the issues section of any repository
-by the "good first issue" tag. These are tasks of an initial or intermediate
-level of difficulty that will help you get comfortable in the module of interest.
+Tasks for contributors can be found in the issues section of any repository
+under the "good first issue" tag. These tasks are beginner or intermediate
+in terms of difficulty level, so you can comfortably get used to the module of your interest.
 
-Look at the
+Check the
 `currently open tasks <https://github.com/tarantool/http/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22>`_
 for the HTTP Server module.
 
-The style guide for the Lua code we are following is :ref:`here <lua_style_guide>`.
+Please see our :doc:`Lua style guide </dev_guide/lua_style_guide>`.
 
-You can contact the current maintainer through MAINTAINERS, which is located
-in the root of the repository. If there is not such a file --
+You can find the contact of the current maintainer in the MAINTAINERS file, located
+in the root of the repository. If there is no such file, please
 `let us know <https://t.me/arturbrsg>`_.
-We will respond within one to two days.
+We will respond within two days.
 
 If you see that the project does not have a maintainer or is inactive, you can
-become one yourself.
-See the section :ref:`How to become a maintainer <how_to_become_a_maintainer>`.
+become its maintainer yourself.
+See the :ref:`How to become a maintainer <contributing-how_to_become_a_maintainer>` section.
 
 
-Want to create a new module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Creating a new module
+~~~~~~~~~~~~~~~~~~~~~
 
-You can also create any custom modules and share them with the community.
+You can also create custom modules and share them with the community.
 `Look at the module template <https://github.com/tarantool/modulekit>`_
 and write your own.
 
@@ -205,54 +206,56 @@ How to contribute to Tarantool Core
 -----------------------------------
 
 Tarantool is written mostly in C.
-Some parts are written in C++ and Lua.
-Review can take longer because we want it to be reliable.
+Some parts are in C++ and Lua.
+Your contributions to Tarantool Core
+may take longer to review because we want the code to be reliable.
 
 To start:
 
-* :ref:`learn how to build Tarantool <building_from_source>`
-* read about Tarantool architecture and main modules
-  (`here <https://docs.tarantool.dev/en/latest/>`__ and
-  `here <https://github.com/tarantool/tarantool/wiki/Developer-information>`__)
+* :doc:`Learn how to build Tarantool </dev_guide/building_from_source>`.
+* Read about Tarantool architecture and main modules on the
+  `developer site <https://docs.tarantool.dev/en/latest/>`__ and on
+  `GitHub <https://github.com/tarantool/tarantool/wiki/Developer-information>`__.
 
-We have standards that we try to adhere to when developing in Tarantool.
-These are the Style Guide and Contribution Guide :ref:`links <developer_guidelines>`.
-They tell you how to format your code, how to format your commits, and how to
-write your test and make sure you don't break anything.
+In Tarantool development, we strive to follow the standards laid out in
+our :doc:`style and contribution guides </dev_guide/developer_guidelines>`.
+These documents explain how to format your code and commits as well as
+how to write tests without breaking anything accidentally.
 
-They will also help you make a patch that is easier to check, which will allow
-you to quickly push changes to master.
+The guidelines also help you create patches that are easy to check, which allows
+quickly pushing changes to master.
 
-Before your first commit, read
-`this article <https://github.com/tarantool/tarantool/wiki/Code-review-procedure#general-coding-points-to-check>`_!
+Please read about
+`our code review procedure <https://github.com/tarantool/tarantool/wiki/Code-review-procedure#general-coding-points-to-check>`_
+before making your first commit.
 
-A patch can be offered in two ways:
+Here are two ways to suggest a patch:
 
-* (preferred) Using a fork and pull mechanism on GitHub: make changes to your
-  copy of the repository and submit to us for review.
-  See details `here <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__.
-* Suggest a patch via the mailing list. Our developers are discussing most of
-  the features there.
-  See details :ref:`here <dev_guidelines-patch-review>`.
+* (preferred) Using the fork and pull mechanism on GitHub: Make changes to your
+  copy of the repository and submit it to us for review. Check the
+  `GitHub documentation <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__
+  to learn how to do it.
+* Suggest a patch via the mailing list. This is where our developers discuss most features.
+  Learn more in :ref:`the article on submitting patches </dev_guide/developer_guidelines/#how-to-submit-a-patch-for-review>`.
 
 
-How to write a test
--------------------
+How to write tests
+------------------
 
-The database is a product that is expected to be as reliable as possible.
-We at Tarantool have developed a dedicated test framework for developing
-test scripts that test Tarantool itself. The framework is called ``test-run``.
+A database is a product that is expected to be as reliable as possible.
+We at Tarantool created ``test-run``, a dedicated test framework for developing
+scripts that test Tarantool itself.
 
-Writing your own test is not difficult. See test examples here:
+Writing your own test is not difficult. Check out the following examples:
 
 * `C unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/unit/csv.c>`_
 * `Lua unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/app/fio.test.lua>`_
 
-We also have a CI that automatically checks build and test coverage for new
+We also have a CI workflow that automatically checks build and test coverage for new
 changes on all supported operating systems.
-This happens after any commit to the repository.
+The workflow is launched after every commit to the repository.
 
-The QA team has many tasks for specialists who are involved in checking the
+Our QA team has many tasks for specialists involved in checking the
 quality of the product and tools. They provide test coverage for products,
 help develop the test framework, and introduce and maintain new tools to test
 the stability of releases.
@@ -319,12 +322,12 @@ These tools can be installed via standard package managers:
 ``ansible galaxy``, ``yum``, ``apt-get``, respectively.
 
 If you have a tool that might go well in our curated
-`"awesome Tarantool" list <https://github.com/tarantool/awesome-tarantool>`_
+`Awesome Tarantool list <https://github.com/tarantool/awesome-tarantool>`_
 you can read the
 `guide for contributors <https://github.com/tarantool/awesome-tarantool/blob/master/CONTRIBUTING.md>`_
 there and submit a pull request.
 
-.. _how_to_become_a_maintainer:
+.. _contributing-how_to_become_a_maintainer:
 
 
 How to become a maintainer
