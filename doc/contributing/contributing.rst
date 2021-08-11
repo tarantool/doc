@@ -1,15 +1,15 @@
 .. _contributing:
 
-How to be involved in Tarantool
-===============================
+How to get involved in Tarantool
+================================
 
 What is Tarantool?
 ------------------
 
 Tarantool is an open source database that can store everything in RAM.
 Use Tarantool as a cache with the ability to save data to disk.
-Tarantool serves up to a million requests per second, secondary index searches,
-and SQL support.
+Tarantool serves up to a million requests per second,
+allows for secondary index searches, and has SQL support.
 
 In Tarantool, you can execute code alongside data.
 This allows for faster operations.
@@ -26,128 +26,127 @@ for contributors.
 We speak Russian and English in the chat.
 
 This is the easiest way to get your questions answered.
-Many people are afraid to ask questions because they think they are
-"wasting the experts' time," but no one really thinks so.
+Many people are afraid to ask questions because they believe they are
+"wasting the experts' time," but we don't really think so.
 Contributors are important to us.
 
-Also we have a
+We also have a
 `Stack Overflow tag <https://stackoverflow.com/questions/tagged/tarantool>`_.
 
 Join the chat and ask questions.
 
-How to leave feedback, ideas or suggestions?
---------------------------------------------
+How to leave feedback, ideas, or suggestions?
+---------------------------------------------
 
 You can leave your feedback or share ideas in different ways:
 
-* **The simplest way** is to write
-  `here <https://docs.google.com/forms/d/1iwBj_2in-rBIYEcPeeVPQa4JfUIU_m14IUbAK4NojIE/edit?usp=sharing>`__.
-  All you need to do is fill in one product comment field and send it to us.
-  If you don't mind -- leave your email address.
+* **The simplest way** is to fill
+  `the feedback form <https://docs.google.com/forms/d/1iwBj_2in-rBIYEcPeeVPQa4JfUIU_m14IUbAK4NojIE/edit?usp=sharing>`__.
+  All you need to do is fill in one product comment field and click "Send."
+  You can optionally provide your email address.
   If you wish, we can involve you in the product development process.
 * **A more technical way** is to create a ticket on GitHub.
   If you have a suggestion for a new feature or information about a bug,
-  `follow the link <https://github.com/tarantool/tarantool/issues/new>`_
-  and leave a ticket.
+  `create a new GitHub issue <https://github.com/tarantool/tarantool/issues/new>`_.
   The link leads to the ``tarantool/tarantool`` repository.
-  For any other projects on GitHub select "Issues" - "New issue".
+  To leave feedback for our other projects on GitHub, select "Issues" > "New issue."
 
 See `an example of a feature request <https://github.com/tarantool/tarantool/issues/5046>`_.
 
-You can chat with the team in the general product chat.
-They are divided by language:
+To talk to our team about a product, go to one of our chats:
 
 * `Russian-speaking <https://t.me/tarantoolru>`_
-* `English-speaking <https://t.me/tarantool>`_
+* `English-speaking <https://t.me/tarantool>`_.
 
-If this communication channel is inconvenient for you or there is simply no Telegram,
-you can leave your comment on `tarantool.io <http://www.tarantool.io>`_.
+If Telegram is inconvenient for you or simply isn't working,
+leave your comment on `tarantool.io <http://www.tarantool.io>`_.
 Fill out the form at the bottom of the site and leave your email.
-We read each request and respond to them usually within 2 days.
+We read every request and respond to them usually within 2 days.
 
-How to contribute?
-------------------
+How to contribute
+-----------------
 
 There are many ways to contribute to Tarantool:
 
-* Code -- Contribute to the code.
+* Code: Contribute to the code.
   We have components written in C, Lua, Python, Go, and other languages.
-* Write -- Improve documentation, write blog posts, create tutorials or solution pages.
-* Q&A -- Share your acknowledgments at Stack Overflow with tag
-  `#tarantool <https://stackoverflow.com/questions/tagged/tarantool>`_.
-* Spread the word -- Share your accomplishments in social media using the
-  ``#tarantool`` hashtags (or CC ``@tarantooldb`` in Twitter).
+* Write: Improve documentation, write blog posts, create tutorials or solution pages.
+* Q&A: Share your experience on Stack Overflow with the
+  `#tarantool <https://stackoverflow.com/questions/tagged/tarantool>`_ tag.
+* Spread the word: Share your accomplishments on social media using the
+  ``#tarantool`` hashtag (or CC ``@tarantooldb`` on Twitter).
 
 
 Tarantool Ecosystem
 -------------------
 
-Tarantool has a large ecosystem of tools around the product itself.
-
-We divide the Tarantool ecosystem into 4 types:
+Tarantool has a large ecosystem of tools.
+We divide the ecosystem into four large blocks:
 
 * Tarantool itself.
 * Modules for Tarantool. They can be written in C and Lua.
 * Connectors for programming languages.
-* Applied tools. See a selection including external tools in the
-  `"awesome Tarantool" list <https://github.com/tarantool/awesome-tarantool>`_.
+* Applied tools. See the curated
+  `Awesome Tarantool list <https://github.com/tarantool/awesome-tarantool>`_,
+  which also includes external tools.
 
-First-time tasks can be easily found in the issues section of any repository by
-the "good first issue" tag. These are beginner to intermediate tasks that will
+To start contributing, check the "good first issue" tag
+in the issues section of any of our repositories.
+These are beginner to intermediate tasks that will
 help you get comfortable with the tool.
 
 See the `list of tasks <https://github.com/tarantool/tarantool/labels/good%20first%20issue>`_
 for the ``tarantool/tarantool`` repository.
 
-For each repository we have a queue for reviewing,
-and reviewing your changes can be delayed.
-We try to give the first answer within two days.
+There is a review queue in each of our repositories,
+so your changes may not be reviewed immediately.
+We usually give the first answer within two days.
 Depending on the ticket and its complexity, the review time may take a week or more.
 
 Please do not hesitate to tag the maintainer in your GitHub ticket.
 
-Read further about the contribution to each of the blocks.
+Read on to learn about contributing to different ecosystem blocks.
 
 
-You have a problem in documentation. How to tell about it and how to fix it?
-----------------------------------------------------------------------------
+Documentation: How to report and fix problems
+---------------------------------------------
 
 There are several ways to improve the documentation:
 
 * **The easiest one** is to leave your comment on the web documentation page.
-  All you need to do is click on the red button in the bottom right corner
+  To use the built-in feedback form, just click the red button in the bottom right corner
   of the page and fill in the comment field. You can point out an error,
   provide feedback on the current article, or suggest changes.
-  We review each comment and take it to work.
-  This form is built into the documentation on the Tarantool website.
-* **Advanced** -- All Tarantool documentation tasks are
-  `in the repository <https://github.com/tarantool/doc/issues>`_.
-  Here you can take any tasks and suggest your changes.
-  Our documentation is written in the `reStructuredText markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_,
+  We review each comment and work with it.
+* **Advanced**: All Tarantool documentation tasks can be found in the
+  `repository <https://github.com/tarantool/doc/issues>`_.
+  Go to any task and suggest your changes.
+  We write our documentation using
+  `reStructuredText markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_,
   and we have a :doc:`writing style guide <docs>`.
-  After making the change, you need to build the documentation locally and
-  see how it was laid out. This is done automatically in Docker.
-  `Read more in the README of the tarantool/doc repository <https://github.com/tarantool/doc>`_.
+  After you make the change, build the documentation locally and
+  see how it works. This can be done automatically in Docker.
+  To learn more, check the `README of the tarantool/doc repository <https://github.com/tarantool/doc>`_.
 
-Some projects have their documentation in the code repository.
-For example, `Tarantool Cartridge <https://github.com/tarantool/cartridge/>`_.
+Some projects, like `Tarantool Cartridge <https://github.com/tarantool/cartridge/>`_,
+have their documentation in the code repository.
 This is done on purpose, so the developers themselves can update it faster.
-Instructions for building such documentation sets are in the code repository.
+You can find instructions for building such documentation in the code repository.
 
-If you find that the documentation in the README of a module or, for example,
+If you find that the documentation provided in the README of a module or
 a connector is incomplete or wrong, the best way to influence this is to fix it
-yourself. Clone the repository, fix the bug, and suggest changes as a PR (pull request).
-It will take you 5 minutes and will help the whole community.
+yourself. Clone the repository, fix the bug, and suggest changes in a pull request.
+It will take you five minutes but it will help the whole community.
 
-If for some reason you cannot fix it, create a ticket in this repository
-and report the error. Such errors are fixed quickly.
+If you cannot fix it for any reason, create a ticket in the repository
+and report the error. It will be fixed promptly.
 
 
 How to contribute to modules
 ----------------------------
 
 Tarantool is a database with an embedded application server.
-You can write any code in C and Lua and pack it in distributable modules.
+This means you can write any code in C and Lua and pack it in distributable modules.
 
 Here are examples of official modules:
 
