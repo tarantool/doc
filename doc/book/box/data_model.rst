@@ -325,14 +325,14 @@ see :ref:`box.tuple <box_tuple>`.
 
 .. _index-box_scalar:
 
-**scalar**. Values in a scalar field can be boolean, integer, unsigned, double
-or number, decimal, string, uuid, or varbinary; but not array, map, or tuple.
+**scalar**. Values in a scalar field can be boolean, integer, unsigned, double,
+number, decimal, string, uuid, or varbinary; but not array, map, or tuple.
 Examples: ``true``, ``1``, ``'xxx'``.
 
 .. _index-box_any:
 
-**any**. Values in a field of this type can be boolean, integer, unsigned, double
-or number, decimal, string, uuid, varbinary, array, map, or tuple.
+**any**. Values in a field of this type can be boolean, integer, unsigned, double,
+number, decimal, string, uuid, varbinary, array, map, or tuple.
 Examples: ``true``, ``1``, ``'xxx'``, ``{box.NULL, 0}``.
 
 Examples of insert requests with different field types:
@@ -423,14 +423,16 @@ Full information is in section
     |                                | :ref:`unsigned <index-box_unsigned>`,     |                                      |
     |                                | :ref:`number <index-box_number>`,         |                                      |
     |                                | :ref:`decimal <index-box_decimal>`,       |                                      |
-    |                                | :ref:`string <index-box_string>`, or      |                                      |
-    |                                | :ref:`varbinary <index-box_bin>`          |                                      |
+    |                                | :ref:`string <index-box_string>`,         |                                      |
+    |                                | :ref:`varbinary <index-box_bin>`,         |
+    |                                | or :ref:`uuid <index-box_uuid>`           |                                      ||
     |                                | values                                    |                                      |
     |                                |                                           |                                      |
     |                                | When a scalar field contains values of    |                                      |
     |                                | different underlying types, the key order |                                      |
     |                                | is: nils, then booleans, then numbers,    |                                      |
-    |                                | then strings, then varbinaries.           |                                      |
+    |                                | then strings, then varbinaries, then      |                                      |
+    |                                | uuids.                                    |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
 
 .. _index-collation:
