@@ -22,7 +22,8 @@ and others.
 If you are working with source files from a product or module repository,
 add that repository as a submodule to the
 `documentation repository <https://github.com/tarantool/doc>`_
-and configure other necessary settings to ensure that the entire
+and configure other necessary settings.
+This will ensure that the entire
 body of Tarantool documentation,
 presented on the `official website <http://www.tarantool.io/en/doc>`_,
 is built properly.

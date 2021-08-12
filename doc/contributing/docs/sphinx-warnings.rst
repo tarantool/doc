@@ -1,10 +1,10 @@
 Sphinx-build warnings reference
 ===============================
 
-This document will guide you through the possible warnings raised by Sphinx engine
+This document will guide you through the warnings that can be raised by Sphinx
 while building the docs.
 
-Below we cite a list with the most frequent warnings and the ways of solutions.
+Below are the most frequent warnings and the ways to solve them.
 
 Bullet list ends without a blank line; unexpected unindent
 ----------------------------------------------------------
@@ -50,8 +50,8 @@ for the right spelling.
     
         // some code here
  
-Sometimes, however, there's no appropriate lexer, or the code snippet can't be
-lexed properly. In such case, use ``code-block:: text``.
+However, sometimes there's no appropriate lexer or the code snippet can't be
+lexed properly. In that case, use ``code-block:: text``.
 
 Duplicate explicit target name: "..."
 -------------------------------------
@@ -61,21 +61,21 @@ Duplicate explicit target name: "..."
 ..  code-block:: rst
 
     *   `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_
-        ``git``, a version control system.
+        ``git``, the version control system.
 
     *   `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`_
         the ``unzip`` utility.
 
 **Solution:**
 
-Sphinx-builder raises warnings when we call different targets the same names.
+Sphinx-builder raises warnings when we call different targets the same name.
 Sphinx developers `recommend <https://github.com/sphinx-doc/sphinx/issues/3921>`_
 using double underlines ``__`` in such cases to avoid this.
 
 ..  code-block:: rst
 
     *   `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
-        ``git``, a version control system.
+        ``git``, the version control system.
 
     *   `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`__
         the ``unzip`` utility.
@@ -87,30 +87,31 @@ This warning means that you forgot to put the document name in the toctree.
 
 **Solution:**
 
-If you don't need it there, place ``:orphan:`` directive at the top of the file.
-Or, if this file is included somewhere or reused, add it to the _includes directory.
-These directories are ignored by Sphinx because we put them in ``exclude_patterns``
-in ``conf.py`` file.
+If you don't want to include the document in a toctree,
+place the ``:orphan:`` directive at the top of the file.
+If this file is already included somewhere or reused, add it to the _includes directory.
+Sphinx ignores everything in this directory
+because we list it among ``exclude_patterns`` in ``conf.py``.
 
 Duplicate label "...", other instance in ".../.../..."
 ------------------------------------------------------
 
-**Example:**
+..  // **Example:**
 
-This happens if you include the contents of one file with tags in another.
-Then Sphinx thinks the tags are repeated.
+This happens if you include the contents of a file into another file,
+when the included file has tags in it.
+In this, Sphinx thinks the tags are repeated.
 
 **Solution:**
 
-As in previous case, don't forget to add such file in _includes or avoid using
-tags within it.
+As in the previous case, add the file to _includes or avoid using tags in it.
 
 Malformed hyperlink target
 --------------------------
 
 **Similar warning:** Unknown target name: "..."
 
-Check the spelling of the target or the accuracy of the tag.
+Check the target spelling and the tag syntax.
 
 **Example:**
 
@@ -124,7 +125,7 @@ Check the spelling of the target or the accuracy of the tag.
 
 **Solution:**
 
-Semicolon is missing in tag definition:
+A semicolon is missing in the tag definition:
 
 ..  code-block:: rst
 
@@ -135,13 +136,13 @@ Toctree contains reference to nonexisting document '...'
 
 **Example:**
 
-This may happen when you, for example, refer to the wrong path to a document.
+This may happen when you refer to a wrong path to a document.
 
 **Solution:**
 
 Check the path.
 
-If the path is in ``cartridge`` or another submodule, check that you've
+If the path points to ``cartridge`` or another submodule, check that you've
 :doc:`built the submodules content </contributing/docs/build>`
 before building docs.
 
@@ -164,25 +165,25 @@ We recommend using custom captions with ``:ref:``:
 
 **See also:**
 
-*   :doc:`/contributing/docs/markup/links`
+*   :doc:`Links and references </contributing/docs/markup/links>`
 
 Unexpected indentation
 ----------------------
 
 The reStructuredText syntax is based on indentation, much like in Python.
-In a block of content, all lines should be equally indented.
-An increase or decrease in indentation means the end of the current block and
+All lines in a block of content must be equally indented.
+An increase or decrease in indentation denotes the end of the current block and
 the beginning of a new one.
 
 **Example:**
 
-Note: dots show indentation spaces in these examples.
-For example, ``|..|`` means a two-space indentation.
+Note: In the following examples, dots stand for indentation spaces.
+For example, ``|..|`` denotes a two-space indentation.
 
 ..  code-block:: rst
 
     |..|* (Engines) Improve dump start/stop logging. When initiating memory dump, print
-    how much memory is going to be dumped, expected dump rate, ETA, and the recent
+    how much memory is going to be dumped, the expected dump rate, ETA, and the recent
     write rate.
 
 **Solution:**
@@ -190,12 +191,12 @@ For example, ``|..|`` means a two-space indentation.
 ..  code-block:: rst
 
     *|...|(Engines) Improve dump start/stop logging. When initiating memory dump, print
-    |....|how much memory is going to be dumped, expected dump rate, ETA, and the recent
+    |....|how much memory is going to be dumped, the expected dump rate, ETA, and the recent
     |....|write rate.
 
 **See also:**
 
-*   :doc:`/contributing/docs/markup/intro`
+*   :doc:`General syntax guidelines </contributing/docs/markup/intro>`
 
 Unknown document
 ----------------
@@ -208,7 +209,7 @@ Unknown document
 
 **Solution:**
 
-Sphinx did not recognise the file path correctly
+Sphinx did not recognize the file path correctly
 due to a missing slash at the beginning, so let's just put it there:
 
 ..  code-block:: rst

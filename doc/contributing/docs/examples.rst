@@ -12,9 +12,9 @@ Use this checklist for documenting a function or a method:
 * Return type (if exists)
 * Possible errors (if exist)
 * Complexity factors (if exist)
-..  // * Note re storage engine (if exists)
 * Example(s)
 * Extra information (if needed)
+..  // * Note re storage engine (if exists). TODO (was the third from last bullet point)
 
 Documenting functions
 ~~~~~~~~~~~~~~~~~~~~~
@@ -46,4 +46,3 @@ the method and data of the ``index_object`` class:
 And the resulting output looks like this:
 
 ..  include:: ./_includes/class_template.rst
-    

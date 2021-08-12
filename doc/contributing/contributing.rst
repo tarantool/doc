@@ -56,10 +56,10 @@ See `an example of a feature request <https://github.com/tarantool/tarantool/iss
 To talk to our team about a product, go to one of our chats:
 
 * `Russian-speaking <https://t.me/tarantoolru>`_
-* `English-speaking <https://t.me/tarantool>`_.
+* `English-speaking <https://t.me/tarantool>`_
 
 If Telegram is inconvenient for you or simply isn't working,
-leave your comment on `tarantool.io <http://www.tarantool.io>`_.
+you can leave your comment on `tarantool.io <http://www.tarantool.io>`_.
 Fill out the form at the bottom of the site and leave your email.
 We read every request and respond to them usually within 2 days.
 
@@ -249,7 +249,7 @@ scripts that test Tarantool itself.
 Writing your own test is not difficult. Check out the following examples:
 
 * `C unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/unit/csv.c>`_
-* `Lua unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/app/fio.test.lua>`_.
+* `Lua unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/app/fio.test.lua>`_
 
 We also have a CI workflow that automatically checks build and test coverage for new
 changes on all supported operating systems.
@@ -312,12 +312,12 @@ help with application deployment, or allow working with Kubernetes.
 Here are some of the tools created by the Tarantool team:
 
 * `ansible-cartridge <https://github.com/tarantool/ansible-cartridge>`_:
-  An Ansible role to deploy Cartridge applications.
+  an Ansible role to deploy Cartridge applications.
 * `cartridge-cli <https://github.com/tarantool/cartridge-cli>`_:
-  A CLI utility for creating applications, launching clusters locally on Cartridge,
+  a CLI utility for creating applications, launching clusters locally on Cartridge,
   and solving operation problems.
 * `tarantool-operator <https://github.com/tarantool/tarantool-operator>`_:
-  A Kubernetes operator for cluster orchestration.
+  a Kubernetes operator for cluster orchestration.
 
 These tools can be installed via standard package managers:
 ``ansible galaxy``, ``yum``, or ``apt-get``.
