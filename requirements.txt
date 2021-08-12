@@ -4,4 +4,5 @@ lupa
 docutils==0.14
 sphinxcontrib-svg2pdfconverter
 sphinx-autobuild
+sphinxcontrib.plantuml==0.19
 polib

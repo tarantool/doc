@@ -1,37 +1,13 @@
-
--------------------------------------------------------------------------------
-Tarantool 2.2.1
--------------------------------------------------------------------------------
-
-Release: :tarantool-release:`2.2.1`
-
-..  _whats_new_20:
-
-
-Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout,
-client-server protocol and replication protocol.
-You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()``
-procedure.
-
-..  _whats_new_241:
-
-**Release 2.4.1**
-
-Deprecations
-
-* (SQL) SESSION will be a reserved word so objects named SESSION will
-    be illegal. Part of (:tarantool-issue:`4711`).
-* In :ref:`box.session.push() <box_session-push>` the use of the
-    ``sync`` parameter will cause a warning in version 2.4.1 and will cause
-    an error in later versions. Part of (:tarantool-issue:`4689`).
-
 ..  _whats_new_221:
 
-**Release 2.2.1**
+Tarantool 2.2.1
+===============
 
+Release: :tarantool-release:`2.2.1`.
 Release type: beta. Release date: 2019-08-02.
 
-Release: :tarantool-release:`2.2.1.`
+Overview
+--------
 
 This is a :ref:`beta <release-policy>` version of the 2.2 series. The label
 "beta" means we have no critical issues and all planned features are there.
@@ -39,16 +15,26 @@ This is a :ref:`beta <release-policy>` version of the 2.2 series. The label
 The goal of this release is to introduce new indexing features, extend SQL
 feature set, and improve integration with the core.
 
-Functionality added or changed:
 
-* (SQL) ALTER now allows to add a constraint:
+Compatibility
+-------------
+
+Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout,
+client-server protocol and replication protocol.
+You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()``
+procedure.
+
+Functionality added or changed
+------------------------------
+
+*   (SQL) ALTER now allows to add a constraint:
 
     ..  code-block:: sql
 
         CREATE TABLE t2 (id INT PRIMARY KEY);
         ALTER TABLE t2 ADD CONSTRAINT ck CHECK(id  > 0);
 
-* (SQL) CHECK constraints are validated during DML operations performed
+*   (SQL) CHECK constraints are validated during DML operations performed
     from the Lua land:
 
     ..  code-block:: lua
@@ -60,28 +46,28 @@ Functionality added or changed:
 
     ..  code-block:: tarantoolsession
 
-      tarantool> s:insert({11})
-      ---
-      - error: 'Check constraint failed ''le10'': "idx" < 10'
-      ...
+        tarantool> s:insert({11})
+        ---
+        - error: 'Check constraint failed ''le10'': "idx" < 10'
+        ...
 
-* (SQL) New :ref:`SQL types <sql_column_def_data_type>` introduced:
+*   (SQL) New :ref:`SQL types <sql_column_def_data_type>` introduced:
     VARBINARY, UNSIGNED, and `BOOLEAN`.
 
-* (SQL) CREATE TABLE statement (and all other data definition statements)
+*   (SQL) CREATE TABLE statement (and all other data definition statements)
     are now truly transactional.
 
-* (SQL) SQL now uses Tarantool diagnostics API to set errors, so error reporting
+*   (SQL) SQL now uses Tarantool diagnostics API to set errors, so error reporting
     now provides an error code in addition to error message.
 
-* (SQL) Multiple improvements to the type system to make it more consistent.
+*   (SQL) Multiple improvements to the type system to make it more consistent.
 
-* (SQL) Added aliases for LENGTH() from ANSI SQL:
+*   (SQL) Added aliases for LENGTH() from ANSI SQL:
     CHAR_LENGTH() and CHARACTER_LENGTH().
 
-* (SQL) It is possible to use HAVING without GROUP BY.
+*   (SQL) It is possible to use HAVING without GROUP BY.
 
-* (Server) New fixed point type (DECIMAL) introduced to Tarantool:
+*   (Server) New fixed point type (DECIMAL) introduced to Tarantool:
 
     ..  code-block:: tarantoolsession
 
@@ -102,7 +88,7 @@ Functionality added or changed:
         - '123.4568'
         ...
 
-* (Server) Multikey index support:
+*   (Server) Multikey index support:
 
     ..  code-block:: lua
 
@@ -131,7 +117,7 @@ Functionality added or changed:
           - [2, 'Bob', [{'type': 'work', 'number': '888'}]]
         ...
 
-* (Server) Now it is possible to make functions persistent:
+*   (Server) Now it is possible to make functions persistent:
 
     ..  code-block:: lua
 
@@ -159,9 +145,9 @@ Functionality added or changed:
         tarantool> box.func.summarize:call({1, 2})
         ---
         - 3
-        ..  .
+        ...
 
-* (Server) Functional indexes implemented:
+*   (Server) Functional indexes implemented:
 
     ..  code-block:: lua
 
@@ -191,24 +177,24 @@ Functionality added or changed:
         - - ['James', 'SIS Building Lambeth London UK']
         ...
 
-* Partial core dumps, which are now on by default.
-  It is now possible to avoid dumping tuples at all during core dump.
+*   Partial core dumps, which are now on by default.
+    It is now possible to avoid dumping tuples at all during core dump.
 
-* Data definition statements, such as create or alter index, which do not yield,
-  can now be used in a transaction. This in practice includes all statements
-  except creating an index on a non-empty space, or changing a format on
-  a non-empty space.
+*   Data definition statements, such as create or alter index, which do not yield,
+    can now be used in a transaction. This in practice includes all statements
+    except creating an index on a non-empty space, or changing a format on
+    a non-empty space.
 
-* It is now possible to set a sequence not only for the first part of the index:
+*   It is now possible to set a sequence not only for the first part of the index:
 
     ..  code-block:: lua
 
         s.index.pk:alter{sequence = {field = 2}}
 
-* Allow to call ``box.session.exists()`` and ``box.session.fd()``
-  without any arguments.
+*   Allow to call ``box.session.exists()`` and ``box.session.fd()``
+    without any arguments.
 
-* New function introduced to get an index key from a tuple:
+*   New function introduced to get an index key from a tuple:
 
     ..  code-block:: lua
 
@@ -230,29 +216,29 @@ Functionality added or changed:
         end
         s:select()
 
-* (Engines) New protocol (called :ref:`SWIM <swim-module>`) implemented to keep
+*   (Engines) New protocol (called :ref:`SWIM <swim-module>`) implemented to keep
     a table of cluster members.
 
-* (Engines) Removed yields from Vinyl DDL on commit triggers.
+*   (Engines) Removed yields from Vinyl DDL on commit triggers.
 
-* (Engines) Improved performance of SELECT-s on memtx spaces.
+*   (Engines) Improved performance of SELECT-s on memtx spaces.
     The drawback is that now every memtx-tree tuple consumes extra 8 bytes for
     a search hint.
 
-* (Engines) Indexes of memtx spaces are now built in background fibers.
+*   (Engines) Indexes of memtx spaces are now built in background fibers.
     This means that we do not block the event loop during index build anymore.
 
-* Replication applier now can apply transactions which were concurrent
+*   Replication applier now can apply transactions which were concurrent
     on the master concurrently on replica. This dramatically improves replication
     peak performance, from ~50K writes per second to 200K writes per second and
     higher on a single instance.
 
-* Transaction boundaries introduced to replication protocol.
+*   Transaction boundaries introduced to replication protocol.
     This means that Tarantool replication is now transaction-safe, and also
     reduces load on replica write ahead log in case the master uses a lot of
     multi-statement transactions.
 
-* Tuple access by field name for ``net.box``:
+*   Tuple access by field name for ``net.box``:
 
     ..  code-block:: lua
 
@@ -265,26 +251,26 @@ Functionality added or changed:
 
         require('net.box').connect('localhost', 3302).space.named:get(1).id
 
-* Cluster id check is now the slave’s responsibility.
+*   Cluster id check is now the slave’s responsibility.
 
-* It is now possible to set the output format to Lua instead of YAML
+*   It is now possible to set the output format to Lua instead of YAML
     in the :ref:`interactive console <interactive_console>`.
 
-* Multiple new collations added.
+*   Multiple new collations added.
     New collations follow this naming pattern:
 
     ..  code-block:: none
 
         unicode_<locale>_<strength>
 
-  Three strengths are used:
+    Three strengths are used:
 
-  * Primary - "s1”
-  * Secondary - "s2"
-  * Tertiary - "s3"
+    *   Primary - "s1”
+    *   Secondary - "s2"
+    *   Tertiary - "s3"
 
-  The following list contains so-called "stable" collations -
-  the ones whose sort order doesn't depend on the ICU version:
+    The following list contains so-called "stable" collations---the
+    ones whose sort order doesn't depend on the ICU version:
 
     ..  code-block:: none
 
@@ -302,6 +288,6 @@ Functionality added or changed:
         unicode_si_s3
         unicode_es_s3
 
-* New function ``utime()`` introduced to the ``fio`` module.
+*   New function ``utime()`` introduced to the ``fio`` module.
 
-* :ref:`Merger <merger-module>` for tuples streams added.
+*   :ref:`Merger <merger-module>` for tuples streams added.

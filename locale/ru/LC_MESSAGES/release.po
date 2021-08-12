@@ -8,9 +8,11 @@ msgstr "Номер версии Tarantool состоит из трех част�
 msgid "MAJOR_VERSION.RELEASE_SERIES.RELEASE"
 msgstr "ОСНОВНАЯ_ВЕРСИЯ.СЕРИЯ_ВЫПУСКОВ.ВЫПУСК"
 
-msgid "Third number distinguishes between alpha, beta and release versions:"
+msgid ""
+"The third number distinguishes between alpha, beta and release versions:"
 msgstr ""
-"Третья цифра позволяет различать между собой альфа, бета и релизные версии:"
+"Третья часть номера указывает, альфа-версия ли это, бета-версия или релизная"
+" версия:"
 
 msgid ""
 "``x.y.0`` is an **alpha version**, just a base for adding new features. We "

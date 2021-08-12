@@ -1,0 +1,642 @@
+
+msgid "Localization"
+msgstr ""
+
+msgid "State of localization"
+msgstr ""
+
+msgid "Repository"
+msgstr ""
+
+msgid "State"
+msgstr ""
+
+msgid "Volume, words"
+msgstr ""
+
+msgid "Tarantool Community"
+msgstr ""
+
+msgid "|doc|"
+msgstr ""
+
+msgid "352 000"
+msgstr ""
+
+msgid "Cartridge"
+msgstr ""
+
+msgid "|cartridge|"
+msgstr ""
+
+msgid "14 000"
+msgstr ""
+
+msgid "Tarantool Ansible Role"
+msgstr ""
+
+msgid "|tarantool-ansible-role|"
+msgstr ""
+
+msgid "11 000"
+msgstr ""
+
+msgid "Cartridge CLI"
+msgstr ""
+
+msgid "|cartridge-cli|"
+msgstr ""
+
+msgid "6 500"
+msgstr ""
+
+msgid "Tarantool Enterprise"
+msgstr ""
+
+msgid "|tarantool-enterprise|"
+msgstr ""
+
+msgid "6 000"
+msgstr ""
+
+msgid "Tarantool Data Grid"
+msgstr ""
+
+msgid "|tarantool-data-grid|"
+msgstr ""
+
+msgid "4 000"
+msgstr ""
+
+msgid "Tarantool Metrics"
+msgstr ""
+
+msgid "|tarantool-metrics|"
+msgstr ""
+
+msgid "Tarantool C++ Driver"
+msgstr ""
+
+msgid "|tarantool-cpp|"
+msgstr ""
+
+msgid "Tarantool Kubernetes Operator"
+msgstr ""
+
+msgid "|tarantool-kubernetes-operator|"
+msgstr ""
+
+msgid "2 750"
+msgstr ""
+
+msgid "Tarantool Luatest"
+msgstr ""
+
+msgid "|tarantool-luatest|"
+msgstr ""
+
+msgid "750"
+msgstr ""
+
+msgid "Tarantool Graphana Dashboard"
+msgstr ""
+
+msgid "|tarantool-graphana-dashboard|"
+msgstr ""
+
+msgid "500"
+msgstr ""
+
+msgid "Glossaries"
+msgstr ""
+
+msgid "Tarantool Core"
+msgstr ""
+
+msgid "Term [en]"
+msgstr ""
+
+msgid "Term [ru]"
+msgstr ""
+
+msgid "Description [en]"
+msgstr ""
+
+msgid "Description [ru]"
+msgstr ""
+
+msgid "space"
+msgstr ""
+
+msgid "спейс"
+msgstr ""
+
+msgid "A space is a container for tuples."
+msgstr ""
+
+msgid "https://www.tarantool.io/en/doc/latest/book/box/data_model/#spaces\""
+msgstr ""
+
+msgid "NOUN"
+msgstr ""
+
+msgid "tuple"
+msgstr ""
+
+msgid "кортеж"
+msgstr ""
+
+msgid ""
+"A tuple plays the same role as a “row” or a “record”. The number of tuples "
+"in a space is unlimited. Tuples in Tarantool are stored as MsgPack arrays. "
+"https://www.tarantool.io/en/doc/latest/book/box/data_model/#tuples"
+msgstr ""
+
+msgid "Tarantool"
+msgstr ""
+
+msgid "НЕ ПЕРЕВОДИТЬ"
+msgstr ""
+
+msgid "primary index"
+msgstr ""
+
+msgid "первичный индекс"
+msgstr ""
+
+msgid ""
+"The first index defined on a space is called the primary key index, and it "
+"must be unique. All other indexes are called secondary indexes, and they may"
+" be non-unique. "
+"https://www.tarantool.io/en/doc/latest/book/box/data_model/#indexes"
+msgstr ""
+
+msgid "fiber"
+msgstr ""
+
+msgid "файбер"
+msgstr ""
+
+msgid ""
+"A fiber is a set of instructions which are executed with cooperative "
+"multitasking. Fibers managed by the fiber module are associated with a user-"
+"supplied function called the fiber function. "
+"https://www.tarantool.io/en/doc/latest/reference/reference_lua/fiber/#fibers"
+msgstr ""
+
+msgid "Tarantool garbage collector"
+msgstr ""
+
+msgid "сборщик мусора в Tarantool"
+msgstr ""
+
+msgid ""
+"A garbage collector fiber runs in the background on the master storages of "
+"each replica set. It starts deleting the contents of the bucket in the "
+"GARBAGE state part by part. Once the bucket is empty, its record is deleted "
+"from the _bucket system space. "
+"https://www.tarantool.io/en/doc/latest/reference/reference_rock/vshard/vshard_admin/#garbage-"
+"collector"
+msgstr ""
+
+msgid "Lua garbage collector"
+msgstr ""
+
+msgid "сборщик мусора на Lua"
+msgstr ""
+
+msgid ""
+"Lua manages memory automatically by running a garbage collector from time to"
+" time to collect all dead objects (that is, objects that are no longer "
+"accessible from Lua). https://www.lua.org/manual/5.1/manual.html#2.10"
+msgstr ""
+
+msgid "storage engine"
+msgstr ""
+
+msgid "движок базы данных"
+msgstr ""
+
+msgid ""
+"A storage engine is a set of very-low-level routines which actually store "
+"and retrieve tuple values. "
+"https://www.tarantool.io/en/doc/latest/book/box/engines/"
+msgstr ""
+
+msgid "thread"
+msgstr ""
+
+msgid "поток"
+msgstr ""
+
+msgid ""
+"A thread of execution is the smallest sequence of programmed instructions "
+"that can be managed independently by a scheduler, which is typically a part "
+"of the operating system."
+msgstr ""
+
+msgid "Lua application"
+msgstr ""
+
+msgid "Lua-приложение, приложение на языке Lua"
+msgstr ""
+
+msgid "Tarantool’s native language for writing applications is Lua."
+msgstr ""
+
+msgid "memtx"
+msgstr ""
+
+msgid "instance"
+msgstr ""
+
+msgid "экземпляр"
+msgstr ""
+
+msgid "implicit casting"
+msgstr ""
+
+msgid "неявное приведение типов"
+msgstr ""
+
+msgid "database"
+msgstr ""
+
+msgid "база данных"
+msgstr ""
+
+msgid "Release policy"
+msgstr ""
+
+msgid "Релизная политика"
+msgstr ""
+
+msgid ""
+"A set of rules for releasing and naming new distributions of Tarantool: "
+"where we add new features and where we don't, how we give them numbers, what"
+" versions are suitable to use in production."
+msgstr ""
+
+msgid "field"
+msgstr ""
+
+msgid "поле"
+msgstr ""
+
+msgid ""
+"Fields are distinct data values, contained in a tuple. They play the same "
+"role as «row columns» or «record fields» in relational databases."
+msgstr ""
+
+msgid "https://www.tarantool.io/ru/doc/latest/book/box/data_model/#term-field\""
+msgstr ""
+
+msgid "leader election"
+msgstr ""
+
+msgid "выборы лидера"
+msgstr ""
+
+msgid "(in a replica set, by the Raft algorithm)"
+msgstr ""
+
+msgid "replica set"
+msgstr ""
+
+msgid "набор реплик"
+msgstr ""
+
+msgid "heartbeat"
+msgstr ""
+
+msgid "контрольный сигнал"
+msgstr ""
+
+msgid "functionality"
+msgstr ""
+
+msgid "функциональность"
+msgstr ""
+
+msgid "log"
+msgstr ""
+
+msgid "журнал"
+msgstr ""
+
+msgid "node"
+msgstr ""
+
+msgid "узел"
+msgstr ""
+
+msgid "follower"
+msgstr ""
+
+msgid "реплика"
+msgstr ""
+
+msgid "small allocator"
+msgstr ""
+
+msgid "аллокатор small"
+msgstr ""
+
+msgid "https://github.com/tarantool/small"
+msgstr ""
+
+msgid "patch"
+msgstr ""
+
+msgid "патч"
+msgstr ""
+
+msgid "breaking change"
+msgstr ""
+
+msgid "критическое изменение"
+msgstr ""
+
+msgid "parser"
+msgstr ""
+
+msgid "парсер"
+msgstr ""
+
+msgid "UUID"
+msgstr ""
+
+msgid "data type"
+msgstr ""
+
+msgid "тип данных"
+msgstr ""
+
+msgid "alias"
+msgstr ""
+
+msgid "алиас"
+msgstr ""
+
+msgid "или псевдоним?"
+msgstr ""
+
+msgid "push"
+msgstr ""
+
+msgid "выполнить push"
+msgstr ""
+
+msgid "MVCC"
+msgstr ""
+
+msgid "(механизм) MVCC"
+msgstr ""
+
+msgid "dirty read"
+msgstr ""
+
+msgid "\"грязное чтение\""
+msgstr ""
+
+msgid "в кавычках"
+msgstr ""
+
+msgid "snapshot"
+msgstr ""
+
+msgid "снимок (данных)"
+msgstr ""
+
+msgid "keywords"
+msgstr ""
+
+msgid "ключевые слова"
+msgstr ""
+
+msgid "identifier"
+msgstr ""
+
+msgid "имя, идентификатор"
+msgstr ""
+
+msgid "clause"
+msgstr ""
+
+msgid "предложение, блок"
+msgstr ""
+
+msgid ""
+"(SQL) A clause in SQL is a part of a query that lets you filter or "
+"customizes how you want your data to be queried to you."
+msgstr ""
+
+msgid "expression"
+msgstr ""
+
+msgid "выражение"
+msgstr ""
+
+msgid "predicate"
+msgstr ""
+
+msgid "предикат"
+msgstr ""
+
+msgid ""
+"(SQL) Predicates, which specify conditions that can be evaluated to SQL "
+"three-valued logic (3VL) (true/false/unknown) or Boolean truth values and "
+"are used to limit the effects of statements and queries, or to change "
+"program flow."
+msgstr ""
+
+msgid "query"
+msgstr ""
+
+msgid "запрос"
+msgstr ""
+
+msgid ""
+"(SQL) Queries retrieve the data based on specific criteria. A query is a "
+"statement that returns a result set (possibly empty)."
+msgstr ""
+
+msgid "result set"
+msgstr ""
+
+msgid "результат запроса"
+msgstr ""
+
+msgid ""
+"(SQL) An SQL result set is a set of rows from a database, as well as "
+"metadata about the query such as the column names, and the types and sizes "
+"of each column. A result set is effectively a table."
+msgstr ""
+
+msgid "resultset"
+msgstr ""
+
+msgid "statement"
+msgstr ""
+
+msgid "инструкция"
+msgstr ""
+
+msgid ""
+"(SQL) A statement is any text that the database engine recognizes as a valid"
+" command."
+msgstr ""
+
+msgid ""
+"(SQL) Любой текст, который распознаётся движком БД как команда. Инструкция "
+"состоит из ключевых слов и выражений языка SQL, которые предписывают "
+"Tarantool выполнять какие-либо действия с базой данных."
+msgstr ""
+
+msgid ""
+"Tarantool: A statement consists of SQL-language keywords and expressions "
+"that direct Tarantool to do something with a database. "
+"https://www.tarantool.io/en/doc/latest/reference/reference_sql/sql_user_guide/#statements\""
+msgstr ""
+
+msgid "batch"
+msgstr ""
+
+msgid "пакет (инструкций)"
+msgstr ""
+
+msgid ""
+"(SQL) A series of SQL statements sent to the server at once is called a "
+"batch."
+msgstr ""
+
+msgid "(SQL) Серия SQL-инструкций (statements), отправляемая на сервер вместе"
+msgstr ""
+
+msgid "production configuration"
+msgstr ""
+
+msgid "конфигурация производственной среды"
+msgstr ""
+
+msgid "deployment"
+msgstr ""
+
+msgid ""
+"Transforming a mechanical, electrical, or computer system from a packaged to"
+" an operational state. IT infrastructure deployment typically involves "
+"defining the sequence of operations or steps, often referred to as a "
+"deployment plan, that must be carried to deliver changes into a target "
+"system environment."
+msgstr ""
+
+msgid "roll back"
+msgstr ""
+
+msgid "отменить"
+msgstr ""
+
+msgid "транзакцию"
+msgstr ""
+
+msgid "deploy to production"
+msgstr ""
+
+msgid ""
+"IT infrastructure deployment typically involves defining the sequence of "
+"operations or steps, often referred to as a deployment plan, that must be "
+"carried to deliver changes into a target system environment. Production "
+"environment is a setting where software and other products are actually put "
+"into operation for their intended uses by end users"
+msgstr ""
+
+msgid "operations"
+msgstr ""
+
+msgid "эксплуатация"
+msgstr ""
+
+msgid ""
+"(DevOps) Information technology operations, or IT operations, are the set of"
+" all processes and services that are both provisioned by an IT staff to "
+"their internal or external clients and used by themselves, to run themselves"
+" as a business."
+msgstr ""
+
+msgid "to deploy"
+msgstr ""
+
+msgid "deployment plan"
+msgstr ""
+
+msgid ""
+"A sequence of operations or steps that must be carried to deliver changes "
+"into a target system environment."
+msgstr ""
+
+msgid "приложение на Tarantool Cartridge"
+msgstr ""
+
+msgid ""
+"Если без предлога, то теряется  смысл: читается так, как будто Tarantool "
+"Cartridge — это название приложения. А это не так."
+msgstr ""
+
+msgid "Tarantool Cartridge application"
+msgstr ""
+
+msgid "Tarantool Cartridge — это фреймворк"
+msgstr ""
+
+msgid "на базе которого можно разработать свое приложение.\""
+msgstr ""
+
+msgid "production environment"
+msgstr ""
+
+msgid "производственная среда"
+msgstr ""
+
+msgid ""
+"Production environment is a term used mostly by developers to describe the "
+"setting where software and other products are actually put into operation "
+"for their intended uses by end users."
+msgstr ""
+
+msgid "failover"
+msgstr ""
+
+msgid "восстановление после сбоев"
+msgstr ""
+
+msgid ""
+"In computing and related technologies such as networking, failover is "
+"switching to a redundant or standby computer server, system, hardware "
+"component or network upon the failure or abnormal termination of the "
+"previously active application, server, system, hardware component, or "
+"network."
+msgstr ""
+
+msgid "replicaset"
+msgstr ""
+
+msgid "directory"
+msgstr ""
+
+msgid "директория"
+msgstr ""
+
+msgid "bucket"
+msgstr ""
+
+msgid "сегмент"
+msgstr ""
+
+msgid "check"
+msgstr ""
+
+msgid "выберите, выбрать"
+msgstr ""
+
+msgid "To select a checkbox"
+msgstr ""
