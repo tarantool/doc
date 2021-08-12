@@ -77,7 +77,7 @@ There are many ways to contribute to Tarantool:
   ``#tarantool`` hashtag (or CC ``@tarantooldb`` on Twitter).
 
 
-Tarantool Ecosystem
+Tarantool ecosystem
 -------------------
 
 Tarantool has a large ecosystem of tools.
@@ -249,108 +249,108 @@ scripts that test Tarantool itself.
 Writing your own test is not difficult. Check out the following examples:
 
 * `C unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/unit/csv.c>`_
-* `Lua unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/app/fio.test.lua>`_
+* `Lua unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/app/fio.test.lua>`_.
 
 We also have a CI workflow that automatically checks build and test coverage for new
 changes on all supported operating systems.
 The workflow is launched after every commit to the repository.
 
-Our QA team has many tasks for specialists involved in checking the
-quality of the product and tools. They provide test coverage for products,
-help develop the test framework, and introduce and maintain new tools to test
-the stability of releases.
+We have many tasks for QA specialists. Our QA team provides test coverage for our products,
+helps develop the test framework, and introduces and maintains new tools to test
+the stability of our releases.
 
-We test modules differently: for modules, we use the
-`luatest <https://github.com/tarantool/luatest>`_ framework.
-This is a fork of the popular framework in the Lua community, which we have
+For modules, we use `luatest <https://github.com/tarantool/luatest>`_---
+our fork of a framework popular in the Lua community,
 enhanced and optimized for our tasks.
 See `examples <https://github.com/tarantool/metrics/tree/master/test>`_.
 of writing tests for a module.
 
-Read: writing tests in Tarantool, writing unit tests. ???
+..  // Read: writing tests in Tarantool, writing unit tests. ???
 
 
 How to contribute to language connectors
 ----------------------------------------
 
-A connector is a library that provides an API for accessing Tarantool from
+A connector is a library that provides an API to access Tarantool from
 a programming language. Tarantool uses its own binary protocol for access,
 and the connector's task is to transfer user requests to the database and
 application server in the required format.
 
 Data access connectors have already been implemented for all major languages.
-If you want to write your own connector, you first need to familiarize yourself with the Tarantool binary protocol. Its current description can be found :ref:`here <box_protocol-iproto_protocol>`.
+If you want to write your own connector,
+you first need to familiarize yourself with the Tarantool binary protocol.
+Read :doc:`the protocol description </dev_guide/internals/box_protocol>` to learn more.
 
 We consider the following connectors as references:
 
 * https://github.com/tarantool-php/client
-* `net.box <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.lua>`_ — binary protocol client in Tarantool
+* `net.box <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.lua>`_---Tarantool
+  binary protocol client
 
 You can look at them to understand how to do it right.
 
-The Tarantool ecosystem has connectors that are supported by the Tarantool team
-itself, and there are connectors that are developed and supported exclusively by the
-community. All of them have their pros and cons. See a
+Some connectors in the Tarantool ecosystem are supported by the Tarantool team.
+Others are developed and supported exclusively by the community.
+All of them have their pros and cons. See the
 `complete list of connectors and their recommended versions <https://www.tarantool.io/en/download/connectors>`_.
 
-If you are using an existing connector from the community and want to implement
-new features or fix a bug, then send your PRs via GitHub to the desired repository.
+If you are using a community connector and want to implement
+new features for it or fix a bug, send your PRs via GitHub to the connector repository.
 
-To contact the author of the connector in case of questions, look in the
-MAINTAINERS file: there will be contacts of the repository maintainer.
-If there is no such file -- `text us here <https://t.me/arturbrsg>`_.
+If you have questions for the author of the connector, check the
+MAINTAINERS file for the repository maintainer's contact.
+If there is no such file, `send us a message on Telegram <https://t.me/arturbrsg>`_.
 We will help you figure it out. We usually answer within one day.
 
 
 How to contribute to tools
 --------------------------
 
-The Tarantool ecosystem has tools that help in operation, deploy applications,
-or allow working with Kubernetes.
+The Tarantool ecosystem has tools that facilitate the workflow,
+help with application deployment, or allow working with Kubernetes.
 
-Examples of tools from the Tarantool team:
+Here are some of the tools created by the Tarantool team:
 
 * `ansible-cartridge <https://github.com/tarantool/ansible-cartridge>`_:
-  Ansible role for deploying an application on Cartridge
+  An Ansible role to deploy Cartridge applications.
 * `cartridge-cli <https://github.com/tarantool/cartridge-cli>`_:
-  CLI utility for creating applications, launching clusters locally on Cartridge
-  and solving operational problems
+  A CLI utility for creating applications, launching clusters locally on Cartridge,
+  and solving operation problems.
 * `tarantool-operator <https://github.com/tarantool/tarantool-operator>`_:
-  Kubernetes operator for cluster orchestration
+  A Kubernetes operator for cluster orchestration.
 
 These tools can be installed via standard package managers:
-``ansible galaxy``, ``yum``, ``apt-get``, respectively.
+``ansible galaxy``, ``yum``, or ``apt-get``.
 
 If you have a tool that might go well in our curated
-`Awesome Tarantool list <https://github.com/tarantool/awesome-tarantool>`_
-you can read the
+`Awesome Tarantool list <https://github.com/tarantool/awesome-tarantool>`_,
+read the
 `guide for contributors <https://github.com/tarantool/awesome-tarantool/blob/master/CONTRIBUTING.md>`_
-there and submit a pull request.
+and submit a pull request.
 
 .. _contributing-how_to_become_a_maintainer:
-
 
 How to become a maintainer
 --------------------------
 
 Maintainers are people who can merge PRs or commit to master.
-We expect maintainers to answer questions and tickets in time, and do code reviews.
+We expect maintainers to answer questions and tickets on time as well as do code reviews.
 
-If you need to get a review but no one responds for a week, take a look at the
-Maintainers section of the ``README.md`` in the repository.
+If you need to get a review but no one responds within a week, take a look at the
+Maintainers section of the repository's ``README.md``.
 Write to the person listed there.
-If you have not received an answer in 3-4 days, you can escalate the question
-`here <https://t.me/arturbrsg>`__.
+If you have not received an answer within 3--4 days, you can escalate the question
+`on Telegram <https://t.me/arturbrsg>`__.
 
-A repository may have no maintainers (the Maintainers list in ``README.md`` is empty),
-or existing maintainers may be inactive. Then you can become a maintainer yourself.
+A repository may have no maintainers (empty Maintainers list in ``README.md``),
+or the existing maintainers may be inactive. In this case, you can become a maintainer yourself.
 We think it's better if the repository is maintained by a newbie than if the
-repository is dead. So don't be shy: we love maintainers and help them figure it out.
+repository is dead. So don't be shy: we love maintainers and help them figure it all out.
 
 All you need to do is fill out
 `this form <https://docs.google.com/forms/d/1RihU9hQkbY5n7hU-3ZOr6t1L6cJKOlJcETowD_cNeOk/edit?usp=sharing>`_.
-Indicate which repository you want to access,
+Tell us what repository you want to access,
 the reason (inactivity, the maintainer is not responding),
 and how to contact you.
-We will consider the application in 1 day and either give you the rights
+We will consider your application in 1 day and either give you the rights
 or tell you what else needs to be done.

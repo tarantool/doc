@@ -2,8 +2,8 @@
 Documentation infrastructure
 =============================
 
-In this section of the :doc:`documentation guidelines </contributing/docs>`,
-we deal with some support activities to ensure the correct building of
+This section of the :doc:`documentation guidelines </contributing/docs>`
+discusses some of the support activities that ensure the correct building of
 documentation.
 
 .. _guidelines_doc_submodules:
@@ -11,20 +11,23 @@ documentation.
 Adding submodules
 -----------------
 
-The source files with the documentation content are mainly stored in the
+The documentation source files are mainly stored in the
 `documentation repository <https://github.com/tarantool/doc>`_.
-However, in some of the cases the content source files are stored in
-repositories of other Tarantool-related products and modules, for example,
-`Cartridge <https://github.com/tarantool/cartridge>`_,
+However, in some cases, they are stored in the
+repositories of other Tarantool-related products
+or modules---`Cartridge <https://github.com/tarantool/cartridge>`_,
 `Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`__,
-and some others.
+and others.
 
-In this case, we need to add such a repository containing the source files
-as a submodule to the `documentation repository <https://github.com/tarantool/doc>`_
-and set up other necessary settings to ensure the proper building of the entire
-body of Tarantool documentation presented at the `official web-site <http://www.tarantool.io/en/doc>`_.
+If you are working with source files from a product or module repository,
+add that repository as a submodule to the
+`documentation repository <https://github.com/tarantool/doc>`_
+and configure other necessary settings to ensure that the entire
+body of Tarantool documentation,
+presented on the `official website <http://www.tarantool.io/en/doc>`_,
+is built properly.
 
-The steps to do that are the following:
+Here is how to do that:
 
 .. contents::
    :local:
@@ -35,7 +38,7 @@ The steps to do that are the following:
 1. Add a submodule
 ~~~~~~~~~~~~~~~~~~
 
-First, we need to add a repository containing the content source files as
+First, we need to add the repository with content source files as
 a submodule.
 
 #.  Make sure you are in the root directory of the documentation repository.
@@ -49,7 +52,7 @@ a submodule.
         cd ..
 
 
-#.  Check that the new submodule appears in the ``.gitmodules`` file, for example:
+#.  Check that the new submodule is in the ``.gitmodules`` file, for example:
 
    ..   code-block:: ini
 
@@ -62,30 +65,30 @@ a submodule.
 2. Update build_submodules.sh
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Next, we should define what directories and files are to be copied from
-the submodule repository into the documentation one before building
+Now define what directories and files are to be copied from
+the submodule repository to the documentation repository before building
 documentation. These settings are defined in the ``build_submodules.sh`` file
-which is in the root directory of the documentation repository.
+in the root directory of the documentation repository.
 
-We can take examples of the already existing submodules to show the logic of
-the settings.
+Here are some real submodule examples
+that show the logic of the settings.
 
 metrics
 ^^^^^^^
 
-In case of the ``metrics`` submodule, the content source files are in the
+The content source files for the ``metrics`` submodule are in the
 ``./doc/monitoring`` directory of the submodule repository.
 In the final documentation view, the content should appear in the
 `Monitoring <https://www.tarantool.io/en/doc/latest/book/monitoring/>`__
 chapter (``https://www.tarantool.io/en/doc/latest/book/monitoring/``).
 
-So, we need to:
+To make this work:
 
-*   create a directory at ``./doc/book/monitoring/``.
-*   copy the entire content of the  ``./modules/metrics/doc/monitoring/`` directory to
+*   Create a directory at ``./doc/book/monitoring/``.
+*   Copy the entire content of the  ``./modules/metrics/doc/monitoring/`` directory to
     ``./doc/book/monitoring/``.
 
-The corresponding lines in the ``build_submodules.sh`` file are the following:
+Here are the corresponding lines in ``build_submodules.sh``:
 
 ..  code-block:: bash
 
@@ -95,25 +98,25 @@ The corresponding lines in the ``build_submodules.sh`` file are the following:
     mkdir -p "${monitoring_dest}"
     yes | cp -rf "${monitoring_root}" "${monitoring_dest}/"
 
-The ``${project_root}`` variable is defined earlier as ``project_root=$(pwd)``.
-We should start the documentation build from the documentation repository root
-directory so that will be the value of the variable.
+The ``${project_root}`` variable is defined earlier in the file as ``project_root=$(pwd)``.
+This is because the documentation build has to start from the documentation repository root
+directory.
 
 cartridge_cli
 ^^^^^^^^^^^^^
 
-In case of the ``cartridge_cli`` submodule, the content source is in
-the ``README.rst`` file located in the directory of the submodule repository.
+The content source file for the ``cartridge_cli`` submodule is
+``README.rst``, located in the directory of the submodule repository.
 In the final documentation view, the content should appear here:
 ``https://www.tarantool.io/en/doc/latest/book/cartridge/cartridge_cli/``.
 
-So, we need to:
+To make this work:
 
-*   create a directory at ``./doc/book/cartridge/cartridge_cli``
-*   copy ``./modules/cartridge_cli/README.rst`` to
+*   Create a directory at ``./doc/book/cartridge/cartridge_cli``.
+*   Copy ``./modules/cartridge_cli/README.rst`` to
     ``./doc/book/cartridge/cartridge_cli/index.rst``.
 
-The corresponding settings in the ``build_submodules.st`` file are the following:
+Here ar the corresponding settings in ``build_submodules.sh``:
 
 ..  code-block:: bash
 
@@ -130,5 +133,4 @@ The corresponding settings in the ``build_submodules.st`` file are the following
 3. Update .gitignore
 ~~~~~~~~~~~~~~~~~~~~
 
-Finaly, we should add paths to the copied directories and files to
-the ``.gitignore`` file.
+Finally, add paths to the copied directories and files to ``.gitignore``.
