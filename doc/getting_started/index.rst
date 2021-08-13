@@ -275,7 +275,7 @@ Tarantool.
 
     function add_video(request)
         local description = request:post_param("description")
-        local result, err = crud.insert_object('videos', { video_id = uuid.new(), description = description, likes = 0 })
+        local result, err = crud.insert_object('videos', { video_id = uuid.new(), description = description })
         if err ~= nil then
             return { body = json.encode({status = "Error!", error = err}), status = 500 }
         end
@@ -287,7 +287,7 @@ Tarantool.
         local video_id = request:post_param("video_id")
         local user_id = request:post_param("user_id")
 
-        result, err = crud.insert_object('likes', { like_id = uuid.new(),
+        local result, err = crud.insert_object('likes', { like_id = uuid.new(),
                                                     video_id = uuid.fromstr(video_id),
                                                     user_id = uuid.fromstr(user_id)})
         if err ~= nil then
@@ -298,9 +298,9 @@ Tarantool.
     end
 
     return {
-        customer_add = customer_add,
-        account_add = account_add,
-        transfer_money = transfer_money,
+        add_user = add_user,
+        add_video = add_video,
+        like_video = like_video,
     }
 
 Поднимем HTTP API [2 минуты]
@@ -311,35 +311,48 @@ Tarantool.
 
 .. code:: yaml
 
-    ---
-    functions:
+---
+ functions:
 
-      customer_add:
-        module: extensions.banking
-        handler: customer_add
-        events:
-        - http: {path: "/customer_add", method: POST}
+   customer_add:
+     module: extensions.api
+     handler: add_user
+     events:
+     - http: {path: "/add_user", method: POST}
 
-      account_add:
-        module: extensions.banking
-        handler: account_add
-        events:
-        - http: {path: "/account_add", method: POST}
+   account_add:
+     module: extensions.api
+     handler: add_video
+     events:
+     - http: {path: "/add_video", method: POST}
 
-      transfer_money:
-        module: extensions.banking
-        handler: transfer_money
-        events:
-        - http: {path: "/transfer_money", method: POST}
-    ...
+   transfer_money:
+     module: extensions.api
+     handler: like_video
+     events:
+     - http: {path: "/like_video", method: POST}
+...
 
 Готово! Сделаем тестовые запросы из консоли:
 
 .. code:: bash
 
-    curl -X POST --data "fullname=Taran Tool" localhost:8081/add_user
-    curl -X POST --data "description=My first tiktok" localhost:8081/add_video
-    curl -X POST --data "video_id=ab45321d-8f79-49ec-a921-c2896c4a3eba,user_id=bb45321d-9f79-49ec-a921-c2896c4a3eba" localhost:8081/like_video
+    curl -X POST --data "fullname=Taran Tool" try-cartridge.tarantool.io:19528/add_user
+
+Создали пользователя и получили его UUID. Запомним его.
+
+.. code:: bash
+
+    curl -X POST --data "description=My first tiktok" try-cartridge.tarantool.io:19528/add_video
+
+Представим что пользователь добавил свое первое видео с описанием. Также получили UUID видео ролика.
+Его тоже запомним.
+
+Для того чтобы "лайкнуть" видео, нужно указать UUID пользователя и UUID видео. Подставим его из первых двух шагов за место троточия ниже.
+
+.. code:: bash
+
+    curl -X POST --data "video_id=...&user_id=..." try-cartridge.tarantool.io:19528/like_video
 
 Получится, примерно вот так:
 
@@ -347,6 +360,13 @@ Tarantool.
    :alt: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.02.18\_PM.png
 
    Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.02.18\_PM.png
+
+В нашем примере "лайкать" видео можно сколько угодно раз. Хоть в реальной жизни это и лишено смысла,
+но это поможет нам понять как работает шардирование. А точнее параметр `sharding_key`.
+
+Для спейса `likes` мы указали `sharding_key` — `video_id`. Такой же `sharding_key` мы указали и для спейса `videos`. Это означает, что лайки будут храниться на том же Storage, на котором хранится и видео. Это обеспечивает локальность по данным при хранении и позволяет за один сетевой поход в Storage получить необходимую информацию.
+
+Подробнее описано в следующем шаге.
 
 
 Смотрим на данные [1 минута]
