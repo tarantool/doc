@@ -12,9 +12,9 @@ Use this checklist for documenting a function or a method:
 * Return type (if exists)
 * Possible errors (if exist)
 * Complexity factors (if exist)
+* Usage with memtx and vinyl (if differs)
 * Example(s)
 * Extra information (if needed)
-..  // * Note re storage engine (if exists). TODO (was the third from last bullet point)
 
 Documenting functions
 ~~~~~~~~~~~~~~~~~~~~~
