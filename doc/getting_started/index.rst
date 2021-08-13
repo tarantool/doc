@@ -319,27 +319,27 @@ Tarantool.
 
 .. code:: yaml
 
----
- functions:
+   ---
+    functions:
 
-   customer_add:
-     module: extensions.api
-     handler: add_user
-     events:
-     - http: {path: "/add_user", method: POST}
+      customer_add:
+        module: extensions.api
+        handler: add_user
+        events:
+        - http: {path: "/add_user", method: POST}
 
-   account_add:
-     module: extensions.api
-     handler: add_video
-     events:
-     - http: {path: "/add_video", method: POST}
+      account_add:
+        module: extensions.api
+        handler: add_video
+        events:
+        - http: {path: "/add_video", method: POST}
 
-   transfer_money:
-     module: extensions.api
-     handler: like_video
-     events:
-     - http: {path: "/like_video", method: POST}
-...
+      transfer_money:
+        module: extensions.api
+        handler: like_video
+        events:
+        - http: {path: "/like_video", method: POST}
+   ...
 
 Готово! Сделаем тестовые запросы из консоли:
 
