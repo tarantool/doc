@@ -11,4 +11,5 @@ Bla-bla
 
    getting_started_imcp
    connecting_to_cluster
-
+   change_schema_dynamically
+   writing_cluster_code
