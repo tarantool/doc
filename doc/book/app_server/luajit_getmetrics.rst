@@ -34,7 +34,7 @@ Values whose names begin with ``gc_`` are associated with the
 `LuaJIT garbage collector <http://wiki.luajit.org/New-Garbage-Collector/>`_
 Values whose names begin with ``jit_`` are associated with the
 `"phases" <https://en.wikipedia.org/wiki/Tracing_just-in-time_compilation>`_
-of the just-in-time process; a fuller study of JIT phases can be found at
+of the just-in-time compilation process; a fuller study of JIT phases can be found at
 `A masters thesis from cern.ch <http://cds.cern.ch/record/2692915/files/CERN-THESIS-2019-152.pdf?version=1>`_.
 
 Values described as "monotonic" are cumulative, that is, they are "totals since
@@ -66,7 +66,7 @@ Some of the table members shown here are used in the examples that come later in
     | gc_freed             | number of bytes of freed memory                  | yes        |
     +----------------------+--------------------------------------------------+------------+
     | gc_steps_atomic      | number of steps of garbage collector,            | yes        |
-    |                      | atomic                                           |            |
+    |                      | atomic phases, incremental                       |            |
     +----------------------+--------------------------------------------------+------------+
     | gc_steps_finalize    | number of steps of garbage collector,            | yes        |
     |                      | finalize                                         |            |
@@ -100,7 +100,7 @@ Some of the table members shown here are used in the examples that come later in
     |                      | See external `Snapshot restore description`_     |            |
     |                      | and external `Snap tutorial`_                    |            |
     +----------------------+--------------------------------------------------+------------+
-    | jit_trace_abort      | overall number of abort traces                   | yes        |
+    | jit_trace_abort      | overall number of aborted traces                 | yes        |
     +----------------------+--------------------------------------------------+------------+
     | jit_trace_num        | number of JIT traces                             |            |
     +----------------------+--------------------------------------------------+------------+
@@ -117,9 +117,9 @@ Some of the table members shown here are used in the examples that come later in
 .. _Sweep phase description: http://wiki.luajit.org/New-Garbage-Collector#sweep-phase
 .. _Snapshot restore description: http://wiki.luajit.org/Allocation-Sinking-Optimization#implementation_snapshot-handling_snapshot-restore
 .. _Snap tutorial: https://ujit.readthedocs.io/en/latest/public/tut-snap.html
-    
+
 Note: Although value names are similar to value names in
-`ujit.getmetrics() <https://github.com/luavela/luavela/blob/master/docs/public/ujit-024.rst#ujit-getmetrics>`_
+`ujit.getmetrics() <https://ujit.readthedocs.io/en/latest/public/ujit-024.html#ujit-getmetrics>`_
 the values are not the same, primarily because many ujit numbers are not monotonic.
 
 .. _luajit_getmetrics_c:
@@ -146,13 +146,11 @@ Replace the easy.c example with
 .. code-block:: c
 
     #include "module.h"
-    #include "lmisclib.h"
-    
-    LUAMISC_API void luaM_metrics(lua_State *L, struct luam_Metrics *metrics);
+    #include <lmisclib.h>
     
     int easy(box_function_ctx_t *ctx, const char *args, const char *args_end)
     {
-      lua_State *ls=  luaT_state();
+      lua_State *ls = luaT_state();
       struct luam_Metrics m;
       luaM_metrics(ls, &m);
       printf("allocated memory = %lu\n", m.gc_allocated);
@@ -284,7 +282,9 @@ gc_steps_atomic and gc_steps_propagate
 The slope curves of gc_steps_* items can be used for tracking pressure on
 the garbage collector too.
 During long-running routines, gc_steps_* values will increase,
-but long times between ``gc_steps_atomic`` increases are a good sign.
+but long times between ``gc_steps_atomic`` increases are a good sign,
+And, since ``gc_steps_atomic`` increases only once per garbage-collector cycle,
+it shows how many garbage-collector cycles have occurred.
 
 Also, increases in the ``gc_steps_propagate`` number can be used to
 estimate indirectly how many objects there are. These values also correlate with the
@@ -354,7 +354,7 @@ The following function seemingly does contain code that can cause trouble for Lu
     jit.opt.start(0, "hotloop=2", "hotexit=2", "minstitch=15")
     _G.globalthing = 5
     function f()
-       jit.flush()
+      jit.flush()
       collectgarbage("collect")
       local oldm = misc.getmetrics()
       collectgarbage("collect")
@@ -376,6 +376,7 @@ and this means that something made LuaJIT give up in despair.
 Tracing more will reveal that the problem is
 not the suspicious-looking statements within the function, it
 is the ``jit.opt.start`` call.
+(A look at a jit.dump file might help in examining the trace compilation process.)
 
 .. _luajit_getmetrics_example_6:
 
@@ -411,7 +412,7 @@ The result will be: diff = 3, because there is one side exit when the loop ends,
 and there are two side exits to the interpreter before LuaJIT may decide that
 the chunk of code is "hot"
 (the default value of the hotloop parameter is 56 according to
-`Running LuaJIT  <https://luajit.org/running.html>`_).
+`Running LuaJIT  <https://luajit.org/running.html#opt_O>`_).
 
 And now change only one line within function ``local foo``, so now the code is:
 
