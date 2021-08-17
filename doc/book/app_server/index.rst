@@ -15,6 +15,7 @@ This chapter contains the following sections:
 
    launching_app
    creating_app
+   config_handling
    installing_module
    contributing_module
    reloading_module
