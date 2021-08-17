@@ -4,7 +4,7 @@ Storing data with memtx
 =======================
 
 This chapter gives an overview of the ``memtx`` in-memory storage engine used in Tarantool by default.
-The following topics are described in brief with the references to the chapters explaining the subject matter in details.
+The following topics are described with the references to the other chapters explaining the subject matter in details.
 
 ..  contents::
     :local:
@@ -17,6 +17,14 @@ Memory model
 
 The ``memtx`` storage engine keeps all data in random-access memory (RAM), and therefore has very low read latency.
 
+The obvious question that can be asked here is the following:
+if all the data is stored in memory, how can you prevent the data loss in case of emergency such as outage or Tarantool instance failure?
+
+First of all, Tarantool persists all data changes by writing them to the write-ahead log (WAL) that is stored on disk.
+Read more about that in the :ref:`memtx-persist` section.
+In case of a distributed application, there is an option of synchronous replication that ensures keeping the data consistent on a quorum of replicas.
+Though it is not directly a memory model topic, it is a part of the answer regarding data safety. Read more in the :ref:`memtx-replication` section.
+
 There is a fixed number of independent :ref:`execution threads <atomic-threads_fibers_yields>`.
 The threads don't share state. Instead they exchange data using low-overhead message queues.
 While this approach limits the number of cores that the instance uses,
@@ -24,6 +32,7 @@ it removes competition for the memory bus and ensures peak scalability of memory
 
 Only one thread, namely, the **transaction processor thread** (further, **TX thread**)
 can access the database, and there is only one TX thread for each Tarantool instance.
+
 Within the TX thread, there is a memory area allocated for Tarantool to store data. It's called **Arena**.
 
 .. image:: memtx/arena2.svg
@@ -31,7 +40,7 @@ Within the TX thread, there is a memory area allocated for Tarantool to store da
 Data is stored in :term:`spaces <space>`. Spaces contain database records—:term:`tuples <tuple>`.
 To access and manipulate the data stored in spaces and tuples, Tarantool builds :doc:`indexes </book/box/indexes>`.
 
-All that are managed by special `memory allocators <https://github.com/tarantool/small>`__ working within the Arena.
+All that is managed by special `memory allocators <https://github.com/tarantool/small>`__ working within the Arena.
 The slab allocator is the main allocator used to store tuples.
 Tarantool has a built-in module called ``box.slab`` which provides the slab allocator statistics
 that can be used to monitor the total memory usage and memory fragmentation.
@@ -46,10 +55,10 @@ Due to the usage of fibers and :ref:`cooperative multitasking <atomic-cooperativ
 
 .. image:: memtx/fibers-channels.svg
 
-To interact with external users, there is a separate :ref:`network thread <atomic-threads_fibers_yields>` also called the **IPROTO thread**.
-The IPROTO thread receives a request from the network, parses and checks the statement,
+To interact with external users, there is a separate :ref:`network thread <atomic-threads_fibers_yields>` also called the **iproto thread**.
+The iproto thread receives a request from the network, parses and checks the statement,
 and transforms it into a special structure—a message containing an executable statement and its options.
-Then the IPROTO thread ships this message to the TX thread and runs the user's request in a separate fiber.
+Then the iproto thread ships this message to the TX thread and runs the user's request in a separate fiber.
 
 .. image:: memtx/iproto.svg
 
@@ -66,7 +75,7 @@ To ensure :ref:`data persistence <index-box_persistence>`, Tarantool does two th
 .. image:: memtx/wal.svg
 
 *   Tarantool periodically takes the entire :doc:`database snapshot </reference/reference_lua/box_snapshot>` and saves it on disk.
-    It is necessary for accelerating restart because when there are too many WAL files, it can be difficult for Tarantool to restart quickly.
+    It is necessary for accelerating instance's restart because when there are too many WAL files, it can be difficult for Tarantool to restart quickly.
 
     To save a snapshot, there is a special fiber called the **snapshot daemon**.
     It reads the consistent content of the entire Arena and writes it on disk into a snapshot file (``.snap``).
@@ -75,8 +84,8 @@ To ensure :ref:`data persistence <index-box_persistence>`, Tarantool does two th
 
 .. image:: memtx/snapshot03.svg
 
-So, even in emergency situations such as an outage or a Tarantool instance crash,
-when the in-memory database is lost, all the data can be restored fully during Tarantool restart.
+So, even in emergency situations such as an outage or a Tarantool instance failure,
+when the in-memory database is lost, the data can be restored fully during Tarantool restart.
 
 What happens during the restart:
 
@@ -109,6 +118,10 @@ For detailed information about indexes, refer to the :doc:`/book/box/indexes` pa
 Replicating data
 ----------------
 
+Although this topic is not directly related to ``memtx`` engine, it completes the overall picture of how Tarantool works
+if you have a distributed application. Besides, replication of data means replicating WAL that ensures data persistence.
+So, it is important to understand how this functionality works as well.
+
 Replication allows multiple Tarantool instances to work on copies of the same database.
 The copies are kept in sync because each instance can communicate its changes to all the other instances.
 It is implemented via WAL replication.
@@ -119,6 +132,14 @@ On a replica, the fiber called **applier** is run. It receives the changes from 
 All the changes are being written to WAL files via the replica's WAL thread as if they are done locally.
 
 .. image:: memtx/replica-xlogs.svg
+
+By default, :ref:`replication <replication-architecture>` in Tarantool is asynchronous: if a transaction
+is committed locally on a master node, it does not mean it is replicated onto any
+replicas.
+
+:ref:`Synchronous replication <repl_sync>` exists to solve this problem. Synchronous transactions
+are not considered committed and are not responded to a client until they are
+replicated onto some number of replicas.
 
 For more information on replication, refer to the :doc:`corresponding chapter </book/replication/index>`.
 
