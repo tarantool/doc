@@ -3,8 +3,17 @@
 Storing data with memtx
 =======================
 
-This chapter gives an overview of the ``memtx`` in-memory storage engine used in Tarantool by default.
-The following topics are described with the references to the other chapters explaining the subject matter in details.
+The ``memtx`` storage engine is used in Tarantool by default. It keeps all data in random-access memory (RAM), and therefore has very low read latency.
+
+The obvious question here is:
+if all the data is stored in memory, how can you prevent the data loss in case of emergency such as outage or Tarantool instance failure?
+
+First of all, Tarantool persists all data changes by writing requests to the write-ahead log (WAL) that is stored on disk.
+Read more about that in the :ref:`memtx-persist` section.
+In case of a distributed application, there is an option of synchronous replication that ensures keeping the data consistent on a quorum of replicas.
+Although replication is not directly a storage engine topic, it is a part of the answer regarding data safety. Read more in the :ref:`memtx-replication` section.
+
+In this chapter, the following topics are discussed in brief with the references to other chapters that explain the subject matter in details.
 
 ..  contents::
     :local:
@@ -15,16 +24,6 @@ The following topics are described with the references to the other chapters exp
 Memory model
 ------------
 
-The ``memtx`` storage engine keeps all data in random-access memory (RAM), and therefore has very low read latency.
-
-The obvious question that can be asked here is the following:
-if all the data is stored in memory, how can you prevent the data loss in case of emergency such as outage or Tarantool instance failure?
-
-First of all, Tarantool persists all data changes by writing them to the write-ahead log (WAL) that is stored on disk.
-Read more about that in the :ref:`memtx-persist` section.
-In case of a distributed application, there is an option of synchronous replication that ensures keeping the data consistent on a quorum of replicas.
-Though it is not directly a memory model topic, it is a part of the answer regarding data safety. Read more in the :ref:`memtx-replication` section.
-
 There is a fixed number of independent :ref:`execution threads <atomic-threads_fibers_yields>`.
 The threads don't share state. Instead they exchange data using low-overhead message queues.
 While this approach limits the number of cores that the instance uses,
@@ -32,6 +31,12 @@ it removes competition for the memory bus and ensures peak scalability of memory
 
 Only one thread, namely, the **transaction processor thread** (further, **TX thread**)
 can access the database, and there is only one TX thread for each Tarantool instance.
+In this thread, transactions are executed in a strictly consecutive order.
+Multi-statement transactions exist to provide isolation:
+each transaction sees a consistent database state and commits all its changes atomically.
+At commit time, a yield happens and all transaction changes are written to :ref:`WAL <internals-wal>` in a single batch.
+In case of errors during transaction execution, a transaction is rolled-back completely.
+Read more in the following sections: :ref:`atomic-transactions`, :ref:`atomic-transactional-manager`.
 
 Within the TX thread, there is a memory area allocated for Tarantool to store data. It's called **Arena**.
 
@@ -40,7 +45,7 @@ Within the TX thread, there is a memory area allocated for Tarantool to store da
 Data is stored in :term:`spaces <space>`. Spaces contain database records—:term:`tuples <tuple>`.
 To access and manipulate the data stored in spaces and tuples, Tarantool builds :doc:`indexes </book/box/indexes>`.
 
-All that is managed by special `memory allocators <https://github.com/tarantool/small>`__ working within the Arena.
+Special `allocators <https://github.com/tarantool/small>`__ manage memory allocations for spaces, tuples, and indexes within the Arena.
 The slab allocator is the main allocator used to store tuples.
 Tarantool has a built-in module called ``box.slab`` which provides the slab allocator statistics
 that can be used to monitor the total memory usage and memory fragmentation.
@@ -118,9 +123,7 @@ For detailed information about indexes, refer to the :doc:`/book/box/indexes` pa
 Replicating data
 ----------------
 
-Although this topic is not directly related to ``memtx`` engine, it completes the overall picture of how Tarantool works
-if you have a distributed application. Besides, replication of data means replicating WAL that ensures data persistence.
-So, it is important to understand how this functionality works as well.
+Although this topic is not directly related to the ``memtx`` engine, it completes the overall picture of how Tarantool works in case of a distributed application.
 
 Replication allows multiple Tarantool instances to work on copies of the same database.
 The copies are kept in sync because each instance can communicate its changes to all the other instances.
