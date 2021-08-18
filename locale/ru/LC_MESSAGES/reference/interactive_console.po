@@ -92,13 +92,13 @@ msgid ":code:`1`"
 msgstr ""
 
 msgid ":code:`---`"
-msgstr ":code:`---`"
+msgstr ""
 
 msgid ":code:`- 1`"
-msgstr ":code:`- 1`"
+msgstr ""
 
 msgid ":code:`...`"
-msgstr ":code:`...`"
+msgstr ""
 
 msgid ":code:`\\x01`"
 msgstr ""

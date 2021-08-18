@@ -1,6 +1,6 @@
 
-msgid "Tarantool Release Policy"
-msgstr "Принципы выпуска версий Tarantool"
+msgid "Tarantool Legacy Release Policy"
+msgstr ""
 
 msgid ""
 "A Tarantool release is identified by three digits, for example, 2.6.2 or "

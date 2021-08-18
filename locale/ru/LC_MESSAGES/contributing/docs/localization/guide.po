@@ -1,0 +1,240 @@
+
+msgid "Tarantool Translation Guidelines"
+msgstr ""
+
+msgid "Use this guide when localizing Tarantool into Russian."
+msgstr ""
+
+msgid "Tone of voice"
+msgstr ""
+
+msgid "General voice"
+msgstr ""
+
+msgid ""
+"We address IT specialists fairly knowledgeable in their respective fields. "
+"The goal of our translations is to help these people understand how to use "
+"Tarantool. Think of us as their colleagues and address them as such. Be "
+"professional but friendly. Don’t command or patronize. Use colloquial speech"
+" but avoid being too familiar. It’s all about the golden mean."
+msgstr ""
+
+msgid "Modal verbs"
+msgstr ""
+
+msgid ""
+"Think twice when translating modal verbs. Avoid using expressions like «вы "
+"должны», because they sound like a demand in Russian, and «вам придётся», "
+"because it implies that our readers will face a lot of trouble. Be careful "
+"with «нельзя». Make it easy for the user to read the documentation."
+msgstr ""
+
+msgid "Gender neutrality"
+msgstr ""
+
+msgid ""
+"Use gender-neutral expressions like «сделать самостоятельно» instead of "
+"«сделать самому», etc."
+msgstr ""
+
+msgid "Term choice"
+msgstr ""
+
+msgid ""
+"Though not all of our readers may be fluent in English, they write in "
+"English-based programming languages and are used to seeing error messages in"
+" English. Therefore, if they see an unfamiliar and/or more archaic Russian "
+"term for a familiar concept, they might have trouble correlating them."
+msgstr ""
+
+msgid ""
+"We don’t want our audience to feel confused, so we prefer newer terms. We "
+"also provide the English equivalent for a term if it is used in the article "
+"for the first time."
+msgstr ""
+
+msgid ""
+"If you feel like the older Russian term may sound more familiar for a part "
+"of the audience (for example, those with a math background), consider adding"
+" it in parentheses along with the English equivalent. Don’t repeat the "
+"parentheses throughout the text. A similar rule applies to :ref:`introducing"
+" terms in Tarantool documentation <introduce-terms>`."
+msgstr ""
+
+msgid "Term choice examples"
+msgstr ""
+
+msgid "First time"
+msgstr ""
+
+msgid "All following times"
+msgstr ""
+
+msgid "state machine"
+msgstr ""
+
+msgid "машина состояний (конечный автомат, state machine)"
+msgstr ""
+
+msgid "машина состояний"
+msgstr ""
+
+msgid "write-ahead log; WAL"
+msgstr ""
+
+msgid "журнал упреждающей записи (write-ahead log, WAL)"
+msgstr ""
+
+msgid "журнал упреждающей записи; WAL; журнал WAL *(using a descriptor)*"
+msgstr ""
+
+msgid "Best practices"
+msgstr ""
+
+msgid "Be creative"
+msgstr ""
+
+msgid ""
+"Please avoid word-for-word translations. Let the resulting text sound as "
+"though it was originally written in Russian."
+msgstr ""
+
+msgid "Less is more"
+msgstr ""
+
+msgid ""
+"Be concise and don't repeat yourself. Fewer words are the best option most "
+"of the time."
+msgstr ""
+
+msgid "Don't"
+msgstr ""
+
+msgid "Do"
+msgstr ""
+
+msgid ""
+"Профиль доступа можно назначить для любой роли пользователя, созданной "
+"администратором. А к ролям по умолчанию привязать профили доступа не "
+"получится, поскольку такие роли редактировать нельзя."
+msgstr ""
+
+msgid ""
+"Профиль доступа можно назначить для любой роли пользователя, созданной "
+"администратором. Исключение составляют роли по умолчанию, поскольку их "
+"нельзя редактировать."
+msgstr ""
+
+msgid "Topic and focus"
+msgstr ""
+
+msgid "Avoid English word order."
+msgstr ""
+
+msgid ""
+"The Russian speech is structured with topic and focus (`тема и рема "
+"<https://ru.wikipedia.org/wiki/Актуальное_членение_предложения>`_). The "
+"topic is the given in the sentence, something we already know. The focus is "
+"whatever new/important information is provided in the sentence about the "
+"topic. In written Russian, the focus most often stands at the end of the "
+"sentence, while in English, sentences may start with it."
+msgstr ""
+
+msgid ""
+"It is recommended to use `systemd` for managing the application instances "
+"and accessing log entries."
+msgstr ""
+
+msgid ""
+"Для управления экземплярами приложения и доступа к записям журнала "
+"рекомендуется использовать `systemd`."
+msgstr ""
+
+msgid ""
+"Do not specify working directories of the instances in this configuration."
+msgstr ""
+
+msgid "Не указывайте в этой конфигурации рабочие директории экземпляров."
+msgstr ""
+
+msgid "No bureaucratese"
+msgstr ""
+
+msgid ""
+"Avoid overly formal, bureaucratic language whenever possible. Prefer verbs "
+"over verbal nouns, and don’t use «являться» and «осуществляться» unless it’s"
+" absolutely necessary."
+msgstr ""
+
+msgid ""
+"To learn how to clear your Russian texts of bureaucratese, check `Timur "
+"Anikin's training The Writing Dead "
+"<https://www.timuroki.ink/thewritingdead>`_."
+msgstr ""
+
+msgid "Сообщение исчезнет, как только вы покинете данную страницу."
+msgstr ""
+
+msgid "Сообщение исчезнет, как только вы покинете страницу."
+msgstr ""
+
+msgid "Проверка истечения срока действия паролей производится раз в 30 минут."
+msgstr ""
+
+msgid "Система раз в 30 минут проверяет, не истек ли срок действия паролей."
+msgstr ""
+
+msgid "Consistency"
+msgstr ""
+
+msgid ""
+"Use one term for one concept throughout the article. For example, only "
+"translate production as «производственная среда» and not as "
+"«эксплуатационная среда» throughout your article. It’s not about synonyms, "
+"but about terms: we don’t want people to get confused."
+msgstr ""
+
+msgid "Avoid elliptical sentences"
+msgstr ""
+
+msgid "Defaults to `root`."
+msgstr ""
+
+msgid "По умолчанию --- `root`."
+msgstr ""
+
+msgid "Значение по умолчанию --- `root`."
+msgstr ""
+
+msgid "Pronoun collocations"
+msgstr ""
+
+msgid "Do all the pronouns point to the exact nouns you want them to?"
+msgstr ""
+
+msgid ""
+"**Example (how not to):** Прежде чем добавить запись в конфигурацию, укажите"
+" к ней путь."
+msgstr ""
+
+msgid ""
+"In the example, it is not quite clear what «к ней» means---to the record or "
+"to the configuration. For more on this issue, check out `the writers' "
+"reference at «Ошибкариум» <https://lapsus.timuroki.ink/pest/wanderer/>`_."
+msgstr ""
+
+msgid "Be critical towards your text"
+msgstr ""
+
+msgid ""
+"Don't forget to proofread your translation. Check your text at least twice."
+msgstr ""
+
+msgid "Be nice to your peers"
+msgstr ""
+
+msgid ""
+"If you review others’ translations, be gentle and kind. Everyone makes "
+"mistakes, and nobody likes to be punished for them. You can use phrasings "
+"like \"I suggest\" or \"it's a good idea to... .\""
+msgstr ""
