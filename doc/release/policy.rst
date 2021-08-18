@@ -3,126 +3,348 @@ Tarantool Release Policy
 
 ..  _release-policy:
 
-A Tarantool release is identified by three digits, for example, 2.6.2 or 1.10.9:
+Summary
+-------
 
-*   The first digit stands for a MAJOR release series that introduces
-    some *major changes*. Up to now, there has been only one major release jump
-    when we delivered the 2.x release series with the SQL support.
-*   The second digit stands for a MINOR release series that is used for
-    introducing new *features*.
-    :ref:`Backward incompatible changes <backward-incompatible>`
-    are possible between these release series.
-*   The third digit is for PATCH releases by which we reflect how stable
-    the MINOR release series is:
+The Tarantool release policy is changing to become more clear and intuitive.
+The new policy uses a `SemVer-like <https://semver.org/>`__ versioning format,
+and introduces a new version lifecycle with more long-time support series.
+This document explains the new release policy, versioning rules, and :term:`release series` lifecycle.
 
-    * ``0`` meaning **alpha**
-    * ``1`` meaning **beta**
-    * ``2`` and above meaning **release** (earlier known as **stable**).
+The new release policy replaces :doc:`the legacy policy </release/legacy-policy>`
+for:
 
-So, each MINOR release series goes through a development-maturity life cycle
-as follows:
+*   The ``2.x.y`` series since the ``2.10.0`` release.
+    Development for this new release starts with version ``2.10.0-beta1``.
+*   The future ``3.0.0`` series.
 
-1.  **Alpha**. Once a quarter, we start off with a new alpha version,
-    such as 2.3.0, 2.4.0, and so on. This is not what an alpha release usually
-    means in the typical software release life cycle but rather the current trunk
-    version which is under heavy development and can be unstable.
-    The current alpha version always lives in the master branch.
+Here are the most significant changes from the legacy release policy:
 
-2.  **Beta**. When all the features planned are implemented, we fork a new branch
-    from the master branch and tag it as a new beta version.
-    It contains ``1`` for the PATCH digit, e.g., 2.3.1, 2.4.1, and so on.
-    This version cannot be called stable yet (feature freeze has just been done)
-    although there are no known critical regressions in it since
-    the last stable release.
+*   The third number in the version label doesn't distinguish between
+    pre-release (alpha and beta) and release versions.
+    Instead, it is used for patch (bugfix-only) releases.
+    Pre-release versions have suffixes, like ``3.0.0-alpha1``.
 
-3.  **Release** (earlier known as **stable**).
-    Finally, after we see our beta version runs successfully in
-    a production or development environment during another quarter while we fix
-    incoming bugs, we declare this version stable. It is tagged with ``2`` for
-    the PATCH digit, e.g., 2.3.2, 2.4.2, and so on.
+*   In the legacy release policy, ``1.10`` was a long-term support (LTS) series,
+    while ``2.x.y`` had stable releases, but wasn't an LTS series.
+    Now both series are long-term supported.
 
-    We support such version for 3 months while making another stable release
-    by fixing all bugs found. We release it in a quarter. This last tag
-    contains ``3`` for the PATCH digit, e.g., 2.3.3, 2.4.3, and so on.
-    After the tag is set, no new changes are allowed to the release branch,
-    and it is declared deprecated and superseded by a newer MINOR version.
+The topics below describe the new versioning policy in more detail.
 
-    Release versions don't receive any new features and only get backward
-    compatible fixes.
+Versioning policy
+-----------------
 
-Like Ubuntu, in terms of support, we distinguish between two kinds of stable
-release series:
+Release series and versions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*   **LTS (Long Term Support)** is a release series that is supported
-    for 3 years (community) and up to 5 years (paying customers).
-    Current LTS release series is 1.10, and it receives only PATCH level
-    releases.
+The new Tarantool release policy is based on having several release series,
+each with its own lifecycle, pre-release and release versions.
 
-*   **Standard** is a release series that is supported only for a few months
-    until the next release series enters the stable state.
+..  glossary::
 
-Below is a diagram that illustrates the release sequence issuing described above
-by an example of some latest releases and release series:
+    Release series
 
-..  _release-diagram:
+        Release series is a sequence of development and production-ready versions
+        with linear evolution toward a defined roadmap.
+        A series has a distinct lifecycle and certain compatibility guarantees within itself and with other series.
+        The intended support time for each series is at least two years since the first release.
 
-..  code-block:: text
+        At the moment when this document is published, there are two release series: series ``1.10`` and series ``2``.
 
-    1.10 series -- 1.10.4 -- 1.10.5 -- 1.10.6 -- 1.10.7
-    (LTS)
+    Release version
 
-    ....
+        Release version is a Tarantool distribution which is thoroughly tested and ready for production usage.
+        It is bound to a certain commit.
+        Release version label consists of three numbers:
 
-    2.2 series --- 2.2.1 --- 2.2.2 --- 2.2.3 (end of support)
-                     |
-                     V
-    2.3 series ... 2.3.0 --- 2.3.1 --- 2.3.2 --- 2.3.3 (end of support)
-                               |
-                               V
-    2.4 series ............. 2.4.0 --- 2.4.1 --- 2.4.2
-                                         |
-                                         V
-    2.5 series ....................... 2.5.0 --- 2.5.1
-                                                   |
-                                                   V
-    2.6 series ................................. 2.6.0
+        ..  code-block:: text
 
-    -----------------|---------|---------|---------|------> (time)
-                       1/4 yr.   1/4 yr.   1/4 yr.
+            MAJOR.MINOR.PATCH
 
-*Support* means that we continue fixing bugs. We add bug fixes simultaneously
-into the following release series: LTS, last stable, beta, and alpha.
-If we look at the release diagram above, it means that the bug fixes are to be
-added into 1.10, 2.4, 2.5, and 2.6 release series.
+These numbers correspond to the three types of release versions:
 
-To sum it up, once a quarter we release (see the release diagram above for
-reference):
+..  glossary::
 
-*   next LTS release, e.g., 1.10.9
-*   two stable releases, e.g., 2.5.3 and 2.6.2
-*   beta version of the next release series, e.g., 2.7.1.
+    Major release
 
-In all supported releases, when we find and fix an outstanding CVE/vulnerability,
-we deliver a patch for that but do not tag a new PATCH level version.
-Users will be informed about such critical patches via the official Tarantool news
-channel (`tarantool_news <https://t.me/tarantool_news>`_).
+        Major release is the first :term:`release version <release version>` of its own
+        :term:`release series <release series>`.
+        It introduces new features and can have a few backward-incompatible changes.
+        Such release changes the first version number:
 
-We also publish nightly builds, and use the fourth slot in the version
-identifier to designate the nightly build number.
+        ..  code-block:: text
 
-..  _backward-incompatible:
+            MAJOR.0.0
 
-..  note::
+            3.0.0
 
-    A release series may introduce backward incompatible changes in a sense that
-    existing Lua, SQL or C code that are run on a current release series
-    may not be run with the same effect on a future series.
-    However, we don't exploit this rule and don't make incompatible changes
-    without appropriate reason. We usually deliver information how mature
-    a functionality is via release notes.
+    Minor release
 
-    Please note that binary data layout
-    is always compatible with the previous series as well as with the LTS series
-    (an instance of ``X.Y`` version can be started on top of ``X.(Y+1)``
-    or ``1.10.z`` data); binary protocol is compatible too
-    (client-server as well as replication protocol).
+        Minor release introduces a few new features, but guarantees backward compatibility.
+        There can be a few bugs fixed as well.
+        Such release changes the second version number:
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.0
+
+            3.1.0
+            3.2.0
+
+    Patch release
+
+        Patch release fixes bugs from an earlier release, but doesn't introduce new features.
+        Such release changes the third version number:
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH
+
+            3.0.1
+            3.0.2
+
+Release versions conform to a set of requirements:
+
+    *   The release has gone through pre-release testing and adoption
+        in the internal projects until there were no doubts regarding its stability.
+
+    *   There are no known bugs in the typical usage scenarios.
+
+    *   There are no degradations from the previous release or release series, in case of a major release.
+
+Backwards compatibility is guaranteed between all versions in the same release series.
+It is also appreciated, but not guaranteed between different release series (major number changes).
+A detailed description of compatibility guarantees will be published later.
+
+Pre-release versions
+~~~~~~~~~~~~~~~~~~~~
+
+..  glossary::
+
+    Pre-release version
+
+        Pre-release versions are the ones published for testing and evaluation,
+        and not intended for production use.
+        Such versions use the same pattern with an additional suffix:
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-suffix
+
+There are a few types of pre-release versions:
+
+..  glossary::
+
+    Development build
+
+        Development builds reflect the state of current development process.
+        They're used entirely for development and testing,
+        and not intended for any external use.
+
+        Development builds have suffixes made with ``$(git describe --always --long)-dev``:
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-describe-dev
+
+            2.10.2-149-g1575f3c07-dev
+            3.0.0-alpha1-14-gxxxxxxxxx-dev
+            3.0.0-entrypoint-17-gxxxxxxxxx-dev
+            3.1.2-5-gxxxxxxxxx-dev
+
+    Alpha version
+
+        Alpha version has some of the features planned in the release series.
+        It can be incomplete or unstable, and can break the backwards compatibility
+        with the previous release series.
+
+        Alpha versions are published for early adopters and developers of dependent components,
+        such as connectors and modules.
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-alphaN
+
+            3.0.0-alpha1
+            3.0.0-alpha2
+
+    Beta version
+
+        Beta version has all the features which are planned for the release series.
+        It is a good choice to start developing a new application.
+
+        Readiness of a feature can be checked in a beta version to decide whether to remove the feature,
+        finish it later, or replace it with something else.
+        A beta version can still have a known bug in the new functionality,
+        or a known degradation since the previous release series that affects a common use case.
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-betaN
+
+            3.0.0-beta1
+            3.0.0-beta2
+
+        Note that the development of ``2.10.0``, the first release under the new policy,
+        starts with version ``2.10.0-beta1``.
+
+    Release candidate
+
+        Release candidate is used to fix bugs, mature the functionality,
+        and collect feedback before an upcoming release.
+        Release candidate has the same feature set as the preceding beta version
+        and doesn't have known bugs in typical usage scenarios
+        or degradations from the previous release series.
+
+        Release candidate is a good choice to set up a staging server.
+
+        ..  code-block:: text
+
+            MAJOR.MINOR.PATCH-rcN
+
+            3.0.0-rc1
+            3.0.0-rc2
+            3.0.1-rc1
+
+Release series lifecycle
+--------------------------
+
+Every release series goes through the following stages:
+
+..  contents::
+    :local:
+
+Early development
+~~~~~~~~~~~~~~~~~
+
+The early development stage goes on until the first :term:`major release <major release>`.
+Alpha, beta, and release candidate versions are published at this stage.
+
+The stage splits into two phases:
+
+1.  Development of a new functionality through alpha and beta versions.
+    Features can be added and, sometimes, removed in this phase.
+
+2.  Stabilization starts with the first release candidate version.
+    Feature set doesn't change in this phase.
+
+Support
+~~~~~~~
+
+The stage starts when the first release is published.
+The release series now is an object of only backward compatible changes.
+
+At this stage, all known security problems and all found
+degradations since the previous series are being fixed.
+
+The series receives degradation fixes and other bugfixes during the support stage
+and until the series transitions into the end of life (EOL) stage.
+
+The decision of whether to fix a particular problem in a particular release series
+depends on the impact of the problem, risks around backward compatibility, and the
+complexity of backporting a fix.
+
+The release series might receive new features at this stage,
+but only in a backward compatible manner.
+Also, a release candidate may be published to collect feedback before the release version.
+
+During the support period a release series receives new versions of supported Linux
+distributives to build infrastructure.
+
+The intended duration of the support period for each series is at least two years.
+
+End of life
+~~~~~~~~~~~
+
+A series reaches the end of life (EOL) when the last release in the series is
+published. The series will not receive updates anymore.
+
+In modules, connectors and tools, we don't guarantee support of any release series
+that reaches EOL.
+
+A release series cannot reach EOL until the vast majority of production environments,
+for which we have commitments and SLAs, is updated to a newer series.
+
+
+Versions per lifecycle stage
+----------------------------
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    ..  list-table::
+        :header-rows: 1
+
+        *   -   Stage
+            -   Version types
+            -   Examples
+
+        *   -   Early development
+            -   Alpha, beta, release candidate
+
+            -   ..  code-block:: text
+
+                    3.0.0-alpha1
+                    3.0.0-beta1
+                    3.0.0-rc1
+                    3.0.0-dev
+
+        *   -   Support
+            -   Release candidate, release
+
+            -   ..  code-block:: text
+
+                    3.0.0
+                    3.0.1-rc1
+                    3.0.1-dev
+
+        *   -   End of life
+            -   None
+            -   N/A
+
+
+Example of a release series
+---------------------------
+
+A release series in an early development stage can have
+the following version sequence:
+
+    ..  code-block:: text
+
+        3.0.0-alpha1
+        3.0.0-alpha2
+        ...
+        3.0.0-alpha7
+
+        3.0.0-beta1
+        ...
+        3.0.0-beta5
+
+        3.0.0-rc1
+        ...
+        3.0.0-rc4
+
+        3.0.0 (release)
+
+Since the first release version, the series comes into a support stage.
+Then it can proceed with a version sequence like the following:
+
+    ..  code-block:: text
+
+        3.0.0 (release of a new major version)
+
+        3.0.1-rc1
+        ...
+        3.0.1-rc4
+        3.0.1 (release with some bugs fixed but no new features)
+
+        3.1.0-rc1
+        ...
+        3.1.0-rc6
+        3.1.0 (release with new features and, possibly, extra fixed bugs)
+
+Eventually, the support stage stops and the release series comes to the
+end of life (EOL) stage.
+No new versions are released since then.
