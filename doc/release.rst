@@ -13,7 +13,7 @@ In short, Tarantool version numbers consist of three parts:
 
 Any version without extra prefixes is a release version.
 If you need a version for production use, pick the latest release.
-For evaluation and development you can take beta versions.
+For evaluation and development, you can use beta versions.
 They are marked with ``-betaN`` suffixes.
 
 Before 2.10.0, version numbers were subject to the
