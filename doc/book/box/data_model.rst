@@ -424,8 +424,8 @@ Full information is in section
     |                                | :ref:`number <index-box_number>`,         |                                      |
     |                                | :ref:`decimal <index-box_decimal>`,       |                                      |
     |                                | :ref:`string <index-box_string>`,         |                                      |
-    |                                | :ref:`varbinary <index-box_bin>`,         |
-    |                                | or :ref:`uuid <index-box_uuid>`           |                                      ||
+    |                                | :ref:`varbinary <index-box_bin>`,         |                                      |
+    |                                | or :ref:`uuid <index-box_uuid>`           |                                      |
     |                                | values                                    |                                      |
     |                                |                                           |                                      |
     |                                | When a scalar field contains values of    |                                      |
