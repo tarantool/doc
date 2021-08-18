@@ -658,6 +658,125 @@ msgstr ""
 " :ref:`Описание типов индексированных полей "
 "<details_about_index_field_types>`."
 
+msgid "Field type name string"
+msgstr "Имя типа поля"
+
+msgid "Field type |br|"
+msgstr "Тип поля |br|"
+
+msgid "Index type"
+msgstr "Тип индекса"
+
+msgid "``'boolean'``"
+msgstr "``'boolean'``"
+
+msgid ":ref:`boolean <index-box_boolean>`"
+msgstr ":ref:`boolean <index-box_boolean>`"
+
+msgid ":ref:`TREE or HASH <box_index-type>`"
+msgstr ":ref:`TREE или HASH <box_index-type>`"
+
+msgid "``'integer'`` (may also be called ‘int’)"
+msgstr "``'integer'`` (также может называться ‘int’)"
+
+msgid ":ref:`integer <index-box_integer>`, which may include unsigned values"
+msgstr ""
+":ref:`integer <index-box_integer>`, может включать в себя значения unsigned "
+"(без знака)"
+
+msgid "TREE or HASH"
+msgstr "TREE или HASH"
+
+msgid ""
+"``'unsigned'`` (may also be called ``'uint'`` or ``'num'``, but ``'num'`` is"
+" deprecated)"
+msgstr ""
+"``'unsigned'`` (без знака, также может называться ``'uint'`` или ``'num'``, "
+"но ``'num'`` объявлен устаревшим)"
+
+msgid ":ref:`unsigned <index-box_unsigned>`"
+msgstr ":ref:`unsigned <index-box_unsigned>`"
+
+msgid "TREE, BITSET, or HASH"
+msgstr "TREE, BITSET или HASH"
+
+msgid "``'double'``"
+msgstr "``'double'``"
+
+msgid ":ref:`double <index-box_double>`"
+msgstr ":ref:`double <index-box_double>`"
+
+msgid "``'number'``"
+msgstr "``'number'``"
+
+msgid ""
+":ref:`number <index-box_number>`, which may include :ref:`integer <index-"
+"box_integer>` or :ref:`double <index-box_double>` values"
+msgstr ""
+":ref:`number <index-box_number>`, может включать в себя значения типа "
+":ref:`integer <index-box_integer>` или :ref:`double <index-box_double>`"
+
+msgid "``'decimal'``"
+msgstr "``'decimal'``"
+
+msgid ":ref:`decimal <index-box_decimal>`"
+msgstr ":ref:`decimal <index-box_decimal>`"
+
+msgid "``'string'`` (may also be called ``'str'``)"
+msgstr "``'string'`` (строка, также может называться ``'str'``)"
+
+msgid ":ref:`string <index-box_string>`"
+msgstr ":ref:`string <index-box_string>`"
+
+msgid "``'varbinary'``"
+msgstr "``'varbinary'``"
+
+msgid ":ref:`varbinary <index-box_bin>`"
+msgstr ":ref:`varbinary <index-box_bin>`"
+
+msgid "TREE, HASH, or BITSET (since version 2.7)"
+msgstr "TREE, HASH или BITSET (с версии 2.7)"
+
+msgid "``'uuid'``"
+msgstr "``'uuid'``"
+
+msgid ":ref:`uuid <index-box_uuid>`"
+msgstr ":ref:`uuid <index-box_uuid>`"
+
+msgid "``'array'``"
+msgstr "``'array'``"
+
+msgid ":ref:`array <index-box_array>`"
+msgstr ":ref:`array <index-box_array>`"
+
+msgid ":ref:`RTREE <box_index-rtree>`"
+msgstr ":ref:`RTREE <box_index-rtree>`"
+
+msgid "``'scalar'``"
+msgstr "``'scalar'``"
+
+msgid ""
+"may include :ref:`nil <index-box_nil>`, :ref:`boolean <index-box_boolean>`, "
+":ref:`integer <index-box_integer>`, :ref:`unsigned <index-box_unsigned>`, "
+":ref:`number <index-box_number>`, :ref:`decimal <index-box_decimal>`, "
+":ref:`string <index-box_string>`, :ref:`varbinary <index-box_bin>`, or "
+":ref:`uuid <index-box_uuid>` values"
+msgstr ""
+"может содержать значения :ref:`nil <index-box_nil>`, :ref:`boolean <index-"
+"box_boolean>`, :ref:`integer <index-box_integer>`, :ref:`unsigned <index-"
+"box_unsigned>`, :ref:`number <index-box_number>`, :ref:`decimal <index-"
+"box_decimal>`, :ref:`string <index-box_string>` или :ref:`varbinary <index-"
+"box_bin>`"
+
+msgid ""
+"When a scalar field contains values of different underlying types, the key "
+"order is: nils, then booleans, then numbers, then strings, then varbinaries,"
+" then uuids."
+msgstr ""
+"Когда поле типа scalar содержит значения различных базовых типов, то порядок"
+" ключей следующий: nil, затем boolean, затем number, затем string, затем "
+"varbinary, затем uuid."
+
 msgid "Collations"
 msgstr "Сортировка"
 
@@ -1485,9 +1604,6 @@ msgstr ""
 "здесь, конечно же, нелинейная. Для HASH-индекса: чем больше ключей, тем "
 "больше нужно оперативной памяти, но количество низкоуровневых шагов остается"
 " примерно тем же."
-
-msgid "Index type"
-msgstr "Тип индекса"
 
 msgid ""
 "Typically, a HASH index is faster than a TREE index if the number of tuples "
