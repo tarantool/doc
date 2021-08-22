@@ -4,22 +4,24 @@
 Release notes
 ********************************************************************************
 
-Tarantool version numbers consist of three parts:
+Since version 2.10, there's a :doc:`new release policy for Tarantool <release/policy>`.
+In short, Tarantool version numbers consist of three parts:
+
+..  code-block:: text
+
+    MAJOR.MINOR.PATCH
+
+Any version without extra prefixes is a release version.
+If you need a version for production use, pick the latest release.
+For evaluation and development, you can use beta versions.
+They are marked with ``-betaN`` suffixes.
+
+Before 2.10.0, version numbers were subject to the
+:doc:`legacy versioning policy <release/legacy-policy>`:
 
 ..  code-block:: text
 
     MAJOR_VERSION.RELEASE_SERIES.RELEASE
-
-The third number distinguishes between alpha, beta and release versions:
-
-*   ``x.y.0`` is an **alpha version**, just a base for adding new features.
-    We use alpha versions internally and don't release them as distributions.
-*   ``x.y.1`` is a **beta version**, where we add most new features.
-    Beta versions are good for trying new features, but not suitable for production usage.
-*   ``x.y.2``, ``x.y.3`` and later are **release versions**, where we fix bugs and polish newly added features.
-
-If you want to use Tarantool in production, pick the one of the latest release versions, such as 2.6.2 or 2.5.3.
-To learn more about the meaning of version numbers, read the :doc:`/release/policy`.
 
 Below is the table listing all Tarantool versions starting from 1.10.0 up to
 the current latest versions.
@@ -41,10 +43,15 @@ Each link leads to the release notes page of the corresponding version:
             -   Beta
             -   Release
 
+        *   -   2.10
+            -   n/a
+            -   2.10.0-beta1
+            -   not released yet
+
         *   -   2.8
             -   2.8.0
             -   :doc:`2.8.1 <release/2.8.1>`
-            -   not released yet
+            -   2.8.2
 
         *   -   2.7
             -   2.7.0
@@ -111,7 +118,8 @@ Release notes for series before 1.10 are also available:
     :hidden:
 
     release/policy
-    release/new-policy
+    release/legacy-policy
+    release/major-featuresg
     release/2.8.1
     release/2.7.2
     release/2.7.1

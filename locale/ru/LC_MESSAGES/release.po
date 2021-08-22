@@ -1,6 +1,6 @@
 
 msgid "Release notes"
-msgstr "Примечания к версиям"
+msgstr "Описания версий"
 
 msgid ""
 "Since version 2.10, there's a :doc:`new release policy for Tarantool "
@@ -31,19 +31,18 @@ msgstr ""
 "версионирования <release/legacy-policy>`:"
 
 msgid "MAJOR_VERSION.RELEASE_SERIES.RELEASE"
-msgstr "ОСНОВНАЯ_ВЕРСИЯ.СЕРИЯ_ВЫПУСКОВ.ВЫПУСК"
+msgstr "MAJOR_VERSION.RELEASE_SERIES.RELEASE"
 
 msgid ""
 "Below is the table listing all Tarantool versions starting from 1.10.0 up to"
 " the current latest versions. Each link leads to the release notes page of "
 "the corresponding version:"
 msgstr ""
-"Ниже приводится таблица, в которой перечислены все версии Tarantool, начиная"
-" с версии 1.10.0 и заканчивая действующими последними версиями. Каждая "
-"ссылка ведёт на страницу примечаний к соответствующей версии:"
+"В таблице ниже перечислены все версии Tarantool с 1.10.0 до последних "
+"актуальных. Каждая ссылка ведёт на страницу описания соответствующей версии."
 
 msgid "Release Series"
-msgstr "Серия выпусков"
+msgstr "Серия"
 
 msgid "Alpha"
 msgstr "Альфа"
@@ -52,7 +51,19 @@ msgid "Beta"
 msgstr "Бета"
 
 msgid "Release"
-msgstr "Выпуск"
+msgstr "Релиз"
+
+msgid "2.10"
+msgstr "2.10"
+
+msgid "n/a"
+msgstr "--"
+
+msgid "2.10.0-beta1"
+msgstr "2.10.0-beta1"
+
+msgid "not released yet"
+msgstr "еще не состоялся"
 
 msgid "2.10"
 msgstr "2.10"
@@ -183,7 +194,7 @@ msgstr ""
 "GitHub."
 
 msgid "Release notes for series before 1.10 are also available:"
-msgstr "Также доступны примечания к версиям ниже 1.10:"
+msgstr "Также доступны описания серий ранее 1.10:"
 
 msgid ":doc:`release/1.9`"
 msgstr ":doc:`release/1.9`"
