@@ -34,6 +34,12 @@ data layout, client-server protocol, and replication protocol.
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
+There are changes labeled with **[Breaking change]**. It means that the
+old behavior was considered error-prone and therefore changed to protect
+users from unintended mistakes. However, there is a little probability
+that someone can lean on the old behavior, and this label is to bring
+attention to the things that have been changed.
+
 New and updated features
 ------------------------
 
@@ -117,7 +123,7 @@ Core
     resulted in unexpected spurious wake-ups. Calling these functions
     right before ``fiber.create()`` in Lua or ``fiber_start()`` in C
     could lead to a crash (in debug build) or undefined behaviour (in
-    release build). (:tarantool-issue:`6043`)
+    release build) (:tarantool-issue:`6043`).
     
     There was a single use case for the previous behaviour: rescheduling
     in the same event loop iteration, which is not the same as
