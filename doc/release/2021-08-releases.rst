@@ -24,6 +24,15 @@ Write applications with interactive transactions in the programming language of 
 Interactive transactions are now a part of iproto,
 enabling applications in any programming language to use them.
 
+Compatibility
+-------------
+
+Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
+data layout, client-server protocol, and replication protocol.
+
+`Upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 2.x series.
 
 New and updated features
 ------------------------
@@ -366,14 +375,3 @@ MVCC
 -   Fixed a loss of tuple after a conflict exception (:tarantool-issue:`6132`).
 
 -   Fixed a segfault in update/delete of the same tuple (:tarantool-issue:`6021`).
-
-
-Compatibility
--------------
-
-Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
-data layout, client-server protocol, and replication protocol.
-
-`Upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
-using the ``box.schema.upgrade()`` procedure to unlock all the new
-features of the 2.x series.
