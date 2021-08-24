@@ -1,0 +1,366 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1802" height="842" viewBox="-0.5 -0.5 1802 842">
+  <style type="text/css">
+    .arena { display: initial; }
+    .spaces { display: initial; }
+    .tuples { display: initial; }
+    .index { display: initial; }
+
+    .coro { display:initial; }
+    .coro .ar { display: none; }
+      .ev {display: initial; }
+      .fibers { display: initial; }
+      .coro .fib2space { display: initial; }
+      .coro .fib2ev { display: initial; }
+      .coro .ev2fib { display: initial; }
+      .channels, .channels .ar { display: initial; }
+
+    .networking { display: initial; }
+    .input { display: initial; }
+
+    .xlogs { display:initial; }
+
+    .snapshoting { display:initial; }
+      .snapshot  { display:initial; }
+      .snap-view { display:initial; }
+      .snap-fio  { display:initial; }
+
+    .replica { display:initial; }
+
+    .replication { display:initial; }
+      .relay { display:initial; }
+      .applier { display:initial; }
+    
+    .replica .xlogs { display:initial; }
+
+  </style>
+  <g pointer-events="all">
+    <g class="input">
+      <path class="cloud" fill="#ed3833" d="M185.5 73.51c-6-.51-11.25 1.64-14.79 4.77-.01.02-.02.03-.03.04-5.25 5-6.76 10.36-6.61 15.57-2.35.84-4.66 1.93-6.35 3.65-.02.03-.05.05-.07.08-2.57 3-4.06 7.28-3.55 11.98.01.03.01.06.02.09.64 3.67 2.74 6.53 5.3 8.42 2.55 1.9 5.54 2.89 8.25 2.89h8.76v-2.9h-8.76c-1.97 0-4.47-.79-6.52-2.32-2.05-1.52-3.65-3.71-4.16-6.56-.4-3.85.82-7.3 2.83-9.66 1.39-1.4 3.69-2.53 6.12-3.31.64-.21 1.06-.82 1.01-1.49-.37-4.94.67-9.5 5.71-14.32 3.96-3.5 10.47-5.66 17.98-2.77 4.82 2.07 8.34 6.58 10.22 11.38.18.48.61.82 1.11.9.5.09 1.01-.1 1.35-.49.89-1.05 1.9-1.93 3.11-2.35 1.2-.42 2.68-.47 4.82.37 2.51 1.48 3.5 4.89 3.71 7.39.06.66.54 1.2 1.19 1.31 4.47.81 7.62 2.9 9.52 6.06 1.57 3.16 1.32 8.13-.27 11.26-2.06 3.18-5.55 4.6-10.15 4.6h-8.23v2.9h8.23c5.26 0 9.97-1.8 12.64-5.98.03-.04.05-.08.07-.12 2.1-4.07 2.45-9.73.29-14.02-.01-.03-.03-.06-.05-.09-2.18-3.65-5.87-6.1-10.5-7.18-.4-2.95-1.58-6.73-5.08-8.71-.06-.04-.12-.07-.18-.09-2.71-1.09-5.06-1.12-6.97-.44-1.13.39-2.03 1.02-2.83 1.71-2.24-4.64-5.81-8.93-10.88-11.1-.02 0-.03-.01-.05-.01-2.13-.83-4.21-1.29-6.21-1.46zm.35 44.59v2.9h11.86v-2.9zm-4.57-25.74c-.38.01-.74.16-1.01.43l-9.08 9.07 2.06 2.06 6.6-6.6v23.6h2.9V97.34l6.53 6.57 2.06-2.04-9.01-9.08c-.28-.27-.65-.43-1.05-.43zm21.18 27.19c-.38 0-.74-.16-1.01-.42l-9.08-9.07 2.05-2.06 6.6 6.59V93.93h2.91v20.65l6.52-6.58 2.07 2.05-9.01 9.07c-.28.28-.66.44-1.05.43z"/>
+      <g class="ar">
+        <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M233.02 101.18H261q10 0 20-.01l21.63-.01"/>
+        <path fill="#ed3833" stroke="#ed3833" stroke-miterlimit="10" d="M307.88 101.16l-7 3.5 1.75-3.5-1.75-3.5z"/>
+      </g>
+    </g>
+    <g class="master">
+      <g class="tx">
+        <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M341 181L483.32 38.68q17.68-17.68 35.36 0l284.64 284.64q17.68 17.68 0 35.36L518.68 643.32q-17.68 17.68-35.36 0L198.68 358.68q-17.68-17.68 0-35.36z"/>
+        <text x="501" y="347" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+          TX
+        </text>
+      </g>
+      <g class="arena">
+        <g transform="rotate(-45 591 191)">
+          <text x="591" y="197" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            Arena
+          </text>
+        </g>
+        <path stroke="#ed3833" stroke-dasharray="2 4" stroke-miterlimit="10" stroke-width="2" d="M541.94 261.94l79.07-79.06q0 0 0 0l158.12 158.13q0 0 0 0L621.01 499.13q0 0 0 0L462.88 341.01q0 0 0 0z"/>
+        <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M548.5 268.5L621 196q0 0 0 0l145 145q0 0 0 0L621 486q0 0 0 0L476 341q0 0 0 0z"/>
+
+        <g class="spaces">
+          <rect width="80" height="100" x="611" y="291" stroke="#ed3833" stroke-width="2" rx="5.6" ry="5.6"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M611 301h80M621 291v100"/>
+          <rect width="80" height="100" x="601" y="298.5" stroke="#ed3833" stroke-width="2" rx="5.6" ry="5.6"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M601 308.5h80M611 298.5v100"/>
+        </g>
+
+        <g stroke="#ed3833" class="tuples">
+          <path fill="none" stroke-width="2" d="M621 319h50v10h-50z"/>
+          <circle cx="631" cy="324" r="2" stroke-width="1"/>
+          <circle cx="646" cy="324" r="2" stroke-width="1"/>
+          <circle cx="661" cy="324" r="2" stroke-width="1"/>
+          <path fill="none" stroke-width="2" d="M621 334h50v10h-50z"/>
+          <circle cx="631" cy="339" r="2" stroke-width="1"/>
+          <circle cx="646" cy="339" r="2" stroke-width="1"/>
+          <circle cx="661" cy="339" r="2" stroke-width="1"/>
+          <path fill="none" stroke-width="2" d="M621 349h50v10h-50z"/>
+          <circle cx="631" cy="354" r="2" stroke-width="1"/>
+          <circle cx="646" cy="354" r="2" stroke-width="1"/>
+          <circle cx="661" cy="354" r="2" stroke-width="1"/>
+          <path fill="none" stroke-width="2" d="M621 364h50v10h-50z"/>
+          <circle cx="631" cy="369" r="2" stroke-width="1"/>
+          <circle cx="646" cy="369" r="2" stroke-width="1"/>
+          <circle cx="661" cy="369" r="2" stroke-width="1"/>
+          <path fill="none" stroke-width="2" d="M621 379h50v10h-50z"/>
+          <circle cx="631" cy="384" r="2" stroke-width="1"/>
+          <circle cx="646" cy="384" r="2" stroke-width="1"/>
+          <circle cx="661" cy="384" r="2" stroke-width="1"/>
+        </g>
+
+        <g stroke="#ed3833" class="index">
+          <g stroke-width="2">
+            <circle cx="586" cy="306" r="5"/>
+            <circle cx="586" cy="326" r="5"/>
+            <circle cx="586" cy="346" r="5"/>
+            <circle cx="586" cy="366" r="5"/>
+            <circle cx="586" cy="386" r="5"/>
+            <circle cx="556" cy="306" r="5"/>
+            <circle cx="556" cy="336" r="5"/>
+            <circle cx="556" cy="366" r="5"/>
+            <circle cx="526" cy="306" r="5"/>
+          </g>
+          <g stroke-miterlimit="10">
+            <path d="M561 306h20M560.16 308.77l21.68 14.46M560.74 337.58l20.52 6.84M559.54 339.54l22.92 22.92M560.16 368.77l21.68 14.46M529.54 309.54l22.92 22.92M528.17 310.51l25.59 51.02M531 306h20"/>
+          </g>
+        </g>
+
+      </g>
+      <g class="networking">
+        <g class="iproto">
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M341 61l22.32-22.32q17.68-17.68 35.36 0l44.64 44.64q17.68 17.68 0 35.36l-44.64 44.64q-17.68 17.68-35.36 0l-44.64-44.64q-17.68-17.68 0-35.36z"/>
+          <text x="381" y="107" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            IPROTO
+          </text>
+          <path class="ar iproto2coro" fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M379.88 172.84L381 221"/>
+        </g>
+      </g>
+
+      <g class="coro">
+        <g class="ev">
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M265.1 295.29L287.84 281"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M265.1 295.29l22.74 11.69"/>
+          <ellipse cx="276.47" cy="339.46" fill="none" stroke="#ed3833" stroke-width="2" rx="45.47" ry="45.469375"/>
+          <text x="276" y="345" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            EV
+          </text>
+        </g>
+        <g class="fibers">
+          <g class="f">
+            <circle cx="381" cy="253.5" r="32.5" stroke="#ed3833" stroke-width="2"/>
+            <text x="381" y="260" fill="#FFF" font-family="Georgia" font-size="20" font-style="italic" text-anchor="middle">
+              f
+            </text>
+          </g>
+          <g class="f">
+            <circle cx="381" cy="341" r="32.5" stroke="#ed3833" stroke-width="2"/>
+            <text x="381" y="347" fill="#FFF" font-family="Georgia" font-size="20" font-style="italic" text-anchor="middle">
+              f
+            </text>
+          </g>
+          <g class="f">
+            <circle cx="381" cy="431" r="32.5" stroke="#ed3833" stroke-width="2"/>
+            <text x="381" y="437" fill="#FFF" font-family="Georgia" font-size="20" font-style="italic" text-anchor="middle">
+              f
+            </text>
+          </g>
+        </g>
+
+        <g class="ar fib2space">
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M413.5 254H611q10 0 10 10v28.13"/>
+          <path fill="#ed3833" stroke="#ed3833" stroke-miterlimit="10" d="M621 292.38l-3.5-7 3.5 1.75 3.5-1.75z"/>
+        </g>
+        <g class="ar fib2ev">
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M348.5 341h-6.75q-6.75 0-10.05-.07l-3.3-.07"/>
+          <path fill="#ed3833" stroke="#ed3833" stroke-miterlimit="10" d="M323.15 340.86l7-3.5-1.75 3.5 1.75 3.5z"/>
+        </g>
+        <g class="ar fib2ev">
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M350.08 421H291q-10 0-10-10v-15.13q0-10 .08-6.82l.08 3.18"/>
+          <path fill="#ed3833" stroke="#ed3833" stroke-miterlimit="10" d="M281.19 386.98l3.46 7.02-3.49-1.77-3.51 1.73z"/>
+        </g>
+        <g class="ar ev2fib">
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M292.57 296.07h.21q.22 0 .22-10V264q0-10 10-10h39.14"/>
+          <path fill="#ed3833" stroke="#ed3833" stroke-miterlimit="10" d="M347.39 254l-7 3.5 1.75-3.5-1.75-3.5z"/>
+        </g>
+
+        <g class="channels">
+          <g class="chan">
+            <path fill="none" stroke="#ed3833" stroke-width="2" d="M431 281h10v50h-10z"/>
+            <path stroke="#ed3833" stroke-width="1" d="M431 291h10v10h-10zM431 311h10v10h-10z"/>
+          </g>
+          <g class="ar fib2chan">
+            <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M413.5 253.5H426q10 0 10 10v11.13"/>
+            <path fill="#ed3833" stroke="#ed3833" stroke-miterlimit="10" d="M436 279.88l-3.5-7 3.5 1.75 3.5-1.75z"/>
+          </g>
+          <g class="ar chan2f">
+            <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M436 331v5q0 5-8.07 5h-8.06"/>
+            <path fill="#ed3833" stroke="#ed3833" stroke-miterlimit="10" d="M414.62 341l7-3.5-1.75 3.5 1.75 3.5z"/>
+          </g>
+          <g class="ar chan2f">
+            <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M436 331v90q0 10-8.07 10h-8.06"/>
+            <path fill="#ed3833" stroke="#ed3833" stroke-miterlimit="10" d="M414.62 431l7-3.5-1.75 3.5 1.75 3.5z"/>
+          </g>
+        </g>
+
+      </g>
+
+      <g class="snapshoting">
+        <g class="snapshot">
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M181 559.67c0-10.31 35.82-18.67 80-18.67 21.22 0 41.57 1.97 56.57 5.47s23.43 8.25 23.43 13.2v82.66c0 10.31-35.82 18.67-80 18.67s-80-8.36-80-18.67z"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M341 559.67c0 10.32-35.82 18.68-80 18.68s-80-8.36-80-18.68"/>
+          <text x="261" y="623" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            snapshot
+          </text>
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M241 554.75l20-3.75q0 0 0 0l40 7.5q0 0 0 0l-40 7.5q0 0 0 0l-40-7.5q0 0 0 0z"/>
+        </g>
+
+        <g class="snap-view">
+          <path class="arena-snap-ar" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M545.28 410.95l4.53 4.6-54.83 53.93 2.36 2.4-10.35.94 1.11-10.34 2.36 2.4z"/>
+
+          <g class="snapd">
+            <circle cx="463.5" cy="496" r="32.5" stroke="#ed3833" stroke-width="2"/>
+            <g fill="#FFF" font-family="Helvetica" font-size="14" text-anchor="middle">
+              <text x="464" y="490">
+                snap
+              </text>
+              <text x="464" y="506">
+                daemon
+              </text>
+            </g>
+          </g>
+        </g>
+        <g class="snap-fio">
+          <path class="snap-fio-ar" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M460.27 528.94l6.45.12-.53 27.46 3.37.06-6.75 7.92-6.44-8.17 3.37.06z"/>
+
+          <g class="fio">
+            <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M438.5 583.5L451 571q12.5-12.5 30.18 5.18l16.16 16.16q16.16 16.16-1.52 33.84l-16.16 16.16q-16.16 16.16-33.84-1.52l-16.16-16.16Q413.5 608.5 426 596z"/>
+            <text x="464" y="615" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+              fio
+            </text>
+          </g>
+
+          <path class="fio-snap-ar" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M419.81 606.17l-.02 6.45-70.09-.21-.01 3.37-8.03-6.62 8.07-6.57-.02 3.37z"/>
+        </g>
+      </g>
+
+      <g class="xlogs">
+        <g>
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M571 568.5l22.32-22.32q17.68-17.68 35.36 0l44.64 44.64q17.68 17.68 0 35.36l-44.64 44.64q-17.68 17.68-35.36 0l-44.64-44.64q-17.68-17.68 0-35.36z"/>
+          <text x="611" y="615" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            WAL
+          </text>
+        </g>
+        <g class="xlog">
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M701 619.67c0-10.31 31.34-18.67 70-18.67 18.57 0 36.37 1.97 49.5 5.47 13.13 3.5 20.5 8.25 20.5 13.2v22.66c0 4.95-7.37 9.7-20.5 13.2-13.13 3.5-30.93 5.47-49.5 5.47s-36.37-1.97-49.5-5.47c-13.13-3.5-20.5-8.25-20.5-13.2z"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M841 619.67c0 4.96-7.37 9.71-20.5 13.21-13.13 3.5-30.93 5.47-49.5 5.47s-36.37-1.97-49.5-5.47c-13.13-3.5-20.5-8.25-20.5-13.21"/>
+          <text x="771" y="654" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            xlog
+          </text>
+        </g>
+        <g class="xlog">
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M701 579.67c0-10.31 31.34-18.67 70-18.67 18.57 0 36.37 1.97 49.5 5.47 13.13 3.5 20.5 8.25 20.5 13.2v22.66c0 4.95-7.37 9.7-20.5 13.2-13.13 3.5-30.93 5.47-49.5 5.47s-36.37-1.97-49.5-5.47c-13.13-3.5-20.5-8.25-20.5-13.2z"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M841 579.67c0 4.96-7.37 9.71-20.5 13.21-13.13 3.5-30.93 5.47-49.5 5.47s-36.37-1.97-49.5-5.47c-13.13-3.5-20.5-8.25-20.5-13.21"/>
+          <text x="771" y="614" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            xlog
+          </text>
+        </g>
+
+        <path class="wal2xlog" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M676.77 594.13l.02-6.45 15.68.06.01-3.37 8.02 6.63-8.07 6.56.01-3.37z"/>
+        <path class="snap2wal" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M607.62 476.35h6.46l-.01 53.21h3.36l-6.59 8.04-6.59-8.05h3.37z"/>
+
+      </g>
+
+      <g class="replication">
+        <g class="relay">
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M731 408.5l22.32-22.32q17.68-17.68 35.36 0l44.64 44.64q17.68 17.68 0 35.36l-44.64 44.64q-17.68 17.68-35.36 0l-44.64-44.64q-17.68-17.68 0-35.36z"/>
+          <text x="771" y="455" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            RELAY
+          </text>        
+        </g>
+
+        <path class="xlog2relay" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M774.22 560.47l-6.45.06-.25-30.82-3.36.03 6.52-8.1 6.66 7.99-3.37.03z"/>
+      </g>
+
+    </g>
+
+    <g class="replica">
+      <g class="tx">
+        <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1141 181l142.32-142.32q17.68-17.68 35.36 0l284.64 284.64q17.68 17.68 0 35.36l-284.64 284.64q-17.68 17.68-35.36 0L998.68 358.68q-17.68-17.68 0-35.36z"/>
+      </g>
+      <g class="arena">
+        <path stroke="#ed3833" stroke-dasharray="2 4" stroke-miterlimit="10" stroke-width="2" d="M1343.06 265.06l79.07-79.06q0 0 0 0l158.12 158.13q0 0 0 0l-158.12 158.12q0 0 0 0L1264 344.13q0 0 0 0z"/>
+        <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1349.62 271.62l72.5-72.5q0 0 0 0l145 145q0 0 0 0l-145 145q0 0 0 0l-145-145q0 0 0 0z"/>
+        <g class="spaces">
+          <rect width="80" height="100" x="1412.12" y="294.12" stroke="#ed3833" stroke-width="2" rx="5.6" ry="5.6"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1412.12 304.12h80M1422.12 294.12v100"/>
+          <rect width="80" height="100" x="1402.12" y="301.62" stroke="#ed3833" stroke-width="2" rx="5.6" ry="5.6"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1402.12 311.62h80M1412.12 301.62v100"/>
+        </g>
+        <g class="tuples">
+          <path fill="none" stroke="#ed3833" stroke-width="2" d="M1422.12 322.12h50v10h-50z"/>
+          <circle cx="1432.12" cy="327.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1447.12" cy="327.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1462.12" cy="327.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <path fill="none" stroke="#ed3833" stroke-width="2" d="M1422.12 337.12h50v10h-50z"/>
+          <circle cx="1432.12" cy="342.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1447.12" cy="342.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1462.12" cy="342.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <path fill="none" stroke="#ed3833" stroke-width="2" d="M1422.12 352.12h50v10h-50z"/>
+          <circle cx="1432.12" cy="357.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1447.12" cy="357.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1462.12" cy="357.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <path fill="none" stroke="#ed3833" stroke-width="2" d="M1422.12 367.12h50v10h-50z"/>
+          <circle cx="1432.12" cy="372.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1447.12" cy="372.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1462.12" cy="372.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <path fill="none" stroke="#ed3833" stroke-width="2" d="M1422.12 382.12h50v10h-50z"/>
+          <circle cx="1432.12" cy="387.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1447.12" cy="387.12" r="2" stroke="#ed3833" stroke-width="1"/>
+          <circle cx="1462.12" cy="387.12" r="2" stroke="#ed3833" stroke-width="1"/>
+        </g>
+        <g class="index">
+          <circle cx="1387.12" cy="309.12" r="5" stroke="#ed3833" stroke-width="2"/>
+          <circle cx="1387.12" cy="329.12" r="5" stroke="#ed3833" stroke-width="2"/>
+          <circle cx="1387.12" cy="349.12" r="5" stroke="#ed3833" stroke-width="2"/>
+          <circle cx="1387.12" cy="369.12" r="5" stroke="#ed3833" stroke-width="2"/>
+          <circle cx="1387.12" cy="389.12" r="5" stroke="#ed3833" stroke-width="2"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M1362.12 309.12h20M1361.28 311.89l21.68 14.46"/>
+          <circle cx="1357.12" cy="309.12" r="5" stroke="#ed3833" stroke-width="2"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M1361.86 340.7l20.52 6.84M1360.66 342.66l22.92 22.92"/>
+          <circle cx="1357.12" cy="339.12" r="5" stroke="#ed3833" stroke-width="2"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M1361.28 371.89l21.68 14.46"/>
+          <circle cx="1357.12" cy="369.12" r="5" stroke="#ed3833" stroke-width="2"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" d="M1330.66 312.66l22.92 22.92M1329.29 313.63l25.59 51.02M1332.12 309.12h20"/>
+          <circle cx="1327.12" cy="309.12" r="5" stroke="#ed3833" stroke-width="2"/>
+        </g>
+      </g>
+
+      <g class="replication">
+        <path class="replication" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M844.78 452.05v-6.46l297.67-.31v-3.36l8.05 6.58-8.04 6.6v-3.37z"/>
+        <g class="applier">
+          <circle cx="1183.5" cy="448.5" r="32.5" stroke="#ed3833" stroke-width="2"/>
+          <text x="1184" y="455" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            applier
+          </text>
+          <path class="appl-ar" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M1210.36 429.04l-4.29-4.81 73.54-65.52-2.24-2.52 10.4-.43-1.62 10.28-2.24-2.52z"/>
+        </g>
+      </g>
+
+      <g class="iproto">
+        <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1151 61l22.32-22.32q17.68-17.68 35.36 0l44.64 44.64q17.68 17.68 0 35.36l-44.64 44.64q-17.68 17.68-35.36 0l-44.64-44.64q-17.68-17.68 0-35.36z"/>
+        <text x="1191" y="107" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+          IPROTO
+        </text>
+      </g>
+
+      <g class="xlogs">
+        <path class="arena-wal-ar" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M1407.62 476.35h6.46l-.01 53.21h3.36l-6.59 8.04-6.59-8.05h3.37z"/>
+
+        <g class="wal">
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1371 568.5l22.32-22.32q17.68-17.68 35.36 0l44.64 44.64q17.68 17.68 0 35.36l-44.64 44.64q-17.68 17.68-35.36 0l-44.64-44.64q-17.68-17.68 0-35.36z"/>
+          <text x="1411" y="615" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            WAL
+          </text>
+        </g>
+        <g class="xlog">
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1501 619.67c0-10.31 31.34-18.67 70-18.67 18.57 0 36.37 1.97 49.5 5.47 13.13 3.5 20.5 8.25 20.5 13.2v22.66c0 4.95-7.37 9.7-20.5 13.2-13.13 3.5-30.93 5.47-49.5 5.47s-36.37-1.97-49.5-5.47c-13.13-3.5-20.5-8.25-20.5-13.2z"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1641 619.67c0 4.96-7.37 9.71-20.5 13.21-13.13 3.5-30.93 5.47-49.5 5.47s-36.37-1.97-49.5-5.47c-13.13-3.5-20.5-8.25-20.5-13.21"/>
+          <text x="1571" y="654" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            xlog
+          </text>
+        </g>
+        <g class="xlog">
+          <path stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1501 579.67c0-10.31 31.34-18.67 70-18.67 18.57 0 36.37 1.97 49.5 5.47 13.13 3.5 20.5 8.25 20.5 13.2v22.66c0 4.95-7.37 9.7-20.5 13.2-13.13 3.5-30.93 5.47-49.5 5.47s-36.37-1.97-49.5-5.47c-13.13-3.5-20.5-8.25-20.5-13.2z"/>
+          <path fill="none" stroke="#ed3833" stroke-miterlimit="10" stroke-width="2" d="M1641 579.67c0 4.96-7.37 9.71-20.5 13.21-13.13 3.5-30.93 5.47-49.5 5.47s-36.37-1.97-49.5-5.47c-13.13-3.5-20.5-8.25-20.5-13.21"/>
+          <text x="1571" y="614" fill="#FFF" font-family="Helvetica" font-size="20" text-anchor="middle">
+            xlog
+          </text>
+        </g>
+        <path class="wal-xlog-ar" fill="#333" stroke="#ed3833" stroke-linejoin="round" stroke-miterlimit="10" d="M1476.77 594.13l.02-6.45 15.68.06.01-3.37 8.02 6.63-8.07 6.56.01-3.37z"/>
+      </g>
+    </g>
+  </g>
+  <switch>
+    <a target="_blank" transform="translate(0 -5)" xlink:href="https://desk.draw.io/support/solutions/articles/16000042487">
+    </a>
+  </switch>
+</svg>

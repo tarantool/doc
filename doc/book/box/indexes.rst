@@ -251,6 +251,8 @@ then it also changes the index keys defined for the tuple.
     restrictions. Read more about index operations in reference for
     :doc:`box.index submodule </reference/reference_lua/box_index>`.
 
+.. _index-types:
+
 --------------------------------------------------------------------------------
 Index types
 --------------------------------------------------------------------------------
