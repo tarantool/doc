@@ -119,8 +119,8 @@ Core
 
 -   **[Breaking change]** ``fiber.wakeup()`` in Lua and
     ``fiber_wakeup()`` in C became NOP on the currently running fiber.
-    Previously they allowed to “ignore” the next yield or sleep, which
-    resulted in unexpected spurious wake-ups. Calling these functions
+    Previously they allowed “ignoring” the next yield or sleep, which
+    resulted in unexpected erroneous wake-ups. Calling these functions
     right before ``fiber.create()`` in Lua or ``fiber_start()`` in C
     could lead to a crash (in debug build) or undefined behaviour (in
     release build) (:tarantool-issue:`6043`).
@@ -145,9 +145,9 @@ Core
         fiber.yield()
 
     To get the same effect in C, one can now use ``fiber_reschedule()``.
-    In Lua, it is impossible now to reschedule the current fiber directly
+    In Lua, it is now impossible to reschedule the current fiber directly
     in the same event loop iteration. One can reschedule self
-    through a second fiber, but it is strongly discouraged to do so:
+    through a second fiber, but it is strongly discouraged:
 
     ..  code:: lua
     
@@ -161,34 +161,34 @@ Core
 
 -   ``fiber_join()`` now checks if the argument is a joinable fiber.
     The absence of this check could lead to unpredictable results. Note that
-    the issue affects C level only; in Lua interface ``fiber:join()`` the
-    protection already is turned on
+    the change affects the C level only; in the Lua interface, ``fiber:join()``
+    protection is already enabled
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 
 -   Now Tarantool yields when it scans ``.xlog`` files for the latest
-    applied vclock and when it finds the right place in ``.xlog``\ s to
+    applied vclock and finds the right place in the ``.xlog``\ s to
     start recovering. It means that the instance becomes responsive
-    right after the ``box.cfg`` call even when an empty ``.xlog`` was not
+    right after the ``box.cfg`` call even if an empty ``.xlog`` was not
     created on the previous exit.
 
     This fix also prevents the relay from timing out when a freshly subscribed
     replica needs rows from the end of a relatively long (hundreds of
-    MBs) ``.xlog``
+    MBs) ``.xlog`` file
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5979`).
 
 -   The counter in ``x.yM rows processed`` log messages no longer
     resets on each newly recovered ``xlog``
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 
--   Fixed a crash in JSON update on tuple/space, where update included
-    two or more operations, which accessed fields in reversed order, and
+-   Fixed a crash in JSON update on tuple/space, where the update included
+    two or more operations that accessed fields in reversed order and
     these fields didn’t exist. Example:
     ``box.tuple.new({1}):update({{'=', 4, 4}, {'=', 3, 3}})``
     (:tarantool-release:`2.8.2`, :tarantool-issue:`6069`).
 
 -   Fixed invalid results of the ``json`` module’s ``encode``
     function when it was used from the Lua garbage collector. For
-    instance, this could happen in functions used as ``ffi.gc()``
+    example, this could happen in functions used as ``ffi.gc()``
     (:tarantool-issue:`6050`).
 
 -   Added a check for user input of the number of iproto threads: value
@@ -202,82 +202,81 @@ Core
 -   Tarantool now always removes the Unix socket correctly when it exits
     (:tarantool-release:`2.8.2`).
 
--   Now simultaneously updating a key in different transactions do not result in a crash in MVCC
+-   Simultaneously updating a key in different transactions
+    does not longer result in a MVCC crash
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6131`).
 
--   Fixed a bug when memtx MVCC crashed during reading uncommitted DDL
+-   Fixed a bug where memtx MVCC crashed during reading uncommitted DDL
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5515`).
 
--   Fixed a bug when memtx MVCC crashed if an index was created in
+-   Fixed a bug where memtx MVCC crashed if an index was created in
     transaction
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6137`).
 
--   Fixed segmentation fault with MVCC when the entire space was updated
-    concurrently
+-   Fixed a segmentation fault that arose
+    when using MVCC and updating the entire space concurrently
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5892`).
 
--   Fixed a bug with failed assertion after the stress update of the same
+-   Fixed a bug with failed assertion after a stress update of the same
     key
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6193`).
 
--   Fixed a crash if ``box.snapshot` is called during an incomplete
+-   Fixed a crash where ``box.snapshot`` could be called during an incomplete
     transaction
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6229`).
 
--   Fixed console client connection breakage if request timed out
+-   Fixed console client connection failure in case of request timeout
     (:tarantool-issue:`6249`).
 
--   Added missing broadcast to ``net.box.future:discard()`` so that now
-    fibers waiting for a request result are woken up when the request is
+-   Added a missing broadcast to ``net.box.future:discard()`` so that now
+    fibers waiting for a request result wake up when the request is
     discarded (:tarantool-issue:`6250`).
 
 -   ``box.info.uuid``, ``box.info.cluster.uuid``, and
-    ``tostring(decimal)`` with any decimal number in Lua sometimes could
-    return garbage if ``__gc`` handlers are used in the user’s code
+    ``tostring(decimal)`` with any decimal number in Lua could sometimes
+    return garbage if there were ``__gc`` handlers in the user’s code
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6259`).
 
--   Fixed an error message that happened in a particular case during
+-   Fixed an error message that appeared in a particular case during
     MVCC operation (:tarantool-issue:`6247`).
 
 -   Fixed a repeatable read violation after delete
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6206`).
 
--   Fixed a bug when the MVCC engine didn't track hash ``select{}``
+-   Fixed a bug where the MVCC engine didn't track the ``select{}`` hash
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6040`).
 
 -   Fixed a crash in MVCC after a drop of space with several indexes
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6274`).
 
--   Fixed a bug when GC at some state could leave tuples in secondary
-    indexes
+-   Fixed a bug where the GC could leave tuples in secondary indexes
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6234`).
 
--   Disallow yields after DDL operations in MVCC mode. It fixes crash
-    which takes place when several transactions refer to system spaces
+-   Disallow yields after DDL operations in MVCC mode. It fixes a crash
+    that took place when several transactions referred to system spaces
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5998`).
 
--   Fixed bug in MVCC connected which happens on rollback after DDL
-    operation
+-   Fixed a bug in MVCC that happened on rollback after a DDL operation
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5998`).
 
--   Fixed a bug when rollback resulted in unserializable behaviour
+-   Fixed a bug where rollback resulted in unserializable behavior
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6325`).
 
 Vinyl
 ~~~~~
 
--   Fixed possible keys divergence during secondary index build which
-    might lead to missing tuples in it
+-   Fixed possible keys divergence during secondary index build, which
+    might lead to missing tuples
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6045`).
 
--   Fixed a race between Vinyl garbage collection and compaction
-    resulting in broken vylog and recovery
+-   Fixed the race between Vinyl garbage collection and compaction that
+    resulted in a broken vylog and recovery failure
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5436`).
 
 Replication
 ~~~~~~~~~~~
 
--   Fixed use after free in relay thread when using elections
+-   Fixed the use after free in the relay thread when using elections
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6031`).
 
 -   Fixed a possible crash when a synchronous transaction was followed by
@@ -285,20 +284,20 @@ Replication
     written
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6057`).
 
--   Fixed an error when a replica, at attempt to subscribe to a foreign
-    cluster (with different replicaset UUID), didn’t notice it is impossible,
-    and instead was stuck in an infinite retry loop printing
-    a ``too earle subscribe`` error
+-   Fixed an error where a replica, while attempting to subscribe to a foreign
+    cluster (with a different replicaset UUID), didn’t notice it is impossible
+    and instead became stuck in an infinite retry loop printing
+    a ``TOO_EARLY_SUBSCRIBE`` error
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6094`).
 
--   Fixed an error when a replica, at attempt to join a cluster with
+-   Fixed an error where a replica, while attempting to join a cluster with
     exclusively read-only replicas available, just booted its own replicaset,
     instead of failing or retrying. Now it fails with
     an error about the other nodes being read-only so they can’t register
-    it
+    the new replica
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5613`).
 
--   If an error occurred during the appliance of a transaction received
+-   If an error occurred while a transaction was being applied that was received
     from a remote instance via replication, it was always reported as
     ``Failed to write to disk`` regardless of what really happened. Now the
     correct error is shown. For example, ``Out of memory``, or
@@ -309,34 +308,34 @@ Replication
     when the replica is under high load (:tarantool-issue:`4040`).
 
 -   Fixed a cluster sometimes being unable to bootstrap if it contains
-    nodes with ``election_mode`` ``manual`` or ``voter``
+    nodes with ``election_mode`` set to ``manual`` or ``voter``
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6018`).
 
 -   Fixed a possible crash when ``box.ctl.promote()`` was called in a
-    cluster with more than three instances, happened in debug build. In release
-    build, it could lead to undefined behaviour. It was likely to happen
+    cluster with more than three instances. The crash happened in the debug build.
+    In the release build, it could lead to undefined behaviour. It was likely to happen
     if a new node was added shortly before the promotion
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5430`).
 
 -   Fixed a rare error appearing when MVCC
-    (``box.cfg.memtx_use_mvcc_engine``) was enabled, and more than one
+    (``box.cfg.memtx_use_mvcc_engine``) was enabled and more than one
     replica joined the cluster. The join could fail with the error
-    ``"ER_TUPLE_FOUND: Duplicate key exists in unique index   'primary' in space '_cluster'"``.
+    ``"ER_TUPLE_FOUND: Duplicate key exists in unique index 'primary' in space '_cluster'"``.
     The same could happen at the bootstrap of a cluster having more than three nodes
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5601`).
 
 Raft
 ~~~~
 
--   Fixed a rare crash with the leader election enabled (any mode except
-    ``off``), which could happen if a leader resigned from its role at
-    the same time as some other node was writing something related to the
-    elections to WAL. The crash was in debug build, and in the release
+-   Fixed a rare crash with leader election enabled (any mode except
+    ``off``), which could happen if a leader resigned from its role while
+    another node was writing something elections-related to WAL
+    The crash was in the debug build, and in the release
     build it would lead to undefined behaviour
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6129`).
 
--   Fixed an error when a new replica in a Raft cluster tried to join
-    from a follower instead of a leader and failed with an error
+-   Fixed an error where a new replica in a Raft cluster tried to join
+    from a follower instead of a leader and failed with the error
     ``ER_READONLY`` (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6127`).
 
 ..  _luajit-1:
@@ -344,18 +343,18 @@ Raft
 LuaJIT
 ~~~~~~
 
--   Fixed optimization for single-char strings in ``IR_BUFPUT`` assembly
+-   Fixed optimization for single-char strings in the ``IR_BUFPUT`` assembly
     routine.
 
--   Fixed slots alignment in ``lj-stack`` command output when ``LJ_GC64``
+-   Fixed slots alignment in the ``lj-stack`` command output when ``LJ_GC64``
     is enabled (:tarantool-issue:`5876`).
 
--   Fixed dummy frame unwinding in ``lj-stack`` command.
+-   Fixed dummy frame unwinding in the ``lj-stack`` command.
 
 -   Fixed detection of inconsistent renames even in the presence of sunk
     values (:tarantool-issue:`4252`, :tarantool-issue:`5049`, :tarantool-issue:`5118`).
 
--   Fixed the order VM registers are allocated by LuaJIT frontend in case
+-   Fixed the VM register allocation order provided by LuaJIT frontend in case
     of ``BC_ISGE`` and ``BC_ISGT`` (:tarantool-issue:`6227`).
 
 ..  _lua-1:
@@ -368,34 +367,34 @@ Lua
     Before the fix, it led to undefined behaviour during the next
     usage of this Lua coroutine (:tarantool-issue:`4617`).
 
--   Fixed Lua C API misuse when the error is raised during call results
-    encoding on unprotected coroutine and expected to be caught on the
-    different one that is protected (:tarantool-issue:`6248`).
+-   Fixed a Lua C API misuse when the error is raised during call results
+    encoding in an unprotected coroutine and expected to be caught in a
+    different, protected coroutine (:tarantool-issue:`6248`).
 
 Triggers
 ^^^^^^^^
 
--   Fixed possible crash in case trigger removes itself. Fixed
-    possible crash in case someone destroys trigger when it’s
-    yield (:tarantool-issue:`6266`).
+-   Fixed a possible crash in case trigger removes itself. Fixed a
+    possible crash in case someone destroys a trigger when it
+    yields (:tarantool-issue:`6266`).
 
 ..  _sql-1:
 
 SQL
 ~~~
 
--   User-defined functions can now return VARBINARY to SQL as a result
+-   User-defined functions can now return a VARBINARY result to SQL
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6024`).
 
--   Fixed assert on a cast of DOUBLE value greater than -1.0 and less
-    than 0.0 to INTEGER and UNSIGNED
+-   Fixed assert when a DOUBLE value greater than -1.0 and less
+    than 0.0 is cast to INTEGER and UNSIGNED
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6255`).
 
--   Removed spontaneous conversion from INTEGER to DOUBLE in a field of
+-   Removed spontaneous conversion from INTEGER to DOUBLE in a field of the
     NUMBER type
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5335`).
 
--   All arithmetic operations can now only accept numeric values
+-   All arithmetic operations can now accept numeric values only
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5756`).
 
 MVCC
@@ -404,8 +403,8 @@ MVCC
 -   Fixed MVCC interaction with ephemeral spaces: TX manager now ignores them
     (:tarantool-release:`2.8.2`, :tarantool-issue:`6095`).
 
--   Fixed a loss of tuple after a conflict exception
+-   Fixed loss of tuples after a conflict exception
     (:tarantool-release:`2.8.2`, :tarantool-issue:`6132`).
 
--   Fixed a segfault in update/delete of the same tuple
+-   Fixed a segfault during update/delete of the same tuple
     (:tarantool-release:`2.8.2`, :tarantool-issue:`6021`).
