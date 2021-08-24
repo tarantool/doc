@@ -6,38 +6,38 @@ Date: 2021-08-19
 Introduction
 ------------
 
-Meet the new Tarantool releases in August 2021:
-versions :tarantool-release:`2.8.2`,
-:tarantool-release:`2.7.3` and :tarantool-release:`1.10.11`.
+Meet the new Tarantool releases of August 2021:
+:tarantool-release:`2.8.2`,
+:tarantool-release:`2.7.3`, and :tarantool-release:`1.10.11`.
 
 Automated Raft-based failover out of the box
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Raft-based failover algorithm is now a part of Tarantool, available out of the box.
-Use it to improve the data safety and reliability of Tarantool applications.
+The Raft-based failover algorithm is now a part of Tarantool, available out of the box.
+Use it to improve data safety and reliability of Tarantool applications.
 
-The ability to use interactive transactions with any programming language
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using interactive transactions with any programming language
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Write applications with interactive transactions in the programming language of your choice.
 
-Interactive transactions are now a part of iproto,
-enabling applications in any programming language to use them.
+Interactive transactions are now part of iproto
+and can be used by applications in any programming language.
 
 Compatibility
 -------------
 
-Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
+Tarantool 2.x is backward compatible with Tarantool 1.10.x regarding the binary
 data layout, client-server protocol, and replication protocol.
 
 `Upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
-There are changes labeled with **[Breaking change]**. It means that the
+Some changes are labeled as **[Breaking change]**. It means that the
 old behavior was considered error-prone and therefore changed to protect
-users from unintended mistakes. However, there is a little probability
-that someone can lean on the old behavior, and this label is to bring
+users from unintended mistakes. However, there is a small probability
+that someone can rely on the old behavior, and this label is to bring
 attention to the things that have been changed.
 
 New and updated features
@@ -66,7 +66,7 @@ Lua
 Logging
 ^^^^^^^
 
--   The ``log`` module now supports the symbolic representation of log levels.
+-   The ``log`` module now supports symbolic representation of log levels.
     Now it is possible to specify levels the same way as in
     the ``box.cfg{}`` call
     (:tarantool-release:`2.8.2`, :tarantool-issue:`5882`).
@@ -98,8 +98,8 @@ SQL
     versa
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`4772`, :tarantool-issue:`5852`).
 
--   Fixed a bug due to which a string that is not ``NULL`` terminated
-    could not be cast to ``BOOLEAN``, even if the conversion should be
+-   Fixed a bug where a string that is not ``NULL``-terminated
+    could not be cast to ``BOOLEAN``, even if the conversion would be
     successful according to the rules
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 
