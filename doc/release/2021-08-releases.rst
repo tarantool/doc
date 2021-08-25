@@ -389,7 +389,7 @@ SQL
 
 -   Fixed assert when a DOUBLE value greater than -1.0 and less
     than 0.0 is cast to INTEGER and UNSIGNED
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6255`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6225`).
 
 -   Removed spontaneous conversion from INTEGER to DOUBLE in a field of the
     NUMBER type
