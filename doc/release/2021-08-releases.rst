@@ -166,8 +166,8 @@ Core
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 
 -   Now Tarantool yields when it scans ``.xlog`` files for the latest
-    applied vclock and finds the right place in the ``.xlog``\ s to
-    start recovering. It means that the instance becomes responsive
+    applied vclock and finds the right place to
+    start recovering from. It means that the instance becomes responsive
     right after the ``box.cfg`` call even if an empty ``.xlog`` was not
     created on the previous exit.
 
@@ -297,8 +297,9 @@ Replication
     the new replica
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5613`).
 
--   If an error occurred while a transaction was being applied that was received
-    from a remote instance via replication, it was always reported as
+-   Fixed error reporting associated with transactions
+    received from remote instances via replication.
+    Any error raised while such a transaction was being applied was always reported as
     ``Failed to write to disk`` regardless of what really happened. Now the
     correct error is shown. For example, ``Out of memory``, or
     ``Transaction has been aborted by conflict``, and so on
