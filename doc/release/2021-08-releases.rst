@@ -213,8 +213,8 @@ Core
     transaction thread
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6137`).
 
--   Fixed a segmentation fault that arose
-    when using MVCC and updating the entire space concurrently
+-   Fixed a MVCC segmentation fault that arose
+    when updating the entire space concurrently
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5892`).
 
 -   Fixed a bug with failed assertion after a stress update of the same
@@ -285,7 +285,7 @@ Replication
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6057`).
 
 -   Fixed an error where a replica, while attempting to subscribe to a foreign
-    cluster (with a different replicaset UUID), didn’t notice it is impossible
+    cluster with a different replicaset UUID, didn’t notice it is impossible
     and instead became stuck in an infinite retry loop printing
     a ``TOO_EARLY_SUBSCRIBE`` error
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6094`).
@@ -330,7 +330,7 @@ Raft
 
 -   Fixed a rare crash with leader election enabled (any mode except
     ``off``), which could happen if a leader resigned from its role while
-    another node was writing something elections-related to WAL
+    another node was writing something elections-related to WAL.
     The crash was in the debug build, and in the release
     build it would lead to undefined behaviour
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6129`).
