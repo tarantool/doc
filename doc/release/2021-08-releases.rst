@@ -209,8 +209,8 @@ Core
 -   Fixed a bug where memtx MVCC crashed during reading uncommitted DDL
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5515`).
 
--   Fixed a bug where memtx MVCC crashed if an index was created in
-    transaction
+-   Fixed a bug where memtx MVCC crashed if an index was created in the
+    transaction thread
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6137`).
 
 -   Fixed a segmentation fault that arose
