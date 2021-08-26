@@ -34,11 +34,12 @@ data layout, client-server protocol, and replication protocol.
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
-Some changes are labeled as **[Breaking change]**. It means that the
+Some changes are labeled as **[Breaking change]**.
+It means that the
 old behavior was considered error-prone and therefore changed to protect
-users from unintended mistakes. However, there is a small probability
-that someone can rely on the old behavior, and this label is to bring
-attention to the things that have been changed.
+users from unintended mistakes.
+However, there is a small probability that someone can rely on the old behavior,
+and this label is to bring attention to the things that have been changed.
 
 New and updated features
 ------------------------
@@ -53,7 +54,7 @@ Core
 LuaJIT
 ~~~~~~
 
--   Introduced support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py``
+-   Introduce support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py``
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6224`).
 
 Lua
