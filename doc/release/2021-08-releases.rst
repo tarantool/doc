@@ -35,9 +35,8 @@ using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
 Some changes are labeled as **[Breaking change]**.
-It means that the
-old behavior was considered error-prone and therefore changed to protect
-users from unintended mistakes.
+It means that the old behavior was considered error-prone
+and therefore changed to protect users from unintended mistakes.
 However, there is a small probability that someone can rely on the old behavior,
 and this label is to bring attention to the things that have been changed.
 
