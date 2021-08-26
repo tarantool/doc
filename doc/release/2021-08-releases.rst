@@ -409,3 +409,4 @@ MVCC
 
 -   Fixed a segfault during update/delete of the same tuple
     (:tarantool-release:`2.8.2`, :tarantool-issue:`6021`).
+
