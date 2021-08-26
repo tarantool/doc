@@ -48,7 +48,7 @@ Core
 
 
 -   The information about the state of synchronous replication is now available via the
-    ``box.info.synchro`` interface (:tarantool-release:`2.7.3`, :tarantool-issue:`5191`).
+    ``box.info.synchro`` interfacee. (:tarantool-release:`2.7.3`, :tarantool-issue:`5191`).
 
 LuaJIT
 ~~~~~~
