@@ -51,12 +51,12 @@ Each link leads to the release notes page of the corresponding version:
         *   -   2.8
             -   2.8.0
             -   :doc:`2.8.1 <release/2.8.1>`
-            -   2.8.2
+            -   :doc:`2.8.2 <release/2021-08-releases>`
 
         *   -   2.7
             -   2.7.0
             -   :doc:`2.7.1 <release/2.7.1>`
-            -   :doc:`2.7.2 <release/2.7.2>`
+            -   :doc:`2.7.2 <release/2.7.2>`, :doc:`2.7.3 <release/2021-08-releases>`
 
         *   -   2.6
             -   2.6.0
@@ -100,7 +100,8 @@ Each link leads to the release notes page of the corresponding version:
                 :doc:`1.10.7 <release/1.10.7>`,
                 :doc:`1.10.8 <release/1.10.8>`,
                 :doc:`1.10.9 <release/1.10.9>`,
-                :doc:`1.10.10 <release/1.10.10>`
+                :doc:`1.10.10 <release/1.10.10>`,
+                :doc:`1.10.11 <release/2021-08-releases>`
 
 
 For smaller feature changes and bug fixes, see closed
@@ -119,7 +120,8 @@ Release notes for series before 1.10 are also available:
 
     release/policy
     release/legacy-policy
-    release/major-featuresg
+    release/major-features
+    release/2021-08-releases
     release/2.8.1
     release/2.7.2
     release/2.7.1
