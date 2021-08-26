@@ -8,7 +8,8 @@ Introduction
 
 Meet the new Tarantool releases of August 2021:
 :tarantool-release:`2.8.2`,
-:tarantool-release:`2.7.3`, and :tarantool-release:`1.10.11`.
+:tarantool-release:`2.7.3`,
+:tarantool-release:`1.10.11`.
 
 Automated Raft-based failover out of the box
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,7 +60,7 @@ LuaJIT
 Lua
 ~~~
 
--   Introduced the new method ``table.equals``. It compares two tables by value with
+-   Introduce the new method ``table.equals``. It compares two tables by value with
     respect to the ``__eq`` metamethod
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 

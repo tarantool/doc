@@ -24,7 +24,7 @@ Before 2.10.0, version numbers were subject to the
     MAJOR_VERSION.RELEASE_SERIES.RELEASE
 
 Below is the table listing all Tarantool versions starting from 1.10.0 up to
-the current latest version.
+the current latest versions.
 Each link leads to the release notes page of the corresponding version:
 
 ..  _release-list:
