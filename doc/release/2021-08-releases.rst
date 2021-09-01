@@ -177,7 +177,7 @@ Core
     MBs) ``.xlog`` file
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5979`).
 
--   The counter in ``x.yM rows processed`` log messages no longer
+-   The counter in ``N rows processed`` log messages no longer
     resets on each newly recovered ``xlog``
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 
