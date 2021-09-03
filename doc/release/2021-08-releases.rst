@@ -65,7 +65,7 @@ Lua
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 
 Logging
-^^^^^^^
+~~~~~~~
 
 -   The ``log`` module now supports symbolic representation of log levels.
     Now it is possible to specify levels the same way as in
