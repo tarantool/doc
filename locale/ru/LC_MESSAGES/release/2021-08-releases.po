@@ -126,7 +126,7 @@ msgid ""
 "it is possible to specify levels the same way as in the ``box.cfg{}`` call "
 "(:tarantool-release:`2.8.2`, :tarantool-issue:`5882`)."
 msgstr ""
-"Модуль``log`` теперь поддерживает символьное представление уровней "
+"Модуль ``log`` теперь поддерживает символьное представление уровней "
 "журналирования: можно указывать уровни так же, как при вызове ``box.cfg{}`` "
 "(:tarantool-release:`2.8.2`, :tarantool-issue:`5882`)."
 
