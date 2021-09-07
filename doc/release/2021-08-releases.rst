@@ -8,7 +8,8 @@ Introduction
 
 Meet the new Tarantool releases of August 2021:
 :tarantool-release:`2.8.2`,
-:tarantool-release:`2.7.3`, and :tarantool-release:`1.10.11`.
+:tarantool-release:`2.7.3`,
+:tarantool-release:`1.10.11`.
 
 Automated Raft-based failover out of the box
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,11 +35,11 @@ data layout, client-server protocol, and replication protocol.
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
-Some changes are labeled as **[Breaking change]**. It means that the
-old behavior was considered error-prone and therefore changed to protect
-users from unintended mistakes. However, there is a small probability
-that someone can rely on the old behavior, and this label is to bring
-attention to the things that have been changed.
+Some changes are labeled as **[Breaking change]**.
+It means that the old behavior was considered error-prone
+and therefore changed to protect users from unintended mistakes.
+However, there is a small probability that someone can rely on the old behavior,
+and this label is to bring attention to the things that have been changed.
 
 New and updated features
 ------------------------
@@ -53,18 +54,18 @@ Core
 LuaJIT
 ~~~~~~
 
--   Introduced support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py``
+-   Introduce support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py``
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6224`).
 
 Lua
 ~~~
 
--   Introduced the new method ``table.equals``. It compares two tables by value with
+-   Introduce the new method ``table.equals``. It compares two tables by value with
     respect to the ``__eq`` metamethod
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 
 Logging
-^^^^^^^
+~~~~~~~
 
 -   The ``log`` module now supports symbolic representation of log levels.
     Now it is possible to specify levels the same way as in
@@ -176,7 +177,7 @@ Core
     MBs) ``.xlog`` file
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5979`).
 
--   The counter in ``x.yM rows processed`` log messages no longer
+-   The counter in ``N rows processed`` log messages no longer
     resets on each newly recovered ``xlog``
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
 
@@ -409,3 +410,4 @@ MVCC
 
 -   Fixed a segfault during update/delete of the same tuple
     (:tarantool-release:`2.8.2`, :tarantool-issue:`6021`).
+
