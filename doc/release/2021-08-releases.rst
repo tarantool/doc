@@ -397,7 +397,8 @@ LuaJIT
 Lua
 ~~~
 
--   Fixed a bug when multibyte characters broke ``space:fselect()`` output.
+-   Fixed a bug when multibyte characters broke ``space:fselect()`` output
+    (:tarantool-release:`2.10.0-beta1`).
 
 -   When an error occurs during encoding call results, the auxiliary
     lightuserdata value is not removed from the main Lua coroutine stack.
