@@ -10,6 +10,8 @@ Meet the new Tarantool releases of August 2021:
 :tarantool-release:`2.8.2`,
 :tarantool-release:`2.7.3`,
 :tarantool-release:`1.10.11`.
+Also, check the new Tarantool beta release of August 2021:
+:tarantool-release:`2.10.0-beta1`.
 
 Automated Raft-based failover out of the box
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,14 +57,15 @@ LuaJIT
 ~~~~~~
 
 -   Introduce support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py``
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6224`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6224`).
 
 Lua
 ~~~
 
 -   Introduce the new method ``table.equals``. It compares two tables by value with
     respect to the ``__eq`` metamethod
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-release:`2.10.0-beta1`).
 
 Logging
 ~~~~~~~
@@ -70,7 +73,7 @@ Logging
 -   The ``log`` module now supports symbolic representation of log levels.
     Now it is possible to specify levels the same way as in
     the ``box.cfg{}`` call
-    (:tarantool-release:`2.8.2`, :tarantool-issue:`5882`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5882`).
 
     For example, instead of
 
@@ -89,26 +92,44 @@ SQL
 
 -   Descriptions of type mismatch error and inconsistent type error have
     become more informative
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6176`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6176`).
 
 -   Removed explicit cast from ``BOOLEAN`` to numeric types and vice
     versa
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`4770`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`4770`).
 
 -   Removed explicit cast from ``VARBINARY`` to numeric types and vice
     versa
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`4772`, :tarantool-issue:`5852`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`4772`, :tarantool-issue:`5852`).
 
 -   Fixed a bug where a string that is not ``NULL``-terminated
     could not be cast to ``BOOLEAN``, even if the conversion would be
     successful according to the rules
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.10.0-beta1`, :tarantool-release:`2.7.3`).
+
+Fiber
+~~~~~
+
+-   Now csw (Context SWitch) of the new fiber is always equal to zero.
+    Previously it could be greater than zero.
+    (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`gh-5799`).
+
+
+Luarocks
+~~~~~~~~
+
+-   ``Set FORCE_CONFIG=false`` for luarocks config to allow loading project-side ``.rocks/config-5.1.lua``
+    (:tarantool-release:`2.10.0-beta1`).
 
 Build
 ~~~~~
 
 -   Fedora 34 builds are now supported
-    (:tarantool-release:`2.8.2`, :tarantool-issue:`6074`).
+    (:tarantool-release:`2.8.2`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6074`).
 
 -   Fedora 28 and 29 builds are no longer supported.
 
@@ -268,35 +289,41 @@ Vinyl
 
 -   Fixed possible keys divergence during secondary index build, which
     might lead to missing tuples
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6045`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6045`).
 
 -   Fixed the race between Vinyl garbage collection and compaction that
     resulted in a broken vylog and recovery failure
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5436`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5436`).
 
 Replication
 ~~~~~~~~~~~
 
 -   Fixed the use after free in the relay thread when using elections
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6031`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6031`).
 
 -   Fixed a possible crash when a synchronous transaction was followed by
     an asynchronous transaction right when its confirmation was being
     written
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6057`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6057`).
 
 -   Fixed an error where a replica, while attempting to subscribe to a foreign
     cluster with a different replicaset UUID, didn’t notice it is impossible
     and instead became stuck in an infinite retry loop printing
     a ``TOO_EARLY_SUBSCRIBE`` error
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6094`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6094`).
 
 -   Fixed an error where a replica, while attempting to join a cluster with
     exclusively read-only replicas available, just booted its own replicaset,
     instead of failing or retrying. Now it fails with
     an error about the other nodes being read-only so they can’t register
     the new replica
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5613`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5613`).
 
 -   Fixed error reporting associated with transactions
     received from remote instances via replication.
@@ -304,27 +331,31 @@ Replication
     ``Failed to write to disk`` regardless of what really happened. Now the
     correct error is shown. For example, ``Out of memory``, or
     ``Transaction has been aborted by conflict``, and so on
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6027`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6027`).
 
 -   Fixed replication occasionally stopping with ``ER_INVALID_MSGPACK``
     when the replica is under high load (:tarantool-issue:`4040`).
 
 -   Fixed a cluster sometimes being unable to bootstrap if it contains
     nodes with ``election_mode`` set to ``manual`` or ``voter``
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6018`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6018`).
 
 -   Fixed a possible crash when ``box.ctl.promote()`` was called in a
     cluster with more than three instances. The crash happened in the debug build.
     In the release build, it could lead to undefined behaviour. It was likely to happen
     if a new node was added shortly before the promotion
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5430`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5430`).
 
 -   Fixed a rare error appearing when MVCC
     (``box.cfg.memtx_use_mvcc_engine``) was enabled and more than one
     replica joined the cluster. The join could fail with the error
     ``"ER_TUPLE_FOUND: Duplicate key exists in unique index 'primary' in space '_cluster'"``.
     The same could happen at the bootstrap of a cluster having more than three nodes
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5601`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5601`).
 
 Raft
 ~~~~
@@ -334,11 +365,13 @@ Raft
     another node was writing something elections-related to WAL.
     The crash was in the debug build, and in the release
     build it would lead to undefined behaviour
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6129`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6129`).
 
 -   Fixed an error where a new replica in a Raft cluster tried to join
     from a follower instead of a leader and failed with the error
-    ``ER_READONLY`` (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6127`).
+    ``ER_READONLY`` (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6127`).
 
 ..  _luajit-1:
 
@@ -364,6 +397,8 @@ LuaJIT
 Lua
 ~~~
 
+-   Fixed a bug when multibyte characters broke ``space:fselect()`` output.
+
 -   When an error occurs during encoding call results, the auxiliary
     lightuserdata value is not removed from the main Lua coroutine stack.
     Before the fix, it led to undefined behaviour during the next
@@ -386,28 +421,43 @@ SQL
 ~~~
 
 -   User-defined functions can now return a VARBINARY result to SQL
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6024`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6024`).
 
 -   Fixed assert when a DOUBLE value greater than -1.0 and less
     than 0.0 is cast to INTEGER and UNSIGNED
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`6225`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6225`).
 
 -   Removed spontaneous conversion from INTEGER to DOUBLE in a field of the
     NUMBER type
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5335`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5335`).
 
 -   All arithmetic operations can now accept numeric values only
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-issue:`5756`).
+    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5756`).
+
+-   Now function ``quote()`` will return the argument if the argument is DOUBLE —the same for all other numeric types.
+    For types different than numeric, the function returns STRING
+    (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6239`).
+
+-   The ``TRIM()` function now does not lose collation
+    when executed with the keywords BOTH, LEADING, or TRAILING
+    (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6299`).
 
 MVCC
 ~~~~
 
 -   Fixed MVCC interaction with ephemeral spaces: TX manager now ignores them
-    (:tarantool-release:`2.8.2`, :tarantool-issue:`6095`).
+    (:tarantool-release:`2.8.2`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6095`).
 
 -   Fixed loss of tuples after a conflict exception
-    (:tarantool-release:`2.8.2`, :tarantool-issue:`6132`).
+    (:tarantool-release:`2.8.2`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6132`).
 
 -   Fixed a segfault during update/delete of the same tuple
-    (:tarantool-release:`2.8.2`, :tarantool-issue:`6021`).
+    (:tarantool-release:`2.8.2`,
+    :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6021`).
 
