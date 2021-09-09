@@ -212,6 +212,13 @@ SQL
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
     :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`4770`).
 
+    Example:
+
+    ..  code-block:: none
+
+        CAST(FALSE AS INTEGER) was 0 in version 2.8.
+        Now it will cause an error.
+
 -   Removed explicit cast from ``VARBINARY`` to numeric types and vice
     versa
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
@@ -241,8 +248,20 @@ SQL
 -   Fixed incorrect error message in case of misuse of the function setting the default value
     (:tarantool-release:`2.10.0-beta1`).
 
--   The ``typeof()`` function with ``NULL`` as an argument now returns ``NULL``
+-   The ``TYPEOF()`` function with ``NULL`` as an argument now returns ``NULL``
+    if a type cannot be determined from context.
     (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5956`).
+
+    Also, ``TYPEOF(-NaN)`` will now return ``DOUBLE``.
+    ``TYPEOF(map_column)`` will now return ``VARBINARY`` instead of ``map``.
+
+    Example:
+
+    ..  code-block:: none
+
+        SELECT TYPEOF(NULL); was BOOLEAN in version 2.8.
+        Now it will be NULL.
+
 
 -   Reworked the ``SCALAR`` and ``NUMBER`` types in SQL.
     Removed implicit cast from ``SCALAR`` to any other scalar types.
@@ -262,10 +281,78 @@ SQL
     In addition, the number of arguments is now always checked during parsing
     (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6105`).
 
+-   **[Breaking change]** ``NUMBER`` data type  (:tarantool-release:`2.10.0-beta1`)
+    Arithmetic (``+ * - / % & | ~``) operations and bit-shift operations (``>> <<``) are now illegal.
+
+    Example:
+
+    ..  code-block:: none
+
+        SELECT number_column + 1 was legal in version 2.8.
+        Now it will cause an error.
+
+
+-   **[Breaking change]** ``SCALAR`` data type  (:tarantool-release:`2.10.0-beta1`)
+    Arithmetic (``+ * - / % & | ~``) operations and bit-shift operations (``>> <<``) are now illegal.
+    Concatenation (``||``) operations are now illegal.
+    Values in ``SCALAR`` columns now have data type ``SCALAR``, not the value's data type.
+
+    Example:
+
+    ..  code-block:: none
+
+        TYPEOF(CAST(1 AS SCALAR)) was INTEGER in version 2.8.
+        Now it will be SCALAR.
+
+-   **[Breaking change]** Arithmetic operators must now have numeric operands.
+    String operands are illegal.
+
+    Example:
+
+    ..  code-block:: none
+
+        SELECT 1 + '1' was 2 in version 2.8.
+        Now it will cause an error.
+
+
+-   **[Breaking change]** Operations on SCALAR columns
+    Since the type of a value no longer determines whether an operation is valid,
+    comparisons and functions which require a specific type will no longer work.
+
+    Example:
+
+    ..  code-block:: none
+
+        if table T has only one row with a scalar column containing 'a':
+        UPPER(scalar_column) was 'A' in version 2.8.
+        Now it will cause an error.
+
+
+-   **[Breaking change]**: The ``HEX()`` function (:tarantool-release:`2.10.0-beta1`)
+    ``STRING`` arguments are no longer acceptable; only ``VARBINARY`` arguments are allowed.
+
+    Example:
+
+    ..  code-block:: none
+
+        HEX('a') was '41' in version 2.8.
+        Now it will cause an error.
+
+-   **[Breaking change]** The ``POSITION()`` function (:tarantool-release:`2.10.0-beta1`)
+    ``VARBINARY`` arguments are no longer acceptable; only ``STRING`` arguments are allowed.
+
+    Example:
+
+    ..  code-block:: none
+
+        POSITION(X'41',X'41') was 1 in version 2.8.
+        Now it will cause an error.
+
+
 Luarocks
 ~~~~~~~~
 
--   ``Set FORCE_CONFIG=false`` for luarocks config to allow loading project-side ``.rocks/config-5.1.lua``
+-   Set ``FORCE_CONFIG=false`` for luarocks config to allow loading project-side ``.rocks/config-5.1.lua``
     (:tarantool-release:`2.10.0-beta1`).
 
 Build
