@@ -258,7 +258,7 @@ SQL
     and other defined numeric types
     (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`4415`).
 
--   The argument types of SQL built-in functions are now checked in most cases during parsing.
+-   **[Breaking change]** The argument types of SQL built-in functions are now checked in most cases during parsing.
     In addition, the number of arguments is now always checked during parsing
     (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6105`).
 
