@@ -31,7 +31,11 @@ getmetrics table values
 The metrics table contains 19 values.
 All values have type = 'number' and are the result of a cast to double, so there may be a very slight precision loss.
 Values whose names begin with ``gc_`` are associated with the
-`LuaJIT garbage collector <http://wiki.luajit.org/New-Garbage-Collector/>`_
+`LuaJIT garbage collector <http://wiki.luajit.org/New-Garbage-Collector/>`_;
+a fuller study of the garbage collector can be found at
+`a Lua-users wiki page <http://lua-users.org/wiki/EmergencyGarbageCollector>`_
+and
+`a slide from the creator of Lua <https://www.lua.org/wshop18/Ierusalimschy.pdf#page=16>`_.
 Values whose names begin with ``jit_`` are associated with the
 `"phases" <https://en.wikipedia.org/wiki/Tracing_just-in-time_compilation>`_
 of the just-in-time compilation process; a fuller study of JIT phases can be found at
@@ -97,8 +101,7 @@ Some of the table members shown here are used in the examples that come later in
     +----------------------+--------------------------------------------------+------------+
     | jit_snap_restore     | Overall number of snap restores (amount of guard | yes        |
     |                      | assertions leading to stopping trace executions) |            |
-    |                      | See external `Snapshot restore description`_     |            |
-    |                      | and external `Snap tutorial`_                    |            |
+    |                      | See external `Snap tutorial`_                    |            |
     +----------------------+--------------------------------------------------+------------+
     | jit_trace_abort      | overall number of aborted traces                 | yes        |
     +----------------------+--------------------------------------------------+------------+
@@ -115,12 +118,16 @@ Some of the table members shown here are used in the examples that come later in
 .. comment: Links are not inline because they would make the table cells wider.
 
 .. _Sweep phase description: http://wiki.luajit.org/New-Garbage-Collector#sweep-phase
-.. _Snapshot restore description: http://wiki.luajit.org/Allocation-Sinking-Optimization#implementation_snapshot-handling_snapshot-restore
 .. _Snap tutorial: https://ujit.readthedocs.io/en/latest/public/tut-snap.html
 
 Note: Although value names are similar to value names in
 `ujit.getmetrics() <https://ujit.readthedocs.io/en/latest/public/ujit-024.html#ujit-getmetrics>`_
 the values are not the same, primarily because many ujit numbers are not monotonic.
+
+Note: Although value names are similar to value names in :ref:`LuaJIT metrics <metrics-luajit>`,
+and the values are exactly the same, misc.getmetrics() is slightly easier
+because there is no need to ‘require’ the misc module.
+
 
 .. _luajit_getmetrics_c:
 
