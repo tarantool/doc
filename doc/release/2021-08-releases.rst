@@ -133,7 +133,7 @@ LuaJIT
 
     *   Introduced support for the full 64-bit range of lightuserdata values (:tarantool-issue:`2712`).
 
-    *   Fixed memory remapping issue when the page left 47-bit segments.
+    *   Fixed memory remapping issue when the page left 47-bit segments (:tarantool-issue:`2712`).
 
     *   Fixed M1 architecture detection (:tarantool-issue:`6065`).
 
