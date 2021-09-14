@@ -146,7 +146,7 @@ LuaJIT
 
     *   Fixed ``BC_USETS`` bytecode semantics for closed upvalues and grey strings.
 
-    *   Fixed side exit jump target patching considering the range values of the particular instruction
+    *   Fixed side exit jump target patching with regard to the range values of a particular instruction
         (:tarantool-issue:`6098`).
 
     *   Fixed the issue on ARM64 where the current Lua coroutine wasn't restored on the exception path
