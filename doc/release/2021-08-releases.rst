@@ -246,15 +246,15 @@ SQL
 -   The function is now looked up first in SQL built-in functions and then in user-defined functions
     (:tarantool-release:`2.10.0-beta1`).
 
--   Fixed the incorrect error message in case of misuse of the function setting the default value
+-   Fixed incorrect error message in case of misuse of the function setting the default value
     (:tarantool-release:`2.10.0-beta1`).
 
 -   The ``TYPEOF()`` function with ``NULL`` as an argument now returns ``NULL``
-    if a type cannot be determined from context.
+    if the type cannot be determined from context.
     (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5956`).
 
-    Also, ``TYPEOF(-NaN)`` will now return ``DOUBLE``.
-    ``TYPEOF(map_column)`` will now return ``VARBINARY`` instead of ``map``.
+    Also, ``TYPEOF(-NaN)`` will now return ``DOUBLE``,
+    and ``TYPEOF(map_column)`` will now return ``VARBINARY`` instead of ``map``.
 
     Example:
 
@@ -281,7 +281,7 @@ SQL
     In addition, the number of arguments is now always checked during parsing
     (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6105`).
 
--   **[Breaking change]** ``NUMBER`` data type  (:tarantool-release:`2.10.0-beta1`)
+-   **[Breaking change]** for the ``NUMBER`` data type  (:tarantool-release:`2.10.0-beta1`).
     Arithmetic (``+ * - / % & | ~``) operations and bit-shift operations (``>> <<``) are now illegal.
 
     Example:
@@ -292,7 +292,7 @@ SQL
         Now it will cause an error.
 
 
--   **[Breaking change]** ``SCALAR`` data type  (:tarantool-release:`2.10.0-beta1`)
+-   **[Breaking change]** for the ``SCALAR`` data type  (:tarantool-release:`2.10.0-beta1`).
     Arithmetic (``+ * - / % & | ~``) operations and bit-shift operations (``>> <<``) are now illegal.
     Concatenation (``||``) operations are now illegal.
     Values in ``SCALAR`` columns now have data type ``SCALAR``, not the value's data type.
@@ -304,7 +304,7 @@ SQL
         TYPEOF(CAST(1 AS SCALAR)) was INTEGER in version 2.8.
         Now it will be SCALAR.
 
--   **[Breaking change]** Arithmetic operators must now have numeric operands.
+-   **[Breaking change]**: Arithmetic operators must now have numeric operands.
     String operands are illegal.
 
     Example:
@@ -315,9 +315,9 @@ SQL
         Now it will cause an error.
 
 
--   **[Breaking change]** Operations on SCALAR columns
+-   **[Breaking change]** in operations on SCALAR columns.
     Since the type of a value no longer determines whether an operation is valid,
-    comparisons and functions which require a specific type will no longer work.
+    comparisons and functions that require a specific type no longer work.
 
     Example:
 
@@ -328,7 +328,7 @@ SQL
         Now it will cause an error.
 
 
--   **[Breaking change]**: The ``HEX()`` function (:tarantool-release:`2.10.0-beta1`)
+-   **[Breaking change]** for the ``HEX()`` function (:tarantool-release:`2.10.0-beta1`).
     ``STRING`` arguments are no longer acceptable; only ``VARBINARY`` arguments are allowed.
 
     Example:
@@ -338,7 +338,7 @@ SQL
         HEX('a') was '41' in version 2.8.
         Now it will cause an error.
 
--   **[Breaking change]** The ``POSITION()`` function (:tarantool-release:`2.10.0-beta1`)
+-   **[Breaking change]** for the ``POSITION()`` function (:tarantool-release:`2.10.0-beta1`).
     ``VARBINARY`` arguments are no longer acceptable; only ``STRING`` arguments are allowed.
 
     Example:
