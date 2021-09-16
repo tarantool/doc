@@ -144,7 +144,7 @@ LuaJIT
     *   Fixed Lua stack inconsistency when ``xpcall`` is called on ARM64 with the invalid second argument
         (:tarantool-issue:`6093`).
 
-    *   Fixed ``BC_USETS`` bytecode semantics for closed upvalues and grey strings.
+    *   Fixed ``BC_USETS`` bytecode semantics for closed upvalues and gray strings.
 
     *   Fixed side exit jump target patching with regard to the range values of a particular instruction
         (:tarantool-issue:`6098`).
