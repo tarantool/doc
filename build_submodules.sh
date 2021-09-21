@@ -58,7 +58,7 @@ CMAKE_DUMMY_WEBUI=true tarantoolctl rocks make
 
 cd "${rst_src}" || exit
 mkdir -p "${rst_dest}"
-find . -iregex '.*\.\(rst\|png\|puml\)$' -exec cp -r --parents {} "${rst_dest}" \;
+find . -iregex '.*\.\(rst\|png\|puml\|svg\)$' -exec cp -r --parents {} "${rst_dest}" \;
 
 cd "${pot_src}" || exit
 mkdir -p "${pot_dest}"

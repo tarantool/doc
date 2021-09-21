@@ -9,6 +9,8 @@ extensions = [
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
+    'sphinxcontrib.plantuml',
     'sphinxcontrib.rsvgconverter',
     'ext.custom',
     'ext.LuaDomain',

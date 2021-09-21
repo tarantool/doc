@@ -37,6 +37,8 @@ jobs:
       - run: cmake .
       - run: make pull-modules
       - run: make build-modules
+      - run: make pdf
+      - run: make pdf-ru
       - run: make json
       - run: make json-ru
       - run: bash upload_output.sh
