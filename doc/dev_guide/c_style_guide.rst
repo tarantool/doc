@@ -46,7 +46,7 @@ the code move too far to the right, and makes it hard to read on a
 more than 3 levels of indentation, you're screwed anyway, and should fix
 your program.
 
-In short, 8-char indents make things easier to read, and have the added
+8-char indents make things easier to read and have the added
 benefit of warning you when you're nesting your functions too deep.
 Heed that warning.
 
