@@ -213,12 +213,8 @@ SQL
     (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
     :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`4770`).
 
-    Example:
-
-    ..  code-block:: none
-
-        CAST(FALSE AS INTEGER) was 0 in version 2.8.
-        Now it will cause an error.
+    For example, ``CAST(FALSE AS INTEGER)`` was ``0`` in version 2.8.
+    Now it causes an error.
 
 -   Removed explicit cast from ``VARBINARY`` to numeric types and vice
     versa
@@ -252,17 +248,11 @@ SQL
 -   The ``TYPEOF()`` function with ``NULL`` as an argument now returns ``NULL``
     if the type cannot be determined from context.
     (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5956`).
-
     Also, ``TYPEOF(-NaN)`` will now return ``DOUBLE``,
     and ``TYPEOF(map_column)`` will now return ``VARBINARY`` instead of ``map``.
 
-    Example:
-
-    ..  code-block:: none
-
-        SELECT TYPEOF(NULL); was BOOLEAN in version 2.8.
-        Now it will be NULL.
-
+    For example, ``SELECT TYPEOF(NULL)`` was ``BOOLEAN`` in version 2.8.
+    Now it is ``NULL``.
 
 -   Reworked the ``SCALAR`` and ``NUMBER`` types in SQL.
     Removed the implicit cast from ``SCALAR`` to any other scalar type.
@@ -284,69 +274,43 @@ SQL
 -   **[Breaking change]** for the ``NUMBER`` data type  (:tarantool-release:`2.10.0-beta1`).
     Arithmetic (``+ * - / % & | ~``) operations and bit-shift operations (``>> <<``) are now illegal.
 
-    Example:
-
-    ..  code-block:: none
-
-        SELECT number_column + 1 was legal in version 2.8.
-        Now it will cause an error.
-
+    For example, ``SELECT number_column + 1`` was legal in version 2.8.
+    Now it causes an error.
 
 -   **[Breaking change]** for the ``SCALAR`` data type  (:tarantool-release:`2.10.0-beta1`).
     Arithmetic (``+ * - / % & | ~``) operations and bit-shift operations (``>> <<``) are now illegal.
     Concatenation (``||``) operations are now illegal.
     Values in ``SCALAR`` columns now have data type ``SCALAR``, not the value's data type.
 
-    Example:
-
-    ..  code-block:: none
-
-        TYPEOF(CAST(1 AS SCALAR)) was INTEGER in version 2.8.
-        Now it will be SCALAR.
+    For example, ``TYPEOF(CAST(1 AS SCALAR))`` was ``INTEGER`` in version 2.8.
+    Now it is ``SCALAR``.
 
 -   **[Breaking change]**: Arithmetic operators must now have numeric operands.
     String operands are illegal.
 
-    Example:
-
-    ..  code-block:: none
-
-        SELECT 1 + '1' was 2 in version 2.8.
-        Now it will cause an error.
-
+    For example, ``SELECT 1 + '1'`` was ``2`` in version 2.8.
+    Now it causes an error.
 
 -   **[Breaking change]** in operations on SCALAR columns.
     Since the type of a value no longer determines whether an operation is valid,
     comparisons and functions that require a specific type no longer work.
 
-    Example:
-
-    ..  code-block:: none
-
-        if table T has only one row with a scalar column containing 'a':
-        UPPER(scalar_column) was 'A' in version 2.8.
-        Now it will cause an error.
+    For example, table ``T`` has only one row with a scalar column containing ``'a'``.
+    ``UPPER(scalar_column)`` was ``'A'`` in version 2.8.
+    Now it causes an error.
 
 
 -   **[Breaking change]** for the ``HEX()`` function (:tarantool-release:`2.10.0-beta1`).
     ``STRING`` arguments are no longer acceptable; only ``VARBINARY`` arguments are allowed.
 
-    Example:
-
-    ..  code-block:: none
-
-        HEX('a') was '41' in version 2.8.
-        Now it will cause an error.
+    For example, ``HEX('a')`` was ``'41'`` in version 2.8.
+    Now it causes an error.
 
 -   **[Breaking change]** for the ``POSITION()`` function (:tarantool-release:`2.10.0-beta1`).
     ``VARBINARY`` arguments are no longer acceptable; only ``STRING`` arguments are allowed.
 
-    Example:
-
-    ..  code-block:: none
-
-        POSITION(X'41',X'41') was 1 in version 2.8.
-        Now it will cause an error.
+    For example, ``POSITION(X'41',X'41')`` was ``1`` in version 2.8.
+    Now it causes an error.
 
 
 Luarocks
