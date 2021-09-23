@@ -414,7 +414,7 @@ Core
         main/4050206957/cartridge.failover.task I> Instance state changed
 
 
--   Fiber IDs are now to monotonically increasing unsigned 8-byte integers, so
+-   Fiber IDs are now switched to monotonically increasing unsigned 8-byte integers, so
     there is no ID wrapping anymore. It allows detecting fiber precedence by ID
     (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5846`).
 
