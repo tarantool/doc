@@ -710,7 +710,7 @@ Router public API
         :return:
 
             * result of ``function_name`` on success
-            * nill, err otherwise
+            * nil, err otherwise
 
     .. _router_api-replicaset_callrw:
 
@@ -738,7 +738,7 @@ Router public API
         :return:
 
             * result of ``function_name`` on success
-            * nill, err otherwise
+            * nil, err otherwise
 
         .. code-block:: lua
 
@@ -777,7 +777,7 @@ Router public API
         :return:
 
             * result of ``function_name`` on success
-            * nill, err otherwise
+            * nil, err otherwise
 
     .. _router_api-replicaset_callre:
 
@@ -806,7 +806,7 @@ Router public API
         :return:
 
             * result of ``function_name`` on success
-            * nill, err otherwise
+            * nil, err otherwise
 
 .. _vshard_api_reference-router_internal_api:
 
