@@ -1089,7 +1089,7 @@ msgstr "массив аргументов функции"
 msgid "result of ``function_name`` on success"
 msgstr "результат вызываемой функции при успехе"
 
-msgid "nill, err otherwise"
+msgid "nil, err otherwise"
 msgstr "nil, err иначе"
 
 msgid ""
