@@ -636,7 +636,7 @@ Now let's prepare the test environment. As planned, we write a Lua application
 initialize Tarantool's database module, initialize our game, call the game loop
 and simulate a couple of player requests.
 
-To launch our microservice, we put both ``pokemon.lua`` module and ``game.lua``
+To launch our microservice, we put both the ``pokemon.lua`` module and the ``game.lua``
 application in the current directory, install all external modules, and launch
 the Tarantool instance running our ``game.lua`` application (this example is for
 Ubuntu):
