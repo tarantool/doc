@@ -38,7 +38,7 @@ In Tarantool we have 3 variants of css-style for admonitions:
 
     ..  code-block:: rst
 
-        ..  IMPORTANT::
+        ..  important::
 
     ..  IMPORTANT::
 
