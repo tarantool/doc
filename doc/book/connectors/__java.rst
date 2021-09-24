@@ -9,10 +9,10 @@ There are two Java connectors available:
     as well as applications built using the :doc:`Cartridge framework </book/cartridge>` and its modules.
     The Tarantool team actively updates this module with the newest Tarantool features.
 *   `tarantool-java <http://github.com/tarantool/tarantool-java/>`__
-    works with early Tarantool versions (1.6 and later),
+    works with early Tarantool versions (1.6 and later)
     and offers JDBC interface support for single Tarantool nodes.
-    This module has *no active maintenance* and
-    does not support the newest 2.x Tarantool features and Tarantool clusters.
+    This module *isn't currently maintained* and
+    does not support the newest 2.x Tarantool features or Tarantool clusters.
 
 The following modules support Java libraries and frameworks:
 
