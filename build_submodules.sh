@@ -42,7 +42,7 @@ yes | cp -rf "${monitoring_root}" "${monitoring_dest}/"
 yes | cp -rf "${monitoring_grafana_root}" "${monitoring_dest}/"
 
 mkdir -p "${cartridge_cli_dest}"
-find ${cartridge_cli_root} -iregex '.*\.\(rst\|png\|puml\|svg\)$' -exec cp -r --parents {} "${cartridge_cli_dest}" \;
+find ${cartridge_cli_root} -iregex '.*\.\(rst\|png\|puml\|svg\)$' -exec cp -rv --parents {} "${cartridge_cli_dest}" \;
 
 mkdir -p "${cartridge_kubernetes_dest}"
 yes | cp -rf "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
