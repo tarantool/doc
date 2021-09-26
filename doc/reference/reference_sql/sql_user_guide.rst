@@ -35,7 +35,7 @@ The User Guide describes how users can start up with SQL with Tarantool, and nec
 Getting Started
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The explanations for installing and starting the Tarantool server are in earlier chapters of the Tarantool manual..
+The explanations for installing and starting the Tarantool server are in earlier chapters of the Tarantool manual.
 
 To get started specifically with the SQL features, using Tarantool as a client, execute these requests:
 
@@ -148,7 +148,7 @@ The token is the minimum SQL-syntax unit that Tarantool understands.
 These are the types of tokens:
 
 Keywords -- official words in the language, for example ``SELECT`` |br|
-Literals -- constants for numbers or strings, for example ``15.7`` or ``'Taranto'`` |br|
+Literals -- constants for numerics or strings, for example ``15.7`` or ``'Taranto'`` |br|
 Identifiers -- for example column55 or table_of_accounts |br|
 Operators (strictly speaking "non-alphabetic operators") -- for example ``* / + - ( ) , ; < = >=``
 
@@ -157,7 +157,7 @@ Tokens can be separated from each other by one or more separators: |br|
 * Bracketed comments (beginning with ``/*`` and ending with ``*/``) |br|
 * Simple comments (beginning with ``--`` and ending with line feed) |br|
 Separators are not necessary before or after operators. |br|
-Separators are necessary after keywords or numbers or ordinary identifiers, unless the following token is an operator. |br|
+Separators are necessary after keywords or numerics or ordinary identifiers, unless the following token is an operator. |br|
 Thus Tarantool can understand this series of six tokens: |br|
 ``SELECT'a'FROM/**/t;`` |br|
 but for readability one would usually use spaces to separate tokens: |br|
@@ -192,8 +192,8 @@ DOUBLE literals: |br|
 Examples: .0, 1.0, 1E5, 1.1E5. |br|
 A literal has :ref:`data type = DOUBLE <sql_data_type_double>` if it contains a period, or contains "E".
 DOUBLE literals are also known as floating-point literals or approximate-numeric literals.
-To represent "Inf" (infinity), write a real number outside the double-precision number range, for example 1E309.
-To represent "nan" (not a number), write an expression that does not result in a real number,
+To represent "Inf" (infinity), write a real numeric outside the double-precision numeric range, for example 1E309.
+To represent "nan" (not a number), write an expression that does not result in a real numeric,
 for example 0/0, using Tarantool/NoSQL. This will appear as NULL in Tarantool/SQL.
 In an earlier version literals containing periods were considered to be :ref:`NUMBER <sql_data_type_number>` literals.
 In a future version "nan" may not appear as NULL.
@@ -239,7 +239,7 @@ but it is not the same. ``box.execute("select 'A' < X'41';")`` is not legal at t
 This happens because ``TYPEOF(X'41')`` yields ``'varbinary'``.
 Also it is illegal to say ``UPDATE ... SET string_column = X'41'``,
 one must say ``UPDATE ... SET string_column = CAST(X'41' AS STRING);``. |br|
-* It is non-standard to say that any number which contains a period has data type = DOUBLE.
+* It is non-standard to say that any numeric which contains a period has data type = DOUBLE.
 
 .. _sql_identifiers:
 
@@ -273,7 +273,7 @@ BEGIN BETWEEN BINARY BLOB BOOL BOOLEAN BOTH BY CALL CASE
 CAST CHAR CHARACTER CHECK COLLATE COLUMN COMMIT CONDITION
 CONNECT CONSTRAINT CREATE CROSS CURRENT CURRENT_DATE
 CURRENT_TIME CURRENT_TIMESTAMP CURRENT_USER CURSOR DATE
-DATETIME dec DECIMAL DECLARE DEFAULT DEFERRABLE DELETE DENSE_RANK
+DATETIME DEC DECIMAL DECLARE DEFAULT DEFERRABLE DELETE DENSE_RANK
 DESC DESCRIBE DETERMINISTIC DISTINCT DOUBLE DROP EACH ELSE
 ELSEIF END ESCAPE EXCEPT EXISTS EXPLAIN FALSE FETCH FLOAT
 FOR FOREIGN FROM FULL FUNCTION GET GRANT GROUP HAVING IF
@@ -426,7 +426,7 @@ in upper case and all similar words which refer to NoSQL types or to other kinds
 of object are in lower case, for example:
 
 * STRING is a data type name, but string is a general term;
-* NUMBER is a data type name, but number is a general term.
+* NUMBER is a data type name, but numeric is a general term.
 
 Although it is common to say that a VARBINARY value is a "binary string",
 this manual will not use that term and will instead say "byte sequence".
@@ -454,6 +454,9 @@ and minimum / maximum literal examples.
     +-----------+------------+------------+----------------------+-------------------------+
     | NUMBER    | number     | (none)     | -1.79769e308         | 1.79769e308             |
     +-----------+------------+------------+----------------------+-------------------------+
+    | DECIMAL   | decimal    | DEC        | -9999999999999999999 | 9999999999999999999     |
+    |           |            |            |  9999999999999999999 | 9999999999999999999     |
+    +-----------+------------+------------+----------------------+-------------------------+
     | STRING    | string     | TEXT,      | ``''``               | ``'many-characters'``   |
     |           |            | VARCHAR(n) |                      |                         |
     +-----------+------------+------------+----------------------+-------------------------+
@@ -462,7 +465,7 @@ and minimum / maximum literal examples.
     | UUID      | uuid       | (none)     | 00000000-0000-0000-  | ffffffff-ffff-ffff-     |
     |           |            |            | 0000-000000000000    | dfff-ffffffffffff       |
     +-----------+------------+------------+----------------------+-------------------------+
-    | SCALAR    | scalar     | (none)     | FALSE                |  ``X'many-hex-digits'`` |
+    | SCALAR    | (varies)   | (none)     | FALSE                | maximum UUID value      |
     +-----------+------------+------------+----------------------+-------------------------+
 
 
@@ -473,22 +476,22 @@ FALSE is less than TRUE.
 
 .. _sql_data_type_integer:
 
-INTEGER values are numbers that do not contain decimal points and are
+INTEGER values are numerics that do not contain decimal points and are
 not expressed with exponential notation. The range of possible values is
 between -2^63 and +2^64, or NULL.
 
 .. _sql_data_type_unsigned:
 
-UNSIGNED values are numbers that do not contain decimal points and are not
+UNSIGNED values are numerics that do not contain decimal points and are not
 expressed with exponential notation. The range of possible values is
 between 0 and +2^64, or NULL.
 
 .. _sql_data_type_double:
 
-DOUBLE values are numbers that do contain decimal points (for example 0.5) or
+DOUBLE values are numeric that do contain decimal points (for example 0.5) or
 are expressed with exponential notation (for example 5E-1).
 The range of possible values is the same as for the IEEE 754 floating-point
-standard, or NULL. Numbers outside the range of DOUBLE literals may be displayed
+standard, or NULL. Nuumerics outside the range of DOUBLE literals may be displayed
 as -inf or inf.
 
 .. _sql_data_type_number:
@@ -496,11 +499,24 @@ as -inf or inf.
 NUMBER values have the same range as DOUBLE values.
 But NUMBER values may also also be integers, and, if so,
 arithmetic operation results will be exact rather than approximate.
-For example, if a NUMBER column ``X`` contains 5, then ``X / 2`` is 2, an integer.
+For example, if a NUMBER column ``X`` contains 5, then ``X / 2`` would be 2 if division is legal.
 There is no literal format for NUMBER (literals like ``1.5`` or ``1E555``
 are considered to be DOUBLEs), so use :ref:`CAST <sql_function_cast>`
-to insist that a number has data type NUMBER, but that is rarely necessary.
+to insist that a numeric has data type NUMBER, but that is rarely necessary.
 See the description of NoSQL type :ref:`'number' <index-box_number>`.
+Support for arithmetic and built-in functions with NUMBERs was removed in Tarantool version 2.10.1.
+
+.. _sql_data_type_decimal:
+
+DECIMAL values can contain up to 38 digits on either side of a decimal point.
+and any arithmetic with DECIMAL values has exact results
+(arithmetic with NUMBER or DOUBLE values could have approximate results instead of exact results).
+There is no literal format for DECIMAL,
+so use :ref:`CAST <sql_function_cast>` to insist that a numeric
+has data type DECIMAL, for example ``CAST(1.1 AS DECIMAL)`` or
+``CAST('99999999999999999999999999999999999999' AS DECIMAL)``.
+See the description of NoSQL type :ref:`'decimal' <decimal>`.
+DECIMAL support in SQL was added in Tarantool version 2.10.1.
 
 .. _sql_data_type_string:
 
@@ -535,19 +551,20 @@ UUID support in SQL was added in Tarantool version 2.9.1.
 .. _sql_data_type_scalar:
 
 SCALAR can be used for
-:ref:`column definitions <sql_column_def_data_type>` but the individual column values have
-one of the preceding types -- BOOLEAN, INTEGER, DOUBLE, STRING, VARBINARY, or UUID.
-See more about SCALAR in the section
+:ref:`column definitions <sql_column_def_data_type>` and the individual column values have
+type SCALAR. See
 :ref:`Column definition -- the rules for the SCALAR data type <sql_column_def_scalar>`.
 The data-type may be followed by :ref:`[COLLATE collation-name] <sql_collate_clause>`.
-
+Prior to Tarantool version 2.10.1, individual column values had
+one of the preceding types -- BOOLEAN, INTEGER, DOUBLE, DECIMAL, STRING, VARBINARY, or UUID.
+Starting in Tarantool version 2.10.1, all values have type SCALAR.
 
 Any value of any data type may be NULL. Ordinarily NULL will be cast to the
 data type of any operand it is being compared to or to the data type of the
 column it is in. If the data type of NULL cannot be determined from context,
 it is BOOLEAN.
 
-All the SQL data types correspond to
+Most of the SQL data types correspond to
 :ref:`Tarantool/NoSQL types <details_about_index_field_types>` with the same name.
 There are also some Tarantool/NoSQL data types which have no corresponding SQL data types.
 If Tarantool/SQL reads a Tarantool/NoSQL value which has a type which has no SQL equivalent,
@@ -575,7 +592,7 @@ promotion to a broader type may occur to avoid overflow.
 Arithmetic with NULL operands will result in a NULL operand.
 
 In the following list of operators, the tag "(arithmetic)" indicates
-that all operands are expected to be numbers and should result in a number;
+that all operands are expected to be numerics (other than NUMBER) and should result in a nuericr;
 the tag "(comparison)" indicates that operands are expected to have similar
 data types and should result in a BOOLEAN; the tag "(logic)"
 indicates that operands are expected to be BOOLEAN and should result in a BOOLEAN.
@@ -583,75 +600,81 @@ Exceptions may occur where operations are not possible, but see the "special sit
 which are described after this list.
 Although all examples show literals, they could just as easily show column identifiers.
 
+Starting with Tarantool version 2.10.1, arithmetic operands must usually cannot be NUMBERs.
+
 .. _sql_operator_arithmetic:
 
 .. _sql_operator_addition:
 
 ``+`` addition (arithmetic)
-Add two numbers according to standard arithmetic rules.
+Add two numerics according to standard arithmetic rules.
 Example: ``1 + 5``, result = 6.
 
 .. _sql_operator_subtraction:
 
 ``-`` subtraction (arithmetic)
-Subtract second number from first number according to standard arithmetic rules.
+Subtract second numeric from first numeric according to standard arithmetic rules.
 Example: ``1 - 5``, result = -4.
 
 ``*`` multiplication (arithmetic)
-Multiply two numbers according to standard arithmetic rules.
+Multiply two numerics according to standard arithmetic rules.
 Example: ``2 * 5``, result = 10.
 
 ``/`` division (arithmetic)
-Divide second number into first number according to standard arithmetic rules.
+Divide second numeric into first numeric according to standard arithmetic rules.
 Division by zero is not legal.
-Division of integers always results in rounding down, use :ref:`CAST <sql_function_cast>` to DOUBLE to get
+Division of integers always results in rounding toward zero, use :ref:`CAST <sql_function_cast>` to DOUBLE to get
 non-integer results.
 Example: ``5 / 2``, result = 2.
 
 ``%`` modulus (arithmetic)
-Divide second number into first number according to standard arithmetic rules.
+Divide second numeric into first numeric according to standard arithmetic rules.
 The result is the remainder.
 Example: ``17 % 5``, result = 2.
 
 ``<<`` shift left (arithmetic)
-Shift the first number to the left N times, where N = the second number.
-For positive numbers, each 1-bit shift to the left is equivalent to multiplying times 2.
+Shift the first numeric to the left N times, where N = the second numeric.
+For positive numerics, each 1-bit shift to the left is equivalent to multiplying times 2.
 Example: ``5 << 1``, result = 10.
 
 ``>>`` shift right (arithmetic)
-Shift the first number to the right N times, where N = the second number.
-For positive numbers, each 1-bit shift to the right is equivalent to dividing by 2.
+Shift the first numeric to the right N times, where N = the second numeric.
+For positive numerics, each 1-bit shift to the right is equivalent to dividing by 2.
 Example: ``5 >> 1``, result = 2.
+Starting with Tarantool version 2.10.1, operands must be unsigned.
 
 ``&`` and (arithmetic)
-Combine the two numbers, with 1 bits in the result if and only if both original numbers have 1 bits.
+Combine the two numerics, with 1 bits in the result if and only if both original numerics have 1 bits.
 Example: ``5 & 4``, result = 4.
+Starting with Tarantool version 2.10.1, operands must be unsigned.
 
 ``|`` or (arithmetic)
-Combine the two numbers, with 1 bits in the result if either original number has a 1 bit.
+Combine the two numerics, with 1 bits in the result if either original numeric has a 1 bit.
 Example: ``5 | 2``, result = 7.
+Starting with Tarantool version 2.10.1, operands must be unsigned.
 
 ``~`` negate (arithmetic), sometimes called bit inversion
 Change 0 bits to 1 bits, change 1 bits to 0 bits.
 Example: ``~5``, result = -6.
+Starting with Tarantool version 2.10.1, the operand must be unsigned.
 
 .. _sql_operator_comparison:
 
 ``<`` less than (comparison)
 Return TRUE if the first operand is less than the second by arithmetic or collation rules.
-Example for numbers: ``5 < 2``, result = FALSE. Example for strings: ``'C' < ' '``, result = FALSE.
+Example for numerics: ``5 < 2``, result = FALSE. Example for strings: ``'C' < ' '``, result = FALSE.
 
 ``<=`` less than or equal (comparison)
 Return TRUE if the first operand is less than or equal to the second by arithmetic or collation rules.
-Example for numbers: ``5 <= 5``, result = TRUE. Example for strings: ``'C' <= 'B'``, result = FALSE.
+Example for numerics: ``5 <= 5``, result = TRUE. Example for strings: ``'C' <= 'B'``, result = FALSE.
 
 ``>`` greater than (comparison)
 Return TRUE if the first operand is greater than the second by arithmetic or collation rules.
-Example for numbers: ``5 > -5``, result = TRUE. Example for strings: ``'C' > '!'``, result = TRUE.
+Example for numerics: ``5 > -5``, result = TRUE. Example for strings: ``'C' > '!'``, result = TRUE.
 
 ``>=`` greater than or equal (comparison)
 Return TRUE if the first operand is greater than or equal to the second by arithmetic or collation rules.
-Example for numbers: ``0 >= 0``, result = TRUE. Example for strings: ``'Z' >= 'Γ'``, result = FALSE.
+Example for numerics: ``0 >= 0``, result = TRUE. Example for strings: ``'Z' >= 'Γ'``, result = FALSE.
 
 .. _sql_equal:
 
@@ -659,7 +682,7 @@ Example for numbers: ``0 >= 0``, result = TRUE. Example for strings: ``'Z' >= '�
 After the word SET, "=" means the first operand gets the value from the second operand.
 In other contexts, "=" returns TRUE if operands are equal.
 Example for assignment: ``... SET column1 = 'a';``
-Example for numbers: ``0 = 0``, result = TRUE. Example for strings:  ``'1' = '2 '``, result = FALSE.
+Example for numerics: ``0 = 0``, result = TRUE. Example for strings:  ``'1' = '2 '``, result = FALSE.
 
 ``==`` equal (assignment), or equal (comparison)
 This is a non-standard equivalent of
@@ -755,10 +778,12 @@ for example ``SELECT 1e318 - 1e318;`` is NULL and ``SELECT 1e318 * 0;`` is NULL.
 SQL operations never return the floating-point value -nan,
 although it may exist in data created by Tarantool's NoSQL. In SQL, -nan is treated as NULL.
 
-A string will be converted to a number if it is used with an arithmetic operator and conversion is possible,
+In older Tarantool versions,
+a string would be converted to a numeric if it wass used with an arithmetic operator and conversion was possible,
 for example ``'7' + '7'`` = 14.
 And for comparison, ``'7'`` = 7.
-This is called implicit casting. It is applicable for STRINGs and all numeric data types.
+This is called implicit casting. It was applicable for STRINGs and all numeric data types.
+Starting with Tarantool version 2.10, it is no longer supported.
 
 Limitations: (`Issue#2346 <https://github.com/tarantool/tarantool/issues/2346>`_) |br|
 * Some words, for example MATCH and REGEXP, are reserved but are not necessary for current or planned Tarantool versions |br|
@@ -801,9 +826,9 @@ For any comparisons where neither operand is NULL, the operands are "distinct" i
 result is FALSE.
 For any set of operands where all operands are distinct from each other, the set is considered to be "unique".
 
-When comparing a number to a number: |br|
+When comparing a numeric to a numeric: |br|
 * infinity = infinity is true |br|
-* regular numbers are compared according to usual arithmetic rules
+* regular numerics are compared according to usual arithmetic rules
 
 When comparing any value to NULL: |br|
 (for examples in this paragraph assume that column1 in table T contains {NULL, NULL, 1, 2}) |br|
@@ -813,10 +838,10 @@ When comparing any value to NULL: |br|
 * for ordering, NULL values sort together and are less than non-NULL values. Therefore SELECT column1 FROM T ORDER BY column1; returns {NULL, NULL, 1,2}. |br|
 * for evaluating a UNIQUE constraint or UNIQUE index, any number of NULLs is okay. Therefore CREATE UNIQUE INDEX i ON T (column1); will succeed.
 
-When comparing a number to a STRING: |br|
+When comparing a numeric to a STRING: |br|
 * If implicit casting is possible, the STRING operand is converted to a number before comparison.
 If implicit casting is not possible, and one of the operands is the name of a column which was
-defined as SCALAR, and the column is being compared with a number, then number is less than STRING. Otherwise, the comparison is not legal.
+defined as SCALAR, and the column is being compared with a numeric, then numeric is less than STRING. Otherwise, the comparison is not legal.
 
 When comparing a BOOLEAN to a BOOLEAN: |br|
 TRUE is greater than FALSE.
@@ -921,18 +946,18 @@ Assignments and operations involving NULL cause NULL or UNKNOWN results. |br|
 For arithmetic, convert to the data type which can contain both operands and the result. |br|
 For explicit casts, if a meaningful result is possible, the operation is allowed. |br|
 For implicit casts, if a meaningful result is possible and the data types on both sides
-are either STRINGs or numbers (that is, are STRING or INTEGER or UNSIGNED or DOUBLE or NUMBER),
+are either STRINGs or most numeric types (that is, are STRING or INTEGER or UNSIGNED or DOUBLE but not NUMBER),
 the operation is sometimes allowed.
 
 The specific situations in this chart follow the general rules:
 
 .. code-block:: none
 
-    ~                To BOOLEAN | To number  | To STRING | To VARBINARY | To UUID
+    ~                To BOOLEAN | To numeric | To STRING | To VARBINARY | To UUID
     ---------------  ----------   ----------   ---------   ------------   -------
-    From BOOLEAN   | AAA        | S--        | A--       | ---          | ---
-    From number    | A--        | SSA        | A-A       | ---          | ---
-    From STRING    | S--        | S-S        | AAA       | A--          | SS-
+    From BOOLEAN   | AAA        | ---        | A--       | ---          | ---
+    From numeric   | ---        | SSA        | A--       | ---          | --
+    From STRING    | S--        | S--        | AAA       | A--          | SS-
     From VARBINARY | ---        | ---        | A--       | AAA          | SS-
     From UUID      | ---        | ---        | AA-       | AA-          | AAA
 
@@ -945,13 +970,12 @@ So AAA = Always for explicit, Always for Implicit (assignment), Always for Impli
 
 The S "Sometimes allowed" character applies for these special situations: |br|
 From STRING To BOOLEAN is allowed if UPPER(string-value) = ``'TRUE'`` or ``'FALSE'``. |br|
-From number to INTEGER or UNSIGNED is allowed for cast and assignment only if the result is not out of range,
-and the number has no post-decimal digits. |br|
-From STRING to INTEGER or UNSIGNED is allowed only if the string has a representation of a number,
+From numeric to INTEGER or UNSIGNED is allowed for cast and assignment only if the result is not out of range,
+and the numeric has no post-decimal digits. |br|
+From STRING to INTEGER or UNSIGNED or DECIMAL is allowed only if the string has a representation of a numeric,
 and the result is not out of range,
-and the number has no post-decimal digits. |br|
-From STRING to DOUBLE or NUMBER is allowed only if the string has a representation of a number. |br|
-From BOOLEAN to number is allowed only if the number is not DOUBLE. |br|
+and the numeric has no post-decimal digits. |br|
+From STRING to DOUBLE or NUMBER is allowed only if the string has a representation of a numeric. |br|
 From STRING to UUID is allowed only if the value is
 (8 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (4 hexadecimal digits) hyphen (12 hexadecimal digits),
 such as ``'8e3b281b-78ad-4410-bfe9-54806a586a90'``. |br|
@@ -969,26 +993,33 @@ But comparisons of values of different types are allowed if the definition is SC
     in the same way as the :ref:`number <index-box_number>` type in
     NoSQL Tarantool.
 
+    Starting with Tarantool 2.10.1, these conversions which used to be legal are now illegal: |br|
+    Explicit cast from numeric to BOOLEAN, |br|
+    Explicit cast from BOOLEAN to numeric, |br|
+    Implicit cast from NUMBER to other numeric types for arithmetic or built-in functions. |br|
+    Implicit cast from numeric to STRING. |br|
+    Implicit cast from STRING to numeric.
+
 Examples of casts, illustrating the situations in the chart:
 
-``CAST(TRUE AS INTEGER)`` is legal because the intersection of the  "From BOOLEAN" row with the "To number"
+``CAST(TRUE AS STRING)`` is legal because the intersection of the  "From BOOLEAN" row with the "To STRING"
 column is ``A--`` and the first letter of ``A--`` is for explicit cast and A means Always Allowed.
-The result is 1.
+The result is 'TRUE'.
 
 ``UPDATE ... SET varbinary_column = 'A'`` is illegal because the intersection of the "From STRING" row with the "To VARBINARY"
 column is ``A--`` and the second letter of ``A--`` is for implicit cast (assignment) and - means not allowed.
 The result is an error message.
 
-``1.7E-1 > 0`` is legal because the intersection of the "From number" row with the "To number"
+``1.7E-1 > 0`` is legal because the intersection of the "From nueric" row with the "To numeric"
 column is SSA, and the third letter of SSA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.
 
-``11 > '2'`` is legal because the intersection of the "From number" row with the "To STRING"
+``11 > '2'`` is legal because the intersection of the "From numeric" row with the "To STRING"
 column is AAA and the third letter of AAA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.  For detailed explanation see the following section.
 
-``CAST('5' AS INTEGER)`` is legal because the intersection of the "From STRING" row with the "To number"
-column is S-S and the first letter of S-S is for explicit cast and S means Sometimes Allowed.
+``CAST('5' AS INTEGER)`` is legal because the intersection of the "From STRING" row with the "To numeric"
+column is S-- and the first letter of S-- is for explicit cast and S means Sometimes Allowed.
 However, ``CAST('5.5' AS INTEGER)`` is illegal because 5.5 is not an integer --
 if the string contains post-decimal digits and the target is INTEGER or UNSIGNED,
 the assignment will fail.
@@ -999,29 +1030,32 @@ the assignment will fail.
 Implicit string/numeric cast
 ********************************************************************************
 
+The examples in this section are true only for Tarantool versions before Tarantool 2.10.
+Starting with Tarantool 2.10, implicit string/numeric cast is no longer allowed.
+
 Special considerations may apply for casting STRINGs
-to/from INTEGERs/DOUBLEs/NUMBERs/UNSIGNEDs (numbers) for comparison or assignment.
+to/from INTEGERs/DOUBLEs/NUMBERs/UNSIGNEDs (numerics) for comparison or assignment.
 
-``1 = '1' /* compare a STRING with a number */`` |br|
-``UPDATE ... SET string_column = 1 /* assign a number to a STRING */``
+``1 = '1' /* compare a STRING with a numeric */`` |br|
+``UPDATE ... SET string_column = 1 /* assign a numeric to a STRING */``
 
-For comparisons, the cast is always from STRING to number. |br|
+For comparisons, the cast is always from STRING to numeric. |br|
 Therefore ``1e2 = '100'`` is TRUE, and ``11 > '2'`` is TRUE. |br|
-If the cast fails, then the number is less than the STRING. |br|
+If the cast fails, then the numeric is less than the STRING. |br|
 Therefore ``1e400 < ''`` is TRUE. |br|
 Exception: for BETWEEN the cast is to the data type of the first and last operands. |br|
 Therefore ``'66' BETWEEN 5 AND '7'`` is TRUE.
 
 For assignments, due to a change in behavior starting with Tarantool
 :doc:`2.5.1 </release/2.5.1>`,
-implicit casts from strings to numbers are not legal. Therefore
+implicit casts from strings to numerics are not legal. Therefore
 ``INSERT INTO t (integer_column) VALUES ('5');`` is an error.
 
 Implicit cast does happen if STRINGS are used in arithmetic. |br|
 Therefore ``'5' / '5' = 1``. If the cast fails, then the result is an error. |br|
 Therefore ``'5' / ''`` is an error.
 
-Implicit cast does NOT happen if numbers are used in concatenation, or in LIKE. |br|
+Implicit cast does NOT happen if numerics are used in concatenation, or in LIKE. |br|
 Therefore ``5 || '5'`` is illegal.
 
 In the following examples, implicit cast does not happen for values in SCALAR columns: |br|

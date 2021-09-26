@@ -38,7 +38,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | columns (created from Lua) from FLOAT/DOUBLE/REAL ones  |
     |            |                                               |                                                          | (created from SQL).                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E011-03    | DECIMAL and NUMERIC data types                | ``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``            | Fail, DECIMAL and NUMERIC data types are not supported  |
+    | E011-03    | DECIMAL and NUMERIC data types                | ``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``            | Fail, NUMERIC data types are not supported              |
     |            |                                               |                                                          | and a number containing post-decimal digits will be     |
     |            |                                               |                                                          | treated as approximate numeric.                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -308,9 +308,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | F031-03    | GRANT statement                               |                                                          | Fail. Tarantool doesn't support privileges except       |
     |            |                                               |                                                          | via NoSQL.                                              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-04    | ALTER TABLE statement: add column             | ``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR DEFAULT 'q';``  | Fail. Tarantool supports                                |
-    |            |                                               |                                                          | :ref:`ALTER TABLE <sql_alter_table>` but not            |
-    |            |                                               |                                                          | this clause.                                            |
+    | F031-04    | ALTER TABLE statement: add column             | ``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR(1)              | Okay. Tarantool supports                                |
+    |            |                                               | DEFAULT 'q';``                                           | :ref:`ALTER TABLE <sql_alter_table>` and support for    |
+    |            |                                               |                                                          | ADD COLUMN was added in Tarantool version 2.7.          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F031-13    | DROP TABLE statement: RESTRICT clause         | ``DROP TABLE t20 RESTRICT;``                             | Fail. Tarantool supports                                |
     |            |                                               |                                                          | :ref:`DROP TABLE <sql_drop_table>` but not this         |
@@ -448,9 +448,9 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | name (not counted in the final score).                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
 
-Total number of items marked "Fail": 68
+Total number of items marked "Fail": 67
 
-Total number of items marked "Okay": 78
+Total number of items marked "Okay": 79
 
 
 

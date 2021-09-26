@@ -289,6 +289,8 @@ The detailed description of data types is in the section
 Column definition -- the rules for the SCALAR data type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The rules for the SCALAR data type were significantly changed in Tarantool version 2.10.1.
+
 SCALAR is a "complex" data type, unlike all the other data types which are "primitive".
 Two column values in a SCALAR column can have two different primitive data types.
 
@@ -304,7 +306,7 @@ Two column values in a SCALAR column can have two different primitive data types
    in the second row is STRING (the data type of a literal is always clear from
    its format).
 
-   An item's primitive type is far more important than its defined type.
+   An item's primitive type is far less important than its defined type.
    Incidentally Tarantool might find the primitive type by looking at the way
    MsgPack stores it, but that is an implementation detail.
 
@@ -316,24 +318,22 @@ Two column values in a SCALAR column can have two different primitive data types
    target is a SCALAR item. For example ``UPDATE ... SET column1 = 'a'``
    is illegal if ``column1`` is defined as INTEGER, but is legal if ``column1``
    is defined as SCALAR -- values which happen to be INTEGER will be changed
-   so their data type is STRING.
+   so their data type is SCALAR.
 #. There is no literal syntax which implies data type SCALAR.
-#. TYPEOF(x) is never SCALAR, it is always the underlying data type.
-   This is true even if ``x`` is NULL (in that case the data type is BOOLEAN).
-   In fact there is no function that is guaranteed to return the defined data type.
-   For example, ``TYPEOF(CAST(1 AS SCALAR));`` returns INTEGER, not SCALAR.
+#. TYPEOF(x) is always SCALAR, it is never the underlying data type.
+   This is true even if ``x`` is NULL (in that case the underlying data type is BOOLEAN).
+   In fact there is no function that is guaranteed to return the unerlying data type.
+   For example, ``TYPEOF(CAST(1 AS SCALAR));`` returns SCALAR, not INTEGER.
 #. For any operation that requires implicit casting from an item defined as SCALAR,
-   the syntax is legal but the operation may fail at runtime.
-   At runtime, Tarantool detects the underlying primitive data type and applies
-   the rules for that. For example, if a definition is:
+   the operation will fail at runtime.
+   For example, if a definition is:
 
    .. code-block:: sql
 
       CREATE TABLE t (s1 SCALAR PRIMARY KEY, s2 INTEGER);
 
-   and within any row ``s1 = 'a'``, that is, its underlying primitive type is
-   STRING to indicate character strings, then ``UPDATE t SET s2 = s1;`` is illegal.
-   Tarantool usually does not know that in advance.
+   and the only row in table T has s1 = 1, that is, its underlying primitive type is
+   INTEGER, then ``UPDATE t SET s2 = s1;`` is illegal.
 #. For any dyadic operation that requires implicit casting for comparison, the
    syntax is legal and the operation will not fail at runtime.
    Take this situation: comparison with a primitive type VARBINARY and
@@ -346,7 +346,7 @@ Two column values in a SCALAR column can have two different primitive data types
       SELECT * FROM t WHERE s1 > 'a';
 
    The comparison is valid, because Tarantool knows the ordering of X'41' and 'a'
-   in Tarantool/NoSQL 'scalar'.
+   in Tarantool/NoSQL 'scalar' -- this is a case where the primitive type matters.
 #. The result data type of :ref:`min/max <sql_aggregate>` operation on a column defined as SCALAR
    is the data type of the minimum/maximum operand, unless the result value
    is NULL. For example:
@@ -361,18 +361,22 @@ Two column values in a SCALAR column can have two different primitive data types
 
    That is only possible with Tarantool/NoSQL scalar rules, but ``SELECT SUM(s2)``
    would not be legal because addition would in this case require implicit casting
-   from VARBINARY to a number, which is not sensible.
-#. The result data type of a primitive combination is never SCALAR because we
-   in effect use TYPEOF(item) not the defined data type.
+   from VARBINARY to a numeric, which is not sensible.
+#. The result data type of a primitive combination is sometimes SCALAR although we
+   in effect use the primitive data type not the defined data type.
    (Here we use the word "combination" in the way that the standard document
    uses it for section "Result of data type combinations".) Therefore for
-   ``greatest(1E308, 'a', 0, X'00')`` the result is X'00'.
+   ``greatest(1E308, 'a', 0, X'00')`` the result is X'00' but
+   ``typeof(greatest(1E308, 'a', 0, X'00')`` is 'scalar'.
+* The union of two SCALARs is sometimes the primitive type.
+  For example, ``SELECT TYPEOF((SELECT CAST('a' AS SCALAR) UNION SELECT CAST('a' AS SCALAR)));``
+  returns 'string'.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Column definition -- relation to NoSQL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-All the SQL data types correspond to
+All of the SQL data types except SCALAR correspond to
 :ref:`Tarantool/NoSQL types with the same name <box_space-index_field_types>`.
 For example an SQL STRING is stored in a NoSQL space as type = 'string'.
 
@@ -388,11 +392,12 @@ If two items have SQL data types that have different underlying types, then the
 rules for explicit casts, or implicit (assignment) casts, or implicit (comparison)
 casts, apply.
 
-There is one floating-point value which is not handled by SQL: -nan is seen as NULL.
+There is one floating-point value which is not handled by SQL: -nan is seen as NULL
+although its data type is 'double'.
 
 There are also some Tarantool/NoSQL data types which have no corresponding
-SQL data types. For example, ``SELECT "flags" FROM "_space";`` will return
-a column whose data type is 'map'. Such columns can only be manipulated in SQL
+SQL data types. For example, ``SELECT "flags" FROM "_vspace";`` will return
+a column whose SQL data type is 'varbinary' rather than 'map'. Such columns can only be manipulated in SQL
 by :ref:`invoking Lua functions <sql_calling_lua>`.
 
 .. _sql_column_def_constraint:
@@ -2207,7 +2212,7 @@ The expression may also contain operators and function names and literals.
 For example, in the statement |br|
 ``SELECT x, y FROM t ORDER BY UPPER(z);`` |br|
 ``ORDER BY UPPER(z)`` means "order by the uppercase form of column ``t.z``",
-which may be similar to doing ordering in a case-insensitive manner.
+which may be similar to doing ordering with one of Tarantool's case-insensitive collations.
 
 Type 3 is illegal if the SELECT statement contains
 :ref:`UNION or EXCEPT or INTERSECT <sql_union>`.
@@ -2227,7 +2232,7 @@ and returns a table with rows in order.
 Sorting order:
 
 * The default order is ASC (ascending), the optional order is DESC (descending).
-* NULLs come first, then BOOLEANs, then numbers, then STRINGs, then VARBINARYs, then UUIDs.
+* NULLs come first, then BOOLEANs, then numerics, then STRINGs, then VARBINARYs, then UUIDs.
 * Within STRINGs, ordering is according to collation.
 * Collation may be specified with a :ref:`COLLATE clause <sql_collate_clause>` within the ORDER BY column-list, or may be default.
 
@@ -3146,6 +3151,10 @@ The required privileges for built-in functions will likely change in a future ve
 List of functions
 ********************************************************************************
 
+These are Tarantool/SQL's built-in functions.
+Starting with Tarantool 2.10, for functions that require numeric arguments,
+function arguments with NUMBER data type are illegal.
+
 .. _sql_function_abs:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3339,9 +3348,9 @@ LIKELIHOOD
 
 Syntax:
 
-:samp:`LIKELIHOOD({expression}, {number literal})`
+:samp:`LIKELIHOOD({expression}, {numeric literal})`
 
-Return the result of the expression, provided that the number literal is between 0.0 and 1.0.
+Return the result of the expression, provided that the numeric literal is between 0.0 and 1.0.
 
 Example: ``LIKELIHOOD('a' = 'b', .0)`` is FALSE
 
@@ -3405,10 +3414,8 @@ Syntax:
 Return the position of expression-1 within expression-2,
 or return 0 if expression-1 does not appear
 within expression-2.
-The data types of the expressions must be either STRING or VARBINARY.
-If the expressions have data type STRING, then the result is the character position.
-If the expressions have data type VARBINARY, then the result is the
-byte position.
+The data types of the expressions must be STRING.
+The result is the character position.
 
 Short example:
 ``POSITION('C', 'ABC')`` is 3
@@ -3421,10 +3428,8 @@ result is 'D09441'. If you now execute
 ``SELECT POSITION('A', 'ДA');``
 the result will be 2,
 because 'A' is the second character in the string.
-However, if you now execute
-``SELECT POSITION(X'41', X'D09441');``
-the result will be 3,
-because X'41' is the third byte in the byte sequence.
+
+Starting with Tarantool version 2.10, arguments with data type VARBINARY are illegal.
 
 .. _sql_function_printf:
 
@@ -3438,12 +3443,12 @@ Syntax:
 
 Return a string formatted according to the rules of the C
 ``sprintf()`` function, where ``%d%s`` means the next two arguments
-are a number and a string, and so on.
+are a numeric and a string, and so on.
 
 If an argument is missing or is NULL, it becomes:
 
 * '0' if the format requires an integer,
-* '0.0' if the format requires a number with a decimal point,
+* '0.0' if the format requires a numeric with a decimal point,
 * '' if the format requires a string.
 
 Example: ``PRINTF('%da', 5)`` is '5a'.
@@ -3456,7 +3461,7 @@ QUOTE
 
 Syntax:
 
-:samp:`QUOTE(string-literal)`
+:samp:`QUOTE(string-argument)`
 
 Return a string with enclosing quotes if necessary,
 and with quotes inside the enclosing quotes if necessary.
@@ -3465,7 +3470,10 @@ which are part of SQL statements, because of SQL's rules that
 string literals are enclosed by single quotes, and single quotes
 inside such strings are shown as two single quotes in a row.
 
-Example: ``QUOTE('a')`` is ``'a'``.
+Starting with Tarantool version 2.10, arguments with non-STRING
+data types are returned without change.
+
+Example: ``QUOTE('a')`` is ``'a'``. ``QUOTE(5)`` is ``5``.
 
 .. _sql_function_raise:
 
@@ -3536,7 +3544,7 @@ Syntax:
 :samp:`ROUND({numeric-expression-1} [, {numeric-expression-2}])`
 
 Return the rounded value of numeric-expression-1, always rounding
-.5 upward for floating-point positive numbers or downward for negative numbers.
+.5 upward for positive numerics or downward for negative numerics.
 If numeric-expression-2 is supplied then rounding is to the nearest
 numeric-expression-2 digits after the decimal point;
 if numeric-expression-2 is not supplied then rounding is to the nearest integer.
@@ -3672,7 +3680,9 @@ Syntax:
 
 :samp:`TYPEOF({expression})`
 
-Return the :ref:`data type <sql_column_def_data_type>` of the expression.
+Return the :ref:`data type <sql_column_def_data_type>` of the expression,
+or, if expression is the name of a column defined as SCALAR, return 'scalar',
+or, if expression is NULL, return 'NULL'.
 
 Examples:
 
@@ -3680,7 +3690,10 @@ Examples:
 ``TYPEOF(RANDOMBLOB(1))`` returns 'varbinary';
 ``TYPEOF(1e44)`` returns 'double' or 'number';
 ``TYPEOF(-44)`` returns 'integer';
-``TYPEOF(NULL)`` returns 'boolean'
+``TYPEOF(NULL)`` returns 'NULL'
+
+Prior to Tarantool version 2.10, ``TYPEOF(expression)`` simply returned
+the data type of the expression for all cases.
 
 .. _sql_function_unicode:
 
