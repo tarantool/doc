@@ -3263,10 +3263,14 @@ Syntax:
 
 :samp:`HEX(expression)`
 
-Return the hexadecimal code for each byte in **expression**,
-which may be either a string or a byte sequence.
+Return the hexadecimal code for each byte in **expression**.
+
+Starting with Tarantool version 2.10.1, the expression must be a byte sequence
+(data type VARBINARY).
+
+In earlier versions of Tarantool, the expression could be either a string or a byte sequence.
 For ASCII characters, this
-is straightforward because the encoding is
+was straightforward because the encoding is
 the same as the code point value. For
 non-ASCII characters, since character strings
 are usually encoded in UTF-8, each character
@@ -3274,8 +3278,8 @@ will require two or more bytes.
 
 Examples:
 
-* ``HEX('A')`` will return ``41``.
-* ``HEX('Д')`` will return ``D094``.
+* ``HEX(X'41')`` will return ``41``.
+* ``HEX(CAST('Д' AS VARBINARY))`` will return ``D094``.
 
 .. _sql_function_ifnull:
 
@@ -3423,7 +3427,7 @@ Short example:
 Long example: The UTF-8 encoding for the Latin letter A
 is hexadecimal 41; the UTF-8 encoding for the
 Cyrillic letter Д is hexadecimal D094 -- you can confirm this
-by saying SELECT HEX('ДA'); and seeing that the
+by saying SELECT HEX(CAST('ДA' AS VARBINARY)); and seeing that the
 result is 'D09441'. If you now execute
 ``SELECT POSITION('A', 'ДA');``
 the result will be 2,
