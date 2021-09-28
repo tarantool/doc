@@ -41,8 +41,9 @@ mkdir -p "${monitoring_dest}"
 yes | cp -rf "${monitoring_root}" "${monitoring_dest}/"
 yes | cp -rf "${monitoring_grafana_root}" "${monitoring_dest}/"
 
-mkdir -p "${cartridge_cli_dest}"
-find ${cartridge_cli_root} -iregex '.*\.\(rst\|png\|puml\|svg\)$' -exec cp -rv {} "${cartridge_cli_dest}" \;
+mkdir -p "${cartridge_cli_dest}/commands"
+find ${cartridge_cli_root} -maxdepth 1 -iregex '.*\.\(rst\|png\|puml\|svg\)$' -exec cp -v {} "${cartridge_cli_dest}" \;
+yes | cp -rfv "${cartridge_cli_root}/commands" "${cartridge_cli_dest}"
 
 mkdir -p "${cartridge_kubernetes_dest}"
 yes | cp -rf "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
