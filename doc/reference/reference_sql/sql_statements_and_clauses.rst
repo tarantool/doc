@@ -289,7 +289,7 @@ The detailed description of data types is in the section
 Column definition -- the rules for the SCALAR data type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The rules for the SCALAR data type were significantly changed in Tarantool version 2.10.1.
+The rules for the SCALAR data type were significantly changed in Tarantool version :tarantool-release:`2.10.0-beta1`.
 
 SCALAR is a "complex" data type, unlike all the other data types which are "primitive".
 Two column values in a SCALAR column can have two different primitive data types.
@@ -348,14 +348,14 @@ Two column values in a SCALAR column can have two different primitive data types
    The comparison is valid, because Tarantool knows the ordering of X'41' and 'a'
    in Tarantool/NoSQL 'scalar' -- this is a case where the primitive type matters.
 #. The result data type of :ref:`min/max <sql_aggregate>` operation on a column defined as SCALAR
-   is the data type of the minimum/maximum operand, unless the result value
-   is NULL. For example:
+   is SCALAR.
+   Users will need to know the underlying primitive type of the result in advance. For example:
 
    .. code-block:: sql
 
       CREATE TABLE t (s1 INTEGER, s2 SCALAR PRIMARY KEY);
       INSERT INTO t VALUES (1, X'44'), (2, 11), (3, 1E4), (4, 'a');
-      SELECT min(s2), hex(max(s2)) FROM t;
+      SELECT cast(min(s2) AS INTEGER), hex(cast(max(s2) as VARBINARY)) FROM t;
 
    The result is: ``- - [11, '44',]``
 
@@ -3265,7 +3265,7 @@ Syntax:
 
 Return the hexadecimal code for each byte in **expression**.
 
-Starting with Tarantool version 2.10.1, the expression must be a byte sequence
+Starting with Tarantool version 2.10.0, the expression must be a byte sequence
 (data type VARBINARY).
 
 In earlier versions of Tarantool, the expression could be either a string or a byte sequence.

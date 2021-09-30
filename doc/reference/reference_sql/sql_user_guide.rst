@@ -214,7 +214,7 @@ A literal has :ref:`data type = VARBINARY <sql_data_type_varbinary>`
 
 Here are four ways to put non-ASCII characters,such as the Greek letter α alpha,  in string literals: |br|
 First make sure that your shell program is set to accept characters as UTF-8. A simple way to check is |br|
-``SELECT hex('α');``
+``SELECT hex(cast('α' as VARBINARY));``
 If the result is CEB1 -- which is the hexadecimal value for the UTF-8 representation of α -- it is good. |br|
 (1) Simply enclose the character inside ``'...'``, |br|
 ``'α'`` |br|
