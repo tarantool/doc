@@ -222,5 +222,5 @@ Everything is up and running! What's next?
   cluster and try some cool cluster management features.
 * Get inspired with `these examples <https://github.com/tarantool/examples/>`_
   and implement more sophisticated business logic for your role.
-* :ref:`Pack </book/cartridge/cartridge_cli/commands/pack>` your application for easy distribution.
+* :doc:`Pack </book/cartridge/cartridge_cli/commands/pack>` your application for easy distribution.
   Choose what you like: a DEB or RPM package, a TGZ archive, or a Docker image.
