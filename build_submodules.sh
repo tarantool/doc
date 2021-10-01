@@ -13,7 +13,6 @@ po_src="${project_root}/modules/cartridge/build.luarocks/build.rst/locale/ru/LC_
 po_dest="${project_root}/locale/ru/LC_MESSAGES/book/cartridge"
 cartridge_cli_root="${project_root}/modules/cartridge-cli/doc"
 cartridge_cli_dest="${rst_dest}/cartridge_cli"
-cartridge_cli_index_dest="${cartridge_cli_dest}/index.rst"
 monitoring_root="${project_root}/modules/metrics/doc/monitoring"
 monitoring_dest="${project_root}/doc/book"
 monitoring_grafana_root="${project_root}/modules/grafana-dashboard/doc/monitoring"
@@ -42,7 +41,8 @@ yes | cp -rf "${monitoring_root}" "${monitoring_dest}/"
 yes | cp -rf "${monitoring_grafana_root}" "${monitoring_dest}/"
 
 mkdir -p "${cartridge_cli_dest}"
-yes | cp -rf "${cartridge_cli_root}/index.rst" "${cartridge_cli_index_dest}"
+cd ${cartridge_cli_root} || exit
+find . -iregex '.*\.\(rst\|png\|puml\|svg\)$' -exec cp -rv --parents {} "${cartridge_cli_dest}" \;
 
 mkdir -p "${cartridge_kubernetes_dest}"
 yes | cp -rf "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
