@@ -291,8 +291,6 @@ Misc
 Bugs fixed
 ----------
 
-..  _sql-1:
-
 SQL
 ~~~
 

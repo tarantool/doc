@@ -589,8 +589,6 @@ Raft
     ``ER_READONLY`` (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`,
     :tarantool-release:`2.10.0-beta1`, :tarantool-issue:`6127`).
 
-..  _luajit-1:
-
 LuaJIT
 ~~~~~~
 
@@ -607,8 +605,6 @@ LuaJIT
 
 -   Fixed the VM register allocation order provided by LuaJIT frontend in case
     of ``BC_ISGE`` and ``BC_ISGT`` (:tarantool-issue:`6227`).
-
-..  _lua-1:
 
 Lua
 ~~~
@@ -631,8 +627,6 @@ Triggers
 -   Fixed a possible crash in case trigger removes itself. Fixed a
     possible crash in case someone destroys a trigger when it
     yields (:tarantool-issue:`6266`).
-
-..  _sql-1:
 
 SQL
 ~~~
