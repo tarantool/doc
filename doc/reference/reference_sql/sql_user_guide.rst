@@ -592,7 +592,7 @@ promotion to a broader type may occur to avoid overflow.
 Arithmetic with NULL operands will result in a NULL operand.
 
 In the following list of operators, the tag "(arithmetic)" indicates
-that all operands are expected to be numerics (other than NUMBER) and should result in a nuericr;
+that all operands are expected to be numerics (other than NUMBER) and should result in a numeric;
 the tag "(comparison)" indicates that operands are expected to have similar
 data types and should result in a BOOLEAN; the tag "(logic)"
 indicates that operands are expected to be BOOLEAN and should result in a BOOLEAN.
@@ -600,7 +600,7 @@ Exceptions may occur where operations are not possible, but see the "special sit
 which are described after this list.
 Although all examples show literals, they could just as easily show column identifiers.
 
-Starting with Tarantool version 2.10.1, arithmetic operands must usually cannot be NUMBERs.
+Starting with Tarantool version 2.10.1, arithmetic operands cannot be NUMBERs.
 
 .. _sql_operator_arithmetic:
 
@@ -630,33 +630,35 @@ Example: ``5 / 2``, result = 2.
 ``%`` modulus (arithmetic)
 Divide second numeric into first numeric according to standard arithmetic rules.
 The result is the remainder.
+Starting with Tarantool version 2.10.1, operands must be positive INTEGER or UNSIGNED.
 Example: ``17 % 5``, result = 2.
 
 ``<<`` shift left (arithmetic)
 Shift the first numeric to the left N times, where N = the second numeric.
 For positive numerics, each 1-bit shift to the left is equivalent to multiplying times 2.
 Example: ``5 << 1``, result = 10.
+Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
 
 ``>>`` shift right (arithmetic)
 Shift the first numeric to the right N times, where N = the second numeric.
 For positive numerics, each 1-bit shift to the right is equivalent to dividing by 2.
 Example: ``5 >> 1``, result = 2.
-Starting with Tarantool version 2.10.1, operands must be unsigned.
+Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
 
 ``&`` and (arithmetic)
 Combine the two numerics, with 1 bits in the result if and only if both original numerics have 1 bits.
 Example: ``5 & 4``, result = 4.
-Starting with Tarantool version 2.10.1, operands must be unsigned.
+Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
 
 ``|`` or (arithmetic)
 Combine the two numerics, with 1 bits in the result if either original numeric has a 1 bit.
 Example: ``5 | 2``, result = 7.
-Starting with Tarantool version 2.10.1, operands must be unsigned.
+Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
 
 ``~`` negate (arithmetic), sometimes called bit inversion
 Change 0 bits to 1 bits, change 1 bits to 0 bits.
 Example: ``~5``, result = -6.
-Starting with Tarantool version 2.10.1, the operand must be unsigned.
+Starting with Tarantool version 2.10.1, the operand must be non-negative INTEGER or UNSIGNED.
 
 .. _sql_operator_comparison:
 
@@ -956,10 +958,10 @@ The specific situations in this chart follow the general rules:
     ~                To BOOLEAN | To numeric | To STRING | To VARBINARY | To UUID
     ---------------  ----------   ----------   ---------   ------------   -------
     From BOOLEAN   | AAA        | ---        | A--       | ---          | ---
-    From numeric   | ---        | SSA        | A--       | ---          | --
-    From STRING    | S--        | S--        | AAA       | A--          | SS-
-    From VARBINARY | ---        | ---        | A--       | AAA          | SS-
-    From UUID      | ---        | ---        | AA-       | AA-          | AAA
+    From numeric   | ---        | SSA        | A--       | ---          | ---
+    From STRING    | S--        | S--        | AAA       | A--          | S--
+    From VARBINARY | ---        | ---        | A--       | AAA          | S--
+    From UUID      | ---        | ---        | A--       | A--          | AAA
 
 Where each entry in the chart has 3 characters: |br|
 Where A = Always allowed, S = Sometimes allowed, - = Never allowed. |br|
@@ -1010,7 +1012,7 @@ The result is 'TRUE'.
 column is ``A--`` and the second letter of ``A--`` is for implicit cast (assignment) and - means not allowed.
 The result is an error message.
 
-``1.7E-1 > 0`` is legal because the intersection of the "From nueric" row with the "To numeric"
+``1.7E-1 > 0`` is legal because the intersection of the "From numeric" row with the "To numeric"
 column is SSA, and the third letter of SSA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.
 

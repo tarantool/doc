@@ -320,10 +320,9 @@ Two column values in a SCALAR column can have two different primitive data types
    is defined as SCALAR -- values which happen to be INTEGER will be changed
    so their data type is SCALAR.
 #. There is no literal syntax which implies data type SCALAR.
-#. TYPEOF(x) is always SCALAR, it is never the underlying data type.
-   This is true even if ``x`` is NULL (in that case the underlying data type is BOOLEAN).
-   In fact there is no function that is guaranteed to return the unerlying data type.
-   For example, ``TYPEOF(CAST(1 AS SCALAR));`` returns SCALAR, not INTEGER.
+#. TYPEOF(x) is always 'scalar' or 'NULL', it is never the underlying data type.
+   In fact there is no function that is guaranteed to return the underlying data type.
+   For example, ``TYPEOF(CAST(1 AS SCALAR));`` returns 'scalar', not 'integer'.
 #. For any operation that requires implicit casting from an item defined as SCALAR,
    the operation will fail at runtime.
    For example, if a definition is:
@@ -3352,9 +3351,9 @@ LIKELIHOOD
 
 Syntax:
 
-:samp:`LIKELIHOOD({expression}, {numeric literal})`
+:samp:`LIKELIHOOD({expression}, {DOUBLE literal})`
 
-Return the result of the expression, provided that the numeric literal is between 0.0 and 1.0.
+Return the expression without change, provided that the numeric literal is between 0.0 and 1.0.
 
 Example: ``LIKELIHOOD('a' = 'b', .0)`` is FALSE
 
@@ -3474,7 +3473,7 @@ which are part of SQL statements, because of SQL's rules that
 string literals are enclosed by single quotes, and single quotes
 inside such strings are shown as two single quotes in a row.
 
-Starting with Tarantool version 2.10, arguments with non-STRING
+Starting with Tarantool version 2.10, arguments with numeric
 data types are returned without change.
 
 Example: ``QUOTE('a')`` is ``'a'``. ``QUOTE(5)`` is ``5``.
@@ -3684,9 +3683,9 @@ Syntax:
 
 :samp:`TYPEOF({expression})`
 
-Return the :ref:`data type <sql_column_def_data_type>` of the expression,
-or, if expression is the name of a column defined as SCALAR, return 'scalar',
-or, if expression is NULL, return 'NULL'.
+Return 'NULL' if the expression is NULL,
+or return 'scalar' if the expression is the name of a column defined as SCALAR,
+or return the :ref:`data type <sql_column_def_data_type>` of the expression.
 
 Examples:
 
@@ -3877,3 +3876,25 @@ the three SELECT statements here will return results in three different orders: 
 ``SELECT remark FROM things ORDER BY remark COLLATE "unicode";`` |br|
 ``SELECT remark FROM things ORDER BY remark COLLATE "unicode_uk_s1";`` |br|
 ``SELECT remark FROM things ORDER BY remark COLLATE "unicode_ky_s1";``
+
+********************************************************************************
+Default function parameters
+********************************************************************************
+
+Starting in Tarantool 2.10, if a parameter for an :ref:`aggregate function <sql_aggregate>` 
+or a :ref:`built-in scalar SQL function <sql_functions>` is one of the ``extra-parameters``
+that can appear in :ref:`box.execute(...[,extra-parameters]) <box-sql_box_execute>`
+requests,
+default data type is calculated thus: |br|
+* When there is only one possible data type, it is default. |br|
+Example: ``box.execute([[SELECT TYPEOF(LOWER(?);]]),{x})`` is 'string'. |br|
+* When possible data types are INTEGER or DOUBLE or DECIMAL, DECIMAL is default. |br|
+Example: ``box.execute([[SELECT TYPEOF(AVG(?);]]),{x})`` is 'decimal'. |br|
+* When possible data types are STRING or VARBINARY, STRING is default. |br|
+Example: ``box.execute([[SELECT TYPEOF(LENGTH(?);]]),{x})`` is 'string'. |br|
+* When possible data types are any other scalar data type, SCALAR is default. |br|
+Example: ``box.execute([[SELECT TYPEOF(GREATEST(?,5);]]),{x})`` is 'scalar'. |br|
+* Otherwise, there is no default. |br|
+Example: ``box.execute([[SELECT TYPEOF(LIKELY(?);]]),{x})`` is unknown.
+
+
