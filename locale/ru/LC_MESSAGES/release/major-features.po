@@ -153,11 +153,9 @@ msgid "2.4.1"
 msgstr "2.4.1"
 
 msgid ""
-":ref:`UUID type for field and index <_index-box_uuid>` (:tarantool-"
+":ref:`UUID type for field and index <index-box_uuid>` (:tarantool-"
 "issue:`4268`, :tarantool-issue:`2916`)"
 msgstr ""
-":ref:`Поддержка UUID для полей и индексов<_index-box_uuid>` (:tarantool-"
-"issue:`4268`, :tarantool-issue:`2916`)"
 
 msgid ""
 ":doc:`popen </reference/reference_lua/popen>` built-in module (:tarantool-"
