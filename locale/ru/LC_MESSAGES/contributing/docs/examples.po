@@ -3,8 +3,8 @@ msgid "Examples and templates"
 msgstr "Примеры и шаблоны"
 
 msgid ""
-"In this document, we explain general guidelines for describing Tarantool API"
-" and give some examples and templates."
+"This document contains general guidelines for describing the Tarantool API, "
+"as well as examples and templates."
 msgstr ""
 
 msgid "Use this checklist for documenting a function or a method:"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Complexity factors (if exist)"
 msgstr ""
 
-msgid "Note re storage engine (if exists)"
+msgid "Usage with memtx and vinyl (if differs)"
 msgstr ""
 
 msgid "Example(s)"
@@ -37,12 +37,12 @@ msgstr ""
 msgid "Extra information (if needed)"
 msgstr ""
 
-msgid "Documenting a function"
+msgid "Documenting functions"
 msgstr ""
 
 msgid ""
-"We describe functions of Tarantool modules via Sphinx directives ``.. "
-"module::`` and ``.. function::``:"
+"We use the Sphinx directives ``.. module::`` and ``.. function::`` to "
+"describe functions of Tarantool modules:"
 msgstr ""
 
 msgid ""
@@ -77,7 +77,7 @@ msgid ""
 "        ...\n"
 msgstr ""
 
-msgid "And the resulting output looks like this:"
+msgid "The resulting output looks like this:"
 msgstr ""
 
 msgid ""
@@ -137,22 +137,22 @@ msgstr ""
 "---\n"
 "..."
 
-msgid "Documenting class method and data"
+msgid "Documenting class methods and data"
 msgstr ""
 
 msgid ""
-"Description of a method is similar to a function, but the ``.. class::`` "
+"Methods are described similarly to functions, but the ``.. class::`` "
 "directive, unlike ``.. module::``, requires nesting."
 msgstr ""
 
 msgid ""
-"As for documenting data, it will be enough to write a description, a return "
-"type, and an example."
+"As for data, it's enough to write the description, the return type, and an "
+"example."
 msgstr ""
 
 msgid ""
-"Here is an example of documenting a method and data of a class "
-"``index_object``:"
+"Here is the example documentation describing the method and data of the "
+"``index_object`` class:"
 msgstr ""
 
 msgid ""
@@ -199,6 +199,9 @@ msgid ""
 "            ---\n"
 "            - true\n"
 "            ...\n"
+msgstr ""
+
+msgid "And the resulting output looks like this:"
 msgstr ""
 
 msgid "Search for a tuple :ref:`via the given index <box_index-note>`."
