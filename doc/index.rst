@@ -40,7 +40,7 @@
 
                     <div class="getting-started-button-container">
                         <a href="getting_started/">
-                            <button class="getting-started-button btn">
+                            <button class="getting-started-button btn main-button">
                                 Руководство для начинающих
                             </button>
                         </a>
@@ -52,7 +52,7 @@
 
                     <div class="getting-started-button-container">
                         <a href="getting_started/">
-                            <button class="getting-started-button btn">
+                            <button class="getting-started-button btn main-button">
                                 Getting started
                             </button>
                         </a>
@@ -84,8 +84,6 @@
         .. container:: other-sources-menu
 
             .. raw:: html
-
-                <div class="badge-icon"></div>
 
             * **Other formats:**
             * `Single-page HTML <singlehtml.html>`__
