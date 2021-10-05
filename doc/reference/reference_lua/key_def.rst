@@ -18,8 +18,9 @@ to extract or compare the index key values.
     Create a new key_def instance.
 
     :param table parts: field numbers and types.
-                        There must be at least one part and it
-                        must have at least ``fieldno`` and ``type``.
+                        There must be at least one part.
+                        Every part must have the attributes ``type`` and ``fieldno``/``field``.
+                        Other attributes are optional.
 
     :returns: key_def-object :ref:`a key_def object <key_def-object>`
 
