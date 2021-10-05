@@ -5,20 +5,20 @@ Language and style
 US vs British spelling
 ----------------------
 
-We use English US spelling.
+We use the US English spelling.
 
 Instance vs server
 ------------------
 
-We say "instance" rather than "server" to refer to an instance of Tarantool
-server. This keeps the manual terminology consistent with names like
+We say "instance" rather than "server" to refer to a Tarantool
+server instance. This keeps the manual terminology consistent with names like
 ``/etc/tarantool/instances.enabled`` in the Tarantool environment.
 
-Wrong usage: "Replication allows multiple Tarantool *servers* to work on copies
-of the same databases."
+Wrong usage: "Replication allows multiple Tarantool *servers* to work with copies
+of the same database."
 
-Correct usage: "Replication allows multiple Tarantool *instances* to work on
-copies of the same databases."
+Correct usage: "Replication allows multiple Tarantool *instances* to work with
+copies of the same database."
 
 Express one idea in a sentence
 ------------------------------
@@ -51,32 +51,33 @@ Simple sentences are easier to read, understand and translate.
             -   memtx is an in-memory storage engine.
                 It is the default and was the first to arrive.
 
-        *   -   A replica set from which the bucket is being migrated is called a source;
-                a target replica set to which the bucket is being migrated is called a destination.
-            -   A replica set from which the bucket is being migrated is called a source.
-                A target replica set to which the bucket is being migrated is called a destination.
+        *   -   The replica set from where the bucket is being migrated is called the source;
+                the target replica set where the bucket is being migrated to is called the destination.
+            -   The replica set from where the bucket is being migrated is called the source.
+                The target replica set where the bucket is being migrated to is called the destination.
 
 Don't use i.e. and e.g.
 -----------------------
 
 Don't use the following contractions:
 
-*   `"i.e." <https://www.merriam-webster.com/dictionary/i.e.>`_
-    —from Latin "id est". Use "that is" or "which means" instead.
-*   `"e.g." <https://www.merriam-webster.com/dictionary/e.g.>`_
-    —from Latin "exempli gratia". Use "for example" or "such as" instead.
+*   `"i.e." <https://www.merriam-webster.com/dictionary/i.e.>`_---from
+    the Latin "id est". Use "that is" or "which means" instead.
+*   `"e.g." <https://www.merriam-webster.com/dictionary/e.g.>`_---from
+    the Latin "exempli gratia". Use "for example" or "such as" instead.
 
 Many people, especially non-native English speakers,
-aren't familiar or don't know the difference between
+aren't familiar with the
 `"i.e." and "e.g." contractions
-<https://www.merriam-webster.com/words-at-play/ie-vs-eg-abbreviation-meaning-usage-difference>`_.
-So it's best to avoid using them.
+<https://www.merriam-webster.com/words-at-play/ie-vs-eg-abbreviation-meaning-usage-difference>`_
+or don't know the difference between them.
+For this reason, it's best to avoid using them.
 
-Specify a link text
--------------------
+Specify link text
+-----------------
 
-While giving a :doc:`link </contributing/docs/markup/links>`, specify clearly
-where this link leads. Thus, you will not mislead a reader.
+When you provide a :doc:`link </contributing/docs/markup/links>`, clearly specify
+where it leads. In this way, you will not mislead the reader.
 
 Bad example:
 
@@ -90,3 +91,4 @@ Good example:
     :doc:`making links </contributing/docs/markup/links>`.
 
     Use full :doc:`link names </contributing/docs/markup/links>`.
+    

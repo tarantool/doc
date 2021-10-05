@@ -1,10 +1,8 @@
-
-================================================================================
 Examples and templates
-================================================================================
+======================
 
-In this document, we explain general guidelines for describing Tarantool API and
-give some examples and templates.
+This document contains general guidelines for describing the Tarantool API,
+as well as examples and templates.
 
 Use this checklist for documenting a function or a method:
 
@@ -14,35 +12,33 @@ Use this checklist for documenting a function or a method:
 * Return type (if exists)
 * Possible errors (if exist)
 * Complexity factors (if exist)
-* Note re storage engine (if exists)
+* Usage with memtx and vinyl (if differs)
 * Example(s)
 * Extra information (if needed)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Documenting a function
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Documenting functions
+~~~~~~~~~~~~~~~~~~~~~
 
-We describe functions of Tarantool modules via Sphinx directives ``.. module::``
-and ``.. function::``:
+We use the Sphinx directives ``.. module::``
+and ``.. function::`` to describe functions of Tarantool modules:
 
 ..  literalinclude:: ./_includes/function_template.rst
     :language: rst
 
-And the resulting output looks like this:
+The resulting output looks like this:
 
 ..  include:: ./_includes/function_template.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Documenting class method and data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Documenting class methods and data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Description of a method is similar to a function, but the ``.. class::``
+Methods are described similarly to functions, but the ``.. class::``
 directive, unlike ``.. module::``, requires nesting.
 
-As for documenting data, it will be enough to write a description,
-a return type, and an example.
+As for data, it's enough to write the description, the return type, and an example.
 
-Here is an example of documenting a method and data of a class ``index_object``:
+Here is the example documentation describing
+the method and data of the ``index_object`` class:
 
 ..  literalinclude:: ./_includes/class_template.rst
     :language: rst

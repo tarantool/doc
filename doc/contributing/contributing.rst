@@ -1,17 +1,15 @@
 .. _contributing:
 
-================================================================================
-How to be involved in Tarantool
-================================================================================
+How to get involved in Tarantool
+================================
 
---------------------------------------------------------------------------------
 What is Tarantool?
---------------------------------------------------------------------------------
+------------------
 
 Tarantool is an open source database that can store everything in RAM.
 Use Tarantool as a cache with the ability to save data to disk.
-Tarantool serves up to a million requests per second, secondary index searches,
-and SQL support.
+Tarantool serves up to a million requests per second,
+allows for secondary index searches, and has SQL support.
 
 In Tarantool, you can execute code alongside data.
 This allows for faster operations.
@@ -20,340 +18,339 @@ Get rid of stale entries, sync with other data sources, implement an HTTP servic
 
 Go to :ref:`Getting Started <getting_started>` and try Tarantool.
 
---------------------------------------------------------------------------------
 How to get help?
---------------------------------------------------------------------------------
+----------------
 
 We have a `special Telegram chat <https://t.me/tarantool_contrib>`_
 for contributors.
 We speak Russian and English in the chat.
 
 This is the easiest way to get your questions answered.
-Many people are afraid to ask questions because they think they are
-"wasting the experts' time," but no one really thinks so.
+Many people are afraid to ask questions because they believe they are
+"wasting the experts' time," but we don't really think so.
 Contributors are important to us.
 
-Also we have a
+We also have a
 `Stack Overflow tag <https://stackoverflow.com/questions/tagged/tarantool>`_.
 
 Join the chat and ask questions.
 
---------------------------------------------------------------------------------
-How to leave feedback, ideas or suggestions?
---------------------------------------------------------------------------------
+How to leave feedback, ideas, or suggestions?
+---------------------------------------------
 
 You can leave your feedback or share ideas in different ways:
 
-* **The simplest way** is to write
-  `here <https://docs.google.com/forms/d/1iwBj_2in-rBIYEcPeeVPQa4JfUIU_m14IUbAK4NojIE/edit?usp=sharing>`__.
-  All you need to do is fill in one product comment field and send it to us.
-  If you don't mind -- leave your email address.
+* **The simplest way** is to fill
+  `the feedback form <https://docs.google.com/forms/d/1iwBj_2in-rBIYEcPeeVPQa4JfUIU_m14IUbAK4NojIE/edit?usp=sharing>`__.
+  All you need to do is fill in one product comment field and click "Send."
+  You can optionally provide your email address.
   If you wish, we can involve you in the product development process.
 * **A more technical way** is to create a ticket on GitHub.
   If you have a suggestion for a new feature or information about a bug,
-  `follow the link <https://github.com/tarantool/tarantool/issues/new>`_
-  and leave a ticket.
+  `create a new GitHub issue <https://github.com/tarantool/tarantool/issues/new>`_.
   The link leads to the ``tarantool/tarantool`` repository.
-  For any other projects on GitHub select "Issues" - "New issue".
+  To leave feedback for our other projects on GitHub, select "Issues" > "New issue."
 
 See `an example of a feature request <https://github.com/tarantool/tarantool/issues/5046>`_.
 
-You can chat with the team in the general product chat.
-They are divided by language:
+To talk to our team about a product, go to one of our chats:
 
 * `Russian-speaking <https://t.me/tarantoolru>`_
 * `English-speaking <https://t.me/tarantool>`_
 
-If this communication channel is inconvenient for you or there is simply no Telegram,
+If Telegram is inconvenient for you or simply isn't working,
 you can leave your comment on `tarantool.io <http://www.tarantool.io>`_.
 Fill out the form at the bottom of the site and leave your email.
-We read each request and respond to them usually within 2 days.
+We read every request and respond to them usually within 2 days.
 
---------------------------------------------------------------------------------
-How to contribute?
---------------------------------------------------------------------------------
+How to contribute
+-----------------
 
 There are many ways to contribute to Tarantool:
 
-* Code -- Contribute to the code.
+* Code: Contribute to the code.
   We have components written in C, Lua, Python, Go, and other languages.
-* Write -- Improve documentation, write blog posts, create tutorials or solution pages.
-* Q&A -- Share your acknowledgments at Stack Overflow with tag
-  `#tarantool <https://stackoverflow.com/questions/tagged/tarantool>`_.
-* Spread the word -- Share your accomplishments in social media using the
-  ``#tarantool`` hashtags (or CC ``@tarantooldb`` in Twitter).
+* Write: Improve documentation, write blog posts, create tutorials or solution pages.
+* Q&A: Share your experience on Stack Overflow with the
+  `#tarantool <https://stackoverflow.com/questions/tagged/tarantool>`_ tag.
+* Spread the word: Share your accomplishments on social media using the
+  ``#tarantool`` hashtag (or CC ``@tarantooldb`` on Twitter).
 
---------------------------------------------------------------------------------
-Tarantool Ecosystem
---------------------------------------------------------------------------------
 
-Tarantool has a large ecosystem of tools around the product itself.
+Tarantool ecosystem
+-------------------
 
-We divide the Tarantool ecosystem into 4 types:
+Tarantool has a large ecosystem of tools.
+We divide the ecosystem into four large blocks:
 
 * Tarantool itself.
 * Modules for Tarantool. They can be written in C and Lua.
 * Connectors for programming languages.
-* Applied tools. See a selection including external tools in the
-  `"awesome Tarantool" list <https://github.com/tarantool/awesome-tarantool>`_.
+* Applied tools. See the curated
+  `Awesome Tarantool list <https://github.com/tarantool/awesome-tarantool>`_,
+  which also includes external tools.
 
-First-time tasks can be easily found in the issues section of any repository by
-the "good first issue" tag. These are beginner to intermediate tasks that will
+To start contributing, check the "good first issue" tag
+in the issues section of any of our repositories.
+These are beginner to intermediate tasks that will
 help you get comfortable with the tool.
 
 See the `list of tasks <https://github.com/tarantool/tarantool/labels/good%20first%20issue>`_
 for the ``tarantool/tarantool`` repository.
 
-For each repository we have a queue for reviewing,
-and reviewing your changes can be delayed.
-We try to give the first answer within two days.
+There is a review queue in each of our repositories,
+so your changes may not be reviewed immediately.
+We usually give the first answer within two days.
 Depending on the ticket and its complexity, the review time may take a week or more.
 
 Please do not hesitate to tag the maintainer in your GitHub ticket.
 
-Read further about the contribution to each of the blocks.
+Read on to learn about contributing to different ecosystem blocks.
 
---------------------------------------------------------------------------------
-You have a problem in documentation. How to tell about it and how to fix it?
---------------------------------------------------------------------------------
+
+Documentation: How to report and fix problems
+---------------------------------------------
 
 There are several ways to improve the documentation:
 
 * **The easiest one** is to leave your comment on the web documentation page.
-  All you need to do is click on the red button in the bottom right corner
+  To use the built-in feedback form, just click the red button in the bottom right corner
   of the page and fill in the comment field. You can point out an error,
   provide feedback on the current article, or suggest changes.
-  We review each comment and take it to work.
-  This form is built into the documentation on the Tarantool website.
-* **Advanced** -- All Tarantool documentation tasks are
-  `in the repository <https://github.com/tarantool/doc/issues>`_.
-  Here you can take any tasks and suggest your changes.
-  Our documentation is written in the `reStructuredText markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_,
+  We review each comment and work with it.
+* **Advanced**: All Tarantool documentation tasks can be found in the
+  `repository <https://github.com/tarantool/doc/issues>`_.
+  Go to any task and suggest your changes.
+  We write our documentation using
+  `reStructuredText markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_,
   and we have a :doc:`writing style guide <docs>`.
-  After making the change, you need to build the documentation locally and
-  see how it was laid out. This is done automatically in Docker.
-  `Read more in the README of the tarantool/doc repository <https://github.com/tarantool/doc>`_.
+  After you make the change, build the documentation locally and
+  see how it works. This can be done automatically in Docker.
+  To learn more, check the `README of the tarantool/doc repository <https://github.com/tarantool/doc>`_.
 
-Some projects have their documentation in the code repository.
-For example, `Tarantool Cartridge <https://github.com/tarantool/cartridge/>`_.
+Some projects, like `Tarantool Cartridge <https://github.com/tarantool/cartridge/>`_,
+have their documentation in the code repository.
 This is done on purpose, so the developers themselves can update it faster.
-Instructions for building such documentation sets are in the code repository.
+You can find instructions for building such documentation in the code repository.
 
-If you find that the documentation in the README of a module or, for example,
+If you find that the documentation provided in the README of a module or
 a connector is incomplete or wrong, the best way to influence this is to fix it
-yourself. Clone the repository, fix the bug, and suggest changes as a PR (pull request).
-It will take you 5 minutes and will help the whole community.
+yourself. Clone the repository, fix the bug, and suggest changes in a pull request.
+It will take you five minutes but it will help the whole community.
 
-If for some reason you cannot fix it, create a ticket in this repository
-and report the error. Such errors are fixed quickly.
+If you cannot fix it for any reason, create a ticket in the repository
+and report the error. It will be fixed promptly.
 
---------------------------------------------------------------------------------
+
 How to contribute to modules
---------------------------------------------------------------------------------
+----------------------------
 
 Tarantool is a database with an embedded application server.
-You can write any code in C and Lua and pack it in distributable modules.
+This means you can write any code in C or Lua and pack it in distributable modules.
 
-Here are examples of official modules:
+We have official and unofficial modules.
+Here are some of our official modules:
 
-* `HTTP server <https://github.com/tarantool/http>`_ -- HTTP server implementation
+* `HTTP server <https://github.com/tarantool/http>`_: HTTP server implementation
   with middleware support.
-* `queue <https://github.com/tarantool/queue>`_ - Tarantool implementation of
-  a persistent message queue.
-* `metrics <https://github.com/tarantool/metrics>`_ - ready-to-use solution for
+* `queue <https://github.com/tarantool/queue>`_: Tarantool implementation of
+  the persistent message queue.
+* `metrics <https://github.com/tarantool/metrics>`_: Ready-to-use solution for
   collecting metrics.
-* `cartridge <https://github.com/tarantool/cartridge>`_ - framework for writing
+* `cartridge <https://github.com/tarantool/cartridge>`_: Framework for writing
   distributed applications.
 
-Modules are distributed through our package manager, which is already
-preinstalled with Tarantool.
+Official modules are provided in our organization on GitHub.
 
-We have official modules and unofficial ones.
-The official ones are those that are in our organization on GitHub.
-But we distribute unofficial ones via our package manager too so that other
-users can get your module easily.
-If you want to add your module to our GitHub organization --
-`text us here <https://t.me/arturbrsg>`_.
+All modules are distributed through our package manager, which is
+pre-installed with Tarantool.
+That also applies to unofficial modules, which means that
+other users can get your module easily.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Want to contribute to an existing module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you want to add your module to our GitHub organization,
+`send us a message on Telegram <https://t.me/arturbrsg>`_.
 
-Tasks for contributors can be easily found in the issues section of any repository
-by the "good first issue" tag. These are tasks of an initial or intermediate
-level of difficulty that will help you get comfortable in the module of interest.
 
-Look at the
+Contributing to an existing module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tasks for contributors can be found in the issues section of any repository
+under the "good first issue" tag. These tasks are beginner or intermediate
+in terms of difficulty level, so you can comfortably get used to the module of your interest.
+
+Check the
 `currently open tasks <https://github.com/tarantool/http/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22>`_
 for the HTTP Server module.
 
-The style guide for the Lua code we are following is :ref:`here <lua_style_guide>`.
+Please see our :doc:`Lua style guide </dev_guide/lua_style_guide>`.
 
-You can contact the current maintainer through MAINTAINERS, which is located
-in the root of the repository. If there is not such a file --
+You can find the contact of the current maintainer in the MAINTAINERS file, located
+in the root of the repository. If there is no such file, please
 `let us know <https://t.me/arturbrsg>`_.
-We will respond within one to two days.
+We will respond within two days.
 
 If you see that the project does not have a maintainer or is inactive, you can
-become one yourself.
-See the section :ref:`How to become a maintainer <how_to_become_a_maintainer>`.
+become its maintainer yourself.
+See the :ref:`How to become a maintainer <contributing-how_to_become_a_maintainer>` section.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Want to create a new module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also create any custom modules and share them with the community.
+Creating a new module
+~~~~~~~~~~~~~~~~~~~~~
+
+You can also create custom modules and share them with the community.
 `Look at the module template <https://github.com/tarantool/modulekit>`_
 and write your own.
 
---------------------------------------------------------------------------------
+
 How to contribute to Tarantool Core
---------------------------------------------------------------------------------
+-----------------------------------
 
 Tarantool is written mostly in C.
-Some parts are written in C++ and Lua.
-Review can take longer because we want it to be reliable.
+Some parts are in C++ and Lua.
+Your contributions to Tarantool Core
+may take longer to review because we want the code to be reliable.
 
 To start:
 
-* :ref:`learn how to build Tarantool <building_from_source>`
-* read about Tarantool architecture and main modules
-  (`here <https://docs.tarantool.dev/en/latest/>`__ and
-  `here <https://github.com/tarantool/tarantool/wiki/Developer-information>`__)
+* :doc:`Learn how to build Tarantool </dev_guide/building_from_source>`.
+* Read about Tarantool architecture and main modules on the
+  `developer site <https://docs.tarantool.dev/en/latest/>`__ and on
+  `GitHub <https://github.com/tarantool/tarantool/wiki/Developer-information>`__.
 
-We have standards that we try to adhere to when developing in Tarantool.
-These are the Style Guide and Contribution Guide :ref:`links <developer_guidelines>`.
-They tell you how to format your code, how to format your commits, and how to
-write your test and make sure you don't break anything.
+In Tarantool development, we strive to follow the standards laid out in
+our :doc:`style and contribution guides </dev_guide/developer_guidelines>`.
+These documents explain how to format your code and commits as well as
+how to write tests without breaking anything accidentally.
 
-They will also help you make a patch that is easier to check, which will allow
-you to quickly push changes to master.
+The guidelines also help you create patches that are easy to check, which allows
+quickly pushing changes to master.
 
-Before your first commit, read
-`this article <https://github.com/tarantool/tarantool/wiki/Code-review-procedure#general-coding-points-to-check>`_!
+Please read about
+`our code review procedure <https://github.com/tarantool/tarantool/wiki/Code-review-procedure#general-coding-points-to-check>`_
+before making your first commit.
 
-A patch can be offered in two ways:
+Here are two ways to suggest a patch:
 
-* (preferred) Using a fork and pull mechanism on GitHub: make changes to your
-  copy of the repository and submit to us for review.
-  See details `here <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__.
-* Suggest a patch via the mailing list. Our developers are discussing most of
-  the features there.
-  See details :ref:`here <dev_guidelines-patch-review>`.
+* (preferred) Using the fork and pull mechanism on GitHub: Make changes to your
+  copy of the repository and submit it to us for review. Check the
+  `GitHub documentation <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__
+  to learn how to do it.
+* Suggest a patch via the mailing list. This is where our developers discuss most features.
+  Learn more in :ref:`the article on submitting patches </dev_guide/developer_guidelines/#how-to-submit-a-patch-for-review>`.
 
---------------------------------------------------------------------------------
-How to write a test
---------------------------------------------------------------------------------
 
-The database is a product that is expected to be as reliable as possible.
-We at Tarantool have developed a dedicated test framework for developing
-test scripts that test Tarantool itself. The framework is called ``test-run``.
+How to write tests
+------------------
 
-Writing your own test is not difficult. See test examples here:
+A database is a product that is expected to be as reliable as possible.
+We at Tarantool created ``test-run``, a dedicated test framework for developing
+scripts that test Tarantool itself.
+
+Writing your own test is not difficult. Check out the following examples:
 
 * `C unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/unit/csv.c>`_
 * `Lua unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/app/fio.test.lua>`_
 
-We also have a CI that automatically checks build and test coverage for new
+We also have a CI workflow that automatically checks build and test coverage for new
 changes on all supported operating systems.
-This happens after any commit to the repository.
+The workflow is launched after every commit to the repository.
 
-The QA team has many tasks for specialists who are involved in checking the
-quality of the product and tools. They provide test coverage for products,
-help develop the test framework, and introduce and maintain new tools to test
-the stability of releases.
+We have many tasks for QA specialists. Our QA team provides test coverage for our products,
+helps develop the test framework, and introduces and maintains new tools to test
+the stability of our releases.
 
-We test modules differently: for modules, we use the
-`luatest <https://github.com/tarantool/luatest>`_ framework.
-This is a fork of the popular framework in the Lua community, which we have
+For modules, we use `luatest <https://github.com/tarantool/luatest>`_---
+our fork of a framework popular in the Lua community,
 enhanced and optimized for our tasks.
 See `examples <https://github.com/tarantool/metrics/tree/master/test>`_.
 of writing tests for a module.
 
-Read: writing tests in Tarantool, writing unit tests. ???
+..  // Read: writing tests in Tarantool, writing unit tests. ???
 
---------------------------------------------------------------------------------
+
 How to contribute to language connectors
---------------------------------------------------------------------------------
+----------------------------------------
 
-A connector is a library that provides an API for accessing Tarantool from
+A connector is a library that provides an API to access Tarantool from
 a programming language. Tarantool uses its own binary protocol for access,
 and the connector's task is to transfer user requests to the database and
 application server in the required format.
 
 Data access connectors have already been implemented for all major languages.
-If you want to write your own connector, you first need to familiarize yourself with the Tarantool binary protocol. Its current description can be found :ref:`here <box_protocol-iproto_protocol>`.
+If you want to write your own connector,
+you first need to familiarize yourself with the Tarantool binary protocol.
+Read :doc:`the protocol description </dev_guide/internals/box_protocol>` to learn more.
 
 We consider the following connectors as references:
 
 * https://github.com/tarantool-php/client
-* `net.box <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.lua>`_ — binary protocol client in Tarantool
+* `net.box <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.lua>`_---Tarantool
+  binary protocol client
 
 You can look at them to understand how to do it right.
 
-The Tarantool ecosystem has connectors that are supported by the Tarantool team
-itself, and there are connectors that are developed and supported exclusively by the
-community. All of them have their pros and cons. See a
+Some connectors in the Tarantool ecosystem are supported by the Tarantool team.
+Others are developed and supported exclusively by the community.
+All of them have their pros and cons. See the
 `complete list of connectors and their recommended versions <https://www.tarantool.io/en/download/connectors>`_.
 
-If you are using an existing connector from the community and want to implement
-new features or fix a bug, then send your PRs via GitHub to the desired repository.
+If you are using a community connector and want to implement
+new features for it or fix a bug, send your PRs via GitHub to the connector repository.
 
-To contact the author of the connector in case of questions, look in the
-MAINTAINERS file: there will be contacts of the repository maintainer.
-If there is no such file -- `text us here <https://t.me/arturbrsg>`_.
+If you have questions for the author of the connector, check the
+MAINTAINERS file for the repository maintainer's contact.
+If there is no such file, `send us a message on Telegram <https://t.me/arturbrsg>`_.
 We will help you figure it out. We usually answer within one day.
 
---------------------------------------------------------------------------------
+
 How to contribute to tools
---------------------------------------------------------------------------------
+--------------------------
 
-The Tarantool ecosystem has tools that help in operation, deploy applications,
-or allow working with Kubernetes.
+The Tarantool ecosystem has tools that facilitate the workflow,
+help with application deployment, or allow working with Kubernetes.
 
-Examples of tools from the Tarantool team:
+Here are some of the tools created by the Tarantool team:
 
 * `ansible-cartridge <https://github.com/tarantool/ansible-cartridge>`_:
-  Ansible role for deploying an application on Cartridge
+  an Ansible role to deploy Cartridge applications.
 * `cartridge-cli <https://github.com/tarantool/cartridge-cli>`_:
-  CLI utility for creating applications, launching clusters locally on Cartridge
-  and solving operational problems
+  a CLI utility for creating applications, launching clusters locally on Cartridge,
+  and solving operation problems.
 * `tarantool-operator <https://github.com/tarantool/tarantool-operator>`_:
-  Kubernetes operator for cluster orchestration
+  a Kubernetes operator for cluster orchestration.
 
 These tools can be installed via standard package managers:
-``ansible galaxy``, ``yum``, ``apt-get``, respectively.
+``ansible galaxy``, ``yum``, or ``apt-get``.
 
 If you have a tool that might go well in our curated
-`"awesome Tarantool" list <https://github.com/tarantool/awesome-tarantool>`_
-you can read the
+`Awesome Tarantool list <https://github.com/tarantool/awesome-tarantool>`_,
+read the
 `guide for contributors <https://github.com/tarantool/awesome-tarantool/blob/master/CONTRIBUTING.md>`_
-there and submit a pull request.
+and submit a pull request.
 
-.. _how_to_become_a_maintainer:
+.. _contributing-how_to_become_a_maintainer:
 
---------------------------------------------------------------------------------
 How to become a maintainer
---------------------------------------------------------------------------------
+--------------------------
 
 Maintainers are people who can merge PRs or commit to master.
-We expect maintainers to answer questions and tickets in time, and do code reviews.
+We expect maintainers to answer questions and tickets on time as well as do code reviews.
 
-If you need to get a review but no one responds for a week, take a look at the
-Maintainers section of the ``README.md`` in the repository.
+If you need to get a review but no one responds within a week, take a look at the
+Maintainers section of the repository's ``README.md``.
 Write to the person listed there.
-If you have not received an answer in 3-4 days, you can escalate the question
-`here <https://t.me/arturbrsg>`__.
+If you have not received an answer within 3--4 days, you can escalate the question
+`on Telegram <https://t.me/arturbrsg>`__.
 
-A repository may have no maintainers (the Maintainers list in ``README.md`` is empty),
-or existing maintainers may be inactive. Then you can become a maintainer yourself.
+A repository may have no maintainers (empty Maintainers list in ``README.md``),
+or the existing maintainers may be inactive. In this case, you can become a maintainer yourself.
 We think it's better if the repository is maintained by a newbie than if the
-repository is dead. So don't be shy: we love maintainers and help them figure it out.
+repository is dead. So don't be shy: we love maintainers and help them figure it all out.
 
 All you need to do is fill out
 `this form <https://docs.google.com/forms/d/1RihU9hQkbY5n7hU-3ZOr6t1L6cJKOlJcETowD_cNeOk/edit?usp=sharing>`_.
-Indicate which repository you want to access,
+Tell us what repository you want to access,
 the reason (inactivity, the maintainer is not responding),
 and how to contact you.
-We will consider the application in 1 day and either give you the rights
+We will consider your application in 1 day and either give you the rights
 or tell you what else needs to be done.
