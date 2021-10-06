@@ -580,7 +580,11 @@ This feature was added in version :doc:`2.8.1 </release/2.8.1>`.
 
 The end of each display is a HEAP SUMMARY section which looks like this:
 
-@<filename>:<line number> holds <number of still reachable bytes> bytes: <number of allocation events> allocs, <number of deallocation events> frees
+..  code-block:: none
+
+    @<filename>:<line number> holds <number of still 
+    reachable bytes> bytes: <number of allocation events> 
+    allocs, <number of deallocation events> frees
 
 Sometimes a program can cause many deallocations, so
 the DEALLOCATION section can become large, so the display is not easy to read.
