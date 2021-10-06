@@ -89,7 +89,7 @@ to extract or compare the index key values.
 
         **Example #2**
 
-        .. code-block:: none
+        .. code-block:: lua
 
             -- Now suppose that the item is a tuple in a space which
             -- has an index on field #3 plus field #1.
@@ -105,7 +105,7 @@ to extract or compare the index key values.
 
         **Example #3**
 
-        .. code-block:: none
+        .. code-block:: lua
 
             -- Iterate through the tuples in a secondary non-unique index.
             -- extracting the tuples' primary-key values so they can be deleted
@@ -142,7 +142,7 @@ to extract or compare the index key values.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
            -- This will return 0
            key_def = require('key_def')
@@ -168,7 +168,7 @@ to extract or compare the index key values.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
            -- This will return 0
            key_def = require('key_def')
@@ -191,7 +191,7 @@ to extract or compare the index key values.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
            -- This will return a key definition with fieldno = 3 and fieldno = 1.
            key_def = require('key_def')
@@ -216,7 +216,7 @@ to extract or compare the index key values.
 
         **Example:**
 
-        .. code-block:: none
+        .. code-block:: lua
 
            -- This will return a table with type = 'string', fieldno = 3
            key_def = require('key_def')
