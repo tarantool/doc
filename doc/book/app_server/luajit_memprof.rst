@@ -88,7 +88,7 @@ or if there is a failure during reporting,
 ``misc.memprof.stop()`` returns ``nil`` as the first result,
 an error-message string as the second result,
 and a system-dependent error code number as the third result.
-If the operation succeeds, ``misc.memprof.start()`` returns ``true``.
+If the operation succeeds, ``misc.memprof.stop()`` returns ``true``.
 
 .. _profiler_usage_generate:
 
