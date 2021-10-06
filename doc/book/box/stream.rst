@@ -3,7 +3,7 @@
 Streams
 =======
 
-Since version :tarantool-release:`2.10.0-beta1`, streams and interactive :ref:`transactions <atomic-atomic_execution>`
+Since :tarantool-release:`2.10.0-beta1`, streams and interactive :ref:`transactions <atomic-atomic_execution>`
 in them are implemented in iproto.
 Unlike a thread associated with multitasking and execution within a program,
 a stream occurs between a client and a server.
