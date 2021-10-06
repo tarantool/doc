@@ -20,6 +20,8 @@ extensions = [
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
+    'sphinxcontrib.plantuml',
     'ext.custom',
     'ext.LuaDomain',
     'ext.LuaLexer',
