@@ -3,7 +3,8 @@
 Streams
 =======
 
-Since version :tarantool-release:`2.10.0-beta1`, streams and interactive transactions in them are implemented in iproto.
+Since version :tarantool-release:`2.10.0-beta1`, streams and interactive :ref:`transactions <atomic-atomic_execution>`
+in them are implemented in iproto.
 Unlike a thread associated with multitasking and execution within a program,
 a stream occurs between a client and a server.
 It deals with connecting and transferring a protocol over the network.
@@ -14,6 +15,12 @@ All requests with the same non-zero stream ID belong to the same stream.
 All requests in the stream are processed synchronously.
 The next request will not start executing until the previous one is completed.
 If a request's stream ID is ``0``, it does not belong to any stream and is processed in the old way.
+
+In ``net.box``, a stream is an object above the connection that has the same methods
+but allows executing requests sequentially.
+The ID is generated on the client side automatically.
+If a user writes their own connector and wants to use streams,
+they must transmit the ``stream_id`` over the iproto protocol.
 
 As each stream can start a transaction, several transactions can be multiplexed over one connection.
 There are multiple ways to begin, commit, and roll back a transaction.
