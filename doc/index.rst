@@ -10,7 +10,7 @@
 
     .. container:: documentation-main-page-header-path
 
-        |nbspc|
+        |nbsp|
 
 .. wp_section::
     :class: b-documentation-toc
@@ -19,7 +19,7 @@
 
         .. container:: documentation-main-page-title
 
-            Tarantool 1.10 manual
+            Tarantool documentation
 
         .. container:: documentation-main-page-description
 
@@ -40,7 +40,7 @@
 
                     <div class="getting-started-button-container">
                         <a href="getting_started/">
-                            <button class="getting-started-button btn">
+                            <button class="getting-started-button btn main-button">
                                 Руководство для начинающих
                             </button>
                         </a>
@@ -52,7 +52,7 @@
 
                     <div class="getting-started-button-container">
                         <a href="getting_started/">
-                            <button class="getting-started-button btn">
+                            <button class="getting-started-button btn main-button">
                                 Getting started
                             </button>
                         </a>
@@ -78,37 +78,22 @@
                 reference/index
                 tutorials/index
                 contributing/index
-                whats_new
+                release
 
 
         .. container:: other-sources-menu
 
             .. raw:: html
 
-                <div class="badge-icon"></div>
-
             * **Other formats:**
-            * `Single-page HTML <singlehtml.html>`_
-            * `PDF <Tarantool.pdf>`_
+            * `Single-page HTML <singlehtml.html>`__
+            * `PDF <Tarantool.pdf>`__
+
             - **See also:**
-            - `Documentation archive`_
-            - `Articles`_
-            .. ifconfig:: language == 'ru'
+            - `Documentation archive <https://tarantool.io/dist/pdf/>`__
+            - `Articles <https://tarantool.io/learn/>`__
 
-                * **Support:**
-                * `Форум в Google`_
-                * `Чат в Telegram`_
-            .. ifconfig:: language == 'en'
+            * **Support:**
+            * `Google forum <https://groups.google.com/forum/#!forum/tarantool>`__
+            * `Telegram chat <https://t.me/tarantool>`__
 
-                * **Support:**
-                * `Google forum`_
-                * `Telegram chat`_
-
-.. _Documentation archive: https://tarantool.io/dist/pdf/
-.. _Articles: https://tarantool.io/learn/
-.. _Google forum: https://groups.google.com/forum/#!forum/tarantool
-.. _Форум в Google: https://googlegroups.com/group/tarantool-ru
-.. _Telegram chat: https://t.me/tarantool
-.. _Чат в Telegram: https://t.me/tarantoolru
-.. |nbspc| unicode:: U+00A0
-.. |space| unicode:: U+0020
