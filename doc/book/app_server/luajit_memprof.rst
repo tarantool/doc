@@ -201,22 +201,21 @@ An event record has the following format:
 
 ..  code-block:: text
 
-    @<filename>:<function_line>, line <line_number>: <number_of_events> events +<allocated> bytes -<freed> bytes
+    @<filename><line_number>: <number_of_events> events +<allocated> bytes -<freed> bytes
     
-        @test.lua:14: 10000 events  +50240518 bytes  -0 bytes
+
 
 *   <filename>—a name of the file containing Lua code.
-*   <function_line>—the line number where the function generating the event
-    is declared. In some cases, allocations are attributed not to
-    the declared function but to the main chunk -- in that case, the <function_line>
-    is set to ``0``. See the :ref:`tarantool test.lua chunk above<profiler_usage_example01>`
-    with the explanation in the comments for some examples.
 *   <line_number>—the line number where the event is detected.
 *   <number_of_events>—a number of events for this code line.
 *   +<allocated> bytes—amount of memory allocated during all the events on this line.
 *   -<freed> bytes—amount of memory freed during all the events on this line.
 
 The ``Overrides`` label shows what allocation has been overridden.
+
+See the :ref:`tarantool test.lua chunk above<profiler_usage_example01>`
+with the explanation in the comments for some examples.
+
 
 .. _profiler_usage_internal_jitoff:
 
