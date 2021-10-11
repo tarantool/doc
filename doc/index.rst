@@ -76,7 +76,7 @@
                 book/admin/index
                 book/replication/index
                 book/box/engines/index
-                book/connectors/index
+                book/connectors
                 reference/index
                 tutorials/index
                 contributing/index

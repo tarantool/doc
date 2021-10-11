@@ -2,5 +2,5 @@
                             R
 =====================================================================
 
-See https://github.com/thekvs/tarantoolr.
+Use the `tarantoolr <https://github.com/thekvs/tarantoolr>`__ connector.
 

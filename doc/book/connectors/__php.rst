@@ -2,11 +2,11 @@
                             PHP
 =====================================================================
 
-`tarantool-php <https://github.com/tarantool/tarantool-php>`_ is the official
+`tarantool-php <https://github.com/tarantool/tarantool-php>`__ is the official
 PHP connector for Tarantool.
 It is not supplied as part of the Tarantool repository and must be installed
 separately (see `installation instructions
-<https://github.com/tarantool/tarantool-php/#installing-and-building>`_
+<https://github.com/tarantool/tarantool-php/#installing-and-building>`__
 in the connector's ``README`` file).
 
 Here is a complete PHP program that inserts ``[99999,'BB']`` into a space named
@@ -18,7 +18,7 @@ Before trying to run, check that the server instance is
 
 To run, paste the code into a file named :file:`example.php` and say:
 
-.. code-block:: console
+..  code-block:: console
 
     $ php -d extension=~/tarantool-php/modules/tarantool.so example.php
 
@@ -29,7 +29,7 @@ then -- if all is well -- print "Insert succeeded".
 If the tuple already exists, the program will print
 "Duplicate key exists in unique index 'primary' in space 'examples'".
 
-.. code-block:: php
+..  code-block:: php
 
     <?php
     $tarantool = new Tarantool('localhost', 3301);
@@ -43,11 +43,11 @@ If the tuple already exists, the program will print
 
 The example program only shows one request and does not show all that's
 necessary for good practice. For that, please see
-`tarantool/tarantool-php <https://github.com/tarantool/tarantool-php>`_
+`tarantool/tarantool-php <https://github.com/tarantool/tarantool-php>`__
 project at GitHub.
 
 Besides, there is another community-driven
-`GitHub project <https://github.com/tarantool-php>`_ which includes an
-`alternative connector <https://github.com/tarantool-php/client>`_ written in
-pure PHP, an `object mapper <https://github.com/tarantool-php/mapper>`_,
-a `queue <https://github.com/tarantool-php/queue>`_ and other packages.
+`tarantool-php GitHub project <https://github.com/tarantool-php>`__ which includes an
+`alternative connector <https://github.com/tarantool-php/client>`__ written in
+pure PHP, an `object mapper <https://github.com/tarantool-php/mapper>`__,
+a `queue <https://github.com/tarantool-php/queue>`__ and other packages.

@@ -3,22 +3,22 @@
 =====================================================================
 
 The most commonly used Perl driver is
-`tarantool-perl <https://github.com/tarantool/tarantool-perl>`_. It is not
+`tarantool-perl <https://github.com/tarantool/tarantool-perl>`__. It is not
 supplied as part of the Tarantool repository; it must be installed separately.
 The most common way to install it is by cloning from GitHub.
 
 To avoid minor warnings that may appear the first time ``tarantool-perl`` is
 installed, start with installing some other modules that ``tarantool-perl`` uses,
-with `CPAN, the Comprehensive Perl Archive Network <https://en.wikipedia.org/wiki/Cpan>`_:
+with `CPAN, the Comprehensive Perl Archive Network <https://en.wikipedia.org/wiki/Cpan>`__:
 
-.. code-block:: console
+..  code-block:: console
 
     $ sudo cpan install AnyEvent
     $ sudo cpan install Devel::GlobalDestruction
 
 Then, to install ``tarantool-perl`` itself, say:
 
-.. code-block:: console
+..  code-block:: console
 
     $ git clone https://github.com/tarantool/tarantool-perl.git tarantool-perl
     $ cd tarantool-perl
@@ -35,12 +35,12 @@ via the Perl API. Before trying to run, check that the server instance is listen
 To run, paste the code into a file named :file:`example.pl` and say
 :samp:`perl example.pl`. The program will connect using an application-specific
 definition of the space. The program will open a socket connection with the
-Tarantool instance at ``localhost:3301``, then send an :ref:`space_object:INSERT<box_space-insert>` request, then — if
+Tarantool instance at ``localhost:3301``, then send an :ref:`space_object:INSERT <box_space-insert>` request, then — if
 all is well — end without displaying any messages. If Tarantool is not running
-on ``localhost`` with :ref:`listen<cfg_basic-listen>` port = 3301, the program will print “Connection
+on ``localhost`` with :ref:`listen <cfg_basic-listen>` port = 3301, the program will print “Connection
 refused”.
 
-.. code-block:: perl
+..  code-block:: perl
 
     #!/usr/bin/perl
     use DR::Tarantool ':constant', 'tarantool';
@@ -65,8 +65,8 @@ refused”.
     $tnt->insert('examples' => [ 99999, 'BB' ]);
 
 The example program uses field type names 'STR' and 'NUM'
-instead of :ref:`'string' and 'unsigned'<box_space-create_index>`, due to a temporary Perl limitation.
+instead of :ref:`'string' and 'unsigned' <box_space-create_index>`, due to a temporary Perl limitation.
 
 The example program only shows one request and does not show all that's
 necessary for good practice. For that, please see the
-`tarantool-perl repository <https://github.com/tarantool/tarantool-perl>`_.
+`tarantool-perl repository <https://github.com/tarantool/tarantool-perl>`__.

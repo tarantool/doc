@@ -2,7 +2,7 @@
                             Python
 =====================================================================
 
-`tarantool-python <http://github.com/tarantool/tarantool-python>`_
+`tarantool-python <http://github.com/tarantool/tarantool-python>`__
 is the official Python connector for Tarantool. It is not supplied as part
 of the Tarantool repository and must be installed separately (see below for details).
 
@@ -28,19 +28,19 @@ Before trying to run, check that the server instance is :ref:`listening <cfg_bas
 ``localhost:3301`` and that the space ``examples`` exists, as
 :ref:`described earlier <index-connector_setting>`.
 To run the program, say :samp:`python example.py`. The program will connect
-to the Tarantool server, will send the :ref:`INSERT<box_space-insert>` request, and will not throw any exception if
+to the Tarantool server, will send the :ref:`INSERT <box_space-insert>` request, and will not throw any exception if
 all went well. If the tuple already exists, the program will throw
 ``tarantool.error.DatabaseError: (3, "Duplicate key exists in unique index 'primary' in space 'examples'")``.
 
 The example program only shows one request and does not show all that's
 necessary for good practice. For that, please see
-`tarantool-python <http://github.com/tarantool/tarantool-python>`_ project at GitHub.
+`tarantool-python <http://github.com/tarantool/tarantool-python>`__ project at GitHub.
 For an example of using Python API with
-`queue managers for Tarantool <https://github.com/tarantool/queue>`_, see
-`queue-python <https://github.com/tarantool/queue-python>`_ project at GitHub.
+`queue managers for Tarantool <https://github.com/tarantool/queue>`__, see
+`queue-python <https://github.com/tarantool/queue-python>`__ project at GitHub.
 
 Also there are several community-driven Python connectors:
 
-* `asynctnt <https://github.com/igorcoding/asynctnt>`_ with asyncio support
-* `aiotarantool <https://github.com/shveenkov/aiotarantool>`_ also with asyncio support
-* `gtarantool <https://github.com/shveenkov/gtarantool>`_ with gevent support **no active maintenance**
+* `asynctnt <https://github.com/igorcoding/asynctnt>`__ with asyncio support
+* `aiotarantool <https://github.com/shveenkov/aiotarantool>`__ also with asyncio support
+* `gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent support **no active maintenance**
