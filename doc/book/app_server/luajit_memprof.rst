@@ -201,7 +201,7 @@ An event record has the following format:
 
 ..  code-block:: text
 
-    @<filename><line_number>: <number_of_events> events +<allocated> bytes -<freed> bytes
+    @<filename>:<line_number>: <number_of_events> events +<allocated> bytes -<freed> bytes
     
 
 
