@@ -85,8 +85,6 @@
 
         .. container:: other-sources-menu
 
-            .. raw:: html
-
             * **Other formats:**
             * `Single-page HTML <singlehtml.html>`__
             * `PDF <Tarantool.pdf>`__
