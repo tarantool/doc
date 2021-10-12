@@ -213,7 +213,7 @@ An event record has the following format:
 
 The ``Overrides`` label shows what allocation has been overridden.
 
-See the :ref:`tarantool test.lua chunk above<profiler_usage_example01>`
+See the :ref:`test.lua chunk above <profiler_usage_example01>`
 with the explanation in the comments for some examples.
 
 
