@@ -66,6 +66,7 @@
                 CRUD operations <reference/reference_lua/box_space>
                 book/box/indexes
                 book/box/atomic
+                Streams <book/box/stream>
                 book/box/authentication
                 book/box/triggers
                 reference/reference_rock/vshard/vshard_index

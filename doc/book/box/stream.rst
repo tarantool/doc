@@ -3,6 +3,8 @@
 Streams and interactive transactions
 ====================================
 
+..  _box_stream-overview:
+
 Overview
 --------
 
@@ -13,6 +15,7 @@ in them are implemented in iproto.
 
     Stream
         A stream is a concept that supports multiplexing several transactions over one connection.
+        All requests in the stream are executed strictly sequentially.
         It is a more general approach that allows the implementation
         of :term:`interactive transactions <interactive transaction>`.
 
@@ -24,8 +27,9 @@ It deals with connecting and transferring a protocol over the network.
 
     Interactive transaction
         An interactive transaction is a transaction that does not need to be sent in one request.
-        ``begin``, ``commit`` and transaction thread statements can be sent and executed in different requests.
+        ``begin``, ``commit`` and TX statements can be sent and executed in different requests.
 
+..  _box_stream-features:
 
 New features
 ------------
@@ -37,11 +41,13 @@ All requests in the stream are processed synchronously.
 The next request will not start executing until the previous one is completed.
 If a request's stream ID is ``0``, it does not belong to any stream and is processed in the old way.
 
-In ``net.box``, a stream is an object above the connection that has the same methods
+In :doc:`net.box </reference/reference_lua/net_box>`, a stream is an object above the connection that has the same methods
 but allows executing requests sequentially.
 The ID is generated on the client side automatically.
 If a user writes their own connector and wants to use streams,
 they must transmit the ``stream_id`` over the iproto protocol.
+
+..  _box_stream-interaction:
 
 Interaction between streams and transactions
 --------------------------------------------------------
@@ -56,3 +62,31 @@ All the requests between ``stream:begin()`` and ``stream:commit()`` are executed
 If any request fails during the transaction, it will not affect the other requests in the transaction.
 If a disconnect occurs while there is an active transaction in the stream,
 that transaction will be rolled back if it hasn't been committed before the connection failure.
+
+Example:
+
+.. code-block:: lua
+
+    local conn = net_box.connect(remote_server_addr)
+    local conn_space = conn.space.test
+    local stream = conn:new_stream()
+    local stream_space = stream.space.test
+
+    -- Begin transaction over iproto streams:
+    stream:begin()
+    space:replace({1})
+
+    -- Empty select, the transaction was not committed.
+    -- It is not visible from the requests which do not belong to the
+    -- transaction.
+
+    -- Select return tuple, which was previously inserted,
+    -- because this select belongs to transaction:
+    conn_space:select{}
+    stream_space:select({})
+
+    -- Commit transaction:
+    stream:commit()
+
+    -- Now this select also return tuple, because the transaction has been committed:
+    conn_space:select{}
