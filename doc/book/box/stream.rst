@@ -13,20 +13,19 @@ Since :tarantool-release:`2.10.0-beta1`, iproto implements streams and interacti
 ..  glossary::
 
     Stream
-        A stream is a concept that supports multiplexing several transactions over one connection.
-        All requests in the stream are executed strictly sequentially.
-        It is a more general approach that allows the implementation
-        of :term:`interactive transactions <interactive transaction>`.
+        A stream supports multiplexing several transactions over one connection.
+        All requests in the stream are executed strictly sequentially,
+        which allows the implementation of
+        :term:`interactive transactions <interactive transaction>`.
 
 Unlike a thread associated with multitasking and execution within a program,
-a stream occurs between a client and a server.
-It deals with connecting and transferring a protocol over the network.
+a stream transfers data via the protocol between a client and a server.
 
 ..  glossary::
 
     Interactive transaction
-        An interactive transaction is a transaction that does not need to be sent in one request.
-        ``begin``, ``commit`` and TX statements can be sent and executed in different requests.
+        An interactive transaction is a transaction that does not need to be sent in a single request.
+        The ``begin``, ``commit``, and other TX statements can be sent and executed in different requests.
 
 ..  _box_stream-features:
 
@@ -49,13 +48,13 @@ they must transmit the ``stream_id`` over the iproto protocol.
 ..  _box_stream-interaction:
 
 Interaction between streams and transactions
---------------------------------------------------------
+--------------------------------------------
 
 As each stream can start a transaction, several transactions can be multiplexed over one connection.
 There are multiple ways to begin, commit, and roll back a transaction.
-One can do that using the appropriate stream methods, ``call``, ``eval``,
-or ``execute`` with the SQL transaction syntax. Users can mix these methods.
-For example, one might start a transaction using ``stream:begin()``,
+One can do that using the appropriate stream methods---``call``, ``eval``,
+or ``execute``---with the SQL transaction syntax. Users can mix these methods.
+For example, one might start a transaction using ``stream:begin()``
 and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
 All the requests between ``stream:begin()`` and ``stream:commit()`` are executed within the same transaction.
 If any request fails during the transaction, it will not affect the other requests in the transaction.
@@ -71,21 +70,21 @@ Example:
     local stream = conn:new_stream()
     local stream_space = stream.space.test
 
-    -- Begin transaction over iproto streams:
+    -- Begin transaction over an iproto stream:
     stream:begin()
     space:replace({1})
 
     -- Empty select, the transaction was not committed.
-    -- It is not visible from the requests which do not belong to the
+    -- You can't see it from the requests that do not belong to the
     -- transaction.
 
-    -- Select return tuple, which was previously inserted,
-    -- because this select belongs to transaction:
+    -- Select returns the previously inserted tuple,
+    -- because this select belongs to the transaction:
     conn_space:select{}
     stream_space:select({})
 
     -- Commit transaction:
     stream:commit()
 
-    -- Now this select also return tuple, because the transaction has been committed:
+    -- Now this select also returns the tuple, because the transaction has been committed:
     conn_space:select{}
