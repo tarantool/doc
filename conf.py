@@ -22,6 +22,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
     'sphinxcontrib.plantuml',
+    'sphinx_panels',
     'ext.custom',
     'ext.LuaDomain',
     'ext.LuaLexer',
@@ -45,6 +46,7 @@ extlinks = {
 
 plantuml_output_format = 'svg_img'
 imgmath_image_format = 'svg'
+# panels_add_bootstrap_css = False
 
 primary_domain = 'lua'
 source_suffix = '.rst'

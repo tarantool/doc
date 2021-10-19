@@ -34,6 +34,7 @@ jobs:
           env: "branch-${{env.BRANCH_NAME}}"
           ref: ${{github.head_ref}}
 
+      - run: pip install sphinx-panels
       - run: cmake .
       - run: make pull-modules
       - run: make build-modules

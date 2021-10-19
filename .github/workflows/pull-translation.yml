@@ -15,6 +15,8 @@ jobs:
         with:
           token: "${{ secrets.TARANTOOLBOT_TOKEN }}"
 
+      - run: pip install sphinx-panels
+
       - name: Set branch name from source branch
         run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
