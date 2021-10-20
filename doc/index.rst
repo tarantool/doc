@@ -81,19 +81,3 @@
                 tutorials/index
                 contributing/index
                 release
-
-
-        .. container:: other-sources-menu
-
-            * **Other formats:**
-            * `Single-page HTML <singlehtml.html>`__
-            * `PDF <Tarantool.pdf>`__
-
-            - **See also:**
-            - `Documentation archive <https://tarantool.io/dist/pdf/>`__
-            - `Articles <https://tarantool.io/learn/>`__
-
-            * **Support:**
-            * `Google forum <https://groups.google.com/forum/#!forum/tarantool>`__
-            * `Telegram chat <https://t.me/tarantool>`__
-
