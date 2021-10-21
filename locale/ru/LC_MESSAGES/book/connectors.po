@@ -118,7 +118,7 @@ msgid "Byte #3"
 msgstr "Байт 3"
 
 msgid "code for insert"
-msgstr "код для вставки"
+msgstr "код операции insert"
 
 msgid "02"
 msgstr "02"
@@ -203,7 +203,7 @@ msgid ""
 "the Tarantool instance (tarantool) is running on localhost (127.0.0.1) and "
 "is listening on port 3301 (``box.cfg.listen = '3301'``),"
 msgstr ""
-"Экземпляр (Tarantool) запущен на локальной машине (``localhost = "
+"Экземпляр (tarantool) запущен на локальной машине (``localhost = "
 "127.0.0.1``), а прослушивание для него настроено на порту 3301 "
 "(``box.cfg.listen = '3301'``)."
 

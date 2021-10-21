@@ -17,30 +17,3 @@ msgstr ""
 "вводной информации и упражнений для начинающих -- до продвинутых инструкций "
 "и подробных справочников для опытных пользователей и сторонних "
 "разработчиков."
-
-msgid "**Other formats:**"
-msgstr "**Другие форматы:**"
-
-msgid "`Single-page HTML <singlehtml.html>`__"
-msgstr "`HTML одной страницей <singlehtml.html>`__"
-
-msgid "`PDF <Tarantool.pdf>`__"
-msgstr "`PDF <Tarantool.pdf>`__"
-
-msgid "**See also:**"
-msgstr "**См. также:**"
-
-msgid "`Documentation archive <https://tarantool.io/dist/pdf/>`__"
-msgstr "`Архив документации <https://tarantool.io/dist/pdf/>`__"
-
-msgid "`Articles <https://tarantool.io/learn/>`__"
-msgstr "`Статьи <https://tarantool.io/learn/>`__"
-
-msgid "**Support:**"
-msgstr "**Поддержка:**"
-
-msgid "`Google forum <https://groups.google.com/forum/#!forum/tarantool>`__"
-msgstr "`Форум в Google <https://googlegroups.com/group/tarantool-ru>`__"
-
-msgid "`Telegram chat <https://t.me/tarantool>`__"
-msgstr "`Чат в Telegram <https://t.me/tarantoolru>`__"
