@@ -11,6 +11,14 @@ msgstr ""
 "почему Tarantool дает гарантию атомарности выполнения. На это следует "
 "обратить внимание."
 
+msgid ""
+"Since :tarantool-release:`2.10.0-beta1`, Tarantool supports streams and "
+"interactive transactions over them. See :ref:`Streams <box_stream>`."
+msgstr ""
+"Начиная с версии :tarantool-release:`2.10.0-beta1`, Tarantool поддерживает "
+"стримы и интерактивные транзакции. Больше информации можно найти здесь: "
+":ref:`Стримы <box_stream>`."
+
 msgid "Threads, fibers and yields"
 msgstr "Потоки, файберы и передача управления"
 
