@@ -325,7 +325,7 @@ msgstr ""
 "(``_serialize``)."
 
 msgid "table"
-msgstr "таблицу"
+msgstr "таблица"
 
 msgid ""
 "-- This will return a table with type = 'string', fieldno = 3\n"

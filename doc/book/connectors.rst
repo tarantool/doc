@@ -6,7 +6,7 @@
 
 This chapter documents APIs for various programming languages:
 
-* :doc:`C++ <cxx/tntcxx_api>`
+* :doc:`C++ <connectors/cxx/tntcxx_api>`
 * :ref:`Java <index_connector_java>`
 * :ref:`Go <index_connector_go>`
 * :ref:`R <index_connector_r>`
@@ -21,7 +21,7 @@ This chapter documents APIs for various programming languages:
 ..  toctree::
     :hidden:
 
-    C++ <cxx/tntcxx_api>
+    C++ <connectors/cxx/tntcxx_api>
 
 =====================================================================
                             Protocol
@@ -124,42 +124,42 @@ script:
 
 .. _index_connector_java:
 
-.. include:: __java.rst
+.. include:: connectors/__java.rst
 
 .. _index_connector_go:
 
-.. include:: __go.rst
+.. include:: connectors/__go.rst
 
 .. _index_connector_r:
 
-.. include:: __r.rst
+.. include:: connectors/__r.rst
 
 .. _index_connector_erlang:
 
-.. include:: __erlang.rst
+.. include:: connectors/__erlang.rst
 
 .. _index_connector_perl:
 
-.. include:: __perl.rst
+.. include:: connectors/__perl.rst
 
 .. _index_connector_php:
 
-.. include:: __php.rst
+.. include:: connectors/__php.rst
 
 .. _index_connector_py:
 
-.. include:: __python.rst
+.. include:: connectors/__python.rst
 
 .. _index_connector_nodejs:
 
-.. include:: __nodejs.rst
+.. include:: connectors/__nodejs.rst
 
 .. _index_connector_csharp:
 
-.. include:: __csharp.rst
+.. include:: connectors/__csharp.rst
 
 .. _index_connector_c:
 
-.. include:: __c.rst
+.. include:: connectors/__c.rst
 
-.. include:: __results.rst
+.. include:: connectors/__results.rst
