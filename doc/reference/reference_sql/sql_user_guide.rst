@@ -491,7 +491,7 @@ between 0 and +2^64, or NULL.
 DOUBLE values are numeric that do contain decimal points (for example 0.5) or
 are expressed with exponential notation (for example 5E-1).
 The range of possible values is the same as for the IEEE 754 floating-point
-standard, or NULL. Nuumerics outside the range of DOUBLE literals may be displayed
+standard, or NULL. Numerics outside the range of DOUBLE literals may be displayed
 as -inf or inf.
 
 .. _sql_data_type_number:
@@ -632,6 +632,7 @@ Divide second numeric into first numeric according to standard arithmetic rules.
 The result is the remainder.
 Starting with Tarantool version 2.10.1, operands must be positive INTEGER or UNSIGNED.
 Example: ``17 % 5``, result = 2.
+Example: ``-123 % 4``, result = -3.
 
 ``<<`` shift left (arithmetic)
 Shift the first numeric to the left N times, where N = the second numeric.
@@ -781,7 +782,7 @@ SQL operations never return the floating-point value -nan,
 although it may exist in data created by Tarantool's NoSQL. In SQL, -nan is treated as NULL.
 
 In older Tarantool versions,
-a string would be converted to a numeric if it wass used with an arithmetic operator and conversion was possible,
+a string would be converted to a numeric if it was used with an arithmetic operator and conversion was possible,
 for example ``'7' + '7'`` = 14.
 And for comparison, ``'7'`` = 7.
 This is called implicit casting. It was applicable for STRINGs and all numeric data types.
