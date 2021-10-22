@@ -367,9 +367,9 @@ Two column values in a SCALAR column can have two different primitive data types
    uses it for section "Result of data type combinations".) Therefore for
    ``greatest(1E308, 'a', 0, X'00')`` the result is X'00' but
    ``typeof(greatest(1E308, 'a', 0, X'00')`` is 'scalar'.
-* The union of two SCALARs is sometimes the primitive type.
-  For example, ``SELECT TYPEOF((SELECT CAST('a' AS SCALAR) UNION SELECT CAST('a' AS SCALAR)));``
-  returns 'string'.
+#. The union of two SCALARs is sometimes the primitive type.
+   For example, ``SELECT TYPEOF((SELECT CAST('a' AS SCALAR) UNION SELECT CAST('a' AS SCALAR)));``
+   returns 'string'.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Column definition -- relation to NoSQL
@@ -3887,14 +3887,14 @@ that can appear in :ref:`box.execute(...[,extra-parameters]) <box-sql_box_execut
 requests,
 default data type is calculated thus: |br|
 * When there is only one possible data type, it is default. |br|
-Example: ``box.execute([[SELECT TYPEOF(LOWER(?);]]),{x})`` is 'string'. |br|
+Example: ``box.execute([[SELECT TYPEOF(LOWER(?));]],{x})`` is 'string'. |br|
 * When possible data types are INTEGER or DOUBLE or DECIMAL, DECIMAL is default. |br|
-Example: ``box.execute([[SELECT TYPEOF(AVG(?);]]),{x})`` is 'decimal'. |br|
+Example: ``box.execute([[SELECT TYPEOF(AVG(?));]],{x})`` is 'decimal'. |br|
 * When possible data types are STRING or VARBINARY, STRING is default. |br|
-Example: ``box.execute([[SELECT TYPEOF(LENGTH(?);]]),{x})`` is 'string'. |br|
+Example: ``box.execute([[SELECT TYPEOF(LENGTH(?));]],{x})`` is 'string'. |br|
 * When possible data types are any other scalar data type, SCALAR is default. |br|
-Example: ``box.execute([[SELECT TYPEOF(GREATEST(?,5);]]),{x})`` is 'scalar'. |br|
+Example: ``box.execute([[SELECT TYPEOF(GREATEST(?,5));]],{x})`` is 'scalar'. |br|
 * Otherwise, there is no default. |br|
-Example: ``box.execute([[SELECT TYPEOF(LIKELY(?);]]),{x})`` is unknown.
+Example: ``box.execute([[SELECT TYPEOF(LIKELY(?));]],{x})`` is the name of one of the primitive data types.
 
 

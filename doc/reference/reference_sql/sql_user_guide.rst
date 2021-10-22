@@ -497,14 +497,12 @@ as -inf or inf.
 .. _sql_data_type_number:
 
 NUMBER values have the same range as DOUBLE values.
-But NUMBER values may also also be integers, and, if so,
-arithmetic operation results will be exact rather than approximate.
-For example, if a NUMBER column ``X`` contains 5, then ``X / 2`` would be 2 if division is legal.
+But NUMBER values may also be integers.
 There is no literal format for NUMBER (literals like ``1.5`` or ``1E555``
 are considered to be DOUBLEs), so use :ref:`CAST <sql_function_cast>`
 to insist that a numeric has data type NUMBER, but that is rarely necessary.
 See the description of NoSQL type :ref:`'number' <index-box_number>`.
-Support for arithmetic and built-in functions with NUMBERs was removed in Tarantool version 2.10.1.
+Support for arithmetic and built-in arithmetic functions with NUMBERs was removed in Tarantool version 2.10.1.
 
 .. _sql_data_type_decimal:
 
