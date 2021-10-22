@@ -3930,9 +3930,9 @@ dl.enumerator > dt > .b-doc-flink > .b-doc-flink_right {
 }
 
 div.section>h1 {
-    visibility: hidden;
+    /*visibility: hidden;*/
     margin: 0;
-    font-size: 0;
+    /*font-size: 0;*/
 }
 
 .p-documentation_in .b-section-title {
@@ -4610,7 +4610,7 @@ dd {
 }
 
 .section>h1 {
-    display: none;
+    /*display: none;*/
 }
 
 .highlight,
