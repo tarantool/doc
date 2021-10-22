@@ -3417,8 +3417,10 @@ Syntax:
 Return the position of expression-1 within expression-2,
 or return 0 if expression-1 does not appear
 within expression-2.
-The data types of the expressions must be STRING.
-The result is the character position.
+The data types of the expressions must be either STRING or VARBINARY.
+If the expressions have data type STRING, then the result is the character position.
+If the expressions have data type VARBINARY, then the result is the
+byte position.
 
 Short example:
 ``POSITION('C', 'ABC')`` is 3
@@ -3426,13 +3428,15 @@ Short example:
 Long example: The UTF-8 encoding for the Latin letter A
 is hexadecimal 41; the UTF-8 encoding for the
 Cyrillic letter Д is hexadecimal D094 -- you can confirm this
-by saying SELECT HEX(CAST('ДA' AS VARBINARY)); and seeing that the
+by saying SELECT HEX('ДA'); and seeing that the
 result is 'D09441'. If you now execute
 ``SELECT POSITION('A', 'ДA');``
 the result will be 2,
 because 'A' is the second character in the string.
-
-Starting with Tarantool version 2.10, arguments with data type VARBINARY are illegal.
+However, if you now execute
+``SELECT POSITION(X'41', X'D09441');``
+the result will be 3,
+because X'41' is the third byte in the byte sequence.
 
 .. _sql_function_printf:
 
