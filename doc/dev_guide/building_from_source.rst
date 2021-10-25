@@ -105,8 +105,8 @@ RHEL/CentOS 7
 
 ..  code-block:: console
 
-    $ yum install python-pip
-    $ yum install epel-release
+    $ yum install -y python-pip
+    $ yum install -y epel-release
 
     $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | bash
 
@@ -139,10 +139,10 @@ CentOS 8
 
 ..  code-block:: console
 
-    $ dnf install epel-release
+    $ dnf install -y epel-release
 
-    $ dnf install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
-      ncurses-devel openssl-devel libunwind-devel libicu-devel \
+    $ dnf install -y git gcc cmake3 libarchive make gcc-c++ zlib-devel \
+      readline-devel ncurses-devel openssl-devel libunwind-devel libicu-devel \
       python3-pyyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
