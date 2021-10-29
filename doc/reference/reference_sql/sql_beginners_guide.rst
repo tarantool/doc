@@ -32,11 +32,11 @@ we prefer to pick out specific items by their contents. In that spirit, this is 
 
 .. code-block:: none
 
-    modules
+    MODULES
 
     +-----------------+------+---------------------+
-    | name            | size | purpose             |
-    +-----------------|------|---------------------|
+    | NAME            | SIZE | PURPOSE             |
+    +-----------------+------+---------------------+
     | box             | 1432 | Database Management |
     | clock           |  188 | Seconds             |
     | crypto          |    4 | Cryptography        |
@@ -165,8 +165,8 @@ A primary-key column automatically has a UNIQUE index.
 
 data domain -- if a column is defined as having data type INTEGER, it is illegal to put a non-number into it.
 More generally, if a value doesn't correspond to the data type of the definition, it is illegal.
-However, some database management systems (DBMSs) are very forgiving and will try to
-make allowances for bad values rather than reject them; Tarantool is one of those DBMSs.
+Some database management systems (DBMSs) are very forgiving and will try to
+make allowances for bad values rather than reject them; Tarantool is a bit more strict than those DBMSs.
 
 Now, here are other types of constraints ...
 
@@ -216,7 +216,7 @@ By default searches in Tarantool's SQL use a binary collation. This will work:
 ``INSERT INTO submodules`` |br|
 |nbsp| |nbsp| ``VALUES ('space', 'box', 10000, 'insert etc.');``
 
-Now try to delete the new row from the modules table:
+Now try to delete the corresponding row from the modules table:
 
 ``DELETE FROM modules WHERE name = 'box';``
 
@@ -352,9 +352,9 @@ but displayed as a table the result will look like
 .. code-block:: none
 
       +----------------+------------------------+
-      | double_size    | concatenated_literals  |
+      | DOUBLE_SIZE    | CONCATENATED_LITERALS  |
       +----------------+------------------------+
-      |               8| XY                     |
+      |              8 | XY                     |
       +----------------+------------------------+
 
 **Selecting with a select list with asterisk**
@@ -411,7 +411,7 @@ The result will look like this:
 .. code-block:: none
 
       +-------------------+------------------------+--------------------+
-      | submodules_name   | modules_purpose        | submodules_purpose |
+      | SUBMODULES_NAME   | MODULES_PURPOSE        | SUBMODULES_PURPOSE |
       +-------------------+------------------------+--------------------+
       | space             | Database Management    | insert etc.        |
       +-------------------+------------------------+--------------------+
@@ -437,11 +437,11 @@ That is legal. Usually it is not what you want, but it is a learning aid. The re
 
     { columns from modules table }         { columns from submodules table }
     +--------+------+---------------------+-------+-------------+-------+-------------+
-    | name   | size | purpose             | name  | module_name | size  | purpose     |
+    | NAME   | SIZE | PURPOSE             | NAME  | MODULE_NAME | SIZE  | PURPOSE     |
     +--------+------+---------------------+-------+-------------+-------+-------------+
     | box    | 1432 | Database Management | space | box         | 10000 | insert etc. |
-    | clock  | 188  | Seconds             | space | box         | 10000 | insert etc. |
-    | crypto |   4  | Cryptography        | space | box         | 10000 | insert etc. |
+    | clock  |  188 | Seconds             | space | box         | 10000 | insert etc. |
+    | crypto |    4 | Cryptography        | space | box         | 10000 | insert etc. |
     +--------+------+---------------------+-------+-------------+-------+-------------+
 
 It is not an error. The meaning of this type of join is "combine every row in table-1 with every row in table-2".
@@ -469,12 +469,12 @@ The result will be:
 .. code-block:: none
 
     +----------+-----------+------------+--------+---------+-------+-------------+
-    | modules_ |  modules_ | modules_   | name   | module_ | size  | purpose     |
-    | name     |  size     | purpose    |        | name    |       |             |
-    +----------+-----------+--------- --+--------+---------+-------+-------------|
-    | box      | 1432      | Database   | space  | box     | 10000 | insert etc. |
+    | MODULES_ |  MODULES_ | MODULES_   | NAME   | MODULE_ | SIZE  | PURPOSE     |
+    | NAME     |  SIZE     | PURPOSE    |        | NAME    |       |             |
+    +----------+-----------+--------- --+--------+---------+-------+-------------+
+    | box      |      1432 | Database   | space  | box     | 10000 | insert etc. |
     |          |           | Management |        |         |       |             |
-    +----------+-----------+------------+--------+---------+-------+-------------|
+    +----------+-----------+------------+--------+---------+-------+-------------+
 
 In other words, you can specify a Cartesian join in the FROM clause,
 then you can filter out the irrelevant rows in the WHERE clause,
@@ -556,11 +556,11 @@ which returns:
 
     { columns from modules table }         { columns from submodules table }
     +--------+------+---------------------+-------+-------------+-------+-------------+
-    | name   | size | purpose             | name  | module_name | size  | purpose     |
+    | NAME   | SIZE | PURPOSE             | NAME  | MODULE_NAME | SIZE  | PURPOSE     |
     +--------+------+---------------------+-------+-------------+-------+-------------+
     | box    | 1432 | Database Management | space | box         | 10000 | insert etc. |
-    | clock  | 188  | Seconds             | NULL  | NULL        | NULL  | NULL        |
-    | crypto |   4  | Cryptography        | NULL  | NULL        | NULL  | NULL        |
+    | clock  |  188 | Seconds             | NULL  | NULL        | NULL  | NULL        |
+    | crypto |    4 | Cryptography        | NULL  | NULL        | NULL  | NULL        |
     +--------+------+---------------------+-------+-------------+-------+-------------+
 
 Thus, for the submodules of the clock module and the submodules of the crypto
@@ -585,11 +585,11 @@ Remember that our modules table looks like this:
 
 .. code-block:: none
 
-    modules
+    MODULES
 
     +-----------------+------+---------------------+
-    | name            | size | purpose             |
-    +-----------------|------|---------------------|
+    | NAME            | SIZE | PURPOSE             |
+    +-----------------+------+---------------------+
     | box             | 1432 | Database Management |
     | clock           |  188 | Seconds             |
     | crypto          |    4 | Cryptography        |
@@ -598,7 +598,7 @@ Remember that our modules table looks like this:
 
 Suppose that we do not want to know all the individual size values,
 we just want to know about their aggregation, that is, take the attributes of the collection.
-SQL allows five aggregation functions: AVG (average), SUM, MIN (minimum), MAX (maximum), and COUNT.
+SQL allows aggregation functions including: AVG (average), SUM, MIN (minimum), MAX (maximum), and COUNT.
 For example
 
 ``SELECT AVG(size), SUM(size), MIN(size), MAX(size), COUNT(size) FROM modules;``
@@ -607,11 +607,11 @@ The result will look like this:
 
 .. code-block:: none
 
-     +--------------+-----------+-----------+-----------+-----------+
-     | COLUMN_1     | COLUMN_2  | COLUMN_3  | COLUMN_4  | COLUMN_5  |
-     +--------------+-----------+-----------+-----------+-----------|
-     | 5.413333E+02 | 1624      |         4 |      1432 |         3 |
-     +--------------+-----------+-----------+-----------+-----------+
+     +-----------+-----------+-----------+-----------+-----------+
+     | COLUMN_1  | COLUMN_2  | COLUMN_3  | COLUMN_4  | COLUMN_5  |
+     +-----------+-----------+-----------+-----------+-----------|
+     |       541 |      1624 |         4 |      1432 |         3 |
+     +-----------+-----------+-----------+-----------+-----------+
 
 Suppose that we want aggregations, but aggregations of rows that have some common characteristic.
 Supposing further, we want to divide the rows into two groups, the ones whose names
@@ -630,10 +630,10 @@ The result will look like this:
 
      +------------+--------------+-----------+-----------+-----------+-------------+
      | COLUMN_1   | COLUMN_2     | COLUMN_3  | COLUMN_4  | COLUMN_5  | COLUMN_6    |
-     +------------+--------------+-----------+-----------+-----------|-------------|
+     +------------+--------------+-----------+-----------+-----------+-------------+
      | b          |         1432 |      1432 |      1432 |      1432 |           1 |
      | c          |           96 |       192 |         4 |       188 |           2 |
-     +------------+--------------+-----------+-----------+-----------|-------------+
+     +------------+--------------+-----------+-----------+-----------+-------------+
 
 
 **Select with common table expression**

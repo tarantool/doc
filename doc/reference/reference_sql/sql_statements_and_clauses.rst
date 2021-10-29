@@ -491,7 +491,8 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
     columnb VARCHAR(0), columnc VARCHAR(100000) COLLATE "binary",
     columnd UUID,
     columne VARBINARY,
-    columnf SCALAR, columng SCALAR COLLATE "unicode_uk_s2");
+    columnf SCALAR, columng SCALAR COLLATE "unicode_uk_s2",
+    columnh DECIMAL);
 
 .. code-block:: sql
 
@@ -2103,12 +2104,12 @@ NULLs are ignored for all aggregate functions except COUNT(*).
 .. _sql_aggregate_sum:
 
 ``SUM([DISTINCT] expression)``
-             Return the sum of values of expression.
+             Return the sum of values of expression, or NULL if there are no rows.
 
              Example: :samp:`SUM({column1})`
 
 ``TOTAL([DISTINCT] expression)``
-             Return the sum of values of expression.
+             Return the sum of values of expression, or zero if there are no rows.
 
              Example: :samp:`TOTAL({column1})`
 

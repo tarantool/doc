@@ -105,7 +105,7 @@ or between ``--`` and the end of a line (simple).
     INSERT /* This is a bracketed comment */ INTO t VALUES (5);
     INSERT INTO t VALUES (5); -- this is a simple comment
 
-Expressions, for example ``a + b`` OR ``a > b AND NOT a <= b``, may have arithmetic operators
+Expressions, for example ``a + b`` or ``a > b AND NOT a <= b``, may have arithmetic operators
 ``+ - / *``, may have comparison operators ``= > < <= >= LIKE``, and may be combined with
 ``AND OR NOT``, with optional parentheses.
 
@@ -230,9 +230,7 @@ or |br|
 One can use the concatenation operator ``||`` to combine characters made with any of these methods.
 
 Limitations: (`Issue#2344 <https://github.com/tarantool/tarantool/issues/2344>`_) |br|
-* Numeric literals may be quoted, one cannot depend on the presence or
-absence of quote marks to determine whether a literal is numeric. |br|
-* ``LENGTH('A''B') = 3`` which is correct, but the display from
+* ``LENGTH('A''B') = 3`` which is correct, but on the Tarantool console the display from
 ``SELECT A''B;`` is ``A''B``, which is misleading. |br|
 * It is unfortunate that ``X'41'`` is a byte sequence which looks the same as ``'A'``,
 but it is not the same. ``box.execute("select 'A' < X'41';")`` is not legal at the moment.
@@ -355,9 +353,9 @@ Inside certain statements, identifiers may have "qualifiers" to prevent ambiguit
 A qualifier is an identifier of a higher-level object, followed by a period.
 For example column1 within table1 may be referred to as table1.column1.
 The "name" of an object is the same as its identifier, or its qualified identifier.
-For example, inside ``SELECT t1.column1, t2.column1 FROM t1, t2;`` the qualifiers
+For example, inside ``SELECT table1.column1, table2.column1 FROM table1, table2;`` the qualifiers
 make it clear that the first column is column1 from table1 and the second column
-is column2 from table2.
+is column1 from table2.
 
 The rules are sometimes relaxed for compatibility reasons, for example
 some non-letter characters such as $ and « are legal in regular identifiers.
@@ -488,7 +486,7 @@ between 0 and +2^64, or NULL.
 
 .. _sql_data_type_double:
 
-DOUBLE values are numeric that do contain decimal points (for example 0.5) or
+DOUBLE values are numerics that do contain decimal points (for example 0.5) or
 are expressed with exponential notation (for example 5E-1).
 The range of possible values is the same as for the IEEE 754 floating-point
 standard, or NULL. Numerics outside the range of DOUBLE literals may be displayed
@@ -508,7 +506,7 @@ Support for arithmetic and built-in arithmetic functions with NUMBERs was remove
 
 DECIMAL values can contain up to 38 digits on either side of a decimal point.
 and any arithmetic with DECIMAL values has exact results
-(arithmetic with NUMBER or DOUBLE values could have approximate results instead of exact results).
+(arithmetic with DOUBLE values could have approximate results instead of exact results).
 There is no literal format for DECIMAL,
 so use :ref:`CAST <sql_function_cast>` to insist that a numeric
 has data type DECIMAL, for example ``CAST(1.1 AS DECIMAL)`` or
@@ -567,7 +565,7 @@ Most of the SQL data types correspond to
 There are also some Tarantool/NoSQL data types which have no corresponding SQL data types.
 If Tarantool/SQL reads a Tarantool/NoSQL value which has a type which has no SQL equivalent,
 Tarantool/SQL may treat it as NULL or INTEGER or VARBINARY.
-For example, ``SELECT "flags" FROM "_space";`` will return a column whose data type is ``'map'``.
+For example, ``SELECT "flags" FROM "_vspace";`` will return a column whose Lua type is ``'map'``.
 Such columns can only be manipulated in SQL by
 :ref:`invoking Lua functions <sql_calling_lua>`.
 
@@ -628,7 +626,7 @@ Example: ``5 / 2``, result = 2.
 ``%`` modulus (arithmetic)
 Divide second numeric into first numeric according to standard arithmetic rules.
 The result is the remainder.
-Starting with Tarantool version 2.10.1, operands must be positive INTEGER or UNSIGNED.
+Starting with Tarantool version 2.10.1, operands must be INTEGER or UNSIGNED.
 Example: ``17 % 5``, result = 2.
 Example: ``-123 % 4``, result = -3.
 
@@ -788,7 +786,7 @@ Starting with Tarantool version 2.10, it is no longer supported.
 
 Limitations: (`Issue#2346 <https://github.com/tarantool/tarantool/issues/2346>`_) |br|
 * Some words, for example MATCH and REGEXP, are reserved but are not necessary for current or planned Tarantool versions |br|
-* 999999999999999 << 210 yields 0. (1 << 63) >> 63 yields -1.
+* 999999999999999 << 210 yields 0.
 
 .. _sql_expressions:
 
@@ -812,8 +810,6 @@ CASE ... WHEN ... THEN ... ELSE ... END |br|
 
 See also: :ref:`subquery <sql_subquery>`.
 
-Limitations: IS TRUE and IS FALSE return an error.
-
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Comparing and Ordering
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -822,7 +818,6 @@ There are rules for determining whether value-1 is "less than", "equal to", or "
 These rules are applied for searches, for sorting results in order by column values,
 and for determining whether a column is unique.
 The result of a comparison of two values can be TRUE, FALSE, or UNKNOWN (the three BOOLEAN values).
-Sometimes for retrieval TRUE is converted to 1, FALSE is converted to 0, UNKNOWN is converted to NULL.
 For any comparisons where neither operand is NULL, the operands are "distinct" if the comparison
 result is FALSE.
 For any set of operands where all operands are distinct from each other, the set is considered to be "unique".
@@ -839,10 +834,13 @@ When comparing any value to NULL: |br|
 * for ordering, NULL values sort together and are less than non-NULL values. Therefore SELECT column1 FROM T ORDER BY column1; returns {NULL, NULL, 1,2}. |br|
 * for evaluating a UNIQUE constraint or UNIQUE index, any number of NULLs is okay. Therefore CREATE UNIQUE INDEX i ON T (column1); will succeed.
 
+When comparing any value to a SCALAR: |br|
+* This is always legal, and the result depends on the underlying type of the value.
+For example, if COLUMN1 is defined as SCALAR, and a value in the column is 'a', then
+COLUMN1 < 5 is a legal comparison and the result is FALSE because numeric is less than STRING.
+
 When comparing a numeric to a STRING: |br|
-* If implicit casting is possible, the STRING operand is converted to a number before comparison.
-If implicit casting is not possible, and one of the operands is the name of a column which was
-defined as SCALAR, and the column is being compared with a numeric, then numeric is less than STRING. Otherwise, the comparison is not legal.
+* Comparison is legal if the STRING value can be converted to a numeric with an explicit cast.
 
 When comparing a BOOLEAN to a BOOLEAN: |br|
 TRUE is greater than FALSE.
@@ -862,7 +860,6 @@ When comparing a STRING to a STRING: |br|
 * Ordinarily trailing spaces matter. So ``'a' = 'a  '`` is not TRUE. This can be cancelled by using the :ref:`TRIM(TRAILING ...) <sql_function_trim>` function. |br|
 
 Limitations: |br|
-* LIKE comparisons return integer results according to meta-information. |br|
 * LIKE is not expected to work with VARBINARY.
 
 ********************************************************************************
@@ -984,9 +981,7 @@ From VARBINARY to UUID is allowed only if the value is
 16 bytes long,
 as in ``X'8e3b281b78ad4410bfe954806a586a90'``. |br|
 The chart does not show To|From SCALAR because the conversions depend on the type of the value,
-not the type of the column definition.
-Explicit cast to SCALAR is allowed but has no effect, the result data type is always the same as the original data type.
-But comparisons of values of different types are allowed if the definition is SCALAR.
+not the type of the column definition.  Explicit cast to SCALAR is always allowed.
 
 ..  note::
 
@@ -1015,9 +1010,9 @@ The result is an error message.
 column is SSA, and the third letter of SSA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.
 
-``11 > '2'`` is legal because the intersection of the "From numeric" row with the "To STRING"
-column is AAA and the third letter of AAA is for implicit cast (comparison) and A means Always Allowed.
-The result is TRUE.  For detailed explanation see the following section.
+``11 > '2'`` is illegal because the intersection of the "From numeric" row with the "To STRING"
+column is A-- and the third letter of A-- is for implicit cast (comparison) and - means not allowed.
+The result is an error message. For detailed explanation see the following section.
 
 ``CAST('5' AS INTEGER)`` is legal because the intersection of the "From STRING" row with the "To numeric"
 column is S-- and the first letter of S-- is for explicit cast and S means Sometimes Allowed.
@@ -1092,6 +1087,4 @@ with other DBMSs. However, other DBMSs have different rules about what can be co
 And, of course, it is not possible to be compatible with other DBMSs and at the same
 time support SCALAR, which other DBMSs do not have.
 
-Limitations (`Issue#3809 <https://github.com/tarantool/tarantool/issues/3809>`_): |br|
-Result of concatenation, or out-of-bound result, may have wrong type. |br|
-Parameter conversion behavior will change (`Issue#4159 <https://github.com/tarantool/tarantool/issues/4159>`_). After issue#4159 is done, LENGTH(15) will be illegal.
+
