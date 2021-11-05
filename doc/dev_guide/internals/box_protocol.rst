@@ -277,7 +277,9 @@ the client to check if it has changed.
 
 **IPROTO_STREAM_ID** = 0x0a.
 An unsigned number that should be unique in every stream.
-In requests IPROTO_STREAM_ID is optional and is only useful for ensuring that requests within transactions are done in separate groups.
+In requests IPROTO_STREAM_ID is optional and is useful for two things:
+ensuring that requests within transactions are done in separate groups,
+and ensuring strictly consistent execution of requests (whether or not they are within transactions).
 In responses IPROTO_STREAM_ID does not appear.
 See :ref:`Binary protocol -- streams <box_protocol-streams>`.
 
@@ -748,7 +750,7 @@ See the later section :ref:`Binary protocol -- streams <box_protocol-streams>`.
 
 **IPROTO_COMMIT** = 0x0f.
 
-This is for starting a transaction.
+This is for ending a transaction.
 Typically the header will include IPROTO_STREAM_ID.
 The body is: nothing.
 See the later section :ref:`Binary protocol -- streams <box_protocol-streams>`.
@@ -757,7 +759,7 @@ See the later section :ref:`Binary protocol -- streams <box_protocol-streams>`.
 
 **IPROTO_ROLLBACK** = 0x10.
 
-This is for starting a transaction.
+This is for ending a transaction.
 Typically the header will include IPROTO_STREAM_ID.
 The body is: nothing.
 See the later section :ref:`Binary protocol -- streams <box_protocol-streams>`.
@@ -1220,7 +1222,8 @@ function ``netbox_encode_auth``.
 Binary protocol -- streams
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The streams feature, which was added in Tarantool version
+The :ref:`Streams and interactive transactions <box_stream>`
+feature, which was added in Tarantool version
 :tarantool-release:`2.10.0-beta1`, allows two things:
 sequential processing and interleaving.
 
@@ -1229,12 +1232,13 @@ With streams there is a guarantee that the server instance will not
 handle the next request in a stream until it has completed the previous one.
 
 Interleaving:
-A series of requests can include
-"insert for stream #1", "insert for stream #2", "delete for stream #2", "delete
-for stream #1", and then a "commit for stream #1" which the server instance will
-interpret as a request to handle only the two inserts for stream #1.
+For example, a series of requests can include
+"begin for stream #1", "begin for stream #2",
+"insert for stream #1", "insert for stream #2", "delete
+for stream #1", "commit for stream #1", "rollback for stream #2".
 
 To make these things possible,
+the engine should be :ref:`vinyl <engines-vinyl>` or :ref:`memtx with mvcc <cfg_basic-memtx_use_mvcc_engine>`, and
 the client is responsible for ensuring that the stream identifier,
 unsigned integer :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`, is in the request header.
 IPROTO_STREAM_ID can be any positive 64-bit number, and should be unique for the connection.
