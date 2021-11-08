@@ -665,11 +665,11 @@ The body is a 3-item map:
         IPROTO_OPTIONS: :samp:`{{MP_ARRAY array}}`
     })
 
-Use IPROTO_STMT_ID (0x43) + statement-id (MP_INT) if executing a prepared statement,
+Use IPROTO_STMT_ID (0x43) and statement-id (MP_INT) if executing a prepared statement,
 or use
-IPROTO_SQL_TEXT (0x40) + statement-text (MP_STR) if executing an SQL string, then
-IPROTO_SQL_BIND (0x41) + array of parameter values to match ? placeholders or
-:name placeholders, IPROTO_OPTIONS (0x2b) + array of options (usually empty).
+IPROTO_SQL_TEXT (0x40) and statement-text (MP_STR) if executing an SQL string, then
+IPROTO_SQL_BIND (0x41) and array of parameter values to match ? placeholders or
+:name placeholders, IPROTO_OPTIONS (0x2b) and array of options (usually empty).
 
 For example, suppose we prepare a statement
 with two ? placeholders, and execute with two parameters, thus: |br|
@@ -731,9 +731,9 @@ The body is a 1-item map:
         IPROTO_STMT_ID: :samp:`{{MP_INT integer}}` or IPROTO_SQL_TEXT: :samp:`{{MP_STR string}}`
     })
 
-IPROTO_STMT_ID (0x43) + statement-id (MP_INT) if executing a prepared statement
+IPROTO_STMT_ID (0x43) and statement-id (MP_INT) if executing a prepared statement
 or
-IPROTO_SQL_TEXT (0x40) + statement-text (string) if executing an SQL string.
+IPROTO_SQL_TEXT (0x40) and statement-text (string) if executing an SQL string.
 Thus the IPROTO_PREPARE map item is the same as the first item of the
 :ref:`IPROTO_EXECUTE <box_protocol-execute>` body.
 
@@ -1052,7 +1052,7 @@ If the SQL statement is SELECT or VALUES or PRAGMA, the response contains:
     })
 
 * :samp:`IPROTO_METADATA: {array of column maps}` = array of column maps, with each column map containing
-  at least IPROTO_FIELD_NAME (0x00) + MP_STR, and IPROTO_FIELD_TYPE (0x01) + MP_STR.
+  at least IPROTO_FIELD_NAME (0x00) and MP_STR, and IPROTO_FIELD_TYPE (0x01) and MP_STR.
   Additionally, if ``sql_full_metadata`` in the
   :ref:`_session_settings <box_space-session_settings>` system space
   is TRUE, then the array will have these additional column maps
@@ -1061,10 +1061,10 @@ If the SQL statement is SELECT or VALUES or PRAGMA, the response contains:
 
 ..  code-block:: none
 
-    IPROTO_FIELD_COLL (0x02) + MP_STR
-    IPROTO_FIELD_IS_NULLABLE (0x03) + MP_BOOL
-    IPROTO_FIELD_IS_AUTOINCREMENT (0x04) + MP_BOOL
-    IPROTO_FIELD_SPAN (0x05) + MP_STR or MP_NIL
+    IPROTO_FIELD_COLL (0x02) and MP_STR
+    IPROTO_FIELD_IS_NULLABLE (0x03) and MP_BOOL
+    IPROTO_FIELD_IS_AUTOINCREMENT (0x04) and MP_BOOL
+    IPROTO_FIELD_SPAN (0x05) and MP_STR or MP_NIL
 
 * :samp:`IPROTO_DATA:{array of tuples}` = the result set "rows".
 
@@ -1085,7 +1085,6 @@ we could get this response, in the body:
             IPROTO_FIELD_IS_NULLABLE: false,
             IPROTO_FIELD_IS_AUTOINCREMENT: true,
             IPROTO_FIELD_SPAN: nil,
-             ,
             IPROTO_FIELD_NAME: 'Д',
             IPROTO_FIELD_TYPE: 'string',
             IPROTO_FIELD_COLL: 'unicode',
@@ -1102,8 +1101,8 @@ If instead we said |br|
 :code:`conn:prepare([[SELECT dd, дд AS д FROM t1;]])` |br|
 then we could get almost the same response, but there would
 be no IPROTO_DATA and there would be two additional items: |br|
-``34 00 = IPROTO_BIND_COUNT + MP_UINT = 0`` (there are no parameters to bind), |br|
-``33 90 = IPROTO_BIND_METADATA + MP_ARRAY, size 0`` (there are no parameters to bind).
+``34 00 = IPROTO_BIND_COUNT and MP_UINT = 0`` (there are no parameters to bind), |br|
+``33 90 = IPROTO_BIND_METADATA and MP_ARRAY, size 0`` (there are no parameters to bind).
 
 ..  cssclass:: highlight
 ..  parsed-literal::
@@ -1119,7 +1118,6 @@ be no IPROTO_DATA and there would be two additional items: |br|
                 IPROTO_FIELD_IS_NULLABLE: false
                 IPROTO_FIELD_IS_AUTOINCREMENT: true
                 IPROTO_FIELD_SPAN: nil,
-                ,
                 IPROTO_FIELD_NAME: 'Д',
                 IPROTO_FIELD_TYPE: 'string',
                 IPROTO_FIELD_COLL: 'unicode',
@@ -1273,7 +1271,7 @@ IPROTO_BEGIN, the transaction data-change and query requests,
 IPROTO_COMMIT or IPROTO_ROLLBACK.
 Each request must contain the same IPROTO_STREAM_ID value.
 With streaming there is no need to add
-:ref:`IPROTO_FLAGS <box_protocol-flags>` + IPROTO_FLAG_COMMIT
+:ref:`IPROTO_FLAGS <box_protocol-flags>` and IPROTO_FLAG_COMMIT
 in the header of the last request of a transaction.
 Rollback will be automatic if disconnect occurs before commit is possible.
 
@@ -1390,12 +1388,12 @@ The fields within IPROTO_BALLOT are map items:
 
 ..  code-block:: none
 
-    IPROTO_BALLOT_IS_RO_CFG (0x01) + MP_BOOL
-    IPROTO_BALLOT_VCLOCK (0x02) + vclock
-    IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock
-    IPROTO_BALLOT_IS_RO (0x04) + MP_BOOL
-    IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
-    IPROTO_BALLOT_IS_BOOTED = 0x06 + MP_BOOL
+    IPROTO_BALLOT_IS_RO_CFG (0x01) and MP_BOOL
+    IPROTO_BALLOT_VCLOCK (0x02) and vclock
+    IPROTO_BALLOT_GC_VCLOCK (0x03) and vclock
+    IPROTO_BALLOT_IS_RO (0x04) and MP_BOOL
+    IPROTO_BALLOT_IS_ANON = 0x05 and MP_BOOL
+    IPROTO_BALLOT_IS_BOOTED = 0x06 and MP_BOOL
 
 IPROTO_BALLOT_IS_RO_CFG and IPRO_BALLOT_VCLOCK and IPROTO_BALLOT_GC_VCLOCK and IPROTO_BALLOT_IS_RO
 were added in version :doc:`2.6.1 </release/2.6.1>`.
@@ -1571,7 +1569,7 @@ example:
 
 ..  code-block:: none
 
-    ce 00 00 00 20                MP_UINT = HEADER + BODY SIZE
+    ce 00 00 00 20                MP_UINT = HEADER AND BODY SIZE
     83                            MP_MAP, size 3
     00                              Response-Code-Indicator
     ce 00 00 00 00                  MP_UINT = IPROTO_OK
@@ -1590,7 +1588,7 @@ example:
 
 ..  code-block:: none
 
-    ce 00 00 00 3b                  MP_UINT = HEADER + BODY SIZE
+    ce 00 00 00 3b                  MP_UINT = HEADER AND BODY SIZE
     83                              MP_MAP, size 3 (i.e. 3 items in header)
        00                              Response-Code-Indicator
        ce 00 00 80 0a                  MP_UINT = hexadecimal 800a
@@ -1638,17 +1636,17 @@ then tcpdump will show this response, after the header:
     32                         IPROTO_METADATA
     92                         MP_ARRAY, size 2 (i.e. 2 columns)
     85                           MP_MAP, size 5 (i.e. 5 items for column#1)
-    00 a2 44 44                    IPROTO_FIELD_NAME + 'DD'
-    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE + 'integer'
-    03 c2                          IPROTO_FIELD_IS_NULLABLE + false
-    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT + true
-    05 c0                          PROTO_FIELD_SPAN + nil
+    00 a2 44 44                    IPROTO_FIELD_NAME and 'DD'
+    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE and 'integer'
+    03 c2                          IPROTO_FIELD_IS_NULLABLE and false
+    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT and true
+    05 c0                          PROTO_FIELD_SPAN and nil
     85                           MP_MAP, size 5 (i.e. 5 items for column#2)
-    00 a2 d0 94                    IPROTO_FIELD_NAME + 'Д' upper case
-    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE + 'string'
-    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL + 'unicode'
-    03 c3                          IPROTO_FIELD_IS_NULLABLE + true
-    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN + 'дд' lower case
+    00 a2 d0 94                    IPROTO_FIELD_NAME and 'Д' upper case
+    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE and 'string'
+    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL and 'unicode'
+    03 c3                          IPROTO_FIELD_IS_NULLABLE and true
+    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN and 'дд' lower case
     30                         IPROTO_DATA
     92                         MP_ARRAY, size 2
     92                           MP_ARRAY, size 2
@@ -1662,8 +1660,8 @@ Byte code for the SQL PREPARE example. If we said |br|
 :code:`conn:prepare([[SELECT dd, дд AS д FROM t1;]])` |br|
 then tcpdump would should show almost the same response, but there would
 be no IPROTO_DATA and there would be two additional items: |br|
-:code:`34 00 = IPROTO_BIND_COUNT + MP_UINT = 0` (there are no parameters to bind), |br|
-:code:`33 90 = IPROTO_BIND_METADATA + MP_ARRAY`, size 0 (there are no parameters to bind).
+:code:`34 00 = IPROTO_BIND_COUNT and MP_UINT = 0` (there are no parameters to bind), |br|
+:code:`33 90 = IPROTO_BIND_METADATA and MP_ARRAY`, size 0 (there are no parameters to bind).
 
 ..  code-block:: none
 
@@ -1677,17 +1675,17 @@ be no IPROTO_DATA and there would be two additional items: |br|
     32                         IPROTO_METADATA
     92                         MP_ARRAY, size 2 (i.e. 2 columns)
     85                           MP_MAP, size 5 (i.e. 5 items for column#1)
-    00 a2 44 44                    IPROTO_FIELD_NAME + 'DD'
-    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE + 'integer'
-    03 c2                          IPROTO_FIELD_IS_NULLABLE + false
-    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT + true
-    05 c0                          PROTO_FIELD_SPAN + nil
+    00 a2 44 44                    IPROTO_FIELD_NAME and 'DD'
+    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE and 'integer'
+    03 c2                          IPROTO_FIELD_IS_NULLABLE and false
+    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT and true
+    05 c0                          PROTO_FIELD_SPAN and nil
     85                           MP_MAP, size 5 (i.e. 5 items for column#2)
-    00 a2 d0 94                    IPROTO_FIELD_NAME + 'Д' upper case
-    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE + 'string'
-    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL + 'unicode'
-    03 c3                          IPROTO_FIELD_IS_NULLABLE + true
-    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN + 'дд' lower case
+    00 a2 d0 94                    IPROTO_FIELD_NAME and 'Д' upper case
+    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE and 'string'
+    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL and 'unicode'
+    03 c3                          IPROTO_FIELD_IS_NULLABLE and true
+    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN and 'дд' lower case
 
 Byte code for the heartbeat example. The master might send this body:
 
