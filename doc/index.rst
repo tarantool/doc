@@ -82,3 +82,6 @@
                 tutorials/index
                 contributing/index
                 release
+
+
+..  test

@@ -7,7 +7,6 @@ on:
 jobs:
   destroy-deployment:
     runs-on: ubuntu-latest
-    container: tarantool/doc-builder:latest
     steps:
       - uses: actions/checkout@v2
         with:
