@@ -211,7 +211,7 @@ Also ``jit_mcode_size`` can be used to watch the amount of allocated memory for 
 
 .. _luajit_getmetrics_example_2:
 
-Example with gc_allocated and and gc_freed
+Example with gc_allocated and gc_freed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To track an application's effect on the garbage collector (less is better):
