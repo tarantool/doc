@@ -117,6 +117,8 @@ There are several ways to improve the documentation:
   To use the built-in feedback form, select the text that you want to comment on,
   press :kbd:`Ctrl+Enter`, type your comment in the pop-up window,
   and click :guilable:`Submit`.
+  On mobile screens, an :guilabel:`Error?` button appears at the bottom of the screen,
+  which opens the same pop-up window.
   `You can point out an error,
   provide feedback on the current article, or suggest changes.
   We review each comment and work with it.
