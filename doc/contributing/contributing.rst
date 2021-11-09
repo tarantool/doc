@@ -115,7 +115,7 @@ There are several ways to improve the documentation:
 
 * **The easiest one** is to leave your comment on the web documentation page.
   To use the built-in feedback form, select the text that you want to comment on,
-  press :kbd:`Ctrl+Enter`, type your comment in the pop-up window
+  press :kbd:`Ctrl+Enter`, type your comment in the pop-up window,
   and click :guilable:`Submit`.
   `You can point out an error,
   provide feedback on the current article, or suggest changes.
