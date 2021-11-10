@@ -134,14 +134,14 @@ because there is no need to ‘require’ the misc module.
 getmetrics C API
 ~~~~~~~~~~~~~~~~
 
-The Lua ``getmetrics()`` function is a wrapper for the C function ``luaM_metrics()``. |br|
+The Lua ``getmetrics()`` function is a wrapper for the C function ``luaM_metrics()``.
 
-C programs may include a header named libmisclib.h. |br|
-The definitions in libmisclib.h include |br|
-``struct luam_Metrics { ... the same names as are described earlier for Lua ... }`` |br|
-``LUAMISC_API void luaM_metrics(lua_State *L, struct luam_Metrics *metrics);`` |br|
-The names of ``struct luam_Metrics`` members are the same as Lua's :ref:`getmetrics table values <luajit_getmetrics_tablevalues>` names. |br|
-The data types of ``struct luam_Metrics`` members are all ``size_t``. |br|
+C programs may include a header named libmisclib.h.
+The definitions in libmisclib.h include the lines
+``struct luam_Metrics { ... the same names as are described earlier for Lua ... }`` and
+``LUAMISC_API void luaM_metrics(lua_State *L, struct luam_Metrics *metrics);``
+The names of ``struct luam_Metrics`` members are the same as Lua's :ref:`getmetrics table values <luajit_getmetrics_tablevalues>` names.
+The data types of ``struct luam_Metrics`` members are all ``size_t``.
 The ``luaM_metrics()`` function will fill the ``*metrics`` structure with the metrics related to the Lua state
 anchored to the ``L`` coroutine.
 
@@ -164,16 +164,16 @@ Replace the easy.c example with
       return 0;
     }
 
-Now when you go back to the client and execute the requests up to and including |br|
-``capi_connection:call('easy')`` |br|
-you will see that the display is something like |br|
-allocated memory = 4431950 |br|
+Now when you go back to the client and execute the requests up to and including the line
+``capi_connection:call('easy')``
+you will see that the display is something like
+"allocated memory = 4431950"
 although the number will vary.
 
 .. _luajit_getmetrics_example_1:
 
-Example with gc_strnum and strhash_miss and strhash_hit
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example with gc_strnum, strhash_miss, and strhash_hit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To track new string object allocations:
 
@@ -192,10 +192,11 @@ To track new string object allocations:
     end
     f()
 
-The result will probably be:. |br|
-gc_strnum diff = 1100 because we added 1202 strings but 100 were duplicates. |br|
-strhash_miss = 1100 for the same reason. |br|
-strhash_hit = 100 plus some overhead, for the same reason. |br|
+The result will probably be:
+"gc_strnum diff = 1100" because we added 1202 strings but 100 were duplicates,
+"strhash_miss_diff = 1100" for the same reason,
+"strhash_hit_diff = 100" plus some overhead, for the same reason.
+
 (There is always a slight overhead amount for ``strhash_hit``, which can be ignored.)
 We say "probably" because there is a chance that the strings were already
 allocated somewhere.
