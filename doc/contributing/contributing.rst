@@ -114,8 +114,12 @@ Documentation: How to report and fix problems
 There are several ways to improve the documentation:
 
 * **The easiest one** is to leave your comment on the web documentation page.
-  To use the built-in feedback form, just click the red button in the bottom right corner
-  of the page and fill in the comment field. You can point out an error,
+  To use the built-in feedback form, select the text that you want to comment on,
+  press :kbd:`Ctrl+Enter`, type your comment in the pop-up window,
+  and click :guilable:`Submit`.
+  On mobile screens, an :guilabel:`Error?` button appears at the bottom of the screen,
+  which opens the same pop-up window.
+  `You can point out an error,
   provide feedback on the current article, or suggest changes.
   We review each comment and work with it.
 * **Advanced**: All Tarantool documentation tasks can be found in the
