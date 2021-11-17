@@ -40,8 +40,20 @@ jobs:
       - name: Cleanup translation files
         run: make cleanup-po
 
+      - name: Check updated .po files
+        run:  echo $(git diff --name-only | grep .po | sed "s/.po//" | sed "s/locale\/ru\/LC_MESSAGES\///")
+
+      - name: Check updated .rst files
+        run:  echo $(git diff-tree --no-commit-id --name-only -r HEAD | grep .rst | tr "\n" " ")
+
+      - name: Check updated .rst and .po files
+        run: echo $(echo "$(git diff --name-only | grep .po | sed "s/.po//" | sed "s/locale\/ru\/LC_MESSAGES\///")" | awk -v rst="$(git diff-tree --no-commit-id --name-only -r HEAD | grep .rst | tr "\n" " ")" 'rst ~ $0{ print "locale/ru/LC_MESSAGES/"$0".po" }')
+
+      - name: Add
+        run: echo CHANGED_POS="$(git diff --name-only | grep .po | sed "s/.po//" | sed "s/locale\/ru\/LC_MESSAGES\///")" | awk -v rst="$(git diff-tree --no-commit-id --name-only -r HEAD | grep .rst | tr "\n" " ")" 'rst ~ $0{ print "locale/ru/LC_MESSAGES/"$0".po" }' >> $GITHUB_ENV
+
       - name: Commit translation files
         uses: stefanzweifel/git-auto-commit-action@v4.1.2
         with:
           commit_message: "Update translations"
-          file_pattern: "*.po"
+          file_pattern: "${{ env.CHANGED_POS }}"
