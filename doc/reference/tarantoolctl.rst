@@ -1,7 +1,7 @@
 .. _tarantoolctl:
 
 --------------------------------------------------------------------------------
-Utility `tarantoolctl`
+The `tarantoolctl` utility
 --------------------------------------------------------------------------------
 
 ``tarantoolctl`` is a utility for administering Tarantool
@@ -49,7 +49,7 @@ Commands for managing Tarantool instances
         Additionally, this command sets the TARANTOOLCTL environment variable to
         'true', to mark that the instance was started by ``tarantoolctl``.
 
-        .. NOTE::
+        .. note::
 
             ``tarantoolctl`` works for instances without ``box.cfg{}`` called or
             with delayed ``box.cfg{}`` call.
