@@ -136,14 +136,20 @@ getmetrics C API
 
 The Lua ``getmetrics()`` function is a wrapper for the C function ``luaM_metrics()``.
 
-C programs may include a header named libmisclib.h.
-The definitions in libmisclib.h include the lines
-``struct luam_Metrics { ... the same names as are described earlier for Lua ... }`` and
-``LUAMISC_API void luaM_metrics(lua_State *L, struct luam_Metrics *metrics);``
-The names of ``struct luam_Metrics`` members are the same as Lua's :ref:`getmetrics table values <luajit_getmetrics_tablevalues>` names.
+C programs may include a header named ``libmisclib.h``.
+The definitions in ``libmisclib.h`` include the following lines:
+
+..  code-block:: c
+
+    struct luam_Metrics { /* the names described earlier for Lua */ }
+
+    LUAMISC_API void luaM_metrics(lua_State *L, struct luam_Metrics *metrics);
+
+The names of ``struct luam_Metrics`` members are the same as Lua's
+:ref:`getmetrics table values <luajit_getmetrics_tablevalues>` names.
 The data types of ``struct luam_Metrics`` members are all ``size_t``.
-The ``luaM_metrics()`` function will fill the ``*metrics`` structure with the metrics related to the Lua state
-anchored to the ``L`` coroutine.
+The ``luaM_metrics()`` function will fill the ``*metrics`` structure
+with the metrics related to the Lua state anchored to the ``L`` coroutine.
 
 **Example with a C program**
 
