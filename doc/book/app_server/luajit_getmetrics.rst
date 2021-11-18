@@ -209,9 +209,9 @@ allocated somewhere.
 It is a good thing if the slope curve of
 ``strhash_miss`` is less than the slope curve of ``strhash_hit``.
 
-The other gc_*num values -- ``gc_cdatanum``, ``gc_tabnum``, ``gc_udatanum`` -- can be accessed
+The other ``gc_*num`` values -- ``gc_cdatanum``, ``gc_tabnum``, ``gc_udatanum`` -- can be accessed
 in a similar way.
-Any of the gc_*num values can be useful when looking for memory leaks – the total 
+Any of the ``gc_*num`` values can be useful when looking for memory leaks – the total 
 number of these objects should not grow nonstop.
 A more general way to look for memory leaks is to watch ``gc_total``.
 Also ``jit_mcode_size`` can be used to watch the amount of allocated memory for machine code traces.
@@ -237,7 +237,7 @@ To track an application's effect on the garbage collector (less is better):
     end
     f()
 
-The result will be: gc_allocated diff = 800, gc_freed diff = 800.
+The result will be: ``gc_allocated diff = 800``, ``gc_freed diff = 800``.
 This shows that ``local ... = getmetrics()`` itself causes memory allocation
 (because it is creating a table and assigning to it),
 and shows that when the name of a variable (in this case the ``oldm`` variable)
@@ -293,9 +293,9 @@ The result will show that diff equals approximately 6000.
 gc_steps_atomic and gc_steps_propagate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The slope curves of gc_steps_* items can be used for tracking pressure on
+The slope curves of ``gc_steps_*`` items can be used for tracking pressure on
 the garbage collector too.
-During long-running routines, gc_steps_* values will increase,
+During long-running routines, ``gc_steps_*`` values will increase,
 but long times between ``gc_steps_atomic`` increases are a good sign,
 And, since ``gc_steps_atomic`` increases only once per garbage-collector cycle,
 it shows how many garbage-collector cycles have occurred.
@@ -326,7 +326,7 @@ The following function takes a casual look whether an SQL statement causes much 
     end
     f()
 
-And the display will show that the gc_steps_* metrics are not significantly
+And the display will show that the ``gc_steps_*`` metrics are not significantly
 different from what they would be if the ``box.execute()`` was absent.
 
 .. _luajit_getmetrics_example_5:
