@@ -65,7 +65,7 @@ Some of the table members shown here are used in the examples that come later in
     +======================+==================================================+============+
     | gc_allocated         | number of bytes of allocated memory              | yes        |
     +----------------------+--------------------------------------------------+------------+
-    | gc_cdatanum          | number of allocated cdata objects                |            |
+    | gc_cdatanum          | number of allocated cdata objects                | no         |
     +----------------------+--------------------------------------------------+------------+
     | gc_freed             | number of bytes of freed memory                  | yes        |
     +----------------------+--------------------------------------------------+------------+
@@ -88,16 +88,16 @@ Some of the table members shown here are used in the examples that come later in
     | gc_steps_sweepstring | number of steps of garbage collector,            | yes        |
     |                      | sweep phases for strings                         |            |
     +----------------------+--------------------------------------------------+------------+
-    | gc_strnum            | number of allocated string objects               |            |
+    | gc_strnum            | number of allocated string objects               | no         |
     +----------------------+--------------------------------------------------+------------+
-    | gc_tabnum            | number of allocated table objects                |            |
+    | gc_tabnum            | number of allocated table objects                | no         |
     +----------------------+--------------------------------------------------+------------+
-    | gc_total             | number of bytes of currently allocated memory    |            |
+    | gc_total             | number of bytes of currently allocated memory    | no         |
     |                      | (normally equals gc_allocated minus gc_freed)    |            |
     +----------------------+--------------------------------------------------+------------+
-    | gc_udatanum          | number of allocated udata objects                |            |
+    | gc_udatanum          | number of allocated udata objects                | no         |
     +----------------------+--------------------------------------------------+------------+
-    | jit_mcode_size       | total size of all allocated machine code areas   |            |      
+    | jit_mcode_size       | total size of all allocated machine code areas   | no         |      
     +----------------------+--------------------------------------------------+------------+
     | jit_snap_restore     | overall number of snap restores, based on the    | yes        |
     |                      | number of guard assertions leading to stopping   |            |
@@ -105,7 +105,7 @@ Some of the table members shown here are used in the examples that come later in
     +----------------------+--------------------------------------------------+------------+
     | jit_trace_abort      | overall number of aborted traces                 | yes        |
     +----------------------+--------------------------------------------------+------------+
-    | jit_trace_num        | number of JIT traces                             |            |
+    | jit_trace_num        | number of JIT traces                             | no         |
     +----------------------+--------------------------------------------------+------------+
     | strhash_hit          | number of strings being interned because, if a   | yes        |
     |                      | string with the same value is found via the      |            |
@@ -202,8 +202,8 @@ The result will probably be:
 "gc_strnum diff = 1100" because we added 1202 strings but 101 were duplicates,
 "strhash_miss_diff = 1100" for the same reason,
 "strhash_hit_diff = 101" plus some overhead, for the same reason.
-
 (There is always a slight overhead amount for ``strhash_hit``, which can be ignored.)
+
 We say "probably" because there is a chance that the strings were already
 allocated somewhere.
 It is a good thing if the slope curve of
