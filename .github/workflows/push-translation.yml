@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - run: pip install sphinx-panels
+
       - name: Set branch name from source branch
         run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
 
