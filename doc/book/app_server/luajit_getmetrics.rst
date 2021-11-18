@@ -99,9 +99,9 @@ Some of the table members shown here are used in the examples that come later in
     +----------------------+--------------------------------------------------+------------+
     | jit_mcode_size       | total size of all allocated machine code areas   |            |      
     +----------------------+--------------------------------------------------+------------+
-    | jit_snap_restore     | Overall number of snap restores (amount of guard | yes        |
-    |                      | assertions leading to stopping trace executions) |            |
-    |                      | See external `Snap tutorial`_                    |            |
+    | jit_snap_restore     | overall number of snap restores, based on the    | yes        |
+    |                      | number of guard assertions leading to stopping   |            |
+    |                      | trace executions (see external `Snap tutorial`_) |            |
     +----------------------+--------------------------------------------------+------------+
     | jit_trace_abort      | overall number of aborted traces                 | yes        |
     +----------------------+--------------------------------------------------+------------+
@@ -199,9 +199,9 @@ To track new string object allocations:
     f()
 
 The result will probably be:
-"gc_strnum diff = 1100" because we added 1202 strings but 100 were duplicates,
+"gc_strnum diff = 1100" because we added 1202 strings but 101 were duplicates,
 "strhash_miss_diff = 1100" for the same reason,
-"strhash_hit_diff = 100" plus some overhead, for the same reason.
+"strhash_hit_diff = 101" plus some overhead, for the same reason.
 
 (There is always a slight overhead amount for ``strhash_hit``, which can be ignored.)
 We say "probably" because there is a chance that the strings were already
@@ -304,9 +304,9 @@ Also, increases in the ``gc_steps_propagate`` number can be used to
 estimate indirectly how many objects there are. These values also correlate with the
 garbage collector's
 `step multiplier <https://www.lua.org/manual/5.4/manual.html#2.5.1>`_.
-The number of incremental steps can grow, but
-one step can process a small number of objects. So these metrics should be
-considered when configuring the garbage collector.
+For example, the number of incremental steps can grow, but according to the
+step multiplier configuration, one step can process only a small number of objects.
+So these metrics should be considered when configuring the garbage collector.
 
 The following function takes a casual look whether an SQL statement causes much pressure:
 
