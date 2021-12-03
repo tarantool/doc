@@ -565,7 +565,7 @@ Most of the SQL data types correspond to
 There are also some Tarantool/NoSQL data types which have no corresponding SQL data types.
 If Tarantool/SQL reads a Tarantool/NoSQL value which has a type which has no SQL equivalent,
 Tarantool/SQL may treat it as NULL or INTEGER or VARBINARY.
-For example, ``SELECT "flags" FROM "_vspace";`` will return a column whose Lua type is ``'map'``.
+For example, ``SELECT "flags" FROM "_vspace";`` will return a column whose type is ``'map'``.
 Such columns can only be manipulated in SQL by
 :ref:`invoking Lua functions <sql_calling_lua>`.
 
