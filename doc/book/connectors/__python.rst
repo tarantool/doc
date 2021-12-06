@@ -44,3 +44,179 @@ Also there are several community-driven Python connectors:
 * `asynctnt <https://github.com/igorcoding/asynctnt>`__ with asyncio support
 * `aiotarantool <https://github.com/shveenkov/aiotarantool>`__ also with asyncio support
 * `gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent support **no active maintenance**
+
+Table below contains a feature comparison for asynctnt, gtarantool and
+tarantool-python. aiotarantool is absent there because it is quite outdated and
+unmaintained.
+
+Feature comparison
+------------------
+
+Last update: February 2022
+
+..  list-table::
+    :header-rows: 1
+    :stub-columns: 1
+
+    *   -   Parameter
+        -   `igorcoding/asynctnt <https://github.com/igorcoding/asynctnt>`__
+        -   `shveenkov/gtarantool <https://github.com/shveenkov/gtarantool>`__
+        -   `tarantool/tarantool-python <https://github.com/tarantool/tarantool-python>`__
+
+    *   -   License
+        -   Apache License 2.0
+        -   LGPL
+        -   BSD-2
+
+    *   -   Is maintained
+        -   Yes
+        -   No (last updated in 2018)
+        -   Yes
+
+    *   -   Known Issues
+        -   `issue #18 <https://github.com/igorcoding/asynctnt/issues/18>`__ (no running event loop)
+        -   None
+        -   `issue #105 <https://github.com/tarantool/tarantool-python/issues/105>`__ (Unpack of binary data)
+
+    *   -   Documentation
+        -   Yes (`github.io <https://igorcoding.github.io/asynctnt/>`__)
+        -   No
+        -   Yes (`tarantool.io
+            <https://www.tarantool.io/en/doc/latest/getting_started/getting_started_python/>`__
+            and `readthedocs
+            <https://tarantool-python.readthedocs.io/en/latest/quick-start.en.html>`__
+            (`obsolete
+            <https://github.com/tarantool/tarantool-python/issues/67>`__))
+
+    *   -   Testing / CI / CD
+        -   Github Actions
+        -   No (tests exists)
+        -   Appveyor (only Windows)
+
+    *   -   Github Stars
+        -   51
+        -   17
+        -   78
+
+    *   -   Static Analysis
+        -   Yes (Flake8)
+        -   No
+        -   No
+
+    *   -   Packaging
+        -   `Pip <https://pypi.org/project/asynctnt/>`__
+        -   `Pip <https://pypi.org/project/gtarantool/>`__
+        -   `Deb, RPM, Pip <https://github.com/tarantool/tarantool-python#download-and-install>`__
+
+    *   -   Code coverage
+        -   Yes
+        -   No
+        -   Yes
+
+    *   -   Support asynchronous mode
+        -   Yes, `asyncio <https://docs.python.org/3/library/asyncio.html>`__
+        -   Yes (`gevent
+            <https://www.gevent.org/api/gevent.event.html#gevent.event.AsyncResult>`__,
+            example: `test_gevent.py
+            <https://github.com/shveenkov/gtarantool/blob/master/tests/test_gevent.py>`__)
+        -   No
+
+    *   -   Batching support
+        -   No
+        -   No
+        -   No (`issue #55 <https://github.com/tarantool/tarantool-python/issues/55>`__)
+
+    *   -   Schema reload
+        -   Yes (automatically, see `auto_refetch_schema <https://igorcoding.github.io/asynctnt/api.html>`__)
+        -   Yes (automatically)
+        -   Yes (automatically)
+
+    *   -   Space / index names
+        -   Yes
+        -   Yes
+        -   Yes
+
+    *   -   Access tuple fields by names
+        -   No
+        -   No
+        -   Yes
+
+    *   -   `SQL support <https://www.tarantool.io/en/doc/latest/reference/reference_sql/>`__
+        -   Yes (tests/test_op_sql.py)
+        -   No
+        -   Yes (tarantool/connection.py)
+
+    *   -   `Interactive transactions <https://www.tarantool.io/en/doc/latest/book/box/stream/>`__
+        -   No
+        -   No
+        -   No (`issue #163 <https://github.com/tarantool/tarantool-python/issues/163>`__)
+
+    *   -   `Varbinary support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
+        -   No
+        -   No
+        -   Yes (`issue #105 <https://github.com/tarantool/tarantool-python/issues/105>`__)
+
+    *   -   `UUID support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
+        -   No
+        -   No
+        -   No
+
+    *   -   `Decimal support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
+        -   Almost (v2 branch)
+        -   No
+        -   No
+
+    *   -   `EXT_ERROR support <https://www.tarantool.io/ru/doc/latest/dev_guide/internals/msgpack_extensions/#the-error-type>`__
+        -   No
+        -   No
+        -   No
+
+    *   -   `Datetime support <https://github.com/tarantool/tarantool/discussions/6244>`__
+        -   No
+        -   No
+        -   No
+
+    *   -   `box.session.push() responses <https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_session/push/>`__
+        -   Yes (see push_subscribe option and docs/pushes.rst)
+        -   No
+        -   No
+
+    *   -   `Session settings <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_session_settings/>`__
+        -   No
+        -   No
+        -   No
+
+    *   -   `Graceful shutdown <https://github.com/tarantool/tarantool/issues/5924>`__
+        -   No
+        -   No
+        -   No
+
+    *   -   `IPROTO_ID (feature discovering) <https://github.com/tarantool/doc/issues/2419>`__
+        -   No
+        -   No
+        -   No
+
+    *   -   Support `CRUD <https://github.com/tarantool/crud>`__
+        -   No
+        -   No
+        -   No
+
+    *   -   Support retrying when appropriate
+        -   No
+        -   No
+        -   No
+
+    *   -   Implicit reconnecting strategy
+        -   autoreconnect
+        -   Yes (reconnect_max_attempts, reconnect_delay)
+        -   Yes (reconnect_max_attempts, reconnect_delay), checking of connection liveness
+
+    *   -   Connection pool
+        -   No
+        -   No
+        -   Yes (round robin failover)
+
+    *   -   Support of `PEP 249 -- Python Database API Specification v2.0 <https://www.python.org/dev/peps/pep-0249/>`__
+        -   No
+        -   No
+        -   `Yes <https://github.com/tarantool/tarantool-python/wiki/PEP-249-Database-API>`__
