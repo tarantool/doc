@@ -78,7 +78,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    How the create, read, update and delete operations are implemented in Tarantool.
+    .
 
     ---
 
@@ -86,7 +86,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    How the create, read, update and delete operations are implemented in Tarantool.
+    Special data structure that stores a group of key values and pointers.
 
     ---
 
@@ -94,13 +94,14 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    How the create, read, update and delete operations are implemented in Tarantool.
+    .
 
     ---
 
     Storage engines
 
     ^^^
+
 
 
     ---
