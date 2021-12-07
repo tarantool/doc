@@ -24,7 +24,10 @@ how to connect to a Tarantool database from other programming languages.
 
     ---
 
-    Starting with a package manager
+    ..  link-button:: ./getting_started_db/#using-a-package-manager
+        :type: url
+        :text: Starting with a package manager
+        :classes: doc-card__link
 
     ^^^
 
@@ -32,7 +35,10 @@ how to connect to a Tarantool database from other programming languages.
 
     ---
 
-    Connect from Python
+    ..  link-button:: ./getting_started/getting_started_python/
+        :type: url
+        :text: Connect from Python
+        :classes: doc-card__link
 
     ^^^
 
@@ -40,11 +46,47 @@ how to connect to a Tarantool database from other programming languages.
 
     ---
 
-    Connect from Go
+    ..  link-button:: ./getting_started/getting_started_python/
+        :type: url
+        :text: Connect from Python
+        :classes: doc-card__link
+
+    ^^^
+
+    Use the PHP connector (tarantool/client) to work with Tarantool
+
+    ---
+
+    ..  link-button:: ./getting_started/getting_started_php/
+    :type: url
+    :text: Connect from PHP
+    :classes: doc-card__link
 
     ^^^
 
     Use the Go connector (tarantool/go-tarantool) to work with Tarantool
+
+    ---
+
+    ..  link-button:: ./getting_started/getting_started_php/
+    :type: url
+    :text: Connect from C++
+    :classes: doc-card__link
+
+    ^^^
+
+    Use the C++ connector (tarantool/tntcxx) to work with Tarantool
+
+    ---
+
+    ..  link-button:: ./getting_started/getting_started_php/
+    :type: url
+    :text: Starting with Tarantool Cartridge
+    :classes: doc-card__link
+
+    ^^^
+
+    Create your first Tarantool Cartridge application
 
 
 .. toctree::
