@@ -34,19 +34,20 @@ and detailed references for power users and contributors.
 
     ---
 
-    Cluster
-
-    ^^^
-
-
-
-    ---
-
     Application server
 
     ^^^
 
     Working with Tarantool as a Lua application server.
+
+    ---
+
+    Cluster
+
+    ^^^
+
+    Working with Tarantool Cartridge, a framework for developing, deploying and managing applications
+    based on Tarantool.
 
     ---
 
@@ -102,7 +103,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-
+    Working with memtx and vinyl storage engines.
 
     ---
 
@@ -118,7 +119,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    How the create, read, update and delete operations are implemented in Tarantool.
+    See the APIs for various programming languages.
 
     ---
 
@@ -126,7 +127,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    How the create, read, update and delete operations are implemented in Tarantool.
+    How the access control is implemented in Tarantool.
 
     ---
 
@@ -134,15 +135,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    How the create, read, update and delete operations are implemented in Tarantool.
-
-    ---
-
-    Replication
-
-    ^^^
-
-    How the create, read, update and delete operations are implemented in Tarantool.
+    .
 
     ---
 
@@ -150,7 +143,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-
+    Working with callbacks, functions which the server executes when certain events happen.
 
     ---
 
@@ -166,6 +159,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
+    How to use scaling methods when working with databases.
 
     ---
 
@@ -173,7 +167,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-
+    See the contributing and building guidelines
 
     ---
 
@@ -181,14 +175,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-
-
-
-
-
-
-
-
+    Check the Tarantool release policy and the release notes.
 
 
 
