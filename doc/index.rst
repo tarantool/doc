@@ -226,10 +226,9 @@ Main page example
 
     +++
 
-    Enterprise data services with ease.
+    A platform for building data services with ease
 
     ---
-
 
     [img]
 
@@ -239,10 +238,9 @@ Main page example
 
     +++
 
-    Enterprise data services with ease.
+    Enterprise data services with ease
 
     ---
-
 
     [img]
 
@@ -252,10 +250,9 @@ Main page example
 
     +++
 
-    Enterprise data services with ease.
+    Tarantool cluster management with Cartridge network
 
     ---
-
 
     [img]
 
@@ -265,10 +262,9 @@ Main page example
 
     +++
 
-    Enterprise data services with ease.
+    Connectors from various programming languages
 
     ---
-
 
     [img]
 
@@ -278,7 +274,7 @@ Main page example
 
     +++
 
-    Enterprise data services with ease.
+
 
     ---
 
