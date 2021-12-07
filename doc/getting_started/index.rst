@@ -68,7 +68,7 @@ how to connect to a Tarantool database from other programming languages.
 
     ---
 
-    ..  link-button:: ./getting_started/getting_started_php/
+    ..  link-button:: ./getting_started/getting_started_cxx/
     :type: url
     :text: Connect from C++
     :classes: doc-card__link
@@ -79,7 +79,7 @@ how to connect to a Tarantool database from other programming languages.
 
     ---
 
-    ..  link-button:: ./getting_started/getting_started_php/
+    ..  link-button:: ./getting_started/getting_started_cartridge/
     :type: url
     :text: Starting with Tarantool Cartridge
     :classes: doc-card__link
