@@ -79,7 +79,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    .
+    How the replication mechanism is implemented in Tarantool.
 
     ---
 
@@ -95,7 +95,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    .
+    ?
 
     ---
 
@@ -111,7 +111,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-
+    Multiplexing several transactions over one connection.
 
     ---
 
@@ -135,7 +135,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    .
+    ?
 
     ---
 
@@ -151,7 +151,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-
+    Check out the tutorials to dig deeper into Tarantool usage.
 
     ---
 
@@ -167,7 +167,7 @@ and detailed references for power users and contributors.
 
     ^^^
 
-    See the contributing and building guidelines
+    See the contributing and building guidelines.
 
     ---
 
