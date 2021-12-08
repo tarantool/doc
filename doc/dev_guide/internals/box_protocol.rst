@@ -569,8 +569,7 @@ The body is a 2-item map:
         IPROTO_TUPLE: :samp:`{{MP_ARRAY array of arguments}}`
     })
 
-Example: if this is the fifth message, |br|
-:samp:`{conn}.:code:`eval('return 5;')` will cause:
+Example: if this is the fifth message, :samp:`conn:eval('return 5;')` will cause:
 
 ..  code-block:: none
 
@@ -1658,10 +1657,19 @@ then tcpdump will show this response, after the header:
 
 Byte code for the SQL PREPARE example. If we said |br|
 :code:`conn:prepare([[SELECT dd, дд AS д FROM t1;]])` |br|
-then tcpdump would should show almost the same response, but there would
-be no IPROTO_DATA and there would be two additional items: |br|
-:code:`34 00 = IPROTO_BIND_COUNT and MP_UINT = 0` (there are no parameters to bind), |br|
-:code:`33 90 = IPROTO_BIND_METADATA and MP_ARRAY`, size 0 (there are no parameters to bind).
+then tcpdump would show almost the same response, but there would
+be no IPROTO_DATA. Instead, additional items will appear:
+
+..  code-block:: none
+
+    34                       IPROTO_BIND_COUNT
+    00                       MP_UINT = 0
+
+    33                       IPROTO_BIND_METADATA
+    90                       MP_ARRAY, size 0
+
+``MP_UINT = 0`` and ``MP_ARRAY`` has size 0 because there are no parameters to bind.
+Full output:
 
 ..  code-block:: none
 
