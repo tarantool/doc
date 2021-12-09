@@ -22,9 +22,10 @@
 
 **Запуск в облаке**
 
-Данное руководство можно пройти в облаке. После прохождения обучения в
-облаке для дальнейшего знакомства вам все равно необходимо будет
-установить Tarantool локально.
+Данное руководство можно пройти в облаке. Переходите на сайт
+`try.tarantool.io <https://try.tarantool.io>`__ и проходите этот туториал в облаке.
+
+Однако, установить Tarantool в дальнейшем все равно придется. Это необходимо для дальнейшего знакомства.
 
 **Запуск локально**
 
@@ -90,8 +91,11 @@ Tarantool.
 Если по ходу выполнения инструкции вы случайно сделали что-то не то,
 есть волшебная кнопка, которая поможет вам сбросить все изменения.
 
-Она называется **"Reset Configuration".** Она находится в правом верхнем
-углу.
+Она называется **"Reset Configuration".** Она находится сверху, во
+вкладке “Cluster”.
+
+Сконфигурируем кластер
+~~~~~~~~~~~~~~~~~~~~~~
 
 **Все что нужно знать для старта:**
 
@@ -102,26 +106,50 @@ Tarantool.
    запросы от клиентов, ходит к нужным Storage за данными и возвращает
    их клиенту.
 
-Сконфигурируем кластер
-~~~~~~~~~~~~~~~~~~~~~~
-
 На вкладке "Cluster" мы видим, что в нашем распоряжении есть 5
-несконфигурированных инстансов. Создадим один Router и один Storage для
-старта.
+несконфигурированных инстансов.
 
-...
+.. figure:: images/hosts-list.png
+   :alt: Cписок всех узлов
 
-Включим шардирование
+   Cписок всех узлов
 
-...
+Создадим один Router и один Storage для старта.
+
+Сначала нажимаем кнопку “Configure” на инстансе “router” и настраиваем
+его как на скриншоте ниже:
+
+.. figure:: images/router-configuration.png
+   :alt: Настраиваем router
+
+   Настраиваем router
+
+Далее настраиваем инстанс “s1-master”:
+
+.. figure:: images/storage-configuration.png
+   :alt: Настраиваем s1-master
+
+   Настраиваем s1-master
+
+Получится примерно вот так:
+
+.. figure:: images/first-configuration-result.png
+   :alt: Вид кластера после первой настройки
+
+   Вид кластера после первой настройки
+
+Включим шардирование в кластере с помощью кнопки “Bootstrap vshard”. Она
+находится справа сверху.
 
 Создаем схему данных [2 минуты]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Начнем со схемы данных: загляните во вкладку "Schema". Она находится
-слева. Там можно создать новую схему данных для всего кластера,
-отредактировать текущую схему, отвалидировать ее на корректность и
-применить на всем кластере.
+Начнем со схемы данных: загляните во вкладку "Code". Она находится
+слева.
+
+Здесь мы сможем создать файл под названием ``schema.yml``. В нем можно
+описать схему данных для всего кластера, отредактировать текущую схему,
+отвалидировать ее на корректность и применить на всем кластере.
 
 Создадим необходимые таблицы. В Tarantool они называются спейсами
 (space).
@@ -130,74 +158,78 @@ Tarantool.
 
 -  пользователей
 -  видео с их описаниями
--  **лайки для каждого видео**
+-  лайки для каждого видео
+
+**Чтобы загрузить схему в кластер создайте файл ``schema.yml``.
+Скопируйте и вставьте схему в этот файл. Нажмите на кнопку “Apply”.
+После этого, в кластере будет описана схема данных.**
 
 Вот как будет выглядеть наша схема данных:
 
    .. code:: yaml
 
-       spaces:
-         users:
-           engine: memtx
-           is_local: false
-           temporary: false
-           sharding_key:
-           - "user_id"
-           format:
-           - {name: bucket_id, type: unsigned, is_nullable: false}
-           - {name: user_id, type: uuid, is_nullable: false}
-           - {name: fullname, type: string,  is_nullable: false}
-           indexes:
-           - name: user_id
-             unique: true
-             parts: [{path: user_id, type: uuid, is_nullable: false}]
-             type: HASH
-           - name: bucket_id
-             unique: false
-             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-             type: TREE
+      spaces:
+        users:
+          engine: memtx
+          is_local: false
+          temporary: false
+          sharding_key:
+          - "user_id"
+          format:
+          - {name: bucket_id, type: unsigned, is_nullable: false}
+          - {name: user_id, type: uuid, is_nullable: false}
+          - {name: fullname, type: string,  is_nullable: false}
+          indexes:
+          - name: user_id
+            unique: true
+            parts: [{path: user_id, type: uuid, is_nullable: false}]
+            type: HASH
+          - name: bucket_id
+            unique: false
+            parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+            type: TREE
 
-         videos:
-           engine: memtx
-           is_local: false
-           temporary: false
-           sharding_key:
-           - "video_id"
-           format:
-           - {name: bucket_id, type: unsigned, is_nullable: false}
-           - {name: video_id, type: uuid, is_nullable: false}
-           - {name: description, type: string, is_nullable: true}
-           indexes:
-           - name: video_id
-             unique: true
-             parts: [{path: video_id, type: uuid, is_nullable: false}]
-             type: HASH
-           - name: bucket_id
-             unique: false
-             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-             type: TREE
+        videos:
+          engine: memtx
+          is_local: false
+          temporary: false
+          sharding_key:
+          - "video_id"
+          format:
+          - {name: bucket_id, type: unsigned, is_nullable: false}
+          - {name: video_id, type: uuid, is_nullable: false}
+          - {name: description, type: string, is_nullable: true}
+          indexes:
+          - name: video_id
+            unique: true
+            parts: [{path: video_id, type: uuid, is_nullable: false}]
+            type: HASH
+          - name: bucket_id
+            unique: false
+            parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+            type: TREE
 
-         likes:
-           engine: memtx
-           is_local: false
-           temporary: false
-           sharding_key:
-           - "video_id"
-           format:
-           - {name: bucket_id, type: unsigned, is_nullable: false}
-           - {name: like_id, type: uuid, is_nullable: false }
-           - {name: user_id,  type: uuid, is_nullable: false}
-           - {name: video_id, type: uuid, is_nullable: false}
-           - {name: timestamp, type: string,   is_nullable: true}
-           indexes:
-           - name: like_id
-             unique: true
-             parts: [{path: like_id, type: uuid, is_nullable: false}]
-             type: HASH
-           - name: bucket_id
-             unique: false
-             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-             type: TREE
+        likes:
+          engine: memtx
+          is_local: false
+          temporary: false
+          sharding_key:
+          - "video_id"
+          format:
+          - {name: bucket_id, type: unsigned, is_nullable: false}
+          - {name: like_id, type: uuid, is_nullable: false }
+          - {name: user_id,  type: uuid, is_nullable: false}
+          - {name: video_id, type: uuid, is_nullable: false}
+          - {name: timestamp, type: string,   is_nullable: true}
+          indexes:
+          - name: like_id
+            unique: true
+            parts: [{path: like_id, type: uuid, is_nullable: false}]
+            type: HASH
+          - name: bucket_id
+            unique: false
+            parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+            type: TREE
 
 Тут все просто. Рассмотрим, важные моменты.
 
@@ -228,8 +260,9 @@ Tarantool.
 Если в проекте шардирование не используется, то его можно убрать.
 
 Чтобы понять, по какому полю шардировать данные, Tarantool использует
-``sharding_key``. ``sharding_key`` указывает на поле в спейсе, по
-которому будут шардироваться записи. Tarantool возьмет хеш от этого поля
+``sharding_key``. ``sharding_key`` указывает на поля в спейсе, по
+которому будут шардироваться записи. Их может быть несколько. В данном примере
+мы будем использовать только одно поле. Tarantool возьмет хеш от этого поля
 при вставке, вычислит номер бакета и подберет для записи нужный Storage.
 
 Да, бакеты могут повторяться, а каждый Storage хранит определенный
@@ -243,10 +276,6 @@ Tarantool.
 -  Tarantool не поддерживает Foreign key или "внешний ключ", поэтому в
    спейсе ``likes`` нужно при вставке вручную проверять, что такой
    ``video_id`` и ``user_id`` существуют.
-
-**Отлично. Давайте применим схему** на всем кластере. Заходим на вкладку
-"Schema" в кластере, копируем схему в поле, нажимаем кнопку "Apply" и
-готово. Теперь по всем узлам раскатана одинаковая схема данных.
 
 Записываем данные [5 минут]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -264,58 +293,71 @@ Tarantool.
 -  добавление видео
 -  лайк видео
 
+**Процедуры нужно описать в специальном файле. Для этого перейдите во
+вкладку “Code”. Создайте новую дирректорию под названием “extensions”. И
+в этой дирректории создайте файл “api.lua”.**
+
+Вставьте код описанный ниже в этой файл и нажмите на кнопку “Apply”.
+
 .. code:: lua
 
-    local cartridge = require('cartridge')
-    local crud = require('crud')
-    local uuid = require('uuid')
-    local json = require('json')
+   local cartridge = require('cartridge')
+   local crud = require('crud')
+   local uuid = require('uuid')
+   local json = require('json')
 
-    function add_user(request)
-        local fullname = request:post_param("fullname")
-        local result, err = crud.insert_object('users', { user_id = uuid.new(), fullname = fullname })
-        if err ~= nil then
-            return { body = json.encode({status = "Error!", error = err}), status = 500 }
-        end
+   function add_user(request)
+       local fullname = request:post_param("fullname")
+       local result, err = crud.insert_object('users', { user_id = uuid.new(), fullname = fullname })
+       if err ~= nil then
+           return { body = json.encode({status = "Error!", error = err}), status = 500 }
+       end
 
-        return { body = json.encode({status = "Success!", result = result}), status = 200 }
-    end
+       return { body = json.encode({status = "Success!", result = result}), status = 200 }
+   end
 
-    function add_video(request)
-        local description = request:post_param("description")
-        local result, err = crud.insert_object('videos', { video_id = uuid.new(), description = description })
-        if err ~= nil then
-            return { body = json.encode({status = "Error!", error = err}), status = 500 }
-        end
+   function add_video(request)
+       local description = request:post_param("description")
+       local result, err = crud.insert_object('videos', { video_id = uuid.new(), description = description })
+       if err ~= nil then
+           return { body = json.encode({status = "Error!", error = err}), status = 500 }
+       end
 
-        return { body = json.encode({status = "Success!", result = result}), status = 200 }
-    end
+       return { body = json.encode({status = "Success!", result = result}), status = 200 }
+   end
 
-    function like_video(request)
-        local video_id = request:post_param("video_id")
-        local user_id = request:post_param("user_id")
+   function like_video(request)
+       local video_id = request:post_param("video_id")
+       local user_id = request:post_param("user_id")
 
-        local result, err = crud.insert_object('likes', { like_id = uuid.new(),
-                                                    video_id = uuid.fromstr(video_id),
-                                                    user_id = uuid.fromstr(user_id)})
-        if err ~= nil then
-            return { body = json.encode({status = "Error!", error = err}), status = 500 }
-        end
+       local result, err = crud.insert_object('likes', { like_id = uuid.new(),
+                                                   video_id = uuid.fromstr(video_id),
+                                                   user_id = uuid.fromstr(user_id)})
+       if err ~= nil then
+           return { body = json.encode({status = "Error!", error = err}), status = 500 }
+       end
 
-        return { body = json.encode({status = "Success!", result = result}), status = 200 }
-    end
+       return { body = json.encode({status = "Success!", result = result}), status = 200 }
+   end
 
-    return {
-        add_user = add_user,
-        add_video = add_video,
-        like_video = like_video,
-    }
+   return {
+       add_user = add_user,
+       add_video = add_video,
+       like_video = like_video,
+   }
 
 Поднимем HTTP API [2 минуты]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Клиенты будут ходить в кластер Tarantool по протоколу HTTP. В кластере
-уже есть свой встроенный HTTP сервер. Сконфигурируем пути:
+уже есть свой встроенный HTTP сервер.
+
+**Чтобы сконфигурировать HTTP пути необходимо написать конфигурационный
+файл. Для этого перейдите во вкладку “Code”. Создайте файл “config.yml”
+в дирректории “extensions”. Вы ее создавали на прошлом шаге.**
+
+Вставьте пример конфигурации описанный ниже в этой файл и нажмите на
+кнопку “Apply”.
 
 .. code:: yaml
 
@@ -345,37 +387,42 @@ Tarantool.
 
 .. code:: bash
 
-    curl -X POST --data "fullname=Taran Tool" try-cartridge.tarantool.io:19528/add_user
+   curl -X POST --data "fullname=Taran Tool" <ip:port>/add_user
 
 Создали пользователя и получили его UUID. Запомним его.
 
 .. code:: bash
 
-    curl -X POST --data "description=My first tiktok" try-cartridge.tarantool.io:19528/add_video
+   curl -X POST --data "description=My first tiktok" <ip:port>/add_video
 
-Представим что пользователь добавил свое первое видео с описанием. Также получили UUID видео ролика.
-Его тоже запомним.
+Представим что пользователь добавил свое первое видео с описанием. Также
+получили UUID видео ролика. Его тоже запомним.
 
-Для того чтобы "лайкнуть" видео, нужно указать UUID пользователя и UUID видео. Подставим его из первых двух шагов за место троточия ниже.
+Для того чтобы "лайкнуть" видео, нужно указать UUID пользователя и UUID
+видео. Подставим его из первых двух шагов за место троточия ниже.
 
 .. code:: bash
 
-    curl -X POST --data "video_id=...&user_id=..." try-cartridge.tarantool.io:19528/like_video
+   curl -X POST --data "video_id=...&user_id=..." <ip:port>/like_video
 
 Получится, примерно вот так:
 
-.. figure:: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/__2020-11-17__4.02.18_PM.png
-   :alt: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.02.18\_PM.png
+.. figure:: images/console.png
+   :alt: Тестовые запросы в консоли
 
-   Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.02.18\_PM.png
+   Тестовые запросы в консоли
 
-В нашем примере "лайкать" видео можно сколько угодно раз. Хоть в реальной жизни это и лишено смысла,
-но это поможет нам понять как работает шардирование. А точнее параметр `sharding_key`.
+В нашем примере "лайкать" видео можно сколько угодно раз. Хоть в
+реальной жизни это и лишено смысла, но это поможет нам понять как
+работает шардирование. А точнее параметр ``sharding_key``.
 
-Для спейса `likes` мы указали `sharding_key` — `video_id`. Такой же `sharding_key` мы указали и для спейса `videos`. Это означает, что лайки будут храниться на том же Storage, на котором хранится и видео. Это обеспечивает локальность по данным при хранении и позволяет за один сетевой поход в Storage получить необходимую информацию.
+Для спейса ``likes`` мы указали ``sharding_key`` — ``video_id``. Такой
+же ``sharding_key`` мы указали и для спейса ``videos``. Это означает,
+что лайки будут храниться на том же Storage, на котором хранится и
+видео. Это обеспечивает локальность по данным при хранении и позволяет
+за один сетевой поход в Storage получить необходимую информацию.
 
 Подробнее описано в следующем шаге.
-
 
 Смотрим на данные [1 минута]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -389,18 +436,23 @@ Tarantool.
 
 Смотрим, что все на месте и переходим дальше.
 
-.. figure:: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/__2020-11-17__4.41.50_PM.png
-   :alt: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.41.50\_PM.png
+.. figure:: images/hosts.png
+   :alt: Space Explorer, список хостов
 
-   Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.41.50\_PM.png
-.. figure:: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/__2020-11-17__4.42.24_PM.png
-   :alt: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.42.24\_PM.png
+   Space Explorer, список хостов
 
-   Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.42.24\_PM.png
-.. figure:: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/__2020-11-17__4.42.15_PM.png
-   :alt: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.42.15\_PM.png
+.. figure:: images/likes.png
+   :alt: Space Explorer, просмотр лайков
 
-   Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.42.15\_PM.png
+   Space Explorer, просмотр лайков
+
+Обратите внимание: инструмент ``space-explorer`` доступен только в
+Enterprise версии продукта и в облачном Try сервисе.
+В open-source версии данные можно посмотреть через консоль.
+
+Читайте `подробнее в
+документации про просмотр данных <https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_space/select/>`__. И про подключение к инстансу Tarantool :ref:`читайте в базовом руководстве для Tarantool <getting_started_db>`.
+
 
 Масштабируем кластер [1 минута]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -408,10 +460,16 @@ Tarantool.
 Создадим второй шард. Нажимаем на вкладку "Cluster", выбираем
 ``s2-master`` и нажимаем "Configure". Выбираем роли так как на картинке:
 
-.. figure:: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/__2020-11-17__4.54.18_PM.png
-   :alt: Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.54.18\_PM.png
+.. figure:: images/s1-master.png
+   :alt: Space Explorer, хост s1-master
 
-   Try%20Tarantool%20The%20Tutorial%201eac19ceebc242178cf4e2fdfb750123/\ **2020-11-17**\ 4.54.18\_PM.png
+   Space Explorer, хост s1-master
+
+.. figure:: images/configuring-server.png
+   :alt: Cluster, экран конфигурации нового шарда
+
+   Cluster, экран конфигурации нового шарда
+
 Шелкаем на нужные роли и создаем шард (репликасет).
 
 Узлы ``s1-replica``, ``s2-replica`` добавляем как реплики к первому и
@@ -448,22 +506,13 @@ Tarantool.
 Теперь мы можем смело отключать первый шард, если вам понадобилось
 провести служебные работы.
 
-
 Читайте также
 ~~~~~~~~~~~~~
 
--  `Изучите документацию Tarantool
-   Cartridge <https://www.tarantool.io/ru/doc/latest/book/cartridge/>`__
-   и напишите свое распределенное приложение
--  Изучите репозиторий
-   `tarantool/examples <https://github.com/tarantool/examples>`__ на
-   Github с готовыми примерами на Tarantool Cartridge: кэш, репликатор
-   MySQL и другие.
 -  README модуля `DDL <https://github.com/tarantool/ddl>`__ для создания
    своей схемы данных
 -  README модуля `CRUD <https://github.com/tarantool/crud>`__ чтобы
    узнать больше про API и реализовать собственные запросы по кластеру
 
 
-
-
+Переходите к следующим шагам туториала: кнопка находится справа снизу или в оглавлении слева.
