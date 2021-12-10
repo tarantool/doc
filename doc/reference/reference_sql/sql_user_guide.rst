@@ -212,7 +212,7 @@ Example: ``X'414243'``, which will be displayed as ``'ABC'``. |br|
 A literal has :ref:`data type = VARBINARY <sql_data_type_varbinary>`
 ("variable-length binary") if it is the letter X followed by quotes containing pairs of hexadecimal digits, representing byte values.
 
-Here are four ways to put non-ASCII characters,such as the Greek letter α alpha,  in string literals: |br|
+Here are four ways to put non-ASCII characters,such as the Greek letter α alpha, in string literals: |br|
 First make sure that your shell program is set to accept characters as UTF-8. A simple way to check is |br|
 ``SELECT hex(cast('α' as VARBINARY));``
 If the result is CEB1 -- which is the hexadecimal value for the UTF-8 representation of α -- it is good. |br|
@@ -681,7 +681,7 @@ Example for numerics: ``0 >= 0``, result = TRUE. Example for strings: ``'Z' >= '
 After the word SET, "=" means the first operand gets the value from the second operand.
 In other contexts, "=" returns TRUE if operands are equal.
 Example for assignment: ``... SET column1 = 'a';``
-Example for numerics: ``0 = 0``, result = TRUE. Example for strings:  ``'1' = '2 '``, result = FALSE.
+Example for numerics: ``0 = 0``, result = TRUE. Example for strings: ``'1' = '2 '``, result = FALSE.
 
 ``==`` equal (assignment), or equal (comparison)
 This is a non-standard equivalent of
@@ -981,7 +981,7 @@ From VARBINARY to UUID is allowed only if the value is
 16 bytes long,
 as in ``X'8e3b281b78ad4410bfe954806a586a90'``. |br|
 The chart does not show To|From SCALAR because the conversions depend on the type of the value,
-not the type of the column definition.  Explicit cast to SCALAR is always allowed.
+not the type of the column definition. Explicit cast to SCALAR is always allowed.
 
 ..  note::
 
@@ -998,23 +998,23 @@ not the type of the column definition.  Explicit cast to SCALAR is always allowe
 
 Examples of casts, illustrating the situations in the chart:
 
-``CAST(TRUE AS STRING)`` is legal because the intersection of the  "From BOOLEAN" row with the "To STRING"
+``CAST(TRUE AS STRING)`` is legal. The intersection of the "From BOOLEAN" row with the "To STRING"
 column is ``A--`` and the first letter of ``A--`` is for explicit cast and A means Always Allowed.
 The result is 'TRUE'.
 
-``UPDATE ... SET varbinary_column = 'A'`` is illegal because the intersection of the "From STRING" row with the "To VARBINARY"
+``UPDATE ... SET varbinary_column = 'A'`` is illegal. The intersection of the "From STRING" row with the "To VARBINARY"
 column is ``A--`` and the second letter of ``A--`` is for implicit cast (assignment) and - means not allowed.
 The result is an error message.
 
-``1.7E-1 > 0`` is legal because the intersection of the "From numeric" row with the "To numeric"
+``1.7E-1 > 0`` is legal. The intersection of the "From numeric" row with the "To numeric"
 column is SSA, and the third letter of SSA is for implicit cast (comparison) and A means Always Allowed.
 The result is TRUE.
 
-``11 > '2'`` is illegal because the intersection of the "From numeric" row with the "To STRING"
+``11 > '2'`` is illegal. The intersection of the "From numeric" row with the "To STRING"
 column is A-- and the third letter of A-- is for implicit cast (comparison) and - means not allowed.
 The result is an error message. For detailed explanation see the following section.
 
-``CAST('5' AS INTEGER)`` is legal because the intersection of the "From STRING" row with the "To numeric"
+``CAST('5' AS INTEGER)`` is legal. The intersection of the "From STRING" row with the "To numeric"
 column is S-- and the first letter of S-- is for explicit cast and S means Sometimes Allowed.
 However, ``CAST('5.5' AS INTEGER)`` is illegal because 5.5 is not an integer --
 if the string contains post-decimal digits and the target is INTEGER or UNSIGNED,
