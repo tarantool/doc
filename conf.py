@@ -22,6 +22,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
     'sphinxcontrib.plantuml',
+    'sphinx_panels',
     'ext.custom',
     'ext.LuaDomain',
     'ext.LuaLexer',
