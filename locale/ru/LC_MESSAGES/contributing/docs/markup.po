@@ -1,4 +1,7 @@
 
+msgid "Contents:"
+msgstr "Оглавление:"
+
 msgid "Markup reference"
 msgstr ""
 
@@ -8,6 +11,3 @@ msgid ""
 "<https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_. This"
 " section will guide you through our typical documentation formatting cases."
 msgstr ""
-
-msgid "Contents:"
-msgstr "Оглавление:"

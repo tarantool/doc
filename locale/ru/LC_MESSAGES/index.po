@@ -1,4 +1,10 @@
 
+msgid "CRUD operations"
+msgstr ""
+
+msgid "Streams"
+msgstr ""
+
 msgid "Tarantool - Documentation"
 msgstr "Документация по Tarantool"
 
