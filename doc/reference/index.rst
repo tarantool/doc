@@ -24,7 +24,7 @@ Reference
 
     ^^^
 
-    Tarantool's built-in Lua modules
+    Tarantool's built-in Lua modules.
 
     ---
 
@@ -32,7 +32,7 @@ Reference
 
     ^^^
 
-    Third-party Lua modules for Tarantool
+    Third-party Lua modules for Tarantool.
 
     ---
 
@@ -40,7 +40,7 @@ Reference
 
     ^^^
 
-    Options and parameters which can be set for Tarantool on the command line or in an initialization file
+    Options and parameters which can be set for Tarantool on the command line or in an initialization file.
 
     ---
 
@@ -48,7 +48,7 @@ Reference
 
     ^^^
 
-    List of C API headers
+    List of C API headers.
 
     ---
 
@@ -56,7 +56,7 @@ Reference
 
     ^^^
 
-    Binary protocol, MessagePack extensions, file formats, and the recovery process
+    Binary protocol, MessagePack extensions, file formats, and the recovery process.
 
     ---
 
@@ -64,7 +64,7 @@ Reference
 
     ^^^
 
-    Important limitations for tuples, indexes, and spaces
+    Important limitations for tuples, indexes, and spaces.
 
     ---
 
@@ -72,7 +72,7 @@ Reference
 
     ^^^
 
-    Basic CLI for entering requests and seeing results
+    Basic CLI for entering requests and seeing results.
 
     ---
 
@@ -80,7 +80,7 @@ Reference
 
     ^^^
 
-    Utility for administering Tarantool instances, checkpoint files and modules
+    Utility for administering Tarantool instances, checkpoint files and modules.
 
     ---
 
@@ -88,9 +88,9 @@ Reference
 
     ^^^
 
-    The Lua syntax for data-manipulating functions
+    The Lua syntax for data-manipulating functions.
 
-    ---
+
 
 ..  toctree::
     :hidden:
