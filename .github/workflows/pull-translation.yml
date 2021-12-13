@@ -8,7 +8,7 @@ on:
 jobs:
   pull-translations:
     runs-on: ubuntu-latest
-    container: tarantool/doc-builder:latest
+    container: tarantool/doc-builder:fat-2.1
 
     steps:
       - uses: actions/checkout@v2
