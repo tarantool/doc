@@ -1,4 +1,7 @@
 
+msgid "List of Lua modules"
+msgstr "Перечень Lua-модулей"
+
 msgid "Built-in modules reference"
 msgstr "Справочник по встроенным модулям"
 
@@ -15,6 +18,3 @@ msgstr ""
 "`стандартных Lua-библиотек <http://www.lua.org/manual/>`_. Для достижения "
 "наилучшего результата мы рекомендуем использовать функции из встроенных "
 "модулей Tarantool'а."
-
-msgid "List of Lua modules"
-msgstr "Перечень Lua-модулей"
