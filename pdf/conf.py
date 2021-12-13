@@ -18,7 +18,6 @@ extensions = [
     'ext.DropdownList',
     'ext.WebPageSection',
     'ext.WebPageButtons',
-    'ext.WebPageMap',
     'ext.ModuleBlock',
     'ext.DownloadPageBlock'
 ]
