@@ -349,11 +349,6 @@ if (LATEX_FOUND)
         COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex || true
         WORKING_DIRECTORY ${SPHINX_BUILD_LATEX_RU_DIR}
     )
-    add_custom_command(TARGET pdf-ru
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_RU_HTML_DIR})
-    add_custom_command(TARGET pdf-ru
-        COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_RU_DIR}Tarantool.pdf
-                                         ${SPHINX_RU_HTML_DIR})
 
     add_custom_target(pdf ALL COMMENT "PDF generation")
     add_custom_command(TARGET pdf
@@ -372,9 +367,4 @@ if (LATEX_FOUND)
         COMMAND "${PDFLATEX_COMPILER}" -interaction nonstopmode Tarantool.tex || true
         WORKING_DIRECTORY ${SPHINX_BUILD_LATEX_DIR}
     )
-    add_custom_command(TARGET pdf
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_EN_HTML_DIR})
-    add_custom_command(TARGET pdf
-        COMMAND ${CMAKE_COMMAND} -E copy ${SPHINX_BUILD_LATEX_DIR}Tarantool.pdf
-                                         ${SPHINX_EN_HTML_DIR})
 endif()
