@@ -1,15 +1,13 @@
 .. _getting_started-wrirting_cluster-code:
 
-================================================================================
-Написание кода в кластерном приложении
-================================================================================
+=================================================================================
+Writing code in a clustered application
+=================================================================================
 
-В статье "Начало знакомства" мы написали код приложения прямо в браузере и с помощью файла
-`config.yml` описали обработчики для HTTP эндпоинтов. Это удобный и быстрый способ написать код, который позволит использовать Tarantool как хранилище без дополнительного HTTP сервиса.
-Эта функциональность реализована засчет модуля `cartridge-extensions`. Он также включен в обучающее
-приложение по умолчанию.
+In the article "Getting Started", we wrote the application code directly in the browser and using the file ``config.yml`` described handlers for HTTP endpoints. This is a convenient and fast way to write code that allows you to use Tarantool as a repository without any additional HTTP service.
+This functionality is implemented through the module ``cartridge-extensions``. It is also included in the tutorial default application.
 
-Однако, в Tarantool можно реализовывать совершенно любую бизнес-логику поверх кластера.
-В этом разделе мы узнаем о механизме кластерных ролей и напишем кластерное приложение с нуля.
+However, in Tarantool, you can implement absolutely any business logic on top of a cluster.
+In this section, we will learn about the clustered role mechanism and write a clustered application from scratch.
 
 .. include:: getting_started_cartridge.rst

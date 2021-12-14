@@ -1,47 +1,47 @@
 .. _connecting_to_cluster:
 
-================================================================================
-Подключаемся к кластеру
-================================================================================
+=================================================================================
+Connecting to the cluster
+=================================================================================
 
-В прошлом разделе мы подняли кластер, создали схему и записали данные через HTTP API.
-Теперь мы сможем подключиться к кластеру из кода и работать с данными.
+In the last section, we set up a cluster, created a schema, and wrote data through the HTTP API.
+Now we can connect to the cluster from code and work with data.
 
 .. NOTE::
 
-    Если вы используете Tarantool без Cartridge, то переходите в :ref:`этот раздел<getting_started_connectors>`.
-    Если вы проходите обучение, то читайте дальше.
+    If you are using Tarantool without Cartridge, then go to :ref:`this section is <getting_started_connectors>`.
+    If you are undergoing training, then read on.
 
-Вы могли обратить внимание, что в коде HTTP обработчиков мы использовали модуль `crud`.
-Код выглядел примерно вот так:
+You may have noticed that we used the ``crud`` module in the HTTP handler code.
+The code looked something like this:
 
 .. code:: lua
 
-    local crud = require('crud')
+    local crud = require ('crud')
 
     function add_user(request)
-        local result, err = crud.insert_object('users', { user_id = uuid.new(), fullname = fullname })
+        local result, err = crud.insert_object ('users', {user_id = uuid.new (), fullname = fullname})
     end
 
 
-Этот модуль позволяет работать с данными в кластере и имеет похожий синтаксис,
-что предлагает модуль `box` в Tarantool. Про модуль `box` вы узнаете в следующих разделах.
+This module allows you to work with data in a cluster and has a similar syntax,
+what the Tarantool `box` module offers. You will learn more about the box module in the following sections.
 
-Модуль `crud` содержит набор хранимых процедур. Чтобы он заработал, то мы должны активировать на всех роутерах и стораджах специальные роли. В прошлом разделе мы их выбрали, так что нам делать ничего не нужно.Называются роли соответственно: "crud-router", "crud-storage".
+The crud module contains a set of stored procedures. For it to work, we must activate special roles on all routers and storages. In the previous section, we selected them, so we don't need to do anything. The roles are named accordingly: "crud-router", "crud-storage".
 
-Чтобы писать и читать данные в кластере Tarantool из кода, мы будем вызывать хранимые
-процедуры модуля `crud`.
+To write and read data in the Tarantool cluster from code, we will call the stored
+the procedures of the `crud` module.
 
-На языке Python это выглядит примерно вот так:
+In Python, it looks like this:
 
 .. code:: python
 
     res = conn.call('crud.insert', 'users', <uuid>, 'Jim Carrey')
-    users = conn.call('crud.select', 'users', { limit: 100 })
+    users = conn.call('crud.select', 'users', {limit: 100})
 
-Список всех функций модуля `crud` описан `в репозитории на Github`<https://github.com/tarantool/crud/#insert>_`.
+The list of all functions of the `crud` module is described in the `Github repository <https://github.com/tarantool/crud/#insert>`_.
 
-В него входит:
+It includes:
 
 - insert
 - select
@@ -50,13 +50,13 @@
 - min/max
 - replace/upsert
 - truncate
-- и другие
+- other
 
-Чтобы узнать, как вызывать хранимые процедуры в вашем языке программирования, смотрите раздел
-"Вызов хранимых процедур":
+To learn how to call stored procedures in your programming language, see the section
+"Calling Stored Procedures":
 
-- :ref:`для Python<getting_started-python>`
-- :ref:`для Go<getting_started-go>`
-- :ref:`для PHP<getting_started-php>`
+- :ref:`for Python<getting_started-python>`
+- :ref:`for Go<getting_started-go>`
+- :ref:`for PHP<getting_started-php>`
 
-Для коннекторов к другим языкам, читайте README к `соответствующему коннектору в Github <https://github.com/tarantool>`_.
+For connectors to other languages, read the README for the `corresponding connector on Github <https://github.com/tarantool>`_.

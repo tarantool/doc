@@ -1,25 +1,24 @@
 .. _getting_started-schema_changing:
 
-================================================================================
-Обновление схемы данных
-================================================================================
+=================================================================================
+Updating the data schema
+=================================================================================
 
-Во время работы с данными иногда требуется изменить первоначальную схему данных.
+When working with data, it is sometimes necessary to change the original data schema.
 
-В предыдущих разделах мы описали схему данных через в кластере в YAML формате.
-За применение схемы на кластере отвечает модуль `ddl`. Данный модуль не позволяет
-изменять схему после ее применения.
+In the previous sections, we described the data schema across a cluster in YAML format.
+The ``ddl`` module is responsible for applying the schema on the cluster. This module does not allow
+modify the schema after applying it.
 
-Самый простой способ изменить ее — это удалить снапшоты базы данных и создать
-схему с нуля. Разумеется, это приемлимо только на время разработки и отладки
-приложения. Для production сценариев читайте раздел :ref:`миграции <migrations>`.
+The easiest way to change it is to delete the database snapshots and create
+scheme from scratch. Of course, this is only acceptable during development and debugging.
+applications. For production scenarios read the section :ref:`migrations<migrations>`.
 
-Чтобы удалить снапшоты, вам необходимо:
+To remove snapshots, you need:
 
-- если вы используете Tarantool в облаке, то вы можете воспользоваться кнопкной "Reset configuration"
-- если вы запускаете Tarantool локально через утилиту ``cartridge start``, то вы можете выполнить команду
-`cartridge clean` в дирректории с приложением.
-- если вы запускаете Tarantool иным образом, то вам необходимо удалить снапшоты и xlogs вручную. Они имеют расширения .snap и .xlog сооветветственно и находятся в рабочей дирректории Tarantool.
+- if you are using Tarantool in the cloud, then you can use the "Reset configuration" button
+- if you start Tarantool locally via the cartridge start utility, then you can run the command
+``cartridge clean`` in the application directory.
+- if you start Tarantool in a different way, then you need to delete snapshots and xlogs manually. They have the .snap and .xlog extensions, respectively, and are located in the Tarantool working directory.
 
-Для понимания того, как устроена схема данных в Tarantool, читайте раздел :ref:`Data model<box_data_model>`.
-
+To understand how the Tarantool data schema works, read the section :ref:`Data model<box_data_model>`.

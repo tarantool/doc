@@ -1,39 +1,36 @@
 .. _getting_started-imcp:
 
-================================================================================
-Начало знакомства
-================================================================================
+=================================================================================
+Getting started
+=================================================================================
 
-Это рекомендованное руководство для знакомства с продуктом.
+This is the recommended guide for getting to know the product.
 
 .. NOTE::
-    По некоторым причинам вам может понадобиться :ref:`базовое руководство для Tarantool <getting_started_db>`.
-    В нем запускается один инстанс Tarantool, создается спейс, индекс и записываются данные.
+    For some reason you may want :ref:`basic tutorial for Tarantool <getting_started_db>`.
+    It launches one Tarantool instance, creates a space, an index, and writes data.
 
-    Мы советуем новичкам сначала пройти текущее руководство, а затем вернуться к базовому для более глубокого
-    погружения в продукт.
+    We advise beginners to go through the current tutorial first and then go back to basic for more in-depth immersion in the product.
 
-Если вы хотите быстро запустить готовый код из статьи, читайте
-:ref:`этот
-раздел <app_server-launching_app>`.
+If you want to quickly run the finished code from the article, read
+:ref:`this section <app_server-launching_app>`.
 
-Установка
-~~~~~~~~~
+Installation
+~~~~~~~~~~~~
 
-**Запуск в облаке**
+**Launch in the cloud**
 
-Данное руководство можно пройти в облаке. Переходите на сайт
-`try.tarantool.io <https://try.tarantool.io>`__ и проходите этот туториал в облаке.
+This tutorial is available in the cloud. It's free and fastest way to start.
+Go to the site `try.tarantool.io <https://try.tarantool.io>`__ and go through this tutorial in the cloud.
 
-Однако, установить Tarantool в дальнейшем все равно придется. Это необходимо для дальнейшего знакомства.
+However, you will still have to install Tarantool in the future. This is necessary for further acquaintance.
 
-**Запуск локально**
+**Run locally**
 
-**Для пользователей Linux/macOS:**
+**For Linux/macOS users:**
 
--  установите Tarantool `со страницы
-   Download <https://tarantool.io/ru/download>`__
--  установите через ваш пакетный менеджер утилиту ``cartridge-cli``
+- install Tarantool `from the page Download <https://tarantool.io/ru/download>`__
+- install the ``cartridge-cli`` utility through your package manager
 
 .. code:: bash
 
@@ -43,128 +40,125 @@
 
     brew install cartridge-cli
 
-Подробнее про установку утилиты ``cartridge-cli`` читайте
-`тут <https://github.com/tarantool/cartridge-cli>`__.
+Read more about installing the ``cartridge-cli`` utility.
+`here <https://github.com/tarantool/cartridge-cli>`__.
 
--  склонируйте репозиторий
-   `https://github.com/tarantool/try <https://github.com/tarantool/try-tarantool-example>`__
+- clone the repository `https://github.com/tarantool/getting-started <https://github.com/tarantool/getting-started>`__
 
-В данном репозитории все готово к работе - в папке со склонированным
-примером выполните:
+In this repository, everything is ready to work - in the folder with the cloned
+with an example run:
 
 .. code:: bash
 
     cartridge build
     cartridge start
 
-Готово! По адресу http://localhost:8081 вы увидите UI Tarantool
+Ready! At http://localhost:8081 you will see the Tarantool UI
 Cartridge.
 
-**Запуск в Docker:**
+**Running in Docker:**
 
 .. code:: bash
 
     docker run -p 3301:3301 -p 8081:8081 tarantool/getting-started
 
-Готово! По адресу http://localhost:8081 вы увидите UI Tarantool
-Cartridge.
+Ready! At http://localhost:8081 you will see the Tarantool UI.
 
-**Для пользователей Windows:**
+**For Windows users:**
 
-- Используйте Docker контейнер с centOS 8 или
-- используйте механизм WSL и следуйте инструкции по установке под Linux.
+Use the Docker way to get started.
 
 
-С чего начнем знакомство
-~~~~~~~~~~~~~~~~~~~~~~~~
+Where do we start our acquaintance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Сегодня мы решим высоконагруженную задачку для сервиса Tiktok с помощью
+Today we will solve a high-load task for the Tiktok service using
 Tarantool.
 
-У такого сервиса обычно самая нагруженная часть — это сохранение лайков
-под видео. Нужно будет создать базовые таблицы, индексы для поиска и в
-конце поднять HTTP API для мобильных клиентов.
+Usually the most loaded part of such a service is saving likes.
+under the video. You will need to create base tables, indexes for searches and in
+the end to raise the HTTP API for mobile clients.
 
-Вам не потребуется писать дополнительный код. Все будет реализовано на
-платформе Tarantool.
+You don't need to write additional code. Everything will be implemented on
+the Tarantool platform.
 
-Если по ходу выполнения инструкции вы случайно сделали что-то не то,
-есть волшебная кнопка, которая поможет вам сбросить все изменения.
+If you accidentally did something wrong while following the instructions,
+there is a magic button to help you reset all changes.
 
-Она называется **"Reset Configuration".** Она находится сверху, во
-вкладке “Cluster”.
+It is called **"Reset Configuration".** It is located at the top, in
+the "Cluster" tab.
 
-Сконфигурируем кластер
-~~~~~~~~~~~~~~~~~~~~~~
+Configuring a cluster
+~~~~~~~~~~~~~~~~~~~~~
 
-**Все что нужно знать для старта:**
+**Everything you need to know to get started:**
 
-В кластере Tarantool есть две служебные роли: router, storage.
+The Tarantool cluster has two service roles: router, storage.
 
--  Storage — это хранилище данных
--  Router — это посредник между клиентами и Storage. Он принимает
-   запросы от клиентов, ходит к нужным Storage за данными и возвращает
-   их клиенту.
+- Storage is a data store
+- Router is an intermediary between clients and Storage. He accepts
+   requests from clients, goes to the required Storage for data and returns
+   their client.
 
-На вкладке "Cluster" мы видим, что в нашем распоряжении есть 5
-несконфигурированных инстансов.
+On the "Cluster" tab, we see that we have 5
+unconfigured instances.
 
 .. figure:: images/hosts-list.png
-   :alt: Cписок всех узлов
+   :alt: List of all nodes
 
-   Cписок всех узлов
+   List of all nodes
 
-Создадим один Router и один Storage для старта.
+Let's create one Router and one Storage to start.
 
-Сначала нажимаем кнопку “Configure” на инстансе “router” и настраиваем
-его как на скриншоте ниже:
+First, click the “Configure” button on the “router” instance and configure
+its like in the screenshot below:
 
 .. figure:: images/router-configuration.png
-   :alt: Настраиваем router
+   :alt: Configuring router
 
-   Настраиваем router
+   Configuring router
 
-Далее настраиваем инстанс “s1-master”:
+Next, we configure the “s1-master” instance:
 
 .. figure:: images/storage-configuration.png
-   :alt: Настраиваем s1-master
+   :alt: Configuring s1-master
 
-   Настраиваем s1-master
+   Configuring s1-master
 
-Получится примерно вот так:
+It will look something like this:
 
 .. figure:: images/first-configuration-result.png
-   :alt: Вид кластера после первой настройки
+   :alt: Cluster view after first setup
 
-   Вид кластера после первой настройки
+   Cluster view after first setup
 
-Включим шардирование в кластере с помощью кнопки “Bootstrap vshard”. Она
-находится справа сверху.
+Let's enable sharding in the cluster using the “Bootstrap vshard” button. She
+located on the top right.
 
-Создаем схему данных [2 минуты]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a data schema
+~~~~~~~~~~~~~~~~~~~~
 
-Начнем со схемы данных: загляните во вкладку "Code". Она находится
-слева.
+Let's start with the data schema: take a look at the "Code" tab. She is situated
+left.
 
-Здесь мы сможем создать файл под названием ``schema.yml``. В нем можно
-описать схему данных для всего кластера, отредактировать текущую схему,
-отвалидировать ее на корректность и применить на всем кластере.
+Here we can create a file called schema.yml. In it you can
+describe the data schema for the entire cluster, edit the current schema,
+validate it for correctness and apply it to the entire cluster.
 
-Создадим необходимые таблицы. В Tarantool они называются спейсами
+Let's create the required tables. Tarantool calls them spaces.
 (space).
 
-Нам понадобится хранить:
+We need to store:
 
--  пользователей
--  видео с их описаниями
--  лайки для каждого видео
+- users
+- video with their descriptions
+- likes for each video
 
-**Чтобы загрузить схему в кластер создайте файл ``schema.yml``.
-Скопируйте и вставьте схему в этот файл. Нажмите на кнопку “Apply”.
-После этого, в кластере будет описана схема данных.**
+**To load the schema into the cluster, create a file `` schema.yml``.
+Copy and paste the schematic into this file. Click on the “Apply” button.
+After that, the data schema will be described in the cluster.**
 
-Вот как будет выглядеть наша схема данных:
+This is how our data schema will look like:
 
    .. code:: yaml
 
@@ -178,7 +172,7 @@ Tarantool.
           format:
           - {name: bucket_id, type: unsigned, is_nullable: false}
           - {name: user_id, type: uuid, is_nullable: false}
-          - {name: fullname, type: string,  is_nullable: false}
+          - {name: fullname, type: string, is_nullable: false}
           indexes:
           - name: user_id
             unique: true
@@ -188,7 +182,6 @@ Tarantool.
             unique: false
             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
             type: TREE
-
         videos:
           engine: memtx
           is_local: false
@@ -217,10 +210,10 @@ Tarantool.
           - "video_id"
           format:
           - {name: bucket_id, type: unsigned, is_nullable: false}
-          - {name: like_id, type: uuid, is_nullable: false }
-          - {name: user_id,  type: uuid, is_nullable: false}
+          - {name: like_id, type: uuid, is_nullable: false}
+          - {name: user_id, type: uuid, is_nullable: false}
           - {name: video_id, type: uuid, is_nullable: false}
-          - {name: timestamp, type: string,   is_nullable: true}
+          - {name: timestamp, type: string, is_nullable: true}
           indexes:
           - name: like_id
             unique: true
@@ -231,73 +224,73 @@ Tarantool.
             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
             type: TREE
 
-Тут все просто. Рассмотрим, важные моменты.
+Everything is simple here. Consider the important points.
 
-В Tarantool есть два встроенных движка хранения: memtx и vinyl. Первый
-хранит все данные в оперативной памяти, при этом асинхронно записывая на
-диск, чтобы ничего не потерялось.
+Tarantool has two built-in storage engines: memtx and vinyl. First
+stores all data in RAM, while writing asynchronously to
+disk so nothing gets lost.
 
-Второй движок Vinyl — это классический движок для хранения данных на
-жестком диске. Он оптимизирован для большого количества операций записи
-данных.
+The second Vinyl engine is a classic engine for storing data on
+hard drive. It is optimized for a lot of write operations
+data.
 
-Для сервиса Tiktok актуально большое кол-во одновременных чтений и
-записей: пользователи смотрят видео, ставят им лайки и комментируют их.
-Поэтому используем memtx.
+For the Tiktok service, a large number of simultaneous readings and
+posts: users watch videos, like and comment on them.
+Therefore, we use memtx.
 
-Мы указали в конфигурации три спейса (таблиц) в memtx и для каждого из
-спейсов указали необходимые индексы.
+We have specified in the configuration three spaces (tables) in memtx and for each of
+spaces indicated the required indices.
 
-Их два для каждого спейса:
+There are two of them for each space:
 
--  первый — это первичный ключ. Необходим для того, чтобы читать/писать
-   данные
--  второй — это индекс для поля ``bucket_id``. Это поле служебное и
-   используется при шардировании.
+- the first is the primary key. Required to read/write
+   data
+- the second is the index for the bucket_id field. This field is service and
+   used for sharding.
 
-**Важно:** название ``bucket_id`` зарезервированное. Если вы выберите
-другое название, то шардирование для этого спейса работать не будет.
-Если в проекте шардирование не используется, то его можно убрать.
+**Important:**The name ``bucket_id`` is reserved. If you choose
+another name, then sharding will not work for this space.
+If sharding is not used in the project, then it can be removed.
 
-Чтобы понять, по какому полю шардировать данные, Tarantool использует
-``sharding_key``. ``sharding_key`` указывает на поля в спейсе, по
-которому будут шардироваться записи. Их может быть несколько. В данном примере
-мы будем использовать только одно поле. Tarantool возьмет хеш от этого поля
-при вставке, вычислит номер бакета и подберет для записи нужный Storage.
+To understand which field to shard data by, Tarantool uses
+``sharding_key``. ``sharding_key`` points to fields in the space, by
+to which the records will be sharded. There may be several of them. In this example
+we will only use one field. Tarantool will take a hash from this field
+upon insertion, it will calculate the bucket number and select the required Storage for recording.
 
-Да, бакеты могут повторяться, а каждый Storage хранит определенный
-диапозон бакетов.
+Yes, buckets can be repeated, and each Storage stores a specific
+range of buckets.
 
-Еще пара мелочей для любопытных:
+A couple more little things for the curious:
 
--  Поле ``parts`` в описании индекса может содержать несколько полей для
-   того, чтобы построить составной индекс. В данной задаче он не
-   требуется.
--  Tarantool не поддерживает Foreign key или "внешний ключ", поэтому в
-   спейсе ``likes`` нужно при вставке вручную проверять, что такой
-   ``video_id`` и ``user_id`` существуют.
+- The ``parts`` field in the index description can contain several fields for
+   in order to build a composite index. In this task, he does not
+   required.
+- Tarantool does not support Foreign key or "foreign key", so in
+   the space ``likes`` needs to manually check when inserting that such
+   ``video_id`` and ``user_id`` exist.
 
-Записываем данные [5 минут]
+We write the data [5 minutes]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Записать данные в кластер Tarantool будем с помощью модуля CRUD. Этот
-модуль сам определяет с какого шарда читать и на какой шард записывать и
-делает это за вас.
+We will write data to the Tarantool cluster using the CRUD module. This
+the module itself determines from which shard to read and to which shard to write and
+does it for you.
 
-Важно: все операции по кластеру необходимо производить только на роутере
-и с помощью модуля CRUD.
+Important: all operations on the cluster must be performed only on the router.
+and using the CRUD module.
 
-Подключим модуль CRUD в коде и напишем три процедуры:
+Let's connect the CRUD module in code and write three procedures:
 
--  создание пользователя
--  добавление видео
--  лайк видео
+- user creation
+- adding video
+- like video
 
-**Процедуры нужно описать в специальном файле. Для этого перейдите во
-вкладку “Code”. Создайте новую дирректорию под названием “extensions”. И
-в этой дирректории создайте файл “api.lua”.**
+**The procedures must be described in a special file. To do this, go to
+the “Code” tab. Create a new directory called “extensions”. AND
+in this directory create a file “api.lua”.**
 
-Вставьте код описанный ниже в этой файл и нажмите на кнопку “Apply”.
+Paste the code described below into this file and click on the “Apply” button.
 
 .. code:: lua
 
@@ -308,36 +301,36 @@ Tarantool.
 
    function add_user(request)
        local fullname = request:post_param("fullname")
-       local result, err = crud.insert_object('users', { user_id = uuid.new(), fullname = fullname })
-       if err ~= nil then
-           return { body = json.encode({status = "Error!", error = err}), status = 500 }
+       local result, err = crud.insert_object('users', {user_id = uuid.new(), fullname = fullname})
+       if err ~ = nil then
+           return {body = json.encode({status = "Error!", error = err}), status = 500}
        end
 
-       return { body = json.encode({status = "Success!", result = result}), status = 200 }
+       return {body = json.encode({status = "Success!", result = result}), status = 200}
    end
 
    function add_video(request)
        local description = request:post_param("description")
-       local result, err = crud.insert_object('videos', { video_id = uuid.new(), description = description })
+       local result, err = crud.insert_object('videos', {video_id = uuid.new(), description = description})
        if err ~= nil then
-           return { body = json.encode({status = "Error!", error = err}), status = 500 }
+           return {body = json.encode({status = "Error!", error = err}), status = 500}
        end
 
-       return { body = json.encode({status = "Success!", result = result}), status = 200 }
+       return {body = json.encode({status = "Success!", result = result}), status = 200}
    end
 
    function like_video(request)
-       local video_id = request:post_param("video_id")
-       local user_id = request:post_param("user_id")
+       local video_id = request: post_param("video_id")
+       local user_id = request: post_param("user_id")
 
-       local result, err = crud.insert_object('likes', { like_id = uuid.new(),
+       local result, err = crud.insert_object('likes', {like_id = uuid.new(),
                                                    video_id = uuid.fromstr(video_id),
                                                    user_id = uuid.fromstr(user_id)})
        if err ~= nil then
-           return { body = json.encode({status = "Error!", error = err}), status = 500 }
+           return {body = json.encode({status = "Error!", error = err}), status = 500}
        end
 
-       return { body = json.encode({status = "Success!", result = result}), status = 200 }
+       return {body = json.encode({status = "Success!", result = result}), status = 200}
    end
 
    return {
@@ -346,18 +339,18 @@ Tarantool.
        like_video = like_video,
    }
 
-Поднимем HTTP API [2 минуты]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Raising the HTTP API
+~~~~~~~~~~~~~~~~~~~~
 
-Клиенты будут ходить в кластер Tarantool по протоколу HTTP. В кластере
-уже есть свой встроенный HTTP сервер.
+Clients will visit the Tarantool cluster using the HTTP protocol. In the cluster
+already has its own built-in HTTP server.
 
-**Чтобы сконфигурировать HTTP пути необходимо написать конфигурационный
-файл. Для этого перейдите во вкладку “Code”. Создайте файл “config.yml”
-в дирректории “extensions”. Вы ее создавали на прошлом шаге.**
+**To configure HTTP paths, you need to write a configuration
+file. To do this, go to the “Code” tab. Create file “config.yml”
+in the "extensions" directory. You created it in the last step.**
 
-Вставьте пример конфигурации описанный ниже в этой файл и нажмите на
-кнопку “Apply”.
+Paste the configuration example described below into this file and click on
+the “Apply” button.
 
 .. code:: yaml
 
@@ -383,136 +376,136 @@ Tarantool.
         - http: {path: "/like_video", method: POST}
    ...
 
-Готово! Сделаем тестовые запросы из консоли:
+Ready! Let's make test requests from the console:
 
 .. code:: bash
 
-   curl -X POST --data "fullname=Taran Tool" <ip:port>/add_user
+   curl -X POST --data "fullname = Taran Tool" <ip:port>/add_user
 
-Создали пользователя и получили его UUID. Запомним его.
-
-.. code:: bash
-
-   curl -X POST --data "description=My first tiktok" <ip:port>/add_video
-
-Представим что пользователь добавил свое первое видео с описанием. Также
-получили UUID видео ролика. Его тоже запомним.
-
-Для того чтобы "лайкнуть" видео, нужно указать UUID пользователя и UUID
-видео. Подставим его из первых двух шагов за место троточия ниже.
+Created a user and got its UUID. Let's remember it.
 
 .. code:: bash
 
-   curl -X POST --data "video_id=...&user_id=..." <ip:port>/like_video
+   curl -X POST --data "description = My first tiktok" <ip:port>/add_video
 
-Получится, примерно вот так:
+Let's say a user has added their first video with a description. Also
+got the UUID of the video clip. Let's remember it too.
+
+In order to "like" the video, you need to specify the user UUID and UUID
+video. Let's substitute it from the first two steps for the place of the trotting below.
+
+.. code:: bash
+
+   curl -X POST --data "video_id = ... & user_id = ..." <ip: port>/like_video
+
+It will turn out something like this:
 
 .. figure:: images/console.png
-   :alt: Тестовые запросы в консоли
+   :alt: Test queries in the console
 
-   Тестовые запросы в консоли
+   Test queries in the console
 
-В нашем примере "лайкать" видео можно сколько угодно раз. Хоть в
-реальной жизни это и лишено смысла, но это поможет нам понять как
-работает шардирование. А точнее параметр ``sharding_key``.
+In our example, you can "like" the video as many times as you like. At least in
+in real life it makes no sense, but it will help us understand how
+sharding works. More precisely, the ``sharding_key`` parameter.
 
-Для спейса ``likes`` мы указали ``sharding_key`` — ``video_id``. Такой
-же ``sharding_key`` мы указали и для спейса ``videos``. Это означает,
-что лайки будут храниться на том же Storage, на котором хранится и
-видео. Это обеспечивает локальность по данным при хранении и позволяет
-за один сетевой поход в Storage получить необходимую информацию.
+For the ``likes`` space, we specified ``sharding_key`` - ``video_id``. Such
+we also specified ``sharding_key`` for the ``videos`` space. It means,
+that likes will be stored on the same Storage where they are stored and
+video. This ensures data locality during storage and allows
+get the information you need in one network trip to Storage.
 
-Подробнее описано в следующем шаге.
+More details are described in the next step.
 
-Смотрим на данные [1 минута]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Looking at the data
+~~~~~~~~~~~~~~~~~~~
 
-Переходим на вкладку "Space-Explorer" и видим все узлы в кластере. Т.к.
-у нас пока поднят всего один Storage и один Router, то данные хранятся
-только на одном узле.
+Go to the "Space-Explorer" tab and see all the nodes in the cluster. Because
+we have only one Storage and one Router raised so far, then the data is stored
+on only one node.
 
-Переходим в узел ``s1-master`` : нажимаем "Connect" и выбираем нужный
-нам спейс.
+Go to the node ``s1-master``: click "Connect" and select the desired
+space for us.
 
-Смотрим, что все на месте и переходим дальше.
+We look that everything is in place and move on.
 
 .. figure:: images/hosts.png
-   :alt: Space Explorer, список хостов
+   :alt: Space Explorer, host list
 
-   Space Explorer, список хостов
+   Space Explorer, host list
 
 .. figure:: images/likes.png
-   :alt: Space Explorer, просмотр лайков
+   :alt: Space Explorer, view likes
 
-   Space Explorer, просмотр лайков
+   Space Explorer, viewing likes
 
-Обратите внимание: инструмент ``space-explorer`` доступен только в
-Enterprise версии продукта и в облачном Try сервисе.
-В open-source версии данные можно посмотреть через консоль.
+Please note: the space-explorer tool is only available in
+Enterprise version of the product and in the cloud Try service.
+In the open-source version, the data can be viewed through the console.
 
-Читайте `подробнее в
-документации про просмотр данных <https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_space/select/>`__. И про подключение к инстансу Tarantool :ref:`читайте в базовом руководстве для Tarantool <getting_started_db>`.
+Read more in `data viewing documentation <https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_space/select/>`__.
+And about connecting to a Tarantool instance :ref:`read in the basic Tarantool manual <getting_started_db>`.
 
 
-Масштабируем кластер [1 минута]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Scaling the cluster
+~~~~~~~~~~~~~~~~~~~
 
-Создадим второй шард. Нажимаем на вкладку "Cluster", выбираем
-``s2-master`` и нажимаем "Configure". Выбираем роли так как на картинке:
+Let's create a second shard. Click on the "Cluster" tab, select
+``s2-master`` and click "Configure". We choose the roles as in the picture:
 
 .. figure:: images/s1-master.png
-   :alt: Space Explorer, хост s1-master
+   :alt: Space Explorer, host s1-master
 
-   Space Explorer, хост s1-master
+   Space Explorer host s1-master
 
 .. figure:: images/configuring-server.png
-   :alt: Cluster, экран конфигурации нового шарда
+   :alt: Cluster, new shard configuration screen
 
-   Cluster, экран конфигурации нового шарда
+   Cluster, new shard configuration screen
 
-Шелкаем на нужные роли и создаем шард (репликасет).
+We silk on the necessary roles and create a shard (replica set).
 
-Узлы ``s1-replica``, ``s2-replica`` добавляем как реплики к первому и
-второму шарду соответственно.
+The nodes `` s1-replica``, ``s2-replica`` are added as replicas to the first and
+the second shard corresponds responsibly.
 
-Смотрим, как работает шардирование [1 минута]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Watching how sharding works
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Теперь у нас есть два шарда — два логических узла, которые будут
-разделять между собой данные. Роутер сам решает, какие данные на какой
-шард положить. По умолчанию, он просто использует хеш-функцию от поля
-``sharding_key`` , которое мы указали в DDL.
+Now we have two shards - two logical nodes that will
+share data among themselves. The router itself decides which data on which
+put the shard. By default, it just uses the hash function from the field
+the ``sharding_key`` we specified in the DDL.
 
-Чтобы задействовать новый шард, надо выставить его вес в единицу.
-Заходим снова на вкладку "Cluster" и переходим в настройки ``s2-master``
-и выставляем Replica set weight в 1 и применяем.
+To use a new shard, you need to set its weight to one.
+Go back to the "Cluster" tab and go to the ``s2-master`` settings
+and set the Replica set weight to 1 and apply.
 
-Кое-что уже произошло. Зайдем в space-explorer и перейдем на узел
-``s2-master``. Оказывается, часть данных с первого шарда переехала сюда
-автоматически! Масштабирование происходит автоматически.
+Something has already happened. Let's go to space-explorer and go to the node
+``s2-master``. It turns out that some of the data from the first shard moved here
+automatically! Scaling is automatic.
 
-Теперь попробуем добавить еще новых данные в кластер через HTTP API.
-Можем проверить и убедиться, что новые данные также равномерно
-распределяются на два шарда.
+Now let's try to add more new data to the cluster via the HTTP API.
+We can check and make sure that the new data is also evenly
+distributed over two shards.
 
-Один шард надо на время выключить [1 минута]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+One shard must be turned off for a while
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Выставляем в настройках ``s1-master`` Replica set weight в 0 и
-применяем. Подождем пару секнуд и заходим в space-explorer и смотрим на
-данные в ``s2-master``: все данные автоматически мигрировали на
-оставшийся шард.
+In the ``s1-master`` settings, set Replica set weight to 0 and
+we apply. Let's wait a couple of seconds and go to space-explorer and look at
+data in ``s2-master``: all data automatically migrated to
+remaining shard.
 
-Теперь мы можем смело отключать первый шард, если вам понадобилось
-провести служебные работы.
+Now we can safely disable the first shard if you need it
+to carry out official work.
 
-Читайте также
-~~~~~~~~~~~~~
+Read also
+~~~~~~~~~
 
--  README модуля `DDL <https://github.com/tarantool/ddl>`__ для создания
-   своей схемы данных
--  README модуля `CRUD <https://github.com/tarantool/crud>`__ чтобы
-   узнать больше про API и реализовать собственные запросы по кластеру
+- README module `DDL <https://github.com/tarantool/ddl>`__ to create
+   its data schema
+- README of the module `CRUD <https://github.com/tarantool/crud>`__ to
+   learn more about the API and implement your own requests for the cluster
 
 
-Переходите к следующим шагам туториала: кнопка находится справа снизу или в оглавлении слева.
+Continue to the next steps of the tutorial: the button is located on the bottom right or in the table of contents on the left.
