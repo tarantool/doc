@@ -1,16 +1,14 @@
 from typing import Any
 
 from docutils import nodes
-from docutils.nodes import Element
+from docutils.nodes import Element, Node
 from sphinx.locale import _
 from sphinx.writers.html import HTMLTranslator as BaseHTMLTranslator
 
 
 class HTMLTranslator(BaseHTMLTranslator):
 
-    def __init__(self, *args: Any) -> None:
-        super().__init__(*args)
-        self.permalink_text = '<i class="fa fa-link"></i>'
+    permalink_text = '<i class="fa fa-link"></i>'
 
     def depart_title(self, node: Element) -> None:
         close_tag = self.context[-1]
@@ -47,6 +45,14 @@ class HTMLTranslator(BaseHTMLTranslator):
                      '</div><div class="b-doc-hlink_right">'
             self.body.insert(-1, format % (node['ids'][0], title, self.permalink_text))
 
+    def depart_term(self, node: Element) -> None:
+        next_node: Node = node.next_node(descend=False, siblings=True)
+        if isinstance(next_node, nodes.classifier):
+            # Leave the end tag to `self.depart_classifier()`, in case
+            # there's a classifier.
+            pass
+        else:
+            self.body.append('</dt>')
 
 def setup(app):
     """

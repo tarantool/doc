@@ -802,6 +802,7 @@ class LuaDomain(Domain):
         'func':  LuaXRefRole(fix_parens=True),
         'class': LuaXRefRole(),
         'mod':   LuaXRefRole(),
+        'obj':   LuaXRefRole(),
     }
     initial_data = {
         'objects': {},     # fullname -> docname, objtype
