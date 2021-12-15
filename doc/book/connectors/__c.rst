@@ -199,7 +199,7 @@ TEARDOWN
 ~~~~~~~~
 
 When a session ends, the connection that was made with
-:c:func:`tarantoolc:tnt_connect()` should be closed, and the objects that were
+:c:func:`tarantoolc:tnt_connect` should be closed, and the objects that were
 made in the setup should be destroyed.
 
 ..  code-block:: c
