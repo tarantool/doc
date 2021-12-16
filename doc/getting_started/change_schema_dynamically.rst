@@ -6,12 +6,12 @@ Updating the data schema
 
 When working with data, it is sometimes necessary to change the original data schema.
 
-In the previous sections, we described the data schema across a cluster in YAML format.
+In the previous sections, we described a cluster-wide data schema in the YAML format.
 The ``ddl`` module is responsible for applying the schema on the cluster. This module does not allow
-modify the schema after applying it.
+to modify the schema after applying it.
 
 The easiest way to change it is to delete the database snapshots and create
-scheme from scratch. Of course, this is only acceptable during development and debugging.
+a schema from scratch. Of course, this is only acceptable during development and debugging.
 applications. For production scenarios read the section :ref:`migrations<migrations>`.
 
 To remove snapshots, you need:
