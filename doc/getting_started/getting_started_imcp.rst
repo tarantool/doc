@@ -153,9 +153,9 @@ We need to store:
 *  Videos with descriptions
 *  Likes for each video
 
-**Create a ``schema.yml`` file to load the schema into the cluster.
-Copy and paste schema to this file. Click on the "Apply" button.
-After that, the data schema will be described in the cluster.**
+Create a ``schema.yml`` file to load the schema into the cluster.
+Copy and paste schema to this file. Click the "Apply" button.
+After that, the data schema will be described in the cluster.
 
 This is what our data schema will look like:
 
@@ -281,9 +281,9 @@ Let's connect the CRUD module in the code and write three procedures:
 *   Adding a video
 *   Liking a video
 
-**The procedures must be described in a special file. To do this, go to
+The procedures must be described in a special file. To do this, go to
 the "Code" tab. Create a new directory called ``extensions``, and
-in this directory, create the file ``api.lua``.**
+in this directory, create the file ``api.lua``.
 
 Paste the code below into ``api.lua`` and click "Apply".
 
@@ -340,9 +340,9 @@ Setting up HTTP API [2 minutes]
 Clients will visit the Tarantool cluster using the HTTP protocol.
 The cluster already has a built-in HTTP server.
 
-**To configure HTTP paths, you need to write a configuration
+To configure HTTP paths, you need to write a configuration
 file. Go to the "Code" tab. Create the file ``config.yml``
-in the ``extensions`` directory, which you created on the last step.**
+in the ``extensions`` directory, which you created on the last step.
 
 Paste the configuration example below into ``config.yml`` and click "Apply".
 
