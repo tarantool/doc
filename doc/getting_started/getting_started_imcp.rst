@@ -446,20 +446,12 @@ Scaling the cluster [1 minute]
 Let's create a second shard. Click on the "Cluster" tab, select
 ``s2-master``, and click "Configure". Select the roles as shown in the picture:
 
-..  figure:: images/s1-master.png
-    :alt: Space-Explorer, host s1-master
-
-    Space-Explorer host s1-master
-
 ..  figure:: images/configuring-server.png
     :alt: Cluster, new shard configuration screen
 
     Cluster, new shard configuration screen
 
 Click on the necessary roles and create a shard (replica set).
-
-The ``s1-replica`` and ``s2-replica`` nodes are added as replicas to the first and
-second shards correspondingly.
 
 Checking how sharding works [1 minute]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
