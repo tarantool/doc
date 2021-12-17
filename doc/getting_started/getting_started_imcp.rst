@@ -1,7 +1,7 @@
 .. _getting_started-imcp:
 
 =================================================================================
-Getting started
+First steps
 =================================================================================
 
 This is the recommended guide for getting to know the product.
