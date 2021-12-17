@@ -13,4 +13,5 @@ This functionality is implemented through the ``cartridge-extensions`` module.
 It is also included in the tutorial default application.
 
 However, in Tarantool, you can implement absolutely any business logic on top of a cluster.
-This :doc:`Cartridge tutorial section </getting_started/getting_started_cartridge>` covers the cluster roles mechanism and writing a cluster application from scratch.
+This :doc:`Cartridge getting started section </getting_started/getting_started_cartridge>`
+covers the cluster roles mechanism and writing a cluster application from scratch.
