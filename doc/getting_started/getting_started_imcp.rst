@@ -6,13 +6,17 @@ Getting started
 
 This is the recommended guide for getting to know the product.
 
-.. NOTE::
-    For some reason you may want :ref:`basic tutorial for Tarantool <getting_started_db>`.
-    It launches one Tarantool instance, creates a space, an index, and writes data.
+..  note::
 
-    We advise beginners to go through the current tutorial first and then go back to basic for more in-depth immersion in the product.
+    You also might want to check out our
+    :ref:`basic Tarantool tutorial <getting_started_db>`.
+    It shows how to launch one Tarantool instance,
+    create a space, build an index, and write data.
 
-If you want to quickly run the finished code from the article, read
+    We recommend that beginners go through the current tutorial first
+    and then see the basic tutorial to dive deeper into the product.
+
+If you just want to run the complete tutorial code quickly, go to
 :ref:`this section <app_server-launching_app>`.
 
 Installation
@@ -20,492 +24,482 @@ Installation
 
 **Launch in the cloud**
 
-This tutorial is available in the cloud. It's free and fastest way to start.
-Go to the site `try.tarantool.io <https://try.tarantool.io>`__ and go through this tutorial in the cloud.
+This tutorial is also available in the cloud. It's free, and it's the fastest way to start.
+To follow this tutorial in the cloud, go to `try.tarantool.io <https://try.tarantool.io>`__.
 
-However, you will still have to install Tarantool in the future. This is necessary for further acquaintance.
+However, you will still need to install Tarantool
+if you want to get better acquainted with it.
 
 **Run locally**
 
 **For Linux/macOS users:**
 
-- install Tarantool `from the page Download <https://tarantool.io/ru/download>`__
-- install the ``cartridge-cli`` utility through your package manager
+*  Install Tarantool from the `Download page <https://tarantool.io/ru/download>`__.
+*  Install the ``cartridge-cli`` utility through your package manager:
 
-.. code:: bash
+   ..  code-block:: bash
 
-    sudo yum install cartridge-cli
+      sudo yum install cartridge-cli
 
-.. code:: bash
+   ..  code-block:: bash
 
-    brew install cartridge-cli
+      brew install cartridge-cli
 
-Read more about installing the ``cartridge-cli`` utility.
-`here <https://github.com/tarantool/cartridge-cli>`__.
+   To learn more, check the ``cartridge-cli``
+   :doc:`installation guide </book/cartridge/cartridge_cli/installation/>`.
 
-- clone the repository `https://github.com/tarantool/getting-started <https://github.com/tarantool/getting-started>`__
+* Clone the `Getting Started tutorial repository <https://github.com/tarantool/getting-started>`__.
 
-In this repository, everything is ready to work - in the folder with the cloned
-with an example run:
+   Everything is ready and organized in this repository.
+   In the cloned directory, run the following:
 
-.. code:: bash
+   ..  code-block:: bash
 
-    cartridge build
-    cartridge start
+       cartridge build
+       cartridge start
 
-Ready! At http://localhost:8081 you will see the Tarantool UI
-Cartridge.
+You're all set! At http://localhost:8081, you will see the Tarantool Cartridge UI.
 
 **Running in Docker:**
 
-.. code:: bash
+..  code-block:: bash
 
     docker run -p 3301:3301 -p 8081:8081 tarantool/getting-started
 
-Ready! At http://localhost:8081 you will see the Tarantool UI.
+That's it! At http://localhost:8081, you will see the Tarantool Cartridge UI.
 
 **For Windows users:**
 
-Use the Docker way to get started.
+Use Docker to get started.
 
 
-Where do we start our acquaintance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Getting to know Tarantool
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Today we will solve a high-load task for the Tiktok service using
+Today, we will solve a high-performance challenge for TikTok using
 Tarantool.
 
-Usually the most loaded part of such a service is saving likes.
-under the video. You will need to create base tables, indexes for searches and in
-the end to raise the HTTP API for mobile clients.
+You will implement a counter of likes for videos.
+First, you will create base tables and search indexes.
+Then you will set up an HTTP API for mobile clients.
 
-You don't need to write additional code. Everything will be implemented on
-the Tarantool platform.
+The challenge doesn't require you to write any additional code.
+Everything will be implemented on the Tarantool platform.
 
-If you accidentally did something wrong while following the instructions,
+If you accidentally do something wrong while following the instructions,
 there is a magic button to help you reset all changes.
-
-It is called **"Reset Configuration".** It is located at the top, in
-the "Cluster" tab.
+It is called **"Reset Configuration"**.  You can find it at the top of the "Cluster" page.
 
 Configuring a cluster
 ~~~~~~~~~~~~~~~~~~~~~
 
 **Everything you need to know to get started:**
 
-The Tarantool cluster has two service roles: router, storage.
+A Tarantool cluster has two service roles: router and storage.
 
-- Storage is a data store
-- Router is an intermediary between clients and Storage. He accepts
-   requests from clients, goes to the required Storage for data and returns
-   their client.
+*  Storage is used to store data.
+*  Router is an intermediary between clients and storages.
+   It accepts a client's request, takes data from the proper storage,
+   and returns it to the client.
 
-On the "Cluster" tab, we see that we have 5
-unconfigured instances.
+We see that we have 5 unconfigured instances on the "Cluster" tab.
 
-.. figure:: images/hosts-list.png
-   :alt: List of all nodes
+..  figure:: images/hosts-list.png
+    :alt: List of all nodes
 
-   List of all nodes
+    List of all nodes
 
-Let's create one Router and one Storage to start.
+Let's create one router and one storage for a start.
 
-First, click the “Configure” button on the “router” instance and configure
-its like in the screenshot below:
+First, click the "Configure" button on the "router" instance and configure
+it as in the screenshot below:
 
-.. figure:: images/router-configuration.png
-   :alt: Configuring router
+..  figure:: images/router-configuration.png
+    :alt: Configuring a router
 
-   Configuring router
+    Configuring a router
 
-Next, we configure the “s1-master” instance:
+Next, we configure the "s1-master" instance:
 
-.. figure:: images/storage-configuration.png
-   :alt: Configuring s1-master
+..  figure:: images/storage-configuration.png
+    :alt: Configuring s1-master
 
-   Configuring s1-master
+    Configuring s1-master
 
 It will look something like this:
 
-.. figure:: images/first-configuration-result.png
-   :alt: Cluster view after first setup
+..  figure:: images/first-configuration-result.png
+    :alt: Cluster view after first setup
 
-   Cluster view after first setup
+    Cluster view after first setup
 
-Let's enable sharding in the cluster using the “Bootstrap vshard” button. She
-located on the top right.
+Let's enable sharding in the cluster using the "Bootstrap vshard" button. It is
+located in the top right corner.
 
-Create a data schema
-~~~~~~~~~~~~~~~~~~~~
+Creating a data schema [2 minutes]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Let's start with the data schema: take a look at the "Code" tab. She is situated
-left.
+Let's start with the data schema---take a look at the "Code" tab on the left.
 
-Here we can create a file called schema.yml. In it you can
-describe the data schema for the entire cluster, edit the current schema,
-validate it for correctness and apply it to the entire cluster.
+Here we can create a file called ``schema.yml``. In this file, you can
+describe the entire cluster's data schema, edit the current schema,
+validate its correctness, and apply it to the whole cluster.
 
-Let's create the required tables. Tarantool calls them spaces.
-(space).
+First, let's create the necessary tables. In Tarantool, they are called spaces.
 
 We need to store:
 
-- users
-- video with their descriptions
-- likes for each video
+*  Users
+*  Videos with descriptions
+*  Likes for each video
 
-**To load the schema into the cluster, create a file `` schema.yml``.
-Copy and paste the schematic into this file. Click on the “Apply” button.
+**Create a ``schema.yml`` file to load the schema into the cluster.
+Copy and paste schema to this file. Click on the "Apply" button.
 After that, the data schema will be described in the cluster.**
 
-This is how our data schema will look like:
+This is what our data schema will look like:
 
-   .. code:: yaml
+   ..  code-block:: yaml
 
-      spaces:
-        users:
-          engine: memtx
-          is_local: false
-          temporary: false
-          sharding_key:
-          - "user_id"
-          format:
-          - {name: bucket_id, type: unsigned, is_nullable: false}
-          - {name: user_id, type: uuid, is_nullable: false}
-          - {name: fullname, type: string, is_nullable: false}
-          indexes:
-          - name: user_id
-            unique: true
-            parts: [{path: user_id, type: uuid, is_nullable: false}]
-            type: HASH
-          - name: bucket_id
-            unique: false
-            parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-            type: TREE
-        videos:
-          engine: memtx
-          is_local: false
-          temporary: false
-          sharding_key:
-          - "video_id"
-          format:
-          - {name: bucket_id, type: unsigned, is_nullable: false}
-          - {name: video_id, type: uuid, is_nullable: false}
-          - {name: description, type: string, is_nullable: true}
-          indexes:
-          - name: video_id
-            unique: true
-            parts: [{path: video_id, type: uuid, is_nullable: false}]
-            type: HASH
-          - name: bucket_id
-            unique: false
-            parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-            type: TREE
+       spaces:
+         users:
+           engine: memtx
+           is_local: false
+           temporary: false
+           sharding_key:
+           - "user_id"
+           format:
+           - {name: bucket_id, type: unsigned, is_nullable: false}
+           - {name: user_id, type: uuid, is_nullable: false}
+           - {name: fullname, type: string, is_nullable: false}
+           indexes:
+           - name: user_id
+             unique: true
+             parts: [{path: user_id, type: uuid, is_nullable: false}]
+             type: HASH
+           - name: bucket_id
+             unique: false
+             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+             type: TREE
+         videos:
+           engine: memtx
+           is_local: false
+           temporary: false
+           sharding_key:
+           - "video_id"
+           format:
+           - {name: bucket_id, type: unsigned, is_nullable: false}
+           - {name: video_id, type: uuid, is_nullable: false}
+           - {name: description, type: string, is_nullable: true}
+           indexes:
+           - name: video_id
+             unique: true
+             parts: [{path: video_id, type: uuid, is_nullable: false}]
+             type: HASH
+           - name: bucket_id
+             unique: false
+             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+             type: TREE
 
-        likes:
-          engine: memtx
-          is_local: false
-          temporary: false
-          sharding_key:
-          - "video_id"
-          format:
-          - {name: bucket_id, type: unsigned, is_nullable: false}
-          - {name: like_id, type: uuid, is_nullable: false}
-          - {name: user_id, type: uuid, is_nullable: false}
-          - {name: video_id, type: uuid, is_nullable: false}
-          - {name: timestamp, type: string, is_nullable: true}
-          indexes:
-          - name: like_id
-            unique: true
-            parts: [{path: like_id, type: uuid, is_nullable: false}]
-            type: HASH
-          - name: bucket_id
-            unique: false
-            parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-            type: TREE
+         likes:
+           engine: memtx
+           is_local: false
+           temporary: false
+           sharding_key:
+           - "video_id"
+           format:
+           - {name: bucket_id, type: unsigned, is_nullable: false}
+           - {name: like_id, type: uuid, is_nullable: false}
+           - {name: user_id, type: uuid, is_nullable: false}
+           - {name: video_id, type: uuid, is_nullable: false}
+           - {name: timestamp, type: string, is_nullable: true}
+           indexes:
+           - name: like_id
+             unique: true
+             parts: [{path: like_id, type: uuid, is_nullable: false}]
+             type: HASH
+           - name: bucket_id
+             unique: false
+             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+             type: TREE
 
-Everything is simple here. Consider the important points.
+It's simple. Let's take a closer look at the essential points.
 
-Tarantool has two built-in storage engines: memtx and vinyl. First
-stores all data in RAM, while writing asynchronously to
-disk so nothing gets lost.
+Tarantool has two built-in storage engines: memtx and vinyl.
+memtx stores all data in RAM while asynchronously writing to
+disk so that nothing gets lost.
 
-The second Vinyl engine is a classic engine for storing data on
-hard drive. It is optimized for a lot of write operations
-data.
+Vinyl is a classic engine for storing data on the
+hard drive. It is optimized for write-intensive scenarios.
 
-For the Tiktok service, a large number of simultaneous readings and
-posts: users watch videos, like and comment on them.
-Therefore, we use memtx.
+In TikTok, there are a lot of simultaneous readings and
+posts: users watch videos, like them, and comment on them.
+Therefore, let's use memtx.
 
-We have specified in the configuration three spaces (tables) in memtx and for each of
-spaces indicated the required indices.
+The configuration above describes three memtx spaces (tables)
+and the necessary indexes for each of the spaces.
 
-There are two of them for each space:
+Each space has two indexes:
 
-- the first is the primary key. Required to read/write
-   data
-- the second is the index for the bucket_id field. This field is service and
-   used for sharding.
+*  The primary key, which is required to read/write data.
+*  An index on the bucket_id field, which is a service field used for sharding.
 
-**Important:**The name ``bucket_id`` is reserved. If you choose
-another name, then sharding will not work for this space.
-If sharding is not used in the project, then it can be removed.
+**Important:** The name ``bucket_id`` is reserved. If you choose
+another name, sharding won't work for this space.
+If you don't use sharding in your project, you can remove the second index.
 
 To understand which field to shard data by, Tarantool uses
-``sharding_key``. ``sharding_key`` points to fields in the space, by
-to which the records will be sharded. There may be several of them. In this example
-we will only use one field. Tarantool will take a hash from this field
-upon insertion, it will calculate the bucket number and select the required Storage for recording.
+``sharding_key``. ``sharding_key`` points to fields in the space by
+which database records will be sharded. There can be more than one such field, but
+in this example, we will only use one. When some data is inserted,
+Tarantool forms a hash from this field, calculates the bucket number,
+and selects the storage to record the data into.
 
-Yes, buckets can be repeated, and each Storage stores a specific
-range of buckets.
+Yes, buckets can repeat, and each storage stores a specific range of buckets.
 
-A couple more little things for the curious:
+Here are a couple more interesting facts:
 
-- The ``parts`` field in the index description can contain several fields for
-   in order to build a composite index. In this task, he does not
-   required.
-- Tarantool does not support Foreign key or "foreign key", so in
-   the space ``likes`` needs to manually check when inserting that such
-   ``video_id`` and ``user_id`` exist.
+*   The ``parts`` field in the index description can contain several fields,
+    which allows building a composite index. You won't need it in this tutorial.
+*   Tarantool does not support foreign keys, so you have to check manually
+    upon insertion
+    that ``video_id`` and ``user_id`` exist in the ``likes`` space.
 
-We write the data [5 minutes]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Writing data [5 minutes]
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-We will write data to the Tarantool cluster using the CRUD module. This
-the module itself determines from which shard to read and to which shard to write and
+We will write data to the Tarantool cluster using the CRUD module.
+You don't have to specify the shard you want to read from or write to---the module
 does it for you.
 
-Important: all operations on the cluster must be performed only on the router.
+**Important:** All cluster operations must be performed only on the router
 and using the CRUD module.
 
-Let's connect the CRUD module in code and write three procedures:
+Let's connect the CRUD module in the code and write three procedures:
 
-- user creation
-- adding video
-- like video
+*   User creation
+*   Adding a video
+*   Liking a video
 
 **The procedures must be described in a special file. To do this, go to
-the “Code” tab. Create a new directory called “extensions”. AND
-in this directory create a file “api.lua”.**
+the "Code" tab. Create a new directory called ``extensions``, and
+in this directory, create the file ``api.lua``.**
 
-Paste the code described below into this file and click on the “Apply” button.
+Paste the code below into ``api.lua`` and click "Apply".
 
-.. code:: lua
+..  code-block:: lua
 
-   local cartridge = require('cartridge')
-   local crud = require('crud')
-   local uuid = require('uuid')
-   local json = require('json')
+    local cartridge = require('cartridge')
+    local crud = require('crud')
+    local uuid = require('uuid')
+    local json = require('json')
 
-   function add_user(request)
-       local fullname = request:post_param("fullname")
-       local result, err = crud.insert_object('users', {user_id = uuid.new(), fullname = fullname})
-       if err ~ = nil then
-           return {body = json.encode({status = "Error!", error = err}), status = 500}
-       end
+    function add_user(request)
+        local fullname = request:post_param("fullname")
+        local result, err = crud.insert_object('users', {user_id = uuid.new(), fullname = fullname})
+        if err ~ = nil then
+            return {body = json.encode({status = "Error!", error = err}), status = 500}
+        end
 
-       return {body = json.encode({status = "Success!", result = result}), status = 200}
-   end
+        return {body = json.encode({status = "Success!", result = result}), status = 200}
+    end
 
-   function add_video(request)
-       local description = request:post_param("description")
-       local result, err = crud.insert_object('videos', {video_id = uuid.new(), description = description})
-       if err ~= nil then
-           return {body = json.encode({status = "Error!", error = err}), status = 500}
-       end
+    function add_video(request)
+        local description = request:post_param("description")
+        local result, err = crud.insert_object('videos', {video_id = uuid.new(), description = description})
+        if err ~= nil then
+            return {body = json.encode({status = "Error!", error = err}), status = 500}
+        end
 
-       return {body = json.encode({status = "Success!", result = result}), status = 200}
-   end
+        return {body = json.encode({status = "Success!", result = result}), status = 200}
+    end
 
-   function like_video(request)
-       local video_id = request: post_param("video_id")
-       local user_id = request: post_param("user_id")
+    function like_video(request)
+        local video_id = request: post_param("video_id")
+        local user_id = request: post_param("user_id")
+ 
+        local result, err = crud.insert_object('likes', {like_id = uuid.new(),
+                                                    video_id = uuid.fromstr(video_id),
+                                                    user_id = uuid.fromstr(user_id)})
+        if err ~= nil then
+            return {body = json.encode({status = "Error!", error = err}), status = 500}
+        end
+ 
+        return {body = json.encode({status = "Success!", result = result}), status = 200}
+    end
 
-       local result, err = crud.insert_object('likes', {like_id = uuid.new(),
-                                                   video_id = uuid.fromstr(video_id),
-                                                   user_id = uuid.fromstr(user_id)})
-       if err ~= nil then
-           return {body = json.encode({status = "Error!", error = err}), status = 500}
-       end
+    return {
+        add_user = add_user,
+        add_video = add_video,
+        like_video = like_video,
+    }
 
-       return {body = json.encode({status = "Success!", result = result}), status = 200}
-   end
+Setting up HTTP API [2 minutes]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   return {
-       add_user = add_user,
-       add_video = add_video,
-       like_video = like_video,
-   }
-
-Raising the HTTP API
-~~~~~~~~~~~~~~~~~~~~
-
-Clients will visit the Tarantool cluster using the HTTP protocol. In the cluster
-already has its own built-in HTTP server.
+Clients will visit the Tarantool cluster using the HTTP protocol.
+The cluster already has a built-in HTTP server.
 
 **To configure HTTP paths, you need to write a configuration
-file. To do this, go to the “Code” tab. Create file “config.yml”
-in the "extensions" directory. You created it in the last step.**
+file. Go to the "Code" tab. Create the file ``config.yml``
+in the ``extensions`` directory, which you created on the last step.**
 
-Paste the configuration example described below into this file and click on
-the “Apply” button.
+Paste the configuration example below into ``config.yml`` and click "Apply".
 
-.. code:: yaml
+..  code-block:: yaml
 
-   ---
-    functions:
+    ---
+     functions:
+  
+       customer_add:
+         module: extensions.api
+         handler: add_user
+         events:
+         - http: {path: "/add_user", method: POST}
 
-      customer_add:
-        module: extensions.api
-        handler: add_user
-        events:
-        - http: {path: "/add_user", method: POST}
+       account_add:
+         module: extensions.api
+         handler: add_video
+         events:
+         - http: {path: "/add_video", method: POST}
 
-      account_add:
-        module: extensions.api
-        handler: add_video
-        events:
-        - http: {path: "/add_video", method: POST}
+       transfer_money:
+         module: extensions.api
+         handler: like_video
+         events:
+         - http: {path: "/like_video", method: POST}
+    ...
 
-      transfer_money:
-        module: extensions.api
-        handler: like_video
-        events:
-        - http: {path: "/like_video", method: POST}
-   ...
+Done! Let's make test requests from the console:
 
-Ready! Let's make test requests from the console:
+..  code-block:: bash
 
-.. code:: bash
+    curl -X POST --data "fullname = Taran Tool" <ip:port>/add_user
 
-   curl -X POST --data "fullname = Taran Tool" <ip:port>/add_user
+We've just created a user and got their UUID. Let's remember it.
 
-Created a user and got its UUID. Let's remember it.
+..  code-block:: bash
 
-.. code:: bash
+    curl -X POST --data "description = My first tiktok" <ip:port>/add_video
 
-   curl -X POST --data "description = My first tiktok" <ip:port>/add_video
+Let's say a user has added their first video with a description.
+The video clip also has a UUID. Let's remember it, too.
 
-Let's say a user has added their first video with a description. Also
-got the UUID of the video clip. Let's remember it too.
+In order to "like" the video, you need to specify the user UUID and the video UUID.
+Substitute the ellipses in the command below with the corresponding UUIDs:
 
-In order to "like" the video, you need to specify the user UUID and UUID
-video. Let's substitute it from the first two steps for the place of the trotting below.
+..  code-block:: bash
 
-.. code:: bash
+    curl -X POST --data "video_id = ... & user_id = ..." <ip: port>/like_video
 
-   curl -X POST --data "video_id = ... & user_id = ..." <ip: port>/like_video
+The result will be something like this:
 
-It will turn out something like this:
+..  figure:: images/console.png
+    :alt: Test queries in the console
 
-.. figure:: images/console.png
-   :alt: Test queries in the console
+    Test queries in the console
 
-   Test queries in the console
+In our example, you can "like" the video as many times as you want.
+It makes no sense in the real life, but it will help us understand how
+sharding works---more precisely, the ``sharding_key`` parameter.
 
-In our example, you can "like" the video as many times as you like. At least in
-in real life it makes no sense, but it will help us understand how
-sharding works. More precisely, the ``sharding_key`` parameter.
+Our ``sharding_key`` for the ``likes`` is ``video_id``.
+We also specified a ``sharding_key`` for the ``videos`` space. It means
+that likes will be stored on the same storage as videos.
+This ensures data locality with regard to storage and allows
+getting all the information you need in one network trip to Storage.
 
-For the ``likes`` space, we specified ``sharding_key`` - ``video_id``. Such
-we also specified ``sharding_key`` for the ``videos`` space. It means,
-that likes will be stored on the same Storage where they are stored and
-video. This ensures data locality during storage and allows
-get the information you need in one network trip to Storage.
+More details are described on the next step.
 
-More details are described in the next step.
+Looking at the data [1 minute]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Looking at the data
-~~~~~~~~~~~~~~~~~~~
-
-Go to the "Space-Explorer" tab and see all the nodes in the cluster. Because
-we have only one Storage and one Router raised so far, then the data is stored
+Go to the "Space-Explorer" tab to see all the nodes in the cluster.
+As we have only one storage and one router started so far, the data is stored
 on only one node.
 
-Go to the node ``s1-master``: click "Connect" and select the desired
-space for us.
+Let's go to the node ``s1-master``: click "Connect" and select the necessary space.
 
-We look that everything is in place and move on.
+Check that everything is in place and move on.
 
-.. figure:: images/hosts.png
-   :alt: Space Explorer, host list
+..  figure:: images/hosts.png
+    :alt: Space Explorer, host list
 
-   Space Explorer, host list
+    Space Explorer, host list
 
-.. figure:: images/likes.png
-   :alt: Space Explorer, view likes
+..  figure:: images/likes.png
+    :alt: Space Explorer, view likes
 
-   Space Explorer, viewing likes
+    Space Explorer, viewing likes
 
-Please note: the space-explorer tool is only available in
-Enterprise version of the product and in the cloud Try service.
-In the open-source version, the data can be viewed through the console.
+Please note that the Space-Explorer tool is only available in the
+Enterprise version of the product and in the Try Tarantool cloud service.
+In the open-source version, use the console to view data.
 
-Read more in `data viewing documentation <https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_space/select/>`__.
-And about connecting to a Tarantool instance :ref:`read in the basic Tarantool manual <getting_started_db>`.
+Check our documentation to learn more about :doc:`data viewing </reference/reference_lua/box_space/select/>`.
+To learn how to connect to a Tarantool instance, :ref:`read the basic Tarantool manual <getting_started_db>`.
 
 
-Scaling the cluster
-~~~~~~~~~~~~~~~~~~~
+Scaling the cluster [1 minute]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Let's create a second shard. Click on the "Cluster" tab, select
-``s2-master`` and click "Configure". We choose the roles as in the picture:
+``s2-master``, and click "Configure". Select the roles as shown in the picture:
 
-.. figure:: images/s1-master.png
-   :alt: Space Explorer, host s1-master
+..  figure:: images/s1-master.png
+    :alt: Space-Explorer, host s1-master
 
-   Space Explorer host s1-master
+    Space-Explorer host s1-master
 
-.. figure:: images/configuring-server.png
-   :alt: Cluster, new shard configuration screen
+..  figure:: images/configuring-server.png
+    :alt: Cluster, new shard configuration screen
 
-   Cluster, new shard configuration screen
+    Cluster, new shard configuration screen
 
-We silk on the necessary roles and create a shard (replica set).
+Click on the necessary roles and create a shard (replica set).
 
-The nodes `` s1-replica``, ``s2-replica`` are added as replicas to the first and
-the second shard corresponds responsibly.
+The ``s1-replica`` and ``s2-replica`` nodes are added as replicas to the first and
+second shards correspondingly.
 
-Watching how sharding works
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Checking how sharding works [1 minute]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now we have two shards - two logical nodes that will
-share data among themselves. The router itself decides which data on which
-put the shard. By default, it just uses the hash function from the field
-the ``sharding_key`` we specified in the DDL.
+Now we have two shards---two logical nodes that
+share data among themselves. The router decides what piece of data goes to what shard.
+By default, the router uses the hash function from the field ``sharding_key``
+we've specified in the DDL.
 
-To use a new shard, you need to set its weight to one.
-Go back to the "Cluster" tab and go to the ``s2-master`` settings
-and set the Replica set weight to 1 and apply.
+To enable a new shard, you need to set its weight to one.
+Go back to the "Cluster" tab, open the ``s2-master`` settings,
+set the Replica set weight to 1, and apply.
 
-Something has already happened. Let's go to space-explorer and go to the node
-``s2-master``. It turns out that some of the data from the first shard moved here
-automatically! Scaling is automatic.
+Something has already happened. Let's go to Space-Explorer and check the node
+``s2-master``. It turns out that some of the data from the first shard
+has already migrated here! The scaling is done automatically.
 
-Now let's try to add more new data to the cluster via the HTTP API.
-We can check and make sure that the new data is also evenly
-distributed over two shards.
+Now let's try adding more data to the cluster via the HTTP API.
+We can check back later and make sure that the new data is also evenly
+distributed across the two shards.
 
-One shard must be turned off for a while
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Disconnecting a shard for a while [1 minute]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the ``s1-master`` settings, set Replica set weight to 0 and
-we apply. Let's wait a couple of seconds and go to space-explorer and look at
-data in ``s2-master``: all data automatically migrated to
-remaining shard.
+apply. Wait for a few seconds, then go to Space-Explorer and look at the
+data in ``s2-master``. You will see that all the data has been migrated to
+the remaining shard automatically.
 
-Now we can safely disable the first shard if you need it
-to carry out official work.
+Now we can safely disable the first shard for maintenance.
 
-Read also
-~~~~~~~~~
+See also
+~~~~~~~~
 
-- README module `DDL <https://github.com/tarantool/ddl>`__ to create
-   its data schema
-- README of the module `CRUD <https://github.com/tarantool/crud>`__ to
-   learn more about the API and implement your own requests for the cluster
+*   README of the `DDL <https://github.com/tarantool/ddl>`__ module to create
+    your own data schema.
+*   README of the `CRUD <https://github.com/tarantool/crud>`__ module to
+    learn more about the API and create your own cluster queries.
 
 
-Continue to the next steps of the tutorial: the button is located on the bottom right or in the table of contents on the left.
+To continue to the next steps of the tutorial,
+click the button in the bottom right corner
+or select the section in the table of contents on the left.

@@ -11,14 +11,19 @@ The ``ddl`` module is responsible for applying the schema on the cluster. This m
 to modify the schema after applying it.
 
 The easiest way to change it is to delete the database snapshots and create
-a schema from scratch. Of course, this is only acceptable during development and debugging.
-applications. For production scenarios read the section :ref:`migrations<migrations>`.
+a schema from scratch. Of course, this is only acceptable during application
+development and debugging.
+For production scenarios, read the section on :ref:`migrations<migrations>`.
 
-To remove snapshots, you need:
+To remove snapshots:
 
-- if you are using Tarantool in the cloud, then you can use the "Reset configuration" button
-- if you start Tarantool locally via the cartridge start utility, then you can run the command
-``cartridge clean`` in the application directory.
-- if you start Tarantool in a different way, then you need to delete snapshots and xlogs manually. They have the .snap and .xlog extensions, respectively, and are located in the Tarantool working directory.
+*   If you are using Tarantool in the cloud,
+    click the "Reset configuration" button.
+*   If you've started Tarantool locally via ``cartridge start``,
+    run ``cartridge clean`` in the application directory.
+*   If you've started Tarantool in a different way,
+    delete the snapshots and xlogs manually.
+    These files have the .snap and .xlog extensions respectively,
+    and they are located in the Tarantool working directory.
 
-To understand how the Tarantool data schema works, read the section :ref:`Data model<box_data_model>`.
+To understand how the Tarantool data schema works, read the :ref:`Data model<box_data_model>` section.
