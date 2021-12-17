@@ -90,8 +90,8 @@ If you accidentally do something wrong while following the instructions,
 there is a magic button to help you reset all changes.
 It is called **"Reset Configuration"**.  You can find it at the top of the "Cluster" page.
 
-Configuring a cluster
-~~~~~~~~~~~~~~~~~~~~~
+Configuring a cluster [1 minute]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Everything you need to know to get started:**
 
