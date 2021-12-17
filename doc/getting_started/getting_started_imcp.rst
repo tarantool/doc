@@ -17,7 +17,7 @@ This is the recommended guide for getting to know the product.
     and then see the basic tutorial to dive deeper into the product.
 
 If you just want to run the complete tutorial code quickly, go to
-:ref:`this section <app_server-launching_app>`.
+:ref:`Launching an application <app_server-launching_app>`.
 
 Installation
 ~~~~~~~~~~~~
@@ -495,3 +495,5 @@ See also
 To continue to the next steps of the tutorial,
 click the button in the bottom right corner
 or select the section in the table of contents on the left.
+
+test

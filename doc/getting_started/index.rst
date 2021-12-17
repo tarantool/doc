@@ -37,3 +37,5 @@ to write in/migrate to Tarantool.
    connecting_to_cluster
    change_schema_dynamically
    writing_cluster_code
+
+test
