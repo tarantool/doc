@@ -1,6 +1,6 @@
 
-msgid "C API reference"
-msgstr "Справочник по C API"
-
 msgid "List of C API headers"
 msgstr "Список API для языка C"
+
+msgid "C API reference"
+msgstr "Справочник по C API"

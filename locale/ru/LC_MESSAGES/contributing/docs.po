@@ -1,4 +1,7 @@
 
+msgid "Contents:"
+msgstr "Оглавление:"
+
 msgid "Documentation & Localization guidelines"
 msgstr ""
 
@@ -10,6 +13,3 @@ msgstr ""
 msgid ""
 "The guidelines are a work in progress, and we welcome all contributions."
 msgstr ""
-
-msgid "Contents:"
-msgstr "Оглавление:"

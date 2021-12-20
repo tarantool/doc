@@ -1,4 +1,7 @@
 
+msgid "Contents:"
+msgstr ""
+
 msgid "Localization"
 msgstr ""
 
@@ -6,7 +9,4 @@ msgid ""
 "This section covers the specifics of localizing Tarantool into Russian. If "
 "you are translating Tarantool docs into Russian, be sure to check out our "
 "translation guidelines."
-msgstr ""
-
-msgid "Contents:"
 msgstr ""
