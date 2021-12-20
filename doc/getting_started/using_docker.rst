@@ -5,7 +5,7 @@ Using a Docker image
 --------------------------------------------------------------------------------
 
 For trial and test purposes, we recommend using
-`official Tarantool images for Docker <https://github.com/tarantool/docker>`_.
+`the official Tarantool images for Docker <https://github.com/tarantool/docker>`_.
 An official image contains a particular Tarantool version and all popular
 external modules for Tarantool.
 Everything is already installed and configured in Linux.
@@ -27,7 +27,7 @@ If you don't have Docker installed, please follow the official
 `installation guide <https://docs.docker.com/get-started/#download-and-install-docker>`_
 for your OS.
 
-To start a fully functional Tarantool instance, run a container with minimal
+To start a fully functional Tarantool instance, run a container with some minimal
 options:
 
 .. code-block:: console
@@ -42,8 +42,8 @@ This command runs a new container named ``mytarantool``.
 Docker starts it from an official image named ``tarantool/tarantool:2.6.0``,
 with Tarantool version ``2.6.0`` and all external modules already installed.
 
-Tarantool will be accepting incoming connections on ``localhost:3301``.
-You may start using it as a key-value storage right away.
+Tarantool will accept incoming connections on ``localhost:3301``.
+You can start using it as a key-value storage right away.
 
 Tarantool :ref:`persists data <index-box_persistence>` inside the container.
 To make your test data available after you stop the container,
@@ -51,17 +51,17 @@ this command also mounts the host's directory ``/data/dir/on/host``
 (you need to specify here an absolute path to an existing local directory)
 in the container's directory ``/var/lib/tarantool``
 (by convention, Tarantool in a container uses this directory to persist data).
-So, all changes made in the mounted directory on the container's side
+Through this, all changes made in the mounted directory on the container's side
 are applied to the host's disk.
 
 Tarantool's database module in the container is already
 :doc:`configured </reference/reference_lua/box_cfg>` and started.
-You needn't do it manually, unless you use Tarantool as an
+You don't need to do it manually, unless you use Tarantool as an
 :ref:`application server <app_server>` and run it with an application.
 
 .. NOTE::
 
-    If your container terminates soon after start, follow
+    If your container terminates immediately after starting, follow
     `this page <https://stackoverflow.com/questions/64178499/tarantool-does-not-start-due-to-disk-write-error>`_
     for a possible solution.
 
@@ -71,7 +71,7 @@ You needn't do it manually, unless you use Tarantool as an
 Attaching to Tarantool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To attach to Tarantool that runs inside the container, say:
+To attach to Tarantool that runs inside the container, run:
 
 .. code-block:: console
 
@@ -80,7 +80,7 @@ To attach to Tarantool that runs inside the container, say:
 This command:
 
 * Instructs Tarantool to open an interactive console port for incoming connections.
-* Attaches to the Tarantool server inside the container under ``admin`` user via
+* Attaches to the Tarantool server inside the container under the ``admin`` user via
   a standard Unix socket.
 
 Tarantool displays a prompt:
@@ -93,15 +93,15 @@ Now you can enter requests on the command line.
 
 .. NOTE::
 
-    On production machines, Tarantool's interactive mode is for system
-    administration only. But we use it for most examples in this manual,
-    because the interactive mode is convenient for learning.
+    On production machines, Tarantool's interactive mode is designed for system
+    administration only. We use it for most examples in this manual,
+    because it is convenient for learning.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Creating a database
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-While you're attached to the console, let's create a simple test database.
+While we're attached to the console, let's create a simple test database.
 
 First, create the first :term:`space` (named ``tester``):
 
@@ -139,7 +139,7 @@ into the space:
     tarantool.sock> s:insert{2, 'Scorpions', 2015}
     tarantool.sock> s:insert{3, 'Ace of Base', 1993}
 
-To select a tuple using the ``primary`` index, say:
+To select a tuple using the ``primary`` index, run:
 
 .. code-block:: tarantoolsession
 
@@ -191,7 +191,7 @@ The terminal screen now looks like this:
     - - [3, 'Ace of Base', 1993]
     ...
 
-To add a secondary index based on the ``band_name`` field, say:
+To add a secondary index based on the ``band_name`` field, run:
 
 .. code-block:: tarantoolsession
 
@@ -200,7 +200,7 @@ To add a secondary index based on the ``band_name`` field, say:
                   > parts = {'band_name'}
                   > })
 
-To select tuples using the ``secondary`` index, say:
+To select tuples using the ``secondary`` index, run:
 
 .. code-block:: tarantoolsession
 
@@ -209,7 +209,7 @@ To select tuples using the ``secondary`` index, say:
     - - [2, 'Scorpions', 2015]
     ...
 
-To drop an index, say:
+To drop an index, run:
 
 .. code-block:: tarantoolsession
 
@@ -230,6 +230,6 @@ When the testing is over, stop the container politely:
 This was a temporary container, and its disk/memory data were flushed when you
 stopped it. But since you mounted a data directory from the host in the container,
 Tarantool's data files were persisted to the host's disk. Now if you start a new
-container and mount that data directory in it, Tarantool will recover all data
+container and mount that data directory, Tarantool will recover all of the data
 from disk and continue working with the persisted data.
 

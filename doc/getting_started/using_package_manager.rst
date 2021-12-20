@@ -4,7 +4,7 @@
 Using a package manager
 --------------------------------------------------------------------------------
 
-For production purposes, we recommend to install Tarantool via
+For production purposes, we recommend that you install Tarantool via the 
 `official package manager <http://tarantool.org/download.html>`_.
 You can choose one of three versions: LTS, stable, or beta.
 An automatic build system creates, tests and publishes packages for every
@@ -19,14 +19,14 @@ for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_
 Starting Tarantool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To start working with Tarantool, run a terminal and say this:
+To start working with Tarantool, start a terminal and run this:
 
 .. code-block:: console
 
     $ tarantool
     $ # by doing this, you create a new Tarantool instance
 
-Tarantool starts in the interactive mode and displays a prompt:
+Tarantool starts in interactive mode and displays a prompt:
 
 .. code-block:: tarantoolsession
 
@@ -36,9 +36,9 @@ Now you can enter requests on the command line.
 
 .. NOTE::
 
-    On production machines, Tarantool's interactive mode is for system
-    administration only. But we use it for most examples in this manual,
-    because the interactive mode is convenient for learning.
+    On production machines, Tarantool's interactive mode is designed for system
+    administration only. We use it for most examples in this manual 
+    because it is convenient for learning.
 
 .. _creating-db-locally:
 
@@ -56,9 +56,9 @@ Here is how to create a simple test database after installation.
       $ mkdir ~/tarantool_sandbox
       $ cd ~/tarantool_sandbox
 
-   You can delete the directory when the tests are over.
+   You can delete the directory when the tests are completed.
 
-#. Check if the default port the database instance will listen to is vacant.
+#. Check if the default port that the database instance will listen to is vacant.
 
    In versions before :doc:`2.4.2 </release/2.4.2>`, during installation
    the Tarantool packages for Debian and Ubuntu automatically enable and start
@@ -72,7 +72,7 @@ Here is how to create a simple test database after installation.
 
    Make sure the default port is vacant:
 
-   #. To check if the demonstrative instance is running, say:
+   #. To check if the demonstrative instance is running, run:
 
       .. code-block:: console
 
@@ -87,7 +87,7 @@ Here is how to create a simple test database after installation.
          $ kill 6851
 
 #. To start Tarantool's database module and make the instance accept TCP requests
-   on port ``3301``, say:
+   on port ``3301``, run:
 
    .. code-block:: tarantoolsession
 
@@ -129,7 +129,7 @@ Here is how to create a simple test database after installation.
       tarantool> s:insert{2, 'Scorpions', 2015}
       tarantool> s:insert{3, 'Ace of Base', 1993}
 
-#. To select a tuple using the ``primary`` index, say:
+#. To select a tuple using the ``primary`` index, run:
 
    .. code-block:: tarantoolsession
 
@@ -181,7 +181,7 @@ Here is how to create a simple test database after installation.
       - - [3, 'Ace of Base', 1993]
       ...
 
-#. To add a secondary index based on the ``band_name`` field, say:
+#. To add a secondary index based on the ``band_name`` field, run:
 
    .. code-block:: tarantoolsession
 
@@ -190,7 +190,7 @@ Here is how to create a simple test database after installation.
                > parts = {'band_name'}
                > })
 
-#. To select tuples using the ``secondary`` index, say:
+#. To select tuples using the ``secondary`` index, run:
 
    .. code-block:: tarantoolsession
 
