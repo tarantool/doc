@@ -54,6 +54,15 @@ class HTMLTranslator(BaseHTMLTranslator):
         else:
             self.body.append('</dt>')
 
+    def depart_caption(self, node: Element) -> None:
+        # overridden to disable permalinks for toctrees, images and code
+        self.body.append('</span>')
+        if isinstance(node.parent, nodes.container) and node.parent.get('literal_block'):
+            self.body.append('</div>\n')
+        else:
+            self.body.append('</p>\n')
+
+
 def setup(app):
     """
     Custom http formatter
