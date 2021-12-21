@@ -7,7 +7,6 @@ from sphinx.writers.html import HTMLTranslator as BaseHTMLTranslator
 
 
 class HTMLTranslator(BaseHTMLTranslator):
-
     permalink_text = '<i class="fa fa-link"></i>'
 
     def depart_title(self, node: Element) -> None:
@@ -53,6 +52,23 @@ class HTMLTranslator(BaseHTMLTranslator):
             pass
         else:
             self.body.append('</dt>')
+
+    def depart_caption(self, node: Element) -> None:
+        self.body.append('</span>')
+
+        # append permalink if available
+        if isinstance(node.parent, nodes.container) and node.parent.get('literal_block'):
+            self.add_permalink_ref(node.parent, _('Permalink to this code'))
+        elif isinstance(node.parent, nodes.figure):
+            # self.add_permalink_ref(node.parent, _('Permalink to this image'))
+            pass
+        elif node.parent.get('toctree'):
+            self.add_permalink_ref(node.parent.parent, _('Permalink to this toctree'))
+
+        if isinstance(node.parent, nodes.container) and node.parent.get('literal_block'):
+            self.body.append('</div>\n')
+        else:
+            self.body.append('</p>\n')
 
 def setup(app):
     """
