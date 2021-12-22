@@ -162,6 +162,9 @@ msgid ""
 "it out!"
 msgstr ""
 
+msgid "clickable links in the console"
+msgstr ""
+
 msgid ""
 "These comments don't work properly in nested documentation, though. For "
 "example, if you leave a comment in module -> object -> method, Sphinx "
