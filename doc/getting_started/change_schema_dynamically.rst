@@ -28,4 +28,3 @@ To remove snapshots:
 
 To understand how the Tarantool data schema works, read the :ref:`Data model<box_data_model>` section.
 
-test

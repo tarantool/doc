@@ -16,4 +16,3 @@ However, in Tarantool, you can implement absolutely any business logic on top of
 This :doc:`Cartridge getting started section </getting_started/getting_started_cartridge>`
 covers the cluster roles mechanism and writing a cluster application from scratch.
 
-test

@@ -67,4 +67,3 @@ To learn how to call stored procedures in your programming language, see the sec
 For connectors to other languages, check the README for the connector of your choice
 `on GitHub <https://github.com/tarantool>`_.
 
-test
