@@ -62,6 +62,3 @@ msgid ""
 msgstr ""
 "Чтобы понять, как устроена схема данных в Tarantool, читайте раздел "
 ":ref:`Модель данных<box_data_model>`."
-
-msgid "test"
-msgstr "test"

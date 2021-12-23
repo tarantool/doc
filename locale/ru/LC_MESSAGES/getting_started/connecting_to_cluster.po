@@ -131,6 +131,3 @@ msgid ""
 msgstr ""
 "Информацию о подключении из других языков вы найдете в README к "
 "`соответствующим коннекторам на GitHub <https://github.com/tarantool>`_."
-
-msgid "test"
-msgstr "test"
