@@ -495,4 +495,3 @@ See also
 To continue to the next steps of the tutorial,
 click the button in the bottom right corner
 or select the section in the table of contents on the left.
-
