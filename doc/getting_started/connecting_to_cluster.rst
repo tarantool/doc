@@ -60,9 +60,10 @@ Here is an incomplete list:
 To learn how to call stored procedures in your programming language, see the section
 "Calling Stored Procedures":
 
-* :ref:`for Python<getting_started-python>`
-* :ref:`for Go<getting_started-go>`
-* :ref:`for PHP<getting_started-php>`
+* :ref:`for Python <getting_started-python>`
+* :ref:`for Go <getting_started-go>`
+* :ref:`for PHP <getting_started-php>`
 
 For connectors to other languages, check the README for the connector of your choice
 `on GitHub <https://github.com/tarantool>`_.
+

@@ -27,3 +27,4 @@ To remove snapshots:
     and they are located in the Tarantool working directory.
 
 To understand how the Tarantool data schema works, read the :ref:`Data model<box_data_model>` section.
+
