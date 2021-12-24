@@ -39,8 +39,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | (created from SQL).                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E011-03    | DECIMAL and NUMERIC data types                | ``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``            | Fail, NUMERIC data types are not supported              |
-    |            |                                               |                                                          | and a number containing post-decimal digits will be     |
-    |            |                                               |                                                          | treated as approximate numeric.                         |
+    |            |                                               |                                                          | although a DECIMAL data type is supported.              |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E011-04    | Arithmetic operators                          | ``SELECT 10+1, 9-2, 8*3, 7/2 FROM t;``                   | :ref:`Okay <sql_operator_arithmetic>`.                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+

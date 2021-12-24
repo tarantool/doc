@@ -279,7 +279,8 @@ Column definition -- data type
 |br|
 
 Every column has a data type:
-BOOLEAN or DOUBLE or INTEGER or NUMBER or SCALAR or STRING or UNSIGNED or UUID or VARBINARY.
+ANY or ARRAY or BOOLEAN or DECIMAL or DOUBLE or INTEGER or MAP or NUMBER
+or SCALAR or STRING or UNSIGNED or UUID or VARBINARY.
 The detailed description of data types is in the section
 :ref:`Operands <sql_operands>`.
 
@@ -394,9 +395,9 @@ casts, apply.
 There is one floating-point value which is not handled by SQL: -nan is seen as NULL
 although its data type is 'double'.
 
-There are also some Tarantool/NoSQL data types which have no corresponding
-SQL data types. For example, ``SELECT "flags" FROM "_vspace";`` will return
-a column whose SQL data type is 'varbinary' rather than 'map'. Such columns can only be manipulated in SQL
+Before Tarantool version 2.10-beta2, tthere were also some Tarantool/NoSQL data types which had no corresponding
+SQL data types. For example, ``SELECT "flags" FROM "_vspace";`` would return
+a column whose SQL data type is VARBINARY rather than MAP. Such columns can only be manipulated in SQL
 by :ref:`invoking Lua functions <sql_calling_lua>`.
 
 .. _sql_column_def_constraint:
@@ -492,7 +493,10 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
     columnd UUID,
     columne VARBINARY,
     columnf SCALAR, columng SCALAR COLLATE "unicode_uk_s2",
-    columnh DECIMAL);
+    columnh DECIMAL,
+    columni ARRAY,
+    columnj MAP,
+    columnk ANY);
 
 .. code-block:: sql
 
@@ -2233,6 +2237,7 @@ Sorting order:
 
 * The default order is ASC (ascending), the optional order is DESC (descending).
 * NULLs come first, then BOOLEANs, then numerics, then STRINGs, then VARBINARYs, then UUIDs.
+* Ordering does not matter for ARRAYs or MAPs or ANYs because they are not legal for comparisons.
 * Within STRINGs, ordering is according to collation.
 * Collation may be specified with a :ref:`COLLATE clause <sql_collate_clause>` within the ORDER BY column-list, or may be default.
 
@@ -3640,20 +3645,27 @@ SUBSTR
 
 Syntax:
 
-:samp:`SUBSTR({expression-1}, {numeric-expression-1} [, {numeric-expression-2}])`
+:samp:`SUBSTR({string-or-varbinary-value}, {numeric-start-position} [, {numeric-length}])`
 
-If expression-1 has data type STRING, then return the substring
+If string-or-varbinary-value has data type STRING, then return the substring
 which begins
-at character position numeric-expression-1 and continues for
-numeric-expression-2 characters (if numeric-expression-2 is
-supplied), or continues till the end of string-expression-1
-(if numeric-expression-2 is not supplied).
+at character position numeric-start-position and continues for
+numeric-length characters (if numeric-length is
+supplied), or continues till the end of string-or-varbinary-value
+(if numeric-length is not supplied).
 
-If expression-1 has data type VARBINARY rather than data
+If numeric-start-position is less than 1, or if numeric-start-position
++ numeric-length is greater than the length of string-or-varbinary-value,
+then the result is not an error, anything which would be before the start
+or after the end is ignored.
+
+If numeric-length is less than 0, then the result is an error.
+
+If string-or-varbinary-value has data type VARBINARY rather than data
 type STRING, then positioning and counting is by bytes
 rather than by characters.
 
-Example: ``SUBSTR('ABCDEFG', 3, 2)`` is 'CD'
+Examples: ``SUBSTR('ABCDEF', 3, 2)`` is 'CD', ``SUBSTR('абвгде', -1, 4)`` is 'аб'
 
 .. _sql_function_trim:
 
@@ -3899,6 +3911,7 @@ Example: ``box.execute([[SELECT TYPEOF(AVG(?));]],{x})`` is 'decimal'. |br|
 Example: ``box.execute([[SELECT TYPEOF(LENGTH(?));]],{x})`` is 'string'. |br|
 * When possible data types are any other scalar data type, SCALAR is default. |br|
 Example: ``box.execute([[SELECT TYPEOF(GREATEST(?,5));]],{x})`` is 'scalar'. |br|
+* When possible data type is a non-scalar data type, such as ARRAY, result is undefined. |br|
 * Otherwise, there is no default. |br|
 Example: ``box.execute([[SELECT TYPEOF(LIKELY(?));]],{x})`` is the name of one of the primitive data types.
 

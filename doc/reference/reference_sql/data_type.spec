@@ -1,12 +1,15 @@
 stack (
   line(
     choice(
+      line(' ANY '),
+      line(' ARRAY '),
       line(' BOOL '),
       line(' BOOLEAN '),
       line(' DECIMAL '),
       line(' DOUBLE '),
       line(' INT '),
       line(' INTEGER '),
+      line(' MAP '),
       line(' NUMBER '),
       line(
         line(' SCALAR '),

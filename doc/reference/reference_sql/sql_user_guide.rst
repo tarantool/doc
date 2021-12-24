@@ -169,7 +169,7 @@ but for readability one would usually use spaces to separate tokens: |br|
 Literals
 ********************************************************************************
 
-There are five kinds of literals: BOOLEAN INTEGER DOUBLE STRING VARBINARY.
+There are eight kinds of literals: BOOLEAN INTEGER DOUBLE DECIMAL STRING VARBINARY ARRAY MAP.
 
 BOOLEAN literals:  |br|
 TRUE | FALSE | UNKNOWN |br|
@@ -187,16 +187,25 @@ A literal has :ref:`data type = INTEGER <sql_data_type_integer>` if it contains 
 the range  -9223372036854775808 to +18446744073709551615, integers outside that range are illegal.
 
 DOUBLE literals: |br|
-[plus-sign | minus-sign] [digit [digit ...]] period [digit [digit ...]] |br|
 [E|e [plus-sign | minus-sign] digit ...] |br|
-Examples: .0, 1.0, 1E5, 1.1E5. |br|
-A literal has :ref:`data type = DOUBLE <sql_data_type_double>` if it contains a period, or contains "E".
+Examples: 1E5, 1.1E5. |br|
+A literal has :ref:`data type = DOUBLE <sql_data_type_double>` if it contains "E".
 DOUBLE literals are also known as floating-point literals or approximate-numeric literals.
 To represent "Inf" (infinity), write a real numeric outside the double-precision numeric range, for example 1E309.
 To represent "nan" (not a number), write an expression that does not result in a real numeric,
 for example 0/0, using Tarantool/NoSQL. This will appear as NULL in Tarantool/SQL.
 In an earlier version literals containing periods were considered to be :ref:`NUMBER <sql_data_type_number>` literals.
 In a future version "nan" may not appear as NULL.
+Prior to Tarantool version 2.10-beta2, digits with periods such as .0 were considered to be DOUBLE literals,
+but now they are considered to be DECIMAL literals.
+
+DECIMAL literals: |br|
+[plus-sign | minus-sign] [digit [digit ...]] period [digit [digit ...]] |br|
+Examples: .0, 1.0, 12345678901234567890.123456789012345678 |br|
+A literal has :ref:`data type = DECIMAL <sql_data_type_decimal>` if it contains a period, and does not contain "E".
+DECIMAL literals may contain up to 38 digits; if there are more, then post-decimal digits may be subject to rounding.
+In earlier Tarantool versions literals containing periods were considered to be
+:ref:`NUMBER <sql_data_type_number>` or :ref:`DECIMAL <sql_data_type_double>` literals.
 
 STRING literals: |br|
 [quote] [character ...] [quote] |br|
@@ -212,21 +221,43 @@ Example: ``X'414243'``, which will be displayed as ``'ABC'``. |br|
 A literal has :ref:`data type = VARBINARY <sql_data_type_varbinary>`
 ("variable-length binary") if it is the letter X followed by quotes containing pairs of hexadecimal digits, representing byte values.
 
+ARRAY expressions: |br|
+[left square bracket] [comma-separated list of values] [right square bracket] |br|
+Examples: ``[1,2,3,4]``, ``[1,[2,3],4]``, ``X['a','22',uuid()]`` |br|
+An expression has data type = ARRAY if it is a sequence of zero or more values
+enclosed in square brackets (``[`` and ``]``).
+Values may be of any type; values may be expressions; arrays may be nested.
+In formal terms we should say that ``[`` and ``]`` are actually "operators"
+and the values are "elements", but most of the examples we have used are in
+fact arrays of literals.
+
+MAP expressions: |br|
+[left curly bracket] key [colon] value [right curly bracket] |br|
+Examples: ``{'a':1}``, ``{ "column_1" : X'1234' }`` |br|
+An expression has data type = MAP if it is enclosed in curly brackets
+(also called braces) ``{`` and ``}`` and contains a key for identification,
+then a colon ``:``, then a value for what the key identifies.
+As with ARRAY expressions, the ``{`` and ``}`` are actually operators
+so the key and the value are not necessarily literals themselves.
+It is not uncommon to have an array of maps, for example
+``[{'a':1},{'b':2}]``, which can be called an associative array and can
+be converted to a `Lua table <https://www.lua.org/pil/2.5.html>`_.
+
 Here are four ways to put non-ASCII characters,such as the Greek letter α alpha, in string literals: |br|
 First make sure that your shell program is set to accept characters as UTF-8. A simple way to check is |br|
 ``SELECT hex(cast('α' as VARBINARY));``
 If the result is CEB1 -- which is the hexadecimal value for the UTF-8 representation of α -- it is good. |br|
-(1) Simply enclose the character inside ``'...'``, |br|
-``'α'`` |br|
-or |br|
-(2) Find out what is the hexadecimal code for the UTF-8 representation of α,
-and enclose that inside ``X'...'``, then cast to STRING because ``X'...'`` literals are data type VARBINARY not STRING, |br|
-``CAST(X'CEB1' AS STRING)`` |br|
-or |br|
-(3) Find out what is the Unicode code point for α, and pass that to the :ref:`CHAR function <sql_function_char>`. |br|
-``CHAR(945)  /* remember that this is α as data type STRING not VARBINARY */`` |br|
-(4) Enclose statements inside double quotes and include Lua escapes, for example
-``box.execute("SELECT '\206\177';")`` |br|
+
+  * (1) Simply enclose the character inside ``'...'``, |br|
+    ``'α'``
+  * (2) Find out what is the hexadecimal code for the UTF-8 representation of α,
+    and enclose that inside ``X'...'``, then cast to STRING because ``X'...'`` literals are data type VARBINARY not STRING, |br|
+    ``CAST(X'CEB1' AS STRING)`` |br|
+  * (3) Find out what is the Unicode code point for α, and pass that to the :ref:`CHAR function <sql_function_char>`. |br|
+    ``CHAR(945)  /* remember that this is α as data type STRING not VARBINARY */`` |br|
+  * (4) Enclose statements inside double quotes and include Lua escapes, for example
+    ``box.execute("SELECT '\206\177';")`` |br|
+
 One can use the concatenation operator ``||`` to combine characters made with any of these methods.
 
 Limitations: (`Issue#2344 <https://github.com/tarantool/tarantool/issues/2344>`_) |br|
@@ -237,7 +268,6 @@ but it is not the same. ``box.execute("select 'A' < X'41';")`` is not legal at t
 This happens because ``TYPEOF(X'41')`` yields ``'varbinary'``.
 Also it is illegal to say ``UPDATE ... SET string_column = X'41'``,
 one must say ``UPDATE ... SET string_column = CAST(X'41' AS STRING);``. |br|
-* It is non-standard to say that any numeric which contains a period has data type = DOUBLE.
 
 .. _sql_identifiers:
 
@@ -266,7 +296,7 @@ Certain words are reserved and should not be used for identifiers.
 The simple rule is: if a word means something in Tarantool SQL syntax,
 do not try to use it for an identifier. The current list of reserved words is:
 
-ALL ALTER ANALYZE AND ANY AS ASC ASENSITIVE AUTOINCREMENT
+ALL ALTER ANALYZE AND ANY ARRAY AS ASC ASENSITIVE AUTOINCREMENT
 BEGIN BETWEEN BINARY BLOB BOOL BOOLEAN BOTH BY CALL CASE
 CAST CHAR CHARACTER CHECK COLLATE COLUMN COMMIT CONDITION
 CONNECT CONSTRAINT CREATE CROSS CURRENT CURRENT_DATE
@@ -277,7 +307,7 @@ ELSEIF END ESCAPE EXCEPT EXISTS EXPLAIN FALSE FETCH FLOAT
 FOR FOREIGN FROM FULL FUNCTION GET GRANT GROUP HAVING IF
 IMMEDIATE IN INDEX INNER INOUT INSENSITIVE INSERT INT
 INTEGER INTERSECT INTO IS ITERATE JOIN LEADING LEAVE LEFT
-LIKE LIMIT LOCALTIME LOCALTIMESTAMP LOOP MATCH NATURAL NOT
+LIKE LIMIT LOCALTIME LOCALTIMESTAMP LOOP MAP MATCH NATURAL NOT
 NULL NUM NUMBER NUMERIC OF ON OR ORDER OUT OUTER OVER PARTIAL
 PARTITION PRAGMA PRECISION PRIMARY PROCEDURE RANGE RANK
 READS REAL RECURSIVE REFERENCES REGEXP RELEASE RENAME
@@ -465,6 +495,10 @@ and minimum / maximum literal examples.
     +-----------+------------+------------+----------------------+-------------------------+
     | SCALAR    | (varies)   | (none)     | FALSE                | maximum UUID value      |
     +-----------+------------+------------+----------------------+-------------------------+
+    | ARRAY     | array      | (none)     | []                   | ``many values``         |
+    +-----------+------------+------------+----------------------+-------------------------+
+    | MAP       | map        | (none)     | ``{'':''}``          | ``big-key:big-value``   |
+    +-----------+------------+------------+----------------------+-------------------------+
 
 
 .. _sql_data_type_boolean:
@@ -507,8 +541,8 @@ Support for arithmetic and built-in arithmetic functions with NUMBERs was remove
 DECIMAL values can contain up to 38 digits on either side of a decimal point.
 and any arithmetic with DECIMAL values has exact results
 (arithmetic with DOUBLE values could have approximate results instead of exact results).
-There is no literal format for DECIMAL,
-so use :ref:`CAST <sql_function_cast>` to insist that a numeric
+Before Tarantool version 2.10-beta2 there was no literal format for DECIMAL,
+so it was necessary to use :ref:`CAST <sql_function_cast>` to insist that a numeric
 has data type DECIMAL, for example ``CAST(1.1 AS DECIMAL)`` or
 ``CAST('99999999999999999999999999999999999999' AS DECIMAL)``.
 See the description of NoSQL type :ref:`'decimal' <decimal>`.
@@ -555,6 +589,27 @@ Prior to Tarantool version 2.10.1, individual column values had
 one of the preceding types -- BOOLEAN, INTEGER, DOUBLE, DECIMAL, STRING, VARBINARY, or UUID.
 Starting in Tarantool version 2.10.1, all values have type SCALAR.
 
+.. _sql_data_type_array:
+
+ARRAY values are lists of values of any type, including other ARRAY values
+-- that is, arrays can be "nested". Tarantool does
+not require that all values in an array must have the same type.
+Arrays cannot be used in arithmetic or comparison (except ``IS [NOT] NULL``), and the only
+functions where they are allowed are :ref:`CAST <sql_function_cast>`,
+:ref:`QUOTE <sql_function_quote>`,
+:ref:`TYPEOF <sql_function_typeof>`, and functions involving NULL comparisons.
+
+.. _sql_data_type_map:
+
+MAP values are key:value combinations which can be produced with expressions
+like ``LUA('return {a=1}')``, although the SQL literal will look more like
+``{'a':1}``.
+Maps cannot be used in arithmetic or comparison (except ``IS [NOT] NULL``),
+and the only
+functions where they are allowed are :ref:`CAST <sql_function_cast>`,
+:ref:`QUOTE <sql_function_quote>`,
+:ref:`TYPEOF <sql_function_typeof>`, and functions involving NULL comparisons.
+
 Any value of any data type may be NULL. Ordinarily NULL will be cast to the
 data type of any operand it is being compared to or to the data type of the
 column it is in. If the data type of NULL cannot be determined from context,
@@ -562,10 +617,11 @@ it is BOOLEAN.
 
 Most of the SQL data types correspond to
 :ref:`Tarantool/NoSQL types <details_about_index_field_types>` with the same name.
-There are also some Tarantool/NoSQL data types which have no corresponding SQL data types.
-If Tarantool/SQL reads a Tarantool/NoSQL value which has a type which has no SQL equivalent,
-Tarantool/SQL may treat it as NULL or INTEGER or VARBINARY.
-For example, ``SELECT "flags" FROM "_vspace";`` will return a column whose type is ``'map'``.
+In Tarantool versions before 2.10-beta2,
+There were also some Tarantool/NoSQL data types which had no corresponding SQL data types.
+In those versions, if Tarantool/SQL reads a Tarantool/NoSQL value which has a type which has no SQL equivalent,
+Tarantool/SQL could treat it as NULL or INTEGER or VARBINARY.
+For example, ``SELECT "flags" FROM "_vspace";`` would return a column whose type is ``'map'``.
 Such columns can only be manipulated in SQL by
 :ref:`invoking Lua functions <sql_calling_lua>`.
 
@@ -619,7 +675,8 @@ Example: ``2 * 5``, result = 10.
 ``/`` division (arithmetic)
 Divide second numeric into first numeric according to standard arithmetic rules.
 Division by zero is not legal.
-Division of integers always results in rounding toward zero, use :ref:`CAST <sql_function_cast>` to DOUBLE to get
+Division of integers always results in rounding toward zero,
+use :ref:`CAST <sql_function_cast>` to DOUBLE or to DECIMAL to get
 non-integer results.
 Example: ``5 / 2``, result = 2.
 
@@ -859,6 +916,9 @@ When comparing a STRING to a STRING: |br|
 * When comparing a column with a string literal, the column's defined collation is used. |br|
 * Ordinarily trailing spaces matter. So ``'a' = 'a  '`` is not TRUE. This can be cancelled by using the :ref:`TRIM(TRAILING ...) <sql_function_trim>` function. |br|
 
+When comparing anything to an ARRAY or MAP or ANY: |br|
+* The result is an error.
+
 Limitations: |br|
 * LIKE is not expected to work with VARBINARY.
 
@@ -944,7 +1004,7 @@ Assignments and operations involving NULL cause NULL or UNKNOWN results. |br|
 For arithmetic, convert to the data type which can contain both operands and the result. |br|
 For explicit casts, if a meaningful result is possible, the operation is allowed. |br|
 For implicit casts, if a meaningful result is possible and the data types on both sides
-are either STRINGs or most numeric types (that is, are STRING or INTEGER or UNSIGNED or DOUBLE but not NUMBER),
+are either STRINGs or most numeric types (that is, are STRING or INTEGER or UNSIGNED or DOUBLE or DECIMAL but not NUMBER),
 the operation is sometimes allowed.
 
 The specific situations in this chart follow the general rules:
@@ -980,8 +1040,15 @@ such as ``'8e3b281b-78ad-4410-bfe9-54806a586a90'``. |br|
 From VARBINARY to UUID is allowed only if the value is
 16 bytes long,
 as in ``X'8e3b281b78ad4410bfe954806a586a90'``. |br|
+
 The chart does not show To|From SCALAR because the conversions depend on the type of the value,
 not the type of the column definition. Explicit cast to SCALAR is always allowed.
+
+The chart does not show To|From ARRAY or MAP or ANY because almost no conversions are possible.
+Explicit cast to ANY, or casting any value to its original data type, is legal, but that is all.
+This is a slight change: before Tarantool version 2.10-beta2, it was legal to cast such values
+as VARBINARY. It is still possible to use arguments with these types in
+:ref:`QUOTE <sql_function_quote>` functions, which is a way to convert them to STRINGs.
 
 ..  note::
 
