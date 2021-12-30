@@ -79,7 +79,7 @@ msgstr ""
 " статуса в двух циклах связи."
 
 msgid ""
-"``incarnation`` (number) is a value incremented every time the instance is "
+"``incarnation`` (number) is a value incremented every time the instance "
 "becomes a ``suspect``, ``dead``, or updates its payload."
 msgstr ""
 "``incarnation`` (число) -- это значение, которое увеличивается каждый раз, "
