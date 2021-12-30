@@ -227,16 +227,18 @@ Zen of Python is good; understand it and use wisely:
 
     .. code-block:: lua
 
-        return {1,2,3,4} -- bad
+        return {1,2,3,4}
         return {
             key1 = val1,key2=val2
-        } -- bad
+        }
+        -- bad
 
+        return {1, 2, 3, 4}
         return {
-            1, 2, 3, 4
             key1 = val1, key2 = val2,
             key3 = vallll
-        } -- good
+        }
+        -- good
 
     also, you may use alignment:
 
