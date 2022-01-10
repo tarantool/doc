@@ -634,6 +634,10 @@ F021, Basic information schema
         :widths: 10 30 30 30
         :header-rows: 1
 
+        *   -   Feature ID
+            -   Feature
+            -   Example
+            -   Tests
         *   -   F021   
             -   Basic information schema
             -   ``SELECT * from information_schema.tables;``   
@@ -782,7 +786,7 @@ F081, UNION and EXCEPT in views
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -801,7 +805,7 @@ F131, Grouped operations
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -842,7 +846,7 @@ F201, CAST function
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -861,7 +865,7 @@ F221, Explicit defaults
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -880,7 +884,7 @@ F261, CASE expression
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -911,7 +915,7 @@ F311, Schema definition statement
 
     ..  list-table::
         :widths: 20 40 40
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -940,7 +944,7 @@ F*, Other
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -967,7 +971,7 @@ S011, Distinct types
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -986,7 +990,7 @@ T321, Basic SQL-invoked routines
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
@@ -1023,7 +1027,7 @@ T*, Other
 
     ..  list-table::
         :widths: 10 30 30 30
-        :header-rows: 0
+        :header-rows: 1
 
         *   -   Feature ID
             -   Feature
