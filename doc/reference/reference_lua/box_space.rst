@@ -6,7 +6,7 @@
 
 **CRUD operations** in Tarantool are implemented by the ``box.space`` submodule.
 It has the data-manipulation functions ``select``, ``insert``, ``replace``,
-``update``, ``upsert``, ``delete``, ``get``, ``put``. It also has members,
+``update``, ``upsert``, ``delete``, ``get``, ``put``. Also, it has members,
 such as id, and whether or not a space is enabled.
 
 Below is a list of all ``box.space`` functions and members.
