@@ -14,6 +14,7 @@ Concise is good
 
 People usually read technical documentation because they want something
 up and running quickly. Write simpler, more concise sentences.
+
 Split the content into smaller paragraphs to improve readability.
 This will also eliminate the need for using ``|br|`` and help us translate content faster.
 Any paragraph over 6 sentences is large.
