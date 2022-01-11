@@ -103,7 +103,7 @@ Below is a list of all ``box.space`` functions and members.
         *  - :doc:`./box_space/id`
            - Numeric identifier of space
 
-        *  - :doc:`./box_space/index`
+        *  - :doc:`./box_space/index_data`
            - Container of space's indexes
 
         *  - :doc:`./box_space/_cluster`
@@ -175,7 +175,7 @@ Below is a list of all ``box.space`` functions and members.
     box_space/enabled
     box_space/field_count
     box_space/id
-    box_space/index
+    box_space/index_data
     box_space/_cluster
     box_space/_func
     box_space/_index
