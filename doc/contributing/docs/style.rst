@@ -106,7 +106,7 @@ Lists and tables help split heavy content into manageable chunks.
 
 To make tables maintainable and easy to translate,
 use the ``list-table`` directive, as described in the Tarantool
-:doc:`table markup reference </contributing/docs/markup/tables>`__.
+:doc:`table markup reference </contributing/docs/markup/tables>`.
 
 Translators find it hard to work with content "drawn" with ASCII characters,
 because it requires adjusting the number of spaces and manually counting characters.
@@ -114,11 +114,13 @@ because it requires adjusting the number of spaces and manually counting charact
 Bad example:
 
 ..  image:: images/dont.png
+    :width: 400
     :alt: Don't "draw" tables with ASCII characters
 
 Good example:
 
 ..  image:: images/do.png
+    :width: 400
     :alt: Use the "list-table" directive instead
 
 
