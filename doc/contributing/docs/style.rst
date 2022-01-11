@@ -105,19 +105,19 @@ Lists and tables help split heavy content into manageable chunks.
 
 To make tables maintainable and easy to translate,
 use the ``list-table`` directive, as described in the Tarantool
-:doc:`markup reference <contributing/docs/markup/tables>`__.
+:doc:`table markup reference <contributing/docs/markup/tables>`__.
 
 Translators find it hard to work with content "drawn" with ASCII characters,
 because it requires adjusting the number of spaces and manually counting characters.
 
 Bad example:
 
-..  image:: /images/dont.png
+..  image:: images/dont.png
     :alt: Don't "draw" tables with ASCII characters
 
 Good example:
 
-..  image:: /images/do.png
+..  image:: images/do.png
     :alt: Use the "list-table" directive instead
 
 
@@ -189,5 +189,5 @@ all similar list/table items end with a period or they all don't.
 In the example below, *all* items in the second column don't have
 ending punctuation. Meanwhile, *all* items in the fourth column end with a period:
 
-..  image:: /images/punctuation.png
+..  image:: images/punctuation.png
     :alt: Items in one column have similar ending punctuation
