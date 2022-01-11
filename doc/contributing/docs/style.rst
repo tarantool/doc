@@ -27,11 +27,12 @@ in simpler terms than an advanced internals description.
 If you choose to use metaphors to clarify a concept, make sure they are relatable
 for an international audience of IT professionals. 
 
-Don't say "we"
-~~~~~~~~~~~~~~
+..  
+    _Don't say "we"!
+    _~~~~~~~~~~~~~~!
 
-Avoid using the pronoun "we".
-`Consider how Gentoo does it <https://wiki.gentoo.org/wiki/Gentoo_Wiki:Guidelines#Avoid_first_and_second_person_writing>`__.
+    _Avoid using the pronoun "we", because it is unclear who that is exactly.!
+    _`Consider how Gentoo does it <https://wiki.gentoo.org/wiki/Gentoo_Wiki:Guidelines#Avoid_first_and_second_person_writing>`__.!
 
 Express one idea in a sentence
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -118,7 +119,7 @@ Good example:
 
 ..  image:: /images/do.png
     :alt: Use the "list-table" directive instead
-    
+
 
 Format code as code
 ~~~~~~~~~~~~~~~~~~~
