@@ -106,7 +106,7 @@ Lists and tables help split heavy content into manageable chunks.
 
 To make tables maintainable and easy to translate,
 use the ``list-table`` directive, as described in the Tarantool
-:doc:`table markup reference <contributing/docs/markup/tables>`__.
+:doc:`table markup reference </contributing/docs/markup/tables>`__.
 
 Translators find it hard to work with content "drawn" with ASCII characters,
 because it requires adjusting the number of spaces and manually counting characters.
@@ -129,9 +129,10 @@ Format large code fragments using the ``code-block`` directive, indicating the l
 For ``shorter code snippets``, make sure that only code goes in the backticks.
 Non-code shouldn't be formatted as code, because this confuses users (and translators, too).
 Check our guidelines on
-`writing about code <https://www.tarantool.io/en/doc/latest/contributing/docs/markup/code/>`__.
+:doc:`writing about code </contributing/docs/markup/code/>`.
 
-For more on formatting, check out the full :doc:`markup reference <contributing/docs/markup>`.
+For more about formatting, check out the Tarantool
+:doc:`markup reference </contributing/docs/markup/>`.
 
 
 Word choice
