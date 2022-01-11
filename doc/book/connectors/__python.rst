@@ -43,9 +43,9 @@ Also there are several community-driven Python connectors:
 
 * `asynctnt <https://github.com/igorcoding/asynctnt>`__ with asyncio support
 * `aiotarantool <https://github.com/shveenkov/aiotarantool>`__ also with asyncio support
-* `gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent support **no active maintenance**
+* `gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent support, **no active maintenance**
 
-Table below contains a feature comparison for asynctnt, gtarantool and
+The table below contains a feature comparison for asynctnt, gtarantool and
 tarantool-python. aiotarantool is absent there because it is quite outdated and
 unmaintained.
 
@@ -76,7 +76,7 @@ Last update: February 2022
     *   -   Known Issues
         -   `issue #18 <https://github.com/igorcoding/asynctnt/issues/18>`__ (no running event loop)
         -   None
-        -   `issue #105 <https://github.com/tarantool/tarantool-python/issues/105>`__ (Unpack of binary data)
+        -   `issue #105 <https://github.com/tarantool/tarantool-python/issues/105>`__ (unpack of binary data)
 
     *   -   Documentation
         -   Yes (`github.io <https://igorcoding.github.io/asynctnt/>`__)
@@ -89,11 +89,11 @@ Last update: February 2022
             <https://github.com/tarantool/tarantool-python/issues/67>`__))
 
     *   -   Testing / CI / CD
-        -   Github Actions
-        -   No (tests exists)
-        -   Appveyor (only Windows)
+        -   GitHub Actions
+        -   No (tests exist)
+        -   AppVeyor (only Windows)
 
-    *   -   Github Stars
+    *   -   GitHub Stars
         -   51
         -   17
         -   78
@@ -207,7 +207,7 @@ Last update: February 2022
         -   No
 
     *   -   Implicit reconnecting strategy
-        -   autoreconnect
+        -   Autoreconnect
         -   Yes (reconnect_max_attempts, reconnect_delay)
         -   Yes (reconnect_max_attempts, reconnect_delay), checking of connection liveness
 
