@@ -2,9 +2,8 @@
 
 ..  _internals-box_protocol:
 
---------------------------------------------------------------------------------
 Binary protocol
---------------------------------------------------------------------------------
+===============
 
 The binary protocol is called a "request/response" protocol because it is
 for sending requests to a Tarantool server and receiving responses.
@@ -21,9 +20,8 @@ to understand network messages,
 to support new features that their favorite connector doesn't support yet,
 or to avoid repetitive parsing by the server.
 
-===============================================================================
-                                    Index
-===============================================================================
+Index
+-----
 
 ..  container:: table
 
@@ -89,9 +87,8 @@ or to avoid repetitive parsing by the server.
 
 ..  _box_protocol-notation:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- symbols and terms
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Symbols and terms
+-----------------
 
 Words that start with **MP_** mean:
 a `MessagePack <http://MessagePack.org>`_ type or a range of MessagePack types,
@@ -216,9 +213,8 @@ Map-items may appear in any order but in examples we usually use the order that 
 
 ..  _box_protocol-header:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- header and body
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Header and body
+---------------
 
 Except during connection (which involves a greeting from the server and optional
 :ref:`authentication <box_protocol-authentication>` that we will discuss later
@@ -298,18 +294,19 @@ Responses will contain the ``<body>`` anyway even for an
 
 ..  _box_protocol-requests:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- requests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Requests
+--------
 
 A request has a size, a :ref:`header <box_protocol-header>`
 that contains the IPROTO key, and a body as described here.
 
+
 ..  _box_protocol-select:
 
-**IPROTO_SELECT** = 0x01.
+IPROTO_SELECT = 0x01
+~~~~~~~~~~~~~~~~~~~~
 
-See :ref:`space_object:select()  <box_space-select>`.
+See :ref:`space_object:select() <box_space-select>`.
 The body is a 6-item map.
 
 ..  cssclass:: highlight
@@ -357,9 +354,11 @@ Example: if the id of 'tspace' is 512 and this is the fifth message, |br|
 Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
 we will show actual byte codes of an IPROTO_SELECT message.
 
+
 ..  _box_protocol-insert:
 
-**IPROTO_INSERT** = 0x02.
+IPROTO_INSERT = 0x02
+~~~~~~~~~~~~~~~~~~~~
 
 See :ref:`space_object:insert()  <box_space-insert>`.
 The body is a 2-item map:
@@ -398,9 +397,12 @@ Example: if the id of 'tspace' is 512 and this is the fifth message, |br|
         IPROTO_TUPLE: [1, 'AAA']
     })
 
+
 ..  _box_protocol-replace:
 
-**IPROTO_REPLACE** = 0x03,
+IPROTO_REPLACE = 0x03
+~~~~~~~~~~~~~~~~~~~~~
+
 See :ref:`space_object:replace()  <box_space-replace>`.
 The body is a 2-item map, the same as for IPROTO_INSERT:
 
@@ -420,9 +422,11 @@ The body is a 2-item map, the same as for IPROTO_INSERT:
         IPROTO_TUPLE: :samp:`{{MP_ARRAY array of field values}}`
     })
 
+
 ..  _box_protocol-update:
 
-**IPROTO_UPDATE** = 0x04.
+IPROTO_UPDATE = 0x04
+~~~~~~~~~~~~~~~~~~~~
 
 See :ref:`space_object:update()  <box_space-update>`.
 
@@ -480,9 +484,11 @@ Example: if the id of 'tspace' is 512 and this is the fifth message, |br|
 Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
 we will show actual byte codes of an IPROTO_UPDATE message.
 
+
 ..  _box_protocol-delete:
 
-**IPROTO_DELETE** = 0x05.
+IPROTO_DELETE = 0x05
+~~~~~~~~~~~~~~~~~~~~
 
 See :ref:`space_object:delete()  <box_space-delete>`.
 The body is a 3-item map:
@@ -504,9 +510,11 @@ The body is a 3-item map:
         IPROTO_KEY: :samp:`{{MP_ARRAY array of key values}}`
     })
 
+
 ..  _box_protocol-call16:
 
-**IPROTO_CALL_16** = 0x06.
+IPROTO_CALL_16 = 0x06
+~~~~~~~~~~~~~~~~~~~~~
 
 See :ref:`conn:call() <net_box-call>`. The suffix ``_16`` is a hint that this is
 for the ``call()`` until Tarantool 1.6. It is deprecated.
@@ -531,16 +539,20 @@ The body is a 2-item map:
 
 The return value is an array of tuples.
 
+
 ..  _box_protocol-auth:
 
-**IPROTO_AUTH** = 0x07.
+IPROTO_AUTH = 0x07
+~~~~~~~~~~~~~~~~~~
 
 See :ref:`authentication <authentication-users>`.
 See the later section :ref:`Binary protocol -- authentication <box_protocol-authentication>`.
 
+
 ..  _box_protocol-eval:
 
-**IPROTO_EVAL** = 0x08.
+IPROTO_EVAL = 0x08
+~~~~~~~~~~~~~~~~~~
 
 See :ref:`conn:eval() <net_box-eval>`.
 Since the argument is a Lua expression, this is
@@ -586,9 +598,11 @@ Example: if this is the fifth message, :samp:`conn:eval('return 5;')` will cause
         IPROTO_TUPLE: []
     })
 
+
 ..  _box_protocol-upsert:
 
-**IPROTO_UPSERT** = 0x09.
+IPROTO_UPSERT = 0x09
+~~~~~~~~~~~~~~~~~~~~
 
 See :ref:`space_object:upsert()  <box_space-upsert>`.
 
@@ -614,9 +628,11 @@ The body is usually a 4-item map:
 
 The IPROTO_OPS is the same as the IPROTO_TUPLE of :ref:`IPROTO_UPDATE <box_protocol-update>`.
 
+
 ..  _box_protocol-call:
 
-**IPROTO_CALL** = 0x0a.
+IPROTO_CALL = 0x0a
+~~~~~~~~~~~~~~~~~~
 
 See :ref:`conn:call() <net_box-call>`.
 The body is a 2-item map:
@@ -640,9 +656,11 @@ The body is a 2-item map:
 The response will be a list of values, similar to the
 :ref:`IPROTO_EVAL <box_protocol-eval>` response.
 
+
 ..  _box_protocol-execute:
 
-**IPROTO_EXECUTE** = 0x0b.
+IPROTO_EXECUTE = 0x0b
+~~~~~~~~~~~~~~~~~~~~~
 
 See :ref:`box.execute() <box-sql_box_execute>`, this is only for SQL.
 The body is a 3-item map:
@@ -697,9 +715,11 @@ an actual value. So, to bind foo and bar to 42 and 43, a client should send
 If a statement has both named and non-named parameters, wrap only named ones
 into a map. The rest of the parameters are positional and will be substituted in order.
 
+
 ..  _box_protocol-nop:
 
-**IPROTO_NOP** = 0x0c.
+IPROTO_NOP = 0x0c
+~~~~~~~~~~~~~~~~~
 
 There is no Lua request exactly equivalent to IPROTO_NOP.
 It causes the LSN to be incremented.
@@ -708,9 +728,11 @@ are the same, but the LSN must be increased because a data-change
 must be recorded.
 The body is: nothing.
 
+
 ..  _box_protocol-prepare:
 
-**IPROTO_PREPARE** = 0x0d.
+IPROTO_PREPARE = 0x0d
+~~~~~~~~~~~~~~~~~~~~~
 
 See :ref:`box.prepare <box-sql_box_prepare>`, this is only for SQL.
 The body is a 1-item map:
@@ -736,36 +758,11 @@ IPROTO_SQL_TEXT (0x40) and statement-text (string) if executing an SQL string.
 Thus the IPROTO_PREPARE map item is the same as the first item of the
 :ref:`IPROTO_EXECUTE <box_protocol-execute>` body.
 
-..  _box_protocol-begin:
-
-**IPROTO_BEGIN** = 0x0e.
-
-This is for starting a transaction.
-Typically the header will include IPROTO_STREAM_ID.
-The body is: nothing.
-See the later section :ref:`Binary protocol -- streams <box_protocol-streams>`.
-
-..  _box_protocol-commit:
-
-**IPROTO_COMMIT** = 0x0f.
-
-This is for ending a transaction.
-Typically the header will include IPROTO_STREAM_ID.
-The body is: nothing.
-See the later section :ref:`Binary protocol -- streams <box_protocol-streams>`.
-
-..  _box_protocol-rollback:
-
-**IPROTO_ROLLBACK** = 0x10.
-
-This is for ending a transaction.
-Typically the header will include IPROTO_STREAM_ID.
-The body is: nothing.
-See the later section :ref:`Binary protocol -- streams <box_protocol-streams>`.
 
 ..  _box_protocol-ping:
 
-**IPROTO_PING** = 0x40.
+IPROTO_PING = 0x40
+~~~~~~~~~~~~~~~~~~
 
 See :ref:`conn:ping() <conn-ping>`. The body will be an empty map because IPROTO_PING
 in the header contains all the information that the server instance needs.
@@ -801,9 +798,10 @@ Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
 The messages are not supposed to be used by any client applications in their
 regular connections.
 
-..  _box_protocol-raft_confirm:
+..  _box_protocol-confirm:
 
-**IPROTO_RAFT_CONFIRM** = 0x28
+IPROTO_CONFIRM = 0x28
+~~~~~~~~~~~~~~~~~~~~~
 
 This message confirms that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID have achieved quorum and can be committed,
@@ -828,9 +826,11 @@ The body is a 2-item map:
         IPROTO_LSN: :samp:`{{MP_INT integer}}`
     })
 
-..  _box_protocol-raft_rollback:
 
-**IPROTO_RAFT_ROLLBACK** = 0x29
+..  _box_protocol-rollback:
+
+IPROTO_ROLLBACK = 0x29
+~~~~~~~~~~~~~~~~~~~~~~
 
 This message says that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID couldn't achieve quorum for some reason
@@ -858,9 +858,8 @@ The body is a 2-item map:
 
 ..  _box_protocol-responses:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- responses if no error and no SQL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Responses if no error and no SQL
+--------------------------------
 
 After the :ref:`header <box_protocol-header>`, for a response,
 there will be a body.
@@ -924,11 +923,11 @@ so if we were using net_box we could decode with
 or we could convert to a string with :samp:`ffi.string({pointer},{length})`.
 The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful.
 
+
 ..  _box_protocol-responses_error:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- responses for errors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Responses for errors
+--------------------
 
 For a response other than IPROTO_OK, the header Response-Code-Indicator will be
 ``0x8XXX`` and the body will be a 1-item map.
@@ -987,11 +986,11 @@ following what was described above. This extra information is given via
 MP_ERROR extension type. See details in :ref:`MessagePack extensions
 <msgpack_ext-error>` section.
 
+
 ..  _box_protocol-sql_protocol:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- responses for SQL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Responses for SQL
+-----------------
 
 After the :ref:`header <box_protocol-header>`, for a response to an SQL statement,
 there will be a body that is slightly different from the body for
@@ -1132,11 +1131,14 @@ itself decodes extra items.
 Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
 we will show actual byte codes of responses to the above SQL messages.
 
+
 ..  _box_protocol-authentication:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- authentication
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Authentication
+--------------
+
+Greeting message
+~~~~~~~~~~~~~~~~
 
 When a client connects to the server instance, the instance responds with
 a 128-byte text greeting message, not in MsgPack format: |br|
@@ -1183,7 +1185,8 @@ and `sha-1 <https://en.wikipedia.org/wiki/SHA-1>`_ functions, as follows.
         scramble = xor(step_1, step_3);
         return scramble;
 
-**IPROTO_AUTH** = 0x07
+IPROTO_AUTH = 0x07
+~~~~~~~~~~~~~~~~~~
 
 The client sends an authentication packet as an IPROTO_AUTH message:
 
@@ -1284,11 +1287,13 @@ An application can use any or all of these ways.
 
 ..  _box_protocol-replication:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- replication
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Replication
+-----------
 
-**IPROTO_JOIN** = 0x41. First you must send an initial IPROTO_JOIN request.
+IPROTO_JOIN = 0x41
+~~~~~~~~~~~~~~~~~~
+
+First you must send an initial IPROTO_JOIN request.
 
 ..  cssclass:: highlight
 ..  parsed-literal::
@@ -1325,7 +1330,10 @@ close a socket.
         IPROTO_VCLOCK: :samp:`{{MP_INT SRV_ID, MP_INT SRV_LSN}}`
     })
 
-**IPROTO_SUBSCRIBE** = 0x42. Then you must send an IPROTO_SUBSCRIBE request.
+IPROTO_SUBSCRIBE = 0x42
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Then you must send an IPROTO_SUBSCRIBE request.
 
 ..  cssclass:: highlight
 ..  parsed-literal::
@@ -1347,9 +1355,11 @@ close a socket.
 Then you must process every request that could come through other masters.
 Every request between masters will have additional LSN and SERVER_ID.
 
+
 ..  _box_protocol-heartbeat:
 
-**HEARTBEATS**
+HEARTBEATS
+~~~~~~~~~~
 
 Frequently a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
 For example, if there is a replica with id = 2,
@@ -1379,7 +1389,10 @@ and the replica might send back this:
 Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
 we will show actual byte codes of the above heartbeat examples.
 
-**BALLOTS**
+..  _box_protocol-ballots:
+
+BALLOTS
+~~~~~~~
 
 While connecting for replication, an instance sends a request with header IPROTO_VOTE (0x44).
 The normal response is ER_OK,and IPROTO_BALLOT (0x29).
@@ -1418,9 +1431,11 @@ IPROTO_BALLOT_IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replica
 IPROTO_BALLOT_IS_BOOTED is true if the instance has finished its
 bootstrap or recovery process.
 
+
 ..  _box_protocol-flags:
 
-**FLAGS**
+FLAGS
+~~~~~
 
 For replication of :doc:`synchronous transactions </book/replication/repl_sync>`
 a header may contain a key = IPROTO_FLAGS and an MP_UINT value = one or more
@@ -1447,9 +1462,9 @@ IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchr
 
 ..  _box_protocol-illustration:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Binary protocol -- illustration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Examples
+--------
+
 
 To follow the examples in this section,
 get a single Linux computer and start three command-line shells ("terminals").
@@ -1725,9 +1740,8 @@ Byte code for the heartbeat example. The replica might send back this body
 
 ..  _box_protocol-xlog:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 XLOG / SNAP
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------
 
 .xlog and .snap files have nearly the same format. The header looks like:
 
