@@ -2,10 +2,6 @@
 Language and style
 ==================
 
-..  contents::
-    :maxdepth: 2
-
-
 General style
 -------------
 
