@@ -181,13 +181,44 @@ Check your spelling and punctuation
 
 Consider checking spelling, grammar, and punctuation with special tools.
 
-Consistent ending punctuation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ending punctuation in lists and tables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Make sure that your lists and tables have consistent punctuation---either
+Lists
+^^^^^
+
+For English text, use the rules of the
+`Microsoft style guide <https://docs.microsoft.com/en-us/style-guide/scannable-content/lists>`__.
+They are presented below for convenience.
+
+In bulleted and numbered lists, end each list item with a period if:
+
+*   Any item forms a complete sentence when combined with the list introduction
+    that precedes the colon.
+
+    *(Exception) Don't use periods if all items have three or fewer words
+    or if the items are UI labels, headings, subheadings, or strings.*
+
+*   Any item by itself is a complete sentence.
+
+
+Tables
+^^^^^^
+
+For the text in cells, use periods or other end punctuation
+only if the cells contain complete sentences or a mixture of fragments and sentences.
+(This is also a
+`Microsoft guideline <https://docs.microsoft.com/en-us/style-guide/scannable-content/tables#punctuation>`__
+for the English language.)
+
+Besides, make sure that your table punctuation is consistent---either
 all similar list/table items end with a period or they all don't.
 In the example below, *all* items in the second column don't have
-ending punctuation. Meanwhile, *all* items in the fourth column end with a period:
+ending punctuation. Meanwhile, *all* items in the fourth column end with a period,
+because they are a mix of fragments and sentences:
 
 ..  image:: images/punctuation.png
     :alt: Items in one column have similar ending punctuation
+
+To learn more about table formatting,
+check the :doc:`table markup reference </contributing/docs/markup/tables>`.
