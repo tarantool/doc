@@ -1469,7 +1469,7 @@ msgstr ""
 "})"
 
 msgid "Responses if no error and no SQL"
-msgstr "Ответы на запросы без ошибок и SQL"
+msgstr "Ответы на запросы без ошибок и без SQL"
 
 msgid ""
 "After the :ref:`header <box_protocol-header>`, for a response, there will be"
@@ -1717,7 +1717,8 @@ msgid ""
 msgstr ""
 "В ответе на SQL-запрос после :ref:`заголовка <box_protocol-header>` идет "
 "тело сообщения, которое немного отличается от тела сообщения, описанного в "
-"разделе :ref:`Ответы на запросы без ошибок и SQL <box_protocol-responses>`."
+"разделе :ref:`Ответы на запросы без ошибок и без SQL <box_protocol-"
+"responses>`."
 
 msgid ""
 "If the SQL request is not SELECT or VALUES or PRAGMA, then the response body"
