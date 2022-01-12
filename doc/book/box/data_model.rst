@@ -66,7 +66,7 @@ In the example above, there's a space called ``tester``.
     space
         In Tarantool, a space is a primary container that stores data.
         It is analogous to tables in relational databases.
-        Spaces contain :term:`tuples <tuple>` — the Tarantool name for
+        Spaces contain :term:`tuples <tuple>` --- the Tarantool name for
         database records.
         The number of tuples in a space is unlimited.
 
@@ -76,8 +76,8 @@ In the example above, there's a space called ``tester``.
         *   a unique **name** specified by the user,
         *   a unique **numeric identifier** which can be specified by
             the user, but usually is assigned automatically by Tarantool,
-        *   an **engine**: *memtx* (default) -- in-memory engine,
-            fast but limited in size, or *vinyl* -- on-disk engine for huge data sets.
+        *   an **engine**: *memtx* (default) --- in-memory engine,
+            fast but limited in size, or *vinyl* --- on-disk engine for huge data sets.
 
         To be functional, a space also needs to have a :ref:`primary index <index-box_index>`.
         It can also have secondary indexes.
@@ -511,7 +511,7 @@ As an example, take some Russian words:
 
       tarantool> box.space.T:create_index('I', {parts = {{field = 1, type ='str', collation='unicode_ci'}}})
       ...
-      tarantool> box.space.S.index.I:select()
+      tarantool> box.space.T.index.I:select()
       ---
       - - ['ЕЛЕ']
         - ['елейный']
@@ -522,7 +522,7 @@ As an example, take some Russian words:
         - ['ёлочный']
         - ['ЕЛь']
       ...
-      tarantool> box.space.S.index.I:select{'ЁлКа'}
+      tarantool> box.space.T.index.I:select{'ЁлКа'}
       ---
       - - ['ёлка']
       ...

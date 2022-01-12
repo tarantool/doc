@@ -17,8 +17,8 @@ index_object:max()
         :return: the tuple for the last key in the index. If optional ``key`` value
                  is supplied, returns the last key which is less than or equal to
                  ``key`` value.
-                 Starting with Tarantool version 2.0, index_object:max(``key``
-                 value) will return nothing
+                 Starting with Tarantool version 2.0, ``index_object:max``(``key``
+                 value) returns nothing
                  if ``key`` value is not equal to a value in the index.
         :rtype:  tuple
 

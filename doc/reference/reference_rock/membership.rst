@@ -37,7 +37,7 @@ A member is represented by the table with the following fields:
     .. note:: The gossip protocol guarantees that every member in the group
        becomes aware of any status change in two communication cycles.
 
-* ``incarnation`` (number) is a value incremented every time the instance is
+* ``incarnation`` (number) is a value incremented every time the instance
   becomes a ``suspect``, ``dead``, or updates its payload.
 * ``payload`` (table) is auxiliary data that can be used by various modules.
 * ``timestamp`` (number) is a value of ``fiber.time64()`` which:

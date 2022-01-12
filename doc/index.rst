@@ -1,4 +1,6 @@
 :orphan:
+:noindex:
+:fullwidth:
 :priority: 0.95
 
 ..  _index:

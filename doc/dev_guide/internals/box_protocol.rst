@@ -28,59 +28,62 @@ Index
     ..  rst-class:: left-align-column-1
     ..  rst-class:: left-align-column-2
 
-    +--------------------------------------------------+------------------------+
-    | Section                                          | Description            |
-    +==================================================+========================+
-    | :ref:`Symbols and terms                          | Notation of binary     |
-    | <box_protocol-notation>`                         | protocol               |
-    +--------------------------------------------------+------------------------+
-    | :ref:`Header and body                            | Header of a request    |
-    | <box_protocol-header>`                           |                        |
-    +--------------------------------------------------+------------------------+
-    | Requests:                                        | Body of a request      |
-    | |br|:ref:`IPROTO_SELECT <box_protocol-select>`   |                        |
-    | |br|:ref:`IPROTO_INSERT <box_protocol-insert>`   |                        |
-    | |br|:ref:`IPROTO_REPLACE <box_protocol-replace>` |                        |
-    | |br|:ref:`IPROTO_UPDATE <box_protocol-update>`   |                        |
-    | |br|:ref:`IPROTO_DELETE <box_protocol-delete>`   |                        |
-    | |br|:ref:`IPROTO_CALL_16 <box_protocol-call16>`  |                        |
-    | |br|:ref:`IPROTO_AUTH <box_protocol-auth>`       |                        |
-    | |br|:ref:`IPROTO_EVAL <box_protocol-eval>`       |                        |
-    | |br|:ref:`IPROTO_UPSERT <box_protocol-upsert>`   |                        |
-    | |br|:ref:`IPROTO_CALL <box_protocol-call>`       |                        |
-    | |br|:ref:`IPROTO_EXECUTE <box_protocol-execute>` |                        |
-    | |br|:ref:`IPROTO_NOP <box_protocol-nop>`         |                        |
-    | |br|:ref:`IPROTO_PREPARE <box_protocol-prepare>` |                        |
-    | |br|:ref:`IPROTO_PING <box_protocol-ping>`       |                        |
-    | |br|:ref:`IPROTO_JOIN <box_protocol-join>`       |                        |
-    | |br|:ref:`IPROTO_SUBSCRIBE <box_protocol-join>`  |                        |
-    | |br|:ref:`IPROTO_VOTE_DEPRECATED                 |                        |
-    | <box_protocol-join>`                             |                        |
-    | |br|:ref:`IPROTO_VOTE <box_protocol-join>`       |                        |
-    | |br|:ref:`IPROTO_FETCH_SNAPSHOT                  |                        |
-    | <box_protocol-join>`                             |                        |
-    | |br|:ref:`IPROTO_REGISTER <box_protocol-join>`   |                        |
-    +--------------------------------------------------+------------------------+
-    | :ref:`Responses if no error and no               | Responses for no SQL   |
-    | SQL <box_protocol-responses>`                    |                        |
-    +--------------------------------------------------+------------------------+
-    | :ref:`Responses for errors                       | Responses for errors   |
-    | <box_protocol-responses_error>`                  |                        |
-    +--------------------------------------------------+------------------------+
-    | :ref:`Responses for SQL                          | Responses for SQL      |
-    | <box_protocol-sql_protocol>`                     |                        |
-    +--------------------------------------------------+------------------------+
-    | :ref:`Authentication                             | Authentication after   |
-    | <box_protocol-authentication>`                   | connection             |
-    +--------------------------------------------------+------------------------+
-    | :ref:`Replication                                | Replication request    |
-    | <box_protocol-replication>`                      |                        |
-    +--------------------------------------------------+------------------------+
-    | :ref:`Illustration <box_protocol-illustration>`  | Illustration of use    |
-    +--------------------------------------------------+------------------------+
-    | :ref:`XLOG/SNAP <box_protocol-xlog>`             | Format of .xlog        |
-    |                                                  | and .snap files        |
-    +--------------------------------------------------+------------------------+
+    +----------------------------------------------------+------------------------+
+    | Section                                            | Description            |
+    +====================================================+========================+
+    | :ref:`Symbols and terms                            | Notation of binary     |
+    | <box_protocol-notation>`                           | protocol               |
+    +----------------------------------------------------+------------------------+
+    | :ref:`Header and body                              | Header of a request    |
+    | <box_protocol-header>`                             |                        |
+    +----------------------------------------------------+------------------------+
+    | Requests:                                          | Body of a request      |
+    | |br|:ref:`IPROTO_SELECT <box_protocol-select>`     |                        |
+    | |br|:ref:`IPROTO_INSERT <box_protocol-insert>`     |                        |
+    | |br|:ref:`IPROTO_REPLACE <box_protocol-replace>`   |                        |
+    | |br|:ref:`IPROTO_UPDATE <box_protocol-update>`     |                        |
+    | |br|:ref:`IPROTO_DELETE <box_protocol-delete>`     |                        |
+    | |br|:ref:`IPROTO_CALL_16 <box_protocol-call16>`    |                        |
+    | |br|:ref:`IPROTO_AUTH <box_protocol-auth>`         |                        |
+    | |br|:ref:`IPROTO_EVAL <box_protocol-eval>`         |                        |
+    | |br|:ref:`IPROTO_UPSERT <box_protocol-upsert>`     |                        |
+    | |br|:ref:`IPROTO_CALL <box_protocol-call>`         |                        |
+    | |br|:ref:`IPROTO_EXECUTE <box_protocol-execute>`   |                        |
+    | |br|:ref:`IPROTO_NOP <box_protocol-nop>`           |                        |
+    | |br|:ref:`IPROTO_PREPARE <box_protocol-prepare>`   |                        |
+    | |br|:ref:`IPROTO_PING <box_protocol-ping>`         |                        |
+    | |br|:ref:`IPROTO_JOIN <box_protocol-join>`         |                        |
+    | |br|:ref:`IPROTO_SUBSCRIBE <box_protocol-join>`    |                        |
+    | |br|:ref:`IPROTO_VOTE_DEPRECATED                   |                        |
+    | <box_protocol-join>`                               |                        |
+    | |br|:ref:`IPROTO_VOTE <box_protocol-join>`         |                        |
+    | |br|:ref:`IPROTO_FETCH_SNAPSHOT                    |                        |
+    | <box_protocol-join>`                               |                        |
+    | |br|:ref:`IPROTO_REGISTER <box_protocol-join>`     |                        |
+    | |br|:ref:`IPROTO_BEGIN <box_protocol-begin>`       |                        |
+    | |br|:ref:`IPROTO_COMMIT <box_protocol-commit>`     |                        |
+    | |br|:ref:`IPROTO_ROLLBACK <box_protocol-rollback>` |                        |
+    +----------------------------------------------------+------------------------+
+    | :ref:`Responses if no error and no                 | Responses for no SQL   |
+    | SQL <box_protocol-responses>`                      |                        |
+    +----------------------------------------------------+------------------------+
+    | :ref:`Responses for errors                         | Responses for errors   |
+    | <box_protocol-responses_error>`                    |                        |
+    +----------------------------------------------------+------------------------+
+    | :ref:`Responses for SQL                            | Responses for SQL      |
+    | <box_protocol-sql_protocol>`                       |                        |
+    +----------------------------------------------------+------------------------+
+    | :ref:`Authentication                               | Authentication after   |
+    | <box_protocol-authentication>`                     | connection             |
+    +----------------------------------------------------+------------------------+
+    | :ref:`Replication                                  | Replication request    |
+    | <box_protocol-replication>`                        |                        |
+    +----------------------------------------------------+------------------------+
+    | :ref:`Illustration <box_protocol-illustration>`    | Illustration of use    |
+    +----------------------------------------------------+------------------------+
+    | :ref:`XLOG/SNAP <box_protocol-xlog>`               | Format of .xlog        |
+    |                                                    | and .snap files        |
+    +----------------------------------------------------+------------------------+
 
 ..  _box_protocol-notation:
 
@@ -127,8 +130,11 @@ The IPROTO constants that identify requests that we will mention in this section
     IPROTO_EXECUTE=0x0b
     IPROTO_NOP=0x0c
     IPROTO_PREPARE=0x0d
-    IPROTO_CONFIRM=0x28
-    IPROTO_ROLLBACK=0x29
+    IPROTO_BEGIN=0x0e
+    IPROTO_COMMIT=0x0f
+    IPROTO_ROLLBACK=0x10
+    IPROTO_RAFT_CONFIRM=0x28
+    IPROTO_RAFT_ROLLBACK=0x29
     IPROTO_PING=0x40
     IPROTO_JOIN=0x41
     IPROTO_SUBSCRIBE=0x42
@@ -149,6 +155,7 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_TIMESTAMP=0x04
     IPROTO_SCHEMA_VERSION=0x05
     IPROTO_FLAGS=0x09
+    IPROTO_STREAM_ID=0x0a
     IPROTO_SPACE_ID=0x10
     IPROTO_INDEX_ID=0x11
     IPROTO_LIMIT=0x12
@@ -240,6 +247,7 @@ It may be useful to compare it with the number of bytes remaining in the packet.
         IPROTO_REQUEST_TYPE: :samp:`{{MP_UINT unsigned integer}}`,
         IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
         IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
+        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
     })
 
 **IPROTO_REQUEST_TYPE** or Response-Code-Indicator = 0x00.
@@ -260,6 +268,16 @@ In a request header IPROTO_SCHEMA_VERSION is optional, so the version will not
 be checked if it is absent.
 In a response header IPROTO_SCHEMA_VERSION is always present, and it is up to
 the client to check if it has changed.
+
+..  _box_protocol-iproto_stream_id:
+
+**IPROTO_STREAM_ID** = 0x0a.
+An unsigned number that should be unique in every stream.
+In requests IPROTO_STREAM_ID is optional and is useful for two things:
+ensuring that requests within transactions are done in separate groups,
+and ensuring strictly consistent execution of requests (whether or not they are within transactions).
+In responses IPROTO_STREAM_ID does not appear.
+See :ref:`Binary protocol -- streams <box_protocol-streams>`.
 
 Have a look at file
 `xrow.c <https://github.com/tarantool/tarantool/blob/master/src/box/xrow.c>`_
@@ -563,8 +581,7 @@ The body is a 2-item map:
         IPROTO_TUPLE: :samp:`{{MP_ARRAY array of arguments}}`
     })
 
-Example: if this is the fifth message, |br|
-:samp:`{conn}.:code:`eval('return 5;')` will cause:
+Example: if this is the fifth message, :samp:`conn:eval('return 5;')` will cause:
 
 ..  code-block:: none
 
@@ -665,11 +682,11 @@ The body is a 3-item map:
         IPROTO_OPTIONS: :samp:`{{MP_ARRAY array}}`
     })
 
-Use IPROTO_STMT_ID (0x43) + statement-id (MP_INT) if executing a prepared statement,
+Use IPROTO_STMT_ID (0x43) and statement-id (MP_INT) if executing a prepared statement,
 or use
-IPROTO_SQL_TEXT (0x40) + statement-text (MP_STR) if executing an SQL string, then
-IPROTO_SQL_BIND (0x41) + array of parameter values to match ? placeholders or
-:name placeholders, IPROTO_OPTIONS (0x2b) + array of options (usually empty).
+IPROTO_SQL_TEXT (0x40) and statement-text (MP_STR) if executing an SQL string, then
+IPROTO_SQL_BIND (0x41) and array of parameter values to match ? placeholders or
+:name placeholders, IPROTO_OPTIONS (0x2b) and array of options (usually empty).
 
 For example, suppose we prepare a statement
 with two ? placeholders, and execute with two parameters, thus: |br|
@@ -735,9 +752,9 @@ The body is a 1-item map:
         IPROTO_STMT_ID: :samp:`{{MP_INT integer}}` or IPROTO_SQL_TEXT: :samp:`{{MP_STR string}}`
     })
 
-IPROTO_STMT_ID (0x43) + statement-id (MP_INT) if executing a prepared statement
+IPROTO_STMT_ID (0x43) and statement-id (MP_INT) if executing a prepared statement
 or
-IPROTO_SQL_TEXT (0x40) + statement-text (string) if executing an SQL string.
+IPROTO_SQL_TEXT (0x40) and statement-text (string) if executing an SQL string.
 Thus the IPROTO_PREPARE map item is the same as the first item of the
 :ref:`IPROTO_EXECUTE <box_protocol-execute>` body.
 
@@ -781,7 +798,6 @@ Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
 The messages are not supposed to be used by any client applications in their
 regular connections.
 
-
 ..  _box_protocol-confirm:
 
 IPROTO_CONFIRM = 0x28
@@ -790,6 +806,7 @@ IPROTO_CONFIRM = 0x28
 This message confirms that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID have achieved quorum and can be committed,
 up to and including LSN = IPROTO_LSN.
+Prior to Tarantool version 2.10-beta1, IPROTO_RAFT_CONFIRM was called IPROTO_CONFIRM.
 
 The body is a 2-item map:
 
@@ -800,7 +817,7 @@ The body is a 2-item map:
     msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
     # <header>
     msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_CONFIRM,
+        IPROTO_REQUEST_TYPE: IPROTO_RAFT_CONFIRM,
         IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
     })
     # <body>
@@ -818,6 +835,7 @@ IPROTO_ROLLBACK = 0x29
 This message says that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID couldn't achieve quorum for some reason
 and should be rolled back, down to LSN = IPROTO_LSN and including it.
+Prior to Tarantool version 2.10, IPROTO_RAFT_ROLLBACK was called IPROTO_ROLLBACK.
 
 The body is a 2-item map:
 
@@ -828,7 +846,7 @@ The body is a 2-item map:
     msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
     # <header>
     msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_ROLLBACK,
+        IPROTO_REQUEST_TYPE: IPROTO_RAFT_ROLLBACK,
         IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
     })
     # <body>
@@ -1032,7 +1050,7 @@ If the SQL statement is SELECT or VALUES or PRAGMA, the response contains:
     })
 
 * :samp:`IPROTO_METADATA: {array of column maps}` = array of column maps, with each column map containing
-  at least IPROTO_FIELD_NAME (0x00) + MP_STR, and IPROTO_FIELD_TYPE (0x01) + MP_STR.
+  at least IPROTO_FIELD_NAME (0x00) and MP_STR, and IPROTO_FIELD_TYPE (0x01) and MP_STR.
   Additionally, if ``sql_full_metadata`` in the
   :ref:`_session_settings <box_space-session_settings>` system space
   is TRUE, then the array will have these additional column maps
@@ -1041,10 +1059,10 @@ If the SQL statement is SELECT or VALUES or PRAGMA, the response contains:
 
 ..  code-block:: none
 
-    IPROTO_FIELD_COLL (0x02) + MP_STR
-    IPROTO_FIELD_IS_NULLABLE (0x03) + MP_BOOL
-    IPROTO_FIELD_IS_AUTOINCREMENT (0x04) + MP_BOOL
-    IPROTO_FIELD_SPAN (0x05) + MP_STR or MP_NIL
+    IPROTO_FIELD_COLL (0x02) and MP_STR
+    IPROTO_FIELD_IS_NULLABLE (0x03) and MP_BOOL
+    IPROTO_FIELD_IS_AUTOINCREMENT (0x04) and MP_BOOL
+    IPROTO_FIELD_SPAN (0x05) and MP_STR or MP_NIL
 
 * :samp:`IPROTO_DATA:{array of tuples}` = the result set "rows".
 
@@ -1065,7 +1083,6 @@ we could get this response, in the body:
             IPROTO_FIELD_IS_NULLABLE: false,
             IPROTO_FIELD_IS_AUTOINCREMENT: true,
             IPROTO_FIELD_SPAN: nil,
-             ,
             IPROTO_FIELD_NAME: 'Д',
             IPROTO_FIELD_TYPE: 'string',
             IPROTO_FIELD_COLL: 'unicode',
@@ -1082,8 +1099,8 @@ If instead we said |br|
 :code:`conn:prepare([[SELECT dd, дд AS д FROM t1;]])` |br|
 then we could get almost the same response, but there would
 be no IPROTO_DATA and there would be two additional items: |br|
-``34 00 = IPROTO_BIND_COUNT + MP_UINT = 0`` (there are no parameters to bind), |br|
-``33 90 = IPROTO_BIND_METADATA + MP_ARRAY, size 0`` (there are no parameters to bind).
+``34 00 = IPROTO_BIND_COUNT and MP_UINT = 0`` (there are no parameters to bind), |br|
+``33 90 = IPROTO_BIND_METADATA and MP_ARRAY, size 0`` (there are no parameters to bind).
 
 ..  cssclass:: highlight
 ..  parsed-literal::
@@ -1099,7 +1116,6 @@ be no IPROTO_DATA and there would be two additional items: |br|
                 IPROTO_FIELD_IS_NULLABLE: false
                 IPROTO_FIELD_IS_AUTOINCREMENT: true
                 IPROTO_FIELD_SPAN: nil,
-                ,
                 IPROTO_FIELD_NAME: 'Д',
                 IPROTO_FIELD_TYPE: 'string',
                 IPROTO_FIELD_COLL: 'unicode',
@@ -1199,6 +1215,75 @@ The server instance responds to an authentication packet with a standard respons
 To see how Tarantool handles this, look at
 `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_
 function ``netbox_encode_auth``.
+
+..  _box_protocol-streams:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Binary protocol -- streams
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The :ref:`Streams and interactive transactions <box_stream>`
+feature, which was added in Tarantool version
+:tarantool-release:`2.10.0-beta1`, allows two things:
+sequential processing and interleaving.
+
+Sequential processing:
+With streams there is a guarantee that the server instance will not
+handle the next request in a stream until it has completed the previous one.
+
+Interleaving:
+For example, a series of requests can include
+"begin for stream #1", "begin for stream #2",
+"insert for stream #1", "insert for stream #2", "delete
+for stream #1", "commit for stream #1", "rollback for stream #2".
+
+To make these things possible,
+the engine should be :ref:`vinyl <engines-vinyl>` or :ref:`memtx with mvcc <cfg_basic-memtx_use_mvcc_engine>`, and
+the client is responsible for ensuring that the stream identifier,
+unsigned integer :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`, is in the request header.
+IPROTO_STREAM_ID can be any positive 64-bit number, and should be unique for the connection.
+If IPROTO_STREAM_ID equals zero the server instance will ignore it.
+
+For example, suppose that the client has started a stream with
+the :ref:`net.box module <net_box-module>`
+
+..  code-block:: lua
+
+    net_box = require('net.box')
+    conn = net_box.connect('localhost:3302')
+    stream = conn:new_stream()
+
+At this point the stream object will look like a duplicate of
+the conn object, with just one additional member: ``stream_id``.
+Now, using stream instead of conn, the client sends two requests:
+
+..  code-block:: lua
+
+    stream.space.T:insert{1}
+    stream.space.T:insert{2}
+
+The header and body of these requests will be the same as in
+non-stream :ref:`IPROTO_INSERT <box_protocol-insert>` requests, except
+that the header will contain an additional item: IPROTO_STREAM_ID=0x0a
+with MP_UINT=0x01. It happens to equal 1 for this example because
+each call to conn:new_stream() assigns a new number, starting with 1.
+
+The client makes stream transactions by sending, in order:
+IPROTO_BEGIN, the transaction data-change and query requests,
+IPROTO_COMMIT or IPROTO_ROLLBACK.
+Each request must contain the same IPROTO_STREAM_ID value.
+With streaming there is no need to add
+:ref:`IPROTO_FLAGS <box_protocol-flags>` and IPROTO_FLAG_COMMIT
+in the header of the last request of a transaction.
+Rollback will be automatic if disconnect occurs before commit is possible.
+
+Thus there are now multiple ways to do transactions:
+with net_box and stream:begin() and stream:commit() or stream:rollback()
+which cause IPROTO_BEGIN and IPROTO_COMMIT or IPROTO_ROLLBACK with
+the current value of stream.stream_id;
+with :ref:`box.begin() <box-begin>` and :ref:`box.commit() <box-commit>` or :ref:`box.rollback() <box-rollback>`;
+with SQL and :ref:`START TRANSACTION <sql_start_transaction>` and :ref:`COMMIT <sql_commit>` or :ref:`ROLLBACK <sql_rollback>`.
+An application can use any or all of these ways.
 
 ..  _box_protocol-replication:
 
@@ -1315,12 +1400,12 @@ The fields within IPROTO_BALLOT are map items:
 
 ..  code-block:: none
 
-    IPROTO_BALLOT_IS_RO_CFG (0x01) + MP_BOOL
-    IPROTO_BALLOT_VCLOCK (0x02) + vclock
-    IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock
-    IPROTO_BALLOT_IS_RO (0x04) + MP_BOOL
-    IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
-    IPROTO_BALLOT_IS_BOOTED = 0x06 + MP_BOOL
+    IPROTO_BALLOT_IS_RO_CFG (0x01) and MP_BOOL
+    IPROTO_BALLOT_VCLOCK (0x02) and vclock
+    IPROTO_BALLOT_GC_VCLOCK (0x03) and vclock
+    IPROTO_BALLOT_IS_RO (0x04) and MP_BOOL
+    IPROTO_BALLOT_IS_ANON = 0x05 and MP_BOOL
+    IPROTO_BALLOT_IS_BOOTED = 0x06 and MP_BOOL
 
 IPROTO_BALLOT_IS_RO_CFG and IPRO_BALLOT_VCLOCK and IPROTO_BALLOT_GC_VCLOCK and IPROTO_BALLOT_IS_RO
 were added in version :doc:`2.6.1 </release/2.6.1>`.
@@ -1498,7 +1583,7 @@ example:
 
 ..  code-block:: none
 
-    ce 00 00 00 20                MP_UINT = HEADER + BODY SIZE
+    ce 00 00 00 20                MP_UINT = HEADER AND BODY SIZE
     83                            MP_MAP, size 3
     00                              Response-Code-Indicator
     ce 00 00 00 00                  MP_UINT = IPROTO_OK
@@ -1517,7 +1602,7 @@ example:
 
 ..  code-block:: none
 
-    ce 00 00 00 3b                  MP_UINT = HEADER + BODY SIZE
+    ce 00 00 00 3b                  MP_UINT = HEADER AND BODY SIZE
     83                              MP_MAP, size 3 (i.e. 3 items in header)
        00                              Response-Code-Indicator
        ce 00 00 80 0a                  MP_UINT = hexadecimal 800a
@@ -1565,17 +1650,17 @@ then tcpdump will show this response, after the header:
     32                         IPROTO_METADATA
     92                         MP_ARRAY, size 2 (i.e. 2 columns)
     85                           MP_MAP, size 5 (i.e. 5 items for column#1)
-    00 a2 44 44                    IPROTO_FIELD_NAME + 'DD'
-    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE + 'integer'
-    03 c2                          IPROTO_FIELD_IS_NULLABLE + false
-    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT + true
-    05 c0                          PROTO_FIELD_SPAN + nil
+    00 a2 44 44                    IPROTO_FIELD_NAME and 'DD'
+    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE and 'integer'
+    03 c2                          IPROTO_FIELD_IS_NULLABLE and false
+    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT and true
+    05 c0                          PROTO_FIELD_SPAN and nil
     85                           MP_MAP, size 5 (i.e. 5 items for column#2)
-    00 a2 d0 94                    IPROTO_FIELD_NAME + 'Д' upper case
-    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE + 'string'
-    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL + 'unicode'
-    03 c3                          IPROTO_FIELD_IS_NULLABLE + true
-    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN + 'дд' lower case
+    00 a2 d0 94                    IPROTO_FIELD_NAME and 'Д' upper case
+    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE and 'string'
+    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL and 'unicode'
+    03 c3                          IPROTO_FIELD_IS_NULLABLE and true
+    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN and 'дд' lower case
     30                         IPROTO_DATA
     92                         MP_ARRAY, size 2
     92                           MP_ARRAY, size 2
@@ -1587,10 +1672,19 @@ then tcpdump will show this response, after the header:
 
 Byte code for the SQL PREPARE example. If we said |br|
 :code:`conn:prepare([[SELECT dd, дд AS д FROM t1;]])` |br|
-then tcpdump would should show almost the same response, but there would
-be no IPROTO_DATA and there would be two additional items: |br|
-:code:`34 00 = IPROTO_BIND_COUNT + MP_UINT = 0` (there are no parameters to bind), |br|
-:code:`33 90 = IPROTO_BIND_METADATA + MP_ARRAY`, size 0 (there are no parameters to bind).
+then tcpdump would show almost the same response, but there would
+be no IPROTO_DATA. Instead, additional items will appear:
+
+..  code-block:: none
+
+    34                       IPROTO_BIND_COUNT
+    00                       MP_UINT = 0
+
+    33                       IPROTO_BIND_METADATA
+    90                       MP_ARRAY, size 0
+
+``MP_UINT = 0`` and ``MP_ARRAY`` has size 0 because there are no parameters to bind.
+Full output:
 
 ..  code-block:: none
 
@@ -1604,17 +1698,17 @@ be no IPROTO_DATA and there would be two additional items: |br|
     32                         IPROTO_METADATA
     92                         MP_ARRAY, size 2 (i.e. 2 columns)
     85                           MP_MAP, size 5 (i.e. 5 items for column#1)
-    00 a2 44 44                    IPROTO_FIELD_NAME + 'DD'
-    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE + 'integer'
-    03 c2                          IPROTO_FIELD_IS_NULLABLE + false
-    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT + true
-    05 c0                          PROTO_FIELD_SPAN + nil
+    00 a2 44 44                    IPROTO_FIELD_NAME and 'DD'
+    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE and 'integer'
+    03 c2                          IPROTO_FIELD_IS_NULLABLE and false
+    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT and true
+    05 c0                          PROTO_FIELD_SPAN and nil
     85                           MP_MAP, size 5 (i.e. 5 items for column#2)
-    00 a2 d0 94                    IPROTO_FIELD_NAME + 'Д' upper case
-    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE + 'string'
-    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL + 'unicode'
-    03 c3                          IPROTO_FIELD_IS_NULLABLE + true
-    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN + 'дд' lower case
+    00 a2 d0 94                    IPROTO_FIELD_NAME and 'Д' upper case
+    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE and 'string'
+    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL and 'unicode'
+    03 c3                          IPROTO_FIELD_IS_NULLABLE and true
+    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN and 'дд' lower case
 
 Byte code for the heartbeat example. The master might send this body:
 
