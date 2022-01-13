@@ -184,23 +184,31 @@ Consider checking spelling, grammar, and punctuation with special tools.
 Ending punctuation in lists and tables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+The following recommendations are *for the English language only.*
+You can find similar guidelines for the Russian language in the
+`external reference for Russian proofreaders <http://new.gramota.ru/spravka/letters/83-rubric-77>`__.
+
 Lists
 ^^^^^
-
-For English text, use the rules of the
-`Microsoft style guide <https://docs.microsoft.com/en-us/style-guide/scannable-content/lists>`__.
-They are presented below for convenience.
 
 In bulleted and numbered lists, end each list item with a period if:
 
 *   Any item forms a complete sentence when combined with the list introduction
-    that precedes the colon.
+    that precedes the colon, *unless:*
 
-    *(Exception) Don't use periods if all items have three or fewer words
-    or if the items are UI labels, headings, subheadings, or strings.*
+    -   All items have three or fewer words.
+
+    -   The items are UI labels, headings, subheadings, or strings.
 
 *   Any item by itself is a complete sentence.
 
+The above rules come from the
+`Microsoft style guide <https://docs.microsoft.com/en-us/style-guide/scannable-content/lists>`__.
+
+Please don't use commas or semicolons at the end of list items---it's
+either a period or nothing.
+Don't add redundant conjunctions like "and"/"or" before the last list item.
+General English punctuation rules still apply for text in lists.
 
 Tables
 ^^^^^^
