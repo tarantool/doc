@@ -252,7 +252,7 @@ To send bare Lua code for execution, use ``Eval``:
 Feature comparison
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are two more connectors from open-source community available:
+There are two more connectors from the open-source community available:
 `viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_ and
 `FZambia/tarantool <https://github.com/FZambia/tarantool>`_. 
 
