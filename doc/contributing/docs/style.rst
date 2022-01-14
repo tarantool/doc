@@ -207,7 +207,10 @@ The above rules come from the
 
 Please don't use commas or semicolons at the end of list items---it's
 either a period or nothing.
+The sentence preceding a list can end either with a semicolon or a period.
+
 Don't add redundant conjunctions like "and"/"or" before the last list item.
+
 General English punctuation rules still apply for text in lists.
 
 Tables
