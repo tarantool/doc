@@ -191,22 +191,21 @@ You can find similar guidelines for the Russian language in the
 Lists
 ^^^^^
 
-In bulleted and numbered lists, end each list item with a period if:
+There are two kinds of lists:
 
-*   Any item forms a complete sentence when combined with the list introduction
-    that precedes the colon, *unless:*
+*   Where each item forms a complete sentence.
+*   Where each item is a phrase of three or less words or a term.
 
-    -   All items have three or fewer words.
+In the former case, start each item with a capital letter and end with a period.
+In the latter case, start it with a lowercase letter and
+add no ending punctuation (no period, no comma, no semicolon).
 
-    -   The items are UI labels, headings, subheadings, or strings.
+A list should be formatted uniformly:
+choose the first or second rule for all items in a list.
 
-*   Any item by itself is a complete sentence.
-
-The above rules come from the
+The above rules are adapted from the
 `Microsoft style guide <https://docs.microsoft.com/en-us/style-guide/scannable-content/lists>`__.
 
-Please don't use commas or semicolons at the end of list items---it's
-either a period or nothing.
 The sentence preceding a list can end either with a semicolon or a period.
 
 Don't add redundant conjunctions like "and"/"or" before the last list item.
