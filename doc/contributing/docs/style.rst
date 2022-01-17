@@ -24,12 +24,12 @@ in simpler terms than an advanced internals description.
 If you choose to use metaphors to clarify a concept, make sure they are relatable
 for an international audience of IT professionals. 
 
-..  
-    _Don't say "we"!
-    _~~~~~~~~~~~~~~!
+Don't say "we"
+~~~~~~~~~~~~~~
 
-    _Avoid using the pronoun "we", because it is unclear who that is exactly.!
-    _`Consider how Gentoo does it <https://wiki.gentoo.org/wiki/Gentoo_Wiki:Guidelines#Avoid_first_and_second_person_writing>`__.!
+Only use the pronoun "we" in entry-level texts like getting started guides.
+In other cases, avoid using "we", because it is unclear who that is exactly.
+Consider how Gentoo does it <https://wiki.gentoo.org/wiki/Gentoo_Wiki:Guidelines#Avoid_first_and_second_person_writing>`__.
 
 Express one idea in a sentence
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
