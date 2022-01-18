@@ -29,7 +29,7 @@ Don't say "we"
 
 Only use the pronoun "we" in entry-level texts like getting started guides.
 In other cases, avoid using "we", because it is unclear who that is exactly.
-Consider how Gentoo does it <https://wiki.gentoo.org/wiki/Gentoo_Wiki:Guidelines#Avoid_first_and_second_person_writing>`__.
+`Consider how Gentoo does it <https://wiki.gentoo.org/wiki/Gentoo_Wiki:Guidelines#Avoid_first_and_second_person_writing>`__.
 
 Express one idea in a sentence
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,10 +50,10 @@ Simple sentences are easier to read, understand and translate.
         *   -   Don't
             -   Do
 
-        *   -   Dogs (I have three of them) are my favourite animals.
+        *   -   Dogs (I have three of them) are my favorite animals.
                 Their names are Ace, Bingo and Charm; Charm is the youngest one.
 
-            -   Dogs are my favourite animals.
+            -   Dogs are my favorite animals.
                 I have three of them.
                 Their names are Ace, Bingo and Charm.
                 Charm is the youngest one.
