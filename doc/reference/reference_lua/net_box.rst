@@ -30,18 +30,18 @@ the best programming practice with Tarantool. When multiple fibers use the same
 connection, all requests are pipelined through the same network socket, but each
 fiber gets back a correct response. Reducing the number of active sockets lowers
 the overhead of system calls and increases the overall server performance. However
-for some cases a single connection is not enough —- for example, when
+for some cases a single connection is not enough---for example, when
 it is necessary to prioritize requests or to use different authentication IDs.
 
 .. _net_box-options:
 
-Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
+Most ``net.box`` methods accept the last ``{options}`` argument, which can be:
 
-* ``{timeout=...}``. For example, a method whose final argument is
+* ``{timeout=...}``. For example, a method whose last argument is
   ``{timeout=1.5}`` will stop after 1.5 seconds on the local node, although this
   does not guarantee that execution will stop on the remote server node.
 * ``{buffer=...}``. For an example see :ref:`buffer module <buffer-module>`.
-* ``{is_async=...}``. For example, a method whose final argument is
+* ``{is_async=...}``. For example, a method whose last argument is
   ``{is_async=true}`` will not wait for the result of a request. See the
   :ref:`is_async <net_box-is_async>` description.
 * ``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages.
