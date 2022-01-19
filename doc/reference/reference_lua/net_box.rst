@@ -57,15 +57,16 @@ The diagram below shows possible connection states and transitions:
 
 On this diagram:
 
-* ``net_box.connect()`` method spawns a worker fiber, which will establish a connection and start the state machine.
+* ``net_box.connect()`` method spawns a worker fiber, which will establish the connection and start the state machine.
 
-* The state machine is in the ‘initial‘ state.
+* The state machine goes to the ‘initial‘ state.
 
 * Authentication and schema upload.
+
   It is possible later on to re-enter the ‘fetch_schema’ state from ‘active’ to trigger schema reload.
 
 * The transport goes to the ‘error’ state in case of an error.
-  For example, if the server closed the connection.
+  It can happen, for example, if the server closed the connection.
   If the ``reconnect_after`` option is set, instead of the ‘error’ state, the transport goes to the ‘error_reconnect’ state.
 
 * ``conn.close()`` method sets the state to ‘closed’ and kills the worker.
