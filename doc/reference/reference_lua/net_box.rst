@@ -62,7 +62,6 @@ On this diagram:
 * The state machine goes to the ‘initial‘ state.
 
 * Authentication and schema upload.
-
   It is possible later on to re-enter the ‘fetch_schema’ state from ‘active’ to trigger schema reload.
 
 * The transport goes to the ‘error’ state in case of an error.
