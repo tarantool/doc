@@ -697,11 +697,344 @@ msgstr ""
 "поддержкой asyncio"
 
 msgid ""
-"`gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent support"
-" **no active maintenance**"
+"`gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent "
+"support, **no active maintenance**"
 msgstr ""
-"`gtarantool <https://github.com/shveenkov/gtarantool>`_ с поддержкой gevent "
-"(**не обновляется**)"
+"`gtarantool <https://github.com/shveenkov/gtarantool>`__ с поддержкой "
+"gevent, **не обновляется**"
+
+msgid ""
+"The table below contains a feature comparison for asynctnt, gtarantool and "
+"tarantool-python. aiotarantool is absent there because it is quite outdated "
+"and unmaintained."
+msgstr ""
+"Эта таблица содержит сравнение функций коннекторов asynctnt, gtarantool и "
+"tarantool-python. aiotarantool здесь отсутствует, так как он устарел и "
+"больше не поддерживается."
+
+msgid "Feature comparison"
+msgstr "Сравнение функций"
+
+msgid "Last update: February 2022"
+msgstr "Последнее обновление: февраль 2022"
+
+msgid "Parameter"
+msgstr "Параметры"
+
+msgid "`igorcoding/asynctnt <https://github.com/igorcoding/asynctnt>`__"
+msgstr "`igorcoding/asynctnt <https://github.com/igorcoding/asynctnt>`__"
+
+msgid "`shveenkov/gtarantool <https://github.com/shveenkov/gtarantool>`__"
+msgstr "`shveenkov/gtarantool <https://github.com/shveenkov/gtarantool>`__"
+
+msgid ""
+"`tarantool/tarantool-python <https://github.com/tarantool/tarantool-"
+"python>`__"
+msgstr ""
+"`tarantool/tarantool-python <https://github.com/tarantool/tarantool-"
+"python>`__"
+
+msgid "License"
+msgstr "Лицензия"
+
+msgid "Apache License 2.0"
+msgstr "Apache License 2.0"
+
+msgid "LGPL"
+msgstr "LGPL"
+
+msgid "BSD-2"
+msgstr "BSD-2"
+
+msgid "Is maintained"
+msgstr "Поддерживается"
+
+msgid "Yes"
+msgstr "Есть"
+
+msgid "No (last updated in 2018)"
+msgstr "Нет (последнее обновление в 2018)"
+
+msgid "Known Issues"
+msgstr "Известные проблемы"
+
+msgid ""
+"`issue #18 <https://github.com/igorcoding/asynctnt/issues/18>`__ (no running"
+" event loop)"
+msgstr ""
+"`тикет #18 <https://github.com/igorcoding/asynctnt/issues/18>`__ (нет "
+"активного цикла событий)"
+
+msgid "None"
+msgstr "Нет"
+
+msgid ""
+"`issue #105 <https://github.com/tarantool/tarantool-python/issues/105>`__ "
+"(unpack of binary data)"
+msgstr ""
+"`тикет #105 <https://github.com/tarantool/tarantool-python/issues/105>`__ "
+"(распаковка бинарных данных)"
+
+msgid "Documentation"
+msgstr "Документация"
+
+msgid "Yes (`github.io <https://igorcoding.github.io/asynctnt/>`__)"
+msgstr "Есть (`github.io <https://igorcoding.github.io/asynctnt/>`__)"
+
+msgid "No"
+msgstr "Нет"
+
+msgid ""
+"Yes (`tarantool.io "
+"<https://www.tarantool.io/en/doc/latest/getting_started/getting_started_python/>`__"
+" and `readthedocs <https://tarantool-python.readthedocs.io/en/latest/quick-"
+"start.en.html>`__ (`obsolete <https://github.com/tarantool/tarantool-"
+"python/issues/67>`__))"
+msgstr ""
+"Есть (`tarantool.io "
+"<https://www.tarantool.io/en/doc/latest/getting_started/getting_started_python/>`__"
+" и `readthedocs <https://tarantool-python.readthedocs.io/en/latest/quick-"
+"start.en.html>`__ (`вышел из употребления "
+"<https://github.com/tarantool/tarantool-python/issues/67>`__))"
+
+msgid "Testing / CI / CD"
+msgstr "Тестирование / CI / CD"
+
+msgid "GitHub Actions"
+msgstr "GitHub Actions"
+
+msgid "No (tests exist)"
+msgstr "Нет (есть тесты)"
+
+msgid "AppVeyor (only Windows)"
+msgstr "AppVeyor (только для Windows)"
+
+msgid "GitHub Stars"
+msgstr "Звезды GitHub"
+
+msgid "51"
+msgstr "51"
+
+msgid "17"
+msgstr "17"
+
+msgid "78"
+msgstr "78"
+
+msgid "Static Analysis"
+msgstr "Статический анализ"
+
+msgid "Yes (Flake8)"
+msgstr "Есть (Flake8)"
+
+msgid "Packaging"
+msgstr "Формат пакета"
+
+msgid "`Pip <https://pypi.org/project/asynctnt/>`__"
+msgstr "`Pip <https://pypi.org/project/asynctnt/>`__"
+
+msgid "`Pip <https://pypi.org/project/gtarantool/>`__"
+msgstr "`Pip <https://pypi.org/project/gtarantool/>`__"
+
+msgid ""
+"`Deb, RPM, Pip <https://github.com/tarantool/tarantool-python#download-and-"
+"install>`__"
+msgstr ""
+"`Deb, RPM, Pip <https://github.com/tarantool/tarantool-python#download-and-"
+"install>`__"
+
+msgid "Code coverage"
+msgstr "Покрытие кода"
+
+msgid "Support asynchronous mode"
+msgstr "Поддержка асинхронного режима"
+
+msgid "Yes, `asyncio <https://docs.python.org/3/library/asyncio.html>`__"
+msgstr "Есть, `asyncio <https://docs.python.org/3/library/asyncio.html>`__"
+
+msgid ""
+"Yes (`gevent "
+"<https://www.gevent.org/api/gevent.event.html#gevent.event.AsyncResult>`__, "
+"example: `test_gevent.py "
+"<https://github.com/shveenkov/gtarantool/blob/master/tests/test_gevent.py>`__)"
+msgstr ""
+"Есть (`gevent "
+"<https://www.gevent.org/api/gevent.event.html#gevent.event.AsyncResult>`__, "
+"пример: `test_gevent.py "
+"<https://github.com/shveenkov/gtarantool/blob/master/tests/test_gevent.py>`__)"
+
+msgid "Batching support"
+msgstr "Поддержка пакетной обработки"
+
+msgid ""
+"No (`issue #55 <https://github.com/tarantool/tarantool-python/issues/55>`__)"
+msgstr ""
+"Нет (`тикет #55 <https://github.com/tarantool/tarantool-"
+"python/issues/55>`__)"
+
+msgid "Schema reload"
+msgstr "Обновление схемы"
+
+msgid ""
+"Yes (automatically, see `auto_refetch_schema "
+"<https://igorcoding.github.io/asynctnt/api.html>`__)"
+msgstr ""
+"Есть (автоматически, см. `auto_refetch_schema "
+"<https://igorcoding.github.io/asynctnt/api.html>`__)"
+
+msgid "Yes (automatically)"
+msgstr "Есть (автоматически)"
+
+msgid "Space / index names"
+msgstr "Имена спейсов/индексов"
+
+msgid "Access tuple fields by names"
+msgstr "Доступ к полям кортежей по именам"
+
+msgid ""
+"`SQL support "
+"<https://www.tarantool.io/en/doc/latest/reference/reference_sql/>`__"
+msgstr ""
+"`Поддержка SQL "
+"<https://www.tarantool.io/en/doc/latest/reference/reference_sql/>`__"
+
+msgid "Yes (tests/test_op_sql.py)"
+msgstr "Есть (tests/test_op_sql.py)"
+
+msgid "Yes (tarantool/connection.py)"
+msgstr "Есть (tarantool/connection.py)"
+
+msgid ""
+"`Interactive transactions "
+"<https://www.tarantool.io/en/doc/latest/book/box/stream/>`__"
+msgstr ""
+"`Интерактивные транзакции "
+"<https://www.tarantool.io/en/doc/latest/book/box/stream/>`__"
+
+msgid ""
+"No (`issue #163 <https://github.com/tarantool/tarantool-"
+"python/issues/163>`__)"
+msgstr ""
+"Нет (`тикет #163 <https://github.com/tarantool/tarantool-"
+"python/issues/163>`__)"
+
+msgid ""
+"`Varbinary support "
+"<https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__"
+msgstr ""
+"`Поддержка varbinary "
+"<https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__"
+
+msgid ""
+"Yes (`issue #105 <https://github.com/tarantool/tarantool-"
+"python/issues/105>`__)"
+msgstr ""
+"Есть (`тикет #105 <https://github.com/tarantool/tarantool-"
+"python/issues/105>`__)"
+
+msgid ""
+"`UUID support "
+"<https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__"
+msgstr ""
+"`Поддержка UUID "
+"<https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__"
+
+msgid ""
+"`Decimal support "
+"<https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__"
+msgstr ""
+"`Поддержка типа данных decimal "
+"<https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__"
+
+msgid "Almost (v2 branch)"
+msgstr "Частично (v2)"
+
+msgid ""
+"`EXT_ERROR support "
+"<https://www.tarantool.io/ru/doc/latest/dev_guide/internals/msgpack_extensions/#the-"
+"error-type>`__"
+msgstr ""
+"`Поддержка EXT_ERROR "
+"<https://www.tarantool.io/ru/doc/latest/dev_guide/internals/msgpack_extensions/#the-"
+"error-type>`__"
+
+msgid ""
+"`Datetime support "
+"<https://github.com/tarantool/tarantool/discussions/6244>`__"
+msgstr ""
+"`Поддержка datetime "
+"<https://github.com/tarantool/tarantool/discussions/6244>`__"
+
+msgid ""
+"`box.session.push() responses "
+"<https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_session/push/>`__"
+msgstr ""
+"`Возвращаемые значения box.session.push() "
+"<https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_session/push/>`__"
+
+msgid "Yes (see push_subscribe option and docs/pushes.rst)"
+msgstr "Есть (см. push_subscribe option и docs/pushes.rst)"
+
+msgid ""
+"`Session settings "
+"<https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_session_settings/>`__"
+msgstr ""
+"`Настройки сессии "
+"<https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_session_settings/>`__"
+
+msgid ""
+"`Graceful shutdown <https://github.com/tarantool/tarantool/issues/5924>`__"
+msgstr ""
+"`Мягкое завершение <https://github.com/tarantool/tarantool/issues/5924>`__"
+
+msgid ""
+"`IPROTO_ID (feature discovering) "
+"<https://github.com/tarantool/doc/issues/2419>`__"
+msgstr ""
+"`IPROTO_ID (поиск поддерживаемых функций) "
+"<https://github.com/tarantool/doc/issues/2419>`__"
+
+msgid "Support `CRUD <https://github.com/tarantool/crud>`__"
+msgstr "Поддержка `CRUD <https://github.com/tarantool/crud>`__"
+
+msgid "Support retrying when appropriate"
+msgstr "Повторное подключение при возможности"
+
+msgid "Implicit reconnecting strategy"
+msgstr "Стратегия повторного подключения по умолчанию"
+
+msgid "Autoreconnect"
+msgstr "Автоматическое переподключение"
+
+msgid "Yes (reconnect_max_attempts, reconnect_delay)"
+msgstr "Есть (reconnect_max_attempts, reconnect_delay)"
+
+msgid ""
+"Yes (reconnect_max_attempts, reconnect_delay), checking of connection "
+"liveness"
+msgstr ""
+"Есть (reconnect_max_attempts, reconnect_delay), проверка состояния "
+"соединения"
+
+msgid "Connection pool"
+msgstr "Пул соединений"
+
+msgid "Yes (round robin failover)"
+msgstr "Есть (циклическое восстановление после отказа)"
+
+msgid ""
+"Support of `PEP 249 -- Python Database API Specification v2.0 "
+"<https://www.python.org/dev/peps/pep-0249/>`__"
+msgstr ""
+"Поддержка `PEP 249 -- Python Database API Specification v2.0 "
+"<https://www.python.org/dev/peps/pep-0249/>`__"
+
+msgid ""
+"`Yes <https://github.com/tarantool/tarantool-python/wiki/PEP-249-Database-"
+"API>`__"
+msgstr ""
+"`Есть <https://github.com/tarantool/tarantool-python/wiki/PEP-249-Database-"
+"API>`__"
 
 msgid "Node.js"
 msgstr "Node.js"
@@ -976,9 +1309,6 @@ msgstr ""
 " о том, как работать с Tarantool, пользуясь PHP API, обратитесь к "
 "документации `проекта tarantool-php на GitHub "
 "<https://github.com/tarantool/tarantool-php>`__."
-
-msgid "C"
-msgstr "C"
 
 msgid "Here follow two examples of using Tarantool's high-level C API."
 msgstr ""
