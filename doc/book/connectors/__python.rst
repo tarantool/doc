@@ -104,9 +104,9 @@ Last update: February 2022
         -   No
 
     *   -   Packaging
-        -   `Pip <https://pypi.org/project/asynctnt/>`__
-        -   `Pip <https://pypi.org/project/gtarantool/>`__
-        -   `Deb, RPM, Pip <https://github.com/tarantool/tarantool-python#download-and-install>`__
+        -   `pip <https://pypi.org/project/asynctnt/>`__
+        -   `pip <https://pypi.org/project/gtarantool/>`__
+        -   `deb, rpm, pip <https://github.com/tarantool/tarantool-python#download-and-install>`__
 
     *   -   Code coverage
         -   Yes
