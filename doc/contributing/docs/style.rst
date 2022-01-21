@@ -174,12 +174,38 @@ Spelling and punctuation
 US vs British spelling
 ~~~~~~~~~~~~~~~~~~~~~~
 
-We use the US English spelling.
+Use the US English spelling.
 
 Check your spelling and punctuation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Consider checking spelling, grammar, and punctuation with special tools.
+
+Typographic characters
+~~~~~~~~~~~~~~~~~~~~~~
+
+Use these rules (dashes):
+
+There is no need to insert special dashes, quotation marks, or apostrophes. 
+The documentation :doc:`builder </contributing/docs/build/>`
+renders specific character sequences in the source into correct typographic characters.
+
+Use these sequences:
+
+..  container:: table
+
+    ..  list-table::
+        :header-rows: 1
+
+        *   -   Source
+            -   Replaced by 
+
+        *   -   ``---``
+            -   Em dash
+        
+
+Sometimes it is necessary to escape characters
+
 
 Ending punctuation in lists and tables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
