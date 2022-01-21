@@ -169,7 +169,7 @@ but for readability one would usually use spaces to separate tokens: |br|
 Literals
 ********************************************************************************
 
-There are eight kinds of literals: BOOLEAN INTEGER DOUBLE DECIMAL STRING VARBINARY ARRAY MAP.
+There are eight kinds of literals: BOOLEAN INTEGER DOUBLE DECIMAL STRING VARBINARY MAP ARRAY.
 
 BOOLEAN literals:  |br|
 TRUE | FALSE | UNKNOWN |br|
@@ -221,27 +221,20 @@ Example: ``X'414243'``, which will be displayed as ``'ABC'``. |br|
 A literal has :ref:`data type = VARBINARY <sql_data_type_varbinary>`
 ("variable-length binary") if it is the letter X followed by quotes containing pairs of hexadecimal digits, representing byte values.
 
-ARRAY expressions: |br|
-[left square bracket] [comma-separated list of values] [right square bracket] |br|
-Examples: ``[1,2,3,4]``, ``[1,[2,3],4]``, ``X['a','22',uuid()]`` |br|
-An expression has data type = ARRAY if it is a sequence of zero or more values
-enclosed in square brackets (``[`` and ``]``).
-Values may be of any type; values may be expressions; arrays may be nested.
-In formal terms we should say that ``[`` and ``]`` are actually "operators"
-and the values are "elements", but most of the examples we have used are in
-fact arrays of literals.
+MAP literals: |br|
+[left curly bracket] key [colon] value [right square bracket] |br|
+Examples: ``{'a':1}``, ``{1:'a'}`` |br|
+A map literal a pair of curly brackets (also called "braces")
+enclosing a STRING or INTEGER or UUID literal (called the map "key")
+followed by a colon
+followed by any type of literal (called the map "value").
+This is a minimal form of a :ref:`MAP expression <sql_map_expression>`.
 
-MAP expressions: |br|
-[left curly bracket] key [colon] value [right curly bracket] |br|
-Examples: ``{'a':1}``, ``{ "column_1" : X'1234' }`` |br|
-An expression has data type = MAP if it is enclosed in curly brackets
-(also called braces) ``{`` and ``}`` and contains a key for identification,
-then a colon ``:``, then a value for what the key identifies.
-As with ARRAY expressions, the ``{`` and ``}`` are actually operators
-so the key and the value are not necessarily literals themselves.
-It is not uncommon to have an array of maps, for example
-``[{'a':1},{'b':2}]``, which can be called an associative array and can
-be converted to a `Lua table <https://www.lua.org/pil/2.5.html>`_.
+ARRAY literals: |br|
+[left square bracket] [literal] [right square bracket] |br|
+Examples: ``[1]``, ``['a']`` |br|
+An ARRAY literal is a literal value which is enclosed inside square brackets.
+This is a minimal form of an :ref:`ARRAY expression <sql_array_expression>`.
 
 Here are four ways to put non-ASCII characters,such as the Greek letter α alpha, in string literals: |br|
 First make sure that your shell program is set to accept characters as UTF-8. A simple way to check is |br|
@@ -495,9 +488,11 @@ and minimum / maximum literal examples.
     +-----------+------------+------------+----------------------+-------------------------+
     | SCALAR    | (varies)   | (none)     | FALSE                | maximum UUID value      |
     +-----------+------------+------------+----------------------+-------------------------+
-    | ARRAY     | array      | (none)     | []                   | ``many values``         |
-    +-----------+------------+------------+----------------------+-------------------------+
     | MAP       | map        | (none)     | ``{'':''}``          | ``big-key:big-value``   |
+    +-----------+------------+------------+----------------------+-------------------------+
+    | ARRAY     | array      | (none)     | []                   | ``[many values]``       |
+    +-----------+------------+------------+----------------------+-------------------------+
+    | ANY       | any        | (none)     | FALSE                | ``[many values]``       |
     +-----------+------------+------------+----------------------+-------------------------+
 
 
@@ -589,26 +584,32 @@ Prior to Tarantool version 2.10.1, individual column values had
 one of the preceding types -- BOOLEAN, INTEGER, DOUBLE, DECIMAL, STRING, VARBINARY, or UUID.
 Starting in Tarantool version 2.10.1, all values have type SCALAR.
 
-.. _sql_data_type_array:
-
-ARRAY values are lists of values of any type, including other ARRAY values
--- that is, arrays can be "nested". Tarantool does
-not require that all values in an array must have the same type.
-Arrays cannot be used in arithmetic or comparison (except ``IS [NOT] NULL``), and the only
-functions where they are allowed are :ref:`CAST <sql_function_cast>`,
-:ref:`QUOTE <sql_function_quote>`,
-:ref:`TYPEOF <sql_function_typeof>`, and functions involving NULL comparisons.
-
 .. _sql_data_type_map:
 
-MAP values are key:value combinations which can be produced with expressions
-like ``LUA('return {a=1}')``, although the SQL literal will look more like
-``{'a':1}``.
+MAP values are key:value combinations which can be produced with
+:ref:`MAP expressions <sql_map_expression>`.
 Maps cannot be used in arithmetic or comparison (except ``IS [NOT] NULL``),
 and the only
 functions where they are allowed are :ref:`CAST <sql_function_cast>`,
 :ref:`QUOTE <sql_function_quote>`,
 :ref:`TYPEOF <sql_function_typeof>`, and functions involving NULL comparisons.
+
+.. _sql_data_type_array:
+
+ARRAY values are lists which can be produced with
+:ref:`ARRAY expressions <sql_array_expression>`.
+Arrays cannot be used in arithmetic or comparison (except ``IS [NOT] NULL``), and the only
+functions where they are allowed are :ref:`CAST <sql_function_cast>`,
+:ref:`QUOTE <sql_function_quote>`,
+:ref:`TYPEOF <sql_function_typeof>`, and functions involving NULL comparisons.
+
+.. _sql_data_type_any:
+
+ANY can be used for
+:ref:`column definitions <sql_column_def_data_type>` and the individual column values have
+type ANY.
+The difference between SCALAR and ANY is:
+SCALAR columns may not contain MAP or ARRAY values, but ANY columns may contain them.
 
 Any value of any data type may be NULL. Ordinarily NULL will be cast to the
 data type of any operand it is being compared to or to the data type of the
@@ -864,6 +865,40 @@ value IS [NOT] NULL |br|
 
 CASE ... WHEN ... THEN ... ELSE ... END |br|
   ... for setting a series of conditions.
+
+.. _sql_map_expression:
+
+{ key : value } |br|
+... for MAP expressions. |br|
+Literal Examples: ``{'a':1}``, ``{ "column_1" : X'1234' }`` |br|
+Non-literal Examples: ``{"a":"a"}``, ``{UUID(), (SELECT 1) + 1}`` |br|
+An expression has data type = MAP if it is enclosed in curly brackets
+(also called braces) ``{`` and ``}`` and contains a key for identification,
+then a colon ``:``, then a value for what the key identifies.
+The key data type must be INTEGER or STRING or UUID.
+The value data type may be anything.
+The Lua equivalent type is 'map' but the syntax is slightly different,
+for example the SQL value ``{'a': 1}`` is represented in Lua as ``{a = 1}``.
+
+.. _sql_array_expression:
+
+[ value ... ] |br|
+... for ARRAY expressions. |br|
+Examples: ``[1,2,3,4]``, ``[1,[2,3],4]``, ``['a', "column_1", uuid()]`` |br|
+An expression has data type = ARRAY if it is a sequence of zero or more values
+enclosed in square brackets (``[`` and ``]``).
+Often the values in the sequence are called "elements".
+The element data type may be anything, including ARRAY -- that is, ARRAYs may be nested.
+Different elements may have different types.
+The Lua equivalent type is `'array' <https://www.lua.org/pil/11.1.html>`_.
+
+.. _sql_array_index_expression:
+
+ARRAY index expression: |br|
+array-value [square bracket] index [square bracket] |br|
+Example: ``['a', 'b', 'c'] [2]`` (this equals 'b') |br|
+As in other languages, an element of an array can be referenced with an
+integer inside square brackets.
 
 See also: :ref:`subquery <sql_subquery>`.
 

@@ -151,7 +151,7 @@ Limitations: (`Issue#4659 <https://github.com/tarantool/tarantool/issues/4659>`_
 `Issue#4758 <https://github.com/tarantool/tarantool/issues/4758>`_) |br|
 SELECT with * or ORDER BY or GROUP BY from spaces that have map fields
 or array fields may cause errors. Any access to spaces that have hash
-indexes may cause severe errors.
+indexes may cause severe errors in Tarantool version 2.3 or earlier.
 
 .. _sql_system_tables:
 
@@ -257,7 +257,7 @@ See also: :ref:`Lua functions to make views of metadata <sql_lua_functions>`.
    and 2**6 possibilities for the other opts options, Tarantool supports
    about 736 * 2 * 5 * 64 = 471,040 different collations out of the box.
    In fact three of the pre-defined collations (unicode_uk_s1 unicode_uk_s2 unicode_uk_s3)
-   re the standard CLDR variants for Ukrainian, so the above example was
+   are the standard CLDR variants for Ukrainian, so the above example was
    made only to show how one makes a new one, not because there is any need to do so for this situation.
 
    Limitations:
@@ -312,23 +312,25 @@ For a useful example, here is a general function for decoding a single Lua ``'ma
     box.schema.func.create('_DECODE',
        {language = 'LUA',
         returns = 'string',
-        body = [[function (field, part)
-                 __GLOBAL= field
-                 return dostring("return require('msgpack').decode(__GLOBAL,1)." .. part)
+        body = [[function (field, key)
+                 -- If Tarantool version < 2.10.1, replace next line with
+                 -- return require('msgpack').decode(field)[key]
+                 return field[key]
                  end]],
         is_sandboxed = false,
-        param_list = {'string', "string"},
+        -- If Tarantool version < 2.10.1, replace next line with
+        -- param_list = {'string', 'string'},
+        param_list = {'map', 'string'},
         exports = {'LUA', 'SQL'},
         is_deterministic = true})
 
 See it work with, say, the _trigger space.
-That space has a ``'map'`` field named opts which has a part named sql.
-By selecting from the space and passing the field and the part name to _DECODE,
+That space has a ``'map'`` field named opts which has a key named sql.
+By selecting from the space and passing the field and the key name to _DECODE,
 you can get a list of all the trigger bodies.
 
 .. code-block:: lua
 
-    __GLOBAL = ""
     box.execute([[SELECT _decode("opts", 'sql') FROM "_trigger";]])
 
 Remember that SQL converts :ref:`regular identifiers <sql_identifiers>` to upper case,
@@ -359,12 +361,16 @@ So our way of making the function looks like this:
           returns = 'boolean',
           body = [[function (flags)
               local view
-              view = require('msgpack').decode(flags).view
+              -- If Tarantool version < 2.10.1, replace next line with
+              -- view = require('msgpack').decode(flags).view
+              view = flags.view
               if view == nil then return false end
               return view
               end]],
          is_sandboxed = false,
-         param_list = {'string'},
+         -- If Tarantool version < 2.10.1, replace next line with
+         -- param_list = {'string'},
+         param_list = {'map'},
          exports = {'LUA', 'SQL'},
          is_deterministic = true})
 
@@ -597,14 +603,17 @@ Definition of the function and the CREATE VIEW statement:
           returns = 'boolean',
           body = [[function (flags)
               local view
-              view = require('msgpack').decode(flags).view
+              -- If Tarantool version < 2.10.1, replace next line with
+              -- view = require('msgpack').decode(flags).view
+              view = flags.view
               if view == nil then return false end
               return view
               end]],
          is_sandboxed = false,
-         param_list = {'string'},
+         -- If Tarantool version < 2.10.1, replace next line with
+         -- param_list = {'string'},
+         param_list = {'map'},
          exports = {'LUA', 'SQL'},
-         setuid = false,
          is_deterministic = true})
     box.schema.role.grant('public', 'execute', 'function', '_TABLES_IS_VIEW')
     pcall(function ()
@@ -769,8 +778,13 @@ Definition of the function and the CREATE VIEW statement:
         {language = 'LUA',
          returns = 'string',
          body = [[function (flags)
-                      return require('msgpack').decode(flags).sql end]],
-         param_list = {'string'},
+                  -- If Tarantool version < 2.10.1, replace next line with
+                  -- return require('msgpack').decode(flags).sql
+                  return flags.sql
+                  end]],
+         -- If Tarantool version < 2.10.1, replace next line with
+         -- param_list = {'string'},
+         param_list = {'map'},
          exports = {'LUA', 'SQL'},
          is_sandboxed = false,
          setuid = false,
@@ -824,8 +838,13 @@ Definition of the function and the CREATE VIEW statement:
         {language = 'LUA',
          returns = 'string',
          body = [[function (opts)
-                      return require('msgpack').decode(opts).sql end]],
-         param_list = {'string'},
+                  -- If Tarantool version < 2.10.1, replace next line with
+                  -- return require('msgpack').decode(opts).sql
+                  return opts.sql
+                  end]],
+         -- If Tarantool version < 2.10.1, replace next line with
+         -- param_list = {'string'},
+         param_list = {'map'},
          exports = {'LUA', 'SQL'},
          is_sandboxed = false,
          setuid = false,
