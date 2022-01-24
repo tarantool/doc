@@ -423,7 +423,7 @@ Last update: January 2022
         -   context
         -   context
 
-    *   -   Miscellanious
+    *   -   Miscellaneous
         -   Supports `tarantool/queue <https://github.com/tarantool/queue>`_ API
         -   Can mimic a Tarantool instance (also as replica)
         -   API is experimental and breaking changes may happen
