@@ -810,7 +810,7 @@ msgid "AppVeyor (only Windows)"
 msgstr "AppVeyor (только на Windows)"
 
 msgid "GitHub Stars"
-msgstr "Звезды на GitHub"
+msgstr "GitHub-звезды"
 
 msgid "51"
 msgstr "51"
@@ -828,7 +828,7 @@ msgid "Yes (Flake8)"
 msgstr "Есть (Flake8)"
 
 msgid "Packaging"
-msgstr "Формат пакета"
+msgstr "Способ упаковки"
 
 msgid "`pip <https://pypi.org/project/asynctnt/>`__"
 msgstr "`pip <https://pypi.org/project/asynctnt/>`__"
@@ -1020,7 +1020,7 @@ msgid "Connection pool"
 msgstr "Пул соединений"
 
 msgid "Yes (round robin failover)"
-msgstr "Есть (циклическое восстановление после отказа)"
+msgstr "Есть (циклическое восстановление после сбоев)"
 
 msgid ""
 "Support of `PEP 249 -- Python Database API Specification v2.0 "
