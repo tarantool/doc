@@ -18,7 +18,7 @@ are :ref:`stored <index-box_lua-vs-msgpack>` as MsgPack arrays.
 
 Definitions: MsgPack is short for `MessagePack <https://msgpack.org/index.html>`_.
 A "raw MsgPack string" is a byte array formatted according to the
-`MsgPack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ 
+`MsgPack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 including type bytes and sizes.
 The type bytes and sizes can be made displayable with :ref:`string.hex() <string-hex>`,
 or the raw MsgPack strings can be converted to Lua objects with ``msgpack`` methods.
@@ -194,7 +194,7 @@ Below is a list of all ``msgpack`` functions and members.
     :ref:`decode(C_style_string_pointer) <msgpack-decode_c_style_string_pointer>`,
     except that ``size`` is not needed.
     Some checking is skipped, and ``decode_unchecked(C_style_string_pointer)`` can operate with
-    string pointers to buffers which ``decode(C_style_string_pointer)`` cannot handle. 
+    string pointers to buffers which ``decode(C_style_string_pointer)`` cannot handle.
     For an example see the :ref:`buffer <buffer-module>` module.
 
 .. _msgpack-decode_array_header:
@@ -375,7 +375,7 @@ with the MsgPack format name and encoding on the right.
         | ``cfg.encode_max_depth``        |   128   | Max recursion depth for encoding              |
         +---------------------------------+---------+-----------------------------------------------+
         | ``cfg.encode_deep_as_nil``      |  false  | A flag saying whether to crop tables          |
-        |                                 |         | with nesting level deeper than                | 
+        |                                 |         | with nesting level deeper than                |
         |                                 |         | ``cfg.encode_max_depth``.                     |
         |                                 |         | Not-encoded fields are replaced with          |
         |                                 |         | one null. If not set, too high                |
@@ -526,3 +526,58 @@ and :ref:`YAML <yaml-cfg>`.
         - [20, null, 20]
         ...
 
+..  _msgpack-object:
+
+..  function:: object()
+
+    Encodes an arbitrary Lua object given /in its only argument/?? in MsgPack and returns the encoded MsgPack data encapsulated in a MsgPack object.
+
+    :param: TBD
+
+
+    :return: TBD
+
+
+    :rtype: TBD
+
+    **Example**
+
+    .. code-block:: Lua
+
+
+..  _msgpack-object-from-raw:
+
+..  function:: object_from_raw()
+
+    Creates a MsgPack object from raw data given either as a string or as a pointer and size.
+
+    :param: TBD
+
+
+    :return: TBD
+
+
+    :rtype: TBD
+
+    **Example**
+
+    .. code-block:: Lua
+
+
+..  _msgpack-is-object:
+
+..  function:: is_object()
+
+    Checks is the given argument is a MsgPack object.
+
+    :param: TBD
+
+
+    :return: TBD
+
+
+    :rtype: TBD
+
+    **Example**
+
+    .. code-block:: Lua
