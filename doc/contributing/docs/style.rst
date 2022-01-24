@@ -194,8 +194,10 @@ However, some rules still apply to typographic character replacements:
     in phrases like "Dover--Calais crossing".
 *   The longer **em dash** ``---`` is used to separate extra information or mark a break in a sentence.
 
-Don't add spaces on either side of a dash. Don't use a single hyphen as a dash.
-Indicating a range like ``code element 1``--``code element two would require escaping characters:
+Don't use a single hyphen as a dash. Don't add spaces on either side of a dash. 
+
+When indicating a range like ``code element 1``\--``code element two``, escape the series of hyphens using
+`character-level inline markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#character-level-inline-markup-1>`_:
 
 ..  code-block:: rst
 
