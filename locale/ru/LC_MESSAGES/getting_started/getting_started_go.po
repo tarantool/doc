@@ -419,10 +419,10 @@ msgid "Documentation"
 msgstr "Документация"
 
 msgid "README with examples, API described in code comments"
-msgstr "README с примерами. Описание API в комментариях к коду."
+msgstr "README с примерами, описание API в комментариях к коду"
 
 msgid "README with examples, code comments"
-msgstr "README с примерами и комментариями к коду"
+msgstr "README с примерами, комментарии к коду"
 
 msgid "README with examples"
 msgstr "README с примерами"
@@ -437,7 +437,7 @@ msgid "Travis CI"
 msgstr "Travis CI"
 
 msgid "GitHub Stars"
-msgstr "Звезды GitHub"
+msgstr "GitHub-звезды"
 
 msgid "127"
 msgstr "127"
@@ -461,7 +461,7 @@ msgid "golangci-lint"
 msgstr "golangci-lint"
 
 msgid "Packaging"
-msgstr "Формат пакета"
+msgstr "Способ упаковки"
 
 msgid "go get"
 msgstr "go get"
@@ -470,7 +470,7 @@ msgid "Code coverage"
 msgstr "Покрытие кода"
 
 msgid "msgpack driver"
-msgstr "драйвер msgpack"
+msgstr "Драйвер msgpack"
 
 msgid ""
 "`vmihailenco/msgpack/v2 <https://github.com/vmihailenco/msgpack/tree/v2>`_ "
@@ -549,7 +549,7 @@ msgstr ""
 "<https://www.tarantool.io/en/doc/latest/book/box/data_model/>`_"
 
 msgid "Yes (with in-built language tools)"
-msgstr "Есть (со встроенными инструментами языка)"
+msgstr "Есть (встроенными инструментами языка)"
 
 msgid ""
 "Yes (decodes to string by default, see `#6 "
@@ -566,7 +566,7 @@ msgstr ""
 "<https://www.tarantool.io/en/doc/latest/book/box/data_model/>`_"
 
 msgid "Decimal support"
-msgstr "Поддержка типа данных decimal"
+msgstr "Поддержка decimal"
 
 msgid "No (`#96 <https://github.com/tarantool/go-tarantool/issues/96>`_)"
 msgstr "Нет (`#96 <https://github.com/tarantool/go-tarantool/issues/96>`_)"
@@ -619,11 +619,11 @@ msgid ""
 "`IPROTO_ID (feature discovering) "
 "<https://github.com/tarantool/tarantool/issues/6253>`_"
 msgstr ""
-"`IPROTO_ID (поиск поддерживаемых функций) "
+"`IPROTO_ID (обнаружение поддерживаемых функций) "
 "<https://github.com/tarantool/tarantool/issues/6253>`_"
 
 msgid "`tarantool/crud <https://github.com/tarantool/crud>`_ support"
-msgstr "поддержка `tarantool/crud <https://github.com/tarantool/crud>`_"
+msgstr "Поддержка `tarantool/crud <https://github.com/tarantool/crud>`_"
 
 msgid "Connection pool"
 msgstr "Пул соединений"
@@ -632,7 +632,7 @@ msgid ""
 "Yes (round-robin failover, no balancing, master discovering planned in `#113"
 " <https://github.com/tarantool/go-tarantool/issues/113>`_)"
 msgstr ""
-"Есть (циклическое переключение при сбое, без балансировки, алгоритм поиска "
+"Есть (циклическое восстановление после сбоев; без балансировки; обнаружение "
 "мастера планируется в `#113 <https://github.com/tarantool/go-"
 "tarantool/issues/113>`_)"
 
@@ -673,16 +673,16 @@ msgid "No  (`#48 <https://github.com/tarantool/go-tarantool/issues/48>`_)"
 msgstr "Нет (`#48 <https://github.com/tarantool/go-tarantool/issues/48>`_)"
 
 msgid "context"
-msgstr "контекст"
+msgstr "context"
 
-msgid "Miscellanious"
-msgstr "Разное"
+msgid "Miscellaneous"
+msgstr "Прочее"
 
 msgid "Supports `tarantool/queue <https://github.com/tarantool/queue>`_ API"
 msgstr "Поддержка API `tarantool/queue <https://github.com/tarantool/queue>`_"
 
 msgid "Can mimic a Tarantool instance (also as replica)"
-msgstr "Может имитировать инстанс Tarantool (также как реплика)"
+msgstr "Может имитировать экземпляр Tarantool (в том числе реплику)"
 
 msgid "API is experimental and breaking changes may happen"
-msgstr "Это экспериментальный API и он может значительно измениться"
+msgstr "API коннектора экспериментальный и может значительно измениться"
