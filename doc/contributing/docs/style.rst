@@ -181,30 +181,25 @@ Check your spelling and punctuation
 
 Consider checking spelling, grammar, and punctuation with special tools.
 
-Typographic characters
-~~~~~~~~~~~~~~~~~~~~~~
+Dashes
+~~~~~~
 
-Use these rules (dashes):
-
-There is no need to insert special dashes, quotation marks, or apostrophes. 
+There is no need to insert special symbols like dashes, quotation marks, or apostrophes. 
 The documentation :doc:`builder </contributing/docs/build/>`
 renders specific character sequences in the source into correct typographic characters.
 
-Use these sequences:
+However, some rules still apply to typographic character replacements:
 
-..  container:: table
+*   The shorter **en dash** ``--`` is used to mark ranges and with the meaning "to"
+    in phrases like "Dover--Calais crossing".
+*   The longer **em dash** ``---`` is used to separate extra information or mark a break in a sentence.
 
-    ..  list-table::
-        :header-rows: 1
+Don't add spaces on either side of a dash. Don't use a single hyphen as a dash.
+Indicating a range like ``code element 1``--``code element two would require escaping characters:
 
-        *   -   Source
-            -   Replaced by 
+..  code-block:: rst
 
-        *   -   ``---``
-            -   Em dash
-        
-
-Sometimes it is necessary to escape characters
+    ``box.begin()``\--``box.commit()``
 
 
 Ending punctuation in lists and tables
