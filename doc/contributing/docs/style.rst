@@ -184,11 +184,13 @@ Consider checking spelling, grammar, and punctuation with special tools.
 Dashes
 ~~~~~~
 
-There is no need to insert special symbols like dashes, quotation marks, or apostrophes. 
+There is no need to insert special symbols like dashes, quotation marks, or apostrophes.
 The documentation :doc:`builder </contributing/docs/build/>`
-renders specific character sequences in the source into correct typographic characters.
+renders specific character sequences in the source into correct typographic characters. 
 
-However, some rules still apply to typographic character replacements:
+Type three hyphens (``---``) to insert an em dash (---)
+and two hyphens (``--``) for an en dash (--).
+The following rules apply:
 
 *   The shorter **en dash** ``--`` is used to mark ranges and with the meaning "to"
     in phrases like "Dover--Calais crossing".
@@ -196,7 +198,7 @@ However, some rules still apply to typographic character replacements:
 
 Don't use a single hyphen as a dash. Don't add spaces on either side of a dash. 
 
-When indicating a range like ``code element 1``\--``code element two``, escape the series of hyphens using
+When indicating a range like ``code element 1``\--``code element 2``, escape the series of hyphens using
 `character-level inline markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#character-level-inline-markup-1>`_:
 
 ..  code-block:: rst
