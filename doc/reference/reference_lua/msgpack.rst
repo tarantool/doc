@@ -29,47 +29,50 @@ or the raw MsgPack strings can be converted to Lua objects with ``msgpack`` meth
 
 Below is a list of all ``msgpack`` functions and members.
 
-.. container:: table
+[TBD] -- 1) Verify syntax of the functions in the Name column 2) Verify & update the function description in the Use column
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+..  container:: table
 
-    +--------------------------------------------------------+---------------------------------+
-    | Name                                                   | Use                             |
-    +========================================================+=================================+
-    | :ref:`msgpack.encode(lua_value)                        | Convert a Lua object to a       |
-    | <msgpack-encode_lua_value>`                            | raw MsgPack string              |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.encode(lua_value,ibuf)                   | Convert a Lua object to a       |
-    | <msgpack-encode_lua_value_ibuf>`                       | raw MsgPack string in an ibuf   |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode(msgpack_string)                   | Convert a raw MsgPack string to |
-    | <msgpack-decode_string>`                               | a Lua object                    |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode(C_style_string_pointer)           | Convert a raw MsgPack string in |
-    | <msgpack-decode_c_style_string_pointer>`               | an ibuf to a Lua object         |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_unchecked(msgpack_string)         | Convert a raw MsgPack string to |
-    | <msgpack-decode_unchecked_string>`                     | a Lua object                    |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_unchecked(C_style_string_pointer) | Convert a raw MsgPack string to |
-    | <msgpack-decode_unchecked_c_style_string_pointer>`     | a Lua object                    |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_array_header                      | Skip array header in a raw      |
-    | <msgpack-decode_array_header>`                         | MsgPack string                  |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_map_header                        | Skip map header in a raw        |
-    | <msgpack-decode_map_header>`                           | MsgPack string                  |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`__serialize parameter                            | Output structure specification  |
-    | <msgpack-serialize>`                                   |                                 |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.cfg                                      | Change configuration            |
-    | <msgpack-cfg>`                                         |                                 |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.NULL                                     | Analog of Lua's "nil"           |
-    | <msgpack-null>`                                        |                                 |
-    +--------------------------------------------------------+---------------------------------+
+    ..  list-table::
+        :widths: 50 50
+        :header-rows: 1
+
+        *   -   Name
+            -   Use
+
+        *   -   :ref:`msgpack.encode(lua_value) <msgpack-encode_lua_value>`
+            -   Convert a Lua object to a raw MsgPack string
+
+        *   -   :ref:`msgpack.encode(lua_value,ibuf) <msgpack-encode_lua_value_ibuf>`
+            -   Convert a Lua object to a raw MsgPack string in an ibuf
+
+        *   -   :ref:`msgpack.decode(msgpack_string) <msgpack-decode_string>`
+            -   Convert a raw MsgPack string to a Lua object
+
+        *   -   :ref:`msgpack.decode(C_style_string_pointer) <msgpack-decode_c_style_string_pointer>`
+            -   Convert a raw MsgPack string in an ibuf to a Lua object
+
+        *   -   :ref:`msgpack.decode_unchecked(msgpack_string) <msgpack-decode_unchecked_string>`
+            -   Convert a raw MsgPack string to a Lua object
+
+        *   -   :ref:`msgpack.decode_unchecked(C_style_string_pointer) <msgpack-decode_unchecked_c_style_string_pointer>`
+            -   Convert a raw MsgPack string to a Lua object
+
+        *   -   :ref:`msgpack.decode_array_header() <msgpack-decode_array_header>`
+            -   Skip an array header in a raw MsgPack string
+
+        *   -   :ref:`msgpack.decode_map_header() <msgpack-decode_map_header>`
+            -   Skip a map header in a raw MsgPack string
+
+        *   -   :ref:`__serialize <msgpack-serialize>` parameter
+            -   Output structure specification
+
+        *   -   :ref:`msgpack.cfg() <msgpack-cfg>`
+            -   Change configuration
+
+        *   -   :ref:`msgpack.NULL <msgpack-null>`
+            -   Analog of Lua's "nil"
+
 
 .. module:: msgpack
 
