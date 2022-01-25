@@ -5,7 +5,7 @@ title: "[Epic] {epic_name}"
 labels: epic
 assignees:
 ---
-**Related dev. issue(s):** GitHub link(s)
+**Related dev. epic:** GitHub link
 **PM ref.:** Notion link
 **SME:** @ expert to ask for more information
 

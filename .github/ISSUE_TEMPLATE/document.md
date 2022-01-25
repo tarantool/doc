@@ -5,6 +5,8 @@ title: "[0pt] {feature_name}"
 labels: 
 assignees:
 ---
+**Related dev. issue(s):** GitHub link(s)
+
 **Product:** Tarantool, Cartridge, TDG, connectors, tools?
 **Since:** product version
 **Audience/target:** who will read it and for what task?
