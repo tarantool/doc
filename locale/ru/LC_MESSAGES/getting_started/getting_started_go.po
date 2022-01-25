@@ -660,7 +660,7 @@ msgstr ""
 "<https://github.com/FZambia/tarantool/issues/7>`_)"
 
 msgid "Support retrying"
-msgstr "Поддержка повторной попытки подключения"
+msgstr "Повторная отправка запросов"
 
 msgid "`Watchers <https://github.com/tarantool/tarantool/pull/6510>`_"
 msgstr ""
