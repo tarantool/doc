@@ -998,7 +998,7 @@ msgid "Support `CRUD <https://github.com/tarantool/crud>`__"
 msgstr "Поддержка `CRUD <https://github.com/tarantool/crud>`__"
 
 msgid "Support retrying when appropriate"
-msgstr "Повторные попытки подключения"
+msgstr "Повторная отправка запросов"
 
 msgid "Implicit reconnecting strategy"
 msgstr "Стратегия повторного подключения"
