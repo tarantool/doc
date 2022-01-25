@@ -1,6 +1,6 @@
 ---
 name: Technical/internal issue
-about: Technical debt in the docs
+about: Technical issue in the docs
 title: "[0pt] {do X}"
 labels: internal
 assignees:
@@ -16,10 +16,7 @@ assignees:
 
 # Planning checklist
 
-- [ ] Pick label:
-  - [CI/CD](https://github.com/tarantool/doc/labels/CI/CD)
-  - [localization](https://github.com/tarantool/doc/labels/localization)
-  - or others.  
+- [ ] Pick a label
 - [ ] Estimate complexity in storypoints in the title
 - [ ] Add to **Documentation** board → **Backlog**
 
