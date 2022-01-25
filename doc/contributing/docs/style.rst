@@ -184,16 +184,16 @@ Consider checking spelling, grammar, and punctuation with special tools.
 Dashes
 ~~~~~~
 
-There is no need to insert special symbols like dashes, quotation marks, or apostrophes.
-The documentation :doc:`builder </contributing/docs/build/>`
-renders specific character sequences in the source into correct typographic characters. 
+Special symbols like dashes, quotation marks, and apostrophes look the same
+across all Tarantool documentation in a single language.
+This is because the documentation :doc:`builder </contributing/docs/build/>`
+renders specific character sequences in the source into correct typographic characters.
 
 Type three hyphens (``---``) to insert an em dash (---)
 and two hyphens (``--``) for an en dash (--).
 The following rules apply:
 
-*   The shorter **en dash** ``--`` is used to mark ranges and with the meaning "to"
-    in phrases like "Dover--Calais crossing".
+*   The shorter **en dash** ``--`` is used to mark ranges (for example, 4--16 GB).
 *   The longer **em dash** ``---`` is used to separate extra information or mark a break in a sentence.
 
 Don't use a single hyphen as a dash. Don't add spaces on either side of a dash. 
