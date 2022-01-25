@@ -2,7 +2,7 @@
 name: Epic
 about: Create an umbrella ticket for future release documentation
 title: "[Epic] {epic_name}"
-labels: 
+labels: epic
 assignees:
 ---
 **Related dev. issue(s):** GitHub link(s)

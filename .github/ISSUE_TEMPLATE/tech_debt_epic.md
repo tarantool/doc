@@ -2,7 +2,7 @@
 name: Technical debt epic
 about: Umbrella ticket for technical debt in the docs 
 title: "[Tech debt] {epic_name}"
-labels: 
+labels: epic
 assignees:
 ---
 
