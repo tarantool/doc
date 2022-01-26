@@ -137,9 +137,9 @@ Last update: February 2022
         -   Yes
 
     *   -   Access tuple fields by names
-        -   No
-        -   No
         -   Yes
+        -   No
+        -   No
 
     *   -   `SQL support <https://www.tarantool.io/en/doc/latest/reference/reference_sql/>`__
         -   Yes (tests/test_op_sql.py)
