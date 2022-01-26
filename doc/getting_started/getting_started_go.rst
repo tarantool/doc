@@ -403,12 +403,12 @@ Last update: January 2022
         -   No
         -   No
 
-    *   -   Implicit reconnecting strategy
+    *   -   Transparent reconnecting
         -   Yes (see comments in `#129 <https://github.com/tarantool/go-tarantool/issues/129>`_)
         -   No (handle reconnects explicitly, refer to `#11 <https://github.com/viciious/go-tarantool/issues/11>`_)
         -   Yes (see comments in `#7 <https://github.com/FZambia/tarantool/issues/7>`_)
 
-    *   -   Support retrying
+    *   -   Transparent request retrying
         -   No
         -   No
         -   No
