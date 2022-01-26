@@ -997,11 +997,11 @@ msgstr ""
 msgid "Support `CRUD <https://github.com/tarantool/crud>`__"
 msgstr "Поддержка `CRUD <https://github.com/tarantool/crud>`__"
 
-msgid "Support retrying when appropriate"
-msgstr "Повторная отправка запросов"
+msgid "Transparent request retrying"
+msgstr "Прозрачная переотправка запроса"
 
-msgid "Implicit reconnecting strategy"
-msgstr "Стратегия повторного подключения"
+msgid "Transparent reconnecting"
+msgstr "Прозрачное переподключение"
 
 msgid "Autoreconnect"
 msgstr "Автоматическое переподключение"
