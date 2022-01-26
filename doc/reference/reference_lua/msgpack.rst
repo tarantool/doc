@@ -8,6 +8,8 @@
                                    Overview
 ===============================================================================
 
+[TBD] 1) add intro about msgpack.object with local cross-ref 2) possibly put the Definitions part fist, before the intro descriptions
+
 The ``msgpack`` module decodes
 :ref:`raw MsgPack strings <msgpack-definitions>` by converting them to Lua objects,
 and encodes Lua objects by converting them to raw MsgPack strings.
@@ -29,7 +31,7 @@ or the raw MsgPack strings can be converted to Lua objects with ``msgpack`` meth
 
 Below is a list of all ``msgpack`` functions and members.
 
-[TBD] -- 1) Verify syntax of the functions in the Name column 2) Verify & update the function description in the Use column
+[TBD] 1) verify syntax of the functions in the Name column 2) verify & update the function description in the Use column
 
 ..  container:: table
 
@@ -72,6 +74,36 @@ Below is a list of all ``msgpack`` functions and members.
 
         *   -   :ref:`msgpack.NULL <msgpack-null>`
             -   Analog of Lua's "nil"
+
+        *   -   :ref:`msgpack.object(lua_object) <msgpack-object>`
+            -   TBD
+
+        *   -   :ref:`msgpack.object_from_raw(msgpack_string) <msgpack-object-from-raw>`
+            -   TBD
+
+        *   -   :ref:`msgpack.is_object(TBD) <msgpack-is-object>`
+            -   TBD
+
+        *   -   :ref:`msgpack_object:decode() <msgpack-object-methods>`
+            -   TBD
+
+        *   -   :ref:`msgpack_object:iterator() <msgpack-object-methods>`
+            -   TBD
+
+        *   -   :ref:`iterator_object:decode_array_header() <msgpack-object-iterator-methods>`
+            -   TBD
+
+        *   -   :ref:`iterator_object:decode_map_header() <msgpack-object-iterator-methods>`
+            -   TBD
+
+        *   -   :ref:`iterator_object:decode() <msgpack-object-iterator-methods>`
+            -   TBD
+
+        *   -   :ref:`iterator_object:take() <msgpack-object-iterator-methods>`
+            -   TBD
+
+        *   -   :ref:`iterator_object:skip() <msgpack-object-iterator-methods>`
+            -   TBD
 
 
 .. module:: msgpack
@@ -531,56 +563,200 @@ and :ref:`YAML <yaml-cfg>`.
 
 ..  _msgpack-object:
 
-..  function:: object()
+..  function:: object(lua_object)
 
-    Encodes an arbitrary Lua object given /in its only argument/?? in MsgPack and returns the encoded MsgPack data encapsulated in a MsgPack object.
+    Since version 2.10.
 
-    :param: TBD
+    Encodes an arbitrary/any Lua object /given/passed as the only argument/?? in the MsgPack format. Returns the encoded MsgPack data encapsulated in/as a MsgPack object.
 
+    :param lua_object: a Lua object of any type.
 
-    :return: TBD
-
+    :return: a MsgPack object.
 
     :rtype: TBD
 
-    **Example**
+    **Example:**
 
-    .. code-block:: Lua
+    ..  code-block:: lua
 
+        local msgpack = require('msgpack')
+        -- Create an object from a Lua object of any types.
+        mp = msgpack.object(123)
+        mp = msgpack.object("foobar")
+        mp = msgpack.object({1, 2, 3})
+        mp = msgpack.object({foo = 1, bar = 2})
+        mp = msgpack.object(box.tuple.new(1, 2, 3))
 
 ..  _msgpack-object-from-raw:
 
-..  function:: object_from_raw()
+..  function:: object_from_raw(msgpack_string)
 
-    Creates a MsgPack object from raw data given either as a string or as a pointer and size.
+    Since version 2.10.
 
-    :param: TBD
+    Creates a MsgPack object from a raw MsgPack string.
 
+    :param string msgpack_string: a raw MsgPack string.
 
-    :return: TBD
-
+    :return: a MsgPack object.
 
     :rtype: TBD
 
-    **Example**
+    **Example:**
 
-    .. code-block:: Lua
+    ..  code-block:: lua
 
+        local msgpack = require('msgpack')
+        local data = msgpack.encode({1, 2, 3})
+        local mp = msgpack.object_from_raw(data)
 
 ..  _msgpack-is-object:
 
-..  function:: is_object()
+..  function:: is_object(TBD)
 
-    Checks is the given argument is a MsgPack object.
+    Since version 2.10.
 
-    :param: TBD
+    Checks if the given argument is a MsgPack object.
 
+    :param TBD:
 
-    :return: TBD
+    :return: ``true`` or ``false``
 
+    :rtype: boolean
 
-    :rtype: TBD
+    **Example:**
 
-    **Example**
+    ..  code-block:: lua
 
-    .. code-block:: Lua
+        local msgpack = require('msgpack')
+        local mp = msgpack.object(123)
+        msgpack.is_object(mp) -- returns true
+        msgpack.is_object({}) -- returns false
+
+A MsgPack object has the following methods. [TBD] -- leave this intro phrase here or move upper to the functions that create a msgpack.object
+
+..  _msgpack-object-methods:
+
+..  class:: msgpack_object
+
+    ..  method:: decode()
+
+        Since version 2.10.
+
+        Decodes a MsgPack object and returns a Lua object.
+
+        :return: TBD
+
+        :rtype: TBD
+
+    ..  method:: iterator()
+
+        Since version 2.10.
+
+        Returns an iterator over the MsgPack data.
+
+        An iterator object has its own :ref:`set of methods <msgpack-object-iterator-methods>`.
+
+        :return: TBD
+
+        :rtype: TBD
+
+    A MsgPack object can be passed to the MsgPack encoder with the same effect as passing the original Lua object:
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        local mp = msgpack.object(123)
+        msgpack.object({mp, mp}):decode()         -- returns {123, 123}
+        msgpack.decode(msgpack.encode({mp, mp}))  -- returns {123, 123}
+
+    In particular, this means that if a MsgPack object stores an array, it can be inserted into a database space:
+
+    ..  code-block:: lua
+
+        box.space.my_space:insert(msgpack.object({1, 2, 3}))
+
+..  _msgpack-object-iterator-methods:
+
+..  class:: iterator_object
+
+    ..  method:: decode_array_header()
+
+        Since version 2.10.
+
+        Decodes a MsgPack array header under the
+        cursor and returns the number of elements in the array. After calling
+        this function, the iterator points to the first element of the array
+        or to the value following the array if the array is empty.
+
+        Raises an error if the type of the value under the iterator cursor is not ``MP_ARRAY``.
+
+        :return: TBD
+
+        :rtype: TBD
+
+    ..  method:: decode_map_header()
+
+        Since version 2.10.
+
+        Decodes a MsgPack map header under the
+        cursor and returns the number of key value pairs in the map. After
+        calling this function the iterator points to the first key stored in
+        the map or to the value following the map if the map is empty.
+
+        Raises an error if the type of the value under the iterator cursor is not ``MP_MAP``.
+
+        :return: TBD
+
+        :rtype: TBD
+
+    ..  method:: decode()
+
+        Since version 2.10.
+
+        Decodes a MsgPack value under the iterator cursor and
+        advances the cursor. Returns a Lua object corresponding to the
+        MsgPack value.
+
+        Raises a Lua error if there's no data to decode.
+
+        :return: TBD
+
+        :rtype: TBD
+
+    ..  method:: take()
+
+        Since version 2.10.
+
+        Returns a MsgPack value under the iterator cursor as a MsgPack object (without decoding).
+
+        Raises a Lua error if there's no data to decode.
+
+        This method doesn't copy MsgPack data. Instead, it takes a reference to the original object.
+
+        :return: TBD
+
+        :rtype: TBD
+
+    ..  method:: skip()
+
+        Since version 2.10.
+
+        Advances the iterator cursor by skipping one MsgPack value under the cursor. Returns nothing.
+
+        Raises a Lua error if there's not data to skip.
+
+        :return: none
+
+    **Example:**
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        local mp = msgpack.object({foo = 123, bar = {1, 2, 3}})
+        local it = mp:iterator()
+        it:decode_map_header()  -- returns 2
+        it:decode()             -- returns 'foo'
+        it:decode()             -- returns 123
+        it:skip()               -- returns none, skips 'bar'
+        local mp2 = it:take()
+        mp2:decode()            -- returns {1, 2, 3}
