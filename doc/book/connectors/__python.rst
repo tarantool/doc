@@ -201,12 +201,12 @@ Last update: February 2022
         -   No
         -   No
 
-    *   -   Support retrying when appropriate
+    *   -   Transparent request retrying
         -   No
         -   No
         -   No
 
-    *   -   Implicit reconnecting strategy
+    *   -   Transparent reconnecting
         -   Autoreconnect
         -   Yes (reconnect_max_attempts, reconnect_delay)
         -   Yes (reconnect_max_attempts, reconnect_delay), checking of connection liveness
