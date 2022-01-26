@@ -1,4 +1,3 @@
-
 Language and style
 ==================
 
@@ -193,13 +192,14 @@ Type three hyphens (``---``) to insert an em dash (---)
 and two hyphens (``--``) for an en dash (--).
 The following rules apply:
 
-*   The shorter **en dash** ``--`` is used to mark ranges (for example, 4--16 GB).
 *   The longer **em dash** ``---`` is used to separate extra information or mark a break in a sentence.
+*   The shorter **en dash** ``--`` is used to mark ranges (for example, 4--16 GB or Dover--Calais crossing).
 
 Don't use a single hyphen as a dash. Don't add spaces on either side of a dash. 
 
 When indicating a range like ``code element 1``\--``code element 2``, escape the series of hyphens using
-`character-level inline markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#character-level-inline-markup-1>`_:
+`character-level inline markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#character-level-inline-markup-1>`_. 
+Otherwise, the RST interpreter will perceive the dash as part of the RST syntax:
 
 ..  code-block:: rst
 
