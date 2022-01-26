@@ -636,8 +636,8 @@ msgstr ""
 "мастера планируется в `#113 <https://github.com/tarantool/go-"
 "tarantool/issues/113>`_)"
 
-msgid "Implicit reconnecting strategy"
-msgstr "Стратегия повторного подключения по умолчанию"
+msgid "Transparent reconnecting"
+msgstr "Прозрачное переподключение"
 
 msgid ""
 "Yes (see comments in `#129 <https://github.com/tarantool/go-"
@@ -659,8 +659,8 @@ msgstr ""
 "Есть (см. комментарии к `#7 "
 "<https://github.com/FZambia/tarantool/issues/7>`_)"
 
-msgid "Support retrying"
-msgstr "Повторная отправка запросов"
+msgid "Transparent request retrying"
+msgstr "Прозрачная переотправка запроса"
 
 msgid "`Watchers <https://github.com/tarantool/tarantool/pull/6510>`_"
 msgstr ""
