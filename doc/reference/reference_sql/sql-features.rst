@@ -955,7 +955,7 @@ F*, Other
             -   ``SELECT s1 FROM t WHERE s1 = (SELECT count(*) FROM t);``   
             -   Okay.
         *   -   F481   
-            -   Expanded NULL зredicate
+            -   Expanded NULL predicate
             -   ``SELECT * FROM t WHERE row(s1,s1) IS NOT NULL;``   
             -   Fail. Syntax error.   
         *   -   F812   
