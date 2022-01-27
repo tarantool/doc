@@ -81,6 +81,9 @@ Below is a list of all ``msgpack`` functions and members.
         *   -   :ref:`msgpack.object_from_raw(msgpack_string) <msgpack-object-from-raw>`
             -   TBD
 
+        *   -   :ref:`msgpack.object_from_raw(C_style_string_pointer, size) <msgpack-object-from-raw-pointer>`
+            -   TBD
+
         *   -   :ref:`msgpack.is_object(TBD) <msgpack-is-object>`
             -   TBD
 
@@ -290,9 +293,9 @@ Below is a list of all ``msgpack`` functions and members.
 
 .. _msgpack-serialize:
 
-**__serialize parameter:**
+**__serialize parameter**
 
-The MsgPack output structure can be specified with ``__serialize``:
+The MsgPack output structure can be specified with the ``__serialize`` parameter:
 
 * 'seq', 'sequence', 'array' - table encoded as an array
 * 'map', 'mappping' - table encoded as a map
@@ -452,7 +455,7 @@ with the MsgPack format name and encoding on the right.
 
     .. _msgpack-cfg_sparse:
 
-**Sparse arrays features:**
+**Sparse arrays features**
 
 During encoding, the MsgPack encoder tries to classify tables into one of four kinds:
 
@@ -563,24 +566,24 @@ and :ref:`YAML <yaml-cfg>`.
 
 ..  _msgpack-object:
 
-..  function:: object(lua_object)
+..  function:: object(lua_value)
 
-    Since version 2.10.
+    Since version 2.10.1.
 
-    Encodes an arbitrary/any Lua object /given/passed as the only argument/?? in the MsgPack format. Returns the encoded MsgPack data encapsulated in/as a MsgPack object.
+    Convert a Lua object to a MsgPack object.
 
-    :param lua_object: a Lua object of any type.
+    :param lua-object lua_value: a Lua object of any type.
 
-    :return: a MsgPack object.
+    :return: encoded MsgPack data encapsulated in a MsgPack object
 
-    :rtype: TBD
+    :rtype: MsgPack object
 
     **Example:**
 
     ..  code-block:: lua
 
         local msgpack = require('msgpack')
-        -- Create an object from a Lua object of any types.
+        -- Create a MsgPack object from a Lua object of any types
         mp = msgpack.object(123)
         mp = msgpack.object("foobar")
         mp = msgpack.object({1, 2, 3})
@@ -591,15 +594,15 @@ and :ref:`YAML <yaml-cfg>`.
 
 ..  function:: object_from_raw(msgpack_string)
 
-    Since version 2.10.
+    Since version 2.10.1.
 
-    Creates a MsgPack object from a raw MsgPack string.
+    Create a MsgPack object from a raw MsgPack string.
 
     :param string msgpack_string: a raw MsgPack string.
 
-    :return: a MsgPack object.
+    :return: a MsgPack object
 
-    :rtype: TBD
+    :rtype: MsgPack object
 
     **Example:**
 
@@ -609,17 +612,44 @@ and :ref:`YAML <yaml-cfg>`.
         local data = msgpack.encode({1, 2, 3})
         local mp = msgpack.object_from_raw(data)
 
+..  _msgpack-object-from-raw-pointer:
+
+..  function:: object_from_raw(C_style_string_pointer, size)
+
+    Since version 2.10.1.
+
+    Create a MsgPack object from a raw MsgPack string. The address of the MsgPack string is supplied as a C-style string pointer
+    such as the ``rpos`` pointer which is inside an ibuf that the :ref:`buffer.ibuf() <buffer-ibuf>` can create.
+    A C-style string pointer may be described as ``cdata<char *>`` or ``cdata<const char *>``.
+
+    :param buffer C_style_string_pointer: a pointer to a raw MsgPack string.
+    :param integer size: number of bytes in the raw MsgPack string.
+
+    :return: a MsgPack object
+
+    :rtype: MsgPack object
+
+    **Example:**
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        local buffer = require('buffer')
+        local buf = buffer.ibuf()
+        msgpack.encode({1, 2, 3}, buf)
+        local mp = msgpack.object_from_raw(buf.buf, buf:size())
+
 ..  _msgpack-is-object:
 
 ..  function:: is_object(TBD)
 
-    Since version 2.10.
+    Since version 2.10.1.
 
-    Checks if the given argument is a MsgPack object.
+    Check if the given argument is a MsgPack object.
 
     :param TBD:
 
-    :return: ``true`` or ``false``
+    :return: ``true`` if the argument is a MsgPack object; otherwise, ``false``
 
     :rtype: boolean
 
@@ -632,7 +662,9 @@ and :ref:`YAML <yaml-cfg>`.
         msgpack.is_object(mp) -- returns true
         msgpack.is_object({}) -- returns false
 
-A MsgPack object has the following methods. [TBD] -- leave this intro phrase here or move upper to the functions that create a msgpack.object
+[TBD] -- move this intro phrase upper to the sections of functions that create a msgpack.object or to the intro in the very begining of the page or below to the section dedicated to class msgpack_object
+
+A MsgPack object has the following methods.
 
 ..  _msgpack-object-methods:
 
@@ -640,25 +672,27 @@ A MsgPack object has the following methods. [TBD] -- leave this intro phrase her
 
     ..  method:: decode()
 
-        Since version 2.10.
+        Since version 2.10.1.
 
-        Decodes a MsgPack object and returns a Lua object.
+        Convert a MsgPack object to a Lua object.
 
-        :return: TBD
+        :return: a Lua object
 
-        :rtype: TBD
+        :rtype: Lua object
 
     ..  method:: iterator()
 
-        Since version 2.10.
+        Since version 2.10.1.
 
-        Returns an iterator over the MsgPack data.
+        Return an iterator over the MsgPack data.
 
         An iterator object has its own :ref:`set of methods <msgpack-object-iterator-methods>`.
 
-        :return: TBD
+        :return: an iterator_object
 
         :rtype: TBD
+
+    [TBD] -- to put the description below to the intro of this section (class msgpack_object) ?
 
     A MsgPack object can be passed to the MsgPack encoder with the same effect as passing the original Lua object:
 
@@ -681,7 +715,7 @@ A MsgPack object has the following methods. [TBD] -- leave this intro phrase her
 
     ..  method:: decode_array_header()
 
-        Since version 2.10.
+        Since version 2.10.1.
 
         Decodes a MsgPack array header under the
         cursor and returns the number of elements in the array. After calling
@@ -696,7 +730,7 @@ A MsgPack object has the following methods. [TBD] -- leave this intro phrase her
 
     ..  method:: decode_map_header()
 
-        Since version 2.10.
+        Since version 2.10.1.
 
         Decodes a MsgPack map header under the
         cursor and returns the number of key value pairs in the map. After
@@ -711,7 +745,7 @@ A MsgPack object has the following methods. [TBD] -- leave this intro phrase her
 
     ..  method:: decode()
 
-        Since version 2.10.
+        Since version 2.10.1.
 
         Decodes a MsgPack value under the iterator cursor and
         advances the cursor. Returns a Lua object corresponding to the
@@ -725,7 +759,7 @@ A MsgPack object has the following methods. [TBD] -- leave this intro phrase her
 
     ..  method:: take()
 
-        Since version 2.10.
+        Since version 2.10.1.
 
         Returns a MsgPack value under the iterator cursor as a MsgPack object (without decoding).
 
@@ -739,7 +773,7 @@ A MsgPack object has the following methods. [TBD] -- leave this intro phrase her
 
     ..  method:: skip()
 
-        Since version 2.10.
+        Since version 2.10.1.
 
         Advances the iterator cursor by skipping one MsgPack value under the cursor. Returns nothing.
 
