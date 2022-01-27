@@ -48,4 +48,4 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           status: ${{job.status}}
           deployment_id: ${{steps.deployment.outputs.deployment_id}}
-          env_url: ${{secrets.TARANTOOL_HOST}}/doc/${{env.BRANCH_NAME}}
+          env_url: ${{secrets.TARANTOOL_HOST}}/doc/${{env.BRANCH_NAME}}/
