@@ -258,7 +258,7 @@ Zen of Python is good; understand it and use wisely:
 
     .. code-block:: lua
 
-        if thing then
+        if thing ~= nil then
             -- ...stuff...
         end
         function derp()
@@ -267,7 +267,7 @@ Zen of Python is good; understand it and use wisely:
         local wat = 7
         -- bad
 
-        if thing then
+        if thing ~= nil then
             -- ...stuff...
         end
 
@@ -282,7 +282,7 @@ Zen of Python is good; understand it and use wisely:
     to delete them)
 
 ===========================================================
-                   Avoid global variable
+                   Avoid global variables
 ===========================================================
 
 You must avoid global variables. If you have an exceptional case, use ``_G``
@@ -353,6 +353,10 @@ Avoid these kind of constructions:
 * do not use semicolon as table separator (only comma)
 * semicolons at the end of line (only to split multiple statements on one line)
 * try to avoid unnecessary function creation (closures/..)
+
+Avoid providing implicit comparisons like ``if x then`` or ``if not x then``.
+They will likely result in troubles with :ref:`box.NULL </reference/reference_lua/box_null/>`.
+Instead of those conditions, use ``if x ~= nil then`` and ``if x == nil then``, correspondingly.
 
 ===========================================================
                           Modules
@@ -508,7 +512,7 @@ When checking function return values, check the first argument first. If it's
 .. code-block:: lua
 
     local data, err = foo()
-    if not data then
+    if data == nil then
         return nil, err
     end
     return bar(data)
@@ -522,7 +526,7 @@ case it's OK to check for error first, and return second:
 .. code-block:: lua
 
     local data, err = foo()
-    if not err then
+    if err == nil then
         return data
     end
     return nil, err
