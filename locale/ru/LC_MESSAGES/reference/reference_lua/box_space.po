@@ -289,10 +289,10 @@ msgid "(Metadata) List of collations accessible for the current user"
 msgstr "(Метаданные) Список видов сортировки, доступных текущему пользователю"
 
 msgid ":doc:`./box_space/system_views`"
-msgstr ""
+msgstr ":doc:`./box_space/system_views`"
 
 msgid "(Metadata) Spaces whose names begin with _v"
-msgstr ""
+msgstr "(Metadata) Спейсы, чьи имена начинаются с _v"
 
 msgid ":doc:`./box_space/_session_settings`"
 msgstr ":doc:`./box_space/_session_settings`"
