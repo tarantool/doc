@@ -8,4 +8,4 @@ box.space._vcollation
 
 .. data:: _vcollation
 
-    ``_vcollation`` is the :ref:`system view <box_space-sysviews>` for :ref:`_collation <box_space-collation>`.
+    ``_vcollation`` is the :ref:`system space view <box_space-sysviews>` for :ref:`_collation <box_space-collation>`.

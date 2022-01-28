@@ -41,5 +41,5 @@ box.space._index
        ---
        ...
 
-    The :ref:`system view <box_space-sysviews>` for ``_index`` is ``_vindex``.
+    The :ref:`system space view <box_space-sysviews>` for ``_index`` is ``_vindex``.
 

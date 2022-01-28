@@ -73,5 +73,5 @@ box.space._func
       ---
       ...
       
-   The :ref:`system view <box_space-sysviews>` for ``_func`` is ``_vfunc``.
+   The :ref:`system space view <box_space-sysviews>` for ``_func`` is ``_vfunc``.
 

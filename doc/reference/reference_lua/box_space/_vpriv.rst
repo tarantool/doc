@@ -8,4 +8,4 @@ box.space._vpriv
 
 .. data:: _vpriv
 
-    ``_vpriv`` is the :ref:`system view <box_space-sysviews>` for :ref:`_priv <box_space-priv>`.
+    ``_vpriv`` is the :ref:`system space view <box_space-sysviews>` for :ref:`_priv <box_space-priv>`.

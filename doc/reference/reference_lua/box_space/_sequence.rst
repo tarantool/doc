@@ -14,4 +14,4 @@ box.space._sequence
     :doc:`/reference/reference_lua/box_schema_sequence/create` or
     :doc:`/reference/reference_lua/box_schema_sequence/alter`.
 
-    The :ref:`system view <box_space-sysviews>` for ``_sequence`` is ``_vsequence``.
+    The :ref:`system space view <box_space-sysviews>` for ``_sequence`` is ``_vsequence``.

@@ -8,4 +8,4 @@ box.space._vuser
 
 .. data:: _vuser
 
-    ``_vuser`` is the :ref:`system view <box_space-sysviews>` for :ref:`_user <box_space-user>`.
+    ``_vuser`` is the :ref:`system space view <box_space-sysviews>` for :ref:`_user <box_space-user>`.

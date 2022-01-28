@@ -138,4 +138,4 @@ box.space._user
         ---
         ...
 
-    The :ref:`system view <box_space-sysviews>` for ``_user`` is ``_vuser``.
+    The :ref:`system space view <box_space-sysviews>` for ``_user`` is ``_vuser``.

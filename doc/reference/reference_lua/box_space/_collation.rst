@@ -27,4 +27,4 @@ box.space._collation
     opts = 'strength:secondary' i.e. with this collation comparisons use both primary and secondary
     `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_.
 
-    The :ref:`system view <box_space-sysviews>` for ``_collation`` is ``_vcollation``.
+    The :ref:`system space view <box_space-sysviews>` for ``_collation`` is ``_vcollation``.

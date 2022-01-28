@@ -8,4 +8,4 @@ box.space._vindex
 
 .. data:: _vindex
 
-    ``_vindex`` is the :ref:`system view <box_space-sysviews>` for :ref:`_index <box_space-index>`.
+    ``_vindex`` is the :ref:`system space view <box_space-sysviews>` for :ref:`_index <box_space-index>`.

@@ -23,5 +23,5 @@ box.space._priv
 
     See :ref:`Access control <authentication>` for details about user privileges.
          
-    The :ref:`system view <box_space-sysviews>` for ``_priv`` is ``_vpriv``.
+    The :ref:`system space view <box_space-sysviews>` for ``_priv`` is ``_vpriv``.
 
