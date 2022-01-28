@@ -686,7 +686,7 @@ and :ref:`YAML <yaml-cfg>`.
 
         A MsgPack iterator object has its own :ref:`set of methods <msgpack-object-iterator-methods>`.
 
-        :return: an iterator_object over the MsgPack data
+        :return: an iterator object over the MsgPack data
 
         :rtype: userdata
 
@@ -757,8 +757,6 @@ and :ref:`YAML <yaml-cfg>`.
         Advance the iterator cursor by skipping one MsgPack value under the cursor. Returns nothing.
 
         Raise a Lua error if there's no data to skip.
-
-        :return: none
 
     **Example:**
 
