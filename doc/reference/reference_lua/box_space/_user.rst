@@ -137,3 +137,5 @@ box.space._user
         tarantool> box.schema.user.drop('JeanMartin')
         ---
         ...
+
+    The :ref:`system space view <box_space-sysviews>` for ``_user`` is ``_vuser``.

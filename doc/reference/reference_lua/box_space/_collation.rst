@@ -26,3 +26,5 @@ box.space._collation
     locale = 'uk' i.e. `Ukrainian <http://www.unicode.org/cldr/charts/29/collation/uk.html>`_,
     opts = 'strength:secondary' i.e. with this collation comparisons use both primary and secondary
     `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_.
+
+    The :ref:`system space view <box_space-sysviews>` for ``_collation`` is ``_vcollation``.
