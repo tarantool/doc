@@ -292,7 +292,7 @@ msgid ":doc:`./box_space/system_views`"
 msgstr ":doc:`./box_space/system_views`"
 
 msgid "(Metadata) Spaces whose names begin with _v"
-msgstr "(Metadata) Спейсы, чьи имена начинаются с _v"
+msgstr "(Метаданные) Спейсы, имена которых начинаются с _v"
 
 msgid ":doc:`./box_space/_session_settings`"
 msgstr ":doc:`./box_space/_session_settings`"
