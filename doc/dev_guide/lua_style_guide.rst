@@ -5,18 +5,18 @@ Lua style guide
 
 Inspiration:
 
-* https://github.com/Olivine-Labs/lua-style-guide
-* http://dev.minetest.net/Lua_code_style_guidelines
-* http://sputnik.freewisdom.org/en/Coding_Standard
+*   https://github.com/Olivine-Labs/lua-style-guide
+*   http://dev.minetest.net/Lua_code_style_guidelines
+*   http://sputnik.freewisdom.org/en/Coding_Standard
 
 Programming style is art. There is some arbitrariness to the rules, but there
 are sound rationales for them. It is useful not only to provide sound advice on
 style but to understand the underlying rationale behind the
 style recommendations:
 
-* http://mindprod.com/jgloss/unmain.html
-* http://www.oreilly.com/catalog/perlbp/
-* http://books.google.com/books?id=QnghAQAAIAAJ
+*   http://mindprod.com/jgloss/unmain.html
+*   http://www.oreilly.com/catalog/perlbp/
+*   http://books.google.com/books?id=QnghAQAAIAAJ
 
 The Zen of Python is good. Understand it and use wisely:
 
@@ -353,9 +353,9 @@ Avoid the following constructions:
 *   Semicolons at the end of line. Use semicolons only to split multiple statements on one line.
 *   Unnecessary function creation (closures/..).
 
-Avoid implicit comparisons like ``if x then`` or ``if not x then``.
-They will likely result in troubles with :ref:`box.NULL </reference/reference_lua/box_null/>`.
-Instead of those conditions, use ``if x ~= nil then`` and ``if x == nil then``, correspondingly.
+Avoid implicit casting to boolean in ``if`` conditions like ``if x then`` or ``if not x then``.
+Such expressions will likely result in troubles with :ref:`box.NULL </reference/reference_lua/box_null/>`.
+Instead of those conditions, use ``if x ~= nil then`` and ``if x == nil then``.
 
 Modules
 -------
@@ -495,7 +495,7 @@ Be generous in what you accept and strict in what you return.
 
 With error handling, this means that you must provide an error object as the second
 multi-return value in case of error. The error object can be a string, a Lua
-table or cdata, in the latter cases, it must have a ``__tostring`` metamethod
+table, cdata, or userdata. In the latter three cases, it must have a ``__tostring`` metamethod
 defined.
 
 In case of error, use ``nil`` for the first return value. This makes the error
