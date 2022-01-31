@@ -22,7 +22,7 @@ provider, a dozens-of-professionals staff of programmers and support people, a c
 in open-source BSD licensing, and hundreds of corporations / government bodies using Tarantool products in production already.
 
 The status of Tarantool's SQL feature is "release". So, it is working now and you can verify
-that by downloading it and trying all the features, which we will explain in the rest of this document.
+that by downloading it and trying all the features, which will be explained in the rest of this document.
 There is also a :ref:`tutorial <sql_tutorial>`.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,19 +30,19 @@ Differences from other products
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Differences from other SQL products:
-We believe that Tarantool's SQL conforms to the majority of the listed
-mandatory requirements of the core SQL:2016 standard, and we
-enumerate the specific conformance statements in the feature list
+The Tarantool design requirement is that Tarantool's SQL conforms to the majority of the listed
+mandatory requirements of the core SQL:2016 standard, and this
+will be shown in the specific conformance statements in the feature list
 in a section about :ref:`"compliance with the official SQL standard" <sql>`.
-We believe that the deviations which most people will find notable are:
+Possibly the deviations which most people will find notable are:
 type checking is less strict,
 and some data definition options must be done with NoSQL syntax.
 
 Differences from other NoSQL products:
-We have examined attempts by others to paste relatively smaller
-subsets of SQL onto NoSQL products, and concluded that Tarantool's
+By examining attempts by others to paste relatively smaller
+subsets of SQL onto NoSQL products, it should be possible to conclude that Tarantool's
 SQL has demonstrably more features and capabilities.
-The reason is that we started with a complete code base of
+The reason is that the Tarantool developers started with a complete code base of
 a working SQL DBMS and made it work with Tarantool-NoSQL underneath,
 rather than starting with a NoSQL DBMS and adding syntax to it.
 

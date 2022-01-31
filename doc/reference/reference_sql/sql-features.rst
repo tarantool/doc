@@ -4,14 +4,14 @@
 SQL features
 --------------------------------------------------------------------------------
 
-In this section we will go through SQL:2016's "Feature taxonomy and definition
+This section compares Tarantool's features with SQL:2016's "Feature taxonomy and definition
 for mandatory features".
 
-For each feature in that list, we will come up with a simple example SQL
+For each feature in that list, there will be a simple example SQL
 statement.
-If Tarantool appears to handle the example, we will mark it "Okay",
-else we will mark it "Fail".
-Since this is rough and arbitrary, we believe that tests which are unfairly
+If Tarantool appears to handle the example, it will be marked "Okay",
+else it will be marked "Fail".
+Since this is rough and arbitrary, the hope is that tests which are unfairly
 marked "Okay" will probably be balanced by tests which are unfairly marked "Fail".
 
 .. container:: table
@@ -34,7 +34,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | these types, but will restrict it to 'float32' and      |
     |            |                                               |                                                          | 'float64' in 2.2. The format change requires data       |
     |            |                                               |                                                          | migration and cannot be done automatically, because in  |
-    |            |                                               |                                                          | 2.1 we have no information to distinguish 'number'      |
+    |            |                                               |                                                          | 2.1 there is no information to distinguish 'number'     |
     |            |                                               |                                                          | columns (created from Lua) from FLOAT/DOUBLE/REAL ones  |
     |            |                                               |                                                          | (created from SQL).                                     |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -83,7 +83,7 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     |            |                                               |                                                          | :ref:`POSITION <sql_function_position>` function        |
     |            |                                               |                                                          | requires '``,``' rather than '``IN``'.                  |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E021-12    | Character comparison                          | ``SELECT * FROM t WHERE s1 > 'a';``                      | Okay. We should note here that comparisons use a binary |
+    | E021-12    | Character comparison                          | ``SELECT * FROM t WHERE s1 > 'a';``                      | Okay. For STRING comparisons Tarantool uses a binary    |
     |            |                                               |                                                          | collation by default, but it is easy to use a           |
     |            |                                               |                                                          | :ref:`COLLATE clause <sql_collate_clause>`.             |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
@@ -263,8 +263,8 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     | E141-07    | Column defaults                               | ``CREATE TABLE t13 (s1 INT PRIMARY KEY, s2 INT           | Okay.                                                   |
     |            |                                               | DEFAULT -1);``                                           |                                                         |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | E141-08    | NOT NULL inferred on primary key              | ``CREATE TABLE t14 (s1 INT PRIMARY KEY);``               | Okay. We are unable to insert NULL although we don't    |
-    |            |                                               |                                                          | explicitly say the column is NOT NULL.                  |
+    | E141-08    | NOT NULL inferred on primary key              | ``CREATE TABLE t14 (s1 INT PRIMARY KEY);``               | Okay. It is not possible  to insert NULL although       |
+    |            |                                               |                                                          | there is no explicit NOT NULL clause.                   |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | E141-10    | Names in a foreign key can be specified in    | ``CREATE TABLE t15 (s1 INT, s2 INT, PRIMARY KEY          | Okay.                                                   |
     |            | any order                                     | (s1,s2));``                                              |                                                         |
@@ -299,8 +299,8 @@ marked "Okay" will probably be balanced by tests which are unfairly marked "Fail
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F031       | Basic schema manipulation                                                                                                                                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
-    | F031-01    | CREATE TABLE statement to create persistent   | ``CREATE TABLE t20 (t20_1 INT NOT NULL);``               | Fail. We always have to say PRIMARY KEY (we only        |
-    |            | base tables                                   |                                                          | count this flaw once).                                  |
+    | F031-01    | CREATE TABLE statement to create persistent   | ``CREATE TABLE t20 (t20_1 INT NOT NULL);``               | Fail. Tarantool always requires  a PRIMARY KEY (this    |
+    |            | base tables                                   |                                                          | flaw will only be counted once).                        |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+
     | F031-02    | CREATE VIEW statement                         | ``CREATE VIEW t21 AS SELECT * FROM t20;``                | :ref:`Okay <sql_create_view>`.                          |
     +------------+-----------------------------------------------+----------------------------------------------------------+---------------------------------------------------------+

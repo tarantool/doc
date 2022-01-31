@@ -362,9 +362,9 @@ Two column values in a SCALAR column can have two different primitive data types
    That is only possible with Tarantool/NoSQL scalar rules, but ``SELECT SUM(s2)``
    would not be legal because addition would in this case require implicit casting
    from VARBINARY to a numeric, which is not sensible.
-#. The result data type of a primitive combination is sometimes SCALAR although we
-   in effect use the primitive data type not the defined data type.
-   (Here we use the word "combination" in the way that the standard document
+#. The result data type of a primitive combination is sometimes SCALAR although Tarantool
+   in effect uses the primitive data type not the defined data type.
+   (Here the word "combination" is used in the way that the standard document
    uses it for section "Result of data type combinations".) Therefore for
    ``greatest(1E308, 'a', 0, X'00')`` the result is X'00' but
    ``typeof(greatest(1E308, 'a', 0, X'00')`` is 'scalar'.
@@ -395,7 +395,7 @@ casts, apply.
 There is one floating-point value which is not handled by SQL: -nan is seen as NULL
 although its data type is 'double'.
 
-Before Tarantool version 2.10-beta2, tthere were also some Tarantool/NoSQL data types which had no corresponding
+Before Tarantool version 2.10-beta2, there were also some Tarantool/NoSQL data types which had no corresponding
 SQL data types. For example, ``SELECT "flags" FROM "_vspace";`` would return
 a column whose SQL data type is VARBINARY rather than MAP. Such columns can only be manipulated in SQL
 by :ref:`invoking Lua functions <sql_calling_lua>`.
@@ -2506,8 +2506,8 @@ one row: [4].
 
 Then, ``UNION ALL (SELECT s1 + 1 FROM w)`` takes the row from ``w`` -- which
 contains [4] -- and now the importance of the WHERE clause becomes evident,
-because "s1 < 4" is false for this row, and therefore we have reached the
-"stop" condition.
+because "s1 < 4" is false for this row, and therefore the
+"stop" condition has been reached.
 
 So, before the "stop", table ``w`` got 4 rows -- [1], [2], [3], [4] -- and
 the result of the statement looks like:
@@ -3864,7 +3864,7 @@ there is an error: "Illegal mix of collations".
 In an expression with no ``COLLATE`` clauses, literals have collation ``"binary"``,
 columns have the collation specified by ``CREATE TABLE``.
 
-In other words, to pick a collation, we use: |br|
+In other words, to pick a collation, Tarantool uses: |br|
 the first ``COLLATE`` clause in an expression if it was specified, |br|
 else the the column's ``COLLATE`` clause if it was specified, |br|
 else ``"binary"``.

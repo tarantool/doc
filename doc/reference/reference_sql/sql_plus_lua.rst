@@ -48,7 +48,7 @@ Lua Requests
 
 A great deal of functionality is not specifically part of Tarantool's SQL feature,
 but is part of the Tarantool Lua application server and DBMS.
-Here we will give examples so it is clear where to look in other sections of the Tarantool manual.
+Here are some examples so it is clear where to look in other sections of the Tarantool manual.
 
 NoSQL :ref:`"spaces" <index-box_space>` can be accessed as SQL ``"tables"``, and vice versa.
 For example, suppose a table has been created with |br|
@@ -234,11 +234,11 @@ See also: :ref:`Lua functions to make views of metadata <sql_lua_functions>`.
    Never drop or change a collation which is being used for indexes or deterministic functions.
 
    Example:
-   Suppose we want to use a non-default collation which has Ukrainian rules.
+   Suppose there is a desire to use a non-default collation which has Ukrainian rules.
    There are many deviations from DUCET, all formally described by the Common Language Data Repository,
    in this case https://unicode.org/cldr/charts/32/collation/uk.html.
    Two notable deviations are: Ґ is a separate letter after Г and Ь is before Ю.
-   In addition we want upper case letters to come before lower case letters.
+   In addition there is a desire that upper case letters should come before lower case letters.
    The Lua request for this collation could be: |br|
    ``box.internal.collation.create('UKRAINIAN_S3', 'ICU', 'uk_UK', {strength='tertiary', case_first = 'upper_first'});``
 
@@ -342,17 +342,17 @@ Here is another example, which illustrates the way that Tarantool creates
 a view which includes the table_name and table_type columns in the same
 way that the standard-SQL information_schema.tables view contains them.
 The difficulty is that, in order to discover whether table_type should
-be ``'BASE TABLE'`` or should be ``'VIEW'``, we need to know the value of the
+be ``'BASE TABLE'`` or should be ``'VIEW'``, it is necessary to know the value of the
 ``"flags"`` field in the Tarantool/NoSQL :ref:`"_space" <box_space-space>` or ``"_vspace"`` space.
 The ``"flags"`` field type is ``"map"``, which SQL does not understand well.
-If there were no Lua functions, we would have to treat it as a VARBINARY
+If there were no Lua functions, it would be necessary to treat the field as a VARBINARY
 and look for ``POSITION(X'A476696577C3',"flags")  > 0`` (A4 is a MsgPack signal
 that a 4-byte string follows, 76696577 is UTF8 encoding for 'view',
 C3 is a MsgPack code meaning true).
 In any case, starting with Tarantool version 2.10, POSITION() does not work on VARBINARY operands.
-But we have a more sophisticated way, we can create a function that
+But there is a more sophisticated way, namely, creating a function that
 returns true if ``"flags".view`` is true.
-So our way of making the function looks like this:
+So for this case the way to make the function looks like this:
 
 .. code-block:: lua
 
@@ -432,7 +432,7 @@ create a :ref:`view <sql_create_view>` that is based on a join of the tables,
 then select from the view all rows where the second column values
 are not null, ordered by the first column.
 
-That is, what we want is |br|
+That is, the way to populate the table is |br|
 ``CREATE TABLE t1 (c1 INTEGER PRIMARY KEY, c2 STRING);`` |br|
 ``CREATE TABLE t2 (c1 INTEGER PRIMARY KEY, x2 STRING);`` |br|
 ``INSERT INTO t1 VALUES (1, 'A'), (2, 'B'), (3, 'C');`` |br|
@@ -566,7 +566,7 @@ But here is the Lua code and SQL code for creating equivalents: |br|
 :ref:`_REFERENTIAL_CONSTRAINTS <sql__referential_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS |br|
 :ref:`_CHECK_CONSTRAINTS <sql__check_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.CHECK_CONSTRAINTS |br|
 :ref:`_TABLE_CONSTRAINTS <sql__table_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.TABLE_CONSTRAINTS. |br|
-For each view we show an example of a SELECT from the view, and the code.
+For each view there will be an example of a SELECT from the view, and the code.
 Users who want metadata can simply copy the code.
 Use this code only with Tarantool version 2.3.0 or later.
 With an earlier Tarantool version, a :ref:`PRAGMA statement <sql_pragma>` may be useful.
@@ -916,7 +916,7 @@ Definition of the CREATE VIEW statement:
     ]])
     box.schema.role.grant('public', 'read', 'space', '_REFERENTIAL_CONSTRAINTS')
 
-We are not taking child_cols or parent_cols
+In this example child_cols or parent_cols are not taken
 from the _fk_constraint space because in standard SQL those
 are in a separate table.
 
@@ -976,7 +976,7 @@ _TABLE_CONSTRAINTS view
 This has only the constraints (primary-key and unique-key) that can be found by looking at the
 :ref:`_index <box_space-index>` space.
 It is not a list of indexes, that is, it is not equivalent to INFORMATION_SCHEMA.STATISTICS.
-We do not take the columns of the index because in standard SQL they would be in a different table.
+The columns of the index are not taken because in standard SQL they would be in a different table.
 
 Example:
 

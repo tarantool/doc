@@ -115,13 +115,13 @@ Expressions, for example ``a + b`` or ``a > b AND NOT a <= b``, may have arithme
 Concepts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the :ref:`SQL beginners' guide <sql_beginners_guide>` we discussed: |br|
+In the :ref:`SQL beginners' guide <sql_beginners_guide>` there was discussion of: |br|
 What are: relational databases, tables, views, rows, and columns? |br|
 What are: transactions, write-ahead logs, commits and rollbacks? |br|
 What are: security considerations? |br|
-How do we: add, delete, or update rows in tables? |br|
-How do we: work inside transactions with commits and/or rollbacks? |br|
-How do we: select, join, filter, group, and sort rows?
+How to: add, delete, or update rows in tables? |br|
+How to: work inside transactions with commits and/or rollbacks? |br|
+How to: select, join, filter, group, and sort rows?
 
 Tarantool has a "schema". A schema is a container for all database objects.
 A schema may be called a "database" in other DBMS implementations
@@ -426,7 +426,7 @@ Operand data types
 
 Every operand has a data type.
 
-For literals, :ref:`as we saw earlier <sql_literals>`, the data type is usually determined by the format.
+For literals, :ref:`as seen earlier <sql_literals>`, the data type is usually determined by the format.
 
 For identifiers, the data type is usually determined by the definition.
 
