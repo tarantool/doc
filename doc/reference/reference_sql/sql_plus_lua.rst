@@ -9,32 +9,27 @@ database objects that can be accessed from SQL, of SQL database objects that can
 be accessed from NoSQL, of the way to call SQL from Lua, and of the way to call
 Lua from SQL.
 
-.. container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+   :align: left
 
-    +-----------------------------------------------+---------------------------------------------------+
-    | Heading                                       | Summary                                           |
-    +===============================================+===================================================+
-    | :ref:`Lua requests                            | Some Lua requests that are especially useful for  |
-    | <sql_lua_requests>`                           | SQL, such as requests to grant privileges         |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`System tables                           | Looking at Lua sysview spaces such as _space      |
-    | <sql_system_tables>`                          |                                                   |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`Calling Lua routines from SQL           | Tarantool's implementation of SQL stored          |
-    | <sql_calling_lua>`                            | procedures                                        |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`Executing Lua chunks                    | The LUA(...) function                             |
-    | <sql_executing_lua_chunks>`                   |                                                   |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`Example sessions                        | Million-row insert, etc.                          |
-    | <sql_example_sessions>`                       |                                                   |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`Lua functions to make views of metadata | Making equivalents to standard-SQL                |
-    | <sql_lua_functions>`                          | information_schema tables                         |
-    +-----------------------------------------------+---------------------------------------------------+
+   * - Heading
+     - Summary
+   * - :ref:`Lua requests <sql_lua_requests>`
+     - Some Lua requests that are especially useful for
+       SQL, such as requests to grant privileges
+   * - :ref:`System tables <sql_system_tables>`
+     - Looking at Lua sysview spaces such as _space
+   * - :ref:`Calling Lua routines from SQL <sql_calling_lua>`
+     - Tarantool's implementation of SQL stored procedures
+   * - :ref:`Executing Lua chunks <sql_executing_lua_chunks>`
+     - The LUA(...) function
+   * - :ref:`Example sessions <sql_example_sessions>`
+     - Million-row insert, etc.
+   * - :ref:`Lua functions to make views of metadata <sql_lua_functions>`
+     - Making equivalents to standard-SQL information_schema tables
 
 .. COMMENT
    The next section is adapted from

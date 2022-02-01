@@ -7,47 +7,28 @@ SQL statements and clauses
 
 The Statements and Clauses guide shows all Tarantool/SQL statements' syntax and use.
 
-.. container:: table
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+   :align: left
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
-
-    +----------------------------------------------+---------------------------------------------------+
-    | Heading                                      | Summary                                           |
-    +==============================================+===================================================+
-    | :ref:`Statements that change data definition | :ref:`ALTER TABLE <sql_alter_table>`,             |
-    | <sql_statements_change_definition>`          | :ref:`CREATE TABLE <sql_create_table>`,           |
-    |                                              | :ref:`DROP TABLE <sql_drop_table>`,               |
-    |                                              | :ref:`CREATE VIEW <sql_create_view>`,             |
-    |                                              | :ref:`DROP VIEW <sql_drop_view>`,                 |
-    |                                              | :ref:`CREATE INDEX <sql_create_index>`,           |
-    |                                              | :ref:`DROP INDEX <sql_drop_index>`,               |
-    |                                              | :ref:`CREATE TRIGGER <sql_create_trigger>`,       |
-    |                                              | :ref:`DROP TRIGGER <sql_drop_trigger>`            |
-    +----------------------------------------------+---------------------------------------------------+
-    | :ref:`Statements that change data            | :ref:`INSERT <sql_insert>`,                       |
-    | <sql_statements_change_data>`                | :ref:`UPDATE <sql_update>`,                       |
-    |                                              | :ref:`DELETE <sql_delete>`,                       |
-    |                                              | :ref:`REPLACE <sql_replace>`,                     |
-    |                                              | :ref:`TRUNCATE <sql_truncate>`,                   |
-    |                                              | :ref:`SET <sql_set>`                              |
-    +----------------------------------------------+---------------------------------------------------+
-    | :ref:`Statements that retrieve data          | :ref:`SELECT <sql_select>`,                       |
-    | <sql_statements_retrieve_data>`              | :ref:`VALUES <sql_values>`,                       |
-    |                                              | :ref:`PRAGMA <sql_pragma>`,                       |
-    |                                              | :ref:`EXPLAIN <sql_explain>`                      |
-    +----------------------------------------------+---------------------------------------------------+
-    | :ref:`Statements for transactions            | :ref:`START TRANSACTION <sql_start_transaction>`, |
-    | <sql_transactions>`                          | :ref:`COMMIT <sql_commit>`,                       |
-    |                                              | :ref:`SAVEPOINT <sql_savepoint>`,                 |
-    |                                              | :ref:`RELEASE SAVEPOINT <sql_release_savepoint>`, |
-    |                                              | :ref:`ROLLBACK <sql_rollback>`                    |
-    +----------------------------------------------+---------------------------------------------------+
-    | :ref:`Functions                              | For example                                       |
-    | <sql_functions>`                             | :ref:`CAST(...) <sql_function_cast>`,             |
-    |                                              | :ref:`LENGTH(...) <sql_function_length>`,         |
-    |                                              | :ref:`VERSION() <sql_function_version>`           |
-    +----------------------------------------------+---------------------------------------------------+
+   * - Heading
+     - Summary
+   * - :ref:`Statements that change data definition <sql_statements_change_definition>`
+     - :ref:`ALTER TABLE <sql_alter_table>`, :ref:`CREATE TABLE <sql_create_table>`, :ref:`DROP TABLE <sql_drop_table>`,
+       :ref:`CREATE VIEW <sql_create_view>`, :ref:`DROP VIEW <sql_drop_view>`, :ref:`CREATE INDEX <sql_create_index>`,
+       :ref:`DROP INDEX <sql_drop_index>`, :ref:`CREATE TRIGGER <sql_create_trigger>`, :ref:`DROP TRIGGER <sql_drop_trigger>`
+   * - :ref:`Statements that change data <sql_statements_change_data>`
+     - :ref:`INSERT <sql_insert>`, :ref:`UPDATE <sql_update>`,  :ref:`DELETE <sql_delete>`, :ref:`REPLACE <sql_replace>`,
+       :ref:`TRUNCATE <sql_truncate>`, :ref:`SET <sql_set>`
+   * - :ref:`Statements that retrieve data <sql_statements_retrieve_data>`
+     - :ref:`SELECT <sql_select>`, :ref:`VALUES <sql_values>`, :ref:`PRAGMA <sql_pragma>`, :ref:`EXPLAIN <sql_explain>`
+   * - :ref:`Statements for transactions <sql_transactions>`
+     - :ref:`START TRANSACTION <sql_start_transaction>`, :ref:`COMMIT <sql_commit>`, :ref:`SAVEPOINT <sql_savepoint>`,
+       :ref:`RELEASE SAVEPOINT <sql_release_savepoint>`, :ref:`ROLLBACK <sql_rollback>`
+   * - :ref:`Functions <sql_functions>`
+     - For example :ref:`CAST(...) <sql_function_cast>`, :ref:`LENGTH(...) <sql_function_length>`,
+       :ref:`VERSION() <sql_function_version>`
 
 .. _sql_statements_change_definition:
 
@@ -411,36 +392,35 @@ Column definition -- column-constraint or default clause
 
 The column-constraint or default clause may be as follows:
 
-.. container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+.. list-table::
+   :widths: 33 67
+   :header-rows: 1
+   :align: left
 
-    +--------------------+-----------------------------------------------------------------+
-    | Type               | Comment                                                         |
-    +====================+=================================================================+
-    | NOT NULL           | means                                                           |
-    |                    | "it is illegal to assign a NULL to this column"                 |
-    +--------------------+-----------------------------------------------------------------+
-    | PRIMARY KEY        | explained in the later section                                  |
-    |                    | :ref:`"Table Constraint Definition" <sql_table_constraint_def>` |
-    +--------------------+-----------------------------------------------------------------+
-    | UNIQUE             | explained in the later section                                  |
-    |                    | "Table Constraint Definition"                                   |
-    +--------------------+-----------------------------------------------------------------+
-    | CHECK (expression) | explained in the later section                                  |
-    |                    | "Table Constraint Definition"                                   |
-    +--------------------+-----------------------------------------------------------------+
-    | foreign-key-clause | explained in the later section                                  |
-    |                    | :ref:`"Table Constraint Definition for foreign keys"            |
-    |                    | <sql_foreign_key>`                                              |
-    +--------------------+-----------------------------------------------------------------+
-    | DEFAULT expression | means                                                           |
-    |                    | "if INSERT does not assign to this column                       |
-    |                    | then assign expression result to this column" --                |
-    |                    | if there is no DEFAULT clause then DEFAULT NULL                 |
-    |                    | is assumed.                                                     |
-    +--------------------+-----------------------------------------------------------------+
+   * - Type
+     - Comment
+   * - NOT NULL
+     - means "it is illegal to assign a NULL to this column"
+   * -  PRIMARY KEY
+     - explained in the later section
+       :ref:`"Table Constraint Definition" <sql_table_constraint_def>`
+   * - UNIQUE
+     - explained in the later section
+       "Table Constraint Definition"
+   * - CHECK (expression)
+     - explained in the later section
+       "Table Constraint Definition"
+   * - foreign-key-clause
+     - explained in the later section
+       :ref:`"Table Constraint Definition for foreign keys"
+       <sql_foreign_key>`
+   * - DEFAULT expression
+     - means
+       "if INSERT does not assign to this column
+       then assign expression result to this column" --
+       if there is no DEFAULT clause then DEFAULT NULL
+       is assumed
 
 If column-constraint is PRIMARY KEY, this is a shorthand for a separate
 :ref:`table-constraint definition <sql_table_constraint_def>`: "PRIMARY KEY (column-name)".
@@ -740,10 +720,10 @@ Limitations: |br|
    For example, suppose a new table  t has one column and the column has a unique constraint.
    A transaction starts with START TRANSACTION.
    The first statement in the transaction is INSERT INTO t VALUES (1), (2);
-   i.e. "insert 1, then insert 2" -- Tarantool processes the new rows in order.
+   that is, "insert 1, then insert 2" -- Tarantool processes the new rows in order.
    This statement always succeeds, there are no constraint violations.
    The second SQL statement is INSERT INTO t VALUES (3), (2), (5);
-   i.e. "insert 3, then insert 2".
+   that is, "insert 3, then insert 2".
    Inserting 3 is not a problem, but inserting 2 is a problem -- it would violate the UNIQUE constraint.
 
    If behavior is ABORT: the second statement is rolled back, there is an error message. The table now contains (1), (2).
@@ -2745,82 +2725,87 @@ In an earlier version, there were some PRAGMA statements that determined behavio
 Now that does not happen. Behavior change is done by updating the
 :ref:`box.space._session_settings <box_space-session_settings>` system table.
 
-.. container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
-    .. rst-class:: left-align-column-3
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   :align: left
 
-    +---------------------+-----------------+-------------------------------------------------+
-    | Pragma              | Parameter       | Effect                                          |
-    +=====================+=================+=================================================+
-    | foreign_key_list    | string |br|     | Return a                                        |
-    |                     | table-name      | :ref:`result set <box-sql_result_sets>`         |
-    |                     |                 | with one row for each foreign key of            |
-    |                     |                 | "table-name". Each row contains: |br|           |
-    |                     |                 | (INTEGER) id -- identification number |br|      |
-    |                     |                 | (INTEGER) seq -- sequential number |br|         |
-    |                     |                 | (STRING) table -- name of table |br|            |
-    |                     |                 | (STRING) from  -- referencing key |br|          |
-    |                     |                 | (STRING) to -- referenced key |br|              |
-    |                     |                 | (STRING) on_update -- ON UPDATE clause |br|     |
-    |                     |                 | (STRING) on_delete -- ON DELETE clause |br|     |
-    |                     |                 | (STRING) match -- MATCH clause |br|             |
-    |                     |                 | The system table is ``"_fk_constraint"``.       |
-    +---------------------+-----------------+-------------------------------------------------+
-    | collation_list      |                 | Return a result set with one row for each       |
-    |                     |                 | supported collation. The first four collations  |
-    |                     |                 | are ``'none'`` and ``'unicode'`` and            |
-    |                     |                 | ``'unicode_ci'`` and ``'binary'``, then come    |
-    |                     |                 | about 270 predefined collations, the exact      |
-    |                     |                 | count may vary because users can add their      |
-    |                     |                 | own collations. |br|                            |
-    |                     |                 | The system table is ``"_collation"``.           |
-    +---------------------+-----------------+-------------------------------------------------+
-    | index_info          | string |br|     | Return a result set with one row for each       |
-    |                     | table-name .    | column in "table-name.index-name".              |
-    |                     | index-name      | Each row contains: |br|                         |
-    |                     |                 | (INTEGER) seqno -- the column's ordinal         |
-    |                     |                 | position in the index (first column is 0) |br|  |
-    |                     |                 | (INTEGER) cid -- the column's ordinal           |
-    |                     |                 | position in the table (first column is 0) |br|  |
-    |                     |                 | (STRING) name -- name of the column |br|        |
-    |                     |                 | (INTEGER) desc -- 0 if ASC, 1 if DESC |br|      |
-    |                     |                 | (STRING) collation name |br|                    |
-    |                     |                 | (STRING) type -- data type |br|                 |
-    +---------------------+-----------------+-------------------------------------------------+
-    | index_list          | string |br|     | Return a result set                             |
-    |                     | table-name      | with one row for each index of "table-name".    |
-    |                     |                 | Each row contains: |br|                         |
-    |                     |                 | (INTEGER) seq -- sequential number |br|         |
-    |                     |                 | (STRING) name -- index name |br|                |
-    |                     |                 | (INTEGER) unique -- whether the index is        |
-    |                     |                 | unique, 0 = false, 1 = true |br|                |
-    |                     |                 | The system table is ``"_index"``.               |
-    +---------------------+-----------------+-------------------------------------------------+
-    | stats               |                 | Return a result set with                        |
-    |                     |                 | one row for each index of each table.           |
-    |                     |                 | Each row contains: |br|                         |
-    |                     |                 | (STRING) table -- name of the table |br|        |
-    |                     |                 | (STRING) index -- name of the index |br|        |
-    |                     |                 | (INTEGER) width -- arbitrary information |br|   |
-    |                     |                 | (INTEGER) height -- arbitrary information       |
-    +---------------------+-----------------+-------------------------------------------------+
-    | table_info          | string |br|     | Return a result set                             |
-    |                     | table-name      | with one row for each column                    |
-    |                     |                 | in "table-name". Each row contains: |br|        |
-    |                     |                 | (INTEGER) cid -- ordinal position in the table  |
-    |                     |                 | |br|                                            |
-    |                     |                 | (first column number is 0) |br|                 |
-    |                     |                 | (STRING) name -- column name |br|               |
-    |                     |                 | (STRING) type |br|                              |
-    |                     |                 | (INTEGER) notnull -- whether the column is      |
-    |                     |                 | NOT NULL. 0 is                                  |
-    |                     |                 | false, 1 is true. |br|                          |
-    |                     |                 | (STRING) dflt_value -- default value |br|       |
-    |                     |                 | (INTEGER) pk -- whether the column is           |
-    |                     |                 | a PRIMARY KEY column. 0 is false, 1 is true.    |
-    +---------------------+-----------------+-------------------------------------------------+
+   * - Pragma
+     - Parameter
+     - Effect
+   * - foreign_key_list
+     - string |br| table-name
+     - Return a
+       :ref:`result set <box-sql_result_sets>`
+       with one row for each foreign key of
+       "table-name". Each row contains: |br|
+       (INTEGER) id -- identification number |br|
+       (INTEGER) seq -- sequential number |br|
+       (STRING) table -- name of table |br|
+       (STRING) from  -- referencing key |br|
+       (STRING) to -- referenced key |br|
+       (STRING) on_update -- ON UPDATE clause |br|
+       (STRING) on_delete -- ON DELETE clause |br|
+       (STRING) match -- MATCH clause |br|
+       The system table is ``"_fk_constraint"``.
+   * - collation_list
+     - 
+     - Return a result set with one row for each
+       supported collation. The first four collations
+       are ``'none'`` and ``'unicode'`` and
+       ``'unicode_ci'`` and ``'binary'``, then come
+       about 270 predefined collations, the exact
+       count may vary because users can add their
+       own collations. |br|
+       The system table is ``"_collation"``.
+   * - index_info
+     - string |br| table-name . index-name
+     - Return a result set with one row for each
+       column in "table-name.index-name".
+       Each row contains: |br|
+       (INTEGER) seqno -- the column's ordinal
+       position in the index (first column is 0) |br|
+       (INTEGER) cid -- the column's ordinal
+       position in the table (first column is 0) |br|
+       (STRING) name -- name of the column |br|
+       (INTEGER) desc -- 0 is ASC, 1 is DESC |br|
+       (STRING) collation name |br|
+       (STRING) type -- data type
+   * - index_list
+     - string |br| table-name
+     - Return a result set
+       with one row for each index of "table-name".
+       Each row contains: |br|
+       (INTEGER) seq -- sequential number |br|
+       (STRING) name -- index name |br|
+       (INTEGER) unique -- whether the index is
+       unique, 0 is false, 1 is true |br|
+       The system table is ``"_index"``.
+   * - stats
+     - 
+     - Return a result set with
+       one row for each index of each table.
+       Each row contains: |br|
+       (STRING) table -- name of the table |br|
+       (STRING) index -- name of the index |br|
+       (INTEGER) width -- arbitrary information |br|
+       (INTEGER) height -- arbitrary information
+   * - table_info
+     - string |br| table-name
+     - Return a result set
+       with one row for each column
+       in "table-name". Each row contains: |br|
+       (INTEGER) cid -- ordinal position in the table |br|
+       (first column number is 0) |br|
+       (STRING) name -- column name |br|
+       (STRING) type |br|
+       (INTEGER) notnull -- whether the column is
+       NOT NULL, 0 is
+       false, 1 is true. |br|
+       (STRING) dflt_value -- default value |br|
+       (INTEGER) pk -- whether the column is
+       a PRIMARY KEY column, 0 is false, 1 is true.
 
 Example: (not showing result set metadata)
 
@@ -2902,7 +2887,7 @@ Variation: ``EXPLAIN QUERY PLAN statement;`` shows the steps of a search.
    If statement is INSERT|UPDATE: for each  UNIQUE or PRIMARY KEY constraint that would be violated ...  If behavior is "REPLACE", then delete the old row and insert the new row.
    For each FOREIGN KEY constraint that would be violated ... do statement rollback and return an error.
    If statement is INSERT, then activate the table's BEFORE INSERT triggers.If statement is UPDATE, then activate the table's BEFORE UPDATE triggers. If statement is DELETE, then activate the table's BEFORE DELETE triggers.
-   If statement is INSERT|UPDATE: for each NOT NULL constraint that would be violated ... If behavior is "ABORT" or "REPLACE (for a NOT NULL constraint that has a NULL default value)", do statement rollback and return an error.  If behavior is "IGNORE", then skip this and all following steps (i.e. skip this row). If behavior is "FAIL", then return an error. If behavior is "ROLLBACK", then do transaction rollback and return an error.
+   If statement is INSERT|UPDATE: for each NOT NULL constraint that would be violated ... If behavior is "ABORT" or "REPLACE (for a NOT NULL constraint that has a NULL default value)", do statement rollback and return an error.  If behavior is "IGNORE", then skip this and all following steps (that is, skip this row). If behavior is "FAIL", then return an error. If behavior is "ROLLBACK", then do transaction rollback and return an error.
    If statement is INSERT|UPDATE: for each CHECK or UNIQUE or PRIMARY KEY constraint that would be violated ... If behavior is "IGNORE", then skip this row.  If behavior is "FAIL", return an error. If behavior is "ROLLBACK", then do transaction rollback and return an error. If behavior is "ABORT" or "REPLACE": do statement rollback and return an error. This means that UNIQUE or PRIMARY KEY constraints are checked twice, in step 2 and in this step. This is necessary because execution of an earlier step might cause a new conflict.
    If statement is INSERT, then activate the table's AFTER INSERT triggers.If statement is UPDATE, then activate the table's AFTER UPDATE triggers. If statement is DELETE, then activate the table's AFTER DELETE triggers.
 

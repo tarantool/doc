@@ -7,27 +7,21 @@ SQL user guide
 
 The User Guide describes how users can start up with SQL with Tarantool, and necessary concepts.
 
-.. container:: table
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   :align: left
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
-
-    +----------------------------------------------+---------------------------------+
-    | Heading                                      | Summary                         |
-    +==============================================+=================================+
-    | :ref:`Getting Started                        | Typing SQL statements on a      |
-    | <sql_getting_started>`                       | console                         |
-    +----------------------------------------------+---------------------------------+
-    | :ref:`Supported Syntax                       | For example what characters     |
-    | <sql_supported_syntax>`                      | are allowed                     |
-    +----------------------------------------------+---------------------------------+
-    | :ref:`Concepts                               | tokens, literals, identifiers,  |
-    | <sql_concepts>`                              | operands, operators,            |
-    |                                              | expressions, statements         |
-    +----------------------------------------------+---------------------------------+
-    | :ref:`Data type conversion                   | Casting, implicit or explicit   |
-    | <sql_data_type_conversion>`                  |                                 |
-    +----------------------------------------------+---------------------------------+
+   * - Heading
+     - Summary
+   * - :ref:`Getting Started <sql_getting_started>`
+     - Typing SQL statements on a console
+   * - :ref:`Supported Syntax <sql_supported_syntax>`
+     - For example what characters are allowed
+   * - :ref:`Concepts <sql_concepts>`
+     - tokens,  literals, identifiers, operands, operators, expressions, statements
+   * - :ref:`Data type conversion <sql_data_type_conversion>`
+     - Casting, implicit or explicit
 
 .. _sql_getting_started:
 
@@ -455,46 +449,81 @@ this manual will not use that term and will instead say "byte sequence".
 Here are all the SQL data types, their corresponding NoSQL types, their aliases,
 and minimum / maximum literal examples.
 
-.. container:: table
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   :align: left
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
-    .. rst-class:: left-align-column-3
-    .. rst-class:: left-align-column-4
-
-    +-----------+------------+------------+----------------------+-------------------------+
-    | SQL type  | NoSQL type | Aliases    | Minimum              | Maximum                 |
-    +===========+============+============+======================+=========================+
-    | BOOLEAN   | boolean    | BOOL       | FALSE                | TRUE                    |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | INTEGER   | integer    | INT        | -9223372036854775808 | 18446744073709551615    |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | UNSIGNED  | unsigned   | (none)     | 0                    | 18446744073709551615    |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | DOUBLE    | double     | (none)     | -1.79769e308         | 1.79769e308             |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | NUMBER    | number     | (none)     | -1.79769e308         | 1.79769e308             |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | DECIMAL   | decimal    | DEC        | -9999999999999999999 | 9999999999999999999     |
-    |           |            |            |  9999999999999999999 | 9999999999999999999     |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | STRING    | string     | TEXT,      | ``''``               | ``'many-characters'``   |
-    |           |            | VARCHAR(n) |                      |                         |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | VARBINARY | varbinary  | (none)     | ``X''``              | ``X'many-hex-digits'``  |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | UUID      | uuid       | (none)     | 00000000-0000-0000-  | ffffffff-ffff-ffff-     |
-    |           |            |            | 0000-000000000000    | dfff-ffffffffffff       |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | SCALAR    | (varies)   | (none)     | FALSE                | maximum UUID value      |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | MAP       | map        | (none)     | ``{'':''}``          | ``big-key:big-value``   |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | ARRAY     | array      | (none)     | []                   | ``[many values]``       |
-    +-----------+------------+------------+----------------------+-------------------------+
-    | ANY       | any        | (none)     | FALSE                | ``[many values]``       |
-    +-----------+------------+------------+----------------------+-------------------------+
-
+   * - SQL type
+     - NoSQL type
+     - Aliases
+     - Minimum
+     - Maximum
+   * - BOOLEAN
+     - boolean
+     - BOOL
+     - FALSE
+     - TRUE
+   * - INTEGER
+     - integer
+     - INT
+     - -9223372036854775808
+     - 18446744073709551615
+   * - UNSIGNED
+     - unsigned
+     - (none)
+     - 0
+     - 18446744073709551615
+   * - DOUBLE
+     - double
+     - (none)
+     - -1.79769e308
+     - 1.79769e308
+   * - NUMBER
+     - number
+     - (none)
+     - -1.79769e308
+     - 1.79769e308
+   * - DECIMAL
+     - decimal
+     - DEC
+     - -9999999999999999999 9999999999999999999
+     - 9999999999999999999 9999999999999999999
+   * - STRING
+     - string
+     - TEXT, VARCHAR(n)
+     - ``''``
+     - ``'many-characters'``
+   * - VARBINARY
+     - varbinary
+     - (none)
+     - ``X''``
+     - ``X'many-hex-digits'``
+   * - UUID
+     - uuid
+     - (none)
+     - 00000000-0000-0000- 0000-000000000000
+     - ffffffff-ffff-ffff-dfff-ffffffffffff
+   * - SCALAR
+     - (varies)
+     - (none)
+     - FALSE
+     - maximum UUID value
+   * - MAP
+     - map
+     - (none)
+     - ``{'':''}``
+     - ``{big-key:big-value}``
+   * - ARRAY
+     - array
+     - (none)
+     - []
+     - ``[many values]``
+   * - ANY
+     - any
+     - (none)
+     - FALSE
+     - ``[many values]``
 
 .. _sql_data_type_boolean:
 
