@@ -297,7 +297,7 @@ Paste the code below into ``api.lua`` and click "Apply".
     function add_user(request)
         local fullname = request:post_param("fullname")
         local result, err = crud.insert_object('users', {user_id = uuid.new(), fullname = fullname})
-        if err ~ = nil then
+        if err ~= nil then
             return {body = json.encode({status = "Error!", error = err}), status = 500}
         end
 
