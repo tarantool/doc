@@ -297,7 +297,7 @@ Paste the code below into ``api.lua`` and click "Apply".
     function add_user(request)
         local fullname = request:post_param("fullname")
         local result, err = crud.insert_object('users', {user_id = uuid.new(), fullname = fullname})
-        if err ~ = nil then
+        if err ~= nil then
             return {body = json.encode({status = "Error!", error = err}), status = 500}
         end
 
@@ -315,8 +315,8 @@ Paste the code below into ``api.lua`` and click "Apply".
     end
 
     function like_video(request)
-        local video_id = request: post_param("video_id")
-        local user_id = request: post_param("user_id")
+        local video_id = request:post_param("video_id")
+        local user_id = request:post_param("user_id")
  
         local result, err = crud.insert_object('likes', {like_id = uuid.new(),
                                                     video_id = uuid.fromstr(video_id),
