@@ -17,8 +17,6 @@
 
 .. confval:: slab_alloc_factor
 
-    Since version ?.
-
     The multiplier for computing the sizes of memory
     chunks that tuples are stored in. A lower value may result in less wasted
     memory depending on the total amount of memory available and the
