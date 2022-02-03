@@ -370,27 +370,33 @@ Paste the configuration example below into ``config.yml`` and click "Apply".
          - http: {path: "/like_video", method: POST}
     ...
 
-Done! Let's make test requests from the console:
+Done! Let's make test requests from the console.
+
+Please note: instead of ``url``, you must substitute your URL from query strings up to the first slash. The protocol must be strictly HTTP.
+
+For example if you pass that tutorial into the Try Tarantool your ``url`` will be something like this: http://artpjcvnmwctc4qppejgf57.try.tarantool.io. Your hash before try.tarantool.io is different. Be careful.
+
+But if you bootstrap Tarantool locally your ``url`` is like: http://localhost:8081.
 
 ..  code-block:: bash
 
-    curl -X POST --data "fullname = Taran Tool" <ip:port>/add_user
+    curl -X POST --data "fullname=Taran Tool" url/add_user
 
 We've just created a user and got their UUID. Let's remember it.
 
 ..  code-block:: bash
 
-    curl -X POST --data "description = My first tiktok" <ip:port>/add_video
+    curl -X POST --data "description=My first tiktok" url/add_video
 
 Let's say a user has added their first video with a description.
 The video clip also has a UUID. Let's remember it, too.
 
-In order to "like" the video, you need to specify the user UUID and the video UUID.
+In order to "like" the video, you need to specify the user UUID and the video UUID from previous steps.
 Substitute the ellipses in the command below with the corresponding UUIDs:
 
 ..  code-block:: bash
 
-    curl -X POST --data "video_id = ... & user_id = ..." <ip: port>/like_video
+    curl -X POST --data "video_id=...&user_id=..." url/like_video
 
 The result will be something like this:
 
@@ -420,6 +426,15 @@ on only one node.
 
 Let's go to the node ``s1-master``: click "Connect" and select the necessary space.
 
+..  note::
+
+    Please note that the Space-Explorer tool is only available in the
+    Enterprise version of the product and in the Try Tarantool cloud service.
+    In the open-source version, use the console to view data.
+
+    Check our documentation to learn more about :doc:`data viewing </reference/reference_lua/box_space/select/>`.
+    To learn how to connect to a Tarantool instance, :ref:`read the basic Tarantool manual <getting_started_db>`.
+
 Check that everything is in place and move on.
 
 ..  figure:: images/hosts.png
@@ -431,13 +446,6 @@ Check that everything is in place and move on.
     :alt: Space Explorer, view likes
 
     Space Explorer, viewing likes
-
-Please note that the Space-Explorer tool is only available in the
-Enterprise version of the product and in the Try Tarantool cloud service.
-In the open-source version, use the console to view data.
-
-Check our documentation to learn more about :doc:`data viewing </reference/reference_lua/box_space/select/>`.
-To learn how to connect to a Tarantool instance, :ref:`read the basic Tarantool manual <getting_started_db>`.
 
 
 Scaling the cluster [1 minute]
