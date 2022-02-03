@@ -1312,6 +1312,9 @@ configuration setting is either 'candidate' or 'manual', so that
 during the :ref:`leader election process <repl_leader_elect_process>`
 this instance may be preferred over instances whose configuration
 setting is 'voter'.
+IPROTO_BALLOT_CAN_LEAD support was added simultaneously in
+version :doc:`2.7.3 </release/2.7.3>`
+and version :doc:`2.8.2 </release/2.8.2>`.
 
 ..  _box_protocol-flags:
 
