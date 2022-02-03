@@ -1,3 +1,4 @@
+* :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
 * :ref:`memtx_memory <cfg_storage-memtx_memory>`
 * :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`
 * :ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`
@@ -11,6 +12,21 @@
 * :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>`
 * :ref:`vinyl_read_threads <cfg_storage-vinyl_read_threads>`
 * :ref:`vinyl_write_threads <cfg_storage-vinyl_write_threads>`
+
+.. _cfg_storage-slab_alloc_factor:
+
+.. confval:: slab_alloc_factor
+
+    Since version ?.
+
+    The multiplier for computing the sizes of memory
+    chunks that tuples are stored in. A lower value may result in less wasted
+    memory depending on the total amount of memory available and the
+    distribution of item sizes.
+
+    | Type: float
+    | Default: 1.1
+    | Dynamic: no
 
 .. _cfg_storage-memtx_memory:
 

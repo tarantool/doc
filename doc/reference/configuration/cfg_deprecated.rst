@@ -9,7 +9,6 @@ These parameters are deprecated since Tarantool version 1.7.4:
 * :ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error_deprecated>`
 * :ref:`replication_source <cfg_replication-replication_source_deprecated>`
 * :ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena_deprecated>`
-* :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor_deprecated>`
 * :ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal_deprecated>`
 * :ref:`slab_alloc_minimal <cfg_storage-slab_alloc_minimal_deprecated>`
 * :ref:`snap_dir <cfg_basic-snap_dir_deprecated>`
@@ -93,21 +92,6 @@ These parameters are deprecated since Tarantool version 1.7.4:
 
     | Type: float
     | Default: 1.0
-    | Dynamic: no
-
-.. _cfg_storage-slab_alloc_factor_deprecated:
-
-.. confval:: slab_alloc_factor
-
-    **Deprecated**, do not use.
-    
-    The multiplier for computing the sizes of memory
-    chunks that tuples are stored in. A lower value may result in less wasted
-    memory depending on the total amount of memory available and the
-    distribution of item sizes.
-
-    | Type: float
-    | Default: 1.1
     | Dynamic: no
 
 .. _cfg_storage-slab_alloc_maximal_deprecated:
