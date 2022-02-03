@@ -1,11 +1,13 @@
 
 msgid "SQL features"
-msgstr ""
+msgstr "Возможности SQL"
 
 msgid ""
 "In this section we will go through SQL:2016's \"Feature taxonomy and "
 "definition for mandatory features\"."
 msgstr ""
+"В этом разделе мы рассмотрим основные возможности SQL, описанные в документе"
+" Feature taxonomy and definition for mandatory features (SQL:2016)."
 
 msgid ""
 "For each feature in that list, we will come up with a simple example SQL "
@@ -14,45 +16,48 @@ msgid ""
 "we believe that tests which are unfairly marked \"Okay\" will probably be "
 "balanced by tests which are unfairly marked \"Fail\"."
 msgstr ""
+"Для каждой возможности в списке приводится простой пример SQL-инструкции. "
+"Если Tarantool его обрабатывает, возможность будет помечена как «Работает», "
+"в противном случае — как «Ошибка». Поскольку эта оценка носит неточный и "
+"примерный характер, будем надеяться, что тесты, которые были несправедливо "
+"отмечены как неуспешные, будут уравновешены случаями, незаслуженно "
+"отмеченными как работающие."
+
+msgid "E011, Numeric data types"
+msgstr "E011, числовые типы данных"
 
 msgid "Feature ID"
-msgstr ""
+msgstr "Код возможности"
 
 msgid "Feature"
-msgstr "Характеристика"
+msgstr "Возможность"
 
 msgid "Example"
 msgstr "Пример"
 
-msgid "Test"
-msgstr ""
-
-msgid "E011"
-msgstr ""
-
-msgid "Numeric data types"
-msgstr ""
+msgid "Tests"
+msgstr "Результаты тестов"
 
 msgid "E011-01"
-msgstr ""
+msgstr "E011-01"
 
 msgid "INTEGER and SMALLINT"
-msgstr ""
+msgstr "Типы данных INTEGER и SMALLINT"
 
 msgid "``CREATE TABLE t (s1 INT PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE t (s1 INT PRIMARY KEY);``"
 
 msgid ":ref:`Okay <sql_create_table>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_create_table>`."
 
 msgid "E011-02"
-msgstr ""
+msgstr "E011-02"
 
 msgid "REAL, DOUBLE PRECISION, and FLOAT data types"
-msgstr ""
+msgstr "Типы данных REAL, DOUBLE PRECISION и FLOAT"
 
 msgid "``CREATE TABLE tr (s1 FLOAT PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE tr (s1 FLOAT PRIMARY KEY);``"
 
 msgid ""
 "Fail. Tarantool's floating point data type is :ref:`DOUBLE "
@@ -64,1620 +69,1617 @@ msgid ""
 "distinguish 'number' columns (created from Lua) from FLOAT/DOUBLE/REAL ones "
 "(created from SQL)."
 msgstr ""
+"Ошибка. Тип данных с плавающей точкой в Tarantool — :ref:`DOUBLE "
+"<sql_data_type_double>`. **Примечание:** Скорее всего, типы с плавающей "
+"точкой в версиях 2.1 и 2.2 не будут совместимы: в версии 2.1 для столбцов "
+"этих типов задается формат 'number', а в версии 2.2 --- 'float32' и "
+"'float64'. Для смены формата требуется перенос данных, который не "
+"выполняется автоматически, поскольку в версии 2.1 нет информации, как "
+"отличать столбцы 'number', созданные через Lua, от FLOAT/DOUBLE/REAL, "
+"созданных через SQL."
 
 msgid "E011-03"
-msgstr ""
+msgstr "E011-03"
 
 msgid "DECIMAL and NUMERIC data types"
-msgstr ""
+msgstr "Типы данных DECIMAL и NUMERIC"
 
 msgid "``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``"
 
 msgid ""
-"Fail, NUMERIC data types are not supported and a number containing post-"
+"Fail, NUMERIC data types are not supported, and a number containing post-"
 "decimal digits will be treated as approximate numeric."
 msgstr ""
-"Неуспешно, так как типы данных NUMERIC не поддерживаются и число с цифрами "
-"после десятичной точки будет обрабатываться как примерное."
+"Ошибка, типы данных NUMERIC не поддерживаются, а число с цифрами после "
+"десятичной точки будет обрабатываться как приблизительное числовое значение."
 
 msgid "E011-04"
-msgstr ""
+msgstr "E011-04"
 
 msgid "Arithmetic operators"
-msgstr ""
+msgstr "Арифметические операторы"
 
 msgid "``SELECT 10+1, 9-2, 8*3, 7/2 FROM t;``"
-msgstr ""
+msgstr "``SELECT 10+1, 9-2, 8*3, 7/2 FROM t;``"
 
 msgid ":ref:`Okay <sql_operator_arithmetic>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_operator_arithmetic>`."
 
 msgid "E011-05"
-msgstr ""
+msgstr "E011-05"
 
 msgid "Numeric comparisons"
-msgstr ""
+msgstr "Числовые сравнения"
 
 msgid "``SELECT * FROM t WHERE 1 < 2;``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE 1 < 2;``"
 
 msgid ":ref:`Okay <sql_operator_comparison>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_operator_comparison>`."
 
 msgid "E011-06"
-msgstr ""
+msgstr "E011-06"
 
 msgid "Implicit casting among the numeric data types"
-msgstr ""
+msgstr "Неявное приведение числовых типов данных"
 
 msgid "``SELECT * FROM t WHERE s1 = 1.00;``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 = 1.00;``"
 
 msgid ""
 "Okay, because Tarantool allows comparison of 1.00 with an INTEGER column."
-msgstr ""
+msgstr "Работает, потому что Tarantool поддерживает сравнение 1.00 с INTEGER."
 
-msgid "E021"
-msgstr ""
-
-msgid "Character string types"
-msgstr ""
+msgid "E021, Character string types"
+msgstr "E021, типы символьных строк"
 
 msgid "E021-01"
-msgstr ""
+msgstr "E021-01"
 
 msgid "Character data type (including all its spellings)"
-msgstr ""
+msgstr "Символьный тип данных (включая все варианты написания)"
 
 msgid "``CREATE TABLE t44 (s1 CHAR PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE t44 (s1 CHAR PRIMARY KEY);``"
 
 msgid ""
 "Fail, CHAR is not supported. This type of Fail will only be counted once."
 msgstr ""
+"Ошибка, тип данных CHAR не поддерживается. Этот тип ошибки будет учитываться"
+" только один раз."
 
 msgid "E021-02"
-msgstr ""
+msgstr "E021-02"
 
 msgid "CHARACTER VARYING data type (including all its spellings)"
-msgstr ""
+msgstr "Тип данных CHARACTER VARYING (включая все варианты написания)"
 
 msgid "``CREATE TABLE t45 (s1 VARCHAR PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE t45 (s1 VARCHAR PRIMARY KEY);``"
 
 msgid ""
 "Fail, Tarantool only allows VARCHAR(n), which is a synonym for :ref:`STRING "
 "<sql_data_type_string>`."
 msgstr ""
+"Ошибка, Tarantool поддерживает только VARCHAR(n), являющийся синонимом "
+":ref:`STRING <sql_data_type_string>`."
 
 msgid "E021-03"
-msgstr ""
+msgstr "E021-03"
 
 msgid "Character literals"
-msgstr ""
+msgstr "Символьные литералы"
 
 msgid "``INSERT INTO t45 VALUES ('');``"
-msgstr ""
+msgstr "``INSERT INTO t45 VALUES ('');``"
 
 msgid ""
 "Okay, and the bad practice of accepting ``\"\"`` for character literals is "
 "avoided."
 msgstr ""
+"Работает. Кроме того, избегается нежелательная практика принятия ``\"\"`` за"
+" символьные литералы."
 
 msgid "E021-04"
-msgstr ""
+msgstr "E021-04"
 
 msgid "CHARACTER_LENGTH function"
-msgstr ""
+msgstr "Функция CHARACTER_LENGTH"
 
 msgid "``SELECT character_length(s1) FROM t;``"
-msgstr ""
+msgstr "``SELECT character_length(s1) FROM t;``"
 
 msgid ""
 "Okay. Tarantool treats this as a synonym of :ref:`LENGTH() "
 "<sql_function_length>`."
 msgstr ""
+"Работает. Tarantool воспринимает эту функцию как синоним :ref:`LENGTH() "
+"<sql_function_length>`."
 
 msgid "E021-05"
-msgstr ""
+msgstr "E021-05"
 
 msgid "OCTET_LENGTH"
-msgstr ""
+msgstr "OCTET_LENGTH"
 
 msgid "``SELECT octet_length(s1) FROM t;``"
-msgstr ""
+msgstr "``SELECT octet_length(s1) FROM t;``"
 
 msgid "Fail. There is no such function."
-msgstr ""
+msgstr "Ошибка. Такой функции нет."
 
 msgid "E021-06"
-msgstr ""
+msgstr "E021-06"
 
-msgid "SUBSTRING function."
-msgstr ""
+msgid "SUBSTRING function"
+msgstr "Функция SUBSTRING"
 
 msgid "``SELECT substring(s1 FROM 1 FOR 1) FROM t;``"
-msgstr ""
+msgstr "``SELECT substring(s1 FROM 1 FOR 1) FROM t;``"
 
 msgid ""
 "Fail. There is no such function. There is a function :ref:`SUBSTR(x,n,n) "
-"<sql_function_substr>` which is okay."
+"<sql_function_substr>`, which is okay."
 msgstr ""
+"Ошибка, такой функции нет. Есть функция :ref:`SUBSTR(x,n,n) "
+"<sql_function_substr>`."
 
 msgid "E021-07"
-msgstr ""
+msgstr "E021-07"
 
 msgid "Character concatenation"
-msgstr ""
+msgstr "Конкатенация символов"
 
 msgid "``SELECT 'a' || 'b' FROM t;``"
-msgstr ""
+msgstr "``SELECT 'a' || 'b' FROM t;``"
 
 msgid ":ref:`Okay <sql_operator_concatenate>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_operator_concatenate>`."
 
 msgid "E021-08"
-msgstr ""
+msgstr "E021-08"
 
 msgid "UPPER and LOWER functions"
-msgstr ""
+msgstr "Функции UPPER и LOWER"
 
 msgid "``SELECT upper('a'),lower('B') FROM t;``"
-msgstr ""
+msgstr "``SELECT upper('a'),lower('B') FROM t;``"
 
 msgid ""
 "Okay. Tarantool supports both :ref:`UPPER() <sql_function_upper>` and "
 ":ref:`LOWER() <sql_function_lower>`."
 msgstr ""
+"Работает. Tarantool поддерживает как :ref:`UPPER() <sql_function_upper>`, "
+"так и :ref:`LOWER() <sql_function_lower>`."
 
 msgid "E021-09"
-msgstr ""
+msgstr "E021-09"
 
 msgid "TRIM function"
-msgstr ""
+msgstr "Функция TRIM"
 
 msgid "``SELECT trim('a ') FROM t;``"
-msgstr ""
+msgstr "``SELECT trim('a ') FROM t;``"
 
 msgid ":ref:`Okay <sql_function_trim>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_function_trim>`."
 
 msgid "E021-10"
-msgstr ""
+msgstr "E021-10"
 
 msgid ""
 "Implicit casting among the fixed-length and variable-length character string"
 " types"
 msgstr ""
+"Неявное приведение типов символьных строк фиксированной и переменной длины"
 
 msgid "``SELECT * FROM tm WHERE char_column > varchar_column;``"
-msgstr ""
+msgstr "``SELECT * FROM tm WHERE char_column > varchar_column;``"
 
 msgid "Fail, there is no fixed-length character string type."
-msgstr ""
+msgstr "Ошибка, тип символьной строки фиксированной длины отсутствует."
 
 msgid "E021-11"
-msgstr ""
+msgstr "E021-11"
 
 msgid "POSITION function"
-msgstr ""
+msgstr "Функция POSITION"
 
 msgid "``SELECT position(x IN y) FROM z;``"
-msgstr ""
+msgstr "``SELECT position(x IN y) FROM z;``"
 
 msgid ""
 "Fail. Tarantool's :ref:`POSITION <sql_function_position>` function requires "
 "'``,``' rather than '``IN``'."
 msgstr ""
+"Ошибка. В функции Tarantool :ref:`POSITION <sql_function_position>` "
+"используется '``,``', а не '``IN``'."
 
 msgid "E021-12"
-msgstr ""
+msgstr "E021-12"
 
 msgid "Character comparison"
-msgstr ""
+msgstr "Сравнение символов"
 
 msgid "``SELECT * FROM t WHERE s1 > 'a';``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 > 'a';``"
 
 msgid ""
 "Okay. We should note here that comparisons use a binary collation by "
 "default, but it is easy to use a :ref:`COLLATE clause <sql_collate_clause>`."
 msgstr ""
+"Работает. Стоит отметить, что в сравнениях по умолчанию используется "
+"двоичная сортировка, но можно использовать и "
+":ref:`COLLATE<sql_collate_clause>`."
+
+msgid "E031, Identifiers"
+msgstr "E031, идентификаторы"
 
 msgid "E031"
-msgstr ""
+msgstr "E031"
 
 msgid "Identifiers"
-msgstr ""
+msgstr "Идентификаторы"
 
 msgid "``CREATE TABLE rank (ceil INT PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE rank (ceil INT PRIMARY KEY);``"
 
 msgid ""
 "Fail. Tarantool's list of :ref:`reserved words <sql_reserved_words>` differs"
 " from the standard's list of reserved words."
 msgstr ""
+"Ошибка. Список :ref:`зарезервированных слов <sql_reserved_words>` в "
+"Tarantool отличается от стандартного."
 
 msgid "E031-01"
-msgstr ""
+msgstr "E031-01"
 
-msgid "Delimited Identifiers"
-msgstr ""
+msgid "Delimited identifiers"
+msgstr "Идентификаторы с разделителем"
 
 msgid "``CREATE TABLE \"t47\" (s1 INT PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE \"t47\" (s1 INT PRIMARY KEY);``"
 
 msgid ""
-":ref:`Okay <sql_identifiers>`. And enclosing identifiers inside double "
+":ref:`Okay <sql_identifiers>`. Also, enclosing identifiers inside double "
 "quotes means they won't be converted to upper case or lower case, this is "
-"behavior that some other DBMSs lack."
+"the behavior that some other DBMSs lack."
 msgstr ""
+":ref:`Работает <sql_identifiers>`. Кроме того, заключение идентификаторов в "
+"двойные кавычки означает, что они не будут приводиться к верхнему или "
+"нижнему регистру. В некоторых других СУБД эта особенность отсутствует."
 
 msgid "E031-02"
-msgstr ""
+msgstr "E031-02"
 
 msgid "Lower case identifiers"
-msgstr ""
+msgstr "Идентификаторы в нижнем регистре"
 
 msgid "``CREATE TABLE t48 (s1 INT PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE t48 (s1 INT PRIMARY KEY);``"
 
 msgid "Okay."
-msgstr ""
+msgstr "Работает."
 
 msgid "E031-03"
-msgstr ""
+msgstr "E031-03"
 
 msgid "Trailing underscore"
-msgstr ""
+msgstr "Символ нижнего подчеркивания в конце"
 
 msgid "``CREATE TABLE t49_ (s1 INT PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE t49_ (s1 INT PRIMARY KEY);``"
 
-msgid "E051"
-msgstr ""
-
-msgid "Basic query specification"
-msgstr ""
+msgid "E051, Basic query specification"
+msgstr "E051, базовые запросы"
 
 msgid "E051-01"
-msgstr ""
+msgstr "E051-01"
 
 msgid "SELECT DISTINCT"
-msgstr ""
+msgstr "SELECT DISTINCT"
 
 msgid "``SELECT DISTINCT s1 FROM t;``"
-msgstr ""
+msgstr "``SELECT DISTINCT s1 FROM t;``"
 
 msgid "E051-02"
-msgstr ""
+msgstr "E051-02"
 
 msgid "GROUP BY clause"
-msgstr ""
+msgstr "Предложение GROUP BY"
 
 msgid "``SELECT DISTINCT s1 FROM t GROUP BY s1;``"
-msgstr ""
+msgstr "``SELECT DISTINCT s1 FROM t GROUP BY s1;``"
 
 msgid ":ref:`Okay <sql_group_by>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_group_by>`."
 
 msgid "E051-04"
-msgstr ""
+msgstr "E051-04"
 
 msgid "GROUP BY can contain columns not in select list"
-msgstr ""
+msgstr "GROUP BY может содержать столбцы вне выборки SELECT"
 
 msgid "``SELECT s1 FROM t GROUP BY lower(s1);``"
-msgstr ""
+msgstr "``SELECT s1 FROM t GROUP BY lower(s1);``"
 
 msgid "E051-05"
-msgstr ""
+msgstr "E051-05"
 
 msgid "Select list items can be renamed"
-msgstr ""
+msgstr "Элементы в списке выборки можно переименовывать"
 
 msgid "``SELECT s1 AS K FROM t ORDER BY K;``"
-msgstr ""
+msgstr "``SELECT s1 AS K FROM t ORDER BY K;``"
 
 msgid "E051-06"
-msgstr ""
+msgstr "E051-06"
 
 msgid "HAVING clause"
-msgstr ""
+msgstr "Предложение HAVING"
 
 msgid "``SELECT count(*) FROM t HAVING count(*) > 0;``"
-msgstr ""
+msgstr "``SELECT count(*) FROM t HAVING count(*) > 0;``"
 
 msgid ""
-"Okay. Tarantool supports :ref:`HAVING <sql_having>` and GROUP BY is not "
+"Okay. Tarantool supports :ref:`HAVING <sql_having>`, and GROUP BY is not "
 "mandatory before HAVING."
 msgstr ""
+"Работает. Tarantool поддерживает :ref:`HAVING <sql_having>`, при этом GROUP "
+"BY перед HAVING не является обязательным."
 
 msgid "E051-07"
-msgstr ""
+msgstr "E051-07"
 
 msgid "Qualified * in SELECT list"
-msgstr ""
+msgstr "Допускается использование * в квалификаторе для списка выборки"
 
 msgid "``SELECT t.* FROM t;``"
-msgstr ""
+msgstr "``SELECT t.* FROM t;``"
 
 msgid "E051-08"
-msgstr ""
+msgstr "E051-08"
 
 msgid "Correlation names in the FROM clause"
-msgstr ""
+msgstr "Корреляционные имена в предложении FROM"
 
 msgid "``SELECT * FROM t AS K;``"
-msgstr ""
+msgstr "``SELECT * FROM t AS K;``"
 
 msgid "E051-09"
-msgstr ""
+msgstr "E051-09"
 
 msgid "Rename columns in the FROM clause"
-msgstr ""
+msgstr "Переименование столбцов в предложении FROM"
 
 msgid "``SELECT * FROM t AS x(q,c);``"
-msgstr ""
+msgstr "``SELECT * FROM t AS x(q,c);``"
 
 msgid "Fail."
-msgstr ""
+msgstr "Ошибка."
 
-msgid "E061"
-msgstr ""
-
-msgid "Basic predicates and search conditions"
-msgstr ""
+msgid "E061, Basic predicates and search conditions"
+msgstr "E061, базовые предикаты и условия поиска"
 
 msgid "E061-01"
-msgstr ""
+msgstr "E061-01"
 
 msgid "Comparison predicate"
-msgstr ""
+msgstr "Предикат сравнения"
 
 msgid "``SELECT * FROM t WHERE 0 = 0;``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE 0 = 0;``"
 
 msgid "E061-02"
-msgstr ""
+msgstr "E061-02"
 
 msgid "BETWEEN predicate"
-msgstr ""
+msgstr "Предикат BETWEEN"
 
 msgid "``SELECT * FROM t WHERE ' ' BETWEEN '' AND ' ';``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE ' ' BETWEEN '' AND ' ';``"
 
 msgid ":ref:`Okay <sql_operator_between>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_operator_between>`."
 
 msgid "E061-03"
-msgstr ""
+msgstr "E061-03"
 
 msgid "IN predicate with list of values"
-msgstr ""
+msgstr "Предикат IN со списком значений"
 
 msgid "``SELECT * FROM t WHERE s1 IN ('a', upper('a'));``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 IN ('a', upper('a'));``"
 
 msgid "E061-04"
-msgstr ""
+msgstr "E061-04"
 
 msgid "LIKE predicate"
-msgstr ""
+msgstr "Предикат LIKE"
 
 msgid "``SELECT * FROM t WHERE s1 LIKE '_';``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 LIKE '_';``"
 
 msgid ":ref:`Okay <sql_operator_like>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_operator_like>`."
 
 msgid "E061-05"
-msgstr ""
+msgstr "E061-05"
 
 msgid "LIKE predicate: ESCAPE clause"
-msgstr ""
+msgstr "Предикат LIKE: предложение ESCAPE"
 
 msgid "``VALUES ('abc_' LIKE 'abcX_' ESCAPE 'X');``"
-msgstr ""
+msgstr "``VALUES ('abc_' LIKE 'abcX_' ESCAPE 'X');``"
 
 msgid "E061-06"
-msgstr ""
+msgstr "E061-06"
 
 msgid "NULL predicate"
-msgstr ""
+msgstr "Предикат NULL"
 
 msgid "``SELECT * FROM t WHERE s1 IS NOT NULL;``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 IS NOT NULL;``"
 
 msgid ":ref:`Okay <sql_is_null>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_is_null>`."
 
 msgid "E061-07"
-msgstr ""
+msgstr "E061-07"
 
 msgid "Quantified comparison predicate"
-msgstr ""
+msgstr "Предикат количественного сравнения"
 
 msgid "``SELECT * FROM t WHERE s1 = ANY (SELECT s1 FROM t);``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 = ANY (SELECT s1 FROM t);``"
 
 msgid "Fail. Syntax error."
-msgstr ""
+msgstr "Ошибка — в синтаксисе."
 
 msgid "E061-08"
-msgstr ""
+msgstr "E061-08"
 
 msgid "EXISTS predicate"
-msgstr ""
+msgstr "Предикат EXISTS"
 
 msgid "``SELECT * FROM t WHERE NOT EXISTS (SELECT * FROM t);``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE NOT EXISTS (SELECT * FROM t);``"
 
 msgid ":ref:`Okay <sql_subquery>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_subquery>`."
 
 msgid "E061-09"
-msgstr ""
+msgstr "E061-09"
 
 msgid "Subqueries in comparison predicate"
-msgstr ""
+msgstr "Подзапросы в предикате сравнения"
 
 msgid "``SELECT * FROM t WHERE s1 > (SELECT s1 FROM t);``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 > (SELECT s1 FROM t);``"
 
 msgid "E061-11"
-msgstr ""
+msgstr "E061-11"
 
 msgid "Subqueries in IN predicate"
-msgstr ""
+msgstr "Подзапросы в предикате IN"
 
 msgid "``SELECT * FROM t WHERE s1 IN (SELECT s1 FROM t);``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 IN (SELECT s1 FROM t);``"
 
 msgid "E061-12"
-msgstr ""
+msgstr "E061-12"
 
 msgid "Subqueries in quantified comparison predicate"
-msgstr ""
+msgstr "Подзапросы в предикате количественного сравнения"
 
 msgid "``SELECT * FROM t WHERE s1 >= ALL (SELECT s1 FROM t);``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE s1 >= ALL (SELECT s1 FROM t);``"
 
 msgid "E061-13"
-msgstr ""
+msgstr "E061-13"
 
 msgid "Correlated subqueries"
-msgstr ""
+msgstr "Коррелирующие подзапросы"
 
 msgid "``SELECT * FROM t WHERE s1 = (SELECT s1 FROM t2 WHERE t2.s2 = t.s1);``"
 msgstr ""
+"``SELECT * FROM t WHERE s1 = (SELECT s1 FROM t2 WHERE t2.s2 = t.s1);``"
 
 msgid "E061-14"
-msgstr ""
+msgstr "E061-14"
 
 msgid "Search condition"
-msgstr ""
+msgstr "Условие поиска"
 
 msgid "``SELECT * FROM t WHERE 0 <> 0 OR 'a' < 'b' AND s1 IS NULL;``"
-msgstr ""
+msgstr "``SELECT * FROM t WHERE 0 <> 0 OR 'a' < 'b' AND s1 IS NULL;``"
 
-msgid "E071"
-msgstr ""
-
-msgid "Basic query expressions"
-msgstr ""
+msgid "E071, Basic query expressions"
+msgstr "E071, базовые выражения с запросами"
 
 msgid "E071-01"
-msgstr ""
+msgstr "E071-01"
 
 msgid "UNION DISTINCT table operator"
-msgstr ""
+msgstr "Табличный оператор UNION DISTINCT"
 
 msgid "``SELECT * FROM t UNION DISTINCT SELECT * FROM t;``"
-msgstr ""
+msgstr "``SELECT * FROM t UNION DISTINCT SELECT * FROM t;``"
 
 msgid "Fail. However, ``SELECT * FROM t UNION SELECT * FROM t;`` is okay."
-msgstr ""
+msgstr "Ошибка. Однако ``SELECT * FROM t UNION SELECT * FROM t;`` работает."
 
 msgid "E071-02"
-msgstr ""
+msgstr "E071-02"
 
 msgid "UNION ALL table operator"
-msgstr ""
+msgstr "Табличный оператор UNION ALL"
 
 msgid "``SELECT * FROM t UNION ALL SELECT * FROM t;``"
-msgstr ""
+msgstr "``SELECT * FROM t UNION ALL SELECT * FROM t;``"
 
 msgid ":ref:`Okay <sql_union>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_union>`."
 
 msgid "E071-03"
-msgstr ""
+msgstr "E071-03"
 
 msgid "EXCEPT DISTINCT table operator"
-msgstr ""
+msgstr "Табличный оператор EXCEPT DISTINCT"
 
 msgid "``SELECT * FROM t EXCEPT DISTINCT SELECT * FROM t;``"
-msgstr ""
+msgstr "``SELECT * FROM t EXCEPT DISTINCT SELECT * FROM t;``"
 
 msgid "Fail. However, ``SELECT * FROM t EXCEPT SELECT * FROM t;`` is okay."
-msgstr ""
+msgstr "Ошибка. Однако ``SELECT * FROM t EXCEPT SELECT * FROM t;`` работает."
 
 msgid "E071-05"
-msgstr ""
+msgstr "E071-05"
 
 msgid ""
 "Columns combined via table operators need not have exactly the same data "
-"type."
+"type"
 msgstr ""
+"Столбцы, совмещенные с помощью табличных операторов, необязательно должны "
+"иметь идентичный тип данных"
 
 msgid "``SELECT s1 FROM t UNION SELECT 5 FROM t;``"
-msgstr ""
+msgstr "``SELECT s1 FROM t UNION SELECT 5 FROM t;``"
 
 msgid "E071-06"
-msgstr ""
+msgstr "E071-06"
 
 msgid "Table operators in subqueries"
-msgstr ""
+msgstr "Табличные операторы в подзапросах"
 
 msgid ""
 "``SELECT * FROM t WHERE 'a' IN (SELECT * FROM t UNION SELECT * FROM t);``"
 msgstr ""
+"``SELECT * FROM t WHERE 'a' IN (SELECT * FROM t UNION SELECT * FROM t);``"
 
-msgid "E081"
-msgstr ""
+msgid "E081, Basic privileges"
+msgstr "E081, базовые права"
 
-msgid "Basic privileges"
-msgstr ""
+msgid "Tarantool doesn't support privileges except via NoSQL."
+msgstr "Tarantool не поддерживает права, кроме как через NoSQL."
 
-msgid "E081-01"
-msgstr ""
-
-msgid "Select privilege at the table level"
-msgstr ""
-
-msgid "Fail. Syntax error. (Tarantool doesn't support privileges.)"
-msgstr ""
-
-msgid "E081-02"
-msgstr ""
-
-msgid "DELETE privilege"
-msgstr ""
-
-msgid "Fail. (Tarantool doesn't support privileges.)"
-msgstr ""
-
-msgid "E081-03"
-msgstr ""
-
-msgid "INSERT privilege at the table level"
-msgstr ""
-
-msgid "E081-04"
-msgstr ""
-
-msgid "UPDATE privilege at the table level"
-msgstr ""
-
-msgid "E081-05"
-msgstr ""
-
-msgid "UPDATE privilege at column level"
-msgstr ""
-
-msgid "E081-06"
-msgstr ""
-
-msgid "REFERENCES privilege at the table level"
-msgstr ""
-
-msgid "E081-07"
-msgstr ""
-
-msgid "REFERENCES privilege at column level"
-msgstr ""
-
-msgid "E081-08"
-msgstr ""
-
-msgid "WITH GRANT OPTION"
-msgstr ""
-
-msgid "E081-09"
-msgstr ""
-
-msgid "USAGE privilege"
-msgstr ""
-
-msgid "E081-10"
-msgstr ""
-
-msgid "EXECUTE privilege"
-msgstr ""
-
-msgid "E091"
-msgstr ""
-
-msgid "Set functions"
-msgstr ""
+msgid "E091, Set functions"
+msgstr "E091, агрегатные функции"
 
 msgid "E091-01"
-msgstr ""
+msgstr "E091-01"
 
 msgid "AVG"
-msgstr ""
+msgstr "AVG"
 
 msgid "``SELECT avg(s1) FROM t7;``"
-msgstr ""
+msgstr "``SELECT avg(s1) FROM t7;``"
 
 msgid ""
 "Fail. Tarantool supports :ref:`AVG <sql_aggregate_avg>` but there is no "
 "warning that NULLs are eliminated."
 msgstr ""
+"Ошибка. Tarantool поддерживает :ref:`AVG <sql_aggregate_avg>`, но "
+"предупреждение об исключении NULL отсутствует."
 
 msgid "E091-02"
-msgstr ""
+msgstr "E091-02"
 
 msgid "COUNT"
-msgstr ""
+msgstr "COUNT"
 
 msgid "``SELECT count(*) FROM t7 WHERE s1 > 0;``"
-msgstr ""
+msgstr "``SELECT count(*) FROM t7 WHERE s1 > 0;``"
 
 msgid ":ref:`Okay <sql_aggregate_count_row>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_aggregate_count_row>`."
 
 msgid "E091-03"
-msgstr ""
+msgstr "E091-03"
 
 msgid "MAX"
-msgstr ""
+msgstr "MAX"
 
 msgid "``SELECT max(s1) FROM t7 WHERE s1 > 0;``"
-msgstr ""
+msgstr "``SELECT max(s1) FROM t7 WHERE s1 > 0;``"
 
 msgid ":ref:`Okay <sql_aggregate_max>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_aggregate_max>`."
 
 msgid "E091-04"
-msgstr ""
+msgstr "E091-04"
 
 msgid "MIN"
-msgstr ""
+msgstr "MIN"
 
 msgid "``SELECT min(s1) FROM t7 WHERE s1 > 0;``"
-msgstr ""
+msgstr "``SELECT min(s1) FROM t7 WHERE s1 > 0;``"
 
 msgid ":ref:`Okay <sql_aggregate_min>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_aggregate_min>`."
 
 msgid "E091-05"
-msgstr ""
+msgstr "E091-05"
 
 msgid "SUM"
-msgstr ""
+msgstr "SUM"
 
 msgid "``SELECT sum(1) FROM t7 WHERE s1 > 0;``"
-msgstr ""
+msgstr "``SELECT sum(1) FROM t7 WHERE s1 > 0;``"
 
 msgid ":ref:`Okay <sql_aggregate_sum>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_aggregate_sum>`."
 
 msgid "E091-06"
-msgstr ""
+msgstr "E091-06"
 
 msgid "ALL quantifier"
-msgstr ""
+msgstr "Квантификатор ALL"
 
 msgid "``SELECT sum(ALL s1) FROM t7 WHERE s1 > 0;``"
-msgstr ""
+msgstr "``SELECT sum(ALL s1) FROM t7 WHERE s1 > 0;``"
 
 msgid "E091-07"
-msgstr ""
+msgstr "E091-07"
 
 msgid "DISTINCT quantifier"
-msgstr ""
+msgstr "Квантификатор DISTINCT"
 
 msgid "``SELECT sum(DISTINCT s1) FROM t7 WHERE s1 > 0;``"
-msgstr ""
+msgstr "``SELECT sum(DISTINCT s1) FROM t7 WHERE s1 > 0;``"
 
-msgid "E101"
-msgstr ""
-
-msgid "Basic data manipulation"
-msgstr ""
+msgid "E101, Basic data manipulation"
+msgstr "E101, базовая обработка данных"
 
 msgid "E101-01"
-msgstr ""
+msgstr "E101-01"
 
 msgid "INSERT statement"
-msgstr ""
+msgstr "Инструкция INSERT"
 
 msgid "``INSERT INTO t (s1,s2) VALUES (1,''), (2,NULL), (3,55);``"
-msgstr ""
+msgstr "``INSERT INTO t (s1,s2) VALUES (1,''), (2,NULL), (3,55);``"
 
 msgid ":ref:`Okay <sql_insert>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_insert>`."
 
 msgid "E101-03"
-msgstr ""
+msgstr "E101-03"
 
 msgid "Searched UPDATE statement"
-msgstr ""
+msgstr "Инструкция UPDATE с поиском"
 
 msgid "``UPDATE t SET s1 = NULL WHERE s1 IN (SELECT s1 FROM t2);``"
-msgstr ""
+msgstr "``UPDATE t SET s1 = NULL WHERE s1 IN (SELECT s1 FROM t2);``"
 
 msgid ":ref:`Okay <sql_update>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_update>`."
 
 msgid "E101-04"
-msgstr ""
+msgstr "E101-04"
 
 msgid "Searched DELETE statement"
-msgstr ""
+msgstr "Инструкция DELETE с поиском"
 
 msgid "``DELETE FROM t WHERE s1 IN (SELECT s1 FROM t);``"
-msgstr ""
+msgstr "``DELETE FROM t WHERE s1 IN (SELECT s1 FROM t);``"
 
 msgid ":ref:`Okay <sql_delete>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_delete>`."
+
+msgid "E111, Single row SELECT statement"
+msgstr "E111, инструкция SELECT, возвращающая одну строку"
 
 msgid "E111"
-msgstr ""
+msgstr "E111"
 
 msgid "Single row SELECT statement"
-msgstr ""
+msgstr "Инструкция SELECT, возвращающая одну строку"
 
 msgid "``SELECT count(*) FROM t;``"
-msgstr ""
+msgstr "``SELECT count(*) FROM t;``"
 
 msgid ":ref:`Okay <sql_SELECT>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_SELECT>`."
 
-msgid "E121"
-msgstr ""
-
-msgid "Basic cursor support"
-msgstr ""
+msgid "E121, Basic cursor support"
+msgstr "E121, базовая поддержка курсоров"
 
 msgid "E121-01"
-msgstr ""
+msgstr "E121-01"
 
 msgid "DECLARE CURSOR"
-msgstr ""
+msgstr "DECLARE CURSOR"
 
 msgid "Fail. Tarantool doesn't support cursors."
-msgstr ""
+msgstr "Ошибка. Tarantool не поддерживает курсоры."
 
 msgid "E121-02"
-msgstr ""
+msgstr "E121-02"
 
 msgid "ORDER BY columns need not be in select list"
-msgstr ""
+msgstr "Столбцы ORDER BY необязательно должны быть в списке выборки"
 
 msgid "``SELECT s1 FROM t ORDER BY s2;``"
-msgstr ""
+msgstr "``SELECT s1 FROM t ORDER BY s2;``"
 
 msgid ":ref:`Okay <sql_order_by>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_order_by>`."
 
 msgid "E121-03"
-msgstr ""
+msgstr "E121-03"
 
-msgid "Value expressions in select list"
-msgstr ""
+msgid "Value expressions in ORDER BY clause"
+msgstr "Выражения в ORDER BY"
 
 msgid "``SELECT s1 FROM t7 ORDER BY -s1;``"
-msgstr ""
+msgstr "``SELECT s1 FROM t7 ORDER BY -s1;``"
 
 msgid "E121-04"
-msgstr ""
+msgstr "E121-04"
 
 msgid "OPEN statement"
-msgstr ""
+msgstr "Инструкция OPEN"
 
 msgid "E121-06"
-msgstr ""
+msgstr "E121-06"
 
 msgid "Positioned UPDATE statement"
-msgstr ""
+msgstr "Инструкция UPDATE с позицией"
 
 msgid "E121-07"
-msgstr ""
+msgstr "E121-07"
 
 msgid "Positioned DELETE statement"
-msgstr ""
+msgstr "Инструкция DELETE с позицией"
 
 msgid "E121-08"
-msgstr ""
+msgstr "E121-08"
 
 msgid "CLOSE statement"
-msgstr ""
+msgstr "Инструкция CLOSE"
 
 msgid "E121-10"
-msgstr ""
+msgstr "E121-10"
 
 msgid "FETCH statement implicit next"
-msgstr ""
+msgstr "Инструкция FETCH с неявным NEXT"
 
 msgid "E121-17"
-msgstr ""
+msgstr "E121-17"
 
 msgid "WITH HOLD cursors"
-msgstr ""
+msgstr "Курсоры WITH HOLD"
+
+msgid "E131, Null value support"
+msgstr "E131, поддержка значения Null"
 
 msgid "E131"
-msgstr ""
+msgstr "E131"
 
 msgid "Null value support (nulls in lieu of values)"
-msgstr ""
+msgstr "Поддержка значения NULL (NULL вместо значений)"
 
 msgid "``SELECT s1 FROM t7 WHERE s1 IS NULL;``"
-msgstr ""
+msgstr "``SELECT s1 FROM t7 WHERE s1 IS NULL;``"
 
-msgid "E141"
-msgstr ""
-
-msgid "Basic integrity constraints"
-msgstr ""
+msgid "E141, Basic integrity constraints"
+msgstr "E141, базовые ограничения целостности"
 
 msgid "E141-01"
-msgstr ""
+msgstr "E141-01"
 
 msgid "NOT NULL constraints"
-msgstr ""
+msgstr "Ограничения NOT NULL"
 
 msgid "``CREATE TABLE t8 (s1 INT PRIMARY KEY, s2 INT NOT NULL);``"
-msgstr ""
+msgstr "``CREATE TABLE t8 (s1 INT PRIMARY KEY, s2 INT NOT NULL);``"
 
 msgid ":ref:`Okay <sql_table_constraint_def>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_table_constraint_def>`."
 
 msgid "E141-02"
-msgstr ""
+msgstr "E141-02"
 
 msgid "UNIQUE constraints of NOT NULL columns"
-msgstr ""
+msgstr "Ограничения UNIQUE для столбцов NOT NULL"
 
 msgid "``CREATE TABLE t9 (s1 INT PRIMARY KEY , s2 INT NOT NULL UNIQUE);``"
-msgstr ""
+msgstr "``CREATE TABLE t9 (s1 INT PRIMARY KEY , s2 INT NOT NULL UNIQUE);``"
 
 msgid "E141-03"
-msgstr ""
+msgstr "E141-03"
 
 msgid "PRIMARY KEY constraints"
-msgstr ""
+msgstr "Ограничения PRIMARY KEY"
 
 msgid "``CREATE TABLE t10 (s1 INT PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE t10 (s1 INT PRIMARY KEY);``"
 
 msgid ""
 "Okay, although Tarantool shouldn't always insist on having a primary key."
-msgstr ""
+msgstr "Работает, хотя в Tarantool необязательно наличие первичного ключа."
 
 msgid "E141-04"
-msgstr ""
+msgstr "E141-04"
 
 msgid ""
 "Basic FOREIGN KEY constraint with the NO ACTION default for both referential"
-" delete action and referential update action."
+" delete and referential update actions"
 msgstr ""
+"Базовое ограничение FOREIGN KEY без действия (NO ACTION) по умолчанию для "
+"операций удаления и изменения со ссылками"
 
 msgid "``CREATE TABLE t11 (s0 INT PRIMARY KEY, s1 INT REFERENCES t10);``"
-msgstr ""
+msgstr "``CREATE TABLE t11 (s0 INT PRIMARY KEY, s1 INT REFERENCES t10);``"
 
 msgid ":ref:`Okay <sql_foreign_key>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_foreign_key>`."
 
 msgid "E141-06"
-msgstr ""
+msgstr "E141-06"
 
 msgid "CHECK constraints"
-msgstr ""
+msgstr "Ограничения CHECK"
 
 msgid "``CREATE TABLE t12 (s1 INT PRIMARY KEY, s2 INT, CHECK (s1 = s2));``"
-msgstr ""
+msgstr "``CREATE TABLE t12 (s1 INT PRIMARY KEY, s2 INT, CHECK (s1 = s2));``"
 
 msgid "E141-07"
-msgstr ""
+msgstr "E141-07"
 
 msgid "Column defaults"
-msgstr ""
+msgstr "Значения столбцов по умолчанию"
 
 msgid "``CREATE TABLE t13 (s1 INT PRIMARY KEY, s2 INT DEFAULT -1);``"
-msgstr ""
+msgstr "``CREATE TABLE t13 (s1 INT PRIMARY KEY, s2 INT DEFAULT -1);``"
 
 msgid "E141-08"
-msgstr ""
+msgstr "E141-08"
 
 msgid "NOT NULL inferred on primary key"
-msgstr ""
+msgstr "NOT NULL подразумевается для первичного ключа"
 
 msgid "``CREATE TABLE t14 (s1 INT PRIMARY KEY);``"
-msgstr ""
+msgstr "``CREATE TABLE t14 (s1 INT PRIMARY KEY);``"
 
 msgid ""
 "Okay. We are unable to insert NULL although we don't explicitly say the "
 "column is NOT NULL."
 msgstr ""
+"Работает. NULL вставить не удастся, хотя столбец не объявлен явным образом "
+"как NOT NULL."
 
 msgid "E141-10"
-msgstr ""
+msgstr "E141-10"
 
 msgid "Names in a foreign key can be specified in any order"
-msgstr ""
+msgstr "Имена для FOREIGN KEY можно указывать в любом порядке"
 
 msgid ""
 "``CREATE TABLE t15 (s1 INT, s2 INT, PRIMARY KEY (s1,s2));`` ``CREATE TABLE "
 "t16 (s1 INT PRIMARY KEY, s2 INT, FOREIGN KEY (s2,s1) REFERENCES t15 "
 "(s1,s2));``"
 msgstr ""
+"``CREATE TABLE t15 (s1 INT, s2 INT, PRIMARY KEY (s1,s2));`` ``CREATE TABLE "
+"t16 (s1 INT PRIMARY KEY, s2 INT, FOREIGN KEY (s2,s1) REFERENCES t15 "
+"(s1,s2));``"
 
-msgid "E151"
-msgstr ""
-
-msgid "Transaction support"
-msgstr ""
+msgid "E151, Transaction support"
+msgstr "E151, поддержка транзакций"
 
 msgid "E151-01"
-msgstr ""
+msgstr "E151-01"
 
 msgid "COMMIT statement"
-msgstr ""
+msgstr "Инструкция COMMIT"
 
 msgid "``COMMIT;``"
-msgstr ""
+msgstr "``COMMIT;``"
 
 msgid ""
 "Fail. Tarantool supports :ref:`COMMIT <sql_commit>` but it is necessary to "
 "say :ref:`START TRANSACTION <sql_start_transaction>` first."
 msgstr ""
+"Ошибка. Tarantool поддерживает :ref:`COMMIT <sql_commit>`, но перед этим "
+"требуется использовать :ref:`START TRANSACTION <sql_start_transaction>`."
 
 msgid "E151-02"
-msgstr ""
+msgstr "E151-02"
 
 msgid "ROLLBACK statement"
-msgstr ""
+msgstr "Инструкция ROLLBACK"
 
 msgid "``ROLLBACK;``"
-msgstr ""
+msgstr "``ROLLBACK;``"
 
 msgid ":ref:`Okay <sql_rollback>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_rollback>`."
 
-msgid "E152"
-msgstr ""
-
-msgid "Basic SET TRANSACTION statement"
-msgstr ""
+msgid "E152, Basic SET TRANSACTION statement"
+msgstr "E152, базовая инструкция SET TRANSACTION"
 
 msgid "E152-01"
-msgstr ""
+msgstr "E152-01"
 
-msgid "SET TRANSACTION statement ISOLATION SERIALIZABLE clause"
-msgstr ""
+msgid "SET TRANSACTION statement: ISOLATION SERIALIZABLE clause"
+msgstr "Инструкция SET TRANSACTION: предложение ISOLATION SERIALIZABLE"
 
 msgid "``SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;``"
-msgstr ""
+msgstr "``SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;``"
 
 msgid "E152-02"
-msgstr ""
+msgstr "E152-02"
 
-msgid "SET TRANSACTION statement READ ONLY and READ WRITE clauses"
-msgstr ""
+msgid "SET TRANSACTION statement: READ ONLY and READ WRITE clauses"
+msgstr "Инструкция SET TRANSACTION: предложения READ ONLY и READ WRITE"
 
 msgid "``SET TRANSACTION READ ONLY;``"
-msgstr ""
+msgstr "``SET TRANSACTION READ ONLY;``"
+
+msgid "E*, Other"
+msgstr "E*, прочее"
 
 msgid "E153"
-msgstr ""
+msgstr "E153"
 
 msgid "Updatable queries with subqueries"
-msgstr ""
+msgstr "Запросы, изменяющие данные, с подзапросами"
+
+msgid "``UPDATE \"view_containing_subquery\" SET column1=0;``"
+msgstr "``UPDATE \"view_containing_subquery\" SET column1=0;``"
 
 msgid "E161"
-msgstr ""
+msgstr "E161"
 
 msgid "SQL comments using leading double minus"
-msgstr ""
+msgstr "Комментарии SQL с двумя знаками минуса в начале"
 
 msgid "``--comment;``"
 msgstr "``--comment;``"
 
 msgid ":ref:`Okay <sql_tokens>`."
-msgstr ""
+msgstr ":ref:`Работает <sql_tokens>`."
 
 msgid "E171"
-msgstr ""
+msgstr "E171"
 
 msgid "SQLSTATE support"
-msgstr ""
+msgstr "Поддержка SQLSTATE"
 
 msgid "``DROP TABLE no_such_table;``"
-msgstr ""
+msgstr "``DROP TABLE no_such_table;``"
 
 msgid "Fail. Tarantool returns an error message but not an SQLSTATE string."
 msgstr ""
+"Ошибка. Tarantool возвращает сообщение об ошибке, но не строку SQLSTATE."
 
 msgid "E182"
-msgstr ""
+msgstr "E182"
 
 msgid "Host language binding"
-msgstr ""
+msgstr "Привязка базового языка"
 
 msgid ""
 "Okay. Any of the Tarantool connectors should be able to call "
 ":ref:`box.execute() <box-sql>`."
 msgstr ""
-
-msgid "F031"
-msgstr ""
-
-msgid "Basic schema manipulation"
-msgstr ""
-
-msgid "F031-01"
-msgstr ""
-
-msgid "CREATE TABLE statement to create persistent base tables"
-msgstr ""
-
-msgid "``CREATE TABLE t20 (t20_1 INT NOT NULL);``"
-msgstr ""
-
-msgid ""
-"Fail. We always have to say PRIMARY KEY (we only count this flaw once)."
-msgstr ""
-
-msgid "F031-02"
-msgstr ""
-
-msgid "CREATE VIEW statement"
-msgstr ""
-
-msgid "``CREATE VIEW t21 AS SELECT * FROM t20;``"
-msgstr ""
-
-msgid ":ref:`Okay <sql_create_view>`."
-msgstr ""
-
-msgid "F031-03"
-msgstr ""
-
-msgid "GRANT statement"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't support privileges except via NoSQL."
-msgstr ""
-
-msgid "F031-04"
-msgstr ""
-
-msgid "ALTER TABLE statement: add column"
-msgstr ""
-
-msgid "``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR(1) DEFAULT 'q';``"
-msgstr "``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR(1) DEFAULT 'q';``"
-
-msgid ""
-"Okay. Tarantool supports :ref:`ALTER TABLE <sql_alter_table>` and support "
-"for ADD COLUMN was added in Tarantool version 2.7."
-msgstr ""
-"Успешно. Tarantool поддерживает инструкцию :ref:`ALTER TABLE "
-"<sql_alter_table>`, а в версии Tarantool 2.7 была добавлена поддержка ADD "
-"COLUMN."
-
-msgid "F031-13"
-msgstr ""
-
-msgid "DROP TABLE statement: RESTRICT clause"
-msgstr ""
-
-msgid "``DROP TABLE t20 RESTRICT;``"
-msgstr ""
-
-msgid ""
-"Fail. Tarantool supports :ref:`DROP TABLE <sql_drop_table>` but not this "
-"clause."
-msgstr ""
-
-msgid "F031-16"
-msgstr ""
-
-msgid "DROP VIEW statement: RESTRICT clause"
-msgstr ""
-
-msgid "``DROP VIEW v2 RESTRICT;``"
-msgstr ""
-
-msgid ""
-"Fail. Tarantool supports :ref:`DROP VIEW <sql_drop_view>` but not this "
-"clause."
-msgstr ""
-
-msgid "F031-19"
-msgstr ""
-
-msgid "REVOKE statement: RESTRICT clause"
-msgstr ""
-
-msgid "Fail. Tarantool does not support privileges except via NoSQL."
-msgstr ""
-
-msgid "F041"
-msgstr ""
-
-msgid "Basic joined table"
-msgstr ""
-
-msgid "F041-01"
-msgstr ""
-
-msgid "Inner join but not necessarily the INNER keyword"
-msgstr ""
-
-msgid "``SELECT a.s1 FROM t7 a JOIN t7 b;``"
-msgstr ""
-
-msgid ":ref:`Okay <sql_from>`."
-msgstr ""
-
-msgid "F041-02"
-msgstr ""
-
-msgid "INNER keyword"
-msgstr ""
-
-msgid "``SELECT a.s1 FROM t7 a INNER JOIN t7 b;``"
-msgstr ""
-
-msgid "F041-03"
-msgstr ""
-
-msgid "LEFT OUTER JOIN"
-msgstr ""
-
-msgid "``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1);``"
-msgstr ""
-
-msgid "F041-04"
-msgstr ""
-
-msgid "RIGHT OUTER JOIN"
-msgstr ""
-
-msgid "``SELECT t7.*,t22.* FROM t22 RIGHT OUTER JOIN t7 ON (t22_1 = s1);``"
-msgstr ""
-
-msgid "F041-05"
-msgstr ""
-
-msgid "Outer joins can be nested"
-msgstr ""
-
-msgid ""
-"``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1) LEFT OUTER "
-"JOIN t23;``."
-msgstr ""
-
-msgid "F041-07"
-msgstr ""
-
-msgid ""
-"The inner table in a left or right outer join can also be used in an inner "
-"join"
-msgstr ""
-
-msgid ""
-"``SELECT t7.* FROM (t22 LEFT OUTER JOIN t7 ON (t22_1 = s1)) j INNER JOIN t22"
-" ON (j.t22_4 = t7.s1);``"
-msgstr ""
-
-msgid "F041-08"
-msgstr ""
-
-msgid "All comparison operators are supported"
-msgstr ""
-
-msgid "``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1 OR 0 <> 1;``"
-msgstr ""
-
-msgid "F051 Basic date and time"
-msgstr ""
-
-msgid "F051-01"
-msgstr ""
-
-msgid "DATE data type (including support of DATE literal)"
-msgstr ""
-
-msgid "``CREATE TABLE dates (s1 DATE);``"
-msgstr ""
-
-msgid "Fail. Tarantool does not support the DATE data type."
-msgstr ""
-
-msgid "F051-02"
-msgstr ""
-
-msgid "TIME data type (including support of TIME literal)"
-msgstr ""
-
-msgid "``CREATE TABLE times (s1 TIME DEFAULT TIME '1:2:3');``"
-msgstr ""
-
-msgid "F051-03"
-msgstr ""
-
-msgid "TIMESTAMP data type (including support of TIMESTAMP literal)"
-msgstr ""
-
-msgid "``CREATE TABLE timestamps (s1 TIMESTAMP);``"
-msgstr ""
-
-msgid "F051-04"
-msgstr ""
-
-msgid "Comparison predicate on DATE, TIME and TIMESTAMP data types"
-msgstr ""
-
-msgid "``SELECT * FROM dates WHERE s1 = s1;``"
-msgstr ""
-
-msgid "Fail. Date and time data types are not supported."
-msgstr ""
-
-msgid "F051-05"
-msgstr ""
-
-msgid "Explicit CAST between date-time types and character string types"
-msgstr ""
-
-msgid "``SELECT cast(s1 AS VARCHAR(10)) FROM dates;``"
-msgstr ""
-
-msgid "F051-06"
-msgstr ""
-
-msgid "CURRENT_DATE"
-msgstr ""
-
-msgid "``SELECT current_date FROM t;``"
-msgstr ""
-
-msgid "F051-07"
-msgstr ""
-
-msgid "LOCALTIME"
-msgstr ""
-
-msgid "``SELECT localtime FROM t;``"
-msgstr ""
-
-msgid "F051-08"
-msgstr ""
-
-msgid "LOCALTIMESTAMP"
-msgstr ""
-
-msgid "``SELECT localtimestamp FROM t;``"
-msgstr ""
-
-msgid "F081"
-msgstr ""
-
-msgid "UNION and EXCEPT in views"
-msgstr ""
-
-msgid "``CREATE VIEW vv AS SELECT * FROM t7 EXCEPT SELECT * FROM t15;``"
-msgstr ""
-
-msgid "F131"
-msgstr ""
-
-msgid "Grouped operations"
-msgstr ""
-
-msgid "F131-01"
-msgstr ""
-
-msgid ""
-"WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views"
-msgstr ""
-
-msgid "``CREATE VIEW vv2 AS SELECT * FROM vv GROUP BY s1;``"
-msgstr ""
-
-msgid "F131-02"
-msgstr ""
-
-msgid "Multiple tables supported in queries with grouped views"
-msgstr ""
-
-msgid "``CREATE VIEW vv3 AS SELECT * FROM vv2,t30;``"
-msgstr ""
-
-msgid "F131-03"
-msgstr ""
-
-msgid "Set functions supported in queries with grouped views"
-msgstr ""
-
-msgid "``CREATE VIEW vv4 AS SELECT count(*) FROM vv2;``"
-msgstr ""
-
-msgid "F131-04"
-msgstr ""
-
-msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
-msgstr ""
-
-msgid ""
-"``CREATE VIEW vv5 AS SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > "
-"0;``"
-msgstr ""
-
-msgid "F131-05"
-msgstr ""
-
-msgid "Single row SELECT with GROUP BY and HAVING clauses and grouped views"
-msgstr ""
-
-msgid "``SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > 0;``"
-msgstr ""
-
-msgid "F181"
-msgstr ""
-
-msgid "Multiple module support"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't have modules."
-msgstr ""
-
-msgid "F201"
-msgstr ""
-
-msgid "CAST function"
-msgstr ""
-
-msgid "``SELECT cast(s1 AS INT) FROM t;``"
-msgstr ""
-
-msgid ":ref:`Okay <sql_function_cast>`."
-msgstr ""
-
-msgid "F221"
-msgstr ""
-
-msgid "Explicit defaults"
-msgstr ""
-
-msgid "``UPDATE t SET s1 = DEFAULT;``"
-msgstr ""
-
-msgid "F261"
-msgstr ""
-
-msgid "CASE expression"
-msgstr ""
-
-msgid "F261-01"
-msgstr ""
-
-msgid "Simple CASE"
-msgstr ""
-
-msgid "``SELECT CASE WHEN 1 = 0 THEN 5 ELSE 7 END FROM t;``"
-msgstr ""
-
-msgid "F261-02"
-msgstr ""
-
-msgid "Searched CASE"
-msgstr ""
-
-msgid "``SELECT CASE 1 WHEN 0 THEN 5 ELSE 7 END FROM t;``"
-msgstr ""
-
-msgid "F261-03"
-msgstr ""
-
-msgid "NULLIF"
-msgstr ""
-
-msgid "``SELECT nullif(s1,7) FROM t;``"
-msgstr ""
-
-msgid ":ref:`Okay <sql_function_nullif>`"
-msgstr ""
-
-msgid "F261-04"
-msgstr ""
-
-msgid "COALESCE"
-msgstr ""
-
-msgid "``SELECT coalesce(s1,7) FROM t;``"
-msgstr ""
-
-msgid ":ref:`Okay <sql_function_coalesce>`."
-msgstr ""
-
-msgid "F311"
-msgstr ""
-
-msgid "Schema definition statement"
-msgstr ""
-
-msgid "F311-01"
-msgstr ""
-
-msgid "CREATE SCHEMA"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't have schemas or databases."
-msgstr ""
-
-msgid "F311-02"
-msgstr ""
-
-msgid "CREATE TABLE for persistent base tables"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA."
-msgstr ""
-
-msgid "F311-03"
-msgstr ""
-
-msgid "CREATE VIEW"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA."
-msgstr ""
-
-msgid "F311-04"
-msgstr ""
-
-msgid "CREATE VIEW: WITH CHECK OPTION"
-msgstr ""
-
-msgid "F311-05"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA."
-msgstr ""
-
-msgid "F471"
-msgstr ""
-
-msgid "Scalar subquery values"
-msgstr ""
-
-msgid "``SELECT s1 FROM t WHERE s1 = (SELECT count(*) FROM t);``"
-msgstr ""
-
-msgid "F481"
-msgstr ""
-
-msgid "Expanded NULL Predicate"
-msgstr ""
-
-msgid "``SELECT * FROM t WHERE row(s1,s1) IS NOT NULL;``"
-msgstr ""
-
-msgid "F812"
-msgstr ""
-
-msgid "Basic flagging"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't support any flagging."
-msgstr ""
-
-msgid "S011"
-msgstr ""
-
-msgid "Distinct types"
-msgstr ""
-
-msgid "``CREATE TYPE x AS FLOAT;``"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't support distinct types."
-msgstr ""
-
-msgid "T321"
-msgstr ""
-
-msgid "Basic SQL-invoked routines"
-msgstr ""
-
-msgid "T321-01"
-msgstr ""
-
-msgid "User-defined functions with no overloading"
-msgstr ""
-
-msgid "``CREATE FUNCTION f() RETURNS INT RETURN 5;``"
-msgstr ""
-
-msgid ""
-"Fail. User-defined functions for SQL are created in :ref:`Lua "
-"<sql_calling_lua>` with different syntax."
-msgstr ""
-
-msgid "T321-02"
-msgstr ""
-
-msgid "User-defined procedures with no overloading"
-msgstr ""
-
-msgid "``CREATE PROCEDURE p() BEGIN END;``"
-msgstr ""
-
-msgid "T321-03"
-msgstr ""
-
-msgid "Function invocation"
-msgstr ""
-
-msgid "``SELECT f(1) FROM t;``"
-msgstr ""
-
-msgid "Okay. Tarantool can invoke Lua user-defined functions."
-msgstr ""
-
-msgid "T321-04"
-msgstr ""
-
-msgid "CALL statement."
-msgstr ""
-
-msgid "``CALL p();``"
-msgstr ""
-
-msgid "Fail. Tarantool doesn't support CALL statements."
-msgstr ""
-
-msgid "T321-05"
-msgstr ""
-
-msgid "RETURN statement."
-msgstr ""
-
-msgid "Fail. Tarantool doesn't support RETURN statements."
-msgstr ""
-
-msgid "T631"
-msgstr ""
-
-msgid "IN predicate with one list element"
-msgstr ""
-
-msgid "``SELECT * FROM t WHERE 1 IN (1);``"
-msgstr ""
+"Работает. Любые коннекторы Tarantool должны иметь возможность вызвать "
+":ref:`box.execute() <box-sql>`."
+
+msgid "F021, Basic information schema"
+msgstr "F021, базовая информационная схема"
 
 msgid "F021"
-msgstr ""
+msgstr "F021"
 
 msgid "Basic information schema"
-msgstr ""
+msgstr "Базовая информационная схема"
 
 msgid "``SELECT * from information_schema.tables;``"
-msgstr ""
+msgstr "``SELECT * FROM information_schema.tables;``"
 
 msgid ""
 "Fail. Tarantool's metadata is not in a schema with that name (not counted in"
 " the final score)."
 msgstr ""
+"Ошибка. Метаданные Tarantool не содержатся в схеме с таким именем (ошибка не"
+" учитывается в итоговом подсчете)."
+
+msgid "F031, Basic schema manipulation"
+msgstr "F031, базовые манипуляции со схемой"
+
+msgid "F031-01"
+msgstr "F031-01"
+
+msgid "CREATE TABLE statement to create persistent base tables"
+msgstr "Инструкция CREATE TABLE создает хранимые таблицы БД"
+
+msgid "``CREATE TABLE t20 (t20_1 INT NOT NULL);``"
+msgstr "``CREATE TABLE t20 (t20_1 INT NOT NULL);``"
+
+msgid ""
+"Fail. We always have to specify PRIMARY KEY (we only count this flaw once)."
+msgstr ""
+"Ошибка. PRIMARY KEY всегда должен быть указан (эта ошибка будет учитываться "
+"только один раз)."
+
+msgid "F031-02"
+msgstr "F031-02"
+
+msgid "CREATE VIEW statement"
+msgstr "Инструкция CREATE VIEW"
+
+msgid "``CREATE VIEW t21 AS SELECT * FROM t20;``"
+msgstr "``CREATE VIEW t21 AS SELECT * FROM t20;``"
+
+msgid ":ref:`Okay <sql_create_view>`."
+msgstr ":ref:`Работает <sql_create_view>`."
+
+msgid "F031-03"
+msgstr "F031-03"
+
+msgid "GRANT statement"
+msgstr "Инструкция GRANT"
+
+msgid "Fail. Tarantool doesn't support privileges except via NoSQL."
+msgstr "Ошибка. Tarantool не поддерживает права, кроме как через NoSQL."
+
+msgid "F031-04"
+msgstr "F031-04"
+
+msgid "ALTER TABLE statement: add column"
+msgstr "Инструкция ALTER TABLE: добавление столбца"
+
+msgid "``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR(1) DEFAULT 'q';``"
+msgstr "``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR(1) DEFAULT 'q';``"
+
+msgid ""
+"Okay. Tarantool supports :ref:`ALTER TABLE <sql_alter_table>`, and support "
+"for ADD COLUMN was added in Tarantool 2.7."
+msgstr ""
+"Работает. Tarantool поддерживает :ref:`ALTER TABLE <sql_alter_table>`, а в "
+"версии Tarantool 2.7 добавлена поддержка ADD COLUMN."
+
+msgid "F031-13"
+msgstr "F031-13"
+
+msgid "DROP TABLE statement: RESTRICT clause"
+msgstr "Инструкция DROP TABLE: предложение RESTRICT"
+
+msgid "``DROP TABLE t20 RESTRICT;``"
+msgstr "``DROP TABLE t20 RESTRICT;``"
+
+msgid ""
+"Fail. Tarantool supports :ref:`DROP TABLE <sql_drop_table>` but not this "
+"clause."
+msgstr ""
+"Ошибка. Tarantool поддерживает :ref:`DROP TABLE <sql_drop_table>`, но не "
+"предложение RESTRICT."
+
+msgid "F031-16"
+msgstr "F031-16"
+
+msgid "DROP VIEW statement: RESTRICT clause"
+msgstr "Инструкция DROP VIEW: предложение RESTRICT"
+
+msgid "``DROP VIEW v2 RESTRICT;``"
+msgstr "``DROP VIEW v2 RESTRICT;``"
+
+msgid ""
+"Fail. Tarantool supports :ref:`DROP VIEW <sql_drop_view>` but not this "
+"clause."
+msgstr ""
+"Ошибка. Tarantool поддерживает :ref:`DROP VIEW <sql_drop_view>`, но не "
+"предложение RESTRICT."
+
+msgid "F031-19"
+msgstr "F031-19"
+
+msgid "REVOKE statement: RESTRICT clause"
+msgstr "Инструкция REVOKE: предложение RESTRICT"
+
+msgid "Fail. Tarantool does not support privileges except via NoSQL."
+msgstr "Ошибка. Tarantool не поддерживает права, кроме как через NoSQL."
+
+msgid "F041, Basic joined table"
+msgstr "F041, базовое объединение таблиц"
+
+msgid "F041-01"
+msgstr "F041-01"
+
+msgid "Inner join but not necessarily the INNER keyword"
+msgstr "Операция inner join, но необязательно с ключевым словом INNER"
+
+msgid "``SELECT a.s1 FROM t7 a JOIN t7 b;``"
+msgstr "``SELECT a.s1 FROM t7 a JOIN t7 b;``"
+
+msgid ":ref:`Okay <sql_from>`."
+msgstr ":ref:`Работает <sql_from>`."
+
+msgid "F041-02"
+msgstr "F041-02"
+
+msgid "INNER keyword"
+msgstr "Ключевое слово INNER"
+
+msgid "``SELECT a.s1 FROM t7 a INNER JOIN t7 b;``"
+msgstr "``SELECT a.s1 FROM t7 a INNER JOIN t7 b;``"
+
+msgid "F041-03"
+msgstr "F041-03"
+
+msgid "LEFT OUTER JOIN"
+msgstr "LEFT OUTER JOIN"
+
+msgid "``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1);``"
+msgstr "``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1);``"
+
+msgid "F041-04"
+msgstr "F041-04"
+
+msgid "RIGHT OUTER JOIN"
+msgstr "RIGHT OUTER JOIN"
+
+msgid "``SELECT t7.*,t22.* FROM t22 RIGHT OUTER JOIN t7 ON (t22_1 = s1);``"
+msgstr "``SELECT t7.*,t22.* FROM t22 RIGHT OUTER JOIN t7 ON (t22_1 = s1);``"
+
+msgid "F041-05"
+msgstr "F041-05"
+
+msgid "Outer joins can be nested"
+msgstr "Вложенные outer join"
+
+msgid ""
+"``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1) LEFT OUTER "
+"JOIN t23;``"
+msgstr ""
+"``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1) LEFT OUTER "
+"JOIN t23;``"
+
+msgid "F041-07"
+msgstr "F041-07"
+
+msgid ""
+"The inner table in a left or right outer join can also be used in an inner "
+"join"
+msgstr ""
+"Таблица, полученная в результате операции left или right outer join, может "
+"быть использована в inner join"
+
+msgid ""
+"``SELECT t7.* FROM (t22 LEFT OUTER JOIN t7 ON (t22_1 = s1)) j INNER JOIN t22"
+" ON (j.t22_4 = t7.s1);``"
+msgstr ""
+"``SELECT t7.* FROM (t22 LEFT OUTER JOIN t7 ON (t22_1 = s1)) j INNER JOIN t22"
+" ON (j.t22_4 = t7.s1);``"
+
+msgid "F041-08"
+msgstr "F041-08"
+
+msgid "All comparison operators are supported"
+msgstr "Все операторы сравнения поддерживаются"
+
+msgid "``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1 OR 0 <> 1;``"
+msgstr "``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1 OR 0 <> 1;``"
+
+msgid "F051, Basic date and time"
+msgstr "F051, базовая поддержка даты и времени"
+
+msgid "F051-01"
+msgstr "F051-01"
+
+msgid "DATE data type (including support of DATE literal)"
+msgstr "Тип данных DATE (включая поддержку литерала DATE)"
+
+msgid "``CREATE TABLE dates (s1 DATE);``"
+msgstr "``CREATE TABLE dates (s1 DATE);``"
+
+msgid "Fail. Tarantool does not support the DATE data type."
+msgstr "Ошибка. Tarantool не поддерживает тип данных DATE."
+
+msgid "F051-02"
+msgstr "F051-02"
+
+msgid "TIME data type (including support of TIME literal)"
+msgstr "Тип данных TIME (включая поддержку литерала TIME)"
+
+msgid "``CREATE TABLE times (s1 TIME DEFAULT TIME '1:2:3');``"
+msgstr "``CREATE TABLE times (s1 TIME DEFAULT TIME '1:2:3');``"
+
+msgid "F051-03"
+msgstr "F051-03"
+
+msgid "TIMESTAMP data type (including support of TIMESTAMP literal)"
+msgstr "Тип данных TIMESTAMP (включая поддержку литерала TIMESTAMP)"
+
+msgid "``CREATE TABLE timestamps (s1 TIMESTAMP);``"
+msgstr "``CREATE TABLE timestamps (s1 TIMESTAMP);``"
+
+msgid "F051-04"
+msgstr "F051-04"
+
+msgid "Comparison predicate on DATE, TIME and TIMESTAMP data types"
+msgstr "Предикат сравнения с типами данных DATE, TIME и TIMESTAMP"
+
+msgid "``SELECT * FROM dates WHERE s1 = s1;``"
+msgstr "``SELECT * FROM dates WHERE s1 = s1;``"
+
+msgid "Fail. Date and time data types are not supported."
+msgstr "Ошибка. Типы данных даты и времени не поддерживаются."
+
+msgid "F051-05"
+msgstr "F051-05"
+
+msgid "Explicit CAST between date-time types and character string types"
+msgstr ""
+"Явное преобразование CAST между типами даты и времени и типами символьных "
+"строк"
+
+msgid "``SELECT cast(s1 AS VARCHAR(10)) FROM dates;``"
+msgstr "``SELECT cast(s1 AS VARCHAR(10)) FROM dates;``"
+
+msgid "F051-06"
+msgstr "F051-06"
+
+msgid "CURRENT_DATE"
+msgstr "CURRENT_DATE"
+
+msgid "``SELECT current_date FROM t;``"
+msgstr "``SELECT current_date FROM t;``"
+
+msgid "F051-07"
+msgstr "F051-07"
+
+msgid "LOCALTIME"
+msgstr "LOCALTIME"
+
+msgid "``SELECT localtime FROM t;``"
+msgstr "``SELECT localtime FROM t;``"
+
+msgid "F051-08"
+msgstr "F051-08"
+
+msgid "LOCALTIMESTAMP"
+msgstr "LOCALTIMESTAMP"
+
+msgid "``SELECT localtimestamp FROM t;``"
+msgstr "``SELECT localtimestamp FROM t;``"
+
+msgid "F081, UNION and EXCEPT in views"
+msgstr "F081, UNION и EXCEPT в представлениях"
+
+msgid "F081"
+msgstr "F081"
+
+msgid "UNION and EXCEPT in views"
+msgstr "UNION и EXCEPT в представлениях"
+
+msgid "``CREATE VIEW vv AS SELECT * FROM t7 EXCEPT SELECT * * FROM t15;``"
+msgstr "``CREATE VIEW vv AS SELECT * FROM t7 EXCEPT SELECT * * FROM t15;``"
+
+msgid "F131, Grouped operations"
+msgstr "F131, операции группировки"
+
+msgid "F131-01"
+msgstr "F131-01"
+
+msgid ""
+"WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views"
+msgstr ""
+"Поддержка WHERE, GROUP BY и HAVING в запросах со сгруппированными "
+"представлениями"
+
+msgid "``CREATE VIEW vv2 AS SELECT * FROM vv GROUP BY s1;``"
+msgstr "``CREATE VIEW vv2 AS SELECT * FROM vv GROUP BY s1;``"
+
+msgid "F131-02"
+msgstr "F131-02"
+
+msgid "Multiple tables supported in queries with grouped views"
+msgstr ""
+"Поддержка нескольких таблиц в запросах со сгруппированными представлениями"
+
+msgid "``CREATE VIEW vv3 AS SELECT * FROM vv2,t30;``"
+msgstr "``CREATE VIEW vv3 AS SELECT * FROM vv2,t30;``"
+
+msgid "F131-03"
+msgstr "F131-03"
+
+msgid "Set functions supported in queries with grouped views"
+msgstr ""
+"Поддержка агрегатных функций в запросах со сгруппированными представлениями"
+
+msgid "``CREATE VIEW vv4 AS SELECT count(*) FROM vv2;``"
+msgstr "``CREATE VIEW vv4 AS SELECT count(*) FROM vv2;``"
+
+msgid "F131-04"
+msgstr "F131-04"
+
+msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
+msgstr ""
+"Подзапросы с предложениями GROUP BY и HAVING и сгруппированными "
+"представлениями"
+
+msgid ""
+"``CREATE VIEW vv5 AS SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > "
+"0;``"
+msgstr ""
+"``CREATE VIEW vv5 AS SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > "
+"0;``"
+
+msgid "F131-05"
+msgstr "F131-05"
+
+msgid "Single row SELECT with GROUP BY and HAVING clauses and grouped views"
+msgstr ""
+"Инструкция SELECT, возвращающая одну строку, с GROUP BY и HAVING и "
+"сгруппированными представлениями"
+
+msgid "``SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > 0;``"
+msgstr "``SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > 0;``"
+
+msgid "F181, Multiple module support"
+msgstr "F181, поддержка нескольких модулей"
+
+msgid "Fail. Tarantool doesn't have modules."
+msgstr "Ошибка. В Tarantool отсутствуют модули."
+
+msgid "F201, CAST function"
+msgstr "F201, функция CAST"
+
+msgid "F201"
+msgstr "F201"
+
+msgid "CAST function"
+msgstr "Функция CAST"
+
+msgid "``SELECT cast(s1 AS INT) FROM t;``"
+msgstr "``SELECT cast(s1 AS INT) FROM t;``"
+
+msgid ":ref:`Okay <sql_function_cast>`."
+msgstr ":ref:`Работает <sql_function_cast>`."
+
+msgid "F221, Explicit defaults"
+msgstr "F221, явно заданное значение по умолчанию"
+
+msgid "F221"
+msgstr "F221"
+
+msgid "Explicit defaults"
+msgstr "Явно заданное значение по умолчанию"
+
+msgid "``UPDATE t SET s1 = DEFAULT;``"
+msgstr "``UPDATE t SET s1 = DEFAULT;``"
+
+msgid "F261, CASE expression"
+msgstr "F261, выражение CASE"
+
+msgid "F261-01"
+msgstr "F261-01"
+
+msgid "Simple CASE"
+msgstr "Простой CASE"
+
+msgid "``SELECT CASE WHEN 1 = 0 THEN 5 ELSE 7 END FROM t;``"
+msgstr "``SELECT CASE WHEN 1 = 0 THEN 5 ELSE 7 END FROM t;``"
+
+msgid "F261-02"
+msgstr "F261-02"
+
+msgid "Searched CASE"
+msgstr "CASE с поиском"
+
+msgid "``SELECT CASE 1 WHEN 0 THEN 5 ELSE 7 END FROM t;``"
+msgstr "``SELECT CASE 1 WHEN 0 THEN 5 ELSE 7 END FROM t;``"
+
+msgid "F261-03"
+msgstr "F261-03"
+
+msgid "NULLIF"
+msgstr "NULLIF"
+
+msgid "``SELECT nullif(s1,7) FROM t;``"
+msgstr "``SELECT nullif(s1,7) FROM t;``"
+
+msgid ":ref:`Okay <sql_function_nullif>`"
+msgstr ":ref:`Работает <sql_function_nullif>`"
+
+msgid "F261-04"
+msgstr "F261-04"
+
+msgid "COALESCE"
+msgstr "COALESCE"
+
+msgid "``SELECT coalesce(s1,7) FROM t;``"
+msgstr "``SELECT coalesce(s1,7) FROM t;``"
+
+msgid ":ref:`Okay <sql_function_coalesce>`."
+msgstr ":ref:`Работает <sql_function_coalesce>`."
+
+msgid "F311, Schema definition statement"
+msgstr "F311, инструкция определения схемы"
+
+msgid "F311-01"
+msgstr "F311-01"
+
+msgid "CREATE SCHEMA"
+msgstr "CREATE SCHEMA"
+
+msgid "Fail. Tarantool doesn't have schemas or databases."
+msgstr "Ошибка. В Tarantool отсутствуют схемы и базы данных."
+
+msgid "F311-02"
+msgstr "F311-02"
+
+msgid "CREATE TABLE for persistent base tables"
+msgstr "CREATE TABLE для хранимых таблиц БД"
+
+msgid "Fail. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA."
+msgstr "Ошибка. В Tarantool нет CREATE TABLE в CREATE SCHEMA."
+
+msgid "F311-03"
+msgstr "F311-03"
+
+msgid "CREATE VIEW"
+msgstr "CREATE VIEW"
+
+msgid "Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA."
+msgstr "Ошибка. В Tarantool нет CREATE VIEW в CREATE SCHEMA."
+
+msgid "F311-04"
+msgstr "F311-04"
+
+msgid "CREATE VIEW: WITH CHECK OPTION"
+msgstr "CREATE VIEW: WITH CHECK OPTION"
+
+msgid "F311-05"
+msgstr "F311-05"
+
+msgid "Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA."
+msgstr "Ошибка. В Tarantool в составе CREATE SCHEMA нет GRANT."
+
+msgid "F*, Other"
+msgstr "F*, прочее"
+
+msgid "F471"
+msgstr "F471"
+
+msgid "Scalar subquery values"
+msgstr "Скалярные значения подзапросов"
+
+msgid "``SELECT s1 FROM t WHERE s1 = (SELECT count(*) FROM t);``"
+msgstr "``SELECT s1 FROM t WHERE s1 = (SELECT count(*) FROM t);``"
+
+msgid "F481"
+msgstr "F481"
+
+msgid "Expanded NULL predicate"
+msgstr "Расширенный предикат NULL"
+
+msgid "``SELECT * FROM t WHERE row(s1,s1) IS NOT NULL;``"
+msgstr "``SELECT * FROM t WHERE row(s1,s1) IS NOT NULL;``"
+
+msgid "F812"
+msgstr "F812"
+
+msgid "Basic flagging"
+msgstr "Базовые флаги"
+
+msgid "Fail. Tarantool doesn't support any flagging."
+msgstr "Ошибка. Tarantool не поддерживает флаги."
+
+msgid "S011, Distinct types"
+msgstr "S011, пользовательские типы"
+
+msgid "S011"
+msgstr "S011"
+
+msgid "Distinct types"
+msgstr "Пользовательские типы"
+
+msgid "``CREATE TYPE x AS FLOAT;``"
+msgstr "``CREATE TYPE x AS FLOAT;``"
+
+msgid "Fail. Tarantool doesn't support distinct types."
+msgstr "Ошибка. Tarantool не поддерживает пользовательские типы."
+
+msgid "T321, Basic SQL-invoked routines"
+msgstr "T321, базовые процедуры, вызываемые SQL"
+
+msgid "T321-01"
+msgstr "T321-01"
+
+msgid "User-defined functions with no overloading"
+msgstr "Пользовательские функции без переопределения"
+
+msgid "``CREATE FUNCTION f() RETURNS INT RETURN 5;``"
+msgstr "``CREATE FUNCTION f() RETURNS INT RETURN 5;``"
+
+msgid ""
+"Fail. User-defined functions for SQL are created in :ref:`Lua "
+"<sql_calling_lua>` with a different syntax."
+msgstr ""
+"Ошибка. Пользовательские функции для SQL создаются с помощью :ref:`Lua "
+"<sql_calling_lua>` с другим синтаксисом."
+
+msgid "T321-02"
+msgstr "T321-02"
+
+msgid "User-defined procedures with no overloading"
+msgstr "Пользовательские процедуры без переопределения"
+
+msgid "``CREATE PROCEDURE p() BEGIN END;``"
+msgstr "``CREATE PROCEDURE p() BEGIN END;``"
+
+msgid "T321-03"
+msgstr "T321-03"
+
+msgid "Function invocation"
+msgstr "Вызов функций"
+
+msgid "``SELECT f(1) FROM t;``"
+msgstr "``SELECT f(1) FROM t;``"
+
+msgid "Okay. Tarantool can invoke Lua user-defined functions."
+msgstr "Работает. Tarantool может вызывать пользовательские Lua-функции."
+
+msgid "T321-04"
+msgstr "T321-04"
+
+msgid "CALL statement"
+msgstr "Инструкция CALL"
+
+msgid "``CALL p();``"
+msgstr "``CALL p();``"
+
+msgid "Fail. Tarantool doesn't support CALL statements."
+msgstr "Ошибка. Tarantool не поддерживает инструкции CALL."
+
+msgid "T321-05"
+msgstr "T321-05"
+
+msgid "RETURN statement"
+msgstr "Инструкция RETURN"
+
+msgid "Fail. Tarantool doesn't support RETURN statements."
+msgstr "Ошибка. Tarantool не поддерживает инструкции RETURN."
+
+msgid "T*, Other"
+msgstr "T*, прочее"
+
+msgid "T631"
+msgstr "T631"
+
+msgid "IN predicate with one list element"
+msgstr "Предикат IN с одним элементом списка"
+
+msgid "``SELECT * FROM t WHERE 1 IN (1);``"
+msgstr "``SELECT * FROM t WHERE 1 IN (1);``"
 
 msgid "Total number of items marked \"Fail\": 67"
-msgstr "Количество элементов с отметкой \"Неуспешно\": 67."
+msgstr "Количество элементов с отметкой \"Ошибка\": 67."
 
 msgid "Total number of items marked \"Okay\": 79"
-msgstr "Количество элементов с отметкой \"Успешно\": 79."
+msgstr "Количество элементов с отметкой \"Работает\": 79."
