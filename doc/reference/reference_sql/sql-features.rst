@@ -446,7 +446,7 @@ E121, Basic cursor support
             -   ``SELECT s1 FROM t ORDER BY s2;``
             -   :ref:`Okay <sql_order_by>`.   
         *   -   E121-03   
-            -   Value expressions in select list
+            -   Value expressions in ORDER BY clause
             -   ``SELECT s1 FROM t7 ORDER BY -s1;``
             -   Okay.   
         *   -   E121-04   
@@ -607,9 +607,9 @@ E*, Other
             -   Example
             -   Tests
         *   -   E153   
-            -   Updatable queries with subqueries   
-            -
-            -
+            -   Updatable queries with subqueries
+            -   ``UPDATE "view_containing_subquery" SET column1=0;``
+            -   Fail.     
         *   -   E161   
             -   SQL comments using leading double minus
             -   ``--comment;``
