@@ -1,17 +1,15 @@
-=====================================================================
-                            C
-=====================================================================
+C
+=
 
 Here follow two examples of using Tarantool's high-level C API.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                         Example 1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example 1
+---------
 
 Here is a complete C program that inserts :code:`[99999,'B']` into
 space :code:`examples` via the high-level C API.
 
-.. code-block:: c
+..  code-block:: c
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -44,7 +42,7 @@ space :code:`examples` via the high-level C API.
 Paste the code into a file named :file:`example.c` and install ``tarantool-c``.
 One way to install ``tarantool-c`` (using Ubuntu) is:
 
-.. code-block:: console
+..  code-block:: console
 
     $ git clone git://github.com/tarantool/tarantool-c.git ~/tarantool-c
     $ cd ~/tarantool-c
@@ -54,9 +52,9 @@ One way to install ``tarantool-c`` (using Ubuntu) is:
     $ make
     $ make install
 
-To compile and link the program, say:
+To compile and link the program, run:
 
-.. code-block:: console
+..  code-block:: console
 
     $ # sometimes this is necessary:
     $ export LD_LIBRARY_PATH=/usr/local/lib
@@ -72,11 +70,14 @@ If Tarantool is not running on localhost with listen address = 3301, the program
 will print “Connection refused”.
 If the insert fails, the program will print "Insert failed" and an error number
 (see all error codes in the source file
-`/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_).
+`/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`__).
 
 Here are notes corresponding to comments in the example program.
 
-**SETUP:** The setup begins by creating a stream.
+SETUP
+~~~~~
+
+The setup begins by creating a stream.
 
 .. code-block:: c
 
@@ -96,17 +97,20 @@ Function description:
     struct tnt_stream *tnt_net(struct tnt_stream *s)
     int tnt_set(struct tnt_stream *s, int option, variant option-value)
 
-**CONNECT:** Now that the stream named ``tnt`` exists and is associated with a
+CONNECT
+~~~~~~~
+
+Now that the stream named ``tnt`` exists and is associated with a
 URI, this example program can connect to a server instance.
 
-.. code-block:: c
+..  code-block:: c
 
     if (tnt_connect(tnt) < 0)
        { printf("Connection refused\n"); exit(-1); }
 
 Function description:
 
-.. code-block:: text
+..  code-block:: text
 
     int tnt_connect(struct tnt_stream *s)
 
@@ -114,10 +118,13 @@ The connection might fail for a variety of reasons, such as:
 the server is not running, or the URI contains an invalid :ref:`password<authentication-passwords>`.
 If the connection fails, the return value will be -1.
 
-**MAKE REQUEST:** Most requests require passing a structured value, such as
+MAKE REQUEST
+~~~~~~~~~~~~
+
+Most requests require passing a structured value, such as
 the contents of a tuple.
 
-.. code-block:: c
+..  code-block:: c
 
     struct tnt_stream *tuple = tnt_object(NULL);
     tnt_object_format(tuple, "[%d%s]", 99999, "B");
@@ -133,14 +140,17 @@ then the integer value, then a pointer to the string value.
 
 Function description:
 
-.. code-block:: text
+..  code-block:: text
 
     ssize_t tnt_object_format(struct tnt_stream *s, const char *fmt, ...)
 
-**SEND REQUEST:** The database-manipulation requests are analogous to the
+SEND REQUEST
+~~~~~~~~~~~~
+
+The database-manipulation requests are analogous to the
 requests in the box library.
 
-.. code-block:: c
+..  code-block:: c
 
     tnt_insert(tnt, 999, tuple);
     tnt_flush(tnt);
@@ -152,7 +162,7 @@ the program passes the ``tnt_stream`` that was used for connection
 
 Function description:
 
-.. code-block:: text
+..  code-block:: text
 
     ssize_t tnt_insert(struct tnt_stream *s, uint32_t space, struct tnt_stream *tuple)
     ssize_t tnt_replace(struct tnt_stream *s, uint32_t space, struct tnt_stream *tuple)
@@ -162,10 +172,13 @@ Function description:
     ssize_t tnt_update(struct tnt_stream *s, uint32_t space, uint32_t index,
                        struct tnt_stream *key, struct tnt_stream *ops)
 
-**GET REPLY:** For most requests, the client will receive a reply containing some
+GET REPLY
+~~~~~~~~~
+
+For most requests, the client will receive a reply containing some
 indication whether the result was successful, and a set of tuples.
 
-.. code-block:: c
+..  code-block:: c
 
     struct tnt_reply reply;  tnt_reply_init(&reply);
     tnt->read_reply(tnt, &reply);
@@ -176,17 +189,20 @@ This program checks for success but does not decode the rest of the reply.
 
 Function description:
 
-.. code-block:: text
+..  code-block:: text
 
     struct tnt_reply *tnt_reply_init(struct tnt_reply *r)
     tnt->read_reply(struct tnt_stream *s, struct tnt_reply *r)
     void tnt_reply_free(struct tnt_reply *r)
 
-**TEARDOWN:** When a session ends, the connection that was made with
-:c:func:`tarantoolc:tnt_connect()` should be closed, and the objects that were
+TEARDOWN
+~~~~~~~~
+
+When a session ends, the connection that was made with
+:c:func:`tarantoolc:tnt_connect` should be closed, and the objects that were
 made in the setup should be destroyed.
 
-.. code-block:: c
+..  code-block:: c
 
     tnt_close(tnt);
     tnt_stream_free(tuple);
@@ -194,22 +210,21 @@ made in the setup should be destroyed.
 
 Function description:
 
-.. code-block:: text
+..  code-block:: text
 
     void tnt_close(struct tnt_stream *s)
     void tnt_stream_free(struct tnt_stream *s)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                         Example 2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example 2
+---------
 
 Here is a complete C program that selects, using index key ``[99999]``, from
 space ``examples`` via the high-level C API.
 To display the results, the program uses functions in the
-`MsgPuck <https://github.com/tarantool/msgpuck>`_ library which allow decoding of
-`MessagePack <https://en.wikipedia.org/wiki/MessagePack>`_  arrays.
+`MsgPuck <https://github.com/tarantool/msgpuck>`__ library which allow decoding of
+`MessagePack <https://en.wikipedia.org/wiki/MessagePack>`__  arrays.
 
-.. code-block:: c
+..  code-block:: c
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -281,7 +296,7 @@ Similarly to the first example, paste the code into a file named
 
 To compile and link the program, say:
 
-.. code-block:: console
+..  code-block:: console
 
     $ gcc -o example2 example2.c -ltarantool
 
@@ -289,5 +304,5 @@ To run the program, say :samp:`./example2`.
 
 The two example programs only show a few requests and do not show all that's
 necessary for good practice. See more in the
-`tarantool-c documentation at GitHub <http://github.com/tarantool/tarantool-c>`_.
+`tarantool-c documentation at GitHub <http://github.com/tarantool/tarantool-c>`__.
 

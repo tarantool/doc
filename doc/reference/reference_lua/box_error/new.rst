@@ -37,21 +37,29 @@ box.error.new()
         ---
         - null
 
-    Since version :doc:`2.4.1 </release/2.4.1>`, there is a :ref:`session_settings <box_space-session_settings>`
-    setting which affects the structure of error objects. If ``error_marshaling_enabled``
-    is changed to ``true``, then the object will have the MP_EXT type and the
-    MP_ERROR subtype. Using the :ref:`binary protocol <internals-box_protocol>`,
-    in the body of a packet that the server could send in response to ``box.error.new()``,
-    one will see:
-    the encoding of MP_EXT according to the
-    `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
-    (usually 0xc7),
-    followed by the encoding of MP_ERROR (0x03),
-    followed by the encoding of MP_ERROR_STACK (0x81),
-    followed by all of the MP_ERROR_STACK components
-    (MP_ARRAY which contains MP_MAP which contains keys MP_ERROR_MESSAGE, MP_ERROR_CODE, etc.)
-    that are described and illustrated in section
-    :ref:`MessagePack extensions -- The ERROR type <msgpack_ext-error>`.
-    The map field for error object "type" will have key = MP_ERROR_TYPE,
-    the map field for error object "code" will have key = MP_ERROR_CODE,
-    the map field for error object "message" will have key = MP_ERROR_MESSAGE.
+    Since version :doc:`2.4.1 </release/2.4.1>`, the ``error_marshaling_enabled`` setting
+    has been introduced in :ref:`_session_settings <box_space-session_settings>`.
+    The new setting affects the structure of error objects. If ``error_marshaling_enabled``
+    is set to ``true``, the object will have the MP_EXT type and the
+    MP_ERROR subtype.
+
+    Using the :ref:`binary protocol <internals-box_protocol>`,
+    the server can send a packet in response to ``box.error.new()``.
+    The body of that packet contains the following data:
+
+    - the encoding of MP_EXT according to the
+      `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
+      (usually 0xc7)
+    - the encoding of MP_ERROR (0x03)
+    - the encoding of MP_ERROR_STACK (0x81)
+    - all of the MP_ERROR_STACK components:
+      an MP_ARRAY containing an MP_MAP which, in turn, contains
+      keys like MP_ERROR_MESSAGE, MP_ERROR_CODE, etc.
+      These components are described and illustrated in the section
+      :ref:`MessagePack extensions -- The ERROR type <msgpack_ext-error>`.
+
+    The error object map fields correspond to specific keys:
+
+    - "type" corresponds to MP_ERROR_TYPE
+    - "code" corresponds to MP_ERROR_ERRCODE
+    - "message" corresponds to MP_ERROR_MESSAGE.

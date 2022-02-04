@@ -1,3 +1,6 @@
+:noindex:
+:fullwidth:
+
 .. _app_server:
 
 ********************************************************************************
@@ -19,5 +22,6 @@ This chapter contains the following sections:
    contributing_module
    reloading_module
    luajit_memprof
+   luajit_getmetrics
    using_ide
    cookbook

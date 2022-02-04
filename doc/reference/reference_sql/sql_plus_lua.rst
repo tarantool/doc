@@ -347,6 +347,7 @@ If there were no Lua functions, we would have to treat it as a VARBINARY
 and look for ``POSITION(X'A476696577C3',"flags")  > 0`` (A4 is a MsgPack signal
 that a 4-byte string follows, 76696577 is UTF8 encoding for 'view',
 C3 is a MsgPack code meaning true).
+In any case, starting with Tarantool version 2.10, POSITION() does not work on VARBINARY operands.
 But we have a more sophisticated way, we can create a function that
 returns true if ``"flags".view`` is true.
 So our way of making the function looks like this:
@@ -634,7 +635,7 @@ _COLUMNS view
 ********************************************************************************
 
 This is also an example of how one can use :ref:`recursive views <sql_with>` to make temporary tables
-with multiple rows for each tuple in the original ``"_vtable"`` space.
+with multiple rows for each tuple in the original ``"_vspace"`` space.
 It requires a global variable, _G.box.FORMATS, as a temporary static variable.
 
 Warning: Use this code only with Tarantool version 2.3.2 or later.

@@ -6,28 +6,29 @@ Defining and using terms
 What are concepts and terms
 ---------------------------
 
-To write well about some subject matter, one needs to know the objects of this subject matter
+To write well about a certain subject matter,
+one needs to know its details
 and use the right, carefully selected words for them.
-Such objects are called concepts, and the words for them are called terms.
+These details are called concepts, and the words for them are called terms.
 
 ..  glossary::
 
     concept
-        The concept is the idea of some object, attribute, or action.
+        A concept is the idea of an object, attribute, or action.
         It is independent of languages, audience, and products. It just exists.
 
-        For example, a large database can be partitioned into smaller instances,
-        which are easier to operate and can exceed the throughput of
-        a single large database instance. Such instances can exchange data
-        for keeping it consistent between them.
+        For example, a large database can be partitioned into smaller instances.
+        Those instances are easier to operate, and their throughput
+        often exceeds the throughput of a single large database instance.
+        The instances can exchange data to keep it consistent between them.
 
     term
-        The term is a word, which authors or a particular book, article, or documentation set
-        have explicitly selected to denote a :term:`concept` in a particular language
-        and for a particular audience.
+        A term is a word explicitly selected by the authors of a particular text
+        to denote a :term:`concept` in a particular language
+        for a particular audience.
 
         For example, in Tarantool, we use the term "[database] sharding" to denote the
-        concept mentioned in the previous example.
+        concept described in the previous example.
 
 
 ..  _use-preferred-terms:
@@ -35,41 +36,42 @@ Such objects are called concepts, and the words for them are called terms.
 Use preferred terms
 -------------------
 
-The purpose of using terms is to write concisely and unambiguously,
-which is good for readers.
+The purpose of using terms is writing concisely and unambiguously,
+which is good for the readers.
 But selecting terms is hard.
-Often there are two or more terms for one concept popular with the community,
+Often, the community favors two or more terms for one concept,
 so there's no obvious choice.
-Indeed, selecting and consistently using any of them is much better
-than not selecting and just using random terms each time.
+Selecting and consistently using any of them is much better
+than not making a choice and using a random term every time.
 This is why it's also helpful to restrict the usage of some terms explicitly.
 
 ..  glossary::
 
     restricted term
-        A restricted term is a word that authors have explicitly forbidden to use for denoting a :term:`concept`.
-        Such a word is sometimes used as a :term:`term` for the same :term:`concept` elsewhere:
-        in the community, in other books, or other products' documentation.
-        Sometimes, this word is used to denote a similar but different concept.
+        A restricted term is a word that the authors explicitly
+        prohibited to use for denoting a :term:`concept`.
+        Such a word is sometimes used as a :term:`term`
+        for the same :term:`concept` elsewhere---in the
+        community, in books, or in other product documentation.
+        Sometimes this word is used to denote a similar but different concept.
         In this case, the right choice of terms helps us differentiate between concepts.
 
         For example, in Tarantool, we don't use the term "[database] segmentation"
         to denote what we call "database sharding."
-        Although, other authors could do so.
-        Also, there is the term "[database] partitioning" that we use to denote
-        a wider concept, which includes sharding and other things.
+        Nevertheless, other authors might do so.
+        We also use the term "[database] partitioning" to denote
+        a wider concept, which includes sharding among other things.
 
 ..  _define-terms:
 
 Define terms by explaining concepts
 -----------------------------------
 
-Define the term by explaining the concept.
-For the most important concepts and the ones unique to Tarantool,
-the definition should always be in our documentation.
+We always want to document definitions for the most important concepts,
+as well as for concepts unique to Tarantool.
 
-Define each term in the document which is most relevant to it.
-There's no need to gather all definitions on a particular "Glossary" page.
+Define every term in the document that you find most appropriate for it.
+You don't have to create a dedicated glossary page containing all the definitions.
 
 To define a term, use the ``glossary`` directive in the following way:
 
@@ -91,15 +93,15 @@ This page has two of them, for example.
 
 The `Sphinx documentation
 <https://github.com/sphinx-doc/sphinx/blob/master/doc/glossary.rst>`_
-has an extensive glossary, which we can use as a reference.
+has an extensive glossary that can be used as a reference.
 
 ..  _introduce-terms:
 
 Introduce terms on first entry
 ------------------------------
 
-When you use a term for the first time in a document, introduce it by giving a definition,
-synonyms, translation, examples, and links.
+When you use a term in a document for the first time, define it
+and provide synonyms, a translation, examples, and/or links.
 It will help readers learn the term and understand the concept behind it.
 
 
@@ -112,12 +114,12 @@ It will help readers learn the term and understand the concept behind it.
     ..  code-block:: rst
 
         For example, this is a link to the definition of :term:`concept`.
-        As with any rST role, it can have :term:`custom text <concept>`.
+        Like any rST role, it can have :term:`custom text <concept>`.
 
     The resulting output will look like this:
 
         For example, this is a link to the definition of :term:`concept`.
-        As with any rST role, it can have :term:`custom text <concept>`.
+        Like any rST role, it can have :term:`custom text <concept>`.
 
     With acronyms, you can also use the `abbr` role:
 
@@ -133,8 +135,8 @@ It will help readers learn the term and understand the concept behind it.
         Database sharding (also known as ...) is a type of...
 
 #.  When writing in Russian, it's good to add the corresponding English term.
-    Readers may be more familiar with it or can use it in search.
+    Readers may be more familiar with it or can search it online.
 
-        Шардирование (сегментирование, sharding) — это...
+        Шардирование (сегментирование, sharding) --- это...
 
 #.  Give examples or links to extra reading where you can.

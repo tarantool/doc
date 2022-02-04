@@ -245,3 +245,11 @@ To send bare Lua code for execution, use ``eval``:
 
     >>> connection.eval('return 4 + 5')
     9
+
+.. _getting_started-python-comparison:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Feature comparison
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+See the :ref:`feature comparison table <index_connector_py>` of all Python connectors available.

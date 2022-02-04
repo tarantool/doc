@@ -63,7 +63,7 @@ To keep track of the major features in each version of the Tarantool easier, you
             -   Allow an :doc:`anonymous replica </reference/reference_lua/box_info/replication_anon>` to follow another anonymous replica (:tarantool-issue:`4696`)
 
         *   -   2.4.1
-            -   :ref:`UUID type for field and index <_index-box_uuid>` (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
+            -   :ref:`UUID type for field and index <index-box_uuid>` (:tarantool-issue:`4268`, :tarantool-issue:`2916`)
 
         *   -   2.4.1
             -   :doc:`popen </reference/reference_lua/popen>` built-in module (:tarantool-issue:`4031`)

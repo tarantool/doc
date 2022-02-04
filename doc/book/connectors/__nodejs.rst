@@ -10,7 +10,7 @@ way to install it is with `npm
 example, on Ubuntu, the installation could look like this after npm has been
 installed:
 
-.. code-block:: console
+..  code-block:: console
 
     $ npm install tarantool-driver --global
 
@@ -28,7 +28,7 @@ authorization to connect, the program will print "Auth failed". If the insert
 request fails for any reason, for example because the tuple already exists,
 the program will print "Insert failed".
 
-.. code-block:: javascript
+..  code-block:: javascript
 
     var TarantoolConnection = require('tarantool-driver');
     var conn = new TarantoolConnection({port: 3301});

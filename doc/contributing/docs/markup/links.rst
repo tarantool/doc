@@ -33,8 +33,8 @@ For this purpose, we add our own labels for linking to any place in this documen
 
 Our naming convention is as follows:
 
-* Character set: a through z, 0 through 9, dash, underscore.
-* Format: ``path dash filename dash tag``
+* Character set: a through z, 0 through 9, hyphen, underscore.
+* Format: ``path hyphen filename hyphen tag``
 
 **Example:**
 
@@ -48,13 +48,13 @@ where:
 *   ``box_index`` is the file name (without ".rst"), and
 *   ``iterator_type`` is the tag.
 
-Use a dash "-" to delimit the path and the file name. In the documentation
-source, we use only underscores "_" in paths and file names, reserving dash "-"
+Use a hyphen "-" to delimit the path and the file name. In the documentation
+source, we use only underscores "_" in paths and file names, reserving the hyphen "-"
 as the delimiter for local links.
 
 The tag can be anything meaningful. The only guideline is for Tarantool syntax
 items (such as members), where the preferred tag syntax is
-``module_or_object_name dash member_name``. For example, ``box_space-drop``.
+``module_or_object_name hyphen member_name``. For example, ``box_space-drop``.
 
 To add a link to an anchor, use the following syntax:
 

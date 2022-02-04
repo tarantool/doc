@@ -1,5 +1,5 @@
 ---
-name: Fix & Proofread
+name: Fix & proofread
 about: Fix typos, proofread document
 title: "[0pt] Fix {document_title}"
 labels: typo

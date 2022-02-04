@@ -1,12 +1,11 @@
-================================================================================
-Markup reference
-================================================================================
 
-Tarantool documentation is built via
+Markup reference
+================
+
+Tarantool documentation is built via the
 `Sphinx <https://www.sphinx-doc.org/en/master/index.html>`_ engine and is written in
-`reStructuredText <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_
-markup.
-This section will guide you through our typical cases while writing the docs.
+`reStructuredText <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_.
+This section will guide you through our typical documentation formatting cases.
 
 
 ..  toctree::

@@ -1,3 +1,6 @@
+:noindex:
+:fullwidth:
+
 .. _user_guide:
 
 -------------------------------------------------------------------------------
@@ -15,6 +18,6 @@ User's Guide
     admin/index
     replication/index
     monitoring/index
-    connectors/index
+    connectors
     ../reference/reference_sql/index
     faq

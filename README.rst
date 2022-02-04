@@ -18,13 +18,13 @@ First of all, pull the image for building the docs.
 
 ..  code-block:: bash
 
-    docker pull tarantool/doc-builder
+    docker pull tarantool/doc-builder:fat-4
 
 Next, initialize a Makefile for your OS:
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "cmake ."
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "cmake ."
 
 Update submodules and generate documentation sources from code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,7 +37,7 @@ To include their latest contents in the docs, run these two steps.
 
     ..  code-block:: bash
 
-        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make pull-modules"
+        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make pull-modules"
 
     This will initialize Git submodules and update them to the top of the stable
     branch in each repository.
@@ -65,7 +65,7 @@ To include their latest contents in the docs, run these two steps.
 
     ..  code-block:: bash
 
-        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make build-modules"
+        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make build-modules"
 
     This command will do two things:
 
@@ -87,7 +87,7 @@ and refresh the browser page.
 
 ..  code-block:: bash
 
-    docker run --rm -it -p 8000:8000 -v $(pwd):/doc tarantool/doc-builder sh -c "make autobuild"
+    docker run --rm -it -p 8000:8000 -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make autobuild"
 
 First build will take some time.
 When it's done, open `127.0.0.1:8000 <http://127.0.0.1:8000>`_ in the browser.
@@ -99,8 +99,8 @@ and then serve them using python3 built-in server:
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make html"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make html-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make html"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make html-ru"
     python3 -m http.server --directory output/html
 
 or python2 built-in server:
@@ -113,23 +113,23 @@ or python2 built-in server:
 then go to `localhost:8000 <http://localhost:8000>`_ in your browser.
 
 There are other commands which can run
-in the ``tarantool/doc-builder`` container:
+in the ``tarantool/doc-builder:fat`` container:
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make html"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make html-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make singlehtml"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make singlehtml-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make pdf"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make pdf-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make json"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make json-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make epub"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make epub-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make update-pot"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make update-po"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make update-po-force"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make html"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make html-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make singlehtml"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make singlehtml-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make pdf"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make pdf-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make json"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make json-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make epub"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make epub-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-pot"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po-force"
 
 Localization
 ------------
@@ -159,7 +159,7 @@ Upload translation sources any time when they have changed:
 ..  code-block:: bash
 
     # first, update the translation sources
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make update-pot"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-pot"
 
     # next, upload them to Crowdin
     crowdin upload
@@ -178,7 +178,7 @@ Then reformat them to see the real changes.
 ..  code-block:: bash
 
     crowdin download
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder sh -c "make reformat-po"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make reformat-po"
 
 How to contribute
 -----------------

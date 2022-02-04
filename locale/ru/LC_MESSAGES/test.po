@@ -1,0 +1,502 @@
+
+msgid "Заголовок 1-го уровня"
+msgstr ""
+
+msgid "Заголовок 2-го уровня"
+msgstr ""
+
+msgid "Заголовок 3-го уровня"
+msgstr ""
+
+msgid "Заголовок 4-го уровня"
+msgstr ""
+
+msgid "Работа с кодом"
+msgstr ""
+
+msgid "Внутристрочный код"
+msgstr ""
+
+msgid "с бэктиками - ``echo \"Hello world!\"``, ``ìd==0``, ``tarantoolsession``"
+msgstr ""
+
+msgid ""
+"с ролью **code** - :code:`echo \"Hello world!\"`, :code:`ìd==0`, "
+":code:`tarantoolsession`."
+msgstr ""
+
+msgid "Блок кода"
+msgstr ""
+
+msgid ""
+"for page in paged_iter(\"X\", 10) do\n"
+"    print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"    for i=1,#page,1 do print(page[i]) end\n"
+"end"
+msgstr ""
+
+msgid "Это блок кода без подсветки."
+msgstr ""
+
+msgid "Подсветка переменных в коде"
+msgstr ""
+
+msgid ":samp:`{space_object}:insert(\\\\{ffi.cast('double', {value})\\\\})`"
+msgstr ""
+
+msgid ":samp:`box.space.{space-name}:create_index('{index-name}')`"
+msgstr ""
+
+msgid "Директории: :file:`/usr/bin/example.py`"
+msgstr ""
+
+msgid "Guilabel"
+msgstr ""
+
+msgid "Пример 1"
+msgstr ""
+
+msgid "Кнопка :guilabel:`Старт`"
+msgstr ""
+
+msgid "Пример 2 (с &)"
+msgstr ""
+
+msgid "Кнопка :guilabel:`&Старт`"
+msgstr ""
+
+msgid "Ссылки"
+msgstr ""
+
+msgid ""
+"Ссылки выглядят `так <https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+msgid "Ссылка с ролью **:ref:** :ref:`здесь <page_example>`"
+msgstr ""
+
+msgid "Работа с терминами"
+msgstr ""
+
+msgid "слово1"
+msgstr ""
+
+msgid "определение"
+msgstr ""
+
+msgid "термин2"
+msgstr ""
+
+msgid ""
+"Например, это ссылка на определение термина :term:`слово1`. У термина в "
+"ссылке может быть :term:`кастомный текст <слово1>`."
+msgstr ""
+
+msgid "Для акронимов и аббревиатур можно использовать соответствующую роль:"
+msgstr ""
+
+msgid "Some text here :abbr:`PVC (persistent volume claim)`."
+msgstr ""
+
+msgid "Адмонишены"
+msgstr ""
+
+msgid "Заметка (note):"
+msgstr ""
+
+msgid ""
+"Это замечание. Мы используем его, чтобы выделить дополнительную информацию, "
+"которая может быть полезна пользователю."
+msgstr ""
+
+msgid "Предупреждение (warning):"
+msgstr ""
+
+msgid ""
+"Это блок с предупреждением. Используется, чтобы предупредить пользователей о"
+" чем-то."
+msgstr ""
+
+msgid "Блок \"Важно\" (Important):"
+msgstr ""
+
+msgid ""
+"Таким блоком выделяют важную информацию, которую пользователю обязательно "
+"нужно увидеть."
+msgstr ""
+
+msgid "Факт:"
+msgstr ""
+
+msgid "Факт"
+msgstr ""
+
+msgid ""
+"Это факт. ``fact`` --- это наш кастомный CSS класс. Использовать его стоит, "
+"если другие варианты не подходят."
+msgstr ""
+
+msgid "Этот тип адмонишена требует явно заданного заголовка."
+msgstr ""
+
+msgid "Отступы и списки"
+msgstr ""
+
+msgid "Это маркированный список."
+msgstr ""
+
+msgid "Второй элемент маркированного списка"
+msgstr ""
+
+msgid "Вложенный список."
+msgstr ""
+
+msgid "Вложенный список 2."
+msgstr ""
+
+msgid "Два параграфа в одном элементе списка."
+msgstr ""
+
+msgid "Продолжается список первого уровня"
+msgstr ""
+
+msgid "Пример 2"
+msgstr ""
+
+msgid "Это нумерованный список."
+msgstr ""
+
+msgid "Второй элемент."
+msgstr ""
+
+msgid "Вложенный нумерованный список."
+msgstr ""
+
+msgid "Крайне редко бывает и третий уровень."
+msgstr ""
+
+msgid "Пример 3"
+msgstr ""
+
+msgid "Элемент списка 1. Первый параграф."
+msgstr ""
+
+msgid "Второй параграф."
+msgstr ""
+
+msgid "Элемент списка 2."
+msgstr ""
+
+msgid "Вложенный элемент списка."
+msgstr ""
+
+msgid "# блок кода внутри вложенного списка"
+msgstr ""
+
+msgid "Еще один вложенный элемент списка."
+msgstr ""
+
+msgid "Таблицы"
+msgstr ""
+
+msgid "Тип контента"
+msgstr ""
+
+msgid "Пример контента"
+msgstr ""
+
+msgid "Текст"
+msgstr ""
+
+msgid ""
+"Так выглядит в таблице текст в несколько абзацев. Вот один абзац. Здесь "
+"должен быть какой-то длинный текст."
+msgstr ""
+
+msgid ""
+"А вот и второй абзац. И здесь должен быть какой-то интересный текст или "
+"просто длинный параграф."
+msgstr ""
+
+msgid "Маркированный список"
+msgstr ""
+
+msgid "Это маркированный список внутри таблицы."
+msgstr ""
+
+msgid "Еще один элемент маркированного списка в таблице."
+msgstr ""
+
+msgid "Третий элемент"
+msgstr ""
+
+msgid "Списки могут быть вложенными."
+msgstr ""
+
+msgid "Нумерованный список"
+msgstr ""
+
+msgid "Элемент списка 1."
+msgstr ""
+
+msgid ""
+"``echo \"Hello world!\"``, ``ìd==0``, ``tarantoolsession``, :code:`echo "
+"\"Hello world!\"`"
+msgstr ""
+
+msgid "Картинка в таблице"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":doc:`/index`"
+msgstr ""
+
+msgid "Link to ``index.rst``"
+msgstr ""
+
+msgid "SQL type"
+msgstr ""
+
+msgid "NoSQL type"
+msgstr ""
+
+msgid "Aliases"
+msgstr ""
+
+msgid "Minimum"
+msgstr ""
+
+msgid "Maximum"
+msgstr ""
+
+msgid "BOOLEAN"
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid "BOOL"
+msgstr ""
+
+msgid "FALSE"
+msgstr ""
+
+msgid "TRUE"
+msgstr ""
+
+msgid "INTEGER"
+msgstr ""
+
+msgid "integer"
+msgstr ""
+
+msgid "INT"
+msgstr ""
+
+msgid "-9223372036854775808"
+msgstr ""
+
+msgid "18446744073709551615"
+msgstr ""
+
+msgid "UNSIGNED"
+msgstr ""
+
+msgid "unsigned"
+msgstr ""
+
+msgid "(none)"
+msgstr ""
+
+msgid "0"
+msgstr ""
+
+msgid "DOUBLE"
+msgstr ""
+
+msgid "double"
+msgstr ""
+
+msgid "-1.79769e308"
+msgstr ""
+
+msgid "1.79769e308"
+msgstr ""
+
+msgid "NUMBER"
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+msgid "STRING"
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "TEXT, VARCHAR(n)"
+msgstr ""
+
+msgid "``''``"
+msgstr ""
+
+msgid "``'many-characters'``"
+msgstr ""
+
+msgid "VARBINARY"
+msgstr ""
+
+msgid "varbinary"
+msgstr ""
+
+msgid "``X''``"
+msgstr ""
+
+msgid "``X'many-hex-digits'``"
+msgstr ""
+
+msgid "UUID"
+msgstr ""
+
+msgid "uuid"
+msgstr ""
+
+msgid "00000000-0000-0000- 0000-000000000000"
+msgstr ""
+
+msgid "ffffffff-ffff-ffff- dfff-ffffffffffff"
+msgstr ""
+
+msgid "SCALAR"
+msgstr ""
+
+msgid "scalar"
+msgstr ""
+
+msgid "Картинки"
+msgstr ""
+
+msgid "С директивой **image::**:"
+msgstr ""
+
+msgid "Еще пример:"
+msgstr ""
+
+msgid "Через **substitution**:"
+msgstr ""
+
+msgid "|image definition|"
+msgstr ""
+
+msgid "Второй пример определения картинок с помощью **substitution**:"
+msgstr ""
+
+msgid "Вот первая картинка |cat3|, а вот вторая картинка |cat4|."
+msgstr ""
+
+msgid "Шаблоны"
+msgstr ""
+
+msgid "Функция"
+msgstr ""
+
+msgid ""
+"Create and start a fiber. The fiber is created and begins to run "
+"immediately."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "the function to be associated with the fiber"
+msgstr ""
+
+msgid "what will be passed to function"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "created fiber object"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "userdata"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> function function_name()\n"
+"         >   print(\"I'm a fiber\")\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> fiber_object = fiber.create(function_name); print(\"Fiber started\")\n"
+"I'm a fiber\n"
+"Fiber started\n"
+"---\n"
+"..."
+msgstr ""
+
+msgid "Описание классов"
+msgstr ""
+
+msgid "Search for a tuple via the given index."
+msgstr ""
+
+msgid "an object reference."
+msgstr ""
+
+msgid "values to be matched against the index key"
+msgstr ""
+
+msgid "the tuple whose index-key fields are equal to the passed key values"
+msgstr ""
+
+msgid "tuple"
+msgstr ""
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "no such index;"
+msgstr ""
+
+msgid "wrong type;"
+msgstr ""
+
+msgid "more than one tuple matches."
+msgstr ""
+
+msgid "**Complexity factors:** Index size, Index type."
+msgstr ""
+
+msgid ""
+"tarantool> box.space.tester.index.primary:get(2)\n"
+"---\n"
+"- [2, 'Music']\n"
+"..."
+msgstr ""
+
+msgid "True if the index is unique, false if the index is not unique."
+msgstr ""
+
+msgid ""
+"tarantool> box.space.tester.index.primary.unique\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""

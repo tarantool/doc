@@ -122,8 +122,6 @@ Replication
 -   Apply replication settings of ``box.cfg({<...>})`` in the strict
     order (:tarantool-issue:`4433`).
 
-..  _lua-1:
-
 Lua
 ~~~
 
@@ -177,8 +175,6 @@ LuaJIT
     fixes the following assertion fail:
 
         asm_conv: Assertion \`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed
-
-..  _misc-1:
 
 Misc
 ~~~~

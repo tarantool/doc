@@ -3,7 +3,7 @@ name: Translate
 about: Translation issue
 title: "[0pt] Translate {document_title}"
 labels: localization
-assignees: ladyune
+assignees: 
 
 ---
 ## Info

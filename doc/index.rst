@@ -1,8 +1,12 @@
 :orphan:
+:noindex:
+:fullwidth:
 :priority: 0.95
 
+..  _index:
+
 -------------------------------------------------------------------------------
-                           Tarantool - Documentation
+                           Tarantool --- Documentation
 -------------------------------------------------------------------------------
 
 .. wp_section::
@@ -40,7 +44,7 @@
 
                     <div class="getting-started-button-container">
                         <a href="getting_started/">
-                            <button class="getting-started-button btn">
+                            <button class="getting-started-button btn main-button">
                                 Руководство для начинающих
                             </button>
                         </a>
@@ -52,7 +56,7 @@
 
                     <div class="getting-started-button-container">
                         <a href="getting_started/">
-                            <button class="getting-started-button btn">
+                            <button class="getting-started-button btn main-button">
                                 Getting started
                             </button>
                         </a>
@@ -66,6 +70,7 @@
                 CRUD operations <reference/reference_lua/box_space>
                 book/box/indexes
                 book/box/atomic
+                Streams <book/box/stream>
                 book/box/authentication
                 book/box/triggers
                 reference/reference_rock/vshard/vshard_index
@@ -74,28 +79,8 @@
                 book/admin/index
                 book/replication/index
                 book/box/engines/index
-                book/connectors/index
+                book/connectors
                 reference/index
                 tutorials/index
                 contributing/index
                 release
-
-
-        .. container:: other-sources-menu
-
-            .. raw:: html
-
-                <div class="badge-icon"></div>
-
-            * **Other formats:**
-            * `Single-page HTML <singlehtml.html>`__
-            * `PDF <Tarantool.pdf>`__
-
-            - **See also:**
-            - `Documentation archive <https://tarantool.io/dist/pdf/>`__
-            - `Articles <https://tarantool.io/learn/>`__
-
-            * **Support:**
-            * `Google forum <https://groups.google.com/forum/#!forum/tarantool>`__
-            * `Telegram chat <https://t.me/tarantool>`__
-

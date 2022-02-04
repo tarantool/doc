@@ -34,6 +34,19 @@ In Tarantool we have 3 variants of css-style for admonitions:
         For example, in the description of :doc:`/reference/reference_lua/box_session/on_connect`
         trigger we warn a user about some consequences of his actions.
 
+*   Important:
+
+    ..  code-block:: rst
+
+        ..  important::
+
+    ..  important::
+
+        This block contains essential information that the user should know while doing something.
+
+        For example, the block :doc:`in Getting Started with Docker </getting_started/getting_started_go>` is used to warn the user against
+        closing the terminal window.
+
 *   Custom admonition:
 
     ..  code-block:: rst

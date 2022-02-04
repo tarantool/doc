@@ -9,6 +9,8 @@ extensions = [
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
+    'sphinxcontrib.plantuml',
     'sphinxcontrib.rsvgconverter',
     'ext.custom',
     'ext.LuaDomain',
@@ -18,7 +20,6 @@ extensions = [
     'ext.DropdownList',
     'ext.WebPageSection',
     'ext.WebPageButtons',
-    'ext.WebPageMap',
     'ext.ModuleBlock',
     'ext.DownloadPageBlock'
 ]
