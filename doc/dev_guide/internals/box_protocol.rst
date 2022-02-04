@@ -178,6 +178,7 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_BALLOT_IS_RO=0x04
     IPROTO_BALLOT_IS_ANON=0x05
     IPROTO_BALLOT_IS_BOOTED=0x06
+    IPROTO_BALLOT_CAN_LEAD=0x07
     IPROTO_TUPLE_META=0x2a
     IPROTO_OPTIONS=0x2b
     IPROTO_DATA=0x30
@@ -1400,12 +1401,14 @@ The fields within IPROTO_BALLOT are map items:
 
 ..  code-block:: none
 
-    IPROTO_BALLOT_IS_RO_CFG (0x01) and MP_BOOL
-    IPROTO_BALLOT_VCLOCK (0x02) and vclock
-    IPROTO_BALLOT_GC_VCLOCK (0x03) and vclock
-    IPROTO_BALLOT_IS_RO (0x04) and MP_BOOL
-    IPROTO_BALLOT_IS_ANON = 0x05 and MP_BOOL
-    IPROTO_BALLOT_IS_BOOTED = 0x06 and MP_BOOL
+    IPROTO_BALLOT_IS_RO_CFG (0x01) + MP_BOOL
+    IPROTO_BALLOT_VCLOCK (0x02) + vclock
+    IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock
+    IPROTO_BALLOT_IS_RO (0x04) + MP_BOOL
+    IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
+    IPROTO_BALLOT_IS_BOOTED = 0x06 + MP_BOOL
+    IPROTO_BALLOT_CAN_LEAD = 0x07 + MP_BOOL
+
 
 IPROTO_BALLOT_IS_RO_CFG and IPRO_BALLOT_VCLOCK and IPROTO_BALLOT_GC_VCLOCK and IPROTO_BALLOT_IS_RO
 were added in version :doc:`2.6.1 </release/2.6.1>`.
@@ -1431,6 +1434,14 @@ IPROTO_BALLOT_IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replica
 IPROTO_BALLOT_IS_BOOTED is true if the instance has finished its
 bootstrap or recovery process.
 
+IPROTO_BALLOT_CAN_LEAD is true if the :ref:`election_mode <cfg_replication-election_mode>`
+configuration setting is either 'candidate' or 'manual', so that
+during the :ref:`leader election process <repl_leader_elect_process>`
+this instance may be preferred over instances whose configuration
+setting is 'voter'.
+IPROTO_BALLOT_CAN_LEAD support was added simultaneously in
+version :doc:`2.7.3 </release/2.7.3>`
+and version :doc:`2.8.2 </release/2.8.2>`.
 
 ..  _box_protocol-flags:
 
