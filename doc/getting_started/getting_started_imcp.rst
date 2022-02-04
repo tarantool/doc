@@ -1,8 +1,7 @@
 .. _getting_started-imcp:
 
-=================================================================================
 First steps
-=================================================================================
+===========
 
 This is the recommended guide for getting to know the product.
 
@@ -370,27 +369,45 @@ Paste the configuration example below into ``config.yml`` and click "Apply".
          - http: {path: "/like_video", method: POST}
     ...
 
-Done! Let's make test requests from the console:
+Done! Let's make test requests from the console.
 
 ..  code-block:: bash
 
-    curl -X POST --data "fullname = Taran Tool" <ip:port>/add_user
+    curl -X POST --data "fullname=Taran Tool" url/add_user
+
+..  note::
+    
+    In the requests, substitute ``url`` with the address of your sandbox.
+    The protocol must be strictly HTTP.
+
+    For example, if you're following this tutorial with Try Tarantool, this request will look something like this
+    (note that your hash is different):
+
+    ..  code-block:: bash
+
+        curl -X POST --data "fullname=Taran Tool" http://artpjcvnmwctc4qppejgf57.try.tarantool.io/add_user
+
+    But if you've bootstrapped Tarantool locally, the request will look as follows:
+
+    ..  code-block:: bash
+
+        curl -X POST --data "fullname=Taran Tool" http://localhost:8081/add_user
 
 We've just created a user and got their UUID. Let's remember it.
 
 ..  code-block:: bash
 
-    curl -X POST --data "description = My first tiktok" <ip:port>/add_video
+    curl -X POST --data "description=My first tiktok" url/add_video
 
 Let's say a user has added their first video with a description.
 The video clip also has a UUID. Let's remember it, too.
 
-In order to "like" the video, you need to specify the user UUID and the video UUID.
+In order to "like" the video, you need to specify the user UUID and the video UUID from the previous steps.
 Substitute the ellipses in the command below with the corresponding UUIDs:
 
 ..  code-block:: bash
 
-    curl -X POST --data "video_id = ... & user_id = ..." <ip: port>/like_video
+    curl -X POST --data "video_id=...&user_id=..." url/like_video
 
 The result will be something like this:
 
@@ -414,12 +431,21 @@ More details are described on the next step.
 Looking at the data [1 minute]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+..  note::
+    
+    The following instructions are for Tarantool Enterprise Edition and the Try Tarantool cloud service.
+
+    The Space-Explorer tool is unavailable in the open-source version. Use the console to view data.
+
+    Check our documentation to learn more about :doc:`data viewing </reference/reference_lua/box_space/select/>`.
+    To learn how to connect to a Tarantool instance, :ref:`read the basic Tarantool manual <getting_started_db>`.
+
+
 Go to the "Space-Explorer" tab to see all the nodes in the cluster.
 As we have only one storage and one router started so far, the data is stored
 on only one node.
 
 Let's go to the node ``s1-master``: click "Connect" and select the necessary space.
-
 Check that everything is in place and move on.
 
 ..  figure:: images/hosts.png
@@ -431,13 +457,6 @@ Check that everything is in place and move on.
     :alt: Space Explorer, view likes
 
     Space Explorer, viewing likes
-
-Please note that the Space-Explorer tool is only available in the
-Enterprise version of the product and in the Try Tarantool cloud service.
-In the open-source version, use the console to view data.
-
-Check our documentation to learn more about :doc:`data viewing </reference/reference_lua/box_space/select/>`.
-To learn how to connect to a Tarantool instance, :ref:`read the basic Tarantool manual <getting_started_db>`.
 
 
 Scaling the cluster [1 minute]
