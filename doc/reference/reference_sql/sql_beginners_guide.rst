@@ -663,7 +663,7 @@ After the ORDER BY clause there can be a clause LIMIT n, where n is the maximum 
 
 The result will be the first two rows, 'crypto' and 'clock'.
 
-After the ORDER BY clause and the LIMIT clause thre can be a clause OFFSET n,
+After the ORDER BY clause and the LIMIT clause there can be a clause OFFSET n,
 where n is the row to start with. The first offset is 0. For example:
 
 ``SELECT * FROM modules ORDER BY name DESC LIMIT 2 OFFSET 2;``

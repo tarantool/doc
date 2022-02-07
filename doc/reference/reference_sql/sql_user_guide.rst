@@ -216,9 +216,9 @@ A literal has :ref:`data type = VARBINARY <sql_data_type_varbinary>`
 ("variable-length binary") if it is the letter X followed by quotes containing pairs of hexadecimal digits, representing byte values.
 
 MAP literals: |br|
-[left curly bracket] key [colon] value [right square bracket] |br|
+[left curly bracket] key [colon] value [right curly bracket] |br|
 Examples: ``{'a':1}``, ``{1:'a'}`` |br|
-A map literal a pair of curly brackets (also called "braces")
+A map literal is a pair of curly brackets (also called "braces")
 enclosing a STRING or INTEGER or UUID literal (called the map "key")
 followed by a colon
 followed by any type of literal (called the map "value").
@@ -487,8 +487,8 @@ and minimum / maximum literal examples.
    * - DECIMAL
      - decimal
      - DEC
-     - -9999999999999999999 9999999999999999999
-     - 9999999999999999999 9999999999999999999
+     - -9999999999999999999 |br| 9999999999999999999
+     - 9999999999999999999 |br| 9999999999999999999
    * - STRING
      - string
      - TEXT, VARCHAR(n)
@@ -502,8 +502,8 @@ and minimum / maximum literal examples.
    * - UUID
      - uuid
      - (none)
-     - 00000000-0000-0000- 0000-000000000000
-     - ffffffff-ffff-ffff-dfff-ffffffffffff
+     - 00000000-0000-0000- |br| 0000-000000000000
+     - ffffffff-ffff-ffff- |br| dfff-ffffffffffff
    * - SCALAR
      - (varies)
      - (none)
@@ -955,7 +955,7 @@ When comparing any value to NULL: |br|
 * for ordering, NULL values sort together and are less than non-NULL values. Therefore SELECT column1 FROM T ORDER BY column1; returns {NULL, NULL, 1,2}. |br|
 * for evaluating a UNIQUE constraint or UNIQUE index, any number of NULLs is okay. Therefore CREATE UNIQUE INDEX i ON T (column1); will succeed.
 
-When comparing any value to a SCALAR: |br|
+When comparing any value (except an ARRAY or MAP or ANY) to a SCALAR: |br|
 * This is always legal, and the result depends on the underlying type of the value.
 For example, if COLUMN1 is defined as SCALAR, and a value in the column is 'a', then
 COLUMN1 < 5 is a legal comparison and the result is FALSE because numeric is less than STRING.
@@ -980,7 +980,7 @@ When comparing a STRING to a STRING: |br|
 * When comparing a column with a string literal, the column's defined collation is used. |br|
 * Ordinarily trailing spaces matter. So ``'a' = 'a  '`` is not TRUE. This can be cancelled by using the :ref:`TRIM(TRAILING ...) <sql_function_trim>` function. |br|
 
-When comparing anything to an ARRAY or MAP or ANY: |br|
+When comparing any value to an ARRAY or MAP or ANY: |br|
 * The result is an error.
 
 Limitations: |br|
