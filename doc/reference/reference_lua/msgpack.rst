@@ -584,11 +584,11 @@ and :ref:`YAML <yaml-cfg>`.
 
         local msgpack = require('msgpack')
         -- Create a MsgPack object from a Lua object of any type
-        mp = msgpack.object(123)
-        mp = msgpack.object("foobar")
-        mp = msgpack.object({1, 2, 3})
-        mp = msgpack.object({foo = 1, bar = 2})
-        mp = msgpack.object(box.tuple.new(1, 2, 3))
+        local mp = msgpack.object(123)
+        local mp = msgpack.object("foobar")
+        local mp = msgpack.object({1, 2, 3})
+        local mp = msgpack.object({foo = 1, bar = 2})
+        local mp = msgpack.object(box.tuple.new(1, 2, 3))
 
 ..  _msgpack-object-from-raw:
 
