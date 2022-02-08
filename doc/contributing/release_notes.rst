@@ -17,7 +17,7 @@ Below are some best practices to make changelogs consistent, neat, and human-ori
     ..  admonition:: Example
         :class: fact
         
-        Data changes in read-only mode are now forbidden (gh-5231)'.
+        Data changes in read-only mode are now forbidden (gh-5231).
 
 *   Start with a capital letter, end with a period. 
 
