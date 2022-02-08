@@ -11,16 +11,16 @@ Installation
 -------------------------------------------------------------------------------
 
 The ``vshard`` module is distributed separately from the main Tarantool package.
-To install it, say this:
+To install the module, execute the following command:
 
-.. code-block:: console
+..  code-block:: console
 
     $ tarantoolctl rocks install vshard
 
-.. NOTE::
+..  NOTE::
 
-    The ``vshard`` module requires Tarantool version 1.9+,
-    `Tarantool development package <https://www.tarantool.io/en/doc/1.10/tutorials/c_tutorial/#c-stored-procedures>`_,
+    The ``vshard`` module requires Tarantool of the version 1.10.1 or higher,
+    `Tarantool development package <https://www.tarantool.io/en/doc/latest/tutorials/c_tutorial/#c-stored-procedures>`_,
     ``git``, ``cmake`` and ``gcc`` packages installed.
 
 .. _vshard-config-cluster:
