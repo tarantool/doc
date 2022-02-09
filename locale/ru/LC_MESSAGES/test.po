@@ -394,10 +394,19 @@ msgstr ""
 msgid "|image definition|"
 msgstr ""
 
+msgid "image definition"
+msgstr ""
+
 msgid "Второй пример определения картинок с помощью **substitution**:"
 msgstr ""
 
 msgid "Вот первая картинка |cat3|, а вот вторая картинка |cat4|."
+msgstr ""
+
+msgid "cat3"
+msgstr ""
+
+msgid "cat4"
 msgstr ""
 
 msgid "Шаблоны"
