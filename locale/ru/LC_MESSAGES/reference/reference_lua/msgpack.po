@@ -5,22 +5,6 @@ msgstr "Модуль `msgpack`"
 msgid "Overview"
 msgstr "Общие сведения"
 
-msgid "**Definitions:**"
-msgstr ""
-
-msgid ""
-"*MsgPack* is short for `MessagePack <https://msgpack.org/index.html>`_."
-msgstr ""
-
-msgid ""
-"A \"raw MsgPack string\" is a byte array formatted according to the `MsgPack"
-" specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ "
-"including type bytes and sizes. The type bytes and sizes can be made "
-"displayable with :ref:`string.hex() <string-hex>`, or the raw MsgPack "
-"strings can be converted to Lua objects by using the ``msgpack`` module "
-"methods."
-msgstr ""
-
 msgid ""
 "The ``msgpack`` module decodes :ref:`raw MsgPack strings <msgpack-"
 "definitions>` by converting them to Lua objects, and encodes Lua objects by "
@@ -30,13 +14,13 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Besides, starting from version 2.10.0, the ``msgpack`` module enables "
-"creating a specific userdata Lua object---MsgPack object. The MsgPack object"
-" stores arbitrary MsgPack data, and can be created from :ref:`any Lua object"
-" <msgpack-object>` including another MsgPack object and from a :ref:`raw "
-"MsgPack string <msgpack-object-from-raw>`. The MsgPack object has its own "
-"set of :ref:`methods <msgpack-object-methods>` and :ref:`iterators <msgpack-"
-"object-iterator-methods>`."
+"Definitions: MsgPack is short for `MessagePack "
+"<https://msgpack.org/index.html>`_. A \"raw MsgPack string\" is a byte array"
+" formatted according to the `MsgPack specification "
+"<https://github.com/msgpack/msgpack/blob/master/spec.md>`_ including type "
+"bytes and sizes. The type bytes and sizes can be made displayable with "
+":ref:`string.hex() <string-hex>`, or the raw MsgPack strings can be "
+"converted to Lua objects with ``msgpack`` methods."
 msgstr ""
 
 msgid "Index"
@@ -87,30 +71,26 @@ msgid ""
 "decode_unchecked_c_style_string_pointer>`"
 msgstr ""
 
-msgid ""
-":ref:`msgpack.decode_array_header(byte-array, size) <msgpack-"
-"decode_array_header>`"
+msgid ":ref:`msgpack.decode_array_header <msgpack-decode_array_header>`"
+msgstr ":ref:`msgpack.decode_array_header <msgpack-decode_array_header>`"
+
+msgid "Skip array header in a raw MsgPack string"
 msgstr ""
 
-msgid "Skip an array header in a raw MsgPack string"
+msgid ":ref:`msgpack.decode_map_header <msgpack-decode_map_header>`"
+msgstr ":ref:`msgpack.decode_map_header <msgpack-decode_map_header>`"
+
+msgid "Skip map header in a raw MsgPack string"
 msgstr ""
 
-msgid ""
-":ref:`msgpack.decode_map_header(byte-array, size) <msgpack-"
-"decode_map_header>`"
-msgstr ""
-
-msgid "Skip a map header in a raw MsgPack string"
-msgstr ""
-
-msgid ":ref:`__serialize <msgpack-serialize>` parameter"
+msgid ":ref:`__serialize parameter <msgpack-serialize>`"
 msgstr ""
 
 msgid "Output structure specification"
 msgstr ""
 
-msgid ":ref:`msgpack.cfg() <msgpack-cfg>`"
-msgstr ""
+msgid ":ref:`msgpack.cfg <msgpack-cfg>`"
+msgstr ":ref:`msgpack.cfg <msgpack-cfg>`"
 
 msgid "Change configuration"
 msgstr "Изменение конфигурации"
@@ -118,86 +98,8 @@ msgstr "Изменение конфигурации"
 msgid ":ref:`msgpack.NULL <msgpack-null>`"
 msgstr ":ref:`msgpack.NULL <msgpack-null>`"
 
-msgid "Analog of Lua's ``nil``"
-msgstr ""
-
-msgid ":ref:`msgpack.object(lua_value) <msgpack-object>`"
-msgstr ""
-
-msgid "Create a MsgPack object from a Lua object"
-msgstr ""
-
-msgid ""
-":ref:`msgpack.object_from_raw(msgpack_string) <msgpack-object-from-raw>`"
-msgstr ""
-
-msgid "Create a MsgPack object from a raw MsgPack string"
-msgstr ""
-
-msgid ""
-":ref:`msgpack.object_from_raw(C_style_string_pointer, size) <msgpack-object-"
-"from-raw-pointer>`"
-msgstr ""
-
-msgid ":ref:`msgpack.is_object(some_argument) <msgpack-is-object>`"
-msgstr ""
-
-msgid "Check if an argument is a MsgPack object"
-msgstr ""
-
-msgid ":ref:`msgpack_object:decode() <msgpack-object-methods>`"
-msgstr ""
-
-msgid "Decode MsgPack data in a MsgPack object and return a Lua object"
-msgstr ""
-
-msgid ":ref:`msgpack_object:iterator() <msgpack-object-methods>`"
-msgstr ""
-
-msgid "Get an iterator over the MsgPack data"
-msgstr ""
-
-msgid ""
-":ref:`iterator_object:decode_array_header() <msgpack-object-iterator-"
-"methods>`"
-msgstr ""
-
-msgid ""
-"Decode a MsgPack array header under the iterator cursor, return the number "
-"of elements in the array, and advance the cursor"
-msgstr ""
-
-msgid ""
-":ref:`iterator_object:decode_map_header() <msgpack-object-iterator-methods>`"
-msgstr ""
-
-msgid ""
-"Decode a MsgPack map header under the iterator cursor, return the number of "
-"key value pairs in the map, and advance the cursor"
-msgstr ""
-
-msgid ":ref:`iterator_object:decode() <msgpack-object-iterator-methods>`"
-msgstr ""
-
-msgid ""
-"Decode a MsgPack value under the iterator cursor, return the corresponding "
-"Lua object, and advance the cursor"
-msgstr ""
-
-msgid ":ref:`iterator_object:take() <msgpack-object-iterator-methods>`"
-msgstr ""
-
-msgid ""
-"Return a MsgPack value under the iterator cursor as a MsgPack object without"
-" decoding and advance the cursor"
-msgstr ""
-
-msgid ":ref:`iterator_object:skip() <msgpack-object-iterator-methods>`"
-msgstr ""
-
-msgid ""
-"Advance the iterator cursor by skipping one MsgPack value under the cursor"
-msgstr ""
+msgid "Analog of Lua's \"nil\""
+msgstr "Аналог \"nil\" в языке Lua "
 
 msgid "Convert a Lua object to a raw MsgPack string."
 msgstr ""
@@ -375,7 +277,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Call the ``mp_decode_map`` function in the `MsgPuck "
+"Call the mp_decode_map function in the `MsgPuck "
 "<http://rtsisyk.github.io/msgpuck/>`_ library and return the map size and a "
 "pointer to the first map component. A subsequent call to ``msgpack_decode`` "
 "can decode the component instead of the whole map."
@@ -402,13 +304,11 @@ msgid ""
 "-- The result will be: 1,\"AA\", true."
 msgstr ""
 
-msgid "**__serialize parameter**"
+msgid "**__serialize parameter:**"
 msgstr ""
 
-msgid ""
-"The MsgPack output structure can be specified with the ``__serialize`` "
-"parameter:"
-msgstr ""
+msgid "The MsgPack output structure can be specified with ``__serialize``:"
+msgstr "Структуру MsgPack-вывода можно указать с помощью ``__serialize``:"
 
 msgid "'seq', 'sequence', 'array' - table encoded as an array"
 msgstr ""
@@ -679,7 +579,7 @@ msgstr ""
 msgid "A flag saying whether to set metatables for all arrays and maps"
 msgstr ""
 
-msgid "**Sparse arrays features**"
+msgid "**Sparse arrays features:**"
 msgstr ""
 
 msgid ""
@@ -752,7 +652,7 @@ msgid ""
 "..."
 msgstr ""
 
-msgid "**msgpack.cfg() example 2:**"
+msgid "**msgpack.cfg example 2:**"
 msgstr ""
 
 msgid ""
@@ -839,195 +739,3 @@ msgstr ""
 "---\n"
 "- [20, null, 20]\n"
 "..."
-
-msgid "Since version 2.10.0."
-msgstr ""
-
-msgid "Encode an arbitrary Lua object into the MsgPack format."
-msgstr ""
-
-msgid "a Lua object of any type."
-msgstr ""
-
-msgid "encoded MsgPack data encapsulated in a MsgPack object."
-msgstr ""
-
-msgid "userdata"
-msgstr ""
-
-msgid "**Example:**"
-msgstr ""
-
-msgid ""
-"local msgpack = require('msgpack')\n"
-"-- Create a MsgPack object from a Lua object of any type\n"
-"local mp = msgpack.object(123)\n"
-"local mp = msgpack.object(\"foobar\")\n"
-"local mp = msgpack.object({1, 2, 3})\n"
-"local mp = msgpack.object({foo = 1, bar = 2})\n"
-"local mp = msgpack.object(box.tuple.new(1, 2, 3))"
-msgstr ""
-
-msgid "Create a MsgPack object from a raw MsgPack string."
-msgstr ""
-
-msgid "a MsgPack object"
-msgstr ""
-
-msgid ""
-"local msgpack = require('msgpack')\n"
-"local data = msgpack.encode({1, 2, 3})\n"
-"local mp = msgpack.object_from_raw(data)"
-msgstr ""
-
-msgid ""
-"Create a MsgPack object from a raw MsgPack string. The address of the "
-"MsgPack string is supplied as a C-style string pointer such as the ``rpos`` "
-"pointer inside an ``ibuf`` that the :ref:`buffer.ibuf() <buffer-ibuf>` "
-"creates. A C-style string pointer may be described as ``cdata<char *>`` or "
-"``cdata<const char *>``."
-msgstr ""
-
-msgid "number of bytes in the raw MsgPack string."
-msgstr ""
-
-msgid ""
-"local msgpack = require('msgpack')\n"
-"local buffer = require('buffer')\n"
-"local buf = buffer.ibuf()\n"
-"msgpack.encode({1, 2, 3}, buf)\n"
-"local mp = msgpack.object_from_raw(buf.buf, buf:size())"
-msgstr ""
-
-msgid "Check if the given argument is a MsgPack object."
-msgstr ""
-
-msgid "any argument."
-msgstr ""
-
-msgid "``true`` if the argument is a MsgPack object; otherwise, ``false``"
-msgstr ""
-
-msgid "boolean"
-msgstr ""
-
-msgid ""
-"local msgpack = require('msgpack')\n"
-"local mp = msgpack.object(123)\n"
-"msgpack.is_object(mp) -- returns true\n"
-"msgpack.is_object({}) -- returns false"
-msgstr ""
-
-msgid ""
-"A MsgPack object can be passed to the MsgPack encoder with the same effect "
-"as passing the original Lua object:"
-msgstr ""
-
-msgid ""
-"local msgpack = require('msgpack')\n"
-"local mp = msgpack.object(123)\n"
-"msgpack.object({mp, mp}):decode()         -- returns {123, 123}\n"
-"msgpack.decode(msgpack.encode({mp, mp}))  -- returns {123, 123}"
-msgstr ""
-
-msgid ""
-"In particular, this means that if a MsgPack object stores an array, it can "
-"be inserted into a database space:"
-msgstr ""
-
-msgid "box.space.my_space:insert(msgpack.object({1, 2, 3}))"
-msgstr ""
-
-msgid "The MsgPack object has the following methods:"
-msgstr ""
-
-msgid "Decode MsgPack data in the MsgPack object."
-msgstr ""
-
-msgid "a Lua object"
-msgstr ""
-
-msgid "Lua object"
-msgstr ""
-
-msgid "Create an iterator over the MsgPack data."
-msgstr ""
-
-msgid ""
-"A MsgPack iterator object has its own :ref:`set of methods <msgpack-object-"
-"iterator-methods>`."
-msgstr ""
-
-msgid "an iterator object over the MsgPack data"
-msgstr ""
-
-msgid "The MsgPack iterator object has the following methods:"
-msgstr ""
-
-msgid ""
-"Decode a MsgPack array header under the iterator cursor and advance the "
-"cursor. After calling this function, the iterator points to the first "
-"element of the array or to the value following the array if the array is "
-"empty."
-msgstr ""
-
-msgid "number of elements in the array"
-msgstr ""
-
-msgid "number"
-msgstr ""
-
-msgid ""
-"**Possible errors:**  raise an error if the type of the value under the "
-"iterator cursor is not ``MP_ARRAY``."
-msgstr ""
-
-msgid ""
-"Decode a MsgPack map header under the iterator cursor and advance the "
-"cursor. After calling this function, the iterator points to the first key "
-"stored in the map or to the value following the map if the map is empty."
-msgstr ""
-
-msgid "number of key value pairs in the map"
-msgstr ""
-
-msgid ""
-"**Possible errors:** raise an error if the type of the value under the "
-"iterator cursor is not ``MP_MAP``."
-msgstr ""
-
-msgid ""
-"Decode a MsgPack value under the iterator cursor and advance the cursor."
-msgstr ""
-
-msgid "a Lua object corresponding to the MsgPack value"
-msgstr ""
-
-msgid "**Possible errors:** raise a Lua error if there's no data to decode."
-msgstr ""
-
-msgid ""
-"Return a MsgPack value under the iterator cursor as a MsgPack object without"
-" decoding and advance the cursor. The method doesn't copy MsgPack data. "
-"Instead, it takes a reference to the original object."
-msgstr ""
-
-msgid ""
-"Advance the iterator cursor by skipping one MsgPack value under the cursor. "
-"Returns nothing."
-msgstr ""
-
-msgid "**Possible errors:** raise a Lua error if there's no data to skip."
-msgstr ""
-
-msgid ""
-"local msgpack = require('msgpack')\n"
-"local mp = msgpack.object({foo = 123, bar = {1, 2, 3}})\n"
-"local it = mp:iterator()\n"
-"it:decode_map_header()  -- returns 2\n"
-"it:decode()             -- returns 'foo'\n"
-"it:decode()             -- returns 123\n"
-"it:skip()               -- returns none, skips 'bar'\n"
-"local mp2 = it:take()\n"
-"mp2:decode()            -- returns {1, 2, 3}"
-msgstr ""
