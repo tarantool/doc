@@ -657,6 +657,9 @@ msgstr ":ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`"
 msgid ":ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`"
 msgstr ":ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`"
 
+msgid ":ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`"
+msgstr ":ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`"
+
 msgid ":ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`"
 msgstr ":ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`"
 
@@ -740,6 +743,20 @@ msgstr ""
 
 msgid "Default: 16 bytes"
 msgstr "По умолчанию: 16 байтов"
+
+msgid ""
+"The multiplier for computing the sizes of memory chunks that tuples are "
+"stored in. A lower value may result in less wasted memory depending on the "
+"total amount of memory available and the distribution of item sizes. Allowed"
+" values range from 1 to 2."
+msgstr ""
+"Множитель для вычисления размеров блоков памяти, в которых хранятся кортежи."
+" Уменьшение значения может привести к уменьшению потерь памяти в зависимости"
+" от общего объема доступной памяти и распределения размеров элементов. "
+"Допустимые значения: от 1 до 2."
+
+msgid "Default: 1.1"
+msgstr "По умолчанию: 1.1"
 
 msgid ""
 "Since version 1.7.4. Bloom filter false positive rate -- the suitable "
@@ -2695,9 +2712,6 @@ msgstr ""
 msgid ":ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena_deprecated>`"
 msgstr ":ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena_deprecated>`"
 
-msgid ":ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor_deprecated>`"
-msgstr ":ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor_deprecated>`"
-
 msgid ":ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal_deprecated>`"
 msgstr ":ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal_deprecated>`"
 
@@ -2788,18 +2802,6 @@ msgstr ""
 
 msgid "Default: 1.0"
 msgstr "По умолчанию: 1.0"
-
-msgid ""
-"The multiplier for computing the sizes of memory chunks that tuples are "
-"stored in. A lower value may result in less wasted memory depending on the "
-"total amount of memory available and the distribution of item sizes."
-msgstr ""
-"Множитель для вычисления размеров блоков памяти, в которых хранятся кортежи."
-" Уменьшение значения может привести к уменьшению потерь памяти в зависимости"
-" от общего объема доступной памяти и распределения размеров элементов."
-
-msgid "Default: 1.1"
-msgstr "По умолчанию: 1.1"
 
 msgid ""
 "**Deprecated** in favor of :ref:`memtx_max_tuple_size <cfg_storage-"
