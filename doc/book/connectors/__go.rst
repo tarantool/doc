@@ -183,5 +183,6 @@ Last update: January 2022
     *   -   Miscellaneous
         -   Supports `tarantool/queue <https://github.com/tarantool/queue>`_ API
         -   Can mimic a Tarantool instance (also as replica). Provides instrumentation for reading snapshot and xlog files
-            via `snapio module <https://github.com/viciious/go-tarantool/tree/master/snapio>`_
+            via `snapio module <https://github.com/viciious/go-tarantool/tree/master/snapio>`_.
+            Implements unpacking of query structs if you want to implement your own iproto proxy
         -   API is experimental and breaking changes may happen
