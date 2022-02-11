@@ -37,29 +37,31 @@ To include their latest contents in the docs, run these two steps.
 
     ..  code-block:: bash
 
-        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make pull-modules"
-
-    This will initialize Git submodules and update them to the top of the stable
-    branch in each repository.
-    
-    You can also do without a Docker container:
-
-    ..  code-block:: bash
-
         git submodule update --init
         git fetch --recurse-submodules
         git submodule update --remote --checkout
 
+    This will initialize Git submodules and update them to the top of the stable
+    branch in each repository.
+
     ``git submodule update`` can sometimes fail, for example,
     when you have changes in submodules' files.
     You can reinitialize submodules to fix the problem.
-    
+
     **Caution:** all untracked changes in submodules will be lost!
 
     ..  code-block:: bash
 
         git submodule deinit -f .
         git submodule update --init
+
+
+    Note that there's an option to update submodule repositories with a ``make`` command.
+    However, it's intended for use in a CI environment and not on a local machine.
+
+    ..  code-block:: bash
+
+        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make pull-modules"
 
 2.  Build the submodules content:
 
@@ -113,7 +115,7 @@ or python2 built-in server:
 then go to `localhost:8000 <http://localhost:8000>`_ in your browser.
 
 There are other commands which can run
-in the ``tarantool/doc-builder:fat`` container:
+in the ``tarantool/doc-builder`` container:
 
 ..  code-block:: bash
 
@@ -130,6 +132,24 @@ in the ``tarantool/doc-builder:fat`` container:
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-pot"
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po"
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po-force"
+
+Linkcheck
+---------
+
+There's a specific build mode which checks internal and external links instead of producing a document.
+
+..  code-block:: bash
+
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make linkcheck"
+
+If you need to save the linkcheck's report in a file, you can use the following trick:
+
+..  code-block:: bash
+
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make linkcheck" 2>&1 | tee linkcheck.log
+
+Here ``2>&1`` redirects the ``stderr`` output to ``stdout``, and then ``tee`` both
+shows in on screen and writes to a file.
 
 Localization
 ------------
