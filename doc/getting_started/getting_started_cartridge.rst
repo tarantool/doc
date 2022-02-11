@@ -224,3 +224,4 @@ Everything is up and running! What's next?
   and implement more sophisticated business logic for your role.
 * :doc:`Pack </book/cartridge/cartridge_cli/commands/pack>` your application for easy distribution.
   Choose what you like: a DEB or RPM package, a TGZ archive, or a Docker image.
+* Read the :doc:`Cartridge documentation </book/cartridge/index>`.
