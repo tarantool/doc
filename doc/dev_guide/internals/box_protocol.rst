@@ -1505,8 +1505,8 @@ On terminal #3, start another server, which will act as a client, with:
     conn = net_box.connect('localhost:3302')
     conn.space.tspace:select(280)
 
-Now look at what tcpdump shows for the job connecting to 3302. -- the "request".
-After the words "length 32" is a packet that ends with with these 32 bytes:
+Now look at what tcpdump shows for the job connecting to 3302---the "request".
+After the words "length 32" is a packet that ends with these 32 bytes
 (we have added indented comments):
 
 ..  code-block:: none
