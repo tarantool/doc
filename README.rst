@@ -133,6 +133,24 @@ in the ``tarantool/doc-builder`` container:
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po"
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po-force"
 
+Linkcheck
+---------
+
+There's a specific build mode which checks internal and external links instead of producing a document.
+
+..  code-block:: bash
+
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make linkcheck"
+
+If you need to save the linkcheck's report in a file, you can use the following trick:
+
+..  code-block:: bash
+
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make linkcheck" 2>&1 | tee linkcheck.log
+
+Here ``2>&1`` redirects the ``stderr`` output to ``stdout``, and then ``tee`` both
+shows in on screen and writes to a file.
+
 Localization
 ------------
 
