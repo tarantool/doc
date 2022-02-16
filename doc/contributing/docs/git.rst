@@ -38,12 +38,12 @@ If your PR closes more than one issue, add such a line for each issue.
 Commit messages
 ---------------
 
-*   In your commit message, convey the nature of the change and possibly the reason why it was made.
+*   One-line commit messages are sufficient for documentation changes. Try keeping it 50 characters or less.
+*   Convey the nature of the change and possibly the reason why it was made.
 *   Don't specify the files you've changed or the issue you're working on.
     The file names can be looked up in the "Files" section of the PR, and the PR description has the issue number(s).
 *   Use the imperative mood.
 *   Start with a capital letter, don't add ending punctuation.
-*   Try to stick to 50 characters or so.
 *   (Optional) Use the telegraphic style, or "headlinese", dropping the articles.
 
 Good examples
