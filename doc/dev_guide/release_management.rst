@@ -91,7 +91,7 @@ End of standard support means the release series will no longer receive any patc
             -   End of standard support
 
         *   -   2.10.0
-            -   To be announced
+            -   Not planned yet
             -   Not planned yet
 
         *   -   `2.8.3 <https://github.com/tarantool/tarantool/releases/tag/2.8.3>`_
@@ -150,45 +150,49 @@ End of standard support means the release series will no longer receive any patc
             -   December 31, 2019
             -   April 20, 2020
 
+        *   -   `1.10.12 LTS <https://github.com/tarantool/tarantool/releases/tag/1.10.12>`_
+            -   December 22, 2021
+            -   Not planned yet
+
         *   -   :doc:`1.10.11 LTS </release/2021-08-releases>`
             -   August 19, 2021
-            -   To be announced
+            -   Not planned yet
 
         *   -   :doc:`1.10.10 LTS </release/1.10.10>`
-            -   August 19, 2021
-            -   To be announced
+            -   April 24, 2021
+            -   Not planned yet
 
         *   -   :doc:`1.10.9 LTS </release/1.10.9>`
             -   December 30, 2020
-            -   To be announced
+            -   Not planned yet
 
         *   -   :doc:`1.10.8 LTS </release/1.10.8>`
             -   October 22, 2020
-            -   To be announced
+            -   Not planned yet
 
         *   -   :doc:`1.10.7 LTS </release/1.10.7>`
             -   July 17, 2019
-            -   To be announced
+            -   Not planned yet
 
         *   -   :doc:`1.10.6 LTS </release/1.10.6>`
             -   April 20, 2020
-            -   To be announced
+            -   Not planned yet
 
         *   -   :doc:`1.10.5 LTS </release/1.10.5>`
             -   January 14, 2020
-            -   To be announced
+            -   Not planned yet
 
         *   -   :ref:`1.10.4 LTS <whats_new_1104>`
             -   September 26, 2019
-            -   To be announced
+            -   Not planned yet
 
         *   -   :ref:`1.10.3 LTS <whats_new_1103>`
             -   April 1, 2019
-            -   To be announced
+            -   Not planned yet
 
         *   -   :ref:`1.10.2 LTS <whats_new_1102>`
             -   October 13, 2018
-            -   To be announced
+            -   Not planned yet
 
 ..  _release-calendar:
 
