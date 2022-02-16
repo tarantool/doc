@@ -1,17 +1,15 @@
 .. _release:
 
---------------------------------------------------------------------------------
 Release management
---------------------------------------------------------------------------------
+------------------
 
 All released versions are listed at the :doc:`/release` page.
 :doc:`/release/policy` explains the rules and meaning of numbers in ``x.y.z`` versions.
 
 This page will tell you how to make a Tarantool release.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 How to make a minor release
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. _release-minor:
 
@@ -74,3 +72,147 @@ Also, don't forget this:
 
 2. Click 'Release milestone'. Create a milestone for the next minor release.
    Alert the driver to target bugs and blueprints to the new milestone.
+
+..  _release-table:
+
+Currently supported versions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Below is the releases lifetime table listing all Tarantool versions starting from 1.10.0 up to the current latest versions.
+End of standard support means the release will no longer receive any patches, updates, or feature improvements.
+
+..  container:: table
+
+    ..  list-table::
+
+        *   -   Version
+            -   Documentation
+            -   Release
+            -   End of standard support
+
+        *   -   2.10
+            -   To be announced soon
+            -   April, 2022
+            -   Not yet planned
+
+        *   -   2.8
+            -   :doc:`Release notes </release/2021-08-releases>`
+            -   August 19, 2021
+            -   Not yet planned
+
+        *   -   2.7.3
+            -   :doc:`Changes </release/2021-08-releases>`
+            -   August 19, 2021
+            -   Not yet planned
+
+        *   -   2.7.2
+            -   :doc:`Release notes </release/2.7.2>`
+            -   April 21, 2021
+            -   Not yet planned
+
+        *   -   2.6.3
+            -   :doc:`Changes </release/2.6.3>`
+            -   April 21, 2021
+            -   Not yet planned
+
+        *   -   2.6.2
+            -   :doc:`Release notes </release/2.6.2>`
+            -   December 30, 2020
+            -   Not yet planned
+
+        *   -   2.5.3
+            -   :doc:`Changes </release/2.5.3>`
+            -   December 30, 2020
+            -   Not yet planned
+
+        *   -   2.5.2
+            -   :doc:`Release notes </release/2.5.2>`
+            -   October 22, 2020
+            -   Not yet planned
+
+        *   -   2.4.3
+            -   :doc:`Changes </release/2.4.3>`
+            -   October 22, 2020
+            -   Not yet planned
+
+        *   -   2.4.2
+            -   :doc:`Release notes </release/2.4.2>`
+            -   July 17, 2020
+            -   Not yet planned
+
+        *   -   2.3.3
+            -   :doc:`Changes </release/2.3.3>`
+            -   July 17, 2020
+            -   Not yet planned
+
+        *   -   2.3.2
+            -   :doc:`Release notes </release/2.3.2>`
+            -   April 20, 2020
+            -   Not yet planned
+
+        *   -   2.2.3
+            -   :doc:`Changes </release/2.2.3>`
+            -   April 20, 2020
+            -   Not yet planned
+
+        *   -   2.2.2
+            -   :doc:`Release notes </release/2.2.2>`
+            -   December 31, 2019
+            -   Not yet planned
+
+        *   -   1.10.11 LTS
+            -   :doc:`Changes </release/2021-08-releases>`
+            -   August 19, 2021
+            -   April 2022
+
+        *   -   1.10.10 LTS
+            -   :doc:`Changes </release/1.10.10>`
+            -   August 19, 2021
+            -   April 2022
+
+        *   -   1.10.9 LTS
+            -   :doc:`Changes </release/1.10.9>`
+            -   December 30, 2020
+            -   April 2022
+
+        *   -   1.10.8 LTS
+            -   :doc:`Release notes </release/1.10.8>`
+            -   October 22, 2020
+            -   April 2022
+
+        *   -   1.10.7 LTS
+            -   :doc:`Changes </release/1.10.7>`
+            -   July 17, 2019
+            -   April 2022
+
+        *   -   1.10.6 LTS
+            -   :doc:`Changes </release/1.10.6>`
+            -   April 20, 2020
+            -   April 2022
+
+        *   -   1.10.5 LTS
+            -   :doc:`Changes </release/1.10.5>`
+            -   January 14, 2020
+            -   April 2022
+
+        *   -   1.10.4 LTS
+            -   :ref:`Changes <whats_new_1104>`
+            -   September 26, 2019
+            -   April 2022
+
+        *   -   1.10.3 LTS
+            -   :ref:`Changes <whats_new_1103>`
+            -   April 1, 2019
+            -   April 2022
+
+        *   -   1.10.2 LTS
+            -   :ref:`Release notes <whats_new_1102>`
+            -   October 13, 2018
+            -   April 2022
+
+..  _release-calendar:
+
+Releases calendar
+~~~~~~~~~~~~~~~~~
+
+Currently supported versions visualised as a calendar.
