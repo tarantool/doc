@@ -12,5 +12,5 @@ Contributor's Guide
 
     reference_capi/index
     internals/index
-    build_contribute_index
+    building_from_source
     guidelines_index

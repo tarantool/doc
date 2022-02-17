@@ -1,7 +1,7 @@
 .. _building_from_source:
 
-Building from source
-====================
+Building to contribute
+======================
 
 To build Tarantool from source files, you will need the following tools:
 
