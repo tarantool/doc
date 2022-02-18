@@ -10,6 +10,8 @@ The following connectors are available:
 
 *   Community-supported `FZambia/tarantool <https://github.com/FZambia/tarantool>`_.
 
+..  _go-feature-comparison:
+
 Feature comparison
 ------------------
 
