@@ -169,7 +169,7 @@ Mac OS
 ~~~~~~
 
 This instruction is for those who use Homebrew. Refer to
-the `full instruction for Mac OS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_
+the `full instruction for Mac OS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX.md>`_
 if you use MacPorts.
 
 ..  code-block:: console
@@ -276,10 +276,10 @@ See also
 
 *   `Tarantool README.md <https://github.com/tarantool/tarantool/blob/master/README.md>`_
 
-*   `Building Tarantool on MacOS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_
+*   `Building Tarantool on MacOS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX.md>`_
 
-*   `Building Tarantool on FreeBSD <https://github.com/tarantool/tarantool/blob/master/README.FreeBSD>`_
+*   `Building Tarantool on FreeBSD <https://github.com/tarantool/tarantool/blob/master/README.FreeBSD.md>`_
 
-*   `Building Tarantool on OpenBSD <https://github.com/tarantool/tarantool/blob/master/README.OpenBSD>`_
+*   `Building Tarantool on OpenBSD <https://github.com/tarantool/tarantool/blob/master/README.OpenBSD.md>`_
 
 *   `Tarantool static build tooling <https://github.com/tarantool/tarantool/blob/master/static-build/README.md>`_
