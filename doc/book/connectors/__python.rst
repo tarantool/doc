@@ -49,6 +49,8 @@ The table below contains a feature comparison for asynctnt, gtarantool and
 tarantool-python. aiotarantool is absent there because it is quite outdated and
 unmaintained.
 
+..  _python-feature-comparison:
+
 Feature comparison
 ------------------
 
