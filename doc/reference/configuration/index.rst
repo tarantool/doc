@@ -129,19 +129,19 @@ such as :ref:`box.cfg.listen <cfg_basic-listen>` and :ref:`box.cfg.replication <
 
 URI values can be set in a number of ways:
 
-*   As a string with URI values separated by commas
+*   As a string with URI values separated by commas.
 
     ..  code-block:: lua
 
         box.cfg { listen = "127.0.0.1:3301, /unix.sock, 3302" }
 
-*   As an array that contains URIs in a string format
+*   As a table that contains URIs in the string format.
 
     ..  code-block:: lua
 
         box.cfg { listen = {"127.0.0.1:3301", "/unix.sock", "3302"} }
 
-*   As an array of tables with the ``uri`` field
+*   As an array of tables with the ``uri`` field.
 
     ..  code-block:: lua
 
@@ -152,28 +152,74 @@ URI values can be set in a number of ways:
             }
         }
 
-Also, you can specify additional URI parameters. The recommended syntax:
+*   In a combined way---an array that contains URIs in both the string and the table formats.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = {
+                "127.0.0.1:3301",
+                { uri = "/unix.sock" },
+                { uri = 3302 }
+            }
+        }
+
+[TBD intro phrase]
+Also, starting from version 2.10.0, it is possible to specify additional parameters for URI.
+You can do this in different ways:
+
+*   Using the ``?`` delimiter when URIs are specified in a string format.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = "127.0.0.1:3301?p1=value1&p2=value2, /unix.sock?p3=value3" }
+
+*   Using the ``params`` table: a URI is passed in a table with additional parameters in the "params" table.
+    Parameters in the "params" table overwrite the ones from a URI string ("value2" overwries "value1" for ``p1`` in the example below).
+
+    ..  code-block:: lua
+
+        box.cfg { listen = {
+                "127.0.0.1:3301?p1=value1",
+                params = {p1 = "value2", p2 = "value3"}
+            }
+        }
+
+*   Using the ``default_params`` table for specifying default parameter values.
+
+    In the example below, two URIs are passed in a table.
+    The default value for the ``p3`` parameter is defined in the ``default_params`` table
+    and used if this parameter is not specified in URIs.
+    Parameters in the ``default_params`` table are applicable to all the URIs passed in a table.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = {
+                "127.0.0.1:3301?p1=value1",
+                { uri = "/unix.sock", params = { p2 = "value2" } },
+                default_params = { p3 = "value3" }
+            }
+        }
+
+The recommended way for specifying URI with additional parameters is the following:
 
 ..  code-block:: lua
 
-box.cfg {  listen = {
-        {uri = "127.0.0.1:3301", params = {param1 = "value1"}},
-        {uri = "/unix.sock", params = {param2 = "value2"}},
-        {uri = 3302, params = {param3 = "value3"}}
+    box.cfg { listen = {
+            {uri = "127.0.0.1:3301", params = {p1 = "value1"}},
+            {uri = "/unix.sock", params = {p2 = "value2"}},
+            {uri = 3302, params = {p3 = "value3"}}
+        }
     }
-}
 
 In case of a single URI, the following syntax also works:
 
 ..  code-block:: lua
 
     box.cfg { listen = {
-        uri = "127.0.0.1:3301",
-        params = {
-            param1 = "value1",
-            param2 = "value2"
+            uri = "127.0.0.1:3301",
+            params = { p1 = "value1", p2 = "value2" }
         }
-    }}
+    }
 
 ..  _index-init_label:
 
