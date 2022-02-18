@@ -1,7 +1,7 @@
 .. _building_from_source:
 
-Building from source
-====================
+Building to contribute
+======================
 
 To build Tarantool from source files, you will need the following tools:
 
@@ -183,7 +183,7 @@ if you use MacPorts.
 
     $ git submodule update --init --recursive
 
-    $ brew install -y git openssl readline curl icu4c libiconv zlib cmake
+    $ brew install git openssl readline curl icu4c libiconv zlib cmake
 
     $ pip install --user -r test-run/requirements.txt
 
