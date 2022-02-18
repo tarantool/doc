@@ -37,6 +37,7 @@ extensions = [
     'ext.CustomJSONBuilder',
 ]
 
+default_role = 'code'
 
 imgmath_image_format = 'svg'
 
