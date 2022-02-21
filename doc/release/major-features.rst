@@ -41,16 +41,19 @@ To keep track of the major features in each version of the Tarantool easier, you
         *   -   2.10.0-beta1
             -   Compact mode for tuples (:tarantool-issue:`5385`)
 
-        *   -   2.8.2
+        *   -   2.10.0-beta1
+            -   `memtx_allocator` option in `box.cfg{} (:tarantool-issue:`5419`)
+
+        *   -   2.8.2, 2.10.0-beta1
             -   Symbolic log levels in the `log` module (:tarantool-issue:`5882`)
 
         *   -   2.7.3, 2.8.2, 2.10.0-beta1
             -   `LJ_DUALNUM` mode support in `luajit-gdb` (:tarantool-issue:`6224`)
 
-        *   -   2.7.3, 2.8.2
+        *   -   2.7.3, 2.8.2, 2.10.0-beta1
             -   The new `table.equals` method in Lua
 
-        *   -   2.7.3
+        *   -   2.7.3, 2.10.0-beta1
             -   `box.info.synchro` interface for synchronous replication statistics (:tarantool-issue:`5191`)
 
         *   -   2.8.1
