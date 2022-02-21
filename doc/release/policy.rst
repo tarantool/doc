@@ -354,7 +354,8 @@ No new versions are released since then.
 Currently supported versions
 ----------------------------
 
-Below is the releases lifetime table listing all Tarantool versions starting from 1.10.x up to the current latest versions.
+Below is the releases lifetime table listing all Tarantool versions
+starting from 1.10.x up to the current latest versions.
 Each link leads to the release notes page of the corresponding version.
 End of standard support means the release series will no longer receive any patches, updates, or feature improvements.
 
