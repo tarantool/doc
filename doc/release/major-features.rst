@@ -29,7 +29,7 @@ To keep track of the major features in each version of the Tarantool easier, you
                 :tarantool-issue:`6189`)
 
         *   -   2.10.0-beta1
-            -   :ref:`Streams and interactive transactions in iproto <cfg_networking-iproto_threads>`
+            -   :ref:`Streams and interactive transactions in iproto <box_stream>`
                 (:tarantool-issue:`5860`)
 
         *   -   2.10.0-beta1
@@ -39,7 +39,7 @@ To keep track of the major features in each version of the Tarantool easier, you
             -   Faster `net.box` module performance (improved up to 70%) (:tarantool-issue:`6241`)
 
         *   -   2.10.0-beta1
-            -   Compact tuples in case of small userdata (:tarantool-issue:`5385`)
+            -   Compact mode for tuples (:tarantool-issue:`5385`)
 
         *   -   2.8.2
             -   Symbolic log levels in the `log` module (:tarantool-issue:`5882`)
@@ -54,7 +54,7 @@ To keep track of the major features in each version of the Tarantool easier, you
             -   `box.info.synchro` interface for synchronous replication statistics (:tarantool-issue:`5191`)
 
         *   -   2.8.1
-            -   :ref:`Multiple iproto threads <box_stream>` (:tarantool-issue:`5645`)
+            -   :ref:`Multiple iproto threads <cfg_networking-iproto_threads>` (:tarantool-issue:`5645`)
 
         *   -   2.8.1
             -   Set :doc:`box.cfg </reference/reference_lua/box_cfg>` options with environment variables (:tarantool-issue:`5602`)
