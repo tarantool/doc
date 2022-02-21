@@ -470,6 +470,7 @@ End of standard support means the release series will no longer receive any patc
             -   October 13, 2018
             -   Not planned yet
 
+
 ..  _release-calendar:
 
 Releases calendar
