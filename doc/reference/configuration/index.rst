@@ -69,18 +69,25 @@ Command options
 URI
 --------------------------------------------------------------------------------
 
-Some configuration parameters and some functions depend on a URI, or
-"Universal Resource Identifier". The URI string format is similar to the
+Some configuration parameters and some functions depend on a URI (Universal Resource Identifier).
+The URI string format is similar to the
 `generic syntax for a URI schema <https://en.wikipedia.org/wiki/List_of_URI_schemes>`_.
-So it may contain (in order) a user name
-for login, a password, a host name or host IP address, and a port number. Only
-the port number is always mandatory. The password is mandatory if the user
-name is specified, unless the user name is 'guest'. So, formally, the URI
+It may contain (in order):
+
+* user name for login
+* password
+* host name or host IP address
+* port number.
+
+Only a port number is always mandatory. A password is mandatory if a user
+name is specified, unless the user name is 'guest'.
+
+Formally, the URI
 syntax is ``[host:]port`` or ``[username:password@]host:port``.
-If host is omitted, then '0.0.0.0' or '[::]' is assumed,
-meaning respectively any IPv4 address or any IPv6 address,
+If host is omitted, then "0.0.0.0" or "[::]" is assumed
+meaning respectively any IPv4 address or any IPv6 address
 on the local machine.
-If username:password is omitted, then 'guest' is assumed. Some examples:
+If ``username:password`` is omitted, then the "guest" user is assumed. Some examples:
 
 ..  container:: table
 
@@ -97,11 +104,122 @@ If username:password is omitted, then 'guest' is assumed. Some examples:
     | username:password@host:port | notguest:sesame@mail.ru:3301 |
     +-----------------------------+------------------------------+
 
-In certain circumstances a Unix domain socket may be used
-where a URI is expected, for example "unix/:/tmp/unix_domain_socket.sock" or
+In code, the URI value can be passed as a number (if only a port is specified) or a string:
+
+..  code-block:: lua
+
+    box.cfg { listen = 3301 }
+
+    box.cfg { listen = "127.0.0.1:3301" }
+
+In certain circumstances, a Unix domain socket may be used
+where a URI is expected, for example, "unix/:/tmp/unix_domain_socket.sock" or
 simply "/tmp/unix_domain_socket.sock".
 
 A method for parsing URIs is illustrated in :ref:`Module uri <uri-parse>`.
+
+.. _index-uri-several:
+
+Specifying several URIs
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting from version 2.10.0, a user can open several listening iproto sockets on a Tarantool instance
+and, consequently, can specify several URIs in the configuration parameters
+such as :ref:`box.cfg.listen <cfg_basic-listen>` and :ref:`box.cfg.replication <cfg_replication-replication>`.
+
+URI values can be set in a number of ways:
+
+*   As a string with URI values separated by commas.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = "127.0.0.1:3301, /unix.sock, 3302" }
+
+*   As a table that contains URIs in the string format.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = {"127.0.0.1:3301", "/unix.sock", "3302"} }
+
+*   As an array of tables with the ``uri`` field.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = {
+                {uri = "127.0.0.1:3301"},
+                {uri = "/unix.sock"},
+                {uri = 3302}
+            }
+        }
+
+*   In a combined way---an array that contains URIs in both the string and the table formats.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = {
+                "127.0.0.1:3301",
+                { uri = "/unix.sock" },
+                { uri = 3302 }
+            }
+        }
+
+[TBD intro phrase]
+Also, starting from version 2.10.0, it is possible to specify additional parameters for URI.
+You can do this in different ways:
+
+*   Using the ``?`` delimiter when URIs are specified in a string format.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = "127.0.0.1:3301?p1=value1&p2=value2, /unix.sock?p3=value3" }
+
+*   Using the ``params`` table: a URI is passed in a table with additional parameters in the "params" table.
+    Parameters in the "params" table overwrite the ones from a URI string ("value2" overwries "value1" for ``p1`` in the example below).
+
+    ..  code-block:: lua
+
+        box.cfg { listen = {
+                "127.0.0.1:3301?p1=value1",
+                params = {p1 = "value2", p2 = "value3"}
+            }
+        }
+
+*   Using the ``default_params`` table for specifying default parameter values.
+
+    In the example below, two URIs are passed in a table.
+    The default value for the ``p3`` parameter is defined in the ``default_params`` table
+    and used if this parameter is not specified in URIs.
+    Parameters in the ``default_params`` table are applicable to all the URIs passed in a table.
+
+    ..  code-block:: lua
+
+        box.cfg { listen = {
+                "127.0.0.1:3301?p1=value1",
+                { uri = "/unix.sock", params = { p2 = "value2" } },
+                default_params = { p3 = "value3" }
+            }
+        }
+
+The recommended way for specifying URI with additional parameters is the following:
+
+..  code-block:: lua
+
+    box.cfg { listen = {
+            {uri = "127.0.0.1:3301", params = {p1 = "value1"}},
+            {uri = "/unix.sock", params = {p2 = "value2"}},
+            {uri = 3302, params = {p3 = "value3"}}
+        }
+    }
+
+In case of a single URI, the following syntax also works:
+
+..  code-block:: lua
+
+    box.cfg { listen = {
+            uri = "127.0.0.1:3301",
+            params = { p1 = "value1", p2 = "value2" }
+        }
+    }
 
 ..  _index-init_label:
 
