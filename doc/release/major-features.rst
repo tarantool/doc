@@ -17,8 +17,32 @@ To keep track of the major features in each version of the Tarantool easier, you
         *   -   Since version
             -   Feature
 
+        *   -   2.10.0-beta2
+            -   HTTP/2 support for the HTTP client
+
+        *   -   2.10.0-beta2
+            -   Preliminary support for the new DATETIME type (:tarantool-issue:`5941`)
+
+        *   -   2.10.0-beta1
+            -   Preliminary support for GNU/Linux ARM64 and MacOS M1 (:tarantool-issue:`2712`, :tarantool-issue:`6065`,
+                :tarantool-issue:`6066`, :tarantool-issue:`6084`, :tarantool-issue:`6093`, :tarantool-issue:`6098`,
+                :tarantool-issue:`6189`)
+
+        *   -   2.10.0-beta1
+            -   :ref:`Streams and interactive transactions in binary protocol <cfg_networking-iproto_threads>`
+                (:tarantool-issue:`5860`)
+
+        *   -   2.10.0-beta1
+            -   Consistent SQL type system
+
+        *   -   2.10.0-beta1
+            -   Faster net.box performance (improved up to 70%) (:tarantool-issue:`6241`)
+
+        *   -   2.10.0-beta1
+            -   Compact tuples in case of small userdata (:tarantool-issue:`5385`)
+
         *   -   2.8.1
-            -   :ref:`Multiple iproto threads <cfg_networking-iproto_threads>` (:tarantool-issue:`5645`)
+            -   :ref:`Multiple iproto threads <box_stream>` (:tarantool-issue:`5645`)
 
         *   -   2.8.1
             -   Set :doc:`box.cfg </reference/reference_lua/box_cfg>` options with environment variables (:tarantool-issue:`5602`)
