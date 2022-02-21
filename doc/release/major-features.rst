@@ -29,17 +29,29 @@ To keep track of the major features in each version of the Tarantool easier, you
                 :tarantool-issue:`6189`)
 
         *   -   2.10.0-beta1
-            -   :ref:`Streams and interactive transactions in binary protocol <cfg_networking-iproto_threads>`
+            -   :ref:`Streams and interactive transactions in iproto <cfg_networking-iproto_threads>`
                 (:tarantool-issue:`5860`)
 
         *   -   2.10.0-beta1
             -   Consistent SQL type system
 
         *   -   2.10.0-beta1
-            -   Faster net.box performance (improved up to 70%) (:tarantool-issue:`6241`)
+            -   Faster `net.box` module performance (improved up to 70%) (:tarantool-issue:`6241`)
 
         *   -   2.10.0-beta1
             -   Compact tuples in case of small userdata (:tarantool-issue:`5385`)
+
+        *   -   2.8.2
+            -   Symbolic log levels in the `log` module (:tarantool-issue:`5882`)
+
+        *   -   2.7.3, 2.8.2, 2.10.0-beta1
+            -   `LJ_DUALNUM` mode support in `luajit-gdb` (:tarantool-issue:`6224`)
+
+        *   -   2.7.3, 2.8.2
+            -   The new `table.equals` method in Lua
+
+        *   -   2.7.3
+            -   `box.info.synchro` interface for synchronous replication statistics (:tarantool-issue:`5191`)
 
         *   -   2.8.1
             -   :ref:`Multiple iproto threads <box_stream>` (:tarantool-issue:`5645`)
