@@ -448,7 +448,7 @@ End of standard support means the release series will no longer receive any patc
             -   Not planned yet
 
         *   -   :doc:`1.10.7 LTS </release/1.10.7>`
-            -   July 17, 2019
+            -   July 17, 2020
             -   Not planned yet
 
         *   -   :doc:`1.10.6 LTS </release/1.10.6>`
