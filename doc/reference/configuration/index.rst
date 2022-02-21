@@ -163,8 +163,7 @@ URI values can be set in a number of ways:
             }
         }
 
-[TBD intro phrase]
-Also, starting from version 2.10.0, it is possible to specify additional parameters for URI.
+Also, starting from version 2.10.0, it is possible to specify additional parameters for URIs.
 You can do this in different ways:
 
 *   Using the ``?`` delimiter when URIs are specified in a string format.
