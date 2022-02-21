@@ -3,7 +3,7 @@ Tarantool 1.10.7
 
 Release: :tarantool-release:`1.10.7`
 
-Date: 2019-07-17 Tag: 1.10.7-1-gb93a33a
+Date: 2020-07-17 Tag: 1.10.7-1-gb93a33a
 
 Overview
 --------
