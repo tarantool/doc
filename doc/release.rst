@@ -45,7 +45,7 @@ Each link leads to the release notes page of the corresponding version:
 
         *   -   2.10
             -   n/a
-            -   2.10.0-beta1
+            -   :doc:`2.10.0-beta1 <release/2021-08-releases>`
             -   not released yet
 
         *   -   2.8
