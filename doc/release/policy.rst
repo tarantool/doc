@@ -367,7 +367,7 @@ End of standard support means the release series will no longer receive any patc
             -   Release date
             -   End of standard support
 
-        *   -   2.10.0
+        *   -   Series 2
             -   Not planned yet
             -   Not planned yet
 
