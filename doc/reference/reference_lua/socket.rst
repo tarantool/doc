@@ -154,7 +154,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
     :param string host: URL or IP address
     :param number port: port number
-    :param number timeout: timeout
+    :param number timeout: number of seconds to wait
     :return: (if error) {nil, error-message-string}. (if no error) a new socket object.
     :rtype: socket object, which may be viewed as a table
 
