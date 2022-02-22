@@ -357,7 +357,7 @@ Currently supported versions
 Below is the releases lifetime table listing all Tarantool versions
 starting from 1.10.x up to the current latest versions.
 Each link leads to the release notes page of the corresponding version.
-End of standard support means the release series will no longer receive any patches, updates, or feature improvements.
+End of series support means the release series will no longer receive any patches, updates, or feature improvements.
 
 ..  container:: table
 
@@ -365,7 +365,7 @@ End of standard support means the release series will no longer receive any patc
 
         *   -   Version
             -   Release date
-            -   End of standard support
+            -   End of series support
 
         *   -   Series 2
             -   Not planned yet
@@ -482,7 +482,6 @@ Currently supported versions visualised as a calendar:
 .. ifconfig:: builder not in ('latex', )
 
     .. image:: _images/releases_calendar.svg
-        :target: ../_images/releases_calendar.svg
         :align: left
         :alt: releases_calendar.svg
 
