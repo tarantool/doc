@@ -42,7 +42,7 @@ To keep track of the major features in each version of the Tarantool easier, you
             -   Compact mode for tuples (:tarantool-issue:`5385`)
 
         *   -   2.10.0-beta1
-            -   `memtx_allocator` option in `box.cfg{} (:tarantool-issue:`5419`)
+            -   `memtx_allocator` option in `box.cfg{}` (:tarantool-issue:`5419`)
 
         *   -   2.8.2, 2.10.0-beta1
             -   Symbolic log levels in the `log` module (:tarantool-issue:`5882`)
