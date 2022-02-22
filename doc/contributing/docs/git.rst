@@ -79,7 +79,7 @@ Selecting a reviewer
 Ideally, a PR should have two reviewers: a subject matter expert (SME) and a documentarian.
 The SME checks the facts, and the documentarian checks the language and style.
 
-If you're not sure who is the SME for an issue, try the following:
+If you're not sure who the SME for an issue is, try the following:
 
 *   Check the issue description. The SME is often mentioned there explicitly.
 *   Note who created the issue and who was involved in the discussion.
