@@ -481,7 +481,8 @@ Currently supported versions visualised as a calendar:
 
 .. ifconfig:: builder not in ('latex', )
 
-    .. image:: releases_calendar.svg
+    .. image:: _images/releases_calendar.svg
+        :target: _images/releases_calendar.svg
         :align: left
         :alt: releases_calendar.svg
 
