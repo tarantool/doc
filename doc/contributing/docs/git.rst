@@ -92,4 +92,6 @@ For external contributors, merging is blocked until a reviewer's approval.
 
 *   Always squash commits.
 *   Make sure the commit message mentions all relevant issues with "resolves" or "fixes".
-*   Make sure you've attributed all participants with ``Co-authored-by``.
+*   Make sure you've
+    `attributed <https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors>`__
+    all participants with ``Co-authored-by``.
