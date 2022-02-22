@@ -234,6 +234,8 @@ The Lua program almost always begins by invoking ``box.cfg()``, if the database
 server will be used or if ports need to be opened. For example, suppose
 ``script.lua`` contains the lines
 
+..  _index-init-example:
+
 ..  code-block:: lua
 
     #!/usr/bin/env tarantool
@@ -296,7 +298,40 @@ dynamic, that is, they can be changed at runtime by calling ``box.cfg{}``
 a second time.
 
 To see all the non-null parameters, say ``box.cfg`` (no parentheses). To see a
-particular parameter, for example the listen address, say ``box.cfg.listen``.
+particular parameter, for example, the listen address, say ``box.cfg.listen``.
+
+Configuration parameters via environmental variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[TBD]--to rephrase
+As described/discussed before, you can specify configuration parameters :ref:`via environmental variables <index-init-example>`
+and then pass it to ``box.cfg{}`` by using the ``os.getenv()`` function.
+
+Starting from version 2.8.1, you can specify these/such parameters via environmental variables in much easier way.
+
+The name of a variable should correspond to the following pattern: ``TT_<NAME>``
+
+where ``<NAME>`` is the uppercase name of the corresponding ``box.cfg`` option.
+
+For example:
+
+* ``TT_LISTEN``---corresponds to the ``box.cfg.listen`` option.
+* ``TT_REPLICATION``---corresponds to the ``box.cfg.replication`` option..
+
+Array values are separated by comma. Example:
+
+..  code-block:: console
+
+    export TT_REPLICATION=localhost:3301,localhost:3302
+
+An empty variable is the same as unset one.
+
+
+
+Parameters reference
+~~~~~~~~~~~~~~~~~~~~
+
+[TBD]--1) title 2) intro phrase and possibly local ToC 3) downgrade levels of underlying titles
 
 The following sections describe all parameters for basic operation, for storage,
 for binary logging and snapshots, for replication, for networking,
