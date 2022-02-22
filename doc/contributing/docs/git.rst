@@ -33,15 +33,27 @@ Here are some of them:
 *   Resolves #1234
 *   Fixes #1234
 
-If your PR closes more than one issue, add such a line for each issue.
+If your PR closes more than one issue, mention each of them:
+
+..  code-block::
+
+    Resolves #1300, resolves #1234, resolves tarantool/doc#100
 
 Commit messages
 ---------------
 
-*   One-line commit messages are sufficient for documentation changes. Try keeping it 50 characters or less.
+*   Most of the time, one-line commit messages are sufficient for documentation changes.
+
+    -   When you squash commits at merge, the resulting commit message is a sum of all commit messages in the PR.
+        It is advised to include the "resolves" string in the first commit.
+        Otherwise, there's a risk that this line won't be included in the merge commit.
+
 *   Convey the nature of the change and possibly the reason why it was made.
-*   Don't specify the files you've changed or the issue you're working on.
-    The file names can be looked up in the "Files" section of the PR, and the PR description has the issue number(s).
+
+    -   Don't specify the files you've changed or the issue you're working on.
+        The file names can be looked up in the "Files" section of the PR, and the PR description has the issue number(s).
+
+*   Try keeping the commit title 50 characters or less.
 *   Use the imperative mood.
 *   Start with a capital letter, don't add ending punctuation.
 *   (Optional) Use the telegraphic style, or "headlinese", dropping the articles.
@@ -78,3 +90,6 @@ Merging
 Merge when your document is ready and good enough.
 For external contributors, merging is blocked until a reviewer's approval.
 
+*   Always squash commits.
+*   Make sure the commit message mentions all relevant issues with "resolves" or "fixes".
+*   Make sure you've attributed all participants with ``Co-authored-by``.
