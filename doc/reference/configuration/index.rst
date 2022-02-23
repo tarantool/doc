@@ -300,97 +300,111 @@ a second time.
 To see all the non-null parameters, say ``box.cfg`` (no parentheses). To see a
 particular parameter, for example, the listen address, say ``box.cfg.listen``.
 
-Configuration parameters via environmental variables
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+..  _box-cfg-params-prior:
 
-[TBD]--to rephrase
-As described/discussed before, you can specify configuration parameters :ref:`via environmental variables <index-init-example>`
-and then pass it to ``box.cfg{}`` by using the ``os.getenv()`` function.
+Configuration parameter sources / priority
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Starting from version 2.8.1, you can specify these/such parameters via environmental variables in much easier way.
+[TBD]--title
 
-The name of a variable should correspond to the following pattern: ``TT_<NAME>``
+Tarantool configuration parameters can be specified in different ways.
+[TBD] The priority of parameter sources is the following, from higher to lower:
 
+*   ``box.cfg{}`` call
+*   :ref:`environment variables <box-cfg-params-env>`
+*   :doc:`tarantoolctl </reference/tarantoolctl>` options
+*   default values.
+
+..  _box-cfg-params-env:
+
+Configuration parameters via environment variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[TBD]--1) title 2) intro
+
+[TBD--do we need this?] As described before, you can specify configuration parameters via environment variables
+and then pass them to ``box.cfg{}`` by using the ``os.getenv()`` function (see the :ref:`example <index-init-example>`).
+
+Starting from version :doc:`2.8.1 </release/2.8.1>`, you can specify such parameters [via environment variables] in much easier way.
+
+[TBD] The name of a variable should have the following pattern: ``TT_<NAME>``,
 where ``<NAME>`` is the uppercase name of the corresponding ``box.cfg`` option.
 
+[TBD]--maybe give an example with the value, and only for tt_listen.
 For example:
 
 * ``TT_LISTEN``---corresponds to the ``box.cfg.listen`` option.
 * ``TT_REPLICATION``---corresponds to the ``box.cfg.replication`` option..
 
-Array values are separated by comma. Example:
+[TBD] On Tarantool start and the ``box.cfg{}`` call, the values of the ``TT_<NAME>`` environment variables will be set for the corresponding configuration parameters.
+[TBD] ?Note on priorities?
+
+[TBD] Array values should be separated by comma without space:
 
 ..  code-block:: console
 
-    export TT_REPLICATION=localhost:3301,localhost:3302
+    export TT_REPLICATION="localhost:3301,localhost:3302"  [TBD] кавычки
 
-An empty variable is the same as unset one.
+[TBD] An empty variable (``TT_LISTEN=``) has the effect as an unset one [meaning that the corresponding configuration parameter won't be set when calling ``box.cfg{}``].
 
+..  code-block:: console
 
+    export TT_LISTEN="localhost:3301?param1=value1&param2=value2"
 
 Parameters reference
 ~~~~~~~~~~~~~~~~~~~~
 
-[TBD]--1) title 2) intro phrase and possibly local ToC 3) downgrade levels of underlying titles
+[TBD]--1) title 2) intro phrase and possibly local ToC
 
-The following sections describe all parameters for basic operation, for storage,
+The sections that follow describe all parameters for basic operation, for storage,
 for binary logging and snapshots, for replication, for networking,
 for logging, and for feedback.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Basic parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_basic.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Configuring the storage
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_storage.rst
 
 ..  _book_cfg_checkpoint_daemon:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Checkpoint daemon
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_snapshot_daemon.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Binary logging and snapshots
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_binary_logging_snapshots.rst
 
 ..  _index-hot_standby:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Hot standby
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^
 
 ..  include:: cfg_hot_standby.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Replication
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^
 
 ..  include:: cfg_replication.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Networking
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^
 
 ..  include:: cfg_networking.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Logging
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^
 
 ..  include:: cfg_logging.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Deprecated parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_deprecated.rst
