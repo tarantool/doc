@@ -163,6 +163,8 @@ URI values can be set in a number of ways:
             }
         }
 
+.. _index-uri-several-params:
+
 Also, starting from version 2.10.0, it is possible to specify additional parameters for URIs.
 You can do this in different ways:
 
@@ -302,13 +304,11 @@ particular parameter, for example, the listen address, say ``box.cfg.listen``.
 
 ..  _box-cfg-params-prior:
 
-Configuration parameter sources / priority
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[TBD]--title
+Methods of setting and priorities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Tarantool configuration parameters can be specified in different ways.
-[TBD] The priority of parameter sources is the following, from higher to lower:
+The priority of parameter sources is the following, from higher to lower:
 
 *   ``box.cfg{}`` call
 *   :ref:`environment variables <box-cfg-params-env>`
@@ -317,48 +317,43 @@ Tarantool configuration parameters can be specified in different ways.
 
 ..  _box-cfg-params-env:
 
-Configuration parameters via environment variables
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Setting via environment variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[TBD]--1) title 2) intro
+Starting from version :doc:`2.8.1 </release/2.8.1>`, you can specify configuration parameters via special environment variables.
+The name of a variable should have the following pattern: ``TT_<NAME>``,
+where ``<NAME>`` is the uppercase name of the corresponding :ref:`box.cfg parameter <box-cfg-params-ref>`.
 
-[TBD--do we need this?] As described before, you can specify configuration parameters via environment variables
-and then pass them to ``box.cfg{}`` by using the ``os.getenv()`` function (see the :ref:`example <index-init-example>`).
-
-Starting from version :doc:`2.8.1 </release/2.8.1>`, you can specify such parameters [via environment variables] in much easier way.
-
-[TBD] The name of a variable should have the following pattern: ``TT_<NAME>``,
-where ``<NAME>`` is the uppercase name of the corresponding ``box.cfg`` option.
-
-[TBD]--maybe give an example with the value, and only for tt_listen.
 For example:
 
 * ``TT_LISTEN``---corresponds to the ``box.cfg.listen`` option.
-* ``TT_REPLICATION``---corresponds to the ``box.cfg.replication`` option..
+* ``TT_REPLICATION``---corresponds to the ``box.cfg.replication`` option.
 
-[TBD] On Tarantool start and the ``box.cfg{}`` call, the values of the ``TT_<NAME>`` environment variables will be set for the corresponding configuration parameters.
-[TBD] ?Note on priorities?
-
-[TBD] Array values should be separated by comma without space:
+In case of an array value, separate the array elements by comma without space:
 
 ..  code-block:: console
 
-    export TT_REPLICATION="localhost:3301,localhost:3302"  [TBD] кавычки
+    export TT_REPLICATION="localhost:3301,localhost:3302"
 
-[TBD] An empty variable (``TT_LISTEN=``) has the effect as an unset one [meaning that the corresponding configuration parameter won't be set when calling ``box.cfg{}``].
+If you need to pass :ref:`additional parameters for URI <index-uri-several-params>`, use the ``?`` and ``&`` delimiters:
 
 ..  code-block:: console
 
     export TT_LISTEN="localhost:3301?param1=value1&param2=value2"
 
-Parameters reference
-~~~~~~~~~~~~~~~~~~~~
+An empty variable (``TT_LISTEN=``) has the same effect as an unset one meaning that the corresponding configuration parameter won't be set when calling ``box.cfg{}``.
 
-[TBD]--1) title 2) intro phrase and possibly local ToC
+..  _box-cfg-params-ref:
 
-The sections that follow describe all parameters for basic operation, for storage,
-for binary logging and snapshots, for replication, for networking,
-for logging, and for feedback.
+Reference
+~~~~~~~~~
+
+The sections that follow describe all configuration parameters for basic operations, storage,
+binary logging and snapshots, replication, networking, logging, and feedback.
+
+..  contents::
+    :local:
+    :depth: 1
 
 Basic parameters
 ^^^^^^^^^^^^^^^^
