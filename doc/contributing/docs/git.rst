@@ -53,7 +53,7 @@ Commit messages
     -   Don't specify the files you've changed or the issue you're working on.
         The file names can be looked up in the "Files" section of the PR, and the PR description has the issue number(s).
 
-*   Try keeping the commit title 50 characters or less.
+*   Try keeping the commit title 50 characters or shorter.
 *   Use the imperative mood.
 *   Start with a capital letter, don't add ending punctuation.
 *   (Optional) Use the telegraphic style, or "headlinese", dropping the articles.
