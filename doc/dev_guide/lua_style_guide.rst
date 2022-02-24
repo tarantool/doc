@@ -1,4 +1,4 @@
-.. _lua_style_guide:
+..  _lua_style_guide:
 
 Lua style guide
 ===============
@@ -404,7 +404,7 @@ knows the Lua language). Instead, tell about functions/variable names/etc.
 Multiline comments: use matching (``--[[ ]]--``) instead of simple
 (``--[[ ]]``).
 
-Public function comments (??):
+Public function comments:
 
 ..  code-block:: lua
 
