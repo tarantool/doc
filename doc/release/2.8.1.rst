@@ -20,7 +20,7 @@ issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
 Notable changes are:
 
 -  Tarantool is now able to set multiple iproto threads.
--  Setting ``box.cfg`` options with environment variables.
+-  Setting ``box.cfg`` options with :ref:`environment variables <box-cfg-params-env>`.
 -  The new ``box.ctl.promote()`` function and the concept of manual elections.
 -  Enhancements in the Lua memory profiler.
 
@@ -92,7 +92,7 @@ Core
 -   The new ``box.lib`` module allows loading and executing C
     stored procedures on read-only nodes (:tarantool-issue:`4642`).
 
--   Configuration options in ``box.cfg`` can now be defined with environment variables
+-   Configuration options in ``box.cfg`` can now be :ref:`defined with environment variables <box-cfg-params-env>`
     (:tarantool-issue:`5602`).
 
     The priority of sources of configuration options is the following, from higher to lower:

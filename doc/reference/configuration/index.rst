@@ -163,6 +163,8 @@ URI values can be set in a number of ways:
             }
         }
 
+.. _index-uri-several-params:
+
 Also, starting from version 2.10.0, it is possible to specify additional parameters for URIs.
 You can do this in different ways:
 
@@ -234,6 +236,8 @@ The Lua program almost always begins by invoking ``box.cfg()``, if the database
 server will be used or if ports need to be opened. For example, suppose
 ``script.lua`` contains the lines
 
+..  _index-init-example:
+
 ..  code-block:: lua
 
     #!/usr/bin/env tarantool
@@ -296,66 +300,106 @@ dynamic, that is, they can be changed at runtime by calling ``box.cfg{}``
 a second time.
 
 To see all the non-null parameters, say ``box.cfg`` (no parentheses). To see a
-particular parameter, for example the listen address, say ``box.cfg.listen``.
+particular parameter, for example, the listen address, say ``box.cfg.listen``.
 
-The following sections describe all parameters for basic operation, for storage,
-for binary logging and snapshots, for replication, for networking,
-for logging, and for feedback.
+..  _box-cfg-params-prior:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Methods of setting and priorities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tarantool configuration parameters can be specified in different ways.
+The priority of parameter sources is the following, from higher to lower:
+
+*   ``box.cfg`` options
+*   :ref:`environment variables <box-cfg-params-env>`
+*   :doc:`tarantoolctl </reference/tarantoolctl>` options
+*   default values.
+
+..  _box-cfg-params-env:
+
+Setting via environment variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting from version :doc:`2.8.1 </release/2.8.1>`, you can specify configuration parameters via special environment variables.
+The name of a variable should have the following pattern: ``TT_<NAME>``,
+where ``<NAME>`` is the uppercase name of the corresponding :ref:`box.cfg parameter <box-cfg-params-ref>`.
+
+For example:
+
+* ``TT_LISTEN``---corresponds to the ``box.cfg.listen`` option.
+* ``TT_MEMTX_DIR``---corresponds to the ``box.cfg.memtx_dir`` option.
+
+In case of an array value, separate the array elements by comma without space:
+
+..  code-block:: console
+
+    export TT_REPLICATION="localhost:3301,localhost:3302"
+
+If you need to pass :ref:`additional parameters for URI <index-uri-several-params>`, use the ``?`` and ``&`` delimiters:
+
+..  code-block:: console
+
+    export TT_LISTEN="localhost:3301?param1=value1&param2=value2"
+
+An empty variable (``TT_LISTEN=``) has the same effect as an unset one meaning that the corresponding configuration parameter won't be set when calling ``box.cfg{}``.
+
+..  _box-cfg-params-ref:
+
+Reference
+~~~~~~~~~
+
+The sections that follow describe all configuration parameters for basic operations, storage,
+binary logging and snapshots, replication, networking, logging, and feedback.
+
+..  contents::
+    :local:
+    :depth: 1
+
 Basic parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_basic.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Configuring the storage
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_storage.rst
 
 ..  _book_cfg_checkpoint_daemon:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Checkpoint daemon
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_snapshot_daemon.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Binary logging and snapshots
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_binary_logging_snapshots.rst
 
 ..  _index-hot_standby:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Hot standby
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^
 
 ..  include:: cfg_hot_standby.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Replication
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^
 
 ..  include:: cfg_replication.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Networking
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^
 
 ..  include:: cfg_networking.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Logging
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^
 
 ..  include:: cfg_logging.rst
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Deprecated parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 ..  include:: cfg_deprecated.rst
