@@ -310,7 +310,7 @@ Methods of setting and priorities
 Tarantool configuration parameters can be specified in different ways.
 The priority of parameter sources is the following, from higher to lower:
 
-*   ``box.cfg{}`` call
+*   ``box.cfg`` options
 *   :ref:`environment variables <box-cfg-params-env>`
 *   :doc:`tarantoolctl </reference/tarantoolctl>` options
 *   default values.
@@ -327,7 +327,7 @@ where ``<NAME>`` is the uppercase name of the corresponding :ref:`box.cfg parame
 For example:
 
 * ``TT_LISTEN``---corresponds to the ``box.cfg.listen`` option.
-* ``TT_REPLICATION``---corresponds to the ``box.cfg.replication`` option.
+* ``TT_MEMTX_DIR``---corresponds to the ``box.cfg.memtx_dir`` option.
 
 In case of an array value, separate the array elements by comma without space:
 
