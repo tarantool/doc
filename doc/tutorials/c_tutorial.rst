@@ -370,7 +370,7 @@ Create a file. Name it ``read.c``. Put these 43 lines in it:
       char *key_end = key_buf;
       key_end = mp_encode_array(key_end, 1);
       key_end = mp_encode_uint(key_end, key);
-      assert(key_end < key_buf + sizeof(key_buf));
+      assert(key_end <= key_buf + sizeof(key_buf));
       /* Get the tuple. There's no box_select() but there's this. */
       int r = box_index_get(space_id, index_id, key_buf, key_end, &tuple);
       assert(r == 0);
