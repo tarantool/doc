@@ -23,6 +23,8 @@ and encodes Lua objects by converting them to raw MsgPack strings.
 Tarantool makes heavy internal use of MsgPack because tuples in Tarantool
 are :ref:`stored <index-box_lua-vs-msgpack>` as MsgPack arrays.
 
+..  _msgpack-object-info:
+
 Besides, starting from version 2.10.0, the ``msgpack`` module enables creating a specific userdata Lua object---MsgPack object.
 The MsgPack object stores arbitrary MsgPack data, and can be created from :ref:`any Lua object <msgpack-object>` including another MsgPack object
 and from a :ref:`raw MsgPack string <msgpack-object-from-raw>`. The MsgPack object has its own set of :ref:`methods <msgpack-object-methods>` and :ref:`iterators <msgpack-object-iterator-methods>`.
