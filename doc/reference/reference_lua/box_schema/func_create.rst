@@ -36,7 +36,7 @@ box.schema.func.create()
 
     *   ``language`` = 'LUA'|'C' (default = 'LUA').
 
-    *   ``takes_raw_args`` = ``true|false`` (default = ``false``)---
+    *   (since version 2.10.0) ``takes_raw_args`` = ``true|false`` (default = ``false``)---
         if set to ``true`` for a Lua function and the function is called via ``net.box`` (:ref:`conn:call() <net_box-call>`) or by ``box.func.<func-name>:call()``,
         the function arguments are passed being wrapped in a :ref:`MsgPack object <msgpack-object-info>`:
 
