@@ -120,6 +120,7 @@ Release notes for series before 1.10 are also available:
 
     release/policy
     release/legacy-policy
+    release/release-calendar
     release/major-features
     release/2021-08-releases
     release/2.8.1
