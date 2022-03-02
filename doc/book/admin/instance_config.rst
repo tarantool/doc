@@ -32,7 +32,7 @@ For each Tarantool instance, you need two files:
   (see :ref:`instance_dir <admin-instance_dir>` parameter in ``tarantoolctl``
   configuration file).
 
-  For example, ``/etc/tarantool/instances.enabled/my_app.lua`` (here we load
+  For example, ``/etc/tarantool/instances.enabled/init.lua`` (here we load
   ``my_app.lua`` module and make a call to ``start()`` function from that
   module):
 
