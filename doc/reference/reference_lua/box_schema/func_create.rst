@@ -103,6 +103,10 @@ box.schema.func.create()
       ``true`` means that the function should be deterministic,
       ``false`` means that the function may or may not be deterministic.
 
+    * ``is_multikey`` = ``true|false`` (default = ``false``)---
+      if ``true`` is set in the function definition for a functional index, the function returns multiple keys.
+      For details, see the :ref:`example <box_space-index_func_multikey>`.
+
     * ``body`` = function definition (default = nil) - string;
       the function definition.
 
