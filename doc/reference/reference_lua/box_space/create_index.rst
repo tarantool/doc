@@ -9,7 +9,7 @@ On this page:
 * :ref:`Allowing null for an indexed key <box_space-is_nullable>`
 * :ref:`Creating an index using field names instead of field numbers <box_space-field_names>`
 * :ref:`Creating an index using the path option for map fields (JSON-path indexes) <box_space-path>`
-* :ref:`Creating an multikey index using the path option with [*] <box_space-path_multikey>`
+* :ref:`Creating a multikey index using the path option with [*] <box_space-path_multikey>`
 * :ref:`Creating a functional index <box_space-index_func>`
 
 ..  class:: space_object
@@ -638,10 +638,12 @@ Here is the full code of the example:
     box.space.tester.index.func_idx:select('w')
     box.space.tester.index.func_idx:select(box.func.my_func:call({{'tester', 'wombat'}}));
 
+..  _box_space-index_func_multikey:
+
 Functions for functional indexes can return **multiple keys**. Such functions are
 called "multikey" functions.
 
-The ``box.func.create`` options must include ``opts = {is_multikey = true}``.
+To create a multikey function, the options of ``box.schema.func.create()`` must include ``is_multikey = true``.
 The return value must be a table of tuples. If a multikey function returns
 N tuples, then N keys will be added to the index.
 
@@ -665,7 +667,7 @@ N tuples, then N keys will be added to the index.
                             {body = lua_code,
                              is_deterministic = true,
                              is_sandboxed = true,
-                             opts = {is_multikey = true}})
+                             is_multikey = true})
     idx = s:create_index('addr', {unique = false,
                                   func = 'address',
                                   parts = {{field = 1, type = 'string',
