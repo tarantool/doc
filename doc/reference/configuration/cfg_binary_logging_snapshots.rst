@@ -1,7 +1,7 @@
-* :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`,
-* :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`,
-* :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`,
-* :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`,
+* :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`
+* :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`
+* :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`
+* :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
 
 .. _cfg_binary_logging_snapshots-force_recovery:
