@@ -41,7 +41,7 @@ Most ``net.box`` methods accept the last ``{options}`` argument, which can be:
   ``{timeout=1.5}`` will stop after 1.5 seconds on the local node, although this
   does not guarantee that execution will stop on the remote server node.
 
-* ``{buffer=...}``. For example, see :ref:`buffer module <buffer-module>`.
+* ``{buffer=...}``. For an example, see the :ref:`buffer module <buffer-module>`.
 
 * ``{is_async=...}``. For example, a method whose last argument is
   ``{is_async=true}`` will not wait for the result of a request. See the
@@ -50,10 +50,11 @@ Most ``net.box`` methods accept the last ``{options}`` argument, which can be:
 * ``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages.
   See the :doc:`/reference/reference_lua/box_session/push` description.
 
-* (since version 2.10.0) ``return_raw`` = ``true|false`` (default = ``false``).
+* ``{return_raw=...`` (since version 2.10.0).
   If set to ``true``, net.box returns response data wrapped
   in a :ref:`MsgPack object <msgpack-object-info>` instead of decoding it to Lua.
-  For example, see :ref:`return_raw <net_box-return_raw>`.
+  The default value is ``false``.
+  For an example, see :ref:`return_raw <net_box-return_raw>`.
 
 The diagram below shows possible connection states and transitions:
 
@@ -614,9 +615,10 @@ Below is a list of all ``net.box`` functions.
 
     ..  method:: request(... {return_raw=...})
 
-        ``{return_raw=true}`` is ignored for
-        *   methods that return nil:
-            ``begin``, ``commit``, ``rollback``, ``upsert``, ``prepare``;
+        ``{return_raw=true}`` is ignored for:
+
+        *   Methods that return ``nil``:
+            ``begin``, ``commit``, ``rollback``, ``upsert``, ``prepare``.
 
         *   ``index.count`` (returns number).
 
