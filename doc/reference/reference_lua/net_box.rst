@@ -50,7 +50,7 @@ Most ``net.box`` methods accept the last ``{options}`` argument, which can be:
 * ``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages.
   See the :doc:`/reference/reference_lua/box_session/push` description.
 
-* ``{return_raw=...`` (since version 2.10.0).
+* ``{return_raw=...}`` (since version 2.10.0).
   If set to ``true``, net.box returns response data wrapped
   in a :ref:`MsgPack object <msgpack-object-info>` instead of decoding it to Lua.
   The default value is ``false``.
