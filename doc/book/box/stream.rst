@@ -45,7 +45,8 @@ The ID is generated on the client side automatically.
 If a user writes their own connector and wants to use streams,
 they must transmit the ``stream_id`` over the iproto protocol.
 
-Streams only work if the ``box.cfg{}`` option :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`
+Interactive transactions over streams only work if
+the ``box.cfg{}`` option :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`
 is enabled on the server: ``memtx_use_mvcc_engine = true``.
 
 ..  _box_stream-interaction:
