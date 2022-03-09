@@ -54,7 +54,7 @@ Most ``net.box`` methods accept the last ``{options}`` argument, which can be:
   If set to ``true``, net.box returns response data wrapped
   in a :ref:`MsgPack object <msgpack-object-info>` instead of decoding it to Lua.
   The default value is ``false``.
-  For an example, see :ref:`return_raw <net_box-return_raw>`.
+  For an example, see option description :ref:`below <net_box-return_raw>`.
 
 The diagram below shows possible connection states and transitions:
 
