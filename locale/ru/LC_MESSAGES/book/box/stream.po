@@ -86,7 +86,7 @@ msgid ""
 " the server: ``memtx_use_mvcc_engine = true``."
 msgstr ""
 "Чтобы в стримах работали интерактивные транзакции, необходимо включить "
-"параметр ``box.cfg{}`` :ref: `memtx_use_mvcc_engine <cfg_basic-"
+"параметр ``box.cfg{}`` :ref:`memtx_use_mvcc_engine <cfg_basic-"
 "memtx_use_mvcc_engine>` на сервере: ``memtx_use_mvcc_engine = true``."
 
 msgid "Interaction between streams and transactions"
