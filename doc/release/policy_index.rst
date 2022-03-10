@@ -11,7 +11,7 @@ Release policies
 Summary
 -------
 
-Since version 2.10, there's a :doc:`new release policy for Tarantool <release/policy>`.
+Since version 2.10, there's a :doc:`new release policy for Tarantool <policy>`.
 In short, Tarantool version numbers consist of three parts:
 
 ..  code-block:: text
@@ -24,7 +24,7 @@ For evaluation and development, you can use beta versions.
 They are marked with ``-betaN`` suffixes.
 
 Before 2.10.0, version numbers were subject to the
-:doc:`legacy versioning policy <release/legacy-policy>`:
+:doc:`legacy versioning policy <legacy-policy>`:
 
 ..  code-block:: text
 
