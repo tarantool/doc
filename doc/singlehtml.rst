@@ -14,5 +14,5 @@
     book/index
     reference/index
     tutorials/index
-    release
+    release/index
     dev_guide/index
