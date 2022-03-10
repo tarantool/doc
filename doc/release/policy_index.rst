@@ -8,6 +8,9 @@ Release policies
     legacy-policy
 
 
+Summary
+-------
+
 Since version 2.10, there's a :doc:`new release policy for Tarantool <release/policy>`.
 In short, Tarantool version numbers consist of three parts:
 
