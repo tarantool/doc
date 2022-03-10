@@ -1,4 +1,4 @@
-Tarantool Release Policy
+Tarantool release policy
 ========================
 
 ..  _release-policy:
