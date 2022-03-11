@@ -32,8 +32,6 @@ jobs:
       - run: make build-modules
       - run: make json
       - run: make json-ru
-      - run: make singlehtml
-      - run: make singlehtml-ru
       - run: make pdf
       - run: make pdf-ru
       - uses: nelonoel/branch-name@v1.0.1
