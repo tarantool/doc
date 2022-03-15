@@ -29,7 +29,8 @@ Each link leads to the release notes page of the corresponding version:
         *   -   2.8
             -   2.8.0
             -   :doc:`2.8.1 <2.8.1>`
-            -   :doc:`2.8.2 <2021-08-releases>`
+            -   :doc:`2.8.2 <2021-08-releases>`,
+                2.8.3 (`GitHub <https://github.com/tarantool/tarantool/releases/tag/2.8.3>`__)
 
         *   -   2.7
             -   2.7.0
@@ -79,7 +80,8 @@ Each link leads to the release notes page of the corresponding version:
                 :doc:`1.10.8 <1.10.8>`,
                 :doc:`1.10.9 <1.10.9>`,
                 :doc:`1.10.10 <1.10.10>`,
-                :doc:`1.10.11 <2021-08-releases>`
+                :doc:`1.10.11 <2021-08-releases>`,
+                1.10.12 (`GitHub <https://github.com/tarantool/tarantool/releases/tag/1.10.12>`__)
 
 
 For smaller feature changes and bug fixes, see closed
