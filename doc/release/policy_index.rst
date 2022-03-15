@@ -21,6 +21,7 @@ Before 2.10.0, version numbers were subject to the
     MAJOR_VERSION.RELEASE_SERIES.RELEASE
 
 ..  toctree::
+    :hidden:
     :maxdepth: 2
 
     policy
