@@ -1,16 +1,6 @@
 Release policies
 ================
 
-..  toctree::
-    :maxdepth: 2
-
-    policy
-    legacy-policy
-
-
-Summary
--------
-
 Since version 2.10, there's a :doc:`new release policy for Tarantool <policy>`.
 In short, Tarantool version numbers consist of three parts:
 
@@ -29,3 +19,9 @@ Before 2.10.0, version numbers were subject to the
 ..  code-block:: text
 
     MAJOR_VERSION.RELEASE_SERIES.RELEASE
+
+..  toctree::
+    :maxdepth: 2
+
+    policy
+    legacy-policy
