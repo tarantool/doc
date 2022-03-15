@@ -1,5 +1,5 @@
-Versions
-========
+Release notes for Tarantool versions
+====================================
 
 Below is the table listing all Tarantool versions starting from 1.10.0 up to
 the current latest versions.

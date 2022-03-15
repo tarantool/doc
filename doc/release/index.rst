@@ -10,6 +10,6 @@ Release notes
     :maxdepth: 2
 
     policy_index
-    versions
+    notes
     major-features
     release-calendar
