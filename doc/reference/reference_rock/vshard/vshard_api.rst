@@ -24,6 +24,7 @@ and the :ref:`storage <vshard-storage>`.
     |                                             | * :ref:`vshard.router.callre(bucket_id, function_name, {argument_list}, {options}) <router_api-callre>`   |
     |                                             | * :ref:`vshard.router.callbro(bucket_id, function_name, {argument_list}, {options}) <router_api-callbro>` |
     |                                             | * :ref:`vshard.router.callbre(bucket_id, function_name, {argument_list}, {options}) <router_api-callbre>` |
+    |                                             | * :ref:`vshard.router.map_callrw() <router_api-map_callrw>`                                               |
     |                                             | * :ref:`vshard.router.route(bucket_id) <router_api-route>`                                                |
     |                                             | * :ref:`vshard.router.routeall() <router_api-routeall>`                                                   |
     |                                             | * :ref:`vshard.router.bucket_id_strcrc32(key) <router_api-bucket_id_strcrc32>`                            |
@@ -336,6 +337,10 @@ Router public API
     This has the same effect as
     :ref:`vshard.router.call() <router_api-call>`
     with mode parameter = ``{mode='read', balance=true, prefer_replica=true}``.
+
+..  _router_api-map_callrw:
+
+.. function:: vshard.router.map_callrw(function_name, args[, {timeout = <seconds>}])
 
 .. _router_api-route:
 
