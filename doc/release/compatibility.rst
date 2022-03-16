@@ -1,3 +1,5 @@
+..  _compatibility_guarantees:
+
 Compatibility guarantees
 ========================
 
@@ -17,6 +19,8 @@ It is also appreciated but not guaranteed between different release series (majo
 *   No guarantees are given regarding compatibility between alpha/beta
     versions and between alpha/beta and pre-release/release even within one series.
 
+..  _cg_data_layout:
+
 Binary data layout
 ------------------
 
@@ -35,6 +39,8 @@ An attempt to use a new feature results in one of these options:
     An instance can upgrade the data layout using the :ref:`box.schema.upgrade() <admin-upgrades>` call
     to enable all new release features (when all instances of the replicaset are run on the same Tarantool version).
 
+..  _cg_binary_protocol:
+
 Binary protocol
 ---------------
 
@@ -48,6 +54,8 @@ with the newer one, except the features introduced in the newer release.
 ``net.box`` client of the newer release is fully operational with the server
 running under the older one, except the features not implemented in the older release.
 
+..  _cg_replication_protocol:
+
 Replication protocol
 --------------------
 
@@ -60,6 +68,8 @@ An instance run on a newer release may work as:
 The database schema upgrade (``box.schema.upgrade()``) must be performed when all replicaset instances
 run on the same Tarantool version.
 The upgrade does not cause downtime if the application does not lean on internal schema representation.
+
+..  _cg_lua_code:
 
 Lua code
 --------
@@ -90,6 +100,9 @@ Examples of NOT compatible changes:
 
 *   Add ``__eq`` metamethod (``==`` already returns some result`).
 
+
+..  _cg_sql_code:
+
 SQL code
 --------
 
@@ -115,6 +128,8 @@ Examples of NOT compatible changes:
 *   Change how data is stored in the database.
 *   Change the result of working implicit or explicit cast.
 *   Change of a literal type.
+
+..  _cg_c_code:
 
 C code
 ------
