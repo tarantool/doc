@@ -11,5 +11,6 @@ Release notes
 
     policy_index
     notes
+    compatibility
     major-features
     calendar

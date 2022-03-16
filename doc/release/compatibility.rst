@@ -14,7 +14,7 @@ It is also appreciated but not guaranteed between different release series (majo
 
 *   No guarantees are given regarding compatibility between
     pre-releases/releases of non-consequent release series if the opposite
-    is not stated in the :ref:`release notes <release_notes>`.
+    is not stated in the :doc:`release notes <notes>`.
 
 *   No guarantees are given regarding compatibility between alpha/beta
     versions and between alpha/beta and pre-release/release even within one series.
