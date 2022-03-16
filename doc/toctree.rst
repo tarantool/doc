@@ -22,4 +22,4 @@
     reference/index
     tutorials/index
     contributing/index
-    release
+    release/index
