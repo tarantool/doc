@@ -114,7 +114,7 @@ Release versions conform to a set of requirements:
 
 Backwards compatibility is guaranteed between all versions in the same release series.
 It is also appreciated, but not guaranteed between different release series (major number changes).
-See :doc:`the compatibility guarantees page </release/compatibility>` for details.
+See :doc:`compatibility guarantees page </release/compatibility>` for details.
 
 Pre-release versions
 ~~~~~~~~~~~~~~~~~~~~
