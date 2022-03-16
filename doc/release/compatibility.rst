@@ -10,7 +10,7 @@ It is also appreciated but not guaranteed between different release series (majo
     senses defined below (any release with any release).
 
 *   Pre-releases and releases of consequent series are compatible by data
-    layout, binary protocol and replication protocol.
+    layout, binary protocol, and replication protocol.
 
 *   No guarantees are given regarding compatibility between
     pre-releases/releases of non-consequent release series if the opposite
@@ -24,13 +24,13 @@ It is also appreciated but not guaranteed between different release series (majo
 Binary data layout
 ------------------
 
-A newer release (its runtime) is backward compatible with an older one.
-It means a more recent release should work on top of data
+Any newer release (its runtime) is backward compatible with any older one.
+It means the more recent release can work on top of data
 (``*.xlog``, ``*.snap``, ``*.vylog``, ``*.run``) from the older one.
-All functionality of the older release is working in this configuration.
-It should work between :term:`release series` as well.
+All functionality of the older release can work in this configuration.
+The same compatibility is maintained between :term:`release series` as well.
 
-An attempt to use a new feature results in one of these options:
+An attempt to use a new feature results in one of the options:
 
 *   The attempt is successful.
 
