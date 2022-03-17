@@ -66,7 +66,7 @@ An instance running on a newer release can work as:
 
 The database schema upgrade (``box.schema.upgrade()``) must be performed when all replicaset instances
 run on the same Tarantool version.
-The upgrade does not cause downtime if the application does not lean on internal schema representation.
+The upgrade might cause downtime if the application leans on internal schema representation.
 
 ..  _cg_lua_code:
 
@@ -82,14 +82,14 @@ fields to a return table, and more return values (multireturn).
 
 Adding a new built-in module or a new global value is considered as a compatible change.
 
-Adding a new field to an existing metatable is okay if it is not listed
+Adding a new field to an existing metatable is okay if the field is not listed
 in the `Lua 5.1 Reference Manual <https://www.lua.org/manual/5.1/>`_.
 Otherwise, it should be proven that it won't break any meaningful code.
 
 Examples of compatible changes:
 
 *   Add ``__pairs``, ``__ipairs`` to a metatable of a userdata object.
-    It is not from Lua 5.1, and the userdata has no default behaviour for ``pairs()`` and `ipairs()` calls.
+    The fields are not from Lua 5.1, and the userdata has no default behaviour for ``pairs()`` and ``ipairs()`` calls.
 
 *   Add the ``__lt`` or ``__le`` metamethod
     (if the attempt to use ``<``, ``<=`` etc. leads to an error before the change).
@@ -139,7 +139,7 @@ If a module or a C stored procedure runs on an older release,
 it will operate with the same effect on a newer one.
 
 It is okay to add a new function or structure to the public C API.
-It must use one of the Tarantool prefixes (``box_``, ``fiber_``, ``luaT_``, ``luaM_`` and so on) or introduce a new one.
+It must use one of the Tarantool prefixes (``box_``, ``fiber_``, ``luaT_``, ``luaM_`` and so on) or some new prefix.
 
 A symbol from a used library must not be exported directly
 because the library may be used in a module by itself, and the clash can lead to problems.
