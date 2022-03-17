@@ -10,7 +10,7 @@ Overview
 --------
 
 2.8.3 is the 3rd
-`stable <https://www.tarantool.io/en/doc/latest/dev_guide/release_management/#release-policy>`__
+:doc:`stable </release/policy/>`
 version of the 2.8 release series. It introduces 3 improvements and
 resolves 24 bugs since 2.8.2.
 
