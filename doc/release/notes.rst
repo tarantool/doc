@@ -30,7 +30,7 @@ Each link leads to the release notes page of the corresponding version:
             -   2.8.0
             -   :doc:`2.8.1 <2.8.1>`
             -   :doc:`2.8.2 <2021-08-releases>`,
-                :doc:`2.8.2 <2.8.3>`
+                :doc:`2.8.3 <2.8.3>`
 
         *   -   2.7
             -   2.7.0
