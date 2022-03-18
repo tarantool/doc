@@ -1,7 +1,7 @@
 .. _box_session:
 
 -------------------------------------------------------------------------------
-                            Submodule `box.session`
+                            Submodule box.session
 -------------------------------------------------------------------------------
 
 The ``box.session`` submodule allows querying the session state, writing to a

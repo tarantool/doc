@@ -1,7 +1,7 @@
 .. _buffer-module:
 
 -------------------------------------------------------------------------------
-                            Module `buffer`
+                            Module buffer
 -------------------------------------------------------------------------------
 
 The ``buffer`` module returns a dynamically resizable buffer which is solely
