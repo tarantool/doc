@@ -11,7 +11,7 @@
     book/box/authentication
     book/box/triggers
     reference/reference_rock/vshard/vshard_index
-    Cluster <book/cartridge/index>
+    Cluster on Cartridge <book/cartridge/index>
     book/app_server/index
     book/admin/index
     book/replication/index
