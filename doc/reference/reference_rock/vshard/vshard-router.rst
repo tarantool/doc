@@ -3,10 +3,10 @@ Router API
 
 ..  _vshard-router:
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
     +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
     | Subsection                                  | Methods                                                                                                   |
@@ -40,14 +40,14 @@ Router API
     | <vshard_api_reference-router_internal_api>` |                                                                                                           |
     +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
-.. _vshard_api_reference-router_public_api:
+..  _vshard_api_reference-router_public_api:
 
 Router public API
 -----------------
 
-.. _router_api-bootstrap:
+..  _router_api-bootstrap:
 
-.. function:: vshard.router.bootstrap()
+..  function:: vshard.router.bootstrap()
 
     Perform the initial cluster bootstrap and distribute all buckets across the
     replica sets.
@@ -62,11 +62,11 @@ Router public API
 
     **Example:**
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         vshard.router.bootstrap({timeout = 4, if_not_bootstrapped = true})
 
-    .. NOTE::
+    ..  NOTE::
 
         To detect whether a cluster is bootstrapped, ``vshard`` looks for at least
         one bucket in the whole cluster. If the cluster was bootstrapped only
@@ -75,18 +75,18 @@ Router public API
         with ``if_not_bootstrapped``. So this is still a bad practice. Avoid
         calling ``bootstrap()`` multiple times.
 
-.. _router_api-cfg:
+..  _router_api-cfg:
 
-.. function:: vshard.router.cfg(cfg)
+..  function:: vshard.router.cfg(cfg)
 
     Configure the database and start sharding for the specified ``router``
     instance. See the :ref:`sample configuration <vshard-config-cluster-example>`.
 
     :param cfg: a configuration table
 
-.. _router_api-new:
+..  _router_api-new:
 
-.. function:: vshard.router.new(name, cfg)
+..  function:: vshard.router.new(name, cfg)
 
     Create a new router instance. ``vshard`` supports multiple routers in a
     single Tarantool instance. Each router can be connected to any ``vshard``
@@ -113,9 +113,9 @@ Router public API
     :Return: a router instance, if created successfully; otherwise, nil and an
              error object
 
-.. _router_api-call:
+..  _router_api-call:
 
-.. function:: vshard.router.call(bucket_id, mode, function_name, {argument_list}, {options})
+..  function:: vshard.router.call(bucket_id, mode, function_name, {argument_list}, {options})
 
     Call the function identified by function-name on the shard storing the bucket
     identified by bucket_id.
@@ -167,7 +167,7 @@ Router public API
 
     To call ``customer_add`` function from ``vshard/example``, say:
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         vshard.router.call(100,
                            'write',
@@ -181,9 +181,9 @@ Router public API
                            {{customer_id = 2, bucket_id = 100, name = 'name2', accounts = {}}},
                            {timeout = 5})
 
-.. _router_api-callro:
+..  _router_api-callro:
 
-.. function:: vshard.router.callro(bucket_id, function_name, {argument_list}, {options})
+..  function:: vshard.router.callro(bucket_id, function_name, {argument_list}, {options})
 
     Call the function identified by function-name on the shard storing the bucket identified by bucket_id,
     in read-only mode (similar to calling vshard.router.call
@@ -216,9 +216,9 @@ Router public API
     optional attribute containing a message with the human-readable error description,
     and other attributes specific for this error code.
 
-.. _router_api-callrw:
+..  _router_api-callrw:
 
-.. function:: vshard.router.callrw(bucket_id, function_name, {argument_list}, {options})
+..  function:: vshard.router.callrw(bucket_id, function_name, {argument_list}, {options})
 
     Call the function identified by function-name on the shard storing the bucket identified by bucket_id,
     in read-write mode (similar to calling vshard.router.call
@@ -250,9 +250,9 @@ Router public API
     optional attribute containing a message with the human-readable error description,
     and other attributes specific for this error code.
 
-.. _router_api-callre:
+..  _router_api-callre:
 
-.. function:: vshard.router.callre(bucket_id, function_name, {argument_list}, {options})
+..  function:: vshard.router.callre(bucket_id, function_name, {argument_list}, {options})
 
     Call the function identified by function-name on the shard storing the bucket identified by bucket_id,
     in read-only mode (similar to calling ``vshard.router.call``
@@ -286,17 +286,17 @@ Router public API
     optional attribute containing a message with the human-readable error description,
     and other attributes specific for this error code.
 
-.. _router_api-callbro:
+..  _router_api-callbro:
 
-.. function:: vshard.router.callbro(bucket_id, function_name, {argument_list}, {options})
+..  function:: vshard.router.callbro(bucket_id, function_name, {argument_list}, {options})
 
     This has the same effect as
     :ref:`vshard.router.call() <router_api-call>`
     with mode parameter = ``{mode='read', balance=true}``.
 
-.. _router_api-callbre:
+..  _router_api-callbre:
 
-.. function:: vshard.router.callbre(bucket_id, function_name, {argument_list}, {options})
+..  function:: vshard.router.callbre(bucket_id, function_name, {argument_list}, {options})
 
     This has the same effect as
     :ref:`vshard.router.call() <router_api-call>`
@@ -304,11 +304,11 @@ Router public API
 
 ..  _router_api-map_callrw:
 
-.. function:: vshard.router.map_callrw(function_name, args[, {timeout = <seconds>}])
+..  function:: vshard.router.map_callrw(function_name, args[, {timeout = <seconds>}])
 
-.. _router_api-route:
+..  _router_api-route:
 
-.. function:: vshard.router.route(bucket_id)
+..  function:: vshard.router.route(bucket_id)
 
     Return the replica set object for the bucket with the specified bucket id value.
 
@@ -322,9 +322,9 @@ Router public API
 
         replicaset = vshard.router.route(123)
 
-.. _router_api-routeall:
+..  _router_api-routeall:
 
-.. function:: vshard.router.routeall()
+..  function:: vshard.router.routeall()
 
     Return all available replica set objects.
 
@@ -351,9 +351,9 @@ Router public API
             return resultset
         end
 
-.. _router_api-bucket_id:
+..  _router_api-bucket_id:
 
-.. function:: vshard.router.bucket_id(key)
+..  function:: vshard.router.bucket_id(key)
 
     **Deprecated**. Logs a warning when used because it is not consistent
     for cdata numbers.
@@ -363,7 +363,7 @@ Router public API
     ``ffi.cast('unsigned long long',123)``), and for signed long long cdata
     (like ``123LL``, or ``ffi.cast('long long', 123)``). And it is important.
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         vshard.router.bucket_id(123)
         vshard.router.bucket_id(123LL)
@@ -378,9 +378,9 @@ Router public API
     ``vshard.router.bucket_id_strcrc32()`` behaves exactly the same, but
     does not log a warning. In case you need that behavior.
 
-.. _router_api-bucket_id_strcrc32:
+..  _router_api-bucket_id_strcrc32:
 
-.. function:: vshard.router.bucket_id_strcrc32(key)
+..  function:: vshard.router.bucket_id_strcrc32(key)
 
     Calculate the bucket id using a simple built-in hash function.
 
@@ -391,7 +391,7 @@ Router public API
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> vshard.router.bucket_count()
         ---
@@ -418,13 +418,13 @@ Router public API
         - 2284
         ...
 
-    .. Note::
+    ..  Note::
 
         Remember that it is not safe. See details in :ref:`bucket_id() <router_api-bucket_id>`
 
-.. _router_api-bucket_id_mpcrc32:
+..  _router_api-bucket_id_mpcrc32:
 
-.. function:: vshard.router.bucket_id_mpcrc32(key)
+..  function:: vshard.router.bucket_id_mpcrc32(key)
 
     This function is safer than ``bucket_id_strcrc32``. It takes a CRC32 from
     a MessagePack encoded value. That is, bucket id of integers does not
@@ -449,7 +449,7 @@ Router public API
     an empty fraction part, it will be treated as an integer by ``bucket_id_mpcrc32()``.
     So you need to do explicit casts in such cases. Here is an example of the problem:
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> s = box.schema.create_space('test', {format = {{'id', 'double'}}}); _ = s:create_index('pk')
         ---
@@ -485,9 +485,9 @@ Router public API
         - 1614
         ...
 
-.. _router_api-bucket_count:
+..  _router_api-bucket_count:
 
-.. function:: vshard.router.bucket_count()
+..  function:: vshard.router.bucket_count()
 
     Return the total number of buckets specified in ``vshard.router.cfg()``.
 
@@ -502,9 +502,9 @@ Router public API
         ...
 
 
-.. _router_api-sync:
+..  _router_api-sync:
 
-.. function:: vshard.router.sync(timeout)
+..  function:: vshard.router.sync(timeout)
 
     Wait until the dataset is synchronized on replicas.
 
@@ -513,15 +513,15 @@ Router public API
     :return: ``true`` if the dataset was synchronized successfully; or ``nil`` and
              ``err`` explaining why the dataset cannot be synchronized.
 
-.. _router_api-discovery_wakeup:
+..  _router_api-discovery_wakeup:
 
-.. function:: vshard.router.discovery_wakeup()
+..  function:: vshard.router.discovery_wakeup()
 
     Force wakeup of the bucket discovery fiber.
 
-.. _router_api-discovery_set:
+..  _router_api-discovery_set:
 
-.. function:: vshard.router.discovery_set(mode)
+..  function:: vshard.router.discovery_set(mode)
 
     Turn on/off the background discovery fiber used by the router to
     find buckets.
@@ -557,9 +557,9 @@ Router public API
     on for new routers, as well as for all routers when rebalancing is
     started.
 
-.. _router_api-info:
+..  _router_api-info:
 
-.. function:: vshard.router.info()
+..  function:: vshard.router.info()
 
     Return information about each instance.
 
@@ -618,9 +618,9 @@ Router public API
           alerts: []
         ...
 
-.. _router_api-buckets_info:
+..  _router_api-buckets_info:
 
-.. function:: vshard.router.buckets_info()
+..  function:: vshard.router.buckets_info()
 
     Return information about each bucket. Since a bucket map can be huge,
     only the required range of buckets can be specified.
@@ -651,11 +651,11 @@ Router public API
         ...
 
 
-.. class:: replicaset_object
+..  class:: replicaset_object
 
-    .. _router_api-replicaset_call:
+    ..  _router_api-replicaset_call:
 
-    .. method:: call(function_name, {argument_list}, {options})
+    ..  method:: call(function_name, {argument_list}, {options})
 
         Call a function on a nearest available master (distances are defined using
         ``replica.zone`` and ``cfg.weights`` matrix) with specified
@@ -681,15 +681,15 @@ Router public API
             * result of ``function_name`` on success
             * nil, err otherwise
 
-    .. _router_api-replicaset_callrw:
+    ..  _router_api-replicaset_callrw:
 
-    .. method:: callrw(function_name, {argument_list}, {options})
+    ..  method:: callrw(function_name, {argument_list}, {options})
 
         Call a function on a nearest available master (distances are defined using
         ``replica.zone`` and ``cfg.weights`` matrix) with a specified
         arguments.
 
-        .. NOTE::
+        ..  NOTE::
 
             The ``replicaset_object:callrw`` method is similar to ``replicaset_object:call``.
 
@@ -709,7 +709,7 @@ Router public API
             * result of ``function_name`` on success
             * nil, err otherwise
 
-        .. code-block:: lua
+        ..  code-block:: lua
 
             tarantool> local bucket = 1; return vshard.router.callrw(
                      >     bucket,
@@ -722,9 +722,9 @@ Router public API
                      > )
 
 
-    .. _router_api-replicaset_callro:
+    ..  _router_api-replicaset_callro:
 
-    .. method:: callro(function_name, {argument_list}, {options})
+    ..  method:: callro(function_name, {argument_list}, {options})
 
         Call a function on the nearest available replica (distances are defined
         using ``replica.zone`` and ``cfg.weights`` matrix) with specified
@@ -748,9 +748,9 @@ Router public API
             * result of ``function_name`` on success
             * nil, err otherwise
 
-    .. _router_api-replicaset_callre:
+    ..  _router_api-replicaset_callre:
 
-    .. method:: replicaset:callre(function_name, {argument_list}, {options})
+    ..  method:: replicaset:callre(function_name, {argument_list}, {options})
 
         Call a function on the nearest available replica (distances are defined using
         ``replica.zone`` and ``cfg.weights`` matrix) with specified
@@ -777,14 +777,14 @@ Router public API
             * result of ``function_name`` on success
             * nil, err otherwise
 
-.. _vshard_api_reference-router_internal_api:
+..  _vshard_api_reference-router_internal_api:
 
 Router internal API
 -------------------
 
-.. _router_api-bucket_discovery:
+..  _router_api-bucket_discovery:
 
-.. function:: vshard.router.bucket_discovery(bucket_id)
+..  function:: vshard.router.bucket_discovery(bucket_id)
 
     Search for the bucket in the whole cluster. If the bucket is not
     found, it is likely that it does not exist. The bucket might also be

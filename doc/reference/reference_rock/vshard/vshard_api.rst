@@ -1,4 +1,4 @@
-.. _vshard-api-reference:
+..  _vshard-api-reference:
 
 API Reference
 =============
