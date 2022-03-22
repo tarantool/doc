@@ -1,7 +1,7 @@
 .. _box_introspection-box_stat:
 
 --------------------------------------------------------------------------------
-Submodule `box.stat`
+Submodule box.stat
 --------------------------------------------------------------------------------
 
 The ``box.stat`` submodule provides access to request and network statistics.
