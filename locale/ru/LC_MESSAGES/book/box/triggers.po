@@ -78,7 +78,7 @@ msgid ""
 "Triggers are defined only by the :ref:`'admin' user <authentication-"
 "owners_privileges>`."
 msgstr ""
-"Только :ref:`пользователь 'admin' <authentication-owners_privileges>` "
+"Только :ref:`пользователь \"admin\" <authentication-owners_privileges>` "
 "определяет триггеры."
 
 msgid ""
