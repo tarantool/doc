@@ -312,10 +312,11 @@ Router public API
     The function can be useful if you need to access:
 
     *   all the data in the cluster
-    *   a vast number of buckets scattered over the instances,
+
+    *   a vast number of buckets scattered over the instances
         whose individual :ref:`vshard.router.call() <router_api-call>` would take too long.
 
-    :param function_name: a function to execute
+    :param function_name: a function to call on the storages
     :param argument_list: an array of the function's arguments
     :param options:
 
@@ -323,17 +324,24 @@ Router public API
           shard with the bucket id, the operation will be repeated until the timeout is reached.
           ``timeout`` is the only supported option. It is applied to the entire call.
 
+    ..  important::
+
+        Do not use big timeout (longer than minutes) for ``map_callrw()``. The router tries to block the bucket moves
+        for the given timeout on all storages. In case of failure, the block remains for the entire timeout.
+
     :Return:
 
-    In case of success: a map with replicaset UUIDs as keys and results of the user's function as values, like this:
+    *   On success: a map with replicaset UUIDs (keys) and results of the user's function (values), like this:
 
         ..  code-block:: lua
 
             {uuid1 = {res1}, uuid2 = {res2}, ...}
 
-    If the function returned nil or box.NULL from one of the storages, it would not be present in the resulting map.
-    In case of failure: nil, error object, and optional replicaset UUID where the error happened.
-    UUID may not be returned if the error wasn't about a concrete replicaset.
+        If the function returned ``nil`` or ``box.NULL`` from one of the storages,
+        it would not be present in the resulting map.
+
+    *   On failure: nil, error object, and optional replicaset UUID where the error occured.
+        UUID won't be returned if the error is not about a concrete replicaset.
 
 ..  _router_api-route:
 
