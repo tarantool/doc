@@ -20,7 +20,7 @@ Router API
     |                                             | * :ref:`vshard.router.callre(bucket_id, function_name, {argument_list}, {options}) <router_api-callre>`   |
     |                                             | * :ref:`vshard.router.callbro(bucket_id, function_name, {argument_list}, {options}) <router_api-callbro>` |
     |                                             | * :ref:`vshard.router.callbre(bucket_id, function_name, {argument_list}, {options}) <router_api-callbre>` |
-    |                                             | * :ref:`vshard.router.map_callrw(function_name, {argument_list}, {options}) <router_api-map_callrw>`                                             |
+    |                                             | * :ref:`vshard.router.map_callrw(function_name, {argument_list}, {options}) <router_api-map_callrw>`      |
     |                                             | * :ref:`vshard.router.route(bucket_id) <router_api-route>`                                                |
     |                                             | * :ref:`vshard.router.routeall() <router_api-routeall>`                                                   |
     |                                             | * :ref:`vshard.router.bucket_id_strcrc32(key) <router_api-bucket_id_strcrc32>`                            |
