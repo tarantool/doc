@@ -188,7 +188,7 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_BIND_COUNT=0x34
     IPROTO_SQL_TEXT=0x40
     IPROTO_SQL_BIND=0x41
-    IPROTO_SQL_INF O=0x42
+    IPROTO_SQL_INFO=0x42
     IPROTO_STMT_ID=0x43
     IPROTO_ERROR=0x52
     IPROTO_FIELD_NAME=0x00
