@@ -309,22 +309,54 @@ so on.
 
     .. _taptest-istype:
 
-    .. method:: isnil(value, test-name)
-                isstring(value, test-name)
-                isnumber(value, test-name)
-                istable(value, test-name)
-                isboolean(value, test-name)
-                isudata(value, test-name)
-                iscdata(value, test-name)
+    .. method:: isnil(test, v, message, extra)
+                isstring(test, v, message, extra)
+                isnumber(test, v, message, extra)
+                istable(test, v, message, extra)
+                isboolean(test, v, message, extra)
+                isudata(test, v, utype, message, extra)
+                iscdata(test, v, ctype, message, extra)
+
+        Test whether a value has a particular type. Displays a long message if
+        the value is not of the specified type.
+
+        :param string test: name of the test
+        :param lua-value v: value the type of which is to be checked
+        :param string utype: type of data that a passed value `v` should have
+        :param string ctype: type of data that a passed value `v` should have
+        :param string message: text that will be shown to the user in case of failure
+        :param string extra: additional field
+
+        :return: true or false.
+        :rtype:  boolean
+
+    Example:
+    ..  code-block:: lua
+
+        test:iscdata(slab_info.quota_size, ffi.typeof('uint64_t'),'memcached.slab.info().quota_size returns a cdata')
+
+
+.. _taptest-iscdata:
+
+    .. method:: iscdata(test, v, ctype, message, extra)
 
         Test whether a value has a particular type. Displays a long message if
         the value is not of the specified type.
 
         :param lua-value value:
         :param string test-name: name of the test
+        :param string ctype: expected cdata type
 
         :return: true or false.
         :rtype:  boolean
+
+     iscdata(test, v, ctype, message, extra), test не нужно описывать, он автоматически передается в функцию.
+v - значение, тип которого надо проверить,
+ctype это тип данных, который должен быть у значения передеданного как v,
+message это текст, который будет показан пользователю, если проверка будет неуспешной,
+extra - это какое то дополнительно поле.
+Пример:
+test:iscdata(slab_info.quota_size, ffi.typeof('uint64_t'),'memcached.slab.info().quota_size returns a cdata')
 
     .. _taptest-strict:
 
