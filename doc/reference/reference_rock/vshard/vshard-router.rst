@@ -20,7 +20,7 @@ Router API
     |                                             | * :ref:`vshard.router.callre(bucket_id, function_name, {argument_list}, {options}) <router_api-callre>`   |
     |                                             | * :ref:`vshard.router.callbro(bucket_id, function_name, {argument_list}, {options}) <router_api-callbro>` |
     |                                             | * :ref:`vshard.router.callbre(bucket_id, function_name, {argument_list}, {options}) <router_api-callbre>` |
-    |                                             | * :ref:`vshard.router.map_callrw() <router_api-map_callrw>`                                               |
+    |                                             | * :ref:`vshard.router.map_callrw(function_name, {argument_list}, {options}) <router_api-map_callrw>`                                             |
     |                                             | * :ref:`vshard.router.route(bucket_id) <router_api-route>`                                                |
     |                                             | * :ref:`vshard.router.routeall() <router_api-routeall>`                                                   |
     |                                             | * :ref:`vshard.router.bucket_id_strcrc32(key) <router_api-bucket_id_strcrc32>`                            |
@@ -304,7 +304,36 @@ Router public API
 
 ..  _router_api-map_callrw:
 
-..  function:: vshard.router.map_callrw(function_name, args[, {timeout = <seconds>}])
+..  function:: vshard.router.map_callrw(function_name, {argument_list}, {options})
+
+    The function implements consistent map-reduce over the entire cluster.
+    Consistency means all the data was accessible and didn't move during map request's execution.
+
+    The function can be useful if you need to access:
+
+    *   all the data in the cluster
+    *   a vast number of buckets scattered over the instances,
+        whose individual :ref:`vshard.router.call() <router_api-call>` would take too long.
+
+    :param function_name: a function to execute
+    :param argument_list: an array of the function's arguments
+    :param options:
+
+        * ``timeout`` - a request timeout, in seconds. In case the ``router`` cannot identify a
+          shard with the bucket id, the operation will be repeated until the timeout is reached.
+          ``timeout`` is the only supported option. It is applied to the entire call.
+
+    :Return:
+
+    In case of success: a map with replicaset UUIDs as keys and results of the user's function as values, like this:
+
+        ..  code-block:: lua
+
+            {uuid1 = {res1}, uuid2 = {res2}, ...}
+
+    If the function returned nil or box.NULL from one of the storages, it would not be present in the resulting map.
+    In case of failure: nil, error object, and optional replicaset UUID where the error happened.
+    UUID may not be returned if the error wasn't about a concrete replicaset.
 
 ..  _router_api-route:
 
