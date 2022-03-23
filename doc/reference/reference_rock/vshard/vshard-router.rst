@@ -316,6 +316,8 @@ Router public API
     *   a vast number of buckets scattered over the instances
         whose individual :ref:`vshard.router.call() <router_api-call>` would take too long.
 
+    The chosen function is called on the master node of each replicaset with the given arguments.
+
     :param function_name: a function to call on the storages
     :param argument_list: an array of the function's arguments
     :param options:
@@ -342,6 +344,46 @@ Router public API
 
     *   On failure: nil, error object, and optional replicaset UUID where the error occured.
         UUID won't be returned if the error is not about a concrete replicaset.
+        For instance, the method fails if not all buckets were found even if all replicasets were scanned successfully.
+        Handling the result looks like this:
+
+        ..  code-block:: lua
+
+            res, err, uuid = vshard.router.map_callrw(...)
+            if not res then
+                -- Error.
+                -- 'err' - error object. 'uuid' - optional UUID of replicaset
+                -- where the error happened.
+                ...
+            else
+                -- Success.
+                for uuid, value in pairs(res) do
+                    ...
+                end
+            end
+
+    Map-Reduce in vshard can be divided into three stages: Ref, Map, and Reduce.
+    The first stage ensures data consistency while executing the user's function on all nodes.
+    Consistency, defined for map-reduce, is not compatible with rebalancing.
+    As any bucket move would make the sender and receiver nodes 'inconsistent',
+    it is not possible to call a function on them to access all the data
+    without doing :ref:`vshard.storage.bucket_ref() <storage_api-bucket_ref>`.
+    It makes the Ref stage intricate, as it should work together with the rebalancer to ensure
+    they do not block each other.
+
+    For this, storage has a special scheduler for bucket moves and storage refs.
+    It shares storage time between them fairly.
+    The definition of fairness depends on how long and frequent the moves and refs are.
+    It can be configured using storage options ``sched_move_quota`` and ``sched_ref_quota``.
+    Keep in mind that the scheduler configuration may affect map-reduce requests if used a lot during rebalancing.
+
+    The Reduce stage is not performed by vshard.
+    It is what the user's code does with the results of ``map_callrw()``.
+
+    ..  note::
+
+        ``map_callrw()`` works only on masters.
+        Therefore, it cannot be used if at least one replicaset has its master node down.
 
 ..  _router_api-route:
 
