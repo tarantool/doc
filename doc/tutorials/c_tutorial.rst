@@ -364,8 +364,7 @@ Create a file. Name it ``read.c``. Put these 43 lines in it:
       uint32_t key = 10000;      /* The key value that box_insert() used */
       mp_encode_array(tuple_buf, 0); /* clear */
       box_tuple_format_t *fmt = box_tuple_format_default();
-      box_tuple_t *tuple = box_tuple_new(fmt, tuple_buf, tuple_buf+512);
-      assert(tuple != NULL);
+      box_tuple_t *tuple = NULL;
       char key_buf[16];          /* Pass key_buf = encoded key = 1000 */
       char *key_end = key_buf;
       key_end = mp_encode_array(key_end, 1);
