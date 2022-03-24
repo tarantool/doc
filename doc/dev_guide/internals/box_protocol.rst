@@ -60,8 +60,8 @@ Index
     | |br|:ref:`IPROTO_FETCH_SNAPSHOT                    |                        |
     | <box_protocol-join>`                               |                        |
     | |br|:ref:`IPROTO_REGISTER <box_protocol-join>`     |                        |
-    | |br|:ref:`IPROTO_BEGIN <box_protocol-begin>`       |                        |
-    | |br|:ref:`IPROTO_COMMIT <box_protocol-commit>`     |                        |
+    | |br|:ref:`IPROTO_BEGIN <box_protocol-streams>`       |                        |
+    | |br|:ref:`IPROTO_COMMIT <box_protocol-streams>`     |                        |
     | |br|:ref:`IPROTO_ROLLBACK <box_protocol-rollback>` |                        |
     +----------------------------------------------------+------------------------+
     | :ref:`Responses if no error and no                 | Responses for no SQL   |
