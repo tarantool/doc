@@ -2,7 +2,7 @@ Major features
 ==============
 
 Every released version of Tarantool brings some notable features and fixes, which are all listed in
-:doc:`the release notes </release>`.
+:doc:`the release notes </release/notes>`.
 To keep track of the major features in each version of the Tarantool easier, you can use the table below.
 
 ..  container:: table
