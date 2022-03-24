@@ -9,8 +9,7 @@ Released on 2021-12-22.
 Overview
 --------
 
-1.10.12 is the next stable release in the `long-term support (LTS)
-version <https://www.tarantool.io/en/doc/1.10/dev_guide/release_management/#release-policy>`__
+1.10.12 is the next stable release in the :doc:`long-term support (LTS) version </release/policy>`
 1.10.x release series.
 
 The label “stable” means there are 1.10.x-based applications running in

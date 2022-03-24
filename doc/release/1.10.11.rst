@@ -1,4 +1,4 @@
-Tarantool 1.10.10
+Tarantool 1.10.11
 =================
 
 Released on 2021-08-19.

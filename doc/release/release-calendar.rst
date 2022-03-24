@@ -34,15 +34,15 @@ End of series support means the release series will no longer receive any patche
             -   Not planned yet
             -   Not planned yet
 
-        *   -   `2.8.3 <https://github.com/tarantool/tarantool/releases/tag/2.8.3>`_
+        *   -   :doc:`2.8.3 </release/2.8.3>`
             -   December 22, 2021
             -   Not planned yet
 
-        *   -   :doc:`2.8.2 </release/2021-08-releases>`
+        *   -   :doc:`2.8.2 </release/2.8.2>`
             -   August 19, 2021
             -   Not planned yet
 
-        *   -   :doc:`2.7.3 </release/2021-08-releases>`
+        *   -   :doc:`2.7.3 </release/2.7.3>`
             -   August 19, 2021
             -   August 19, 2021
 
@@ -90,11 +90,11 @@ End of series support means the release series will no longer receive any patche
             -   December 31, 2019
             -   April 20, 2020
 
-        *   -   `1.10.12 LTS <https://github.com/tarantool/tarantool/releases/tag/1.10.12>`_
+        *   -   :doc:`1.10.12 LTS </release/1.10.12>`
             -   December 22, 2021
             -   Not planned yet
 
-        *   -   :doc:`1.10.11 LTS </release/2021-08-releases>`
+        *   -   :doc:`1.10.11 LTS </release/1.10.11>`
             -   August 19, 2021
             -   Not planned yet
 
