@@ -33,3 +33,155 @@ features of the 1.10.x series.
 
 Functionality added or changed
 ------------------------------
+
+Core
+~~~~
+
+-   Now streams and interactive transactions over streams are implemented in iproto.
+    Every stream is associated with its ID, which is unique within one connection.
+    All requests with the same non-zero stream ID belong to the same stream.
+    All requests in the stream are processed synchronously.
+    The next request will not start executing until the previous one is completed.
+    If a request's stream ID is ``0``, it does not belong to any stream and is processed in the old way.
+
+    In ``net.box``, a stream is an object above the connection that has the same methods
+    but allows executing requests sequentially. The ID is generated on the client side automatically.
+    If a user writes their own connector and wants to use streams, they must transmit the ``stream_id`` over the iproto protocol.
+
+    The primary purpose of streams is transactions via iproto.
+    As each stream can start a transaction, several transactions can be multiplexed over one connection.
+    There are multiple ways to begin, commit, and rollback a transaction.
+    One can do that using the appropriate stream methods, ``call``, ``eval``,
+    or ``execute`` with the SQL transaction syntax. Users can mix these methods.
+    For example, one might start a transaction using ``stream:begin()``,
+    and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
+    If any request fails during the transaction, it will not affect the other requests in the transaction.
+    If a disconnect occurs while there is an active transaction in the stream,
+    that transaction will be rolled back if it hasn't been committed before the connection failure.
+
+SQL
+~~~
+
+-   **[Breaking change]**: Arithmetic operators must now have numeric operands.
+    String operands are illegal.
+
+    For example, ``SELECT 1 + '1'`` was ``2`` in version 2.8.
+    Now it causes an error.
+
+-   **[Breaking change]** in operations on SCALAR columns.
+    Since the type of a value no longer determines whether an operation is valid,
+    comparisons and functions that require a specific type no longer work.
+
+    For example, table ``T`` has only one row with a scalar column containing ``'a'``.
+    ``UPPER(scalar_column)`` was ``'A'`` in version 2.8.
+    Now it causes an error.
+
+Build
+~~~~~
+
+-   Fedora 28 and 29 builds are no longer supported.
+
+Bugs fixed
+----------
+
+Core
+~~~~
+
+-   **[Breaking change]** ``fiber.wakeup()`` in Lua and
+    ``fiber_wakeup()`` in C became NOP on the currently running fiber.
+    Previously they allowed “ignoring” the next yield or sleep, which
+    resulted in unexpected erroneous wake-ups. Calling these functions
+    right before ``fiber.create()`` in Lua or ``fiber_start()`` in C
+    could lead to a crash (in debug build) or undefined behaviour (in
+    release build) (:tarantool-issue:`6043`).
+
+    There was a single use case for the previous behaviour: rescheduling
+    in the same event loop iteration, which is not the same as
+    ``fiber.sleep(0)`` in Lua and ``fiber_sleep(0)`` in C. It could be
+    done in the following way:
+
+    in C:
+
+    ..  code:: c
+
+        fiber_wakeup(fiber_self());
+        fiber_yield();
+
+    and in Lua:
+
+    ..  code:: lua
+
+        fiber.self():wakeup()
+        fiber.yield()
+
+    To get the same effect in C, one can now use ``fiber_reschedule()``.
+    In Lua, it is now impossible to reschedule the current fiber directly
+    in the same event loop iteration. One can reschedule self
+    through a second fiber, but it is strongly discouraged:
+
+    ..  code:: lua
+
+        -- do not use this code
+        local self = fiber.self()
+        fiber.new(function() self:wakeup() end)
+        fiber.sleep(0)
+
+-   Fixed memory leak on ``box.on_commit()`` and
+    ``box.on_rollback()`` (:tarantool-issue:`6025`).
+
+-   Fixed invalid results of the ``json`` module’s ``encode``
+    function when it was used from the Lua garbage collector. For
+    example, this could happen in functions used as ``ffi.gc()``
+    (:tarantool-issue:`6050`).
+
+-   Fixed console client connection failure in case of request timeout
+    (:tarantool-issue:`6249`).
+
+-   Added a missing broadcast to ``net.box.future:discard()`` so that now
+    fibers waiting for a request result wake up when the request is
+    discarded (:tarantool-issue:`6250`).
+
+-   Fixed an error message that appeared in a particular case during
+    MVCC operation (:tarantool-issue:`6247`).
+
+Replication
+~~~~~~~~~~~
+
+-   Fixed replication occasionally stopping with ``ER_INVALID_MSGPACK``
+    when the replica is under high load (:tarantool-issue:`4040`).
+
+LuaJIT
+~~~~~~
+
+-   Fixed optimization for single-char strings in the ``IR_BUFPUT`` assembly
+    routine.
+
+-   Fixed slots alignment in the ``lj-stack`` command output when ``LJ_GC64``
+    is enabled (:tarantool-issue:`5876`).
+
+-   Fixed dummy frame unwinding in the ``lj-stack`` command.
+
+-   Fixed detection of inconsistent renames even in the presence of sunk
+    values (:tarantool-issue:`4252`, :tarantool-issue:`5049`, :tarantool-issue:`5118`).
+
+-   Fixed the VM register allocation order provided by LuaJIT frontend in case
+    of ``BC_ISGE`` and ``BC_ISGT`` (:tarantool-issue:`6227`).
+
+Lua
+~~~
+
+-   When an error occurs during encoding call results, the auxiliary
+    lightuserdata value is not removed from the main Lua coroutine stack.
+    Before the fix, it led to undefined behaviour during the next
+    usage of this Lua coroutine (:tarantool-issue:`4617`).
+
+-   Fixed a Lua C API misuse when the error is raised during call results
+    encoding in an unprotected coroutine and expected to be caught in a
+    different, protected coroutine (:tarantool-issue:`6248`).
+
+Triggers
+^^^^^^^^
+
+-   Fixed a possible crash in case trigger removes itself. Fixed a
+    possible crash in case someone destroys a trigger when it
+    yields (:tarantool-issue:`6266`).
