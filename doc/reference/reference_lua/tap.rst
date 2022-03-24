@@ -330,33 +330,10 @@ so on.
         :return: true or false.
         :rtype:  boolean
 
-    Example:
     ..  code-block:: lua
 
         test:iscdata(slab_info.quota_size, ffi.typeof('uint64_t'),'memcached.slab.info().quota_size returns a cdata')
 
-
-.. _taptest-iscdata:
-
-    .. method:: iscdata(test, v, ctype, message, extra)
-
-        Test whether a value has a particular type. Displays a long message if
-        the value is not of the specified type.
-
-        :param lua-value value:
-        :param string test-name: name of the test
-        :param string ctype: expected cdata type
-
-        :return: true or false.
-        :rtype:  boolean
-
-     iscdata(test, v, ctype, message, extra), test не нужно описывать, он автоматически передается в функцию.
-v - значение, тип которого надо проверить,
-ctype это тип данных, который должен быть у значения передеданного как v,
-message это текст, который будет показан пользователю, если проверка будет неуспешной,
-extra - это какое то дополнительно поле.
-Пример:
-test:iscdata(slab_info.quota_size, ffi.typeof('uint64_t'),'memcached.slab.info().quota_size returns a cdata')
 
     .. _taptest-strict:
 
