@@ -1,0 +1,35 @@
+Tarantool 2.10.0-beta1
+======================
+
+Released on 2021-08-20.
+
+*   Release: :tarantool-release:`2.10.0-beta1`.
+*   Tag: ``2.10.0-beta1-0-g7da4b14``.
+
+Overview
+--------
+
+2.10.0-beta1 is the beta version of the 2 release series.
+It introduces 28 new features and resolves 56 bugs since the 2.8 version.
+There can be bugs in less common areas. If you find any,
+feel free to `report an issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
+
+Notable changes are:
+
+-   Preliminary support of ARM64 CPU (GNU/Linux).
+-   Preliminary support of Apple M1 CPU (macOS).
+-   Consistent SQL type system.
+-   Lightning fast net.box module.
+-   Interative transactions in binary protocol.
+-   Small tuples are now stored more efficiently.
+
+Compatibility
+-------------
+
+Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
+data layout, client-server protocol, and replication protocol.
+
+Please
+`upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 2.x series.

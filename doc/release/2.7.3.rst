@@ -1,0 +1,33 @@
+Tarantool 2.7.3
+===============
+
+Released on 2021-08-19.
+
+*   Release :tarantool-release:`2.7.3`.
+*   Tagged ``2.7.3-0-gdddf926``
+
+Overview
+--------
+
+2.7.3 is the second :doc:`stable </release/policy>`
+version of the 2.7 release series. It introduces 6 improvements and
+resolves 49 bugs since version :doc:`2.7.2 </release/2.7.2>`.
+
+The “stable” label means that we have all planned features implemented
+and we see no high-impact issues. However, if you encounter an issue,
+feel free to `report
+it <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
+
+Compatibility
+-------------
+
+Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
+data layout, client-server protocol, and replication protocol.
+
+Please
+`upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 2.x series.
+
+Functionality added or changed
+------------------------------

@@ -9,10 +9,10 @@ Released on 2021-12-22.
 Overview
 --------
 
-2.8.3 is the 3rd
+2.8.3 is the third
 :doc:`stable </release/policy/>`
 version of the 2.8 release series. It introduces 3 improvements and
-resolves 24 bugs since 2.8.2.
+resolves 24 bugs since :doc:`2.8.3 </release/2.8.3>
 
 The “stable” label means that we have all planned features implemented
 and we see no high-impact issues. However, if you encounter an issue,
