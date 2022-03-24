@@ -17,6 +17,7 @@ resolves 51 bugs since 2.8.1.
 The “stable” label means that we have all planned features implemented
 and we see no high-impact issues. However, if you encounter an issue,
 feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
+
 Compatibility
 -------------
 

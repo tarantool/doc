@@ -39,34 +39,18 @@ Core
     ``box.info.synchro`` interface
     (:tarantool-issue:`5191`).
 
-Replication
-~~~~~~~~~~~
-
--   Introduced the ``box.info.replication[n].downstream.lag`` field to monitor the state of replication.
-    This represents the lag between the moment when the main node writes a certain transaction to its WAL
-    and the moment it receives an ack for this transaction from the replica
-    (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5447`).
-
--   Introduced ``on_election`` triggers. The triggers can be registered via the ``box.ctl.on_election()`` interface
-    and run asynchronously each time ``box.info.election`` changes
-    (:tarantool-release:`2.10.0-beta1`, :tarantool-issue:`5819`).
-
-
 LuaJIT
 ~~~~~~
 
 -   Introduced support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py``
     (:tarantool-issue:`6224`).
 
-
-
 Lua
 ~~~
 
 -   Introduced the new method ``table.equals``. It compares two tables by value with
     respect to the ``__eq`` metamethod
-    (:tarantool-release:`2.8.2`, :tarantool-release:`2.7.3`, :tarantool-release:`2.10.0-beta1`).
-
+    (:tarantool-release:`2.10.0-beta1`).
 
 SQL
 ~~~
