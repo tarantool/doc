@@ -49,8 +49,7 @@ Lua
 ~~~
 
 -   Introduced the new method ``table.equals``. It compares two tables by value with
-    respect to the ``__eq`` metamethod
-    (:tarantool-release:`2.10.0-beta1`).
+    respect to the ``__eq`` metamethod.
 
 SQL
 ~~~
@@ -74,22 +73,11 @@ SQL
     could not be cast to ``BOOLEAN``, even if the conversion would be
     successful according to the rules.
 
--   **[Breaking change]**: Arithmetic operators must now have numeric operands.
-    String operands are illegal.
-
-    For example, ``SELECT 1 + '1'`` was ``2`` in version 2.8.
-    Now it causes an error.
-
--   **[Breaking change]** in operations on SCALAR columns.
-    Since the type of a value no longer determines whether an operation is valid,
-    comparisons and functions that require a specific type no longer work.
-
-    For example, table ``T`` has only one row with a scalar column containing ``'a'``.
-    ``UPPER(scalar_column)`` was ``'A'`` in version 2.8.
-    Now it causes an error.
-
 Build
 ~~~~~
+
+-   Fedora 34 builds are now supported
+    (:tarantool-issue:`6074`).
 
 -   Fedora 28 and 29 builds are no longer supported.
 
@@ -179,6 +167,12 @@ Core
 -   Fixed a MVCC segmentation fault that arose
     when updating the entire space concurrently
     (:tarantool-issue:`5892`).
+
+-   Fixed crash in case of reloading a compiled module when the new module lacks some functions
+    present in the former code. In turn, this event triggers a fallback procedure where we restore old functions,
+    but instead of restoring each function, we process a sole entry only, leading to the crash later
+    when these restored functions are called
+    (:tarantool-issue:`5968`).
 
 -   Fixed a bug with failed assertion after a stress update of the same
     key
@@ -354,3 +348,16 @@ SQL
 
 -   All arithmetic operations can now accept numeric values only
     (:tarantool-issue:`5756`).
+
+MVCC
+~~~~
+
+-   Fixed MVCC interaction with ephemeral spaces: TX manager now ignores them
+    (:tarantool-issue:`6095`).
+
+-   Fixed loss of tuples after a conflict exception
+    (:tarantool-issue:`6132`).
+
+-   Fixed a segfault during update/delete of the same tuple
+    (:tarantool-issue:`6021`).
+

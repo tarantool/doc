@@ -34,50 +34,17 @@ features of the 1.10.x series.
 Functionality added or changed
 ------------------------------
 
-Core
-~~~~
+LuaJIT
+~~~~~~
 
--   Now streams and interactive transactions over streams are implemented in iproto.
-    Every stream is associated with its ID, which is unique within one connection.
-    All requests with the same non-zero stream ID belong to the same stream.
-    All requests in the stream are processed synchronously.
-    The next request will not start executing until the previous one is completed.
-    If a request's stream ID is ``0``, it does not belong to any stream and is processed in the old way.
-
-    In ``net.box``, a stream is an object above the connection that has the same methods
-    but allows executing requests sequentially. The ID is generated on the client side automatically.
-    If a user writes their own connector and wants to use streams, they must transmit the ``stream_id`` over the iproto protocol.
-
-    The primary purpose of streams is transactions via iproto.
-    As each stream can start a transaction, several transactions can be multiplexed over one connection.
-    There are multiple ways to begin, commit, and rollback a transaction.
-    One can do that using the appropriate stream methods, ``call``, ``eval``,
-    or ``execute`` with the SQL transaction syntax. Users can mix these methods.
-    For example, one might start a transaction using ``stream:begin()``,
-    and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
-    If any request fails during the transaction, it will not affect the other requests in the transaction.
-    If a disconnect occurs while there is an active transaction in the stream,
-    that transaction will be rolled back if it hasn't been committed before the connection failure.
-
-SQL
-~~~
-
--   **[Breaking change]**: Arithmetic operators must now have numeric operands.
-    String operands are illegal.
-
-    For example, ``SELECT 1 + '1'`` was ``2`` in version 2.8.
-    Now it causes an error.
-
--   **[Breaking change]** in operations on SCALAR columns.
-    Since the type of a value no longer determines whether an operation is valid,
-    comparisons and functions that require a specific type no longer work.
-
-    For example, table ``T`` has only one row with a scalar column containing ``'a'``.
-    ``UPPER(scalar_column)`` was ``'A'`` in version 2.8.
-    Now it causes an error.
+-   Introduced support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py``
+    (:tarantool-issue:`6224`).
 
 Build
 ~~~~~
+
+-   Fedora 34 builds are now supported
+    (:tarantool-issue:`6074`).
 
 -   Fedora 28 and 29 builds are no longer supported.
 
@@ -138,11 +105,31 @@ Core
     (:tarantool-issue:`6249`).
 
 -   Added a missing broadcast to ``net.box.future:discard()`` so that now
-    fibers waiting for a request result wake up when the request is
-    discarded (:tarantool-issue:`6250`).
+    fibers waiting for a request result wake up when the request is discarded
+    (:tarantool-issue:`6250`).
 
--   Fixed an error message that appeared in a particular case during
-    MVCC operation (:tarantool-issue:`6247`).
+-   Fixed a bug when iterators became invalid (up to crash) after schema change
+    (:tarantool-issue:`6147`).
+
+-   Fixed crash in case of reloading a compiled module when the new module lacks some functions
+    present in the former code. In turn, this event triggers a fallback procedure where we restore old functions,
+    but instead of restoring each function, we process a sole entry only, leading to the crash later
+    when these restored functions are called
+    (:tarantool-issue:`5968`).
+
+Vinyl
+~~~~~
+
+-   Fixed possible keys divergence during secondary index build, which
+    might lead to missing tuples
+    (:tarantool-issue:`6045`).
+
+-   Fix crash which may occur while switching read_only mode due to duplicating
+    transaction in tx writer list (:tarantool-issue:`5934`).
+
+-   Fixed the race between Vinyl garbage collection and compaction that
+    resulted in a broken vylog and recovery failure
+    (:tarantool-issue:`5436`).
 
 Replication
 ~~~~~~~~~~~
