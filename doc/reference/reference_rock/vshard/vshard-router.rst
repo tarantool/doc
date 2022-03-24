@@ -307,9 +307,9 @@ Router public API
 ..  function:: vshard.router.map_callrw(function_name, {argument_list}, {options})
 
     The function implements consistent map-reduce over the entire cluster.
-    Consistency means all the data was accessible and didn't move during map request's execution.
+    Consistency means all the data was accessible and didn't move during the map request's execution.
 
-    The function can be useful if you need to access:
+    The function can be helpful if you need to access:
 
     *   all the data in the cluster
 
@@ -322,18 +322,18 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` - a request timeout, in seconds. In case the ``router`` cannot identify a
+        * ``timeout`` - a request timeout, in seconds. If the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the timeout is reached.
           ``timeout`` is the only supported option. It is applied to the entire call.
 
     ..  important::
 
         Do not use big timeout (longer than minutes) for ``map_callrw()``. The router tries to block the bucket moves
-        for the given timeout on all storages. In case of failure, the block remains for the entire timeout.
+        for the given timeout on all storages. On failure, the block remains for the entire timeout.
 
     :Return:
 
-    *   On success: a map with replicaset UUIDs (keys) and results of the user's function (values), like this:
+    *   On success: a map with replicaset UUIDs (keys) and results of the user's function (values).
 
         ..  code-block:: lua
 
@@ -342,9 +342,9 @@ Router public API
         If the function returned ``nil`` or ``box.NULL`` from one of the storages,
         it would not be present in the resulting map.
 
-    *   On failure: nil, error object, and optional replicaset UUID where the error occured.
+    *   On failure: nil, error object, and optional replicaset UUID where the error occurred.
         UUID won't be returned if the error is not about a concrete replicaset.
-        For instance, the method fails if not all buckets were found even if all replicasets were scanned successfully.
+        For instance, the method fails if not all buckets were found, even if all replicasets were scanned successfully.
         Handling the result looks like this:
 
         ..  code-block:: lua
@@ -365,13 +365,13 @@ Router public API
     Map-Reduce in vshard can be divided into three stages: Ref, Map, and Reduce.
     The first stage ensures data consistency while executing the user's function on all nodes.
     Consistency, defined for map-reduce, is not compatible with rebalancing.
-    As any bucket move would make the sender and receiver nodes 'inconsistent',
-    it is not possible to call a function on them to access all the data
-    without doing :ref:`vshard.storage.bucket_ref() <storage_api-bucket_ref>`.
+    Any bucket move would make the sender and receiver nodes 'inconsistent',
+    so it is impossible to call a function on them to access all the data
+    without :ref:`vshard.storage.bucket_ref() <storage_api-bucket_ref>`.
     It makes the Ref stage intricate, as it should work together with the rebalancer to ensure
     they do not block each other.
 
-    For this, storage has a special scheduler for bucket moves and storage refs.
+    For this, the storage has a special scheduler for bucket moves and storage refs.
     It shares storage time between them fairly.
     The definition of fairness depends on how long and frequent the moves and refs are.
     It can be configured using storage options ``sched_move_quota`` and ``sched_ref_quota``.
@@ -383,7 +383,7 @@ Router public API
     ..  note::
 
         ``map_callrw()`` works only on masters.
-        Therefore, it cannot be used if at least one replicaset has its master node down.
+        Therefore, you can't use it if at least one replicaset has its master node down.
 
 ..  _router_api-route:
 
