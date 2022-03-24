@@ -93,7 +93,7 @@ LuaJIT
 ~~~~~~
 
 -   **[Breaking change]** Introduce LuaJIT platform metrics (:tarantool-issue:`5187`).
-    Read more: :ref:`LuaJIT metrics <metrics-luajit>`.
+    Read more: :ref:`LuaJIT metrics <metrics-reference-luajit>`.
 
     -   This change introduces new builtin library “misc” that may
         conflict with user’s modules.

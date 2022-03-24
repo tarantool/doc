@@ -81,7 +81,7 @@ To keep track of the major features in each version of the Tarantool easier, you
             -   :doc:`box.ctl.promote() </reference/reference_lua/box_ctl/promote>` and the concept of manual elections (:tarantool-issue:`3055`)
 
         *   -   2.6.1
-            -   :ref:`LuaJIT platform metrics <metrics-luajit>` (:tarantool-issue:`5187`)
+            -   :ref:`LuaJIT platform metrics <metrics-reference-luajit>` (:tarantool-issue:`5187`)
 
         *   -   2.6.1
             -   :doc:`Automated leader election </book/replication/repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)
