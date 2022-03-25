@@ -650,7 +650,7 @@ does 500,000 inserts and deletes in a Tarantool space.
 Start the profiler, execute the function, stop the
 profiler, and show what the profiler sampled.
 
-.. code-block:: none
+.. code-block:: lua
 
     box.space.t:drop()
     box.schema.space.create('t')
