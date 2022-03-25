@@ -83,13 +83,11 @@ Lua
    different one, that is protected (:tarantool-issue:`6248`).
 
 Triggers
-^^^^^^^^
+~~~~~~~~
 
 -  Fixed possibility crash in case when trigger removes itself. Fixed
    possibility crash in case when someone destroy trigger, when it’s
    yield (:tarantool-issue:`6266`).
-
-.. _build-1:
 
 Build
 ~~~~~

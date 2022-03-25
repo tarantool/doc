@@ -87,8 +87,6 @@ Replication
    replica failing to restore connection for ``replication_timeout``
    seconds (:tarantool-issue:`4669`).
 
-.. _luajit-1:
-
 LuaJIT
 ~~~~~~
 
@@ -114,7 +112,7 @@ Lua
    box.func:call() (:tarantool-issue:`6405`).
 
 Triggers
-^^^^^^^^
+~~~~~~~~
 
 -  Fixed possibility crash in case when trigger removes itself. Fixed
    possibility crash in case when someone destroy trigger, when it’s
@@ -125,8 +123,6 @@ SQL
 
 -  Now, when copying an empty string, an error will not be set
    unnecessarily (:tarantool-issue:`6157`, :tarantool-issue:`6399`).
-
-.. _build-1:
 
 Build
 ~~~~~

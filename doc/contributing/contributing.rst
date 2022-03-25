@@ -233,14 +233,10 @@ Please read about
 `our code review procedure <https://github.com/tarantool/tarantool/wiki/Code-review-procedure#general-coding-points-to-check>`_
 before making your first commit.
 
-Here are two ways to suggest a patch:
-
-* (preferred) Using the fork and pull mechanism on GitHub: Make changes to your
-  copy of the repository and submit it to us for review. Check the
-  `GitHub documentation <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__
-  to learn how to do it.
-* Suggest a patch via the mailing list. This is where our developers discuss most features.
-  Learn more in :ref:`the article on submitting patches </dev_guide/developer_guidelines/#how-to-submit-a-patch-for-review>`.
+You can suggest a patch using the fork and pull mechanism on GitHub: Make changes to your
+copy of the repository and submit it to us for review. Check the
+`GitHub documentation <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__
+to learn how to do it.
 
 
 How to write tests
