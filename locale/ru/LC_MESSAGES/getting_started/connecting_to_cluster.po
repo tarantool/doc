@@ -111,10 +111,10 @@ msgstr "``truncate``"
 
 msgid ""
 "To learn how to call stored procedures in your programming language, see the"
-" section \"Calling Stored Procedures\":"
+" corresponding section:"
 msgstr ""
 "Чтобы узнать, как вызывать хранимые процедуры в вашем языке "
-"программирования, смотрите раздел \"Вызов хранимых процедур\":"
+"программирования, смотрите раздел:"
 
 msgid ":ref:`for Python <getting_started-python>`"
 msgstr ":ref:`для Python<getting_started-python>`"
@@ -124,6 +124,9 @@ msgstr ":ref:`для Go <getting_started-go>`"
 
 msgid ":ref:`for PHP <getting_started-php>`"
 msgstr ":ref:`для PHP <getting_started-php>`"
+
+msgid ":doc:`for C++ </getting_started/getting_started_cxx>`"
+msgstr ":doc:`для C++ </getting_started/getting_started_cxx>`"
 
 msgid ""
 "For connectors to other languages, check the README for the connector of "
