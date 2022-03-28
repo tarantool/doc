@@ -12,4 +12,4 @@ Release notes
     policy_index
     notes
     major-features
-    release-calendar
+    calendar

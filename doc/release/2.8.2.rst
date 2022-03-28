@@ -12,7 +12,7 @@ Overview
 2.8.2 is the second
 :doc:`stable </release/policy/>`
 version of the 2.8 release series. It introduces 6 improvements and
-resolves 51 bugs since version :doc:`2.8.1 </release/2.8.1>`..
+resolves 51 bugs since version :doc:`2.8.1 </release/2.8.1>`.
 
 The “stable” label means that we have all planned features implemented
 and we see no high-impact issues. However, if you encounter an issue,

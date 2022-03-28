@@ -353,5 +353,5 @@ No new versions are released since then.
 
     ..  note::
 
-        See all currently supported Tarantool versions visualised as :doc:`a calendar <release-calendar>`
+        See all currently supported Tarantool versions visualised as :doc:`a calendar <calendar>`
         or as :ref:`a release lifetime table <release-table>`.

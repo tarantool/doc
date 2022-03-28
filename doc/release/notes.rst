@@ -99,8 +99,8 @@ Release notes for series before 1.10 are also available:
 ..  toctree::
     :hidden:
 
-    2.8.3
     2.10.0-beta1
+    2.8.3
     2.8.2
     2.8.1
     2.7.3
