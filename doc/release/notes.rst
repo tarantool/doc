@@ -100,7 +100,6 @@ Release notes for series before 1.10 are also available:
     :hidden:
 
     2.8.3
-    2021-08-releases
     2.10.0-beta1
     2.8.2
     2.8.1
