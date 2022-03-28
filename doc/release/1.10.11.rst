@@ -18,7 +18,7 @@ production for quite a while without known crashes, incorrect results or
 other showstopper bugs.
 
 This release introduces 2 improvements and resolves roughly 18 issues
-since version :doc:`1.10.9 </release/1.10.9>`.
+since version :doc:`1.10.10 </release/1.10.10>`.
 
 Compatibility
 -------------

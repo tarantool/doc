@@ -12,7 +12,7 @@ Overview
 2.8.3 is the third
 :doc:`stable </release/policy/>`
 version of the 2.8 release series. It introduces 3 improvements and
-resolves 24 bugs since :doc:`2.8.3 </release/2.8.3>
+resolves 24 bugs since version :doc:`2.8.2 </release/2.8.2>`.
 
 The “stable” label means that we have all planned features implemented
 and we see no high-impact issues. However, if you encounter an issue,
