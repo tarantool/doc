@@ -23,19 +23,19 @@ Each link leads to the release notes page of the corresponding version:
 
         *   -   2.10
             -   n/a
-            -   :doc:`2.10.0-beta1 <2021-08-releases>`
+            -   :doc:`2.10.0-beta1 <2.10.0-beta1>`
             -   not released yet
 
         *   -   2.8
             -   2.8.0
             -   :doc:`2.8.1 <2.8.1>`
-            -   :doc:`2.8.2 <2021-08-releases>`,
+            -   :doc:`2.8.2 <2.8.2>`,
                 :doc:`2.8.3 <2.8.3>`
 
         *   -   2.7
             -   2.7.0
             -   :doc:`2.7.1 <2.7.1>`
-            -   :doc:`2.7.2 <2.7.2>`, :doc:`2.7.3 <2021-08-releases>`
+            -   :doc:`2.7.2 <2.7.2>`, :doc:`2.7.3 <2.7.3>`
 
         *   -   2.6
             -   2.6.0
@@ -80,7 +80,7 @@ Each link leads to the release notes page of the corresponding version:
                 :doc:`1.10.8 <1.10.8>`,
                 :doc:`1.10.9 <1.10.9>`,
                 :doc:`1.10.10 <1.10.10>`,
-                :doc:`1.10.11 <2021-08-releases>`,
+                :doc:`1.10.11 <1.10.11>`,
                 :doc:`1.10.12 <1.10.12>`
 
 
@@ -99,9 +99,11 @@ Release notes for series before 1.10 are also available:
 ..  toctree::
     :hidden:
 
+    2.10.0-beta1
     2.8.3
-    2021-08-releases
+    2.8.2
     2.8.1
+    2.7.3
     2.7.2
     2.7.1
     2.6.3
@@ -121,6 +123,7 @@ Release notes for series before 1.10 are also available:
     2.2.1
     2.1.2
     1.10.12
+    1.10.11
     1.10.10
     1.10.9
     1.10.8
