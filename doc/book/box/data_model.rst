@@ -1,3 +1,5 @@
+:fullwidth:
+
 .. _box_data_model:
 
 ================================================================================
@@ -533,11 +535,11 @@ upper case / lower case and accented / unaccented equivalence in alphabets.
 We also consider variations of the same character, non-alphabetic writing systems,
 and special rules that apply for combinations of characters.
 
-For English, Russian, and most other languages and use cases, use the "unicode" and "unicode_ci" collations.
+For English, Russian, and most other languages and use cases, use the ``unicode`` and ``unicode_ci`` collations.
 If you need Cyrillic letters 'Е' and 'Ё' to have the same level-1 weights,
-try the Kyrgyz collation.
+try the Kyrgyz collation: ``unicode_ky_s1``.
 
-**The tailored optional collations**: for other languages, Tarantool supplies tailored collations for every
+**Tailored optional collations**: for other languages, Tarantool supplies tailored collations for every
 modern language that has more than a million native speakers, and
 for specialized situations such as the difference between dictionary
 order and telephone book order.

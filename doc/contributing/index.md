@@ -1,0 +1,17 @@
+---
+fullwidth: true
+noindex: true
+---
+
+(contributing-reference)=
+
+# Contributing
+
+```{toctree}
+:maxdepth: 2
+
+contributing
+release_notes
+../dev_guide/building_from_source
+../dev_guide/guidelines_index
+```
