@@ -16,7 +16,6 @@ sys.path.insert(0, os.path.abspath('..'))
 master_doc = 'index'
 
 extensions = [
-    'myst_parser',
     'sphinx.ext.todo',
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
@@ -35,22 +34,6 @@ extensions = [
     'ext.DownloadPageBlock',
     'ext.CustomHTMLTranslator',
     'ext.CustomJSONBuilder',
-]
-
-myst_enable_extensions = [
-    "amsmath",
-    "colon_fence",
-    "deflist",
-    "dollarmath",
-    "fieldlist",
-    "html_admonition",
-    "html_image",
-    "linkify",
-    "replacements",
-    "smartquotes",
-    "strikethrough",
-    "substitution",
-    "tasklist",
 ]
 
 extlinks = {
