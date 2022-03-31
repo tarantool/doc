@@ -57,7 +57,7 @@ cd "${cartridge_cli_root}/locale/ru/LC_MESSAGES/doc/" || exit
 find . -name '*.po' -exec cp -rv --parents {} "${cartridge_cli_po_dest}" \;
 
 # Add Cartridge Kubernetes guide to the Cartridge toctree right after Cartridge CLI
-sed -i -e '/Cartridge CLI<cartridge_cli\/index>/a\' -e '\ \ \ Cartridge Kubernetes guide<cartridge_kubernetes_guide/index>' "${cartridge_rst_dest}/index.rst"
+sed -i -e '/Cartridge CLI <cartridge_cli\/index>/a\' -e '\ \ \ Cartridge Kubernetes guide <cartridge_kubernetes_guide/index>' "${cartridge_rst_dest}/index.rst"
 
 
 # Monitoring
