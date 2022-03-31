@@ -94,7 +94,7 @@ Examples of compatible changes:
 *   Add or extend the ``__lt`` or ``__le`` metamethod
     (if the attempt to use ``<``, ``<=`` etc. leads to an error before the change).
 
-*   Extend existing `__eq` metamethod implementation
+*   Extend existing ``__eq`` metamethod implementation
     (if the attempt to use it leads to an error before the change).
 
 Examples of **incompatible** changes:
@@ -123,7 +123,7 @@ Examples of compatible changes:
 *   Add an implicit or explicit cast rule for a set of operations {X} and a list
     of types [Y] if [operation from {X}]([list of values of [Y] types]) had not been
     implemented before the change.
-*   Change the order of tuples in the resultset of ``SELECT` in case `ORDER BY` is not specified.
+*   Change the order of tuples in the result set of ``SELECT`` in case ``ORDER BY`` is not specified.
 
 Technically, those changes may break some working code in case of a name clash,
 but the probability of it is negligible.
