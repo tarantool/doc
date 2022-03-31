@@ -76,8 +76,8 @@ If a code is processed on an older release, it will operate with the same effect
 newer one. However, only meaningful code counts.
 If any code throws an error but starts doing something useful, the change is considered compatible.
 
-There is still room for new functionality: adding new options, more
-fields to a return table, and more return values (multireturn).
+There is still room for new functionality: adding new options (fields in a table argument),
+new arguments to the end, more fields to a return table, and more return values (multireturn).
 
 Adding a new built-in module or a new global value is considered as a compatible change.
 
@@ -87,18 +87,22 @@ Otherwise, it should be proven that it won't break any meaningful code.
 
 Examples of compatible changes:
 
-*   Add ``__pairs``, ``__ipairs`` to a metatable of a userdata object.
-    The fields are not from Lua 5.1, and the userdata has no default behaviour for ``pairs()`` and ``ipairs()`` calls.
+*   Add ``__pairs``, ``__ipairs`` to a metatable of a userdata/cdata object.
+    The fields are not from Lua 5.1, and the userdata/cdata has no default behaviour
+    for ``pairs()`` and ``ipairs()`` calls.
 
-*   Add the ``__lt`` or ``__le`` metamethod
+*   Add or extend the ``__lt`` or ``__le`` metamethod
     (if the attempt to use ``<``, ``<=`` etc. leads to an error before the change).
+
+*   Extend existing `__eq` metamethod implementation
+    (if the attempt to use it leads to an error before the change).
 
 Examples of **incompatible** changes:
 
-*   Add ``__pairs``, ``__ipairs`` to a metatable of a table or cdata
+*   Add ``__pairs``, ``__ipairs`` to a metatable of a table
     (it already has a defined behavior before the change).
 
-*   Add the ``__eq`` metamethod (``==`` already returns some result`).
+*   Add the ``__eq`` metamethod (any pair of Lua objects already has a defined behavior).
 
 
 ..  _cg_sql_code:
