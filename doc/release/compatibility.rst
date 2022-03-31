@@ -65,7 +65,7 @@ An instance running on a newer release can work as:
 
 The database schema upgrade (``box.schema.upgrade()``) must be performed when all replicaset instances
 run on the same Tarantool version.
-The upgrade might cause downtime if the application leans on internal schema representation.
+An application should not lean on internal schema representation because it can be changed with the upgrade.
 
 ..  _cg_lua_code:
 
