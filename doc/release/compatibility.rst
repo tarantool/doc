@@ -117,15 +117,15 @@ Examples of compatible changes:
 *   Add a new system table that has a name starting with an underscore.
 *   Add a new collation.
 *   Add an implicit or explicit cast rule for a set of operations {X} and a list
-    of types [Y] if [operation from {X}]([list of values of [Y] types]) had no
-    meaning before the change.
+    of types [Y] if [operation from {X}]([list of values of [Y] types]) had not been
+    implemented before the change.
+*   Change the order of tuples in the resultset of ``SELECT` in case `ORDER BY` is not specified.
 
 Technically, those changes may break some working code in case of a name clash,
 but the probability of it is negligible.
 
 Examples of **incompatible** changes:
 
-*   Change how data is stored in the database.
 *   Change the result of working implicit or explicit cast.
 *   Change of a literal type.
 
