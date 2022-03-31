@@ -5,9 +5,8 @@ Compatibility guarantees
 
 Backwards compatibility is guaranteed between all versions in the same :term:`release series`.
 It is also appreciated but not guaranteed between different release series (major number changes).
-
-*   Pre-releases and releases of one release series are compatible in all
-    senses defined below (any release with any release).
+Pre-releases and releases of one release series are compatible in all
+senses defined below (any release with any release):
 
 *   Pre-releases and releases of consequent series are compatible by data
     layout, binary protocol, and replication protocol.
