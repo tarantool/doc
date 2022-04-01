@@ -22,3 +22,6 @@
 [submodule "modules/tarantool-merger-examples"]
 	path = modules/tarantool-merger-examples
 	url = https://github.com/Totktonada/tarantool-merger-examples
+[submodule "modules/smtp"]
+	path = modules/smtp
+	url = https://github.com/tarantool/smtp
