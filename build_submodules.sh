@@ -107,3 +107,10 @@ mkdir -p "${tntcxx_gs_dest}/_includes"
 yes | cp -rf "${tntcxx_root}/doc/tntcxx_getting_started.rst" "${tntcxx_gs_dest}/getting_started_cxx.rst"
 yes | cp -rf "${tntcxx_root}/examples/" "${tntcxx_gs_dest}/_includes/examples/"
 yes | cp -rf "${tntcxx_root}/doc/tntcxx_api.rst" "${tntcxx_api_dest}/cxx/"
+
+
+# Tarantool Merger
+merger_root="${project_root}/modules/tarantool-merger-examples/README.md"
+merger_dest="${project_root}/doc/reference/reference_lua/_includes"
+mkdir -p "${merger_dest}"
+pandoc -f gfm -t rst -o "${merger_dest}/merger_examples.rst" "${merger_root}"
