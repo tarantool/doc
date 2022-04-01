@@ -56,7 +56,7 @@ mkdir -p "${cartridge_cli_po_dest}"
 cd "${cartridge_cli_root}/locale/ru/LC_MESSAGES/doc/" || exit
 find . -name '*.po' -exec cp -rv --parents {} "${cartridge_cli_po_dest}" \;
 
-# Add Cartridge Kubernetes guide to the Cartridge toctree right after Cartridge CLI
+# Append Cartridge Kubernetes guide to the Cartridge toctree right after Cartridge CLI
 sed -i -e '/Cartridge CLI <cartridge_cli\/index>/a\' -e '\ \ \ Cartridge Kubernetes guide <cartridge_kubernetes_guide/index>' "${cartridge_rst_dest}/index.rst"
 
 
@@ -113,4 +113,15 @@ yes | cp -rf "${tntcxx_root}/doc/tntcxx_api.rst" "${tntcxx_api_dest}/cxx/"
 merger_root="${project_root}/modules/tarantool-merger-examples/README.md"
 merger_dest="${project_root}/doc/reference/reference_lua/_includes"
 mkdir -p "${merger_dest}"
+# Convert README.md to part of the merger module reference doc
 pandoc -f gfm -t rst -o "${merger_dest}/merger_examples.rst" "${merger_root}"
+
+
+# Tarantool SMTP
+smtp_root="${project_root}/modules/smtp/README.md"
+smtp_dest="${project_root}/doc/reference/reference_rock"
+mkdir -p "${smtp_dest}"
+# Convert README.md to SMTP doc
+pandoc -f gfm -t rst -o "${smtp_dest}/smtp.rst" "${smtp_root}"
+# Append SMTP doc to the Rocks reference toctree
+sed -i -e '/luatest\/luatest_overview/a\' -e '\ \ \ \ Tarantool SMTP <smtp>' "${smtp_dest}/index.rst"
