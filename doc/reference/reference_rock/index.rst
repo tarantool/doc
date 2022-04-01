@@ -16,4 +16,3 @@ This reference covers third-party Lua modules for Tarantool.
     vshard/index
     ../../book/cartridge/index
     luatest/luatest_overview
-    Tarantool SMTP <smtp>
