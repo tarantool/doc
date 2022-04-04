@@ -1,3 +1,5 @@
+:fullwidth:
+
 .. _triggers:
 .. _triggers-box_triggers:
 
