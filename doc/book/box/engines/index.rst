@@ -1,4 +1,3 @@
-:noindex:
 :fullwidth:
 
 .. _engines-chapter:
@@ -12,6 +11,7 @@ retrieve :term:`tuple <tuple>` values. Tarantool offers a choice of two storage 
 *   :doc:`memtx <memtx>` is the in-memory storage engine used by default.
 *   :doc:`vinyl <vinyl>` is the on-disk storage engine.
 
+All the details on the engines you can find in the dedicated sections:
 
 .. toctree::
    :maxdepth: 1
