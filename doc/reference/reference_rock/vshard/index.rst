@@ -1,7 +1,7 @@
 .. _vshard:
 
 ===============================================================================
-Module `vshard`
+Module vshard
 ===============================================================================
 
 The ``vshard`` module introduces an advanced sharding feature based on
