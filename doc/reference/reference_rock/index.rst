@@ -7,12 +7,13 @@ Rocks reference
 
 This reference covers third-party Lua modules for Tarantool.
 
-.. toctree::
-    :maxdepth: 2
+..  toctree::
+    :maxdepth: 1
 
-    dbms
+    Module cartridge <https://www.tarantool.io/doc/latest/book/cartridge/>
     expirationd
+    Module luatest <luatest/luatest_overview>
     membership
+    Module tracing <tracing_overview>
     vshard/index
-    ../../book/cartridge/index
-    luatest/luatest_overview
+    dbms
