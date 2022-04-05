@@ -4,6 +4,9 @@
 Upgrades
 ================================================================================
 
+For information about backwards compatibility,
+see the :ref:`compatibility guarantees <compatibility_guarantees>` description.
+
 .. _admin-upgrades_db:
 
 --------------------------------------------------------------------------------
