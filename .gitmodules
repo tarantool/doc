@@ -19,3 +19,6 @@
 [submodule "modules/tntcxx"]
 	path = modules/tntcxx
 	url = https://github.com/tarantool/tntcxx.git
+[submodule "modules/tracing"]
+	path = modules/tracing
+	url = https://github.com/tarantool/tracing
