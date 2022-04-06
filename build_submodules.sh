@@ -122,4 +122,6 @@ mkdir -p "${tracing_dest}/_includes/"
 yes | cp -fa "${tracing_root}/rst/." "${tracing_dest}"
 pandoc -f gfm -t rst -o "${tracing_dest}/_includes/readme.rst" "${tracing_root}/README.md"
 yes | mv -f "${tracing_dest}/index.rst" "${tracing_dest}/_includes/"
+# remove header from included file
+sed -i '1,3d' "${tracing_dest}/_includes/readme.rst"
 # TODO delete topics
