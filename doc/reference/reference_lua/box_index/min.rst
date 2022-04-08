@@ -1,12 +1,11 @@
 .. _box_index-min:
 
-===============================================================================
 index_object:min()
-===============================================================================
+==================
 
-.. class:: index_object
+..  class:: index_object
 
-    .. method:: min([key])
+    ..  method:: min([key])
 
         Find the minimum value in the specified index.
 
@@ -27,7 +26,7 @@ index_object:min()
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> box.space.tester.index.primary:min()
             ---
