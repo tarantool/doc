@@ -327,7 +327,7 @@ Router public API
 
         * ``timeout``—a request timeout, in seconds. The timeout is for the entire request, including all its stages.
 
-          ``timeout`` is the only supported option. It is applied to the entire call.
+          ``timeout`` is the only supported option.
 
     ..  important::
 
@@ -366,7 +366,8 @@ Router public API
             end
 
     Map-Reduce in vshard can be divided into three stages: Ref, Map, and Reduce.
-    The first stage ensures data consistency while executing the user's function (``function_name``) on all nodes.
+
+    **Ref**. The Ref stage ensures data consistency while executing the user's function (``function_name``) on all nodes.
     Keep in mind that consistency is incompatible with rebalancing (it breaks data consistency).
     Map-reduce and rebalancing are mutually exclusive, they compete for the cluster time.
     Any bucket move would make the sender and receiver nodes inconsistent,
@@ -380,12 +381,12 @@ Router public API
     It is incremented when a map-reduce request comes and decremented when it ends.
     Storage ref pins the entire instance with all its buckets, not just a single bucket (like bucket ref).
 
-    Te scheduler shares storage time between bucket moves and storage refs fairly.
+    The scheduler shares storage time between bucket moves and storage refs fairly.
     The definition of fairness depends on how long and frequent the moves and refs are.
     It can be configured using storage options ``sched_move_quota`` and ``sched_ref_quota``.
     Keep in mind that the scheduler configuration may affect map-reduce requests if used a lot during rebalancing.
 
-    The Reduce stage is not performed by vshard.
+    **Reduce**. The Reduce stage is not performed by vshard.
     It is what the user's code does with the results of ``map_callrw()``.
 
     ..  note::
