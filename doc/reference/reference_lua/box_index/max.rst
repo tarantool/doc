@@ -14,8 +14,8 @@ index_object:max()
         :param scalar/table      key: values to be matched against the index key
 
         :return: the tuple for the last key in the index. If the optional ``key`` value
-                 is supplied, returns the last key which is less than or equal to ``key``.
-                 Starting with :doc:`Tarantool 2.0.4 <release/2.1.2>`, ``index_object:max(key)``
+                 is supplied, returns the last key that is less than or equal to ``key``.
+                 Starting with :doc:`Tarantool 2.0.4 </release/2.1.2>`, ``index_object:max(key)``
                  returns nothing if ``key`` doesn't match any value in the index.
         :rtype:  tuple
 
