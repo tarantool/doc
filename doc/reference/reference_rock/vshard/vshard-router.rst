@@ -128,7 +128,7 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` – a request timeout, in seconds. If the ``router`` cannot identify a
+        * ``timeout``—a request timeout, in seconds. If the ``router`` cannot identify a
           shard with the specified ``bucket_id``, the operation will be repeated until the
           timeout is reached.
 
@@ -148,7 +148,7 @@ Router public API
     It may be good to specify prefer_replica=true for functions which are expensive in terms
     of resource use, to avoid slowing down the master.
 
-    If ``balance=true`` then there is load balancing -- reads are distributed over all the nodes
+    If ``balance=true`` then there is load balancing—reads are distributed over all the nodes
     in the replica set in round-robin fashion, with a preference for replicas if
     prefer_replica=true is also set.
 
@@ -196,7 +196,7 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+        * ``timeout``—a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
 
@@ -230,7 +230,7 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+        * ``timeout``—a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
 
@@ -266,7 +266,7 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+        * ``timeout``—a request timeout, in seconds. In case the ``router`` cannot identify a
           shard with the bucket id, the operation will be repeated until the
           timeout is reached.
 
@@ -307,7 +307,10 @@ Router public API
 ..  function:: vshard.router.map_callrw(function_name, {argument_list}, {options})
 
     The function implements consistent map-reduce over the entire cluster.
-    Consistency means all the data was accessible and didn't move during the map request's execution.
+    Consistency means:
+
+    *   All the data was accessible.
+    *   The data didn't migrate between physical storages during the map requests execution.
 
     The function can be helpful if you need to access:
 
@@ -316,33 +319,33 @@ Router public API
     *   a vast number of buckets scattered over the instances
         whose individual :ref:`vshard.router.call() <router_api-call>` would take too long.
 
-    The chosen function is called on the master node of each replicaset with the given arguments.
+    The function is called on the master node of each replicaset with the given arguments.
 
-    :param function_name: a function to call on the storages
+    :param function_name: a function to call on the storages (masters of all replicasets)
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` - a request timeout, in seconds. If the ``router`` cannot identify a
-          shard with the bucket id, the operation will be repeated until the timeout is reached.
+        * ``timeout``—a request timeout, in seconds. The timeout is for the entire request, including all its stages.
+
           ``timeout`` is the only supported option. It is applied to the entire call.
 
     ..  important::
 
-        Do not use big timeout (longer than minutes) for ``map_callrw()``. The router tries to block the bucket moves
+        Do not use big timeout (longer than 1 minute, for instance). The router tries to block the bucket moves
         for the given timeout on all storages. On failure, the block remains for the entire timeout.
 
     :Return:
 
-    *   On success: a map with replicaset UUIDs (keys) and results of the user's function (values).
+    *   On success: a map with replicaset UUIDs (keys) and results of the ``function_name`` (values).
 
         ..  code-block:: lua
 
             {uuid1 = {res1}, uuid2 = {res2}, ...}
 
-        If the function returned ``nil`` or ``box.NULL`` from one of the storages,
-        it would not be present in the resulting map.
+        If the function returns ``nil`` or ``box.NULL`` from one of the storages,
+        it will not be present in the resulting map.
 
-    *   On failure: nil, error object, and optional replicaset UUID where the error occurred.
+    *   On failure: ``nil``, error object, and optional replicaset UUID where the error occurred.
         UUID won't be returned if the error is not about a concrete replicaset.
         For instance, the method fails if not all buckets were found, even if all replicasets were scanned successfully.
         Handling the result looks like this:
@@ -363,16 +366,21 @@ Router public API
             end
 
     Map-Reduce in vshard can be divided into three stages: Ref, Map, and Reduce.
-    The first stage ensures data consistency while executing the user's function on all nodes.
-    Consistency, defined for map-reduce, is not compatible with rebalancing.
-    Any bucket move would make the sender and receiver nodes 'inconsistent',
+    The first stage ensures data consistency while executing the user's function (``function_name``) on all nodes.
+    Keep in mind that consistency is incompatible with rebalancing (it breaks data consistency).
+    Map-reduce and rebalancing are mutually exclusive, they compete for the cluster time.
+    Any bucket move would make the sender and receiver nodes inconsistent,
     so it is impossible to call a function on them to access all the data
     without :ref:`vshard.storage.bucket_ref() <storage_api-bucket_ref>`.
     It makes the Ref stage intricate, as it should work together with the rebalancer to ensure
     they do not block each other.
 
     For this, the storage has a special scheduler for bucket moves and storage refs.
-    It shares storage time between them fairly.
+    Storage ref is a volatile counter defined on each instance.
+    It is incremented when a map-reduce request comes and decremented when it ends.
+    Storage ref pins the entire instance with all its buckets, not just a single bucket (like bucket ref).
+
+    Te scheduler shares storage time between bucket moves and storage refs fairly.
     The definition of fairness depends on how long and frequent the moves and refs are.
     It can be configured using storage options ``sched_move_quota`` and ``sched_ref_quota``.
     Keep in mind that the scheduler configuration may affect map-reduce requests if used a lot during rebalancing.
@@ -624,7 +632,7 @@ Router public API
 
     The method is good to enable/disable discovery after the router is
     already started, but discovery is enabled by default. You may want
-    to never enable it even for a short time -- then specify the
+    to never enable it even for a short time—then specify the
     ``discovery_mode`` option in the :ref:`configuration <cfg_basic-discovery_mode>`.
     It takes the same values as :samp:`vshard.router.discovery_set({mode})`.
 
@@ -652,18 +660,18 @@ Router public API
 
     Instance parameters:
 
-    * ``uri`` — URI of the instance
-    * ``uuid`` — UUID of the instance
-    * ``status`` – status of the instance (``available``, ``unreachable``, ``missing``)
-    * ``network_timeout`` – a timeout for the request. The value is updated automatically
+    * ``uri``—URI of the instance
+    * ``uuid``—UUID of the instance
+    * ``status``—status of the instance (``available``, ``unreachable``, ``missing``)
+    * ``network_timeout``—a timeout for the request. The value is updated automatically
       on each 10th successful request and each 2nd failed request.
 
     Bucket parameters:
 
-    * ``available_ro`` – the number of buckets known to the ``router`` and available for read requests
-    * ``available_rw`` – the number of buckets known to the ``router`` and available for read and write requests
-    * ``unavailable`` – the number of buckets known to the ``router`` but unavailable for any requests
-    * ``unreachable`` – the number of buckets whose replica sets are not known to the ``router``
+    * ``available_ro``—the number of buckets known to the ``router`` and available for read requests
+    * ``available_rw``—the number of buckets known to the ``router`` and available for read and write requests
+    * ``unavailable``—the number of buckets known to the ``router`` but unavailable for any requests
+    * ``unreachable``—the number of buckets whose replica sets are not known to the ``router``
 
     **Example:**
 
@@ -748,7 +756,7 @@ Router public API
         :param argument_list: array of the function's arguments
         :param options:
 
-            * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+            * ``timeout``—a request timeout, in seconds. In case the ``router`` cannot identify a
               shard with the bucket id, the operation will be repeated until the
               timeout is reached.
 
@@ -776,7 +784,7 @@ Router public API
         :param argument_list: array of the function's arguments
         :param options:
 
-            * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+            * ``timeout``—a request timeout, in seconds. In case the ``router`` cannot identify a
               shard with the bucket id, the operation will be repeated until the
               timeout is reached.
 
@@ -815,7 +823,7 @@ Router public API
         :param argument_list: array of the function's arguments
         :param options:
 
-            * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+            * ``timeout``—a request timeout, in seconds. In case the ``router`` cannot identify a
               shard with the bucket id, the operation will be repeated until the
               timeout is reached.
 
@@ -844,7 +852,7 @@ Router public API
         :param argument_list: array of the function's arguments
         :param options:
 
-            * ``timeout`` – a request timeout, in seconds. In case the ``router`` cannot identify a
+            * ``timeout``—a request timeout, in seconds. In case the ``router`` cannot identify a
               shard with the bucket id, the operation will be repeated until the
               timeout is reached.
 
