@@ -1230,8 +1230,10 @@ msgstr ""
 "Для версий от 1.6.2. и выше. Определение синхронизации работы файбера с "
 "журналом упреждающей записи:"
 
-msgid "``none``: write-ahead log is not maintained;"
-msgstr "``none``: журнал упреждающей записи не поддерживается;"
+msgid "``none``: write-ahead log is not maintained."
+" A node with ``wal_mode = none`` can't be replication master;"
+msgstr "``none``: журнал упреждающей записи не поддерживается. "
+"Узел с ``wal_mode = none`` при репликации не может быть мастером;"
 
 msgid ""
 "``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to"
