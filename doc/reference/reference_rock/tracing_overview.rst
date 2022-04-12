@@ -7,4 +7,4 @@ More about ``tracing`` API see :ref:`below <tracing-api>`.
 
 ..  _tracing-api:
 
-..  include:: tracing/_includes/index.rst
+..  include:: tracing/_includes/api.rst
