@@ -61,7 +61,8 @@
 
     Since version 1.6.2. Specify fiber-WAL-disk synchronization mode as:
 
-    * ``none``: write-ahead log is not maintained;
+    * ``none``: write-ahead log is not maintained.
+      A node with ``wal_mode = none`` can't be replication master;
     * ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
       the write-ahead log (no :manpage:`fsync(2)`);
     * ``fsync``: fibers wait for their data, :manpage:`fsync(2)`
