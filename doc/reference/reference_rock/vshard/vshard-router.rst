@@ -331,7 +331,7 @@ Router public API
 
     ..  important::
 
-        Do not use big timeout (longer than 1 minute, for instance). The router tries to block the bucket moves
+        Do not use a big timeout (longer than 1 minute, for instance). The router tries to block the bucket moves
         to another storage for the given timeout on all storages. On failure, the block remains for the entire timeout.
 
     :Return:
@@ -368,7 +368,7 @@ Router public API
     Map-Reduce in vshard can be divided into three stages: Ref, Map, and Reduce.
 
     **Ref and Map**. ``map_callrw()`` combines both the Ref and the Map stages.
-    The Ref stage ensure data consistency while executing the user's function (``function_name``) on all nodes.
+    The Ref stage ensures data consistency while executing the user's function (``function_name``) on all nodes.
     Keep in mind that consistency is incompatible with rebalancing (it breaks data consistency).
     Map-reduce and rebalancing are mutually exclusive, they compete for the cluster time.
     Any bucket move makes the sender and receiver nodes inconsistent,
