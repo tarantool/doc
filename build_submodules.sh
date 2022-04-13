@@ -125,4 +125,5 @@ yes | mv -f "${tracing_dest}/index.rst" "${tracing_dest}/_includes/api.rst"
 # remove header from included README file
 sed -i '1,3d' "${tracing_dest}/_includes/readme.rst"
 # edit paths in the included API file
-sed -i 's,modules,\.\.\/modules,g' "${tracing_dest}/_includes/api.rst"
+# Addressing in sphinx includes sometimes defies common logic
+sed -i 's,modules,tracing\/modules,g' "${tracing_dest}/_includes/api.rst"
