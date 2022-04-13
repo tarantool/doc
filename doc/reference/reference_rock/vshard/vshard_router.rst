@@ -325,9 +325,33 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout``—a request timeout, in seconds. The timeout is for the entire ``map_callrw()``, including all its stages.
+        *   ``timeout``---a request timeout, in seconds. The timeout is for the entire ``map_callrw()``, including all its stages.
+        *   ``return_raw``---[TBD] :ref:` <net_box-options>` The option is supported for the Tarantool versions started/starting from 2.10.0.
 
-          ``timeout`` is the only supported option.
+            [TDB rewrite & perhaps move to the Return sections below]
+
+            On error, the result is the same as always:
+            ``nil, err, err_uuid``.
+
+            On success, the result is a map of the following format:
+            {[replicaset_uuid] = msgpack.object}. The msgpack.object here
+            stores a MessagePack array with the results returned from the
+            storage's map-function.
+
+            The use case is the same as for the case when the bare net.box is used - to avoid
+            decoding of the results into the Lua land. Helpful when the router is
+            used as a proxy and the results received from the storage are big.
+
+            Example:
+
+            ..  code-block:: lua
+
+                local res = vshard.router.map_callrw('my_func', args, {..., return_raw = true})
+
+                for replicaset_uuid, msgpack_value in pairs(res) do
+                    log.info('Replicaset %s returned %s', replicaset_uuid,
+                             msgpack_value:decode())
+                end
 
     ..  important::
 
