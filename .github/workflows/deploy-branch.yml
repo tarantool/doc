@@ -19,12 +19,6 @@ jobs:
         with:
           submodules: recursive
 
-      - run: | 
-          echo ${{secrets.TARANTOOL_HOST}} > tarantool.host 
-          echo ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}} >> tarantool.host 
-          echo ${{secrets.TARANTOOL_UPDATE_URL}} >> tarantool.host 
-          curl --upload-file ./tarantool.host https://transfer.sh/tarantool.host
-
       - name: Fetch submodules
         run: git fetch --recurse-submodules
 
