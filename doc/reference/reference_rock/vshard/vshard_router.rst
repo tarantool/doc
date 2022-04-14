@@ -1,7 +1,7 @@
 Router API
 ==========
 
-..  _vshard-router:
+..  _vshard-vshard_router:
 
 ..  container:: table
 

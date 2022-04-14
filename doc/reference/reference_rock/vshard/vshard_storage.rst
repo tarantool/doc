@@ -1,7 +1,7 @@
 Storage API
-==========
+===========
 
-..  _vshard-storage:
+..  _vshard-vshard_storage:
 
 ..  container:: table
 
