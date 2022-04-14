@@ -101,7 +101,7 @@ A sharded cluster in Tarantool consists of:
 .. image:: schema.svg
     :align: center
 
-.. _vshard-storage:
+.. _vshard-architecture-storage:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Storage
@@ -117,7 +117,7 @@ process write requests.
 .. image:: master_replica.svg
     :align: center
 
-.. _vshard-router:
+.. _vshard-architecture-router:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Router
