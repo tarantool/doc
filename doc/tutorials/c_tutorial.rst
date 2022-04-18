@@ -1,15 +1,10 @@
-================================================================================
 C tutorial
-================================================================================
-
-Here is one C tutorial:
-:ref:`C stored procedures <f_c_tutorial-c_stored_procedures>`.
+==========
 
 .. _f_c_tutorial-c_stored_procedures:
 
---------------------------------------------------------------------------------
 C stored procedures
---------------------------------------------------------------------------------
+-------------------
 
 Tarantool can call C code with :ref:`modules <app_server-modules>`,
 or with :ref:`ffi <cookbook-ffi_printf>`,
@@ -31,7 +26,8 @@ After following the instructions, and seeing that the results
 are what is described here, users should feel confident about
 writing their own stored procedures.
 
-**Preparation**
+Preparation
+~~~~~~~~~~~
 
 Check that these items exist on the computer:
 
@@ -97,7 +93,8 @@ Leave the client running. It will be necessary to enter more requests later.
 
 .. _f_c_tutorial-easy:
 
-**easy.c**
+easy.c
+~~~~~~
 
 Start another shell. Change directory (``cd``) so that it is
 the same as the directory that the client is running on.
@@ -181,7 +178,8 @@ Conclusion: calling a C function is easy.
 
 .. _f_c_tutorial-harder:
 
-**harder.c**
+harder.c
+~~~~~~~~
 
 Go back to the shell where the ``easy.c`` program was created.
 
@@ -271,7 +269,8 @@ very many of them.
 
 .. _f_c_tutorial-hardest:
 
-**hardest.c**
+hardest.c
+~~~~~~~~~
 
 Go back to the shell where the ``easy.c``
 and the ``harder.c`` programs were created.
@@ -345,7 +344,8 @@ Answer: the :ref:`C API <index-c_api_reference>`.
 
 .. _f_c_tutorial-read:
 
-**read.c**
+read.c
+~~~~~~
 
 Go back to the shell where the ``easy.c``
 and the ``harder.c`` and the ``hardest.c`` programs were created.
@@ -444,7 +444,8 @@ came from the :ref:`C API <index-c_api_reference>`.
 
 .. _f_c_tutorial-write:
 
-**write.c**
+write.c
+~~~~~~~
 
 Go back to the shell where the programs ``easy.c``, ``harder.c``, ``hardest.c``
 and ``read.c`` were created.
@@ -528,7 +529,8 @@ All of the functions in it can be called from C functions
 which are called from Lua.
 So C "stored procedures" have full access to the database.
 
-**Cleaning up**
+Cleaning up
+~~~~~~~~~~~
 
 * Get rid of each of the function tuples with
   :doc:`/reference/reference_lua/box_schema/func_drop`.
@@ -537,7 +539,8 @@ So C "stored procedures" have full access to the database.
 * Remove the ``.c`` and ``.so`` files that were created for this
   tutorial.
 
-**An example in the test suite**
+An example in the test suite
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Download the source code of Tarantool. Look in a subdirectory
 :code:`test/box`. Notice that there is a file named
