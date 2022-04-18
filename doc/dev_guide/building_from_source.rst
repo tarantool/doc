@@ -7,7 +7,7 @@ To build Tarantool from source files, you will need the following tools:
 
 *   Git
 *   GCC. Or Clang for Mac OS
-*   CMake 3.2+
+*   CMake 3.3+
 *   GNU Make
 *   `ReadLine <http://www.gnu.org/software/readline/>`_, any version
 *   `ncurses <https://www.gnu.org/software/ncurses/>`_, any version
