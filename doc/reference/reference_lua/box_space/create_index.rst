@@ -195,7 +195,7 @@ and what index types are allowed.
     ..  rst-class:: left-align-column-2
 
     ..  list-table::
-        :widths: 10 45 20 15
+        :widths: 12 43 20 15
         :header-rows: 1
 
         *   - Index field type
