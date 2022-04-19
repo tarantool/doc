@@ -53,68 +53,85 @@ On this page:
 
         ..  container:: table
 
-            ..  rst-class:: left-align-column-1
-            ..  rst-class:: left-align-column-2
-            ..  rst-class:: left-align-column-3
-            ..  rst-class:: left-align-column-4
+            ..  list-table::
+                :widths: 25 30 30 15
+                :header-rows: 1
 
-            ..  tabularcolumns:: |\Y{0.2}|\Y{0.3}|\Y{0.2}|\Y{0.3}|
-
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | Name                | Effect                                                | Type                             | Default                       |
-            +=====================+=======================================================+==================================+===============================+
-            | type                | type of index                                         | string                           | 'TREE'                        |
-            |                     |                                                       | ('HASH' or 'TREE' or             |                               |
-            |                     |                                                       | 'BITSET' or 'RTREE')             |                               |
-            |                     |                                                       | Note re storage engine:          |                               |
-            |                     |                                                       | vinyl only supports 'TREE'       |                               |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | id                  | unique identifier                                     | number                           | last index's id, +1           |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | unique              | index is unique                                       | boolean                          | ``true``                      |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | if_not_exists       | no error if duplicate name                            | boolean                          | ``false``                     |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | parts               | field-numbers  + types                                | {field_no, ``'unsigned'`` or     | ``{1, 'unsigned'}``           |
-            |                     |                                                       | ``'string'`` or ``'integer'`` or |                               |
-            |                     |                                                       | ``'number'`` or ``'double'`` or  |                               |
-            |                     |                                                       | ``'decimal'`` or ``'boolean'``   |                               |
-            |                     |                                                       | or ``'varbinary'`` or ``'uuid'`` |                               |
-            |                     |                                                       | or ``'array'`` or ``'scalar'``,  |                               |
-            |                     |                                                       | and optional collation or        |                               |
-            |                     |                                                       | is_nullable value or path}       |                               |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | dimension           | affects :ref:`RTREE <box_index-rtree>` only           | number                           | 2                             |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | distance            | affects RTREE only                                    | string ('euclid' or              | 'euclid'                      |
-            |                     |                                                       | 'manhattan')                     |                               |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | bloom_fpr           | affects vinyl only                                    | number                           | ``vinyl_bloom_fpr``           |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | page_size           | affects vinyl only                                    | number                           | ``vinyl_page_size``           |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | range_size          | affects vinyl only                                    | number                           | ``vinyl_range_size``          |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | run_count_per_level | affects vinyl only                                    | number                           | ``vinyl_run_count_per_level`` |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | run_size_ratio      | affects vinyl only                                    | number                           | ``vinyl_run_size_ratio``      |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | sequence            | see section regarding                                 | string or number                 | not present                   |
-            |                     | :ref:`specifying a sequence in create_index()         |                                  |                               |
-            |                     | <box_schema-sequence_create_index>`                   |                                  |                               |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | func                | :ref:`functional index <box_space-index_func>`        | string                           | not present                   |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
-            | hint (since version | affects TREE only. ``true`` makes an index work       | boolean                          | ``true``                      |
-            | :doc:`2.6.1         | faster, ``false`` -- an index size is reduced by half |                                  |                               |
-            | </release/2.6.1>`)  |                                                       |                                  |                               |
-            +---------------------+-------------------------------------------------------+----------------------------------+-------------------------------+
+                *   -   Name
+                    -   Effect
+                    -   Type
+                    -   Default
+                *   -   type
+                    -   type of index
+                    -   string ('HASH' or 'TREE' or 'BITSET' or 'RTREE').
+                        Note that vinyl only supports 'TREE'.
+                    -   'TREE'
+                *   -   id
+                    -   unique identifier
+                    -   number
+                    -   last index's id + 1
+                *   -   unique
+                    -   index is unique
+                    -   boolean
+                    -   true
+                *   -   if_not_exists
+                    -   no error if duplicate name
+                    -   boolean
+                    -   false
+                *   -   parts
+                    -   field numbers + types
+                    -   {field_no, 'unsigned' or 'string' or 'integer' or 'number' or 'double' or 
+                        'decimal' or 'boolean' or 'varbinary' or 'uuid' or 'array' or 'scalar',
+                        and optional collation or is_nullable value or path}
+                    -   {1, 'unsigned'}
+                *   -   dimension
+                    -   affects :ref:`RTREE <box_index-rtree>` only
+                    -   number
+                    -   2
+                *   -   distance
+                    -   affects RTREE only
+                    -   string ('euclid' or 'manhattan')
+                    -   'euclid'
+                *   -   bloom_fpr
+                    -   affects vinyl only
+                    -   number
+                    -   vinyl_bloom_fpr
+                *   -   page_size
+                    -   affects vinyl only
+                    -   number
+                    -   vinyl_page_size
+                *   -   range_size
+                    -   affects vinyl only
+                    -   number
+                    -   vinyl_range_size
+                *   -   run_count_per_level
+                    -   affects vinyl only
+                    -   number
+                    -   vinyl_run_count_per_level
+                *   -   run_size_ratio
+                    -   affects vinyl only
+                    -   number
+                    -   vinyl_run_size_ratio
+                *   -   sequence
+                    -   see section regarding
+                        :ref:`specifying a sequence in create_index() <box_schema-sequence_create_index>`
+                    -   string or number
+                    -   not present
+                *   -   func
+                    -   :ref:`functional index <box_space-index_func>`
+                    -   string
+                    -   not present
+                *   -   hint (since version :doc:`2.6.1 </release/2.6.1>`)
+                    -   affects TREE only.
+                        ``true`` makes an index work faster, ``false``\---index size is reduced by half
+                    -   boolean
+                    -   true
 
         The options in the above chart are also applicable for
         :doc:`/reference/reference_lua/box_index/alter`.
 
 
-        **Note re storage engine:** vinyl has extra options which by default are
+        **Note on storage engine:** vinyl has extra options which by default are
         based on configuration parameters
         :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`,
         :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`,
@@ -189,13 +206,10 @@ Details about index field types
 Index field types differ depending on what values are allowed,
 and what index types are allowed.
 
-..  container:: table stackcolumn
-
-    ..  rst-class:: left-align-column-1
-    ..  rst-class:: left-align-column-2
+..  container:: table
 
     ..  list-table::
-        :widths: 10 45 20 15
+        :widths: 23 42 20 15
         :header-rows: 1
 
         *   - Index field type
