@@ -206,13 +206,10 @@ Details about index field types
 Index field types differ depending on what values are allowed,
 and what index types are allowed.
 
-..  container:: table stackcolumn
-
-    ..  rst-class:: left-align-column-1
-    ..  rst-class:: left-align-column-2
+..  container:: table
 
     ..  list-table::
-        :widths: 20 45 20 15
+        :widths: 23 42 20 15
         :header-rows: 1
 
         *   - Index field type
