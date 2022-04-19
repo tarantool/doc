@@ -54,78 +54,78 @@ On this page:
         ..  container:: table
 
             ..  list-table::
-                :widths: 15 30 40 15
+                :widths: 25 30 30 15
                 :header-rows: 1
 
                 *   -   Name
                     -   Effect
                     -   Type
                     -   Default
-                *   -   ``type``
+                *   -   type
                     -   type of index
-                    -   string (``'HASH'`` or ``'TREE'`` or ``'BITSET'`` or ``'RTREE'``).
-                        Note that vinyl only supports ``'TREE'``.
-                    -   ``'TREE'``
-                *   -   ``id``
+                    -   string ('HASH' or 'TREE' or 'BITSET' or 'RTREE').
+                        Note that vinyl only supports 'TREE'.
+                    -   'TREE'
+                *   -   id
                     -   unique identifier
                     -   number
                     -   last index's id + 1
-                *   -   ``unique``
+                *   -   unique
                     -   index is unique
                     -   boolean
-                    -   ``true``
-                *   -   ``if_not_exists``
+                    -   true
+                *   -   if_not_exists
                     -   no error if duplicate name
                     -   boolean
-                    -   ``false``
-                *   -   ``parts``
+                    -   false
+                *   -   parts
                     -   field numbers + types
-                    -   {``field_no``, ``'unsigned'`` or ``'string'`` or ``'integer'`` or ``'number'`` or ``'double'`` or 
-                        ``'decimal'`` or ``'boolean'`` or ``'varbinary'`` or ``'uuid'`` or ``'array'`` or ``'scalar'``,
-                        and optional collation or ``is_nullable`` value or path}
-                    -   ``{1, 'unsigned'}``
-                *   -   ``dimension``
+                    -   {field_no, 'unsigned' or 'string' or 'integer' or 'number' or 'double' or 
+                        'decimal' or 'boolean' or 'varbinary' or 'uuid' or 'array' or 'scalar',
+                        and optional collation or is_nullable value or path}
+                    -   {1, 'unsigned'}
+                *   -   dimension
                     -   affects :ref:`RTREE <box_index-rtree>` only
                     -   number
                     -   2
-                *   -   ``distance``
+                *   -   distance
                     -   affects RTREE only
-                    -   string (``'euclid'`` or ``'manhattan'``)
-                    -   ``'euclid'``
-                *   -   ``bloom_fpr``
+                    -   string ('euclid' or 'manhattan')
+                    -   'euclid'
+                *   -   bloom_fpr
                     -   affects vinyl only
                     -   number
-                    -   ``vinyl_bloom_fpr``
-                *   -   ``page_size``
+                    -   vinyl_bloom_fpr
+                *   -   page_size
                     -   affects vinyl only
                     -   number
-                    -   ``vinyl_page_size``
-                *   -   ``range_size``
+                    -   vinyl_page_size
+                *   -   range_size
                     -   affects vinyl only
                     -   number
-                    -   ``vinyl_range_size``
-                *   -   ``run_count_per_level``
+                    -   vinyl_range_size
+                *   -   run_count_per_level
                     -   affects vinyl only
                     -   number
-                    -   ``vinyl_run_count_per_level``
-                *   -   ``run_size_ratio``
+                    -   vinyl_run_count_per_level
+                *   -   run_size_ratio
                     -   affects vinyl only
                     -   number
-                    -   ``vinyl_run_size_ratio``
-                *   -   ``sequence``
+                    -   vinyl_run_size_ratio
+                *   -   sequence
                     -   see section regarding
                         :ref:`specifying a sequence in create_index() <box_schema-sequence_create_index>`
                     -   string or number
                     -   not present
-                *   -   ``func``
+                *   -   func
                     -   :ref:`functional index <box_space-index_func>`
                     -   string
                     -   not present
-                *   -   ``hint`` (since version :doc:`2.6.1 </release/2.6.1>`)
+                *   -   hint (since version :doc:`2.6.1 </release/2.6.1>`)
                     -   affects TREE only.
-                        ``true`` makes an index work faster, ``false``\--- index size is reduced by half
+                        ``true`` makes an index work faster, ``false``\---index size is reduced by half
                     -   boolean
-                    -   ``true``
+                    -   true
 
         The options in the above chart are also applicable for
         :doc:`/reference/reference_lua/box_index/alter`.
