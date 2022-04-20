@@ -352,7 +352,7 @@ Router public API
         where ``msgpack.object`` is an object that stores a MessagePack array with the results returned from the storage map function.
 
         The option use case is the same as in using ``net.box``: to avoid decoding of the call results into Lua.
-        The option can be helpful if a router is used as a proxy and results received from a storage is big.
+        The option can be helpful if a router is used as a proxy and results received from a storage are big.
 
         Example:
 
