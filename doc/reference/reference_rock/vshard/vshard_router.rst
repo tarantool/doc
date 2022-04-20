@@ -325,9 +325,11 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout``—a request timeout, in seconds. The timeout is for the entire ``map_callrw()``, including all its stages.
+        *   ``timeout``---a request timeout, in seconds. The timeout is for the entire ``map_callrw()``, including all its stages.
 
-          ``timeout`` is the only supported option.
+        *   ``return_raw``---the :ref:`net.box option <net_box-options>` implemented in Tarantool since version 2.10.0.
+            If set to ``true``, ``net.box`` returns the response data wrapped in a :ref:`MessagePack object <msgpack-object-info>` instead of decoding it to Lua.
+            For more details, see the **Return** section below.
 
     ..  important::
 
@@ -344,6 +346,27 @@ Router public API
 
         If the function returns ``nil`` or ``box.NULL`` from one of the storages,
         it will not be present in the resulting map.
+
+        If the ``return_raw`` option is used,
+        the result is a map of the following format: ``{[replicaset_uuid] = msgpack.object}``
+        where ``msgpack.object`` is an object that stores a MessagePack array with the results returned from the storage map function.
+
+        The option use case is the same as in using ``net.box``: to avoid decoding of the call results into Lua.
+        The option can be helpful if a router is used as a proxy and results received from a storage are big.
+
+        Example:
+
+        ..  code-block:: lua
+
+            local res = vshard.router.map_callrw('my_func', args, {..., return_raw = true})
+
+            for replicaset_uuid, msgpack_value in pairs(res) do
+                log.info('Replicaset %s returned %s', replicaset_uuid,
+                         msgpack_value:decode())
+            end
+
+        This is an illustration of the option usage.
+        Normally, you don't need to use ``return_raw`` if you call the :ref:`decode() <msgpack-decode_string>` function.
 
     *   On failure: ``nil``, error object, and optional replica set UUID where the error occurred.
         UUID will not be returned if the error is not related to a particular replica set.
@@ -364,6 +387,8 @@ Router public API
                     ...
                 end
             end
+
+        If the ``return_raw`` option is used, the result on failure is the same as described above.
 
     Map-Reduce in vshard can be divided into three stages: Ref, Map, and Reduce.
 
