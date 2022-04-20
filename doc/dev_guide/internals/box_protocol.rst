@@ -70,6 +70,9 @@ The IPROTO constants that identify requests that we will mention in this section
     IPROTO_ROLLBACK=0x10
     IPROTO_RAFT_CONFIRM=0x28
     IPROTO_RAFT_ROLLBACK=0x29
+    IPROTO_RAFT=0x1e
+    IPROTO_RAFT_PROMOTE=0x1f
+    IPROTO_RAFT_DEMOTE=0x20
     IPROTO_PING=0x40
     IPROTO_JOIN=0x41
     IPROTO_SUBSCRIBE=0x42
@@ -132,6 +135,10 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_FIELD_IS_NULLABLE=0x03
     IPROTO_FIELD_IS_AUTOINCREMENT=0x04
     IPROTO_FIELD_SPAN=0x05
+    IPROTO_RAFT_TERM=0x00
+    IPROTO_RAFT_VOTE=0x01
+    IPROTO_RAFT_STATE=0x02
+    IPROTO_RAFT_VCLOCK=0x03
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
 `YAML <https://en.wikipedia.org/wiki/YAML>`_ so: |br|
@@ -1405,6 +1412,46 @@ bits: IPROTO_FLAG_COMMIT or IPROTO_FLAG_WAIT_SYNC or IPROTO_FLAG_WAIT_ACK.
 IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction,
 IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message for a transaction which cannot be completed immediately,
 IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchronous transaction.
+
+..  _box_protocol-raft:
+
+IPROTO_RAFT = 0x1e
+~~~~~~~~~~~~~~~~~~
+
+[TBD] intro
+
+IPROTO_RAFT рассылается броадкастами всем подключённым к ноде репликам.
+Если подразумевается какой-то ответ на запрос (например, когда это запрос другим нодам на голосование),
+то нужно, чтобы нода сама была подключена репликой к серверу, от которого ждёт ответ, потому что он придёт по каналу репликации.
+
+Другими словами, связь между всеми должна быть в обе стороны (фуллмеш)
+
+
+[TBD] update request structure
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_RAFT,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
+        IPROTO_INSTANCE_UUID: :samp:`{{uuid}}`,
+        IPROTO_CLUSTER_UUID: :samp:`{{uuid}}`,
+    })
+    # <body>
+    msgpack({
+        IPROTO_RAFT_TERM=0x00
+        IPROTO_RAFT_VOTE=0x01
+        IPROTO_RAFT_STATE=0x02
+        IPROTO_RAFT_VCLOCK=0x03
+    })
+
+[TBD] update about response
+
+Это асинхронный протокол, и response там - другое сообщение IPROTO_RAFT, а бывает вообще без response
 
 ..  _box_protocol-illustration:
 
