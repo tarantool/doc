@@ -4,10 +4,9 @@
                                 Submodule box.ctl
 -------------------------------------------------------------------------------
 
-The ``box.ctl`` submodule contains two functions: ``wait_ro``
-(wait until read-only)
-and ``wait_rw`` (wait until read-write).
-The functions are useful during initialization of a server.
+The ``wait_ro`` (wait until read-only) and ``wait_rw`` (wait until read-write) functions
+are useful during server initialization.
+To see whether a function is already in read-only or read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
 
 A particular use is for :doc:`box.once() </reference/reference_lua/box_once>`.
 For example, when a replica is initializing, it may call
@@ -18,9 +17,6 @@ This could cause conflicts between a master and a replica
 if the master is in read-write mode and the replica is in
 read-only mode.
 Waiting until "read only mode = false" solves this problem.
-
-To see whether a function is already in read-only or
-read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`.
 
 Below is a list of all ``box.ctl`` functions.
 
