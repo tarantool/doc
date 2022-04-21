@@ -315,8 +315,8 @@ msgstr ""
 "``sock:sysconnect()``. Эта функция может использовать конфигурационный "
 "параметр :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`."
 
-msgid "port number or a string pointing to a port"
-msgstr "номер порта или строка, указывающая на порт"
+msgid "port number as a numeric or string"
+msgstr "номер порта --- число или строка"
 
 msgid "maximum number of seconds to wait"
 msgstr "количество секунд ожидания"
