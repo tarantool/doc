@@ -280,8 +280,8 @@ msgstr ""
 msgid "``tarantoolctl rocks install NAME``"
 msgstr "``tarantoolctl rocks install NAME``"
 
-msgid "Install a module in the current directory."
-msgstr "Установка модуля в текущей директории."
+msgid "Install a module in the ``.rocks`` directory, nested in the current directory."
+msgstr "Установка модуля в директорию ``.rocks``, находящуюся в текущей директории."
 
 msgid "``tarantoolctl rocks lint FILE``"
 msgstr ""
