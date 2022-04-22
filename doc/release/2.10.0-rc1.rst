@@ -1,0 +1,31 @@
+Tarantool 2.10.0-rc1
+====================
+
+Released on 2022-04-25.
+
+*   Release: :tarantool-release:`2.10.0-rc1`.
+*   Tag: ``?``.
+
+Overview
+--------
+
+Compatibility
+-------------
+
+Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
+data layout, client-server protocol, and replication protocol.
+
+Please
+`upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 2.x series.
+
+Some changes are labeled as **[Breaking change]**.
+It means that the old behavior was considered error-prone
+and therefore changed to protect users from unintended mistakes.
+However, there is a small probability that someone can rely on the old behavior,
+and this label is to bring attention to the things that have been changed.
+
+Functionality added or changed
+------------------------------
+
