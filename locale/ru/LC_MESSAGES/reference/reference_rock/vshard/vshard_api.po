@@ -665,7 +665,7 @@ msgid ""
 "not log a warning. In case you need that behavior."
 msgstr ""
 "``vshard.router.bucket_id_strcrc32()`` имеет такое же поведение, но не "
-"записывает предупреждение. Для случаев, когда такое поведение действитльно "
+"записывает предупреждение. Для случаев, когда такое поведение действительно "
 "необходимо."
 
 msgid "Calculate the bucket id using a simple built-in hash function."

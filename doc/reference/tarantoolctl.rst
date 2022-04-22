@@ -150,7 +150,7 @@ Commands for managing Tarantool modules
         Initialize a directory for a Lua project using LuaRocks. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks install NAME``
-        Install a module in the current directory.
+        Install a module in the ``.rocks`` directory, nested in the current directory.
 
 ``tarantoolctl rocks lint FILE``
         Check the syntax of a rockspec. Since version :doc:`2.4.1 </release/2.4.1>`.

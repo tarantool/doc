@@ -212,7 +212,7 @@ msgstr "название модуля,"
 msgid ""
 "'E', 'W', 'I', 'V' or 'D' depending on ``log_level_function_name``, and"
 msgstr ""
-", 'W', 'I', 'V' или 'D' в зависимости от ``log_level_function_name`` и"
+"'E', 'W', 'I', 'V' или 'D' в зависимости от ``log_level_function_name`` и"
 
 msgid "``message``."
 msgstr "``сообщение``."
