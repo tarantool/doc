@@ -70,6 +70,9 @@ The IPROTO constants that identify requests that we will mention in this section
     IPROTO_ROLLBACK=0x10
     IPROTO_RAFT_CONFIRM=0x28
     IPROTO_RAFT_ROLLBACK=0x29
+    IPROTO_RAFT=0x1e
+    IPROTO_RAFT_PROMOTE=0x1f
+    IPROTO_RAFT_DEMOTE=0x20
     IPROTO_PING=0x40
     IPROTO_JOIN=0x41
     IPROTO_SUBSCRIBE=0x42
@@ -132,6 +135,10 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_FIELD_IS_NULLABLE=0x03
     IPROTO_FIELD_IS_AUTOINCREMENT=0x04
     IPROTO_FIELD_SPAN=0x05
+    IPROTO_RAFT_TERM=0x00
+    IPROTO_RAFT_VOTE=0x01
+    IPROTO_RAFT_STATE=0x02
+    IPROTO_RAFT_VCLOCK=0x03
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
 `YAML <https://en.wikipedia.org/wiki/YAML>`_ so: |br|
@@ -1405,6 +1412,37 @@ bits: IPROTO_FLAG_COMMIT or IPROTO_FLAG_WAIT_SYNC or IPROTO_FLAG_WAIT_ACK.
 IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction,
 IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message for a transaction which cannot be completed immediately,
 IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchronous transaction.
+
+..  _box_protocol-raft:
+
+IPROTO_RAFT = 0x1e
+~~~~~~~~~~~~~~~~~~
+
+A node broadcasts the IPROTO_RAFT request to all the replicas connected to it when the RAFT state of the node changes.
+It can be any actions changing the state, like starting a new election, bumping the term, voting for another node, becoming the leader, and so on.
+
+If there should be a response, for example, in case of a vote request to other nodes, the response will also be an IPROTO_RAFT message.
+In this case, the node should be connected as a replica to another node from which the response is expected because the response is sent via the replication channel.
+In other words, there should be a full-mesh connection between the nodes.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_RAFT,
+        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,  # ID of the replica which the request came from
+
+    })
+    # <body>
+    msgpack({
+        IPROTO_RAFT_TERM: :samp:`{{MP_UINT unsigned integer}}`,     # RAFT term of the instance
+        IPROTO_RAFT_VOTE: :samp:`{{MP_UINT unsigned integer}}`,     # Instance vote in the current term (if any).
+        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state; one of the three numbers: 1---follower, 2---candidate, 3---leader.
+        IPROTO_RAFT_VCLOCK: :samp:`{{MP_ARRAY {{MP_INT SRV_ID, MP_INT SRV_LSN}, {MP_INT SRV_ID, MP_INT SRV_LSN}, ...}}}`   # Current vclock of the instance. Presents only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
+    })
 
 ..  _box_protocol-illustration:
 
