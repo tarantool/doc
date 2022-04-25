@@ -54,12 +54,14 @@ based on :doc:`the legacy versioning policy <legacy-policy>`:
             -   2.8.0
             -   :doc:`2.8.1 <2.8.1>`
             -   :doc:`2.8.2 <2.8.2>`,
-                :doc:`2.8.3 <2.8.3>`
+                :doc:`2.8.3 <2.8.3>`,
+                :doc:`2.8.4 <2.8.4>`
 
         *   -   2.7
             -   2.7.0
             -   :doc:`2.7.1 <2.7.1>`
-            -   :doc:`2.7.2 <2.7.2>`, :doc:`2.7.3 <2.7.3>`
+            -   :doc:`2.7.2 <2.7.2>`,
+                :doc:`2.7.3 <2.7.3>`
 
         *   -   2.6
             -   2.6.0
@@ -105,7 +107,8 @@ based on :doc:`the legacy versioning policy <legacy-policy>`:
                 :doc:`1.10.9 <1.10.9>`,
                 :doc:`1.10.10 <1.10.10>`,
                 :doc:`1.10.11 <1.10.11>`,
-                :doc:`1.10.12 <1.10.12>`
+                :doc:`1.10.12 <1.10.12>`,
+                :doc:`1.10.13 <1.10.13>`
 
 
 For smaller feature changes and bug fixes, see closed
@@ -125,6 +128,7 @@ Release notes for series before 1.10 are also available:
 
     2.10.0-rc1
     2.10.0-beta1
+    2.8.4
     2.8.3
     2.8.2
     2.8.1
@@ -147,6 +151,7 @@ Release notes for series before 1.10 are also available:
     2.2.2
     2.2.1
     2.1.2
+    1.10.13
     1.10.12
     1.10.11
     1.10.10

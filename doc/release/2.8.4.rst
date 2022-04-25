@@ -1,0 +1,30 @@
+Tarantool 2.8.4
+===============
+
+Released on 2022-04-25.
+
+*   Release: :tarantool-release:`2.8.4`.
+*   Tag: ``2.8.4``.
+
+Overview
+--------
+
+2.8.4 is the third
+:doc:`stable </release/policy/>`
+version of the 2.8 release series. It introduces ? improvements and
+resolves ? bugs since version :doc:`2.8.3 </release/2.8.3>`.
+
+The “stable” label means that we have all planned features implemented
+and we see no high-impact issues. However, if you encounter an issue,
+feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
+
+Compatibility
+-------------
+
+Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
+data layout, client-server protocol, and replication protocol.
+
+Please
+`upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 2.x series.

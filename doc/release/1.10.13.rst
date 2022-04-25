@@ -1,0 +1,31 @@
+Tarantool 1.10.13
+=================
+
+Released on 2022-04-25.
+
+*   Release: :tarantool-release:`1.10.13`.
+*   Tag: ``1.10.13``.
+
+Overview
+--------
+
+1.10.13 is the next stable release in the :doc:`long-term support (LTS) version </release/policy>`
+1.10.x release series.
+
+The label “stable” means there are 1.10.x-based applications running in
+production for quite a while without known crashes, incorrect results or
+other showstopper bugs.
+
+This release introduces ? improvements and resolves roughly ? issues
+since the 1.10.11 version.
+
+Compatibility
+-------------
+
+Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary
+data layout, client-server protocol and replication protocol.
+
+Please
+`upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 1.10.x series.
