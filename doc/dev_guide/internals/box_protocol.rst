@@ -1418,16 +1418,10 @@ IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchr
 IPROTO_RAFT = 0x1e
 ~~~~~~~~~~~~~~~~~~
 
-[TBD] intro
-
-IPROTO_RAFT рассылается броадкастами всем подключённым к ноде репликам.
-Если подразумевается какой-то ответ на запрос (например, когда это запрос другим нодам на голосование),
-то нужно, чтобы нода сама была подключена репликой к серверу, от которого ждёт ответ, потому что он придёт по каналу репликации.
-
-Другими словами, связь между всеми должна быть в обе стороны (фуллмеш)
-
-
-[TBD] update request structure
+The IPROTO_RAFT request is broadcasted to all the replicas connected to the node.
+If there should be a response, for example, in case of a vote request to other nodes, the response will be also an IPROTO_RAFT message.
+In this case, the node should be connected as a replica to another node from which the response is expected because the response is sent via the replication channel.
+In other words, there should be a full-mesh connection between the nodes.
 
 ..  cssclass:: highlight
 ..  parsed-literal::
@@ -1437,21 +1431,16 @@ IPROTO_RAFT рассылается броадкастами всем подкл�
     # <header>
     msgpack({
         IPROTO_REQUEST_TYPE: IPROTO_RAFT,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_INSTANCE_UUID: :samp:`{{uuid}}`,
-        IPROTO_CLUSTER_UUID: :samp:`{{uuid}}`,
+        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,  # ID of the replica which the request came from
+
     })
     # <body>
     msgpack({
-        IPROTO_RAFT_TERM=0x00
-        IPROTO_RAFT_VOTE=0x01
-        IPROTO_RAFT_STATE=0x02
-        IPROTO_RAFT_VCLOCK=0x03
+        IPROTO_RAFT_TERM: :samp:`{{MP_UINT unsigned integer}}`,     # RAFT term of the instance
+        IPROTO_RAFT_VOTE: :samp:`{{MP_UINT unsigned integer}}`,     # Instance vote in the current term (if any).
+        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state; one of the three numbers: 1---follower, 2---candidate, 3---leader.
+        IPROTO_RAFT_VCLOCK: :samp:`{{MP_ARRAY {{MP_INT SRV_ID, MP_INT SRV_LSN}, {MP_INT SRV_ID, MP_INT SRV_LSN}, ...}}}`   # Current vclock of the instance. Presents only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
     })
-
-[TBD] update about response
-
-Это асинхронный протокол, и response там - другое сообщение IPROTO_RAFT, а бывает вообще без response
 
 ..  _box_protocol-illustration:
 
