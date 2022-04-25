@@ -46,14 +46,14 @@ msgid "``FILE`` is the path to some file (.lua, .xlog or .snap)."
 msgstr "``FILE`` -- это путь к какому-либо файлу (.lua, .xlog или .snap)."
 
 msgid "``URI`` is the URI of some Tarantool instance."
-msgstr "``URI`` -- это URI некого экземпляра Tarantool'а."
+msgstr "``URI`` -- это URI некого экземпляра Tarantool."
 
 msgid "``OPTIONS`` are options taken by some ``tarantoolctl`` commands."
 msgstr ""
 "``OPTIONS`` -- это параметры, которые принимают команды ``tarantoolctl``."
 
 msgid "Commands for managing Tarantool instances"
-msgstr "Команды для управления экземплярами Tarantool'а"
+msgstr "Команды для управления экземплярами Tarantool"
 
 msgid "``tarantoolctl start NAME``"
 msgstr "``tarantoolctl start NAME``"
@@ -95,7 +95,7 @@ msgid "``tarantoolctl stop NAME``"
 msgstr "``tarantoolctl stop NAME``"
 
 msgid "Stop a Tarantool instance."
-msgstr "Остановка экземпляра Tarantool'а."
+msgstr "Остановка экземпляра Tarantool."
 
 msgid "``tarantoolctl status NAME``"
 msgstr "``tarantoolctl status NAME``"
@@ -166,7 +166,7 @@ msgid "``tarantoolctl eval NAME FILE``"
 msgstr "``tarantoolctl eval NAME FILE``"
 
 msgid "Evaluate a local Lua file on a running Tarantool instance."
-msgstr "Выполнение локального Lua-файла на работающем экземпляре Tarantool'а."
+msgstr "Выполнение локального Lua-файла на работающем экземпляре Tarantool."
 
 msgid "``tarantoolctl connect URI``"
 msgstr "``tarantoolctl connect URI``"
@@ -175,7 +175,7 @@ msgid ""
 "Connect to a Tarantool instance on an admin-console port. Supports both "
 "TCP/Unix sockets."
 msgstr ""
-"Подключение к экземпляру Tarantool'а по порту административной консоли. "
+"Подключение к экземпляру Tarantool по порту административной консоли. "
 "Поддерживаются TCP и Unix сокеты."
 
 msgid "Commands for managing checkpoint files"
@@ -201,7 +201,7 @@ msgstr ""
 msgid "Play the contents of .snap/.xlog files to another Tarantool instance."
 msgstr ""
 "Передача содержимого .snap-файла или .xlog-файла на другой экземпляр "
-"Tarantool'а."
+"Tarantool."
 
 msgid "Supported options:"
 msgstr "Поддерживаемые опции:"
@@ -231,7 +231,7 @@ msgstr ""
 "Можно передавать несколько раз."
 
 msgid "Commands for managing Tarantool modules"
-msgstr "Команды для управления модулями Tarantool'а"
+msgstr "Команды для управления модулями Tarantool"
 
 msgid "``tarantoolctl rocks build NAME``"
 msgstr ""

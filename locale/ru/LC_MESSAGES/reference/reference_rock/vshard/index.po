@@ -10,7 +10,7 @@ msgstr ""
 "В модуле ``vshard`` реализована функция продвинутого шардинга "
 "(сегментирования), которая основывается на понятии :ref:`виртуального "
 "сегмента <vshard-vbuckets>` и позволяет осуществлять горизонтальное "
-"масштабирование в Tarantool'е."
+"масштабирование в Tarantool."
 
 msgid ""
 "Check out the :ref:`Quick start guide <vshard-quick-start>` -- or dive into "

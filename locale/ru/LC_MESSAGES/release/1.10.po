@@ -925,7 +925,7 @@ msgid ""
 "and introduce automatic rebootstrap of a Tarantool replica set."
 msgstr ""
 "Цель данного релиза -- значительно повысить стабильность ``vinyl'а`` и "
-"реализовать автоматическую повторную настройку набора реплик в Tarantool'е."
+"реализовать автоматическую повторную настройку набора реплик в Tarantool."
 
 msgid "Functionality added or changed:"
 msgstr "Изменения или добавления функциональности:"

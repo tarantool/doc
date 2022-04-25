@@ -12,7 +12,7 @@ msgstr ""
 "Создание нового кортежа либо из скаляра, либо из Lua-таблицы.  Возможен и "
 "вариант получения новых кортежей из запросов :ref:`select <box_space-"
 "select>` или :ref:`insert <box_space-insert>`. или :ref:`replace <box_space-"
-"replace>`, или :ref:`update <box_space-update>` Tarantool'а, которые можно "
+"replace>`, или :ref:`update <box_space-update>` Tarantool, которые можно "
 "рассматривать в качестве операторов, косвенно выполняющих операцию создания "
 "``new()``."
 
