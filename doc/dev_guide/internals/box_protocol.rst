@@ -1418,8 +1418,10 @@ IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchr
 IPROTO_RAFT = 0x1e
 ~~~~~~~~~~~~~~~~~~
 
-The IPROTO_RAFT request is broadcasted to all the replicas connected to the node.
-If there should be a response, for example, in case of a vote request to other nodes, the response will be also an IPROTO_RAFT message.
+A node broadcasts the IPROTO_RAFT request to all the replicas connected to it when the RAFT state of the node changes.
+It can be any actions changing the state, like starting a new election, bumping the term, voting for another node, becoming the leader, and so on.
+
+If there should be a response, for example, in case of a vote request to other nodes, the response will also be an IPROTO_RAFT message.
 In this case, the node should be connected as a replica to another node from which the response is expected because the response is sent via the replication channel.
 In other words, there should be a full-mesh connection between the nodes.
 
