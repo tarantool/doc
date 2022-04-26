@@ -1152,7 +1152,7 @@ HTTP client
 
 -   Fixed invalid headers after redirect (:tarantool-issue:`6101`).
 
-Mvcc
+MVCC
 ~~~~
 
 -   Fixed MVCC interaction with ephemeral spaces: TX manager now ignores
