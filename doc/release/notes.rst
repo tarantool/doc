@@ -1,9 +1,12 @@
 Release notes for Tarantool versions
 ====================================
 
-Below is the table listing all Tarantool versions starting from 1.10.0 up to
+Below are the tables listing all Tarantool versions starting from 1.10.0 up to
 the current latest versions.
-Each link leads to the release notes page of the corresponding version:
+Each link leads to the release notes page of the corresponding version.
+
+The first table contains the Tarantool versions
+based on the :doc:`new release policy <policy>`:
 
 ..  _release-list:
 
@@ -19,23 +22,46 @@ Each link leads to the release notes page of the corresponding version:
         *   -   Release Series
             -   Alpha
             -   Beta
+            -   Release Candidate
             -   Release
 
         *   -   2.10
             -   n/a
             -   :doc:`2.10.0-beta1 <2.10.0-beta1>`
+                `2.10.0-beta2 <https://github.com/tarantool/tarantool/releases/tag/2.10.0-beta2>`_
+            -   :doc:`2.10.0-rc1 <2.10.0-rc1>`
             -   not released yet
+
+
+The table below consists of the Tarantool versions
+based on :doc:`the legacy versioning policy <legacy-policy>`:
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-3
+    ..  rst-class:: left-align-column-4
+
+    ..  list-table::
+
+        *   -   Release Series
+            -   Alpha
+            -   Beta
+            -   Release
 
         *   -   2.8
             -   2.8.0
             -   :doc:`2.8.1 <2.8.1>`
             -   :doc:`2.8.2 <2.8.2>`,
-                :doc:`2.8.3 <2.8.3>`
+                :doc:`2.8.3 <2.8.3>`,
+                :doc:`2.8.4 <2.8.4>`
 
         *   -   2.7
             -   2.7.0
             -   :doc:`2.7.1 <2.7.1>`
-            -   :doc:`2.7.2 <2.7.2>`, :doc:`2.7.3 <2.7.3>`
+            -   :doc:`2.7.2 <2.7.2>`,
+                :doc:`2.7.3 <2.7.3>`
 
         *   -   2.6
             -   2.6.0
@@ -81,7 +107,8 @@ Each link leads to the release notes page of the corresponding version:
                 :doc:`1.10.9 <1.10.9>`,
                 :doc:`1.10.10 <1.10.10>`,
                 :doc:`1.10.11 <1.10.11>`,
-                :doc:`1.10.12 <1.10.12>`
+                :doc:`1.10.12 <1.10.12>`,
+                :doc:`1.10.13 <1.10.13>`
 
 
 For smaller feature changes and bug fixes, see closed
@@ -99,7 +126,9 @@ Release notes for series before 1.10 are also available:
 ..  toctree::
     :hidden:
 
+    2.10.0-rc1
     2.10.0-beta1
+    2.8.4
     2.8.3
     2.8.2
     2.8.1
@@ -122,6 +151,7 @@ Release notes for series before 1.10 are also available:
     2.2.2
     2.2.1
     2.1.2
+    1.10.13
     1.10.12
     1.10.11
     1.10.10

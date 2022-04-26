@@ -17,10 +17,19 @@ To keep track of the major features in each version of the Tarantool easier, you
         *   -   Since version
             -   Feature
 
-        *   -   2.10.0-beta2
+        *   -   2.10.0-rc1
+            -   Transaction isolation levels in Lua and IPROTO (:tarantool-issue:`6930`)
+
+        *   -   2.10.0-rc1
+            -   Fencing and pre-voting in RAFT (:tarantool-issue:`6661`)
+
+        *   -   2.10.0-rc1
+            -   Foreign keys and constraints support (:tarantool-issue:`6436`)
+
+        *   -   2.10.0-beta2, 2.10.0-rc1
             -   HTTP/2 support for the HTTP client
 
-        *   -   2.10.0-beta2
+        *   -   2.10.0-beta2, 2.10.0-rc1
             -   Preliminary support for the new DATETIME type (:tarantool-issue:`5941`)
 
         *   -   2.10.0-beta1
@@ -32,7 +41,7 @@ To keep track of the major features in each version of the Tarantool easier, you
             -   :ref:`Streams and interactive transactions in iproto <box_stream>`
                 (:tarantool-issue:`5860`)
 
-        *   -   2.10.0-beta1
+        *   -   2.10.0-beta1, 2.10.0-rc1
             -   Consistent SQL type system
 
         *   -   2.10.0-beta1
