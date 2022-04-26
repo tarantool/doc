@@ -9,7 +9,7 @@ Released on 2021-08-20.
 Overview
 --------
 
-2.10.0-beta1 is the beta version of the 2 release series.
+2.10.0-beta1 is the :doc:`beta </release/policy/>` version of the 2 release series.
 It introduces 28 new features and resolves 56 bugs since the 2.8 version.
 There can be bugs in less common areas. If you find any,
 feel free to `report an issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
@@ -47,7 +47,7 @@ Core
 ~~~~
 
 -   The UUID field type is now part of the ``SCALAR`` field type
-    (::tarantool-issue:`6042`).
+    (:tarantool-issue:`6042`).
 
 -   The ``UUID`` field type is now available in SQL. A new UUID can be generated
     using the new SQL built-in function ``UUID()``
