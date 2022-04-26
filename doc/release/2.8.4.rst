@@ -10,9 +10,8 @@ Overview
 --------
 
 2.8.4 is the third
-:doc:`stable </release/policy/>`
-version of the 2.8 release series. It introduces ? improvements and
-resolves ? bugs since version :doc:`2.8.3 </release/2.8.3>`.
+:doc:`stable </release/policy/>` version of the 2.8 release series.
+It introduces 1 improvements and resolves 16 bugs since version :doc:`2.8.3 </release/2.8.3>`.
 
 The “stable” label means that we have all planned features implemented
 and we see no high-impact issues. However, if you encounter an issue,
@@ -28,3 +27,92 @@ Please
 `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
+
+Functionality added or changed
+------------------------------
+
+Build
+~~~~~
+
+-   Support fedora-35 build. (:tarantool-issue:`6692`)
+
+Bugs fixed
+----------
+
+Core
+~~~~
+
+-   Fixed a crash that could happen in case a tuple is deleted from a
+    functional index while there is an iterator pointing to it (:tarantool-issue:`6786`).
+
+-   Fixed memory leak in interactive console (:tarantool-issue:`6817`).
+
+-   Fixed an assertion fail when passing tuple without primary key fields
+    to before_replace trigger. Now tuple format is checked before
+    execution of before_replace triggers and after each one (:tarantool-issue:`6780`).
+
+-   Banned DDL operations in space ``on_replace`` triggers, since they could
+    lead to a crash (:tarantool-issue:`6920`).
+
+-   Fixed a bug due to which all fibers created with
+    ``fiber_attr_setstacksize()`` leaked until the thread exit. Their
+    stacks also leaked except when ``fiber_set_joinable(..., true)`` was
+    used.
+
+Vinyl
+~~~~~
+
+-   Immediate removal of compacted run files created after the last
+    checkpoint optimization now works for replica’s initial JOIN stage
+    (:tarantool-issue:`6568`).
+
+-   Fixed crash during recovery of a secondary index in case the primary
+    index contains incompatible phantom tuples (:tarantool-issue:`6778`).
+
+Raft
+~~~~
+
+-   Reconfiguration of ``box.cfg.election_timeout`` could lead to a crash
+    or undefined behaviour if done during an ongoing election with a
+    special WAL write in progress.
+
+LuaJIT
+~~~~~~
+
+-   Fixed top part of Lua stack (red zone, free slots, top slot)
+    unwinding in ``lj-stack`` command.
+
+-   Added the value of ``g->gc.mmudata`` field to ``lj-gc`` output.
+
+-   ``string.char()`` builtin recording is fixed in case when no
+    arguments are given (:tarantool-issue:`6371, :tarantool-issue:`6548`).
+
+-   Actually made JIT respect ``maxirconst`` trace limit while recording
+    (:tarantool-issue:`6548`).
+
+Lua
+~~~
+
+-   Fixed ``table.equals`` result when booleans compared (:tarantool-issue:`6386`).
+
+-   Tap subtests inherit strict mode from parent (:tarantool-issue:`6868`).
+
+Box
+~~~
+
+-   Added iterator type checking and allow to pass iterator as a
+    ``box.index.{ALL,GT,…}`` directly (:tarantool-issue:`6501`).
+
+HTTP client
+~~~~~~~~~~~
+
+-   Fixed invalid headers after redirect (:tarantool-issue:`6101`).
+
+Recovery
+~~~~~~~~
+
+-   When ``force_recovery`` cfg option is set, Tarantool is able to boot
+    from ``snap``/``xlog`` combinations where ``xlog`` covers changes
+    committed both before and after ``snap`` creation. For example,
+    ``0...0.xlog``, covering everything up to ``vclock {1: 15}`` and
+    ``0...09.snap``, corresponding to ``vclock {1: 9}`` (:tarantool-issue:`6794`).
