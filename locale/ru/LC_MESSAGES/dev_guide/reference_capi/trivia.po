@@ -40,10 +40,10 @@ msgid "Paths to C and CXX compilers."
 msgstr ""
 
 msgid "C compile flags used to build Tarantool."
-msgstr "Флаги компиляции C, используемые для сборки Tarantool'а."
+msgstr "Флаги компиляции C, используемые для сборки Tarantool."
 
 msgid "CXX compile flags used to build Tarantool."
-msgstr "Флаги компиляции CXX, используемые для сборки Tarantool'а."
+msgstr "Флаги компиляции CXX, используемые для сборки Tarantool."
 
 msgid "A path to install ``*.lua`` module files."
 msgstr "Путь для установки файлов модуля ``*.lua``."

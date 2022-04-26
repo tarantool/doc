@@ -402,7 +402,7 @@ msgid ""
 "section."
 msgstr ""
 "``unix_socket`` -- имя сокета, которое используется вместо адреса в сети "
-"Интернет,    для локального соединения. Сборка сервера Tarantool'а должна "
+"Интернет,    для локального соединения. Сборка сервера Tarantool должна "
 "осуществляться с помощью ``libcurl`` 7.40 или более поздней версии. См. "
 ":ref:`второй пример <http-example2>` далее в разделе."
 
@@ -717,16 +717,16 @@ msgid "**Example 2:**"
 msgstr "**Пример 2:**"
 
 msgid "Start two Tarantool instances on the same computer."
-msgstr "Запустите два экземпляра Tarantool'а на одном компьютере."
+msgstr "Запустите два экземпляра Tarantool на одном компьютере."
 
 msgid "On the first Tarantool instance, listen on a Unix socket:"
-msgstr "В первом экземпляре Tarantool'а включите прослушивание Unix-сокета:"
+msgstr "В первом экземпляре Tarantool включите прослушивание Unix-сокета:"
 
 msgid "box.cfg{listen='/tmp/unix_domain_socket.sock'}"
 msgstr "box.cfg{listen='/tmp/unix_domain_socket.sock'}"
 
 msgid "On the second Tarantool instance, send via ``http_client``:"
-msgstr "На втором экземпляре Tarantool'а отправьте с помощью ``http_client``:"
+msgstr "На втором экземпляре Tarantool отправьте с помощью ``http_client``:"
 
 msgid ""
 "box.cfg{}\n"

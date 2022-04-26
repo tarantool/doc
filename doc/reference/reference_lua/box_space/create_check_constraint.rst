@@ -53,7 +53,7 @@ box.space.create_check_constraint()
 
         During the recovery process, for example when the Tarantool server is starting,
         the check is not performed unless
-        :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
+        :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`
         is specified.
 
         **Example:**

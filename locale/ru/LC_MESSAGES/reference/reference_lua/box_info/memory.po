@@ -7,7 +7,7 @@ msgid ""
 "of the whole Tarantool instance."
 msgstr ""
 "Функция **memory** в ``box.info`` дает пользователю ``admin`` полное "
-"представление об экземпляре Tarantool'а."
+"представление об экземпляре Tarantool."
 
 msgid ""
 "To get a picture of the vinyl subsystem, use :ref:`box.stat.vinyl() "

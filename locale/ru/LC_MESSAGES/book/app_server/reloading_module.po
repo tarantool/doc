@@ -4,7 +4,7 @@ msgstr "Перезагрузка модуля"
 
 msgid "You can reload any Tarantool application or module with zero downtime."
 msgstr ""
-"Любое приложение или модуль Tarantool'а можно перезагрузить с нулевым "
+"Любое приложение или модуль Tarantool можно перезагрузить с нулевым "
 "временем простоя."
 
 msgid "Reloading a module in Lua"

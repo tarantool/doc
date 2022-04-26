@@ -73,7 +73,7 @@ msgstr "Создание базы данных"
 msgid "Here is how to create a simple test database after installation."
 msgstr ""
 "Далее объясняется, как создать простую тестовую базу данных после установки "
-"Tarantool'а."
+"Tarantool."
 
 msgid ""
 "To let Tarantool store data in a separate place, create a new directory "

@@ -6,7 +6,7 @@ msgid ""
 "This module is a ``membership`` library for Tarantool based on a gossip "
 "protocol."
 msgstr ""
-"Этот модуль представляет собой библиотеку ``membership`` для Tarantool'а на "
+"Этот модуль представляет собой библиотеку ``membership`` для Tarantool на "
 "основе протокола gossip."
 
 msgid ""

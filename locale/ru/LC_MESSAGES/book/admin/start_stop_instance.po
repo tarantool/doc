@@ -6,7 +6,7 @@ msgid ""
 "While a Lua application is executed by Tarantool, an instance file is "
 "executed by ``tarantoolctl`` which is a Tarantool script."
 msgstr ""
-"Lua-приложение выполняется Tarantool'ом, тогда как файл экземпляра "
+"Lua-приложение выполняется Tarantool, тогда как файл экземпляра "
 "выполняется Tarantool-скриптом ``tarantoolctl``."
 
 msgid "Here is what ``tarantoolctl`` does when you issue the command:"
@@ -168,7 +168,7 @@ msgstr ""
 "$ systemctl restart tarantool@my_app"
 
 msgid "Running Tarantool locally"
-msgstr "Локальный запуск Tarantool'а"
+msgstr "Локальный запуск Tarantool"
 
 msgid ""
 "Sometimes you may need to run a Tarantool instance locally, e.g. for test "
@@ -300,7 +300,7 @@ msgstr ""
 "<...>"
 
 msgid "Now we tell ``tarantoolctl`` to start the Tarantool instance:"
-msgstr "Запустим экземпляр Tarantool'а с помощью ``tarantoolctl``:"
+msgstr "Запустим экземпляр Tarantool с помощью ``tarantoolctl``:"
 
 msgid "$ tarantoolctl start my_app"
 msgstr "$ tarantoolctl start my_app"
