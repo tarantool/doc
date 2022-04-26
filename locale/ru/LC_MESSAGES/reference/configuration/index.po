@@ -1139,7 +1139,7 @@ msgstr ""
 
 msgid ""
 "Default: 10^18 (a large number so in effect there is no limit by default)"
-msgstr "По умолчанию: 10^18 (большое число, так что предела как-будто нет)"
+msgstr "По умолчанию: 10^18 (большое число: можно считать, что предела нет)"
 
 msgid "Binary logging and snapshots"
 msgstr "Записи в бинарный журнал и создание снимков"
