@@ -34,7 +34,7 @@ Functionality added or changed
 Build
 ~~~~~
 
--   Support fedora-35 build. (:tarantool-issue:`6692`)
+-   Support fedora-35 build (:tarantool-issue:`6692`).
 
 Bugs fixed
 ----------

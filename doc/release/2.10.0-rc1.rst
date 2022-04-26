@@ -365,7 +365,7 @@ Datetime
     Now all components of the interval values are kept and operated
     separately (i.e. years, months, weeks, days, hours, seconds, and
     nanoseconds). This allows to apply date/time arithmetic correctly
-    when we add/subtract intervals to datetime values.
+    when we add or subtract intervals to datetime values.
 
 -   Extended datetime literal parser with the ability to handle known
     timezone abbreviations (i.e. ‘MSK’, ‘CET’, etc.) which are
@@ -678,7 +678,7 @@ Core
 
 -   Fixed a crash in JSON update on tuple/space when it had more than one
     operation, they accessed fields in reversed order, and these fields
-    didn’t exist. Example: ``box.tuple.new({1}):update({{'=', 4, 4}, {'=', 3, 3}})``
+    did not exist. Example: ``box.tuple.new({1}):update({{'=', 4, 4}, {'=', 3, 3}})``
     (:tarantool-issue:`6069`).
 
 -   Fixed invalid results produced by the ``json`` module’s ``encode``
@@ -753,7 +753,7 @@ Core
     behavior: all requests queued for sending before the connection is
     closed are guaranteed to be sent (:tarantool-issue:`6338`).
 
--   Fixed a crash during replace of malformed tuple into ``\_schema`` system
+-   Fixed a crash during replace of malformed tuple into ``_schema`` system
     space (:tarantool-issue:`6332`).
 
 -   Fixed dropping incoming messages when the connection is closed or
@@ -772,7 +772,7 @@ Core
 -   Fixed a bug when an index was inconsistent after background build in
     case the primary index was hash (:tarantool-issue:`5977`).
 
--   Now inserting a tuple with the wrong ``id``` field into the ``\_priv``
+-   Now inserting a tuple with the wrong ``id``` field into the ``_priv``
     space returns the correct error (:tarantool-issue:`6295`).
 
 -   Fixed dirty read in MVCC after space alter (:tarantool-issue:`6263`, :tarantool-issue:`6318`).
@@ -822,7 +822,7 @@ Core
 -   ``SELECT`` in RO transaction now reads confirmed data, like a
     standalone (autocommit) ``SELECT`` does (:tarantool-issue:`6452`).
 
--   Fixed a crash when Tarantool is launched with multiple ``-e`` or
+-   Fixed a crash when Tarantool was launched with multiple ``-e`` or
     ``-l`` options without a space between the option and the value
     (:tarantool-issue:`5747`).
 
@@ -872,7 +872,7 @@ Core
 Memtx
 ~~~~~
 
--   Now memtx will raise an error if “clear” dictionary was passed to
+-   Now memtx raises an error if “clear” dictionary is passed to
     ``s:select()`` (:tarantool-issue:`6167`).
 
 -   Fixed MVCC transaction manager story garbage collection breaking
@@ -1074,9 +1074,9 @@ SQL
 -   All arithmetic operations can now only accept numeric values
     (:tarantool-issue:`5756`).
 
--   Now function ``quote()`` will return an argument in case the argument
+-   Now function ``quote()`` returns an argument in case the argument
     is ``DOUBLE``. The same for all other numeric types. For types other
-    than numeric, ``STRING`` will be returned (:tarantool-issue:`6239`).
+    than numeric, ``STRING`` is returned (:tarantool-issue:`6239`).
 
 -   The ``TRIM()`` function now does not lose collation when executed
     with the keywords ``BOTH``, ``LEADING``, or ``TRAILING`` (:tarantool-issue:`6299`).
