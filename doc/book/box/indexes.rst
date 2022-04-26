@@ -546,7 +546,7 @@ Here's short example of using 4D tree:
     tons of data, and this can affect the performance.
 
     And another frequent mistake is to specify iterator type without quotes,
-    in such way: ``rtree_index:select(rect, {iterator = 'LE'})``.
+    in such way: ``rtree_index:select(rect, {iterator = LE})``.
     This leads to silent EQ select, because ``LE`` is undefined variable and
     treated as nil, so iterator is unset and default used.
 
