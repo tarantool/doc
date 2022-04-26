@@ -85,7 +85,7 @@ LuaJIT
 -   Added the value of ``g->gc.mmudata`` field to ``lj-gc`` output.
 
 -   ``string.char()`` builtin recording is fixed in case when no
-    arguments are given (:tarantool-issue:`6371, :tarantool-issue:`6548`).
+    arguments are given (:tarantool-issue:`6371`, :tarantool-issue:`6548`).
 
 -   Actually made JIT respect ``maxirconst`` trace limit while recording
     (:tarantool-issue:`6548`).
