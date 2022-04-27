@@ -193,8 +193,10 @@ msgstr ""
 "              > parts = {'id'}\n"
 "              > })"
 
-msgid "This is a primary index based on the ``id`` field of each tuple."
-msgstr "Это первичный индекс по полю ``id`` в каждом кортеже."
+msgid "This is a primary index based on the ``id`` field of each tuple. "
+"``TREE`` is the most universal index type. To learn more, check the documentation on Tarantool :ref:`index types <index-types>`."
+msgstr "Это первичный индекс по полю ``id`` в каждом кортеже. "
+"Тип индекса ``TREE`` --- самый универсальный. Подробная информация изложена в документации о :ref:`типах индексов в Tarantool <index-types>`."
 
 msgid ""
 "Insert three :term:`tuples <tuple>` (our name for records) into the space:"

@@ -119,6 +119,7 @@ Here is how to create a simple test database after installation.
                > })
 
    This is a primary index based on the ``id`` field of each tuple.
+   ``TREE`` is the most universal index type. To learn more, check the documentation on Tarantool :ref:`index types <index-types>`.
 
 #. Insert three :term:`tuples <tuple>` (our name for records)
    into the space:
