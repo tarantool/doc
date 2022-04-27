@@ -895,6 +895,20 @@ Router public API
             * result of ``function_name`` on success
             * nil, err otherwise
 
+..  _router_api-master-search-wakeup:
+
+..  function:: vshard.router.master_search_wakeup()
+
+    :ref:`Master discovery <TBD>` works in its own fiber on the router, which is activated only if at least one replica set is :ref:`configured <>` to look for the master.
+    It wakes up with a certain period. But it is possible to wake it up on demand by using this function.
+
+    [TBD] To wake the fiber up manually can be useful in speeding up tests for changing the master. Another use case is when you in the router console and is going to do some actions on the router.
+
+    It does nothing if the master search is not configured for any replica set.
+
+    :return: none
+
+
 ..  _vshard_api_reference-router_internal_api:
 
 Router internal API

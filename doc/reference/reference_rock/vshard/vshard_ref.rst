@@ -21,6 +21,7 @@ Basic parameters
 * :ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`
 * :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`
 * :ref:`discovery_mode <cfg_basic-discovery_mode>`
+* :ref:`master <cfg_basic-master>`
 
 .. _cfg_basic-sharding:
 
@@ -174,6 +175,72 @@ Basic parameters
     | Default: 'on'
     | Dynamic: yes
 
+..  _cfg_basic-master:
+
+..  confval:: master
+
+    If set to ``auto``, turns on the automated master discovery in a replica set.
+
+    [TBD]
+    A router goes to the replica sets marked as having an auto master discovery, finds a master in them, and periodically checks if the master is still a master.
+    When the master in a replica set stops being a master, the router goes around all the nodes of the replica set and finds out which one is the new master.
+
+    [TBD]
+    Without this setting, a router is not able to find master nodes in the configured replica sets on its own. It relies only on how they are specified in the configuration.
+    This becomes a problem when master changes and the change is not delivered to the router's configuration. For instance, the router does not rely on a central config provider.
+    Or it does rely, but the provider can't deliver a new configuration due to any reason.
+
+    This is getting especially tricky with the :ref:`built-in automatic master election <TBD>` which is not supported by vshard yet.
+    It doesn't depend on any configuration, and the master/leader role isn't pinned to one node.
+
+
+    The parameter should be specified per replica set and is not compatible with specifying a master manually.
+
+    [TBD] Configuration pattern
+
+    **Correct:**
+
+    ..  code-block:: kconfig
+
+        config = {
+            sharding = {
+                <replicaset uuid> = {
+                    master = 'auto',
+                    replicas = {...},
+                },
+                ...
+            },
+            ...
+        }
+
+    **Incorrect:**
+
+    ..  code-block:: kconfig
+
+        config = {
+            sharding = {
+                <replicaset uuid> = {
+                    master = 'auto',
+                    replicas = {
+                        <replica uuid1> = {
+                            master = true,
+                            ...
+                        },
+                        <replica uuid2> = {
+                            master = false,
+                            ...
+                        },
+                    },
+                },
+                ...
+            },
+            ...
+        }
+
+
+    | Type: string
+    | Default: [TBD]
+    | Dynamic: [TBD]
 
 .. _vshard-config-replica-set-funcs:
 
