@@ -27,7 +27,7 @@ based on the :doc:`new release policy <policy>`:
 
         *   -   2.10
             -   n/a
-            -   :doc:`2.10.0-beta1 <2.10.0-beta1>`
+            -   :doc:`2.10.0-beta1 <2.10.0-beta1>`,
                 `2.10.0-beta2 <https://github.com/tarantool/tarantool/releases/tag/2.10.0-beta2>`_
             -   :doc:`2.10.0-rc1 <2.10.0-rc1>`
             -   not released yet
