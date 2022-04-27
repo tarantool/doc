@@ -17,4 +17,5 @@ This section will guide you through our typical documentation formatting cases.
     markup/links
     markup/tables
     markup/code
+    markup/gui
     markup/admonitions
