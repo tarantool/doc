@@ -598,8 +598,6 @@ Build
 Bugs fixed
 ----------
 
-..  _core-1:
-
 Core
 ~~~~
 
