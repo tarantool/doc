@@ -114,7 +114,7 @@ Here is how to create a simple test database after installation.
    .. code-block:: tarantoolsession
 
       tarantool> s:create_index('primary', {
-               > type = 'hash',
+               > type = 'tree',
                > parts = {'id'}
                > })
 
@@ -150,7 +150,7 @@ Here is how to create a simple test database after installation.
       ---
       ...
       tarantool> s:create_index('primary', {
-               > type = 'hash',
+               > type = 'tree',
                > parts = {'id'}
                > })
       ---
@@ -162,7 +162,7 @@ Here is how to create a simple test database after installation.
         id: 0
         space_id: 512
         name: primary
-        type: HASH
+        type: TREE
       ...
       tarantool> s:insert{1, 'Roxette', 1986}
       ---
@@ -186,7 +186,7 @@ Here is how to create a simple test database after installation.
    .. code-block:: tarantoolsession
 
       tarantool> s:create_index('secondary', {
-               > type = 'hash',
+               > type = 'tree',
                > parts = {'band_name'}
                > })
 
