@@ -336,7 +336,7 @@ Lua
 ~~~
 
 -   Introduced the new method ``table.equals``. It compares two tables by value with
-    respect to the ``__eq`` metamethod..
+    respect to the ``__eq`` metamethod.
 
 -   Added support of console autocompletion for ``net.box`` objects
     ``stream`` and ``future`` (:tarantool-issue:`6305`).
