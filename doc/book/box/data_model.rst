@@ -1028,6 +1028,12 @@ that do not require data migration:
 
 -   creating an index
 
+..  note::
+
+    Check the `non-blocking DDL <https://www.tarantool.io/en/enterprise_doc/space_upgrade/>`_
+    in the Enterprise version. With the help of it, you can enable compression and migrate,
+    including already created tuples.
+
 
 ****************************************
 Adding a field to the end of a space
