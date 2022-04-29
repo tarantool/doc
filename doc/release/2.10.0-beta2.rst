@@ -1,6 +1,10 @@
-Date: 2021-12-22
+Tarantool 2.10.0-beta2
+======================
 
-Tag: 2.10.0-beta2
+Released on 2021-12-22.
+
+*   Release: :tarantool-release:`2.10.0-beta2`.
+*   Tag: ``2.10.0-beta2``.
 
 Overview
 --------
