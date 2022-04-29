@@ -347,6 +347,8 @@ Lua
     It does not count tuples that arrive from memtx or vinyl but counts
     tuples created on-the-fly: say, using ``box.tuple.new(<...>)``.
 
+..  _2.10.0-rc1_datetime:
+
 Datetime
 ^^^^^^^^
 
