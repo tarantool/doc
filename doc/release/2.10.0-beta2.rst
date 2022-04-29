@@ -16,7 +16,7 @@ issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
 
 Notable changes are:
 
--  The HTTP client now supports HTTP/2.
+-  HTTP client now supports HTTP/2.
 -  Preliminar support of new DATETIME type.
 -  Improved type consistency in SQL
 

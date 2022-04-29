@@ -127,6 +127,7 @@ Release notes for series before 1.10 are also available:
     :hidden:
 
     2.10.0-rc1
+    2.10.0-beta2
     2.10.0-beta1
     2.8.4
     2.8.3
