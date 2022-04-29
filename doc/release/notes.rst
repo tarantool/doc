@@ -12,12 +12,8 @@ based on the :doc:`new release policy <policy>`:
 
 ..  container:: table
 
-    ..  rst-class:: left-align-column-1
-    ..  rst-class:: left-align-column-2
-    ..  rst-class:: left-align-column-3
-    ..  rst-class:: left-align-column-4
-
     ..  list-table::
+        :widths: 18 18 24 20 20
 
         *   -   Release Series
             -   Alpha
@@ -28,7 +24,7 @@ based on the :doc:`new release policy <policy>`:
         *   -   2.10
             -   n/a
             -   :doc:`2.10.0-beta1 <2.10.0-beta1>`,
-                `2.10.0-beta2 <https://github.com/tarantool/tarantool/releases/tag/2.10.0-beta2>`_
+                `2.10.0-beta2 <2.10.0-beta2>`
             -   :doc:`2.10.0-rc1 <2.10.0-rc1>`
             -   not released yet
 
