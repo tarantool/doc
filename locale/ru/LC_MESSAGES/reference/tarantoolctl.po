@@ -230,6 +230,10 @@ msgstr ""
 "``--replica=replica_id`` для фильтрации вывода по идентификатору реплики. "
 "Можно передавать несколько раз."
 
+msgid "``--format=format_name`` to indicate format (defaults to ``yaml``, can also be ``json`` or ``lua``)."
+msgstr "``--format=format_name`` для указания формата (по умолчанию ``yaml``, "
+"может также принимать значения ``json`` и ``lua``)."
+
 msgid "Commands for managing Tarantool modules"
 msgstr "Команды для управления модулями Tarantool"
 
