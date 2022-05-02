@@ -350,19 +350,19 @@ Paste the configuration example below into ``config.yml`` and click "Apply".
     ---
      functions:
   
-       customer_add:
+       add_user:
          module: extensions.api
          handler: add_user
          events:
          - http: {path: "/add_user", method: POST}
 
-       account_add:
+       add_video:
          module: extensions.api
          handler: add_video
          events:
          - http: {path: "/add_video", method: POST}
 
-       transfer_money:
+       like_video:
          module: extensions.api
          handler: like_video
          events:
