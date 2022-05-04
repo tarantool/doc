@@ -35,6 +35,12 @@ Please
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
+Some changes below are labeled as **[Breaking change]**.
+It means that the old behavior was considered error-prone
+and therefore changed to protect users from unintended mistakes.
+However, there is a small probability that someone can rely on the old behavior,
+and this label is to bring attention to the things that have been changed.
+
 Breaking Changes
 ----------------
 
@@ -54,9 +60,9 @@ Functionality added or changed
 Core
 ~~~~
 
--  Field type UUID is now part of field type SCALAR (:tarantool-issue:`6042`).
--  Field type UUID is now available in SQL, and new UUID can be
-   generated using new SQL built-in function uuid() (:tarantool-issue:`5886`).
+-  Field type ``UUID`` is now part of field type ``SCALAR`` (:tarantool-issue:`6042`).
+-  Field type ``UUID`` is now available in SQL, and new ``UUID`` can be
+   generated using new SQL built-in function ``uuid()`` (:tarantool-issue:`5886`).
 
 -  **[Breaking change]** The ``timeout()`` method of net.box connection, which
    was marked deprecated more than four years ago (in 1.7.4) was
@@ -86,7 +92,7 @@ Core
    ``call`` or ``eval`` methods or using ``execute`` method with sql
    transaction syntax. User can mix these methods, for example, start
    transaction using ``stream:begin()``, and commit transaction using
-   ``stream:call('box.commit')`` or stream:execute(‘COMMIT’). If any
+   ``stream:call('box.commit')`` or ``stream:execute(‘COMMIT’)``. If any
    request fails during the transaction, it will not affect the other
    requests in the transaction. If disconnect occurs when there is some
    active transaction in stream, this transaction will be rollbacked, if
@@ -139,12 +145,12 @@ Core
    stopped processing any new statements right after the first yield if the
    transaction doesn’t support it.
 -  Implemented a timeout for transactions after which they are rolled
-   back (:tarantool-issue:`6177`). Implemented new C API function ‘box_txn_set_timeout’
+   back (:tarantool-issue:`6177`). Implemented new C API function ``box_txn_set_timeout``
    to set timeout for transaction.
 -  Implemented a timeout for iproto transactions after which they are
    rolled back (:tarantool-issue:`6177`). Implemented new ``IPROTO_TIMEOUT 0x56`` key,
    which is used to set a timeout for transactions over iproto streams.
-   It is stored in the body of ‘IPROTO_BEGIN’ request.
+   It is stored in the body of ``IPROTO_BEGIN`` request.
 -  Introduced ``box.broadcast`` and ``box.watch`` functions to
    signal/watch user-defined state changes (:tarantool-issue:`6257`).
 -  Added watchers support to the network protocol (:tarantool-issue:`6257`).
@@ -224,7 +230,7 @@ Datetime
 Digest
 ^^^^^^
 
--  Introduced new hash types in digest module - ``xxhash32`` and
+-  Introduced new hash types in digest module---``xxhash32`` and
    ``xxhash64`` (:tarantool-issue:`2003`).
 
 Fiber
@@ -270,53 +276,53 @@ SQL
 
 -  Descriptions of type mismatch error and inconsistent type error
    became more informative (:tarantool-issue:`6176`).
--  Removed explicit cast from BOOLEAN to numeric types and vice versa
+-  Removed explicit cast from ``BOOLEAN`` to numeric types and vice versa
    (:tarantool-issue:`4770`).
--  Removed explicit cast from VARBINARY to numeric types and vice versa
+-  Removed explicit cast from ``VARBINARY`` to numeric types and vice versa
    (:tarantool-issue:`4772`, :tarantool-issue:`5852`).
--  Fixed a bug due to which a string that is not NULL terminated could
-   not be cast to BOOLEAN, even if the conversion should be successful
+-  Fixed a bug due to which a string that is not NULL-terminated could
+   not be cast to ``BOOLEAN``, even if the conversion should be successful
    according to the rules.
 -  Now a numeric value can be cast to another numeric type only if the
-   cast is precise. In addition, a UUID value cannot be implicitly cast
-   to STRING/VARBINARY, and a STRING/VARBINARY value cannot be
-   implicitly cast to a UUID (:tarantool-issue:`4470`).
+   cast is precise. In addition, a ``UUID`` value cannot be implicitly cast
+   to ``STRING/VARBINARY``, and a ``STRING/VARBINARY`` value cannot be
+   implicitly cast to a ``UUID`` (:tarantool-issue:`4470`).
 -  Now any number can be compared to any other number, and values of any
    scalar type can be compared to any other value of the same type. A
    value of a non-numeric scalar type cannot be compared with a value of
    any other scalar type (:tarantool-issue:`4230`).
--  SQL built-in functions were removed from \_func system space
+-  SQL built-in functions were removed from ``_func`` system space
    (:tarantool-issue:`6106`).
 -  Function are now looked up first in SQL built-in functions and then
    in user-defined functions.
 -  Fixed incorrect error message in case of misuse of the function used
    to set the default value.
--  The typeof() function with NULL as an argument now returns “NULL”
+-  The ``typeof()`` function with ``NULL`` as an argument now returns ``NULL``
    (:tarantool-issue:`5956`).
--  The SCALAR and NUMBER types have been reworked in SQL. Now SCALAR
+-  The ``SCALAR`` and ``NUMBER`` types have been reworked in SQL. Now ``SCALAR``
    values cannot be implicitly cast to any other scalar type, and NUMBER
    values cannot be implicitly cast to any other numeric type. This
    means that arithmetic and bitwise operations and concatenation are no
-   longer allowed for SCALAR and NUMBER values. In addition, any SCALAR
+   longer allowed for ``SCALAR`` and ``NUMBER`` values. In addition, any ``SCALAR``
    value can now be compared with values of any other scalar type using
-   the SCALAR rules (:tarantool-issue:`6221`).
--  Field type DECIMAL is now available in SQL. Decimal can be implcitly
-   cast to and from INTEGER and DOUBLE, it can participate in arithmetic
-   operations and comparison between DECIMAL and all other numeric types
+   the ``SCALAR`` rules (:tarantool-issue:`6221`).
+-  Field type ``DECIMAL`` is now available in SQL. Decimal can be implcitly
+   cast to and from ``INTEGER`` and ``DOUBLE``, it can participate in arithmetic
+   operations and comparison between ``DECIMAL`` and all other numeric types
    are defined (:tarantool-issue:`4415`).
 -  The argument types of SQL built-in functions are now checked in most
    cases during parsing. In addition, the number of arguments is now
    always checked during parsing (:tarantool-issue:`6105`).
--  Now DECIMAL values can be bound in SQL (:tarantool-issue:`4717`).
+-  Now ``DECIMAL`` values can be bound in SQL (:tarantool-issue:`4717`).
 -  A value consisting of digits and a decimal point is now parsed as
-   DECIMAL (:tarantool-issue:`6456`).
--  Field type ANY is now available in SQL (:tarantool-issue:`3174`).
--  Built-in SQL functions now work correctly with DECIMAL values
+   ``DECIMAL`` (:tarantool-issue:`6456`).
+-  Field type ``ANY`` is now available in SQL (:tarantool-issue:`3174`).
+-  Built-in SQL functions now work correctly with ``DECIMAL`` values
    (:tarantool-issue:`6355`).
 -  A default type is now defined in case the argument type of a SQL
    built-in function cannot be determined during parsing (:tarantool-issue:`4415`).
 -  Field type ARRAY is now available in SQL. The syntax has also been
-   implemented to allow the creation of ARRAY values (:tarantool-issue:`4762`).
+   implemented to allow the creation of ``ARRAY`` values (:tarantool-issue:`4762`).
 
 .. _fiber-1:
 
@@ -329,7 +335,7 @@ Fiber
 Luarocks
 ~~~~~~~~
 
--  Set FORCE_CONFIG=false for luarocks config to allow loading
+-  Set ``FORCE_CONFIG=false`` for luarocks config to allow loading
    project-side ``.rocks/config-5.1.lua``.
 
 Xlog
@@ -361,7 +367,7 @@ Core
 
 -  **[Breaking change]** ``fiber.wakeup()`` in Lua and
    ``fiber_wakeup()`` in C became NOP on the currently running fiber.
-   Previously they allowed to “ignore” the next yield or sleep leading
+   Previously they allowed to ignore the next yield or sleep leading
    to unexpected spurious wakeups. Could lead to a crash (in debug
    build) or undefined behaviour (in release build) if called right
    before ``fiber.create()`` in Lua or ``fiber_start()`` in C (:tarantool-issue:`6043`).
@@ -399,7 +405,7 @@ Core
    call. This could lead to unpredictable results. Note the issue
    affects C level only, in Lua interface ``fiber:join()`` the
    protection is turned on already.
--  Now tarantool yields when scanning ``.xlog`` files for the latest
+-  Now Tarantool yields when scanning ``.xlog`` files for the latest
    applied vclock and when finding the right place in ``.xlog``\ s to
    start recovering. This means that the instance is responsive right
    after ``box.cfg`` call even when an empty ``.xlog`` was not created
@@ -434,7 +440,7 @@ Core
 -  Fixed invalid results produced by ``json`` module’s ``encode``
    function when it was used from Lua’s garbage collector. For instance,
    in functions used as ``ffi.gc()`` (:tarantool-issue:`6050`).
--  Added check for user input of the number of iproto threads - value
+-  Added check for user input of the number of iproto threads---value
    must be > 0 and less then or equal to 1000 (:tarantool-issue:`6005`).
 -  Fixed error related to the fact that if user changed listen
    address, all iproto threads closed same socket multiple times. Fixed
@@ -442,30 +448,30 @@ Core
    socket path, when it’s finishing work.
 -  Fixed a crash in MVCC during simultaneous update of a key in
    different transactions (:tarantool-issue:`6131`)
--  Fix a bug when memtx mvcc crashed during reading uncommitted DDL
+-  Fix a bug when memtx MVCC crashed during reading uncommitted DDL
    (:tarantool-issue:`5515`)
--  Fixed a bug when memtx mvcc crashed if an index was created in
+-  Fixed a bug when memtx MVCC crashed if an index was created in
    transaction (:tarantool-issue:`6137`)
--  Fixed segmentation fault with mvcc when entire space was updated
+-  Fixed segmentation fault with MVCC when the entire space was updated
    concurrently (:tarantool-issue:`5892`)
 -  Fixed a bug with failed assertion after stress update of the same
    key. (:tarantool-issue:`6193`)
--  Fixed a crash if you call box.snapshot during an incomplete transaction
+-  Fixed a crash if you call ``box.snapshot`` during an incomplete transaction
    (:tarantool-issue:`6229`)
 -  Fixed console client connection breakage if request times out
    (:tarantool-issue:`6249`).
--  Added missing broadcast to net.box.future:discard() so that now
+-  Added missing broadcast to ``net.box.future:discard()`` so that now
    fibers waiting for a request result are woken up when the request is
    discarded (:tarantool-issue:`6250`).
 -  ``box.info.uuid``, ``box.info.cluster.uuid``, and
    ``tostring(decimal)`` with any decimal number in Lua sometimes could
    return garbage if ``__gc`` handlers are used in user’s code
    (:tarantool-issue:`6259`).
--  Fixed an error message that happened in very specific case during mvcc
+-  Fixed an error message that happened in very specific case during MVCC
    operation (:tarantool-issue:`6247`)
 -  Fixed a repeatable read violation after delete (:tarantool-issue:`6206`)
--  Fixed a bug when hash select{} was not tracked by mvcc engine (:tarantool-issue:`6040`)
--  Fixed a crash in mvcc after drop of a space with several indexes
+-  Fixed a bug when hash ``select{}`` was not tracked by MVCC engine (:tarantool-issue:`6040`)
+-  Fixed a crash in MVCC after drop of a space with several indexes
    (:tarantool-issue:`6274`)
 -  Fixed a bug when GC at some state could leave tuples in secondary
    indexes (:tarantool-issue:`6234`)
@@ -480,10 +486,10 @@ Core
    had not been sent were discarded. This patch fixed this behavior:
    all requests queued for sending before the connection is closed are
    guaranteed to be sent (:tarantool-issue:`6338`).
--  Fixed a crash during replace of malformed tuple into \_schema system
+-  Fixed a crash during replace of malformed tuple into ``_schema`` system
    space (:tarantool-issue:`6332`).
 -  Fixed dropping incoming messages when connection is closed or
-   SHUT_RDWR received and net_msg_max or readahead limit is reached
+   ``SHUT_RDWR`` received and ``net_msg_max`` or readahead limit is reached
    (:tarantool-issue:`6292`).
 -  Fixed memory leak in case of replace during background alter of primary
    index (:tarantool-issue:`6290`)
@@ -493,14 +499,14 @@ Core
    (:tarantool-issue:`6431`).
 -  Fixed a bug when index was inconsistent after background build in case
    when the primary index is hash (:tarantool-issue:`5977`)
--  Now inserting a tuple with the wrong “id” field into the \_priv space
+-  Now inserting a tuple with the wrong ``id`` field into the ``_priv`` space
    will return the correct error (:tarantool-issue:`6295`).
 -  Fixed dirty read in MVCC after space alter (:tarantool-issue:`6263`, :tarantool-issue:`6318`).
--  Fixed crash in case a fiber changing box.cfg.listen is woken up
+-  Fixed crash in case a fiber changing ``box.cfg.listen`` is woken up
    (:tarantool-issue:`6480`).
--  Fixed box.cfg.listen not reverted to the old address in case the new
+-  Fixed ``box.cfg.listen`` not reverted to the old address in case the new
    one is invalid (:tarantool-issue:`6092`).
--  Fixed a crash caused by a race between box.session.push() and closing
+-  Fixed a crash caused by a race between ``box.session.push()`` and closing
    connection (:tarantool-issue:`6520`).
 -  Fixed a bug because of which the garbage collector could remove an
    xlog file that is still in use (:tarantool-issue:`6554`).
@@ -512,7 +518,7 @@ Memtx
 ~~~~~
 
 -  Now memtx raises an error if “clear” dictionary was passed to
-   s:select() (:tarantool-issue:`6167`)
+   ``s:select()`` (:tarantool-issue:`6167`)
 
 Vinyl
 ~~~~~
@@ -537,7 +543,7 @@ Replication
 -  Fixed an error when a replica, at attempt to subscribe to a foreign
    cluster (with different replicaset UUID), didn’t notice it is not
    possible, and instead was stuck in an infinite retry loop printing an
-   error about “too early subscribe” (:tarantool-issue:`6094`).
+   error about ``too early subscribe`` (:tarantool-issue:`6094`).
 -  Fixed an error when a replica, at attempt to join a cluster with
    exclusively read-only replicas available, instead of failing or
    retrying just decided to boot its own replicaset. Now it fails with
@@ -545,9 +551,9 @@ Replication
    it (:tarantool-issue:`5613`).
 -  When an error happened during appliance of a transaction received
    from a remote instance via replication, it was always reported as
-   “Failed to write to disk” regardless of what really happened. Now the
-   correct error is shown. For example, “Out of memory”, or “Transaction
-   has been aborted by conflict”, and so on (:tarantool-issue:`6027`).
+  ``Failed to write to disk`` regardless of what really happened. Now the
+   correct error is shown. For example, ``Out of memory``, or ``Transaction
+   has been aborted by conflict``, and so on (:tarantool-issue:`6027`).
 -  Fixed replication stopping occasionally with ``ER_INVALID_MSGPACK``
    when replica is under high load (:tarantool-issue:`4040`).
 -  Fixed a cluster sometimes being unable to bootstrap if it contains
@@ -614,7 +620,7 @@ Lua
 -  Fixed net.box error in case connections are frequently opened and
    closed (:tarantool-issue:`6217`).
 -  Fixed incorrect handling of variable number of arguments in
-   box.func:call() (:tarantool-issue:`6405`).
+  ``box.func:call()`` (:tarantool-issue:`6405`).
 
 Triggers
 ^^^^^^^^
@@ -628,30 +634,30 @@ Triggers
 SQL
 ~~~
 
--  User-defined functions can now return VARBINARY to SQL as result
+-  User-defined functions can now return ``VARBINARY`` to SQL as result
    (:tarantool-issue:`6024`).
--  Fixed assert on cast of DOUBLE value that greater than -1.0 and less
-   than 0.0 to INTEGER and UNSIGNED (:tarantool-issue:`6255`).
--  Removed spontaneous conversion from INTEGER to DOUBLE in a field of
-   type NUMBER (:tarantool-issue:`5335`).
+-  Fixed assert on cast of ``DOUBLE`` value that greater than -1.0 and less
+   than 0.0 to ``INTEGER`` and ``UNSIGNED`` (:tarantool-issue:`6255`).
+-  Removed spontaneous conversion from ``INTEGER`` to ``DOUBLE`` in a field of
+   type ``NUMBER`` (:tarantool-issue:`5335`).
 -  All arithmetic operations can now only accept numeric values
    (:tarantool-issue:`5756`).
 -  Now the function ``quote()`` returns the argument in case the argument is
-   DOUBLE. Same for all other numeric types. For types other than
+   ``DOUBLE``. Same for all other numeric types. For types other than
    numeric, STRING will be returned (:tarantool-issue:`6239`).
--  The TRIM() function now does not lose collation when executed with
-   the keywords BOTH, LEADING, or TRAILING (:tarantool-issue:`6299`).
+-  The ``TRIM()`` function now does not lose collation when executed with
+   the keywords ``BOTH``, ``LEADING``, or ``TRAILING`` (:tarantool-issue:`6299`).
 -  Now getting unsupported msgpack extension in SQL throws the correct
    error (:tarantool-issue:`6375`).
 -  Now, when copying an empty string, an error will not be set
    unnecessarily (:tarantool-issue:`6157`, :tarantool-issue:`6399`).
--  Fixed wrong comparison between DECIMAL and large DOUBLE values
+-  Fixed wrong comparison between ``DECIMAL`` and large ``DOUBLE`` values
    (:tarantool-issue:`6376`).
--  Fixed truncation of DECIMAL during implicit cast to INTEGER in LIMIT
+-  Fixed truncation of ``DECIMAL`` during implicit cast to ``INTEGER`` in LIMIT
    and OFFSET.
--  Fixed truncation of DECIMAL during implicit cast to INTEGER when
+-  Fixed truncation of ``DECIMAL`` during implicit cast to ``INTEGER`` when
    value is used in an index.
--  Fixed assert on cast of DECIMAL value that greater than -1.0 and less
+-  Fixed assert on cast of ``DECIMAL`` value that greater than -1.0 and less
    than 0.0 to INTEGER (:tarantool-issue:`6485`).
 -  The HEX() SQL built-in function no longer throws an assert when its
    argument consists of zero-bytes (:tarantool-issue:`6113`).
