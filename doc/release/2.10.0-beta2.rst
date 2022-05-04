@@ -644,7 +644,7 @@ SQL
    (:tarantool-issue:`5756`).
 -  Now the function ``quote()`` returns the argument in case the argument is
    ``DOUBLE``. Same for all other numeric types. For types other than
-   numeric, STRING will be returned (:tarantool-issue:`6239`).
+   numeric, ``STRING`` will be returned (:tarantool-issue:`6239`).
 -  The ``TRIM()`` function now does not lose collation when executed with
    the keywords ``BOTH``, ``LEADING``, or ``TRAILING`` (:tarantool-issue:`6299`).
 -  Now getting unsupported msgpack extension in SQL throws the correct
