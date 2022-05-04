@@ -44,7 +44,7 @@ Versions that only include bug fixes are not listed in this table.
         *   -   2.8.2
             -   Symbolic log levels in the `log` module (:tarantool-issue:`5882`)
 
-        *   -   2.7.3
+        *   -   2.7.3, 1.10.11
             -   `LJ_DUALNUM` mode support in `luajit-gdb` (:tarantool-issue:`6224`)
 
         *   -   2.7.3
