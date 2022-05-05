@@ -46,7 +46,7 @@ Functionality added or changed
 Core
 ~~~~
 
--   The UUID field type is now part of the ``SCALAR`` field type
+-   The ``UUID`` field type is now part of the ``SCALAR`` field type
     (:tarantool-issue:`6042`).
 
 -   The ``UUID`` field type is now available in SQL. A new UUID can be generated
@@ -74,7 +74,7 @@ Core
 
     In ``net.box``, a stream is an object above the connection that has the same methods
     but allows executing requests sequentially. The ID is generated on the client side automatically.
-    If a user writes their own connector and wants to use streams, they must transmit the ``stream_id`` over the iproto protocol.
+    If a user writes his own connector and wants to use streams, they must transmit the ``stream_id`` over the iproto protocol.
 
     The primary purpose of streams is transactions via iproto.
     As each stream can start a transaction, several transactions can be multiplexed over one connection.
@@ -322,7 +322,7 @@ Core
 
 -   **[Breaking change]** ``fiber.wakeup()`` in Lua and
     ``fiber_wakeup()`` in C became NOP on the currently running fiber.
-    Previously they allowed “ignoring” the next yield or sleep, which
+    Previously they allowed ignoring the next yield or sleep, which
     resulted in unexpected erroneous wake-ups. Calling these functions
     right before ``fiber.create()`` in Lua or ``fiber_start()`` in C
     could lead to a crash (in debug build) or undefined behaviour (in
@@ -598,27 +598,27 @@ Triggers
 SQL
 ~~~
 
--   User-defined functions can now return a VARBINARY result to SQL
+-   User-defined functions can now return a ``VARBINARY`` result to SQL
     (:tarantool-issue:`6024`).
 
--   Fixed assert when a DOUBLE value greater than -1.0 and less
-    than 0.0 is cast to INTEGER and UNSIGNED
+-   Fixed assert when a ``DOUBLE`` value greater than -1.0 and less
+    than 0.0 is cast to ``INTEGER`` and ``UNSIGNED``
     (:tarantool-issue:`6225`).
 
--   Removed spontaneous conversion from INTEGER to DOUBLE in a field of the
-    NUMBER type
+-   Removed spontaneous conversion from ``INTEGER`` to ``DOUBLE`` in a field of the
+    ``NUMBER`` type
     (:tarantool-issue:`5335`).
 
 -   All arithmetic operations can now accept numeric values only
     (:tarantool-issue:`5756`).
 
--   Now ``QUOTE()`` returns the argument if the argument is DOUBLE, which is the same behavior as
+-   Now ``QUOTE()`` returns the argument if the argument is ``DOUBLE``, which is the same behavior as
     with other numeric types.
-    For types different from numeric, the function returns a STRING
+    For types different from numeric, the function returns a ``STRING``
     (:tarantool-issue:`6239`).
 
 -   The ``TRIM()`` function now does not lose collation
-    when executed with the keywords BOTH, LEADING, or TRAILING
+    when executed with the keywords ``BOTH``, ``LEADING``, or ``TRAILING``
     (:tarantool-issue:`6299`).
 
 MVCC
