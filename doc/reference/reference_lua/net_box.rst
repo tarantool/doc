@@ -125,14 +125,16 @@ Below is a list of all ``net.box`` functions.
         *   -   :ref:`conn:call() <net_box-call>`                      
             -   Call a stored procedure               
         *   -   :ref:`conn:timeout() <conn-timeout>`                               
-            -   Set a timeout                 
+            -   Set a timeout
+        *   -   :ref:`conn:watch() <conn-watch>`
+            -   Subscribe to events broadcast by a remote host
         *   -   :ref:`conn:on_connect() <net_box-on_connect>`                            
             -   Define a connect trigger            
         *   -   :ref:`conn:on_disconnect() <net_box-on_disconnect>`                     
             -   Define a disconnect trigger 
         *   -   :ref:`conn:on_schema_reload() <net_box-on_schema_reload>`                    
             -   Define a trigger when schema is modified
-        *   -   :ref:`conn:new_stream() <conn-new_stream>`                    
+        *   -   :ref:`conn:new_stream() <conn-new_stream>`
             -   Create a stream             
         *   -   :ref:`stream:begin() <net_box-stream_begin>`                    
             -   Begin a stream transaction               
@@ -533,7 +535,43 @@ Below is a list of all ``net.box`` functions.
             - B
             ...
 
+    ..  _conn-watch:
 
+    ..  method:: watch(key, func)
+
+        Subscribe to events broadcast by a remote host.
+
+        :param string key: a key name to subscribe to
+        :param function func:  a callback to invoke when the key value is updated
+        :return: a watcher handle that can be used to unregister the watcher
+        :rtype:  ?
+
+        ..  admonition:: note
+
+            Garbage collection of a watcher handle doesn't result in unregistering the watcher.
+            It is okay to discard the result of box.watch if the watcher is never going to be unregistered.
+
+        **Example:**
+
+        Server:
+
+        ..  code-block:: lua
+
+            -- Broadcast value 123 for key 'foo'.
+            box.broadcast('foo', 123)
+
+        Client:
+
+        ..  code-block:: lua
+
+            conn = net.box.connect(URI)
+            -- Subscribe to updates of key 'foo'.
+            w = conn:watch('foo', function(key, value)
+                assert(key == 'foo')
+            -- do something with value
+            end)
+            -- Unregister the watcher when it's no longer needed.
+            w:unregister()
 
     .. _conn-timeout:
 
