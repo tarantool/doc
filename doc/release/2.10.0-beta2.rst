@@ -769,7 +769,7 @@ Lua
    closed (:tarantool-issue:`6217`).
 
 -  Fixed incorrect handling of argument variable numbers in the
-  ``box.func:call()`` (:tarantool-issue:`6405`).
+   ``box.func:call()`` (:tarantool-issue:`6405`).
 
 Triggers
 ^^^^^^^^
@@ -835,7 +835,7 @@ Box
 -  Fixed error message on attempt to insert into a tuple which size equals
    to ``box.schema.FIELD_MAX`` (:tarantool-issue:`6198`).
 
-Mvcc
+MVCC
 ~~~~
 
 -  Fixed MVCC interaction with ephemeral spaces: TX manager now ignores them (:tarantool-issue:`6095`).
