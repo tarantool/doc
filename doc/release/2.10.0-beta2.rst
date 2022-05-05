@@ -255,7 +255,7 @@ LuaJIT
 Lua
 ~~~
 
--  Introduced the new method ``table.equals``. It compares two tables by value with
+-   Introduced the new method ``table.equals``. It compares two tables by value with
     respect to the ``__eq`` metamethod.
 
 Datetime
