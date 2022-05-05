@@ -833,7 +833,7 @@ Box
 -  Fixed ``log.cfg`` getting updated on ``box.cfg`` error (:tarantool-issue:`6086`).
 
 -  Fixed error message on attempt to insert into a tuple which size equals
-   to box.schema.FIELD_MAX (:tarantool-issue:`6198`).
+   to ``box.schema.FIELD_MAX`` (:tarantool-issue:`6198`).
 
 Mvcc
 ~~~~
@@ -854,8 +854,7 @@ Build
 
 -  Fixes an error when it was possible to have new Tarantool
    package (version >= 2.2.1) installed with pre-luarocks 3
-   tarantool-common package (version << 2.2.1), which caused rocks
-   install to fail.
+   tarantool-common package (version << 2.2.1), which caused ``rocks install`` to fail.
 
 -  The Debian package does not depend on binutils anymore (:tarantool-issue:`6699`).
 
