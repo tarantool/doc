@@ -117,7 +117,7 @@ Last update: January 2022
         -   No
 
     *   -   Decimal support
-        -   No (`#96 <https://github.com/tarantool/go-tarantool/issues/96>`_)
+        -   Yes
         -   No
         -   No
 
@@ -128,7 +128,7 @@ Last update: January 2022
         -   No
 
     *   -   `Datetime <https://github.com/tarantool/tarantool/discussions/6244>`_ support
-        -   No (`#118 <https://github.com/tarantool/go-tarantool/issues/118>`_)
+        -   Yes
         -   No
         -   No
 
