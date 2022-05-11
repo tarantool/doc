@@ -54,7 +54,7 @@ unmaintained.
 Feature comparison
 ------------------
 
-Last update: February 2022
+Last update: May 2022
 
 ..  list-table::
     :header-rows: 1
@@ -78,7 +78,7 @@ Last update: February 2022
     *   -   Known Issues
         -   `issue #18 <https://github.com/igorcoding/asynctnt/issues/18>`__ (no running event loop)
         -   None
-        -   `issue #105 <https://github.com/tarantool/tarantool-python/issues/105>`__ (unpack of binary data)
+        -   None
 
     *   -   Documentation
         -   Yes (`github.io <https://igorcoding.github.io/asynctnt/>`__)
@@ -93,12 +93,12 @@ Last update: February 2022
     *   -   Testing / CI / CD
         -   GitHub Actions
         -   No (tests exist)
-        -   AppVeyor (only Windows)
+        -   GitHub Actions
 
     *   -   GitHub Stars
-        -   51
+        -   52
         -   17
-        -   78
+        -   83
 
     *   -   Static Analysis
         -   Yes (Flake8)
@@ -156,7 +156,7 @@ Last update: February 2022
     *   -   `Varbinary support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
         -   No
         -   No
-        -   Yes (`issue #105 <https://github.com/tarantool/tarantool-python/issues/105>`__)
+        -   Yes
 
     *   -   `UUID support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
         -   No
@@ -216,7 +216,7 @@ Last update: February 2022
     *   -   Connection pool
         -   No
         -   No
-        -   Yes (round robin failover)
+        -   Yes (with master discovery)
 
     *   -   Support of `PEP 249 -- Python Database API Specification v2.0 <https://www.python.org/dev/peps/pep-0249/>`__
         -   No
