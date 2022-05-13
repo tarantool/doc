@@ -6,18 +6,18 @@ as well as examples and templates.
 
 Use this checklist for documenting a function or a method:
 
-* Base description
-* Parameters
-* What this function returns (if nothing, write 'none')
-* Return type (if exists)
-* Possible errors (if exist)
-* Complexity factors (if exist)
-* Usage with memtx and vinyl (if differs)
-* Example(s)
-* Extra information (if needed)
+*   General description
+*   :ref:`Parameters <documenting_parameters>`
+*   What this function returns (if nothing, write 'none')
+*   Return type (if exists)
+*   Possible errors (if exist)
+*   Complexity factors (if exist)
+*   Usage with memtx and vinyl (if differs)
+*   Example(s)
+*   Extra information (if needed)
 
 Documenting functions
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 We use the Sphinx directives ``.. module::``
 and ``.. function::`` to describe functions of Tarantool modules:
@@ -29,8 +29,12 @@ The resulting output looks like this:
 
 ..  include:: ./_includes/function_template.rst
 
+..  note::
+
+    The best practices for :ref:`parameter description <documenting_parameters>` are listed below.
+
 Documenting class methods and data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 Methods are described similarly to functions, but the ``.. class::``
 directive, unlike ``.. module::``, requires nesting.
@@ -46,3 +50,57 @@ the method and data of the ``index_object`` class:
 And the resulting output looks like this:
 
 ..  include:: ./_includes/class_template.rst
+
+..  note::
+
+    The best practices for :ref:`parameter description <documenting_parameters>` are listed below.
+
+..  _documenting_parameters:
+
+Parameters in functions and classes
+-----------------------------------
+
+Overall, parameters can be divided into two groups:
+
+*   Specific function or class method parameters as described above.
+*   :doc:`Configuration parameters </reference/configuration/index>`
+    passed to Tarantool via the command line or in an initialization file.
+
+This section below considers the first case.
+See the :ref:`next section <documenting_confvals>` to learn about documenting Tarantool configuration parameters.
+
+For every function or class method parameter, list the following details:
+
+*   General description
+*   Type
+*   Required or optional
+*   Default value (if optional), possible values
+
+In the "Possible errors" section of the function or class method,
+consider explaining what happens if the parameter hasn't been defined or has the wrong value.
+
+
+..  _documenting_confvals:
+
+Configuration parameters
+------------------------
+
+For every configuration parameter, list the following details:
+
+*   Since which Tarantool version
+*   General description
+*   Type
+*   Corresponding environment variable (if applicable)
+*   Default value
+*   Possible values
+*   Dynamic (yes or no)
+
+Example
+^^^^^^^
+
+..  literalinclude:: ./_includes/confval_template.rst
+    :language: rst
+
+Result:
+
+..  include:: ./_includes/confval_template.rst
