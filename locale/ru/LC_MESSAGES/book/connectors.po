@@ -368,8 +368,8 @@ msgstr "2021"
 msgid "Documentation"
 msgstr "Документация"
 
-msgid "README with examples, API described in code comments"
-msgstr "README с примерами, описание API в комментариях к коду"
+msgid "README with examples and up-to-date GoDoc"
+msgstr "README с примерами и актуальный GoDoc"
 
 msgid "README with examples, code comments"
 msgstr "README с примерами, комментарии к коду"
