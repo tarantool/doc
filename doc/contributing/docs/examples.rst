@@ -73,7 +73,7 @@ For every function or class method parameter, list the following details:
 
 *   General description
 *   Type
-*   Required or optional
+*   If optional, indicate *(optional)* in parentheses
 *   Default value (if optional), possible values
 
 In the "Possible errors" section of the function or class method,
