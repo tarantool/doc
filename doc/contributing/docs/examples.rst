@@ -60,14 +60,10 @@ And the resulting output looks like this:
 Parameters in functions and classes
 -----------------------------------
 
-Overall, parameters can be divided into two groups:
-
-*   Specific function or class method parameters as described above.
-*   :doc:`Configuration parameters </reference/configuration/index>`
-    passed to Tarantool via the command line or in an initialization file.
-
-This section below considers the first case.
-See the :ref:`next section <documenting_confvals>` to learn about documenting Tarantool configuration parameters.
+This section explains how to document specific function or class method parameters as described above.
+To learn how to document :doc:`configuration parameters </reference/configuration/index>`
+passed to Tarantool via the command line or in an initialization file,
+see the :ref:`next section <documenting_confvals>`.
 
 For every function or class method parameter, list the following details:
 
@@ -78,7 +74,6 @@ For every function or class method parameter, list the following details:
 
 In the "Possible errors" section of the function or class method,
 consider explaining what happens if the parameter hasn't been defined or has the wrong value.
-
 
 ..  _documenting_confvals:
 
