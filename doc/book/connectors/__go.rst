@@ -37,7 +37,7 @@ Last update: January 2022
         -   2021
 
     *   -   Documentation
-        -   README with examples, API described in code comments
+        -   README with examples and up-to-date GoDoc
         -   README with examples, code comments
         -   README with examples
 
@@ -52,7 +52,7 @@ Last update: January 2022
         -   12
 
     *   -   Static analysis
-        -   No
+        -   golangci-lint, luacheck
         -   golint
         -   golangci-lint
 
@@ -62,7 +62,7 @@ Last update: January 2022
         -   go get
 
     *   -   Code coverage
-        -   No
+        -   Yes
         -   No
         -   No
 
