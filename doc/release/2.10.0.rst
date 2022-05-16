@@ -1,0 +1,45 @@
+Tarantool 2.10.0
+================
+
+Released on 2022-05-20.
+
+*   Release: :tarantool-release:`2.10.0`.
+*   Tag: ``2.10.0``.
+
+Overview
+--------
+
+2.10.0 is the :doc:`release </release/policy/>` version of the 2.10 release series.
+
+This release introduces ? new features and resolves ? bugs since the 2.8 version.
+There can be bugs in less common areas. If you find any,
+feel free to `report an issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
+
+Notable changes are:
+
+    -  HTTP client now supports HTTP/2.
+    -  Support of the new DATETIME type.
+    -  Improved type consistency in SQL.
+    -  Added transaction isolation levels.
+    -  Implemented fencing and pre-voting in RAFT.
+    -  Introduced foreign keys and constraints.
+
+Compatibility
+-------------
+
+Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
+data layout, client-server protocol, and replication protocol.
+
+Please
+:doc:`upgrade </book/admin/upgrades>`
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 2.x series.
+
+Some changes are labeled as **[Breaking change]**.
+It means that the old behavior was considered error-prone
+and therefore changed to protect users from unintended mistakes.
+However, there is a small probability that someone can rely on the old behavior,
+and this label is to bring attention to the things that have been changed.
+
+Functionality added or changed
+------------------------------

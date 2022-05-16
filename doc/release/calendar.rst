@@ -34,17 +34,21 @@ End of series support means the release series will no longer receive any patche
             -   Not planned yet
             -   Not planned yet
 
+        *   -   :doc:`2.10.0 </release/2.10.0>`
+            -   May 20, 2022
+            -   not planned yet
+
         *   -   :doc:`2.8.4 </release/2.8.4>`
             -   April 25, 2022
-            -   Not planned yet
+            -   April 25, 2022
 
         *   -   :doc:`2.8.3 </release/2.8.3>`
             -   December 22, 2021
-            -   Not planned yet
+            -   April 25, 2022
 
         *   -   :doc:`2.8.2 </release/2.8.2>`
             -   August 19, 2021
-            -   Not planned yet
+            -   December 22, 2021
 
         *   -   :doc:`2.7.3 </release/2.7.3>`
             -   August 19, 2021
