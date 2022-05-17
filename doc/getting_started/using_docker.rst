@@ -36,11 +36,11 @@ options:
      --name mytarantool \
      -d -p 3301:3301 \
      -v /data/dir/on/host:/var/lib/tarantool \
-     tarantool/tarantool:2.6.0
+     tarantool/tarantool:latest
 
 This command runs a new container named ``mytarantool``.
-Docker starts it from an official image named ``tarantool/tarantool:2.6.0``,
-with Tarantool version ``2.6.0`` and all external modules already installed.
+Docker starts it from an official image named ``tarantool/tarantool:latest``,
+with the latest Tarantool version and all external modules already installed.
 
 Tarantool will accept incoming connections on ``localhost:3301``.
 You can start using it as a key-value storage right away.
@@ -124,11 +124,12 @@ Create the first :ref:`index <index-box_index>` (named ``primary``):
 .. code-block:: tarantoolsession
 
     tarantool.sock> s:create_index('primary', {
-                  > type = 'hash',
+                  > type = 'tree',
                   > parts = {'id'}
                   > })
 
 This is a primary index based on the ``id`` field of each tuple.
+``TREE`` is the most universal index type. To learn more, check the documentation on Tarantool :ref:`index types <index-types>`.
 
 Insert three :term:`tuples <tuple>` (our name for records)
 into the space:
@@ -160,7 +161,7 @@ The terminal screen now looks like this:
     ---
     ...
     tarantool.sock> s:create_index('primary', {
-                  > type = 'hash',
+                  > type = 'tree',
                   > parts = {'id'}
                   > })
     ---
@@ -172,7 +173,7 @@ The terminal screen now looks like this:
       id: 0
       space_id: 512
       name: primary
-      type: HASH
+      type: TREE
     ...
     tarantool.sock> s:insert{1, 'Roxette', 1986}
     ---
@@ -196,7 +197,7 @@ To add a secondary index based on the ``band_name`` field, run:
 .. code-block:: tarantoolsession
 
     tarantool.sock> s:create_index('secondary', {
-                  > type = 'hash',
+                  > type = 'tree',
                   > parts = {'band_name'}
                   > })
 

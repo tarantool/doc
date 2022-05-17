@@ -114,7 +114,7 @@ msgid ""
 "total number of buckets."
 msgstr ""
 "Секционирование набора данных происходит с помощью сегментного ключа (или "
-"**идентификатора сегмента** (bucket id) в терминах Tarantool'а). "
+"**идентификатора сегмента** (bucket id) в терминах Tarantool). "
 "Идентификатор сегмента -- это число от 1 до N, где N -- это общее количество"
 " сегментов."
 
@@ -162,7 +162,7 @@ msgid "Structure"
 msgstr "Структура"
 
 msgid "A sharded cluster in Tarantool consists of:"
-msgstr "Сегментированный кластер в Tarantool'е состоит из:"
+msgstr "Сегментированный кластер в Tarantool состоит из:"
 
 msgid "storages,"
 msgstr "хранилищ,"

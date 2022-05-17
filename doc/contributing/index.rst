@@ -6,9 +6,10 @@
 Contributing
 ************
 
-.. toctree::
+..  toctree::
     :maxdepth: 2
 
     contributing
-    ../dev_guide/build_contribute_index
+    release_notes
+    ../dev_guide/building_from_source
     ../dev_guide/guidelines_index

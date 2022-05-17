@@ -1,7 +1,7 @@
 .. _fun-module:
 
 -------------------------------------------------------------------------------
-                                Module `fun`
+                                Module fun
 -------------------------------------------------------------------------------
 
 Luafun, also known as the Lua Functional Library, takes advantage of the

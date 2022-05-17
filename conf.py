@@ -42,6 +42,8 @@ extlinks = {
     'doc-issue': ('https://github.com/tarantool/doc/issues/%s', 'doc-'),
 }
 
+default_role = 'code'
+
 plantuml_output_format = 'svg_img'
 imgmath_image_format = 'svg'
 

@@ -21,24 +21,7 @@ box.space._priv
       "create" = 32, "drop" = 64, "alter" = 128, or
       a combination such as "read,write,execute".
 
-    You can:
+    See :ref:`Access control <authentication>` for details about user privileges.
+         
+    The :ref:`system space view <box_space-sysviews>` for ``_priv`` is ``_vpriv``.
 
-    * Grant a privilege with :doc:`/reference/reference_lua/box_schema/user_grant`.
-    * Revoke a privilege with :doc:`/reference/reference_lua/box_schema/user_revoke`.
-
-    .. NOTE::
-
-       * Generally, privileges are granted or revoked by the owner of the object
-         (the user who created it), or by the 'admin' user.
-
-       * Before dropping any objects or users, make sure that all their associated
-         privileges have been revoked.
-
-       * Only the :ref:`'admin' user <authentication-owners_privileges>`
-         can grant privileges for the 'universe'.
-
-       * Only the 'admin' user or the creator of a space can drop, alter, or
-         truncate the space.
-
-       * Only the 'admin' user or the creator of a user can change a different
-         user’s password.

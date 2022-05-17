@@ -240,7 +240,7 @@ add_custom_target(update-pot
     COMMENT "Update translation sources"
 )
 
-add_custom_target(update-po-no-force
+add_custom_target(update-po
     COMMAND "${SPHINX_INTL_EXECUTABLE}"
         update
         -p "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
@@ -265,13 +265,6 @@ add_custom_target(cleanup-pot
         pot
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/locale
     COMMENT "Cleanup and rearrange POT files"
-)
-
-add_custom_target(update-po
-    COMMAND make
-        add-fake-msg
-        update-po-no-force
-        rm-fake-msg
 )
 
 add_custom_target(linkcheck

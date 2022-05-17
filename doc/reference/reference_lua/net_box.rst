@@ -1,7 +1,7 @@
-.. _net_box-module:
+..  _net_box-module:
 
 --------------------------------------------------------------------------------
-Module `net.box`
+Module net.box
 --------------------------------------------------------------------------------
 
 ===============================================================================
@@ -30,22 +30,31 @@ the best programming practice with Tarantool. When multiple fibers use the same
 connection, all requests are pipelined through the same network socket, but each
 fiber gets back a correct response. Reducing the number of active sockets lowers
 the overhead of system calls and increases the overall server performance. However
-for some cases a single connection is not enough —- for example, when
+for some cases a single connection is not enough---for example, when
 it is necessary to prioritize requests or to use different authentication IDs.
 
 .. _net_box-options:
 
-Most ``net.box`` methods allow a final ``{options}`` argument, which can be:
+Most ``net.box`` methods accept the last ``{options}`` argument, which can be:
 
-* ``{timeout=...}``. For example, a method whose final argument is
+* ``{timeout=...}``. For example, a method whose last argument is
   ``{timeout=1.5}`` will stop after 1.5 seconds on the local node, although this
   does not guarantee that execution will stop on the remote server node.
-* ``{buffer=...}``. For an example see :ref:`buffer module <buffer-module>`.
-* ``{is_async=...}``. For example, a method whose final argument is
+
+* ``{buffer=...}``. For an example, see the :ref:`buffer module <buffer-module>`.
+
+* ``{is_async=...}``. For example, a method whose last argument is
   ``{is_async=true}`` will not wait for the result of a request. See the
   :ref:`is_async <net_box-is_async>` description.
+
 * ``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages.
   See the :doc:`/reference/reference_lua/box_session/push` description.
+
+* ``{return_raw=...}`` (since version 2.10.0).
+  If set to ``true``, net.box returns response data wrapped
+  in a :ref:`MsgPack object <msgpack-object-info>` instead of decoding it to Lua.
+  The default value is ``false``.
+  For an example, see option description :ref:`below <net_box-return_raw>`.
 
 The diagram below shows possible connection states and transitions:
 
@@ -57,16 +66,19 @@ The diagram below shows possible connection states and transitions:
 
 On this diagram:
 
-* The state machine starts in the 'initial' state.
+* ``net_box.connect()`` method spawns a worker fiber, which will establish the connection and start the state machine.
 
-* ``net_box.connect()`` method changes the state to 'connecting' and spawns a worker fiber.
+* The state machine goes to the ‘initial‘ state.
 
-* If authentication and schema upload are required, it's possible later on to re-enter
-  the 'fetch_schema' state from 'active' if a request fails due to a schema version
-  mismatch error, so schema reload is triggered.
+* Authentication and schema upload.
+  It is possible later on to re-enter the ‘fetch_schema’ state from ‘active’ to trigger schema reload.
 
-* ``conn.close()`` method sets the state to 'closed' and kills the worker.
-  If the transport is already in the 'error' state, ``close()`` does nothing.
+* The transport goes to the ‘error’ state in case of an error.
+  It can happen, for example, if the server closed the connection.
+  If the ``reconnect_after`` option is set, instead of the ‘error’ state, the transport goes to the ‘error_reconnect’ state.
+
+* ``conn.close()`` method sets the state to ‘closed’ and kills the worker.
+  If the transport is already in the ‘error’ state, ``close()`` does nothing.
 
 ===============================================================================
                                     Index
@@ -520,9 +532,9 @@ Below is a list of all ``net.box`` functions.
         timeout expires: the timeout expiration only aborts the wait for the remote
         server response, not the request itself.
 
-    .. _net_box-is_async:
+    ..  _net_box-is_async:
 
-    .. method:: request(... {is_async=...})
+    ..  method:: request(... {is_async=...})
 
         ``{is_async=true|false}`` is an option which is applicable for all
         ``net_box`` requests including ``conn:call``, ``conn:eval``, and the
@@ -599,7 +611,32 @@ Below is a list of all ``net.box`` functions.
             the result of a sync request, it is structured differently: as a
             table, instead of as the unpacked values.
 
-.. _net_box-triggers:
+    ..  _net_box-return_raw:
+
+    ..  method:: request(... {return_raw=...})
+
+        ``{return_raw=true}`` is ignored for:
+
+        *   Methods that return ``nil``:
+            ``begin``, ``commit``, ``rollback``, ``upsert``, ``prepare``.
+
+        *   ``index.count`` (returns number).
+
+        For ``execute``, the option is applied only to data (`rows`). Metadata is decoded even if ``{return_raw=true}``.
+
+        **Example:**
+
+        ..  code-block:: lua
+
+            local c = require('net.box').connect(uri)
+            local mp = c.eval('eval ...', {1, 2, 3}, {return_raw = true})
+            mp:decode() -- {1, 2, 3}
+
+        The option can be useful if you want to pass a response through without decoding or with partial decoding.
+        The usage of :ref:`MsgPack object <msgpack-object-info>` can reduce pressure on the Lua garbage collector.
+
+
+..  _net_box-triggers:
 
 ============================================================================
 Triggers

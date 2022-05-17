@@ -15,15 +15,15 @@ box.space._func
 
    Tuples in this space contain the following fields:
 
-   * id (integer identifier),
-   * owner (integer identifier),
-   * the function name,
-   * the setuid flag,
-   * a language name (optional): 'LUA' (default) or 'C'.
+   * id (integer identifier)
+   * owner (integer identifier)
+   * the function name
+   * the setuid flag
+   * a language name (optional): 'LUA' (default) or 'C'
    * the body
    * the is_deterministic flag
    * the is_sandboxed flag
-   * options
+   * options.
 
    If the function tuple was made in the older way without specification of ``body``,
    then the ``_func`` space will contain default values for the body and the
@@ -44,9 +44,9 @@ box.space._func
    You can:
 
    * Create a ``_func`` tuple with
-     :doc:`/reference/reference_lua/box_schema/func_create`,
+     :doc:`/reference/reference_lua/box_schema/func_create`.
    * Drop a ``_func`` tuple with
-     :doc:`/reference/reference_lua/box_schema/func_drop`,
+     :doc:`/reference/reference_lua/box_schema/func_drop`.
    * Check whether a ``_func`` tuple exists with
      :doc:`/reference/reference_lua/box_schema/func_exists`.
 
@@ -72,3 +72,6 @@ box.space._func
       tarantool> box.schema.user.revoke('guest', 'execute', 'function', 'f7')
       ---
       ...
+      
+   The :ref:`system space view <box_space-sysviews>` for ``_func`` is ``_vfunc``.
+

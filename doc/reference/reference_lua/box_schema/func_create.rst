@@ -6,37 +6,55 @@ box.schema.func.create()
 
 .. module:: box.schema
 
+.. _box_schema-func_create_without-body:
+
 .. function:: box.schema.func.create(func-name [, {options-without-body}])
 
-    Create a function :ref:`tuple <index-box_tuple>`.
+    Create a function :ref:`tuple <index-box_tuple>`
     without including the ``body`` option.
-    (For functions created with the ``body`` option, see
+    For functions created with the ``body`` option, see
     :ref:`box.schema.func.create(func-name [, {options-with-body}]) <box_schema-func_create_with-body>`.
 
     This is called a "not persistent" function because functions without bodies are not persistent.
     This does not create the function itself -- that is done with Lua --
     but if it is necessary to grant privileges for a function,
-    box.schema.func.create must be done first.
+    ``box.schema.func.create`` must be done first.
     For explanation of how Tarantool maintains function data, see the
     reference for the :ref:`box.space._func <box_space-func>` space.
 
     The possible options are:
 
-    * ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
-      ``true`` means there should be no error if the ``_func`` tuple already exists.
+    *   ``if_not_exists`` = ``true|false`` (default = ``false``)---
+        ``true`` means there should be no error if the ``_func`` tuple already exists.
 
-    * ``setuid`` = ``true|false`` (default = false) - with ``true`` to make Tarantool
-      treat the function’s caller as the function’s creator, with full privileges.
-      Remember that SETUID works only over
-      :ref:`binary ports <admin-security>`.
-      SETUID doesn't work if you invoke a function via an
-      :ref:`admin console <admin-security>` or inside a Lua script.
+    *   ``setuid`` = ``true|false`` (default = ``false``)---with ``true`` to make Tarantool
+        treat the function's caller as the function's creator, with full privileges.
+        Remember that SETUID works only over
+        :ref:`binary ports <admin-security>`.
+        SETUID doesn't work if you invoke a function via an
+        :ref:`admin console <admin-security>` or inside a Lua script.
 
-    * ``language`` = 'LUA'|'C' (default = ‘LUA’).
+    *   ``language`` = 'LUA'|'C' (default = 'LUA').
+
+    *   (since version 2.10.0) ``takes_raw_args`` = ``true|false`` (default = ``false``)---
+        if set to ``true`` for a Lua function and the function is called via ``net.box`` (:ref:`conn:call() <net_box-call>`) or by ``box.func.<func-name>:call()``,
+        the function arguments are passed being wrapped in a :ref:`MsgPack object <msgpack-object-info>`:
+
+        ..  code-block:: lua
+
+            local msgpack = require('msgpack')
+            box.schema.func.create('my_func', {takes_raw_args = true})
+            local my_func = function(mp)
+                assert(msgpack.is_object(mp))
+                local args = mp:decode() -- array of arguments
+            end
+
+        If a function forwards most of its arguments to another Tarantool instance or writes them to a database,
+        the usage of this option can improve performance because it skips the MsgPack data decoding in Lua.
 
     :param string func-name: name of function, which should
                              conform to the :ref:`rules for object names <app_server-names>`
-    :param table options: ``if_not_exists``, ``setuid``, ``language``.
+    :param table options: ``if_not_exists``, ``setuid``, ``language``, ``takes_raw_args``.
 
     :return: nil
 
@@ -85,10 +103,16 @@ box.schema.func.create()
       ``true`` means that the function should be deterministic,
       ``false`` means that the function may or may not be deterministic.
 
+    * ``is_multikey`` = ``true|false`` (default = ``false``)---
+      if ``true`` is set in the function definition for a functional index, the function returns multiple keys.
+      For details, see the :ref:`example <box_space-index_func_multikey>`.
+
     * ``body`` = function definition (default = nil) - string;
       the function definition.
 
     * Additional options for SQL = See :ref:`Calling Lua routines from SQL <sql_calling_lua>`.
+
+    * ``takes_raw_args``---see the option description in :ref:`box.schema.func.create(func-name [, {options-with-body}]) <box_schema-func_create_without-body>`.
 
     :param string func-name: name of function, which should
                              conform to the :ref:`rules for object names <app_server-names>`

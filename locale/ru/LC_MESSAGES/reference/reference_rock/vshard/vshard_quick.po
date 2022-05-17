@@ -146,16 +146,16 @@ msgid ""
 "is available in the :ref:`tarantoolctl reference <tarantoolctl>`."
 msgstr ""
 "Полный список команд ``tarantoolctl`` для управления экземплярами "
-"Tarantool'а можно найти в :ref:`справочнике по tarantoolctl <tarantoolctl>`."
+"Tarantool можно найти в :ref:`справочнике по tarantoolctl <tarantoolctl>`."
 
 msgid "Essential ``make`` commands you need to know:"
 msgstr "Необходимо знать следующие команды ``make``:"
 
 msgid "``make start`` – start all Tarantool instances"
-msgstr "``make start`` – запуск всех экземпляров Tarantool'а"
+msgstr "``make start`` – запуск всех экземпляров Tarantool"
 
 msgid "``make stop`` – stop all Tarantool instances"
-msgstr "``make stop`` – остановка всех экземпляров Tarantool'а"
+msgstr "``make stop`` – остановка всех экземпляров Tarantool"
 
 msgid "``make logcat`` – show logs from all instances"
 msgstr "``make logcat`` – вывод журналов всех экземпляров"
@@ -357,7 +357,7 @@ msgstr ""
 "Данный кластер включает в себя один роутер (``router``) и два хранилища "
 "(``storage``). Каждое хранилище ``storage`` включает в себя один мастер и "
 "одну реплику. Поле ``sharding`` (шардинг) определяет логическую топологию "
-"сегментированного кластера Tarantool'а. Все остальные поля передаются в "
+"сегментированного кластера Tarantool. Все остальные поля передаются в "
 "``box.cfg()`` в неизменном виде. Для получения подробной информации см. "
 "раздел :ref:`Справочник по настройке <vshard-config-reference>`."
 

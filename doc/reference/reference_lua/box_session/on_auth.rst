@@ -10,7 +10,7 @@ box.session.on_auth()
 .. function:: box.session.on_auth([trigger-function [, old-trigger-function]])
 
     Define a trigger for execution during
-    ref:`authentication <authentication-users>`.
+    :ref:`authentication <authentication-users>`.
 
     The ``on_auth`` trigger function is invoked in these circumstances:
 

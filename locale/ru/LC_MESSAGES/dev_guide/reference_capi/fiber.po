@@ -222,7 +222,7 @@ msgid ""
 msgstr ""
 "Условная переменная: примитив синхронизации, который позволяет файберам в "
 "среде :ref:`кооперативной многозадачности <atomic-cooperative_multitasking>`"
-" Tarantool'а передавать управление до выполнения какого-либо предиката."
+" Tarantool передавать управление до выполнения какого-либо предиката."
 
 msgid ""
 "Fiber conditions have two basic operations -- \"wait\" and \"signal\", -- "

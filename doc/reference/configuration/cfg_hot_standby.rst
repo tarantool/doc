@@ -47,4 +47,5 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_HOT_STANDBY
     | Dynamic: no

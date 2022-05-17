@@ -4,12 +4,6 @@
 Lua tutorials
 ================================================================================
 
-Here are three tutorials on using Lua stored procedures with Tarantool:
-
-* :ref:`Insert one million tuples with a Lua stored procedure <c_lua_tutorial-insert_one_million_tuples>`,
-* :ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>`,
-* :ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>`.
-
 .. _c_lua_tutorial-insert_one_million_tuples:
 
 --------------------------------------------------------------------------------

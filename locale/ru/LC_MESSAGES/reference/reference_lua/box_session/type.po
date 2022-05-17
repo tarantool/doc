@@ -38,7 +38,7 @@ msgid ""
 "Tarantool as a client <admin-using_tarantool_as_a_client>`;"
 msgstr ""
 "'repl' (репликация), если подключение было выполнено напрямую, например, при"
-" :ref:`использовании Tarantool'а в качестве клиента <admin-"
+" :ref:`использовании Tarantool в качестве клиента <admin-"
 "using_tarantool_as_a_client>`;"
 
 msgid ""

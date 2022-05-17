@@ -20,7 +20,7 @@ E011, Numeric data types
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -71,7 +71,7 @@ E021, Character string types
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -144,7 +144,7 @@ E031, Identifiers
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -180,7 +180,7 @@ E051, Basic query specification
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -228,7 +228,7 @@ E061, Basic predicates and search conditions
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -295,7 +295,7 @@ E071, Basic query expressions
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -330,57 +330,8 @@ E071, Basic query expressions
 E081, Basic privileges
 ----------------------
 
-..  container:: table
+Tarantool doesn't support privileges except via NoSQL.
 
-    ..  list-table::
-        :widths: 10 30 30 30
-        :header-rows: 1
-
-        *   -   Feature ID
-            -   Feature
-            -   Example
-            -   Tests        
-        *   -   E081-01  
-            -   Select privilege at the table level      
-            -
-            -   Fail. Syntax error. (Tarantool doesn't support          
-                privileges except via NoSQL.)
-        *   -   E081-02  
-            -   DELETE privilege
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
-        *   -   E081-03  
-            -   INSERT privilege at the table level      
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
-        *   -   E081-04  
-            -   UPDATE privilege at the table level      
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
-        *   -   E081-05  
-            -   UPDATE privilege at column level
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
-        *   -   E081-06  
-            -   REFERENCES privilege at the table level  
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
-        *   -   E081-07  
-            -   REFERENCES privilege at column level     
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
-        *   -   E081-08  
-            -   WITH GRANT OPTION
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
-        *   -   E081-09  
-            -   USAGE privilege
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
-        *   -   E081-10  
-            -   EXECUTE privilege
-            - 
-            -   Fail. (Tarantool doesn't support privileges except via NoSQL.)
 
 E091, Set functions
 -------------------
@@ -388,7 +339,7 @@ E091, Set functions
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -433,7 +384,7 @@ E101, Basic data manipulation
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -460,7 +411,7 @@ E111, Single row SELECT statement
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -479,7 +430,7 @@ E121, Basic cursor support
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -530,7 +481,7 @@ E131, Null value support
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -549,7 +500,7 @@ E141, Basic integrity constraints
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -600,7 +551,7 @@ E151, Transaction support
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -625,7 +576,7 @@ E152, Basic SET TRANSACTION statement
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -648,7 +599,7 @@ E*, Other
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -680,7 +631,7 @@ F021, Basic information schema
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -700,7 +651,7 @@ F031, Basic schema manipulation
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -744,7 +695,7 @@ F041, Basic joined table
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -787,7 +738,7 @@ F051, Basic date and time
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -834,7 +785,7 @@ F081, UNION and EXCEPT in views
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -853,7 +804,7 @@ F131, Grouped operations
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -885,20 +836,8 @@ F131, Grouped operations
 F181, Multiple module support   
 -----------------------------
 
-..  container:: table
-
-    ..  list-table::
-        :widths: 10 30 30 30
-        :header-rows: 1
-
-        *   -   Feature ID
-            -   Feature
-            -   Example
-            -   Tests 
-        *   -   F181
-            -   Multiple module support 
-            -   
-            -   Fail. Tarantool doesn't have modules.
+Fail. Tarantool doesn't have modules.   
+   
 
 F201, CAST function
 -------------------
@@ -906,7 +845,7 @@ F201, CAST function
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -917,7 +856,7 @@ F201, CAST function
             -   CAST function
             -   ``SELECT cast(s1 AS INT) FROM t;``
             -   :ref:`Okay <sql_function_cast>`.   
-     
+
 
 F221, Explicit defaults
 -----------------------
@@ -925,7 +864,7 @@ F221, Explicit defaults
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -944,7 +883,7 @@ F261, CASE expression
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -983,23 +922,18 @@ F311, Schema definition statement
             -   Tests 
         *   -   F311-01   
             -   CREATE SCHEMA   
-            -
             -   Fail. Tarantool doesn't have schemas or databases.   
         *   -   F311-02   
             -   CREATE TABLE for persistent base tables   
-            -
             -   Fail. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA.   
         *   -   F311-03   
             -   CREATE VIEW   
-            -
             -   Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA.   
         *   -   F311-04   
             -   CREATE VIEW: WITH CHECK OPTION   
-            -
             -   Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA.   
         *   -   F311-05   
-            -   GRANT statement   
-            -
+            -   GRANT statement
             -   Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA.   
    
    
@@ -1009,7 +943,7 @@ F*, Other
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -1036,7 +970,7 @@ S011, Distinct types
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -1055,7 +989,7 @@ T321, Basic SQL-invoked routines
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -1092,7 +1026,7 @@ T*, Other
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 30 30 30
+        :widths: 15 30 30 25
         :header-rows: 1
 
         *   -   Feature ID
@@ -1105,6 +1039,6 @@ T*, Other
             -   Okay.   
 
 
-Total number of items marked "Fail": 65
+Total number of items marked "Fail": 67
 
 Total number of items marked "Okay": 79

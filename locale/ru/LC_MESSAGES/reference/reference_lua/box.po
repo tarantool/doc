@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Помимо выполнения фрагментов кода на Lua или определения собственных "
 "функций, с помощью модуля ``box`` и вложенных модулей можно использовать "
-"функции хранилища Tarantool'а."
+"функции хранилища Tarantool."
 
 msgid ""
 "Every submodule contains one or more Lua functions. A few submodules contain"

@@ -39,7 +39,7 @@ Functionality added or changed:
     ..  code-block:: tarantoolsession
 
         tarantool> \set language sql
-        tarantool> SELECT * FROM _schema;
+        tarantool> SELECT * FROM _schema
         tarantool> \set language lua
         tarantool> print("Hello, world!")
 

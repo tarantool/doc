@@ -49,7 +49,7 @@ Special `allocators <https://github.com/tarantool/small>`__ manage memory alloca
 The slab allocator is the main allocator used to store tuples.
 Tarantool has a built-in module called ``box.slab`` which provides the slab allocator statistics
 that can be used to monitor the total memory usage and memory fragmentation.
-For details, see the ``box.slab`` module :doc:`reference </reference/reference_lua/box_slab>`.
+For more details, see the ``box.slab`` module :doc:`reference </reference/reference_lua/box_slab>`.
 
 .. image:: memtx/spaces_indexes.svg
 

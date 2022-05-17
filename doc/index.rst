@@ -6,7 +6,7 @@
 ..  _index:
 
 -------------------------------------------------------------------------------
-                           Tarantool - Documentation
+                           Tarantool --- Documentation
 -------------------------------------------------------------------------------
 
 .. wp_section::
@@ -35,10 +35,12 @@
 
             .. ifconfig:: language == 'ru'
 
-                .. NOTE::
+                .. note::
 
-                    Документация находится в процессе перевода и может
-                    отставать от английской версии.
+                   Документация на русском языке
+                   `поддерживается сообществом <https://github.com/tarantool/doc/discussions/2738>`__
+                   и может отставать от англоязычной.
+                   `Перейти в английскую версию <../../../en/doc>`__.
 
                 .. raw:: html
 
@@ -74,7 +76,7 @@
                 book/box/authentication
                 book/box/triggers
                 reference/reference_rock/vshard/vshard_index
-                Cluster <book/cartridge/index>
+                Cluster on Cartridge <book/cartridge/index>
                 book/app_server/index
                 book/admin/index
                 book/replication/index
@@ -83,4 +85,4 @@
                 reference/index
                 tutorials/index
                 contributing/index
-                release
+                release/index

@@ -245,3 +245,17 @@ To send bare Lua code for execution, use ``Eval``:
 .. code-block:: go
 
     resp, err = connection.Eval("return 4 + 5", []interface{}{})
+
+.. _getting_started-go-comparison:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Feature comparison
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are two more connectors from the open-source community:
+
+*   `viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_
+
+*   `FZambia/tarantool <https://github.com/FZambia/tarantool>`_.
+
+See the :ref:`feature comparison table <index_connector_go>` of all Go connectors available.

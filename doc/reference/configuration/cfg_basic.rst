@@ -25,6 +25,7 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_BACKGROUND
     | Dynamic: no
 
 .. _cfg_basic-custom_proc_title:
@@ -54,6 +55,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_CUSTOM_PROC_TITLE
     | Dynamic: yes
 
 .. _cfg_basic-listen:
@@ -61,22 +63,32 @@
 .. confval:: listen
 
     Since version 1.6.4.
+
     The read/write data port number or :ref:`URI <index-uri>` (Universal
     Resource Identifier) string. Has no default value, so **must be specified**
-    if connections will occur from remote clients that do not use the
-    :ref:`“admin port” <admin-security>`. Connections made with
+    if connections occur from the remote clients that don't use the
+    :ref:`"admin port" <admin-security>`. Connections made with
     :samp:`listen = {URI}` are called "binary port" or "binary protocol"
     connections.
 
     A typical value is 3301.
 
-    .. NOTE::
+    ..  code-block:: lua
+
+        box.cfg { listen = 3301 }
+
+        box.cfg { listen = "127.0.0.1:3301" }
+
+    ..  NOTE::
 
         A replica also binds to this port, and accepts connections, but these
         connections can only serve reads until the replica becomes a master.
 
+    Starting from version 2.10.0, you can specify :ref:`several URIs <index-uri-several>`.
+
     | Type: integer or string
     | Default: null
+    | Environment variable: TT_LISTEN
     | Dynamic: yes
 
 .. _cfg_basic-memtx_dir:
@@ -90,6 +102,7 @@
 
     | Type: string
     | Default: "."
+    | Environment variable: TT_MEMTX_DIR
     | Dynamic: no
 
 .. _cfg_basic-pid_file:
@@ -102,6 +115,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_PID_FILE
     | Dynamic: no
 
 .. _cfg_basic-read_only:
@@ -120,6 +134,7 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_READ_ONLY
     | Dynamic: yes
 
     Setting ``read_only == true`` affects spaces differently depending on the
@@ -151,6 +166,7 @@
 
     | Type: number
     | Default: 5242880
+    | Environment variable: TT_SQL_CACHE_SIZE
     | Dynamic: yes
 
 .. _cfg_basic-vinyl_dir:
@@ -164,6 +180,7 @@
 
     | Type: string
     | Default: "."
+    | Environment variable: TT_VINYL_DIR
     | Dynamic: no
 
 .. _cfg_basic-vinyl_timeout:
@@ -182,6 +199,7 @@
 
     | Type: float
     | Default: 60
+    | Environment variable: TT_VINYL_TIMEOUT
     | Dynamic: yes
 
 .. _cfg_basic-username:
@@ -192,6 +210,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_USERNAME
     | Dynamic: no
 
 .. _cfg_basic-wal_dir:
@@ -207,6 +226,7 @@
 
     | Type: string
     | Default: "."
+    | Environment variable: TT_WAL_DIR
     | Dynamic: no
 
 .. _cfg_basic-work_dir:
@@ -233,6 +253,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_WORK_DIR
     | Dynamic: no
 
 
@@ -248,6 +269,7 @@
 
     | Type: integer
     | Default: 4
+    | Environment variable: TT_WORKER_POOL_THREADS
     | Dynamic: yes
 
 .. _cfg_basic-strip_core:
@@ -261,6 +283,7 @@
 
     | Type: boolean
     | Default: true
+    | Environment variable: TT_STRIP_CORE
     | Dynamic: no
 
 .. _cfg_basic-memtx_use_mvcc_engine:
@@ -272,4 +295,5 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_MEMTX_USE_MVCC_ENGINE
     | Dynamic: no

@@ -4,8 +4,8 @@
 
         Search for a tuple :ref:`via the given index <box_index-note>`.
 
-        :param index_object index_object: an :ref:`object reference
-                                          <app_server-object_reference>`.
+        :param index_object index_object: :ref:`object reference
+                                          <app_server-object_reference>`
         :param scalar/table      key: values to be matched against the index key
 
         :return: the tuple whose index-key fields are equal to the passed key values
@@ -13,11 +13,11 @@
 
         **Possible errors:**
 
-        * no such index;
-        * wrong type;
-        * more than one tuple matches.
+        * No such index
+        * Wrong type
+        * More than one tuple matches
 
-        **Complexity factors:** Index size, Index type.
+        **Complexity factors:** index size, index type.
         See also :ref:`space_object:get() <box_space-get>`.
 
         **Example:**

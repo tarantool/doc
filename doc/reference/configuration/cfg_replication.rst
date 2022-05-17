@@ -32,9 +32,13 @@
 
     :extsamp:`box.cfg{ replication = { {*{'uri1'}*}, {*{'uri2'}*} } }`
 
-    If one of the URIs is "self" -- that is, if one of the URIs is for the
-    instance where ``box.cfg{}`` is being executed on -- then it is ignored.
-    Thus it is possible to use the same ``replication`` specification on
+    ..  note::
+
+        Starting from version 2.10.0, there is a number of other ways for specifying several URIs. See :ref:`syntax examples <index-uri-several>`.
+
+    If one of the URIs is "self"---that is, if one of the URIs is for the
+    instance where ``box.cfg{}`` is being executed on---then it is ignored.
+    Thus, it is possible to use the same ``replication`` specification on
     multiple server instances, as shown in
     :ref:`these examples <replication-bootstrap>`.
 
@@ -50,6 +54,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_REPLICATION
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_anon:
@@ -193,6 +198,11 @@
       instance must replicate from some read-write instance,
       otherwise it cannot be added to the ``_cluster`` table.
 
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_REPLICATION_ANON
+    | Dynamic: **yes**
+
 .. _cfg_replication-replication_connect_timeout:
 
 .. confval:: replication_connect_timeout
@@ -209,6 +219,7 @@
 
     | Type: float
     | Default: 30
+    | Environment variable: TT_REPLICATION_CONNECT_TIMEOUT
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_connect_quorum:
@@ -238,6 +249,7 @@
 
     | Type: integer
     | Default: null
+    | Environment variable: TT_REPLICATION_CONNECT_QUORUM
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_skip_conflict:
@@ -261,6 +273,7 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_REPLICATION_SKIP_CONFLICT
     | Dynamic: **yes**
 
 
@@ -291,6 +304,7 @@
 
     | Type: float
     | Default: 10
+    | Environment variable: TT_REPLICATION_SYNC_LAG
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_sync_timeout:
@@ -309,6 +323,7 @@
 
     | Type: float
     | Default: 300
+    | Environment variable: TT_REPLICATION_SYNC_TIMEOUT
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_timeout:
@@ -327,6 +342,7 @@
 
     | Type: integer
     | Default: 1
+    | Environment variable: TT_REPLICATION_TIMEOUT
     | Dynamic: **yes**
 
 .. _cfg_replication-replicaset_uuid:
@@ -376,6 +392,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_REPLICASET_UUID
     | Dynamic: no
 
 .. _cfg_replication-instance_uuid:
@@ -420,6 +437,7 @@
 
     | Type: number
     | Default: 1
+    | Environment variable: TT_INSTANCE_UUID
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_synchro_timeout:
@@ -437,6 +455,7 @@
 
     | Type: number
     | Default: 5
+    | Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT
     | Dynamic: **yes**
 
 .. _cfg_replication-election_mode:
@@ -473,6 +492,7 @@
 
     | Type: string
     | Default: 'off'
+    | Environment variable: TT_ELECTION_MODE
     | Dynamic: **yes**
 
 .. _cfg_replication-election_timeout:
@@ -503,4 +523,5 @@
 
     | Type: number
     | Default: 5
+    | Environment variable: TT_ELECTION_TIMEOUT
     | Dynamic: **yes**

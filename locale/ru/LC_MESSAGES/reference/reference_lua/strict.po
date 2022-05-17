@@ -21,7 +21,7 @@ msgid ""
 "in section :ref:`building-from-source <building_from_source>`."
 msgstr ""
 "По умолчанию, строгий режим отключен, не считая случаев, когда сборка "
-"Tarantool'а производилась с помощью ``-DCMAKE_BUILD_TYPE=Debug`` -- см. "
+"Tarantool производилась с помощью ``-DCMAKE_BUILD_TYPE=Debug`` -- см. "
 "варианты сборки в разделе :ref:`сборка из исходников "
 "<building_from_source>`."
 

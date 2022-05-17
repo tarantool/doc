@@ -1,7 +1,7 @@
 .. _uuid-module:
 
 -------------------------------------------------------------------------------
-                            Module `uuid`
+                            Module uuid
 -------------------------------------------------------------------------------
 
 ===============================================================================
@@ -14,6 +14,8 @@ a value be unique only within a single computer or on a single database, then a
 simple counter is better than a UUID, because getting a UUID is time-consuming
 (it requires a `syscall <https://en.wikipedia.org/wiki/Syscall>`_). For clusters of computers, or widely distributed
 applications, UUIDs are better.
+Tarantool generates UUIDs following the rules for RFC 4122
+`version 4 variant 1 <https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)>`_.
 
 ===============================================================================
                                     Index

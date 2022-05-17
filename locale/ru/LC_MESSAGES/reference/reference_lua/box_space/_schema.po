@@ -11,7 +11,7 @@ msgstr "Этот спейс включает в себя следующие ко
 msgid ""
 "``version`` tuple with version information for this Tarantool instance,"
 msgstr ""
-"кортеж ``version`` с информацией о версии данного экземпляра Tarantool'а,"
+"кортеж ``version`` с информацией о версии данного экземпляра Tarantool,"
 
 msgid "``cluster`` tuple with the instance's replica set ID,"
 msgstr ""
