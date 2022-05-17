@@ -29,6 +29,7 @@
 
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456 bytes
+    | Environment variable: TT_MEMTX_MEMORY
     | Dynamic: **yes** but it cannot be decreased
 
 .. _cfg_storage-memtx_max_tuple_size:
@@ -42,6 +43,7 @@
 
     | Type: integer
     | Default: 1024 * 1024 = 1048576 bytes
+    | Environment variable: TT_MEMTX_MAX_TUPLE_SIZE
     | Dynamic: **yes**
 
 .. _cfg_storage-memtx_min_tuple_size:
@@ -55,6 +57,7 @@
 
     | Type: integer
     | Default: 16 bytes
+    | Environment variable: TT_MEMTX_MIN_TUPLE_SIZE
     | Dynamic: no
 
 .. _cfg_storage-slab_alloc_factor:
@@ -68,6 +71,7 @@
 
     | Type: float
     | Default: 1.1
+    | Environment variable: TT_SLAB_ALLOC_FACTOR
     | Dynamic: no
 
 .. _cfg_storage-vinyl_bloom_fpr:
@@ -82,7 +86,8 @@
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: float
-    | Default = 0.05
+    | Default: 0.05
+    | Environment variable: TT_VINYL_BLOOM_FPR
     | Dynamic: no
 
 .. _cfg_storage-vinyl_cache:
@@ -94,7 +99,8 @@
     be resized dynamically.
 
     | Type: integer
-    | Default = 128 * 1024 * 1024 = 134217728 bytes
+    | Default: 128 * 1024 * 1024 = 134217728 bytes
+    | Environment variable: TT_VINYL_CACHE
     | Dynamic: **yes**
 
 .. _cfg_storage-vinyl_max_tuple_size:
@@ -108,6 +114,7 @@
 
     | Type: integer
     | Default: 1024 * 1024 = 1048576 bytes
+    | Environment variable: TT_VINYL_MAX_TUPLE_SIZE
     | Dynamic: no
 
 .. _cfg_storage-vinyl_memory:
@@ -117,7 +124,8 @@
     Since version 1.7.4. The maximum number of in-memory bytes that vinyl uses.
 
     | Type: integer
-    | Default = 128 * 1024 * 1024 = 134217728 bytes
+    | Default: 128 * 1024 * 1024 = 134217728 bytes
+    | Environment variable: TT_VINYL_MEMORY
     | Dynamic: **yes** but it cannot be decreased
 
 .. _cfg_storage-vinyl_page_size:
@@ -130,7 +138,8 @@
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: integer
-    | Default = 8 * 1024 = 8192 bytes
+    | Default: 8 * 1024 = 8192 bytes
+    | Environment variable: TT_VINYL_PAGE_SIZE
     | Dynamic: no
 
 .. _cfg_storage-vinyl_range_size:
@@ -138,7 +147,7 @@
 .. confval:: vinyl_range_size
 
     Since version 1.7.4.
-    The default maximum range size for a vinyl index.
+    The default maximum range size for a vinyl index, in bytes.
     The maximum range size affects the decision whether to
     :ref:`split <engines-vinyl_split>` a range.
 
@@ -155,7 +164,8 @@
     In Tarantool versions prior to 1.10.2, ``vinyl_range_size`` default value was 1073741824.
 
     | Type: integer
-    | Default = nil bytes
+    | Default: nil
+    | Environment variable: TT_VINYL_RANGE_SIZE
     | Dynamic: no
 
 .. _cfg_storage-vinyl_run_count_per_level:
@@ -169,7 +179,8 @@
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: integer
-    | Default = 2
+    | Default: 2
+    | Environment variable: TT_VINYL_RUN_COUNT_PER_LEVEL
     | Dynamic: no
 
 .. _cfg_storage-vinyl_run_size_ratio:
@@ -182,7 +193,8 @@
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     | Type: float
-    | Default = 3.5
+    | Default: 3.5
+    | Environment variable: TT_VINYL_RUN_SIZE_RATIO
     | Dynamic: no
 
 .. _cfg_storage-vinyl_read_threads:
@@ -194,7 +206,8 @@
     concurrent operations, such as I/O and compression.
 
     | Type: integer
-    | Default = 1
+    | Default: 1
+    | Environment variable: TT_VINYL_READ_THREADS
     | Dynamic: no
 
 .. _cfg_storage-vinyl_write_threads:
@@ -206,6 +219,7 @@
     concurrent operations, such as I/O and compression.
 
     | Type: integer
-    | Default = 2
+    | Default: 2
+    | Environment variable: TT_VINYL_WRITE_THREADS
     | Dynamic: no
 

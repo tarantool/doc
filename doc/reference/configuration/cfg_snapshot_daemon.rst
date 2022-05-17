@@ -69,6 +69,7 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
     | Type: integer
     | Default: 3600 (one hour)
+    | Environment variable: TT_CHECKPOINT_INTERVAL
     | Dynamic: yes
 
 .. _cfg_checkpoint_daemon-checkpoint_count:
@@ -98,6 +99,7 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
     | Type: integer
     | Default: 2
+    | Environment variable: TT_CHECKPOINT_COUNT
     | Dynamic: yes
 
 .. _cfg_checkpoint_daemon-checkpoint_wal_threshold:
@@ -130,4 +132,5 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
     | Type: integer
     | Default: 10^18 (a large number so in effect there is no limit by default)
+    | Environment variable: TT_CHECKPOINT_WAL_THRESHOLD
     | Dynamic: yes

@@ -15,6 +15,7 @@
 
     | Type: float
     | Default: null
+    | Environment variable: TT_IO_COLLECT_INTERVAL
     | Dynamic: **yes**
 
 .. _cfg_networking-net_msg_max:
@@ -51,6 +52,7 @@
 
     | Type: integer
     | Default: 768
+    | Environment variable: TT_NET_MSG_MAX
     | Dynamic: **yes**
 
 .. _cfg_networking-readahead:
@@ -69,6 +71,7 @@
 
     | Type: integer
     | Default: 16320
+    | Environment variable: TT_READAHEAD
     | Dynamic: **yes**
 
 .. _cfg_networking-iproto_threads:
@@ -87,4 +90,5 @@
      
     | Type: integer
     | Default: 1
+    | Environment variable: TT_IPROTO_THREADS
     | Dynamic: no

@@ -28,6 +28,7 @@
 
     | Type: integer
     | Default: 5
+    | Environment variable: TT_LOG_LEVEL
     | Dynamic: **yes**
 
     Warning: prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was
@@ -111,6 +112,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_LOG
     | Dynamic: no
 
 .. _cfg_logging-log_nonblock:
@@ -136,6 +138,7 @@
 
     | Type: boolean
     | Default: nil
+    | Environment variable: TT_LOG_NONBLOCK
     | Dynamic: no
 
 .. _cfg_logging-too_long_threshold:
@@ -149,6 +152,7 @@
 
     | Type: float
     | Default: 0.5
+    | Environment variable: TT_TOO_LONG_THRESHOLD
     | Dynamic: **yes**
 
 .. _cfg_logging-log_format:
@@ -192,6 +196,7 @@
 
     | Type: string
     | Default: 'plain'
+    | Environment variable: TT_LOG_FORMAT
     | Dynamic: **yes**
 
 .. _cfg_logging-logging_example:
@@ -294,6 +299,7 @@ adjust or turn off this feature.
 
     | Type: boolean
     | Default: true
+    | Environment variable: TT_FEEDBACK_ENABLED
     | Dynamic: **yes**
 
 .. _cfg_logging-feedback_host:
@@ -305,6 +311,7 @@ adjust or turn off this feature.
 
     | Type: string
     | Default: ``https://feedback.tarantool.io``
+    | Environment variable: TT_FEEDBACK_HOST
     | Dynamic: **yes**
 
 .. _cfg_logging-feedback_interval:
@@ -315,4 +322,5 @@ adjust or turn off this feature.
 
     | Type: float
     | Default: 3600
+    | Environment variable: TT_FEEDBACK_INTERVAL
     | Dynamic: **yes**
