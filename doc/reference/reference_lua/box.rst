@@ -1,7 +1,7 @@
 .. _box-module:
 
 -------------------------------------------------------------------------------
-                                Module `box`
+                                Module box
 -------------------------------------------------------------------------------
 
 As well as executing Lua chunks or defining your own functions, you can exploit

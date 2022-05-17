@@ -2,4 +2,4 @@
 Summary
 ===============================================================================
 
-.. include:: vshard_summary.rst
+.. include:: ./_includes/vshard_summary.rst

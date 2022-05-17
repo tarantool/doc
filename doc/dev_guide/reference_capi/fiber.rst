@@ -1,5 +1,5 @@
 ===========================================================
-                       Module `fiber`
+                       Module fiber
 ===========================================================
 
 .. c:type:: struct fiber
@@ -127,9 +127,17 @@
 
     Report loop begin time as double (cheap).
 
-.. c:function:: uint64_t fiber_time64(void)
+.. c:function:: int64_t fiber_time64(void)
 
-    Report loop begin time as 64-bit int.
+    Report loop begin time as 64-bit int. Uses real time clock.
+
+.. c:function:: double fiber_clock(void)
+
+    Report loop begin time as double (cheap). Uses monotonic clock.
+
+.. c:function:: int64_t fiber_clock64(void)
+
+    Report loop begin time as 64-bit int. Uses monotonic clock.
 
 .. c:function:: void fiber_reschedule(void)
 

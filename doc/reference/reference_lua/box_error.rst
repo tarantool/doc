@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-                            Submodule `box.error`
+                            Submodule box.error
 -------------------------------------------------------------------------------
 
 The ``box.error`` function is for raising an error. The difference between this

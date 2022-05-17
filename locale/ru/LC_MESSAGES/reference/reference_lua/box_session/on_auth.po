@@ -3,7 +3,7 @@ msgid "box.session.on_auth()"
 msgstr ""
 
 msgid ""
-"Define a trigger for execution during ref:`authentication <authentication-"
+"Define a trigger for execution during :ref:`authentication <authentication-"
 "users>`."
 msgstr ""
 "Определение триггера, используемого во время :ref:`аутентификации "

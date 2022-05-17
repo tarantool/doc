@@ -1,7 +1,7 @@
 .. _clock-module:
 
 -------------------------------------------------------------------------------
-                            Module `clock`
+                            Module clock
 -------------------------------------------------------------------------------
 
 ===============================================================================
@@ -69,11 +69,9 @@ Below is a list of all ``clock`` functions.
               realtime64()
 
     The wall clock time. Derived from C function clock_gettime(CLOCK_REALTIME).
-    This is the best function for knowing what the official time is, as
-    determined by the system administrator.
 
     :return: seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted.
-    :rtype: number or number64
+    :rtype: number or cdata (ctype<int64_t>)
 
     **Example:**
 
@@ -98,7 +96,7 @@ Below is a list of all ``clock`` functions.
     elapsed time.
 
     :return: seconds or nanoseconds since the last time that the computer was booted.
-    :rtype: number or number64
+    :rtype: number or cdata (ctype<int64_t>)
 
     **Example:**
 
@@ -119,7 +117,7 @@ Below is a list of all ``clock`` functions.
     within a CPU.
 
     :return: seconds or nanoseconds since processor start.
-    :rtype: number or number64
+    :rtype: number or cdata (ctype<int64_t>)
 
     **Example:**
 
@@ -140,7 +138,7 @@ Below is a list of all ``clock`` functions.
     thread within a CPU.
 
     :return: seconds or nanoseconds since the transaction processor thread started.
-    :rtype: number or number64
+    :rtype: number or cdata (ctype<int64_t>)
 
     **Example:**
 

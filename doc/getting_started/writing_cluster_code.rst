@@ -1,7 +1,7 @@
 .. _getting_started-wrirting_cluster-code:
 
 =================================================================================
-Writing cluster application code
+Writing code in a cluster application
 =================================================================================
 
 In the "Getting Started" tutorial,

@@ -372,3 +372,22 @@ msgstr ""
 
 msgid "resp, err = connection.Eval(\"return 4 + 5\", []interface{}{})"
 msgstr "resp, err = connection.Eval(\"return 4 + 5\", []interface{}{})"
+
+msgid "Feature comparison"
+msgstr "Сравнение функций"
+
+msgid "There are two more connectors from the open-source community:"
+msgstr "Есть еще два доступных коннектора от опенсорс-сообщества:"
+
+msgid "`viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_"
+msgstr "`viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_"
+
+msgid "`FZambia/tarantool <https://github.com/FZambia/tarantool>`_."
+msgstr "`FZambia/tarantool <https://github.com/FZambia/tarantool>`_."
+
+msgid ""
+"See the :ref:`feature comparison table <index_connector_go>` of all Go "
+"connectors available."
+msgstr ""
+"Чтобы подробнее ознакомиться с этими коннекторами, посмотрите :ref:`таблицу "
+"сравнения функций <index_connector_go>` всех доступных Go-коннекторов."

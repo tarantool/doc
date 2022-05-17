@@ -39,7 +39,7 @@ msgid ""
 ":ref:`log file <admin-logs>`."
 msgstr ""
 "Сопутствующие файлы -- такие как :ref:`трассировка стека <admin-"
-"stack_traces>` или :ref:`файл журнала <admin-logs>` Tarantool'а."
+"stack_traces>` или :ref:`файл журнала <admin-logs>` Tarantool."
 
 msgid ""
 "If this is a feature request or if it affects a special category of users, "

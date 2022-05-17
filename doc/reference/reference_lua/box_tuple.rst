@@ -1,7 +1,7 @@
 .. _box_tuple:
 
 -------------------------------------------------------------------------------
-                            Submodule `box.tuple`
+                            Submodule box.tuple
 -------------------------------------------------------------------------------
 
 The ``box.tuple`` submodule provides read-only access for the ``tuple``

@@ -7,7 +7,7 @@ msgid ""
 "usage."
 msgstr ""
 "Эти практические задания предназначены для тех, кто хочет поглубже узнать "
-"про использование Tarantool'а."
+"про использование Tarantool."
 
 msgid ""
 "If you are new to Tarantool, please see our :ref:`Getting Started guides "

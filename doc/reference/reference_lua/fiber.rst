@@ -1,6 +1,6 @@
 ..  _fiber-module:
 
-Module `fiber`
+Module fiber
 ==============
 
 Overview
@@ -199,7 +199,7 @@ returns the fiber (now called a fiber carcass) to the fiber pool. The carcass
 can be reused when another fiber is created.
 
 A fiber has all the features of a Lua
-`coroutine <http://www.lua.org/pil/contents.html#9>` and all the programming
+`coroutine <http://www.lua.org/pil/contents.html#9>`_ and all the programming
 concepts that apply for Lua coroutines will apply for fibers as well. However,
 Tarantool has made some enhancements for fibers and has used fibers internally.
 So, although use of coroutines is possible and supported, use of fibers is
@@ -582,7 +582,7 @@ recommended.
     :return: current system time (in microseconds since the epoch)
              as a 64-bit integer. The time is taken from the event
              loop clock.
-    :rtype: cdata
+    :rtype: cdata (ctype<int64_t>)
 
     **Example:**
 
@@ -632,7 +632,7 @@ recommended.
     :return: a number of seconds as 64-bit integer, representing
              elapsed wall-clock time since some time in the past that is
              guaranteed not to change during the life of the process
-    :rtype: cdata
+    :rtype: cdata (ctype<int64_t>)
 
 
 ..  class:: fiber_object

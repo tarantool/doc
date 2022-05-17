@@ -29,7 +29,7 @@ msgstr ""
 "Значение не содержит размер кортежа \"struct tuple\" (чтобы узнать текущий "
 "размер данной структуры, посмотрите файл `tuple.h "
 "<https://github.com/tarantool/tarantool/blob/1.10/src/box/tuple.h>`_ в "
-"исходном коде Tarantool'а)."
+"исходном коде Tarantool)."
 
 msgid "return"
 msgstr "возвращает"

@@ -1,27 +1,33 @@
 .. _msgpack-module:
 
 -------------------------------------------------------------------------------
-                                    Module `msgpack`
+                                    Module msgpack
 -------------------------------------------------------------------------------
 
 ===============================================================================
                                    Overview
 ===============================================================================
 
-The ``msgpack`` module decodes
-:ref:`raw MsgPack strings <msgpack-definitions>` by converting them to Lua objects,
+.. _msgpack-definitions:
+
+**Definitions:**
+
+*   *MsgPack* is short for `MessagePack <https://msgpack.org/index.html>`_.
+
+*   A "raw MsgPack string" is a byte array formatted according to the `MsgPack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
+    including type bytes and sizes. The type bytes and sizes can be made displayable with :ref:`string.hex() <string-hex>`,
+    or the raw MsgPack strings can be converted to Lua objects by using the ``msgpack`` module methods.
+
+The ``msgpack`` module decodes :ref:`raw MsgPack strings <msgpack-definitions>` by converting them to Lua objects,
 and encodes Lua objects by converting them to raw MsgPack strings.
 Tarantool makes heavy internal use of MsgPack because tuples in Tarantool
 are :ref:`stored <index-box_lua-vs-msgpack>` as MsgPack arrays.
 
-.. _msgpack-definitions:
+..  _msgpack-object-info:
 
-Definitions: MsgPack is short for `MessagePack <https://msgpack.org/index.html>`_.
-A "raw MsgPack string" is a byte array formatted according to the
-`MsgPack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ 
-including type bytes and sizes.
-The type bytes and sizes can be made displayable with :ref:`string.hex() <string-hex>`,
-or the raw MsgPack strings can be converted to Lua objects with ``msgpack`` methods.
+Besides, starting from version 2.10.0, the ``msgpack`` module enables creating a specific userdata Lua object---MsgPack object.
+The MsgPack object stores arbitrary MsgPack data, and can be created from :ref:`any Lua object <msgpack-object>` including another MsgPack object
+and from a :ref:`raw MsgPack string <msgpack-object-from-raw>`. The MsgPack object has its own set of :ref:`methods <msgpack-object-methods>` and :ref:`iterators <msgpack-object-iterator-methods>`.
 
 ===============================================================================
                                     Index
@@ -29,47 +35,81 @@ or the raw MsgPack strings can be converted to Lua objects with ``msgpack`` meth
 
 Below is a list of all ``msgpack`` functions and members.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  list-table::
+        :widths: 50 50
+        :header-rows: 1
 
-    +--------------------------------------------------------+---------------------------------+
-    | Name                                                   | Use                             |
-    +========================================================+=================================+
-    | :ref:`msgpack.encode(lua_value)                        | Convert a Lua object to a       |
-    | <msgpack-encode_lua_value>`                            | raw MsgPack string              |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.encode(lua_value,ibuf)                   | Convert a Lua object to a       |
-    | <msgpack-encode_lua_value_ibuf>`                       | raw MsgPack string in an ibuf   |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode(msgpack_string)                   | Convert a raw MsgPack string to |
-    | <msgpack-decode_string>`                               | a Lua object                    |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode(C_style_string_pointer)           | Convert a raw MsgPack string in |
-    | <msgpack-decode_c_style_string_pointer>`               | an ibuf to a Lua object         |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_unchecked(msgpack_string)         | Convert a raw MsgPack string to |
-    | <msgpack-decode_unchecked_string>`                     | a Lua object                    |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_unchecked(C_style_string_pointer) | Convert a raw MsgPack string to |
-    | <msgpack-decode_unchecked_c_style_string_pointer>`     | a Lua object                    |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_array_header                      | Skip array header in a raw      |
-    | <msgpack-decode_array_header>`                         | MsgPack string                  |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.decode_map_header                        | Skip map header in a raw        |
-    | <msgpack-decode_map_header>`                           | MsgPack string                  |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`__serialize parameter                            | Output structure specification  |
-    | <msgpack-serialize>`                                   |                                 |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.cfg                                      | Change configuration            |
-    | <msgpack-cfg>`                                         |                                 |
-    +--------------------------------------------------------+---------------------------------+
-    | :ref:`msgpack.NULL                                     | Analog of Lua's "nil"           |
-    | <msgpack-null>`                                        |                                 |
-    +--------------------------------------------------------+---------------------------------+
+        *   -   Name
+            -   Use
+
+        *   -   :ref:`msgpack.encode(lua_value) <msgpack-encode_lua_value>`
+            -   Convert a Lua object to a raw MsgPack string
+
+        *   -   :ref:`msgpack.encode(lua_value,ibuf) <msgpack-encode_lua_value_ibuf>`
+            -   Convert a Lua object to a raw MsgPack string in an ibuf
+
+        *   -   :ref:`msgpack.decode(msgpack_string) <msgpack-decode_string>`
+            -   Convert a raw MsgPack string to a Lua object
+
+        *   -   :ref:`msgpack.decode(C_style_string_pointer) <msgpack-decode_c_style_string_pointer>`
+            -   Convert a raw MsgPack string in an ibuf to a Lua object
+
+        *   -   :ref:`msgpack.decode_unchecked(msgpack_string) <msgpack-decode_unchecked_string>`
+            -   Convert a raw MsgPack string to a Lua object
+
+        *   -   :ref:`msgpack.decode_unchecked(C_style_string_pointer) <msgpack-decode_unchecked_c_style_string_pointer>`
+            -   Convert a raw MsgPack string to a Lua object
+
+        *   -   :ref:`msgpack.decode_array_header(byte-array, size) <msgpack-decode_array_header>`
+            -   Skip an array header in a raw MsgPack string
+
+        *   -   :ref:`msgpack.decode_map_header(byte-array, size) <msgpack-decode_map_header>`
+            -   Skip a map header in a raw MsgPack string
+
+        *   -   :ref:`__serialize <msgpack-serialize>` parameter
+            -   Output structure specification
+
+        *   -   :ref:`msgpack.cfg() <msgpack-cfg>`
+            -   Change configuration
+
+        *   -   :ref:`msgpack.NULL <msgpack-null>`
+            -   Analog of Lua's ``nil``
+
+        *   -   :ref:`msgpack.object(lua_value) <msgpack-object>`
+            -   Create a MsgPack object from a Lua object
+
+        *   -   :ref:`msgpack.object_from_raw(msgpack_string) <msgpack-object-from-raw>`
+            -   Create a MsgPack object from a raw MsgPack string
+
+        *   -   :ref:`msgpack.object_from_raw(C_style_string_pointer, size) <msgpack-object-from-raw-pointer>`
+            -   Create a MsgPack object from a raw MsgPack string
+
+        *   -   :ref:`msgpack.is_object(some_argument) <msgpack-is-object>`
+            -   Check if an argument is a MsgPack object
+
+        *   -   :ref:`msgpack_object:decode() <msgpack-object-methods>`
+            -   Decode MsgPack data in a MsgPack object and return a Lua object
+
+        *   -   :ref:`msgpack_object:iterator() <msgpack-object-methods>`
+            -   Get an iterator over the MsgPack data
+
+        *   -   :ref:`iterator_object:decode_array_header() <msgpack-object-iterator-methods>`
+            -   Decode a MsgPack array header under the iterator cursor, return the number of elements in the array, and advance the cursor
+
+        *   -   :ref:`iterator_object:decode_map_header() <msgpack-object-iterator-methods>`
+            -   Decode a MsgPack map header under the iterator cursor, return the number of key value pairs in the map, and advance the cursor
+
+        *   -   :ref:`iterator_object:decode() <msgpack-object-iterator-methods>`
+            -   Decode a MsgPack value under the iterator cursor, return the corresponding Lua object, and advance the cursor
+
+        *   -   :ref:`iterator_object:take() <msgpack-object-iterator-methods>`
+            -   Return a MsgPack value under the iterator cursor as a MsgPack object without decoding and advance the cursor
+
+        *   -   :ref:`iterator_object:skip() <msgpack-object-iterator-methods>`
+            -   Advance the iterator cursor by skipping one MsgPack value under the cursor
+
 
 .. module:: msgpack
 
@@ -194,7 +234,7 @@ Below is a list of all ``msgpack`` functions and members.
     :ref:`decode(C_style_string_pointer) <msgpack-decode_c_style_string_pointer>`,
     except that ``size`` is not needed.
     Some checking is skipped, and ``decode_unchecked(C_style_string_pointer)`` can operate with
-    string pointers to buffers which ``decode(C_style_string_pointer)`` cannot handle. 
+    string pointers to buffers which ``decode(C_style_string_pointer)`` cannot handle.
     For an example see the :ref:`buffer <buffer-module>` module.
 
 .. _msgpack-decode_array_header:
@@ -229,7 +269,7 @@ Below is a list of all ``msgpack`` functions and members.
 
 .. function:: decode_map_header(byte-array, size)
 
-    Call the mp_decode_map function in the `MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library
+    Call the ``mp_decode_map`` function in the `MsgPuck <http://rtsisyk.github.io/msgpuck/>`_ library
     and return the map size and a pointer to the first map component.
     A subsequent call to ``msgpack_decode`` can decode the component instead of the whole map.
 
@@ -255,9 +295,9 @@ Below is a list of all ``msgpack`` functions and members.
 
 .. _msgpack-serialize:
 
-**__serialize parameter:**
+**__serialize parameter**
 
-The MsgPack output structure can be specified with ``__serialize``:
+The MsgPack output structure can be specified with the ``__serialize`` parameter:
 
 * 'seq', 'sequence', 'array' - table encoded as an array
 * 'map', 'mappping' - table encoded as a map
@@ -375,7 +415,7 @@ with the MsgPack format name and encoding on the right.
         | ``cfg.encode_max_depth``        |   128   | Max recursion depth for encoding              |
         +---------------------------------+---------+-----------------------------------------------+
         | ``cfg.encode_deep_as_nil``      |  false  | A flag saying whether to crop tables          |
-        |                                 |         | with nesting level deeper than                | 
+        |                                 |         | with nesting level deeper than                |
         |                                 |         | ``cfg.encode_max_depth``.                     |
         |                                 |         | Not-encoded fields are replaced with          |
         |                                 |         | one null. If not set, too high                |
@@ -417,7 +457,7 @@ with the MsgPack format name and encoding on the right.
 
     .. _msgpack-cfg_sparse:
 
-**Sparse arrays features:**
+**Sparse arrays features**
 
 During encoding, the MsgPack encoder tries to classify tables into one of four kinds:
 
@@ -464,7 +504,7 @@ ensure that ``msgpack.encode()`` will not accept them, by saying
     - error: ... number must not be NaN or Inf'
     ...
 
-**msgpack.cfg example 2:**
+**msgpack.cfg() example 2:**
 
 To avoid generating errors on attempts to encode unknown data types as
 userdata/cdata, you can use this code:
@@ -526,3 +566,220 @@ and :ref:`YAML <yaml-cfg>`.
         - [20, null, 20]
         ...
 
+..  _msgpack-object:
+
+..  function:: object(lua_value)
+
+    Since version 2.10.0.
+
+    Encode an arbitrary Lua object into the MsgPack format.
+
+    :param lua-object lua_value: a Lua object of any type.
+
+    :return: encoded MsgPack data encapsulated in a MsgPack object.
+
+    :rtype: userdata
+
+    **Example:**
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        -- Create a MsgPack object from a Lua object of any type
+        local mp = msgpack.object(123)
+        local mp = msgpack.object("foobar")
+        local mp = msgpack.object({1, 2, 3})
+        local mp = msgpack.object({foo = 1, bar = 2})
+        local mp = msgpack.object(box.tuple.new(1, 2, 3))
+
+..  _msgpack-object-from-raw:
+
+..  function:: object_from_raw(msgpack_string)
+
+    Since version 2.10.0.
+
+    Create a MsgPack object from a raw MsgPack string.
+
+    :param string msgpack_string: a raw MsgPack string.
+
+    :return: a MsgPack object
+
+    :rtype: userdata
+
+    **Example:**
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        local data = msgpack.encode({1, 2, 3})
+        local mp = msgpack.object_from_raw(data)
+
+..  _msgpack-object-from-raw-pointer:
+
+..  function:: object_from_raw(C_style_string_pointer, size)
+
+    Since version 2.10.0.
+
+    Create a MsgPack object from a raw MsgPack string. The address of the MsgPack string is supplied as a C-style string pointer
+    such as the ``rpos`` pointer inside an ``ibuf`` that the :ref:`buffer.ibuf() <buffer-ibuf>` creates.
+    A C-style string pointer may be described as ``cdata<char *>`` or ``cdata<const char *>``.
+
+    :param buffer C_style_string_pointer: a pointer to a raw MsgPack string.
+    :param integer size: number of bytes in the raw MsgPack string.
+
+    :return: a MsgPack object
+
+    :rtype: userdata
+
+    **Example:**
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        local buffer = require('buffer')
+        local buf = buffer.ibuf()
+        msgpack.encode({1, 2, 3}, buf)
+        local mp = msgpack.object_from_raw(buf.buf, buf:size())
+
+..  _msgpack-is-object:
+
+..  function:: is_object(some_argument)
+
+    Since version 2.10.0.
+
+    Check if the given argument is a MsgPack object.
+
+    :param some_agrument: any argument.
+
+    :return: ``true`` if the argument is a MsgPack object; otherwise, ``false``
+
+    :rtype: boolean
+
+    **Example:**
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        local mp = msgpack.object(123)
+        msgpack.is_object(mp) -- returns true
+        msgpack.is_object({}) -- returns false
+
+..  _msgpack-object-methods:
+
+..  class:: msgpack_object
+
+    A MsgPack object can be passed to the MsgPack encoder with the same effect as passing the original Lua object:
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        local mp = msgpack.object(123)
+        msgpack.object({mp, mp}):decode()         -- returns {123, 123}
+        msgpack.decode(msgpack.encode({mp, mp}))  -- returns {123, 123}
+
+    In particular, this means that if a MsgPack object stores an array, it can be inserted into a database space:
+
+    ..  code-block:: lua
+
+        box.space.my_space:insert(msgpack.object({1, 2, 3}))
+
+    The MsgPack object has the following methods:
+
+    ..  method:: decode()
+
+        Since version 2.10.0.
+
+        Decode MsgPack data in the MsgPack object.
+
+        :return: a Lua object
+
+        :rtype: Lua object
+
+    ..  method:: iterator()
+
+        Since version 2.10.0.
+
+        Create an iterator over the MsgPack data.
+
+        A MsgPack iterator object has its own :ref:`set of methods <msgpack-object-iterator-methods>`.
+
+        :return: an iterator object over the MsgPack data
+
+        :rtype: userdata
+
+..  _msgpack-object-iterator-methods:
+
+..  class:: iterator_object
+
+    The MsgPack iterator object has the following methods:
+
+    ..  method:: decode_array_header()
+
+        Since version 2.10.0.
+
+        Decode a MsgPack array header under the iterator cursor and advance the cursor.
+        After calling this function, the iterator points to the first element of the array
+        or to the value following the array if the array is empty.
+
+        :return: number of elements in the array
+
+        :rtype: number
+
+        **Possible errors:**  raise an error if the type of the value under the iterator cursor is not ``MP_ARRAY``.
+
+    ..  method:: decode_map_header()
+
+        Since version 2.10.0.
+
+        Decode a MsgPack map header under the iterator cursor and advance the cursor.
+        After calling this function, the iterator points to the first key stored in
+        the map or to the value following the map if the map is empty.
+
+        :return: number of key value pairs in the map
+
+        :rtype: number
+
+        **Possible errors:** raise an error if the type of the value under the iterator cursor is not ``MP_MAP``.
+
+    ..  method:: decode()
+
+        Since version 2.10.0.
+
+        Decode a MsgPack value under the iterator cursor and advance the cursor.
+
+        :return: a Lua object corresponding to the MsgPack value
+
+        :rtype: Lua object
+
+        **Possible errors:** raise a Lua error if there's no data to decode.
+
+    ..  method:: take()
+
+        Since version 2.10.0.
+
+        Return a MsgPack value under the iterator cursor as a MsgPack object without decoding and advance the cursor.
+        The method doesn't copy MsgPack data. Instead, it takes a reference to the original object.
+
+        **Possible errors:** raise a Lua error if there's no data to decode.
+
+    ..  method:: skip()
+
+        Since version 2.10.0.
+
+        Advance the iterator cursor by skipping one MsgPack value under the cursor. Returns nothing.
+
+        **Possible errors:** raise a Lua error if there's no data to skip.
+
+    **Example:**
+
+    ..  code-block:: lua
+
+        local msgpack = require('msgpack')
+        local mp = msgpack.object({foo = 123, bar = {1, 2, 3}})
+        local it = mp:iterator()
+        it:decode_map_header()  -- returns 2
+        it:decode()             -- returns 'foo'
+        it:decode()             -- returns 123
+        it:skip()               -- returns none, skips 'bar'
+        local mp2 = it:take()
+        mp2:decode()            -- returns {1, 2, 3}

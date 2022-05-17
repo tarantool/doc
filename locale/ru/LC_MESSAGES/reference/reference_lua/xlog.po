@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Модуль xlog включает в себя одну функцию: ``pairs()``. Ее можно использовать"
 " для чтения :ref:`файлов снимка <index-box_persistence>` или :ref:`файлов "
-"журнала упреждающей записи (WAL) <internals-wal>` в Tarantool'е. Описание "
+"журнала упреждающей записи (WAL) <internals-wal>` в Tarantool. Описание "
 "формата файла дается в разделе :ref:`Персистентность данных и формат WAL-"
 "файла <internals-data_persistence>`."
 

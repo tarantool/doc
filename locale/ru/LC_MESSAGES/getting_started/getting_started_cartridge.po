@@ -399,3 +399,7 @@ msgstr ""
 ":doc:`Упакуйте </book/cartridge/cartridge_cli/commands/pack>` ваше "
 "приложение для дальнейшего распространения. Вы можете выбрать любой из "
 "поддерживаемых видов пакетов: DEB, RPM, архив TGZ или Docker-образ."
+
+msgid "Read the :doc:`Cartridge documentation </book/cartridge/index>`."
+msgstr ""
+"Ознакомьтесь с :doc:`документацией Cartridge </book/cartridge/index>`."

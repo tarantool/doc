@@ -1,20 +1,17 @@
 ---
-name: Write or Update
+name: Write or update
 about: Write or update a documentation page
-title: "[0pt] {feature_name}"
+title: "{feature_name}"
 labels: 
 assignees:
 ---
-# Feature name
-
-Fill in whatever you know at the moment.
+**Related dev. issue(s):** GitHub link(s)
 
 **Product:** Tarantool, Cartridge, TDG, connectors, tools?
 **Since:** product version
 **Audience/target:** who will read it and for what task?
 **Root document:** where to add or update documentation
 **SME:** @ expert to ask for more information
-**Peer reviewer:** @ documentarian name
 
 # Details
 

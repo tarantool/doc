@@ -135,7 +135,7 @@ msgid "NULL if ``idx`` is not a tuple"
 msgstr "NULL, если ``idx`` -- это не кортеж"
 
 msgid "Re-throw the last Tarantool error as a Lua object."
-msgstr "Повторение последней ошибки в Tarantool'е в виде Lua-объекта."
+msgstr "Повторение последней ошибки в Tarantool в виде Lua-объекта."
 
 msgid ""
 "See also: `lua_error() "
@@ -154,7 +154,7 @@ msgid ""
 msgstr ""
 "Аналог `lua_cpcall() "
 "<https://www.lua.org/manual/5.1/manual.html#lua_cpcall>`_, но с "
-"соответствующей поддержкой ошибок Tarantool'а."
+"соответствующей поддержкой ошибок Tarantool."
 
 msgid "Get the global Lua state used by Tarantool."
-msgstr "Получение глобального состояния Lua, используемого Tarantool'ом."
+msgstr "Получение глобального состояния Lua, используемого Tarantool."

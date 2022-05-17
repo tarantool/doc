@@ -85,7 +85,7 @@ msgid ""
 "It starts tarantool instance in background with enforced env-vars and waits "
 "until app’s main script is finished."
 msgstr ""
-"Это запустит экземпляр Tarantool'а в фоновом режиме с принудительным "
+"Это запустит экземпляр Tarantool в фоновом режиме с принудительным "
 "использованием переменных окружения и будет ожидать выполнения основного "
 "скрипта приложения."
 

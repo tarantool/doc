@@ -640,8 +640,8 @@ jit.p
 The jit.p profiler comes with the Tarantool application server, to load it one
 only needs to say ``require('jit.p')`` or ``require('jit.profile')``.
 There are many options for sampling and display, they are described in
-the documentation for
-`The LuaJIT Profiler <http://www.luatex.org/svn/trunk/source/libs/luajit/LuaJIT-src/doc/ext_profiler.html>`_.
+the documentation for the LuaJIT Profiler, available from the 2.1 branch of the git
+repository in the file: ``doc/ext_profiler.html``.
 
 **Example**
 
@@ -650,7 +650,7 @@ does 500,000 inserts and deletes in a Tarantool space.
 Start the profiler, execute the function, stop the
 profiler, and show what the profiler sampled.
 
-.. code-block:: none
+.. code-block:: lua
 
     box.space.t:drop()
     box.schema.space.create('t')

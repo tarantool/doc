@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-                                Module `tap`
+                                Module tap
 -------------------------------------------------------------------------------
 
 ===============================================================================
@@ -309,22 +309,29 @@ so on.
 
     .. _taptest-istype:
 
-    .. method:: isnil(value, test-name)
-                isstring(value, test-name)
-                isnumber(value, test-name)
-                istable(value, test-name)
-                isboolean(value, test-name)
-                isudata(value, test-name)
-                iscdata(value, test-name)
+    .. method:: isnil(value, message, extra)
+                isstring(value, message, extra)
+                isnumber(value, message, extra)
+                istable(value, message, extra)
+                isboolean(value, message, extra)
+                isudata(value, utype, message, extra)
+                iscdata(value, ctype, message, extra)
 
         Test whether a value has a particular type. Displays a long message if
         the value is not of the specified type.
 
-        :param lua-value value:
-        :param string test-name: name of the test
+        :param lua-value value: value the type of which is to be checked
+        :param string utype: type of data that a passed value should have
+        :param string ctype: type of data that a passed value should have
+        :param string message: text that will be shown to the user in case of failure
 
         :return: true or false.
         :rtype:  boolean
+
+    ..  code-block:: lua
+
+        test:iscdata(slab_info.quota_size, ffi.typeof('uint64_t'), 'memcached.slab.info().quota_size returns a cdata')
+
 
     .. _taptest-strict:
 

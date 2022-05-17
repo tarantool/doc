@@ -45,7 +45,7 @@ We don’t want our audience to feel confused, so we prefer newer terms.
 We also provide the English equivalent for a term
 if it is used in the article for the first time.
 
-If you feel like the older Russian term may sound more familiar for a part of the audience
+If you feel like an older Russian term may sound more familiar for a part of the audience
 (for example, those with a math background),
 consider adding it in parentheses along with the English equivalent.
 Don’t repeat the parentheses throughout the text.
@@ -132,7 +132,7 @@ Prefer verbs over verbal nouns,
 and don’t use «являться» and «осуществляться» unless it’s absolutely necessary.
 
 To learn how to clear your Russian texts of bureaucratese,
-check `Timur Anikin's training The Writing Dead <https://www.timuroki.ink/thewritingdead>`_.
+check `Timur Anikin's training "The Writing Dead" <https://www.timuroki.ink/thewritingdead>`_.
 
 ..  container:: table
 
@@ -145,7 +145,7 @@ check `Timur Anikin's training The Writing Dead <https://www.timuroki.ink/thewri
         *   -   Сообщение исчезнет, как только вы покинете данную страницу.
             -   Сообщение исчезнет, как только вы покинете страницу.
         *   -   Проверка истечения срока действия паролей производится раз в 30 минут.
-            -   Система раз в 30 минут проверяет, не истек ли срок действия паролей.
+            -   Раз в 30 минут система проверяет, не истек ли срок действия паролей.
 
 Consistency
 ~~~~~~~~~~~

@@ -1,7 +1,7 @@
 .. _expirationd-module:
 
 -------------------------------------------------------------------------------
-                                   Module `expirationd`
+                                   Module expirationd
 -------------------------------------------------------------------------------
 
 For a commercial-grade example of a Lua `rock <https://rocks.tarantool.org/>`_ that works with Tarantool, let us

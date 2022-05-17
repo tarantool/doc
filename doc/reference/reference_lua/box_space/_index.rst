@@ -40,3 +40,6 @@ box.space._index
          - [296, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]
        ---
        ...
+
+    The :ref:`system space view <box_space-sysviews>` for ``_index`` is ``_vindex``.
+

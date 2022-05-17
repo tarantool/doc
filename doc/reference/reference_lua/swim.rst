@@ -1,7 +1,7 @@
 .. _swim-module:
 
 -------------------------------------------------------------------------------
-                            Module `swim`
+                            Module swim
 -------------------------------------------------------------------------------
 
 ===============================================================================
@@ -132,7 +132,7 @@ which originally described SWIM.
     (a timestamp) is sufficient, but if there is reason to mistrust
     timestamps (because the time is changed or because the instance
     is started on a different machine), then users may say
-    :samp:`swim.new({generation = {new-value}`. In that case the latest
+    ``swim.new({generation = <number>})``. In that case the latest
     value should be persisted somehow (for example in a file, or in a space,
     or in a global service), and the new value must be greater than
     any previous value of generation.

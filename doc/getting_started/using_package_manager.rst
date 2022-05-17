@@ -80,7 +80,7 @@ Here is how to create a simple test database after installation.
          COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
          tarantool 6851 root   12u  IPv4  40827      0t0  TCP *:3301 (LISTEN)
 
-   #. If it does, kill the corresponding process. In this example:
+   #. If it is running, kill the corresponding process. In this example:
 
       .. code-block:: console
 
@@ -114,11 +114,12 @@ Here is how to create a simple test database after installation.
    .. code-block:: tarantoolsession
 
       tarantool> s:create_index('primary', {
-               > type = 'hash',
+               > type = 'tree',
                > parts = {'id'}
                > })
 
    This is a primary index based on the ``id`` field of each tuple.
+   ``TREE`` is the most universal index type. To learn more, check the documentation on Tarantool :ref:`index types <index-types>`.
 
 #. Insert three :term:`tuples <tuple>` (our name for records)
    into the space:
@@ -150,7 +151,7 @@ Here is how to create a simple test database after installation.
       ---
       ...
       tarantool> s:create_index('primary', {
-               > type = 'hash',
+               > type = 'tree',
                > parts = {'id'}
                > })
       ---
@@ -162,7 +163,7 @@ Here is how to create a simple test database after installation.
         id: 0
         space_id: 512
         name: primary
-        type: HASH
+        type: TREE
       ...
       tarantool> s:insert{1, 'Roxette', 1986}
       ---
@@ -186,7 +187,7 @@ Here is how to create a simple test database after installation.
    .. code-block:: tarantoolsession
 
       tarantool> s:create_index('secondary', {
-               > type = 'hash',
+               > type = 'tree',
                > parts = {'band_name'}
                > })
 

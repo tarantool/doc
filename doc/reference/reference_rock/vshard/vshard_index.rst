@@ -1,10 +1,12 @@
+:fullwidth:
+
 ..  _sharding:
 
 ********************************************************************************
 Sharding
 ********************************************************************************
 
-.. include:: vshard_summary.rst
+.. include:: ./_includes/vshard_summary.rst
 
 Check out the :ref:`Quick start guide <vshard-quick-start>` -- or dive into the
 complete ``vshard`` documentation:

@@ -1,7 +1,7 @@
 .. _box-null:
 
 -------------------------------------------------------------------------------
-                             Constant `box.NULL`
+                             Constant box.NULL
 -------------------------------------------------------------------------------
 
 There are some major problems with using Lua **nil** values in tables.
@@ -9,7 +9,7 @@ For example: you can't correctly assess the length of a table that is not a sequ
 
 **Example:**
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> t = {0, nil, 1, 2, nil}
     ---
@@ -41,9 +41,9 @@ To avoid this problem, use Tarantool's ``box.NULL`` constant instead of **nil**.
 ``box.NULL`` is a placeholder for a **nil** value in tables to preserve a key
 without a value.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Using box.NULL
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 
 ``box.NULL`` is a value of the cdata type representing a NULL pointer.
 It is similar to ``msgpack.NULL``, ``json.NULL`` and ``yaml.NULL``. So it is
@@ -99,9 +99,9 @@ Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect).
     will always execute the function ``func()`` (because the condition ``box.NULL`` will
     always be neither **false** nor **nil**).
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Distinction of nil and `box.NULL`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Distinction of nil and box.NULL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the expression ``if x == nil`` to check if the ``x`` is either a **nil**
 or a ``box.NULL``.

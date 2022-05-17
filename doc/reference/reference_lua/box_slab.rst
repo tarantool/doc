@@ -1,7 +1,7 @@
 .. _box_introspection-box_slab:
 
 --------------------------------------------------------------------------------
-Submodule `box.slab`
+Submodule box.slab
 --------------------------------------------------------------------------------
 
 The ``box.slab`` submodule provides access to slab allocator statistics. The

@@ -24,4 +24,8 @@ aws s3 sync --acl public-read output/html/ru/_static $S3_PATH/$BRANCH/ru/_static
 aws s3 sync --acl public-read output/html/ru/_images $S3_PATH/$BRANCH/ru/_images --endpoint-url=$ENDPOINT_URL --delete --size-only
 aws s3 cp --acl public-read output/html/ru/singlehtml.html $S3_PATH/$BRANCH/ru/singlehtml.html --endpoint-url=$ENDPOINT_URL
 
-curl --data '{"update_key":"'"$TARANTOOL_UPDATE_KEY"'"}' --header "Content-Type: application/json" --request POST "$TARANTOOL_UPDATE_URL""$BRANCH"/
+set -xe
+curl --fail --show-error \
+    --data '{"update_key":"'"$TARANTOOL_UPDATE_KEY"'"}' \
+    --header "Content-Type: application/json" \
+    --request POST "$TARANTOOL_UPDATE_URL""$BRANCH"/
