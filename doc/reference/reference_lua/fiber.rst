@@ -582,7 +582,7 @@ recommended.
     :return: current system time (in microseconds since the epoch)
              as a 64-bit integer. The time is taken from the event
              loop clock.
-    :rtype: cdata
+    :rtype: cdata (ctype<int64_t>)
 
     **Example:**
 
@@ -632,7 +632,7 @@ recommended.
     :return: a number of seconds as 64-bit integer, representing
              elapsed wall-clock time since some time in the past that is
              guaranteed not to change during the life of the process
-    :rtype: cdata
+    :rtype: cdata (ctype<int64_t>)
 
 
 ..  class:: fiber_object
