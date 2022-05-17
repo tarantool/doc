@@ -49,8 +49,7 @@ E011, Numeric data types
             -   DECIMAL and NUMERIC data types
             -   ``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``
             -   Fail, NUMERIC data types are not supported,
-                and a number containing post-decimal digits will be
-                treated as approximate numeric.
+                although the DECIMAL data type is supported.
         *   -   E011-04
             -   Arithmetic operators
             -   ``SELECT 10+1, 9-2, 8*3, 7/2 FROM t;``

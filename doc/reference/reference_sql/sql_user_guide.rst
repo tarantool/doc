@@ -649,7 +649,7 @@ Most of the SQL data types correspond to
 :ref:`Tarantool/NoSQL types <details_about_index_field_types>` with the same name.
 In Tarantool versions before 2.10-beta2,
 There were also some Tarantool/NoSQL data types which had no corresponding SQL data types.
-In those versions, if Tarantool/SQL reads a Tarantool/NoSQL value which has a type which has no SQL equivalent,
+In those versions, if Tarantool/SQL reads a Tarantool/NoSQL value of a type that has no SQL equivalent,
 Tarantool/SQL could treat it as NULL or INTEGER or VARBINARY.
 For example, ``SELECT "flags" FROM "_vspace";`` would return a column whose type is ``'map'``.
 Such columns can only be manipulated in SQL by
@@ -849,7 +849,7 @@ The precedence of dyadic operators is:
 To ensure a desired precedence, use () parentheses.
 
 ********************************************************************************
-Special Situations
+Special situations
 ********************************************************************************
 
 If one of the operands has data type DOUBLE, Tarantool uses floating-point arithmetic.
@@ -932,7 +932,7 @@ integer inside square brackets.
 See also: :ref:`subquery <sql_subquery>`.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Comparing and Ordering
+Comparing and ordering
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 There are rules for determining whether value-1 is "less than", "equal to", or "greater than" value-2.
