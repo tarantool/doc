@@ -21,6 +21,7 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_FORCE_RECOVERY
     | Dynamic: no
 
 .. _cfg_binary_logging_snapshots-wal_max_size:
@@ -34,6 +35,7 @@
 
     | Type: integer
     | Default: 268435456 (256 * 1024 * 1024) bytes
+    | Environment variable: TT_WAL_MAX_SIZE
     | Dynamic: no
 
 .. _cfg_binary_logging_snapshots-snap_io_rate_limit:
@@ -53,6 +55,7 @@
 
     | Type: float
     | Default: null
+    | Environment variable: TT_SNAP_IO_RATE_LIMIT
     | Dynamic: **yes**
 
 .. _cfg_binary_logging_snapshots-wal_mode:
@@ -70,6 +73,7 @@
 
     | Type: string
     | Default: "write"
+    | Environment variable: TT_WAL_MODE
     | Dynamic: no
 
 .. _cfg_binary_logging_snapshots-wal_dir_rescan_delay:
@@ -83,4 +87,5 @@
 
     | Type: float
     | Default: 2
+    | Environment variable: TT_WAL_DIR_RESCAN_DELAY
     | Dynamic: no

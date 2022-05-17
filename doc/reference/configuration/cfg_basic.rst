@@ -25,6 +25,7 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_BACKGROUND
     | Dynamic: no
 
 .. _cfg_basic-custom_proc_title:
@@ -54,6 +55,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_CUSTOM_PROC_TITLE
     | Dynamic: yes
 
 .. _cfg_basic-listen:
@@ -86,6 +88,7 @@
 
     | Type: integer or string
     | Default: null
+    | Environment variable: TT_LISTEN
     | Dynamic: yes
 
 .. _cfg_basic-memtx_dir:
@@ -99,6 +102,7 @@
 
     | Type: string
     | Default: "."
+    | Environment variable: TT_MEMTX_DIR
     | Dynamic: no
 
 .. _cfg_basic-pid_file:
@@ -111,6 +115,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_PID_FILE
     | Dynamic: no
 
 .. _cfg_basic-read_only:
@@ -129,6 +134,7 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_READ_ONLY
     | Dynamic: yes
 
     Setting ``read_only == true`` affects spaces differently depending on the
@@ -160,6 +166,7 @@
 
     | Type: number
     | Default: 5242880
+    | Environment variable: TT_SQL_CACHE_SIZE
     | Dynamic: yes
 
 .. _cfg_basic-vinyl_dir:
@@ -173,6 +180,7 @@
 
     | Type: string
     | Default: "."
+    | Environment variable: TT_VINYL_DIR
     | Dynamic: no
 
 .. _cfg_basic-vinyl_timeout:
@@ -191,6 +199,7 @@
 
     | Type: float
     | Default: 60
+    | Environment variable: TT_VINYL_TIMEOUT
     | Dynamic: yes
 
 .. _cfg_basic-username:
@@ -201,6 +210,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_USERNAME
     | Dynamic: no
 
 .. _cfg_basic-wal_dir:
@@ -216,6 +226,7 @@
 
     | Type: string
     | Default: "."
+    | Environment variable: TT_WAL_DIR
     | Dynamic: no
 
 .. _cfg_basic-work_dir:
@@ -242,6 +253,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_WORK_DIR
     | Dynamic: no
 
 
@@ -257,6 +269,7 @@
 
     | Type: integer
     | Default: 4
+    | Environment variable: TT_WORKER_POOL_THREADS
     | Dynamic: yes
 
 .. _cfg_basic-strip_core:
@@ -270,6 +283,7 @@
 
     | Type: boolean
     | Default: true
+    | Environment variable: TT_STRIP_CORE
     | Dynamic: no
 
 .. _cfg_basic-memtx_use_mvcc_engine:
@@ -281,4 +295,5 @@
 
     | Type: boolean
     | Default: false
+    | Environment variable: TT_MEMTX_USE_MVCC_ENGINE
     | Dynamic: no
