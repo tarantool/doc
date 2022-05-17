@@ -170,6 +170,14 @@ For this reason, it's best to avoid using them.
 Spelling and punctuation
 ------------------------
 
+Tarantool capitalization
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The word "Tarantool" is capitalized because it's a product name.
+The only context where it can start with a lowercase "t" is code.
+Learn more about :doc:`code formatting in Tarantool documentation </contributing/docs/markup/code>`.
+
+
 US vs British spelling
 ~~~~~~~~~~~~~~~~~~~~~~
 

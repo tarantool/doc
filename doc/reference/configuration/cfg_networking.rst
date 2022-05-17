@@ -1,6 +1,7 @@
-* :ref:`io_collect_interval <cfg_networking-io_collect_interval>`,
+* :ref:`io_collect_interval <cfg_networking-io_collect_interval>`
 * :ref:`net_msg_max <cfg_networking-net_msg_max>`
-* :ref:`readahead <cfg_networking-readahead>`,
+* :ref:`readahead <cfg_networking-readahead>`
+* :ref:`iproto_threads <cfg_networking-iproto_threads>`
 
 .. _cfg_networking-io_collect_interval:
 

@@ -20,3 +20,4 @@ The guidelines are a work in progress, and we welcome all contributions.
     docs/build
     docs/sphinx-warnings
     docs/infra
+    docs/git

@@ -108,7 +108,7 @@ Commands for managing Tarantool instances
 Commands for managing checkpoint files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``tarantoolctl cat FILE.. [--space=space_no ..] [--show-system] [--from=from_lsn] [--to=to_lsn] [--replica=replica_id ..]``
+``tarantoolctl cat FILE.. [--space=space_no ..] [--show-system] [--from=from_lsn] [--to=to_lsn] [--replica=replica_id ..] [--format=format_name]``
         Print into stdout the contents of .snap/.xlog files.
 
 ``tarantoolctl play URI FILE.. [--space=space_no ..] [--show-system] [--from=from_lsn] [--to=to_lsn] [--replica=replica_id ..]``
@@ -123,6 +123,7 @@ Supported options:
 * ``--to=to_lsn`` to show operations ending with the given lsn.
 * ``--replica=replica_id`` to filter the output by replica id.
   May be passed more than once.
+* ``--format=format_name`` to indicate format (defaults to ``yaml``, can also be ``json`` or ``lua``).
 
 .. _tarantoolctl-module_management:
 
@@ -150,7 +151,7 @@ Commands for managing Tarantool modules
         Initialize a directory for a Lua project using LuaRocks. Since version :doc:`2.4.1 </release/2.4.1>`.
 
 ``tarantoolctl rocks install NAME``
-        Install a module in the current directory.
+        Install a module in the ``.rocks`` directory, nested in the current directory.
 
 ``tarantoolctl rocks lint FILE``
         Check the syntax of a rockspec. Since version :doc:`2.4.1 </release/2.4.1>`.

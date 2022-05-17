@@ -27,7 +27,7 @@ msgid "none, any, or all of the following parameters:"
 msgstr "ни один, любой или все следующие параметры:"
 
 msgid "``iterator`` -- type of iterator"
-msgstr "``interator`` -- тип итератора"
+msgstr "``iterator`` -- тип итератора"
 
 msgid "``limit`` -- maximum number of tuples"
 msgstr "``limit`` -- максимальное количество кортежей"

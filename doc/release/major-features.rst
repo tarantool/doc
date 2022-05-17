@@ -2,13 +2,16 @@ Major features
 ==============
 
 Every released version of Tarantool brings some notable features and fixes, which are all listed in
-:doc:`the release notes </release>`.
+the :doc:`release notes </release/notes>`.
+
 To keep track of the major features in each version of the Tarantool easier, you can use the table below.
 
-..  container:: table
+Later versions inherit features from earlier ones in the same release series.
+Note that versions before 2.10.* are numbered according to the :doc:`legacy release policy </release/legacy-policy>`,
+while versions 2.10.0-beta1 and later adhere to the :doc:`current release policy </release/policy>`.
+Versions that only include bug fixes are not listed in this table.
 
-    ..  rst-class:: left-align-column-1
-    ..  rst-class:: left-align-column-2
+..  container:: table
 
     ..  list-table::
         :widths: 20 80
@@ -16,6 +19,39 @@ To keep track of the major features in each version of the Tarantool easier, you
 
         *   -   Since version
             -   Feature
+
+        *   -   2.10.0-rc1
+            -   Transaction isolation levels in Lua and IPROTO (:tarantool-issue:`6930`) |br|
+                Fencing and pre-voting in RAFT (:tarantool-issue:`6661`) |br|
+                Foreign keys and constraints support (:tarantool-issue:`6436`) |br|
+                :ref:`New DATETIME type <2.10.0-rc1_datetime>`
+
+        *   -   2.10.0-beta2
+            -   HTTP/2 support for the HTTP client |br|
+                Preliminary support for the new DATETIME type (:tarantool-issue:`5941`) |br|
+
+        *   -   2.10.0-beta1
+            -   Preliminary support for GNU/Linux ARM64 and MacOS M1 (:tarantool-issue:`2712`, :tarantool-issue:`6065`,
+                :tarantool-issue:`6066`, :tarantool-issue:`6084`, :tarantool-issue:`6093`, :tarantool-issue:`6098`,
+                :tarantool-issue:`6189`) |br|
+                :ref:`Streams and interactive transactions in iproto <box_stream>`
+                (:tarantool-issue:`5860`) |br|
+                :ref:`Consistent SQL type system <2.10.0-beta1-sql>` |br|
+                Faster `net.box` module performance (improved up to 70%) (:tarantool-issue:`6241`) |br|
+                Compact mode for tuples (:tarantool-issue:`5385`) |br|
+                `memtx_allocator` option in `box.cfg{}` (:tarantool-issue:`5419`)
+
+        *   -   2.8.2
+            -   Symbolic log levels in the `log` module (:tarantool-issue:`5882`)
+
+        *   -   2.7.3, 1.10.11
+            -   `LJ_DUALNUM` mode support in `luajit-gdb` (:tarantool-issue:`6224`)
+
+        *   -   2.7.3
+            -   New `table.equals` method in Lua
+
+        *   -   2.7.3
+            -   `box.info.synchro` interface for synchronous replication statistics (:tarantool-issue:`5191`)
 
         *   -   2.8.1
             -   :ref:`Multiple iproto threads <cfg_networking-iproto_threads>` (:tarantool-issue:`5645`)
@@ -42,7 +78,7 @@ To keep track of the major features in each version of the Tarantool easier, you
             -   :doc:`box.ctl.promote() </reference/reference_lua/box_ctl/promote>` and the concept of manual elections (:tarantool-issue:`3055`)
 
         *   -   2.6.1
-            -   :ref:`LuaJIT platform metrics <metrics-luajit>` (:tarantool-issue:`5187`)
+            -   :ref:`LuaJIT platform metrics <metrics-reference-luajit>` (:tarantool-issue:`5187`)
 
         *   -   2.6.1
             -   :doc:`Automated leader election </book/replication/repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)

@@ -1,7 +1,7 @@
 .. _socket-module:
 
 -------------------------------------------------------------------------------
-                            Module `socket`
+                            Module socket
 -------------------------------------------------------------------------------
 
 ===============================================================================
@@ -154,7 +154,7 @@ the function invocations will look like ``sock:function_name(...)``.
 
     :param string host: URL or IP address
     :param number port: port number
-    :param number timeout: timeout
+    :param number timeout: number of seconds to wait
     :return: (if error) {nil, error-message-string}. (if no error) a new socket object.
     :rtype: socket object, which may be viewed as a table
 
@@ -177,7 +177,7 @@ the function invocations will look like ``sock:function_name(...)``.
     configuration parameter.
 
     :param string host: URL or IP address
-    :param number port: port number or a string pointing to a port
+    :param number/string port: port number as a numeric or string
     :param number timeout: maximum number of seconds to wait
     :param table options: * ``type`` -- preferred socket type
                           * ``family`` -- desired address family for the

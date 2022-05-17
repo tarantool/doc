@@ -1,7 +1,7 @@
-* :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`,
-* :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`,
-* :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`,
-* :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`,
+* :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`
+* :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`
+* :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`
+* :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
 
 .. _cfg_binary_logging_snapshots-force_recovery:
@@ -61,7 +61,8 @@
 
     Since version 1.6.2. Specify fiber-WAL-disk synchronization mode as:
 
-    * ``none``: write-ahead log is not maintained;
+    * ``none``: write-ahead log is not maintained.
+      A node with ``wal_mode = none`` can't be replication master;
     * ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
       the write-ahead log (no :manpage:`fsync(2)`);
     * ``fsync``: fibers wait for their data, :manpage:`fsync(2)`

@@ -1,7 +1,7 @@
 .. _box_index:
 
 -------------------------------------------------------------------------------
-Submodule `box.index`
+Submodule box.index
 -------------------------------------------------------------------------------
 
 The ``box.index`` submodule provides read-only access for index definitions and

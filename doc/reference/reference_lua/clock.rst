@@ -1,7 +1,7 @@
 .. _clock-module:
 
 -------------------------------------------------------------------------------
-                            Module `clock`
+                            Module clock
 -------------------------------------------------------------------------------
 
 ===============================================================================
@@ -69,8 +69,6 @@ Below is a list of all ``clock`` functions.
               realtime64()
 
     The wall clock time. Derived from C function clock_gettime(CLOCK_REALTIME).
-    This is the best function for knowing what the official time is, as
-    determined by the system administrator.
 
     :return: seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted.
     :rtype: number or number64

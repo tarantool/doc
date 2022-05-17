@@ -1,7 +1,9 @@
+:fullwidth:
+
 .. _box_space:
 
 -------------------------------------------------------------------------------
-                             Submodule `box.space`
+                             Submodule box.space
 -------------------------------------------------------------------------------
 
 **CRUD operations** in Tarantool are implemented by the ``box.space`` submodule.

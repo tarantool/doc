@@ -1,4 +1,4 @@
-Tarantool Release Policy
+Tarantool release policy
 ========================
 
 ..  _release-policy:
@@ -114,7 +114,7 @@ Release versions conform to a set of requirements:
 
 Backwards compatibility is guaranteed between all versions in the same release series.
 It is also appreciated, but not guaranteed between different release series (major number changes).
-A detailed description of compatibility guarantees will be published later.
+See :doc:`compatibility guarantees page </release/compatibility>` for details.
 
 Pre-release versions
 ~~~~~~~~~~~~~~~~~~~~
@@ -205,6 +205,8 @@ There are a few types of pre-release versions:
             3.0.0-rc1
             3.0.0-rc2
             3.0.1-rc1
+
+..  _release-series-lifecycle:
 
 Release series lifecycle
 --------------------------
@@ -348,3 +350,8 @@ Then it can proceed with a version sequence like the following:
 Eventually, the support stage stops and the release series comes to the
 end of life (EOL) stage.
 No new versions are released since then.
+
+    ..  note::
+
+        See all currently supported Tarantool versions visualised as :doc:`a calendar <calendar>`
+        or as :ref:`a release lifetime table <release-table>`.

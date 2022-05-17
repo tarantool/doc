@@ -6,7 +6,7 @@ msgid ""
 "You can use IntelliJ IDEA as an IDE to develop and debug Lua applications "
 "for Tarantool."
 msgstr ""
-"Для разработки и отладки Lua-приложений для Tarantool'а можно использовать "
+"Для разработки и отладки Lua-приложений для Tarantool можно использовать "
 "IntelliJ IDEA в качестве интегрированной среды разработки (IDE)."
 
 msgid ""
@@ -28,7 +28,7 @@ msgstr ""
 "версию, которая подходит предпочитаемому языку."
 
 msgid "Tarantool integration is supported for all editions."
-msgstr "Для всех версий поддерживается интеграция с Tarantool'ом."
+msgstr "Для всех версий поддерживается интеграция с Tarantool."
 
 msgid "Configure the IDE:"
 msgstr "Настройте IDE:"
@@ -84,7 +84,7 @@ msgstr ""
 "здесь правильный путь."
 
 msgid "Now IntelliJ IDEA is ready to use with Tarantool."
-msgstr "Теперь IntelliJ IDEA можно использовать с Tarantool'ом."
+msgstr "Теперь IntelliJ IDEA можно использовать с Tarantool."
 
 msgid "Create a new Lua project."
 msgstr "Создайте новый проект на Lua."

@@ -8,7 +8,7 @@ msgstr "Общие сведения"
 msgid ""
 "Tarantool users can benefit from built-in debug facilities that are part of:"
 msgstr ""
-"Пользователи Tarantool'а могут воспользоваться преимуществами встроенных "
+"Пользователи Tarantool могут воспользоваться преимуществами встроенных "
 "средств отладки, которые составляют часть:"
 
 msgid ""

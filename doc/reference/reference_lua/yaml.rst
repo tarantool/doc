@@ -1,7 +1,7 @@
 .. _yaml-module:
 
 -------------------------------------------------------------------------------
-                            Module `yaml`
+                            Module yaml
 -------------------------------------------------------------------------------
 
 ===============================================================================
@@ -69,15 +69,15 @@ Below is a list of all ``yaml`` functions and members.
 
 The YAML output structure can be specified with ``__serialize``:
 
-* 'seq', 'sequence', 'array' - table encoded as an array
-* 'map', 'mappping' - table encoded as a map
-* function - the meta-method called to unpack serializable representation
-  of table, cdata or userdata objects
+* ``'seq'``, ``'sequence'``, ``'array'``: table encoded as an array
+* ``'map'``, ``'mapping'``: table encoded as a map
+* ``function``: the meta-method called to unpack serializable representation
+  of table, cdata, or userdata objects
 
-'seq' or 'map' also enable the flow (compact) mode for the YAML serializer
-(flow="[1,2,3]" vs block=" - 1\n - 2\n - 3\n").
+``'seq'`` or ``'map'`` also enable the flow (compact) mode for the YAML serializer
+(``flow="[1,2,3]"`` vs ``block=" - 1\n - 2\n - 3\n"``).
 
-Serializing 'A' and 'B' with different ``__serialize`` values brings different
+Serializing ``'A'`` and ``'B'`` with different ``__serialize`` values brings different
 results:
 
 .. code-block:: tarantoolsession
@@ -158,10 +158,10 @@ results:
 
 During encoding, The YAML encoder tries to classify table into one of four kinds:
 
-* map - at least one table index is not unsigned integer
-* regular array - all array indexes are available
-* sparse array - at least one array index is missing
-* excessively sparse array - the number of values missing exceeds the configured ratio
+* Map: at least one table index is not unsigned integer.
+* Regular array: all array indexes are available.
+* Sparse array: at least one array index is missing.
+* Excessively sparse array: the number of values missing exceeds the configured ratio.
 
 An array is excessively sparse when **all** the following conditions are met:
 
@@ -269,7 +269,7 @@ specified with ``__serialize``:
 * ``__serialize="mapping"`` for a Block Mapping map,
 * ``__serialize="map"`` for a Flow Mapping map.
 
-Serializing 'A' and 'B' with different ``__serialize`` values causes
+Serializing ``'A'`` and ``'B'`` with different ``__serialize`` values causes
 different results:
 
 .. code-block:: tarantoolsession

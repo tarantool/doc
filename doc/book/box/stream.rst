@@ -29,8 +29,8 @@ a stream transfers data via the protocol between a client and a server.
 
 ..  _box_stream-features:
 
-New features
-------------
+Features
+--------
 
 The primary purpose of :term:`streams <stream>` is to execute transactions via iproto.
 Every stream has its own identifier, which is unique within the connection.
@@ -44,6 +44,10 @@ but allows executing requests sequentially.
 The ID is generated on the client side automatically.
 If a user writes their own connector and wants to use streams,
 they must transmit the ``stream_id`` over the iproto protocol.
+
+Interactive transactions over streams only work if
+the ``box.cfg{}`` option :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`
+is enabled on the server: ``memtx_use_mvcc_engine = true``.
 
 ..  _box_stream-interaction:
 
@@ -63,7 +67,7 @@ that transaction will be rolled back if it hasn't been committed before the conn
 
 Example:
 
-.. code-block:: lua
+..  code-block:: lua
 
     local conn = net_box.connect(remote_server_addr)
     local conn_space = conn.space.test
@@ -72,15 +76,15 @@ Example:
 
     -- Begin transaction over an iproto stream:
     stream:begin()
-    space:replace({1})
+    stream_space:replace({1})
 
     -- Empty select, the transaction was not committed.
     -- You can't see it from the requests that do not belong to the
     -- transaction.
+    conn_space:select{}
 
     -- Select returns the previously inserted tuple,
     -- because this select belongs to the transaction:
-    conn_space:select{}
     stream_space:select({})
 
     -- Commit transaction:

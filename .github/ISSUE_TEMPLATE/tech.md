@@ -1,7 +1,7 @@
 ---
 name: Technical/internal issue
 about: Technical issue in the docs
-title: "[0pt] {do X}"
+title: "{do X}"
 labels: internal
 assignees:
 ---

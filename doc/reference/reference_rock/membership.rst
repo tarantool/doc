@@ -1,7 +1,7 @@
 .. _membership:
 
 -------------------------------------------------------------------------------
-Module `membership`
+Module membership
 -------------------------------------------------------------------------------
 
 This module is a ``membership`` library for Tarantool based on a gossip protocol.

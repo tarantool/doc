@@ -1,12 +1,11 @@
 .. _box_index-min:
 
-===============================================================================
 index_object:min()
-===============================================================================
+==================
 
-.. class:: index_object
+..  class:: index_object
 
-    .. method:: min([key])
+    ..  method:: min([key])
 
         Find the minimum value in the specified index.
 
@@ -14,12 +13,11 @@ index_object:min()
                                           <app_server-object_reference>`.
         :param scalar/table      key: values to be matched against the index key
 
-        :return: the tuple for the first key in the index. If optional
-                 ``key`` value is supplied, returns the first key which
-                 is greater than or equal to ``key`` value.
-                 Starting with Tarantool version 2.0, index_object:min(``key``
-                 value) will return nothing
-                 if ``key`` value is not equal to a value in the index.
+        :return: the tuple for the first key in the index. If the optional
+                 ``key`` value is supplied, returns the first key that is greater than or equal to ``key``.
+                 Starting with :doc:`Tarantool 2.0.4 </release/2.1.2>`,
+                 ``index_object:min(key)`` returns nothing
+                 if ``key`` doesn't match any value in the index.
         :rtype:  tuple
 
         **Possible errors:** index is not of type 'TREE'.
@@ -28,7 +26,7 @@ index_object:min()
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> box.space.tester.index.primary:min()
             ---

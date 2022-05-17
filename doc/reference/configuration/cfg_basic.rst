@@ -61,19 +61,28 @@
 .. confval:: listen
 
     Since version 1.6.4.
+
     The read/write data port number or :ref:`URI <index-uri>` (Universal
     Resource Identifier) string. Has no default value, so **must be specified**
-    if connections will occur from remote clients that do not use the
-    :ref:`“admin port” <admin-security>`. Connections made with
+    if connections occur from the remote clients that don't use the
+    :ref:`"admin port" <admin-security>`. Connections made with
     :samp:`listen = {URI}` are called "binary port" or "binary protocol"
     connections.
 
     A typical value is 3301.
 
-    .. NOTE::
+    ..  code-block:: lua
+
+        box.cfg { listen = 3301 }
+
+        box.cfg { listen = "127.0.0.1:3301" }
+
+    ..  NOTE::
 
         A replica also binds to this port, and accepts connections, but these
         connections can only serve reads until the replica becomes a master.
+
+    Starting from version 2.10.0, you can specify :ref:`several URIs <index-uri-several>`.
 
     | Type: integer or string
     | Default: null

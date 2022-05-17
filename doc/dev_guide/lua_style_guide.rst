@@ -1,4 +1,4 @@
-.. _lua_style_guide:
+..  _lua_style_guide:
 
 Lua style guide
 ===============
@@ -354,7 +354,7 @@ Avoid the following constructions:
 *   Unnecessary function creation (closures/..).
 
 Avoid implicit casting to boolean in ``if`` conditions like ``if x then`` or ``if not x then``.
-Such expressions will likely result in troubles with :ref:`box.NULL </reference/reference_lua/box_null/>`.
+Such expressions will likely result in troubles with :doc:`box.NULL </reference/reference_lua/box_null/>`.
 Instead of those conditions, use ``if x ~= nil then`` and ``if x == nil then``.
 
 Modules
@@ -404,7 +404,7 @@ knows the Lua language). Instead, tell about functions/variable names/etc.
 Multiline comments: use matching (``--[[ ]]--``) instead of simple
 (``--[[ ]]``).
 
-Public function comments (??):
+Public function comments:
 
 ..  code-block:: lua
 

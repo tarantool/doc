@@ -41,10 +41,11 @@ space_object:on_replace()
 
         ..  code-block:: tarantoolsession
 
-            tarantool> function f ()
+            tarantool> x = 0
+                     > function f ()
                      >   x = x + 1
                      > end
-            tarantool> box.space.X:on_replace(f)
+            tarantool> box.space.my_space_name:on_replace(f)
 
         **Example 2:**
 

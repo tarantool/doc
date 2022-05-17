@@ -1,4 +1,4 @@
-Tarantool Legacy Release Policy
+Tarantool legacy release policy
 ===============================
 
 

@@ -332,7 +332,7 @@ msgid ""
 " will use modified `YAML <https://en.wikipedia.org/wiki/YAML>`_ so: |br|"
 msgstr ""
 "Для обозначения описаний сообщений мы будем вызывать ``msgpack(...)``, а "
-"внутри него будем использовать модифицированный ``YAML "
+"внутри него будем использовать модифицированный `YAML "
 "<https://en.wikipedia.org/wiki/YAML>`_ таким образом: |br|"
 
 msgid ""

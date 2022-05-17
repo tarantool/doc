@@ -6,7 +6,7 @@ msgid "do not use this value directly"
 msgstr "не используйте непосредственно данное значение "
 
 msgid "Format and print a message to Tarantool log file."
-msgstr "Форматирование и запись сообщения в файл журнала Tarantool'а."
+msgstr "Форматирование и запись сообщения в файл журнала Tarantool."
 
 msgid "Parameters"
 msgstr "Параметры"

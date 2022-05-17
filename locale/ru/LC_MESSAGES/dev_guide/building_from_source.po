@@ -12,7 +12,7 @@ msgstr ""
 msgid "GCC. Or Clang for Mac OS"
 msgstr ""
 
-msgid "CMake 3.2+"
+msgid "CMake 3.3+"
 msgstr ""
 
 msgid "GNU Make"

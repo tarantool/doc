@@ -7,7 +7,7 @@ msgid ""
 "data, see reference on :ref:`_func space <box_space-func>`."
 msgstr ""
 "Удаление кортежа с функцией. Чтобы получить информацию о том, как происходит"
-" управление данными функций в Tarantool'е, см. справочник по спейсу "
+" управление данными функций в Tarantool, см. справочник по спейсу "
 ":ref:`_func <box_space-func>`."
 
 msgid "Parameters"

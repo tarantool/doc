@@ -42,7 +42,7 @@
 
     | Type: integer
     | Default: 1024 * 1024 = 1048576 bytes
-    | Dynamic: no
+    | Dynamic: **yes**
 
 .. _cfg_storage-memtx_min_tuple_size:
 

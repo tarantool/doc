@@ -73,7 +73,7 @@ msgid ""
 ":ref:`administrative user <authentication-owners_privileges>` with all "
 "privileges."
 msgstr ""
-"Пользователь, который используется по умолчанию при работе с Tarantool'ом "
+"Пользователь, который используется по умолчанию при работе с Tarantool "
 "как с консолью. Как правило, это :ref:`административный пользователь "
 "<authentication-owners_privileges>` со всеми правами."
 

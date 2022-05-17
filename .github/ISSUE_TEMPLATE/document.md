@@ -1,7 +1,7 @@
 ---
 name: Write or update
 about: Write or update a documentation page
-title: "[0pt] {feature_name}"
+title: "{feature_name}"
 labels: 
 assignees:
 ---

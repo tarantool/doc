@@ -20,74 +20,6 @@ to understand network messages,
 to support new features that their favorite connector doesn't support yet,
 or to avoid repetitive parsing by the server.
 
-Index
------
-
-..  container:: table
-
-    ..  rst-class:: left-align-column-1
-    ..  rst-class:: left-align-column-2
-
-    +----------------------------------------------------+------------------------+
-    | Section                                            | Description            |
-    +====================================================+========================+
-    | :ref:`Symbols and terms                            | Notation of binary     |
-    | <box_protocol-notation>`                           | protocol               |
-    +----------------------------------------------------+------------------------+
-    | :ref:`Header and body                              | Header of a request    |
-    | <box_protocol-header>`                             |                        |
-    +----------------------------------------------------+------------------------+
-    | Requests:                                          | Body of a request      |
-    | |br|:ref:`IPROTO_SELECT <box_protocol-select>`     |                        |
-    | |br|:ref:`IPROTO_INSERT <box_protocol-insert>`     |                        |
-    | |br|:ref:`IPROTO_REPLACE <box_protocol-replace>`   |                        |
-    | |br|:ref:`IPROTO_UPDATE <box_protocol-update>`     |                        |
-    | |br|:ref:`IPROTO_DELETE <box_protocol-delete>`     |                        |
-    | |br|:ref:`IPROTO_CALL_16 <box_protocol-call16>`    |                        |
-    | |br|:ref:`IPROTO_AUTH <box_protocol-auth>`         |                        |
-    | |br|:ref:`IPROTO_EVAL <box_protocol-eval>`         |                        |
-    | |br|:ref:`IPROTO_UPSERT <box_protocol-upsert>`     |                        |
-    | |br|:ref:`IPROTO_CALL <box_protocol-call>`         |                        |
-    | |br|:ref:`IPROTO_EXECUTE <box_protocol-execute>`   |                        |
-    | |br|:ref:`IPROTO_NOP <box_protocol-nop>`           |                        |
-    | |br|:ref:`IPROTO_PREPARE <box_protocol-prepare>`   |                        |
-    | |br|:ref:`IPROTO_PING <box_protocol-ping>`         |                        |
-    | |br|:ref:`IPROTO_JOIN <box_protocol-join>`         |                        |
-    | |br|:ref:`IPROTO_SUBSCRIBE <box_protocol-join>`    |                        |
-    | |br|:ref:`IPROTO_VOTE_DEPRECATED                   |                        |
-    | <box_protocol-join>`                               |                        |
-    | |br|:ref:`IPROTO_VOTE <box_protocol-join>`         |                        |
-    | |br|:ref:`IPROTO_FETCH_SNAPSHOT                    |                        |
-    | <box_protocol-join>`                               |                        |
-    | |br|:ref:`IPROTO_REGISTER <box_protocol-join>`     |                        |
-    | |br|:ref:`IPROTO_BEGIN <box_protocol-begin>`       |                        |
-    | |br|:ref:`IPROTO_COMMIT <box_protocol-commit>`     |                        |
-    | |br|:ref:`IPROTO_ROLLBACK <box_protocol-rollback>` |                        |
-    +----------------------------------------------------+------------------------+
-    | :ref:`Responses if no error and no                 | Responses for no SQL   |
-    | SQL <box_protocol-responses>`                      |                        |
-    +----------------------------------------------------+------------------------+
-    | :ref:`Responses if no error and out-of-band        | Responses for          |
-    | <box_protocol-responses_out_of_band>`              | out-of-band            |
-    +----------------------------------------------------+------------------------+
-    | :ref:`Responses for errors                         | Responses for errors   |
-    | <box_protocol-responses_error>`                    |                        |
-    +----------------------------------------------------+------------------------+
-    | :ref:`Responses for SQL                            | Responses for SQL      |
-    | <box_protocol-sql_protocol>`                       |                        |
-    +----------------------------------------------------+------------------------+
-    | :ref:`Authentication                               | Authentication after   |
-    | <box_protocol-authentication>`                     | connection             |
-    +----------------------------------------------------+------------------------+
-    | :ref:`Replication                                  | Replication request    |
-    | <box_protocol-replication>`                        |                        |
-    +----------------------------------------------------+------------------------+
-    | :ref:`Illustration <box_protocol-illustration>`    | Illustration of use    |
-    +----------------------------------------------------+------------------------+
-    | :ref:`XLOG/SNAP <box_protocol-xlog>`               | Format of .xlog        |
-    |                                                    | and .snap files        |
-    +----------------------------------------------------+------------------------+
-
 ..  _box_protocol-notation:
 
 Symbols and terms
@@ -138,6 +70,9 @@ The IPROTO constants that identify requests that we will mention in this section
     IPROTO_ROLLBACK=0x10
     IPROTO_RAFT_CONFIRM=0x28
     IPROTO_RAFT_ROLLBACK=0x29
+    IPROTO_RAFT=0x1e
+    IPROTO_RAFT_PROMOTE=0x1f
+    IPROTO_RAFT_DEMOTE=0x20
     IPROTO_PING=0x40
     IPROTO_JOIN=0x41
     IPROTO_SUBSCRIBE=0x42
@@ -191,7 +126,7 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_BIND_COUNT=0x34
     IPROTO_SQL_TEXT=0x40
     IPROTO_SQL_BIND=0x41
-    IPROTO_SQL_INF O=0x42
+    IPROTO_SQL_INFO=0x42
     IPROTO_STMT_ID=0x43
     IPROTO_ERROR=0x52
     IPROTO_FIELD_NAME=0x00
@@ -201,6 +136,11 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_FIELD_IS_AUTOINCREMENT=0x04
     IPROTO_FIELD_SPAN=0x05
     IPROTO_CHUNK=0x80
+    IPROTO_RAFT_TERM=0x00
+    IPROTO_RAFT_VOTE=0x01
+    IPROTO_RAFT_STATE=0x02
+    IPROTO_RAFT_VCLOCK=0x03
+
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
 `YAML <https://en.wikipedia.org/wiki/YAML>`_ so: |br|
@@ -1482,6 +1422,37 @@ bits: IPROTO_FLAG_COMMIT or IPROTO_FLAG_WAIT_SYNC or IPROTO_FLAG_WAIT_ACK.
 IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction,
 IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message for a transaction which cannot be completed immediately,
 IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchronous transaction.
+
+..  _box_protocol-raft:
+
+IPROTO_RAFT = 0x1e
+~~~~~~~~~~~~~~~~~~
+
+A node broadcasts the IPROTO_RAFT request to all the replicas connected to it when the RAFT state of the node changes.
+It can be any actions changing the state, like starting a new election, bumping the term, voting for another node, becoming the leader, and so on.
+
+If there should be a response, for example, in case of a vote request to other nodes, the response will also be an IPROTO_RAFT message.
+In this case, the node should be connected as a replica to another node from which the response is expected because the response is sent via the replication channel.
+In other words, there should be a full-mesh connection between the nodes.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_RAFT,
+        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,  # ID of the replica which the request came from
+
+    })
+    # <body>
+    msgpack({
+        IPROTO_RAFT_TERM: :samp:`{{MP_UINT unsigned integer}}`,     # RAFT term of the instance
+        IPROTO_RAFT_VOTE: :samp:`{{MP_UINT unsigned integer}}`,     # Instance vote in the current term (if any).
+        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state; one of the three numbers: 1---follower, 2---candidate, 3---leader.
+        IPROTO_RAFT_VCLOCK: :samp:`{{MP_ARRAY {{MP_INT SRV_ID, MP_INT SRV_LSN}, {MP_INT SRV_ID, MP_INT SRV_LSN}, ...}}}`   # Current vclock of the instance. Presents only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
+    })
 
 ..  _box_protocol-illustration:
 

@@ -1,6 +1,6 @@
 ..  _fiber-module:
 
-Module `fiber`
+Module fiber
 ==============
 
 Overview

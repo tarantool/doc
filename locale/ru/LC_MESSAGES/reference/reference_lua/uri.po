@@ -43,7 +43,7 @@ msgid ""
 "Tarantool's URI module provides routines which convert URI strings into "
 "their components, or turn components into URI strings."
 msgstr ""
-"Модуль Tarantool'а URI включает в себя процедуры для разложения URI-строк на"
+"Модуль Tarantool URI включает в себя процедуры для разложения URI-строк на"
 " компоненты или объединения компонентов в URI-строку."
 
 msgid "Index"

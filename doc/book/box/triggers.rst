@@ -1,3 +1,5 @@
+:fullwidth:
+
 .. _triggers:
 .. _triggers-box_triggers:
 
@@ -43,8 +45,7 @@ All triggers have the following characteristics:
   then its overhead is equivalent to the overhead of calling a function.
 
 * There can be multiple triggers for one event. In this case, triggers are
-  executed in the reverse order that they were defined in. (Exception:
-  member triggers are executed in the order that they appear in the member list.)
+  executed in the reverse order that they were defined in.
 
 * Triggers must work within the event context. However, effects are undefined
   if a function contains requests which normally could not occur immediately

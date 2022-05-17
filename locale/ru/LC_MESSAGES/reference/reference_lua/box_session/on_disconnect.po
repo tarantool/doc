@@ -81,7 +81,7 @@ msgid ""
 "message using the :ref:`log <log-module>` module whenever any user connects "
 "or disconnects."
 msgstr ""
-"После следующей серии запросов экземпляр Tarantool'а запишет сообщение с "
+"После следующей серии запросов экземпляр Tarantool запишет сообщение с "
 "помощью модуля :ref:`log <log-module>` при подключении или отключении любого"
 " пользователя."
 

@@ -1,7 +1,7 @@
 .. _box-null:
 
 -------------------------------------------------------------------------------
-                             Constant `box.NULL`
+                             Constant box.NULL
 -------------------------------------------------------------------------------
 
 There are some major problems with using Lua **nil** values in tables.

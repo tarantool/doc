@@ -3,4 +3,4 @@ msgid "Rocks reference"
 msgstr "Справочник по сторонним библиотекам"
 
 msgid "This reference covers third-party Lua modules for Tarantool."
-msgstr "В данном справочнике описаны сторонние Lua-модули для Tarantool'а."
+msgstr "В данном справочнике описаны сторонние Lua-модули для Tarantool."

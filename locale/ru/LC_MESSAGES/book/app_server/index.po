@@ -6,7 +6,7 @@ msgid ""
 "Here we introduce the basics of working with Tarantool as a Lua application "
 "server."
 msgstr ""
-"В данной главе мы рассмотрим основы работы с Tarantool'ом в качестве сервера"
+"В данной главе мы рассмотрим основы работы с Tarantool в качестве сервера"
 " приложений на языке Lua."
 
 msgid "This chapter contains the following sections:"
