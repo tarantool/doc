@@ -875,7 +875,7 @@ Responses for no error and out-of-band
 
 If the response is out-of-band, due to use of
 :ref:`box.session.push() <box_session-push>`,
-then the header Response-Code-indicator will be IPROTO_CHUNK instead of IPROTO_OK.
+then the header Response-Code-Indicator will be IPROTO_CHUNK instead of IPROTO_OK.
 
 ..  _box_protocol-responses_error:
 

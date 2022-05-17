@@ -1548,6 +1548,16 @@ msgstr ""
 ":samp:`ffi.string({pointer},{length})`. Также здесь можно использовать "
 "функцию :ref:`pickle.unpack() <pickle-unpack>`."
 
+msgid "Responses for no error and out-of-band"
+msgstr "Ответы на внеполосные сообщения"
+
+msgid "If the response is out-of-band, due to use of"
+" :ref:`box.session.push() <box_session-push>`,"
+" then the header Response-Code-Indicator will be IPROTO_CHUNK instead of IPROTO_OK."
+msgstr "Если используется :ref:`box.session.push() <box_session-push>`,"
+" значением заголовка Response-Code-Indicator для внеполосных сообщений "
+"будет IPROTO_CHUNK, а не IPROTO_OK."
+
 msgid ""
 "For a response other than IPROTO_OK, the header Response-Code-Indicator will"
 " be ``0x8XXX`` and the body will be a 1-item map."
