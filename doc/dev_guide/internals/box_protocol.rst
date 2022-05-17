@@ -135,10 +135,12 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_FIELD_IS_NULLABLE=0x03
     IPROTO_FIELD_IS_AUTOINCREMENT=0x04
     IPROTO_FIELD_SPAN=0x05
+    IPROTO_CHUNK=0x80
     IPROTO_RAFT_TERM=0x00
     IPROTO_RAFT_VOTE=0x01
     IPROTO_RAFT_STATE=0x02
     IPROTO_RAFT_VCLOCK=0x03
+
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
 `YAML <https://en.wikipedia.org/wiki/YAML>`_ so: |br|
@@ -866,6 +868,14 @@ so if we were using net_box we could decode with
 or we could convert to a string with :samp:`ffi.string({pointer},{length})`.
 The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful.
 
+..  _box_protocol-responses_out_of_band:
+
+Responses for no error and out-of-band
+--------------------------------------
+
+If the response is out-of-band, due to use of
+:ref:`box.session.push() <box_session-push>`,
+then the header Response-Code-Indicator will be IPROTO_CHUNK instead of IPROTO_OK.
 
 ..  _box_protocol-responses_error:
 
