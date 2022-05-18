@@ -3642,7 +3642,8 @@ supplied), or continues till the end of string-or-varbinary-value
 If numeric-start-position is less than 1, or if numeric-start-position
 + numeric-length is greater than the length of string-or-varbinary-value,
 then the result is not an error, anything which would be before the start
-or after the end is ignored.
+or after the end is ignored. There are no symbols with index <= 0
+or with index greater than the length of the first argument.
 
 If numeric-length is less than 0, then the result is an error.
 
