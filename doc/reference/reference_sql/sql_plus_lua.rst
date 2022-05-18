@@ -9,32 +9,27 @@ database objects that can be accessed from SQL, of SQL database objects that can
 be accessed from NoSQL, of the way to call SQL from Lua, and of the way to call
 Lua from SQL.
 
-.. container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+   :align: left
 
-    +-----------------------------------------------+---------------------------------------------------+
-    | Heading                                       | Summary                                           |
-    +===============================================+===================================================+
-    | :ref:`Lua requests                            | Some Lua requests that are especially useful for  |
-    | <sql_lua_requests>`                           | SQL, such as requests to grant privileges         |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`System tables                           | Looking at Lua sysview spaces such as _space      |
-    | <sql_system_tables>`                          |                                                   |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`Calling Lua routines from SQL           | Tarantool's implementation of SQL stored          |
-    | <sql_calling_lua>`                            | procedures                                        |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`Executing Lua chunks                    | The LUA(...) function                             |
-    | <sql_executing_lua_chunks>`                   |                                                   |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`Example sessions                        | Million-row insert, etc.                          |
-    | <sql_example_sessions>`                       |                                                   |
-    +-----------------------------------------------+---------------------------------------------------+
-    | :ref:`Lua functions to make views of metadata | Making equivalents to standard-SQL                |
-    | <sql_lua_functions>`                          | information_schema tables                         |
-    +-----------------------------------------------+---------------------------------------------------+
+   * - Heading
+     - Summary
+   * - :ref:`Lua requests <sql_lua_requests>`
+     - Some Lua requests that are especially useful for
+       SQL, such as requests to grant privileges
+   * - :ref:`System tables <sql_system_tables>`
+     - Looking at Lua sysview spaces such as _space
+   * - :ref:`Calling Lua routines from SQL <sql_calling_lua>`
+     - Tarantool's implementation of SQL stored procedures
+   * - :ref:`Executing Lua chunks <sql_executing_lua_chunks>`
+     - The LUA(...) function
+   * - :ref:`Example sessions <sql_example_sessions>`
+     - Million-row insert, etc.
+   * - :ref:`Lua functions to make views of metadata <sql_lua_functions>`
+     - Making equivalents to standard-SQL information_schema tables
 
 .. COMMENT
    The next section is adapted from
@@ -48,7 +43,7 @@ Lua Requests
 
 A great deal of functionality is not specifically part of Tarantool's SQL feature,
 but is part of the Tarantool Lua application server and DBMS.
-Here we will give examples so it is clear where to look in other sections of the Tarantool manual.
+Here are some examples so it is clear where to look in other sections of the Tarantool manual.
 
 NoSQL :ref:`"spaces" <index-box_space>` can be accessed as SQL ``"tables"``, and vice versa.
 For example, suppose a table has been created with |br|
@@ -151,7 +146,7 @@ Limitations: (`Issue#4659 <https://github.com/tarantool/tarantool/issues/4659>`_
 `Issue#4758 <https://github.com/tarantool/tarantool/issues/4758>`_) |br|
 SELECT with * or ORDER BY or GROUP BY from spaces that have map fields
 or array fields may cause errors. Any access to spaces that have hash
-indexes may cause severe errors.
+indexes may cause severe errors in Tarantool version 2.3 or earlier.
 
 .. _sql_system_tables:
 
@@ -234,11 +229,11 @@ See also: :ref:`Lua functions to make views of metadata <sql_lua_functions>`.
    Never drop or change a collation which is being used for indexes or deterministic functions.
 
    Example:
-   Suppose we want to use a non-default collation which has Ukrainian rules.
+   Suppose there is a desire to use a non-default collation which has Ukrainian rules.
    There are many deviations from DUCET, all formally described by the Common Language Data Repository,
    in this case https://unicode.org/cldr/charts/32/collation/uk.html.
    Two notable deviations are: Ґ is a separate letter after Г and Ь is before Ю.
-   In addition we want upper case letters to come before lower case letters.
+   In addition there is a desire that upper case letters should come before lower case letters.
    The Lua request for this collation could be: |br|
    ``box.internal.collation.create('UKRAINIAN_S3', 'ICU', 'uk_UK', {strength='tertiary', case_first = 'upper_first'});``
 
@@ -257,7 +252,7 @@ See also: :ref:`Lua functions to make views of metadata <sql_lua_functions>`.
    and 2**6 possibilities for the other opts options, Tarantool supports
    about 736 * 2 * 5 * 64 = 471,040 different collations out of the box.
    In fact three of the pre-defined collations (unicode_uk_s1 unicode_uk_s2 unicode_uk_s3)
-   re the standard CLDR variants for Ukrainian, so the above example was
+   are the standard CLDR variants for Ukrainian, so the above example was
    made only to show how one makes a new one, not because there is any need to do so for this situation.
 
    Limitations:
@@ -312,23 +307,25 @@ For a useful example, here is a general function for decoding a single Lua ``'ma
     box.schema.func.create('_DECODE',
        {language = 'LUA',
         returns = 'string',
-        body = [[function (field, part)
-                 __GLOBAL= field
-                 return dostring("return require('msgpack').decode(__GLOBAL,1)." .. part)
+        body = [[function (field, key)
+                 -- If Tarantool version < 2.10.1, replace next line with
+                 -- return require('msgpack').decode(field)[key]
+                 return field[key]
                  end]],
         is_sandboxed = false,
-        param_list = {'string', "string"},
+        -- If Tarantool version < 2.10.1, replace next line with
+        -- param_list = {'string', 'string'},
+        param_list = {'map', 'string'},
         exports = {'LUA', 'SQL'},
         is_deterministic = true})
 
 See it work with, say, the _trigger space.
-That space has a ``'map'`` field named opts which has a part named sql.
-By selecting from the space and passing the field and the part name to _DECODE,
+That space has a ``'map'`` field named opts which has a key named sql.
+By selecting from the space and passing the field and the key name to _DECODE,
 you can get a list of all the trigger bodies.
 
 .. code-block:: lua
 
-    __GLOBAL = ""
     box.execute([[SELECT _decode("opts", 'sql') FROM "_trigger";]])
 
 Remember that SQL converts :ref:`regular identifiers <sql_identifiers>` to upper case,
@@ -340,17 +337,17 @@ Here is another example, which illustrates the way that Tarantool creates
 a view which includes the table_name and table_type columns in the same
 way that the standard-SQL information_schema.tables view contains them.
 The difficulty is that, in order to discover whether table_type should
-be ``'BASE TABLE'`` or should be ``'VIEW'``, we need to know the value of the
+be ``'BASE TABLE'`` or should be ``'VIEW'``, it is necessary to know the value of the
 ``"flags"`` field in the Tarantool/NoSQL :ref:`"_space" <box_space-space>` or ``"_vspace"`` space.
 The ``"flags"`` field type is ``"map"``, which SQL does not understand well.
-If there were no Lua functions, we would have to treat it as a VARBINARY
+If there were no Lua functions, it would be necessary to treat the field as a VARBINARY
 and look for ``POSITION(X'A476696577C3',"flags")  > 0`` (A4 is a MsgPack signal
 that a 4-byte string follows, 76696577 is UTF8 encoding for 'view',
 C3 is a MsgPack code meaning true).
 In any case, starting with Tarantool version 2.10, POSITION() does not work on VARBINARY operands.
-But we have a more sophisticated way, we can create a function that
+But there is a more sophisticated way, namely, creating a function that
 returns true if ``"flags".view`` is true.
-So our way of making the function looks like this:
+So for this case the way to make the function looks like this:
 
 .. code-block:: lua
 
@@ -359,12 +356,16 @@ So our way of making the function looks like this:
           returns = 'boolean',
           body = [[function (flags)
               local view
-              view = require('msgpack').decode(flags).view
+              -- If Tarantool version < 2.10.1, replace next line with
+              -- view = require('msgpack').decode(flags).view
+              view = flags.view
               if view == nil then return false end
               return view
               end]],
          is_sandboxed = false,
-         param_list = {'string'},
+         -- If Tarantool version < 2.10.1, replace next line with
+         -- param_list = {'string'},
+         param_list = {'map'},
          exports = {'LUA', 'SQL'},
          is_deterministic = true})
 
@@ -426,7 +427,7 @@ create a :ref:`view <sql_create_view>` that is based on a join of the tables,
 then select from the view all rows where the second column values
 are not null, ordered by the first column.
 
-That is, what we want is |br|
+That is, the way to populate the table is |br|
 ``CREATE TABLE t1 (c1 INTEGER PRIMARY KEY, c2 STRING);`` |br|
 ``CREATE TABLE t2 (c1 INTEGER PRIMARY KEY, x2 STRING);`` |br|
 ``INSERT INTO t1 VALUES (1, 'A'), (2, 'B'), (3, 'C');`` |br|
@@ -560,7 +561,7 @@ But here is the Lua code and SQL code for creating equivalents: |br|
 :ref:`_REFERENTIAL_CONSTRAINTS <sql__referential_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS |br|
 :ref:`_CHECK_CONSTRAINTS <sql__check_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.CHECK_CONSTRAINTS |br|
 :ref:`_TABLE_CONSTRAINTS <sql__table_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.TABLE_CONSTRAINTS. |br|
-For each view we show an example of a SELECT from the view, and the code.
+For each view there will be an example of a SELECT from the view, and the code.
 Users who want metadata can simply copy the code.
 Use this code only with Tarantool version 2.3.0 or later.
 With an earlier Tarantool version, a :ref:`PRAGMA statement <sql_pragma>` may be useful.
@@ -597,14 +598,17 @@ Definition of the function and the CREATE VIEW statement:
           returns = 'boolean',
           body = [[function (flags)
               local view
-              view = require('msgpack').decode(flags).view
+              -- If Tarantool version < 2.10.1, replace next line with
+              -- view = require('msgpack').decode(flags).view
+              view = flags.view
               if view == nil then return false end
               return view
               end]],
          is_sandboxed = false,
-         param_list = {'string'},
+         -- If Tarantool version < 2.10.1, replace next line with
+         -- param_list = {'string'},
+         param_list = {'map'},
          exports = {'LUA', 'SQL'},
-         setuid = false,
          is_deterministic = true})
     box.schema.role.grant('public', 'execute', 'function', '_TABLES_IS_VIEW')
     pcall(function ()
@@ -769,8 +773,13 @@ Definition of the function and the CREATE VIEW statement:
         {language = 'LUA',
          returns = 'string',
          body = [[function (flags)
-                      return require('msgpack').decode(flags).sql end]],
-         param_list = {'string'},
+                  -- If Tarantool version < 2.10.1, replace next line with
+                  -- return require('msgpack').decode(flags).sql
+                  return flags.sql
+                  end]],
+         -- If Tarantool version < 2.10.1, replace next line with
+         -- param_list = {'string'},
+         param_list = {'map'},
          exports = {'LUA', 'SQL'},
          is_sandboxed = false,
          setuid = false,
@@ -824,8 +833,13 @@ Definition of the function and the CREATE VIEW statement:
         {language = 'LUA',
          returns = 'string',
          body = [[function (opts)
-                      return require('msgpack').decode(opts).sql end]],
-         param_list = {'string'},
+                  -- If Tarantool version < 2.10.1, replace next line with
+                  -- return require('msgpack').decode(opts).sql
+                  return opts.sql
+                  end]],
+         -- If Tarantool version < 2.10.1, replace next line with
+         -- param_list = {'string'},
+         param_list = {'map'},
          exports = {'LUA', 'SQL'},
          is_sandboxed = false,
          setuid = false,
@@ -897,7 +911,7 @@ Definition of the CREATE VIEW statement:
     ]])
     box.schema.role.grant('public', 'read', 'space', '_REFERENTIAL_CONSTRAINTS')
 
-We are not taking child_cols or parent_cols
+In this example child_cols or parent_cols are not taken
 from the _fk_constraint space because in standard SQL those
 are in a separate table.
 
@@ -957,7 +971,7 @@ _TABLE_CONSTRAINTS view
 This has only the constraints (primary-key and unique-key) that can be found by looking at the
 :ref:`_index <box_space-index>` space.
 It is not a list of indexes, that is, it is not equivalent to INFORMATION_SCHEMA.STATISTICS.
-We do not take the columns of the index because in standard SQL they would be in a different table.
+The columns of the index are not taken because in standard SQL they would be in a different table.
 
 Example:
 

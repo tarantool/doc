@@ -3,14 +3,14 @@
 SQL features
 ============
 
-In this section we will go through SQL:2016's "Feature taxonomy and definition
+This section compares Tarantool's features with SQL:2016's "Feature taxonomy and definition
 for mandatory features".
 
-For each feature in that list, we will come up with a simple example SQL
+For each feature in that list, there will be a simple example SQL
 statement.
-If Tarantool appears to handle the example, we will mark it "Okay",
-else we will mark it "Fail".
-Since this is rough and arbitrary, we believe that tests which are unfairly
+If Tarantool appears to handle the example, it will be marked "Okay",
+else it will be marked "Fail".
+Since this is rough and arbitrary, the hope is that tests which are unfairly
 marked "Okay" will probably be balanced by tests which are unfairly marked "Fail".
 
 
@@ -49,8 +49,7 @@ E011, Numeric data types
             -   DECIMAL and NUMERIC data types
             -   ``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``
             -   Fail, NUMERIC data types are not supported,
-                and a number containing post-decimal digits will be
-                treated as approximate numeric.
+                although the DECIMAL data type is supported.
         *   -   E011-04
             -   Arithmetic operators
             -   ``SELECT 10+1, 9-2, 8*3, 7/2 FROM t;``
@@ -838,7 +837,7 @@ F181, Multiple module support
 
 Fail. Tarantool doesn't have modules.   
    
-   
+
 F201, CAST function
 -------------------
 
@@ -856,7 +855,7 @@ F201, CAST function
             -   CAST function
             -   ``SELECT cast(s1 AS INT) FROM t;``
             -   :ref:`Okay <sql_function_cast>`.   
-   
+
 
 F221, Explicit defaults
 -----------------------
@@ -933,7 +932,7 @@ F311, Schema definition statement
             -   CREATE VIEW: WITH CHECK OPTION   
             -   Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA.   
         *   -   F311-05   
-            -   GRANT statement   
+            -   GRANT statement
             -   Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA.   
    
    

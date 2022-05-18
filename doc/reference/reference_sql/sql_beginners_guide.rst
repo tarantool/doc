@@ -27,8 +27,8 @@ and saying "this is a football". In that spirit, this is a table:
      Row#3 | Row#3,Column#1  | Row#3,Column#2 | Row#3,Column#3 |
            +-----------------+----------------+----------------+
 
-but the labels are misleading -- we usually don't identify rows and columns by their ordinal positions,
-we prefer to pick out specific items by their contents. In that spirit, this is a table:
+but the labels are misleading -- one usually doesn't identify rows and columns by their ordinal positions,
+one prefers to pick out specific items by their contents. In that spirit, this is a table:
 
 .. code-block:: none
 
@@ -42,14 +42,14 @@ we prefer to pick out specific items by their contents. In that spirit, this is 
     | crypto          |    4 | Cryptography        |
     +-----------------+------+---------------------+
 
-so we do not use longitude/latitude navigation by talking about "Row#2 Column #2",
-we use the contents of the Name column and the name of the Size column
+so one does not use longitude/latitude navigation by talking about "Row#2 Column #2",
+one uses the contents of the Name column and the name of the Size column
 by talking about "the size, where the name is 'clock'".
-To be more exact, this is what we say:
+To be more exact, this is what one says:
 
 ``SELECT size FROM modules WHERE name = 'clock';``
 
-If you're familiar with Tarantool's architecture -- and we hope that you read
+If you're familiar with Tarantool's architecture -- and ideally you read
 about that before coming to this chapter -- then you know that there is a NoSQL
 way to get the same thing:
 
@@ -60,7 +60,7 @@ data via an SQL statement, then you can get the same data via a NoSQL request.
 But the reverse is not true, because not all NoSQL tuple sets are definable
 as SQL tables. These restrictions apply for SQL that do not apply for NoSQL: |br|
 1. Every column must have a name. |br|
-2. Every column must have a scalar type (Tarantool is relaxed about
+2. Every column should have a scalar type (Tarantool is relaxed about
 which particular scalar type you can have, but there is no way to index and
 search arrays, tables within tables, or what MessagePack calls "maps".)
 
@@ -86,7 +86,7 @@ All tables and all columns must have names.
 The words "STRING" and "INTEGER" are "data types".
 STRING means "the contents should be characters, the length is indefinite, the equivalent NoSQL type is 'string''".
 INTEGER means "the contents should be numbers without decimal points, the equivalent NoSQL type is 'integer'".
-Tarantool supports other data types but our example table has data types from the two main groups,
+Tarantool supports other data types but this section's example table has data types from the two main groups,
 namely, data types for numbers and data types for strings.
 
 The final clause, PRIMARY KEY (name), means that the name column is the main column used to identify the row.
@@ -99,7 +99,7 @@ Frequently it is necessary, at least temporarily, that a column value should be 
 Typical situations are: the value is unknown, or the value is not applicable.
 For example, you might make a module as a placeholder but you don't want to say its size or purpose.
 If such things are possible, the column is "nullable".
-Our name column cannot contain nulls, and it could be defined explicitly as "name STRING NOT NULL",
+The example table's name column cannot contain nulls, and it could be defined explicitly as "name STRING NOT NULL",
 but in this case that's unnecessary -- a column defined as PRIMARY KEY is automatically NOT NULL.
 
 Is a NULL in SQL the same thing as a nil in Lua?
@@ -146,7 +146,7 @@ The corresponding non-SQL Tarantool requests would be:
 ``box.space.MODULES:update('json', {{'=', 2, 15}})`` |br|
 ``box.space.MODULES:delete{'json'}`` |br|
 
-This is how we would populate the table with the values that we showed earlier:
+This is how one would populate the table with the values that was shown earlier:
 
 ``INSERT INTO modules VALUES ('box', 1432, 'Database Management');`` |br|
 ``INSERT INTO modules VALUES ('clock', 188, 'Seconds');`` |br|
@@ -155,7 +155,7 @@ This is how we would populate the table with the values that we showed earlier:
 **Constraints**
 
 Some data-change statements are illegal due to something in the table's definition.
-This is called "constraining what can be done". We have already seen some types of constraints ...
+This is called "constraining what can be done". Some types of constraints have already been shown ...
 
 NOT NULL -- if a column is defined with a NOT NULL clause, it is illegal to put NULL into it.
 A primary-key column is automatically NOT NULL.
@@ -235,7 +235,7 @@ NoSQL emphasizes freedom and making your own rules.
 
 **Table Relationships**
 
-Think about the two tables that we have discussed so far:
+Think about the two tables that have been discussed so far:
 
 .. code-block:: sql
 
@@ -267,7 +267,7 @@ while every modules row can be referred to in zero or more submodules rows.
 Table relationships are important, but beware:
 do not trust anyone who tells you that databases made with SQL are relational
 "because there are relationships between tables".
-That is wrong. We will see why when we talk about what makes a database relational, later.
+That is wrong, as will be clear in the discussion about what makes a database relational, later.
 
 **Selecting with WHERE**
 
@@ -275,8 +275,8 @@ We gave a simple example of a SELECT statement earlier:
 
 ``SELECT size FROM modules WHERE name = 'clock';``
 
-The clause "WHERE name = 'clock'" is legal in other statements -- we
-have seen it in UPDATE and DELETE -- but here we will only give examples with SELECT.
+The clause "WHERE name = 'clock'" is legal in other statements -- it
+is in examples with UPDATE and DELETE -- but here the only examples will be with SELECT.
 
 The first variation is that the WHERE clause does not have to be specified at all,
 it is optional. So this statement would return all rows:
@@ -372,12 +372,12 @@ but it is unclear to a reader who has not memorized what the column names are.
 Also it is unstable, because there is a way to change a table's
 definition (the ALTER statement, which is an advanced topic).
 Nevertheless, although it might be bad to use it for production,
-it is handy to use it for introduction, so we will use ``"*"`` in several examples.
+it is handy to use it for introduction, so ``"*"`` will appear in some following examples.
 
 **Select with subqueries**
 
-Remember that we have a modules table and we have a submodules table.
-Suppose that we want to list the submodules that refer to modules for which the purpose is X.
+Remember that there is a modules table and there is a submodules table.
+Suppose that there is a desire to list the submodules that refer to modules for which the purpose is X.
 That is, this involves a search of one table using a value in another table.
 This can be done by enclosing "(SELECT ...)" within the WHERE clause. For example:
 
@@ -424,8 +424,8 @@ However, there is a different way to combine tables -- with joins instead of sub
 
 **Select with Cartesian join**
 
-Until now we have only used "FROM modules" or "FROM submodules" in our SELECT statements.
-What if we used more than one table in the FROM clause? For example
+Until now only "FROM modules" or "FROM submodules" was used in SELECT statements.
+What if there was more than one table in the FROM clause? For example
 
 ``SELECT * FROM modules, submodules;`` |br|
 or
@@ -448,9 +448,9 @@ It is not an error. The meaning of this type of join is "combine every row in ta
 It did not specify what the relationship should be, so the result has everything,
 even when the submodule has nothing to do with the module.
 
-It is handy to look at the above result, called a "Cartesian join" result, to see what we really want.
+It is handy to look at the above result, called a "Cartesian join" result, to see what would really be desirable.
 Probably for this case the row that actually makes sense is the one where the modules.name = submodules.module_name,
-and we should make that clear in both the select list and the WHERE clause, thus:
+and it's better to make that clear in both the select list and the WHERE clause, thus:
 
 .. code-block:: sql
 
@@ -486,12 +486,12 @@ which means that conceptually you are often filtering in a large set of rows.
 
 It is good to start by looking at Cartesian joins because they show the concept.
 Many people, though, prefer to use different syntaxes for joins because they
-look better or clearer. We will look at those alternatives now.
+look better or clearer. So now those alternatives will be shown.
 
 **Select with join with ON clause**
 
-The ON clause would have the same comparisons as the WHERE clause that we illustrated
-for the previous section, but by using different syntax we would be making it clear
+The ON clause would have the same comparisons as the WHERE clause that was illustrated
+for the previous section, but the use of different syntax would be making it clear
 "this is for the sake of the join".
 Readers can see at a glance that it is, in concept at least, an initial step before
 the result rows are filtered. For example this
@@ -515,8 +515,8 @@ has the same effect as
 
 ``SELECT * FROM modules JOIN submodules WHERE modules.name = submodules.name;``
 
-If we had created our table with a plan in advance to use USING clauses,
-that would save time. But we did not.
+If the table had been created with a plan in advance to use USING clauses,
+that would save time. But that did not happen.
 So, although the above example "works", the results will not be sensible.
 
 **Select with natural join**
@@ -524,8 +524,8 @@ So, although the above example "works", the results will not be sensible.
 A natural join would take advantage of names that are held in common between the two tables,
 and would do the filtering automatically based on that knowledge, and throw away duplicate columns.
 
-If we had created our table with a plan in advance to use natural joins, that would be very handy.
-But we did not. So, although the following example "works", the results won't be sensible.
+If the table had been created with a plan in advance to use natural joins, that would be very handy.
+But that did not happen. So, although the following example "works", the results won't be sensible.
 
 ``SELECT * FROM modules NATURAL JOIN submodules;``
 
@@ -535,14 +535,14 @@ four columns: name, module_name, size, purpose.
 
 **Select with left join**
 
-Now what if we want to join modules to submodules,
-but we want to be sure that we get all the modules?
-In other words, we want to get modules even if the condition submodules.module_name = modules.name
+Now what if there is a desire to join modules to submodules,
+but it's necessary to be sure that all the modules are found?
+In other words, suppose the requirement is to get modules even if the condition submodules.module_name = modules.name
 is not true, because the module has no submodules.
 
-When that is what we want, the type of join is an "outer join"
-(as opposed to the type we have used so far which is an "inner join").
-Specifically we will use LEFT [OUTER] JOIN because our main table, modules, is on the left. For example:
+When that is the requirement, the type of join is an "outer join"
+(as opposed to the type that has been used so far which is an "inner join").
+Specifically the format will be LEFT [OUTER] JOIN because the main table, modules, is on the left. For example:
 
 .. code-block:: sql
 
@@ -569,7 +569,7 @@ module -- which do not exist -- there are NULLs in every column.
 **Select with functions**
 
 A function can take any expression, including an expression that contains another function,
-and return a scalar value. There are many such functions. We will just describe one, SUBSTR,
+and return a scalar value. There are many such functions. Here will be a description of only one, SUBSTR,
 which returns a substring of a string.
 
 Format: :samp:`SUBSTR({input-string}, {start-with} [, {length}])`
@@ -581,7 +581,7 @@ Example: ``SUBSTR('abcdef', 2, 3)`` returns 'bcd'.
 
 Select with aggregation, GROUP BY, and HAVING
 
-Remember that our modules table looks like this:
+Remember that the modules table looks like this:
 
 .. code-block:: none
 
@@ -596,8 +596,8 @@ Remember that our modules table looks like this:
     +-----------------+------+---------------------+
 
 
-Suppose that we do not want to know all the individual size values,
-we just want to know about their aggregation, that is, take the attributes of the collection.
+Suppose that there is no need to know all the individual size values,
+all that is important is their aggregation, that is, take the attributes of the collection.
 SQL allows aggregation functions including: AVG (average), SUM, MIN (minimum), MAX (maximum), and COUNT.
 For example
 
@@ -613,8 +613,8 @@ The result will look like this:
      |       541 |      1624 |         4 |      1432 |         3 |
      +-----------+-----------+-----------+-----------+-----------+
 
-Suppose that we want aggregations, but aggregations of rows that have some common characteristic.
-Supposing further, we want to divide the rows into two groups, the ones whose names
+Suppose that the requirement is aggregations, but aggregations of rows that have some common characteristic.
+Supposing further, the rows should be divided into two groups, the ones whose names
 begin with 'b' and the ones whose names begin with 'c'.
 This can be done by adding a clause [GROUP BY expression]. For example,
 
@@ -645,10 +645,10 @@ usually within a SELECT statement, using a WITH clause. For example:
 
 **Select with order, limit, and offset clauses**
 
-Every time we have searched in the modules table, the rows have come out in alphabetical order by name:
+So far, tor every search in the modules table, the rows have come out in alphabetical order by name:
 'box', then 'clock', then 'crypto'.
-However, if we want to be sure about the order, or if we want a different order,
-we will have to be explicit and add a clause:
+However, to really be sure about the order, or to ask for a different order,
+it is necessary to be explicit and add a clause:
 ``ORDER BY column-name [ASC|DESC]``.
 (ASC stands for ASCending, DESC stands for DESCending.)
 For example:
@@ -657,13 +657,13 @@ For example:
 
 The result will be the usual rows, in descending alphabetical order: 'crypto' then 'clock' then 'box'.
 
-After the ORDER BY clause we can add a clause LIMIT n, where n is the maximum number of rows that we want. For example:
+After the ORDER BY clause there can be a clause LIMIT n, where n is the maximum number of rows to retrieve. For example:
 
 ``SELECT * FROM modules ORDER BY name DESC LIMIT 2;``
 
 The result will be the first two rows, 'crypto' and 'clock'.
 
-After the ORDER BY clause and the LIMIT clause we can add a clause OFFSET n,
+After the ORDER BY clause and the LIMIT clause there can be a clause OFFSET n,
 where n is the row to start with. The first offset is 0. For example:
 
 ``SELECT * FROM modules ORDER BY name DESC LIMIT 2 OFFSET 2;``
@@ -765,7 +765,7 @@ Edgar F. Codd, the person most responsible for researching and explaining relati
 listed the main criteria as
 (`Codd's 12 rules <https://en.wikipedia.org/wiki/Codd's_12_rules>`_).
 
-Although we do not advertise Tarantool as "relational", we claim that Tarantool complies with these rules,
+Although Tarantool is not advertised as "relational", Tarantool comes with a claim that it complies with these rules,
 with the following caveats and exceptions ...
 
 The rules state that all data must be viewable as relations.
@@ -780,11 +780,11 @@ Tarantool's SQL does not. Authorization occurs via NoSQL requests.
 
 The rules require that data must be physically independent (from underlying storage changes)
 and logically independent (from application program changes).
-So far we do not have enough experience to make this guarantee.
+So far there is not enough experience to make this guarantee.
 
 The rules require certain types of updatable views. Tarantool's views are not updatable.
 
 The rules state that it should be impossible to use a low-level language to bypass
 integrity as defined in the relational-level language.
-In our case, this is not true, for example one can execute a request
+In Tarantool's case, this is not true, for example one can execute a request
 with Tarantool's NoSQL to violate a foreign-key constraint that was defined with Tarantool's SQL.
