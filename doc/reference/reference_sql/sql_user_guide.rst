@@ -927,9 +927,17 @@ The Lua equivalent type is `'array' <https://www.lua.org/pil/11.1.html>`_.
 
 ARRAY index expression: |br|
 array-value [square bracket] index [square bracket] |br|
-Example: ``['a', 'b', 'c'] [2]`` (this equals 'b') |br|
+Example: ``['a', 'b', 'c'] [2]`` (this returns 'b') |br|
 As in other languages, an element of an array can be referenced with an
 integer inside square brackets.
+The returned value is of type ANY.
+
+.. _sql_map_index_expression:
+
+MAP index expression: |br|
+map-value [square bracket] index [square bracket] |br|
+Example: ``{'a' : 123, 7: 'asd'}['a']`` (this returns 123)
+The returned value is of type ANY.
 
 See also: :ref:`subquery <sql_subquery>`.
 
