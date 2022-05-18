@@ -530,13 +530,12 @@ Core
    must be greater than zero and less than or equal to 1000
    (:tarantool-issue:`6005`).
 
--  Fixed error related to the fact that if user changed listen
-   address, all iproto threads closed same socket multiple times. Fixed
-   error, related to the fact, that tarantool not deleting the unix
-   socket path, when it’s finishing work.
+-  Fixed an error when all iproto threads closed the same socket multiple times
+   if the user changed listen address. Fixed an error where Tarantool did not delete the unix
+   socket path, when it finished the work.
 
 -  Simultaneously updating a key in different transactions
-   does not longer result in a MVCC crash
+   does not result in a MVCC crash
    (:tarantool-issue:`6131`).
 
 -  Fix a bug when memtx MVCC crashed during reading uncommitted DDL
@@ -645,7 +644,7 @@ Vinyl
 ~~~~~
 
 -  Fixed possible keys divergence during secondary index build, which might
-   lead to missing tuples(:taranto ol-issue:`6045`).
+   lead to missing tuples(:tarantool-issue:`6045`).
 
 -  Fixed the race between Vinyl garbage collection and compaction
    that resulted in broken vylog and recovery failure (:tarantool-issue:`5436`).
