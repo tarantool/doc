@@ -512,7 +512,7 @@ and minimum / maximum literal examples.
    * - MAP
      - map
      - (none)
-     - ``{'':''}``
+     - ``{}``
      - ``{big-key:big-value}``
    * - ARRAY
      - array
@@ -638,7 +638,9 @@ ANY can be used for
 :ref:`column definitions <sql_column_def_data_type>` and the individual column values have
 type ANY.
 The difference between SCALAR and ANY is:
-SCALAR columns may not contain MAP or ARRAY values, but ANY columns may contain them.
+
+*   SCALAR columns may not contain MAP or ARRAY values, but ANY columns may contain them.
+*   SCALAR values are comparable, while ANY values are not comparable. 
 
 Any value of any data type may be NULL. Ordinarily NULL will be cast to the
 data type of any operand it is being compared to or to the data type of the
@@ -899,13 +901,13 @@ CASE ... WHEN ... THEN ... ELSE ... END |br|
 
 { key : value } |br|
 ... for MAP expressions. |br|
-Literal Examples: ``{'a':1}``, ``{ "column_1" : X'1234' }`` |br|
-Non-literal Examples: ``{"a":"a"}``, ``{UUID(), (SELECT 1) + 1}`` |br|
+Literal examples: ``{'a':1}``, ``{ "column_1" : X'1234' }`` |br|
+Non-literal examples: ``{"a":"a"}``, ``{UUID(): (SELECT 1) + 1}``, ``{1:'a123', 'two':uuid()}`` |br|
 An expression has data type = MAP if it is enclosed in curly brackets
 (also called braces) ``{`` and ``}`` and contains a key for identification,
 then a colon ``:``, then a value for what the key identifies.
 The key data type must be INTEGER or STRING or UUID.
-The value data type may be anything.
+The value data type may be anything, including MAP---that is, MAPs may be nested.
 The Lua equivalent type is 'map' but the syntax is slightly different,
 for example the SQL value ``{'a': 1}`` is represented in Lua as ``{a = 1}``.
 
@@ -917,7 +919,7 @@ Examples: ``[1,2,3,4]``, ``[1,[2,3],4]``, ``['a', "column_1", uuid()]`` |br|
 An expression has data type = ARRAY if it is a sequence of zero or more values
 enclosed in square brackets (``[`` and ``]``).
 Often the values in the sequence are called "elements".
-The element data type may be anything, including ARRAY -- that is, ARRAYs may be nested.
+The element data type may be anything, including ARRAY---that is, ARRAYs may be nested.
 Different elements may have different types.
 The Lua equivalent type is `'array' <https://www.lua.org/pil/11.1.html>`_.
 
