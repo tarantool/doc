@@ -24,13 +24,13 @@ Below is a list of all ``box.stat`` functions.
             - Shows request statistics
 
         *   - :doc:`./box_stat/net`
-            - TODO
+            - Shows network activity
 
         *   - :doc:`./box_stat/vynil`
-            - TODO
+            -  Shows vinyl-storage-engine activity
 
         *   - :doc:`./box_stat/reset`
-            - TODO
+            - Resets the statistics
 
 ..  toctree::
     :hidden:
