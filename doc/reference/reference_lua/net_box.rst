@@ -645,21 +645,22 @@ Below is a list of all ``net.box`` functions.
 
     .. _net_box-stream_begin:
 
-    .. method:: begin
+    .. method:: begin()
 
-        This method have options to begin a transaction.
+        Execute the begin of a transaction.
 
         **Example:**
 
         .. code-block:: lua
 
            stream:begin()
+           
  
     .. _net_box-stream_commit:
 
-    .. method:: commit
+    .. method:: commit()
 
-        This method have options to commit a transaction.
+        Execute the commit of a transaction.
 
         **Example:**
 
@@ -670,9 +671,9 @@ Below is a list of all ``net.box`` functions.
            
     .. _net_box-stream_rollback:
 
-    .. method:: ()
+    .. method:: rollback()
 
-        This method have options to rollback a transaction.
+        Execute the rollback of a transaction.
 
         **Example:**
 
@@ -685,7 +686,7 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: call({options})
 
-        Call the begin, commit or rollback of transaction.
+        A remote call the begin, commit or rollback of transaction.
 
         **Example:**
 
@@ -700,7 +701,8 @@ Below is a list of all ``net.box`` functions.
     
     .. method:: eval({options})
 
-        Evaluate and execute the begin, commit or rollback of a transaction in a string.
+        Evaluate and execute the begin, commit or rollback of a transaction in a Lua-string, which may be any statement or series of statements. 
+        An execute privilege is required; if the user does not have it, an administrator may grant it with box.schema.user.grant(username, 'execute', 'universe').
 
         **Example:**
 
