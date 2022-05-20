@@ -11,8 +11,8 @@ box.stat()
 
     :return:    in the tables that ``box.stat()`` returns:
 
-                * ``total``: total number of requests processed per second since the server started
-                * ``rps``: average number of requests per second in the last 5 seconds.
+            * ``total``: total number of requests processed per second since the server started
+            * ``rps``: average number of requests per second in the last 5 seconds.
 
         ``ERROR`` is the count of requests that resulted in an error.
 
