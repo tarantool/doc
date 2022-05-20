@@ -1,7 +1,7 @@
 .. _box_introspection-box_stat_reset:
 
 box.stat.reset()
-==============================
+================
 
 .. module:: box.stat
 
