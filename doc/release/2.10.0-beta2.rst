@@ -41,7 +41,7 @@ and therefore changed to protect users from unintended mistakes.
 However, there is a small probability that someone can rely on the old behavior,
 and this label is to bring attention to the things that have been changed.
 
-Breaking Changes
+Breaking changes
 ----------------
 
 -  Added ``msgpack.cfg.encode_error_as_ext`` configuration option to
@@ -395,8 +395,6 @@ SQL
 -  The field type ``ARRAY`` is now available in SQL. The syntax has also been
    implemented to allow the creation of ``ARRAY`` values (:tarantool-issue:`4762`).
 
-.. _fiber-1:
-
 Fiber
 ~~~~~
 
@@ -436,8 +434,6 @@ Build
 
 Bugs fixed
 ----------
-
-.. _core-1:
 
 Core
 ~~~~
@@ -658,8 +654,6 @@ Vinyl
    checkpoint optimization now works for replica’s initial JOIN stage
    (:tarantool-issue:`6568`).
 
-.. _replication-1:
-
 Replication
 ~~~~~~~~~~~
 
@@ -686,7 +680,7 @@ Replication
    ``Failed to write to disk`` regardless of what really happened. Now the
    correct error is shown. For example, ``Out of memory``, or
    ``Transaction has been aborted by conflict``, and so on
-    (:tarantool-issue:`6027`).
+   (:tarantool-issue:`6027`).
 
 -  Fixed replication occasionally stopping with ``ER_INVALID_MSGPACK``
    when the replica is under high load (:tarantool-issue:`4040`).
@@ -725,8 +719,6 @@ Raft
    from a follower instead of a leader and failed with the error
    ``ER_READONLY`` (:tarantool-issue:`6127`).
 
-.. _luajit-1:
-
 LuaJIT
 ~~~~~~
 
@@ -747,8 +739,6 @@ LuaJIT
 -  Fixed inconsistency while searching for an error function when
    unwinding a C protected frame to handle a runtime error (an
    error in ``__gc`` handler).
-
-.. _lua-1:
 
 Lua
 ~~~
@@ -777,9 +767,6 @@ Triggers
 -  Fixed a possible crash in case trigger removes itself. Fixed a
    possible crash in case someone destroys a trigger when it
    yields (:tarantool-issue:`6266`).
-
-
-.. _sql-1:
 
 SQL
 ~~~
@@ -843,8 +830,6 @@ MVCC
 -  Fixed loss of tuple after a conflict exception (:tarantool-issue:`6132`).
 
 -  Fixed a segfault during update/delete of the same tuple (:tarantool-issue:`6021`).
-
-.. _build-1:
 
 Build
 ~~~~~

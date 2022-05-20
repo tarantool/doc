@@ -1,6 +1,5 @@
-=====================================================================
-                            C#
-=====================================================================
+C#
+==
 
 The most commonly used C# driver is
 `progaudi.tarantool <https://github.com/progaudi/progaudi.tarantool>`__,

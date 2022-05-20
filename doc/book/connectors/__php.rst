@@ -1,6 +1,5 @@
-=====================================================================
-                            PHP
-=====================================================================
+PHP
+===
 
 `tarantool-php <https://github.com/tarantool/tarantool-php>`__ is the official
 PHP connector for Tarantool.

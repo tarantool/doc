@@ -1,6 +1,5 @@
-=====================================================================
-                            Python
-=====================================================================
+Python
+======
 
 `tarantool-python <http://github.com/tarantool/tarantool-python>`__
 is the official Python connector for Tarantool. It is not supplied as part
