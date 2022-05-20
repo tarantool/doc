@@ -21,10 +21,8 @@ with ``box``, with no arguments. The ``box`` module contains:
     :maxdepth: 3
     :includehidden:
 
-    box_stat
-    box_cfg
-
     box_backup
+    box_cfg
     box_ctl
     box_error
     box_index
@@ -34,6 +32,7 @@ with ``box``, with no arguments. The ``box`` module contains:
     box_session
     box_slab
     box_space
+    box_stat
     box_tuple
 
     box_txn_management
