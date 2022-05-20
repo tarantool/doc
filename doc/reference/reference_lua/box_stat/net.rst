@@ -8,7 +8,7 @@ box.stat.net()
     and received, the number of connections, and the number of active requests
     (current, average, and total).
 
-    **Return:** In the tables that ``box.stat.net()`` returns:
+    :return: In the tables that ``box.stat.net()`` returns:
         * ``SENT.rps`` and ``RECEIVED.rps`` -- average number of bytes sent/received per
           second in the last 5 seconds
         * ``SENT.total`` and ``RECEIVED.total`` -- total number of bytes sent/received
