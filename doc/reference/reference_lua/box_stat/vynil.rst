@@ -1,31 +1,27 @@
+.. _box_introspection-box_stat_vinyl:
+
 ==============================
 box.stat.vynil()
 ==============================
-
-.. _box_introspection-box_stat_vinyl_details:
-
-.. _box_introspection-box_stat_vinyl:
-
 
 .. function:: box.stat.vynil()
 
     Shows vinyl-storage-engine activity, for example
     ``box.stat.vinyl().tx`` has the number of commits and rollbacks.
-    See details at :ref:`the end of this section <box_introspection-box_stat_vinyl_details>`.
 
-Here are details about the ``box.stat.vinyl()`` items.
-
+    **Example:**
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.stat.vinyl().tx.commit -- one item of the vinyl table
-    ---
-    - 1047632
-    ...
+        tarantool> box.stat.vinyl().tx.commit -- one item of the vinyl table
+        ---
+        - 1047632
+        ...
 
 .. _box_introspection-box_stat_vinyl_regulator:
 
-**Details about box.stat.vinyl().regulator:**
+box.stat.vinyl().regulator
+--------------------------
 The vinyl regulator decides when to take or delay actions for
 disk IO, grouping activity in batches so that it is
 consistent and efficient. The regulator is invoked by
@@ -57,7 +53,8 @@ related variables whenever it is invoked.
 
 .. _box_introspection-box_stat_vinyl_disk:
 
-**Details about box.stat.vinyl().disk:**
+box.stat.vinyl().disk
+---------------------
 Since vinyl is an on-disk storage engine
 (unlike memtx which is an in-memory storage engine),
 it can handle large databases -- but if a database is
@@ -79,7 +76,8 @@ then there will be more disk activity.
 
 .. _box_introspection-box_stat_vinyl_memory:
 
-**Details about box.stat.vinyl().memory:**
+box.stat.vinyl().memory
+-----------------------
 Although the vinyl storage engine is not "in-memory", Tarantool does
 need to have memory for write buffers and for caches:
 
@@ -108,7 +106,8 @@ that statistic can be found with
 
 .. _box_introspection-box_stat_vinyl_tx:
 
-**Details about box.stat.vinyl().tx:**
+box.stat.vinyl().tx
+-------------------
 This is about requests that affect transactional activity
 ("tx" is used here as an abbreviation for "transaction"):
 
@@ -138,7 +137,8 @@ This is about requests that affect transactional activity
   shows whether a transaction has entered a read-only state
   to avoid conflict temporarily. This will usually be 0.
 
-**Details about box.stat.vinyl().scheduler:**
+box.stat.vinyl().scheduler
+--------------------------
 This primarily has counters related to tasks that the scheduler has arranged
 for dumping or compaction:
 (most of these items are reset to 0 when the server restarts or when
