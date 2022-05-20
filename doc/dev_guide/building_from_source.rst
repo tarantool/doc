@@ -49,7 +49,7 @@ Ubuntu/Debian
 
     $ apt-get -y install git build-essential cmake make zlib1g-dev \
       libreadline-dev libncurses5-dev libssl-dev libunwind-dev libicu-dev \
-      python3 python3-pyyaml python3-six python3-gevent
+      python3 python3-yaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
 
