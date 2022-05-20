@@ -2,15 +2,17 @@
 box.stat()
 ==============================
 
-.. function:: box.stat()
+..  function:: box.stat()
 
     Shows the total number of requests since startup and
     the average number of requests per second,
     broken down by request type.
 
-    **Return:** in the tables that ``box.stat()`` returns:
-        * ``total``: total number of requests processed per second since the server started
-        * ``rps``: average number of requests per second in the last 5 seconds.
+    :return:    in the tables that ``box.stat()`` returns:
+
+                * ``total``: total number of requests processed per second since the server started
+                * ``rps``: average number of requests per second in the last 5 seconds.
+
     ``ERROR`` is the count of requests that resulted in an error.
 
     **Example:**
