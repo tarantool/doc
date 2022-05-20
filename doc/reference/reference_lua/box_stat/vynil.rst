@@ -1,10 +1,11 @@
 .. _box_introspection-box_stat_vinyl:
 
-==============================
 box.stat.vynil()
 ==============================
 
-.. function:: box.stat.vynil()
+.. module:: box.stat
+
+.. function:: vynil()
 
     Shows vinyl-storage-engine activity, for example
     ``box.stat.vinyl().tx`` has the number of commits and rollbacks.
