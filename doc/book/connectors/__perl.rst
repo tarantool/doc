@@ -1,6 +1,5 @@
-=====================================================================
-                            Perl
-=====================================================================
+Perl
+====
 
 The most commonly used Perl driver is
 `tarantool-perl <https://github.com/tarantool/tarantool-perl>`__. It is not

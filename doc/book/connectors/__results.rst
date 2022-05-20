@@ -1,7 +1,5 @@
-
-=====================================================================
-         Interpreting function return values
-=====================================================================
+Interpreting function return values
+===================================
 
 For all connectors, calling a function via Tarantool causes a return in the
 MsgPack format. If the function is called using the connector's API, some

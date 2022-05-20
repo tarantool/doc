@@ -1,6 +1,5 @@
-=====================================================================
-                            Node.js
-=====================================================================
+Node.js
+=======
 
 The most commonly used node.js driver is the `Node Tarantool driver
 <https://github.com/KlonD90/node-tarantool-driver>`_. It is not supplied as part
