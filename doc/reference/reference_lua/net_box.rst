@@ -640,7 +640,7 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: begin()
 
-        Execute a begin of a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+        Begin a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
 
         **Example:**
 
@@ -653,7 +653,7 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: commit()
 
-        Execute a commit of a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+        Commit a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
 
         **Example:**
 
@@ -666,7 +666,7 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: rollback()
 
-        Execute a rollback of a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+        Rollback a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
 
         **Example:**
 
