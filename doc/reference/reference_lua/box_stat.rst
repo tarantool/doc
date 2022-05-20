@@ -21,21 +21,21 @@ Below is a list of all ``box.stat`` functions.
             - Use
 
         *   - :doc:`./box_stat/stat`
-            - Shows request statistics
+            - Show request statistics
 
         *   - :doc:`./box_stat/net`
-            - Shows network activity
+            - Show network activity
 
-        *   - :doc:`./box_stat/vynil`
-            -  Shows vinyl-storage-engine activity
+        *   - :doc:`./box_stat/vinyl`
+            -  Show vinyl-storage-engine activity
 
         *   - :doc:`./box_stat/reset`
-            - Resets the statistics
+            - Reset the statistics
 
 ..  toctree::
     :hidden:
 
     box_stat/stat
     box_stat/net
-    box_stat/vynil
+    box_stat/vinyl
     box_stat/reset
