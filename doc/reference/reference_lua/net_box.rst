@@ -139,14 +139,7 @@ Below is a list of all ``net.box`` functions.
         *   -   :ref:`stream:commit() <net_box-stream_commit>`                    
             -   Commit a transaction   
         *   -   :ref:`stream:rollback() <net_box-stream_rollback>`                    
-            -   Rollback a transaction               
-        *   -   :ref:`stream:call() <net_box-stream_call>`                    
-            -   Call the begin, commit or rollback of a transaction                        
-        *   -   :ref:`stream:eval() <net_box-stream_eval>`                      
-            -   Evaluate and execute the begin, commit or rollback of a transaction in a string                                        
-        *   -   :ref:`stream:execute() <net_box-stream_execute>`                      
-            -   Execute the begin, commit or rollback of a transaction              
-            
+            -   Rollback a transaction                           
             
 .. module:: net_box
 
@@ -647,7 +640,7 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: begin()
 
-        Execute the begin of a transaction.
+        Execute a begin of a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
 
         **Example:**
 
@@ -660,7 +653,7 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: commit()
 
-        Execute the commit of a transaction.
+        Execute a commit of a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
 
         **Example:**
 
@@ -673,7 +666,7 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: rollback()
 
-        Execute the rollback of a transaction.
+        Execute a rollback of a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
 
         **Example:**
 
@@ -682,50 +675,10 @@ Below is a list of all ``net.box`` functions.
            stream:rollback()
                       
  
-    .. _net_box-stream_call:           
+ 
 
-    .. method:: call({options})
-
-        A remote call the begin, commit or rollback of transaction.
-
-        **Example:**
-
-        .. code-block:: lua
         
-           stream:call('box.begin')
-           stream:call('box.commit')
-           stream:call('box.rollback')
-
-
-    .. _net_box-stream_eval:    
     
-    .. method:: eval({options})
-
-        Evaluate and execute the begin, commit or rollback of a transaction in a Lua-string, which may be any statement or series of statements. 
-        An execute privilege is required; if the user does not have it, an administrator may grant it with box.schema.user.grant(username, 'execute', 'universe').
-
-        **Example:**
-
-        .. code-block:: lua
-        
-           stream:eval('box.begin()')
-           stream:eval('box.commit()')
-           stream:eval('box.rollback()')
-
-    .. _net_box-stream_execute:  
-    
-    .. method:: execute({options})
-
-       Execute the begin, commit or rollback of a transaction.
-
-        **Example:**
-
-        .. code-block:: lua
-        
-           stream:execute('BEGIN')
-           stream:execute('COMMIT')
-           stream:execute('ROLLBACK')    
-
 
 ..  _net_box-triggers:
 
