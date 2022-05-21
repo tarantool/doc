@@ -179,28 +179,17 @@ Basic parameters
 
 ..  confval:: master
 
-    If set to ``auto``, turns on the automated master discovery in a replica set.
-
-    [TBD]
-    A router goes to the replica sets marked as having an auto master discovery, finds a master in them, and periodically checks if the master is still a master.
-    When the master in a replica set stops being a master, the router goes around all the nodes of the replica set and finds out which one is the new master.
-
-    [TBD]
-    Without this setting, a router is not able to find master nodes in the configured replica sets on its own. It relies only on how they are specified in the configuration.
-    This becomes a problem when master changes and the change is not delivered to the router's configuration. For instance, the router does not rely on a central config provider.
-    Or it does rely, but the provider can't deliver a new configuration due to any reason.
-
-    This is getting especially tricky with the :ref:`built-in automatic master election <TBD>` which is not supported by vshard yet.
-    It doesn't depend on any configuration, and the master/leader role isn't pinned to one node.
-
+    Turns on the automated master discovery in a replica set if set to ``auto``.
+    Applicable only to the configuration of a router; the storage configuration ignores this parameter.
 
     The parameter should be specified per replica set and is not compatible with specifying a master manually.
 
-    [TBD] Configuration pattern
+    **Examples**
 
-    **Correct:**
+    Correct configuration:
 
     ..  code-block:: kconfig
+        :emphasize-lines: 4
 
         config = {
             sharding = {
@@ -213,9 +202,10 @@ Basic parameters
             ...
         }
 
-    **Incorrect:**
+    Incorrect configuration:
 
     ..  code-block:: kconfig
+        :emphasize-lines: 4, 7, 11
 
         config = {
             sharding = {
@@ -237,10 +227,19 @@ Basic parameters
             ...
         }
 
+    In case of the incorrect configuration, it is not applied, and the ``vshard.router.cfg()`` call throws an error.
+
+
+    If the ``master`` parameter is set to ``auto`` for some of the replica sets, a router goes to these replica sets, discovers a master in each of them, and periodically checks if the master instance still has its master status.
+    When the master in a replica set stops being a master, the router goes around all the nodes of the replica set and finds out which one is the new master.
+
+    Without this setting, a router is not able to find out master nodes in the configured replica sets on its own. It relies only on how they are specified in the configuration.
+    This becomes a problem when master changes and the change is not delivered to the router's configuration. For instance, in case a router doesn't rely on the central configuration provider.
+    Or it does rely, but the provider can't deliver a new configuration due to some reason.
 
     | Type: string
-    | Default: [TBD]
-    | Dynamic: [TBD]
+    | Default: ``nil``
+    | Dynamic: yes
 
 .. _vshard-config-replica-set-funcs:
 
