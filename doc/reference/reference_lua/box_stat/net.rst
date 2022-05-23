@@ -6,7 +6,7 @@ box.stat.net()
 .. function:: net()
 
     Shows network activity: the number of bytes sent
-    and received, the number of connections, and the number of active requests
+    and received, the number of connections, streams, and requests
     (current, average, and total).
 
     :return: in the tables that ``box.stat.net()`` returns:
@@ -22,7 +22,7 @@ box.stat.net()
           limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`
         * ``REQUESTS.rps`` -- number of requests processed per second in the last 5 seconds
         * ``REQUESTS.total`` -- total number of requests processed since startup
-        * ``STREAMS.current`` -- number of open :doc:`streams </book/stream>`
+        * ``STREAMS.current`` -- number of active :doc:`streams </book/box/stream>`
         * ``STREAMS.rps`` -- number of streams opened per second in the last 5 seconds
         * ``STREAMS.total`` -- total number of streams opened since the server started
 
