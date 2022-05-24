@@ -1211,7 +1211,7 @@ Datetime
 
 -   Fixed a bug in datetime module when ``date:set{tzoffset=XXX}`` did
     not produce the same result with ``date.new{tzoffset=XXX}`` for the
-    same set of attributes passed (:tarantool-isse:`6793`).
+    same set of attributes passed (:tarantool-issue:`6793`).
 
 HTTP client
 ~~~~~~~~~~~
