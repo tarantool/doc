@@ -189,8 +189,6 @@ Logging
 
         require('log').cfg{level = 'verbose'}
 
-..  _2.10.0-beta1-sql:
-
 SQL
 ~~~
 
