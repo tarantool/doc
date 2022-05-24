@@ -899,13 +899,14 @@ Router public API
 
 ..  function:: vshard.router.master_search_wakeup()
 
-    :ref:`Automated master discovery <cfg_basic-master>` works in its own fiber on a router, which is activated only if at least one replica set is configured to look for the master (the ``master`` parameter is set to ``auto``).
+    :ref:`Automated master discovery <cfg_basic-master>` works in its own fiber on a router,
+    which is activated only if at least one replica set is configured to look for the master (the ``master`` parameter is set to ``auto``).
     The fiber wakes up within a certain period. But it is possible to wake it up on demand by using this function.
 
-    To wake the fiber up manually can be useful in speeding up tests for changing the master.
-    Another use case is when you in the router console and do some actions on the router.
+    Manual fiber wakeup can help speed up tests for master change.
+    Another use case is performing some actions with a router in the router console.
 
-    It does nothing if the master search is not :ref:`configured <cfg_basic-master>` for any replica set.
+    The function does nothing if master search is not :ref:`configured <cfg_basic-master>` for any replica set.
 
     :return: none
 

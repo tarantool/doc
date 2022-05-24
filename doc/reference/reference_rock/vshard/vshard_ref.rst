@@ -179,10 +179,10 @@ Basic parameters
 
 ..  confval:: master
 
-    Turns on the automated master discovery in a replica set if set to ``auto``.
+    Turns on automated master discovery in a replica set if set to ``auto``.
     Applicable only to the configuration of a router; the storage configuration ignores this parameter.
 
-    The parameter should be specified per replica set and is not compatible with specifying a master manually.
+    The parameter should be specified per replica set and is not compatible with manual master selection.
 
     **Examples**
 
@@ -227,15 +227,17 @@ Basic parameters
             ...
         }
 
-    In case of the incorrect configuration, it is not applied, and the ``vshard.router.cfg()`` call throws an error.
+    If configuration is incorrect configuration, it is not applied, and the ``vshard.router.cfg()`` call throws an error.
 
 
-    If the ``master`` parameter is set to ``auto`` for some of the replica sets, a router goes to these replica sets, discovers a master in each of them, and periodically checks if the master instance still has its master status.
-    When the master in a replica set stops being a master, the router goes around all the nodes of the replica set and finds out which one is the new master.
+    If the ``master`` parameter is set to ``auto`` for some replica sets, the router goes to these replica sets, discovers the master in each of them, and periodically checks if the master instance still has its master status.
+    When the master in the replica set stops being a master, the router goes around all the nodes of the replica set and finds out which one is the new master.
 
-    Without this setting, a router is not able to find out master nodes in the configured replica sets on its own. It relies only on how they are specified in the configuration.
-    This becomes a problem when master changes and the change is not delivered to the router's configuration. For instance, in case a router doesn't rely on the central configuration provider.
-    Or it does rely, but the provider can't deliver a new configuration due to some reason.
+    Without this setting, the router cannot detect master nodes in the configured replica sets on its own.
+    It relies only on how they are specified in the configuration.
+    This becomes a problem when the master changes and the change is not delivered to the router's configuration:
+    for instance, in case the router doesn't rely on a central configuration provider
+    or the provider cannot deliver a new configuration due to some reason.
 
     | Type: string
     | Default: ``nil``
