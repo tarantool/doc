@@ -83,9 +83,11 @@ Core
     or ``execute`` with the SQL transaction syntax. Users can mix these methods.
     For example, one might start a transaction using ``stream:begin()``,
     and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
+
     If any request fails during the transaction, it will not affect the other requests in the transaction.
     If a disconnect occurs while there is an active transaction in the stream,
-    that transaction will be rolled back if it hasn't been committed before the connection failure.
+    that transaction will be rolled back if it hasn't been committed before the connection failure
+    (:tarantool-issue:`5860`).
 
 -   Added the new ``memtx_allocator`` option to ``box.cfg{}``.
     It allows selecting an appropriate allocator for memtx tuples if necessary.

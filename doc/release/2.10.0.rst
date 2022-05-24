@@ -1,7 +1,7 @@
 Tarantool 2.10.0
 ================
 
-Released on 2022-05-20.
+Released on 2022-05-22.
 
 *   Release: :tarantool-release:`2.10.0`.
 *   Tag: ``2.10.0``.
@@ -9,11 +9,13 @@ Released on 2022-05-20.
 Overview
 --------
 
-2.10.0 is the :doc:`release </release/policy/>` version of the 2.10 release series.
+2.10.0 is the first
+:doc:`stable </release/policy/>` version of the 2.10 release series.
+It introduces 107 improvements and resolves 131 bugs since version :doc:`2.8.1 </release/2.8.1>`.
 
-This release introduces ? new features and resolves ? bugs since the 2.8 version.
-There can be bugs in less common areas. If you find any,
-feel free to `report an issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
+The “stable” label means that we have all planned features implemented
+and we see no high-impact issues. However, if you encounter an issue,
+feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
 
 Notable changes are:
 
@@ -41,5 +43,186 @@ and therefore changed to protect users from unintended mistakes.
 However, there is a small probability that someone can rely on the old behavior,
 and this label is to bring attention to the things that have been changed.
 
+The changes that break backward compatibility are listed below:
+
+*   ``fiber.wakeup()`` in Lua and ``fiber_wakeup()`` in C became NOP on the
+    currently running fiber.
+
+*   ``timeout()`` method of ``net.box`` connection was dropped.
+
+*   net.box console support was dropped.
+
+*   The return value type for all time64 functions was changed from ``uint64_t`` to
+    ``int64_t``.
+
 Functionality added or changed
 ------------------------------
+
+Core
+~~~~
+
+-   The ``UUID`` field type is now part of the ``SCALAR`` field type
+    (:tarantool-issue:`6042`).
+
+-   The ``UUID`` field type is now available in SQL. A new ``UUID`` can
+    be generated using the new SQL built-in ``UUID()`` function
+    (:tarantool-issue:`5886`).
+
+-   **[Breaking change]** The ``timeout()`` method of ``net.box`` connection,
+    marked deprecated more than four years ago (in ``1.7.4``), has been dropped.
+    It negatively affected the performance of hot ``net.box`` methods,
+    such as ``call()`` and ``select()`` if they were called without
+    specifying a timeout (:tarantool-issue:`6242`).
+
+-   Improved ``net.box`` performance by up to 70% by rewriting hot code
+    paths in C (:tarantool-issue:`6241`).
+
+-   Introduced compact tuples that allow saving 4 bytes per tuple in case
+    of small user data (:tarantool-issue:`5385`).
+
+-   Now streams and interactive transactions over streams are implemented in iproto.
+    Every stream is associated with its ID, which is unique within one connection.
+    All requests with the same non-zero stream ID belong to the same stream.
+    All requests in the stream are processed synchronously.
+    The next request will not start executing until the previous one is completed.
+    If a request's stream ID is ``0``, it does not belong to a stream
+    and is processed in the old way.
+
+    In ``net.box``, a stream is an object above the connection that has
+    the same methods but allows executing requests sequentially. The ID is
+    generated on the client-side automatically.
+    If a user writes his own connector and wants to use streams,
+    they must transmit the ``stream_id`` over the iproto protocol.
+
+    The primary purpose of streams is transactions via iproto.
+    As each stream can start a transaction, several transactions can be multiplexed over one connection.
+    There are multiple ways to begin, commit, and rollback a transaction.
+    One can do that using the appropriate stream methods, ``call``, ``eval``,
+    or ``execute`` with the SQL transaction syntax. Users can mix these methods.
+    For example, one might start a transaction using ``stream:begin()``,
+    and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
+
+    If any request fails during the transaction, it will not affect the other requests in the transaction.
+    If a disconnect occurs while there is an active transaction in the stream,
+    that transaction will be rolled back if it hasn't been committed before the connection failure
+    (:tarantool-issue:`5860`).
+
+-   Added the new ``memtx_allocator`` option to ``box.cfg{}``.
+    It allows selecting the appropriate allocator for memtx tuples if necessary.
+    The possible values are ``system`` for malloc allocator and ``small`` for
+    the default small allocator.
+
+    Implemented the system allocator based on malloc. The slab allocator, which is used for tuple allocation,
+    has a particular disadvantage---it is prone to unresolvable fragmentation on specific workloads (size migration).
+    In this case, the user should be able to choose another allocator.
+    The system allocator is based on the malloc function but restricted by the same quota as the slab allocator.
+    The system allocator does not alloc all the memory at the start. Instead, it allocates memory as needed,
+    checking that the quota is not exceeded
+    (:tarantool-issue:`5419`).
+
+-   Added ``box.stat.net.thread()`` for reporting per thread net
+    statistics (:tarantool-issue:`6293`).
+
+-   Added the new ``STREAMS`` metric to ``box.stat.net``. It contains
+    statistics for iproto streams. The ``STREAMS`` contains the same counters
+    as the ``CONNECTIONS`` metric in ``box.stat.net``: current, RPS, and
+    total (:tarantool-issue:`6293`).
+
+-   Extended the network protocol (IPROTO) with a new request type
+    (``IPROTO_ID``). It is supposed to be used for exchanging sets of
+    supported features between the server and client (:tarantool-issue:`6253`).
+
+-   Added ``required_protocol_version`` and ``required_protocol_features``
+    to ``net.box`` connection options. The new options allow specifying
+    the IPROTO protocol version and features that must be supported by the server
+    for the connection to pass (:tarantool-issue:`6253`).
+
+-   **[Breaking change]** Added the ``msgpack.cfg.encode_error_as_ext``
+    configuration option to enable/disable encoding errors as
+    ``MP_ERROR`` MsgPack extension. The option is enabled by default
+    (:tarantool-issue:`6433`).
+
+-   **[Breaking change]** Removed ``box.session.setting.error_marshaling_enabled``.
+    Error marshalling is now enabled automatically if the connector supports it
+    (:tarantool-issue:`6428`).
+
+-   Added the new ``REQUESTS_IN_PROGRESS`` and ``REQUESTS_IN_STREAM_QUEUE``
+    metrics  to ``box.stat.net`` that contains detailed statistics for iproto requests.
+    These metrics contain the same counters as other metrics in ``box.stat.net``:
+    current, RPS, and total (:tarantool-issue:`6293`).
+
+-   Implemented a timeout for ``fiber:join`` in Lua (:tarantool-issue:`6203`).
+
+-   Updated libev to version 4.33 (:tarantool-issue:`4909`).
+
+-   Added the new ``box.txn_id()`` function that returns the id of the
+    current transaction if called within a transaction, nil otherwise.
+
+-   Previously, if a yield occurs for a transaction that does not support
+    it, all its statements are rolled back but still its new
+    statements are processed (they will roll back with each yield). Also, the
+    transaction will be rolled back when a commit is attempted. Now we
+    stop processing any new statements right after the first yield if a
+    transaction doesn’t support it.
+
+-   Implemented a timeout for transactions after which they are rolled
+    back (:tarantool-issue:`6177`).
+
+-   Implemented the new C API ``box_txn_set_timeout`` function to set a
+    timeout for transactions.
+
+-   Implemented a timeout for iproto transactions after which they are
+    rolled back (:tarantool-issue:`6177`).
+
+-   Implemented the new ``IPROTO_TIMEOUT 0x56`` key, which is used to set a
+    timeout for transactions over iproto streams. It is stored in the
+    body of ``IPROTO_BEGIN`` request.
+
+-   Introduced ``box.broadcast`` and ``box.watch`` functions to
+    signal/watch user-defined state changes (:tarantool-issue:`6257`).
+
+-   Added watchers support to the network protocol (:tarantool-issue:`6257`).
+
+-   Added watchers support to the ``net.box`` connector (:tarantool-issue:`6257`).
+
+-   Now error objects with the code ``box.error.READONLY`` now have
+    the additional fields explaining why the error happened.
+
+    Also, there is a new field ``box.info.ro_reason``. It is ``nil`` on a
+    writable instance, but reports a reason when ``box.info.ro`` is true
+    (:tarantool-issue:`5568`).
+
+-   Implemented the ability to open several listening sockets. In
+    addition to the ability to pass uri as a number or string, added the
+    ability to pass uri as a table of numbers or strings (:tarantool-issue:`3554`).
+
+-   **[Breaking change]** ``net.box`` console support, which was marked
+    deprecated in 1.10, has been dropped. Use ``require('console').connect()``
+    instead.
+
+-   Added ``takes_raw_args`` Lua function option for wrapping arguments
+    in ``msgpack.object`` to skip decoding (:tarantool-issue:`3349`).
+
+-   Implemented the graceful shutdown protocol for IPROTO connections
+    (:tarantool-issue:`5924`).
+
+-   Added ``fetch_schema`` flag to ``netbox.connect`` to control schema
+    fetching from remote instance (:tarantool-issue:`4789`).
+
+-   Added linking type (dynamic or static) to Tarantool build info.
+
+-   Changed log level of some information messages from critical to info
+    (:tarantool-issue:`4675`).
+
+-   Added predefined system events: ``box.status``, ``box.id``,
+    ``box.election``, and ``box.schema`` (:tarantool-issue:`6260`).
+
+-   Introduced transaction isolation levels in Lua and IPROTO (:tarantool-issue:`6930`).
+
+-   Added support for backtrace feature on AARCH64 architecture
+    (:tarantool-issue:`6060`).
+
+-   Implemented collection of parent backtrace for the newly created
+    fibers. To enable the feature, call
+    ``fiber.parent_backtrace_enable``. To disable it, call
+    ``fiber.parent_backtrace_disable``: disabled by default (:tarantool-issue:`4302`).
