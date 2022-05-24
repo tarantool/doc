@@ -66,7 +66,7 @@ msgstr ""
 ":ref:`Триггеры <triggers-box_triggers>`."
 
 msgid "**Simple and useless example:** this will display 'commit happened':"
-msgstr "**Простой и бесполезный пример:** покажет, что произошел коммит:"
+msgstr "**Элементарный пример** покажет, что произошел коммит:"
 
 msgid ""
 "function f()\n"
