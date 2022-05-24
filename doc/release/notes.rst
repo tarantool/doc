@@ -26,7 +26,7 @@ based on the :doc:`new release policy <policy>`:
             -   :doc:`2.10.0-beta1 <2.10.0-beta1>`,
                 :doc:`2.10.0-beta2 <2.10.0-beta2>`
             -   :doc:`2.10.0-rc1 <2.10.0-rc1>`
-            -   not released yet
+            -   :doc:`2.10.0 <2.10.0>`
 
 
 The table below consists of the Tarantool versions

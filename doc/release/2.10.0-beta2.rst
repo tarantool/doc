@@ -82,29 +82,30 @@ Core
 -  Introduced compact tuples that allow saving 4 bytes per tuple in case
    of small userdata (:tarantool-issue:`5385`).
 
--  Now streams and interactive transactions over streams are implemented in iproto.
-   Every stream is associated with its ID, which is unique within one connection.
-   All requests with the same non-zero stream ID belong to the same stream.
-   All requests in the stream are processed synchronously.
-   The next request will not start executing until the previous one is completed.
-   If a request's stream ID is ``0``, it does not belong to any stream and is processed
-   in the old way.
+-   Now streams and interactive transactions over streams are implemented in iproto.
+    Every stream is associated with its ID, which is unique within one connection.
+    All requests with the same non-zero stream ID belong to the same stream.
+    All requests in the stream are processed synchronously.
+    The next request will not start executing until the previous one is completed.
+    If a request's stream ID is ``0``, it does not belong to any stream and is processed in the old way.
 
-   In ``net.box``, a stream is an object above the connection that has the same methods
-   but allows executing requests sequentially. The ID is generated on the client side automatically.
-   If a user writes his own connector and wants to use streams, they must transmit the
-   ``stream_id`` over the iproto protocol.
+    In ``net.box``, a stream is an object above the connection that has the same methods
+    but allows executing requests sequentially. The ID is generated on the client side automatically.
+    If a user writes his own connector and wants to use streams, they must transmit the ``stream_id`` over the iproto protocol.
 
-   The primary purpose of streams is transactions via iproto.
-   As each stream can start a transaction, several transactions can be multiplexed over one connection.
-   There are multiple ways to begin, commit, and rollback a transaction.
-   One can do that using the appropriate stream methods, ``call``, ``eval``,
-   or ``execute`` with the SQL transaction syntax. Users can mix these methods.
-   For example, one might start a transaction using ``stream:begin()``,
-   and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
-   If any request fails during the transaction, it will not affect the other requests in the transaction.
-   If a disconnect occurs while there is an active transaction in the stream,
-   that transaction will be rolled back if it hasn't been committed before the connection failure.
+    The primary purpose of streams is transactions via iproto.
+    As each stream can start a transaction, several transactions can be multiplexed over one connection.
+    There are multiple ways to begin, commit, and rollback a transaction.
+    One can do that using the appropriate stream methods, ``call``, ``eval``,
+    or ``execute`` with the SQL transaction syntax. Users can mix these methods.
+    For example, one might start a transaction using ``stream:begin()``,
+    and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
+
+    If any request fails during the transaction, it will not affect the other requests in the transaction.
+    If a disconnect occurs while there is an active transaction in the stream,
+    that transaction will be rolled back if it hasn't been committed before the connection failure
+    (:tarantool-issue:`5860`).
+
 
 -  Added the new ``memtx_allocator`` option to ``box.cfg{}``.
    It allows selecting an appropriate allocator for memtx tuples if necessary.
@@ -125,7 +126,7 @@ Core
 
 -  Add the new metric ``STREAMS`` to ``box.stat.net``, which contains
    statistics for iproto streams. ``STREAMS`` contains the same counters as the
-   ``CONNECTIONS`` metric in ``box.stat.net``: ``current``, ``rps``, and ``total``
+   ``CONNECTIONS`` metric in ``box.stat.net``: ``current``, ``RPS``, and ``total``
    (:tarantool-issue:`6293`).
 
 -  Extended the network protocol (IPROTO) with a new request type
@@ -150,7 +151,7 @@ Core
 -  Add new metrics ``REQUESTS_IN_PROGRESS`` and
    ``REQUESTS_IN_STREAM_QUEUE`` to ``box.stat.net``, which contain
    detailed statistics for iproto requests. These metrics contain the same
-   counters as other metrics in ``box.stat.net``: ``current``, ``rps``, and ``total``
+   counters as other metrics in ``box.stat.net``: ``current``, ``RPS``, and ``total``
    (:tarantool-issue:`6293`).
 
 -  Implemented timeout for ``fiber:join`` in Lua (:tarantool-issue:`6203`).
@@ -530,13 +531,12 @@ Core
    must be greater than zero and less than or equal to 1000
    (:tarantool-issue:`6005`).
 
--  Fixed error related to the fact that if user changed listen
-   address, all iproto threads closed same socket multiple times. Fixed
-   error, related to the fact, that tarantool not deleting the unix
-   socket path, when it’s finishing work.
+-  Fixed an error when all iproto threads closed the same socket multiple times
+   if the user changed listen address. Fixed an error where Tarantool did not delete the unix
+   socket path, when it finished the work.
 
 -  Simultaneously updating a key in different transactions
-   does not longer result in a MVCC crash
+   does not result in a MVCC crash
    (:tarantool-issue:`6131`).
 
 -  Fix a bug when memtx MVCC crashed during reading uncommitted DDL
@@ -645,7 +645,7 @@ Vinyl
 ~~~~~
 
 -  Fixed possible keys divergence during secondary index build, which might
-   lead to missing tuples(:taranto ol-issue:`6045`).
+   lead to missing tuples(:tarantool-issue:`6045`).
 
 -  Fixed the race between Vinyl garbage collection and compaction
    that resulted in broken vylog and recovery failure (:tarantool-issue:`5436`).

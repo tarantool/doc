@@ -1,19 +1,21 @@
-Tarantool 2.10.0-rc1
-====================
+Tarantool 2.10.0
+================
 
-Released on 2022-04-25.
+Released on 2022-05-22.
 
-*   Release: :tarantool-release:`2.10.0-rc1`.
-*   Tag: ``2.10.0-rc1``.
+*   Release: :tarantool-release:`2.10.0`.
+*   Tag: ``2.10.0``.
 
 Overview
 --------
 
-2.10.0-rc1 is the :doc:`RC </release/policy/>` version of the 2.10 release series.
+2.10.0 is the first
+:doc:`stable </release/policy/>` version of the 2.10 release series.
+It introduces 107 improvements and resolves 131 bugs since version :doc:`2.8.1 </release/2.8.1>`.
 
-This release introduces 99 new features and resolves 126 bugs since the 2.8 version.
-There can be bugs in less common areas. If you find any,
-feel free to `report an issue <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
+The “stable” label means that we have all planned features implemented
+and we see no high-impact issues. However, if you encounter an issue,
+feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub.
 
 Notable changes are:
 
@@ -30,8 +32,7 @@ Compatibility
 Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
 data layout, client-server protocol, and replication protocol.
 
-Please
-:doc:`upgrade </book/admin/upgrades>`
+Please :doc:`upgrade </book/admin/upgrades>`
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
@@ -41,60 +42,72 @@ and therefore changed to protect users from unintended mistakes.
 However, there is a small probability that someone can rely on the old behavior,
 and this label is to bring attention to the things that have been changed.
 
+The changes that break backward compatibility are listed below:
+
+*   ``fiber.wakeup()`` in Lua and ``fiber_wakeup()`` in C became NOP on the
+    currently running fiber.
+
+*   The ``timeout()`` method of ``net.box`` connection was dropped.
+
+*   The net.box console support was dropped.
+
+*   The return value type for all time64 functions was changed from ``uint64_t`` to
+    ``int64_t``.
+
 Functionality added or changed
 ------------------------------
 
 Core
 ~~~~
 
--   Field type ``UUID`` is now a part of field type ``SCALAR`` (:tarantool-issue:`6042)`.
+-   The ``UUID`` field type is now part of the ``SCALAR`` field type
+    (:tarantool-issue:`6042`).
 
--   Field type ``UUID`` is now available in SQL, and a new ``UUID`` can
-    be generated using the new SQL built-in ``uuid()`` function
+-   The ``UUID`` field type is now available in SQL. A new ``UUID`` can
+    be generated using the new SQL built-in ``UUID()`` function
     (:tarantool-issue:`5886`).
 
--   **[Breaking change]** ``timeout()`` method of ``net.box`` connection,
-    which was marked deprecated more than four years ago (in 1.7.4), was
-    dropped, because it negatively affected performance of hot
-    ``net.box`` methods, like ``call()`` and ``select()``, in case those
-    were called without specifying a timeout (:tarantool-issue:`6242`).
+-   **[Breaking change]** The ``timeout()`` method of ``net.box`` connection,
+    marked deprecated more than four years ago (in ``1.7.4``), has been dropped.
+    It negatively affected the performance of hot ``net.box`` methods,
+    such as ``call()`` and ``select()`` if they were called without
+    specifying a timeout (:tarantool-issue:`6242`).
 
 -   Improved ``net.box`` performance by up to 70% by rewriting hot code
     paths in C (:tarantool-issue:`6241`).
 
 -   Introduced compact tuples that allow saving 4 bytes per tuple in case
-    of small userdata (:tarantool-issue:`5385`).
+    of small user data (:tarantool-issue:`5385`).
 
--   Streams and interactive transactions over streams are implemented in
-    iproto. A stream is associated with its ID, which is unique within
-    one connection. All requests with the same not zero stream ID belong
-    to the same stream. All requests in the stream are processed
-    synchronously. The execution of the next request will not start until
-    the previous one is completed. If a request has zero stream ID, it
-    does not belong to a stream and is processed in the old way.
+-   Now streams and interactive transactions over streams are implemented in iproto.
+    Every stream is associated with its ID, which is unique within one connection.
+    All requests with the same non-zero stream ID belong to the same stream.
+    All requests in the stream are processed synchronously.
+    The next request will not start executing until the previous one is completed.
+    If a request's stream ID is ``0``, it does not belong to a stream
+    and is processed in the old way.
 
-    In ``net.box``, a stream is an object above connection that has the
-    same methods but allows to execute requests sequentially. ID is
-    generated automatically on the client side. If users write their own
-    connector and want to use streams, they must transmit stream_id over
-    iproto protocol. The main purpose of streams is transactions via
-    iproto. Each stream can start its own transaction, allowing
-    multiplexing several transactions over one connection. There are
-    multiple ways to begin, commit and rollback a transaction: using
-    appropriate stream methods, using ``call`` or ``eval`` methods or
-    using ``execute`` method with SQL transaction syntax. Users can mix
-    these methods, for example, start a transaction using
-    ``stream:begin()``, and commit a transaction using
-    ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
+    In ``net.box``, a stream is an object above the connection that has
+    the same methods but allows executing requests sequentially. The ID is
+    generated on the client-side automatically.
+    If a user writes his own connector and wants to use streams,
+    they must transmit the ``stream_id`` over the iproto protocol.
 
-    If any request fails during the transaction, it will not affect the
-    other requests in the transaction. If a disconnect occurs when there
-    is some active transaction in the stream, this transaction will be
-    rolled back if it does not have time to commit before this moment
+    The primary purpose of streams is transactions via iproto.
+    As each stream can start a transaction, several transactions can be multiplexed over one connection.
+    There are multiple ways to begin, commit, and rollback a transaction.
+    One can do that using the appropriate stream methods, ``call``, ``eval``,
+    or ``execute`` with the SQL transaction syntax. Users can mix these methods.
+    For example, one might start a transaction using ``stream:begin()``,
+    and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
+
+    If any request fails during the transaction, it will not affect the other requests in the transaction.
+    If a disconnect occurs while there is an active transaction in the stream,
+    that transaction will be rolled back if it hasn't been committed before the connection failure
     (:tarantool-issue:`5860`).
 
--   Added the new ``memtx_allocator`` option to ``box.cfg{}``. It allows
-    selecting the appropriate allocator for memtx tuples if necessary.
+-   Added the new ``memtx_allocator`` option to ``box.cfg{}``.
+    It allows selecting the appropriate allocator for memtx tuples if necessary.
     The possible values are ``system`` for malloc allocator and ``small`` for
     the default small allocator.
 
@@ -110,9 +123,9 @@ Core
     statistics (:tarantool-issue:`6293`).
 
 -   Added the new ``STREAMS`` metric to ``box.stat.net``. It contains
-    statistics for iproto streams. The ``STREAMS`` contains the same counters as
-    the ``CONNECTIONS`` metric in ``box.stat.net``: ``current``, ``RPS``, and ``total``
-    (:tarantool-issue:`6293`).
+    statistics for iproto streams. The ``STREAMS`` contains the same counters
+    as the ``CONNECTIONS`` metric in ``box.stat.net``: ``current``, ``RPS``, and
+    ``total`` (:tarantool-issue:`6293`).
 
 -   Extended the network protocol (IPROTO) with a new request type
     (``IPROTO_ID``). It is supposed to be used for exchanging sets of
@@ -134,8 +147,8 @@ Core
 
 -   Added the new ``REQUESTS_IN_PROGRESS`` and ``REQUESTS_IN_STREAM_QUEUE``
     metrics  to ``box.stat.net`` that contains detailed statistics for iproto requests.
-    These metrics contain same counters as other metrics in ``box.stat.net``: ``current``, ``RPS``, and
-    ``total`` (:tarantool-issue:`6293`).
+    These metrics contain the same counters as other metrics in ``box.stat.net``:
+    ``current``, ``RPS``, and ``total`` (:tarantool-issue:`6293`).
 
 -   Implemented a timeout for ``fiber:join`` in Lua (:tarantool-issue:`6203`).
 
@@ -171,11 +184,11 @@ Core
 
 -   Added watchers support to the ``net.box`` connector (:tarantool-issue:`6257`).
 
--   Now error objects with the code ``box.error.READONLY`` have
+-   Now error objects with the code ``box.error.READONLY`` now have
     the additional fields explaining why the error happened.
 
     Also, there is a new field ``box.info.ro_reason``. It is ``nil`` on a
-    writable instance, but reports a reason when ``box.info.ro`` is ```true``
+    writable instance, but reports a reason when ``box.info.ro`` is ``true``
     (:tarantool-issue:`5568`).
 
 -   Implemented the ability to open several listening sockets. In
@@ -183,7 +196,8 @@ Core
     ability to pass uri as a table of numbers or strings (:tarantool-issue:`3554`).
 
 -   **[Breaking change]** ``net.box`` console support, which was marked
-    deprecated in 1.10, has been dropped. Use ``require('console').connect()`` instead.
+    deprecated in 1.10, has been dropped. Use ``require('console').connect()``
+    instead.
 
 -   Added the ``takes_raw_args`` Lua function option for wrapping arguments
     in ``msgpack.object`` to skip decoding (:tarantool-issue:`3349`).
@@ -208,9 +222,8 @@ Core
     (:tarantool-issue:`6060`).
 
 -   Implemented collection of parent backtrace for the newly created
-    fibers. To enable the feature, call ``fiber.parent_backtrace_enable``.
-    To disable it, call ``fiber.parent_backtrace_disable``: disabled by default
-    (:tarantool-issue:`4302`).
+    fibers. To enable the feature, call ``fiber.parent_backtrace_enable``. To disable it, call
+    ``fiber.parent_backtrace_disable``: disabled by default (:tarantool-issue:`4302`).
 
 Memtx
 ~~~~~
@@ -230,7 +243,7 @@ Replication
 
 -   Introduced ``box.info.replication[n].downstream.lag`` field to
     monitor the state of replication. This member represents a lag between
-    the main node writing a certain transaction to its own WAL and a
+    the main node writing a certain transaction to its own WAL and the
     moment it receives an ack for this transaction from a replica
     (:tarantool-issue:`5447`).
 
@@ -246,15 +259,15 @@ Replication
 Raft
 ~~~~
 
--   Added the ``term`` field to ``box.info.synchro.queue``. It contains term
-    of the last ``PROMOTE``. It is usually equal to ``box.info.election.term``
-    but may be less than election term when the new round of elections started,
-    but no one promoted yet.
+-   Added the ``term`` field to ``box.info.synchro.queue``. It contains a
+    term of the last ``PROMOTE``. It is usually equal to
+    ``box.info.election.term`` but may be less than the election term
+    when the new round of elections started, but no one promoted yet.
 
 -   Servers with elections enabled won’t start new elections as long as
     at least one of their peers sees the current leader. They also won’t
     start the elections when they don’t have a quorum of connected peers.
-    This should reduce cases when a server which has lost connectivity to
+    This should reduce cases when a server that has lost connectivity to
     the leader disrupts the whole cluster by starting new elections
     (:tarantool-issue:`6654`).
 
@@ -296,9 +309,8 @@ LuaJIT
         ARM64 (:tarantool-issue:`6189`).
 
 -   Now memory profiler records allocations from traces grouping them by
-    the trace number (:tarantool-issue:`5814`).
-    The memory profiler parser can display the new type of allocation sources
-    in the following format:
+    the trace number (:tarantool-issue:`5814`). The memory profiler parser can display
+    the new type of allocation sources in the following format:
 
     ..  code-block:: none
 
@@ -317,8 +329,8 @@ LuaJIT
 
 -   Now the memory profiler dumps symbol table for C functions. As a result,
     memory profiler parser can enrich its symbol table with C symbols
-    (:tarantool-issue:`5813`). Furthermore, now memory profiler dumps special events
-    for symbol table when it encounters a new C symbol, that has not been dumped yet.
+    (:tarantool-issue:`5813`). Furthermore, now memory profiler dumps special events for symbol
+    table when it encounters a new C symbol, that has not been dumped yet.
 
 -   Introduced the LuaJIT platform profiler (:tarantool-issue:`781`) and the profile
     parser. This profiler is able to capture both host and VM stacks, so
@@ -334,8 +346,8 @@ LuaJIT
 Lua
 ~~~
 
--   Introduced the new method ``table.equals``. It compares two tables by value with
-    respect to the ``__eq`` metamethod.
+-   Introduced the new method ``table.equals``. It compares two tables by value and
+    respects the ``__eq`` metamethod.
 
 -   Added support of console autocompletion for ``net.box`` objects
     ``stream`` and ``future`` (:tarantool-issue:`6305`).
@@ -346,12 +358,10 @@ Lua
     It does not count tuples that arrive from memtx or vinyl but counts
     tuples created on-the-fly: say, using ``box.tuple.new(<...>)``.
 
-..  _2.10.0-rc1_datetime:
-
 Datetime
 ^^^^^^^^
 
--   Added a new builtin module ``datetime.lua`` that allows operating
+-   Added a new built-in module ``datetime.lua`` that allows operating
     timestamps and intervals values (:tarantool-issue:`5941`).
 
 -   Added the method to allow converting string literals in extended
@@ -366,11 +376,12 @@ Datetime
     Now all components of the interval values are kept and operated
     separately (years, months, weeks, days, hours, seconds, and
     nanoseconds). This allows applying date/time arithmetic correctly
-    when we add or subtract intervals to datetime values.
+    when we add/subtract intervals to datetime values.
 
 -   Extended datetime literal parser with the ability to handle known
     timezone abbreviations (‘MSK’, ‘CET’, etc.) which are
-    deterministically translated to their offset (:tarantool-issue:`5941`, :tarantool-issue:`6751`).
+    deterministically translated to their offset
+    (:tarantool-issue:`5941`, :tarantool-issue:`6751`).
 
     Timezone abbreviations can be used in addition to the timezone offset
     in the datetime literals. For example, these literals produce equivalent
@@ -383,8 +394,30 @@ Datetime
         local d2 = date.parse('2000-01-01T02:00:00 MSK')
         local d3 = date.parse('2000-01-01T02:00:00 MSK', {format = '%FT%T %Z'})
 
-    Parser fails if one uses ambiguous names (for example,  ‘AT’) which could not
+    Parser fails if one uses ambiguous names (for example, ‘AT’) which could not
     be directly translated into timezone offsets.
+
+-   Enabled support for timezone names in the constructor and
+    ``date:set{}`` modifier via ``tz`` attribute. Currently, only
+    timezone name abbreviations are supported (:tarantool-issue:`7076`).
+
+    Timezone abbreviations can be used in addition to the timezone
+    offset. They can be used during constructing or modifying a date
+    object, or while parsing datetime literals. Numeric time offsets and
+    named abbreviations produce equivalent datetime values:
+
+    ..  code-block:: lua
+
+        local date = require('datetime')
+        local d2 = date.parse('2000-01-01T02:00:00 MSK')
+
+        local d1 = date.new{year = 1980, tz = 'MSK'}
+        d2 = date.new{year = 1980, tzoffset = 180}
+        d2:set{tz = 'MSK'}
+
+    Note that the timezone name parser fails if one uses ambiguous names,
+    which could not be translated into timezone offsets directly (for
+    example, ‘AT’).
 
 Digest
 ^^^^^^
@@ -411,7 +444,7 @@ Log
 
 -   Implemented support of symbolic log levels representation in ``log``
     module (:tarantool-issue:`5882`). Now it is possible to specify levels the same way
-    as in the ``box.cfg{}`` call.
+    as in ``box.cfg{}`` call.
 
     For example, instead of
 
@@ -428,7 +461,7 @@ Log
 Msgpack
 ^^^^^^^
 
--   Added the ``msgpack.object`` container for marshalling arbitrary MsgPack
+-   Added the ``msgpack.object`` container for marshaling arbitrary MsgPack
     data (:tarantool-issue:`1629`, :tarantool-issue:`3349`, :tarantool-issue:`3909`,
     :tarantool-issue:`4861`, :tarantool-issue:`5316`).
 
@@ -441,8 +474,8 @@ Netbox
 Schema
 ^^^^^^
 
--   ``is_multikey`` option may now be passed to ``box.schema.func.create``
-    directly, without ``opts`` sub-table.
+-   ``is_multikey`` option may now be passed to
+    ``box.schema.func.create`` directly, without ``opts`` sub-table.
 
 SQL
 ~~~
@@ -457,7 +490,7 @@ SQL
     versa (:tarantool-issue:`4772`, :tarantool-issue:`5852`).
 
 -   Fixed a bug due to which a string that is not ``NULL``-terminated
-    could not be cast to ``BOOLEAN``, even if the conversion would be
+    could not be cast to ``BOOLEAN``, even if the conversion should be
     successful according to the rules.
 
 -   Now a numeric value can be cast to another numeric type only if the
@@ -509,7 +542,7 @@ SQL
 -   Built-in SQL functions now work correctly with ``DECIMAL`` values
     (:tarantool-issue:`6355`).
 
--   The default type is now defined in case the argument type of SQL
+-   The default type is now defined in case the argument type of an SQL
     built-in function cannot be determined during parsing (:tarantool-issue:`4415`).
 
 -   The ``ARRAY`` field type is now available in SQL. The syntax has also
@@ -523,10 +556,16 @@ SQL
 -   The left operand is now checked before the right operand in an
     arithmetic operation. (:tarantool-issue:`6773`).
 
--   The ``INTERVAL`` field type is introduced to SQL (:tarantool-issue:`6773`).
+-   The ``INTERVAL`` field type is introduced in SQL (:tarantool-issue:`6773`).
 
 -   Bitwise operations can now only accept ``UNSIGNED`` and positive
     ``INTEGER`` values (:tarantool-issue:`5364`).
+
+-   The ``MAP`` field type is now available in SQL. Also, the syntax has been
+    implemented to allow the creation of ``MAP`` values (:tarantool-issue:`4763`).
+
+-   Introduced ``[]`` operator for ``MAP`` and ``ARRAY`` values
+    (:tarantool-issue:`6251`).
 
 Box
 ~~~
@@ -542,6 +581,28 @@ Box
     a full scan though by passing ``fullscan=true`` to ``select`` ’s
     ``options`` table argument, in which case a log entry will not be
     created (:tarantool-issue:`6539`).
+
+-   Improved checking for dangerous ``select`` calls. The calls with
+    ``offset + limit <= 1000`` are now considered safe, which means a
+    warning is not issued. The ‘ALL’, ‘GE’, ‘GT’, ‘LE’, ‘LT’ iterators
+    are now considered dangerous by default even with the key present
+    (:tarantool-issue:`7129`).
+
+Datetime
+~~~~~~~~
+
+-   Allowed using human-readable timezone names (for example,
+    ‘Europe/Moscow’) in datetime strings. Use IANA ``tzdata`` (Olson DB)
+    for timezone-related operations, such as DST-based timezone offset
+    calculations (:tarantool-issue:`6751`).
+
+-   The ``isdst`` field in the datetime object is now calculated
+    correctly, according to the IANA ``tzdata`` (aka Olson DB) rules for
+    the given date/time moment (:tarantool-issue:`6751`).
+
+-   The ``datetime`` module exports the bidirectional ``TZ`` array, which
+    can be used to translate the timezone index (``tzindex``) into
+    timezone names, and vice versa (:tarantool-issue:`6751`).
 
 Fiber
 ~~~~~
@@ -571,14 +632,16 @@ Build
 
 -   Bumped Debian package compatibility level to 10 (:tarantool-issue:`5429`).
 
--   Bumped minimal required debhelper to version 10 (except for Ubuntu Xenial).
+-   Bumped minimal required debhelper to version 10 (except for Ubuntu
+    Xenial).
 
 -   Removed Windows binaries from Debian source packages (:tarantool-issue:`6390`).
 
 -   Bumped Debian control Standards-Version to 4.5.1 (:tarantool-issue:`6390`).
 
 -   Added bundling of libnghttp2 for bundled libcurl to support HTTP/2
-    for http client. The CMake version requirement is updated from 3.2 to 3.3.
+    for http client. The CMake version requirement is updated from 3.2 to
+    3.3.
 
 -   Support fedora-35 build (:tarantool-issue:`6692`).
 
@@ -593,6 +656,12 @@ Build
 -   Updated ``libicu`` version to 71.1 for static build.
 
 -   Bumped OpenSSL from 1.1.1f to 1.1.1n for static build (:tarantool-issue:`6947`).
+
+-   Updated libcurl to version 7.83.0 (:tarantool-issue:`6029`).
+
+-   Support Fedora-36 build.
+
+-   Support Ubuntu Jammy (22.04) build.
 
 Bugs fixed
 ----------
@@ -867,6 +936,10 @@ Core
     functions in ``clock`` and ``fiber`` was changed from ``uint64_t`` to
     ``int64_t`` both in Lua and C (:tarantool-issue:`5989`).
 
+-   Fixed reversed iterators gap tracking. Instead of tracking gaps for
+    the successors of keys, gaps for tuples shifted by one to the left of
+    the successor were tracked (:tarantool-issue:`7113`).
+
 Memtx
 ~~~~~
 
@@ -902,7 +975,7 @@ Replication
     written (:tarantool-issue:`6057`).
 
 -   Fixed an error where a replica, while attempting to subscribe to a foreign
-    cluster with a different replicaset UUID, didn’t notice it is impossible
+    cluster with a different replicaset UUID, did not notice it is impossible
     and instead became stuck in an infinite retry loop printing
     a ``TOO_EARLY_SUBSCRIBE`` error (:tarantool-issue:`6094`).
 
@@ -949,8 +1022,18 @@ Replication
 -   Fixed replicas failing to bootstrap when the master has just
     restarted (:tarantool-issue:`6966`).
 
+-   Fixed a bug when replication was broken on the master side with
+    ``ER_INVALID_MSGPACK`` (:tarantool-issue:`7089`).
+
 Raft
 ~~~~
+
+-   Fixed ``box.ctl.promote()`` entering an infinite election loop when a
+    node does not have enough peers to win the elections (:tarantool-issue:`6654`).
+
+-   Servers with elections enabled will resign the leadership and become
+    read-only when the number of connected replicas becomes less than a
+    quorum. This should prevent split-brain in some situations (:tarantool-issue:`6661`).
 
 -   Fixed a rare crash with the leader election enabled (any mode except
     ``off``), which could happen if a leader resigned from its role at
@@ -969,13 +1052,6 @@ Raft
 -   Fixed several crashes and/or undefined behaviors (assertions in debug
     build) which could appear when new synchronous transactions were made
     during ongoing elections (:tarantool-issue:`6842`).
-
--   Fixed ``box.ctl.promote()`` entering an infinite election loop when a
-    node does not have enough peers to win the elections (:tarantool-issue:`6654`).
-
--   Servers with elections enabled will resign the leadership and become
-    read-only when the number of connected replicas becomes less than a
-    quorum. This should prevent split-brain in some situations (:tarantool-issue:`6661`).
 
 LuaJIT
 ~~~~~~
@@ -1034,8 +1110,9 @@ Lua
 
 -   Tap subtests inherit strict mode from parent (:tarantool-issue:`6868`).
 
--   Fixed the behavior of Tarantool console on ``SIGINT``. Now ```Ctrl+C``
+-   Fixed the behavior of Tarantool console on ``SIGINT``. Now ``Ctrl+C``
     discards the current input and prints the new prompt (:tarantool-issue:`2717`).
+
 
 Triggers
 ^^^^^^^^
@@ -1099,6 +1176,9 @@ SQL
 -   Now the ``ROUND()`` function properly supports ``INTEGER`` and
     ``DECIMAL`` as the first argument (:tarantool-issue:`6988`).
 
+-   Fixed a crash when a table inserted data into itself with an
+    incorrect number of columns (:tarantool-issue:`7132`).
+
 Box
 ~~~
 
@@ -1119,7 +1199,7 @@ Datetime
 -   Intervals received after datetime arithmetic operations may be
     improperly normalized if the result was negative
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: lua
 
         tarantool> date.now() - date.now()
         ---
@@ -1129,12 +1209,16 @@ Datetime
     It means that two immediately called ``date.now()`` produce very close values,
     which difference should be close to 0, not 1 second (:tarantool-issue:`6882`).
 
+-   Fixed a bug in datetime module when ``date:set{tzoffset=XXX}`` did
+    not produce the same result with ``date.new{tzoffset=XXX}`` for the
+    same set of attributes passed (:tarantool-issue:`6793`).
+
 HTTP client
 ~~~~~~~~~~~
 
 -   Fixed invalid headers after redirect (:tarantool-issue:`6101`).
 
-MVCC
+Mvcc
 ~~~~
 
 -   Fixed MVCC interaction with ephemeral spaces: TX manager now ignores
@@ -1162,8 +1246,8 @@ Recovery
 Tarantoolctl
 ~~~~~~~~~~~~
 
--   Fixed the missing ``rocks`` keyword in ``tarantoolctl rocks`` help
-    messages.
+-  Fixed the missing ``rocks`` keyword in ``tarantoolctl rocks`` help
+   messages.
 
 Build
 ~~~~~
@@ -1182,3 +1266,4 @@ Build
 -   Changed size of alt. signal stack for ASAN needs.
 
 -   Fixed build errors on arm64 with ``CMAKE_BUILD_TYPE=Debug``.
+
