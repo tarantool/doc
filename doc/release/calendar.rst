@@ -36,7 +36,7 @@ End of series support means the release series will no longer receive any patche
 
         *   -   :doc:`2.10.0 </release/2.10.0>`
             -   May 22, 2022
-            -   not planned yet
+            -   Not planned yet
 
         *   -   :doc:`2.8.4 </release/2.8.4>`
             -   April 25, 2022

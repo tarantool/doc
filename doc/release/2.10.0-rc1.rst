@@ -111,7 +111,7 @@ Core
 
 -   Added the new ``STREAMS`` metric to ``box.stat.net``. It contains
     statistics for iproto streams. The ``STREAMS`` contains the same counters as
-    the ``CONNECTIONS`` metric in ``box.stat.net``: current, RPS, and total
+    the ``CONNECTIONS`` metric in ``box.stat.net``: ``current``, ``RPS``, and ``total``
     (:tarantool-issue:`6293`).
 
 -   Extended the network protocol (IPROTO) with a new request type
@@ -134,8 +134,8 @@ Core
 
 -   Added the new ``REQUESTS_IN_PROGRESS`` and ``REQUESTS_IN_STREAM_QUEUE``
     metrics  to ``box.stat.net`` that contains detailed statistics for iproto requests.
-    These metrics contain same counters as other metrics in ``box.stat.net``: current, RPS, and
-    total (:tarantool-issue:`6293`).
+    These metrics contain same counters as other metrics in ``box.stat.net``: ``current``, ``RPS``, and
+    ``total`` (:tarantool-issue:`6293`).
 
 -   Implemented a timeout for ``fiber:join`` in Lua (:tarantool-issue:`6203`).
 
@@ -830,7 +830,7 @@ Core
     and ``box.on_rollback`` trigger callbacks (:tarantool-issue:`7005`).
 
 -   Fixed usage of ``box.session.peer()`` in ``box.session.on_disconnect()``
-    trigger. Now, it’s safe to assume that ``box.session.peer()`` returns
+    trigger. Now it’s safe to assume that ``box.session.peer()`` returns
     the address of the disconnected peer, not nil, as it used to (:tarantool-issue:`7014`).
 
 -   Fixed creation of a space with a foreign key pointing to the same
