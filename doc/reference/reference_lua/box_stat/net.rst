@@ -28,9 +28,9 @@ box.stat.net()
         * ``STREAMS.current`` -- number of active :doc:`streams </book/box/stream>`
         * ``STREAMS.rps`` -- average number of streams opened per second in the last 5 seconds
         * ``STREAMS.total`` -- total number of streams opened since the server started
-        * ``REQUESTS_IN_STREAM_QUEUE.current`` -- number requests waiting in the streams' queues
-        * ``REQUESTS_IN_STREAM_QUEUE.rps`` -- average number of requests in the streams' queues per second in the last 5 seconds
-        * ``REQUESTS_IN_STREAM_QUEUE.total`` -- total number of requests placed in the streams' queues since the server started
+        * ``REQUESTS_IN_STREAM_QUEUE.current`` -- number of requests waiting in stream queues
+        * ``REQUESTS_IN_STREAM_QUEUE.rps`` -- average number of requests in stream queues per second in the last 5 seconds
+        * ``REQUESTS_IN_STREAM_QUEUE.total`` -- total number of requests placed in stream queues since the server started
 
 
     **Example:**
