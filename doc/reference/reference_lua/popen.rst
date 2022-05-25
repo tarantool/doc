@@ -159,7 +159,7 @@ Below is a list of all ``popen`` functions and handle methods.
     :param array argv: an array of a program to run with command line options,
                        mandatory; absolute path to the program is required when
                        ``opts.shell`` is false (default)
-    :param opts mode: table of options, optional
+    :param table opts: table of options, optional
     :return: (if success) a popen handle, which we will call
              ``popen_handle`` or ``ph``
 
