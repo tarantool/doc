@@ -47,9 +47,17 @@ box.stat.net()
             current: 0
             rps: 0
             total: 0
+          REQUESTS_IN_PROGRESS:
+            current: 0
+            rps: 0
+            total: 0
           SENT:
             total: 0
             rps: 0
+          REQUESTS_IN_STREAM_QUEUE:
+            current: 0
+            rps: 0
+            total: 0
           STREAMS:
             current: 0
             rps: 0
