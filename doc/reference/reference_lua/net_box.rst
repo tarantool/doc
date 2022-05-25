@@ -135,11 +135,11 @@ Below is a list of all ``net.box`` functions.
         *   -   :ref:`conn:new_stream() <conn-new_stream>`                    
             -   Create a stream             
         *   -   :ref:`stream:begin() <net_box-stream_begin>`                    
-            -   Begin a transaction               
+            -   Begin a stream transaction               
         *   -   :ref:`stream:commit() <net_box-stream_commit>`                    
-            -   Commit a transaction   
+            -   Commit a stream transaction   
         *   -   :ref:`stream:rollback() <net_box-stream_rollback>`                    
-            -   Rollback a transaction                           
+            -   Rollback a stream transaction                           
             
 .. module:: net_box
 
@@ -643,31 +643,31 @@ Below is a list of all ``net.box`` functions.
 
     .. method:: begin()
 
-        Begin a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+        Begin a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
            
     .. _net_box-stream_commit:
 
     .. method:: commit()
 
-        Commit a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+        Commit a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
         
         **Examples:**
 
         .. code-block:: lua
 
-           -- Begin transaction
+           -- Begin stream transaction
            stream:begin()
            -- Atomically transfer `sum` from `account1` to `account2`
            stream.space.accounts.update({account1}, {{'-', 'amount', sum}})
            stream.space.accounts.update({account2}, {{'+', 'amount', sum}})
-           -- Commit transaction
+           -- Commit stream transaction
            stream:commit()
            
     .. _net_box-stream_rollback:
 
     .. method:: rollback()
 
-        Rollback a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+        Rollback a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
 
         **Example:**
 
@@ -675,10 +675,10 @@ Below is a list of all ``net.box`` functions.
 
            -- Test rollback for memtx space
            space:replace({1})
-           -- Select return tuple, which was previously inserted, because this select belongs to transaction.
+           -- Select return tuple that was previously inserted, because this select belongs to stream transaction
            space:select({})
            stream:rollback()
-           -- Select is empty, transaction rollback
+           -- Select is empty, stream transaction rollback
            space:select({})
 
 ..  _net_box-triggers:
