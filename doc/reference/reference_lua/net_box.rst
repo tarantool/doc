@@ -632,7 +632,10 @@ Below is a list of all ``net.box`` functions.
 
         .. code-block:: lua
 
-           stream = conn:new_stream()
+           local conn = net_box.connect('localhost:3301')
+           local conn_space = conn.space.test
+           local stream = conn:new_stream()
+           local stream_space = stream.space.test
 
 .. class:: stream
 
@@ -641,26 +644,24 @@ Below is a list of all ``net.box`` functions.
     .. method:: begin()
 
         Begin a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
-
-        **Example:**
-
-        .. code-block:: lua
-
-           stream:begin()
            
- 
     .. _net_box-stream_commit:
 
     .. method:: commit()
 
         Commit a transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
-
-        **Example:**
+        
+        **Examples:**
 
         .. code-block:: lua
 
+           -- Begin transaction
+           stream:begin()
+           -- Atomically transfer `sum` from `account1` to `account2`
+           stream.space.accounts.update({account1}, {{'-', 'amount', sum}})
+           stream.space.accounts.update({account2}, {{'+', 'amount', sum}})
+           -- Commit transaction
            stream:commit()
-           
            
     .. _net_box-stream_rollback:
 
@@ -672,13 +673,13 @@ Below is a list of all ``net.box`` functions.
 
         .. code-block:: lua
 
+           -- Test rollback for memtx space
+           space:replace({1})
+           -- Select return tuple, which was previously inserted, because this select belongs to transaction.
+           space:select({})
            stream:rollback()
-                      
- 
- 
-
-        
-    
+           -- Select is empty, transaction rollback
+           space:select({})
 
 ..  _net_box-triggers:
 
