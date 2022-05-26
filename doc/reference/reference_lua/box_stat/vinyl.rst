@@ -53,7 +53,8 @@ related variables whenever it is invoked.
   the regulator based on the observed dump/compaction performance.
 
 * ``box.stat.vinyl().regulator.blocked_writers`` is the number of fibers
-  that are blocked waiting for Vinyl level0 memory quota.
+  currently blocked waiting for vinyl :ref:`L0 memory <engines-algorithm_filling_lsm>`
+  quota.
 
 
 .. _box_introspection-box_stat_vinyl_disk:
