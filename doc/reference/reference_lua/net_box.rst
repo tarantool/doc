@@ -658,9 +658,8 @@ Below is a list of all ``net.box`` functions.
 
            -- Begin stream transaction
            stream:begin()
-           -- Transfer 'sum' atomically from the previously created space 'account1' to the space 'account2'
-           stream.space.accounts:update({account1}, {{'-', 'amount', sum}})
-           stream.space.accounts:update({account2}, {{'+', 'amount', sum}})
+           -- In the previously created ``accounts`` space with the primary key ``test``, modify the fields 2 and 3
+           stream.space.accounts:update(test_1, {{'-', 2, 370}, {'+', 3, 100}})
            -- Commit stream transaction
            stream:commit()
            
