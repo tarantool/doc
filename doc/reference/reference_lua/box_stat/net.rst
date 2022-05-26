@@ -1,3 +1,5 @@
+.. _box_introspection-box_stat_net:
+
 box.stat.net()
 ==============
 
@@ -40,19 +42,19 @@ box.stat.net()
         tarantool> box.stat.net() -- 5 tables
         ---
         - CONNECTIONS:
-            current: 0
+            current: 1
             rps: 0
-            total: 0
+            total: 1
           REQUESTS:
             current: 0
             rps: 0
-            total: 0
+            total: 8
           REQUESTS_IN_PROGRESS:
             current: 0
             rps: 0
-            total: 0
+            total: 7
           SENT:
-            total: 0
+            total: 19579
             rps: 0
           REQUESTS_IN_STREAM_QUEUE:
             current: 0
@@ -63,6 +65,111 @@ box.stat.net()
             rps: 0
             total: 0
           RECEIVED:
-            total: 0
-            rps: 0
+            total: 197
+            rps
+        ...
+
+
+.. module:: box.stat
+
+.. function:: net.thread()
+
+    Shows network activity per :ref:`network thread <atomic-threads_fibers_yields>`:
+    the number of bytes sent and received, the number of connections, streams,
+    and requests (current, average, and total).
+
+    When called with an index (`box.stat.net.thread[1]`), shows network statistics for
+    a single network thread.
+
+    :return: Same network activity metrics as :ref:`box.stat.net() <box_introspection-box_stat_net>`
+        for each network thread
+
+    **Example:**
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.stat.net.thread() -- iproto_threads = 2
+        - - CONNECTIONS:
+              current: 0
+              rps: 0
+              total: 0
+            REQUESTS:
+              current: 0
+              rps: 0
+              total: 0
+            REQUESTS_IN_PROGRESS:
+              current: 0
+              rps: 0
+              total: 0
+            SENT:
+              total: 0
+              rps: 0
+            REQUESTS_IN_STREAM_QUEUE:
+              current: 0
+              rps: 0
+              total: 0
+            STREAMS:
+              current: 0
+              rps: 0
+              total: 0
+            RECEIVED:
+              total: 0
+              rps: 0
+          - CONNECTIONS:
+              current: 1
+              rps: 0
+              total: 1
+            REQUESTS:
+              current: 0
+              rps: 0
+              total: 8
+            REQUESTS_IN_PROGRESS:
+              current: 0
+              rps: 0
+              total: 7
+            SENT:
+              total: 19579
+              rps: 0
+            REQUESTS_IN_STREAM_QUEUE:
+              current: 0
+              rps: 0
+              total: 0
+            STREAMS:
+              current: 0
+              rps: 0
+              total: 0
+            RECEIVED:
+              total: 197
+              rps: 0
+        ...
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> box.stat.net.thread[1] -- first network thread
+        - - CONNECTIONS:
+              current: 1
+              rps: 0
+              total: 1
+            REQUESTS:
+              current: 0
+              rps: 0
+              total: 8
+            REQUESTS_IN_PROGRESS:
+              current: 0
+              rps: 0
+              total: 7
+            SENT:
+              total: 19579
+              rps: 0
+            REQUESTS_IN_STREAM_QUEUE:
+              current: 0
+              rps: 0
+              total: 0
+            STREAMS:
+              current: 0
+              rps: 0
+              total: 0
+            RECEIVED:
+              total: 197
+              rps: 0
         ...
