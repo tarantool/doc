@@ -632,6 +632,7 @@ Below is a list of all ``net.box`` functions.
 
         .. code-block:: lua
 
+           -- Start a server to create a new stream
            local conn = net_box.connect('localhost:3301')
            local conn_space = conn.space.test
            local stream = conn:new_stream()
@@ -657,9 +658,9 @@ Below is a list of all ``net.box`` functions.
 
            -- Begin stream transaction
            stream:begin()
-           -- Atomically transfer `sum` from `account1` to `account2`
-           stream.space.accounts.update({account1}, {{'-', 'amount', sum}})
-           stream.space.accounts.update({account2}, {{'+', 'amount', sum}})
+           -- Transfer 'sum' atomically from the previously created space 'account1' to the space 'account2'
+           stream.space.accounts:update({account1}, {{'-', 'amount', sum}})
+           stream.space.accounts:update({account2}, {{'+', 'amount', sum}})
            -- Commit stream transaction
            stream:commit()
            
