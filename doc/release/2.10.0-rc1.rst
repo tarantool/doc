@@ -423,7 +423,7 @@ Log
 
     ..  code-block:: lua
 
-        require('log').cfg{level = 'verbose'}`
+        require('log').cfg{level = 'verbose'}
 
 Msgpack
 ^^^^^^^
