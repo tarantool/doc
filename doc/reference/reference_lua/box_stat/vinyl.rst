@@ -52,6 +52,11 @@ related variables whenever it is invoked.
   in bytes per second, imposed on transactions by
   the regulator based on the observed dump/compaction performance.
 
+* ``box.stat.vinyl().regulator.blocked_writers`` is the number of fibers
+  currently blocked waiting for vinyl :ref:`L0 memory <engines-algorithm_filling_lsm>`
+  quota.
+
+
 .. _box_introspection-box_stat_vinyl_disk:
 
 box.stat.vinyl().disk
