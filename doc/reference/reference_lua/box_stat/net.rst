@@ -78,7 +78,7 @@ box.stat.net()
     the number of bytes sent and received, the number of connections, streams,
     and requests (current, average, and total).
 
-    When called with an index (`box.stat.net.thread[1]`), shows network statistics for
+    When called with an index (``box.stat.net.thread[1]``), shows network statistics for
     a single network thread.
 
     :return: Same network activity metrics as :ref:`box.stat.net() <box_introspection-box_stat_net>`
