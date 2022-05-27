@@ -907,7 +907,7 @@ An expression has data type = MAP if it is enclosed in curly brackets
 (also called braces) ``{`` and ``}`` and contains a key for identification,
 then a colon ``:``, then a value for what the key identifies.
 The key data type must be INTEGER or STRING or UUID.
-The value data type may be anything, including MAP---that is, MAPs may be nested.
+The value data type may be anything, including MAP -- that is, MAPs may be nested.
 The Lua equivalent type is 'map' but the syntax is slightly different,
 for example the SQL value ``{'a': 1}`` is represented in Lua as ``{a = 1}``.
 
@@ -919,7 +919,7 @@ Examples: ``[1,2,3,4]``, ``[1,[2,3],4]``, ``['a', "column_1", uuid()]`` |br|
 An expression has data type = ARRAY if it is a sequence of zero or more values
 enclosed in square brackets (``[`` and ``]``).
 Often the values in the sequence are called "elements".
-The element data type may be anything, including ARRAY---that is, ARRAYs may be nested.
+The element data type may be anything, including ARRAY -- that is, ARRAYs may be nested.
 Different elements may have different types.
 The Lua equivalent type is `'array' <https://www.lua.org/pil/11.1.html>`_.
 

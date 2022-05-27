@@ -30,7 +30,7 @@ the best programming practice with Tarantool. When multiple fibers use the same
 connection, all requests are pipelined through the same network socket, but each
 fiber gets back a correct response. Reducing the number of active sockets lowers
 the overhead of system calls and increases the overall server performance. However
-for some cases a single connection is not enough---for example, when
+for some cases a single connection is not enough -- for example, when
 it is necessary to prioritize requests or to use different authentication IDs.
 
 .. _net_box-options:

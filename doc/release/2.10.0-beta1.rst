@@ -94,7 +94,7 @@ Core
     The possible values are ``system`` for the malloc allocator and ``small`` for the default small allocator.
 
     Implemented the system allocator based on malloc. The slab allocator, which is used for tuple allocation,
-    has a particular disadvantage---it is prone to unresolvable fragmentation on specific workloads (size migration).
+    has a particular disadvantage -- it is prone to unresolvable fragmentation on specific workloads (size migration).
     In this case, the user should be able to choose another allocator.
     The system allocator is based on the malloc function but restricted by the same quota as the slab allocator.
     The system allocator does not alloc all the memory at the start. Instead, it allocates memory as needed,
@@ -152,7 +152,7 @@ Lua
 Digest
 ~~~~~~
 
--   Introduced new hash types---``xxhash32`` and ``xxhash64``---in the digest module.
+-   Introduced new hash types -- ``xxhash32`` and ``xxhash64`` -- in the digest module.
     (:tarantool-issue:`2003`).
 
 Fiber

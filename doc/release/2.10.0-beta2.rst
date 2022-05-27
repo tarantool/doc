@@ -114,7 +114,7 @@ Core
 
    Implemented the system allocator based on malloc. The slab allocator,
    which is used for tuple allocation, has a particular
-   disadvantage---it is prone to unresolvable fragmentation on specific
+   disadvantage -- it is prone to unresolvable fragmentation on specific
    workloads (size migration). In this case, the user should be able to
    choose another allocator. The system allocator is based on the malloc function
    but restricted by the same quota as the slab allocator. The system allocator
@@ -262,13 +262,13 @@ Lua
 Datetime
 ^^^^^^^^
 
--  Added a new built-in module---``datetime.lua``. It allows operating
+-  Added a new built-in module -- ``datetime.lua``. It allows operating
    timestamps and intervals values (:tarantool-issue:`5941`).
 
 Digest
 ^^^^^^
 
--  Introduced new hash types---``xxhash32`` and ``xxhash64``---in the digest module`
+-  Introduced new hash types -- ``xxhash32`` and ``xxhash64`` -- in the digest module
    (:tarantool-issue:`2003`).
 
 Fiber

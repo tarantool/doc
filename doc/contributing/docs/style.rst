@@ -255,7 +255,7 @@ only if the cells contain complete sentences or a mixture of fragments and sente
 `Microsoft guideline <https://docs.microsoft.com/en-us/style-guide/scannable-content/tables#punctuation>`__
 for the English language.)
 
-Besides, make sure that your table punctuation is consistent---either
+Besides, make sure that your table punctuation is consistent -- either
 all similar list/table items end with a period or they all don't.
 In the example below, *all* items in the second column don't have
 ending punctuation. Meanwhile, *all* items in the fourth column end with a period,

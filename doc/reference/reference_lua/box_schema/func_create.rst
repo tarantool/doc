@@ -24,10 +24,10 @@ box.schema.func.create()
 
     The possible options are:
 
-    *   ``if_not_exists`` = ``true|false`` (default = ``false``)---
+    *   ``if_not_exists`` = ``true|false`` (default = ``false``) --
         ``true`` means there should be no error if the ``_func`` tuple already exists.
 
-    *   ``setuid`` = ``true|false`` (default = ``false``)---with ``true`` to make Tarantool
+    *   ``setuid`` = ``true|false`` (default = ``false``) -- with ``true`` to make Tarantool
         treat the function's caller as the function's creator, with full privileges.
         Remember that SETUID works only over
         :ref:`binary ports <admin-security>`.
@@ -112,7 +112,7 @@ box.schema.func.create()
 
     * Additional options for SQL = See :ref:`Calling Lua routines from SQL <sql_calling_lua>`.
 
-    * ``takes_raw_args``---see the option description in :ref:`box.schema.func.create(func-name [, {options-with-body}]) <box_schema-func_create_without-body>`.
+    * ``takes_raw_args`` -- see the option description in :ref:`box.schema.func.create(func-name [, {options-with-body}]) <box_schema-func_create_without-body>`.
 
     :param string func-name: name of function, which should
                              conform to the :ref:`rules for object names <app_server-names>`

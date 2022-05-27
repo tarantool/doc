@@ -36,8 +36,8 @@
 
         Starting from version 2.10.0, there is a number of other ways for specifying several URIs. See :ref:`syntax examples <index-uri-several>`.
 
-    If one of the URIs is "self"---that is, if one of the URIs is for the
-    instance where ``box.cfg{}`` is being executed on---then it is ignored.
+    If one of the URIs is "self" -- that is, if one of the URIs is for the
+    instance where ``box.cfg{}`` is being executed -- then it is ignored.
     Thus, it is possible to use the same ``replication`` specification on
     multiple server instances, as shown in
     :ref:`these examples <replication-bootstrap>`.

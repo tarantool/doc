@@ -112,7 +112,7 @@ Core
     the default small allocator.
 
     Implemented the system allocator based on malloc. The slab allocator, which is used for tuple allocation,
-    has a particular disadvantage---it is prone to unresolvable fragmentation on specific workloads (size migration).
+    has a particular disadvantage -- it is prone to unresolvable fragmentation on specific workloads (size migration).
     In this case, the user should be able to choose another allocator.
     The system allocator is based on the malloc function but restricted by the same quota as the slab allocator.
     The system allocator does not alloc all the memory at the start. Instead, it allocates memory as needed,
@@ -422,7 +422,7 @@ Datetime
 Digest
 ^^^^^^
 
--   Introduced new hash types in digest module---``xxhash32`` and
+-   Introduced new hash types in digest module -- ``xxhash32`` and
     ``xxhash64`` (:tarantool-issue:`2003`).
 
 Fiber

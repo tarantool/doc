@@ -269,7 +269,7 @@ Functionality added or changed
     *   Secondary - "s2"
     *   Tertiary - "s3"
 
-    The following list contains so-called "stable" collations---the
+    The following list contains so-called "stable" collations -- the
     ones whose sort order doesn't depend on the ICU version:
 
     ..  code-block:: none

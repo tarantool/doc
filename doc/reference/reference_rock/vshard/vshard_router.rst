@@ -325,9 +325,9 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        *   ``timeout``---a request timeout, in seconds. The timeout is for the entire ``map_callrw()``, including all its stages.
+        *   ``timeout`` -- a request timeout, in seconds. The timeout is for the entire ``map_callrw()``, including all its stages.
 
-        *   ``return_raw``---the :ref:`net.box option <net_box-options>` implemented in Tarantool since version 2.10.0.
+        *   ``return_raw`` -- the :ref:`net.box option <net_box-options>` implemented in Tarantool since version 2.10.0.
             If set to ``true``, ``net.box`` returns the response data wrapped in a :ref:`MessagePack object <msgpack-object-info>` instead of decoding it to Lua.
             For more details, see the **Return** section below.
 

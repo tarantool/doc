@@ -138,7 +138,7 @@ located in the top right corner.
 Creating a data schema [2 minutes]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Let's start with the data schema---take a look at the "Code" tab on the left.
+Let's start with the data schema -- take a look at the "Code" tab on the left.
 
 Here we can create a file called ``schema.yml``. In this file, you can
 describe the entire cluster's data schema, edit the current schema,
@@ -268,7 +268,7 @@ Writing data [5 minutes]
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 We will write data to the Tarantool cluster using the CRUD module.
-You don't have to specify the shard you want to read from or write to---the module
+You don't have to specify the shard you want to read from or write to -- the module
 does it for you.
 
 **Important:** All cluster operations must be performed only on the router
@@ -418,7 +418,7 @@ The result will be something like this:
 
 In our example, you can "like" the video as many times as you want.
 It makes no sense in the real life, but it will help us understand how
-sharding works---more precisely, the ``sharding_key`` parameter.
+sharding works -- more precisely, the ``sharding_key`` parameter.
 
 Our ``sharding_key`` for the ``likes`` is ``video_id``.
 We also specified a ``sharding_key`` for the ``videos`` space. It means
@@ -475,7 +475,7 @@ Click on the necessary roles and create a shard (replica set).
 Checking how sharding works [1 minute]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now we have two shards---two logical nodes that
+Now we have two shards -- two logical nodes that
 share data among themselves. The router decides what piece of data goes to what shard.
 By default, the router uses the hash function from the field ``sharding_key``
 we've specified in the DDL.

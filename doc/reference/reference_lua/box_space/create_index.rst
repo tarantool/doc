@@ -123,7 +123,7 @@ On this page:
                     -   not present
                 *   -   hint (since version :doc:`2.6.1 </release/2.6.1>`)
                     -   affects TREE only.
-                        ``true`` makes an index work faster, ``false``\---index size is reduced by half
+                        ``true`` makes an index work faster, ``false`` -- index size is reduced by half
                     -   boolean
                     -   true
 
