@@ -80,6 +80,7 @@ The IPROTO constants that identify requests that we will mention in this section
     IPROTO_VOTE=0x44
     IPROTO_FETCH_SNAPSHOT=0x45
     IPROTO_REGISTER=0x46
+    IPROTO_ID=0x49
 
 The IPROTO constants that appear within requests or responses that we will describe in this section are:
 
@@ -140,6 +141,8 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_RAFT_VOTE=0x01
     IPROTO_RAFT_STATE=0x02
     IPROTO_RAFT_VCLOCK=0x03
+    IPROTO_VERSION=0x54
+    IPROTO_FEATURES=0x55
 
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
