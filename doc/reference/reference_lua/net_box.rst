@@ -86,74 +86,61 @@ On this diagram:
 
 Below is a list of all ``net.box`` functions.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  list-table::
+        :widths: 50 50
+        :header-rows: 1
 
-    +----------------------------------------------------+---------------------------+
-    | Name                                               | Use                       |
-    +====================================================+===========================+
-    | :ref:`net_box.connect()                            |                           |
-    | <net_box-connect>` |br|                            | Create a connection       |
-    | :ref:`net_box.new()                                |                           |
-    | <net_box-new>` |br|                                |                           |
-    | :ref:`net_box.self <net_box-self>`                 |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:ping()                                  | Execute a PING command    |
-    | <conn-ping>`                                       |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:wait_connected()                        | Wait for a connection to  |
-    | <conn-wait_connected>`                             | be active or closed       |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:is_connected()                          | Check if a connection     |
-    | <conn-is_connected>`                               | is active or closed       |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:wait_state()                            | Wait for a target state   |
-    | <conn-wait_state>`                                 |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:close()                                 | Close a connection        |
-    | <conn-close>`                                      |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn.space.space-name:select{field-value}    | Select one or more tuples |
-    | <conn-select>`                                     |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn.space.space-name:get{field-value}       | Select a tuple            |
-    | <conn-get>`                                        |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn.space.space-name:insert{field-value}    | Insert a tuple            |
-    | <conn-insert>`                                     |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn.space.space-name:replace{field-value}   | Insert or replace a tuple |
-    | <conn-replace>`                                    |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn.space.space-name:update{field-value}    | Update a tuple            |
-    | <conn-update>`                                     |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn.space.space-name:upsert{field-value}    | Update a tuple            |
-    | <conn-upsert>`                                     |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn.space.space-name:delete{field-value}    | Delete a tuple            |
-    | <conn-delete>`                                     |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:eval()                                  | Evaluate and execute the  |
-    | <net_box-eval>`                                    | expression in a string    |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:call()                                  | Call a stored procedure   |
-    | <net_box-call>`                                    |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:timeout()                               | Set a timeout             |
-    | <conn-timeout>`                                    |                           |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:on_connect()                            | Define a connect          |
-    | <net_box-on_connect>`                              | trigger                   |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:on_disconnect()                         | Define a disconnect       |
-    | <net_box-on_disconnect>`                           | trigger                   |
-    +----------------------------------------------------+---------------------------+
-    | :ref:`conn:on_schema_reload()                      | Define a trigger when     |
-    | <net_box-on_schema_reload>`                        | schema is modified        |
-    +----------------------------------------------------+---------------------------+
+        *   -   Name
+            -   Use
+        *   -   :ref:`net_box.connect() <net_box-connect>` |br| :ref:`net_box.new() <net_box-new>` |br| :ref:`net_box.self <net_box-self>` 
+            -   Create a connection
+        *   -   :ref:`conn:ping() <conn-ping>`
+            -   Execute a PING command            
+        *   -   :ref:`conn:wait_connected() <conn-wait_connected>`   
+            -   Wait for a connection to be active or closed      
+        *   -   :ref:`conn:is_connected() <conn-is_connected>`                           
+            -   Check if a connection is active or closed            
+        *   -   :ref:`conn:wait_state() <conn-wait_state>`                  
+            -   Wait for a target state            
+        *   -   :ref:`conn:close() <conn-close>`                                     
+            -   Close a connection
+        *   -   :ref:`conn.space.space-name:select{field-value} <conn-select>`          
+            -   Select one or more tuples            
+        *   -   :ref:`conn.space.space-name:get{field-value} <conn-get>`  
+            -   Select a tuple            
+        *   -   :ref:`conn.space.space-name:insert{field-value} <conn-insert>`
+            -   Insert a tuple 
+        *   -   :ref:`conn.space.space-name:replace{field-value} <conn-replace>`     
+            -   Insert or replace a tuple            
+        *   -   :ref:`conn.space.space-name:update{field-value} <conn-update>`                                   
+            -   Update a tuple              
+        *   -   :ref:`conn.space.space-name:upsert{field-value} <conn-upsert>`    
+            -   Update a tuple     
+        *   -   :ref:`conn.space.space-name:delete{field-value} <conn-delete>`                           
+            -   Delete a tuple                 
+        *   -   :ref:`conn:eval() <net_box-eval>`                                
+            -   Evaluate the expression in a string and execute it                
+        *   -   :ref:`conn:call() <net_box-call>`                      
+            -   Call a stored procedure               
+        *   -   :ref:`conn:timeout() <conn-timeout>`                               
+            -   Set a timeout                 
+        *   -   :ref:`conn:on_connect() <net_box-on_connect>`                            
+            -   Define a connect trigger            
+        *   -   :ref:`conn:on_disconnect() <net_box-on_disconnect>`                     
+            -   Define a disconnect trigger 
+        *   -   :ref:`conn:on_schema_reload() <net_box-on_schema_reload>`                    
+            -   Define a trigger when schema is modified
+        *   -   :ref:`conn:new_stream() <conn-new_stream>`                    
+            -   Create a stream             
+        *   -   :ref:`stream:begin() <net_box-stream_begin>`                    
+            -   Begin a stream transaction               
+        *   -   :ref:`stream:commit() <net_box-stream_commit>`                    
+            -   Commit a stream transaction   
+        *   -   :ref:`stream:rollback() <net_box-stream_rollback>`                    
+            -   Rollback a stream transaction                           
+            
 .. module:: net_box
 
 .. _net_box-connect:
@@ -174,7 +161,7 @@ Below is a list of all ``net.box`` functions.
     disconnect (see ``reconnect_after`` option below).
     The returned ``conn`` object supports methods for making remote requests,
     such as select, update or delete.
-
+    
     Possible options:
 
     * `user/password`: you have two ways to connect to a remote host:
@@ -635,6 +622,64 @@ Below is a list of all ``net.box`` functions.
         The option can be useful if you want to pass a response through without decoding or with partial decoding.
         The usage of :ref:`MsgPack object <msgpack-object-info>` can reduce pressure on the Lua garbage collector.
 
+    .. _conn-new_stream:
+
+    .. method:: stream([options])
+
+        Create a stream.
+
+        **Example:**
+
+        .. code-block:: lua
+
+           -- Start a server to create a new stream
+           local conn = net_box.connect('localhost:3301')
+           local conn_space = conn.space.test
+           local stream = conn:new_stream()
+           local stream_space = stream.space.test
+
+.. class:: stream
+
+    .. _net_box-stream_begin:
+
+    .. method:: begin()
+
+        Begin a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+           
+    .. _net_box-stream_commit:
+
+    .. method:: commit()
+
+        Commit a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+        
+        **Examples:**
+
+        .. code-block:: lua
+
+           -- Begin stream transaction
+           stream:begin()
+           -- In the previously created ``accounts`` space with the primary key ``test``, modify the fields 2 and 3
+           stream.space.accounts:update(test_1, {{'-', 2, 370}, {'+', 3, 100}})
+           -- Commit stream transaction
+           stream:commit()
+           
+    .. _net_box-stream_rollback:
+
+    .. method:: rollback()
+
+        Rollback a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
+
+        **Example:**
+
+        .. code-block:: lua
+
+           -- Test rollback for memtx space
+           space:replace({1})
+           -- Select return tuple that was previously inserted, because this select belongs to stream transaction
+           space:select({})
+           stream:rollback()
+           -- Select is empty, stream transaction rollback
+           space:select({})
 
 ..  _net_box-triggers:
 
