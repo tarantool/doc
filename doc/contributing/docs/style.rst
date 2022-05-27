@@ -196,14 +196,15 @@ across all Tarantool documentation in a single language.
 This is because the documentation :doc:`builder </contributing/docs/build/>`
 renders specific character sequences in the source into correct typographic characters.
 
-Type three hyphens (``---``) to insert an em dash (---)
-and two hyphens (``--``) for an en dash (--).
-The following rules apply:
+Tarantool documentarians are recommended to use the **en dash** (--) only.
+Type two hyphens to insert it: ``--``. Add spaces on both sides of the dash.
+Don't use a single hyphen as a dash.
 
-*   The longer **em dash** ``---`` is used to separate extra information or mark a break in a sentence.
-*   The shorter **en dash** ``--`` is used to mark ranges (for example, 4--16 GB or Dover--Calais crossing).
+Use the dash for the following purposes:
 
-Don't use a single hyphen as a dash. Don't add spaces on either side of a dash. 
+*   To separate extra information.
+*   To mark a break in a sentence.
+*   To mark ranges like 4--16 GB.
 
 When indicating a range like ``code element 1``\--``code element 2``, escape the series of hyphens using
 `character-level inline markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#character-level-inline-markup-1>`_. 
