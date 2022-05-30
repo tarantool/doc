@@ -833,10 +833,19 @@ The body is a 2-item map:
 IPROTO_VERSION is the integer number that increases by one with each change in
 the IPROTO_FEATURES set. The latest version is |iproto_version|.
 
-Supported IPROTO_FEATURES are listed in the
-`iproto_features.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_features.h>`_.
+Available IPROTO_FEATURES are the following:
 
-This request can be processed without authentication.
+- ``IPROTO_FEATURE_STREAMS = 0`` -- streams support: :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
+  in the request header
+- ``IPROTO_FEATURE_TRANSACTIONS = 1`` -- transaction support: IPROTO_BEGIN, IPROTO_COMMIT,
+  and IPROTO_ROLLBACK commands
+- ``IPROTO_FEATURE_ERROR_EXTENSION = 2`` -- :ref:`MP_ERROR <msgpack_ext-error>`
+  MsgPack extension support
+- ``IPROTO_FEATURE_WATCHERS = 3`` -- remote watchers support: IPROTO_WATCH, IPROTO_UNWATCH,
+  and IPROTO_EVENT commands
+.. // TODO: document remote watchers commands
+
+IPROTO_ID requests can be processed without authentication.
 
 
 ..  _box_protocol-responses:
