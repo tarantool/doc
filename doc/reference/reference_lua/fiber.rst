@@ -937,8 +937,8 @@ recommended.
         *   the elapsed time is usually 5 seconds, and
         *   the second ``fiber.status()`` call returns 'dead'.
 
-        This proves that the ``join()`` does not return until
-        the function -- which sleeps 5 seconds -- is 'dead'.
+        This proves that the ``join()`` function blocks the execution
+        of the main fiber until the ``fi2`` fiber becomes 'dead'.
 
         ..  code-block:: lua
 
