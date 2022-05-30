@@ -1,8 +1,7 @@
-.. _atomic-cooperative_multitasking:
+..  _atomic-cooperative_multitasking:
 
---------------------------------------------------------------------------------
 Cooperative multitasking
---------------------------------------------------------------------------------
+========================
 
 Cooperative multitasking means that unless a running fiber deliberately yields
 control, it is not preempted by some other fiber. But a running fiber will

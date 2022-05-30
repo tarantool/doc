@@ -1,8 +1,7 @@
-.. _atomic-transactional-manager:
+..  _atomic-transactional-manager:
 
---------------------------------------------------------------------------------
 Transactional manager
---------------------------------------------------------------------------------
+=====================
 
 Since version :doc:`2.6.1 </release/2.6.1>`,
 Tarantool has another option for transaction behavior that
@@ -13,8 +12,8 @@ The transactional manager is designed to isolate concurrent transactions
 and provides a *serializable* `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_.
 It consists of two parts:
 
-* *MVCC engine*
-* *conflict manager*.
+*   *MVCC engine*
+*   *conflict manager*
 
 The MVCC engine provides personal read views for transactions if necessary.
 The conflict manager tracks chaanges to transactions and determines their correctness

@@ -1,45 +1,44 @@
-.. _atomic-threads_fibers_yields:
+..  _atomic-threads_fibers_yields:
 
---------------------------------------------------------------------------------
 Threads, fibers and yields
---------------------------------------------------------------------------------
+==========================
 
 How does Tarantool process a basic operation? As an example, let's take this
 query:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> box.space.tester:update({3}, {{'=', 2, 'size'}, {'=', 3, 0}})
 
 This is equivalent to the following SQL statement for a table that stores
 primary keys in ``field[1]``:
 
-.. code-block:: SQL
+..  code-block:: SQL
 
-   UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[1]" = 3
+    UPDATE tester SET "field[2]" = 'size', "field[3]" = 0 WHERE "field[1]" = 3
 
 Assuming this query is received by Tarantool via network,
 it will be processed with three operating system **threads**:
 
-1. The **network thread** on the server side receives the query, parses
-   the statement, checks if it's correct, and then transforms it into a special
-   structure--a message containing an executable statement and its options.
+1.  The **network thread** on the server side receives the query, parses
+    the statement, checks if it's correct, and then transforms it into a special
+    structure--a message containing an executable statement and its options.
 
-2. The network thread ships this message to the instance's
-   **transaction processor thread** using a lock-free message bus.
-   Lua programs are executed directly in the transaction processor thread,
-   and do not need to be parsed and prepared.
+2.  The network thread ships this message to the instance's
+    **transaction processor thread** using a lock-free message bus.
+    Lua programs are executed directly in the transaction processor thread,
+    and do not need to be parsed and prepared.
 
-   The instance's transaction processor thread uses the primary key index on
-   field[1] to find the location of the tuple. It determines that the tuple
-   can be updated (not much can go wrong when you're merely changing an
-   unindexed field value).
+    The instance's transaction processor thread uses the primary key index on
+    field[1] to find the location of the tuple. It determines that the tuple
+    can be updated (not much can go wrong when you're merely changing an
+    unindexed field value).
 
-3. The transaction processor thread sends a message to the
-   :ref:`write-ahead logging (WAL) thread <internals-wal>` to commit the
-   transaction. When this is done, the WAL thread replies with a COMMIT or ROLLBACK
-   result to the transaction processor, which returns it to the network thread,
-   and the network thread returns the result to the client.
+3.  The transaction processor thread sends a message to the
+    :ref:`write-ahead logging (WAL) thread <internals-wal>` to commit the
+    transaction. When this is done, the WAL thread replies with a COMMIT or ROLLBACK
+    result to the transaction processor, which returns it to the network thread,
+    and the network thread returns the result to the client.
 
 Notice that there is only one transaction processor thread in Tarantool.
 Some people are used to the idea that there can be multiple threads operating
@@ -58,10 +57,11 @@ sake of fiber #1, and then writes row #y for the sake of fiber #2.
 Yields must happen, otherwise the transaction processor thread would stick
 permanently on the same fiber. There are two types of yields:
 
-* :ref:`implicit yields <atomic-implicit-yields>`: every data-change operation
-  or network-access causes an implicit yield, and every statement that goes
-  through the Tarantool client causes an implicit yield.
+*   :ref:`implicit yields <atomic-implicit-yields>`: every data-change operation
+    or network-access causes an implicit yield, and every statement that goes
+    through the Tarantool client causes an implicit yield.
 
-* explicit yields: in a Lua function, you can (and should) add
-  :ref:`"yield" <fiber-yield>` statements to prevent hogging. This is called
-  **cooperative multitasking**.
+*   explicit yields: in a Lua function, you can (and should) add
+    :ref:`"yield" <fiber-yield>` statements to prevent hogging. This is called
+    **cooperative multitasking**.
+    

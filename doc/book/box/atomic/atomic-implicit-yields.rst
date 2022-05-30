@@ -1,8 +1,7 @@
-.. _atomic-implicit-yields:
+..  _atomic-implicit-yields:
 
---------------------------------------------------------------------------------
 Implicit yields
---------------------------------------------------------------------------------
+===============
 
 The only explicit yield requests in Tarantool are :ref:`fiber.sleep() <fiber-sleep>`
 and :ref:`fiber.yield() <fiber-yield>`, but many other requests "imply" yields
@@ -31,18 +30,18 @@ due to implicit yield happening after each chunk of code is executed in the cons
 
 **Example #1**
 
-* *Engine = memtx* |br|
-  The sequence ``select() insert()`` has one yield, at the end of the insert, caused 
-  by implicit commit; ``select()`` has nothing to write to the WAL and so does not
-  yield.
+*   *Engine = memtx* |br|
+    The sequence ``select() insert()`` has one yield, at the end of the insert, caused 
+    by implicit commit; ``select()`` has nothing to write to the WAL and so does not
+    yield.
 
-* *Engine = vinyl* |br|
-  The sequence ``select() insert()`` has one to three yields, since ``select()``
-  may yield if the data is not in the cache, ``insert()`` may yield if it is waiting 
-  for available memory, and there is an implicit yield at commit.
+*   *Engine = vinyl* |br|
+    The sequence ``select() insert()`` has one to three yields, since ``select()``
+    may yield if the data is not in the cache, ``insert()`` may yield if it is waiting 
+    for available memory, and there is an implicit yield at commit.
 
-* The sequence ``begin() insert() insert() commit()`` only yields on commit
-  if the engine is memtx, and can yield up to 3 times if the engine is vinyl.
+*   The sequence ``begin() insert() insert() commit()`` only yields on commit
+    if the engine is memtx, and can yield up to 3 times if the engine is vinyl.
 
 **Example #2**
 
@@ -51,7 +50,7 @@ represents a positive dollar amount. Let's start a transaction, withdraw
 from tuple#1, deposit in tuple#2, and end the transaction, making its
 effects permanent.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> function txn_example(from, to, amount_of_money)
              >   box.begin()
@@ -76,12 +75,12 @@ then it involves network I/O, and therefore there is an implicit yield, even if 
 request that is sent to the server is not itself an implicit yield request.
 Therefore, the following sequence
 
-.. cssclass:: highlight
-.. parsed-literal::
+..  cssclass:: highlight
+..  parsed-literal::
 
-   conn.space.test:select{1}
-   conn.space.test:select{2}
-   conn.space.test:select{3}
+    conn.space.test:select{1}
+    conn.space.test:select{2}
+    conn.space.test:select{3}
 
 causes yields three times sequentially when sending requests to the network
 and awaiting the results. On the server side, the same requests are executed

@@ -1,13 +1,12 @@
 :noindex:
 :fullwidth:
 
-.. _atomic-atomic_execution:
+..  _atomic-atomic_execution:
 
-================================================================================
 Transactions
-================================================================================
+============
 
-.. toctree::
+..  toctree::
     :maxdepth: 2
 
     atomic/atomic-threads_fibers_yields

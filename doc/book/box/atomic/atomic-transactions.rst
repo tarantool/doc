@@ -1,8 +1,7 @@
 .. _atomic-transactions:
 
---------------------------------------------------------------------------------
 Transactions
---------------------------------------------------------------------------------
+============
 
 Transactions in Tarantool occur in **fibers** on a single **thread**.
 That is why Tarantool has a guarantee of atomicity of execution.
@@ -46,6 +45,6 @@ In memtx, if an instruction that implies yields, explicit or implicit, is
 executed during a transaction, the transaction is fully rolled back. In vinyl,
 we use more complex transactional manager that allows yields.
 
-.. note::
+..  note::
 
-   You can’t mix storage engines in a transaction today.
+    You can’t mix storage engines in a transaction today.
