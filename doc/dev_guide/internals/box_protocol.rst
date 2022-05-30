@@ -809,8 +809,8 @@ IPROTO_ID = 0x49
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Clients send this message to inform the server about the protocol version and
-features they support. Based on this information, the server can limit its
-functionality when interacting with these clients.
+features they support. Based on this information, the server can enable or
+disable certain features in interacting with these clients.
 
 The body is a 2-item map:
 
@@ -830,8 +830,8 @@ The body is a 2-item map:
         IPROTO_FEATURES: :samp:`{{MP_ARRAY array of unsigned integers}}}`
     })
 
-IPROTO_VERSION is the integer number that increases by one with each change in
-the IPROTO_FEATURES set. The latest version is |iproto_version|.
+IPROTO_VERSION is an integer number reflecting the version of protocol that the
+client supports. The latest IPROTO_VERSION is |iproto_version|.
 
 Available IPROTO_FEATURES are the following:
 
