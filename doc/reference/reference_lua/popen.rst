@@ -397,21 +397,6 @@ Below is a list of all ``popen`` functions and handle methods.
                           :ref:`popen.shell() <popen-shell>`
         :param table opts: options
 
-        Possible errors, raised on incorrect parameters or when the fiber is cancelled:
-
-        * IllegalParams:    incorrect type or value of a parameter
-        * IllegalParams:    called on a closed handle
-        * IllegalParams:    opts.stdout and opts.stderr are both set
-        * IllegalParams:    a requested IO operation is not supported by
-          the handle (stdout / stderr is not piped)
-        * IllegalParams:    attempt to operate on a closed file descriptor
-        * FiberIsCancelled: cancelled by an outside code
-
-        :return: ``true`` on success, ``false`` on error
-        :rtype:  (if success) string with read value, empty string if EOF
-
-                 (if failure) ``nil, err``
-
         Possible ``opts`` items are:
 
         * ``opts.stdout`` (boolean, default ``true``, if ``true`` then read from stdout)
@@ -419,12 +404,26 @@ Below is a list of all ``popen`` functions and handle methods.
         * ``opts.timeout`` (number, default 100 years, time quota in seconds)
 
         In other words: by default ``read()`` reads from stdout, but reads from
-        stderr if one sets ``opts.stderr`` to ``true`` (it is not legal to set both
-        ``opts.stdout`` and ``opts.stderr`` to ``true``).
+        stderr if one sets ``opts.stderr`` to ``true``. It is not legal to set both
+        ``opts.stdout`` and ``opts.stderr`` to ``true``.
 
+        :return:  (if success) string with read value, empty string if EOF
 
+                  (if failure) ``nil, err``
 
-        Possible error reasons when ``nil, err`` is returned are:
+        **Possible errors**
+        
+        These errors are raised on incorrect parameters or when the fiber is cancelled:
+
+        * IllegalParams:    incorrect type or value of a parameter
+        * IllegalParams:    called on a closed handle
+        * IllegalParams:    opts.stdout and opts.stderr are both set
+        * IllegalParams:    a requested IO operation is not supported by
+          the handle (stdout / stderr is not piped)
+        * IllegalParams:    attempt to operate on a closed file descriptor
+        * FiberIsCancelled: cancelled by external code
+
+        ``nil, err`` is returned on following failures:
 
         * SocketError: an IO error occurs at read()
         * TimedOut:    exceeded the opts.timeout quota
