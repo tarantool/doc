@@ -34,3 +34,5 @@
 
     <br />
 
+.. |iproto_version| replace:: 3
+

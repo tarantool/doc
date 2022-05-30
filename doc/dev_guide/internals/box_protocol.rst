@@ -830,7 +830,10 @@ The body is a 2-item map:
         IPROTO_FEATURES: :samp:`{{MP_ARRAY array of unsigned integers}}}`
     })
 
-The latest IPROTO_VERSION and the constants that define IPROTO_FEATURES are listed in the
+IPROTO_VERSION is the integer number that increases by one with each change in
+the IPROTO_FEATURES set. The latest version is |iproto_version|.
+
+Supported IPROTO_FEATURES are listed in the
 `iproto_features.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_features.h>`_.
 
 This request can be processed without authentication.
