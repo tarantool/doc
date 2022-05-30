@@ -773,7 +773,7 @@ to turn Tarantool into a web server.
     #!/usr/bin/env tarantool
 
     local function handler(self)
-        return self:render{ json = { ['Your-IP-Is'] = self:peer().host } }
+        return self:render{ json = { ['Your-IP-Is'] = self.peer.host } }
     end
 
     local server = require('http.server').new(nil, 8080, {charset = "utf8"}) -- listen *:8080
