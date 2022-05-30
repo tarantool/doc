@@ -2590,7 +2590,7 @@ msgstr ""
 "conn.space.tspace:select(280)"
 
 msgid ""
-"Now look at what tcpdump shows for the job connecting to 3302---the "
+"Now look at what tcpdump shows for the job connecting to 3302 -- the "
 "\"request\". After the words \"length 32\" is a packet that ends with these "
 "32 bytes (we have added indented comments):"
 msgstr ""

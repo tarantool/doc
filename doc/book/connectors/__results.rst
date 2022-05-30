@@ -80,7 +80,7 @@ When this program is executed, it will print:
 
     dd 0 0 0 5 90 91 a1 61 91 c2 91 c3 91 7f
 
-The first five bytes --- ``dd 0 0 0 5`` --- are the MsgPack encoding for
+The first five bytes -- ``dd 0 0 0 5`` -- are the MsgPack encoding for
 "32-bit array header with value 5" (see
 `MsgPack specification <http://github.com/msgpack/msgpack/blob/master/spec.md>`__).
 The rest are as described in the

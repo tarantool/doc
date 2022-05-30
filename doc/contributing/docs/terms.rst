@@ -51,7 +51,7 @@ This is why it's also helpful to restrict the usage of some terms explicitly.
         A restricted term is a word that the authors explicitly
         prohibited to use for denoting a :term:`concept`.
         Such a word is sometimes used as a :term:`term`
-        for the same :term:`concept` elsewhere---in the
+        for the same :term:`concept` elsewhere -- in the
         community, in books, or in other product documentation.
         Sometimes this word is used to denote a similar but different concept.
         In this case, the right choice of terms helps us differentiate between concepts.

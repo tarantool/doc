@@ -1450,7 +1450,7 @@ In other words, there should be a full-mesh connection between the nodes.
     msgpack({
         IPROTO_RAFT_TERM: :samp:`{{MP_UINT unsigned integer}}`,     # RAFT term of the instance
         IPROTO_RAFT_VOTE: :samp:`{{MP_UINT unsigned integer}}`,     # Instance vote in the current term (if any).
-        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state; one of the three numbers: 1---follower, 2---candidate, 3---leader.
+        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state; one of the three numbers: 1 -- follower, 2 -- candidate, 3 -- leader.
         IPROTO_RAFT_VCLOCK: :samp:`{{MP_ARRAY {{MP_INT SRV_ID, MP_INT SRV_LSN}, {MP_INT SRV_ID, MP_INT SRV_LSN}, ...}}}`   # Current vclock of the instance. Presents only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
     })
 
@@ -1488,7 +1488,7 @@ On terminal #3, start another server, which will act as a client, with:
     conn = net_box.connect('localhost:3302')
     conn.space.tspace:select(280)
 
-Now look at what tcpdump shows for the job connecting to 3302---the "request".
+Now look at what tcpdump shows for the job connecting to 3302 -- the "request".
 After the words "length 32" is a packet that ends with these 32 bytes
 (we have added indented comments):
 

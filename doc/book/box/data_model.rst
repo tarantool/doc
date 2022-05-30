@@ -66,7 +66,7 @@ In the example above, there's a space called ``tester``.
     space
         In Tarantool, a space is a primary container that stores data.
         It is analogous to tables in relational databases.
-        Spaces contain :term:`tuples <tuple>` --- the Tarantool name for
+        Spaces contain :term:`tuples <tuple>` -- the Tarantool name for
         database records.
         The number of tuples in a space is unlimited.
 

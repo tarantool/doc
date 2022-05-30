@@ -152,7 +152,7 @@ URI values can be set in a number of ways:
             }
         }
 
-*   In a combined way---an array that contains URIs in both the string and the table formats.
+*   In a combined way -- an array that contains URIs in both the string and the table formats.
 
     ..  code-block:: lua
 
@@ -326,8 +326,8 @@ where ``<NAME>`` is the uppercase name of the corresponding :ref:`box.cfg parame
 
 For example:
 
-* ``TT_LISTEN``---corresponds to the ``box.cfg.listen`` option.
-* ``TT_MEMTX_DIR``---corresponds to the ``box.cfg.memtx_dir`` option.
+* ``TT_LISTEN`` -- corresponds to the ``box.cfg.listen`` option.
+* ``TT_MEMTX_DIR`` -- corresponds to the ``box.cfg.memtx_dir`` option.
 
 In case of an array value, separate the array elements by comma without space:
 

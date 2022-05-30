@@ -56,8 +56,8 @@ Interaction between streams and transactions
 
 As each stream can start a transaction, several transactions can be multiplexed over one connection.
 There are multiple ways to begin, commit, and roll back a transaction.
-One can do that using the appropriate stream methods---``call``, ``eval``,
-or ``execute``---with the SQL transaction syntax. Users can mix these methods.
+One can do that using the appropriate stream methods -- ``call``, ``eval``,
+or ``execute`` -- with the SQL transaction syntax. Users can mix these methods.
 For example, one might start a transaction using ``stream:begin()``
 and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
 All the requests between ``stream:begin()`` and ``stream:commit()`` are executed within the same transaction.
