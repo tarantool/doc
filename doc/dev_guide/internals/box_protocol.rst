@@ -803,6 +803,40 @@ The body is a 2-item map:
         IPROTO_LSN: :samp:`{{MP_INT integer}}`
     })
 
+..  _box_protocol-id:
+
+IPROTO_ID = 0x49
+~~~~~~~~~~~~~~~~~~~~~~
+
+Clients send this message to inform the server about the protocol version and
+features they support. Based on this information, the server can limit its
+functionality when interacting with these clients.
+
+The body is a 2-item map:
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_ID,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_VERSION: :samp:`{{MP_UINT unsigned integer}}}`,
+        IPROTO_FEATURES: :samp:`{{MP_ARRAY array of unsigned integers}}}`
+    })
+
+Currently supported IPROTO_VERSION is 1.
+
+The IPROTO_FEATURES array can contain constants defined in the
+`iproto_features.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_features.h>`_.
+
+This request can be processed without authentication.
+
 
 ..  _box_protocol-responses:
 
@@ -835,12 +869,20 @@ For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body is a 1-
         IPROTO_DATA: :samp:`{{any type}}`
     })
 
-For :ref:`IPROTO_PING <box_protocol-ping>` the body will be an empty map.
-For most data-access requests (IPROTO_SELECT IPROTO_INSERT IPROTO_DELETE etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
-For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
-it will usually be an array but, since Lua requests can result in a wide variety
-of structures, bodies can have a wide variety of structures.
+- For :ref:`IPROTO_PING <box_protocol-ping>` the body will be an empty map.
+
+- For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
+  :ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`
+  , etc.) the body is an IPROTO_DATA map with an array of tuples that contain
+  an array of fields.
+
+- For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
+  it will usually be an array but, since Lua requests can result in a wide variety
+  of structures, bodies can have a wide variety of structures.
+
+- For :ref:`IPROTO_ID <box_protocol-id>`, the body has the same structure as
+  the request. It informs the client about the protocol version and features
+  that the server supports.
 
 Example: if this is the fifth message and the request is
 :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}`,
