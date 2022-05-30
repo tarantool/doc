@@ -830,9 +830,7 @@ The body is a 2-item map:
         IPROTO_FEATURES: :samp:`{{MP_ARRAY array of unsigned integers}}}`
     })
 
-Currently supported IPROTO_VERSION is 1.
-
-The IPROTO_FEATURES array can contain constants defined in the
+The latest IPROTO_VERSION and the constants that define IPROTO_FEATURES are listed in the
 `iproto_features.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_features.h>`_.
 
 This request can be processed without authentication.
