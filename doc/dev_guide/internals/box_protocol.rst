@@ -880,8 +880,8 @@ For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body is a 1-
   it will usually be an array but, since Lua requests can result in a wide variety
   of structures, bodies can have a wide variety of structures.
 
-- For :ref:`IPROTO_ID <box_protocol-id>`, the body has the same structure as
-  the request. It informs the client about the protocol version and features
+- For :ref:`IPROTO_ID <box_protocol-id>`, the response body has the same structure as
+  the request body. It informs the client about the protocol version and features
   that the server supports.
 
 Example: if this is the fifth message and the request is
