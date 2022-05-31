@@ -6,9 +6,9 @@
 Transactions
 ============
 
-Tarantool allows users to customize transaction behavior by configuring the transaction mode. 
+Transactions allow users to perform multiple operations atomically. 
 
-See the following sections for more details:
+For more information on how transactions work in Tarantool, see the following sections:
 
 ..  toctree::
     :maxdepth: 2
