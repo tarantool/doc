@@ -53,7 +53,7 @@ source_suffix = '.rst'
 project = u'Tarantool'
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "2.6.0"
+release = "2.10.0"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 
@@ -79,7 +79,7 @@ exclude_patterns = [
     '**/_includes/*'
 ]
 
-base_url = "https://tarantool.org/"
+base_url = "https://tarantool.io/"
 # -- Options for HTML output ----------------------------------------------
 html_theme           = 'tarantool'
 html_theme_path      = ['../_theme']
