@@ -964,7 +964,7 @@ recommended.
         *   the second ``fiber.status()`` call returns 'dead'.
 
         This proves that the ``join()`` function blocks the execution
-        of the main fiber until the ``fi2`` fiber becomes 'dead'.
+        of the fiber that called it until the ``fi2`` fiber becomes 'dead'.
 
         ..  code-block:: lua
 

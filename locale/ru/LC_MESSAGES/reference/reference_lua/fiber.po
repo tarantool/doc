@@ -1435,10 +1435,10 @@ msgstr "второй вызов ``fiber.status()`` возвращает 'dead' (
 
 msgid ""
 "This proves that the ``join()`` function blocks the execution "
-"of the main fiber until the ``fi2`` fiber becomes 'dead'."
+"of the fiber that called it until the ``fi2`` fiber becomes 'dead'."
 msgstr ""
-"Как видно, ``join()`` блокирует исполнение основного файбера до тех пор, "
-"пока не станет недоступен файбер ``fi2``."
+"Как видно, функция ``join()`` блокирует исполнение файбера, из которого она была вызвана, "
+"пока не станет недоступным файбер ``fi2``."
 
 msgid ""
 "fiber=require('fiber')\n"
