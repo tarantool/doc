@@ -1438,7 +1438,7 @@ msgid ""
 "of the fiber that called it until the ``fi2`` fiber becomes 'dead'."
 msgstr ""
 "Как видно, функция ``join()`` блокирует исполнение файбера, из которого она была вызвана, "
-"пока не станет недоступным файбер ``fi2``."
+"пока файбер ``fi2`` не завершит работу."
 
 msgid ""
 "fiber=require('fiber')\n"
