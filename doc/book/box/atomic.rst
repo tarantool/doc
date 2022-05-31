@@ -6,6 +6,10 @@
 Transactions
 ============
 
+Tarantool allows users to customize transaction behavior by configuring the transaction mode. 
+
+See the following sections for more details:
+
 ..  toctree::
     :maxdepth: 2
 
