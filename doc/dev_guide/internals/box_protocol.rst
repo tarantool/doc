@@ -80,6 +80,7 @@ The IPROTO constants that identify requests that we will mention in this section
     IPROTO_VOTE=0x44
     IPROTO_FETCH_SNAPSHOT=0x45
     IPROTO_REGISTER=0x46
+    IPROTO_ID=0x49
 
 The IPROTO constants that appear within requests or responses that we will describe in this section are:
 
@@ -140,6 +141,8 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_RAFT_VOTE=0x01
     IPROTO_RAFT_STATE=0x02
     IPROTO_RAFT_VCLOCK=0x03
+    IPROTO_VERSION=0x54
+    IPROTO_FEATURES=0x55
 
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
@@ -800,6 +803,53 @@ The body is a 2-item map:
         IPROTO_LSN: :samp:`{{MP_INT integer}}`
     })
 
+..  _box_protocol-id:
+
+IPROTO_ID = 0x49
+~~~~~~~~~~~~~~~~~~~~~~
+
+Clients send this message to inform the server about the protocol version and
+features they support. Based on this information, the server can enable or
+disable certain features in interacting with these clients.
+
+The body is a 2-item map:
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_ID,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_VERSION: :samp:`{{MP_UINT unsigned integer}}}`,
+        IPROTO_FEATURES: :samp:`{{MP_ARRAY array of unsigned integers}}}`
+    })
+
+IPROTO_VERSION is an integer number reflecting the version of protocol that the
+client supports. The latest IPROTO_VERSION is |iproto_version|.
+
+Available IPROTO_FEATURES are the following:
+
+- ``IPROTO_FEATURE_STREAMS = 0`` -- streams support: :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
+  in the request header.
+- ``IPROTO_FEATURE_TRANSACTIONS = 1`` -- transaction support: IPROTO_BEGIN,
+  IPROTO_COMMIT, and IPROTO_ROLLBACK commands (with :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
+  in the request header). Learn more about :ref:`sending transaction commands <box_protocol-stream_transactions>`.
+- ``IPROTO_FEATURE_ERROR_EXTENSION = 2`` -- :ref:`MP_ERROR <msgpack_ext-error>`
+  MsgPack extension support. Clients that don't support this feature will receive
+  error responses for :ref:`IPROTO_EVAL <box_protocol-eval>` and
+  :ref:`IPROTO_CALL <box_protocol-call>` encoded to string error messages.
+- ``IPROTO_FEATURE_WATCHERS = 3`` -- remote watchers support: IPROTO_WATCH,
+  IPROTO_UNWATCH, and IPROTO_EVENT commands.
+.. // TODO: document remote watchers commands
+
+IPROTO_ID requests can be processed without authentication.
+
 
 ..  _box_protocol-responses:
 
@@ -832,12 +882,20 @@ For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body is a 1-
         IPROTO_DATA: :samp:`{{any type}}`
     })
 
-For :ref:`IPROTO_PING <box_protocol-ping>` the body will be an empty map.
-For most data-access requests (IPROTO_SELECT IPROTO_INSERT IPROTO_DELETE etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
-For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
-it will usually be an array but, since Lua requests can result in a wide variety
-of structures, bodies can have a wide variety of structures.
+- For :ref:`IPROTO_PING <box_protocol-ping>` the body will be an empty map.
+
+- For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
+  :ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`
+  , etc.) the body is an IPROTO_DATA map with an array of tuples that contain
+  an array of fields.
+
+- For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
+  it will usually be an array but, since Lua requests can result in a wide variety
+  of structures, bodies can have a wide variety of structures.
+
+- For :ref:`IPROTO_ID <box_protocol-id>`, the response body has the same structure as
+  the request body. It informs the client about the protocol version and features
+  that the server supports.
 
 Example: if this is the fifth message and the request is
 :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}`,
@@ -1171,9 +1229,8 @@ function ``netbox_encode_auth``.
 
 ..  _box_protocol-streams:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Binary protocol -- streams
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 The :ref:`Streams and interactive transactions <box_stream>`
 feature, which was added in Tarantool version
@@ -1220,6 +1277,8 @@ non-stream :ref:`IPROTO_INSERT <box_protocol-insert>` requests, except
 that the header will contain an additional item: IPROTO_STREAM_ID=0x0a
 with MP_UINT=0x01. It happens to equal 1 for this example because
 each call to conn:new_stream() assigns a new number, starting with 1.
+
+..  _box_protocol-stream_transactions:
 
 The client makes stream transactions by sending, in order:
 IPROTO_BEGIN, the transaction data-change and query requests,
