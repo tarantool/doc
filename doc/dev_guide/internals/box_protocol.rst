@@ -836,13 +836,16 @@ client supports. The latest IPROTO_VERSION is |iproto_version|.
 Available IPROTO_FEATURES are the following:
 
 - ``IPROTO_FEATURE_STREAMS = 0`` -- streams support: :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
-  in the request header
-- ``IPROTO_FEATURE_TRANSACTIONS = 1`` -- transaction support: IPROTO_BEGIN, IPROTO_COMMIT,
-  and IPROTO_ROLLBACK commands
+  in the request header.
+- ``IPROTO_FEATURE_TRANSACTIONS = 1`` -- transaction support: IPROTO_BEGIN,
+  IPROTO_COMMIT, and IPROTO_ROLLBACK commands (with :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
+  in the request header). Learn more about :ref:`sending transaction commands <box_protocol-stream_transactions>`.
 - ``IPROTO_FEATURE_ERROR_EXTENSION = 2`` -- :ref:`MP_ERROR <msgpack_ext-error>`
-  MsgPack extension support
-- ``IPROTO_FEATURE_WATCHERS = 3`` -- remote watchers support: IPROTO_WATCH, IPROTO_UNWATCH,
-  and IPROTO_EVENT commands
+  MsgPack extension support. Clients that don't support this feature will receive
+  error responses for :ref:`IPROTO_EVAL <box_protocol-eval>` and
+  :ref:`IPROTO_CALL <box_protocol-call>` encoded to string error messages.
+- ``IPROTO_FEATURE_WATCHERS = 3`` -- remote watchers support: IPROTO_WATCH,
+  IPROTO_UNWATCH, and IPROTO_EVENT commands.
 .. // TODO: document remote watchers commands
 
 IPROTO_ID requests can be processed without authentication.
@@ -1226,9 +1229,8 @@ function ``netbox_encode_auth``.
 
 ..  _box_protocol-streams:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Binary protocol -- streams
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 The :ref:`Streams and interactive transactions <box_stream>`
 feature, which was added in Tarantool version
@@ -1275,6 +1277,8 @@ non-stream :ref:`IPROTO_INSERT <box_protocol-insert>` requests, except
 that the header will contain an additional item: IPROTO_STREAM_ID=0x0a
 with MP_UINT=0x01. It happens to equal 1 for this example because
 each call to conn:new_stream() assigns a new number, starting with 1.
+
+..  _box_protocol-stream_transactions:
 
 The client makes stream transactions by sending, in order:
 IPROTO_BEGIN, the transaction data-change and query requests,
