@@ -773,13 +773,11 @@ to turn Tarantool into a web server.
     #!/usr/bin/env tarantool
 
     local function handler(self)
-        return self:render{ json = { ['Your-IP-Is'] = self:peer().host } }
+        return self:render{ json = { ['Your-IP-Is'] = self.peer.host } }
     end
 
-    local server = require('http.server').new(nil, 8080) -- listen *:8080
-    local router = require('http.router').new({charset = "utf8"})
-    server:set_router(router)
-    router:route({ path = '/' }, handler)
+    local server = require('http.server').new(nil, 8080, {charset = "utf8"}) -- listen *:8080
+    server:route({ path = '/' }, handler)
     server:start()
     -- connect to localhost:8080 and see json
 
@@ -801,18 +799,17 @@ to learn new languages in order to write templates.
     #!/usr/bin/env tarantool
 
     local function handler(self)
-    local fruits = { 'Apple', 'Orange', 'Grapefruit', 'Banana'}
+    local fruits = {'Apple', 'Orange', 'Grapefruit', 'Banana'}
         return self:render{ fruits = fruits }
     end
 
-    local server = require('http.server').new(nil, 8080) -- nil means '*'
-    local router = require('http.router').new({charset = "utf8"})
-    server:set_router(router)
-    router:route({ path = '/', file = 'index.html.lua' }, handler)
+    local server = require('http.server').new(nil, 8080, {charset = "utf8"}) -- nil means '*'
+    server:route({ path = '/', file = 'index.html.lua' }, handler)
     server:start()
 
 An "HTML" file for this server, including Lua, could look like this
 (it would produce "1 Apple | 2 Orange | 3 Grapefruit | 4 Banana").
+Create a ``templates`` directory and put this file in it:
 
 .. code-block:: bash
 
