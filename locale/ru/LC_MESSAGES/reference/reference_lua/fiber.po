@@ -621,10 +621,10 @@ msgid "Return information about all fibers."
 msgstr "Возврат информации о всех файберах."
 
 msgid ""
-"number of context switches, backtrace, id, total memory, used memory, name "
-"for each fiber."
+"number of context switches (``csw``), backtrace, id, total memory, used memory, name "
+"of each fiber."
 msgstr ""
-"количество переключений контекста, обратная трассировка, ID, общий объем "
+"количество переключений контекста (``csw``), обратная трассировка, ID, общий объем "
 "памяти, объем используемой памяти, имя каждого файбера."
 
 msgid "table"
