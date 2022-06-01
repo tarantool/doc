@@ -1522,7 +1522,7 @@ msgid ""
 "Let's go through anonymous replica bootstrap. Suppose we have got a master "
 "configured with"
 msgstr ""
-"Попробуем создать анонимуную реплику. Предположим, что у нас есть мастер с "
+"Попробуем создать анонимную реплику. Предположим, что у нас есть мастер с "
 "такой настройкой:"
 
 msgid "box.cfg{listen=3301}"
