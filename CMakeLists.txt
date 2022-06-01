@@ -240,15 +240,21 @@ add_custom_target(update-pot
     COMMENT "Update translation sources"
 )
 
-add_custom_target(update-po
+add_custom_target(update-po-raw
     COMMAND "${SPHINX_INTL_EXECUTABLE}"
         update
         -p "${CMAKE_CURRENT_SOURCE_DIR}/locale/en/"
         -d "${CMAKE_CURRENT_SOURCE_DIR}/locale/"
         -l "ru"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/locale
     COMMENT "Regenerate localization files from templates"
     DEPENDS update-pot
+)
+
+add_custom_target(update-po
+    COMMAND make
+        update-po-raw
+        cleanup-po
 )
 
 add_custom_target(cleanup-po
