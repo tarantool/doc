@@ -374,28 +374,54 @@ recommended.
 
 ..  _fiber-info:
 
-..  function:: info()
+..  function:: info({[backtrace]})
 
     Return information about all fibers.
 
-    :return: number of context switches, backtrace, id, total memory, used
-             memory, name for each fiber.
+    :param boolean backtrace: show backtrace. Set to false to show less information (symbol resolving can be expensive).
+    :param boolean bt: alternative to ``backtrace``, but with lower priority.
+    :return: number of context switches (``csw``), backtrace, id, total memory, used
+             memory, name of each fiber.
     :rtype: table
 
     **Example:**
 
     ..  code-block:: tarantoolsession
 
-        tarantool> fiber.info()
+        tarantool> fiber.info({ bt = true })
         ---
         - 101:
-            csw: 7
-            backtrace: []
-            fid: 101
+            csw: 1
+            backtrace:
+            - C: '#0  0x5dd130 in lbox_fiber_id+96'
+            - C: '#1  0x5dd13d in lbox_fiber_stall+13'
+            - L: stall in =[C] at line -1
+            - L: (unnamed) in @builtin/fiber.lua at line 59
+            - C: '#2  0x66371b in lj_BC_FUNCC+52'
+            - C: '#3  0x628f28 in lua_pcall+120'
+            - C: '#4  0x5e22a8 in luaT_call+24'
+            - C: '#5  0x5dd1a9 in lua_fiber_run_f+89'
+            - C: '#6  0x45b011 in fiber_cxx_invoke(int (*)(__va_list_tag*), __va_list_tag*)+17'
+            - C: '#7  0x5ff3c0 in fiber_loop+48'
+            - C: '#8  0x81ecf4 in coro_init+68'
             memory:
-              total: 65776
-              used: 0
-            name: interactive
+            total: 516472
+            used: 0
+            time: 0
+            name: lua
+            fid: 101
+          102:
+            csw: 0
+            backtrace:
+            - C: '#0  (nil) in +63'
+            - C: '#1  (nil) in +63'
+            memory:
+            total: 516472
+            used: 0
+            time: 0
+            name: on_shutdown
+            fid: 102
+
         ...
 
 ..  _fiber-top:
@@ -937,8 +963,8 @@ recommended.
         *   the elapsed time is usually 5 seconds, and
         *   the second ``fiber.status()`` call returns 'dead'.
 
-        This proves that the ``join()`` does not return until
-        the function -- which sleeps 5 seconds -- is 'dead'.
+        This proves that the ``join()`` function blocks the execution
+        of the fiber that called it until the ``fi2`` fiber becomes 'dead'.
 
         ..  code-block:: lua
 
