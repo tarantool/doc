@@ -205,6 +205,18 @@ Below is a list of all ``net.box`` functions.
       also use ``conn`` database methods (in this case, only the binary protocol is supported).
       Deprecation notice: ``console = true`` is deprecated, users should use
       :ref:`console.connect() <console-connect>` instead.
+      
+    * ``required_protocol_version``: depending on the value of the option, the connection requires the 
+       minimum version of the IPROTO protocol supported by the server. If the server version is lower 
+       than specified, the connection will fail with an error message. 
+       With ``required_protocol_version = 1`` all connections fail where the server protocol is lower than ``1``.
+      
+    * ``required_protocol_features``: depending on the value of the option, the connection requires 
+       the specified IPROTO protocol features supported by the server. If the server does not have
+       the specified features, the connection will fail with an error message.
+       With ``required_protocol_features = {'transactions'}`` all connections fail where the server 
+       has ``transaction: false``.
+     
 
     * `connect_timeout`: number of seconds to wait before returning "error: Connection timed out".
 
@@ -221,6 +233,7 @@ Below is a list of all ``net.box`` functions.
         conn = net_box.connect('localhost:3301')
         conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
         conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
+        conn = net_box.connect('127.0.0.1:3304', {required_protocol_version = 4, required_protocol_features = {'transactions'}, })
 
 .. _net_box-self:
 
