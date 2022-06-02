@@ -267,16 +267,16 @@ recommended.
         tarantool> fiber = require('fiber')
         ---
         ...
-        tarantool> function function_name()
-                 >   print("I'm a fiber")
+        tarantool> function function_name(arg)
+                 >   print("I'm a fiber, " .. arg)
                  > end
         ---
         ...
-        tarantool> fiber_object = fiber.new(function_name); print("Fiber not started yet")
+        tarantool> fiber_object = fiber.new(function_name, 'yay!'); print("Fiber not started yet")
         Fiber not started yet
         ---
         ...
-        tarantool> I'm a fiber
+        tarantool> I'm a fiber, yay!
         ---
         ...
 
