@@ -5,7 +5,9 @@
     Create and start a fiber. The fiber is created and begins to run immediately.
 
     :param function: the function to be associated with the fiber
-    :param function-arguments: what will be passed to function
+    :param function-arguments: what will be passed to function.
+                               If the arguments are optional, put them in
+                               square brackets in the function declaration.
 
     :return: created fiber object
     :rtype: userdata
