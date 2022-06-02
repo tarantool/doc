@@ -199,6 +199,8 @@ Below is a list of all ``net.box`` functions.
         ``wait_state()``, ``eval()`` (in this case, both binary and Lua console network protocols are supported). With 
         ``console = false`` (default), you can also use ``conn`` database methods (in this case, only the binary protocol is 
         supported). Deprecation notice: ``console = true`` is deprecated, users should use :ref:`console.connect() <console-connect>` instead.
+        
+    *   ``connect_timeout``: number of seconds to wait before returning "error: Connection timed out".     
       
     *   ``required_protocol_version``: depending on the value of the option, the connection requires the minimum version 
         of the IPROTO protocol supported by the server. If the server version is lower than specified, the connection will 
@@ -209,6 +211,7 @@ Below is a list of all ``net.box`` functions.
         IPROTO protocol features supported by the server. You can specify one or more ``net.box`` features 
         from the table below. If the server does not have the specified features, the connection will fail with an error message. 
         With ``required_protocol_features = {'transactions'}`` all connections fail where the server has ``transaction: false``.
+  
   
     ..  container:: table
 
@@ -226,7 +229,7 @@ Below is a list of all ``net.box`` functions.
             -   1
         *   -   ``transactions``
             -   Requires transactions support on the server.
-            -   IPROTO_FEATURE_TRANSACTIONS`   
+            -   IPROTO_FEATURE_TRANSACTIONS   
             -   1
         *   -   ``error_extension``
             -   Requires support for :ref:`MP_ERROR <msgpack_ext-error>` MsgPack extension on the server.
@@ -237,9 +240,8 @@ Below is a list of all ``net.box`` functions.
             -   IPROTO_FEATURE_WATCHERS   
             -   3      
             
-            To learn more about IPROTO features, see :ref:`IPROTO_ID <box_protocol-id>`.
+    To learn more about IPROTO features, see :ref:`IPROTO_ID <box_protocol-id>`.
 
-    *   ``connect_timeout``: number of seconds to wait before returning "error: Connection timed out".
 
     :param string URI: the :ref:`URI <index-uri>` of the target for the connection
     :param options: possible options are ``user``, ``password``, ``wait_connected``,
