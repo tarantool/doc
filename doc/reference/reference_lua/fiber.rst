@@ -1131,7 +1131,7 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
         ``channel:put()`` waits until there is a free slot in the channel.
 
         :param lua-value message: what will be sent, usually a string or number or table
-        :param number timeout: maximum number of seconds to wait for a slot to become free
+        :param number timeout: maximum number of seconds to wait for a slot to become free. Default: infinity.
         :return: If timeout is specified, and there is no free slot in the
                  channel for the duration of the timeout, then the return value
                  is ``false``. If the channel is closed, then the return value is ``false``.
@@ -1153,7 +1153,7 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
         Fetch and remove a message from a channel. If the channel is empty,
         ``channel:get()`` waits for a message.
 
-        :param number timeout: maximum number of seconds to wait for a message
+        :param number timeout: maximum number of seconds to wait for a message. Default: infinity.
         :return: If timeout is specified, and there is no message in the
                  channel for the duration of the timeout, then the return
                  value is ``nil``. If the channel is closed, then the

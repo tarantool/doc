@@ -1687,8 +1687,8 @@ msgstr ""
 msgid "what will be sent, usually a string or number or table"
 msgstr "то, что отправляется, как правило, строка, число или таблица"
 
-msgid "maximum number of seconds to wait for a slot to become free"
-msgstr "максимальное количество секунд ожидания, чтобы слот освободился"
+msgid "maximum number of seconds to wait for a slot to become free. Default: infinity."
+msgstr "максимальное количество секунд ожидания, чтобы слот освободился. Значение по умолчанию: бесконечность."
 
 msgid ""
 "If timeout is specified, and there is no free slot in the channel for the "
@@ -1721,8 +1721,8 @@ msgstr ""
 "Перехват и удаление сообщения из канала. Если канал пуст, ``channel:get()`` "
 "будет ожидать сообщения."
 
-msgid "maximum number of seconds to wait for a message"
-msgstr "максимальное количество секунд ожидания сообщения"
+msgid "maximum number of seconds to wait for a message. Default: infinity."
+msgstr "максимальное количество секунд ожидания сообщения. Значение по умолчанию: бесконечность."
 
 msgid ""
 "If timeout is specified, and there is no message in the channel for the "
