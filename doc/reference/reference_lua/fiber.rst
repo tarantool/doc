@@ -1130,6 +1130,12 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
         Send a message using a channel. If the channel is full,
         ``channel:put()`` waits until there is a free slot in the channel.
 
+        ..  note::
+
+            The default :ref:`channel capacity <fiber-channel>` is 0.
+            With this default value, ``channel:put()`` *waits infinitely*
+            until ``channel:get()`` is called.   
+
         :param lua-value message: what will be sent, usually a string or number or table
         :param number timeout: maximum number of seconds to wait for a slot to become free. Default: infinity.
         :return: If timeout is specified, and there is no free slot in the
@@ -1137,6 +1143,7 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
                  is ``false``. If the channel is closed, then the return value is ``false``.
                  Otherwise, the return value is ``true``, indicating success.
         :rtype:  boolean
+
 
     ..  _channel_object-close:
 
