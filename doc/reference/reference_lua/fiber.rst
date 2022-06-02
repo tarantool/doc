@@ -161,8 +161,10 @@ Below is a list of all ``fiber`` functions and members.
 Fibers
 ------
 
-A **fiber** is a set of instructions which are executed with cooperative
-multitasking. Fibers managed by the fiber module are associated with
+A **fiber** is a set of instructions which are executed with
+:ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
+(Learn more about `transactions <atomic-threads_fibers_yields>` in Tarantool.)
+Fibers managed by the fiber module are associated with
 a user-supplied function called the *fiber function*.
 
 A fiber has three possible states: **running**, **suspended** or **dead**.
@@ -376,13 +378,28 @@ recommended.
 
 ..  function:: info({[backtrace]})
 
-    Return information about all fibers.
+   Return information about all fibers.
 
-    :param boolean backtrace: show backtrace. Set to false to show less information (symbol resolving can be expensive).
-    :param boolean bt: alternative to ``backtrace``, but with lower priority.
-    :return: number of context switches (``csw``), backtrace, id, total memory, used
-             memory, name of each fiber.
+    :param boolean backtrace: show backtrace. Default: ``true``.
+                              Set to ``false`` to show less information (symbol resolving can be expensive).
+    :param boolean bt: same as ``backtrace``, but with lower priority.
+    :return: number of context switches (``csw``), backtrace, total memory, used
+             memory, fiber id (``fid``), fiber name.
+             If fiber.top is enabled or Tarantool was built with ``ENABLE_FIBER_TOP``,
+             processor time (``time``) is also returned.
     :rtype: table
+
+    **Return values explained**
+    
+    *   ``csw`` -- number of context switches.
+    *   ``backtrace``, ``bt`` -- each fiber's stack trace, showing where it originated and what functions were called.
+    *   ``memory``:
+        
+        -   ``total`` -- total memory occupied by the fiber as a C structure, its stack, etc. 
+        -   ``used`` -- actual memory used by the fiber.
+    
+    *   ``time`` --  duplicates the "time" entry from :ref:`fiber.top().cpu <fiber-top>` for each fiber.
+                     Only shown if fiber.top is enabled.
 
     **Example:**
 
