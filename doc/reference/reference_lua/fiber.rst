@@ -1097,8 +1097,7 @@ that ``yield()`` failed, the loop did not continue until
 Channels
 --------
 
-Call ``fiber.channel()`` to allocate space and get a channel object, which will
-be called channel for examples in this section.
+Call ``fiber.channel()`` to create and get a new channel object.
 
 Call the other routines, via channel, to send messages, receive messages, or
 check channel status.
@@ -1118,8 +1117,9 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
                          ``channel:put`` messages) that can be in use at once.
                          The default is 0.
 
-    :return: new channel.
-    :rtype:  userdata, possibly including the string "channel ...".
+    :return: new channel object.
+    :rtype:  userdata. In the console output, it is serialized as ``channel: [number]``,
+             where ``[number]`` is the return of :ref:`channel_object:count() <channel_object-count>`.
 
 ..  class:: channel_object
 
