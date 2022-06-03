@@ -27,13 +27,14 @@ Go inside and make a dry run:
     $ cartridge build
     $ cartridge start
 
-This will build the application locally, start 5 instances of Tarantool, and
+This will build the application locally, start 5 instances of Tarantool
+and a :ref:`stateboard <cartridge-stateful_failover>` (state provider), and
 run the application as it is, with no business logic yet.
 
-Why 5 instances? See the ``instances.yml`` file in your application directory.
+Why 5 instances and a stateboard? See the ``instances.yml`` file in your application directory.
 It contains the :ref:`configuration <cartridge-deployment>` of all instances
 that you can use in the cluster. By default, it defines configuration for 5
-Tarantool instances.
+Tarantool instances and a stateboard.
 
 ..  code-block:: yaml
 
