@@ -1,17 +1,16 @@
 .. _getting_started_cartridge:
 
-================================================================================
 Creating your first Tarantool Cartridge application
-================================================================================
+===================================================
 
 Here we'll walk you through developing a simple cluster application.
 
 First,
-`set up the development environment <https://github.com/tarantool/cartridge-cli#installation>`_.
+:doc:`set up the development environment </book/cartridge/cartridge_cli/installation>`.
 
-Next, create an application named ``myapp``. Say:
+Next, create an application named ``myapp``. Run:
 
-.. code-block:: console
+..  code-block:: console
 
     $ cartridge create --name myapp
 
@@ -22,7 +21,7 @@ inside.
 
 Go inside and make a dry run:
 
-.. code-block:: console
+..  code-block:: console
 
     $ cd ./myapp
     $ cartridge build
@@ -36,40 +35,40 @@ It contains the :ref:`configuration <cartridge-deployment>` of all instances
 that you can use in the cluster. By default, it defines configuration for 5
 Tarantool instances.
 
-.. code-block:: yaml
+..  code-block:: yaml
 
+    ---
     myapp.router:
-      workdir: ./tmp/db_dev/3301
       advertise_uri: localhost:3301
       http_port: 8081
 
     myapp.s1-master:
-      workdir: ./tmp/db_dev/3302
       advertise_uri: localhost:3302
       http_port: 8082
 
     myapp.s1-replica:
-      workdir: ./tmp/db_dev/3303
       advertise_uri: localhost:3303
       http_port: 8083
 
     myapp.s2-master:
-      workdir: ./tmp/db_dev/3304
       advertise_uri: localhost:3304
       http_port: 8084
 
     myapp.s2-replica:
-      workdir: ./tmp/db_dev/3305
       advertise_uri: localhost:3305
       http_port: 8085
+
+    myapp-stateboard:
+      listen: localhost:4401
+      password: passwd
 
 You can already see these instances in the cluster management web interface at
 http://localhost:8081 (here 8081 is the HTTP port of the first instance
 specified in ``instances.yml``).
 
-.. image:: images/cluster_dry_run-border-5px.png
-   :align: center
-   :scale: 40%
+..  image:: images/cluster_dry_run-border-5px.png
+    :align: center
+    :scale: 40%
 
 Okay, press ``Ctrl + C`` to stop the cluster for a while.
 
@@ -78,7 +77,7 @@ This will be an evergreen "Hello world!"" -- just to keep things simple.
 
 Rename the template file ``app/roles/custom.lua`` to ``hello-world.lua``.
 
-.. code-block:: console
+..  code-block:: console
 
     $ mv app/roles/custom.lua app/roles/hello-world.lua
 
@@ -88,14 +87,14 @@ Further on we'll show how to add code to a role, build it, enable and test.
 
 There is already some code in the role's ``init()`` function.
 
-.. code-block:: lua
-   :emphasize-lines: 5-7
+..  code-block:: lua
+    :emphasize-lines: 5-7
 
     local function init(opts) -- luacheck: no unused args
         -- if opts.is_master then
         -- end
 
-        local httpd = cartridge.service_get('httpd')
+        local httpd = assert(cartridge.service_get('httpd'), "Failed to get httpd service")
         httpd:route({method = 'GET', path = '/hello'}, function()
             return {body = 'Hello world!'}
         end)
@@ -110,8 +109,8 @@ you'll see "Hello world!" on the page.
 
 Let's add some more code there.
 
-.. code-block:: lua
-   :emphasize-lines: 9-10
+..  code-block:: lua
+    :emphasize-lines: 9-11
 
     local function init(opts) -- luacheck: no unused args
         -- if opts.is_master then
@@ -132,6 +131,7 @@ This writes "Hello, world!" to the console when the role gets enabled,
 so you'll have a chance to spot this. No rocket science.
 
 Next, amend ``role_name`` in the "return" section of the ``hello-world.lua`` file.
+You'll see this section at the bottom of the file.
 This text will be displayed as a label for your role in the cluster management
 web interface.
 
@@ -144,22 +144,24 @@ web interface.
         stop = stop,
         validate_config = validate_config,
         apply_config = apply_config,
+        -- dependencies = {'cartridge.roles.vshard-router'},
     }
 
 The final thing to do before you can run the application is to add your role to
-the list of available cluster roles in the ``init.lua`` file.
+the list of available cluster roles in the ``init.lua`` file in the project root directory.
 
-.. code-block:: lua
-   :emphasize-lines: 6
+..  code-block:: lua
+    :emphasize-lines: 8
+
+    local cartridge = require('cartridge')
 
     local ok, err = cartridge.cfg({
-        workdir = 'tmp/db',
         roles = {
             'cartridge.roles.vshard-storage',
             'cartridge.roles.vshard-router',
-            'app.roles.hello-world'
+            'cartridge.roles.metrics',
+            'app.roles.hello-world',
         },
-        cluster_cookie = 'myapp-cluster-cookie',
     })
 
 Now the cluster will be aware of your role.
@@ -168,9 +170,9 @@ Why ``app.roles.hello-world``? By default, the role name here should match the
 path from the application root (``./myapp``) to the role file
 (``app/roles/hello-world.lua``).
 
-Fine! Your role is ready. Re-build the application and re-start the cluster now:
+Great! Your role is ready. Re-build the application and re-start the cluster now:
 
-.. code-block:: console
+..  code-block:: console
 
     $ cartridge build
     $ cartridge start
@@ -183,45 +185,45 @@ replica set have the same roles enabled.
 
 Let's create a replica set containing just one instance and enable your role:
 
-#. Open the cluster management web interface at http://localhost:8081.
-#. Click **Configure**.
-#. Check the role ``Hello world!`` to enable it. Notice that the role name here
-   matches the label text that you specified in the ``role_name`` parameter in
-   the ``hello-world.lua`` file.
-#. (Optionally) Specify the replica set name, for example
-   "hello-world-replica-set".
+#.  Open the cluster management web interface at http://localhost:8081.
+#.  Next to the **router** instance, click **Configure**.
+#.  Check the role ``Hello world!`` to enable it. Notice that the role name here
+    matches the label text that you specified in the ``role_name`` parameter in
+    the ``hello-world.lua`` file.
+#.  (Optionally) Specify the replica set name, for example
+    "hello-world-replica-set".
 
-   .. image:: images/cluster_create_replica_set-border-5px.png
-      :align: center
-      :scale: 40%
+    ..  image:: images/cluster_create_replica_set-border-5px.png
+        :align: center
+        :scale: 40%
 
-#. Click **Create replica set** and see the newly-created replica set
-   in the web interface.
+#.  Click **Create replica set** and see the newly-created replica set
+    in the web interface.
 
-.. image:: images/cluster_new_replica_set-border-5px.png
-   :align: center
-   :scale: 40%
+    ..  image:: images/cluster_new_replica_set-border-5px.png
+        :align: center
+        :scale: 40%
 
 Your custom role got enabled. Find the "Hello world!" message in console,
 like this:
 
-.. image:: images/cluster_hello_world_console-border-5px.png
-   :align: center
-   :scale: 40%
+..  image:: images/cluster_hello_world_console-border-5px.png
+    :align: center
+    :scale: 40%
 
 Finally, open the HTTP endpoint of this instance at
 http://localhost:8081/hello and see the reply to your GET request.
 
-.. image:: images/cluster_hello_http-border-5px.png
-   :align: center
-   :scale: 40%
+..  image:: images/cluster_hello_http-border-5px.png
+    :align: center
+    :scale: 40%
 
 Everything is up and running! What's next?
 
-* Follow :ref:`this guide <cartridge-deployment>` to set up the rest of the
-  cluster and try some cool cluster management features.
-* Get inspired with `these examples <https://github.com/tarantool/examples/>`_
-  and implement more sophisticated business logic for your role.
-* :doc:`Pack </book/cartridge/cartridge_cli/commands/pack>` your application for easy distribution.
-  Choose what you like: a DEB or RPM package, a TGZ archive, or a Docker image.
-* Read the :doc:`Cartridge documentation </book/cartridge/index>`.
+*   Follow :ref:`this guide <cartridge-deployment>` to set up the rest of the
+    cluster and try some cool cluster management features.
+*   Get inspired with `these examples <https://github.com/tarantool/examples/>`_
+    and implement more sophisticated business logic for your role.
+*   :doc:`Pack </book/cartridge/cartridge_cli/commands/pack>` your application for easy distribution.
+    Choose what you like: a DEB or RPM package, a TGZ archive, or a Docker image.
+*   Read the :doc:`Cartridge documentation </book/cartridge/index>`.
