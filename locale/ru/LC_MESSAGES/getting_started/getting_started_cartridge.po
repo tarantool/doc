@@ -335,8 +335,8 @@ msgstr ""
 "Откройте веб-интерфейс для управления кластером по адресу "
 "http://localhost:8081."
 
-msgid "Next to the **router** instance, click **Configure**."
-msgstr "Рядом с экземпляром **router** нажмите кнопку **Configure**."
+msgid "Next to the **router** instance, click :guilabel:`Configure`."
+msgstr "Рядом с экземпляром **router** нажмите кнопку :guilabel:`Configure`."
 
 msgid ""
 "Check the role ``Hello world!`` to enable it. Notice that the role name here"
@@ -355,10 +355,10 @@ msgstr ""
 "set\"."
 
 msgid ""
-"Click **Create replica set** and see the newly-created replica set in the "
+"Click :guilabel:`Create replica set` and see the newly-created replica set in the "
 "web interface."
 msgstr ""
-"Нажмите кнопку **Create replica set**. Информация о вашем наборе реплик "
+"Нажмите кнопку :guilabel:`Create replica set`. Информация о вашем наборе реплик "
 "появится в веб-интерфейсе."
 
 msgid ""

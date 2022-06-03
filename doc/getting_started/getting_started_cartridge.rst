@@ -187,7 +187,7 @@ replica set have the same roles enabled.
 Let's create a replica set containing just one instance and enable your role:
 
 #.  Open the cluster management web interface at http://localhost:8081.
-#.  Next to the **router** instance, click **Configure**.
+#.  Next to the **router** instance, click :guilabel:`Configure`.
 #.  Check the role ``Hello world!`` to enable it. Notice that the role name here
     matches the label text that you specified in the ``role_name`` parameter in
     the ``hello-world.lua`` file.
@@ -198,7 +198,7 @@ Let's create a replica set containing just one instance and enable your role:
         :align: center
         :scale: 40%
 
-#.  Click **Create replica set** and see the newly-created replica set
+#.  Click :guilabel:`Create replica set` and see the newly-created replica set
     in the web interface.
 
     ..  image:: images/cluster_new_replica_set-border-5px.png
