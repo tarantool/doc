@@ -221,10 +221,11 @@ http://localhost:8081/hello and see the reply to your GET request.
 
 Everything is up and running! What's next?
 
-*   Follow :ref:`this guide <cartridge-deployment>` to set up the rest of the
-    cluster and try some cool cluster management features.
-*   Get inspired with `these examples <https://github.com/tarantool/examples/>`_
+*   Follow the :ref:`administrator's guide <cartridge-deployment>` to set up the rest of the
+    cluster and try some cool cluster management features -- for example, enable failover.
+*   Check out the Cartridge :doc:`developer's guide </book/cartridge/cartridge_dev>`
     and implement more sophisticated business logic for your role.
 *   :doc:`Pack </book/cartridge/cartridge_cli/commands/pack>` your application for easy distribution.
     Choose what you like: a DEB or RPM package, a TGZ archive, or a Docker image.
+    Archives and packages can be deployed with `ansible-cartridge <https://github.com/tarantool/ansible-cartridge>`__.
 *   Read the :doc:`Cartridge documentation </book/cartridge/index>`.
