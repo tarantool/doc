@@ -143,6 +143,7 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_RAFT_VCLOCK=0x03
     IPROTO_VERSION=0x54
     IPROTO_FEATURES=0x55
+    IPROTO_TIMEOUT=0x56
 
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
