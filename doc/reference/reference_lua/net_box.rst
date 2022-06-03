@@ -163,15 +163,15 @@ Below is a list of all ``net.box`` functions.
     such as select, update or delete.
     
     Possible options:
-
+    
     *   ``user/password``: you have two ways to connect to a remote host: 
-         using :ref:`URI <index-uri>` or using the options `user` and `password`. For 
+        using :ref:`URI <index-uri>` or using the options `user` and `password`. For 
          example, instead of ``connect('username:userpassword@localhost:33301')`` 
          you can write ``connect('localhost:33301', {user = 'username', password='userpassword'})``.
 
     *   ``wait_connected``: by default, connection creation is blocked until the connection is established, but passing 
         ``wait_connected=false`` makes it return immediately. Also, passing a timeout makes it wait before returning 
-        (e.g. ``wait_connected=1.5`` makes it wait at most 1.5 seconds).
+        (``wait_connected=1.5`` makes it wait at most 1.5 seconds).
 
       .. NOTE::
 
@@ -216,31 +216,32 @@ Below is a list of all ``net.box`` functions.
     ..  container:: table
 
     ..  list-table::
-        :widths: 20 30 25 25
+        :widths: 25 30 25 20
         :header-rows: 1
 
-        *   -   ``net.box`` feature
+        *   -   net.box feature
             -   Use
             -   IPROTO feature ID
-            -   First protocol version with ``net.box`` feature
+            -   First protocol version with net.box feature
         *   -   ``streams``  
-            -   Requires streams support on the server.
+            -   Requires streams support on the server
             -   IPROTO_FEATURE_STREAMS 
             -   1
         *   -   ``transactions``
-            -   Requires transactions support on the server.
+            -   Requires transactions support on the server
             -   IPROTO_FEATURE_TRANSACTIONS   
             -   1
         *   -   ``error_extension``
-            -   Requires support for :ref:`MP_ERROR <msgpack_ext-error>` MsgPack extension on the server.
+            -   Requires support for :ref:`MP_ERROR <msgpack_ext-error>` MsgPack extension on the server
             -   IPROTO_FEATURE_ERROR_EXTENSION   
             -   2
         *   -   ``watchers``
-            -   Requires remote watchers support on the server.
+            -   Requires remote watchers support on the server
             -   IPROTO_FEATURE_WATCHERS   
             -   3      
             
     To learn more about IPROTO features, see :ref:`IPROTO_ID <box_protocol-id>`.
+
 
 
     :param string URI: the :ref:`URI <index-uri>` of the target for the connection
