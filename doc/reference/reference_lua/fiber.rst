@@ -376,9 +376,9 @@ recommended.
 
 ..  _fiber-info:
 
-..  function:: info({[backtrace]})
+..  function:: info({[backtrace/bt]})
 
-   Return information about all fibers.
+    Return information about all fibers.
 
     :param boolean backtrace: show backtrace. Default: ``true``.
                               Set to ``false`` to show less information (symbol resolving can be expensive).
