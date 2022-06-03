@@ -174,12 +174,12 @@ For more options, see the description of ``net_box.new()`` below.
     *   ``wait_connected``: by default, connection creation is blocked until the connection is established, but passing 
         ``wait_connected=false`` makes it return immediately. Also, passing a timeout makes it wait before returning 
         (``wait_connected=1.5`` makes it wait at most 1.5 seconds).
-        
+
       .. NOTE::
 
-         If ``reconnect_after``: is greater than zero, then ``wait_connected`` ignores transient failures.
-         The wait completes once the connection is established or is closed explicitly.      
-         
+         If ``reconnect_after`` is greater than zero, then ``wait_connected`` ignores transient failures.
+         The wait completes once the connection is established or is closed explicitly.
+
     *   ``reconnect_after``: if ``reconnect_after`` is greater than zero, then a ``net.box`` instance will try 
         to reconnect if a connection is broken or if a connection attempt fails. This makes transient network 
         failures become transparent to the application. Reconnect happens automatically in the background, 
@@ -209,7 +209,7 @@ For more options, see the description of ``net_box.new()`` below.
         from the table below. If the server does not have the specified features, the connection will fail with an error message. 
         With ``required_protocol_features = {'transactions'}`` all connections fail where the server has ``transaction: false``.
         
-     ..  container:: table
+    ..  container:: table
 
     ..  list-table::
         :widths: 25 30 25 20
