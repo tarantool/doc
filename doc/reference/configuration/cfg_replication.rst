@@ -416,6 +416,7 @@
 
     | Type: string
     | Default: null
+    | Environment variable: TT_INSTANCE_UUID
     | Dynamic: no
 
 .. _cfg_replication-replication_synchro_quorum:
@@ -437,7 +438,7 @@
 
     | Type: number
     | Default: 1
-    | Environment variable: TT_INSTANCE_UUID
+    | Environment variable: TT_REPLICATION_SYNCHRO_QUORUM
     | Dynamic: **yes**
 
 .. _cfg_replication-replication_synchro_timeout:
