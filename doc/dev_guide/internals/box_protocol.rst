@@ -144,7 +144,7 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_VERSION=0x54
     IPROTO_FEATURES=0x55
     IPROTO_TIMEOUT=0x56
-    IPROTO_TXN_ISOLATION = 0x59,
+    IPROTO_TXN_ISOLATION = 0x59
 
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
@@ -725,23 +725,23 @@ The body is optional and can contain two items:
     # <header>
     msgpack({
         IPROTO_REQUEST_TYPE: IPROTO_BEGIN,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
         IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
     })
     # <body>
     msgpack({
-        IPROTO_TIMEOUT: :samp:`{{MP_DOUBLE}}`
+        IPROTO_TIMEOUT: :samp:`{{MP_DOUBLE}}`,
         IPROTO_TXN_ISOLATION: :samp:`{{MP_UINT unsigned integer}}`
     })
 
 IPROTO_TIMEOUT is an optional timeout (in seconds). After it expires,
 the transaction will be rolled back automatically.
 
--- TODO: add link to transaction isolation docs once they're ready
+.. // TODO: add link to transaction isolation docs once they're ready
 IPROTO_TXN_ISOLATION is the transaction isolation level. It can take
 the following values:
 
--- TODO: provide links to level descriptions
+.. // TODO: provide links to level descriptions
 - ``TXN_ISOLATION_DEFAULT = 0``	-- use the global default level
 - ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read committed, but not confirmed changes
 - ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read only confirmed changes
@@ -763,11 +763,11 @@ See :ref:`stream:commit() <net_box-stream_commit>`.
 ..  parsed-literal::
 
     # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    msgpack(7)
     # <header>
     msgpack({
         IPROTO_REQUEST_TYPE: IPROTO_COMMIT,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
         IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
     })
 
@@ -787,11 +787,11 @@ See :ref:`stream:rollback() <net_box-stream_rollback>`.
 ..  parsed-literal::
 
     # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    msgpack(7)
     # <header>
     msgpack({
         IPROTO_REQUEST_TYPE: IPROTO_ROLLBACK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
         IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
     })
 
