@@ -165,8 +165,7 @@ For more options, see the description of ``net_box.new()`` below.
     such as select, update or delete.
     
     :param string URI: the :ref:`URI <index-uri>` of the target for the connection
-    :param options: 
-    
+    :param options: the supported options are shown below:
     *   ``user/password``: you have two ways to connect to a remote host: 
         using :ref:`URI <index-uri>` or using the options `user` and `password`. For example, instead 
         of ``connect('username:userpassword@localhost:3301')`` you can write 
@@ -212,7 +211,7 @@ For more options, see the description of ``net_box.new()`` below.
     ..  container:: table
 
     ..  list-table::
-        :widths: 25 30 25 20
+        :widths: 26 29 25 20
         :header-rows: 1
 
         *   -   net.box feature
