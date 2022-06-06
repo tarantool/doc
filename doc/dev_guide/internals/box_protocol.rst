@@ -1282,16 +1282,20 @@ each call to conn:new_stream() assigns a new number, starting with 1.
 ..  _box_protocol-stream_transactions:
 
 The client makes stream transactions by sending, in order:
-IPROTO_BEGIN, the transaction data-change and query requests,
-IPROTO_COMMIT or IPROTO_ROLLBACK.
-Each request must contain the same IPROTO_STREAM_ID value.
-With streaming there is no need to add
-:ref:`IPROTO_FLAGS <box_protocol-flags>` and IPROTO_FLAG_COMMIT
-in the header of the last request of a transaction.
-Rollback will be automatic if disconnect occurs before commit is possible.
+
+1. IPROTO_BEGIN with an optional transaction timeout in the IPROTO_TIMEOUT field of the request body
+2. the transaction data-change and query requests
+3. IPROTO_COMMIT or IPROTO_ROLLBACK
+
+All these requests must contain the same IPROTO_STREAM_ID value.
+
+With streaming, there is no need to add
+:ref:`IPROTO_FLAGS <box_protocol-flags>` and IPROTO_FLAG_COMMIT in the header
+of the last request of a transaction. A rollback will happen automatically if
+a disconnect occurs or the transaction timeout expires before the commit is possible.
 
 Thus there are now multiple ways to do transactions:
-with net_box and stream:begin() and stream:commit() or stream:rollback()
+with ``net_box`` ``stream:begin()`` and ``stream:commit()`` or ``stream:rollback()``
 which cause IPROTO_BEGIN and IPROTO_COMMIT or IPROTO_ROLLBACK with
 the current value of stream.stream_id;
 with :ref:`box.begin() <box-begin>` and :ref:`box.commit() <box-commit>` or :ref:`box.rollback() <box-rollback>`;
