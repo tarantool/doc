@@ -144,6 +144,7 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_VERSION=0x54
     IPROTO_FEATURES=0x55
     IPROTO_TIMEOUT=0x56
+    IPROTO_TXN_ISOLATION = 0x59,
 
 
 To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
@@ -707,6 +708,96 @@ IPROTO_SQL_TEXT (0x40) and statement-text (string) if executing an SQL string.
 Thus the IPROTO_PREPARE map item is the same as the first item of the
 :ref:`IPROTO_EXECUTE <box_protocol-execute>` body.
 
+..  _box_protocol-begin:
+
+IPROTO_BEGIN = 0x0e
+~~~~~~~~~~~~~~~~~~~~~
+
+Begin a transaction in the specified stream.
+See :ref:`stream:begin() <net_box-stream_begin>`.
+The body is optional and can contain two items:
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_BEGIN,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_TIMEOUT: :samp:`{{MP_DOUBLE}}`
+        IPROTO_TXN_ISOLATION: :samp:`{{MP_UINT unsigned integer}}`
+    })
+
+IPROTO_TIMEOUT is an optional timeout (in seconds). After it expires,
+the transaction will be rolled back automatically.
+
+-- TODO: add link to transaction isolation docs once they're ready
+IPROTO_TXN_ISOLATION is the transaction isolation level. It can take
+the following values:
+
+-- TODO: provide links to level descriptions
+- ``TXN_ISOLATION_DEFAULT = 0``	-- use the global default level
+- ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read committed, but not confirmed changes
+- ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read only confirmed changes
+- ``TXN_ISOLATION_BEST_EFFORD = 3`` -- determine isolation level automatically
+
+See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
+stream transactions in the binary protocol.
+
+
+..  _box_protocol-commit:
+
+IPROTO_COMMIT = 0x0f
+~~~~~~~~~~~~~~~~~~~~~
+
+Commit the transaction in the specified stream.
+See :ref:`stream:commit() <net_box-stream_commit>`.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_COMMIT,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
+    })
+
+See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
+stream transactions in the binary protocol.
+
+
+..  _box_protocol-rollback:
+
+IPROTO_ROLLBACK = 0x10
+~~~~~~~~~~~~~~~~~~~~~
+
+Rollback the transaction in the specified stream.
+See :ref:`stream:rollback() <net_box-stream_rollback>`.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_ROLLBACK,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
+    })
+
+See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
+stream transactions in the binary protocol.
+
 
 ..  _box_protocol-ping:
 
@@ -747,7 +838,7 @@ Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
 The messages are not supposed to be used by any client applications in their
 regular connections.
 
-..  _box_protocol-confirm:
+..  _box_protocol-raft_confirm:
 
 IPROTO_RAFT_CONFIRM = 0x28
 ~~~~~~~~~~~~~~~~~~~~~
@@ -776,7 +867,7 @@ The body is a 2-item map:
     })
 
 
-..  _box_protocol-rollback:
+..  _box_protocol-raft_rollback:
 
 IPROTO_RAFT_ROLLBACK = 0x29
 ~~~~~~~~~~~~~~~~~~~~~~
