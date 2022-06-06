@@ -749,7 +749,7 @@ regular connections.
 
 ..  _box_protocol-confirm:
 
-IPROTO_CONFIRM = 0x28
+IPROTO_RAFT_CONFIRM = 0x28
 ~~~~~~~~~~~~~~~~~~~~~
 
 This message confirms that the transactions originated from the instance
@@ -778,7 +778,7 @@ The body is a 2-item map:
 
 ..  _box_protocol-rollback:
 
-IPROTO_ROLLBACK = 0x29
+IPROTO_RAFT_ROLLBACK = 0x29
 ~~~~~~~~~~~~~~~~~~~~~~
 
 This message says that the transactions originated from the instance
@@ -1289,9 +1289,7 @@ The client makes stream transactions by sending, in order:
 
 All these requests must contain the same IPROTO_STREAM_ID value.
 
-With streaming, there is no need to add
-:ref:`IPROTO_FLAGS <box_protocol-flags>` and IPROTO_FLAG_COMMIT in the header
-of the last request of a transaction. A rollback will happen automatically if
+A rollback will happen automatically if
 a disconnect occurs or the transaction timeout expires before the commit is possible.
 
 Thus there are now multiple ways to do transactions:
