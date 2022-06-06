@@ -745,7 +745,7 @@ the following values:
 - ``TXN_ISOLATION_DEFAULT = 0``	-- use the global default level
 - ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read committed, but not confirmed changes
 - ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read only confirmed changes
-- ``TXN_ISOLATION_BEST_EFFORD = 3`` -- determine isolation level automatically
+- ``TXN_ISOLATION_BEST_EFFORT = 3`` -- determine isolation level automatically
 
 See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
 stream transactions in the binary protocol.
