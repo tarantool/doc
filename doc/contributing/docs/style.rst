@@ -204,7 +204,7 @@ Use the dash for the following purposes:
 
 *   To separate extra information.
 *   To mark a break in a sentence.
-*   To mark ranges like 4--16 GB.
+*   To mark ranges like 4--16 GB (don't surround the dash with spaces in this case).
 
 When indicating a range like ``code element 1``\--``code element 2``, escape the series of hyphens using
 `character-level inline markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#character-level-inline-markup-1>`_. 
