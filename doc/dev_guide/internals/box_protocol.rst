@@ -1374,9 +1374,9 @@ each call to conn:new_stream() assigns a new number, starting with 1.
 
 The client makes stream transactions by sending, in order:
 
-1. IPROTO_BEGIN with an optional transaction timeout in the IPROTO_TIMEOUT field of the request body
-2. the transaction data-change and query requests
-3. IPROTO_COMMIT or IPROTO_ROLLBACK
+1. IPROTO_BEGIN with an optional transaction timeout in the IPROTO_TIMEOUT field of the request body.
+2. The transaction data-change and query requests.
+3. IPROTO_COMMIT or IPROTO_ROLLBACK.
 
 All these requests must contain the same IPROTO_STREAM_ID value.
 
