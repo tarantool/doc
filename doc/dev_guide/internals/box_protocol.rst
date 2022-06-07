@@ -742,9 +742,9 @@ IPROTO_TXN_ISOLATION is the transaction isolation level. It can take
 the following values:
 
 .. // TODO: provide links to level descriptions
-- ``TXN_ISOLATION_DEFAULT = 0``	-- use the global default level
-- ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read committed, but not confirmed changes
-- ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read only confirmed changes
+- ``TXN_ISOLATION_DEFAULT = 0``	-- use the global default level (default value)
+- ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read changes that are committed but not confirmed yet
+- ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read confirmed changes
 - ``TXN_ISOLATION_BEST_EFFORT = 3`` -- determine isolation level automatically
 
 See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
