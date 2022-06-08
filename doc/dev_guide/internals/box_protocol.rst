@@ -141,6 +141,8 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_RAFT_VOTE=0x01
     IPROTO_RAFT_STATE=0x02
     IPROTO_RAFT_VCLOCK=0x03
+    IPROTO_RAFT_LEADER_ID=0x04
+    IPROTO_RAFT_IS_LEADER_SEEN=0x05
     IPROTO_VERSION=0x54
     IPROTO_FEATURES=0x55
     IPROTO_TIMEOUT=0x56
@@ -1603,8 +1605,11 @@ In other words, there should be a full-mesh connection between the nodes.
     msgpack({
         IPROTO_RAFT_TERM: :samp:`{{MP_UINT unsigned integer}}`,     # RAFT term of the instance
         IPROTO_RAFT_VOTE: :samp:`{{MP_UINT unsigned integer}}`,     # Instance vote in the current term (if any).
-        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state; one of the three numbers: 1 -- follower, 2 -- candidate, 3 -- leader.
-        IPROTO_RAFT_VCLOCK: :samp:`{{MP_ARRAY {{MP_INT SRV_ID, MP_INT SRV_LSN}, {MP_INT SRV_ID, MP_INT SRV_LSN}, ...}}}`   # Current vclock of the instance. Presents only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
+        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state. Possible values: 1 -- follower, 2 -- candidate, 3 -- leader.
+        IPROTO_RAFT_VCLOCK: :samp:`{{MP_ARRAY {{MP_INT SRV_ID, MP_INT SRV_LSN}, {MP_INT SRV_ID, MP_INT SRV_LSN}, ...}}}`,   # Current vclock of the instance. Presents only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
+        IPROTO_RAFT_LEADER_ID: :samp:`{{MP_UINT unsigned integer}}`,     # Current leader node ID as seen by the node that issues the request.
+        IPROTO_RAFT_IS_LEADER_SEEN: :samp:`{{MP_BOOL boolean}}`     # Shows whether the node has a direct connection to the leader node.
+
     })
 
 ..  _box_protocol-illustration:
