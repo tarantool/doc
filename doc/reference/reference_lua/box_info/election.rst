@@ -24,7 +24,7 @@ box.info.election
 
    *    ``leader`` -- leader node ID in the current term. If the value is ``0``, it means the node doesn't know which node is the leader in the current term.
 
-   *    ``leader_idle`` -- time in seconds since the last interaction with the known leader.
+   *    ``leader_idle`` -- time in seconds since the last interaction with the known leader.  Since version :doc:`2.10.0 </release/2.10.0>`.
 
    ..   note::
 
