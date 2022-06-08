@@ -20,7 +20,7 @@ is processed with three operating system **threads**:
     can be updated (not much can go wrong when you're merely changing an
     unindexed field value).
 
-3.  The transaction processor thread sends a message to the
+3.  The **transaction processor thread** sends a message to the
     :ref:`write-ahead logging (WAL) thread <internals-wal>` to commit the
     transaction. When this is done, the WAL thread replies with a COMMIT or ROLLBACK
     result to the transaction processor, which returns it to the network thread,
@@ -28,29 +28,29 @@ is processed with three operating system **threads**:
 
 ..  note::
 
-    There is only one transaction processor thread in Tarantool. Some people are used to 
-    the idea that there can be multiple threads operating on the database, with (say) 
-    thread #1 reading row #x, while thread #2 writes row #y. With Tarantool, this never happens. 
-    Only the transaction processor thread can access the database, and there is
-    only one transaction processor thread for each Tarantool instance.
+    There is only one transaction processor thread in Tarantool. 
+    Some users are used to the idea that there can be multiple threads 
+    working on the database. For example, thread #1 reads row #x while 
+    thread #2 writes row #y. With Tarantool, this never happens. 
+    Only the transaction processor thread can access the database, 
+    and there is only one transaction processor thread for each Tarantool instance.
 
 Like any other Tarantool thread, the transaction processor thread can handle
-many :ref:`fibers <fiber-fibers>`. A fiber is a set of computer instructions
-that may contain "**yield**" signals. The transaction processor thread will
-execute all computer instructions until a yield, and then switches to execute the
-instructions of a different fiber. For example, the thread reads row #x for the
-sake of fiber #1, and then writes row #y for the sake of fiber #2.
+many :ref:`fibers <fiber-fibers>` -- a set of computer instructions
+that may contain "**yield**" signals. 
+The transaction processor thread executes all computer instructions up to 
+a yield signal, and then switches to execute the instructions of another fiber. 
 
-Yields must happen, otherwise the transaction processor thread would stick
-permanently on the same fiber. There are two types of yields:
+Yields must happen, otherwise the transaction processor thread would 
+be permanently stuck on the same fiber. There are two types of these yields:
 
-*   :ref:`implicit yields <atomic-implicit-yields>`: every data-change operation
-    or network-access causes an implicit yield, and every statement that goes
-    through the Tarantool client causes an implicit yield.
+*   **implicit yields**: caused by any data change operation
+    or network access and any statement passing
+    through the Tarantool client.
 
-*   explicit yields: in a Lua function, you can (and should) add
-    :ref:`"yield" <fiber-yield>` statements to prevent hogging. This is called
-    **cooperative multitasking**.
+*   **explicit yields**: can (and should) be added as 
+    :ref:`"yield" <fiber-yield>` statements to prevent hogging in 
+    a Lua function. This is called **cooperative multitasking**.
     
 ..  _thread_model-example:
 
@@ -72,6 +72,6 @@ primary keys in ``field[1]``:
     
 ..  note::
 
-    It is better to follow best practice and use SQL with  placeholders:
-    ``box.execute([[ UPDATE tester SET "name" = 'size', "data" = 0 WHERE "id" = ? ]], 123``
+    It is better to follow best practice and use SQL with placeholders:
+    ``box.execute([[ UPDATE tester SET "name" = 'size', "data" = 0 WHERE "id" = 3 ]], 123``
     
