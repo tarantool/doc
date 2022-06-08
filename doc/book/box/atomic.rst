@@ -13,8 +13,7 @@ For more information on how transactions work in Tarantool, see the following se
 ..  toctree::
     :maxdepth: 2
 
-    atomic/atomic-threads_fibers_yields
-    atomic/atomic-cooperative_multitasking
-    atomic/atomic-transactions
-    atomic/atomic-implicit-yields
-    atomic/atomic-transactional-manager
+    atomic/transaction_model.rst
+    atomic/thread_model
+    atomic/txn_mode_default
+    atomic/txn_mode_mvcc
