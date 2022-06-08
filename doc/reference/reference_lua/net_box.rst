@@ -147,16 +147,13 @@ Below is a list of all ``net.box`` functions.
 
 .. function:: connect(URI [, {option[s]}])
 
-For more options, see the description of ``net_box.new()`` below.
+    The names ``connect()`` and ``new()`` are synonyms: ``connect()`` is 
+    preferred; ``new()`` is retained for backward compatibility. For more 
+    information, see the description of ``net_box.new()`` below.
 
 .. _net_box-new:
 
 .. function:: new(URI [, {option[s]}])
-
-    .. NOTE::
-
-       The names ``connect()`` and ``new()`` are synonyms: ``connect()`` is
-       preferred; ``new()`` is retained for backward compatibility.
 
     Create a new connection. The connection is established on demand, at the
     time of the first request. It can be re-established automatically after a
@@ -166,47 +163,59 @@ For more options, see the description of ``net_box.new()`` below.
     
     :param string URI: the :ref:`URI <index-uri>` of the target for the connection
     :param options: the supported options are shown below:
-    *   ``user/password``: you have two ways to connect to a remote host: 
-        using :ref:`URI <index-uri>` or using the options `user` and `password`. For example, instead 
-        of ``connect('username:userpassword@localhost:3301')`` you can write 
-        ``connect('localhost:3301', {user = 'username', password='userpassword'})``.
-    *   ``wait_connected``: by default, connection creation is blocked until the connection is established, but passing 
-        ``wait_connected=false`` makes it return immediately. Also, passing a timeout makes it wait before returning 
-        (``wait_connected=1.5`` makes it wait at most 1.5 seconds).
+    
+        *   ``user/password``: two options to connect to a remote host other than through 
+        :ref:`URI <index-uri>`. For example, instead of ``connect('username:userpassword@localhost:3301')`` 
+        you can write ``connect('localhost:3301', {user = 'username', password='userpassword'})``.
 
-      .. NOTE::
+        *   ``wait_connected``: a connection timeout. By default, the connection is blocked until the connection 
+        is established, but if you specify ``wait_connected=false``, the connection returns immediately. 
+        If you specify this timeout, it will wait before returning (``wait_connected=1.5`` makes it wait at most 1.5 seconds).
 
-         If ``reconnect_after`` is greater than zero, then ``wait_connected`` ignores transient failures.
-         The wait completes once the connection is established or is closed explicitly.
+            .. NOTE::
 
-    *   ``reconnect_after``: if ``reconnect_after`` is greater than zero, then a ``net.box`` instance will try 
-        to reconnect if a connection is broken or if a connection attempt fails. This makes transient network 
-        failures become transparent to the application. Reconnect happens automatically in the background, 
-        so requests that initially fail due to connectivity loss are transparently retried. The number of 
-        retries is unlimited, connection attempts are made after each specified interval (for example ``reconnect_after=5`` 
-        means try to reconnect every 5 seconds). When a connection is explicitly closed, or when the Lua garbage collector 
-        removes it, then reconnect attempts stop. The default value of ``reconnect_after``, as with other ``connect`` 
-        options, is ``nil``.
-    *   ``call_16``: [since 1.7.2] by default, ``net.box`` connections comply with a new binary protocol command for CALL, 
-        which is not backward compatible with previous versions. The new CALL no longer restricts a function to returning 
-        an array of tuples and allows returning an arbitrary MsgPack/JSON result, including scalars, nil and void (nothing). 
-        The old CALL is left intact for backward compatibility. It will be removed in the next major release. All programming 
-        language drivers will be gradually changed to use the new CALL. To connect to a Tarantool instance that uses the old 
-        CALL, specify ``call_16=true``.
-    *   ``console``: depending on the option's value, the connection supports different methods (as if instances of different 
-        classes were returned). With ``console = true``, you can use ``conn`` methods ``close()``, ``is_connected()``, 
-        ``wait_state()``, ``eval()`` (in this case, both binary and Lua console network protocols are supported). With 
-        ``console = false`` (default), you can also use ``conn`` database methods (in this case, only the binary protocol is 
-        supported). Deprecation notice: ``console = true`` is deprecated, users should use :ref:`console.connect() <console-connect>` instead.
-    *   ``connect_timeout``: number of seconds to wait before returning "error: Connection timed out".
-    *   ``required_protocol_version``: depending on the value of the option, the connection requires the minimum version 
-        of the IPROTO protocol supported by the server. If the server version is lower than specified, the connection will 
-        fail with an error message. With ``required_protocol_version = 1`` all connections fail where the server protocol is 
-        lower than ``1``.  
-    *   ``required_protocol_features``: depending on the value of the option, the connection requires the specified 
-        IPROTO protocol features supported by the server. You can specify one or more ``net.box`` features 
-        from the table below. If the server does not have the specified features, the connection will fail with an error message. 
-        With ``required_protocol_features = {'transactions'}`` all connections fail where the server has ``transaction: false``.
+                 If ``reconnect_after`` is greater than zero, then ``wait_connected`` ignores transient failures.
+                 The wait completes once the connection is established or is closed explicitly.
+
+
+        *   ``reconnect_after``: a number of seconds to wait before reconnecting. 
+        The default value, as with the other ``connect`` options, is ``nil``. If ``reconnect_after`` 
+        is greater than zero, then a ``net.box`` instance will attempt to reconnect if a connection 
+        is lost or a connection attempt fails. This makes transient network failures transparent to the application. 
+        Reconnection happens automatically in the background, so requests that initially fail due to connection drops 
+        fail, are transparently retried. The number of retries is unlimited, connection retries are made after 
+        any specified interval (for example, ``reconnect_after=5`` means that reconnect attempts are made every 5 seconds). 
+        When a connection is explicitly closed or when the Lua garbage collector removes it, then reconnect attempts stop. 
+        
+
+        *   ``call_16``: [since 1.7.2] a new binary protocol command for CALL in ``net.box`` connections by default. 
+        The new CALL is not backward compatible with previous versions. It no longer restricts a function to 
+        returning an array of tuples and allows returning an arbitrary MsgPack/JSON result, 
+        including scalars, nil and void (nothing). The old CALL is left intact for backward compatibility. 
+        It will not be present in the next major release. All programming language drivers will gradually be switched 
+        to the new CALL. To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``.
+
+        *   ``console``: an option to use different connection support methods (as if instances of different 
+        classes are returned). With ``console = true`` you can use the ``conn`` methods ``close()``, 
+        ``is_connected()``, ``wait_state()``, ``eval()`` (in this case both binary and Lua console 
+        network protocols are supported). 
+        With ``console = false`` (default) you can also use ``conn`` database methods (in this case only the 
+        binary protocol is supported). Deprecation note: ``console = true`` is deprecated, users should use 
+        :ref:`console.connect() <console-connect>` instead.
+
+        *   ``connect_timeout``: a number of seconds to wait before returning "error: Connection timed out".
+
+        *   ``required_protocol_version``: a minimum version of the :ref:`IPROTO protocol <box_protocol-id>` 
+        supported by the server. If the version of the :ref:`IPROTO protocol <box_protocol-id>` supported 
+        by the server is lower than specified, the connection will fail with an error message. 
+        With ``required_protocol_version = 1`` all connections fail where the :ref:`IPROTO protocol <box_protocol-id>` 
+        version is lower than ``1``.  
+
+        *   ``required_protocol_features``: a specified :ref:`IPROTO protocol features <box_protocol-id>` supported by the server. 
+        You can specify one or more ``net.box`` features from the table below. If the server does not 
+        support the specified features, the connection will fail with an error message. 
+        With ``required_protocol_features = {'transactions'}`` all connections fail where the 
+        server has ``transactions: false``.
         
     ..  container:: table
 
@@ -217,23 +226,23 @@ For more options, see the description of ``net_box.new()`` below.
         *   -   net.box feature
             -   Use
             -   IPROTO feature ID
-            -   First protocol version with net.box feature
+            -   IPROTO protocol versions with the net.box feature support
         *   -   ``streams``  
             -   Requires streams support on the server
             -   IPROTO_FEATURE_STREAMS 
-            -   1
+            -   1 and newer
         *   -   ``transactions``
             -   Requires transactions support on the server
             -   IPROTO_FEATURE_TRANSACTIONS   
-            -   1
+            -   1 and newer
         *   -   ``error_extension``
             -   Requires support for :ref:`MP_ERROR <msgpack_ext-error>` MsgPack extension on the server
             -   IPROTO_FEATURE_ERROR_EXTENSION   
-            -   2
+            -   2 and newer
         *   -   ``watchers``
             -   Requires remote watchers support on the server
             -   IPROTO_FEATURE_WATCHERS   
-            -   3      
+            -   3 and newer      
             
     To learn more about IPROTO features, see :ref:`IPROTO_ID <box_protocol-id>`.
  
@@ -247,7 +256,7 @@ For more options, see the description of ``net_box.new()`` below.
         conn = net_box.connect('localhost:3301')
         conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
         conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
-        conn = net_box.connect('127.0.0.1:3304', {required_protocol_version = 4, required_protocol_features = {'transactions'}, })
+        conn = net_box.connect('127.0.0.1:3304', {required_protocol_version = 4, required_protocol_features = {'transactions', 'streams'}, })
 
 .. _net_box-self:
 
