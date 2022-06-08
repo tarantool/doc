@@ -83,11 +83,6 @@ between each node pair so as it would be the full mesh topology. This is needed
 because election messages for voting and other internal things need direct
 connection between the nodes.
 
-Also, if election is enabled on the node, it won't replicate from any nodes except
-the newest leader. This is done to avoid the issue when a new leader is elected,
-but the old leader has somehow survived and tries to send more changes
-to the other nodes.
-
 Term numbers also work as a kind of a filter.
 For example, you can be sure that if election
 is enabled on two nodes and ``node1`` has the term number less than ``node2``,
@@ -197,9 +192,3 @@ they won't be checked against the quorum of replicas.
 Synchronous transactions will fail because they won't be able
 to collect the quorum -- most of the replicas will reject
 these old leader's transactions since it is not a leader anymore.
-
-Another point to keep in mind is that when a new leader is elected,
-it won't automatically finalize synchronous transactions
-left from the previous leader. This must be done manually using
-the :ref:`box.ctl.promote <box_ctl-promote>` function. In the future, it is going to be
-done automatically.
