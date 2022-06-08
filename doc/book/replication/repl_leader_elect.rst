@@ -72,10 +72,15 @@ the new leader finalises them automatically.
 
 All the non-leader nodes are called *followers*. The nodes that start a new
 election round are called *candidates*. The elected leader sends heartbeats to
-the non-leader nodes to let them know it is alive. So if there are no heartbeats
-for a period set by the :ref:`replication_timeout <cfg_replication-replication_timeout>`
-option, a new election starts. Terms and votes are persisted by
-each instance in order to preserve certain Raft guarantees.
+the non-leader nodes to let them know it is alive.
+
+In case there are no heartbeats for a period set by the :ref:`replication_timeout <cfg_replication-replication_timeout>` option,
+a non-leader node starts a new election if the following conditions are met:
+
+*   It has a quorum of connections to other cluster members.
+*   None of these cluster members can see the leader node.
+
+Terms and votes are persisted by each instance to preserve certain Raft guarantees.
 
 During the election, the nodes prefer to vote for those ones that have the
 newest data. So as if an old leader managed to send something before its death
