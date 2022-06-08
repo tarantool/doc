@@ -14,7 +14,8 @@ Transaction manager
 -------------------
 
 The transaction manager is designed to isolate concurrent transactions
-and provides a *serializable* `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_.
+and provides a *serializable* 
+`transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_.
 It consists of two parts:
 
 *   *MVCC* -- multi version concurrency control engine, which stores all change actions of all 
@@ -54,42 +55,41 @@ option to enable it via ``box.cfg``.
 Examples with MVCC enabled and disabled
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``memtx_use_mvcc_engine = false``:
+Create ``init.lua``, which contains the following:
 
-..  code-block:: false
+..  code-block:: init.lua
 
-    -- First create a space ``test`` with the tuples {1, 1}
+    box.cfg{ listen = '127.0.0.1:3301', memtx_use_mvcc_engine = false }
+    box.schema.user.grant('guest', 'super', nil, nil, {if_not_exists = true})
+
+    tickets = box.schema.create_space('tickets', { if_not_exists = true })
+    tickets:format({  { name = "id", type = "number" },  { name = "place", type = "number" }, })  
+    tickets:create_index('primary', { parts = { 'id' } })
+    tickets:insert({1, 428})
     
     box.begin()
-    s:replace{1, 2}
-    s:replace{2, 2}
-    
+    tickets:replace{1, 429}
+    tickets:replace{2, 429}
     box.commit()
+
+Run ``init.lua``:
+
+..  code-block:: false
     
     Result: 
     tarantool> 2022-06-07 16:08:01.515[186747] main/103/run.lua txn.c:705 E> ER_TRANSACTION_YIELD: Transaction has been aborted by a fiber yield
     ---
     - error: Transaction has been aborted by a fiber yield
     …
-    
-    
 
-``memtx_use_mvcc_engine = true``:
+Change ``memtx_use_mvcc_engine`` to ``true`` and run ``init.lua``:
 
 ..  code-block:: true
-   
-    -- First create a space ``test`` with the tuples {1, 1}
-    
-    box.begin()
-    s:replace{1, 2}
-    s:replace{2, 2}
-    
-    box.commit()
     
     Result:
     ---
-    - - [1, 2]
-      - [2, 2]
+    - - [1, 429]
+      - [2, 429]
     ...
     tarantool> box.commit()
     ---
@@ -100,7 +100,7 @@ Examples with MVCC enabled and disabled
 Streams and interactive transactions
 ------------------------------------
 
-Since :tarantool-release:`2.10.0-beta1`, iproto implements streams and interactive 
+Since :tarantool-release:`2.10.0`, IPROTO implements streams and interactive 
 transactions that can be used when :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`
 is enabled on the server.
 
@@ -110,7 +110,7 @@ is enabled on the server.
         A stream supports multiplexing several transactions over one connection. 
         Each stream has its own identifier, which is unique within the connection.
         All requests with the same non-zero stream ID belong to the same stream.
-        All requests in a stream are executed synchronously and strictly sequentially. 
+        All requests in a stream are executed strictly sequentially. 
         This allows the implementation of
         :term:`interactive transactions <interactive transaction>`.
         If the stream ID of a request is ``0``, it does not belong to any stream and is 
@@ -121,7 +121,7 @@ In :doc:`net.box </reference/reference_lua/net_box>`, a stream is an object abov
 the connection that has the same methods but allows sequential execution of requests.
 The ID is automatically generated on the client side.
 If a user writes their own connector and wants to use streams, 
-they must transmit the ``stream_id`` over the iproto protocol.
+they must transmit the ``stream_id`` over the :ref:`IPROTO protocol <box_protocol-id>`.
 
 Unlike a thread, which involves multitasking and execution within a program,
 a stream transfers data via the protocol between a client and a server.
@@ -131,15 +131,9 @@ a stream transfers data via the protocol between a client and a server.
     Interactive transaction
         An interactive transaction is one that does not need to be sent in a single request.
         There are multiple ways to begin, commit, and roll back a transaction, and they can be mixed. 
-        You can use stream:begin(), stream:commit(), stream:rollback() or the appropriate stream methods 
+        You can use :ref:`stream:begin() <net_box-stream_begin>`, :ref:`stream:commit() <net_box-stream_commit>`, 
+        :ref:`stream:rollback() <net_box-stream_rollback>` or the appropriate stream methods 
         -- ``call``, ``eval``, or ``execute`` -- using the SQL transaction syntax. 
-
-For example, you could start a transaction using ``stream:begin()``
-and commit it with ``stream:call('box.commit')`` or ``stream:execute('COMMIT')``.
-All requests between ``stream:begin()`` and ``stream:commit()`` are executed within the same transaction.
-If any request fails during the transaction, it does not affect the other requests in the transaction.
-If a connection is lost while there is an active transaction in the stream,
-that transaction will be rolled back if it hasn't been committed before the connection was lost.
 
 Example:
 
