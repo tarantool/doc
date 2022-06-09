@@ -41,7 +41,7 @@ that may contain "**yield**" signals.
 The transaction processor thread executes all computer instructions up to 
 a yield signal, and then switches to execute the instructions of another fiber. 
 
-`Yields <app-yields>` must happen, otherwise the transaction processor thread would 
+:ref:`Yields <app-yields>` must happen, otherwise the transaction processor thread would 
 be permanently stuck on the same fiber. There are two types of these yields:
 
 ..  _thread_model-example:
