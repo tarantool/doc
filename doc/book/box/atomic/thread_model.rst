@@ -41,16 +41,8 @@ that may contain "**yield**" signals.
 The transaction processor thread executes all computer instructions up to 
 a yield signal, and then switches to execute the instructions of another fiber. 
 
-Yields must happen, otherwise the transaction processor thread would 
+`Yields <app-yields>` must happen, otherwise the transaction processor thread would 
 be permanently stuck on the same fiber. There are two types of these yields:
-
-*   **implicit yields**: caused by any data change operation
-    or network access and any statement passing
-    through the Tarantool client.
-
-*   **explicit yields**: can (and should) be added as 
-    :ref:`"yield" <fiber-yield>` statements to prevent hogging in 
-    a Lua function. This is called **cooperative multitasking**.
 
 ..  _thread_model-example:
 

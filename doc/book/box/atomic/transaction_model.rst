@@ -19,12 +19,12 @@ for example when the disk space is over, the isolation level of the transaction 
 If you need to make some changes, the transaction can be rolled back -- :doc:`completely </reference/reference_lua/box_txn_management/rollback>` 
 or up to a specific :doc:`savepoint </reference/reference_lua/box_txn_management/rollback_to_savepoint>`.
 
-.. _transaction_model-serialization:
+.. _transaction_model-modes:
 
-Serialization
--------------
+Transaction modes
+-----------------
 
-Tarantool has 2 modes for serialization:
+Tarantool has 2 modes of transaction behavior:
 
 *   :ref:`Default <txn_mode-default>` -- yields are blocked, there are no parallel transactions and no conflicts.
 
@@ -39,6 +39,7 @@ Tarantool has 2 modes for serialization:
 Using MVСС mode has two important criteria -- read committed and read confirmed.
 MVСС can look at the transactions independently and determine these criteria, 
 or it can do the user itself when the transactions start.
+
 
 
 
