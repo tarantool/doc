@@ -129,9 +129,7 @@ in the ``tarantool/doc-builder`` container:
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make json-ru"
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make epub"
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make epub-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-pot"
     docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po-force"
 
 Linkcheck
 ---------
@@ -165,40 +163,13 @@ Terms:
 *   **translation files** are the files which match original text to
     translated text. They're located in ``locale/ru``.
 
-We use Crowdin for continuous localization.
-To work with Crowdin CLI, issue an API token in your
-`account settings <https://crowdin.com/settings#api-key>`_.
-Save it in ``~/.crowdin.yml``:
-
-..  code-block:: yaml
-
-    "api_token": "asdfg12345..."
-
-Upload translation sources any time when they have changed:
+To update the translation files, run the `make update-po` task:
 
 ..  code-block:: bash
 
-    # first, update the translation sources
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-pot"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make update-po"
 
-    # next, upload them to Crowdin
-    crowdin upload
-    # or
-    crowdin upload sources
-
-Upload translation files once for each project to pass the existing translations to Crowdin:
-
-..  code-block:: bash
-
-    crowdin upload translations --auto-approve-imported --import-eq-suggestions
-
-Download translation files back when they're done.
-Then reformat them to see the real changes.
-
-..  code-block:: bash
-
-    crowdin download
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4 sh -c "make reformat-po"
+Translate the strings in the updated files and then commit the changes.
 
 How to contribute
 -----------------
