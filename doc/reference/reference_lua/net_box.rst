@@ -253,6 +253,8 @@ Below is a list of all ``net.box`` functions.
 
     .. code-block:: lua
 
+        net_box = require('net.box')
+        
         conn = net_box.connect('localhost:3301')
         conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
         conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
