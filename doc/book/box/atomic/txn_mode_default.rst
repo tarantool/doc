@@ -1,6 +1,6 @@
 ..  _txn_mode-default:
 
-Transaction mode by default
+Transaction mode: default
 ===========================
 
 By default, Tarantool does not allow yielding inside a memtx 
@@ -11,10 +11,9 @@ atomic transactions, but brings some limitations:
 
 *   Any fiber yield leads to the abort of a transaction.
 
-*   All change operations on indexes -- inserts, updates, replacements, deletions -- 
-    are performed only after successful completion of the transaction (call ``box.commit()``). 
-    If an error occurs, the transaction is rolled back, including the return of previous 
-    data to the indexes. The same is true if a yield happens.
+*   All changes are made immediately, but in the event of a yield or error, 
+    the transaction is rolled back, including the return of the previous data.
+
 
 To allow yielding inside a memtx transaction, see :ref:`Transaction mode: MVCC <txn_mode_transaction-manager>`.
 
