@@ -296,13 +296,18 @@ msgid "Fibers"
 msgstr "Файберы"
 
 msgid ""
-"A **fiber** is a set of instructions which are executed with cooperative "
-"multitasking. Fibers managed by the fiber module are associated with a user-"
-"supplied function called the *fiber function*."
+"A **fiber** is a set of instructions which are executed with
+:ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
+(Learn more about `transactions <atomic-threads_fibers_yields>` in Tarantool.)
+Fibers managed by the fiber module are associated with
+a user-supplied function called the *fiber function*. "
 msgstr ""
 "**Файбер** -- это набор инструкций, которые выполняются по принципу "
-"кооперативной многозадачности. Файберы, управление которых происходит с "
-"помощью модуля fiber, связаны с функцией под названием *функция для "
+":ref:`кооперативной многозадачности <atomic-cooperative_multitasking>`. "
+"(О том, как устроены транзакции в Tarantool, можно прочитать "
+"в разделе `Транзакции <atomic-threads_fibers_yields>`.) "
+"Файберы, управление которыми происходит с "
+"помощью модуля fiber, связаны с *функцией для "
 "файбера*, которую задает пользователь."
 
 msgid ""
@@ -1632,11 +1637,9 @@ msgid "Channels"
 msgstr "Каналы"
 
 msgid ""
-"Call ``fiber.channel()`` to allocate space and get a channel object, which "
-"will be called channel for examples in this section."
+"Call ``fiber.channel()`` to create and get a new channel object."
 msgstr ""
-"Вызов ``fiber.channel()`` для выделения спейса и получение объекта канала, "
-"который будет называться \"channel\" в примерах данного раздела."
+"Вызов ``fiber.channel()`` для создания и получение нового объекта канала."
 
 msgid ""
 "Call the other routines, via channel, to send messages, receive messages, or"
@@ -1666,11 +1669,13 @@ msgstr ""
 "максимальное количество слотов (спейсы для сообщений ``channel:put``), "
 "которые можно использовать одновременно. По умолчанию, 0."
 
-msgid "new channel."
-msgstr "новый канал."
+msgid "new channel object."
+msgstr "новый объект --- канал."
 
-msgid "userdata, possibly including the string \"channel ...\"."
-msgstr "пользовательские данные, возможно включая строку \"channel ...\"."
+msgid "userdata. In the console output, it is serialized as ``channel: [number]``, "
+"where ``[number]`` is the return of :ref:`channel_object:count() <channel_object-count>`."
+msgstr "userdata. В консоли объект сериализуется и отображается как ``channel: [число]``, "
+"где ``[число]`` --- значение, возвращаемое функцией :ref:`channel_object:count() <channel_object-count>`."
 
 msgid ""
 "Send a message using a channel. If the channel is full, ``channel:put()`` "
@@ -1682,8 +1687,8 @@ msgstr ""
 msgid "what will be sent, usually a string or number or table"
 msgstr "то, что отправляется, как правило, строка, число или таблица"
 
-msgid "maximum number of seconds to wait for a slot to become free"
-msgstr "максимальное количество секунд ожидания, чтобы слот освободился"
+msgid "maximum number of seconds to wait for a slot to become free. Default: infinity."
+msgstr "максимальное количество секунд ожидания, чтобы слот освободился. Значение по умолчанию: бесконечность."
 
 msgid ""
 "If timeout is specified, and there is no free slot in the channel for the "
@@ -1716,8 +1721,8 @@ msgstr ""
 "Перехват и удаление сообщения из канала. Если канал пуст, ``channel:get()`` "
 "будет ожидать сообщения."
 
-msgid "maximum number of seconds to wait for a message"
-msgstr "максимальное количество секунд ожидания сообщения"
+msgid "maximum number of seconds to wait for a message. Default: infinity."
+msgstr "максимальное количество секунд ожидания сообщения. Значение по умолчанию: бесконечность."
 
 msgid ""
 "If timeout is specified, and there is no message in the channel for the "

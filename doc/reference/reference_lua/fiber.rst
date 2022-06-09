@@ -161,8 +161,10 @@ Below is a list of all ``fiber`` functions and members.
 Fibers
 ------
 
-A **fiber** is a set of instructions which are executed with cooperative
-multitasking. Fibers managed by the fiber module are associated with
+A **fiber** is a set of instructions which are executed with
+:ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
+(Learn more about `transactions <atomic-threads_fibers_yields>` in Tarantool.)
+Fibers managed by the fiber module are associated with
 a user-supplied function called the *fiber function*.
 
 A fiber has three possible states: **running**, **suspended** or **dead**.
@@ -267,16 +269,16 @@ recommended.
         tarantool> fiber = require('fiber')
         ---
         ...
-        tarantool> function function_name()
-                 >   print("I'm a fiber")
+        tarantool> function function_name(arg)
+                 >   print("I'm a fiber, " .. arg)
                  > end
         ---
         ...
-        tarantool> fiber_object = fiber.new(function_name); print("Fiber not started yet")
+        tarantool> fiber_object = fiber.new(function_name, 'yay!'); print("Fiber not started yet")
         Fiber not started yet
         ---
         ...
-        tarantool> I'm a fiber
+        tarantool> I'm a fiber, yay!
         ---
         ...
 
@@ -374,15 +376,30 @@ recommended.
 
 ..  _fiber-info:
 
-..  function:: info({[backtrace]})
+..  function:: info({[backtrace/bt]})
 
     Return information about all fibers.
 
-    :param boolean backtrace: show backtrace. Set to false to show less information (symbol resolving can be expensive).
-    :param boolean bt: alternative to ``backtrace``, but with lower priority.
-    :return: number of context switches (``csw``), backtrace, id, total memory, used
-             memory, name of each fiber.
+    :param boolean backtrace: show backtrace. Default: ``true``.
+                              Set to ``false`` to show less information (symbol resolving can be expensive).
+    :param boolean bt: same as ``backtrace``, but with lower priority.
+    :return: number of context switches (``csw``), backtrace, total memory, used
+             memory, fiber id (``fid``), fiber name.
+             If fiber.top is enabled or Tarantool was built with ``ENABLE_FIBER_TOP``,
+             processor time (``time``) is also returned.
     :rtype: table
+
+    **Return values explained**
+    
+    *   ``csw`` -- number of context switches.
+    *   ``backtrace``, ``bt`` -- each fiber's stack trace, showing where it originated and what functions were called.
+    *   ``memory``:
+        
+        -   ``total`` -- total memory occupied by the fiber as a C structure, its stack, etc. 
+        -   ``used`` -- actual memory used by the fiber.
+    
+    *   ``time`` --  duplicates the "time" entry from :ref:`fiber.top().cpu <fiber-top>` for each fiber.
+                     Only shown if fiber.top is enabled.
 
     **Example:**
 
@@ -1080,8 +1097,7 @@ that ``yield()`` failed, the loop did not continue until
 Channels
 --------
 
-Call ``fiber.channel()`` to allocate space and get a channel object, which will
-be called channel for examples in this section.
+Call ``fiber.channel()`` to create and get a new channel object.
 
 Call the other routines, via channel, to send messages, receive messages, or
 check channel status.
@@ -1101,8 +1117,9 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
                          ``channel:put`` messages) that can be in use at once.
                          The default is 0.
 
-    :return: new channel.
-    :rtype:  userdata, possibly including the string "channel ...".
+    :return: new channel object.
+    :rtype:  userdata. In the console output, it is serialized as ``channel: [number]``,
+             where ``[number]`` is the return of :ref:`channel_object:count() <channel_object-count>`.
 
 ..  class:: channel_object
 
@@ -1113,13 +1130,20 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
         Send a message using a channel. If the channel is full,
         ``channel:put()`` waits until there is a free slot in the channel.
 
+        ..  note::
+
+            The default :ref:`channel capacity <fiber-channel>` is 0.
+            With this default value, ``channel:put()`` *waits infinitely*
+            until ``channel:get()`` is called.   
+
         :param lua-value message: what will be sent, usually a string or number or table
-        :param number timeout: maximum number of seconds to wait for a slot to become free
+        :param number timeout: maximum number of seconds to wait for a slot to become free. Default: infinity.
         :return: If timeout is specified, and there is no free slot in the
                  channel for the duration of the timeout, then the return value
                  is ``false``. If the channel is closed, then the return value is ``false``.
                  Otherwise, the return value is ``true``, indicating success.
         :rtype:  boolean
+
 
     ..  _channel_object-close:
 
@@ -1136,7 +1160,7 @@ using it, as with any other Lua object. Use object-oriented syntax, for example
         Fetch and remove a message from a channel. If the channel is empty,
         ``channel:get()`` waits for a message.
 
-        :param number timeout: maximum number of seconds to wait for a message
+        :param number timeout: maximum number of seconds to wait for a message. Default: infinity.
         :return: If timeout is specified, and there is no message in the
                  channel for the duration of the timeout, then the return
                  value is ``nil``. If the channel is closed, then the
