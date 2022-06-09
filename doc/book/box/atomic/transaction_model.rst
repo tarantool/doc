@@ -10,14 +10,16 @@ It allows to use transactions with multiple statements to provide
 and commits all changes atomically. Without transactions, any function containing yield points can see 
 changes in database state caused by fibers that trigger a preempt.
 
-At the :doc:`commit </reference/reference_lua/box_txn_management/commit>` time, all transaction changes are 
-written to the WAL (:ref:`Write Ahead Log <internals-wal>`) in a single batch in a specific order. Therefore, in Tarantool 
-the `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_
-is *serializable* with the clause "if no failure during writing to the WAL". In case of such failure, which can occur 
-for example when the disk space is over, the isolation level of the transaction is set to *read uncommitted*.
+First important isolation criterion -- *serializable*.
+At the :doc:`commit </reference/reference_lua/box_txn_management/commit>` time, all transaction 
+changes are written to the WAL (:ref:`Write Ahead Log <internals-wal>`) in a single batch in a 
+specific order. Therefore, in Tarantool the 
+`transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_ 
+is *serializable* with the clause "if no failure during writing to the WAL". 
+In case of such failure, which can occur, for example, when disk space is over, 
+the isolation level of the transaction is set to *read uncommitted*.
 
-If you need to make some changes, the transaction can be rolled back -- :doc:`completely </reference/reference_lua/box_txn_management/rollback>` 
-or up to a specific :doc:`savepoint </reference/reference_lua/box_txn_management/rollback_to_savepoint>`.
+The use of other transaction modes provides additional levels of transaction isolation.
 
 .. _transaction_model-modes:
 
@@ -36,9 +38,20 @@ Tarantool has 2 modes of transaction behavior:
 
     You can’t mix storage engines in a transaction today.
 
-Using MVСС mode has two important criteria -- read committed and read confirmed.
-MVСС can look at the transactions independently and determine these criteria, 
+Using MVСС mode has one more important isolation criterion -- *read committed*.
+
+.. image:: read_committed.svg
+
+
+*Read committed* means that the red transaction cannot see the blue one (value d) 
+because it is not yet committed. The red one can see the green one (the value of e), 
+because the green transaction is completed.
+
+MVСС can look at the transactions independently and determine the level of isolation, 
 or it can do the user itself when the transactions start.
+
+
+
 
 
 
