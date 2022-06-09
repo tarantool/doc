@@ -8,7 +8,7 @@ Streams and interactive transactions
 Overview
 --------
 
-Since :tarantool-release:`2.10.0-beta1`, iproto implements streams and interactive transactions.
+Since :tarantool-release:`2.10.0`, iproto implements streams and interactive transactions.
 
 ..  glossary::
 

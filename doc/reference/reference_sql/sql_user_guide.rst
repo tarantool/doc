@@ -190,7 +190,7 @@ To represent "nan" (not a number), write an expression that does not result in a
 for example 0/0, using Tarantool/NoSQL. This will appear as NULL in Tarantool/SQL.
 In an earlier version literals containing periods were considered to be :ref:`NUMBER <sql_data_type_number>` literals.
 In a future version "nan" may not appear as NULL.
-Prior to Tarantool version 2.10-beta2, digits with periods such as .0 were considered to be DOUBLE literals,
+Prior to Tarantool :tarantool-release:`2.10.0`, digits with periods such as .0 were considered to be DOUBLE literals,
 but now they are considered to be DECIMAL literals.
 
 DECIMAL literals: |br|
@@ -565,7 +565,7 @@ Support for arithmetic and built-in arithmetic functions with NUMBERs was remove
 DECIMAL values can contain up to 38 digits on either side of a decimal point.
 and any arithmetic with DECIMAL values has exact results
 (arithmetic with DOUBLE values could have approximate results instead of exact results).
-Before Tarantool version 2.10-beta2 there was no literal format for DECIMAL,
+Before Tarantool :tarantool-release:`2.10.0` there was no literal format for DECIMAL,
 so it was necessary to use :ref:`CAST <sql_function_cast>` to insist that a numeric
 has data type DECIMAL, for example ``CAST(1.1 AS DECIMAL)`` or
 ``CAST('99999999999999999999999999999999999999' AS DECIMAL)``.
@@ -649,7 +649,7 @@ it is BOOLEAN.
 
 Most of the SQL data types correspond to
 :ref:`Tarantool/NoSQL types <details_about_index_field_types>` with the same name.
-In Tarantool versions before 2.10-beta2,
+In Tarantool versions before :tarantool-release:`2.10.0`,
 There were also some Tarantool/NoSQL data types which had no corresponding SQL data types.
 In those versions, if Tarantool/SQL reads a Tarantool/NoSQL value of a type that has no SQL equivalent,
 Tarantool/SQL could treat it as NULL or INTEGER or VARBINARY.
@@ -1120,7 +1120,7 @@ not the type of the column definition. Explicit cast to SCALAR is always allowed
 
 The chart does not show To|From ARRAY or MAP or ANY because almost no conversions are possible.
 Explicit cast to ANY, or casting any value to its original data type, is legal, but that is all.
-This is a slight change: before Tarantool version 2.10-beta2, it was legal to cast such values
+This is a slight change: before Tarantool :tarantool-release:`2.10.0`, it was legal to cast such values
 as VARBINARY. It is still possible to use arguments with these types in
 :ref:`QUOTE <sql_function_quote>` functions, which is a way to convert them to STRINGs.
 

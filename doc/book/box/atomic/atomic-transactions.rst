@@ -7,7 +7,7 @@ Transactions in Tarantool occur in **fibers** on a single **thread**.
 That is why Tarantool has a guarantee of atomicity of execution.
 That requires emphasis.
 
-Since :tarantool-release:`2.10.0-beta1`, Tarantool supports streams and interactive transactions over them.
+Since :tarantool-release:`2.10.0`, Tarantool supports streams and interactive transactions over them.
 See :ref:`Streams <box_stream>`.
 
 In the absence of transactions, any function containing yield points can see

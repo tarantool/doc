@@ -6,10 +6,10 @@ msgid "Overview"
 msgstr "Общие сведения"
 
 msgid ""
-"Since :tarantool-release:`2.10.0-beta1`, iproto implements streams and "
+"Since :tarantool-release:`2.10.0`, iproto implements streams and "
 "interactive transactions."
 msgstr ""
-"Начиная с версии :tarantool-release:`2.10.0-beta1`, в iproto реализованы "
+"Начиная с версии :tarantool-release:`2.10.0`, в iproto реализованы "
 "стримы и интерактивные транзакции."
 
 msgid "Stream"

@@ -271,7 +271,8 @@ The detailed description of data types is in the section
 Column definition -- the rules for the SCALAR data type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The rules for the SCALAR data type were significantly changed in Tarantool version :tarantool-release:`2.10.0-beta1`.
+The rules for the SCALAR data type were significantly changed in Tarantool version
+:tarantool-release:`2.10.0`.
 
 SCALAR is a "complex" data type, unlike all the other data types which are "primitive".
 Two column values in a SCALAR column can have two different primitive data types.
@@ -376,7 +377,7 @@ casts, apply.
 There is one floating-point value which is not handled by SQL: -nan is seen as NULL
 although its data type is 'double'.
 
-Before Tarantool version 2.10-beta2, there were also some Tarantool/NoSQL data types which had no corresponding
+Before Tarantool :tarantool-release:`2.10.0`, there were also some Tarantool/NoSQL data types which had no corresponding
 SQL data types. For example, ``SELECT "flags" FROM "_vspace";`` would return
 a column whose SQL data type is VARBINARY rather than MAP. Such columns can only be manipulated in SQL
 by :ref:`invoking Lua functions <sql_calling_lua>`.
