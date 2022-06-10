@@ -67,6 +67,9 @@ each node increases its term and starts a new election round if no new vote
 request with a greater term arrives during this time period.
 Eventually, a leader is elected.
 
+If any unfinalized synchronous transactions are left from the previous leader,
+the new leader is finalises them automatically.
+
 All the non-leader nodes are called *followers*. The nodes that start a new
 election round are called *candidates*. The elected leader sends heartbeats to
 the non-leader nodes to let them know it is alive. So if there are no heartbeats
@@ -197,9 +200,3 @@ they won't be checked against the quorum of replicas.
 Synchronous transactions will fail because they won't be able
 to collect the quorum -- most of the replicas will reject
 these old leader's transactions since it is not a leader anymore.
-
-Another point to keep in mind is that when a new leader is elected,
-it won't automatically finalize synchronous transactions
-left from the previous leader. This must be done manually using
-the :ref:`box.ctl.promote <box_ctl-promote>` function. In the future, it is going to be
-done automatically.
