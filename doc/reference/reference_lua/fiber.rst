@@ -8,11 +8,11 @@ Overview
 
 With the ``fiber`` module, you can:
 
-*   create, run and manage :ref:`fibers <fiber-fibers>`,
-*   send and receive messages between different processes (i.e. different
-    connections, sessions, or fibers) via :ref:`channels <fiber_ipc-channel>`, and
-*   use a :ref:`synchronization mechanism <fiber_ipc-cond_var>` for fibers,
-    similar to "condition variables" and similar to operating-system functions
+*   Create, run, and manage :ref:`fibers <fiber-fibers>`.
+*   Send and receive messages between different processes (i.e. different
+    connections, sessions, or fibers) via :ref:`channels <fiber_ipc-channel>`.
+*   Use a :ref:`synchronization mechanism <fiber_ipc-cond_var>` for fibers,
+    similar to "condition variables" and similar to operating-system functions,
     such as ``pthread_cond_wait()`` plus ``pthread_cond_signal()``.
 
 Index
@@ -163,7 +163,7 @@ Fibers
 
 A **fiber** is a set of instructions which are executed with
 :ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
-(Learn more about `transactions <atomic-threads_fibers_yields>` in Tarantool.)
+(Learn more about :ref:`transactions <atomic-threads_fibers_yields>` in Tarantool.)
 Fibers managed by the fiber module are associated with
 a user-supplied function called the *fiber function*.
 
