@@ -211,7 +211,7 @@ Below is a list of all ``net.box`` functions.
             With ``required_protocol_version = 1``, all connections fail where the :ref:`IPROTO protocol <box_protocol-id>` 
             version is lower than ``1``.  
 
-        *   ``required_protocol_features``: a specified :ref:`IPROTO protocol features <box_protocol-id>` supported by the server. 
+        *   ``required_protocol_features``: specified :ref:`IPROTO protocol features <box_protocol-id>` supported by the server. 
             You can specify one or more ``net.box`` features from the table below. If the server does not 
             support the specified features, the connection will fail with an error message. 
             With ``required_protocol_features = {'transactions'}``, all connections fail where the 
