@@ -1067,6 +1067,8 @@ Creating an index
 Index creation is described in the
 :doc:`/reference/reference_lua/box_space/create_index` method.
 
+..  _other-migrations:
+
 ***************************
 Other types of migrations
 ***************************
