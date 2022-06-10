@@ -13,7 +13,7 @@ the *transaction manager*.
 Transaction manager
 -------------------
 
-The transaction manager is designed to isolate concurrent transactions
+The transaction manager is designed to isolate parallel transactions
 and provides a *serializable* 
 `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_.
 It consists of two parts:

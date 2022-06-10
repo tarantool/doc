@@ -5,8 +5,7 @@ Transaction model
 
 The transaction model of Tarantool corresponds to the properties ACID 
 (atomicity, consistency, isolation, durability).
-And Tarantool has the highest `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_
- -- *serializable*.
+And Tarantool has the highest `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_ -- *serializable*.
 It allows to use transactions with multiple statements to provide 
 **isolation**: each transaction executes in fibers on a single thread, sees consistent database state, 
 and commits all changes atomically. 
@@ -22,7 +21,7 @@ except in the case of a failure during writing to the WAL, which can occur, for 
 when the disk space is over. In this case, the isolation level of the transaction 
 is set to *read uncommitted*.
 
-The use of other transaction modes provides additional levels of transaction isolation.
+The use of other transaction modes provides additional opportunities for transaction isolation.
 
 .. _transaction_model-modes:
 
@@ -41,15 +40,68 @@ Tarantool has 2 modes of transaction behavior:
 
     You can’t mix storage engines in a transaction today.
 
+
+.. _transaction_model-default-settings:
+
+Default: transaction isolation settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+
+In this mode, the user does not need to make any additional settings.
+
+.. _transaction_model-mvcc-settings:
+
+MVCC: transaction isolation settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Using MVСС mode cancels the exception and sets the isolation level to *serializable* 
-in any case. This isolation level includes *read-committed* and *read-confirmed*, 
-which facilitate working with conflicts.
+in any case. This isolation level includes *read committed* and *read confirmed*, 
+which MVCC sets independently for each transaction (if the ``best-effort`` option is set). 
+However, the user can also set these levels for transactions.
 
+.. _transaction_model-best-effort:
 
-MVСС can look at the transactions independently and determine the level of isolation, 
-or it can do the user itself when the transactions start.
+MVCC best effort
+^^^^^^^^^^^^^^^^
 
+The ``best-effort`` option is set by default in ``box-cfg``. 
+This allows MVCC to consider the actions of transactions independently and determine the 
+best isolation level for them. It increases the successful completion of the transaction 
+and helps to avoid possible conflicts.
 
+You can set the default level of isolation with the options ``read-committed`` 
+and ``read-confirmed``. For example, to set it to ``read-committed`` 
+use the following command:
+
+..  code-block:: default_txn_isolation_level
+
+    box.cfg{default_txn_isolation = 'read-committed'}
+ 
+
+.. _transaction_model-read-committed:
+
+Read committed
+^^^^^^^^^^^^^^
+
+The *read committed* isolation level makes visible all transactions that started 
+with the commit (``box.commit()`` was called). If you use this transaction level only for 
+read-write transactions, you can minimize the conflicts that may occur.
+
+.. _transaction_model-read-confirmed:
+
+Read confirmed
+^^^^^^^^^^^^^^
+
+The *read confirmed* isolation level makes visible all transactions that finished 
+the commit (``box.commit()`` returned). If you use this transaction level only for 
+read-only transactions, you can always get a persistent tuple on disk and 
+minimize the conflicts that may occur.
+
+.. _transaction_model-the-choice:
+
+Which mode should be used?
+--------------------------
+
+TBD.
 
 
 
