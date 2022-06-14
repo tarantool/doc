@@ -4,9 +4,19 @@ Transaction mode: MVCC
 ======================
 
 Since version :doc:`2.6.1 </release/2.6.1>`,
-Tarantool has another mode for transaction behavior that
-allows yielding inside a memtx transaction. This is controlled by
-the *transaction manager*.
+Tarantool has another transaction behavior mode that
+allows :ref:`"yielding" <app-yields>` inside a :ref:`memtx <engines-chapter>` transaction. 
+This is controlled by the *transaction manager*.
+
+
+This mode allows parallel transactions but may causes conflicts.
+You can use this mode on the :ref:`memtx <engines-chapter>` storage engine. 
+The :ref:`vinyl <engines-chapter>` storage engine also supports MVCC mode, 
+but has a different realization.
+
+..  note::
+
+    You cannot mix storage engines in a transaction today.
 
 ..  _txn_mode_mvcc-tnx-manager:
 
@@ -27,16 +37,10 @@ It consists of two parts:
     in the serialization order. The conflict manager declares transactions to be in conflict 
     or sends transactions to read views when necessary.
 
-The transaction manager also provides: 
-
-*   Non-classical snapshot isolation level -- this snapshot is not necessarily tied to the start 
-    time of the transaction, like the classical snapshot where a transaction 
-    can get a consistent snapshot of the database. The conflict manager decides if and when 
-    each transaction gets which snapshot. This avoids some conflicts compared 
-    to the classic snapshot isolation approach.
-
-*   Special ``is_dirty`` flag -- a flag that helps to store and view the history of "dirty" 
-    tuples separately.
+The transaction manager also provides a non-classical snapshot isolation level -- this snapshot is not 
+necessarily tied to the start time of the transaction, like the classical snapshot where a transaction 
+can get a consistent snapshot of the database. The conflict manager decides if and when each transaction 
+gets which snapshot. This avoids some conflicts compared to the classic snapshot isolation approach.
 
 ..  _txn_mode_mvcc-enabling:
 
@@ -50,6 +54,59 @@ option to enable it via ``box.cfg``.
 
     box.cfg{memtx_use_mvcc_engine = true}
  
+
+..  _txn_mode_mvcc-options:
+
+Transaction manager options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+..  note::
+
+    For autocommit transactions (actions with a statement without explicit ``box.begin/commit`` calls) 
+    there is an obvious rule: read-only transactions (for example, select) are performed with ``read-confirmed``; 
+    all others (for example, replace) with ``read-committed``.
+
+
+The transaction manager has four options for the transaction isolation level that you can set in ``box-cfg``:
+
+*   ``default``.
+
+*   ``best-effort``.
+
+*   ``read-committed``.
+
+*   ``read-confirmed``.
+
+The ``best-effort`` option is set by default (or if the level is not specified). 
+This allows MVCC to consider the actions of transactions independently and determine the 
+best :ref:`isolation level <transaction_model_levels>` for them. It increases the probability 
+of successful completion of the transaction and helps to avoid possible conflicts. 
+
+To set the default isolation level with the other option, for example, 
+to ``read-committed``, use the following command:
+
+..  code-block:: default_txn_isolation_level
+
+    box.cfg{default_txn_isolation = 'read-committed'}
+ 
+
+If a transaction has an explicit ``box.begin()`` call, the level can be
+specified as follows:
+
+..  code-block:: txn_isolation_level
+
+    box.begin({tnx_isolation = 'best-effort'})
+
+..  note::
+
+    You can also do this in the net.box :ref:`stream:begin() <net_box-stream_begin>` method.
+
+
+Choosing the better option depends on whether you have conflicts or not. 
+If you have many conflicts, you should set the different options or use 
+the :ref:`Default mode <txn_mode-default>`.
+
+
 ..  _txn_mode_mvcc-examples:
 
 Examples with MVCC enabled and disabled

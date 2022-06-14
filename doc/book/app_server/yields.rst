@@ -3,7 +3,11 @@
 Yields
 ======
 
-Tarantool has 2 types of yields. They are described below.
+Tarantool has two types of yields:
+
+*   Implicit.
+
+*   Explicit.
 
 ..  _app-implicit-yields:
 
@@ -116,7 +120,7 @@ Explicit yields
 ---------------
 
 **Explicit yields** can (and should) normally be added as :ref:`"yield" <fiber-yield>` 
-statements to prevent hogging in a Lua function. This allows for :ref:`cooperative multitasking <cooperative_multitasking>`.
+statements to prevent hogging in a Lua function. This allows for :ref:`cooperative multitasking <app-cooperative_multitasking>`.
 
 :ref:`fiber.sleep() <fiber-sleep>` and :ref:`fiber.yield() <fiber-yield>` 
 are the only explicit yield requests in Tarantool by default. 
