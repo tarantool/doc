@@ -388,7 +388,7 @@ Full information is in section
     |                                |                                           |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
     | ``'integer'``                  | :ref:`integer <index-box_integer>`,       | TREE or HASH                         |
-    | (may also be called ‘int’)     | which may include unsigned values         |                                      |
+    | (may also be called ``'int'``) | which may include unsigned values         |                                      |
     |                                |                                           |                                      |
     |                                |                                           |                                      |
     +--------------------------------+-------------------------------------------+--------------------------------------+
@@ -553,6 +553,37 @@ Tarantool uses the same language codes as the ones in the "list of tailorable lo
 Charts explaining the precise differences from DUCET order are
 in the
 `Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_.
+
+.. _index-box_constraints:
+
+Constraints
+-----------
+
+For better control over data models, Tarantool supports _constraints_ – user-defined
+limitations on the values of certain fields or whole tuples. Together with data types,
+constraints allow to limit ranges of available field values both syntactically and semantically.
+
+For example, the ``age`` field typically has the ``number`` type, so it cannot store
+strings or boolean values. However, it still can have values that don't make sense,
+such as negative numbers. This is where constraints come to help.
+
+Tarantool provides two types of constraints:
+
+* field constraints check that the value being assigned to a particular field
+  satisfies a given condition. For example, ``age`` must be non-negative.
+
+  Field constraints work faster than tuple constraints.
+
+* tuple constraints can check complex conditions that involve all fields of
+  a tuple. For example, a tuple contains a date value split into fields
+  ``year``, ``month``, and ``day``. You can validate the ``day`` based on
+  the ``month`` value (and even ``year`` if you consider leap years).
+
+  Tuple constraints work slower than field constraints but allow implementing
+  a wider range of limitations.
+
+In Tarantool, constraints are Lua functions.
+
 
 .. _index-box_sequence:
 
