@@ -2,14 +2,22 @@
 msgid "box.runtime.info()"
 msgstr ""
 
-msgid "Show a memory usage report (in bytes) for the runtime arena."
+msgid "Show runtime memory usage report in bytes."
 msgstr ""
-"Отображение отчета по использованию памяти (в байтах) на арене исполнения кода."
+"Отображение отчета по использованию runtime-памяти в байтах."
 
-msgid "The runtime arena encompasses internal Lua memory as well as network buffers "
-"and other memory expenses associated with the application server subsystem."
-msgstr "Арена исполнения кода включает в себя внутреннюю память Lua, сетевые буферы, "
-"а также разделы памяти, связанные с подсистемой сервера приложений."
+msgid "Show runtime memory usage report in bytes."
+msgstr ""
+"Отображение отчета по использованию runtime-памяти в байтах."
+
+msgid "The runtime memory encompasses internal Lua memory as well as the runtime arena. "
+"The Lua memory stores Lua objects. "
+"The runtime arena stores Tarantool-specific objects -- for example, runtime tuples, network buffers "
+"and other objects associated with the application server subsystem."
+msgstr "Runtime-память включает в себя внутреннюю память Lua и runtime-арену. "
+"В памяти Lua хранятся объекты Lua. "
+"На runtime-арене хранятся объекты, специфичные для Tarantool: временные пользовательские кортежи, сетевые буферы "
+"и прочие объекты, связанные с подсистемой сервера приложений."
 
 msgid "return"
 msgstr "возвращает"
@@ -18,13 +26,13 @@ msgid "``lua`` is the size of the Lua heap that is controlled by the Lua garbage
 msgstr "``lua`` -- размер динамической памяти Lua, контролируемой сборщиком мусора в Lua;"
 
 msgid ""
-"``maxalloc`` is the maximum size of the runtime arena."
+"``maxalloc`` is the maximum size of the runtime memory."
 msgstr ""
 "``maxalloc`` -- максимальный размер "
-"арены исполнения кода;"
+"runtime-памяти;"
 
-msgid "``used`` is the current memory size used by the runtime arena."
-msgstr "``used`` -- объем памяти, используемый ареной исполнения кода в данный момент."
+msgid "``used`` is the current number of bytes used by the runtime memory."
+msgstr "``used`` -- объем памяти, используемый runtime-памятью в данный момент."
 
 msgid "rtype"
 msgstr "тип возвращаемого значения"
