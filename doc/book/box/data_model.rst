@@ -601,7 +601,7 @@ To create a constraint function, use :ref:`func.create with function body <box_s
 .. code-block:: tarantoolsession
 
     tarantool> box.schema.func.create('check_age',
-    {language = 'LUA', is_deterministic = true, body = 'function(f, c) return f >= 0 and f < 200 end'})
+    {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
     ---
     ...
 
@@ -615,28 +615,26 @@ setting up or altering a space format:
 
   .. code-block:: tarantoolsession
 
-      box.schema.space.create("person")
-      box.space.books:format({
-          { name = "id", type = "number" },
-          { name = "name", type = "string" },
-          { name = "age", type = "number", constraint = 'check_age'},
+      box.schema.space.create('person')
+      box.space.person:format({
+          {name = 'id',   type = 'number'},
+          {name = 'name', type = 'string'},
+          {name = 'age',  type = 'number', constraint = 'check_age'},
       })
 
 * Tuple constraints: in the ``constraint`` parameter of the space definition:
 
     .. code-block:: tarantoolsession
 
-      box.schema.space.create("person", {engine = 'memtx', constraint = 'check_tuple'})
+      box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
 
 In both cases, ``constraint`` can contain multiple function names passed as a tuple.
 Each constraint can also have a name.
 
 .. code-block:: lua
-  constraint = { 'age_constraint '= 'check_age', 'name_constraint' = 'check_name' }
+  constraint = {'age_constraint '= 'check_age', 'name_constraint' = 'check_name'}
 
 
-Applying tuple constraints
-=========================
 
 .. _index-box_sequence:
 
