@@ -2,25 +2,29 @@
 msgid "box.runtime.info()"
 msgstr ""
 
-msgid "Show a memory usage report (in bytes) for the Lua runtime."
+msgid "Show a memory usage report (in bytes) for the runtime arena."
 msgstr ""
-"Отображение отчета по использованию памяти (в байтах) во время исполнения "
-"Lua-кода."
+"Отображение отчета по использованию памяти (в байтах) на арене исполнения кода."
+
+msgid "The runtime arena encompasses internal Lua memory as well as network buffers "
+"and other memory expenses associated with the application server subsystem."
+msgstr "Арена исполнения кода включает в себя внутреннюю память Lua, сетевые буферы, "
+"а также разделы памяти, связанные с подсистемой сервера приложений."
 
 msgid "return"
 msgstr "возвращает"
 
-msgid "``lua`` is the heap size of the Lua garbage collector;"
-msgstr "``lua`` -- это размер динамической памяти сборщика мусора в Lua;"
+msgid "``lua`` is the heap size of the Lua garbage collector."
+msgstr "``lua`` -- размер динамической памяти сборщика мусора в Lua;"
 
 msgid ""
-"``maxalloc`` is the maximal memory quota that can be allocated for Lua;"
+"``maxalloc`` is the maximum size of the runtime arena."
 msgstr ""
-"``maxalloc`` -- это максимальная квота памяти, которую можно выделить для "
-"Lua;"
+"``maxalloc`` -- максимальный размер "
+"арены исполнения кода;"
 
-msgid "``used`` is the current memory size used by Lua."
-msgstr "``used`` -- объем памяти, используемый Lua в данный момент."
+msgid "``used`` is the current memory size used by the runtime arena."
+msgstr "``used`` -- объем памяти, используемый ареной исполнения кода в данный момент."
 
 msgid "rtype"
 msgstr "тип возвращаемого значения"
