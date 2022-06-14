@@ -68,7 +68,7 @@ request with a greater term arrives during this time period.
 Eventually, a leader is elected.
 
 If any unfinalized synchronous transactions are left from the previous leader,
-the new leader is finalises them automatically.
+the new leader finalises them automatically.
 
 All the non-leader nodes are called *followers*. The nodes that start a new
 election round are called *candidates*. The elected leader sends heartbeats to
