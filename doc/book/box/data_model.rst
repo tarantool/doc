@@ -554,12 +554,14 @@ Charts explaining the precise differences from DUCET order are
 in the
 `Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_.
 
-.. _index-box_constraints:
 
+.. _index-constraints:
+
+-----------
 Constraints
 -----------
 
-For better control over data models, Tarantool supports _constraints_ – user-defined
+For better control over data models, Tarantool supports *constraints* – user-defined
 limitations on the values of certain fields or whole tuples. Together with data types,
 constraints allow to limit ranges of available field values both syntactically and semantically.
 
@@ -567,28 +569,32 @@ For example, the ``age`` field typically has the ``number`` type, so it cannot s
 strings or boolean values. However, it still can have values that don't make sense,
 such as negative numbers. This is where constraints come to help.
 
+.. _index-constraint_types:
+
+****************
 Constraint types
-================
+****************
 
 Tarantool provides two types of constraints:
 
-* field constraints check that the value being assigned to a particular field
+* *field constraints* check that the value being assigned to a particular field
   satisfies a given condition. For example, ``age`` must be non-negative.
 
-  Field constraints work faster than tuple constraints.
-
-* tuple constraints can check complex conditions that involve all fields of
+* *tuple constraints* can check complex conditions that involve all fields of
   a tuple. For example, a tuple contains a date value split into fields
   ``year``, ``month``, and ``day``. You can validate the ``day`` based on
   the ``month`` value (and even ``year`` if you consider leap years).
 
-  Tuple constraints work slower than field constraints but allow implementing
-  a wider range of limitations.
+Field constraints work faster while tuple constraints allow implementing
+a wider range of limitations.
 
+.. _index-constraint_functions:
+
+********************
 Constraint functions
-====================
+********************
 
-In Tarantool, constraints are stored Lua functions. They must return``true``
+In Tarantool, constraints are stored Lua functions. They must return ``true``
 when the constraint is satisfied. Other return values (including ``nil``)
 and exceptions make the check fail and prevent tuple insertion or modification.
 Constraint functions take two parameters:
@@ -605,35 +611,37 @@ To create a constraint function, use :ref:`func.create with function body <box_s
     ---
     ...
 
+.. _index-constraint_apply:
+
+********************
 Applying constraints
-=========================
+********************
 
 To apply a constraint to a space, specify the corresponding function's name when
 setting up or altering a space format:
+
+* Tuple constraints: in the ``constraint`` parameter of the space definition:
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
 
 * Field constraints: in the ``constraint`` parameter of the field definition:
 
   .. code-block:: tarantoolsession
 
-      box.schema.space.create('person')
-      box.space.person:format({
+      tarantool> box.space.person:format({
           {name = 'id',   type = 'number'},
           {name = 'name', type = 'string'},
           {name = 'age',  type = 'number', constraint = 'check_age'},
       })
 
-* Tuple constraints: in the ``constraint`` parameter of the space definition:
-
-    .. code-block:: tarantoolsession
-
-      box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
-
 In both cases, ``constraint`` can contain multiple function names passed as a tuple.
-Each constraint can also have a name.
+Each constraint can also have an optional name:
 
 .. code-block:: lua
-  constraint = {'age_constraint '= 'check_age', 'name_constraint' = 'check_name'}
 
+    constraint = {'age_constraint' = 'check_age', 'name_constraint' = 'check_name'}
 
 
 .. _index-box_sequence:
