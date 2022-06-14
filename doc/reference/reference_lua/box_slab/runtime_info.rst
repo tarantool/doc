@@ -14,7 +14,7 @@ box.runtime.info()
 
     :return:
 
-      * ``lua`` is the heap size of the Lua garbage collector.
+      * ``lua`` is the size of the Lua heap that is controlled by the Lua garbage collector.
       * ``maxalloc`` is the maximum size of the runtime arena.
       * ``used`` is the current memory size used by the runtime arena.
 

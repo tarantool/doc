@@ -14,8 +14,8 @@ msgstr "Арена исполнения кода включает в себя в
 msgid "return"
 msgstr "возвращает"
 
-msgid "``lua`` is the heap size of the Lua garbage collector."
-msgstr "``lua`` -- размер динамической памяти сборщика мусора в Lua;"
+msgid "``lua`` is the size of the Lua heap that is controlled by the Lua garbage collector."
+msgstr "``lua`` -- размер динамической памяти Lua, контролируемой сборщиком мусора в Lua;"
 
 msgid ""
 "``maxalloc`` is the maximum size of the runtime arena."
