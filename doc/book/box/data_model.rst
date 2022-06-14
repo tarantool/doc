@@ -567,6 +567,9 @@ For example, the ``age`` field typically has the ``number`` type, so it cannot s
 strings or boolean values. However, it still can have values that don't make sense,
 such as negative numbers. This is where constraints come to help.
 
+Constraint types
+================
+
 Tarantool provides two types of constraints:
 
 * field constraints check that the value being assigned to a particular field
@@ -582,8 +585,58 @@ Tarantool provides two types of constraints:
   Tuple constraints work slower than field constraints but allow implementing
   a wider range of limitations.
 
-In Tarantool, constraints are Lua functions.
+Constraint functions
+====================
 
+In Tarantool, constraints are stored Lua functions. They must return``true``
+when the constraint is satisfied. Other return values (including ``nil``)
+and exceptions make the check fail and prevent tuple insertion or modification.
+Constraint functions take two parameters:
+
+* Field value and constraint name for field constraints.
+* Tuple and constraint name for tuple constraint.
+
+To create a constraint function, use :ref:`func.create with function body <box_schema-func_create_with-body>`:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.schema.func.create('check_age',
+    {language = 'LUA', is_deterministic = true, body = 'function(f, c) return f >= 0 and f < 200 end'})
+    ---
+    ...
+
+Applying constraints
+=========================
+
+To apply a constraint to a space, specify the corresponding function's name when
+setting up or altering a space format:
+
+* Field constraints: in the ``constraint`` parameter of the field definition:
+
+  .. code-block:: tarantoolsession
+
+      box.schema.space.create("person")
+      box.space.books:format({
+          { name = "id", type = "number" },
+          { name = "name", type = "string" },
+          { name = "age", type = "number", constraint = 'check_age'},
+      })
+
+* Tuple constraints: in the ``constraint`` parameter of the space definition:
+
+    .. code-block:: tarantoolsession
+
+      box.schema.space.create("person", {engine = 'memtx', constraint = 'check_tuple'})
+
+In both cases, ``constraint`` can contain multiple function names passed as a tuple.
+Each constraint can also have a name.
+
+.. code-block:: lua
+  constraint = { 'age_constraint '= 'check_age', 'name_constraint' = 'check_name' }
+
+
+Applying tuple constraints
+=========================
 
 .. _index-box_sequence:
 
