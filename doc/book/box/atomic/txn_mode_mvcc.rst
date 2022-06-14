@@ -9,7 +9,7 @@ allows :ref:`"yielding" <app-yields>` inside a :ref:`memtx <engines-chapter>` tr
 This is controlled by the *transaction manager*.
 
 
-This mode allows parallel transactions but may causes conflicts.
+This mode allows parallel transactions but may cause conflicts.
 You can use this mode on the :ref:`memtx <engines-chapter>` storage engine. 
 The :ref:`vinyl <engines-chapter>` storage engine also supports MVCC mode, 
 but has a different realization.

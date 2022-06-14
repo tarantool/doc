@@ -8,7 +8,7 @@ The transaction model of Tarantool corresponds to the properties ACID
 
 
 Tarantool has two modes of transaction behavior that allow users to choose between 
-fast atomic transactions and transactions with :ref:`MVCC <txn_mode_stream-interactive-transactions>`:
+fast atomic transactions and transactions with :ref:`MVCC <txn_mode_mvcc-tnx-manager>`:
 
 *   :ref:`Default <txn_mode-default>`.
 
@@ -41,7 +41,7 @@ is set to *read uncommitted*.
 
 Using :ref:`MVСС mode <txn_mode_transaction-manager>` cancels the exception and sets the 
 isolation level to *serializable* in any case. This isolation level includes 
-*read committed* and *read confirmed*, which :ref:`MVCC <txn_mode_stream-interactive-transactions>` 
+*read committed* and *read confirmed*, which :ref:`MVCC <txn_mode_mvcc-tnx-manager>` 
 sets independently for each transaction (if the ``best-effort`` option is set). 
 
 
