@@ -20,7 +20,7 @@ box.info.election
 
    *    ``term`` -- current election term.
 
-   *    ``vote`` -- ID of a node the current node votes for. If the value is ``0``, it means the node doesn't vote in the current term.
+   *    ``vote`` -- ID of a node the current node votes for. If the value is ``0``, it means the node hasn't voted in the current term yet.
 
    *    ``leader`` -- leader node ID in the current term. If the value is ``0``, it means the node doesn't know which node is the leader in the current term.
 

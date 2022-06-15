@@ -74,11 +74,16 @@ All the non-leader nodes are called *followers*. The nodes that start a new
 election round are called *candidates*. The elected leader sends heartbeats to
 the non-leader nodes to let them know it is alive.
 
-In case there are no heartbeats for a period set by the :ref:`replication_timeout <cfg_replication-replication_timeout>` option,
+In case there are no heartbeats for the period of :ref:`replication_timeout <cfg_replication-replication_timeout>` * 4,
 a non-leader node starts a new election if the following conditions are met:
 
-*   It has a quorum of connections to other cluster members.
+*   The node has a quorum of connections to other cluster members.
 *   None of these cluster members can see the leader node.
+
+..  note::
+
+    A cluster member considers the leader node to be alive if the member received heartbeats from the leader at least once during the period of ``replication_timeout * 4`,
+    and there are no replication errors (the connection is not broken due to timeout or due to an error).
 
 Terms and votes are persisted by each instance to preserve certain Raft guarantees.
 
@@ -127,7 +132,7 @@ Configuration
   Heartbeats sent by an active leader have a timeout after which a new election
   starts. Heartbeats are sent once per <replication_timeout> seconds.
   Default value is ``1``. The leader is considered dead if it hasn't sent any
-  heartbeats for the period of ``<replication_timeout> * 4``.
+  heartbeats for the period of ``replication_timeout * 4``.
 * ``replication_synchro_quorum`` -- reuse of the :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
   option for the purpose of configuring the election quorum. The default value is ``1``,
   meaning that each node becomes a leader immediately after voting for itself.
