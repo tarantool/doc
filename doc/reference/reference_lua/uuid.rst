@@ -106,7 +106,14 @@ Below is list of all ``uuid`` functions and members.
 
 .. _uuid-bin:
 
-.. function:: bin()
+.. function:: bin([byteorder])
+
+    :param string byte-order:  Byte order of the resulting UUID:
+
+      * ``'l'`` - little-endian
+      * ``'b'`` - big-endian
+      * ``'h'``, ``'host'`` - endianness depends on host (default)
+      * ``'n'``, ``'network'`` - endianness depends on network
 
     :return: a UUID
     :rtype: 16-byte string
@@ -135,8 +142,8 @@ Below is list of all ``uuid`` functions and members.
 
       * ``'l'`` - little-endian
       * ``'b'`` - big-endian
-      * ``'h'`` - endianness depends on host (default)
-      * ``'n'`` - endianness depends on network
+      * ``'h'``, ``'host'`` - endianness depends on host (default)
+      * ``'n'``, ``'network'`` - endianness depends on network
 
     :return: converted UUID
     :rtype: cdata
@@ -161,8 +168,8 @@ Below is list of all ``uuid`` functions and members.
 
           * ``'l'`` - little-endian
           * ``'b'`` - big-endian
-          * ``'h'`` - endianness depends on host (default)
-          * ``'n'`` - endianness depends on network
+          * ``'h'``, ``'host'`` - endianness depends on host (default)
+          * ``'n'``, ``'network'`` - endianness depends on network
 
         :return: UUID converted from cdata input value.
         :rtype: 16-byte binary string
