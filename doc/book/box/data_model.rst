@@ -598,19 +598,33 @@ In Tarantool, constraints use stored Lua functions. They must return ``true``
 when the constraint is satisfied. Other return values (including ``nil``)
 and exceptions make the check fail and prevent tuple insertion or modification.
 
+To create a constraint function, use :ref:`func.create with function body <box_schema-func_create_with-body>`:
+
 Constraint functions take two parameters:
 
 * Field value and constraint name for field constraints.
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.schema.func.create('check_age',
+               > {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
+      ---
+      ...
+
 * Tuple and constraint name for tuple constraints.
 
-To create a constraint function, use :ref:`func.create with function body <box_schema-func_create_with-body>`:
+  .. code-block:: tarantoolsession
 
-.. code-block:: tarantoolsession
+      tarantool> box.schema.func.create('check_person',
+               > {language = 'LUA', is_deterministic = true, body = 'function(t, c) return (t.age >= 0 and #(t.name) > 3) end'})
+      ---
+      ...
 
-    tarantool> box.schema.func.create('check_age',
-             > {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
-    ---
-    ...
+..  warning::
+
+  Tarantool doesn't check field names used in tuple constraint functions.
+  If a field referenced in a tuple constraint gets renamed, this constraint will break
+  and prevent further insertions and modifications to the space.
 
 .. _index-constraint_apply:
 
