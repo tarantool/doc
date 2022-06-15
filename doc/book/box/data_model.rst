@@ -562,11 +562,11 @@ Constraints
 -----------
 
 For better control over data models, Tarantool supports *constraints* – user-defined
-limitations on the values of certain fields or whole tuples. Together with data types,
+limitations on the values of certain fields or entire tuples. Together with data types,
 constraints allow to limit ranges of available field values both syntactically and semantically.
 
-For example, the ``age`` field typically has the ``number`` type, so it cannot store
-strings or boolean values. However, it still can have values that don't make sense,
+For example, the field ``age`` typically has the ``number`` type, so it cannot store
+strings or boolean values. However, it can still have values that don't make sense,
 such as negative numbers. This is where constraints come to help.
 
 .. _index-constraint_types:
@@ -575,14 +575,14 @@ such as negative numbers. This is where constraints come to help.
 Constraint types
 ****************
 
-Tarantool provides two types of constraints:
+There are two types of constraints in Tarantool:
 
 * *field constraints* check that the value being assigned to a particular field
   satisfies a given condition. For example, ``age`` must be non-negative.
 
-* *tuple constraints* can check complex conditions that involve all fields of
-  a tuple. For example, a tuple contains a date value split into fields
-  ``year``, ``month``, and ``day``. You can validate the ``day`` based on
+* *tuple constraints* check complex conditions that can involve all fields of
+  a tuple. For example, a tuple contains a date in three fields:
+  ``year``, ``month``, and ``day``. You can validate ``day`` values based on
   the ``month`` value (and even ``year`` if you consider leap years).
 
 Field constraints work faster while tuple constraints allow implementing
@@ -594,20 +594,21 @@ a wider range of limitations.
 Constraint functions
 ********************
 
-In Tarantool, constraints are stored Lua functions. They must return ``true``
+In Tarantool, constraints use stored Lua functions. They must return ``true``
 when the constraint is satisfied. Other return values (including ``nil``)
 and exceptions make the check fail and prevent tuple insertion or modification.
+
 Constraint functions take two parameters:
 
 * Field value and constraint name for field constraints.
-* Tuple and constraint name for tuple constraint.
+* Tuple and constraint name for tuple constraints.
 
 To create a constraint function, use :ref:`func.create with function body <box_schema-func_create_with-body>`:
 
 .. code-block:: tarantoolsession
 
     tarantool> box.schema.func.create('check_age',
-    {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
+             > {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
     ---
     ...
 
@@ -617,27 +618,27 @@ To create a constraint function, use :ref:`func.create with function body <box_s
 Applying constraints
 ********************
 
-To apply a constraint to a space, specify the corresponding function's name when
-setting up or altering a space format:
+To apply a constraint to a space, specify the corresponding function's name
+in the ``constraint`` parameter:
 
-* Tuple constraints: in the ``constraint`` parameter of the space definition:
+* Tuple constraints: when creating or altering a space:
 
   .. code-block:: tarantoolsession
 
       tarantool> box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
 
-* Field constraints: in the ``constraint`` parameter of the field definition:
+* Field constraints: when setting up the space format:
 
   .. code-block:: tarantoolsession
 
       tarantool> box.space.person:format({
-          {name = 'id',   type = 'number'},
-          {name = 'name', type = 'string'},
-          {name = 'age',  type = 'number', constraint = 'check_age'},
-      })
+               > {name = 'id',   type = 'number'},
+               > {name = 'name', type = 'string'},
+               > {name = 'age',  type = 'number', constraint = 'check_age'},
+               > })
 
 In both cases, ``constraint`` can contain multiple function names passed as a tuple.
-Each constraint can also have an optional name:
+Each constraint can have an optional name:
 
 .. code-block:: lua
 
