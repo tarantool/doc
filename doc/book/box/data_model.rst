@@ -561,7 +561,7 @@ in the
 Constraints
 -----------
 
-For better control over data models, Tarantool supports *constraints* – user-defined
+For better control over stored data, Tarantool supports *constraints* – user-defined
 limitations on the values of certain fields or entire tuples. Together with data types,
 constraints allow to limit ranges of available field values both syntactically and semantically.
 
@@ -594,15 +594,15 @@ a wider range of limitations.
 Constraint functions
 ********************
 
-In Tarantool, constraints use stored Lua functions. They must return ``true``
-when the constraint is satisfied. Other return values (including ``nil``)
-and exceptions make the check fail and prevent tuple insertion or modification.
+Constraints use stored Lua functions. They must return ``true``when the constraint
+is satisfied. Other return values (including ``nil``)and exceptions make the
+check fail and prevent tuple insertion or modification.
 
 To create a constraint function, use :ref:`func.create with function body <box_schema-func_create_with-body>`:
 
 Constraint functions take two parameters:
 
-* Field value and constraint name for field constraints.
+* The field value and the constraint name for field constraints.
 
   .. code-block:: tarantoolsession
 
@@ -611,7 +611,7 @@ Constraint functions take two parameters:
       ---
       ...
 
-* Tuple and constraint name for tuple constraints.
+* The tuple and the constraint name for tuple constraints.
 
   .. code-block:: tarantoolsession
 
@@ -620,11 +620,11 @@ Constraint functions take two parameters:
       ---
       ...
 
-..  warning::
+  ..  warning::
 
-  Tarantool doesn't check field names used in tuple constraint functions.
-  If a field referenced in a tuple constraint gets renamed, this constraint will break
-  and prevent further insertions and modifications to the space.
+    Tarantool doesn't check field names used in tuple constraint functions.
+    If a field referenced in a tuple constraint gets renamed, this constraint will break
+    and prevent further insertions and modifications in the space.
 
 .. _index-constraint_apply:
 
