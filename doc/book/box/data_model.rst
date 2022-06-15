@@ -644,6 +644,14 @@ Each constraint can have an optional name:
 
     constraint = {'age_constraint' = 'check_age', 'name_constraint' = 'check_name'}
 
+..  note::
+
+  When adding a constraint to an existing space with data, Tarantool checks it
+  against the stored data. If there are fields or tuples that don't satisfy
+  the constraint, it won't be applied to the space.
+
+
+
 
 .. _index-box_sequence:
 
