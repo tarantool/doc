@@ -131,6 +131,27 @@ A semicolon is missing in the tag definition:
 
     ..  _box_space-index_func:
 
+Anonymous hyperlink mismatch
+----------------------------
+
+**Warning example:** Anonymous hyperlink mismatch: 1 references but 0 targets.
+
+Check the hyperlink formatting.
+
+**Example:**
+
+..  code-block:: rst
+
+     Read more in `Lua Manual <https://www.lua.org/manual/5.3`__.
+
+**Solution:**
+
+A closing greater-than sign is missing in the tag definition:
+
+..  code-block:: rst
+
+     Read more in `Lua Manual <https://www.lua.org/manual/5.3>`__.
+
 Toctree contains reference to nonexisting document '...'
 --------------------------------------------------------
 
