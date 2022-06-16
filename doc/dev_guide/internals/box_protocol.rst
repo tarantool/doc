@@ -711,7 +711,7 @@ Thus the IPROTO_PREPARE map item is the same as the first item of the
 ..  _box_protocol-begin:
 
 IPROTO_BEGIN = 0x0e
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 Begin a transaction in the specified stream.
 See :ref:`stream:begin() <net_box-stream_begin>`.
@@ -738,10 +738,12 @@ IPROTO_TIMEOUT is an optional timeout (in seconds). After it expires,
 the transaction will be rolled back automatically.
 
 .. // TODO: add link to transaction isolation docs once they're ready
+
 IPROTO_TXN_ISOLATION is the transaction isolation level. It can take
 the following values:
 
 .. // TODO: provide links to level descriptions
+
 - ``TXN_ISOLATION_DEFAULT = 0``	-- use the global default level (default value)
 - ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read changes that are committed but not confirmed yet
 - ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read confirmed changes
@@ -754,7 +756,7 @@ stream transactions in the binary protocol.
 ..  _box_protocol-commit:
 
 IPROTO_COMMIT = 0x0f
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 Commit the transaction in the specified stream.
 See :ref:`stream:commit() <net_box-stream_commit>`.
@@ -778,7 +780,7 @@ stream transactions in the binary protocol.
 ..  _box_protocol-rollback:
 
 IPROTO_ROLLBACK = 0x10
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 Rollback the transaction in the specified stream.
 See :ref:`stream:rollback() <net_box-stream_rollback>`.
@@ -841,7 +843,7 @@ regular connections.
 ..  _box_protocol-raft_confirm:
 
 IPROTO_RAFT_CONFIRM = 0x28
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This message confirms that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID have achieved quorum and can be committed,
@@ -870,7 +872,7 @@ The body is a 2-item map:
 ..  _box_protocol-raft_rollback:
 
 IPROTO_RAFT_ROLLBACK = 0x29
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This message says that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID couldn't achieve quorum for some reason
@@ -898,7 +900,7 @@ The body is a 2-item map:
 ..  _box_protocol-id:
 
 IPROTO_ID = 0x49
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 Clients send this message to inform the server about the protocol version and
 features they support. Based on this information, the server can enable or
@@ -938,6 +940,7 @@ Available IPROTO_FEATURES are the following:
   :ref:`IPROTO_CALL <box_protocol-call>` encoded to string error messages.
 - ``IPROTO_FEATURE_WATCHERS = 3`` -- remote watchers support: IPROTO_WATCH,
   IPROTO_UNWATCH, and IPROTO_EVENT commands.
+
 .. // TODO: document remote watchers commands
 
 IPROTO_ID requests can be processed without authentication.
