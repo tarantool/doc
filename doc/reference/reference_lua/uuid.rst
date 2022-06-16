@@ -1,12 +1,10 @@
 .. _uuid-module:
 
--------------------------------------------------------------------------------
-                            Module uuid
--------------------------------------------------------------------------------
+Module uuid
+============
 
-===============================================================================
-                                   Overview
-===============================================================================
+Overview
+--------
 
 A "UUID" is a `Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_.
 If an application requires that
@@ -17,9 +15,9 @@ applications, UUIDs are better.
 Tarantool generates UUIDs following the rules for RFC 4122
 `version 4 variant 1 <https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)>`_.
 
-===============================================================================
-                                    Index
-===============================================================================
+
+Index
+-----
 
 Below is list of all ``uuid`` functions and members.
 
@@ -108,7 +106,14 @@ Below is list of all ``uuid`` functions and members.
 
 .. _uuid-bin:
 
-.. function:: bin()
+.. function:: bin([byteorder])
+
+    :param string byte-order:  Byte order of the resulting UUID:
+
+      * ``'l'`` - little-endian
+      * ``'b'`` - big-endian
+      * ``'h'``, ``'host'`` - endianness depends on host (default)
+      * ``'n'``, ``'network'`` - endianness depends on network
 
     :return: a UUID
     :rtype: 16-byte string
@@ -124,15 +129,22 @@ Below is list of all ``uuid`` functions and members.
 
 .. function:: fromstr(uuid_str)
 
-    :param uuid_str: UUID in 36-byte hexadecimal string
+    :param string uuid_str: UUID in 36-byte hexadecimal string
     :return: converted UUID
     :rtype: cdata
 
 .. _uuid-frombin:
 
-.. function:: frombin(uuid_bin)
+.. function:: frombin(uuid_bin [, byte_order])
 
-    :param uuid_str: UUID in 16-byte binary string
+    :param string uuid_str: UUID in 16-byte binary string
+    :param string byte-order:  Byte order of the given string:
+
+      * ``'l'`` - little-endian
+      * ``'b'`` - big-endian
+      * ``'h'``, ``'host'`` - endianness depends on host (default)
+      * ``'n'``, ``'network'`` - endianness depends on network
+
     :return: converted UUID
     :rtype: cdata
 
@@ -152,14 +164,12 @@ Below is list of all ``uuid`` functions and members.
 
     .. method:: bin([byte-order])
 
-        ``byte-order`` can be one of next flags:
+        :param string byte-order:  Byte order of the resulting UUID:
 
-        * 'l' - little-endian,
-        * 'b' - big-endian,
-        * 'h' - endianness depends on host (default),
-        * 'n' - endianness depends on network
-
-        :param string byte-order: one of ``'l'``, ``'b'``, ``'h'`` or ``'n'``.
+          * ``'l'`` - little-endian
+          * ``'b'`` - big-endian
+          * ``'h'``, ``'host'`` - endianness depends on host (default)
+          * ``'n'``, ``'network'`` - endianness depends on network
 
         :return: UUID converted from cdata input value.
         :rtype: 16-byte binary string
@@ -183,9 +193,9 @@ Below is list of all ``uuid`` functions and members.
         :return: true if the value is all zero, otherwise false.
         :rtype: bool
 
-=================================================
-                    Example
-=================================================
+
+Example
+-------
 
 .. code-block:: tarantoolsession
 
