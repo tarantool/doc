@@ -1,7 +1,7 @@
 .. _uuid-module:
 
 Module uuid
-============
+===========
 
 Overview
 --------
