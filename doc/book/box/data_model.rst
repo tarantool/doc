@@ -554,6 +554,13 @@ Charts explaining the precise differences from DUCET order are
 in the
 `Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_.
 
+.. _index-box_foreign_keys:
+
+------------
+Foreign keys
+------------
+
+
 .. _index-box_sequence:
 
 --------------------------------------------------------------------------------
