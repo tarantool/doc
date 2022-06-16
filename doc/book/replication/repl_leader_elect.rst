@@ -82,7 +82,7 @@ a non-leader node starts a new election if the following conditions are met:
 
 ..  note::
 
-    A cluster member considers the leader node to be alive if the member received heartbeats from the leader at least once during the period of ``replication_timeout * 4`,
+    A cluster member considers the leader node to be alive if the member received heartbeats from the leader at least once during the period of ``replication_timeout * 4``,
     and there are no replication errors (the connection is not broken due to timeout or due to an error).
 
 Terms and votes are persisted by each instance to preserve certain Raft guarantees.
