@@ -9,7 +9,7 @@ allows :ref:`"yielding" <app-yields>` inside a :ref:`memtx <engines-chapter>` tr
 This is controlled by the *transaction manager*.
 
 
-This mode allows parallel transactions but may cause conflicts.
+This mode allows concurrent transactions but may cause conflicts.
 You can use this mode on the :ref:`memtx <engines-chapter>` storage engine. 
 The :ref:`vinyl <engines-chapter>` storage engine also supports MVCC mode, 
 but has a different implementation.
@@ -23,7 +23,7 @@ but has a different implementation.
 Transaction manager
 -------------------
 
-The transaction manager is designed to isolate parallel transactions
+The transaction manager is designed to isolate concurrent transactions
 and provides a *serializable* 
 `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_.
 It consists of two parts:

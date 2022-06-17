@@ -40,7 +40,7 @@ when the disk space is over. In this case, the isolation level of the concurrent
 would be *read committed*.
 
 
-The :ref:`MVСС mode <txn_mode_transaction-manager>` provides several options to cold tune 
+The :ref:`MVСС mode <txn_mode_transaction-manager>` provides several options that allows you to tune 
 the visibility behavior during transaction execution. To achieve *serializable*, any write transaction 
 should read all data that has already been committed (otherwise it may conflict 
 when it reaches its commit). For read transactions, however, it is sufficient 

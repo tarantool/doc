@@ -52,7 +52,7 @@ be permanently stuck on the same fiber.
 Example
 -------
 
-Create space and index: 
+Create space "tester": 
 
 ..  code-block:: tarantoolsession
 
@@ -72,7 +72,7 @@ Create space and index:
     box.space.tester:update({3}, {{'=', 'name, 'size'}, {'=', 'data', 0}})
 
 
-Perform a basic operation using this query: 
+Perform a basic operation with this query: 
 
 ..  code-block:: tarantoolsession
 
