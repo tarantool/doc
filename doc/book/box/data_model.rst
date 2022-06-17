@@ -1033,8 +1033,8 @@ that do not require data migration:
 
 ..  note::
 
-    Check the `Upgrading space schema <https://www.tarantool.io/en/enterprise_doc/space_upgrade/>`_
-    section in the Enterprise version. With the help of ``space:upgrade()``feature,
+    Check the `Upgrading space schema <https://www.tarantool.io/en/enterprise_doc/space_upgrade/>`__
+    section in the Enterprise version. With the help of ``space:upgrade()`` feature,
     you can enable compression and migrate, including already created tuples.
 
 
