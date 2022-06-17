@@ -577,7 +577,7 @@ Constraint types
 
 There are two types of constraints in Tarantool:
 
-* *field constraints* check that the value being assigned to a particular field
+* *field constraints* check that the value being assigned to a field
   satisfies a given condition. For example, ``age`` must be non-negative.
 
 * *tuple constraints* check complex conditions that can involve all fields of
@@ -629,17 +629,11 @@ Constraint functions take two parameters:
 .. _index-constraint_apply:
 
 ********************
-Applying constraints
+Creating constraints
 ********************
 
-To apply a constraint to a space, specify the corresponding function's name
+To create a constraint in a space, specify the corresponding function's name
 in the ``constraint`` parameter:
-
-* Tuple constraints: when creating or altering a space:
-
-  .. code-block:: tarantoolsession
-
-      tarantool> box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
 
 * Field constraints: when setting up the space format:
 
@@ -650,6 +644,12 @@ in the ``constraint`` parameter:
                > {name = 'name', type = 'string'},
                > {name = 'age',  type = 'number', constraint = 'check_age'},
                > })
+
+* Tuple constraints: when creating or altering a space:
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
 
 In both cases, ``constraint`` can contain multiple function names passed as a tuple.
 Each constraint can have an optional name:
@@ -663,8 +663,6 @@ Each constraint can have an optional name:
   When adding a constraint to an existing space with data, Tarantool checks it
   against the stored data. If there are fields or tuples that don't satisfy
   the constraint, it won't be applied to the space.
-
-
 
 
 .. _index-box_sequence:
