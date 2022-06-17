@@ -594,7 +594,7 @@ a wider range of limitations.
 Constraint functions
 ********************
 
-Constraints use stored Lua functions. They must return ``true``when the constraint
+Constraints use stored Lua functions. They must return ``true`` when the constraint
 is satisfied. Other return values (including ``nil``)and exceptions make the
 check fail and prevent tuple insertion or modification.
 
