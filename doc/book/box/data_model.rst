@@ -1033,9 +1033,9 @@ that do not require data migration:
 
 ..  note::
 
-    Check the `non-blocking DDL <https://www.tarantool.io/en/enterprise_doc/space_upgrade/>`_
-    in the Enterprise version. With the help of it, you can enable compression and migrate,
-    including already created tuples.
+    Check the `Upgrading space schema <https://www.tarantool.io/en/enterprise_doc/space_upgrade/>`_
+    section in the Enterprise version. With the help of ``space:upgrade()``feature,
+    you can enable compression and migrate, including already created tuples.
 
 
 ****************************************
