@@ -913,7 +913,8 @@ You can define a data schema when creating a space. Read more in the description
 If you have already created a space without specifying a data schema, you can do it later using
 :doc:`/reference/reference_lua/box_space/format`.
 
-After the data schema is defined, all the data is validated by type. Before any insert or update, you will get an error if the data types do not match.
+After the data schema is defined, all the data is validated by type. Before any insert or update,
+you will get an error if the data types do not match.
 
 We recommend using a data schema because it helps avoid mistakes.
 
@@ -949,6 +950,8 @@ of the ``format`` function.
 This is similar to ``self`` in object-based languages.
 
 So it might be more convenient for you to describe the data schema with YAML.
+
+..  _data-schema-ddl:
 
 **********************************************
 Data schema description using the DDL module
@@ -1028,6 +1031,12 @@ that do not require data migration:
 
 -   creating an index
 
+..  note::
+
+    Check the `Upgrading space schema <https://www.tarantool.io/en/enterprise_doc/space_upgrade/>`__
+    section in the Enterprise version. With the help of ``space:upgrade()`` feature,
+    you can enable compression and migrate, including already created tuples.
+
 
 ****************************************
 Adding a field to the end of a space
@@ -1057,6 +1066,8 @@ Creating an index
 
 Index creation is described in the
 :doc:`/reference/reference_lua/box_space/create_index` method.
+
+..  _other-migrations:
 
 ***************************
 Other types of migrations
