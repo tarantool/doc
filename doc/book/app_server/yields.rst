@@ -14,11 +14,9 @@ Tarantool has two types of yields:
 Implicit yields
 ---------------
 
-**Implicit yields** are caused by any data change operation or network access 
-and any statement passing through the Tarantool client.
-
-Many requests "imply" yields, because Tarantool is designed to avoid blocking. For example, 
-it can be used with :ref:`box.begin() <box-begin>` when starting a transaction.
+**Implicit yields** are caused by many requests, because Tarantool is designed 
+to avoid blocking. For example, it can be used with :ref:`box.begin() <box-begin>` 
+when starting a transaction.
 
 
 Database requests imply yields if and only if there is disk I/O.
@@ -104,7 +102,7 @@ when sending requests to the network and awaiting the results.
     conn.space.test:select{2}
     conn.space.test:select{3}
 
- On the server side, the same requests are executed
+On the server side, the same requests are executed
 in a common order possibly mixing with other requests from the network and
 local fibers. Something similar happens when using clients that operate
 via telnet, via one of the connectors, or via the

@@ -12,11 +12,11 @@ This is controlled by the *transaction manager*.
 This mode allows parallel transactions but may cause conflicts.
 You can use this mode on the :ref:`memtx <engines-chapter>` storage engine. 
 The :ref:`vinyl <engines-chapter>` storage engine also supports MVCC mode, 
-but has a different realization.
+but has a different implementation.
 
 ..  note::
 
-    You cannot mix storage engines in a transaction today.
+    Currently, you cannot use several different storage engines within one transaction.
 
 ..  _txn_mode_mvcc-tnx-manager:
 
