@@ -161,7 +161,7 @@ Also, if you leave a transaction open while returning from a request, you will g
     - error: Transaction is active at return from function
     ...
 
-Let’s change ``memtx_use_mvcc_engine`` to true, restart tarantool and try again:
+Let’s change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try again:
 
 ..  code-block:: set_true
     
@@ -169,7 +169,7 @@ Let’s change ``memtx_use_mvcc_engine`` to true, restart tarantool and try agai
     ---
     ...
 
-Now, let’s check that transaction was successful:
+Now, let’s check that this transaction was successful:
 
 ..  code-block:: true
     
@@ -221,7 +221,7 @@ a stream transfers data via the protocol between a client and a server.
         -- ``call``, ``eval``, or ``execute`` -- using the SQL transaction syntax. 
 
 
-Let’s create a Lua client (client.lua) and run it with tarantool:
+Let’s create a Lua client (``client.lua``) and run it with tarantool:
 
 ..  code-block:: lua
 
@@ -231,6 +231,7 @@ Let’s create a Lua client (client.lua) and run it with tarantool:
     local stream = conn:new_stream()
     local stream_tickets = stream.space.tickets
     local yaml = require 'yaml'
+
     -- Begin transaction over an iproto stream:
     stream:begin()
     print("Replaced in a stream\n".. yaml.encode(  stream_tickets:replace({1, 768}) ))
@@ -240,14 +241,14 @@ Let’s create a Lua client (client.lua) and run it with tarantool:
     -- transaction.
     print("Selected from outside of transaction\n".. yaml.encode(conn_tickets:select({}, {limit = 10}) ))
 
-    -- Select returns the previously inserted tuple,
+    -- Select returns the previously inserted tuple
     -- because this select belongs to the transaction:
     print("Selected from within transaction\n".. yaml.encode(stream_tickets:select({}, {limit = 10}) ))
 
     -- Commit transaction:
     stream:commit()
 
-    -- Now this select also returns the tuple, because the transaction has been committed:
+    -- Now this select also returns the tuple because the transaction has been committed:
     print("Selected again from outside of transaction\n".. yaml.encode(conn_tickets:select({}, {limit = 10}) ))
 
     os.exit()

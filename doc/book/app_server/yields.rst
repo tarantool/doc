@@ -6,7 +6,7 @@ Yields
 Any live fiber can be in one of three states: ``running``, ``suspended``, and 
 ``ready``. After a fiber dies, the ``dead`` status returns. By observing 
 fibers from the outside, you can only see ``running`` (for the current fiber) 
-and ``suspended`` for any other fiber waiting for an event from eventloop 
+and ``suspended`` for any other fiber waiting for an event from eventloop (``ev``) 
 for execution.
 
 
@@ -124,9 +124,9 @@ With the default ``autocommit`` mode the following operations are yielding:
 
 To provide atomicity for transactions in transaction mode, some changes are applied to the 
 modification operations for the :ref:`memtx <engines-chapter>` engine. After executing
-:doc:`./box_txn_management/begin` or within a :ref:`box.atomic <box-atomic>`
-call, any modification operation will not yield, and yield will occur only on :doc:`./box_txn_management/commit` or upon return 
-from :ref:`box.atomic <box-atomic>`. Meanwhile, :doc:`./box_txn_management/rollback` does not yield.
+``box.begin`` or within a :ref:`box.atomic <box-atomic>`
+call, any modification operation will not yield, and yield will occur only on ``box.commit`` or upon return 
+from :ref:`box.atomic <box-atomic>`. Meanwhile, ``box.rollback`` does not yield.
 
 That is why executing separate commands like ``select()``, ``insert()``, ``update()`` in the console inside a 
 transaction without MVCC will cause it to an abort. This is due to implicit yield after each 
@@ -135,17 +135,18 @@ chunk of code is executed in the console.
 
 **Example #1**
 
-*   Engine = memtx
+*   ``Engine = memtx``
 
 ..  code-block:: memtx
 
     space:get()
     space:insert()
 
+
 The sequence has one yield, at the end of the insert, caused by implicit commit; 
 ``get()`` has nothing to write to the WAL and so does not yield.
 
-*   Engine = memtx
+*   ``Engine = memtx``
 
 ..  code-block:: memtx
 
@@ -156,9 +157,10 @@ The sequence has one yield, at the end of the insert, caused by implicit commit;
     space2:insert()
     box.commit()
 
-The sequence has one yield, at the end of the :doc:`./box_txn_management/commit`, none of the inserts are yielding.
 
-*   Engine = vinyl
+The sequence has one yield, at the end of the ``box.commit``, none of the inserts are yielding.
+
+*   ``Engine = vinyl``
 
 ..  code-block:: vinyl
 
@@ -170,7 +172,7 @@ The sequence has one to three yields, since ``get()`` may yield if the data is n
 ``insert()`` may yield if it waits for available memory, and there is an implicit yield 
 at commit.
 
-*   Engine = vinyl
+*   ``Engine = vinyl``
 
 ..  code-block:: vinyl
 
@@ -187,7 +189,7 @@ The sequence may yield from 1 to 5 times.
 
 **Example #2**
 
-Assume that there are tuples in the memtx space "tester" where the third field
+Assume that there are tuples in the memtx space ``tester`` where the third field
 represents a positive dollar amount. Let's start a transaction, withdraw
 from tuple#1, deposit in tuple#2, and end the transaction, making its
 effects permanent.
@@ -210,7 +212,7 @@ effects permanent.
     - "ok"
     ...
 
-If :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` = ‘none’, then
+If :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` = ``none``, then
 there is no implicit yielding at the commit time because there are
 no writes to the WAL.
 
