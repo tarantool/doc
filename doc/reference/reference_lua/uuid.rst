@@ -106,7 +106,7 @@ Below is list of all ``uuid`` functions and members.
 
 .. _uuid-bin:
 
-.. function:: bin([byteorder])
+.. function:: bin([byte-order])
 
     :param string byte-order:  Byte order of the resulting UUID:
 
@@ -127,17 +127,17 @@ Below is list of all ``uuid`` functions and members.
 
 .. _uuid-fromstr:
 
-.. function:: fromstr(uuid_str)
+.. function:: fromstr(uuid-str)
 
-    :param string uuid_str: UUID in 36-byte hexadecimal string
+    :param string uuid-str: UUID in 36-byte hexadecimal string
     :return: converted UUID
     :rtype: cdata
 
 .. _uuid-frombin:
 
-.. function:: frombin(uuid_bin [, byte_order])
+.. function:: frombin(uuid-bin [, byte-order])
 
-    :param string uuid_str: UUID in 16-byte binary string
+    :param string uuid-bin: UUID in 16-byte binary string
     :param string byte-order:  Byte order of the given string:
 
       * ``'l'`` - little-endian
