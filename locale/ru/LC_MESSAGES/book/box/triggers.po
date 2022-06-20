@@ -11,10 +11,10 @@ msgstr ""
 "событий."
 
 msgid ""
-"To associate an event with a callback, one should pass the callback to the "
+"To associate an event with a callback, pass the callback to the "
 "corresponding :samp:`on_{event}` function:"
 msgstr ""
-"Чтобы связать событие с колбэк-функцией, необходимо передать её в "
+"Чтобы связать событие с колбэк-функцией, передайте её в "
 "соответствующую функцию обработки событий :samp:`on_{event}`:"
 
 msgid ""

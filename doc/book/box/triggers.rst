@@ -11,7 +11,7 @@ Triggers
 executes when certain events happen.
 
 To associate an event with a callback,
-one should pass the callback to the corresponding :samp:`on_{event}` function:
+pass the callback to the corresponding :samp:`on_{event}` function:
 
 * :doc:`/reference/reference_lua/box_session/on_connect` or
   :doc:`/reference/reference_lua/box_session/on_disconnect`,
