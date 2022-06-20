@@ -226,7 +226,7 @@ Below is a list of all ``net.box`` functions.
            *   -   net.box feature
                -   Use
                -   IPROTO feature ID
-               -   IPROTO protocol versions with the net.box feature support
+               -   IPROTO versions supporting the feature
            *   -   ``streams``  
                -   Requires streams support on the server
                -   IPROTO_FEATURE_STREAMS 
