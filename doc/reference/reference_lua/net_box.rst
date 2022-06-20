@@ -219,30 +219,30 @@ Below is a list of all ``net.box`` functions.
         
     ..  container:: table
 
-    ..  list-table::
-        :widths: 26 29 25 20
-        :header-rows: 1
+    	..  list-table::
+           :widths: 26 29 25 20
+           :header-rows: 1
 
-        *   -   net.box feature
-            -   Use
-            -   IPROTO feature ID
-            -   IPROTO protocol versions with the net.box feature support
-        *   -   ``streams``  
-            -   Requires streams support on the server
-            -   IPROTO_FEATURE_STREAMS 
-            -   1 and newer
-        *   -   ``transactions``
-            -   Requires transactions support on the server
-            -   IPROTO_FEATURE_TRANSACTIONS   
-            -   1 and newer
-        *   -   ``error_extension``
-            -   Requires support for :ref:`MP_ERROR <msgpack_ext-error>` MsgPack extension on the server
-            -   IPROTO_FEATURE_ERROR_EXTENSION   
-            -   2 and newer
-        *   -   ``watchers``
-            -   Requires remote watchers support on the server
-            -   IPROTO_FEATURE_WATCHERS   
-            -   3 and newer      
+           *   -   net.box feature
+               -   Use
+               -   IPROTO feature ID
+               -   IPROTO protocol versions with the net.box feature support
+           *   -   ``streams``  
+               -   Requires streams support on the server
+               -   IPROTO_FEATURE_STREAMS 
+               -   1 and newer
+           *   -   ``transactions``
+               -   Requires transactions support on the server
+               -   IPROTO_FEATURE_TRANSACTIONS   
+               -   1 and newer
+           *   -   ``error_extension``
+               -   Requires support for :ref:`MP_ERROR <msgpack_ext-error>` MsgPack extension on the server
+               -   IPROTO_FEATURE_ERROR_EXTENSION   
+               -   2 and newer
+           *   -   ``watchers``
+               -   Requires remote watchers support on the server
+               -   IPROTO_FEATURE_WATCHERS   
+               -   3 and newer      
             
     To learn more about IPROTO features, see :ref:`IPROTO_ID <box_protocol-id>`.
  
