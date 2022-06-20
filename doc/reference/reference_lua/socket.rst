@@ -228,8 +228,7 @@ the function invocations will look like ``sock:function_name(...)``.
     :param number         port: host port, may be 0
     :param function/table handler-function-or-table: what to execute when a
                                                      connection occurs
-    :param number         timeout: number of seconds to wait before
-                                   timing out
+    :param number         timeout: host resolving timeout in seconds
     :return: (if error) {nil, error-message-string}. (if no error) a new socket object.
     :rtype: socket object, which may be viewed as a table
 
