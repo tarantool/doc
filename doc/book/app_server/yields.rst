@@ -3,66 +3,191 @@
 Yields
 ======
 
-Tarantool has two types of yields:
+Any live fiber can be in one of three states: ``running``, ``suspended``, and 
+``ready``. After a fiber dies, the ``dead`` status returns. By observing 
+fibers from the outside, you can only see ``running`` (for the current fiber) 
+and ``suspended`` for any other fiber waiting for an event from eventloop 
+for execution.
 
-*   Implicit.
 
-*   Explicit.
+.. image:: yields.svg
+    :align: center
+
+
+Yield is an action that occurs in a cooperative environment that transfers control 
+of the thread from the current fiber to another fiber that is ready to execute.
+
+
+After yield has occurred, the next ``ready`` fiber is taken from the queue and executed. 
+When there are no more ``ready`` fibers, execution is transferred to the event loop.
+
+After a fiber has yielded and regained control, it immediately issues :ref:`testcancel <fiber-testcancel>`.
+
+There are :ref:`explicit() <app-explicit-yields>` and :ref:`implicit() <app-implicit-yields>` yields.
+
+..  _app-explicit-yields:
+
+Explicit yields
+---------------
+
+**Explicit yield** is clearly visible from the invoking code. There are only two 
+explicit yields: :ref:`fiber.yield() <fiber-yield>` and :ref:`fiber.sleep(t) <fiber-sleep>`
+
+:ref:`fiber.yield() <fiber-yield>` yields execution to another ``ready`` fiber while putting itself in the ``ready`` state, 
+meaning that it will be executed again as soon as possible while being polite to other fibers 
+waiting for execution.
+
+:ref:`fiber.sleep(n) <fiber-sleep>` yields execution to another ``ready`` fiber and puts itself in the ``suspended`` 
+state for time ``t`` until time pass and the event loop wakes up that fiber to the ``ready`` state.
+
+In general, it is good behavior for long-running cpu-intensive tasks to yield periodically to 
+be :ref:`cooperative <app-cooperative_multitasking>` to other waiting fibers.
 
 ..  _app-implicit-yields:
 
 Implicit yields
 ---------------
 
-**Implicit yields** are caused by many requests, because Tarantool is designed 
-to avoid blocking. For example, it can be used with :ref:`box.begin() <box-begin>` 
-when starting a transaction.
+On the other hand, there are many operations, such as operations with sockets, file system, 
+and disk I/O, which imply some waiting for the current fiber while others can be 
+executed. When such an operation occurs, a possible blocking operation would be passed into the 
+event loop and the fiber would be suspended until the resource is ready to 
+continue fiber execution.
 
+Here is the list of implicitly yielding operations:
 
-Database requests imply yields if and only if there is disk I/O.
+*   Connection establishment (:ref:`socket <socket-module>`).
 
-For :ref:`memtx <engines-chapter>`, since all data is in memory, 
-there is no disk I/O during a read request.
+*   Socket read and write (:ref:`socket <socket-module>`).
 
-For :ref:`vinyl <engines-chapter>`, since some data may not be in memory, 
-there may be disk I/O for a read (to fetch data from disk) or write 
-(because a stall may occur while waiting for memory to be free).
+*   Filesystem operations (from :ref:`fio <fio-section>`).
 
-For both :ref:`memtx <engines-chapter>` and :ref:`vinyl <engines-chapter>`, 
-since data-change requests must be recorded in the WAL,
-there is normally a commit. 
-It happens automatically after each request in the default "autocommit" mode, 
-or a commit happens at the end of a transaction in "transaction" mode, 
-when a user intentionally commits by calling :doc:`/reference/reference_lua/box_txn_management/commit`.
-Therefore, because there can be disk I/O, some database operations may imply yields for both storage engines.
+*   Channel data transfer (:ref:`fiber.channel <fiber-channel>`).
 
+*   File input/output (from :ref:`fio <fio-section>`).
 
-Many functions in the modules :ref:`fio <fio-section>`, :ref:`net_box <net_box-module>`,
-:ref:`console <console-module>` and :ref:`socket <socket-module>`
-(the "os" and "network" requests) yield.
+*   Console operations (since console is a socket).
 
-That is why executing separate commands like ``select()``, ``insert()``,
-``update()`` in the console inside a transaction will cause an abort. This is
-due to implicit yield happening after each chunk of code is executed in the console.
+*   HTTP requests (since HTTP is a socket operation).
+
+*   Database modifications (if they imply a disk write).
+
+*   Database reading for the :ref:`vinyl <engines-chapter>` engine.
+
+*   Invocation of another process (:ref:`popen <popen-module>`).
+
+..  note::
+
+    Please note that all operations of ``os`` mosule are non-cooperative and 
+    exclusively block the whole tx thread.
+
+For :ref:`memtx <engines-chapter>`, since all data is in memory, there is no yielding for a read requests 
+(like ``:select``, ``:pairs``, ``:get``).
+
+For :ref:`vinyl <engines-chapter>`, since some data may not be in memory, there may be disk I/O for a 
+read (to fetch data from disk) or write (because a stall may occur while waiting for memory to be freed).
+
+For both :ref:`memtx <engines-chapter>` and :ref:`vinyl <engines-chapter>`, since data change requests 
+must be recorded in the WAL, there is normally a :doc:`/reference/reference_lua/box_txn_management/commit`.
+
+With the default ``autocommit`` mode the following operations are yielding:
+
+*   ``space:alter``.
+
+*   ``space:drop``.
+
+*   ``space:create_index``.
+
+*   ``space:truncate``.
+
+*   ``space:insert``.
+
+*   ``space:replace``.
+
+*   ``space:update``.
+
+*   ``space:upserts``.
+
+*   ``space:delete``.
+
+*   ``index:update``.
+
+*   ``index:delete``.
+
+*   ``index:alter``.
+
+*   ``index:drop``.
+
+*   ``index:rename``.
+
+*   ``box.commit`` (*if there were some modifications within the transaction*).
+
+To provide atomicity for transactions in transaction mode, some changes are applied to the 
+modification operations for the :ref:`memtx <engines-chapter>` engine. After executing
+:doc:`./box_txn_management/begin` or within a :ref:`box.atomic <box-atomic>`
+call, any modification operation will not yield, and yield will occur only on :doc:`./box_txn_management/commit` or upon return 
+from :ref:`box.atomic <box-atomic>`. Meanwhile, :doc:`./box_txn_management/rollback` does not yield.
+
+That is why executing separate commands like ``select()``, ``insert()``, ``update()`` in the console inside a 
+transaction without MVCC will cause it to an abort. This is due to implicit yield after each 
+chunk of code is executed in the console.
+
 
 **Example #1**
 
-*   *Engine = memtx* |br|
-    The sequence ``select() insert()`` has one yield, at the end of the insert, caused 
-    by implicit commit; ``select()`` has nothing to write to the WAL and so does not
-    yield.
+*   Engine = memtx
 
-*   *Engine = vinyl* |br|
-    The sequence ``select() insert()`` has one to three yields, since ``select()``
-    may yield if the data is not in the cache, ``insert()`` may yield if it is waiting 
-    for available memory, and there is an implicit yield at commit.
+..  code-block:: memtx
 
-*   The sequence ``begin() insert() insert() commit()`` only yields on commit
-    if the engine is memtx, and can yield up to 3 times if the engine is vinyl.
+    space:get()
+    space:insert()
+
+The sequence has one yield, at the end of the insert, caused by implicit commit; 
+``get()`` has nothing to write to the WAL and so does not yield.
+
+*   Engine = memtx
+
+..  code-block:: memtx
+
+    box.begin()
+    space1:get()
+    space1:insert()
+    space2:get()
+    space2:insert()
+    box.commit()
+
+The sequence has one yield, at the end of the :doc:`./box_txn_management/commit`, none of the inserts are yielding.
+
+*   Engine = vinyl
+
+..  code-block:: vinyl
+
+    space:get()
+    space:insert()
+
+
+The sequence has one to three yields, since ``get()`` may yield if the data is not in the cache, 
+``insert()`` may yield if it waits for available memory, and there is an implicit yield 
+at commit.
+
+*   Engine = vinyl
+
+..  code-block:: vinyl
+
+    box.begin()
+    space1:get()
+    space1:insert()
+    space2:get()
+    space2:insert()
+    box.commit()
+
+
+The sequence may yield from 1 to 5 times.
+
 
 **Example #2**
 
-Assume that there are tuples in the memtx space ‘tester’ where the third field
+Assume that there are tuples in the memtx space "tester" where the third field
 represents a positive dollar amount. Let's start a transaction, withdraw
 from tuple#1, deposit in tuple#2, and end the transaction, making its
 effects permanent.
@@ -70,10 +195,10 @@ effects permanent.
 ..  code-block:: tarantoolsession
 
     tarantool> function txn_example(from, to, amount_of_money)
-             >   box.begin()
-             >   box.space.tester:update(from, {{'-', 3, amount_of_money}})
-             >   box.space.tester:update(to,   {{'+', 3, amount_of_money}})
-             >   box.commit()
+             >   box.atomic(function()
+             >     box.space.tester:update(from, {{'-', 3, amount_of_money}})
+             >     box.space.tester:update(to,   {{'+', 3, amount_of_money}})
+             >   end)
              >   return "ok"
              > end
     
@@ -86,41 +211,19 @@ effects permanent.
     ...
 
 If :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` = ‘none’, then
-implicit yielding at the commit time does not take place, because there are
+there is no implicit yielding at the commit time because there are
 no writes to the WAL.
 
-If a task is interactive -- sending requests to the server and receiving responses --
-then it involves network I/O and thus an implicit yield, even if the
-request that is sent to the server is not itself an implicit yield request.
-Therefore, the following sequence causes yields three times sequentially 
-when sending requests to the network and awaiting the results.
+If a request if performed via network connector such as :ref:`net.box <net_box-module>` and implies
+sending requests to the server and receiving responses, then it involves network 
+I/O and thus an implicit yielding. Even if the request that is sent to the server 
+has no implicit yield. Therefore, the following sequence causes yields 
+three times sequentially when sending requests to the network and awaiting the results.
+
 
 ..  cssclass:: highlight
 ..  parsed-literal::
 
-    conn.space.test:select{1}
-    conn.space.test:select{2}
-    conn.space.test:select{3}
-
-On the server side, the same requests are executed
-in a common order possibly mixing with other requests from the network and
-local fibers. Something similar happens when using clients that operate
-via telnet, via one of the connectors, or via the
-:ref:`MySQL and PostgreSQL rocks <dbms_modules>`, or via the interactive mode when
-:ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`.
-
-After a fiber has yielded and regained control, it immediately issues
-:ref:`testcancel <fiber-testcancel>`.
-
-..  _app-explicit-yields:
-
-Explicit yields
----------------
-
-**Explicit yields** can (and should) normally be added as :ref:`"yield" <fiber-yield>` 
-statements to prevent hogging in a Lua function. This allows for :ref:`cooperative multitasking <app-cooperative_multitasking>`.
-
-:ref:`fiber.sleep() <fiber-sleep>` and :ref:`fiber.yield() <fiber-yield>` 
-are the only explicit yield requests in Tarantool by default. 
-
-
+    conn.space.test:get{1}
+    conn.space.test:get{2}
+    conn.space.test:get{3}

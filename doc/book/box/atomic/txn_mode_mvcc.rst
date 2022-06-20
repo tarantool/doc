@@ -112,45 +112,73 @@ the :ref:`Default mode <txn_mode-default>`.
 Examples with MVCC enabled and disabled
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Create ``init.lua``, containing the following:
+Create a file ``init.lua``, containing the following:
 
 ..  code-block:: init.lua
 
+    fiber = require 'fiber'
+    
     box.cfg{ listen = '127.0.0.1:3301', memtx_use_mvcc_engine = false }
     box.schema.user.grant('guest', 'super', nil, nil, {if_not_exists = true})
-
+    
     tickets = box.schema.create_space('tickets', { if_not_exists = true })
-    tickets:format({  { name = "id", type = "number" },  { name = "place", type = "number" }, })  
-    tickets:create_index('primary', { parts = { 'id' } })
-    tickets:insert({1, 428})
-    
-    box.begin()
-    tickets:replace{1, 429}
-    tickets:replace{2, 429}
-    box.commit()
+    tickets:format({
+        { name = "id", type = "number" },
+        { name = "place", type = "number" },
+    })
+    tickets:create_index('primary', {
+        parts = { 'id' },
+        if_not_exists = true
+    })
 
-Run ``init.lua``:
+Connect to the instance and execute a transaction with yield inside:
 
-..  code-block:: false
+..  code-block:: connect
+
+    tarantooctl connect 127.0.0.1:3301
+
+Then try to run the following command:
+
+..  code-block:: box_atomic
+
+     box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)
+
+
+You will receive an error message:
+
+..  code-block:: error
     
-    Result: 
-    tarantool> 2022-06-07 16:08:01.515[186747] main/103/run.lua txn.c:705 E> ER_TRANSACTION_YIELD: Transaction has been aborted by a fiber yield
     ---
     - error: Transaction has been aborted by a fiber yield
-    …
+    ...
 
-Change ``memtx_use_mvcc_engine`` to ``true`` and run ``init.lua``:
+Also, if you leave a transaction open while returning from a request, you will get an error message:
+
+..  code-block:: error_open
+    
+    127.0.0.1:3301> box.begin()
+    ---
+    - error: Transaction is active at return from function
+    ...
+
+Let’s change ``memtx_use_mvcc_engine`` to true, restart tarantool and try again:
+
+..  code-block:: set_true
+    
+    127.0.0.1:3301> box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)
+    ---
+    ...
+
+Now, let’s check that transaction was successful:
 
 ..  code-block:: true
     
-    Result:
+    127.0.0.1:3301> box.space.tickets:select({}, {limit = 10})
     ---
     - - [1, 429]
       - [2, 429]
     ...
-    tarantool> box.commit()
-    ---
-    …
+
 
 ..  _txn_mode_stream-interactive-transactions:
 
@@ -192,33 +220,63 @@ a stream transfers data via the protocol between a client and a server.
         :ref:`stream:rollback() <net_box-stream_rollback>` or the appropriate stream methods 
         -- ``call``, ``eval``, or ``execute`` -- using the SQL transaction syntax. 
 
-Example:
+
+Let’s create a Lua client (client.lua) and run it with tarantool:
 
 ..  code-block:: lua
 
-    local conn = net_box.connect(remote_server_addr)
-    local conn_space = conn.space.test
+    local net_box = require 'net.box'
+    local conn = net_box.connect('127.0.0.1:3301')
+    local conn_tickets = conn.space.tickets
     local stream = conn:new_stream()
-    local stream_space = stream.space.test
-
+    local stream_tickets = stream.space.tickets
+    local yaml = require 'yaml'
     -- Begin transaction over an iproto stream:
     stream:begin()
-    stream_space:replace({1})
+    print("Replaced in a stream\n".. yaml.encode(  stream_tickets:replace({1, 768}) ))
 
     -- Empty select, the transaction was not committed.
     -- You can't see it from the requests that do not belong to the
     -- transaction.
-    conn_space:select{}
+    print("Selected from outside of transaction\n".. yaml.encode(conn_tickets:select({}, {limit = 10}) ))
 
     -- Select returns the previously inserted tuple,
     -- because this select belongs to the transaction:
-    stream_space:select({})
+    print("Selected from within transaction\n".. yaml.encode(stream_tickets:select({}, {limit = 10}) ))
 
     -- Commit transaction:
     stream:commit()
 
     -- Now this select also returns the tuple, because the transaction has been committed:
-    conn_space:select{}
+    print("Selected again from outside of transaction\n".. yaml.encode(conn_tickets:select({}, {limit = 10}) ))
+
+    os.exit()
+
+Then call it and see the following output:
+
+..  code-block:: result
+
+    Replaced in a stream
+    --- [1, 768]
+    ...
+
+    Selected from outside of transaction
+    ---
+    - [1, 429]
+    - [2, 429]
+    ...
+
+    Selected from within transaction
+    ---
+    - [1, 768]
+    - [2, 429]
+    ...
+
+    Selected again from outside of transaction
+    ---
+    - [1, 768]
+    - [2, 429]
+    ...```
 
 
 
