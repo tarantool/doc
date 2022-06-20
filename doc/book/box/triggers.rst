@@ -50,7 +50,7 @@ All triggers have the following characteristics:
 * Triggers must work within the event context. This means that their functions
   should not contain calls that don't normally occur immediately after the event
   and before the return from it, such as `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_
-  or :doc:`/reference/reference_lua/box_txn_management/rollback`). If a trigger
+  or :doc:`/reference/reference_lua/box_txn_management/rollback`. If a trigger
   contains such calls, the result of its execution is undefined.
 
 * Triggers are replaceable. The request to "redefine a trigger" implies
