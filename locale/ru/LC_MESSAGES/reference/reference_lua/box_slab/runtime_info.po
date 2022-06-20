@@ -2,25 +2,37 @@
 msgid "box.runtime.info()"
 msgstr ""
 
-msgid "Show a memory usage report (in bytes) for the Lua runtime."
+msgid "Show runtime memory usage report in bytes."
 msgstr ""
-"Отображение отчета по использованию памяти (в байтах) во время исполнения "
-"Lua-кода."
+"Отображение отчета по использованию runtime-памяти в байтах."
+
+msgid "Show runtime memory usage report in bytes."
+msgstr ""
+"Отображение отчета по использованию runtime-памяти в байтах."
+
+msgid "The runtime memory encompasses internal Lua memory as well as the runtime arena. "
+"The Lua memory stores Lua objects. "
+"The runtime arena stores Tarantool-specific objects -- for example, runtime tuples, network buffers "
+"and other objects associated with the application server subsystem."
+msgstr "Runtime-память включает в себя внутреннюю память Lua и runtime-арену. "
+"В памяти Lua хранятся объекты Lua. "
+"На runtime-арене хранятся объекты, специфичные для Tarantool: временные пользовательские кортежи, сетевые буферы "
+"и прочие объекты, связанные с подсистемой сервера приложений."
 
 msgid "return"
 msgstr "возвращает"
 
-msgid "``lua`` is the heap size of the Lua garbage collector;"
-msgstr "``lua`` -- это размер динамической памяти сборщика мусора в Lua;"
+msgid "``lua`` is the size of the Lua heap that is controlled by the Lua garbage collector."
+msgstr "``lua`` -- размер динамической памяти Lua, контролируемой сборщиком мусора в Lua;"
 
 msgid ""
-"``maxalloc`` is the maximal memory quota that can be allocated for Lua;"
+"``maxalloc`` is the maximum size of the runtime memory."
 msgstr ""
-"``maxalloc`` -- это максимальная квота памяти, которую можно выделить для "
-"Lua;"
+"``maxalloc`` -- максимальный размер "
+"runtime-памяти;"
 
-msgid "``used`` is the current memory size used by Lua."
-msgstr "``used`` -- объем памяти, используемый Lua в данный момент."
+msgid "``used`` is the current number of bytes used by the runtime memory."
+msgstr "``used`` -- объем памяти, используемый runtime-памятью в данный момент."
 
 msgid "rtype"
 msgstr "тип возвращаемого значения"
