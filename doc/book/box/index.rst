@@ -15,7 +15,6 @@ This chapter contains the following sections:
 
     data_model
     atomic
-    stream
     authentication
     triggers
     limitations

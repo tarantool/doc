@@ -50,7 +50,7 @@ Enabling the transaction manager
 By default, the transaction manager is disabled. Use the :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>` 
 option to enable it via ``box.cfg``.
 
-..  code-block:: enabling
+..  code-block:: 
 
     box.cfg{memtx_use_mvcc_engine = true}
  
@@ -85,7 +85,7 @@ of successful completion of the transaction and helps to avoid possible conflict
 To set the default isolation level with the other option, for example, 
 to ``read-committed``, use the following command:
 
-..  code-block:: default_txn_isolation_level
+..  code-block:: 
 
     box.cfg{default_txn_isolation = 'read-committed'}
  
@@ -93,7 +93,7 @@ to ``read-committed``, use the following command:
 If a transaction has an explicit ``box.begin()`` call, the level can be
 specified as follows:
 
-..  code-block:: txn_isolation_level
+..  code-block:: 
 
     box.begin({tnx_isolation = 'best-effort'})
 
@@ -114,7 +114,7 @@ Examples with MVCC enabled and disabled
 
 Create a file ``init.lua``, containing the following:
 
-..  code-block:: init.lua
+..  code-block:: 
 
     fiber = require 'fiber'
     
@@ -133,20 +133,20 @@ Create a file ``init.lua``, containing the following:
 
 Connect to the instance:
 
-..  code-block:: connect
+..  code-block:: 
 
     tarantooctl connect 127.0.0.1:3301
 
 Then try to execute the transaction with yield inside:
 
-..  code-block:: box_atomic
+..  code-block:: 
 
      box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)
 
 
 You will receive an error message:
 
-..  code-block:: error
+..  code-block::
     
     ---
     - error: Transaction has been aborted by a fiber yield
@@ -154,7 +154,7 @@ You will receive an error message:
 
 Also, if you leave a transaction open while returning from a request, you will get an error message:
 
-..  code-block:: error_open
+..  code-block:: 
     
     127.0.0.1:3301> box.begin()
     ---
@@ -163,7 +163,7 @@ Also, if you leave a transaction open while returning from a request, you will g
 
 Change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try again:
 
-..  code-block:: set_true
+..  code-block::
     
     127.0.0.1:3301> box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)
     ---
@@ -171,7 +171,7 @@ Change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try again:
 
 Now check if this transaction was successful:
 
-..  code-block:: true
+..  code-block::
     
     127.0.0.1:3301> box.space.tickets:select({}, {limit = 10})
     ---
@@ -256,7 +256,7 @@ Let’s create a Lua client (``client.lua``) and run it with tarantool:
 
 Then call it and see the following output:
 
-..  code-block:: result
+..  code-block:: 
 
     Replaced in a stream
     --- [1, 768]
