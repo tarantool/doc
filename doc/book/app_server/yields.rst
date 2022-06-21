@@ -116,7 +116,7 @@ With the default ``autocommit`` mode the following operations are yielding:
 
 *   :ref:`index:alter <box_index-alter>`.
 
-*   :ref:`box_index-drop <index:drop>`.
+*   :ref:`index:drop <box_index-drop>`.
 
 *   :ref:`index:rename <box_index-rename>`.
 
