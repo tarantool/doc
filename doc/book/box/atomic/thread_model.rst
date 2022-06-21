@@ -19,9 +19,9 @@ is processed with three operating system **threads**:
     or executes stored function, that will perform some data operations.
 
 3.  The execution of operation will result in a message to the 
-    :ref:`write-ahead logging (WAL) thread <internals-wal>` thread to commit 
+    :ref:`write-ahead logging (WAL) <internals-wal>` thread to commit 
     the transaction and the fiber executing the transaction will be suspended. 
-    When the transaction will result in a COMMIT or ROLLBACK, WAL thread will 
+    When the transaction will result in a COMMIT or ROLLBACK, :ref:`WAL <internals-wal>` thread will 
     reply with a message to the TX, fiber will be resumed to have an ability 
     to process the result of transaction and the result of fiber execution 
     will be passed to the network thread, and the network thread returns 
@@ -52,7 +52,7 @@ be permanently stuck on the same fiber.
 Example
 -------
 
-Create space "tester": 
+Create space ``tester``: 
 
 ..  code-block:: tarantoolsession
 

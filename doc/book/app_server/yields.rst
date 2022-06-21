@@ -14,8 +14,8 @@ for execution.
     :align: center
 
 
-Yield is an action that occurs in a cooperative environment that transfers control 
-of the thread from the current fiber to another fiber that is ready to execute.
+Yield is an action that occurs in a :ref:`cooperative <app-cooperative_multitasking>` environment that 
+transfers control of the thread from the current fiber to another fiber that is ready to execute.
 
 
 After yield has occurred, the next ``ready`` fiber is taken from the queue and executed. 
@@ -23,7 +23,7 @@ When there are no more ``ready`` fibers, execution is transferred to the event l
 
 After a fiber has yielded and regained control, it immediately issues :ref:`testcancel <fiber-testcancel>`.
 
-There are :ref:`explicit() <app-explicit-yields>` and :ref:`implicit() <app-implicit-yields>` yields.
+There are :ref:`explicit <app-explicit-yields>` and :ref:`implicit <app-implicit-yields>` yields.
 
 ..  _app-explicit-yields:
 
@@ -88,45 +88,45 @@ For :ref:`vinyl <engines-chapter>`, since some data may not be in memory, there 
 read (to fetch data from disk) or write (because a stall may occur while waiting for memory to be freed).
 
 For both :ref:`memtx <engines-chapter>` and :ref:`vinyl <engines-chapter>`, since data change requests 
-must be recorded in the WAL, there is normally a :doc:`/reference/reference_lua/box_txn_management/commit`.
+must be recorded in the :ref:`WAL <internals-wal>`, there is normally a :doc:`/reference/reference_lua/box_txn_management/commit`.
 
 With the default ``autocommit`` mode the following operations are yielding:
 
-*   ``space:alter``.
+*   :ref:`space:alter <box_space-alter>`.
 
-*   ``space:drop``.
+*   :ref:`space:drop <box_space-drop>`.
 
-*   ``space:create_index``.
+*   :ref:`space:create_index <box_space-create_index>`.
 
-*   ``space:truncate``.
+*   :ref:`space:truncate <box_space-truncate>`.
 
-*   ``space:insert``.
+*   :ref:`space:insert <box_space-insert>`.
 
-*   ``space:replace``.
+*   :ref:`space:replace <box_space-replace>`.
 
-*   ``space:update``.
+*   :ref:`space:update <box_space-update>`.
 
-*   ``space:upserts``.
+*   :ref:`space:upserts <box_space-upsert>`.
 
-*   ``space:delete``.
+*   :ref:`space:delete <box_space-delete>`.
 
-*   ``index:update``.
+*   :ref:`index:update <box_index-update>`.
 
-*   ``index:delete``.
+*   :ref:`index:delete <box_index-delete>`.
 
-*   ``index:alter``.
+*   :ref:`index:alter <box_index-alter>`.
 
-*   ``index:drop``.
+*   :ref:`box_index-drop <index:drop>`.
 
-*   ``index:rename``.
+*   :ref:`index:rename <box_index-rename>`.
 
-*   ``box.commit`` (*if there were some modifications within the transaction*).
+*   :ref:`box.commit <box-commit>` (*if there were some modifications within the transaction*).
 
 To provide atomicity for transactions in transaction mode, some changes are applied to the 
 modification operations for the :ref:`memtx <engines-chapter>` engine. After executing
-``box.begin`` or within a :ref:`box.atomic <box-atomic>`
-call, any modification operation will not yield, and yield will occur only on ``box.commit`` or upon return 
-from :ref:`box.atomic <box-atomic>`. Meanwhile, ``box.rollback`` does not yield.
+:ref:`box.begin <box-begin>` or within a :ref:`box.atomic <box-atomic>`
+call, any modification operation will not yield, and yield will occur only on :ref:`box.commit <box-commit>` or upon return 
+from :ref:`box.atomic <box-atomic>`. Meanwhile, :ref:`box.rollback <box-rollback>` does not yield.
 
 That is why executing separate commands like ``select()``, ``insert()``, ``update()`` in the console inside a 
 transaction without MVCC will cause it to an abort. This is due to implicit yield after each 
@@ -135,7 +135,7 @@ chunk of code is executed in the console.
 
 **Example #1**
 
-*   ``Engine = memtx``
+*   Engine = memtx.
 
 ..  code-block:: memtx
 
@@ -144,9 +144,9 @@ chunk of code is executed in the console.
 
 
 The sequence has one yield, at the end of the insert, caused by implicit commit; 
-``get()`` has nothing to write to the WAL and so does not yield.
+``get()`` has nothing to write to the :ref:`WAL <internals-wal>` and so does not yield.
 
-*   ``Engine = memtx``
+*   Engine = memtx.
 
 ..  code-block:: memtx
 
@@ -160,7 +160,7 @@ The sequence has one yield, at the end of the insert, caused by implicit commit;
 
 The sequence has one yield, at the end of the ``box.commit``, none of the inserts are yielding.
 
-*   ``Engine = vinyl``
+*   Engine = vinyl.
 
 ..  code-block:: vinyl
 
@@ -172,7 +172,7 @@ The sequence has one to three yields, since ``get()`` may yield if the data is n
 ``insert()`` may yield if it waits for available memory, and there is an implicit yield 
 at commit.
 
-*   ``Engine = vinyl``
+*   Engine = vinyl.
 
 ..  code-block:: vinyl
 
@@ -189,10 +189,12 @@ The sequence may yield from 1 to 5 times.
 
 **Example #2**
 
-Assume that there are tuples in the memtx space ``tester`` where the third field
-represents a positive dollar amount. Let's start a transaction, withdraw
-from tuple#1, deposit in tuple#2, and end the transaction, making its
-effects permanent.
+Assume that there are tuples in the :ref:`memtx <engines-chapter>` space ``tester`` where the third field
+represents a positive dollar amount. 
+
+
+Let's start a transaction, withdraw from tuple#1, deposit in tuple#2, and end 
+the transaction, making its effects permanent.
 
 ..  code-block:: tarantoolsession
 
@@ -214,11 +216,11 @@ effects permanent.
 
 If :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` = ``none``, then
 there is no implicit yielding at the commit time because there are
-no writes to the WAL.
+no writes to the :ref:`WAL <internals-wal>`.
 
 If a request if performed via network connector such as :ref:`net.box <net_box-module>` and implies
 sending requests to the server and receiving responses, then it involves network 
-I/O and thus an implicit yielding. Even if the request that is sent to the server 
+I/O and thus implicit yielding. Even if the request that is sent to the server 
 has no implicit yield. Therefore, the following sequence causes yields 
 three times sequentially when sending requests to the network and awaiting the results.
 

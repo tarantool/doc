@@ -65,7 +65,7 @@ If the *serializable* isolation level becomes unreachable, the transaction is ma
 and can no longer be committed.
 
 
-To minimize the possibility of conflicts, MVCC uses what it calls *best-effort* visibility: 
+To minimize the possibility of conflicts, MVCC uses what is called *best-effort* visibility: 
 for write transactions it chooses *read-commited*, for read transactions it chooses *read-confirmed*. 
 Since there is no option for MVCC to analyze the whole transaction to make a decision, it makes the choice on 
 the first operation. The author of the transaction has more knowledge about the whole transaction and could give 

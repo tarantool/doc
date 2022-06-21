@@ -63,8 +63,8 @@ Transaction manager options
 ..  note::
 
     For autocommit transactions (actions with a statement without explicit ``box.begin/commit`` calls) 
-    there is an obvious rule: read-only transactions (for example, select) are performed with ``read-confirmed``; 
-    all others (for example, replace) with ``read-committed``.
+    there is an obvious rule: read-only transactions (for example, ``select``) are performed with ``read-confirmed``; 
+    all others (for example, ``replace``) with ``read-committed``.
 
 
 The transaction manager has four options for the transaction isolation level that you can set in ``box-cfg``:
@@ -104,7 +104,7 @@ specified as follows:
 
 Choosing the better option depends on whether you have conflicts or not. 
 If you have many conflicts, you should set the different options or use 
-the :ref:`Default mode <txn_mode-default>`.
+the :ref:`default mode <txn_mode-default>`.
 
 
 ..  _txn_mode_mvcc-examples:
@@ -131,13 +131,13 @@ Create a file ``init.lua``, containing the following:
         if_not_exists = true
     })
 
-Connect to the instance and execute a transaction with yield inside:
+Connect to the instance:
 
 ..  code-block:: connect
 
     tarantooctl connect 127.0.0.1:3301
 
-Then try to run the following command:
+Then try to execute the transaction with yield inside:
 
 ..  code-block:: box_atomic
 
@@ -161,7 +161,7 @@ Also, if you leave a transaction open while returning from a request, you will g
     - error: Transaction is active at return from function
     ...
 
-Let’s change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try again:
+Change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try again:
 
 ..  code-block:: set_true
     
@@ -169,7 +169,7 @@ Let’s change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try 
     ---
     ...
 
-Now, let’s check that this transaction was successful:
+Now check if this transaction was successful:
 
 ..  code-block:: true
     
