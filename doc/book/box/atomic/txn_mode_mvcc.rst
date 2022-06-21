@@ -228,10 +228,11 @@ Let’s create a Lua client (``client.lua``) and run it with tarantool:
     local net_box = require 'net.box'
     local conn = net_box.connect('127.0.0.1:3301')
     local conn_tickets = conn.space.tickets
-    local stream = conn:new_stream()
-    local stream_tickets = stream.space.tickets
     local yaml = require 'yaml'
 
+    local stream = conn:new_stream()
+    local stream_tickets = stream.space.tickets
+    
     -- Begin transaction over an iproto stream:
     stream:begin()
     print("Replaced in a stream\n".. yaml.encode(  stream_tickets:replace({1, 768}) ))
