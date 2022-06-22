@@ -152,8 +152,7 @@ Configuration
   It is the best to set up this option value to the ``(<cluster size> / 2) + 1``.
   Otherwise, there is no guarantee that there is only one leader at a time.
 * ``election_fencing_enabled`` -- switches the :ref:`leader fencing mode <repl_leader_elect_fencing>` on and off.
-  For the details, refer to the :ref:`option description <cfg_replication-election_fencing_enabled>`in the configuration reference.
-
+  For the details, refer to the :ref:`option description <cfg_replication-election_fencing_enabled>` in the configuration reference.
 
 Besides, it is important to know that
 being a leader is not the only requirement for a node to be writable.
