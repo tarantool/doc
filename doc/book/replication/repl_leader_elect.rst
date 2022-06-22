@@ -99,13 +99,13 @@ connection between the nodes.
 .. _repl_leader_elect_fencing:
 
 In the classic Raft algorithm, a leader doesn't track its connectivity to the rest of the cluster.
-Once the leader is elected, it considers itself in the leader position until receiving a new term from some of the cluster nodes.
+Once the leader is elected, it considers itself in the leader position until receiving a new term from another cluster node.
 This can lead to the split situation if the other nodes elect a new leader upon losing the connectivity to the previous one.
 
 The issue is resolved in Tarantool version :doc:`2.10.0 </release/2.10.0>` by introducing the leader *fencing* mode.
 The mode can be switched on and off by the :ref:`election_fencing_enabled <repl_leader_elect_config>` configuration parameter.
 When the fencing is on, the leader will resign its leadership if it has less than the :ref:`replication_synchro_quorum <repl_leader_elect_config>`
-of alive connections to the cluster nodes. The resigning leader receives the follower status in the current election term and becomes a read-only node.
+of alive connections to the cluster nodes. The resigning leader receives the status of a follower in the current election term and becomes read-only.
 Fencing applies to the instances that have the :ref:`election_mode <repl_leader_elect_config>` set to "candidate" or "manual".
 
 Also, if election is enabled on the node, it won't replicate from any nodes except
