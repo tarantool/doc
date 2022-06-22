@@ -1,15 +1,72 @@
 .. _error_codes:
 
--------------------------------------------------------------------------------
 Database error codes
--------------------------------------------------------------------------------
+====================
 
-In the current version of the binary protocol, error messages, which are normally
-more descriptive than error codes, are not present in server responses. The actual
+In the current version of the :doc:`binary protocol </dev_guide/internals/box_protocol>`, error messages, which are normally
+more descriptive than the error codes, are not present in server responses. The actual
 message may contain a file name, a detailed reason or operating system error code.
+
 All such messages, however, are logged in the error log. Below are general
-descriptions of some popular codes. A complete list of errors can be found in file
-`errcode.h <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_ in the source tree.
+descriptions of some popular codes. The complete list of errors can be found in Tarantool error code header file
+`errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__.
+
+ER_NONMASTER
+------------
+
+(In replication) A server instance cannot modify data unless it is a master.
+
+ER_ILLEGAL_PARAMS
+-----------------
+
+Illegal parameters. Malformed protocol message.
+
+ER_MEMORY_ISSUE
+---------------
+
+Out of memory: :ref:`memtx_memory <cfg_storage-memtx_memory>` limit has been reached.
+
+ER_WAL_IO
+---------
+
+Failed to write to disk. May mean: failed to record a change in the write-ahead log. Some sort of disk error.
+
+ER_KEY_PART_COUNT
+-----------------
+
+Key part count is not the same as index part count.
+
+ER_NO_SUCH_SPACE
+----------------
+
+The specified space does not exist.
+
+ER_NO_SUCH_INDEX
+----------------
+
+The specified index in the specified space does not exist.
+
+ER_PROC_LUA
+-----------
+
+An error occurred inside a Lua procedure.
+
+ER_FIBER_STACK
+--------------
+
+The recursion limit was reached when creating a new fiber. This usually indicates that a stored procedure is recursively invoking itself too often.
+
+ER_UPDATE_FIELD
+---------------
+
+An error occurred during update of a field.
+
+ER_TUPLE_FOUND
+--------------
+
+A duplicate key exists in a unique index.
+
+
 
 .. container:: table
 
@@ -61,9 +118,8 @@ descriptions of some popular codes. A complete list of errors can be found in fi
 
 .. _error_handling:
 
--------------------------------------------------------------------------------
 Handling errors
--------------------------------------------------------------------------------
+===============
 
 Here are some procedures that can make Lua functions more robust when there are
 errors, particularly database errors.
