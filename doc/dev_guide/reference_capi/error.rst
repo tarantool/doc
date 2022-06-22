@@ -6,8 +6,6 @@
 
 .. _capi-box_error_code:
 
-.. c:enum:: box_error_code
-
     For a complete list of errors, refer to the Tarantool
     `error code header file <https://github.com/tarantool/tarantool/blob/2.10/src/box/errcode.h>`__
     (provided for version 2.10).
@@ -30,7 +28,7 @@
     Return IPROTO error code
 
     :param box_error_t* error: error
-    :return: box_error_code
+    :return: enum :ref:`box_error_code <capi-box_error_code>`
 
 .. c:function:: const char * box_error_message(const box_error_t *error)
 
