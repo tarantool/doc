@@ -535,10 +535,10 @@
     Since version :doc:`2.10.0 </release/2.10.0>`.
 
     Switches on and off the :ref:`leader fencing mode <repl_leader_elect_fencing>` that affects the leader election process.
-    When the parameter is set to ``true``, the leader will resign its leadership if it has less than the :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
-    of alive connections to the cluster nodes. The resigning leader receives the follower status in the current election term and becomes read-only.
+    When the parameter is set to ``true``, the leader resigns its leadership if it has less than the :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
+    of alive connections to the cluster nodes. The resigning leader receives the status of a :ref:`follower <repl_leader_elect>` in the current election term and becomes read-only.
 
-    Fencing applies to the instances that have :ref:`election_mode <election_mode>` set to "candidate" or "manual".
+    Fencing applies to the instances that have :ref:`election_mode <cfg_replication-election_mode>` set to "candidate" or "manual".
 
     | Type: boolean
     | Default: true
