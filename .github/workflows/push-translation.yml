@@ -9,7 +9,7 @@ on:
 jobs:
   push-translation-sources:
     runs-on: ubuntu-latest
-    container: tarantool/doc-builder:fat-4
+    container: tarantool/doc-builder:fat-4.1
     steps:
       - uses: actions/checkout@v2
 
