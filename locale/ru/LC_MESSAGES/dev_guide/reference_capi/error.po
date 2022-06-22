@@ -30,8 +30,8 @@ msgstr "ненулевая строка"
 msgid "Return IPROTO error code"
 msgstr "Возврат кода ошибки IPROTO"
 
-msgid "enum :ref:`box_error_code <capi-box_error_code>`"
-msgstr "enum :ref:`box_error_code <capi-box_error_code>`"
+msgid ":ref:`box_error_code <capi-box_error_code>`"
+msgstr ":ref:`box_error_code <capi-box_error_code>`"
 
 msgid "Return the error message"
 msgstr "Возврат сообщения ошибки"
