@@ -6,6 +6,8 @@
 
 .. _capi-box_error_code:
 
+.. cpp:enum:: box_error_code
+    
     For a complete list of errors, refer to the Tarantool
     `error code header file <https://github.com/tarantool/tarantool/blob/2.10/src/box/errcode.h>`__
     (provided for version 2.10).
