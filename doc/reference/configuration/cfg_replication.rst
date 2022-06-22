@@ -12,7 +12,7 @@
 * :ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>`
 * :ref:`election_mode <cfg_replication-election_mode>`
 * :ref:`election_timeout <cfg_replication-election_timeout>`
-
+* :ref:`election_fencing_enabled <cfg_replication-election_fencing_enabled>`
 
 .. _cfg_replication-replication:
 
@@ -459,9 +459,9 @@
     | Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT
     | Dynamic: **yes**
 
-.. _cfg_replication-election_mode:
+..  _cfg_replication-election_mode:
 
-.. confval:: election_mode
+..  confval:: election_mode
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
     Specifies the role of a replica set node in the
@@ -471,7 +471,8 @@
 
     * off
     * voter
-    * candidate.
+    * candidate
+    * manual.
 
     Participation of a replica set node in the automated leader election can be
     turned on and off by this option.
@@ -496,9 +497,9 @@
     | Environment variable: TT_ELECTION_MODE
     | Dynamic: **yes**
 
-.. _cfg_replication-election_timeout:
+..  _cfg_replication-election_timeout:
 
-.. confval:: election_timeout
+..  confval:: election_timeout
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
     Specifies the timeout between election rounds in the
@@ -518,11 +519,30 @@
     during every new election, from 100% to 110% of the original timeout value.
     For example, if the timeout is 300 ms and there are 3 nodes started
     the election simultaneously in the same term,
-    they can set their election timeouts to 300, 310, 320 respectively,
-    or to 305, 302, 324, and so on. In that way, the votes will never be split
+    they can set their election timeouts to 300, 310, and 320 respectively,
+    or to 305, 302, and 324, and so on. In that way, the votes will never be split
     because the election on different nodes won't be restarted simultaneously.
 
     | Type: number
     | Default: 5
     | Environment variable: TT_ELECTION_TIMEOUT
+    | Dynamic: **yes**
+
+..  _cfg_replication-election_fencing_enabled:
+
+..  confval:: election_fencing_enabled
+
+    Since version :doc:`2.10.0 </release/2.10.0>`.
+
+    Switches on and off the :ref:`leader fencing mode <repl_leader_elect_fencing>` that affects the leader election process.
+    When the parameter is set to ``true``, the leader will resign its leadership if it has less than the :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
+    of alive connections to the cluster nodes. The resigning leader receives the follower status in the current election term and becomes a read-only node.
+    Fencing applies to the instances that have :ref:`election_mode <election_mode>` set to "candidate" or "manual".
+
+    If the fencing is enabled on the current leader and it doesn't have the :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>` of alive connections,
+    the leader resigns its leadership immediately.
+
+    | Type: boolean
+    | Default: true
+    | Environment variable: TT_ELECTION_FENCING_ENABLED
     | Dynamic: **yes**
