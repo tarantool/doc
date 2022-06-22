@@ -30,7 +30,7 @@
     Return IPROTO error code
 
     :param box_error_t* error: error
-    :return: box_error_code
+    :return: :ref:`box_error_code <capi-box_error_code>`
 
 .. c:function:: const char * box_error_message(const box_error_t *error)
 
