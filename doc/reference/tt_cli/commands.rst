@@ -31,3 +31,4 @@ tt commands
     restart <restart>
     logrotate <logrotate>
     connect <connect>
+    rocks <rocks>

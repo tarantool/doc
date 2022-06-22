@@ -1,5 +1,5 @@
 Connecting to a Tarantool instance
-=============================
+==================================
 
 ..  code-block:: bash
 
