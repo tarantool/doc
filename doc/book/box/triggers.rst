@@ -3,9 +3,8 @@
 .. _triggers:
 .. _triggers-box_triggers:
 
-================================================================================
 Triggers
-================================================================================
+========
 
 **Triggers**, also known as **callbacks**, are functions which the server
 executes when certain events happen.
