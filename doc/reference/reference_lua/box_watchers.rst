@@ -27,10 +27,10 @@ A watcher callback is never executed in parallel with itself:
 if the key updates while the callback is running,
 the callback will be invoked with the new value as soon as it returns.
 
-The watch() function returns a watcher handle, which can be used to unregister the watcher
-if it is not needed anymore by calling ``w:unregister()``.
+The ``watch()`` function returns a watcher handle, which can be used to unregister the watcher
+if it is not needed anymore.
 
-Below is a list of all functions and members.
+Below is a list of all functions related to watchers.
 
 ..  container:: table
 

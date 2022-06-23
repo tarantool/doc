@@ -6,30 +6,33 @@ Pub/sub system and its events
 Pub/sub is a notification system for Tarantool events.
 It is related to one-time subscriptions.
 
-Events that the system will process:
+The system processes the following events:
 
-box.id
-box.status
-box.election
-box.schema
+*   ``box.id``
+*   ``box.status``
+*   ``box.election``
+*   ``box.schema``
 
 As a reaction to each event, the server sends back specific IPROTO fields.
 
 Built-in events for pub/sub
 ---------------------------
 
-The important purpose of the built-in events is to learn who is the
-master, unless it is defined in an application specific way. Knowing who
-is the master is necessary to send changes to a correct instance, and
-probably make reads of the most actual data if it is important. Also
-defined more built-in events for other mutable properties like leader
+The important purpose of the built-in events is master-discovering.
+It is necessary to know the master node in order to send changes to a correct instance,
+or read the most actual data.
+Also, defined more built-in events for other mutable properties like leader
 state change, his election role and election term, schema version change
 and instance state.
 
-Built-in events have a special naming schema --ё their name always starts
-with box.. The prefix is reserved for built-in events. Creating new events
-with this prefix is banned. Below is a list of all the events + their names
-and values:
+Built-in events have a special naming schema -- theirs name always starts with the ``box`` prefix.
+This prefix is reserved for the built-in events. It means that you can't create new events with it.
+
+Keep in mind that built-in events can't be overridden.
+It means that the user can't call
+:doc:`box.broadcast('box.id', any_data) <reference/reference_lua/box_watchers/broadcast>`.
+
+Below is a list of all the events. It includes the name, description, and value:
 
 ..  container:: table
 
@@ -45,7 +48,7 @@ and values:
                 values never change or change only once. For example, instance UUID never
                 changes after the first box.cfg. But is not known before box.cfg is called.
                 Replicaset UUID is unknown until the instance joins to a replicaset or
-                bootsa new one, but the events are supposed to start working before that -
+                boots a new one, but the events are supposed to start working before that --
                 right at listen launch. Instance numeric ID is known only after
                 registration. On anonymous replicas is 0 until they are registered officially.
             -   ..  code-block:: lua
@@ -86,22 +89,22 @@ and values:
                     MP_STR “version”: MP_UINT schema_version,
                     }
 
-Built-in events can't be override. Meaning, users can't be able to call
-box.broadcast(‘box.id’, any_data) etc.
+The events are available from the very beginning as not MP_NIL.
+It is necessary for supported local subscriptions.
+Otherwise, there is no way to detect whether an event is even supported at all by this Tarantool version.
+If the events are broadcast before :doc:`box.cfg{} <reference/reference_lua/box_cfg>`,
+then the following values will be available:
 
-The events are available from the very beginning as not MP_NIL. It's
-necessary for supported local subscriptions. Otherwise, there is no way to detect
-whether an event is even supported at all by this Tarantool version. If
-events are broadcast before box.cfg{}, then the following values will
-available:
-box.id = {}
-box.schema = {}
-box.status = {}
-box.election = {}
+..  code-block:: lua
 
-This way, the users will be able to distinguish an event being not supported
-at all from ``box.cfg{}`` being not called yet. Otherwise they would need to
-parse ``_TARANTOOL`` version string locally and peer_version in net.box.
+    box.id = {}
+    box.schema = {}
+    box.status = {}
+    box.election = {}
+
+This way, the users can distinguish an event being not supported
+at all from ``box.cfg{}`` being not called yet.
+Otherwise, they would need to parse ``_TARANTOOL`` version string locally and ``peer_version`` in ``net.box``.
 
 Usage example
 -------------
