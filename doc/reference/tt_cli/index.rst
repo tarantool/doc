@@ -1,7 +1,8 @@
-tt command-line tool
+tt command-line utility
 ====================
 
-``tt`` provides the command line interface for Tarantool
+``tt`` is a command-line utility for managing Tarantool instances and Tarantool-based
+applications.
 
 .. toctree::
     :maxdepth: 1
