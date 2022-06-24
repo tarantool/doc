@@ -4,6 +4,30 @@
 Lua tutorials
 ================================================================================
 
+.. _c_lua_tutorial-first_steps:
+
+--------------------------------------------------------------------------------
+First steps
+--------------------------------------------------------------------------------
+
+If you're new to Lua, we recommend going over the interactive Tarantool
+tutorial. To launch the tutorial, run the ``tutorial()`` command in the Tarantool console:
+
+.. code-block:: tarantoolsession
+
+    tarantool> tutorial()
+    ---
+    - |
+     Tutorial -- Screen #1 -- Hello, Moon
+     ====================================
+
+     Welcome to the Tarantool tutorial.
+     It will introduce you to Tarantool’s Lua application server
+     and database server, which is what’s running what you’re seeing.
+     This is INTERACTIVE -- you’re expected to enter requests
+     based on the suggestions or examples in the screen’s text.
+     <...>
+
 .. _c_lua_tutorial-insert_one_million_tuples:
 
 --------------------------------------------------------------------------------
