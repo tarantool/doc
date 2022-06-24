@@ -1,7 +1,7 @@
 Installation
 ============
 
-1. Install third-party software:
+1.  Install third-party software:
 
   * `git <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__,
     the version control system.
@@ -14,18 +14,22 @@ Installation
 
       git clone https://github.com/tarantool/tt --recursive
 
-3. Go to the ``tt/`` directory and build ``tt`` using mage:
+3.  Go to the ``tt/`` directory and build ``tt`` using mage:
+
+    ..  code-block:: bash
+
+        git clone https://github.com/tarantool/tt --recursive
 
     ..  code-block:: bash
 
       cd tt
       mage build
 
-4. Add the ``tt`` location to the ``PATH`` variable to make it available as a shell command:
+4.  Add the ``tt`` location to the ``PATH`` variable to make it available as a shell command:
 
     ..  code-block:: bash
 
-      export PATH=$PATH:/path/to/tt
+        export PATH=$PATH:/path/to/tt
 
 Enabling shell completion
 -------------------------
@@ -35,4 +39,4 @@ the shell (``bash`` or ``zsh``):
 
 ..  code-block:: bash
 
-    . <(tt completion bash)
+      . <(tt completion bash)
