@@ -563,7 +563,7 @@ Constraints
 
 For better control over stored data, Tarantool supports **constraints** – user-defined
 limitations on the values of certain fields or entire tuples. Together with data types,
-constraints allow to limit ranges of available field values both syntactically and semantically.
+constraints allow limiting the ranges of available field values both syntactically and semantically.
 
 For example, the field ``age`` typically has the ``number`` type, so it cannot store
 strings or boolean values. However, it can still have values that don't make sense,
@@ -577,15 +577,15 @@ Constraint types
 
 There are two types of constraints in Tarantool:
 
-* *field constraints* check that the value being assigned to a field
+* *Field constraints* check that the value being assigned to a field
   satisfies a given condition. For example, ``age`` must be non-negative.
 
-* *tuple constraints* check complex conditions that can involve all fields of
+* *Tuple constraints* check complex conditions that can involve all fields of
   a tuple. For example, a tuple contains a date in three fields:
   ``year``, ``month``, and ``day``. You can validate ``day`` values based on
   the ``month`` value (and even ``year`` if you consider leap years).
 
-Field constraints work faster while tuple constraints allow implementing
+Field constraints work faster, while tuple constraints allow implementing
 a wider range of limitations.
 
 .. _index-constraint_functions:
@@ -594,11 +594,11 @@ a wider range of limitations.
 Constraint functions
 ********************
 
-Constraints use stored Lua functions. They must return ``true`` when the constraint
-is satisfied. Other return values (including ``nil``)and exceptions make the
+Constraints use stored Lua functions, which must return ``true`` when the constraint
+is satisfied. Other return values (including ``nil``) and exceptions make the
 check fail and prevent tuple insertion or modification.
 
-To create a constraint function, use :ref:`func.create with function body <box_schema-func_create_with-body>`:
+To create a constraint function, use :ref:`func.create with function body <box_schema-func_create_with-body>`.
 
 Constraint functions take two parameters:
 
