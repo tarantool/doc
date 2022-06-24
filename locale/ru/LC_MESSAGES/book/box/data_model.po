@@ -676,8 +676,8 @@ msgstr ":ref:`boolean <index-box_boolean>`"
 msgid ":ref:`TREE or HASH <box_index-type>`"
 msgstr ":ref:`TREE или HASH <box_index-type>`"
 
-msgid "``'integer'`` (may also be called ‘int’)"
-msgstr "``'integer'`` (также может называться ‘int’)"
+msgid "``'integer'`` (may also be called ``‘int’``)"
+msgstr "``'integer'`` (также может называться ``‘int’``)"
 
 msgid ":ref:`integer <index-box_integer>`, which may include unsigned values"
 msgstr ""

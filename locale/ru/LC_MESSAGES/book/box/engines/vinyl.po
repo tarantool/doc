@@ -266,10 +266,14 @@ msgid "UPSERT"
 msgstr "UPSERT"
 
 msgid ""
-"Every statement is marked by LSN Append-only files, garbage is collected "
-"after a checkpoint"
+"Every statement is marked by LSN"
 msgstr ""
-"Для каждого оператора назначается LSN Обновление файлов происходит только "
+"Для каждого оператора назначается LSN"
+
+msgid ""
+"Append-only files, garbage is collected "
+"after a checkpoint"
+msgstr "Обновление файлов происходит только "
 "путем присоединения новых записей, сборка мусора проводится после "
 "контрольной точки"
 

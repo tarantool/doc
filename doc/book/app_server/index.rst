@@ -21,6 +21,8 @@ This chapter contains the following sections:
    installing_module
    contributing_module
    reloading_module
+   yields
+   cooperative_multitasking
    luajit_memprof
    luajit_getmetrics
    using_ide

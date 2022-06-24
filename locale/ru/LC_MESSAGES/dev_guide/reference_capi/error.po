@@ -2,7 +2,14 @@
 msgid "Module `error`"
 msgstr "Модуль `error`"
 
-msgid "Error - contains information about error."
+msgid "For a complete list of errors, refer to the Tarantool"
+" `error code header file <https://github.com/tarantool/tarantool/blob/2.10/src/box/errcode.h>`__"
+" (provided for version 2.10)."
+msgstr "Полный список ошибок Tarantool находится в "
+"`файле заголовка errcode.h <https://github.com/tarantool/tarantool/blob/2.10/src/box/errcode.h>`__"
+" (актуален для версии 2.10)."
+
+msgid "Error -- contains information about error."
 msgstr "Ошибка -- содержит информацию об ошибке."
 
 msgid "Return the error type, e.g. \"ClientError\", \"SocketError\", etc."
@@ -23,8 +30,8 @@ msgstr "ненулевая строка"
 msgid "Return IPROTO error code"
 msgstr "Возврат кода ошибки IPROTO"
 
-msgid "enum :ref:`box_error_code <capi-box_error_code>`"
-msgstr "enum :ref:`box_error_code <capi-box_error_code>`"
+msgid ":ref:`box_error_code <capi-box_error_code>`"
+msgstr ":ref:`box_error_code <capi-box_error_code>`"
 
 msgid "Return the error message"
 msgstr "Возврат сообщения ошибки"

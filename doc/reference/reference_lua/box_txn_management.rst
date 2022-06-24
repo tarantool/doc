@@ -5,7 +5,7 @@ Functions for transaction management
 --------------------------------------------------------------------------------
 
 For general information and examples, see section
-:ref:`Transaction control <atomic-atomic_execution>`.
+:ref:`Transactions <atomic-atomic_execution>`.
 
 Observe the following rules when working with transactions:
 

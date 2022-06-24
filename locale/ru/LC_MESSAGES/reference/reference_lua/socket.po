@@ -397,8 +397,8 @@ msgstr "порт хоста, может быть 0"
 msgid "what to execute when a connection occurs"
 msgstr "что выполнить после подключения"
 
-msgid "number of seconds to wait before timing out"
-msgstr "количество секунд ожидания"
+msgid "host resolving timeout in seconds"
+msgstr "время ожидания в секундах при разрешении имени хоста в IP-адрес"
 
 msgid ""
 "The handler-function-or-table parameter may be simply a function name / "

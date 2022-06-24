@@ -139,8 +139,8 @@ LSM tree:
     * DELETE
     * UPSERT
 
-* Every statement is marked by LSN Append-only files, garbage is collected after
-  a checkpoint
+* Every statement is marked by LSN
+* Append-only files, garbage is collected after a checkpoint
 * Transactional log of all filesystem changes: vylog
 
 For example, an element corresponding to an insertion operation has, apart from
