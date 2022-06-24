@@ -7,28 +7,29 @@ tt commands
         :widths: 20 80
         :header-rows: 0
 
-        *   -   :doc:`start <start>`
+        *   -   ``start``
             -   Start a Tarantool instance
-        *   -   :doc:`stop <stop>`
+        *   -   ``stop``
             -   Stop a Tarantool instance
-        *   -   :doc:`status <status>`
-            -   Check status
-        *   -   :doc:`restart <restart>`
+        *   -   ``status``
+            -   Get current status of a Tarantool instance
+        *   -   ``restart``
             -   Restart a Tarantool instance
-        *   -   :doc:`logrotate <logrotate>`
+        *   -   ``version``
+            -   Show the ``tt`` version information
+        *   -   ``completion``
+            -   Set up autocompletion for a specified shell
+        *   -   ``help``
+            -   Display help for ``tt`` of a specific command
+        *   -   ``logrotate``
             -   Rotate logs
-        *   -   :doc:`connect <connect>`
+        *   -   ``check``
+            -   Check an application file for syntax errors
+        *   -   ``connect``
             -   Connect to a Tarantool instance
-        *   -   :doc:`rocks <rocks>`
+        *   -   ``rocks``
             -   Lua rocks package manager
-
-..  toctree::
-    :hidden:
-
-    start <start>
-    stop <stop>
-    status <status>
-    restart <restart>
-    logrotate <logrotate>
-    connect <connect>
-    rocks <rocks>
+        *   -   ``cat``
+            -   Print the contents of ``.snap``/``.xlog`` files into stdout
+        *   -   ``play``
+            -   Play the contents of ``.snap``/``.xlog`` files in another Tarantool instance

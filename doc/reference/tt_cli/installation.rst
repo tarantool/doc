@@ -10,22 +10,22 @@ Installation
 
 2.  Clone the ``tarantool/tt`` repository:
 
-  ..  code-block:: bash
+    ..  code-block:: bash
 
-    git clone https://github.com/tarantool/tt --recursive
+      git clone https://github.com/tarantool/tt --recursive
 
 3. Go to the ``tt/`` directory and build ``tt`` using mage:
 
-  ..  code-block:: bash
+    ..  code-block:: bash
 
-    cd tt
-    mage build
+      cd tt
+      mage build
 
 4. Add the ``tt`` location to the ``PATH`` variable to make it available as a shell command:
 
-  ..  code-block:: bash
+    ..  code-block:: bash
 
-    export PATH=$PATH:/path/to/tt
+      export PATH=$PATH:/path/to/tt
 
 Enabling shell completion
 -------------------------
