@@ -544,7 +544,6 @@ Below is a list of all ``net.box`` functions.
         :param string key: a key name of an event to subscribe to
         :param function func:  a callback to invoke when the key value is updated
         :return: a watcher handle that can be used to unregister the watcher
-        :rtype:  ?
 
         Keep in mind that garbage collection of a watcher handle doesn't result in unregistering the watcher.
         It is okay to discard the result of ``box.watch`` if the watcher is never going to be unregistered.

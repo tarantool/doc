@@ -6,13 +6,12 @@ box.watch()
 
 ..  function:: box.watch(key, func)
 
-    Subscribe to events broadcast by a remote host.
+    Subscribe to events broadcast by a local host.
 
     :param string key: a key name of an event to subscribe to
     :param function func: a callback to invoke when the key value is updated
 
     :return: a watcher handle that can be used to unregister the watcher
-    :rtype: ?
 
     **Example:**
 

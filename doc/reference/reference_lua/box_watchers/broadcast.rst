@@ -11,8 +11,7 @@ box.broadcast()
     :param string key: a key name of an event to subscribe to
     :param value: any data that can be encoded in MsgPack
 
-    :return:
-    :rtype: ?
+    :return: none
 
     **Example:**
 
