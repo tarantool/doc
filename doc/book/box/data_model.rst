@@ -561,7 +561,7 @@ in the
 Constraints
 -----------
 
-For better control over stored data, Tarantool supports *constraints* – user-defined
+For better control over stored data, Tarantool supports **constraints** – user-defined
 limitations on the values of certain fields or entire tuples. Together with data types,
 constraints allow to limit ranges of available field values both syntactically and semantically.
 
