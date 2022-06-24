@@ -1,8 +1,7 @@
 .. _box_data_model:
 
-================================================================================
 Data model
-================================================================================
+==========
 
 This section describes how Tarantool stores values and what operations with data
 it supports.
@@ -15,9 +14,9 @@ then your test database now looks like this:
 
 .. _index-box_tuple:
 
---------------------------------------------------------------------------------
+
 Tuples
---------------------------------------------------------------------------------
+------
 
 Tarantool operates data in the form of tuples.
 
@@ -54,9 +53,8 @@ Tarantool operates data in the form of tuples.
 
 .. _index-box_space:
 
---------------------------------------------------------------------------------
 Spaces
---------------------------------------------------------------------------------
+------
 
 Tarantool stores tuples in containers called spaces.
 In the example above, there's a space called ``tester``.
@@ -84,9 +82,8 @@ In the example above, there's a space called ``tester``.
 
 .. _index-box_index:
 
---------------------------------------------------------------------------------
 Indexes
---------------------------------------------------------------------------------
+-------
 
 Read the full information about indexes on page :doc:`Indexes </book/box/indexes>`.
 
@@ -114,9 +111,8 @@ and they may be non-unique.
 
 .. _index-box_data-types:
 
---------------------------------------------------------------------------------
 Data types
---------------------------------------------------------------------------------
+----------
 
 Tarantool is both a database manager and an application server.
 Therefore a developer often deals with two type sets:
@@ -125,9 +121,8 @@ the types of the Tarantool storage format (MsgPack).
 
 .. _index-box_lua-vs-msgpack:
 
-********************************************************
 Lua versus MsgPack
-********************************************************
+~~~~~~~~~~~~~~~~~~
 
 .. container:: table
 
@@ -181,9 +176,8 @@ Lua versus MsgPack
 
 .. _index_box_field_type_details:
 
-********************************************************
 Field Type Details
-********************************************************
+~~~~~~~~~~~~~~~~~~
 
 .. _index-box_nil:
 
@@ -354,9 +348,8 @@ Examples of insert requests with different field types:
 
 ..  _index-box_indexed-field-types:
 
-********************************************************
 Indexed field types
-********************************************************
+~~~~~~~~~~~~~~~~~~~
 
 Indexes restrict values that Tarantool can store with MsgPack.
 This is why, for example, ``'unsigned'`` and ``'integer'`` are different field types,
@@ -437,9 +430,8 @@ Full information is in section
 
 .. _index-collation:
 
---------------------------------------------------------------------------------
 Collations
---------------------------------------------------------------------------------
+----------
 
 By default, when Tarantool compares strings, it uses the so-called
 **binary collation**.
@@ -556,7 +548,6 @@ in the
 
 .. _index-constraints:
 
------------
 Constraints
 -----------
 
@@ -570,9 +561,8 @@ such as negative numbers. This is where constraints come to help.
 
 .. _index-constraint_types:
 
-****************
 Constraint types
-****************
+~~~~~~~~~~~~~~~~
 
 There are two types of constraints in Tarantool:
 
@@ -589,9 +579,8 @@ a wider range of limitations.
 
 .. _index-constraint_functions:
 
-********************
 Constraint functions
-********************
+~~~~~~~~~~~~~~~~~~~~
 
 Constraints use stored Lua functions, which must return ``true`` when the constraint
 is satisfied. Other return values (including ``nil``) and exceptions make the
@@ -627,9 +616,8 @@ Constraint functions take two parameters:
 
 .. _index-constraint_apply:
 
-********************
 Creating constraints
-********************
+~~~~~~~~~~~~~~~~~~~~
 
 To create a constraint in a space, specify the corresponding function's name
 in the ``constraint`` parameter:
@@ -666,7 +654,6 @@ Each constraint can have an optional name:
 
 .. _index-box_foreign_keys:
 
-------------
 Foreign keys
 ------------
 
@@ -682,9 +669,8 @@ spaces are linked with a foreign key, each time a tuple is inserted or modified
 in the child space, Tarantool checks that a corresponding value is present in
 the parent space.
 
-*****************
 Foreign key types
-*****************
+~~~~~~~~~~~~~~~~~
 
 There are two types of foreign keys in Tarantool:
 
@@ -700,9 +686,8 @@ There are two types of foreign keys in Tarantool:
 Field foreign keys work faster while tuple foreign keys allow implementing
 more strict references.
 
-***********************
 Creating foreign keys
-***********************
+~~~~~~~~~~~~~~~~~~~~~
 
 .. important::
 
@@ -765,9 +750,8 @@ you will get an error.
 
 .. _index-box_sequence:
 
---------------------------------------------------------------------------------
 Sequences
---------------------------------------------------------------------------------
+---------
 
 A **sequence** is a generator of ordered integer values.
 
@@ -779,9 +763,8 @@ The options determine what value will be generated whenever the sequence is used
 
 .. _index-box_sequence-options:
 
-********************************************************
 Options for box.schema.sequence.create()
-********************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. container:: table
 
@@ -902,9 +885,8 @@ For syntax and implementation details, see the reference for
 
 .. _index-box_persistence:
 
---------------------------------------------------------------------------------
 Persistence
---------------------------------------------------------------------------------
+-----------
 
 To ensure data persistence, Tarantool records updates to the database in the so-called
 :ref:`write-ahead log (WAL) <internals-wal>` files.
@@ -945,15 +927,13 @@ about the WAL writer and the recovery process.
 
 .. _index-box_operations:
 
---------------------------------------------------------------------------------
 Operations
---------------------------------------------------------------------------------
+----------
 
 .. _index-box_data-operations:
 
-********************************************************
 Data operations
-********************************************************
+~~~~~~~~~~~~~~~
 
 The basic data operations supported in Tarantool are:
 
@@ -1052,9 +1032,8 @@ See reference on ``box.space`` for more
    See this :ref:`annotated BNF <box_protocol-iproto_protocol>`.
 
 
-********************************************************
 Complexity factors
-********************************************************
+~~~~~~~~~~~~~~~~~~
 
 In reference for :ref:`box.space <box_space>` and
 :doc:`/reference/reference_lua/box_index`
@@ -1107,9 +1086,8 @@ resource usage of each function.
     |                   | is more important than all the others.                   |
     +-------------------+----------------------------------------------------------+
 
---------------------------------------------------------------------------------
 Data Schema Description
---------------------------------------------------------------------------------
+-----------------------
 
 In Tarantool, the use of a data schema is optional.
 
@@ -1129,9 +1107,8 @@ We recommend using a data schema because it helps avoid mistakes.
 
 In Tarantool, you can define a data schema in two different ways.
 
-**************************************
 Data schema description in a code file
-**************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The code file is usually called ``init.lua`` and contains the following schema description:
 
@@ -1162,9 +1139,8 @@ So it might be more convenient for you to describe the data schema with YAML.
 
 ..  _data-schema-ddl:
 
-**********************************************
 Data schema description using the DDL module
-**********************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The `DDL module <https://github.com/tarantool/ddl>`_ allows you to describe a data schema
 in the YAML format in a declarative way.
@@ -1226,9 +1202,8 @@ This file is usually called ``init.lua``.
 
 ..  _migrations:
 
---------------------------------------------------------------------------------
 Migrations
---------------------------------------------------------------------------------
+----------
 
 **Migration** refers to any change in a data schema: adding/removing a field,
 creating/dropping an index, changing a field format, etc.
@@ -1247,9 +1222,8 @@ that do not require data migration:
     you can enable compression and migrate, including already created tuples.
 
 
-****************************************
 Adding a field to the end of a space
-****************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can add a field as follows:
 
@@ -1269,18 +1243,16 @@ The `tarantool/moonwalker <https://github.com/tarantool/moonwalker>`_
 module is useful for this task.
 The README file describes how to work with this module.
 
-******************
 Creating an index
-******************
+~~~~~~~~~~~~~~~~~
 
 Index creation is described in the
 :doc:`/reference/reference_lua/box_space/create_index` method.
 
 ..  _other-migrations:
 
-***************************
 Other types of migrations
-***************************
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Other types of migrations are also allowed, but it would be more difficult to
 maintain data consistency.
@@ -1310,9 +1282,8 @@ We identify the following problems if there are active clients:
 These issues may or may not be relevant depending on your application and
 its availability requirements.
 
-*****************************************************
 What you need to know when writing complex migrations
-*****************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Tarantool has a transaction mechanism. It is useful when writing a migration,
 because it allows you to work with the data atomically. But before using
@@ -1320,9 +1291,8 @@ the transaction mechanism, you should explore its limitations.
 
 For details, see the section about :doc:`transactions </book/box/atomic>`.
 
-***************************
 How you can apply migration
-***************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The migration code is executed on a running Tarantool instance.
 Important: no method guarantees you transactional application of migrations
