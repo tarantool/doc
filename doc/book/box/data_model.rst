@@ -554,7 +554,6 @@ Charts explaining the precise differences from DUCET order are
 in the
 `Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_.
 
-
 .. _index-constraints:
 
 -----------
@@ -663,6 +662,105 @@ Each constraint can have an optional name:
   When adding a constraint to an existing space with data, Tarantool checks it
   against the stored data. If there are fields or tuples that don't satisfy
   the constraint, it won't be applied to the space.
+
+
+.. _index-box_foreign_keys:
+
+------------
+Foreign keys
+------------
+
+**Foreign keys** provide links between related spaces, therefore maintaining the
+`referential integrity <https://en.wikipedia.org/wiki/Referential_integrity>`_
+of the database.
+
+Some fields can only contain values present in other spaces. For example,
+shop orders always belong to existing customers. Hence, all values of the ``customer``
+field of the ``orders`` space must exist in the ``customers`` space. In this case,
+``customers`` is a **parent space** for ``orders`` (its **child space**). When two
+spaces are linked with a foreign key, each time a tuple is inserted or modified
+in the child space, Tarantool checks that a corresponding value is present in
+the parent space.
+
+*****************
+Foreign key types
+*****************
+
+There are two types of foreign keys in Tarantool:
+
+* *Field foreign keys* check that the value being assigned to a field
+  is present in a particular field of another space. For example, the ``customer``
+  value in a tuple from the ``orders`` space must match an ``id`` stored in the ``customers`` space.
+
+* *Tuple foreign keys* check that multiple fields of a tuple have a match in
+  another space. For example, if the ``orders`` space has fields ``customer_id``
+  and ``customer_name``, a tuple foreign key can check that the ``customers`` space
+  contains a tuple with both these values in the corresponding fields.
+
+Field foreign keys work faster while tuple foreign keys allow implementing
+more strict references.
+
+***********************
+Creating foreign keys
+***********************
+
+.. important::
+
+  For each foreign key, there must exist an indexes that includes all its fields.
+
+To create a foreign key in a space, specify the parent space and linked fields in the ``foreign_key`` parameter.
+Fields can be referenced by name or by number:
+
+* Field foreign keys: when setting up the space format.
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.space.orders:format({
+               > {name = 'id',   type = 'number'},
+               > {name = 'customer_id', foreign_key = {space = 'customers', field = 'id'}}, -- or field = 1
+               > {name = 'price_total',  type = 'number'},
+               > })
+
+* Tuple foreign keys: when creating or altering a space. Note that for foreign
+  keys with multiple fields there must exist an index that includes all these fields.
+
+  .. code-block:: tarantoolsession
+
+      tarantool> box.schema.space.create("orders", {foreign_key={space='customers', field={customer_id='id', customer_name='name'}}})
+      ---
+      ...
+      tarantool> box.space.orders:format({
+               > {name = "id", type = "number"},
+               > {name = "customer_id" },
+               > {name = "customer_name"},
+               > {name = "price_total",    type = "number"},
+               > })
+
+.. note::
+
+  Type can be omitted for foreign key fields because it's
+  defined in the parent space.
+
+Foreign keys can have an optional name.
+
+.. code-block:: lua
+
+    foreign_key = {customer = {space = '...', field = {...}}}
+
+A space can have multiple tuple foreign keys. In this case, they all must have names.
+
+.. code-block:: lua
+
+    foreign_key = {customer = {space = '...', field = {...} }, item = { space = '...', field = {...}}}
+
+Tarantool performs integrity checks upon data modifications in parent spaces.
+If you try to remove a tuple referenced by a foreign key or an entire parent space,
+you will get an error.
+
+..  important::
+
+  Renaming parent spaces or referenced fields may break the corresponding foreign
+  keys and prevent further insertions or modifications in the child spaces.
 
 
 .. _index-box_sequence:
