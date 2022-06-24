@@ -669,6 +669,13 @@ spaces are linked with a foreign key, each time a tuple is inserted or modified
 in the child space, Tarantool checks that a corresponding value is present in
 the parent space.
 
+
+..  figure:: foreign_key.png
+    :alt: Foreign key in data model
+    :align: center
+
+    Foreign key in data model
+
 Foreign key types
 ~~~~~~~~~~~~~~~~~
 
