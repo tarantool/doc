@@ -4,7 +4,7 @@
 Functions for watchers
 --------------------------------------------------------------------------------
 
-The ``box`` module contains some functions related to the event subscriptions, also known as watchers.
+The ``box`` module contains some functions related to event subscriptions, also known as watchers.
 The subscriptions are used to inform a client about server-side events.
 To see the list of the built-in events in Tarantool,
 check the :doc:`pub/sub <reference/reference_rock/vshard/vshard_pub-sub>` section.
