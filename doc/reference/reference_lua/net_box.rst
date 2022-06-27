@@ -545,29 +545,28 @@ Below is a list of all ``net.box`` functions.
         :param function func:  a callback to invoke when the key value is updated
         :return: a watcher handle that can be used to unregister the watcher
 
-        Keep in mind that garbage collection of a watcher handle doesn't result in unregistering the watcher.
-        It is okay to discard the result of ``box.watch`` if the watcher is never going to be unregistered.
-
-        Using the new watch method of a net.box connection, one can subscribe
-        to events broadcast by a remote host.
-        The method has the same syntax as the :doc:`box.watch() <reference/reference_lua/box_watchers/broadcast>`
+        Using the ``watch`` method of a net.box connection, you can subscribe to events broadcast by a remote host.
+        The method has the same syntax as the :doc:`box.watch() </reference/reference_lua/box_watchers/broadcast>`
         function, which is used for subscribing to events locally.
 
         A watcher callback is first invoked unconditionally after the watcher registration.
         Subsequent invocations are triggered by :doc:`box.broadcast() <reference/reference_lua/box_watchers/broadcast>`
         called on the remote host.
         A watcher callback is passed the name of the key the watcher was subscribed to and the current key value.
-        A watcher callback is always executed in a new fiber so it's okay to yield inside it.
-        A watcher callback never runs in parallel with itself: if the key to which a watcher is subscribed
-        is updated while the watcher callback is running, the callback will be invoked again with the new value as
-        soon as it returns.
+        A watcher callback is always invoked in a new fiber so it is okay to yield in it.
+        A watcher callback is never executed in parallel with itself.
+        If the key is updated while the watcher callback is running, the callback will be invoked again with the new
+        value as soon as it returns.
 
-        Watchers survive reconnect (see ``reconnect_after`` connection option):
-        all registered watchers are automatically resubscribed as soon as the
+        Watchers survive reconnection (see ``reconnect_after`` connection option).
+        All registered watchers are automatically resubscribed when the
         connection is reestablished.
 
         If a remote host supports watchers, the 'watchers' key will be set in
         connection's ``peer_protocol_features``.
+
+        Keep in mind that garbage collection of a watcher handle doesn't result in unregistering the watcher.
+        It is okay to discard the result of ``box.watch`` if the watcher is never going to be unregistered.
 
         **Example:**
 
@@ -583,7 +582,7 @@ Below is a list of all ``net.box`` functions.
         ..  code-block:: lua
 
             conn = net.box.connect(URI)
-            -- Subscribe to updates of key 'foo'.
+            -- Subscribe to updates of the 'foo' key.
             w = conn:watch('foo', function(key, value)
                 assert(key == 'foo')
             -- do something with value

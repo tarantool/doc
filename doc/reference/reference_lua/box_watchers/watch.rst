@@ -17,13 +17,13 @@ box.watch()
 
     ..  code-block:: lua
 
-        -- Broadcast value 123 for key 'foo'.
+        -- Broadcast value 123 for the 'foo' key.
         box.broadcast('foo', 123)
-        -- Subscribe to updates of key 'foo'.
+        -- Subscribe to updates of the 'foo' key.
         w = box.watch('foo', function(key, value)
             assert(key == 'foo')
             -- do something with value
         end)
-        -- Unregister the watcher when it's no longer needed.
+        -- Unregister the watcher when it is no longer needed.
         w:unregister()
 
