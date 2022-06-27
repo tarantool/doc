@@ -671,8 +671,8 @@ the parent space.
 
 
 ..  figure:: foreign_key.svg
-    :alt: Foreign key in data model
     :align: center
+    :alt: Foreign key in data model
 
     Foreign key in data model
 
@@ -698,7 +698,7 @@ Creating foreign keys
 
 .. important::
 
-  For each foreign key, there must exist an indexes that includes all its fields.
+  For each foreign key, there must exist an index that includes all its fields.
 
 To create a foreign key in a space, specify the parent space and linked fields in the ``foreign_key`` parameter.
 Fields can be referenced by name or by number:
