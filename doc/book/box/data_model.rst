@@ -670,11 +670,8 @@ in the child space, Tarantool checks that a corresponding value is present in
 the parent space.
 
 
-..  figure:: foreign_key.svg
+..  image:: foreign_key.svg
     :align: center
-    :alt: Foreign key in data model
-
-    Foreign key in data model
 
 Foreign key types
 ~~~~~~~~~~~~~~~~~
