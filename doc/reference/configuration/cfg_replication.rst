@@ -476,6 +476,7 @@
 
     Participation of a replica set node in the automated leader election can be
     turned on and off by this option.
+
     The default value is ``off``. All nodes that have values other than ``off``
     run the Raft state machine internally talking to other nodes according
     to the Raft leader election protocol. When the option is ``off``, the node
@@ -491,6 +492,16 @@
     but won't become a leader.
 
     If the node should be able to become a leader, use ``election_mode = 'candidate'``.
+
+    Since version :doc:`2.8.2 </release/2.8.2>`, the manual election mode is introduced.
+    It may be used when a user wants to control which instance is the leader explicitly instead of relying on
+    the Raft election algorithm.
+
+    When an instance is configured with the ``election_mode='manual'``, it behaves as follows:
+
+    *   By default, the instance acts like a voter -- it is read-only and may vote for other instances that are candidates.
+    *   Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round.
+        If the instance wins the elections, it remains a leader, but won't participate in any new elections.
 
     | Type: string
     | Default: 'off'
