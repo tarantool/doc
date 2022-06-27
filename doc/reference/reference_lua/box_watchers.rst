@@ -7,7 +7,7 @@ Functions for watchers
 The ``box`` module contains some functions related to event subscriptions, also known as watchers.
 The subscriptions are used to inform a client about server-side events.
 To see the list of the built-in events in Tarantool,
-check the :doc:`pub/sub </reference/reference_rock/vshard/vshard_pub-sub>` section.
+check the :doc:`pub/sub </reference/reference_lua/pub-sub>` section.
 
 ..  glossary::
 
@@ -21,14 +21,13 @@ check the :doc:`pub/sub </reference/reference_rock/vshard/vshard_pub-sub>` secti
         The value is an arbitrary type that can be encoded as MsgPack.
         To update a state, use the ``box.broadcast()`` function.
 
-A watcher callback is passed the key for which it was registered and the current key data.
+A watcher callback is passed the name of the key for which it was registered and the current key data.
 A watcher callback is always called in a new fiber, so it is okay to yield in it.
 A watcher callback is never executed in parallel with itself.
 If the key is updated while the callback is running,
 the callback will be invoked with the new value as soon as it returns.
 
-The ``watch()`` function returns a watcher handle that can be used to unregister the watcher
-when it is no longer needed.
+``box.watch`` and ``box.broadcast`` functions can be used before :doc:`box.cfg </reference/reference_lua/box_cfg>`.
 
 Below is a list of all functions related to watchers.
 

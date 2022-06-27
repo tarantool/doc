@@ -56,6 +56,7 @@ This reference covers Tarantool's built-in Lua modules.
     uri
     xlog
     yaml
+    pub-sub
     other
     errcodes
     debug_facilities

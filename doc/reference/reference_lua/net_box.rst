@@ -550,9 +550,9 @@ Below is a list of all ``net.box`` functions.
         function, which is used for subscribing to events locally.
 
         A watcher callback is first invoked unconditionally after the watcher registration.
-        Subsequent invocations are triggered by :doc:`box.broadcast() <reference/reference_lua/box_watchers/broadcast>`
+        Subsequent invocations are triggered by :doc:`box.broadcast() </reference/reference_lua/box_watchers/broadcast>`
         called on the remote host.
-        A watcher callback is passed the name of the key the watcher was subscribed to and the current key value.
+        A watcher callback is passed the name of the key for which it was registered and the current key data.
         A watcher callback is always invoked in a new fiber so it is okay to yield in it.
         A watcher callback is never executed in parallel with itself.
         If the key is updated while the watcher callback is running, the callback will be invoked again with the new
@@ -562,11 +562,11 @@ Below is a list of all ``net.box`` functions.
         All registered watchers are automatically resubscribed when the
         connection is reestablished.
 
-        If a remote host supports watchers, the 'watchers' key will be set in
+        If a remote host supports watchers, the ``watchers`` key will be set in the
         connection's ``peer_protocol_features``.
 
         Keep in mind that garbage collection of a watcher handle doesn't result in unregistering the watcher.
-        It is okay to discard the result of ``box.watch`` if the watcher is never going to be unregistered.
+        It is okay to discard the result of ``box.watch`` if the watcher will never be unregistered.
 
         **Example:**
 

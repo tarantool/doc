@@ -21,4 +21,3 @@ complete ``vshard`` documentation:
     vshard_quick
     vshard_ref
     vshard_api
-    vshard_pub-sub
