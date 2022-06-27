@@ -669,6 +669,10 @@ spaces are linked with a foreign key, each time a tuple is inserted or modified
 in the child space, Tarantool checks that a corresponding value is present in
 the parent space.
 
+
+..  image:: foreign_key.svg
+    :align: center
+
 Foreign key types
 ~~~~~~~~~~~~~~~~~
 
@@ -691,7 +695,7 @@ Creating foreign keys
 
 .. important::
 
-  For each foreign key, there must exist an indexes that includes all its fields.
+  For each foreign key, there must exist an index that includes all its fields.
 
 To create a foreign key in a space, specify the parent space and linked fields in the ``foreign_key`` parameter.
 Fields can be referenced by name or by number:
