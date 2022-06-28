@@ -1,7 +1,7 @@
-tt commands
-===========
+tt CLI commands
+===============
 
-Below is a list of `tt` commands. Run ``tt [COMMAND] help`` to see the detailed
+Below is a list of `tt` commands. Run ``tt COMMAND help`` to see the detailed
 help for the given command.
 
 ..  container:: table

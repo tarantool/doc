@@ -1,12 +1,12 @@
-tt configuration
-================
+tt CLI configuration
+====================
 
 .. _tt-config_file:
 
 Configuration file
----------------------
+------------------
 
-``tt`` configuration file defines aspects of its runtime, such as directories
+The ``tt`` configuration file defines aspects of its runtime, such as directories
 that it uses and log retention parameters.
 
 By default, the configuration file is called ``tarantool.yaml``. The location
@@ -60,14 +60,14 @@ app section
 .. _tt-config_modes:
 
 Launch modes
---------
+------------
 
 ``tt`` launch mode defines its working directory and the way it searches the configuration file:
 
 ..  container:: table
 
     ..  list-table::
-        :widths: 15 10 35 40
+        :widths: 12 13 40 35
         :header-rows: 1
 
         *   -   Mode
@@ -80,11 +80,13 @@ Launch modes
                 ``/etc/tarantool`` if the file is not found.
             -   The directory where the configuration file is found.
         *   -   System launch
-            -   ``--system`` ``-S``
+            -   ``--system``
+                ``-S``
             -   ``/etc/tarantool``
             -   Current directory
         *   -   Local launch
-            -   ``--local [PATH]`` ``-L [path]``
+            -   ``--local=DIRECTORY``
+                ``-L=DIRECTORY``
             -   The specified directory.
                 If tarantool or tt executable files are found in working directory,
                 they will be used further.

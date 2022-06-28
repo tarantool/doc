@@ -1,5 +1,5 @@
-Arguments
-============
+Att CLI arguments
+=================
 
 ``tt`` has the following arguments:
 
@@ -9,13 +9,18 @@ Arguments
         :widths: 20 80
         :header-rows: 0
 
-        *   -   ``--cfg`` ``-c``
+        *   -   ``--cfg=CONF_FILE``
+                ``-c=CONF_FILE``
             -   Path to the :ref:`configuration file <tt-config_file>`
-        *   -   ``--internal`` ``-i``
+        *   -   ``--internal``
+                ``-i``
             -   Use the internal mode
-        *   -   ``--local`` ``-L``
+        *   -   ``--local=DIRECTORY``
+                ``-L=DIRECTORY``
             -   Launch ``tt`` in the :ref:`local mode <tt-config_modes>`
-        *   -   ``--system`` ``-S``
+        *   -   ``--system``
+                ``-S``
             -   Launch ``tt`` in the :ref:`system mode <tt-config_modes>`
-        *   -   ``--help`` ``-h``
+        *   -   ``--help``
+                ``-h``
             -   Display help

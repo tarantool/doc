@@ -1,10 +1,10 @@
-Command-line interface: tt utility
-==================================
+tt utility
+==========
 
-``tt`` is a command-line utility for managing Tarantool instances and Tarantool-based
-applications. It covers a wide range of Tarantool-related tasks from installation
-of a specific Tarantool version to remote instance management and application
-development.
+``tt`` is a utility that provides a unified command-line interface for managing
+Tarantool instances and Tarantool-based applications. It covers a wide range of
+tasks from installation of a specific Tarantool version to remote instance
+management and application development.
 
 ``tt`` is going to become a single tool for working with Tarantool
 from the command line and replace :doc:`tarantoolctl </reference/tarantoolctl>` and
