@@ -28,7 +28,7 @@ location in a while.
 
 
 We leave client-side applications outside the scope of this story. However, we
-promise a mini-demo in the end to simulate real users and give us some fun. :-)
+promise a mini-demo in the end to simulate real users and give us some fun.
 
 .. image:: aster.svg
     :align: center
@@ -37,7 +37,7 @@ promise a mini-demo in the end to simulate real users and give us some fun. :-)
 Follow these topics to implement our application:
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
 
     creating_app/modules_rocks_and_applications
     creating_app/avro_schemas
@@ -45,7 +45,6 @@ Follow these topics to implement our application:
     creating_app/GIS
     creating_app/index_iterators
     creating_app/fibers
-    creating_app/yields
     creating_app/logging
     creating_app/nginx
     creating_app/non-blockng_io
