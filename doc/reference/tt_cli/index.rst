@@ -25,4 +25,5 @@ from the command line and replace :doc:`tarantoolctl </reference/tarantoolctl>` 
 
     installation
     configuration
+    arguments
     commands
