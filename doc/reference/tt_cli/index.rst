@@ -6,18 +6,15 @@ applications. It covers a wide range of Tarantool-related tasks from installatio
 of a specific Tarantool version to remote instance management and application
 development.
 
-``tt`` is going to eventually become a single tool for working with Tarantool
-from the command line, replacing :doc:`tarantoolctl </reference/tarantoolctl>` and
-:doc:`Cartridge CLI </book/cartridge/cartridge_cli/index>`
+``tt`` is going to become a single tool for working with Tarantool
+from the command line and replace :doc:`tarantoolctl </reference/tarantoolctl>` and
+:doc:`Cartridge CLI </book/cartridge/cartridge_cli/index>` in the future.
 
 .. important::
 
-    ``tt`` is currently in the early development stage.
-
-    * Current version includes only basic functionality. See
-      See :doc:`Commands <commands>` for details.
-
-    * It may contain issues
+    ``tt`` is currently in the early development stage. It includes
+    only basic functionality and may be unstable. We don't recommend using it
+    in production environments. Check out the list  of :doc:`supported commands <commands>`.
 
     To use ``tt``, you need to build it from sources manually.
     See :doc:`Installation <installation>` for details.
@@ -29,4 +26,3 @@ from the command line, replacing :doc:`tarantoolctl </reference/tarantoolctl>` a
     installation
     configuration
     commands
-    global_flags

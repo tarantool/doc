@@ -8,7 +8,7 @@ tt commands
         :header-rows: 0
 
         *   -   ``start``
-            -   Start a Tarantool instance
+            -   Start a Tarantool :ref:`instance <admin-instance_file>`
         *   -   ``stop``
             -   Stop a Tarantool instance
         *   -   ``status``
@@ -22,14 +22,14 @@ tt commands
         *   -   ``help``
             -   Display help for ``tt`` of a specific command
         *   -   ``logrotate``
-            -   Rotate logs
+            -   Rotate :ref:`logs <admin-logs>`
         *   -   ``check``
             -   Check an application file for syntax errors
         *   -   ``connect``
             -   Connect to a Tarantool instance
         *   -   ``rocks``
-            -   Lua rocks package manager
+            -   LuaRocks package manager
         *   -   ``cat``
-            -   Print the contents of ``.snap``/``.xlog`` files into stdout
+            -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   ``play``
-            -   Play the contents of ``.snap``/``.xlog`` files in another Tarantool instance
+            -   Play the contents of ``.snap`` or ``.xlog`` files in another Tarantool instance
