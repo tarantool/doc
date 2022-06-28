@@ -1,6 +1,9 @@
 tt commands
 ===========
 
+Below is a list of `tt` commands. Run ``tt [COMMAND] help`` to see the detailed
+help for the given command.
+
 ..  container:: table
 
     ..  list-table::
