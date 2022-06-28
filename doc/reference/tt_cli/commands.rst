@@ -15,7 +15,7 @@ help for the given command.
         *   -   ``stop``
             -   Stop a Tarantool instance
         *   -   ``status``
-            -   Get current status of a Tarantool instance
+            -   Get the current status of a Tarantool instance (``RUNNING``/``NOT RUNNING``)
         *   -   ``restart``
             -   Restart a Tarantool instance
         *   -   ``version``
@@ -25,9 +25,9 @@ help for the given command.
         *   -   ``help``
             -   Display help for ``tt`` of a specific command
         *   -   ``logrotate``
-            -   Rotate :ref:`logs <admin-logs>`
+            -   :ref:`Rotate logs <admin-logs>`
         *   -   ``check``
-            -   Check an application file for syntax errors
+            -   Check an instance file for syntax errors
         *   -   ``connect``
             -   Connect to a Tarantool instance
         *   -   ``rocks``

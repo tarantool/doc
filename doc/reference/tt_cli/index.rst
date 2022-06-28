@@ -10,7 +10,7 @@ development.
 from the command line and replace :doc:`tarantoolctl </reference/tarantoolctl>` and
 :doc:`Cartridge CLI </book/cartridge/cartridge_cli/index>` in the future.
 
-.. important::
+.. warning::
 
     ``tt`` is currently in the early development stage. It includes
     only basic functionality and may be unstable. We don't recommend using it
