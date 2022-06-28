@@ -81,11 +81,13 @@ Launch modes
             -   The directory where the configuration file is found.
         *   -   System launch
             -   ``--system``
+
                 ``-S``
             -   ``/etc/tarantool``
             -   Current directory
         *   -   Local launch
             -   ``--local=DIRECTORY``
+
                 ``-L=DIRECTORY``
             -   The specified directory.
                 If tarantool or tt executable files are found in working directory,

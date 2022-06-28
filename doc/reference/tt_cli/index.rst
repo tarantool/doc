@@ -23,7 +23,7 @@ from the command line and replace :doc:`tarantoolctl </reference/tarantoolctl>` 
     :maxdepth: 1
     :numbered: 0
 
-    installation
-    configuration
-    arguments
-    commands
+    Installation <installation>
+    Configuration <configuration>
+    Arguments <arguments>
+    Commands <commands>
