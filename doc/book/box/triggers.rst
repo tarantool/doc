@@ -48,7 +48,7 @@ All triggers have the following characteristics:
 
 * Triggers must work within the event context, that is, operate variables passed
   as the trigger function arguments. Triggers should not affect the global state
-  of the program and change things unrelated to the event. If a trigger performs
+  of the program or change things unrelated to the event. If a trigger performs
   such calls as, for example, `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_
   or :doc:`/reference/reference_lua/box_txn_management/rollback`, the result of
   its execution is undefined.
