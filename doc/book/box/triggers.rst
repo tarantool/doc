@@ -3,15 +3,14 @@
 .. _triggers:
 .. _triggers-box_triggers:
 
-================================================================================
 Triggers
-================================================================================
+========
 
 **Triggers**, also known as **callbacks**, are functions which the server
 executes when certain events happen.
 
 To associate an event with a callback,
-one should pass the callback to the corresponding :samp:`on_{event}` function:
+pass the callback to the corresponding :samp:`on_{event}` function:
 
 * :doc:`/reference/reference_lua/box_session/on_connect` or
   :doc:`/reference/reference_lua/box_session/on_disconnect`,
@@ -47,12 +46,12 @@ All triggers have the following characteristics:
 * There can be multiple triggers for one event. In this case, triggers are
   executed in the reverse order that they were defined in.
 
-* Triggers must work within the event context. However, effects are undefined
-  if a function contains requests which normally could not occur immediately
-  after the event, but only before the return from the event. For example, putting
-  `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or
-  :doc:`/reference/reference_lua/box_txn_management/rollback` in a trigger
-  function would be bringing in requests outside the event context.
+* Triggers must work within the event context, that is, operate variables passed
+  as the trigger function arguments. Triggers should not affect the global state
+  of the program or change things unrelated to the event. If a trigger performs
+  such calls as, for example, `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_
+  or :doc:`/reference/reference_lua/box_txn_management/rollback`, the result of
+  its execution is undefined.
 
 * Triggers are replaceable. The request to "redefine a trigger" implies
   passing a new trigger function and an old trigger function
