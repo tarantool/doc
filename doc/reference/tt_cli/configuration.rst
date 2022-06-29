@@ -39,23 +39,24 @@ app section
 ~~~~~~~~~~~
 
 * ``instances_available`` -- a directory where :ref:`instances <admin-instance_file>`
-  are stored.
+    are stored.
 * ``run_dir``-- a directory where ``tt`` stores instance runtime artifacts,
-  such as console sockets or PID files.
+    such as console sockets or PID files.
 * ``log_dir`` -- a directory where log files are stored.
 * ``log_maxsize`` -- the maximum size of the log file before it gets rotated,
-  in megabytes. Default: 100.
+    in megabytes. Default: 100.
 * ``log_maxage`` -- the maximum age of log files in days. The age of a log
-  file is defined by the timestamp encoded in its name. Default: not defined
-  (don't delete log files based on their age).
-  ..  note:
-      A day is defined as exactly 24 hours. It may not exactly correspond to
-      calendar days due to daylight savings, leap seconds, and other.
+    file is defined by the timestamp encoded in its name. Default: not defined
+    (don't delete log files based on their age).
+
+    ..  note:
+        A day is defined as exactly 24 hours. It may not exactly correspond to
+        calendar days due to daylight savings, leap seconds, and other.
 
 * ``log_maxbackups`` -- the maximum number of stored log files.
-  Default: not defined (don't delete log files based on their count).
+    Default: not defined (don't delete log files based on their count).
 * ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
-  Default: ``false``.
+    Default: ``false``.
 
 .. _tt-config_modes:
 
@@ -67,7 +68,7 @@ Launch modes
 ..  container:: table
 
     ..  list-table::
-        :widths: 12 13 40 35
+        :widths: 10 20 35 35
         :header-rows: 1
 
         *   -   Mode

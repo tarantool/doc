@@ -1,4 +1,4 @@
-tt utility
+tt CLI utility
 ==========
 
 ``tt`` is a utility that provides a unified command-line interface for managing
