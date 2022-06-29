@@ -115,9 +115,11 @@ It can happen, for example, if a user mistakenly lowered the :ref:`replication_s
 In this situation, to preserve the data integrity, if an instance detects the split-brain anomaly in the incoming replication data,
 it breaks the connection with the instance sending the data and writes the ``ER_SPLIT_BRAIN`` error in the log.
 
-Once noticing this error, a user has to manually inspect the data on both instances having the leader status,
-choose a way to restore the data, remove the data from one of the leader and its followers, and reconnect them to the other half of the replica set,
-that is, another leader and its followers that have the correct data.
+Eventually, there will be two sets of nodes with the diverged data,
+and any node from one set is disconnected from any node from the other set with the ``ER_SPLIT_BRAIN`` error.
+
+Once noticing the error, a user can choose any representative from each of the sets and inspect the data on them.
+To correlate the data, the user should remove it from the nodes of one set, and reconnect them to the nodes from the other set that have the correct data.
 
 
 Also, if election is enabled on the node, it won't replicate from any nodes except
