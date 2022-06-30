@@ -501,7 +501,7 @@
 
     *   By default, the instance acts like a voter -- it is read-only and may vote for other instances that are candidates.
     *   Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round.
-        If the instance wins the elections, it remains a leader, but won't participate in any new elections.
+        If the instance wins the elections, it becomes a leader, but won't participate in any new elections.
 
     | Type: string
     | Default: 'off'
