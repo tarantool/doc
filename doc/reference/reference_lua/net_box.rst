@@ -218,7 +218,7 @@ Below is a list of all ``net.box`` functions.
             support the specified features, the connection will fail with an error message. 
             With ``required_protocol_features = {'transactions'}``, all connections fail where the 
             server has ``transactions: false``.
-        
+
     ..  container:: table
 
     	..  list-table::
@@ -242,7 +242,7 @@ Below is a list of all ``net.box`` functions.
                -   IPROTO_FEATURE_ERROR_EXTENSION   
                -   2 and newer
            *   -   ``watchers``
-               -   Requires remote watchers support on the server
+               -   Requires remote :ref:`watchers <conn-watch>` support on the server
                -   IPROTO_FEATURE_WATCHERS   
                -   3 and newer      
             
@@ -543,30 +543,20 @@ Below is a list of all ``net.box`` functions.
 
         :param string key: a key name of an event to subscribe to
         :param function func:  a callback to invoke when the key value is updated
-        :return: a watcher handle that can be used to unregister the watcher
+        :return: a watcher handle. The handle consists of one method -- ``unregister()``, which unregisters the watcher.
 
-        Using the ``watch`` method of a net.box connection, you can subscribe to events broadcast by a remote host.
+        To read more about watchers, see the `Functions for watchers <box-watchers>` section.
+
         The method has the same syntax as the :doc:`box.watch() </reference/reference_lua/box_watchers/broadcast>`
         function, which is used for subscribing to events locally.
 
-        A watcher callback is first invoked unconditionally after the watcher registration.
-        Subsequent invocations are triggered by :doc:`box.broadcast() </reference/reference_lua/box_watchers/broadcast>`
-        called on the remote host.
-        A watcher callback is passed the name of the key for which it was registered and the current key data.
-        A watcher callback is always invoked in a new fiber so it is okay to yield in it.
-        A watcher callback is never executed in parallel with itself.
-        If the key is updated while the watcher callback is running, the callback will be invoked again with the new
-        value as soon as it returns.
-
-        Watchers survive reconnection (see ``reconnect_after`` connection option).
+        Watchers survive reconnection (see the ``reconnect_after`` connection :ref:`option <net_box-new>`).
         All registered watchers are automatically resubscribed when the
         connection is reestablished.
 
         If a remote host supports watchers, the ``watchers`` key will be set in the
-        connection's ``peer_protocol_features``.
-
-        Keep in mind that garbage collection of a watcher handle doesn't result in unregistering the watcher.
-        It is okay to discard the result of ``box.watch`` if the watcher will never be unregistered.
+        connection ``peer_protocol_features``.
+        For details, check the :ref:`net.box features table <net_box-new>`.
 
         **Example:**
 

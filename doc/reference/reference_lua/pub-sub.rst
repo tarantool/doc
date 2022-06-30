@@ -25,7 +25,7 @@ In Tarantool, :term:`pub/sub <publisher/subscriber>` is a :term:`notification` s
 
     notification
 
-        A notification is a message created by one side to inform about the occurence of the event and describe
+        A notification is a message created by one side to inform about the occurrence of the event and describe
         it to other components.
 
 The pub/sub pattern is associated with subscriptions.
@@ -33,34 +33,15 @@ Each subscription is defined by the certain key.
 The main feature of the subscriptions is a one-time action.
 It means that if the server generates too many events and a client is too slow,
 the server will not allocate additional memory.
-
-The system processes the following events:
-
-*   ``box.id``
-*   ``box.status``
-*   ``box.election``
-*   ``box.schema``
-
 In response to each event, the server sends back certain IPROTO fields.
 
 Built-in events for pub/sub
 ---------------------------
 
-One of the most important purposes of the built-in events is :ref:`master discovery <cfg_basic-master>`.
-It is necessary to know the master node in order to send changes to a correct instance
-or to read the most recent data.
-In addition, there are more built-in events for other mutable properties such as the change of the leader's
-state, its election role and term, the change of the schema version,
-and the state of the instance.
-
-Built-in events have a special naming schema -- theirs names always start with the ``box`` prefix.
+Built-in events have a special naming schema -- theirs names always start with the ``box.`` prefix.
 This prefix is reserved for the built-in events. It means that you cannot create new events with it.
 
-Note that built-in events can't be overridden.
-It means that the user cannot call
-:doc:`box.broadcast('box.id', any_data) </reference/reference_lua/box_watchers/broadcast>`.
-
-Below is a table of all events that includes the name of the event and its description.
+Below is a table of all built-in events that includes the name of the event and its description.
 
 ..  container:: table
 
@@ -87,7 +68,7 @@ Below is a table of all events that includes the name of the event and its descr
 
         *   -   box.election
             -   All the required parts of :doc:`box.info.election </reference/reference_lua/box_info/election>`
-                needed to find out who is the most recent writable leader.
+                that are necessary to find out who is the most recent writable leader.
 
         *   -   box.schema
             -   Schema-related data. Currently, it contains only the version.

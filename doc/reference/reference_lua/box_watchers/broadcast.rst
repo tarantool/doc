@@ -13,6 +13,11 @@ box.broadcast()
 
     :return: none
 
+    **Possible errors:**
+
+    * The value can't be encoded as MSgPack.
+    * The key refers to ``box.`` system event
+
     **Example:**
 
     ..  code-block:: lua
