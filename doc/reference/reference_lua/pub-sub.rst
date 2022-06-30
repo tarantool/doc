@@ -33,7 +33,6 @@ Each subscription is defined by the certain key.
 The main feature of the subscriptions is a one-time action.
 It means that if the server generates too many events and a client is too slow,
 the server will not allocate additional memory.
-In response to each event, the server sends back certain IPROTO fields.
 
 Built-in events for pub/sub
 ---------------------------
@@ -41,39 +40,30 @@ Built-in events for pub/sub
 Built-in events have a special naming schema -- theirs names always start with the ``box.`` prefix.
 This prefix is reserved for the built-in events. It means that you cannot create new events with it.
 
-Below is a table of all built-in events that includes the name of the event and its description.
+The system processes the following events:
 
-..  container:: table
+*   ``box.id``
+*   ``box.status``
+*   ``box.election``
+*   ``box.schema``
 
-    ..  list-table::
-        :widths: 50 50
+In response to each event, the server sends back certain IPROTO fields.
 
-        *   -   Built-in event
-            -   Description
+box.id
+~~~~~~
 
-        *   -   :doc:`box.id </reference/reference_lua/box_info>`
-            -   Identification of the instance. Changes are particularly rare. Some
-                values never change or change only once. For example, the UUID of the instance never
-                changes after the first :doc:`box.cfg </reference/reference_lua/box_cfg>`.
-                However, it is not known before ``box.cfg`` is called.
-                The replicaset UUID is unknown until the instance joins a replicaset or
-                boots a new one, but events are supposed to start working before then --
-                right when the listen launches. The numeric instance ID is known only after
-                registration. For anonymous replicas, the value is ``0`` until they are officially registered.
+Contains identification of the instance.
+Changes are particularly rare.
+Some values never change or change only once.
 
-        *   -   box.status
-            -   Generic blob about the instance status. There are the most frequently used
-                and not frequently changed :doc:`config options </reference/reference_lua/box_cfg>` and
-                :doc:`box.info </reference/reference_lua/box_info>` fields.
+The numeric instance ID is known only after registration.
+For anonymous replicas, the value is ``0`` until they are officially registered.
 
-        *   -   box.election
-            -   All the required parts of :doc:`box.info.election </reference/reference_lua/box_info/election>`
-                that are necessary to find out who is the most recent writable leader.
+The UUID of the instance never changes after the first :doc:`box.cfg </reference/reference_lua/box_cfg>`.
+The value is unknown before the ``box.cfg`` call.
 
-        *   -   box.schema
-            -   Schema-related data. Currently, it contains only the version.
-
-The value for each of the built-in events is written in the following code-block:.
+The replicaset UUID is unknown until the instance joins a replicaset or boots a new one.
+The events are supposed to start working before that -- right with the start of the listen.
 
 ..  code-block:: lua
 
@@ -84,14 +74,29 @@ The value for each of the built-in events is written in the following code-block
     MP_STR “replicaset_uuid”: MP_UUID box.info.cluster.uuid,
     }
 
-    -- box.status value
+box.status
+~~~~~~~~~~
+
+Contains generic blob about the instance status.
+There are the most frequently used and not frequently changed
+:doc:`config options </reference/reference_lua/box_cfg>` and :doc:`box.info </reference/reference_lua/box_info>` fields.
+
+..  code-block:: lua
+
     {
     MP_STR “is_ro”: MP_BOOL box.info.ro,
     MP_STR “is_ro_cfg”: MP_BOOL box.cfg.read_only,
     MP_STR “status”: MP_STR box.info.status,
     }
 
-    -- box.election value
+box.election
+~~~~~~~~~~~~
+
+Contains all the required parts of :doc:`box.info.election </reference/reference_lua/box_info/election>`
+that are necessary to find out who is the most recent writable leader.
+
+..  code-block:: lua
+
     {
     MP_STR “term”: MP_UINT box.info.election.term,
     MP_STR “role”: MP_STR box.info.election.state,
@@ -99,7 +104,14 @@ The value for each of the built-in events is written in the following code-block
     MP_STR “leader”: MP_UINT box.info.election.leader,
     }
 
-    -- box.schema value
+box.schema
+~~~~~~~~~~
+
+Contains schema-related data.
+Currently, it contains only the version.
+
+..  code-block:: lua
+
     {
     MP_STR “version”: MP_UINT schema_version,
     }
