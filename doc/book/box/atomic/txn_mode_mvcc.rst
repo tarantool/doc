@@ -69,13 +69,13 @@ Transaction manager options
 
 The transaction manager has four options for the transaction isolation level that you can set in ``box-cfg``:
 
-*   ``default``.
+*   ``default``
 
-*   ``best-effort``.
+*   ``best-effort``
 
-*   ``read-committed``.
+*   ``read-committed``
 
-*   ``read-confirmed``.
+*   ``read-confirmed``
 
 The ``best-effort`` option is set by default (or if the level is not specified). 
 This allows MVCC to consider the actions of transactions independently and determine the 
@@ -85,7 +85,7 @@ of successful completion of the transaction and helps to avoid possible conflict
 To set the default isolation level with the other option, for example, 
 to ``read-committed``, use the following command:
 
-..  code-block:: 
+..  code-block:: lua
 
     box.cfg{default_txn_isolation = 'read-committed'}
  
@@ -93,7 +93,7 @@ to ``read-committed``, use the following command:
 If a transaction has an explicit ``box.begin()`` call, the level can be
 specified as follows:
 
-..  code-block:: 
+..  code-block:: lua
 
     box.begin({tnx_isolation = 'best-effort'})
 
@@ -114,7 +114,7 @@ Examples with MVCC enabled and disabled
 
 Create a file ``init.lua``, containing the following:
 
-..  code-block:: 
+..  code-block:: lua
 
     fiber = require 'fiber'
     
@@ -133,20 +133,20 @@ Create a file ``init.lua``, containing the following:
 
 Connect to the instance:
 
-..  code-block:: 
+..  code-block:: bash
 
     tarantooctl connect 127.0.0.1:3301
 
 Then try to execute the transaction with yield inside:
 
-..  code-block:: 
+..  code-block:: lua
 
-     box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)
+    box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)
 
 
 You will receive an error message:
 
-..  code-block::
+..  code-block:: tarantoolsession
     
     ---
     - error: Transaction has been aborted by a fiber yield
@@ -154,7 +154,7 @@ You will receive an error message:
 
 Also, if you leave a transaction open while returning from a request, you will get an error message:
 
-..  code-block:: 
+..  code-block:: tarantoolsession
     
     127.0.0.1:3301> box.begin()
     ---
@@ -163,7 +163,7 @@ Also, if you leave a transaction open while returning from a request, you will g
 
 Change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try again:
 
-..  code-block::
+..  code-block:: tarantoolsession
     
     127.0.0.1:3301> box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)
     ---
@@ -171,7 +171,7 @@ Change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try again:
 
 Now check if this transaction was successful:
 
-..  code-block::
+..  code-block:: tarantoolsession
     
     127.0.0.1:3301> box.space.tickets:select({}, {limit = 10})
     ---
