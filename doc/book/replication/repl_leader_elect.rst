@@ -108,6 +108,20 @@ When the fencing is on, the leader resigns its leadership if it has less than th
 of alive connections to the cluster nodes. The resigning leader receives the status of a follower in the current election term and becomes read-only.
 Fencing applies to the instances that have the :ref:`election_mode <repl_leader_elect_config>` set to "candidate" or "manual".
 
+.. _repl_leader_elect_splitbrain:
+
+There can still be a situation when a replica set has two leaders working independently (so called *split-brain*).
+It can happen, for example, if a user mistakenly lowered the :ref:`replication_synchro_quorum <repl_leader_elect_config>` below ``N / 2 + 1``.
+In this situation, to preserve the data integrity, if an instance detects the split-brain anomaly in the incoming replication data,
+it breaks the connection with the instance sending the data and writes the ``ER_SPLIT_BRAIN`` error in the log.
+
+Eventually, there will be two sets of nodes with the diverged data,
+and any node from one set is disconnected from any node from the other set with the ``ER_SPLIT_BRAIN`` error.
+
+Once noticing the error, a user can choose any representative from each of the sets and inspect the data on them.
+To correlate the data, the user should remove it from the nodes of one set, and reconnect them to the nodes from the other set that have the correct data.
+
+
 Also, if election is enabled on the node, it won't replicate from any nodes except
 the newest leader. This is done to avoid the issue when a new leader is elected,
 but the old leader has somehow survived and tries to send more changes
