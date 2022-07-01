@@ -37,7 +37,7 @@ each transaction sees a consistent database state and commits all its changes at
 At commit time, a yield happens and all transaction changes are written to :ref:`WAL <internals-wal>` 
 in a single batch.
 In case of errors during transaction execution, a transaction is rolled-back completely.
-Read more in the following sections: :ref:`atomic-transactions`, :ref:`txn_mode_transaction-manager`.
+Read more in the following sections: :ref:`transaction_model`, :ref:`txn_mode_transaction-manager`.
 
 Within the TX thread, there is a memory area allocated for Tarantool to store data. It's called **Arena**.
 
