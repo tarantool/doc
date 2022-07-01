@@ -57,8 +57,8 @@ option to enable it via ``box.cfg``.
 
 ..  _txn_mode_mvcc-options:
 
-Transaction manager options
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Setting the transaction isolation level
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ..  note::
 
@@ -67,20 +67,17 @@ Transaction manager options
     all others (for example, ``replace``) with ``read-committed``.
 
 
-The transaction manager has four options for the transaction isolation level that you can set in ``box-cfg``:
+The transaction manager has three options for the :ref:`transaction isolation level <transaction_model_levels>`:
 
-*   ``default``
-
-*   ``best-effort``
+*   ``best-effort`` (default)
 
 *   ``read-committed``
 
 *   ``read-confirmed``
 
-The ``best-effort`` option is set by default (or if the level is not specified). 
-This allows MVCC to consider the actions of transactions independently and determine the 
-best :ref:`isolation level <transaction_model_levels>` for them. It increases the probability 
-of successful completion of the transaction and helps to avoid possible conflicts. 
+Using ``best-effort`` as the default option allows MVCC to consider the actions of transactions
+independently and determine the best :ref:`isolation level <transaction_model_levels>` for them.
+It increases the probability of successful completion of the transaction and helps to avoid possible conflicts.
 
 To set the default isolation level with the other option, for example, 
 to ``read-committed``, use the following command:
@@ -88,23 +85,25 @@ to ``read-committed``, use the following command:
 ..  code-block:: lua
 
     box.cfg{default_txn_isolation = 'read-committed'}
- 
 
-If a transaction has an explicit ``box.begin()`` call, the level can be
-specified as follows:
+You can also set an isolation level for specific transactions in their ``box.begin()`` calls.
 
 ..  code-block:: lua
 
     box.begin({tnx_isolation = 'best-effort'})
 
+In this case, there is additionally the ``default`` option. It sets the transaction's isolation level
+to the one that is set in ``box.cfg``.
+
 ..  note::
 
-    You can also do this in the net.box :ref:`stream:begin() <net_box-stream_begin>` method.
+    You can set the isolation level in the net.box :ref:`stream:begin() <net_box-stream_begin>` method
+    and :ref:`IPRORO_BEGIN <box_protocol-begin>` binary protocol request.
 
 
 Choosing the better option depends on whether you have conflicts or not. 
 If you have many conflicts, you should set the different options or use 
-the :ref:`default mode <txn_mode-default>`.
+the :ref:`default transaction mode <txn_mode-default>`.
 
 
 ..  _txn_mode_mvcc-examples:
