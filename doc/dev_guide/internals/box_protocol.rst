@@ -742,7 +742,7 @@ the transaction will be rolled back automatically.
 IPROTO_TXN_ISOLATION is the :ref:`transaction isolation level <txn_mode_mvcc-options>`.
 It can take the following values:
 
-- ``TXN_ISOLATION_DEFAULT = 0``	-- use the global default level (default value)
+- ``TXN_ISOLATION_DEFAULT = 0``	-- use the default level from ``box.cfg`` (default value)
 - ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read changes that are committed but not confirmed yet
 - ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read confirmed changes
 - ``TXN_ISOLATION_BEST_EFFORT = 3`` -- determine isolation level automatically
