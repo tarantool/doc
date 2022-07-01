@@ -86,7 +86,7 @@ to ``read-committed``, use the following command:
 
     box.cfg{default_txn_isolation = 'read-committed'}
 
-You can also set an isolation level for specific transactions in their ``box.begin()`` calls.
+You can also set an isolation level for specific transactions in their ``box.begin()`` calls:
 
 ..  code-block:: lua
 
@@ -98,7 +98,7 @@ to the one that is set in ``box.cfg``.
 ..  note::
 
     You can set the isolation level in the net.box :ref:`stream:begin() <net_box-stream_begin>` method
-    and :ref:`IPRORO_BEGIN <box_protocol-begin>` binary protocol request.
+    and :ref:`IPROTO_BEGIN <box_protocol-begin>` binary protocol request.
 
 
 Choosing the better option depends on whether you have conflicts or not. 
