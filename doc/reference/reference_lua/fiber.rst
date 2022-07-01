@@ -188,13 +188,6 @@ occasionally. Most ``box.*`` functions, such as
 fiber can only become unresponsive if it does many computations and does not
 check whether it has been cancelled.
 
-The other potential problem comes from fibers which never get scheduled, because
-they are not subscribed to any events, or because no relevant events occur. Such
-morphing fibers can be killed with :ref:`fiber.kill() <fiber-kill>` at any time,
-since :ref:`fiber.kill() <fiber-kill>` sends an asynchronous wakeup event to the
-fiber, and :ref:`fiber.testcancel() <fiber-testcancel>` is checked whenever such
-a wakeup event occurs.
-
 Like all Lua objects, dead fibers are garbage collected. The Lua garbage collector
 frees pool allocator memory owned by the fiber, resets all fiber data, and
 returns the fiber (now called a fiber carcass) to the fiber pool. The carcass
