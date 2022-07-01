@@ -291,7 +291,7 @@
 .. confval:: memtx_use_mvcc_engine
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
-    Enables :ref:`transactional manager <atomic-transactional-manager>` if set to ``true``.
+    Enables :ref:`transactional manager <txn_mode_transaction-manager>` if set to ``true``.
 
     | Type: boolean
     | Default: false

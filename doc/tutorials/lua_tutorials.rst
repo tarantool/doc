@@ -623,7 +623,7 @@ Invoke the function with ``sum_json_field("Quantity")``.
 It works. We'll just leave, as exercises for future improvement, the possibility
 that the "hard coding" assumptions could be removed, that there might have to be
 an overflow check if some field values are huge, and that the function should
-contain a :ref:`yield <atomic-threads_fibers_yields>` instruction if the count of tuples is huge.
+contain a :ref:`yield <app-yields>` instruction if the count of tuples is huge.
 
 .. _c_lua_tutorial-indexed_pattern_search:
 
@@ -641,7 +641,7 @@ which allows "magic characters" in regular expressions. |br|
 first magic character, will be used as an index search key.
 For each tuple that is found via the index, there will be
 a match of the whole pattern. |br|
-* To be :ref:`cooperative <atomic-cooperative_multitasking>`,
+* To be :ref:`cooperative <app-cooperative_multitasking>`,
 the function should yield after every
 10 tuples, unless there is a reason to delay yielding. |br|
 With this function, we can take advantage of Tarantool's indexes
@@ -778,7 +778,7 @@ The function's job is to return a result set,
 just as `box.space...select <box_space-select>` would. We will fill
 it within an outer loop that contains an inner
 loop. The outer loop's job is to execute the inner
-loop, and possibly :ref:`yield <atomic-threads_fibers_yields>`, until the search ends.
+loop, and possibly :ref:`yield <app-yields>`, until the search ends.
 The inner loop's job is to find tuples via the index, and put
 them in the result set if they match the pattern.
 

@@ -41,7 +41,7 @@ On this page:
         * primary key must be unique.
 
         Building or rebuilding a large index will cause occasional
-        :ref:`yields <atomic-cooperative_multitasking>`
+        :ref:`yields <app-cooperative_multitasking>`
         so that other requests will not be blocked.
         If the other requests cause an illegal situation
         such as a duplicate key in a unique index,

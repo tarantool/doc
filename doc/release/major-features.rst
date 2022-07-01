@@ -34,7 +34,7 @@ Versions that only include bug fixes are not listed in this table.
             -   Preliminary support for GNU/Linux ARM64 and MacOS M1 (:tarantool-issue:`2712`, :tarantool-issue:`6065`,
                 :tarantool-issue:`6066`, :tarantool-issue:`6084`, :tarantool-issue:`6093`, :tarantool-issue:`6098`,
                 :tarantool-issue:`6189`) |br|
-                :ref:`Streams and interactive transactions in iproto <box_stream>`
+                :ref:`Streams and interactive transactions in iproto <txn_mode_stream-interactive-transactions>`
                 (:tarantool-issue:`5860`) |br|
                 :ref:`Consistent SQL type system <2.10.0-beta1-sql>` |br|
                 Faster `net.box` module performance (improved up to 70%) (:tarantool-issue:`6241`) |br|
@@ -84,7 +84,7 @@ Versions that only include bug fixes are not listed in this table.
             -   :doc:`Automated leader election </book/replication/repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)
 
         *   -   2.6.1
-            -   :ref:`Transactional manager <atomic-transactional-manager>` for memtx engine (:tarantool-issue:`4897`)
+            -   :ref:`Transactional manager <txn_mode_transaction-manager>` for memtx engine (:tarantool-issue:`4897`)
 
         *   -   2.5.3, 2.6.2, 2.7.1
             -   Expression evaluation for :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>` (:tarantool-issue:`5446`)

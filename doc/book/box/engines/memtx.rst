@@ -24,7 +24,7 @@ In this chapter, the following topics are discussed in brief with the references
 Memory model
 ------------
 
-There is a fixed number of independent :ref:`execution threads <atomic-threads_fibers_yields>`.
+There is a fixed number of independent :ref:`execution threads <thread_model>`.
 The threads don't share state. Instead they exchange data using low-overhead message queues.
 While this approach limits the number of cores that the instance uses,
 it removes competition for the memory bus and ensures peak scalability of memory access and network throughput.
@@ -34,9 +34,10 @@ can access the database, and there is only one TX thread for each Tarantool inst
 In this thread, transactions are executed in a strictly consecutive order.
 Multi-statement transactions exist to provide isolation:
 each transaction sees a consistent database state and commits all its changes atomically.
-At commit time, a yield happens and all transaction changes are written to :ref:`WAL <internals-wal>` in a single batch.
+At commit time, a yield happens and all transaction changes are written to :ref:`WAL <internals-wal>` 
+in a single batch.
 In case of errors during transaction execution, a transaction is rolled-back completely.
-Read more in the following sections: :ref:`atomic-transactions`, :ref:`atomic-transactional-manager`.
+Read more in the following sections: :ref:`atomic-transactions`, :ref:`txn_mode_transaction-manager`.
 
 Within the TX thread, there is a memory area allocated for Tarantool to store data. It's called **Arena**.
 
@@ -56,11 +57,11 @@ For more details, see the ``box.slab`` module :doc:`reference </reference/refere
 Also inside the TX thread, there is an event loop. Within the event loop, there are a number of :ref:`fibers <fiber-fibers>`.
 Fibers are cooperative primitives that allows interaction with spaces, that is, reading and writting the data.
 Fibers can interact with the event loop and between each other directly or by using special primitives called channels.
-Due to the usage of fibers and :ref:`cooperative multitasking <atomic-cooperative_multitasking>`, the ``memtx`` engine is lock-free in typical situations.
+Due to the usage of fibers and :ref:`cooperative multitasking <app-cooperative_multitasking>`, the ``memtx`` engine is lock-free in typical situations.
 
 .. image:: memtx/fibers-channels.svg
 
-To interact with external users, there is a separate :ref:`network thread <atomic-threads_fibers_yields>` also called the **iproto thread**.
+To interact with external users, there is a separate :ref:`network thread <thread_model>` also called the **iproto thread**.
 The iproto thread receives a request from the network, parses and checks the statement,
 and transforms it into a special structure—a message containing an executable statement and its options.
 Then the iproto thread ships this message to the TX thread and runs the user's request in a separate fiber.

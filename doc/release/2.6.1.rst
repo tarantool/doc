@@ -23,7 +23,7 @@ Notable changes are:
 
     Read more:
 
-    *   :ref:`atomic-transactional-manager`
+    *   :ref:`txn_mode_transaction-manager`
     *   :ref:`use_mvcc_engine configuration parameter <cfg_basic-memtx_use_mvcc_engine>`
 
 *   Raft-based automated failover mechanism for a
@@ -217,7 +217,7 @@ Memtx
 
     Read more:
 
-    *   :ref:`atomic-transactional-manager`
+    *   :ref:`txn_mode_transaction-manager`
     *   :ref:`use_mvcc_engine configuration parameter <cfg_basic-memtx_use_mvcc_engine>`
 
 

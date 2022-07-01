@@ -88,7 +88,7 @@ make the first attempt at catching the pokémon. In a classical Lua script,
 a networked call blocks the script until it’s finished, so the first catch
 attempt can only be done by the player who entered the game first. In Tarantool,
 both players play concurrently, since all modules are integrated with Tarantool
-:ref:`cooperative multitasking <atomic-cooperative_multitasking>` and use
+:ref:`cooperative multitasking <app-cooperative_multitasking>` and use
 non-blocking I/O.
 
 Indeed, when Player1 makes its first REST call, the script doesn’t block.

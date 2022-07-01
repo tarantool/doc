@@ -216,7 +216,7 @@ space_object:format()
         ``box.space.tester:format()`` will return ``[{'name': 'x', 'type': 'scalar'}]``.
 
         Formatting or reformatting a large space will cause occasional
-        :ref:`yields <atomic-cooperative_multitasking>`
+        :ref:`yields <app-yields>`
         so that other requests will not be blocked.
         If the other requests cause an illegal situation such as a field value
         of the wrong type, the formatting or reformatting will fail.

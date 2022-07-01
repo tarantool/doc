@@ -41,7 +41,7 @@
     is a system-wide restriction of channel bandwidth.
     This in turn causes restriction of the number of incoming
     network messages that the
-    :ref:`transaction processor thread <atomic-threads_fibers_yields>`
+    :ref:`transaction processor thread <thread_model>`
     handles, and therefore indirectly affects the fibers that handle
     network messages.
     (The number of fibers is smaller than the number of messages because
@@ -79,7 +79,7 @@
 ..  confval:: iproto_threads
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
-    The number of :ref:`network threads <atomic-threads_fibers_yields>`.
+    The number of :ref:`network threads <thread_model>`.
     There can be unusual workloads where the network thread
     is 100% loaded and the transaction processor thread is not, so the network
     thread is a bottleneck. In that case set ``iproto_threads`` to 2 or more.

@@ -99,7 +99,7 @@ space_object:on_replace()
             ``before_replace``
 
             * transactions,
-            * yield-operations (:ref:`explicit <atomic-implicit-yields>` or not),
+            * yield-operations (:ref:`explicit <app-yields>` or not),
             * actions that are not allowed to be used in transactions
               (see :ref:`rule #2 <box-txn_management>`).
 

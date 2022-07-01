@@ -275,7 +275,7 @@ Below is a list of all ``net.box`` functions.
 
     * With the embedded connection, requests which do not modify data do not yield.
       When using a remote connection, due to
-      :ref:`the implicit rules <atomic-implicit-yields>`
+      :ref:`the implicit rules <app-implicit-yields>`
       any request can yield, and the database state may have changed by the
       time it regains control.
 
@@ -388,7 +388,7 @@ Below is a list of all ``net.box`` functions.
 
         .. NOTE::
 
-            Due to :ref:`the implicit yield rules <atomic-implicit-yields>`
+            Due to :ref:`the implicit yield rules <app-implicit-yields>`
             a local :samp:`box.space.{space-name}:select`:code:`{...}` does
             not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}`
             call does yield, so global variables or database tuples data may

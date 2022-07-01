@@ -30,7 +30,7 @@ index_object:pairs()
         subsystem. An iterator in Tarantool does not own a consistent read view.
         Instead, each procedure is granted exclusive access to all tuples and
         spaces until there is a "context switch": which may happen due to
-        :ref:`the implicit yield rules <atomic-implicit-yields>`, or by an
+        :ref:`the implicit yield rules <app-implicit-yields>`, or by an
         explicit call to :ref:`fiber.yield <fiber-yield>`. When the execution
         flow returns to the yielded procedure, the data set could have changed
         significantly. Iteration, resumed after a yield point, does not preserve
