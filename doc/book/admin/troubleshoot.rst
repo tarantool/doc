@@ -71,7 +71,7 @@ Problem: Tarantool generates too heavy CPU load
 
 **Possible reasons**
 
-The :ref:`transaction processor thread <atomic-threads_fibers_yields>` consumes
+The :ref:`transaction processor thread <thread_model>` consumes
 over 60% CPU.
 
 **Solution**

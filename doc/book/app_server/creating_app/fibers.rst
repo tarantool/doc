@@ -16,12 +16,12 @@ Fibers
 
 A **fiber** exists for executing instruction sequences but it is not a thread.
 The key difference is that threads use
-preemptive multitasking, while fibers use :ref:`cooperative multitasking <cooperative_multitasking>`. This gives
+preemptive multitasking, while fibers use :ref:`cooperative multitasking <app-cooperative_multitasking>`. This gives
 fibers the following two advantages over threads:
 
 * Better controllability. Threads often depend on the kernel's thread scheduler
   to preempt a busy thread and resume another thread, so preemption may occur
-  unpredictably. Fibers :ref:`yield <yields>` themselves to run another fiber while executing,
+  unpredictably. Fibers :ref:`yield <app-yields>` themselves to run another fiber while executing,
   so yields are controlled by application logic.
 * Higher performance. Threads require more resources to preempt as they need to
   address the system kernel. Fibers are lighter and faster as they don't need to

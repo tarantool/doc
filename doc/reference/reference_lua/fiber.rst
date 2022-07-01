@@ -162,8 +162,8 @@ Fibers
 ------
 
 A **fiber** is a set of instructions which are executed with
-:ref:`cooperative multitasking <atomic-cooperative_multitasking>`.
-(Learn more about :ref:`transactions <atomic-threads_fibers_yields>` in Tarantool.)
+:ref:`cooperative multitasking <app-cooperative_multitasking>`.
+(Learn more about :ref:`transactions <thread_model>` in Tarantool.)
 Fibers managed by the fiber module are associated with
 a user-supplied function called the *fiber function*.
 

@@ -1329,7 +1329,7 @@ function ``netbox_encode_auth``.
 Binary protocol -- streams
 --------------------------
 
-The :ref:`Streams and interactive transactions <box_stream>`
+The :ref:`Streams and interactive transactions <txn_mode_stream-interactive-transactions>`
 feature, which was added in Tarantool version
 :tarantool-release:`2.10.0`, allows two things:
 sequential processing and interleaving.

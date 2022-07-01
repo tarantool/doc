@@ -9,7 +9,7 @@ space_object:select()
     .. method:: select([key [,, options]])
 
         Search for a tuple or a set of tuples in the given space. This method
-        doesn't yield (for details see :ref:`Cooperative multitasking <atomic-cooperative_multitasking>`).
+        doesn't yield (for details see :ref:`Cooperative multitasking <app-cooperative_multitasking>`).
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`

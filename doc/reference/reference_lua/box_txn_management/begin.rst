@@ -6,7 +6,7 @@ box.begin()
 
 .. function:: box.begin()
 
-    Begin the transaction. Disable :ref:`implicit yields <atomic-implicit-yields>`
+    Begin the transaction. Disable :ref:`implicit yields <app-implicit-yields>`
     until the transaction ends.
     Signal that writes to the :ref:`write-ahead log <internals-wal>` will be
     deferred until the transaction ends.

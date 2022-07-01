@@ -27,7 +27,7 @@ box.stat.net()
         * ``REQUESTS_IN_PROGRESS.current`` -- number of requests being currently processed by the :ref:`TX thread <memtx-memory>`
         * ``REQUESTS_IN_PROGRESS.rps`` -- average number of requests processed by the TX thread per second in the last 5 seconds
         * ``REQUESTS_IN_PROGRESS.total`` -- total number of requests processed by the TX thread since the server started
-        * ``STREAMS.current`` -- number of active :doc:`streams </book/box/stream>`
+        * ``STREAMS.current`` -- number of active :ref:`streams <txn_mode_stream-interactive-transactions>`
         * ``STREAMS.rps`` -- average number of streams opened per second in the last 5 seconds
         * ``STREAMS.total`` -- total number of streams opened since the server started
         * ``REQUESTS_IN_STREAM_QUEUE.current`` -- number of requests waiting in stream queues
@@ -74,7 +74,7 @@ box.stat.net()
 
 .. function:: net.thread()
 
-    Shows network activity per :ref:`network thread <atomic-threads_fibers_yields>`:
+    Shows network activity per :ref:`network thread <thread_model>`:
     the number of bytes sent and received, the number of connections, streams,
     and requests (current, average, and total).
 

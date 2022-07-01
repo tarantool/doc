@@ -4,7 +4,7 @@
 
 .. c:type:: struct fiber
 
-    Fiber - contains information about a :ref:`fiber <atomic-threads_fibers_yields>`.
+    Fiber - contains information about a :ref:`fiber <application_server_fibers>`.
 
 .. c:type:: typedef int (*fiber_func)(va_list)
 
@@ -195,7 +195,7 @@
 .. c:type:: struct fiber_cond
 
     A conditional variable: a synchronization primitive that allow fibers in
-    Tarantool's :ref:`cooperative multitasking <atomic-cooperative_multitasking>`
+    Tarantool's :ref:`cooperative multitasking <app-cooperative_multitasking>`
     environment to yield until some predicate is satisfied.
 
     Fiber conditions have two basic operations -- "wait" and "signal", -- where
