@@ -790,11 +790,16 @@ recommended.
 
     ..  method:: cancel()
 
-        Cancel a fiber. Running and suspended fibers can be cancelled.
+        Send a cancellation request to the fiber. Running and suspended fibers can be cancelled.
         After a fiber has been cancelled, attempts to operate on it will
         cause errors, for example :ref:`fiber_object:name() <fiber_object-name_get>`
         will cause ``error: the fiber is dead``. But a dead fiber can still
         report its id and status.
+        
+        Cancellation is asynchronous.
+        Use :ref:`fiber_object:join() <fiber_object-join>` to wait for the cancellation to complete.
+        After ``fiber_object:cancel()`` is called, the fiber may or may not check whether it was cancelled.
+        If the fiber does not check it, it cannot ever be cancelled.
 
         :param fiber_object: generally this is an object referenced in the return
                              from :ref:`fiber.create <fiber-create>`
