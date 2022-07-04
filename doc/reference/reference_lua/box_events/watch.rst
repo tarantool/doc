@@ -15,6 +15,12 @@ box.watch()
 
     To read more about watchers, see the `Functions for watchers <box-watchers>` section.
 
+    ..  note::
+
+        Keep in mind that garbage collection of a watcher handle doesn't lead to the watcher's destruction.
+        In this case, the watcher remains registered.
+        It is okay to discard the result of ``watch`` function if the watcher will never be unregistered.
+
     **Example:**
 
     ..  code-block:: lua

@@ -547,7 +547,7 @@ Below is a list of all ``net.box`` functions.
 
         To read more about watchers, see the `Functions for watchers <box-watchers>` section.
 
-        The method has the same syntax as the :doc:`box.watch() </reference/reference_lua/box_watchers/broadcast>`
+        The method has the same syntax as the :doc:`box.watch() </reference/reference_lua/box_events/broadcast>`
         function, which is used for subscribing to events locally.
 
         Watchers survive reconnection (see the ``reconnect_after`` connection :ref:`option <net_box-new>`).
@@ -557,6 +557,12 @@ Below is a list of all ``net.box`` functions.
         If a remote host supports watchers, the ``watchers`` key will be set in the
         connection ``peer_protocol_features``.
         For details, check the :ref:`net.box features table <net_box-new>`.
+
+        ..  note::
+
+            Keep in mind that garbage collection of a watcher handle doesn't lead to the watcher's destruction.
+            In this case, the watcher remains registered.
+            It is okay to discard the result of ``watch`` function if the watcher will never be unregistered.
 
         **Example:**
 
@@ -575,7 +581,7 @@ Below is a list of all ``net.box`` functions.
             -- Subscribe to updates of the 'foo' key.
             w = conn:watch('foo', function(key, value)
                 assert(key == 'foo')
-            -- do something with value
+                -- do something with value
             end)
             -- Unregister the watcher if it is no longer needed.
             w:unregister()
