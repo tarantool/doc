@@ -84,7 +84,7 @@ to ``read-committed``, use the following command:
 
 ..  code-block:: lua
 
-    box.cfg{default_txn_isolation = 'read-committed'}
+    box.cfg{txn_isolation = 'read-committed'}
 
 You can also set an isolation level for specific transactions in their ``box.begin()`` calls:
 
