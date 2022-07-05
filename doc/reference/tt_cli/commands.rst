@@ -15,19 +15,19 @@ help for the given command.
         *   -   ``stop``
             -   Stop a Tarantool instance
         *   -   ``status``
-            -   Get the current status of a Tarantool instance (``RUNNING``/``NOT RUNNING``)
+            -   Get the current status of a Tarantool instance
         *   -   ``restart``
             -   Restart a Tarantool instance
         *   -   ``version``
             -   Show the ``tt`` version information
         *   -   ``completion``
-            -   Set up autocompletion for a specified shell
+            -   Generate autocompletion for a specified shell
         *   -   ``help``
             -   Display help for ``tt`` of a specific command
         *   -   ``logrotate``
             -   :ref:`Rotate logs <admin-logs>`
         *   -   ``check``
-            -   Check an instance file for syntax errors
+            -   Check an application file for syntax errors
         *   -   ``connect``
             -   Connect to a Tarantool instance
         *   -   ``rocks``
@@ -35,4 +35,4 @@ help for the given command.
         *   -   ``cat``
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   ``play``
-            -   Play the contents of ``.snap`` or ``.xlog`` files in another Tarantool instance
+            -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance

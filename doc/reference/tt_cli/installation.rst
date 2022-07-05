@@ -6,7 +6,7 @@ tt CLI installation
   * `git <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__,
     the version control system.
   * `Go language <https://golang.org/doc/install>`__, version 1.18 or later.
-  * `mage <https://cmake.org/install/>`__ build tool.
+  * `mage <https://magefile.org/>`__ build tool.
 
 2.  Clone the `tarantool/tt <https://github.com/tarantool/tt>`_ repository:
 
