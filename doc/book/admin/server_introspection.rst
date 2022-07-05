@@ -165,6 +165,47 @@ But, to force Tarantool to release memory, you can
 call :doc:`box.snapshot() </reference/reference_lua/box_snapshot>`, stop the server instance,
 and restart it.
 
+.. _admin-inspect_traffic:
+
+Inspect traffic
+---------------
+
+Inspecting binary traffic is a boring task. We offer a
+`Wireshark plugin <https://github.com/tarantool/tarantool-dissector>`_ to
+simplify the analysis of Tarantool's traffic.
+
+To enable the plugin, follow the steps below.
+
+Clone the tarantool-dissector repository:
+
+.. code-block:: console
+
+    git clone https://github.com/tarantool/tarantool-dissector.git
+
+Copy or symlink the plugin files into the Wireshark plugin directory:
+
+.. code-block:: console
+
+    mkdir -p ~/.local/lib/wireshark/plugins
+    cd ~/.local/lib/wireshark/plugins
+    ln -s /path/to/tarantool-dissector/MessagePack.lua ./
+    ln -s /path/to/tarantool-dissector/tarantool.dissector.lua ./
+
+(For the location of the plugin directory on macOS and Windows, please refer to
+the `Plugin folders <https://www.wireshark.org/docs/wsug_html_chunked/ChPluginFolders.html>`_
+chapter in the Wireshark documentation.)
+
+Run the Wireshark GUI and ensure that the plugins are loaded:
+
+* Open :guilabel:`Help` > :guilabel:`About Wireshark` > :guilabel:`Plugins`.
+* Find ``MessagePack.lua`` and ``tarantool.dissector.lua`` in the list.
+
+Now you can inspect incoming and outgoing Tarantool packets with user-friendly
+annotations.
+
+Visit the project page for details:
+`https://github.com/tarantool/tarantool-dissector <https://github.com/tarantool/tarantool-dissector>`_.
+
 .. _admin-profiling_performance_issues:
 
 Profiling performance issues
