@@ -60,13 +60,6 @@ option to enable it via ``box.cfg``.
 Setting the transaction isolation level
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-..  note::
-
-    For autocommit transactions (actions with a statement without explicit ``box.begin/commit`` calls) 
-    there is an obvious rule: read-only transactions (for example, ``select``) are performed with ``read-confirmed``; 
-    all others (for example, ``replace``) with ``read-committed``.
-
-
 The transaction manager has three options for the :ref:`transaction isolation level <transaction_model_levels>`:
 
 *   ``best-effort`` (default)
@@ -79,8 +72,7 @@ Using ``best-effort`` as the default option allows MVCC to consider the actions 
 independently and determine the best :ref:`isolation level <transaction_model_levels>` for them.
 It increases the probability of successful completion of the transaction and helps to avoid possible conflicts.
 
-To set the default isolation level with the other option, for example, 
-to ``read-committed``, use the following command:
+To set another default isolation level, for example, ``read-committed``, use the following command:
 
 ..  code-block:: lua
 
@@ -97,8 +89,12 @@ to the one set in ``box.cfg``.
 
 ..  note::
 
-    You can set the isolation level in the net.box :ref:`stream:begin() <net_box-stream_begin>` method
-    and :ref:`IPROTO_BEGIN <box_protocol-begin>` binary protocol request.
+    For autocommit transactions (actions with a statement without explicit ``box.begin/commit`` calls)
+    there is an obvious rule: read-only transactions (for example, ``select``) are performed with ``read-confirmed``;
+    all others (for example, ``replace``) -- with ``read-committed``.
+
+You can also set the isolation level in the net.box :ref:`stream:begin() <net_box-stream_begin>` method
+and :ref:`IPROTO_BEGIN <box_protocol-begin>` binary protocol request.
 
 
 Choosing the better option depends on whether you have conflicts or not. 
