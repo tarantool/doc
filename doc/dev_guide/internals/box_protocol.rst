@@ -739,21 +739,16 @@ The body is optional and can contain two items:
 IPROTO_TIMEOUT is an optional timeout (in seconds). After it expires,
 the transaction will be rolled back automatically.
 
-.. // TODO: add link to transaction isolation docs once they're ready
+IPROTO_TXN_ISOLATION is the :ref:`transaction isolation level <txn_mode_mvcc-options>`.
+It can take the following values:
 
-IPROTO_TXN_ISOLATION is the transaction isolation level. It can take
-the following values:
-
-.. // TODO: provide links to level descriptions
-
-- ``TXN_ISOLATION_DEFAULT = 0``	-- use the global default level (default value)
+- ``TXN_ISOLATION_DEFAULT = 0``	-- use the default level from ``box.cfg`` (default value)
 - ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read changes that are committed but not confirmed yet
 - ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read confirmed changes
 - ``TXN_ISOLATION_BEST_EFFORT = 3`` -- determine isolation level automatically
 
 See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
 stream transactions in the binary protocol.
-
 
 ..  _box_protocol-commit:
 

@@ -680,10 +680,12 @@ Below is a list of all ``net.box`` functions.
 
     .. _net_box-stream_begin:
 
-    .. method:: begin()
+    .. method:: begin([txn_isolation])
 
         Begin a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction.
-           
+
+        :param txn_isolation: :ref:`transaction isolation level <txn_mode_mvcc-options>`
+
     .. _net_box-stream_commit:
 
     .. method:: commit()
