@@ -86,14 +86,14 @@ to ``read-committed``, use the following command:
 
     box.cfg{txn_isolation = 'read-committed'}
 
-You can also set an isolation level for specific transactions in their ``box.begin()`` calls:
+You can also set an isolation level for a specific transaction in its ``box.begin()`` call:
 
 ..  code-block:: lua
 
     box.begin({tnx_isolation = 'best-effort'})
 
-In this case, there is additionally the ``default`` option. It sets the transaction's isolation level
-to the one that is set in ``box.cfg``.
+In this case, you can also use the ``default`` option. It sets the transaction's isolation level
+to the one set in ``box.cfg``.
 
 ..  note::
 
@@ -102,7 +102,7 @@ to the one that is set in ``box.cfg``.
 
 
 Choosing the better option depends on whether you have conflicts or not. 
-If you have many conflicts, you should set the different options or use 
+If you have many conflicts, you should set a different option or use 
 the :ref:`default transaction mode <txn_mode-default>`.
 
 
