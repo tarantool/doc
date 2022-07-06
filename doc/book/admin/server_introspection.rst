@@ -1,14 +1,12 @@
 .. _admin-server_introspection:
 
-================================================================================
 Server introspection
-================================================================================
+====================
 
 .. _admin-using_tarantool_as_a_client:
 
---------------------------------------------------------------------------------
 Using Tarantool as a client
---------------------------------------------------------------------------------
+---------------------------
 
 Tarantool enters the interactive mode if:
 
@@ -26,9 +24,8 @@ The interactive mode is used by ``tarantoolctl`` to implement "enter" and
 
 .. _admin-executing_code_on_an_instance:
 
---------------------------------------------------------------------------------
 Executing code on an instance
---------------------------------------------------------------------------------
+-----------------------------
 
 You can attach to an instance's :ref:`admin console <admin-security>` and
 execute some Lua code using ``tarantoolctl``:
@@ -75,9 +72,8 @@ attaching to its admin console. For example:
 
 .. _admin-health_checks:
 
---------------------------------------------------------------------------------
 Health checks
---------------------------------------------------------------------------------
+-------------
 
 To check the instance status, say:
 
@@ -171,9 +167,8 @@ and restart it.
 
 .. _admin-profiling_performance_issues:
 
---------------------------------------------------------------------------------
 Profiling performance issues
---------------------------------------------------------------------------------
+----------------------------
 
 Tarantool can at times work slower than usual. There can be multiple reasons,
 such as disk issues, CPU-intensive Lua scripts or misconfiguration.
@@ -187,9 +182,8 @@ profile, which is helpful in troubleshooting slowdowns.
     Most of these tools -- except ``fiber.info()`` -- are intended for
     generic GNU/Linux distributions, but not FreeBSD or Mac OS.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 fiber.info()
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
 
 The simplest profiling method is to take advantage of Tarantool’s built-in
 functionality. :ref:`fiber.info() <fiber-info>` returns information about all
@@ -317,9 +311,8 @@ If you can't understand which fiber causes performance issues, collect the
 metrics of the ``fiber.info()`` output for 10-15 seconds using the script above
 and contact the Tarantool team at support@tarantool.org.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Poor man’s profilers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 **pstack <pid>**
 
@@ -452,9 +445,8 @@ support@tarantool.org.
     process, this stops the process execution for about a second, which may leave
     a serious footprint in high-load services.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 gperftools
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~
 
 To use the CPU profiler from the Google Performance Tools suite with Tarantool,
 first take care of the prerequisites:
@@ -541,9 +533,8 @@ Your output should look similar to this:
            5 0.8% 57.9% 5 0.8% lj_alloc_malloc
            5 0.8% 58.7% 131 21.9% vy_prepare
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 perf
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~
 
 This tool for performance monitoring and analysis is installed separately via
 your package manager. Try running the ``perf`` command in the terminal and
@@ -632,9 +623,8 @@ Unlike the poor man’s profilers, ``gperftools`` and ``perf`` have low overhead
 in long delays when attaching to a process and therefore can be used without
 serious consequences.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 jit.p
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
 
 
 The jit.p profiler comes with the Tarantool application server, to load it one
