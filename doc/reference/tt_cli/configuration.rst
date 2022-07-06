@@ -6,8 +6,8 @@ tt CLI configuration
 Configuration file
 ------------------
 
-The ``tt`` configuration file defines aspects of its runtime, such as directories
-that it uses and log retention parameters.
+The key artifact that defines the ``tt`` environment and various aspects of its
+execution is its configuration file.
 
 By default, the configuration file is called ``tarantool.yaml``. The location
 where ``tt`` searches it depends on the :ref:`launch mode <tt-config_modes>`.
@@ -34,6 +34,7 @@ modules section
 ~~~~~~~~~~~~~~~
 
 * ``directory`` -- a directory where external modules are stored.
+.. // TODO: add link to external modules doc page when it's ready
 
 app section
 ~~~~~~~~~~~
@@ -52,7 +53,7 @@ app section
     ..  note::
 
         A day is defined as exactly 24 hours. It may not exactly correspond to
-        calendar days due to daylight savings, leap seconds, and other.
+        calendar days due to daylight savings, leap seconds, and other time adjustments.
 
 *   ``log_maxbackups`` -- the maximum number of stored log files.
     Default: not defined (don't delete log files based on their count).

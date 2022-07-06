@@ -21,11 +21,7 @@ tt CLI installation
       cd tt
       mage build
 
-4.  Add the ``tt`` location to the ``PATH`` variable to make it available as a shell command:
-
-    ..  code-block:: bash
-
-        export PATH=$PATH:/path/to/tt
+``tt`` will appear in the current directory.
 
 Enabling shell completion
 -------------------------

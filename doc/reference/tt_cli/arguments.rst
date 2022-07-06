@@ -12,20 +12,23 @@ tt CLI arguments
         *   -   ``--cfg=FILE``
 
                 ``-c=FILE``
-            -   Path to the :ref:`configuration file <tt-config_file>`
+            -   Path to the :ref:`configuration file <tt-config_file>`.
         *   -   ``--internal``
 
                 ``-i``
-            -   Use the internal mode
+            -   Force the use of an internal module even if there is an external module with the same name.
+                .. // TODO: add link to external modules doc page when it's ready
         *   -   ``--local=DIRECTORY``
 
                 ``-L=DIRECTORY``
-            -   Launch ``tt`` in the :ref:`local mode <tt-config_modes>`
+            -   Use the ``tt`` environment from the specified directory.
+                Learn more about the :ref:`local launch mode <tt-config_modes>`.
         *   -   ``--system``
 
                 ``-S``
-            -   Launch ``tt`` in the :ref:`system mode <tt-config_modes>`
+            -   Use the ``tt`` environment installed in the system.
+                Learn more about the :ref:`system launch mode <tt-config_modes>`.
         *   -   ``--help``
 
                 ``-h``
-            -   Display help
+            -   Display help.
