@@ -70,7 +70,7 @@ Launch modes
 ..  container:: table
 
     ..  list-table::
-        :widths: 10 20 35 35
+        :widths: 10 25 35 30
         :header-rows: 1
 
         *   -   Mode
