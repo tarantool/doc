@@ -75,7 +75,7 @@ Launch modes
 
         *   -   Mode
             -   Argument
-            -   Configuration file
+            -   Configuration file location
             -   Working directory
         *   -   Default
             -   --
@@ -92,8 +92,8 @@ Launch modes
             -   ``--local=DIRECTORY``
 
                 ``-L=DIRECTORY``
+            -   Searched from the specified directory to the root.
+                ``/etc/tarantool`` if the file is not found.
             -   The specified directory.
                 If tarantool or tt executable files are found in working directory,
                 they will be used further.
-            -   Searched from the working directory to the root.
-                ``/etc/tarantool`` if the file is not found.
