@@ -48,7 +48,7 @@ app section
     in megabytes. Default: 100.
 *   ``log_maxage`` -- the maximum age of log files in days. The age of a log
     file is defined by the timestamp encoded in its name. Default: not defined
-    (don't delete log files based on their age).
+    (log files aren't deleted based on their age).
 
     ..  note::
 
@@ -56,7 +56,7 @@ app section
         calendar days due to daylight savings, leap seconds, and other time adjustments.
 
 *   ``log_maxbackups`` -- the maximum number of stored log files.
-    Default: not defined (don't delete log files based on their count).
+    Default: not defined (log files aren't deleted based on their count).
 *   ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
     Default: ``false``.
 
@@ -65,35 +65,39 @@ app section
 Launch modes
 ------------
 
-``tt`` launch mode defines its working directory and the way it searches for the configuration file:
+``tt`` launch mode defines its working directory and the way it searches for the
+configuration file. There are three launch modes:
 
-..  container:: table
+*   default
+*   system
+*   local
 
-    ..  list-table::
-        :widths: 10 25 35 30
-        :header-rows: 1
+Default launch
+~~~~~~~~~~~~~~
 
-        *   -   Mode
-            -   Argument
-            -   Configuration file location
-            -   Working directory
-        *   -   Default
-            -   --
-            -   Searched from the current directory to the root.
-                ``/etc/tarantool`` if the file is not found.
-            -   The directory where the configuration file is found.
-        *   -   System launch
-            -   ``--system``
+**Argument**: none
 
-                ``-S``
-            -   ``/etc/tarantool``
-            -   Current directory.
-        *   -   Local launch
-            -   ``--local=DIRECTORY``
+**Configuration file**: searched from the current directory to the root.
+Taken from ``/etc/tarantool`` if the file is not found.
 
-                ``-L=DIRECTORY``
-            -   Searched from the specified directory to the root.
-                ``/etc/tarantool`` if the file is not found.
-            -   The specified directory.
-                If tarantool or tt executable files are found in the working directory,
-                they will be used.
+**Working directory**: The directory where the configuration file is found.
+
+System launch
+~~~~~~~~~~~~~~
+
+**Argument**: ``--system`` or ``-S``
+
+**Configuration file**: Taken from ``/etc/tarantool``.
+
+**Working directory**: Current directory.
+
+Local launch
+~~~~~~~~~~~~~~
+
+**Argument**: ``--local=DIRECTORY``or ``-L=DIRECTORY``
+
+**Configuration file**: Searched from the specified directory to the root.
+Taken from ``/etc/tarantool`` if the file is not found.
+
+**Working directory**: The specified directory. If ``tarantool`` or ``tt``
+executable files are found in the working directory, they will be used.
