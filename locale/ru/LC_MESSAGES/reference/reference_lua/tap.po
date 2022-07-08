@@ -1,5 +1,6 @@
 
-msgid "Module `tap`"
+#, fuzzy
+msgid "Module tap"
 msgstr "Модуль `tap`"
 
 msgid "Overview"
@@ -200,9 +201,9 @@ msgid ""
 msgstr ""
 "Такую проверку следует проводить только по завершении всех запланированных "
 "тестов, поэтому как правило, ``taptest:check()`` появится лишь в конце "
-"скрипта. Тем не менее, в качестве расширения Tarantool, "
-"``taptest:check()`` может появиться в начале любого подтеста. Таким образом,"
-" проверка появится в трех случаях:"
+"скрипта. Тем не менее, в качестве расширения Tarantool, ``taptest:check()`` "
+"может появиться в начале любого подтеста. Таким образом, проверка появится в"
+" трех случаях:"
 
 msgid "by calling ``taptest:check()`` at the end of a script,"
 msgstr "при вызове ``taptest:check()`` в конце скрипта,"
@@ -360,14 +361,35 @@ msgstr ""
 "Проверка соответствия значения определенному типу. Отображается длинное "
 "сообщение, если значение не принадлежит указанному типу."
 
+msgid "value the type of which is to be checked"
+msgstr ""
+
+msgid "type of data that a passed value should have"
+msgstr ""
+
+msgid "text that will be shown to the user in case of failure"
+msgstr ""
+
+msgid ""
+"test:iscdata(slab_info.quota_size, ffi.typeof('uint64_t'), "
+"'memcached.slab.info().quota_size returns a cdata')"
+msgstr ""
+
 msgid ""
 "Set ``taptest.strict=true`` if :ref:`taptest:is() <taptest-is>` and "
 ":ref:`taptest:isnt() <taptest-isnt>` and :ref:`taptest:is_deeply() <taptest-"
 "is_deeply>` must be compared strictly with ``nil``. Set "
 "``taptest.strict=false`` if ``nil`` and ``box.NULL`` both have the same "
-"effect. The default is false. For example, if and only if "
-"``taptest.strict=true`` has happened, then ``taptest:is_deeply({a = "
-"box.NULL}, {})`` will return ``false``."
+"effect."
+msgstr ""
+
+msgid ""
+"The default is false. For example, if and only if ``taptest.strict=true`` "
+"has happened, then ``taptest:is_deeply({a = box.NULL}, {})`` will return "
+"``false``."
+msgstr ""
+
+msgid "Note that ``taptest.strict`` is the same for all subtests:"
 msgstr ""
 
 msgid "Example"
@@ -431,3 +453,16 @@ msgstr ""
 "    ok - 2 + 3 is not 4\n"
 "    # Some subtests for test2: end\n"
 "ok - some subtests for test2"
+
+#~ msgid ""
+#~ "Set ``taptest.strict=true`` if :ref:`taptest:is() <taptest-is>` and "
+#~ ":ref:`taptest:isnt() <taptest-isnt>` and :ref:`taptest:is_deeply() <taptest-"
+#~ "is_deeply>` must be compared strictly with ``nil``. Set "
+#~ "``taptest.strict=false`` if ``nil`` and ``box.NULL`` both have the same "
+#~ "effect. The default is false. For example, if and only if "
+#~ "``taptest.strict=true`` has happened, then ``taptest:is_deeply({a = "
+#~ "box.NULL}, {})`` will return ``false``."
+#~ msgstr ""
+
+#~ msgid "Note that ``taptest.strict`` is the same for subtests:"
+#~ msgstr ""

@@ -1,10 +1,8 @@
--------------------------------------------------------------------------------
-                                Module tap
--------------------------------------------------------------------------------
+Module tap
+==========
 
-===============================================================================
-                                   Overview
-===============================================================================
+Overview
+--------
 
 The ``tap`` module streamlines the testing of other modules. It allows writing
 of tests in the
@@ -14,9 +12,8 @@ standard TAP-analyzers so they can be passed to utilities such as
 one can run tests and then use the results for statistics, decision-making, and
 so on.
 
-===============================================================================
-                                    Index
-===============================================================================
+Index
+-----
 
 .. container:: table
 
@@ -342,10 +339,24 @@ so on.
         and :ref:`taptest:is_deeply() <taptest-is_deeply>`
         must be compared strictly with ``nil``.
         Set ``taptest.strict=false`` if ``nil`` and ``box.NULL`` both have the same effect.
+
         The default is false.
         For example, if and only if ``taptest.strict=true`` has happened,
         then ``taptest:is_deeply({a = box.NULL}, {})``
         will return ``false``.
+
+        Since :tarantool-release:`2.8.3`, ``taptest.strict`` is inherited in all subtests:
+
+        ..  code-block:: lua
+
+            t = require('tap').test('123')
+            t.strict = true
+
+            t:is_deeply({a = box.NULL}, {}) -- false
+
+            t:test('subtest', function(t)
+                t:is_deeply({a = box.NULL}, {}) -- also false
+            end)
 
 
 .. _tap-example:
