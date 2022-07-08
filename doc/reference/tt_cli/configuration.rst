@@ -1,4 +1,4 @@
-tt CLI configuration
+Configuration
 ====================
 
 .. _tt-config_file:

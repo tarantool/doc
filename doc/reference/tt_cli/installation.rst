@@ -1,4 +1,4 @@
-tt CLI installation
+Installation
 ===================
 
 1.  Install third-party software required for building ``tt``:

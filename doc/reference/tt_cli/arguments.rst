@@ -1,4 +1,4 @@
-tt CLI arguments
+Arguments
 ================
 
 ``tt`` has the following arguments:
