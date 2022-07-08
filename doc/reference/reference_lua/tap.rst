@@ -347,7 +347,7 @@ Index
 
         Since :tarantool-release:`2.8.3`, ``taptest.strict`` is inherited in all subtests:
 
-        ..  code-block: tarantoolsession
+        ..  code-block:: lua
 
             t = require('tap').test('123')
             t.strict = true
