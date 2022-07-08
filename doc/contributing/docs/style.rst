@@ -30,6 +30,27 @@ Only use the pronoun "we" in entry-level texts like getting started guides.
 In other cases, avoid using "we", because it is unclear who that is exactly.
 `Consider how Gentoo does it <https://wiki.gentoo.org/wiki/Gentoo_Wiki:Guidelines#Avoid_first_and_second_person_writing>`__.
 
+Stick to the facts
+~~~~~~~~~~~~~~~~~~
+
+Use measurable facts instead of personal judgments.
+Different users may have different ideas of what "often", "slow", or "small" means.
+
+**Bad example:** This parameter is rarely updated.
+**Good example:** This parameter is updated every two hours or more rarely.
+
+Refer to absolute time
+~~~~~~~~~~~~~~~~~~~~~~
+
+Temporal adverbs like "today", "currently", "now", "in the future", etc. are relative --
+that is, they are based on the time the documentation is created.
+
+Instead of these words, use absolute terms like version numbers or years.
+The meaning of those terms doesn't change over time.
+
+If technical documentation is tied semantically to the time it was created,
+it increases the risk of the documentation becoming obsolete.
+
 Express one idea in a sentence
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -164,7 +185,6 @@ aren't familiar with the
 <https://www.merriam-webster.com/words-at-play/ie-vs-eg-abbreviation-meaning-usage-difference>`_
 or don't know the difference between them.
 For this reason, it's best to avoid using them.
-
 
     
 Spelling and punctuation
