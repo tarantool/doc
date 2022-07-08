@@ -22,7 +22,7 @@ and :doc:`Cartridge CLI </book/cartridge/cartridge_cli/index>`.
     :maxdepth: 1
     :numbered: 0
 
-    <installation>
-    <configuration>
-    <arguments>
-    <commands>
+    installation
+    configuration
+    arguments
+    commands
