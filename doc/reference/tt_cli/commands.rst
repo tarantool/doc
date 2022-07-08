@@ -23,7 +23,7 @@ help for the given command.
         *   -   ``completion``
             -   Generate autocompletion for a specified shell
         *   -   ``help``
-            -   Display help for ``tt`` of a specific command
+            -   Display help for ``tt`` or a specific command
         *   -   ``logrotate``
             -   :ref:`Rotate logs <admin-logs>`
         *   -   ``check``

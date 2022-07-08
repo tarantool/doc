@@ -17,6 +17,7 @@ tt CLI arguments
 
                 ``-i``
             -   Force the use of an internal module even if there is an external module with the same name.
+
                 .. // TODO: add link to external modules doc page when it's ready
         *   -   ``--local=DIRECTORY``
 
