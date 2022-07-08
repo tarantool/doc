@@ -1,10 +1,8 @@
--------------------------------------------------------------------------------
-                                Module tap
--------------------------------------------------------------------------------
+Module tap
+==========
 
-===============================================================================
-                                   Overview
-===============================================================================
+Overview
+--------
 
 The ``tap`` module streamlines the testing of other modules. It allows writing
 of tests in the
@@ -14,9 +12,8 @@ standard TAP-analyzers so they can be passed to utilities such as
 one can run tests and then use the results for statistics, decision-making, and
 so on.
 
-===============================================================================
-                                    Index
-===============================================================================
+Index
+-----
 
 .. container:: table
 
