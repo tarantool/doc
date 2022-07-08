@@ -107,3 +107,23 @@ mkdir -p "${tntcxx_gs_dest}/_includes"
 yes | cp -rf "${tntcxx_root}/doc/tntcxx_getting_started.rst" "${tntcxx_gs_dest}/getting_started_cxx.rst"
 yes | cp -rf "${tntcxx_root}/examples/" "${tntcxx_gs_dest}/_includes/examples/"
 yes | cp -rf "${tntcxx_root}/doc/tntcxx_api.rst" "${tntcxx_api_dest}/cxx/"
+
+
+# Tracing module
+tracing_root="${project_root}/modules/tracing"
+tracing_dest="${project_root}/doc/reference/reference_rock/tracing"
+
+# Generate tracing docs
+cd "${tracing_root}"
+ldoc --ext=rst --dir=rst --toctree="API" .
+
+# Copy tracing docs to the right place
+mkdir -p "${tracing_dest}/_includes/"
+yes | cp -fa "${tracing_root}/rst/." "${tracing_dest}"
+pandoc -f gfm -t rst -o "${tracing_dest}/_includes/readme.rst" "${tracing_root}/README.md"
+yes | mv -f "${tracing_dest}/index.rst" "${tracing_dest}/_includes/api.rst"
+# remove header from included README file
+sed -i '1,3d' "${tracing_dest}/_includes/readme.rst"
+# edit paths in the included API file
+# Addressing in sphinx includes sometimes defies common logic
+sed -i 's,modules,tracing\/modules,g' "${tracing_dest}/_includes/api.rst"

@@ -74,3 +74,9 @@ locale/*
 /doc/getting_started/getting_started_cxx.rst
 /doc/getting_started/_includes/
 /doc/book/connectors/cxx/
+
+# tracing submodule: leaving only tracing_overview
+
+/doc/reference/reference_rock/tracing/
+/locale/en/reference/reference_rock/tracing/
+/locale/ru/LC_MESSAGES/reference/reference_rock/tracing/

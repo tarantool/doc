@@ -1,6 +1,5 @@
-**********************
-Luatest
-**********************
+Module luatest
+==============
 
 More about Luatest API see :ref:`below <luatest-api>`.
 
@@ -9,3 +8,4 @@ More about Luatest API see :ref:`below <luatest-api>`.
 .. _luatest-api:
 
 .. include:: _includes/index.rst
+    
