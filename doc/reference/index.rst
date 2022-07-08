@@ -18,5 +18,6 @@ Reference
     ../dev_guide/internals/index
     ../book/box/limitations
     interactive_console
+    tt_cli/index
     tarantoolctl
     lua_tips
