@@ -197,6 +197,10 @@ Below is a list of all ``fio`` functions and members.
     Given a full path name, remove all but the final part (the file name).
     Also remove the suffix, if it is passed.
 
+    Note that the basename of a path with a trailing slash is an empty string.
+    It is different from how the Unix ``basename`` program interprets such a
+    path.
+
     :param string path-name: path name
     :param string suffix: suffix
 
@@ -210,6 +214,15 @@ Below is a list of all ``fio`` functions and members.
         tarantool> fio.basename('/path/to/my.lua', '.lua')
         ---
         - my
+        ...
+
+    **Example with a trailing slash:**
+
+    .. code-block:: tarantoolsession
+
+        tarantool> fio.basename('/path/to/')
+        ---
+        -
         ...
 
 .. _fio-dirname:
