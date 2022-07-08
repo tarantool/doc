@@ -1,5 +1,7 @@
 Installation
-===================
+============
+
+To install the ``tt`` command-line utility:
 
 1.  Install third-party software required for building ``tt``:
 

@@ -1,5 +1,5 @@
 Configuration
-====================
+=============
 
 .. _tt-config_file:
 
@@ -82,8 +82,10 @@ Taken from ``/etc/tarantool`` if the file is not found.
 
 **Working directory**: The directory where the configuration file is found.
 
+.. _tt-config_modes-system:
+
 System launch
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 **Argument**: ``--system`` or ``-S``
 
@@ -91,10 +93,12 @@ System launch
 
 **Working directory**: Current directory.
 
-Local launch
-~~~~~~~~~~~~~~
+.. _tt-config_modes-local:
 
-**Argument**: ``--local=DIRECTORY``or ``-L=DIRECTORY``
+Local launch
+~~~~~~~~~~~~
+
+**Argument**: ``--local=DIRECTORY`` or ``-L=DIRECTORY``
 
 **Configuration file**: Searched from the specified directory to the root.
 Taken from ``/etc/tarantool`` if the file is not found.

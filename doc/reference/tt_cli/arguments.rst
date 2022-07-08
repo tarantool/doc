@@ -1,5 +1,5 @@
 Arguments
-================
+=========
 
 ``tt`` has the following arguments:
 
@@ -23,12 +23,12 @@ Arguments
 
                 ``-L=DIRECTORY``
             -   Use the ``tt`` environment from the specified directory.
-                Learn more about the :ref:`local launch mode <tt-config_modes>`.
+                Learn more about the :ref:`local launch mode <tt-config_modes-local>`.
         *   -   ``--system``
 
                 ``-S``
             -   Use the ``tt`` environment installed in the system.
-                Learn more about the :ref:`system launch mode <tt-config_modes>`.
+                Learn more about the :ref:`system launch mode <tt-config_modes-system>`.
         *   -   ``--help``
 
                 ``-h``
