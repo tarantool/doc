@@ -37,6 +37,7 @@ Use measurable facts instead of personal judgments.
 Different users may have different ideas of what "often", "slow", or "small" means.
 
 **Bad example:** This parameter is rarely updated.
+
 **Good example:** This parameter is updated every two hours or more rarely.
 
 Refer to absolute time
@@ -50,6 +51,12 @@ The meaning of those terms doesn't change over time.
 
 If technical documentation is tied semantically to the time it was created,
 it increases the risk of the documentation becoming obsolete.
+
+**Bad example:** Previously, the functionality worked differently.
+Currently, it supports SSL.
+
+**Good example:** Before version x.y.z, the functionality worked differently.
+Since version x.y.z, it supports SSL. 
 
 Express one idea in a sentence
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
