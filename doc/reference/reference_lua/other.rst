@@ -80,7 +80,6 @@ and variables which are outside all modules.
     or if you use numbers outside the 64-bit integer range
     (for example 9223372036854775808LL is negative).
     Also you should be aware that :samp:`type({number-literal-ending-in-ULL})`
-    and :samp:`type(tonumber64({number-with-more-than-14-digits}))`
     is cdata, not a Lua arithmetic type, which prevents
     direct use with some functions in Lua libraries such as `math <https://www.lua.org/manual/5.1/manual.html#5.6>`_.
     See the `LuaJIT reference <http://luajit.org/ext_ffi_semantics.html>`_
