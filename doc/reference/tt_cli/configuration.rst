@@ -10,11 +10,11 @@ The key artifact that defines the ``tt`` environment and various aspects of its
 execution is its configuration file.
 
 By default, the configuration file is called ``tarantool.yaml``. The location
-where ``tt`` searches it depends on the :ref:`launch mode <tt-config_modes>`.
+where ``tt`` searches for it depends on the :ref:`launch mode <tt-config_modes>`.
 You can also pass the configuration file explicitly in the ``--cfg``
 :doc:`argument <arguments>`.
 
-``tt`` configuration file is a YAML file with the following content:
+The ``tt`` configuration file is a YAML file with the following content:
 
 ..  code:: yaml
 
@@ -26,24 +26,24 @@ You can also pass the configuration file explicitly in the ``--cfg``
             run_dir: path/to/run_dir
             log_dir: path/to/log_dir
             log_maxsize: num (MB)
-            log_maxage: num (Days)
+            log_maxage: num (days)
             log_maxbackups: num
             restart_on_failure: bool
 
 modules section
 ~~~~~~~~~~~~~~~
 
-* ``directory`` -- a directory where external modules are stored.
+* ``directory`` -- the directory where external modules are stored.
 .. // TODO: add link to external modules doc page when it's ready
 
 app section
 ~~~~~~~~~~~
 
-*   ``instances_available`` -- a directory where :ref:`instances <admin-instance_file>`
+*   ``instances_available`` -- the directory where :ref:`instances <admin-instance_file>`
     are stored.
-*   ``run_dir``-- a directory for instance runtime artifacts, such as console
+*   ``run_dir``-- the directory for instance runtime artifacts, such as console
     sockets or PID files.
-*   ``log_dir`` -- a directory where log files are stored.
+*   ``log_dir`` -- the directory where log files are stored.
 *   ``log_maxsize`` -- the maximum size of the log file before it gets rotated,
     in megabytes. Default: 100.
 *   ``log_maxage`` -- the maximum age of log files in days. The age of a log
@@ -65,7 +65,7 @@ app section
 Launch modes
 ------------
 
-``tt`` launch mode defines its working directory and the way it searches the configuration file:
+``tt`` launch mode defines its working directory and the way it searches for the configuration file:
 
 ..  container:: table
 
@@ -87,7 +87,7 @@ Launch modes
 
                 ``-S``
             -   ``/etc/tarantool``
-            -   Current directory
+            -   Current directory.
         *   -   Local launch
             -   ``--local=DIRECTORY``
 
@@ -95,5 +95,5 @@ Launch modes
             -   Searched from the specified directory to the root.
                 ``/etc/tarantool`` if the file is not found.
             -   The specified directory.
-                If tarantool or tt executable files are found in working directory,
-                they will be used further.
+                If tarantool or tt executable files are found in the working directory,
+                they will be used.

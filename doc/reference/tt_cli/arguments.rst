@@ -6,7 +6,7 @@ tt CLI arguments
 ..  container:: table
 
     ..  list-table::
-        :widths: 30 70
+        :widths: 40 60
         :header-rows: 0
 
         *   -   ``--cfg=FILE``

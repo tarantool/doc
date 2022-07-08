@@ -7,7 +7,7 @@ help for the given command.
 ..  container:: table
 
     ..  list-table::
-        :widths: 20 80
+        :widths: 30 70
         :header-rows: 0
 
         *   -   ``start``
@@ -31,7 +31,7 @@ help for the given command.
         *   -   ``connect``
             -   Connect to a Tarantool instance
         *   -   ``rocks``
-            -   LuaRocks package manager
+            -   Use the LuaRocks package manager
         *   -   ``cat``
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   ``play``
