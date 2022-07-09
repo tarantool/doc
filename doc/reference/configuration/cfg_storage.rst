@@ -29,6 +29,7 @@
 
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456 bytes
+    | Minimum: 33554432 bytes (32 MB)
     | Environment variable: TT_MEMTX_MEMORY
     | Dynamic: **yes** but it cannot be decreased
 
