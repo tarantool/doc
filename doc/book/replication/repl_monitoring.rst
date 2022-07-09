@@ -1,13 +1,12 @@
 .. _replication-monitoring:
 
-================================================================================
 Monitoring a replica set
-================================================================================
+========================
 
 To learn what instances belong in the replica set, and obtain statistics for all
 these instances, issue a :doc:`/reference/reference_lua/box_info/replication` request:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> box.info.replication
     ---
@@ -43,7 +42,7 @@ these instances, issue a :doc:`/reference/reference_lua/box_info/replication` re
 This report is for a master-master replica set of three instances, each having
 its own instance id, UUID and log sequence number.
 
-.. image:: mm-3m-mesh.svg
+..  image:: mm-3m-mesh.svg
     :align: center
 
 The request was issued at master #1, and the reply includes statistics for the
@@ -51,28 +50,28 @@ other two masters, given in regard to master #1.
 
 The primary indicators of replication health are:
 
-.. _heartbeat:
+..  _heartbeat:
 
-* :ref:`idle <box_info_replication_upstream_idle>`, the time (in seconds) since
-  the instance received the last event from a master.
+*   :ref:`idle <box_info_replication_upstream_idle>`, the time (in seconds) since
+    the instance received the last event from a master.
 
-  A master sends heartbeat messages to a replica every second, and the master
-  is programmed to disconnect if it does not see acknowledgments of the heartbeat messages
-  within :ref:`replication_timeout <cfg_replication-replication_timeout>` * 4
-  seconds.
+    A master sends heartbeat messages to a replica every second, and the master
+    is programmed to disconnect if it does not see acknowledgments of the heartbeat messages
+    within :ref:`replication_timeout <cfg_replication-replication_timeout>` * 4
+    seconds.
 
-  Therefore, in a healthy replication setup, ``idle`` should never exceed
-  ``replication_timeout``: if it does, either the replication is lagging
-  seriously behind, because the master is running ahead of the replica, or the
-  network link between the instances is down.
+    Therefore, in a healthy replication setup, ``idle`` should never exceed
+    ``replication_timeout``: if it does, either the replication is lagging
+    seriously behind, because the master is running ahead of the replica, or the
+    network link between the instances is down.
 
-* :ref:`lag <box_info_replication_upstream_lag>`, the time difference between
-  the local time at the instance, recorded when the event was received, and the
-  local time at another master recorded when the event was written to the
-  :ref:`write ahead log <internals-wal>` on that master.
+*   :ref:`lag <box_info_replication_upstream_lag>`, the time difference between
+    the local time at the instance, recorded when the event was received, and the
+    local time at another master recorded when the event was written to the
+    :ref:`write ahead log <internals-wal>` on that master.
 
-  Since the ``lag`` calculation uses the operating system clocks from two different
-  machines, do not be surprised if it’s negative: a time drift may lead to the
-  remote master clock being consistently behind the local instance's clock.
+    Since the ``lag`` calculation uses the operating system clocks from two different
+    machines, do not be surprised if it’s negative: a time drift may lead to the
+    remote master clock being consistently behind the local instance's clock.
 
-  For multi-master configurations, ``lag`` is the maximal lag.
+    For multi-master configurations, ``lag`` is the maximal lag.
