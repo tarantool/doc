@@ -243,7 +243,7 @@ server will be used or if ports need to be opened. For example, suppose
     #!/usr/bin/env tarantool
     box.cfg{
         listen              = os.getenv("LISTEN_URI"),
-        memtx_memory        = 100000,
+        memtx_memory        = 33554432,
         pid_file            = "tarantool.pid",
         wal_max_size        = 2500
     }
@@ -257,12 +257,12 @@ Then the screen might look like this:
 
     $ export LISTEN_URI=3301
     $ ~/tarantool/src/tarantool script.lua ARG
-    ... main/101/script.lua C> version 1.7.0-1216-g73f7154
+    ... main/101/script.lua C> Tarantool 2.8.3-0-g01023dbc2
     ... main/101/script.lua C> log level 5
-    ... main/101/script.lua I> mapping 107374184 bytes for a shared arena...
+    ... main/101/script.lua I> mapping 33554432 bytes for memtx tuple arena...
     ... main/101/script.lua I> recovery start
     ... main/101/script.lua I> recovering from './00000000000000000000.snap'
-    ... main/101/script.lua I> primary: bound to 0.0.0.0:3301
+    ... main/101/script.lua I> set 'listen' configuration option to "3301"
     ... main/102/leave_local_hot_standby I> ready to accept requests
     Starting  ARG
     ... main C> entering the event loop
