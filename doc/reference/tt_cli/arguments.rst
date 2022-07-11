@@ -16,7 +16,7 @@ Arguments
         *   -   ``--internal``
 
                 ``-i``
-            -   Force the use of an internal module even if there is an external module with the same name.
+            -   Force the use of an internal module even if there is an :doc:`external module <external_modules>` with the same name.
 
                 .. // TODO: add link to external modules doc page when it's ready
         *   -   ``--local=DIRECTORY``

@@ -33,7 +33,7 @@ The ``tt`` configuration file is a YAML file with the following content:
 modules section
 ~~~~~~~~~~~~~~~
 
-* ``directory`` -- the directory where external modules are stored.
+* ``directory`` -- the directory where :doc:`external modules <external_modules>` are stored.
 .. // TODO: add link to external modules doc page when it's ready
 
 app section

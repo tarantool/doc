@@ -1,3 +1,5 @@
+.. _tt-commands:
+
 Commands
 ========
 

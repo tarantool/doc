@@ -26,3 +26,4 @@ and :doc:`Cartridge CLI </book/cartridge/cartridge_cli/index>`.
     configuration
     arguments
     commands
+    external_modules
