@@ -54,7 +54,7 @@ modules with the same name and your own implementation.
 When ``tt`` sees two modules -- an external and an internal one -- with the same name,
 it will use the external module by default.
 
-For example, if you want get the information about your Tarantool application
+For example, if you want to get the information about your Tarantool application
 from ``tt``, write the corresponding external module ``version``. The ``tt version``
 call will execute your implementation.
 
