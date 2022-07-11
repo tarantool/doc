@@ -31,6 +31,8 @@ Router API
     |                                             | * :ref:`vshard.router.discovery_set() <router_api-discovery_set>`                                         |
     |                                             | * :ref:`vshard.router.info() <router_api-info>`                                                           |
     |                                             | * :ref:`vshard.router.buckets_info() <router_api-buckets_info>`                                           |
+    |                                             | * :ref:`vshard.router.enable() <router_api-enable>`                                                       |
+    |                                             | * :ref:`vshard.router.disable() <router_api-disable>`                                                     |
     |                                             | * :ref:`replicaset_object:call() <router_api-replicaset_call>`                                            |
     |                                             | * :ref:`replicaset_object:callro() <router_api-replicaset_callro>`                                        |
     |                                             | * :ref:`replicaset_object:callrw() <router_api-replicaset_callrw>`                                        |
@@ -768,6 +770,46 @@ Router public API
             status: available_rw
         ...
 
+..  _router_api-enable:
+
+..  function:: vshard.router.enable()
+
+    Manually allow access to the router API, revert
+    :ref:`vshard.router.disable() <router_api-disable>`.
+
+        .. NOTE::
+
+           ``vshard.router.enable()`` cannot be used for enabling the router
+           API which was automatically disabled due to running configuration
+           process.
+
+..  _router_api-disable:
+
+..  function:: vshard.router.disable()
+
+    Manually restrict access to the router API. Disabling makes all
+    its methods, excluding :ref:`vshard.router.cfg() <router_api-cfg>`,
+    :ref:`vshard.router.new() <router_api-new>`,
+    :ref:`vshard.router.enable() <router_api-enable>` and
+    :ref:`vshard.router.disable() <router_api-disable>`, to throw a Lua
+    error in case of invoking them. The error object has a name attribute
+    equal to ``ROUTER_IS_DISABLED``.
+
+    The router is enabled by default. However, it is automatically and
+    forcefully disabled until configuration is finished as accessing the
+    router's methods at that time is not safe.
+
+    Manual disabling can be used, for example, if some preparatory work needs
+    to be done after calling :ref:`vshard.router.cfg() <router_api-cfg>` but
+    before the router's methods are available. It will look like this:
+
+    ..  code-block:: lua
+
+        vshard.router.disable()
+        vshard.router.cfg(...)
+        -- Some preparatory work here ...
+        vshard.router.enable()
+        -- vshard.router's methods are available now
 
 ..  class:: replicaset_object
 
