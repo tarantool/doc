@@ -63,7 +63,7 @@ jobs:
           echo "INPUT_CPP_DRIVER=${{github.event.inputs.cpp_driver}}" >> $GITHUB_ENV
 
       - name: Start dev server deployment
-        uses: bobheadxi/deployments@v0.5.2
+        uses: bobheadxi/deployments@v1.3.0
         id: deployment
         with:
           step: start
