@@ -1,0 +1,23 @@
+.. _tt-stop:
+
+Stopping an instance
+====================
+
+..  code-block:: bash
+    tt stop [INSTANCE]
+
+``tt stop`` stops the specified Tarantool instance.
+
+Details
+-------
+
+The [INSTANCE] argument must contain the value specified when :ref:`starting the instance <tt-start>`.
+
+Examples
+--------
+
+Assuming that the instance was started with the ``tt start app`` command.
+Stop the ``app`` instance:
+
+..  code-block:: bash
+    tt stop app

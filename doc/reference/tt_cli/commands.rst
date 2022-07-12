@@ -10,11 +10,11 @@ help for the given command.
         :widths: 30 70
         :header-rows: 0
 
-        *   -   ``start``
+        *   -   :doc:`start <start>`
             -   Start a Tarantool :ref:`instance <admin-instance_file>`
-        *   -   ``stop``
+        *   -   :doc:`stop <stop>`
             -   Stop a Tarantool instance
-        *   -   ``status``
+        *   -   :doc:`status <status>`
             -   Get the current status of a Tarantool instance
         *   -   ``restart``
             -   Restart a Tarantool instance

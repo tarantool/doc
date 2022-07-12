@@ -36,6 +36,8 @@ modules section
 * ``directory`` -- the directory where external modules are stored.
 .. // TODO: add link to external modules doc page when it's ready
 
+.. _tt-config_file_app:
+
 app section
 ~~~~~~~~~~~
 
