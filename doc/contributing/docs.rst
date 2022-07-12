@@ -16,7 +16,7 @@ The guidelines are a work in progress, and we welcome all contributions.
     docs/localization
     docs/terms
     docs/markup
-    docs/examples
+    docs/api
     docs/build
     docs/sphinx-warnings
     docs/infra

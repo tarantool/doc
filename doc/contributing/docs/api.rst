@@ -1,12 +1,12 @@
-Examples and templates
-======================
+Documenting the API
+===================
 
 This document contains general guidelines for describing the Tarantool API,
 as well as examples and templates.
 
 Use this checklist for documenting a function or a method:
 
-*   General description
+*   General description (in imperative mood)
 *   :ref:`Parameters <documenting_parameters>`
 *   What this function returns (if nothing, write 'none')
 *   Return type (if exists)
@@ -82,7 +82,7 @@ Configuration parameters
 For every configuration parameter, list the following details:
 
 *   Since which Tarantool version
-*   General description
+*   General description (in imperative mood)
 *   Type
 *   Corresponding environment variable (if applicable)
 *   Default value
