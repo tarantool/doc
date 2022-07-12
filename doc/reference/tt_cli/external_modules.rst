@@ -17,10 +17,10 @@ from ``tt``, pack it into an executable, and run it with a ``tt`` command:
 The command that executes a module is the same as the name of its executable.
 
 
-Mandaroty flags
+Mandatory flags
 ---------------
 
-To be an external ``tt`` module, an executable must be able to handle two flags:
+Executables that implement external ``tt`` modules must have two flags:
 
 -   ``--description`` -- print a short description of the module. It is shown alongside
     the command in the ``tt`` help.
@@ -56,12 +56,16 @@ it will use the external module by default.
 
 For example, if you want to get the information about your Tarantool application
 from ``tt``, write the corresponding external module ``version``. The ``tt version``
-call will execute your implementation.
-
-You can force the use of the internal module by running ``tt`` with the ``--internal`` or ``-I``
-:doc:`argument <arguments>`. The following call will execute the built-in ``version`` command
-even if there is an external module ``version``:
+call will execute your implementation instead of the built-in command:
 
 ..  code-block:: bash
 
-    tt version -I
+    tt version # Calls the external module if it's available
+
+You can force the use of the internal module by running ``tt`` with the ``--internal`` or ``-I``
+:doc:`argument <arguments>`. The following call will execute the built-in ``version``
+even if there is an external module with the same name:
+
+..  code-block:: bash
+
+    tt version -I # Calls the internal module
