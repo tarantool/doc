@@ -4,7 +4,16 @@
                             Connectors
 -------------------------------------------------------------------------------
 
-This chapter documents APIs for various programming languages:
+Connectors are APIs that allow using Tarantool with various programming languages.
+
+Connectors can be divided into two groups -- those maintained by the Tarantool team
+and those supported by the community.
+The Tarantool team maintains the :ref:`high-level C API <index_connector_c>`, the :ref:`Go <index_connector_go>`
+and :ref:`Java <index_connector_java>` connectors, and a synchronous :ref:`Python <index_connector_py>` connector.
+All other connectors are community-supported, which means that support for new Tarantool features may be delayed.
+Besides, the Tarantool support team cannot prioritize issues that arise while working through these connectors.
+
+This chapter documents the following connectors:
 
 * :doc:`C++ <connectors/cxx/tntcxx_api>`
 * :ref:`Java <index_connector_java>`
