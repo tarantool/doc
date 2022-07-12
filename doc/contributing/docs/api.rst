@@ -3,6 +3,7 @@ Documenting the API
 
 This document contains general guidelines for describing the Tarantool API,
 as well as examples and templates.
+For style-related specifics, consult the :doc:`Language and style </contributing/docs/style>` section.
 
 Use this checklist for documenting a function or a method:
 
