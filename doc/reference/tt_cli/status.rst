@@ -15,7 +15,6 @@ The ``[INSTANCE]`` argument must contain the value specified when :ref:`starting
 Examples
 --------
 
-Assuming that the instance was started with the ``tt start app`` command.
 Check the status of the ``app`` instance:
 
 ..  code-block:: bash
