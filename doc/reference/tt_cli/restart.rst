@@ -1,7 +1,8 @@
-Restarting an instance
-======================
+Restarting a Tarantool instance
+===============================
 
 ..  code-block:: bash
+
     tt stop [INSTANCE]
 
 ``tt restart`` restarts the specified Tarantool instance.
@@ -20,5 +21,6 @@ Assuming that the instance was started with the ``tt start app`` command.
 Restart the ``app`` instance:
 
 ..  code-block:: bash
+
     tt restart app
 

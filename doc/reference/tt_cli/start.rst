@@ -1,9 +1,10 @@
 .. _tt-start:
 
-Starting an instance
-====================
+Starting a Tarantool instance
+=============================
 
 ..  code-block:: bash
+
     tt start [INSTANCE]
 
 ``tt start`` starts the specified Tarantool :ref:`instance <admin-instance_file>`.
@@ -35,15 +36,18 @@ All paths in the examples below are relative to the ``tt`` working directory or
 *   Start the ``app.lua`` instance:
 
     ..  code-block:: bash
+
         tt start app
 
 *   Start the ``app.lua`` instance from the ``instances`` directory:
 
     ..  code-block:: bash
+
         tt start instances/app
 
 
 *   Start the ``init.lua`` instance from the ``app/instance1/`` directory:
 
     ..  code-block:: bash
+
         tt start app/instance1

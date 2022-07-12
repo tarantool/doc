@@ -11,7 +11,7 @@ help for the given command.
         :header-rows: 0
 
         *   -   :doc:`start <start>`
-            -   Start a Tarantool :ref:`instance <admin-instance_file>`
+            -   Start a Tarantool instance
         *   -   :doc:`stop <stop>`
             -   Stop a Tarantool instance
         *   -   :doc:`status <status>`
@@ -40,7 +40,7 @@ help for the given command.
 ..  toctree::
     :hidden:
 
-    start
-    stop
-    status
-    restart
+    start <start>
+    stop <stop>
+    status <status>
+    restart <restart>
