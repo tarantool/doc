@@ -17,8 +17,8 @@ from ``tt``, pack it into an executable, and run it with a ``tt`` command:
 The command that executes a module is the same as the name of its executable.
 
 
-Mandatory flags
----------------
+Module description and help
+---------------------------
 
 Executables that implement external ``tt`` modules must have two flags:
 
