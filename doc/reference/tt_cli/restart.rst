@@ -12,7 +12,7 @@ A ``tt restart`` call is equivalent to subsequent calls of
 Details
 -------
 
-The [INSTANCE] argument must contain the value specified when :ref:`starting the instance <tt-start>`.
+The ``[INSTANCE]`` argument must contain the value specified when :ref:`starting the instance <tt-start>`.
 
 Examples
 --------

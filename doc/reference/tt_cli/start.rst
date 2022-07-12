@@ -8,12 +8,12 @@ Starting a Tarantool instance
     tt start [INSTANCE]
 
 ``tt start`` starts the specified Tarantool :ref:`instance <admin-instance_file>`.
-The specified [INSTANCE] value is used as this instance's identifier.
+The specified ``[INSTANCE]`` value is used as this instance's identifier.
 
 Details
 -------
 
-The [INSTANCE] argument must specify a path to the instance file:
+The ``[INSTANCE]`` argument must specify a path to the instance file:
 
 *   from the ``instances_available`` path specified in the
     :ref:`tt configuration file <tt-config_file_app>`.
@@ -22,9 +22,9 @@ The [INSTANCE] argument must specify a path to the instance file:
 
 ..  important::
 
-  The [INSTANCE] value must not include the ``.lua`` file extension.
+  The ``[INSTANCE]`` value must not include the ``.lua`` file extension.
 
-The [INSTANCE] value can be a directory name. In this case, ``tt`` starts
+The ``[INSTANCE]`` value can be a directory name. In this case, ``tt`` starts
 the ``init.lua`` instance from this directory.
 
 Examples
