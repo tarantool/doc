@@ -16,7 +16,7 @@ help for the given command.
             -   Stop a Tarantool instance
         *   -   :doc:`status <status>`
             -   Get the current status of a Tarantool instance
-        *   -   ``restart``
+        *   -   :doc:`restart <restart>`
             -   Restart a Tarantool instance
         *   -   ``version``
             -   Show the ``tt`` version information
@@ -36,3 +36,11 @@ help for the given command.
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   ``play``
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
+
+..  toctree::
+    :hidden:
+
+    start
+    stop
+    status
+    restart
