@@ -3,7 +3,12 @@ Documenting the API
 
 This document contains general guidelines for describing the Tarantool API,
 as well as examples and templates.
-For style-related specifics, consult the :doc:`Language and style </contributing/docs/style>` section.
+
+Please write as simply as possible. Describe functionality using short sentences in the present simple tense.
+A short sentence consists of no more than two clauses.
+Consider using `LanguageTool <https://languagetool.org/>`_ or `Grammarly <https://www.grammarly.com/>`_
+to check your English.
+For more style-related specifics, consult the :doc:`Language and style </contributing/docs/style>` section.
 
 Use this checklist for documenting a function or a method:
 
