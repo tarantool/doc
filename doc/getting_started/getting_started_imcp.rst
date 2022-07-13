@@ -61,15 +61,16 @@ if you want to get better acquainted with it.
 ..  note::
 
     In case of a problem with `cartridge build`, run it with the `--verbose` flag
-    to learn about the source of the problem.
-        
-    If there is a problem with one of the dependencies
-    ("Error: Could not satisfy dependency %dependency_name% scm-1"),
-    try forcefully removing the `node_modules` directory from the dependency's directory:
+    to learn about the source of the problem. If there is a problem with Node.js (`npm`):
+    
+    1.   Check that Node.js is in the `$PATH`.
 
-    `rm -rf %dependency_name%/node_modules`
+    2.   Try forcefully removing the `node_modules` directory from the dependencies' directories:
+
+    `rm -rf analytics/node_modules front/node_modules`
 
     After that, try running `cartridge build` again.
+    If all else fails, please `file us an issue on GitHub <https://github.com/tarantool/getting-started/issues/new>`_.
 
 
 You're all set! At http://localhost:8081, you will see the Tarantool Cartridge UI.
