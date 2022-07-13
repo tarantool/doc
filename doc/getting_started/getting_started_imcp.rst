@@ -33,29 +33,44 @@ if you want to get better acquainted with it.
 
 **For Linux/macOS users:**
 
-*  Install Tarantool from the `Download page <https://tarantool.io/ru/download>`__.
-*  Install the ``cartridge-cli`` utility through your package manager:
+*   Install Tarantool from the `Download page <https://tarantool.io/ru/download>`__.
+*   Install `Node.js <https://nodejs.org/en/download/>`_, which is required for the tutorial frontend.
+*   Install the ``cartridge-cli`` utility through your package manager:
 
-   ..  code-block:: bash
+    ..  code-block:: bash
 
-      sudo yum install cartridge-cli
+        sudo yum install cartridge-cli
 
-   ..  code-block:: bash
+    ..  code-block:: bash
 
-      brew install cartridge-cli
+        brew install cartridge-cli
 
-   To learn more, check the ``cartridge-cli``
-   :doc:`installation guide </book/cartridge/cartridge_cli/installation/>`.
+    To learn more, check the ``cartridge-cli``
+    :doc:`installation guide </book/cartridge/cartridge_cli/installation/>`.
 
-* Clone the `Getting Started tutorial repository <https://github.com/tarantool/getting-started>`__.
+*   Clone the `Getting Started tutorial repository <https://github.com/tarantool/getting-started>`__.
 
-   Everything is ready and organized in this repository.
-   In the cloned directory, run the following:
+    Everything is ready and organized in this repository.
+    In the cloned directory, run the following:
 
-   ..  code-block:: bash
+    ..  code-block:: bash
 
-       cartridge build
-       cartridge start
+        cartridge build
+        cartridge start
+    
+..  note::
+
+    In case of a problem with `cartridge build`, run it with the `--verbose` flag
+    to learn about the source of the problem.
+        
+    If there is a problem with one of the dependencies
+    ("Error: Could not satisfy dependency %dependency_name% scm-1"),
+    try forcefully removing the `node_modules` directory from the dependency's directory:
+
+    `rm -rf %dependency_name%/node_modules`
+
+    After that, try running `cartridge build` again.
+
 
 You're all set! At http://localhost:8081, you will see the Tarantool Cartridge UI.
 
@@ -96,10 +111,10 @@ Configuring a cluster [1 minute]
 
 A Tarantool cluster has two service roles: router and storage.
 
-*  Storage is used to store data.
-*  Router is an intermediary between clients and storages.
-   It accepts a client's request, takes data from the proper storage,
-   and returns it to the client.
+*   Storage is used to store data.
+*   Router is an intermediary between clients and storages.
+    It accepts a client's request, takes data from the proper storage,
+    and returns it to the client.
 
 We see that we have 5 unconfigured instances on the "Cluster" tab.
 
@@ -148,9 +163,9 @@ First, let's create the necessary tables. In Tarantool, they are called spaces.
 
 We need to store:
 
-*  Users
-*  Videos with descriptions
-*  Likes for each video
+*   Users
+*   Videos with descriptions
+*   Likes for each video
 
 Create a ``schema.yml`` file to load the schema into the cluster.
 Copy and paste schema to this file. Click the "Apply" button.
@@ -158,69 +173,69 @@ After that, the data schema will be described in the cluster.
 
 This is what our data schema will look like:
 
-   ..  code-block:: yaml
+    ..  code-block:: yaml
 
-       spaces:
-         users:
-           engine: memtx
-           is_local: false
-           temporary: false
-           sharding_key:
-           - "user_id"
-           format:
-           - {name: bucket_id, type: unsigned, is_nullable: false}
-           - {name: user_id, type: uuid, is_nullable: false}
-           - {name: fullname, type: string, is_nullable: false}
-           indexes:
-           - name: user_id
-             unique: true
-             parts: [{path: user_id, type: uuid, is_nullable: false}]
-             type: HASH
-           - name: bucket_id
-             unique: false
-             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-             type: TREE
-         videos:
-           engine: memtx
-           is_local: false
-           temporary: false
-           sharding_key:
-           - "video_id"
-           format:
-           - {name: bucket_id, type: unsigned, is_nullable: false}
-           - {name: video_id, type: uuid, is_nullable: false}
-           - {name: description, type: string, is_nullable: true}
-           indexes:
-           - name: video_id
-             unique: true
-             parts: [{path: video_id, type: uuid, is_nullable: false}]
-             type: HASH
-           - name: bucket_id
-             unique: false
-             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-             type: TREE
+        spaces:
+          users:
+            engine: memtx
+            is_local: false
+            temporary: false
+            sharding_key:
+            - "user_id"
+            format:
+            - {name: bucket_id, type: unsigned, is_nullable: false}
+            - {name: user_id, type: uuid, is_nullable: false}
+            - {name: fullname, type: string, is_nullable: false}
+            indexes:
+            - name: user_id
+              unique: true
+              parts: [{path: user_id, type: uuid, is_nullable: false}]
+              type: HASH
+            - name: bucket_id
+              unique: false
+              parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+              type: TREE
+          videos:
+            engine: memtx
+            is_local: false
+            temporary: false
+            sharding_key:
+            - "video_id"
+            format:
+            - {name: bucket_id, type: unsigned, is_nullable: false}
+            - {name: video_id, type: uuid, is_nullable: false}
+            - {name: description, type: string, is_nullable: true}
+            indexes:
+            - name: video_id
+              unique: true
+              parts: [{path: video_id, type: uuid, is_nullable: false}]
+              type: HASH
+            - name: bucket_id
+              unique: false
+              parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+              type: TREE
 
-         likes:
-           engine: memtx
-           is_local: false
-           temporary: false
-           sharding_key:
-           - "video_id"
-           format:
-           - {name: bucket_id, type: unsigned, is_nullable: false}
-           - {name: like_id, type: uuid, is_nullable: false}
-           - {name: user_id, type: uuid, is_nullable: false}
-           - {name: video_id, type: uuid, is_nullable: false}
-           - {name: timestamp, type: string, is_nullable: true}
-           indexes:
-           - name: like_id
-             unique: true
-             parts: [{path: like_id, type: uuid, is_nullable: false}]
-             type: HASH
-           - name: bucket_id
-             unique: false
-             parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
-             type: TREE
+          likes:
+            engine: memtx
+            is_local: false
+            temporary: false
+            sharding_key:
+            - "video_id"
+            format:
+            - {name: bucket_id, type: unsigned, is_nullable: false}
+            - {name: like_id, type: uuid, is_nullable: false}
+            - {name: user_id, type: uuid, is_nullable: false}
+            - {name: video_id, type: uuid, is_nullable: false}
+            - {name: timestamp, type: string, is_nullable: true}
+            indexes:
+            - name: like_id
+              unique: true
+              parts: [{path: like_id, type: uuid, is_nullable: false}]
+              type: HASH
+            - name: bucket_id
+              unique: false
+              parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+              type: TREE
 
 It's simple. Let's take a closer look at the essential points.
 
@@ -240,8 +255,8 @@ and the necessary indexes for each of the spaces.
 
 Each space has two indexes:
 
-*  The primary key, which is required to read/write data.
-*  An index on the bucket_id field, which is a service field used for sharding.
+*   The primary key, which is required to read/write data.
+*   An index on the bucket_id field, which is a service field used for sharding.
 
 **Important:** The name ``bucket_id`` is reserved. If you choose
 another name, sharding won't work for this space.
