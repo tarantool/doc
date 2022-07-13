@@ -3,14 +3,14 @@ Checking instance status
 
 ..  code-block:: bash
 
-    tt status [INSTANCE]
+    tt status INSTANCE
 
 ``tt status`` prints the current status of the specified Tarantool instance.
 
 Details
 -------
 
-The ``[INSTANCE]`` argument must contain the value specified when :ref:`starting the instance <tt-start>`.
+The ``INSTANCE`` argument must contain the value specified when :ref:`starting the instance <tt-start>`.
 
 Examples
 --------

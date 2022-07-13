@@ -3,7 +3,7 @@ Restarting a Tarantool instance
 
 ..  code-block:: bash
 
-    tt stop [INSTANCE]
+    tt stop INSTANCE
 
 ``tt restart`` restarts the specified Tarantool instance.
 A ``tt restart`` call is equivalent to subsequent calls of
@@ -12,7 +12,7 @@ A ``tt restart`` call is equivalent to subsequent calls of
 Details
 -------
 
-The ``[INSTANCE]`` argument must contain the value specified when :ref:`starting the instance <tt-start>`.
+The ``INSTANCE`` argument must contain the value specified when :ref:`starting the instance <tt-start>`.
 
 Examples
 --------
