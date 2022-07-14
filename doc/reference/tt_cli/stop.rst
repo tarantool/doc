@@ -7,12 +7,7 @@ Stopping a Tarantool instance
 
     tt stop INSTANCE
 
-``tt stop`` stops the specified Tarantool instance.
-
-Details
--------
-
-The ``INSTANCE`` argument must contain the value specified when :ref:`starting the instance <tt-start>`.
+``tt stop`` stops the specified running Tarantool instance.
 
 Examples
 --------
