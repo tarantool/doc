@@ -126,40 +126,62 @@ Lua versus MsgPack
 
 .. container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
-    .. rst-class:: left-align-column-3
-    .. rst-class:: left-align-column-4
+    ..  list-table::
+        :widths: 15 20 30 35
+        :header-rows: 1
 
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | Scalar / compound | MsgPack |nbsp| type     | Lua type                       | Example value                |
-    +===================+=========================+================================+==============================+
-    | scalar            | nil                     | "`nil`_"                       | ``nil``                      |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | scalar            | boolean                 | "`boolean`_"                   | ``true``                     |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | scalar            | string                  | "`string`_"                    | ``'A B C'``                  |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | scalar            | integer                 | "`number`_"                    | ``12345``                    |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | scalar            | float 64 (double)       | "`number`_"                    | ``1.2345``                   |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | scalar            | float 64 (double)       | "`cdata`_"                     | ``1.2345``                   |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | scalar            | binary                  | "`cdata`_"                     | ``[!!binary 3t7e]``          |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | scalar            | ext                     | "`cdata`_"                     | ``1.2``                      |
-    |                   | (for Tarantool decimal) |                                |                              |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | scalar            | ext                     | "`cdata`_"                     | ``12a34b5c-de67-8f90-`` |br| |
-    |                   | (for Tarantool uuid)    |                                | ``123g-h4567ab8901``         |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | compound          | map                     | "`table`_" (with string keys)  | ``{'a': 5, 'b': 6}``         |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | compound          | array                   | "`table`_" (with integer keys) | ``[1, 2, 3, 4, 5]``          |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
-    | compound          | array                   | tuple ("`cdata`_")             | ``[12345, 'A B C']``         |
-    +-------------------+-------------------------+--------------------------------+------------------------------+
+        *   -   Scalar / compound
+            -   MsgPack type
+            -   Lua type
+            -   Example value
+        *   -   scalar
+            -   nil
+            -   `nil`_
+            -   ``nil``
+        *   -   scalar
+            -   boolean
+            -   `boolean`_
+            -   ``true``
+        *   -   scalar
+            -   string
+            -   `string`_
+            -   ``'A B C'``
+        *   -   scalar
+            -   integer
+            -   `number`_
+            -   ``12345``
+        *   -   scalar
+            -   float64 (double)
+            -   `number`_
+            -   ``1.2345``
+        *   -   scalar
+            -   float64 (double)
+            -   `cdata`_
+            -   ``1.2345``
+        *   -   scalar
+            -   binary
+            -   `cdata`_
+            -   ``[!!binary 3t7e]``
+        *   -   scalar
+            -   ext (for Tarantool decimal)
+            -   `cdata`_
+            -   ``1.2``
+        *   -   scalar
+            -   ext (for Tarantool uuid)
+            -   `cdata`_
+            -   ``12a34b5c-de67-8f90-123g-h4567ab8901``
+        *   -   compound
+            -   map
+            -   `table`_ (with string keys)
+            -   ``{'a': 5, 'b': 6}``
+        *   -   compound
+            -   array
+            -   `table`_ (with integer keys)
+            -   ``[1, 2, 3, 4, 5]``
+        *   -   compound
+            -   array
+            -   tuple (`cdata`_)
+            -   ``[12345, 'A B C']``
 
 .. NOTE::
 
@@ -367,67 +389,62 @@ Full information is in section
 
 .. container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
-    .. rst-class:: left-align-column-3
-    .. rst-class:: top-align-column-1
+    ..  list-table::
+        :header-rows: 1
+        :widths: 34 33 33
 
-    .. tabularcolumns:: |\Y{0.2}|\Y{0.4}|\Y{0.2}|\Y{0.2}|
-
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | Field type name string         | Field type |br|                           | Index type                           |
-    +================================+===========================================+======================================+
-    | ``'boolean'``                  | :ref:`boolean <index-box_boolean>`        | :ref:`TREE or HASH <box_index-type>` |
-    |                                |                                           |                                      |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'integer'``                  | :ref:`integer <index-box_integer>`,       | TREE or HASH                         |
-    | (may also be called ``'int'``) | which may include unsigned values         |                                      |
-    |                                |                                           |                                      |
-    |                                |                                           |                                      |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'unsigned'``                 | :ref:`unsigned <index-box_unsigned>`      | TREE, BITSET, or HASH                |
-    | (may also be called ``'uint'`` |                                           |                                      |
-    | or ``'num'``, but ``'num'`` is |                                           |                                      |
-    | deprecated)                    |                                           |                                      |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'double'``                   | :ref:`double <index-box_double>`          | TREE or HASH                         |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'number'``                   | :ref:`number <index-box_number>`,         | TREE or HASH                         |
-    |                                | which may include                         |                                      |
-    |                                | :ref:`integer <index-box_integer>`        |                                      |
-    |                                | or :ref:`double <index-box_double>`       |                                      |
-    |                                | values                                    |                                      |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'decimal'``                  | :ref:`decimal <index-box_decimal>`        | TREE or HASH                         |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'string'``                   | :ref:`string <index-box_string>`          | TREE, BITSET, or HASH                |
-    | (may also be called ``'str'``) |                                           |                                      |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'varbinary'``                | :ref:`varbinary <index-box_bin>`          | TREE, HASH, or BITSET                |
-    |                                |                                           | (since version 2.7)                  |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'uuid'``                     | :ref:`uuid <index-box_uuid>`              | TREE or HASH                         |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'array'``                    | :ref:`array <index-box_array>`            | :ref:`RTREE <box_index-rtree>`       |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-    | ``'scalar'``                   | may include :ref:`nil <index-box_nil>`,   | TREE or HASH                         |
-    |                                | :ref:`boolean <index-box_boolean>`,       |                                      |
-    |                                | :ref:`integer <index-box_integer>`,       |                                      |
-    |                                | :ref:`unsigned <index-box_unsigned>`,     |                                      |
-    |                                | :ref:`number <index-box_number>`,         |                                      |
-    |                                | :ref:`decimal <index-box_decimal>`,       |                                      |
-    |                                | :ref:`string <index-box_string>`,         |                                      |
-    |                                | :ref:`varbinary <index-box_bin>`,         |                                      |
-    |                                | or :ref:`uuid <index-box_uuid>`           |                                      |
-    |                                | values                                    |                                      |
-    |                                |                                           |                                      |
-    |                                | When a scalar field contains values of    |                                      |
-    |                                | different underlying types, the key order |                                      |
-    |                                | is: nils, then booleans, then numbers,    |                                      |
-    |                                | then strings, then varbinaries, then      |                                      |
-    |                                | uuids.                                    |                                      |
-    +--------------------------------+-------------------------------------------+--------------------------------------+
-
+        *   -   Field type name string
+            -   Field type
+            -   Index type
+        *   -   ``'boolean'``
+            -   :ref:`boolean <index-box_boolean>`
+            -   :ref:`boolean <index-box_boolean>`
+        *   -   ``'integer'`` (may also be called ``'int'``)
+            -   :ref:`integer <index-box_integer>`, which may include unsigned values
+            -   TREE or HASH
+        *   -   ``'unsigned'`` (may also be called ``'uint'`` or ``'num'``, but ``'num'`` is deprecated)
+            -   :ref:`unsigned <index-box_unsigned>`
+            -   TREE, BITSET, or HASH
+        *   -   ``'double'``
+            -   :ref:`double <index-box_double>`
+            -   TREE or HASH
+        *   -   ``'number'``
+            -   :ref:`number <index-box_number>`, which may include
+                :ref:`integer <index-box_integer>` or :ref:`double <index-box_double>` values
+            -   TREE or HASH
+        *   -   ``'decimal'``
+            -   :ref:`decimal <index-box_decimal>`
+            -   TREE or HASH
+        *   -   ``'string'`` (may also be called ``'str'``)
+            -   :ref:`string <index-box_string>` 
+            -   TREE, BITSET, or HASH
+        *   -   ``'varbinary'``
+            -   :ref:`varbinary <index-box_bin>`
+            -   TREE, HASH, or BITSET (since version 2.7)
+        *   -   ``'uuid'``
+            -   :ref:`uuid <index-box_uuid>`
+            -   TREE or HASH
+        *   -   ``'array'``
+            -   :ref:`array <index-box_array>`
+            -   :ref:`RTREE <box_index-rtree>`
+        *   -   ``'scalar'``
+            -   may include :ref:`nil <index-box_nil>`,
+                :ref:`boolean <index-box_boolean>`,       
+                :ref:`integer <index-box_integer>`,      
+                :ref:`unsigned <index-box_unsigned>`,   
+                :ref:`number <index-box_number>`,       
+                :ref:`decimal <index-box_decimal>`,     
+                :ref:`string <index-box_string>`,      
+                :ref:`varbinary <index-box_bin>`,       
+                or :ref:`uuid <index-box_uuid>` values                                     |
+                |br|
+                When a scalar field contains values of   
+                different underlying types, the key order 
+                is: nils, then booleans, then numbers,  
+                then strings, then varbinaries, then   
+                uuids.                              
+            -   TREE or HASH
+     
 .. _index-collation:
 
 Collations
@@ -770,44 +787,46 @@ The options determine what value will be generated whenever the sequence is used
 Options for box.schema.sequence.create()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
-    .. rst-class:: left-align-column-3
-    .. rst-class:: left-align-column-4
-    .. rst-class:: top-align-column-1
+    ..  list-table::
+        :widths: 20 40 15 25
+        :header-rows: 1
 
-    .. tabularcolumns:: |\Y{0.2}|\Y{0.4}|\Y{0.2}|\Y{0.2}|
+        *   -   Option name
+            -   Type and meaning
+            -   Default
+            -   Examples
+        *   -   ``start``
+            -   Integer. The value to generate the first time a sequence is used
+            -   1
+            -   ``start=0``
+        *   -   ``min``
+            -   Integer. Values smaller than this cannot be generated
+            -   1
+            -   ``min=-1000``
+        *   -   ``max``
+            -   Integer. Values larger than this cannot be generated
+            -   9223372036854775807
+            -   ``max=0``
+        *   -   ``cycle``
+            -   Boolean. Whether to start again when values cannot be generated
+            -   false
+            -   ``cycle=true``
+        *   -   ``cache``
+            -   Integer. The number of values to store in a cache
+            -   0
+            -   ``cache=0``
+        *   -   ``step``
+            -   Integer. What to add to the previous generated value, when generating a new value
+            -   1
+            -   ``step=-1``
+        *   -   ``if_not_exists``
+            -   Boolean. If this is true and a sequence with this name exists already,
+                ignore other options and use the existing values
+            -   ``false``
+            -   ``if_not_exists=true``
 
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | Option name                | Type and meaning                 | Default              | Examples           |
-    +============================+==================================+======================+====================+
-    | **start**                  | Integer. The value to generate   | 1                    | start=0            |
-    |                            | the first time a sequence is     |                      |                    |
-    |                            | used                             |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **min**                    | Integer. Values smaller than     | 1                    | min=-1000          |
-    |                            | this cannot be generated         |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **max**                    | Integer. Values larger than      | 9223372036854775807  | max=0              |
-    |                            | this cannot be generated         |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **cycle**                  | Boolean. Whether to start again  | false                | cycle=true         |
-    |                            | when values cannot be generated  |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **cache**                  | Integer. The number of values    | 0                    | cache=0            |
-    |                            | to store in a cache              |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **step**                   | Integer. What to add to the      | 1                    | step=-1            |
-    |                            | previous generated value, when   |                      |                    |
-    |                            | generating a new value           |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
-    | **if_not_exists**          | Boolean. If this is true and     | false                | if_not_exists=true |
-    |                            | a sequence with this name exists |                      |                    |
-    |                            | already, ignore other options    |                      |                    |
-    |                            | and use the existing values      |                      |                    |
-    +----------------------------+----------------------------------+----------------------+--------------------+
 
 Once a sequence exists, it can be altered, dropped, reset, forced to generate
 the next value, or associated with an index.
@@ -1046,49 +1065,47 @@ resource usage of each function.
 
 .. container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  list-table::
+        :widths: 20 80
+        :header-rows: 1
 
-    .. tabularcolumns:: |\Y{0.2}|\Y{0.8}|
-
-    +-------------------+----------------------------------------------------------+
-    | Complexity        | Effect                                                   |
-    | factor            |                                                          |
-    +===================+==========================================================+
-    | Index size        | The number of index keys is the same as the number       |
-    |                   | of tuples in the data set. For a TREE index, if          |
-    |                   | there are more keys, then the lookup time will be        |
-    |                   | greater, although, of course, the effect is not          |
-    |                   | linear. For a HASH index, if there are more keys,        |
-    |                   | then there is more RAM used, but the number of           |
-    |                   | low-level steps tends to remain constant.                |
-    +-------------------+----------------------------------------------------------+
-    | Index type        | Typically, a HASH index is faster than a TREE index      |
-    |                   | if the number of tuples in the space is greater          |
-    |                   | than one.                                                |
-    +-------------------+----------------------------------------------------------+
-    | Number of indexes | Ordinarily, only one index is accessed to retrieve       |
-    | accessed          | one tuple. But to update the tuple, there must be N      |
-    |                   | accesses if the space has N different indexes.           |
-    |                   |                                                          |
-    |                   | Note regarding storage engine: Vinyl optimizes away such |
-    |                   | accesses if secondary index fields are unchanged by      |
-    |                   | the update. So, this complexity factor applies only to   |
-    |                   | memtx, since it always makes a full-tuple copy on every  |
-    |                   | update.                                                  |
-    +-------------------+----------------------------------------------------------+
-    | Number of tuples  | A few requests, for example, SELECT, can retrieve        |
-    | accessed          | multiple tuples. This factor is usually less             |
-    |                   | important than the others.                               |
-    +-------------------+----------------------------------------------------------+
-    | WAL settings      | The important setting for the write-ahead log is         |
-    |                   | :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. |
-    |                   | If the setting causes no writing or                      |
-    |                   | delayed writing, this factor is unimportant. If the      |
-    |                   | setting causes every data-change request to wait         |
-    |                   | for writing to finish on a slow device, this factor      |
-    |                   | is more important than all the others.                   |
-    +-------------------+----------------------------------------------------------+
+        *   -   Complexity factor
+            -   Effect
+        *   -   Index size
+            -   The number of index keys is the same as the number    
+                of tuples in the data set. For a TREE index, if       
+                there are more keys, then the lookup time will be     
+                greater, although, of course, the effect is not       
+                linear. For a HASH index, if there are more keys,     
+                then there is more RAM used, but the number of        
+                low-level steps tends to remain constant.             
+        *   -   Index type
+            -   Typically, a HASH index is faster than a TREE index      
+                if the number of tuples in the space is greater          
+                than one.                                                
+        *   -   Number of indexes accessed
+            -   Ordinarily, only one index is accessed to retrieve       
+                one tuple. But to update the tuple, there must be N      
+                accesses if the space has N different indexes.           
+                |br|                                                     
+                Note regarding storage engine: Vinyl optimizes away such 
+                accesses if secondary index fields are unchanged by      
+                the update. So, this complexity factor applies only to  
+                memtx, since it always makes a full-tuple copy on every  
+                update.
+        *   -   Number of tuples accessed
+            -   A few requests, for example, SELECT, can retrieve        
+                multiple tuples. This factor is usually less             
+                important than the others.      
+        *   -   WAL settings
+            -   The important setting for the write-ahead log is         
+                :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. 
+                If the setting causes no writing or                      
+                delayed writing, this factor is unimportant. If the      
+                setting causes every data-change request to wait         
+                for writing to finish on a slow device, this factor      
+                is more important than all the others.                   
+    
 
 Data Schema Description
 -----------------------
