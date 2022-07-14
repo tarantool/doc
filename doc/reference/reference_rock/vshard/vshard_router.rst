@@ -774,7 +774,7 @@ Router public API
 
 ..  function:: vshard.router.enable()
 
-    Manually allow access to the router API, revert
+    Since vshard v.0.1.21. Manually allow access to the router API, revert
     :ref:`vshard.router.disable() <router_api-disable>`.
 
         ..  note::
@@ -787,8 +787,8 @@ Router public API
 
 ..  function:: vshard.router.disable()
 
-    Manually restrict access to the router API. When the API is disabled,
-    all its methods throw a Lua error, except
+    Since vshard v.0.1.21. Manually restrict access to the router API. When
+    the API is disabled, all its methods throw a Lua error, except
     :ref:`vshard.router.cfg() <router_api-cfg>`,
     :ref:`vshard.router.new() <router_api-new>`,
     :ref:`vshard.router.enable() <router_api-enable>` and
