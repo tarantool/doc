@@ -12,8 +12,9 @@ Starting a Tarantool instance
 The ``INSTANCE`` argument must specify a name of an instance from the
 ``instances_available`` directory specified in the :ref:`tt configuration file <tt-config_file_app>`.
 This can be:
+
 *   a name of an :ref:`instance file <admin-instance_file>` without the ``.lua`` extension.
-*   a name of a directory containing an ``init.lua`` file.
+*   a name of a directory containing the ``init.lua`` file.
 
 
 Examples
