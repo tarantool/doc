@@ -10,9 +10,9 @@ If you tried to create a database as suggested in our
 :ref:`"Getting started" exercises <getting_started_db>`,
 then your test database now looks like this:
 
-.. image:: data_model.png
+..  image:: data_model.png
 
-.. _index-box_tuple:
+..  _index-box_tuple:
 
 
 Tuples
@@ -51,7 +51,7 @@ Tarantool operates data in the form of tuples.
         So, ``1`` or ``0`` can be used in some contexts to refer to the first
         field of a tuple.
 
-.. _index-box_space:
+..  _index-box_space:
 
 Spaces
 ------
@@ -80,7 +80,7 @@ In the example above, there's a space called ``tester``.
         To be functional, a space also needs to have a :ref:`primary index <index-box_index>`.
         It can also have secondary indexes.
 
-.. _index-box_index:
+..  _index-box_index:
 
 Indexes
 -------
@@ -109,7 +109,7 @@ The first index defined on a space is called the **primary key index**,
 and it must be unique. All other indexes are called **secondary indexes**,
 and they may be non-unique.
 
-.. _index-box_data-types:
+..  _index-box_data-types:
 
 Data types
 ----------
@@ -119,12 +119,12 @@ Therefore a developer often deals with two type sets:
 the types of the programming language (such as Lua) and
 the types of the Tarantool storage format (MsgPack).
 
-.. _index-box_lua-vs-msgpack:
+..  _index-box_lua-vs-msgpack:
 
 Lua versus MsgPack
 ~~~~~~~~~~~~~~~~~~
 
-.. container:: table
+..  container:: table
 
     ..  list-table::
         :widths: 15 20 30 35
@@ -183,25 +183,25 @@ Lua versus MsgPack
             -   tuple (`cdata`_)
             -   ``[12345, 'A B C']``
 
-.. NOTE::
+..  NOTE::
 
-   MsgPack values have variable lengths.
-   So, for example, the smallest number requires only one byte, but the largest number
-   requires nine bytes.
+    MsgPack values have variable lengths.
+    So, for example, the smallest number requires only one byte, but the largest number
+    requires nine bytes.
 
-.. _nil: http://www.lua.org/pil/2.1.html
-.. _boolean: http://www.lua.org/pil/2.2.html
-.. _string: http://www.lua.org/pil/2.4.html
-.. _number: http://www.lua.org/pil/2.3.html
-.. _table: http://www.lua.org/pil/2.5.html
-.. _cdata: http://luajit.org/ext_ffi.html#call
+..  _nil: http://www.lua.org/pil/2.1.html
+..  _boolean: http://www.lua.org/pil/2.2.html
+..  _string: http://www.lua.org/pil/2.4.html
+..  _number: http://www.lua.org/pil/2.3.html
+..  _table: http://www.lua.org/pil/2.5.html
+..  _cdata: http://luajit.org/ext_ffi.html#call
 
-.. _index_box_field_type_details:
+..  _index_box_field_type_details:
 
-Field Type Details
+Field type details
 ~~~~~~~~~~~~~~~~~~
 
-.. _index-box_nil:
+..  _index-box_nil:
 
 **nil**. In Lua, the nil type has only one possible value, also called ``nil``.
 Tarantool displays it as ``null`` when using the default
@@ -212,25 +212,25 @@ Nil may not be used in Lua tables; the workaround is to use
 :ref:`box.NULL <box-null>` because ``nil == box.NULL`` is true.
 Example: ``nil``.
 
-.. _index-box_boolean:
+..  _index-box_boolean:
 
 **boolean**. A boolean is either ``true`` or ``false``.
 Example: ``true``.
 
-.. _index-box_integer:
+..  _index-box_integer:
 
 **integer**. The Tarantool integer type is for integers between
 -9223372036854775808 and 18446744073709551615, which is about 18 quintillion.
 This type corresponds to the number type in Lua and to the integer type in MsgPack.
 Example: ``-2^63``.
 
-.. _index-box_unsigned:
+..  _index-box_unsigned:
 
 **unsigned**. The Tarantool unsigned type is for integers between
 0 and 18446744073709551615. So it is a subset of integer.
 Example: ``123456``.
 
-.. _index-box_double:
+..  _index-box_double:
 
 **double**. The double field type exists
 mainly to be equivalent to Tarantool/SQL's
@@ -250,7 +250,7 @@ use
 :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`.
 Example:
 
-.. code-block:: none
+..  code-block:: none
 
     s = box.schema.space.create('s', {format = {{'d', 'double'}}})
     s:create_index('ii')
@@ -267,7 +267,7 @@ This warning does not apply for Tarantool/SQL because
 Tarantool/SQL does
 :ref:`implicit casting <sql_data_type_conversion>`.
 
-.. _index-box_number:
+..  _index-box_number:
 
 **number**. The Tarantool number field may have both
 integer and floating-point values, although in Lua a ``number``
@@ -283,7 +283,7 @@ Here are examples of numbers using regular notation, exponential notation,
 the ULL suffix and the ``tonumber64`` function:
 ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``.
 
-.. _index-box_decimal:
+..  _index-box_decimal:
 
 **decimal**. The Tarantool decimal type is stored as a MsgPack ext (Extension).
 Values with the decimal type are not floating-point values although
@@ -291,7 +291,7 @@ they may contain decimal points.
 They are exact with up to 38 digits of precision.
 Example: a value returned by a function in the :ref:`decimal <decimal>` module.
 
-.. _index-box_string:
+..  _index-box_string:
 
 **string**. A string is a variable-length sequence of bytes, usually represented with
 alphanumeric characters inside single quotes. In both Lua and MsgPack, strings
@@ -305,7 +305,7 @@ greater than 500; meanwhile, strings are ordered by the encoding of the first
 byte, then the encoding of the second byte, and so on, so ``'2345'`` is less than ``'500'``.
 Example: ``'A, B, C'``.
 
-.. _index-box_bin:
+..  _index-box_bin:
 
 **bin**. A bin (binary) value is not directly supported by Lua but there is
 a Tarantool type ``varbinary`` which is encoded as MsgPack binary.
@@ -313,7 +313,7 @@ For an (advanced) example showing how to insert varbinary into a database,
 see the Cookbook Recipe for :ref:`ffi_varbinary_insert <cookbook-ffi_varbinary_insert>`.
 Example: ``"\65 \66 \67"``.
 
-.. _index-box_uuid:
+..  _index-box_uuid:
 
 **uuid**. The Tarantool uuid type is used for
 :ref:`Universally Unique Identifiers <uuid-module>`.
@@ -322,7 +322,7 @@ Since version :doc:`2.4.1 </release/2.4.1>` Tarantool stores
 
 Example: ``64d22e4d-ac92-4a23-899a-e5934af5479``.
 
-.. _index-box_array:
+..  _index-box_array:
 
 **array**. An array is represented in Lua with ``{...}`` (`braces <https://www.lua.org/pil/11.1.html>`_).
 Examples: lists of numbers representing points in geometric figures:
@@ -339,13 +339,13 @@ It is a special type (cdata) to avoid conversion to a Lua table on retrieval.
 A few functions may return tables with multiple tuples. For tuple examples,
 see :ref:`box.tuple <box_tuple>`.
 
-.. _index-box_scalar:
+..  _index-box_scalar:
 
 **scalar**. Values in a scalar field can be boolean, integer, unsigned, double,
 number, decimal, string, uuid, or varbinary; but not array, map, or tuple.
 Examples: ``true``, ``1``, ``'xxx'``.
 
-.. _index-box_any:
+..  _index-box_any:
 
 **any**. Values in a field of this type can be boolean, integer, unsigned, double,
 number, decimal, string, uuid, varbinary, array, map, or tuple.
@@ -387,7 +387,7 @@ Although ``'nil'`` is not a legal indexed field type, indexes may contain `nil`
 Full information is in section
 :ref:`Details about index field types <details_about_index_field_types>`.
 
-.. container:: table
+..  container:: table
 
     ..  list-table::
         :header-rows: 1
@@ -445,7 +445,7 @@ Full information is in section
                 uuids.                              
             -   TREE or HASH
      
-.. _index-collation:
+..  _index-collation:
 
 Collations
 ----------
@@ -477,7 +477,7 @@ The only difference between the two collations is about
 
 As an example, take some Russian words:
 
-.. code-block:: text
+..  code-block:: text
 
     'ЕЛЕ'
     'елейный'
@@ -491,50 +491,50 @@ As an example, take some Russian words:
 
 ...and show the difference in ordering and selecting by index:
 
-* with ``unicode`` collation:
+*   with ``unicode`` collation:
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.T:create_index('I', {parts = {{field = 1, type = 'str', collation='unicode'}}})
-      ...
-      tarantool> box.space.T.index.I:select()
-      ---
-      - - ['ЕЛЕ']
-        - ['елейный']
-        - ['ёлка']
-        - ['еловый']
-        - ['елозить']
-        - ['Ёлочка']
-        - ['ёлочный']
-        - ['ель']
-        - ['ЕЛь']
-      ...
-      tarantool> box.space.T.index.I:select{'ЁлКа'}
-      ---
-      - []
-      ...
+        tarantool> box.space.T:create_index('I', {parts = {{field = 1, type = 'str', collation='unicode'}}})
+        ...
+        tarantool> box.space.T.index.I:select()
+        ---
+        - - ['ЕЛЕ']
+          - ['елейный']
+          - ['ёлка']
+          - ['еловый']
+          - ['елозить']
+          - ['Ёлочка']
+          - ['ёлочный']
+          - ['ель']
+          - ['ЕЛь']
+        ...
+        tarantool> box.space.T.index.I:select{'ЁлКа'}
+        ---
+        - []
+        ...
 
-* with ``unicode_ci`` collation:
+*   with ``unicode_ci`` collation:
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.T:create_index('I', {parts = {{field = 1, type ='str', collation='unicode_ci'}}})
-      ...
-      tarantool> box.space.T.index.I:select()
-      ---
-      - - ['ЕЛЕ']
-        - ['елейный']
-        - ['ёлка']
-        - ['еловый']
-        - ['елозить']
-        - ['Ёлочка']
-        - ['ёлочный']
-        - ['ЕЛь']
-      ...
-      tarantool> box.space.T.index.I:select{'ЁлКа'}
-      ---
-      - - ['ёлка']
-      ...
+        tarantool> box.space.T:create_index('I', {parts = {{field = 1, type ='str', collation='unicode_ci'}}})
+        ...
+        tarantool> box.space.T.index.I:select()
+        ---
+        - - ['ЕЛЕ']
+          - ['елейный']
+          - ['ёлка']
+          - ['еловый']
+          - ['елозить']
+          - ['Ёлочка']
+          - ['ёлочный']
+          - ['ЕЛь']
+        ...
+        tarantool> box.space.T.index.I:select{'ЁлКа'}
+        ---
+        - - ['ёлка']
+        ...
 
 
 In all, collation involves much more than these simple examples of
@@ -563,7 +563,7 @@ Charts explaining the precise differences from DUCET order are
 in the
 `Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_.
 
-.. _index-constraints:
+..  _index-constraints:
 
 Constraints
 -----------
@@ -576,25 +576,25 @@ For example, the field ``age`` typically has the ``number`` type, so it cannot s
 strings or boolean values. However, it can still have values that don't make sense,
 such as negative numbers. This is where constraints come to help.
 
-.. _index-constraint_types:
+..  _index-constraint_types:
 
 Constraint types
 ~~~~~~~~~~~~~~~~
 
 There are two types of constraints in Tarantool:
 
-* *Field constraints* check that the value being assigned to a field
-  satisfies a given condition. For example, ``age`` must be non-negative.
+*   *Field constraints* check that the value being assigned to a field
+    satisfies a given condition. For example, ``age`` must be non-negative.
 
-* *Tuple constraints* check complex conditions that can involve all fields of
-  a tuple. For example, a tuple contains a date in three fields:
-  ``year``, ``month``, and ``day``. You can validate ``day`` values based on
-  the ``month`` value (and even ``year`` if you consider leap years).
+*   *Tuple constraints* check complex conditions that can involve all fields of
+    a tuple. For example, a tuple contains a date in three fields:
+    ``year``, ``month``, and ``day``. You can validate ``day`` values based on
+    the ``month`` value (and even ``year`` if you consider leap years).
 
 Field constraints work faster, while tuple constraints allow implementing
 a wider range of limitations.
 
-.. _index-constraint_functions:
+..  _index-constraint_functions:
 
 Constraint functions
 ~~~~~~~~~~~~~~~~~~~~
@@ -607,31 +607,31 @@ To create a constraint function, use :ref:`func.create with function body <box_s
 
 Constraint functions take two parameters:
 
-* The field value and the constraint name for field constraints.
+*   The field value and the constraint name for field constraints.
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.schema.func.create('check_age',
-               > {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
-      ---
-      ...
+        tarantool> box.schema.func.create('check_age',
+                 > {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
+        ---
+        ...
 
-* The tuple and the constraint name for tuple constraints.
+*   The tuple and the constraint name for tuple constraints.
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.schema.func.create('check_person',
-               > {language = 'LUA', is_deterministic = true, body = 'function(t, c) return (t.age >= 0 and #(t.name) > 3) end'})
-      ---
-      ...
+        tarantool> box.schema.func.create('check_person',
+                 > {language = 'LUA', is_deterministic = true, body = 'function(t, c) return (t.age >= 0 and #(t.name) > 3) end'})
+        ---
+        ...
 
-  ..  warning::
+..  warning::
 
     Tarantool doesn't check field names used in tuple constraint functions.
     If a field referenced in a tuple constraint gets renamed, this constraint will break
     and prevent further insertions and modifications in the space.
 
-.. _index-constraint_apply:
+..  _index-constraint_apply:
 
 Creating constraints
 ~~~~~~~~~~~~~~~~~~~~
@@ -639,37 +639,37 @@ Creating constraints
 To create a constraint in a space, specify the corresponding function's name
 in the ``constraint`` parameter:
 
-* Field constraints: when setting up the space format:
+*   Field constraints: when setting up the space format:
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.person:format({
-               > {name = 'id',   type = 'number'},
-               > {name = 'name', type = 'string'},
-               > {name = 'age',  type = 'number', constraint = 'check_age'},
-               > })
+        tarantool> box.space.person:format({
+                 > {name = 'id',   type = 'number'},
+                 > {name = 'name', type = 'string'},
+                 > {name = 'age',  type = 'number', constraint = 'check_age'},
+                 > })
 
-* Tuple constraints: when creating or altering a space:
+*   Tuple constraints: when creating or altering a space:
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
+        tarantool> box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
 
 In both cases, ``constraint`` can contain multiple function names passed as a tuple.
 Each constraint can have an optional name:
 
-.. code-block:: lua
+..  code-block:: lua
 
     constraint = {'age_constraint' = 'check_age', 'name_constraint' = 'check_name'}
 
 ..  note::
 
-  When adding a constraint to an existing space with data, Tarantool checks it
-  against the stored data. If there are fields or tuples that don't satisfy
-  the constraint, it won't be applied to the space.
+    When adding a constraint to an existing space with data, Tarantool checks it
+    against the stored data. If there are fields or tuples that don't satisfy
+    the constraint, it won't be applied to the space.
 
 
-.. _index-box_foreign_keys:
+..  _index-box_foreign_keys:
 
 Foreign keys
 ------------
@@ -695,14 +695,14 @@ Foreign key types
 
 There are two types of foreign keys in Tarantool:
 
-* *Field foreign keys* check that the value being assigned to a field
-  is present in a particular field of another space. For example, the ``customer``
-  value in a tuple from the ``orders`` space must match an ``id`` stored in the ``customers`` space.
+*   *Field foreign keys* check that the value being assigned to a field
+    is present in a particular field of another space. For example, the ``customer``
+    value in a tuple from the ``orders`` space must match an ``id`` stored in the ``customers`` space.
 
-* *Tuple foreign keys* check that multiple fields of a tuple have a match in
-  another space. For example, if the ``orders`` space has fields ``customer_id``
-  and ``customer_name``, a tuple foreign key can check that the ``customers`` space
-  contains a tuple with both these values in the corresponding fields.
+*   *Tuple foreign keys* check that multiple fields of a tuple have a match in
+    another space. For example, if the ``orders`` space has fields ``customer_id``
+    and ``customer_name``, a tuple foreign key can check that the ``customers`` space
+    contains a tuple with both these values in the corresponding fields.
 
 Field foreign keys work faster while tuple foreign keys allow implementing
 more strict references.
@@ -710,27 +710,27 @@ more strict references.
 Creating foreign keys
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. important::
+..  important::
 
-  For each foreign key, there must exist an index that includes all its fields.
+    For each foreign key, there must exist an index that includes all its fields.
 
 To create a foreign key in a space, specify the parent space and linked fields in the ``foreign_key`` parameter.
 Fields can be referenced by name or by number:
 
-* Field foreign keys: when setting up the space format.
+*   Field foreign keys: when setting up the space format.
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.orders:format({
-               > {name = 'id',   type = 'number'},
-               > {name = 'customer_id', foreign_key = {space = 'customers', field = 'id'}}, -- or field = 1
-               > {name = 'price_total',  type = 'number'},
-               > })
+        tarantool> box.space.orders:format({
+                 > {name = 'id',   type = 'number'},
+                 > {name = 'customer_id', foreign_key = {space = 'customers', field = 'id'}}, -- or field = 1
+                 > {name = 'price_total',  type = 'number'},
+                 > })
 
-* Tuple foreign keys: when creating or altering a space. Note that for foreign
-  keys with multiple fields there must exist an index that includes all these fields.
+*   Tuple foreign keys: when creating or altering a space. Note that for foreign
+    keys with multiple fields there must exist an index that includes all these fields.
 
-  .. code-block:: tarantoolsession
+  ..  code-block:: tarantoolsession
 
       tarantool> box.schema.space.create("orders", {foreign_key={space='customers', field={customer_id='id', customer_name='name'}}})
       ---
@@ -742,20 +742,20 @@ Fields can be referenced by name or by number:
                > {name = "price_total",    type = "number"},
                > })
 
-.. note::
+..  note::
 
-  Type can be omitted for foreign key fields because it's
-  defined in the parent space.
+    Type can be omitted for foreign key fields because it's
+    defined in the parent space.
 
 Foreign keys can have an optional name.
 
-.. code-block:: lua
+..  code-block:: lua
 
     foreign_key = {customer = {space = '...', field = {...}}}
 
 A space can have multiple tuple foreign keys. In this case, they all must have names.
 
-.. code-block:: lua
+..  code-block:: lua
 
     foreign_key = {customer = {space = '...', field = {...} }, item = { space = '...', field = {...}}}
 
@@ -765,11 +765,11 @@ you will get an error.
 
 ..  important::
 
-  Renaming parent spaces or referenced fields may break the corresponding foreign
-  keys and prevent further insertions or modifications in the child spaces.
+    Renaming parent spaces or referenced fields may break the corresponding foreign
+    keys and prevent further insertions or modifications in the child spaces.
 
 
-.. _index-box_sequence:
+..  _index-box_sequence:
 
 Sequences
 ---------
@@ -782,7 +782,7 @@ Tarantool generate a unique numeric identifier (sequence ID).
 As well, you can specify several options when creating a new sequence.
 The options determine what value will be generated whenever the sequence is used.
 
-.. _index-box_sequence-options:
+..  _index-box_sequence-options:
 
 Options for box.schema.sequence.create()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -833,7 +833,7 @@ the next value, or associated with an index.
 
 For an initial example, we generate a sequence named 'S'.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> box.schema.sequence.create('S',{min=5, start=5})
     ---
@@ -853,7 +853,7 @@ except for the two that were specified, ``min`` and ``start``.
 
 Then we get the next value, with the ``next()`` function.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> box.sequence.S:next()
     ---
@@ -867,7 +867,7 @@ step value is 6), and so on.
 Then we create a new table and specify that its primary key should be
 generated from the sequence.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> s=box.schema.space.create('T')
     ---
@@ -891,12 +891,12 @@ generated from the sequence.
 
 Then we insert a tuple without specifying a value for the primary key.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
-    tarantool> box.space.T:insert{nil,'other stuff'}
-    ---
-    - [6, 'other stuff']
-    ...
+     tarantool> box.space.T:insert{nil,'other stuff'}
+     ---
+     - [6, 'other stuff']
+     ...
 
 The result is a new tuple where the first field has a value of 6.
 This arrangement, where the system automatically generates the
@@ -906,7 +906,7 @@ or "identity".
 For syntax and implementation details, see the reference for
 :doc:`box.schema.sequence </reference/reference_lua/box_schema_sequence>`.
 
-.. _index-box_persistence:
+..  _index-box_persistence:
 
 Persistence
 -----------
@@ -938,7 +938,7 @@ and automatically removes earlier WAL files.
 
 Snapshot files can be created even if there is no WAL file.
 
-.. NOTE::
+..  NOTE::
 
      The memtx engine makes only regular checkpoints with the interval set in
      :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>` configuration.
@@ -960,99 +960,99 @@ Data operations
 
 The basic data operations supported in Tarantool are:
 
-* five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE), and
-* one data-retrieval operation (SELECT).
+*   five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE), and
+*   one data-retrieval operation (SELECT).
 
 All of them are implemented as functions in :ref:`box.space <box_space>` submodule.
 
 **Examples:**
 
-* :ref:`INSERT <box_space-insert>`: Add a new tuple to space 'tester'.
+*   :ref:`INSERT <box_space-insert>`: Add a new tuple to space 'tester'.
 
-  The first field, field[1], will be 999 (MsgPack type is `integer`).
+    The first field, field[1], will be 999 (MsgPack type is `integer`).
 
-  The second field, field[2], will be 'Taranto' (MsgPack type is `string`).
+    The second field, field[2], will be 'Taranto' (MsgPack type is `string`).
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester:insert{999, 'Taranto'}
+        tarantool> box.space.tester:insert{999, 'Taranto'}
 
-* :ref:`UPDATE <box_space-update>`: Update the tuple, changing field field[2].
+*   :ref:`UPDATE <box_space-update>`: Update the tuple, changing field field[2].
 
-  The clause "{999}", which has the value to look up in the index of the tuple's
-  primary-key field, is mandatory, because ``update()`` requests must always have
-  a clause that specifies a unique key, which in this case is field[1].
+    The clause "{999}", which has the value to look up in the index of the tuple's
+    primary-key field, is mandatory, because ``update()`` requests must always have
+    a clause that specifies a unique key, which in this case is field[1].
 
-  The clause "{{'=', 2, 'Tarantino'}}" specifies that assignment will happen to
-  field[2] with the new value.
+    The clause "{{'=', 2, 'Tarantino'}}" specifies that assignment will happen to
+    field[2] with the new value.
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})
+        tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})
 
-* :ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2]
-  again.
+*   :ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2]
+    again.
 
-  The syntax of ``upsert()`` is similar to the syntax of ``update()``. However,
-  the execution logic of these two requests is different.
-  UPSERT is either UPDATE or INSERT, depending on the database's state.
-  Also, UPSERT execution is postponed until after transaction commit, so, unlike
-  ``update()``, ``upsert()`` doesn't return data back.
+    The syntax of ``upsert()`` is similar to the syntax of ``update()``. However,
+    the execution logic of these two requests is different.
+    UPSERT is either UPDATE or INSERT, depending on the database's state.
+    Also, UPSERT execution is postponed until after transaction commit, so, unlike
+    ``update()``, ``upsert()`` doesn't return data back.
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester:upsert({999, 'Taranted'}, {{'=', 2, 'Tarantism'}})
+        tarantool> box.space.tester:upsert({999, 'Taranted'}, {{'=', 2, 'Tarantism'}})
 
-* :ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field.
+*   :ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field.
 
-  This is also possible with the ``update()`` request, but the ``update()``
-  request is usually more complicated.
+    This is also possible with the ``update()`` request, but the ``update()``
+    request is usually more complicated.
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}
+        tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}
 
-* :ref:`SELECT <box_space-select>`: Retrieve the tuple.
+*   :ref:`SELECT <box_space-select>`: Retrieve the tuple.
 
-  The clause "{999}" is still mandatory, although it does not have to mention
-  the primary key.
+    The clause "{999}" is still mandatory, although it does not have to mention
+    the primary key.
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester:select{999}
+        tarantool> box.space.tester:select{999}
 
-* :ref:`DELETE <box_space-delete>`: Delete the tuple.
+*   :ref:`DELETE <box_space-delete>`: Delete the tuple.
 
-  In this example, we identify the primary-key field.
+    In this example, we identify the primary-key field.
 
-  .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.space.tester:delete{999}
+        tarantool> box.space.tester:delete{999}
 
 Summarizing the examples:
 
-* Functions ``insert`` and ``replace`` accept a tuple
-  (where a primary key comes as part of the tuple).
-* Function ``upsert`` accepts a tuple
-  (where a primary key comes as part of the tuple),
-  and also the update operations to execute.
-* Function ``delete`` accepts a full key of any unique index
-  (primary or secondary).
-* Function ``update`` accepts a full key of any unique index
-  (primary or secondary),
-  and also the operations to execute.
-* Function ``select`` accepts any key: primary/secondary, unique/non-unique,
-  full/partial.
+*   Functions ``insert`` and ``replace`` accept a tuple
+    (where a primary key comes as part of the tuple).
+*   Function ``upsert`` accepts a tuple
+    (where a primary key comes as part of the tuple),
+    and also the update operations to execute.
+*   Function ``delete`` accepts a full key of any unique index
+    (primary or secondary).
+*   Function ``update`` accepts a full key of any unique index
+    (primary or secondary),
+    and also the operations to execute.
+*   Function ``select`` accepts any key: primary/secondary, unique/non-unique,
+    full/partial.
 
 See reference on ``box.space`` for more
 :ref:`details on using data operations <box_space-operations-detailed-examples>`.
 
-.. NOTE::
+..  NOTE::
 
-   Besides Lua, you can use
-   :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`.
-   The client server protocol is open and documented.
-   See this :ref:`annotated BNF <box_protocol-iproto_protocol>`.
+    Besides Lua, you can use
+    :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`.
+    The client server protocol is open and documented.
+    See this :ref:`annotated BNF <box_protocol-iproto_protocol>`.
 
 
 Complexity factors
@@ -1063,7 +1063,7 @@ In reference for :ref:`box.space <box_space>` and
 submodules, there are notes about which complexity factors might affect the
 resource usage of each function.
 
-.. container:: table
+..  container:: table
 
     ..  list-table::
         :widths: 20 80
@@ -1107,7 +1107,7 @@ resource usage of each function.
                 is more important than all the others.                   
     
 
-Data Schema Description
+Data schema description
 -----------------------
 
 In Tarantool, the use of a data schema is optional.
@@ -1331,7 +1331,7 @@ You may not be able to restart Tarantool or update the code using the hot-reload
 This method is described in the README file of the
 `tarantool/migrations <https://github.com/tarantool/migrations>`_ module.
 
-.. NOTE::
+..  NOTE::
 
     There are also two other methods that we **do not recommend**,
     but you may find them useful for one reason or another.
