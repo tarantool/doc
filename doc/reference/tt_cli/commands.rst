@@ -18,11 +18,11 @@ help for the given command.
             -   Get the current status of a Tarantool instance
         *   -   ``restart``
             -   Restart a Tarantool instance
-        *   -   ``version``
+        *   -   :doc:`version <version>`
             -   Show the ``tt`` version information
-        *   -   ``completion``
+        *   -   :doc:`completion <completion>`
             -   Generate autocompletion for a specified shell
-        *   -   ``help``
+        *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
         *   -   ``logrotate``
             -   :ref:`Rotate logs <admin-logs>`
