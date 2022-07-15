@@ -297,13 +297,13 @@ Example: a value returned by a function in the :ref:`decimal <decimal>` module.
 
 ..  _index-box_datetime:
 
-**datetime**. Introduced in :tarantool-version:`2.10`.
+**datetime**. Introduced in :tarantool-release:`2.10.0`.
 The Tarantool ``datetime`` type facilitates operations with date and time,
 accounting for leap years or the varying number of days in a month.
 It is stored as a MsgPack ext (Extension).
 This data type is based on the `c-dt <https://github.com/tarantool/c-dt>`_ module.
 
-``datetime`` accepts either a table of time units (from nanoseconds to years) or a timestamp.
+To create a ``datetime`` object, pass either a table of time units (from nanoseconds to years) or a timestamp.
 The type also allows specifying time zone offset from UTC
 or passing the time zone name according to the `tz database <https://en.wikipedia.org/wiki/Tz_database>`_.
 
@@ -326,7 +326,10 @@ Example:
          - 1989-09-28T05:45:00+0300
          ...
 
-For more examples, see :doc:`Module datetime </reference/reference_lua/datetime>`.
+To convert between standard datetime object presentation and the human-readable form,
+use :doc:`datetime.parse </reference/reference_lua/datetime/parse>`.
+
+For more information, see :doc:`Module datetime </reference/reference_lua/datetime>`.
 
 
 ..  _index-box_string:
@@ -418,7 +421,7 @@ An ``'unsigned'`` index contains only *non-negative* integer values,
 while an ``‘integer’`` index contains *any* integer values.
 
 Here again are the field types described in
-:ref:`Field Type Details <index_box_field_type_details>`, and the index types they can fit in.
+:ref:`Field type details <index_box_field_type_details>`, and the index types they can fit in.
 The default field type is ``'unsigned'`` and the default index type is TREE.
 Although ``'nil'`` is not a legal indexed field type, indexes may contain `nil`
 :ref:`as a non-default option <box_space-is_nullable>`.
