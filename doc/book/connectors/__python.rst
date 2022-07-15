@@ -53,7 +53,7 @@ unmaintained.
 Feature comparison
 ------------------
 
-Last update: May 2022
+Last update: July 2022
 
 ..  list-table::
     :header-rows: 1
@@ -71,11 +71,11 @@ Last update: May 2022
 
     *   -   Is maintained
         -   Yes
-        -   No (last updated in 2018)
+        -   No (last updated in 2016)
         -   Yes
 
     *   -   Known Issues
-        -   `issue #18 <https://github.com/igorcoding/asynctnt/issues/18>`__ (no running event loop)
+        -   None
         -   None
         -   None
 
@@ -95,9 +95,9 @@ Last update: May 2022
         -   GitHub Actions
 
     *   -   GitHub Stars
-        -   52
+        -   65
         -   17
-        -   83
+        -   84
 
     *   -   Static Analysis
         -   Yes (Flake8)
@@ -148,32 +148,32 @@ Last update: May 2022
         -   Yes (tarantool/connection.py)
 
     *   -   `Interactive transactions <https://www.tarantool.io/en/doc/latest/book/box/stream/>`__
-        -   No
+        -   Yes
         -   No
         -   No (`issue #163 <https://github.com/tarantool/tarantool-python/issues/163>`__)
 
     *   -   `Varbinary support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
-        -   No
+        -   Yes (in ``MP_BIN`` fields)
         -   No
         -   Yes
 
     *   -   `UUID support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
-        -   No
+        -   Yes
         -   No
         -   No
 
     *   -   `Decimal support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
-        -   Almost (v2 branch)
+        -   Yes
         -   No
         -   No
 
     *   -   `EXT_ERROR support <https://www.tarantool.io/ru/doc/latest/dev_guide/internals/msgpack_extensions/#the-error-type>`__
-        -   No
+        -   Yes
         -   No
         -   No
 
     *   -   `Datetime support <https://github.com/tarantool/tarantool/discussions/6244>`__
-        -   No
+        -   Yes
         -   No
         -   No
 
@@ -193,7 +193,7 @@ Last update: May 2022
         -   No
 
     *   -   `IPROTO_ID (feature discovering) <https://github.com/tarantool/doc/issues/2419>`__
-        -   No
+        -   Yes
         -   No
         -   No
 
