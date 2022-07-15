@@ -21,7 +21,7 @@ help for the given command.
         *   -   :doc:`version <version>`
             -   Show the ``tt`` version information
         *   -   :doc:`completion <completion>`
-            -   Generate autocompletion for a specified shell
+            -   Generate completion for a specified shell
         *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
         *   -   ``logrotate``
