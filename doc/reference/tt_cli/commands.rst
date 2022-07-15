@@ -36,3 +36,10 @@ help for the given command.
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   ``play``
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
+
+..  toctree::
+    :hidden:
+
+    version <version>
+    completion <completion>
+    help <help>
