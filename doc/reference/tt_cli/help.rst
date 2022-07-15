@@ -5,15 +5,10 @@ Displaying help for tt and its commands
 
     tt help [COMMAND]
 
-``tt help``
+``tt help`` displays help:
 
-Details
--------
-
-When called without a ``COMMAND`` argument, ``tt help`` displays the ``tt`` utility
-help with the list of supported commands.
-
-When
+*   for ``tt`` utility when called without a ``COMMAND``.
+*   for a specified ``tt`` command.
 
 Examples
 --------
