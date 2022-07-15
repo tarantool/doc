@@ -1,4 +1,4 @@
-.. _box_data_model:
+..  _box_data_model:
 
 Data model
 ==========
@@ -163,11 +163,15 @@ Lua versus MsgPack
             -   `cdata`_
             -   ``[!!binary 3t7e]``
         *   -   scalar
-            -   ext (for Tarantool decimal)
+            -   ext (for Tarantool ``datetime``)
+            -   `cdata`_
+            -   ``2021-08-20T16:21:25.122999906 Europe/Berlin``
+        *   -   scalar
+            -   ext (for Tarantool ``decimal``)
             -   `cdata`_
             -   ``1.2``
         *   -   scalar
-            -   ext (for Tarantool uuid)
+            -   ext (for Tarantool ``uuid``)
             -   `cdata`_
             -   ``12a34b5c-de67-8f90-123g-h4567ab8901``
         *   -   compound
@@ -183,7 +187,7 @@ Lua versus MsgPack
             -   tuple (`cdata`_)
             -   ``[12345, 'A B C']``
 
-..  NOTE::
+..  note::
 
     MsgPack values have variable lengths.
     So, for example, the smallest number requires only one byte, but the largest number
@@ -250,7 +254,7 @@ use
 :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`.
 Example:
 
-..  code-block:: none
+..  code-block:: tarantoolsession
 
     s = box.schema.space.create('s', {format = {{'d', 'double'}}})
     s:create_index('ii')
@@ -290,6 +294,40 @@ Values with the decimal type are not floating-point values although
 they may contain decimal points.
 They are exact with up to 38 digits of precision.
 Example: a value returned by a function in the :ref:`decimal <decimal>` module.
+
+..  _index-box_datetime:
+
+**datetime**. Introduced in :tarantool-version:`2.10`.
+The Tarantool ``datetime`` type facilitates operations with date and time,
+accounting for leap years or the varying number of days in a month.
+It is stored as a MsgPack ext (Extension).
+This data type is based on the `c-dt <https://github.com/tarantool/c-dt>`_ module.
+
+``datetime`` accepts either a table of time units (from nanoseconds to years) or a timestamp.
+The type also allows specifying time zone offset from UTC
+or passing the time zone name according to the `tz database <https://en.wikipedia.org/wiki/Tz_database>`_.
+
+Example:
+
+..  code-block:: tarantoolsession
+
+    tarantool> birthday = datetime.new {
+         > year = 1989,
+         > month = 9,
+         > day = 28,
+         > hour = 5,
+         > min = 45,
+         > tzoffset = 180
+         > }
+         ---
+         ...
+         tarantool> birthday
+         ---
+         - 1989-09-28T05:45:00+0300
+         ...
+
+For more examples, see :doc:`Module datetime </reference/reference_lua/datetime>`.
+
 
 ..  _index-box_string:
 
@@ -1331,7 +1369,7 @@ You may not be able to restart Tarantool or update the code using the hot-reload
 This method is described in the README file of the
 `tarantool/migrations <https://github.com/tarantool/migrations>`_ module.
 
-..  NOTE::
+..  note::
 
     There are also two other methods that we **do not recommend**,
     but you may find them useful for one reason or another.
