@@ -4,15 +4,60 @@ Documenting the API
 This document contains general guidelines for describing the Tarantool API,
 as well as examples and templates.
 
+Style
+-----
+
 Please write as simply as possible. Describe functionality using short sentences in the present simple tense.
 A short sentence consists of no more than two clauses.
 Consider using `LanguageTool <https://languagetool.org/>`_ or `Grammarly <https://www.grammarly.com/>`_
 to check your English.
 For more style-related specifics, consult the :doc:`Language and style </contributing/docs/style>` section.
 
-Use this checklist for documenting a function or a method:
+..  _contributing-docs-api_version:
 
-*   General description (in imperative mood)
+Indicating the version
+----------------------
+
+For every new feature or parameter, please indicate the version it was introduced in.
+
+With Tarantool features and parameters, use one of the following Sphinx directives:
+
+..  code-block:: rst
+
+    Since :tarantool-release:`2.10.0`.
+    This is a link to the release notes on GitHub.
+
+    Since :doc:`2.10.0 </release/2.10.0>`.
+    This is a link to the release notes on the Tarantool documentation website.
+
+The result looks like this:
+
+    Since Tarantool :tarantool-release:`2.10.0`.
+    This is a link to the release notes on GitHub.
+
+    Since Tarantool :doc:`2.10.0 </release/2.10.0>`.
+    This is a link to the release notes on the Tarantool documentation website.
+
+See also the :doc:`guide on writing release notes </contributing/release_notes/>`.
+
+..  _contributing-api-docs_general-description:
+
+Language of the general description
+-----------------------------------
+
+Use one of the two options:
+
+*   Start with a verb in the imperative mood. Example: *Create a fiber.*
+*   Start with a noun. Example: *The directory where memtx stores snapshot files.*
+
+Checklist
+---------
+
+Function or method
+^^^^^^^^^^^^^^^^^^
+
+*   :ref:`Since which Tarantool version <contributing-docs-api_version>`
+*   :ref:`General description <contributing-api-docs_general-description>`
 *   :ref:`Parameters <documenting_parameters>`
 *   What this function returns (if nothing, write 'none')
 *   Return type (if exists)
@@ -22,8 +67,62 @@ Use this checklist for documenting a function or a method:
 *   Example(s)
 *   Extra information (if needed)
 
-Documenting functions
----------------------
+See :ref:`module function example <contributing-api-docs_function-example>`,
+:ref:`class method example <contributing-api-docs_class-example>`.
+
+Data
+^^^^
+
+*   :ref:`Since which Tarantool version <contributing-docs-api_version>`
+*   :ref:`General description <contributing-api-docs_general-description>`
+*   Return type
+*   Example
+
+See :ref:`class data example <contributing-api-docs_class-example>`.
+
+..  _documenting_parameters:
+
+Function and class parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+*   :ref:`Since which Tarantool version <contributing-docs-api_version>`
+    (if added later)
+*   :ref:`General description <contributing-api-docs_general-description>`
+*   Type
+*   Default value (if optional), possible values
+
+If the parameter is optional, make sure it is enclosed in square brackets
+in the function declaration (in the "heading").
+
+In the "Possible errors" section of the function or class method,
+consider explaining what happens if the parameter hasn't been defined or has the wrong value.
+
+..  _documenting_confvals:
+
+Configuration parameters
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Configuration parameters are not to be confused with class and method parameters.
+Configuration parameters are passed to Tarantool via the command line or in an initialization file.
+You can find a list of Tarantool configuration parameters in the :doc:`configuration reference </reference/configuration/index>`.
+
+*   :ref:`Since which Tarantool version <contributing-docs-api_version>`
+*   :ref:`General description <contributing-api-docs_general-description>`
+*   Type
+*   Corresponding environment variable (if applicable)
+*   Default value
+*   Possible values
+*   Dynamic (yes or no)
+
+See :ref:`configuration parameter example <contributing-api-docs_confval-example>`.
+
+Examples and templates
+----------------------
+
+..  _contributing-api-docs_function-example:
+
+Module functions
+^^^^^^^^^^^^^^^^
 
 We use the Sphinx directives ``.. module::``
 and ``.. function::`` to describe functions of Tarantool modules:
@@ -35,12 +134,11 @@ The resulting output looks like this:
 
 ..  include:: ./_includes/function_template.rst
 
-..  note::
 
-    The best practices for :ref:`parameter description <documenting_parameters>` are listed below.
+..  _contributing-api-docs_class-example:
 
-Documenting class methods and data
-----------------------------------
+Class methods and data
+^^^^^^^^^^^^^^^^^^^^^^
 
 Methods are described similarly to functions, but the ``.. class::``
 directive, unlike ``.. module::``, requires nesting.
@@ -57,46 +155,12 @@ And the resulting output looks like this:
 
 ..  include:: ./_includes/class_template.rst
 
-..  note::
-
-    The best practices for :ref:`parameter description <documenting_parameters>` are listed below.
-
-..  _documenting_parameters:
-
-Parameters in functions and classes
------------------------------------
-
-This section explains how to document specific function or class method parameters as described above.
-To learn how to document :doc:`configuration parameters </reference/configuration/index>`
-passed to Tarantool via the command line or in an initialization file,
-see the :ref:`next section <documenting_confvals>`.
-
-For every function or class method parameter, list the following details:
-
-*   General description
-*   Type
-*   Default value (if optional), possible values
-
-In the "Possible errors" section of the function or class method,
-consider explaining what happens if the parameter hasn't been defined or has the wrong value.
-
-..  _documenting_confvals:
+..  _contributing-api-docs_confval-example:
 
 Configuration parameters
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-For every configuration parameter, list the following details:
-
-*   Since which Tarantool version
-*   General description (in imperative mood)
-*   Type
-*   Corresponding environment variable (if applicable)
-*   Default value
-*   Possible values
-*   Dynamic (yes or no)
-
-Example
-^^^^^^^
+Example:
 
 ..  literalinclude:: ./_includes/confval_template.rst
     :language: rst
