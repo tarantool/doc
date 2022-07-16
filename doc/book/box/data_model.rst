@@ -327,7 +327,8 @@ Example:
          ...
 
 To convert between standard datetime object presentation and the human-readable form,
-use :doc:`datetime.parse </reference/reference_lua/datetime/parse>`.
+use :doc:`datetime.parse </reference/reference_lua/datetime>`
+or :doc:`datetime_object:totable </reference/reference_lua/datetime>`.
 
 For more information, see :doc:`Module datetime </reference/reference_lua/datetime>`.
 
