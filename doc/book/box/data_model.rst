@@ -165,7 +165,7 @@ Lua versus MsgPack
         *   -   scalar
             -   ext (for Tarantool ``datetime``)
             -   `cdata`_
-            -   ``2021-08-20T16:21:25.122999906 Europe/Berlin``
+            -   ``'2021-08-20T16:21:25.122999906 Europe/Berlin'``
         *   -   scalar
             -   ext (for Tarantool ``decimal``)
             -   `cdata`_
@@ -465,6 +465,9 @@ Full information is in section
         *   -   ``'uuid'``
             -   :ref:`uuid <index-box_uuid>`
             -   TREE or HASH
+        *   -   ``datetime``
+            -   :ref:`datetime <index-box_datetime>`
+            -   TREE
         *   -   ``'array'``
             -   :ref:`array <index-box_array>`
             -   :ref:`RTREE <box_index-rtree>`
