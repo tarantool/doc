@@ -34,6 +34,7 @@ This reference covers Tarantool's built-in Lua modules.
     fun
     http
     iconv
+    jit
     json
     key_def
     log
