@@ -15,10 +15,8 @@ Arguments
             -   Path to the :ref:`configuration file <tt-config_file>`.
         *   -   ``--internal``
 
-                ``-i``
+                ``-I``
             -   Force the use of an internal module even if there is an :doc:`external module <external_modules>` with the same name.
-
-                .. // TODO: add link to external modules doc page when it's ready
         *   -   ``--local=DIRECTORY``
 
                 ``-L=DIRECTORY``

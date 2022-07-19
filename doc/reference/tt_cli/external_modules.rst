@@ -51,12 +51,12 @@ External modules can overload built-in ``tt`` commands.
 If you want to change the behavior of a built-in command, create an external
 module with the same name and your own implementation.
 
-When ``tt`` sees two modules -- an external and an internal one -- with the same name,
-it will use the external module by default.
+When ``tt`` sees two modules -- an external and an internal one -- with the same
+name, it will use the external module by default.
 
-For example, if you want to get the information about your Tarantool application
-from ``tt``, write the corresponding external module ``version``. The ``tt version``
-call will execute your implementation instead of the built-in command:
+For example, if you want ``tt`` to show the information about your Tarantool
+application, write the external module ``version`` that outputs the information
+you need. The ``tt version`` call will execute this module instead of the built-in one:
 
 ..  code-block:: bash
 

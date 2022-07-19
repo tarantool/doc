@@ -34,7 +34,6 @@ modules section
 ~~~~~~~~~~~~~~~
 
 * ``directory`` -- the directory where :doc:`external modules <external_modules>` are stored.
-.. // TODO: add link to external modules doc page when it's ready
 
 app section
 ~~~~~~~~~~~
