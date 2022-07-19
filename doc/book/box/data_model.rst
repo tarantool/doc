@@ -301,37 +301,9 @@ Example: a value returned by a function in the :ref:`decimal <decimal>` module.
 The Tarantool ``datetime`` type facilitates operations with date and time,
 accounting for leap years or the varying number of days in a month.
 It is stored as a MsgPack ext (Extension).
-This data type is based on the `c-dt <https://github.com/tarantool/c-dt>`_ module.
-
-To create a ``datetime`` object, pass either a table of time units (from nanoseconds to years) or a timestamp.
-The type also allows specifying time zone offset from UTC
-or passing the time zone name according to the `tz database <https://en.wikipedia.org/wiki/Tz_database>`_.
-
-Example:
-
-..  code-block:: tarantoolsession
-
-    tarantool> birthday = datetime.new {
-         > year = 1989,
-         > month = 9,
-         > day = 28,
-         > hour = 5,
-         > min = 45,
-         > tzoffset = 180
-         > }
-         ---
-         ...
-         tarantool> birthday
-         ---
-         - 1989-09-28T05:45:00+0300
-         ...
-
-To convert between standard datetime object presentation and the human-readable form,
-use :doc:`datetime.parse </reference/reference_lua/datetime>`
-or :doc:`datetime_object:totable </reference/reference_lua/datetime>`.
+Operations with this data type use code from `c-dt <https://github.com/tarantool/c-dt>`_, a third-party library.
 
 For more information, see :doc:`Module datetime </reference/reference_lua/datetime>`.
-
 
 ..  _index-box_string:
 
