@@ -12,7 +12,7 @@ in the specified shell: ``bash`` or ``zsh``.
 Examples
 --------
 
-Generate ``tt`` completion for ``bash``:
+Generate ``tt`` completion for the current ``bash`` terminal:
 
 ..  code-block:: bash
 
