@@ -18,27 +18,23 @@ For more style-related specifics, consult the :doc:`Language and style </contrib
 Indicating the version
 ----------------------
 
-For every new feature or parameter, please indicate the version it was introduced in.
+For every new module, function, or method, specify the version it first appears in.
 
-With Tarantool features and parameters, use one of the following Sphinx directives:
+For a new parameter, specify the version it first appears in if this parameter is a "feature"
+and the version it's been introduced in differs from
+the version introducing the function/method and all other parameters.
+
+To specify the version, use the following Sphinx directive:
 
 ..  code-block:: rst
-
-    Since :tarantool-release:`2.10.0`.
-    This is a link to the release notes on GitHub.
 
     Since :doc:`2.10.0 </release/2.10.0>`.
     This is a link to the release notes on the Tarantool documentation website.
 
 The result looks like this:
 
-    Since Tarantool :tarantool-release:`2.10.0`.
-    This is a link to the release notes on GitHub.
-
     Since Tarantool :doc:`2.10.0 </release/2.10.0>`.
     This is a link to the release notes on the Tarantool documentation website.
-
-See also the :doc:`guide on writing release notes </contributing/release_notes/>`.
 
 ..  _contributing-api-docs_general-description:
 
@@ -53,6 +49,8 @@ Use one of the two options:
 Checklist
 ---------
 
+Each list item is a characteristic to be described. Some items can be optional.
+
 Function or method
 ^^^^^^^^^^^^^^^^^^
 
@@ -61,8 +59,10 @@ Function or method
 *   :ref:`Parameters <documenting_parameters>`
 *   What this function returns (if nothing, write 'none')
 *   Return type (if exists)
-*   Possible errors (if exist)
-*   Complexity factors (if exist)
+*   :ref:`Possible errors <contributing-docs-possible_errors>` (if exist)
+*   :ref:`Complexity factors <index-box_complexity-factors>`
+    (for :doc:`CRUD operations </reference/reference_lua/box_space>` and
+    :doc:`index access functions </reference/reference_lua/box_index/>`)
 *   Usage with memtx and vinyl (if differs)
 *   Example(s)
 *   Extra information (if needed)
@@ -82,8 +82,8 @@ See :ref:`class data example <contributing-api-docs_class-example>`.
 
 ..  _documenting_parameters:
 
-Function and class parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Function and method parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *   :ref:`Since which Tarantool version <contributing-docs-api_version>`
     (if added later)
@@ -93,9 +93,18 @@ Function and class parameters
 
 If the parameter is optional, make sure it is enclosed in square brackets
 in the function declaration (in the "heading").
+Do not mark parameters additionaly as "optional" or "required":
 
-In the "Possible errors" section of the function or class method,
-consider explaining what happens if the parameter hasn't been defined or has the wrong value.
+..  code-block:: rst
+
+    ..  function:: format(URI-components-table[, include-password])
+
+        Construct a URI from components.
+
+        :param URI-components-table: a series of ``name:value`` pairs, one for each component
+        :param include-password: boolean. If this is supplied and is ``true``, then
+                                 the password component is rendered in clear text,
+                                 otherwise it is omitted.
 
 ..  _documenting_confvals:
 
@@ -111,10 +120,18 @@ You can find a list of Tarantool configuration parameters in the :doc:`configura
 *   Type
 *   Corresponding environment variable (if applicable)
 *   Default value
-*   Possible values
+*   Possible values (can be included in the general description, for example, as a list)
 *   Dynamic (yes or no)
 
 See :ref:`configuration parameter example <contributing-api-docs_confval-example>`.
+
+..  _contributing-docs-possible_errors:
+
+Documenting possible errors
+---------------------------
+
+In the "Possible errors" section of a function or class method,
+consider explaining what happens if any parameter hasn't been defined or has the wrong value.
 
 Examples and templates
 ----------------------

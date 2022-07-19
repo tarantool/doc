@@ -6,8 +6,6 @@
 
     :param function: the function to be associated with the fiber
     :param function-arguments: what will be passed to function.
-                               If the arguments are optional, put them in
-                               square brackets in the function declaration.
 
     :return: created fiber object
     :rtype: userdata
