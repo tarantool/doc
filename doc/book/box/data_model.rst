@@ -163,13 +163,17 @@ Lua versus MsgPack
             -   `cdata`_
             -   ``[!!binary 3t7e]``
         *   -   scalar
+            -   ext (for Tarantool ``decimal``)
+            -   `cdata`_
+            -   ``1.2``
+        *   -   scalar
             -   ext (for Tarantool ``datetime``)
             -   `cdata`_
             -   ``'2021-08-20T16:21:25.122999906 Europe/Berlin'``
         *   -   scalar
-            -   ext (for Tarantool ``decimal``)
+            -   ext (for Tarantool ``interval``)
             -   `cdata`_
-            -   ``1.2``
+            -   ``+1 months, 1 days``
         *   -   scalar
             -   ext (for Tarantool ``uuid``)
             -   `cdata`_
@@ -301,6 +305,15 @@ Example: a value returned by a function in the :ref:`decimal <decimal>` module.
 The Tarantool ``datetime`` type facilitates operations with date and time,
 accounting for leap years or the varying number of days in a month.
 It is stored as a MsgPack ext (Extension).
+Operations with this data type use code from `c-dt <https://github.com/tarantool/c-dt>`_, a third-party library.
+
+For more information, see :doc:`Module datetime </reference/reference_lua/datetime>`.
+
+..  _index-box_interval:
+
+**interval**. Introduced in :tarantool-release:`2.10.0`.
+The Tarantool ``interval`` type represents periods of time.
+They can be added to or subtracted from ``datetime`` values or each other.
 Operations with this data type use code from `c-dt <https://github.com/tarantool/c-dt>`_, a third-party library.
 
 For more information, see :doc:`Module datetime </reference/reference_lua/datetime>`.
