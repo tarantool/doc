@@ -24,7 +24,7 @@ Executables that implement external ``tt`` modules must have two flags:
 
 -   ``--description`` -- print a short description of the module. It is shown alongside
     the command in the ``tt`` help.
--   ``--help`` -- display help. It is shown when ``tt <module-name> help`` is called.
+-   ``--help`` -- display help. It is shown when ``tt help <module_name>`` is called.
 
 
 Location
