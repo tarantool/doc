@@ -1035,6 +1035,7 @@ See reference on ``box.space`` for more
    The client server protocol is open and documented.
    See this :ref:`annotated BNF <box_protocol-iproto_protocol>`.
 
+..  _index-box_complexity-factors:
 
 Complexity factors
 ~~~~~~~~~~~~~~~~~~
