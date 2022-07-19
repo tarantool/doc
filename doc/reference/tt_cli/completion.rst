@@ -6,14 +6,8 @@ Generating completion for tt
     tt completion SHELL
 
 ``tt completion`` generates tab-based completion for ``tt`` commands
-in the specified shell.
+in the specified shell: ``bash`` or ``zsh``.
 
-Details
--------
-
-``tt`` completion can be generated for two shells: ``bash`` and ``zsh``.
-
-The generated completion includes both internal and external commands.
 
 Examples
 --------
