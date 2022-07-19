@@ -1,8 +1,8 @@
 Extending the tt functionality
 ==============================
 
-The ``tt`` utility implements the modular architecture: its :doc:`commands <commands>`
-are implemented in separate modules. When you run ``tt`` with a command, the
+The ``tt`` utility implements a modular architecture: its :doc:`commands <commands>`
+are, in fact, separate modules. When you run ``tt`` with a command, the
 corresponding module is executed with the given arguments.
 
 The modular architecture enables the option to extend the ``tt`` functionality with
