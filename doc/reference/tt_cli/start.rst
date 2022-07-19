@@ -12,11 +12,11 @@ Starting a Tarantool instance
 Details
 -------
 
-``INSTANCE`` is a name of an instance from the ``instances_available`` directory
+``INSTANCE`` is the name of an instance from the ``instances_available`` directory
 specified in the :ref:`tt configuration file <tt-config_file_app>`. This can be:
 
-*   a name of an :ref:`instance file <admin-instance_file>` without the ``.lua`` extension.
-*   a name of a directory containing the ``init.lua`` file.
+*   the name of an :ref:`instance file <admin-instance_file>` without the ``.lua`` extension.
+*   the name of a directory containing the ``init.lua`` file.
 
 
 Examples

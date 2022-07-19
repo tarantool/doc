@@ -6,7 +6,7 @@ Restarting a Tarantool instance
     tt restart INSTANCE
 
 ``tt restart`` restarts the specified running Tarantool instance.
-A ``tt restart`` call is equivalent to subsequent calls of
+A ``tt restart`` call is equivalent to consecutive calls of
 :doc:`tt stop <stop>` and :doc:`tt start <start>`.
 
 Examples
