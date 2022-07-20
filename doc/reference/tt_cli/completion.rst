@@ -17,3 +17,8 @@ Generate ``tt`` completion for the current ``bash`` terminal:
 ..  code-block:: bash
 
     . <(tt completion bash)
+
+.. note::
+
+    You can add an execution of the completion script to a user's ``.bashrc``
+    file to make the completion work for this user in all their terminals.
