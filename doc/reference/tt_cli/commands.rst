@@ -20,11 +20,11 @@ help for the given command.
             -   Get the current status of a Tarantool instance
         *   -   :doc:`restart <restart>`
             -   Restart a Tarantool instance
-        *   -   ``version``
+        *   -   :doc:`version <version>`
             -   Show the ``tt`` version information
-        *   -   ``completion``
-            -   Generate autocompletion for a specified shell
-        *   -   ``help``
+        *   -   :doc:`completion <completion>`
+            -   Generate completion for a specified shell
+        *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
         *   -   ``logrotate``
             -   :ref:`Rotate logs <admin-logs>`
@@ -46,3 +46,6 @@ help for the given command.
     stop <stop>
     status <status>
     restart <restart>
+    version <version>
+    completion <completion>
+    help <help>
