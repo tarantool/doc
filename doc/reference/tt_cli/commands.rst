@@ -12,13 +12,13 @@ help for the given command.
         :widths: 30 70
         :header-rows: 0
 
-        *   -   ``start``
-            -   Start a Tarantool :ref:`instance <admin-instance_file>`
-        *   -   ``stop``
+        *   -   :doc:`start <start>`
+            -   Start a Tarantool instance
+        *   -   :doc:`stop <stop>`
             -   Stop a Tarantool instance
-        *   -   ``status``
+        *   -   :doc:`status <status>`
             -   Get the current status of a Tarantool instance
-        *   -   ``restart``
+        *   -   :doc:`restart <restart>`
             -   Restart a Tarantool instance
         *   -   ``version``
             -   Show the ``tt`` version information
@@ -38,3 +38,11 @@ help for the given command.
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   ``play``
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
+
+..  toctree::
+    :hidden:
+
+    start <start>
+    stop <stop>
+    status <status>
+    restart <restart>

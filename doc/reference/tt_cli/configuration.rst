@@ -35,6 +35,8 @@ modules section
 
 * ``directory`` -- the directory where :doc:`external modules <external_modules>` are stored.
 
+.. _tt-config_file_app:
+
 app section
 ~~~~~~~~~~~
 
