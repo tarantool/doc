@@ -213,7 +213,8 @@ Use the US English spelling.
 Check your spelling and punctuation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Consider checking spelling, grammar, and punctuation with special tools.
+Consider checking spelling, grammar, and punctuation with special tools like
+`LanguageTool <https://languagetool.org/>`_ or `Grammarly <https://www.grammarly.com/>`_.
 
 Dashes
 ~~~~~~

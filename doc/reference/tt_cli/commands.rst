@@ -1,3 +1,5 @@
+.. _tt-commands:
+
 Commands
 ========
 
@@ -10,13 +12,13 @@ help for the given command.
         :widths: 30 70
         :header-rows: 0
 
-        *   -   ``start``
-            -   Start a Tarantool :ref:`instance <admin-instance_file>`
-        *   -   ``stop``
+        *   -   :doc:`start <start>`
+            -   Start a Tarantool instance
+        *   -   :doc:`stop <stop>`
             -   Stop a Tarantool instance
-        *   -   ``status``
+        *   -   :doc:`status <status>`
             -   Get the current status of a Tarantool instance
-        *   -   ``restart``
+        *   -   :doc:`restart <restart>`
             -   Restart a Tarantool instance
         *   -   :doc:`version <version>`
             -   Show the ``tt`` version information
@@ -40,6 +42,10 @@ help for the given command.
 ..  toctree::
     :hidden:
 
+    start <start>
+    stop <stop>
+    status <status>
+    restart <restart>
     version <version>
     completion <completion>
     help <help>

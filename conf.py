@@ -68,7 +68,6 @@ exclude_patterns = [
     'dev_guide/box_protocol.rst',
     'dev_guide/internals.rst',
     'reference/configuration/cfg_*',
-    'reference/reference_lua/jit.rst',
     'images',
     'book/cartridge/cartridge_overview.rst',
     'book/cartridge/CONTRIBUTING.rst',

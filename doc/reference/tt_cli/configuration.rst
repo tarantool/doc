@@ -19,22 +19,23 @@ The ``tt`` configuration file is a YAML file with the following content:
 ..  code:: yaml
 
     tt:
-        modules:
-            directory: path/to/modules/dir
-        app:
-            instances_available: path/to/available/applications
-            run_dir: path/to/run_dir
-            log_dir: path/to/log_dir
-            log_maxsize: num (MB)
-            log_maxage: num (days)
-            log_maxbackups: num
-            restart_on_failure: bool
+      modules:
+        directory: path/to/modules/dir
+      app:
+        instances_available: path/to/available/applications
+        run_dir: path/to/run_dir
+        log_dir: path/to/log_dir
+        log_maxsize: num (MB)
+        log_maxage: num (days)
+        log_maxbackups: num
+        restart_on_failure: bool
 
 modules section
 ~~~~~~~~~~~~~~~
 
-* ``directory`` -- the directory where external modules are stored.
-.. // TODO: add link to external modules doc page when it's ready
+* ``directory`` -- the directory where :doc:`external modules <external_modules>` are stored.
+
+.. _tt-config_file_app:
 
 app section
 ~~~~~~~~~~~

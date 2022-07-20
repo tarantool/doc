@@ -3,6 +3,9 @@ How to write release notes
 
 Below are some best practices to make changelogs consistent, neat, and human-oriented.
 
+Language
+--------
+
 *   Use the past tense to describe changed or fixed behavior.
 
     ..  admonition:: Examples
@@ -23,3 +26,18 @@ Below are some best practices to make changelogs consistent, neat, and human-ori
 
 Note that these guidelines differ from the best practice for commit message titles
 that suggests using the imperative mood.
+
+Formatting
+----------
+
+In release notes, use the following Sphinx syntax when referring to a specific version of Tarantool:
+
+..  code-block:: rst
+
+    Tarantool :tarantool-release:`2.10.0`.
+    This is a link to the release notes on GitHub.
+
+The result looks like this:
+
+    Tarantool :tarantool-release:`2.10.0`.
+    This is a link to the release notes on GitHub.
