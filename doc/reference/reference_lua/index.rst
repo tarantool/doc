@@ -26,6 +26,7 @@ This reference covers Tarantool's built-in Lua modules.
     console
     crypto
     csv
+    datetime
     decimal
     digest
     errno
