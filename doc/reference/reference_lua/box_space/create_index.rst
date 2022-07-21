@@ -289,6 +289,12 @@ and what index types are allowed.
 
               vinyl TREE indexes
             - decimal.new(1.2)
+        
+        *   - ``datetime`` (since :doc:`2.10.0 </release/2.10.0>`)
+            - object returned from a function in the
+              :doc:`datetime </reference/reference_lua/datetime>` module
+            - memtx and vinyl TREE indexes
+            - datetime.new{year = 2002}
 
         *   - ``uuid`` (since :doc:`2.4.1 </release/2.4.1>`)
             - a 128-bit quantity sequence of lower-case hexadecimal digits,

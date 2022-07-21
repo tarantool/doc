@@ -337,7 +337,7 @@ msgstr ""
 "наименьшего значения number потребуется только один байт, a для наибольшего "
 "потребуется девять байтов."
 
-msgid "Field Type Details"
+msgid "Field type details"
 msgstr "Описание типов полей"
 
 msgid ""
@@ -1661,7 +1661,7 @@ msgstr ""
 " запросе приходится ждать, пока отработает обращение к более медленному "
 "диску, и данный фактор становится важнее всех остальных."
 
-msgid "Data Schema Description"
+msgid "Data schema description"
 msgstr "Описание схемы данных"
 
 msgid "In Tarantool, the use of a data schema is optional."
