@@ -11,10 +11,52 @@ datetime_object
 
     ..  method:: totable()
 
-        Export a table with the date and time parameters taken from the ``datetime`` object values.
-        Additional parameters ``wday``, ``yday``, and ``isdst`` are as in :ref:`os.date() <os-date>`.
+        Convert the information from the ``datetime`` object into the table format.
+        Resulting table has the following fields:
 
-        :return: table with the date and time parameters
+        ..  container:: table
+
+            ..  list-table::
+                :widths: 30 70
+                :header-rows: 1
+
+                *   -   Field name
+                    -   Description
+
+                *   -   nsec
+                    -   Nanosecods
+
+                *   -   sec
+                    -   Seconds
+
+                *   -   min
+                    -   Minutes
+
+                *   -   hour
+                    -   Hours
+
+                *   -   day
+                    -   Day number
+
+                *   -   month
+                    -   Month number
+
+                *   -   year
+                    -   Year
+
+                *   -   wday
+                    -   Days since the beginning of the week
+
+                *   -   yday
+                    -   Days since the beginning of the year
+
+                *   -   isdst
+                    -   Is the DST (Daylight saving time) applicable for the date. Boolean.
+
+                *   -   tzoffset
+                    -   Time zone offset from UTC
+
+        :return: table with the date and time parameters [TBD]
         :rtype: table
 
         **Example:**
@@ -22,8 +64,6 @@ datetime_object
         ..  code-block:: tarantoolsession
 
             tarantool> dt = datetime.new {
-                        nsec = 123456789,
-
                         sec = 20,
                         min = 25,
                         hour = 18,
@@ -31,9 +71,9 @@ datetime_object
                         day = 20,
                         month = 8,
                         year = 2021,
-
-                        tzoffset  = 180
                         }
+            ---
+            ...
 
             tarantool> dt:totable()
             ---
@@ -41,24 +81,26 @@ datetime_object
               min: 25
               yday: 232
               day: 20
-              nsec: 123456789
+              nsec: 0
               isdst: false
               wday: 6
-              tzoffset: 180
+              tzoffset: 0
               month: 8
               year: 2021
               hour: 18
             ...
 
-
     ..  _datetime-format:
 
-    ..  method:: format( ['format units'] )
+    ..  method:: format( ['convension_specifications'] )
 
-        Convert standard ``datetime`` object presentation into a formatted string based on the format notation according to the FreeBSD/Olson ``strftime``.
+        Convert the standard ``datetime`` object presentation into a formatted string.
+        The convension specifications are the same as in the `FreeBSD strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__.
+        Additional convension for nanoseconds is `%f` which also allows the modifier to control the output precision of fractional part (see example below).
 
+        :param string convension_specifications: [TBD]
 
-        :return: formatted string with the date and time information
+        :return: string with the formatted date and time information [TBD]
         :rtype: string
 
         **Example:**
@@ -78,10 +120,12 @@ datetime_object
 
                         tzoffset  = 180
                         }
-
-            tarantool> dt:format('%d.%m.%y %H:%M:%S')
             ---
-            - 20.08.21 18:25:20
+            ...
+
+            tarantool> dt:format('%d.%m.%y %H:%M:%S.%5f')
+            ---
+            - 20.08.21 18:25:20.12345
             ...
 
     ..  _datetime-set:
@@ -113,12 +157,12 @@ datetime_object
                         tzoffset  = 180
                         }
 
-        tarantool> dt:set {msec = 567}
-        ---
-        - 2021-08-20T18:25:20.567+0300
-        ...
+            tarantool> dt:set {msec = 567}
+            ---
+            - 2021-08-20T18:25:20.567+0300
+            ...
 
-        tarantool> dt:set {tzoffset = 60}
-        ---
-        - 2021-08-20T18:25:20.567+0100
+            tarantool> dt:set {tzoffset = 60}
+            ---
+            - 2021-08-20T18:25:20.567+0100
 ...
