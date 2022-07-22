@@ -1610,6 +1610,41 @@ In other words, there should be a full-mesh connection between the nodes.
 
     })
 
+..  _box-protocol-watchers:
+
+Watchers
+--------
+
+The commands below support asynchronous server-client
+notifications signaled with ``box.broadcast()``.
+Servers that support the new feature set the ``IPROTO_FEATURE_WATCHERS``
+feature bit (bit 3) in reply to the ``IPROTO_ID`` command.
+When a connection is closed, all watchers registered for it are unregistered.
+
+IPROTO_WATCH (code 74)
+~~~~~~~~~~~~~~~~~~~~~~
+
+Registers a new watcher for the given notification key or acknowledges a notification if a watcher is
+already subscribed.
+The key name is passed in ``IPROTO_EVENT_KEY`` (code 0x56).
+The watcher will be notified unconditionally after registration and then every time the key is updated with
+``box.broadcast()`` provided the last notification was acknowledged.
+The server doesn't reply to the request unless it fails to parse the packet.
+
+IPROTO_UNWATCH (code 75)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Unregisters a watcher subscribed for the given notification key.
+The key name is passed in ``IPROTO_EVENT_KEY`` (code 0x56).
+A server doesn't reply to the request unless it fails to parse the packet.
+
+IPROTO_EVENT (code 76)
+~~~~~~~~~~~~~~~~~~~~~~
+
+Sent by the server to notify a client about a key update.
+The key name is passed in ``IPROTO_EVENT_KEY`` (code 0x56).
+The key data (optional) is passed in ``IPROTO_EVENT_DATA`` (code 0x57).
+
 ..  _box_protocol-illustration:
 
 Examples
