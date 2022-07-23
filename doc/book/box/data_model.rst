@@ -444,7 +444,8 @@ Full information is in section
             -   TREE or HASH
         *   -   ``'number'``
             -   :ref:`number <index-box_number>`, which may include
-                :ref:`integer <index-box_integer>` or :ref:`double <index-box_double>` values
+                :ref:`integer <index-box_integer>`, :ref:`double <index-box_double>`,
+                or :ref:`decimal <index-box_decimal>` values
             -   TREE or HASH
         *   -   ``'decimal'``
             -   :ref:`decimal <index-box_decimal>`
