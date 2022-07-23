@@ -127,7 +127,7 @@ Lua versus MsgPack
 ..  container:: table
 
     ..  list-table::
-        :widths: 15 20 30 35
+        :widths: 15 30 15 40
         :header-rows: 1
 
         *   -   Scalar / compound
