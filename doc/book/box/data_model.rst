@@ -151,6 +151,10 @@ Lua versus MsgPack
             -   `number`_
             -   ``12345``
         *   -   scalar
+            -   integer
+            -   `cdata`_
+            -   ``12345``
+        *   -   scalar
             -   float64 (double)
             -   `number`_
             -   ``1.2345``
@@ -290,6 +294,9 @@ or the ULL (Unsigned Long Long) suffix.
 Here are examples of numbers using regular notation, exponential notation,
 the ULL suffix and the ``tonumber64`` function:
 ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``.
+
+You can also use the ``ffi`` module to specify a C type to cast the number to.
+In this case, the number will be stored as `cdata`_.
 
 ..  _index-box_decimal:
 
