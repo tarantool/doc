@@ -56,7 +56,7 @@ datetime_object
                 *   -   tzoffset
                     -   Time zone offset from UTC
 
-        :return: table with the date and time parameters [TBD]
+        :return: table with the date and time parameters [TBD - description]
         :rtype: table
 
         **Example:**
@@ -95,12 +95,13 @@ datetime_object
     ..  method:: format( ['convension_specifications'] )
 
         Convert the standard ``datetime`` object presentation into a formatted string.
-        The convension specifications are the same as in the `FreeBSD strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__.
-        Additional convension for nanoseconds is `%f` which also allows the modifier to control the output precision of fractional part (see example below).
+        The formatting convension specifications are the same as in the `FreeBSD strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__.
+        Additional convension for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below).
+        If no arguments are set for the method, the default convensions are used: `'%FT%T.%f%z'` (see the example below).
 
-        :param string convension_specifications: [TBD]
+        :param string convension_specifications: string consisting of zero or more conversion specifications and ordinary characters
 
-        :return: string with the formatted date and time information [TBD]
+        :return: string with the formatted date and time information
         :rtype: string
 
         **Example:**
@@ -126,6 +127,16 @@ datetime_object
             tarantool> dt:format('%d.%m.%y %H:%M:%S.%5f')
             ---
             - 20.08.21 18:25:20.12345
+            ...
+
+            tarantool> dt:format()
+            ---
+            - 2021-08-20T18:25:20.123456789+0300
+            ...
+
+            tarantool> dt:format('%FT%T.%f%z')
+            ---
+            - 2021-08-20T18:25:20.123456789+0300
             ...
 
     ..  _datetime-set:
@@ -165,4 +176,4 @@ datetime_object
             tarantool> dt:set {tzoffset = 60}
             ---
             - 2021-08-20T18:25:20.567+0100
-...
+            ...

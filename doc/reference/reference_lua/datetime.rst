@@ -4,9 +4,9 @@ Module datetime
 
 Since :doc:`2.10.0 </release/2.10.0>`.
 
-The ``datetime`` module provides support of the timestamp and interval data types. [TDB -- links].
-It allows to create the date and timestamp values using either object interface,
-or via parsing the string values conforming to ISO-8601 standard.
+The ``datetime`` module provides support for the :ref:`datetime and interval data types <index-box_datetime>`.
+It allows creating the date and time values either via the object interface
+or via parsing string values conforming to the ISO-8601 standard.
 
 Below is a list of the ``datetime`` module functions and methods.
 
@@ -23,16 +23,16 @@ Below is a list of the ``datetime`` module functions and methods.
             -   Use
 
         *   -   :doc:`./datetime/new`
-            -   Create a datetime object from a table of date and time values/parameters
+            -   Create a ``datetime`` object from a table of time units
 
         *   -   :ref:`format() <datetime-format>`
-            -   Convert a datetime object into a string of a particular format
+            -   Convert the standard presentation of a ``datetime`` object into a formatted string
 
         *   -   :ref:`totable() <datetime-totable>`
-            -   Convert a datetime object into a Lua table
+            -   Convert the information from a ``datetime`` object into the table format
 
         *   -   :ref:`set() <datetime-set>`
-            -   Update the field values in the existing datetime object
+            -   Update the field values in the existing ``datetime`` object
 
 
 
