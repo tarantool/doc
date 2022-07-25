@@ -177,3 +177,69 @@ datetime_object
             ---
             - 2021-08-20T18:25:20.567+0100
             ...
+
+    ..  _datetime-parse:
+
+    ..  method:: parse( 'input_string'[, {format, tzoffset} ] )
+
+        Convert an input string with the date and time information into a ``datetime`` object.
+        The input string should be formatted according to one of the following standards:
+
+        *   ISO 8601
+        *   RFC 3339
+        *   extended `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ -- see description of the :ref:`format() <datetime-format>` for details.
+
+        :param string input_string: string with the date and time information.
+        :param string format: indicator of the input_sting format. Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string.
+                                If no value is set, the default formating  is used.
+        :param number tzoffset: time zone offset from UTC, in minutes.
+
+        :return: a datetime_object
+        :rtype: cdata
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> t = datetime.parse('1970-01-01T00:00:00Z')
+
+            tarantool> t
+            ---
+            - 1970-01-01T00:00:00Z
+            ...
+
+            tarantool> t = datetime.parse('1970-01-01T00:00:00', {format = 'iso8601', tzoffset = 180})
+
+            tarantool> t
+            ---
+            - 1970-01-01T00:00:00+0300
+            ...
+
+            tarantool> t = datetime.parse('2017-12-27T18:45:32.999999-05:00', {format = 'rfc3339'})
+
+            tarantool> t
+            ---
+            - 2017-12-27T18:45:32.999999-0500
+            ...
+
+            tarantool> T = datetime.parse('Thu Jan  1 03:00:00 1970', {format = '%c'})
+
+            tarantool> T
+            ---
+            - 1970-01-01T03:00:00Z
+            ...
+
+            tarantool> T = datetime.parse('12/31/2020', {format = '%m/%d/%y'})
+
+            tarantool> T
+            ---
+            - 2020-12-31T00:00:00Z
+            ...
+
+            tarantool> T = datetime.parse('1970-01-01T03:00:00.125000000+0300', {format = '%FT%T.%f%z'})
+
+            tarantool> T
+            ---
+            - 1970-01-01T03:00:00.125+0300
+            ...
+
