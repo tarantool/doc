@@ -26,11 +26,11 @@ help for the given command.
             -   Generate completion for a specified shell
         *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
-        *   -   ``logrotate``
-            -   :ref:`Rotate logs <admin-logs>`
+        *   -   :doc:`logrotate <logrotate>`
+            -   Rotate instance logs
         *   -   :doc:`check <check>`
             -   Check an application file for syntax errors
-        *   -   ``connect``
+        *   -   :doc:`connect <connect>`
             -   Connect to a Tarantool instance
         *   -   ``rocks``
             -   Use the LuaRocks package manager
