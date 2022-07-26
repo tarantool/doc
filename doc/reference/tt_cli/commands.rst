@@ -28,7 +28,7 @@ help for the given command.
             -   Display help for ``tt`` or a specific command
         *   -   ``logrotate``
             -   :ref:`Rotate logs <admin-logs>`
-        *   -   ``check``
+        *   -   :doc:`check <check>`
             -   Check an application file for syntax errors
         *   -   ``connect``
             -   Connect to a Tarantool instance
@@ -49,3 +49,4 @@ help for the given command.
     version <version>
     completion <completion>
     help <help>
+    check <check>
