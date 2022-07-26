@@ -69,4 +69,3 @@
                 reference/index
                 contributing/index
                 release/index
-                
