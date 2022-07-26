@@ -20,5 +20,5 @@
     book/connectors
     reference/index
     tutorials/index
-    contributing/index
     release/index
+    contributing/index
