@@ -711,10 +711,10 @@ msgstr "``'number'``"
 
 msgid ""
 ":ref:`number <index-box_number>`, which may include :ref:`integer <index-"
-"box_integer>` or :ref:`double <index-box_double>` values"
+"box_integer>`, :ref:`double <index-box_double>`, or :ref:`decimal <index-box_decimal>` values"
 msgstr ""
 ":ref:`number <index-box_number>`, может включать в себя значения типа "
-":ref:`integer <index-box_integer>` или :ref:`double <index-box_double>`"
+":ref:`integer <index-box_integer>`, :ref:`double <index-box_double>` или :ref:`decimal <index-box_decimal>`"
 
 msgid "``'decimal'``"
 msgstr "``'decimal'``"
