@@ -127,7 +127,7 @@ Lua versus MsgPack
 ..  container:: table
 
     ..  list-table::
-        :widths: 15 20 30 35
+        :widths: 15 30 15 40
         :header-rows: 1
 
         *   -   Scalar / compound
@@ -149,6 +149,10 @@ Lua versus MsgPack
         *   -   scalar
             -   integer
             -   `number`_
+            -   ``12345``
+        *   -   scalar
+            -   integer
+            -   `cdata`_
             -   ``12345``
         *   -   scalar
             -   float64 (double)
@@ -290,6 +294,9 @@ or the ULL (Unsigned Long Long) suffix.
 Here are examples of numbers using regular notation, exponential notation,
 the ULL suffix and the ``tonumber64`` function:
 ``-55``, ``-2.7e+20``, ``100000000000000ULL``, ``tonumber64('18446744073709551615')``.
+
+You can also use the ``ffi`` module to specify a C type to cast the number to.
+In this case, the number will be stored as `cdata`_.
 
 ..  _index-box_decimal:
 
@@ -437,7 +444,8 @@ Full information is in section
             -   TREE or HASH
         *   -   ``'number'``
             -   :ref:`number <index-box_number>`, which may include
-                :ref:`integer <index-box_integer>` or :ref:`double <index-box_double>` values
+                :ref:`integer <index-box_integer>`, :ref:`double <index-box_double>`,
+                or :ref:`decimal <index-box_decimal>` values
             -   TREE or HASH
         *   -   ``'decimal'``
             -   :ref:`decimal <index-box_decimal>`
