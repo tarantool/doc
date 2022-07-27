@@ -1,4 +1,4 @@
-..  _net_box-module:
+zc..  _net_box-module:
 
 --------------------------------------------------------------------------------
 Module net.box
@@ -545,7 +545,7 @@ Below is a list of all ``net.box`` functions.
         :param function func:  a callback to invoke when the key value is updated
         :return: a watcher handle. The handle consists of one method -- ``unregister()``, which unregisters the watcher.
 
-        To read more about watchers, see the `Functions for watchers <box-watchers>` section.
+        To read more about watchers, see the :ref:`Functions for watchers <box-watchers>` section.
 
         The method has the same syntax as the :doc:`box.watch() </reference/reference_lua/box_events/broadcast>`
         function, which is used for subscribing to events locally.
@@ -570,20 +570,25 @@ Below is a list of all ``net.box`` functions.
 
         ..  code-block:: lua
 
-            -- Broadcast value 123 for the key 'foo'.
-            box.broadcast('foo', 123)
+            -- Broadcast value 42 for the 'foo' key.
+            box.broadcast('foo', 42)
 
         Client:
 
         ..  code-block:: lua
 
             conn = net.box.connect(URI)
+            local log = require('log')
             -- Subscribe to updates of the 'foo' key.
             w = conn:watch('foo', function(key, value)
                 assert(key == 'foo')
-                -- do something with value
+                log.info("The box.id value is '%d'", value)
             end)
-            -- Unregister the watcher if it is no longer needed.
+
+        If you don't need the watcher anymore, you can unregister it using the command below:
+
+        ..  code-block:: lua
+
             w:unregister()
 
     .. _conn-timeout:

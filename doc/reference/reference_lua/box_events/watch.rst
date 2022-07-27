@@ -13,7 +13,7 @@ box.watch()
 
     :return: a watcher handle. The handle consists of one method -- ``unregister()``, which unregisters the watcher.
 
-    To read more about watchers, see the `Functions for watchers <box-watchers>` section.
+    To read more about watchers, see the :ref:`Functions for watchers <box-watchers>` section.
 
     ..  note::
 
@@ -25,13 +25,19 @@ box.watch()
 
     ..  code-block:: lua
 
-        -- Broadcast value 123 for the 'foo' key.
-        box.broadcast('foo', 123)
+        -- Broadcast value 42 for the 'foo' key.
+        box.broadcast('foo', 42)
+
+        local log = require('log')
         -- Subscribe to updates of the 'foo' key.
-        w = box.watch('foo', function(key, value)
+        local w = box.watch('foo', function(key, value)
             assert(key == 'foo')
-            -- do something with value
+            log.info("The box.id value is '%d'", value)
         end)
-        -- Unregister the watcher when it is no longer needed.
+
+    If you don't need the watcher anymore, you can unregister it using the command below:
+
+    ..  code-block:: lua
+
         w:unregister()
 

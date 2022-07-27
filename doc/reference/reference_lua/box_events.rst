@@ -4,7 +4,7 @@ Event watchers
 ==============
 
 The ``box`` module contains some features related to event subscriptions, also known as :term:`watchers <watcher>`.
-The subscriptions are used to inform a client about server-side :term:`events <event>`.
+The subscriptions are used to inform a client about the server-side :term:`events <event>`.
 Each event subscription is defined by a certain key.
 
 ..  glossary::
@@ -41,7 +41,7 @@ after the registration of the watcher.
 The watcher callback takes two arguments.
 The first argument is a name of the key for which it was registered.
 The second one contains current key data.
-The callback is always invoked in a new fiber. It means that is is okay to yield in it.
+The callback is always invoked in a new fiber. It means that is allowed to yield in it.
 A watcher callback is never executed in parallel with itself.
 If the key is updated while the watcher callback is running, the callback will be invoked again with the new
 value as soon as it returns.
@@ -71,7 +71,7 @@ Below is a list of all functions and members related to watchers or events.
         *  - :doc:`./box_events/broadcast`
            - Update a state.
 
-        *  - :ref:`˜Built-in events <system-events>`
+        *  - :ref:`Built-in events <system-events>`
            - Predefined events in Tarantool
 
 .. toctree::

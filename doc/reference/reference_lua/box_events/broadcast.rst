@@ -22,7 +22,7 @@ box.broadcast()
 
     ..  code-block:: lua
 
-        -- Broadcast value 123 for the 'foo' key.
-        box.broadcast('foo', 123)
+        -- Broadcast value 42 for the 'foo' key.
+        box.broadcast('foo', 42)
 
 

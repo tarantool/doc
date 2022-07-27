@@ -19,6 +19,12 @@ The events are available from the beginning as non-:ref:`MP_NIL <box_protocol-no
 If a watcher subscribes to a system event before it has been broadcast,
 it receives an empty table for the event value.
 
+The event is generated when there is a change in any of the values listed in the event.
+For example, see the parameters in the ``box.id`` event below -- ``id``, ``instance_uuid``, and ``replicaset_uuid``.
+Suppose the ``ìd`` value (``box.info.id``) has changed.
+This triggers the ``box.info`` event, which states that the value of ``box.info.id`` has changed,
+while ``box.info.uuid`` and ``box.info.cluster.uuid`` remain the same.
+
 box.id
 ~~~~~~
 
@@ -33,7 +39,6 @@ Value changes are rare.
     The value is unknown before the ``box.cfg`` call.
 
 *   ``replicaset_uuid``: the value is unknown until the instance joins a replicaset or boots a new one.
-    The events start working before that -- right with the start of the listen.
 
 ..  code-block:: lua
 
@@ -99,28 +104,18 @@ Usage example
 
 ..  code-block:: lua
 
-    conn = net.box.connect(URI)
+    local conn = net.box.connect(URI)
+    local log = require('log')
     -- Subscribe to updates of key 'box.id'
-    w = conn:watch('box.id', function(key, value)
+    local w = conn:watch('box.id', function(key, value)
         assert(key == 'box.id')
-        -- do something with value
+        log.info("The box.id value is '%s'", value)
     end)
-    -- or to updates of key 'box.status'
-    w = conn:watch('box.status', function(key, value)
-        assert(key == 'box.status')
-        -- do something with value
-    end)
-    -- or to updates of key 'box.election'
-    w = conn:watch('box.election', function(key, value)
-        assert(key == 'box.election')
-        -- do something with value
-    end)
-    -- or to updates of key 'box.schema'
-    w = conn:watch('box.schema', function(key, value)
-        assert(key == 'box.schema')
-        -- do something with value
-    end)
-    -- Unregister the watcher when it's no longer needed.
+
+If you want to unregister the watcher when it's no longer needed, use the following command:
+
+..  code-block:: lua
+
     w:unregister()
 
 
