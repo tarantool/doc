@@ -49,7 +49,7 @@ and ``-p`` (``--password``) options.
 By default, ``tt connect`` opens an interactive Tarantool console. Alternatively, you
 can open a connection to evaluate a Lua script from a file or stdin. To do this,
 pass the file path in the ``-f`` (``--file``) option or use ``-f -`` to take the script
-from the stdin.
+from stdin.
 
 
 Examples
@@ -73,14 +73,9 @@ Examples
 
         tt connect app -f test.lua
 
-*   Create the ``test()`` function on the ``app`` instance:
+*   Connect to the ``app`` instance and evaluate the code from stdin:
 
     ..  code-block:: bash
 
-        echo "function test() return 1 end" | tt connect app -f -
-
-    Connect to the ``app instance`` and call this function:
-
-    ..  code-block:: bash
-
-        echo "test()" | tt connect app -f -
+        echo "function test() return 1 end" | tt connect app -f - # Create the test() function
+        echo "test()" | tt connect app -f -                       # Call this function
