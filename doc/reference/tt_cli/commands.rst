@@ -49,4 +49,6 @@ help for the given command.
     version <version>
     completion <completion>
     help <help>
+    logrotate <logrotate>
     check <check>
+    connect <connect>

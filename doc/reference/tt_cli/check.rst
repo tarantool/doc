@@ -1,5 +1,3 @@
-.. _tt-start:
-
 Checking an application file
 ============================
 

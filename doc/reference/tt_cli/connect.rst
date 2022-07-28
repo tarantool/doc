@@ -1,5 +1,3 @@
-.. _tt-start:
-
 Connecting to a Tarantool instance
 ==================================
 
@@ -23,30 +21,35 @@ Flags
         *   -   ``-u``
 
                 ``--username``
-            -   Username.
+            -   Username
         *   -   ``-p``
 
                 ``--password``
-            -   Password.
+            -   Password
         *   -   ``-f``
 
                 ``--file``
-            -   Connect and evaluate the script from a file. ``-`` – read the script from stdin.
+            -   Connect and evaluate the script from a file.
+
+                ``-`` – read the script from stdin.
 
 Details
 -------
 
 To connect to an instance, ``tt`` typically needs its URI -- the host name or IP address
-and the port. You can also connect to instances in the same ``tt`` environment
-(that is, those that use the same ref:`configuration file <tt-config_file>` and Tarantool installation)
+and the port.
+
+You can also connect to instances in the same ``tt`` environment
+(that is, those that use the same :ref:`configuration file <tt-config_file>` and Tarantool installation)
 by their instance names.
 
 If authentication is required, specify the username and the password using the ``-u`` (``--username``)
 and ``-p`` (``--password``) options.
 
 By default, ``tt connect`` opens an interactive Tarantool console. Alternatively, you
-can open a connection for executing a Lua script from a file or stdin. To do this,
-pass the file path in the ``-f`` (``--file``) option.
+can open a connection to evaluate a Lua script from a file or stdin. To do this,
+pass the file path in the ``-f`` (``--file``) option or use ``-f -`` to take the script
+from the stdin.
 
 
 Examples
@@ -64,13 +67,13 @@ Examples
 
         tt connect 192.168.10.10:3301 -u myuser -p p4$$w0rD
 
-*   Connect to the ``app`` instance and evaluate code from the ``test.lua`` file:
+*   Connect to the ``app`` instance and evaluate the code from the ``test.lua`` file:
 
     ..  code-block:: bash
 
         tt connect app -f test.lua
 
-*  Create the ``test()`` function on the ``app`` instance:
+*   Create the ``test()`` function on the ``app`` instance:
 
     ..  code-block:: bash
 

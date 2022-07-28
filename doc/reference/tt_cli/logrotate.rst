@@ -1,6 +1,4 @@
-.. _tt-start:
-
-Rotate instance logs
+    Rotate instance logs
 ====================
 
 ..  code-block:: bash
