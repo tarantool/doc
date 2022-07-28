@@ -26,6 +26,8 @@ This section contains the following recipes:
 
 Use freely.
 
+See more recipes on `Tarantool GitHub <https://github.com/tarantool/examples/tree/master/cookbook>`__.
+
 .. _cookbook-hello_world:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
