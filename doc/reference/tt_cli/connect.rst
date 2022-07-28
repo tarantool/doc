@@ -5,10 +5,11 @@ Connecting to a Tarantool instance
 
 ..  code-block:: bash
 
-    tt connect (<INSTANCE_NAME> | <URI>) [flags]
+    tt connect URI|INSTANCE_NAME [flags]
 
 
-``tt connect`` connects to a Tarantool instance by its instance name or URI..
+``tt connect`` connects to a Tarantool instance by its URI or name specified
+during its startup (``tt start``).
 
 Flags
 -----
@@ -30,19 +31,53 @@ Flags
         *   -   ``-f``
 
                 ``--file``
-            -   File to read the script for evaluation. "-" - read the script from stdin.
+            -   Connect and evaluate the script from a file. ``-`` – read the script from stdin.
 
 Details
 -------
 
+To connect to an instance, ``tt`` typically needs its URI -- the host name or IP address
+and the port. You can also connect to instances in the same ``tt`` environment
+(that is, those that use the same ref:`configuration file <tt-config_file>` and Tarantool installation)
+by their instance names.
 
+If authentication is required, specify the username and the password using the ``-u`` (``--username``)
+and ``-p`` (``--password``) options.
+
+By default, ``tt connect`` opens an interactive Tarantool console. Alternatively, you
+can open a connection for executing a Lua script from a file or stdin. To do this,
+pass the file path in the ``-f`` (``--file``) option.
 
 
 Examples
 --------
 
-*   Connect to the ``app`` instance without authorization:
+*   Connect to the ``app`` instance in the same environment:
 
     ..  code-block:: bash
 
         tt connect app
+
+*   Connect to the ``192.168.10.10`` host on port ``3301`` with authentication:
+
+    ..  code-block:: bash
+
+        tt connect 192.168.10.10:3301 -u myuser -p p4$$w0rD
+
+*   Connect to the ``app`` instance and evaluate code from the ``test.lua`` file:
+
+    ..  code-block:: bash
+
+        tt connect app -f test.lua
+
+*  Create the ``test()`` function on the ``app`` instance:
+
+    ..  code-block:: bash
+
+        echo "function test() return 1 end" | tt connect app -f -
+
+    Connect to the ``app instance`` and call this function:
+
+    ..  code-block:: bash
+
+        echo "test()" | tt connect app -f -
