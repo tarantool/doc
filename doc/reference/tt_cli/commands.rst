@@ -34,9 +34,9 @@ help for the given command.
             -   Connect to a Tarantool instance
         *   -   ``rocks``
             -   Use the LuaRocks package manager
-        *   -   ``cat``
+        *   -   :doc:`cat <cat>`
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
-        *   -   ``play``
+        *   -   :doc:`play <play>`
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
 
 ..  toctree::
@@ -52,3 +52,5 @@ help for the given command.
     logrotate <logrotate>
     check <check>
     connect <connect>
+    cat <cat>
+    play <play>
