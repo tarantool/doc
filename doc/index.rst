@@ -50,6 +50,7 @@
             .. toctree::
                 :maxdepth: 1
 
+                overview
                 getting_started/index
                 book/box/data_model
                 CRUD operations <reference/reference_lua/box_space>

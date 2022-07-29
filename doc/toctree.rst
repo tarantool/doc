@@ -4,6 +4,7 @@
     :maxdepth: 7
     :includehidden:
 
+    overview
     getting_started/index
     book/box/data_model
     CRUD operations <reference/reference_lua/box_space>

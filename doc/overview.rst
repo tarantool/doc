@@ -4,8 +4,8 @@ Overview
 What is Tarantool?
 ------------------
 
-Tarantool combines an in-memory DBMS and a Lua server in a single platform, which
-provides ACID-compliant storage. It comes in :ref:`open-source and commercial editions <overview-editions>`.
+Tarantool combines an in-memory DBMS and a Lua server in a single platform
+providing ACID-compliant storage. It comes in :ref:`open-source and commercial editions <overview-editions>`.
 The :ref:`use cases <overview-use_cases>` for Tarantool vary from ultra-fast cache
 to product data marts and smart queue services.
 
@@ -19,32 +19,59 @@ Here are some of Tarantool's key characteristics:
     :body: doc-card__text
 
     Row-based storage data
-    ^^^^^^^^^^^^^^^^^^^^^^
+
+    ^^^
+
     Data is stored in tuples
+
     ---
+
     Easy handling of OLTP workloads
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    ^^^
+
     Processes hundreds of thousands RPS
+    
     ---
+
     Data integrity
-    ^^^^^^^^^^^^^^
+
+    ^^^
+
     Write-ahead log (WAL) and data snapshots 
+
     ---
+
     Cooperative multitasking
-    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+    ^^^
+    
     Transactions are performed in lightweight coroutines with no interthread locking
+
     ---
+
     Advanced indexing
-    ^^^^^^^^^^^^^^^^^
+
+    ^^^
+    
     Composite indexes, locale support, indexing by nested fields and arrays
+
     ---
+
     Compute close to data
-    ^^^^^^^^^^^^^^^^^^^^^
+
+    ^^^
+    
     Lua server and Just-In-Time compiler on board
+
     ---
-    Durable replication
-    ^^^^^^^^^^^^^^^^^^^
+
+    Durable distributed storage
+
+    ^^^
+    
     Multiple failover modes and RAFT-based synchronous replication available
+    
 
 Tarantool allows executing code alongside data, which helps increase the speed of operations.
 Developers can implement any business logic with Lua,
@@ -78,11 +105,6 @@ This edition includes all the Community Edition features
 and is more predictable in terms of solution cost and maintenance.
 The Enterprise Edition is shipped as an SDK and includes a number of closed-source modules.
 See the `documentation for Tarantool EE <https://www.tarantool.io/en/enterprise_doc/>`__.
-
-For a focus on business logic, try `Tarantool Data Grid <https://www.tarantool.io/en/datagrid/>`__ --
-a data integration tool with a web GUI perfectly suitable for non-programmers.
-Tarantool Data Grid is also based on the Community Edition.
-See the `documentation for Tarantool Data Grid <https://www.tarantool.io/en/tdg/1.6/>`__.
 
 ..  _overview-use_cases:
 
