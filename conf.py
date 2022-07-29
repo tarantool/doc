@@ -21,6 +21,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
+    'sphinx_panels',
     'sphinxcontrib.plantuml',
     'ext.custom',
     'ext.LuaDomain',
