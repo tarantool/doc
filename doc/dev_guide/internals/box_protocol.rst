@@ -81,9 +81,9 @@ The IPROTO constants that identify requests that we will mention in this section
     IPROTO_FETCH_SNAPSHOT=0x45
     IPROTO_REGISTER=0x46
     IPROTO_ID=0x49
-	IPROTO_WATCH=0x4a
-	IPROTO_UNWATCH=0x4b
-	IPROTO_EVENT=0x4c
+    IPROTO_WATCH=0x4a
+    IPROTO_UNWATCH=0x4b
+    IPROTO_EVENT=0x4c
 
 
 The IPROTO constants that appear within requests or responses that we will describe in this section are:
@@ -150,8 +150,8 @@ The IPROTO constants that appear within requests or responses that we will descr
     IPROTO_VERSION=0x54
     IPROTO_FEATURES=0x55
     IPROTO_TIMEOUT=0x56
-	IPROTO_EVENT_KEY=0x57
-	IPROTO_EVENT_DATA=0x58
+    IPROTO_EVENT_KEY=0x57
+    IPROTO_EVENT_DATA=0x58
     IPROTO_TXN_ISOLATION=0x59
 
 
@@ -960,17 +960,17 @@ The remote :ref:`watcher <box-watchers>` protocol works in the following way:
 
 #.  The client sends an ``IPROTO_WATCH`` packet to subscribe to the updates of a specified key defined on the server.
 
-#.  The server sends an ``IPROTO_EVENT`` packet to the subscribed client with the key name and
-    its current value unconditionally after registration.
-    After that, the packet is sent every time the key value is updated provided the last notification
-    was acknowledged (see below).
+#.  The server sends an ``IPROTO_EVENT`` packet to the subscribed client after registration.
+    The packet contains the key name and its current value.
+    After that, the packet is sent every time the key value is updated with
+    ``box.broadcast()`` provided that the last notification was acknowledged (see below).
 
 #.  After receiving a notification, the client sends an ``IPROTO_WATCH`` packet to acknowledge the notification.
 
 #.  If the client doesn't want to receive any more notifications, it unsubscribes by sending
     an ``IPROTO_UNWATCH`` packet.
 
-All the three request types are fully asynchronous -- a receiving end doesn't send a packet in reply to any of them.
+All the three request types are asynchronous -- a receiving end doesn't send a packet in reply to any of them.
 Therefore, neither of them has a sync number.
 
 ..  _box_protocol-watch:
@@ -980,9 +980,8 @@ IPROTO_WATCH = 0x4a
 
 Registers a new watcher for the given notification key or confirms a notification if a watcher is
 already subscribed.
-The watcher is notified unconditionally after registration.
-After that, the notification is sent every time the key is updated with
-``box.broadcast()`` provided the last notification was acknowledged.
+The watcher is notified after registration.
+After that, the notification is sent every time the key is updated.
 The server doesn't reply to the request unless it fails to parse the packet.
 
 The body is a 2-item map:
