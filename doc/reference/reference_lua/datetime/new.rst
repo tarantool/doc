@@ -7,7 +7,7 @@ datetime.new()
 
     Since :doc:`2.10.0 </release/2.10.0>`.
 
-    Create an object of the :ref:`datetime type <index-box_data-types>` from a table of time units.
+    Create an object of the :ref:`datetime type <index-box_datetime>` from a table of time units.
     See :ref:`description of units <datetime-new-args>` and :ref:`examples <datetime-new-example>` below.
     If an empty table or no arguments are passed, create the ``datetime`` object with the default values corresponding to Unix Epoch: ``1970-01-01T00:00:00Z``.
 

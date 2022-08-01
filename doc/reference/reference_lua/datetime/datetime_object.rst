@@ -56,7 +56,7 @@ datetime_object
                 *   -   tzoffset
                     -   Time zone offset from UTC
 
-        :return: table with the date and time parameters [TBD - description]
+        :return: table with the date and time parameters [TBD]
         :rtype: table
 
         **Example:**

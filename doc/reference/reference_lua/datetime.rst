@@ -34,6 +34,8 @@ Below is a list of the ``datetime`` module functions and methods.
         *   -   :ref:`set() <datetime-set>`
             -   Update the field values in the existing ``datetime`` object
 
+        *   -   :doc:`./datetime/interval_new`
+            -   Create an ``interval`` object from a table of time units [TBD]
 
 
 ..  toctree::
@@ -41,3 +43,4 @@ Below is a list of the ``datetime`` module functions and methods.
 
     datetime/new
     datetime/datetime_object
+    datetime/interval_new
