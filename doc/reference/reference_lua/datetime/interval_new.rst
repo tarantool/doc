@@ -11,7 +11,7 @@ datetime.interval.new()
     See :ref:`description of units <interval-new-args>` and :ref:`examples <interval-new-example>` below.
 
     :param table time_units: Table of :ref:`time units <interval-new-args>`. For all possible time units, the values are not restricted.
-                                If an empty table or no arguments are passed, the ``interval`` object with the default value ``0 second`` is created.
+                                If an empty table or no arguments are passed, the ``interval`` object with the default value ``0 seconds`` is created.
 
     :return: :doc: interval object
     :rtype: cdata
