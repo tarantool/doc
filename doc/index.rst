@@ -47,7 +47,7 @@
                         </a>
                     </div>
 
-            .. toctree::
+            ..  toctree::
                 :maxdepth: 1
 
                 overview

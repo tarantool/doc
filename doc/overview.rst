@@ -5,7 +5,8 @@ What is Tarantool?
 ------------------
 
 Tarantool combines an in-memory DBMS and a Lua server in a single platform
-providing ACID-compliant storage. It comes in :ref:`open-source and commercial editions <overview-editions>`.
+providing ACID-compliant storage. It comes in two :ref:`editions <overview-editions>`:
+Community and Enterprise.
 The :ref:`use cases <overview-use_cases>` for Tarantool vary from ultra-fast cache
 to product data marts and smart queue services.
 
@@ -18,13 +19,6 @@ Here are some of Tarantool's key characteristics:
     :header: doc-card__title
     :body: doc-card__text
 
-    Row-based storage data
-
-    ^^^
-
-    Data is stored in tuples
-
-    ---
 
     Easy handling of OLTP workloads
 
@@ -125,7 +119,6 @@ Fast first-class storage
     -   Data access, data slices
 
 *   Predictable request latency
-*   Read available even when the disk is down
 
 Advanced cache
 ~~~~~~~~~~~~~~
