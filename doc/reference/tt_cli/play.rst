@@ -1,12 +1,13 @@
-Playing the contents of .snap and .xlog files in a Tarantool instance
+Playing the contents of .snap and .xlog files to a Tarantool instance
 =====================================================================
 
 ..  code-block:: bash
 
-     tt play URI FILE .. [flags]
-ls
+    tt play URI FILE .. [flags]
 
-``tt cat`` plays the contents of .snap and .xlog files into another Tarantool instance.
+``tt cat`` plays the contents of :ref:`snapshot <internals-snapshot>` (``.snap``) and
+:ref:`WAL <internals-wal>` (``.xlog``) files to another Tarantool instance.
+A single call of ``tt play`` can play the contents of multiple files.
 
 Flags
 -----
@@ -20,11 +21,11 @@ Flags
         *   -   ``--from``
             -   Show operations starting from the given LSN
         *   -   ``--to``
-            -   Show operations until the given LSN (default 18446744073709551615)
+            -   Show operations until the given LSN. Default: 18446744073709551615
         *   -   ``--replica``
             -   Filter the output by replica id. May be passed more than once
         *   -   ``--space``
-            -    Filter the output by space ID number. May be passed more than once
+            -    Filter the output by space id. May be passed more than once
         *   -   ``--show-system``
             -   Show the contents of system spaces
 
@@ -35,8 +36,8 @@ Details
 Examples
 --------
 
-*   Output all contents of ``00000000000000000000.xlog`` WAL file in the YAML format
-    without operations on system spaces:
+*   Play the contents of ``00000000000000000000.xlog`` into the instance that listens on
+    ``192.168.10.10:3301``:
 
     ..  code-block:: bash
 

@@ -7,7 +7,9 @@ Printing the contents of .snap and .xlog files
 ls
 
 ``tt cat`` prints the contents of :ref:`snapshot <internals-snapshot>` (``.snap``) and
-:ref:`WAL <internals-wal>` (``.xlog``) files to stdout.
+:ref:`WAL <internals-wal>` (``.xlog``) files to stdout. A single call of ``tt cat`` can
+print the contents of multiple files.
+
 
 Flags
 -----
@@ -23,18 +25,13 @@ Flags
         *   -   ``--from``
             -   Show operations starting from the given LSN
         *   -   ``--to``
-            -   Show operations until the given LSN (default 18446744073709551615)
+            -   Show operations until the given LSN. Default: 18446744073709551615
         *   -   ``--replica``
             -   Filter the output by replica id. May be passed more than once
         *   -   ``--space``
-            -    Filter the output by space ID number. May be passed more than once
+            -   Filter the output by space id. May be passed more than once
         *   -   ``--show-system``
             -   Show the contents of system spaces
-
-Details
--------
-
-``tt cat`` accepts multiple files a single call.
 
 Examples
 --------
