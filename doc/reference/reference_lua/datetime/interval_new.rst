@@ -3,14 +3,14 @@
 datetime.interval.new()
 =======================
 
-..  function:: datetime.interval.new( [{ time_units }] )
+..  function:: datetime.interval.new( [{ units }] )
 
     Since :doc:`2.10.0 </release/2.10.0>`.
 
     Create an object of the :ref:`interval type <index-box_interval>` from a table of time units.
     See :ref:`description of units <interval-new-args>` and :ref:`examples <interval-new-example>` below.
 
-    :param table time_units: Table of :ref:`time units <interval-new-args>`. For all possible time units, the values are not restricted.
+    :param table units: Table of :ref:`time units <interval-new-args>`. For all possible time units, the values are not restricted.
                                 If an empty table or no arguments are passed, the ``interval`` object with the default value ``0 seconds`` is created.
 
     :return: :doc: interval object

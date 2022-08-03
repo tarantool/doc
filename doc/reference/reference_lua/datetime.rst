@@ -23,19 +23,19 @@ Below is a list of the ``datetime`` module functions and methods.
             -   Use
 
         *   -   :doc:`./datetime/new`
-            -   Create a ``datetime`` object from a table of time units
+            -   Create a ``datetime`` object from a table of time units.
 
         *   -   :ref:`format() <datetime-format>`
-            -   Convert the standard presentation of a ``datetime`` object into a formatted string
+            -   Convert the standard presentation of a ``datetime`` object into a formatted string.
 
         *   -   :ref:`totable() <datetime-totable>`
-            -   Convert the information from a ``datetime`` object into the table format
+            -   Convert the information from a ``datetime`` object into the table format.
 
         *   -   :ref:`set() <datetime-set>`
-            -   Update the field values in the existing ``datetime`` object
+            -   Update the field values in the existing ``datetime`` object.
 
         *   -   :doc:`./datetime/interval_new`
-            -   Create an ``interval`` object from a table of time units [TBD]
+            -   Create an ``interval`` object from a table of time units.
 
 
 ..  toctree::

@@ -3,14 +3,14 @@
 datetime.new()
 ==============
 
-..  function:: datetime.new( [{ time_units }] )
+..  function:: datetime.new( [{ units }] )
 
     Since :doc:`2.10.0 </release/2.10.0>`.
 
     Create an object of the :ref:`datetime type <index-box_datetime>` from a table of time units.
     See :ref:`description of units <datetime-new-args>` and :ref:`examples <datetime-new-example>` below.
 
-    :param table time_units: Table of :ref:`time units <datetime-new-args>`.
+    :param table units: Table of :ref:`time units <datetime-new-args>`.
                                 If an empty table or no arguments are passed, the ``datetime`` object with the default values corresponding to Unix Epoch is created: ``1970-01-01T00:00:00Z``.
 
     :return: :doc:`datetime object <./datetime/datetime_object>`
@@ -53,7 +53,7 @@ datetime.new()
                 -   0
 
             *   -   day
-                -   Day number. Value range: 1 - 31. The special value ``-1`` generates the last day of a particular month. [TBD link to examples]
+                -   Day number. Value range: 1 - 31. The special value ``-1`` generates the last day of a particular month (see :ref:`example below <datetime-new-example>`).
                 -   number
                 -   1
 
@@ -65,11 +65,11 @@ datetime.new()
             *   -   year
                 -   Year
                 -   number
-                -   1
+                -   1970
 
             *   -   timestamp
                 -   Timestamp, in seconds. Similar to the Unix timestamp, but can have a fractional part which is converted in nanoseconds in the resulting ``datetime`` object.
-                    If the fractional part for the last second is set via the ``nsec``, ``usec``, or ``msec`` units, the timestamp value should be integer otherwise an error occurs. [TBD link to examples]
+                    If the fractional part for the last second is set via the ``nsec``, ``usec``, or ``msec`` units, the timestamp value should be integer otherwise an error occurs.
                     Timestamp is not allowed if you already set time and/or date via specific units, namely, ``sec``, ``min``, ``hour``, ``day``, ``month``, and ``year``.
                 -   number
                 -   0
@@ -144,9 +144,7 @@ datetime.new()
 
         tarantool> datetime.new {
                     nsec = 123,
-
                     timestamp = 1656664205,
-
                     tz = 'Europe/Moscow'
                     }
         ---

@@ -56,7 +56,7 @@ datetime_object
                 *   -   tzoffset
                     -   Time zone offset from UTC
 
-        :return: table with the date and time parameters [TBD]
+        :return: table with the date and time parameters
         :rtype: table
 
         **Example:**
@@ -92,14 +92,14 @@ datetime_object
 
     ..  _datetime-format:
 
-    ..  method:: format( ['convension_specifications'] )
+    ..  method:: format( ['convensions'] )
 
         Convert the standard ``datetime`` object presentation into a formatted string.
-        The formatting convension specifications are the same as in the `FreeBSD strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__.
+        The formatting convension specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ library.
         Additional convension for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below).
         If no arguments are set for the method, the default convensions are used: `'%FT%T.%f%z'` (see the example below).
 
-        :param string convension_specifications: string consisting of zero or more conversion specifications and ordinary characters
+        :param string convensions: string consisting of zero or more conversion specifications and ordinary characters
 
         :return: string with the formatted date and time information
         :rtype: string
@@ -141,11 +141,11 @@ datetime_object
 
     ..  _datetime-set:
 
-    ..  method:: set( [{ time_units }] )
+    ..  method:: set( [{ units }] )
 
         Update the field values in the existing ``datetime`` object.
 
-        :param table time_units: Table of time units. The :ref:`time units <datetime-new-args>` are the same as for the ``datetime.new()`` function.
+        :param table units: Table of time units. The :ref:`time units <datetime-new-args>` are the same as for the ``datetime.new()`` function.
 
         :return: updated datetime_object
         :rtype: cdata
