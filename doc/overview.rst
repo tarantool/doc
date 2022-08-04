@@ -12,59 +12,17 @@ to product data marts and smart queue services.
 
 Here are some of Tarantool's key characteristics:
 
-..  panels::
-    :container: doc-cards
-    :column: doc-card doc-card_big
-    :card: doc-card__content
-    :header: doc-card__title
-    :body: doc-card__text
+*   **Easy handling of OLTP workloads**: processes hundreds of thousands RPS
 
+*   **Data integrity**: write-ahead log (WAL) and data snapshots 
 
-    Easy handling of OLTP workloads
+*   **Cooperative multitasking**: transactions are performed in lightweight coroutines with no interthread locking
 
-    ^^^
+*    **Advanced indexing**: composite indexes, locale support, indexing by nested fields and arrays
 
-    Processes hundreds of thousands RPS
-    
-    ---
+*   **Compute close to data**: Lua server and Just-In-Time compiler on board
 
-    Data integrity
-
-    ^^^
-
-    Write-ahead log (WAL) and data snapshots 
-
-    ---
-
-    Cooperative multitasking
-
-    ^^^
-    
-    Transactions are performed in lightweight coroutines with no interthread locking
-
-    ---
-
-    Advanced indexing
-
-    ^^^
-    
-    Composite indexes, locale support, indexing by nested fields and arrays
-
-    ---
-
-    Compute close to data
-
-    ^^^
-    
-    Lua server and Just-In-Time compiler on board
-
-    ---
-
-    Durable distributed storage
-
-    ^^^
-    
-    Multiple failover modes and RAFT-based synchronous replication available
+*   **Durable distributed storage**: multiple failover modes and RAFT-based synchronous replication available
     
 
 Tarantool allows executing code alongside data, which helps increase the speed of operations.
