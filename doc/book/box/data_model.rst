@@ -451,7 +451,7 @@ Full information is in section
             -   :ref:`decimal <index-box_decimal>`
             -   TREE or HASH
         *   -   ``'string'`` (may also be called ``'str'``)
-            -   :ref:`string <index-box_string>` 
+            -   :ref:`string <index-box_string>`
             -   TREE, BITSET, or HASH
         *   -   ``'varbinary'``
             -   :ref:`varbinary <index-box_bin>`
@@ -467,22 +467,22 @@ Full information is in section
             -   :ref:`RTREE <box_index-rtree>`
         *   -   ``'scalar'``
             -   may include :ref:`nil <index-box_nil>`,
-                :ref:`boolean <index-box_boolean>`,       
-                :ref:`integer <index-box_integer>`,      
-                :ref:`unsigned <index-box_unsigned>`,   
-                :ref:`number <index-box_number>`,       
-                :ref:`decimal <index-box_decimal>`,     
-                :ref:`string <index-box_string>`,      
-                :ref:`varbinary <index-box_bin>`,       
+                :ref:`boolean <index-box_boolean>`,
+                :ref:`integer <index-box_integer>`,
+                :ref:`unsigned <index-box_unsigned>`,
+                :ref:`number <index-box_number>`,
+                :ref:`decimal <index-box_decimal>`,
+                :ref:`string <index-box_string>`,
+                :ref:`varbinary <index-box_bin>`,
                 or :ref:`uuid <index-box_uuid>` values                                     |
                 |br|
-                When a scalar field contains values of   
-                different underlying types, the key order 
-                is: nils, then booleans, then numbers,  
-                then strings, then varbinaries, then   
-                uuids.                              
+                When a scalar field contains values of
+                different underlying types, the key order
+                is: nils, then booleans, then numbers,
+                then strings, then varbinaries, then
+                uuids.
             -   TREE or HASH
-     
+
 ..  _index-collation:
 
 Collations
@@ -1111,40 +1111,40 @@ resource usage of each function.
         *   -   Complexity factor
             -   Effect
         *   -   Index size
-            -   The number of index keys is the same as the number    
-                of tuples in the data set. For a TREE index, if       
-                there are more keys, then the lookup time will be     
-                greater, although, of course, the effect is not       
-                linear. For a HASH index, if there are more keys,     
-                then there is more RAM used, but the number of        
-                low-level steps tends to remain constant.             
+            -   The number of index keys is the same as the number
+                of tuples in the data set. For a TREE index, if
+                there are more keys, then the lookup time will be
+                greater, although, of course, the effect is not
+                linear. For a HASH index, if there are more keys,
+                then there is more RAM used, but the number of
+                low-level steps tends to remain constant.
         *   -   Index type
-            -   Typically, a HASH index is faster than a TREE index      
-                if the number of tuples in the space is greater          
-                than one.                                                
+            -   Typically, a HASH index is faster than a TREE index
+                if the number of tuples in the space is greater
+                than one.
         *   -   Number of indexes accessed
-            -   Ordinarily, only one index is accessed to retrieve       
-                one tuple. But to update the tuple, there must be N      
-                accesses if the space has N different indexes.           
-                |br|                                                     
-                Note regarding storage engine: Vinyl optimizes away such 
-                accesses if secondary index fields are unchanged by      
-                the update. So, this complexity factor applies only to  
-                memtx, since it always makes a full-tuple copy on every  
+            -   Ordinarily, only one index is accessed to retrieve
+                one tuple. But to update the tuple, there must be N
+                accesses if the space has N different indexes.
+                |br|
+                Note regarding storage engine: Vinyl optimizes away such
+                accesses if secondary index fields are unchanged by
+                the update. So, this complexity factor applies only to
+                memtx, since it always makes a full-tuple copy on every
                 update.
         *   -   Number of tuples accessed
-            -   A few requests, for example, SELECT, can retrieve        
-                multiple tuples. This factor is usually less             
-                important than the others.      
+            -   A few requests, for example, SELECT, can retrieve
+                multiple tuples. This factor is usually less
+                important than the others.
         *   -   WAL settings
-            -   The important setting for the write-ahead log is         
-                :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. 
-                If the setting causes no writing or                      
-                delayed writing, this factor is unimportant. If the      
-                setting causes every data-change request to wait         
-                for writing to finish on a slow device, this factor      
-                is more important than all the others.                   
-    
+            -   The important setting for the write-ahead log is
+                :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
+                If the setting causes no writing or
+                delayed writing, this factor is unimportant. If the
+                setting causes every data-change request to wait
+                for writing to finish on a slow device, this factor
+                is more important than all the others.
+
 
 Data schema description
 -----------------------
@@ -1225,13 +1225,13 @@ The schema would look something like this:
 
 This alternative is simpler to use, and you do not have to dive deep into Lua.
 
-``DDL`` is a built-in 
+``DDL`` is a built-in
 :doc:`Cartridge </book/cartridge/index>` module.
 Cartridge is a cluster solution for Tarantool. In its WebUI, there is a separate tab
-called "Schema". On this tab, you can define the schema, check its correctness,
+called "Code". On this tab, in the ``schema.yml`` file, you can define the schema, check its correctness,
 and apply it to the whole cluster.
 
-If you do not use Cartridge, you can still use the DDL module: 
+If you do not use Cartridge, you can still use the DDL module:
 put the following Lua code into the file that you use to run Tarantool.
 This file is usually called ``init.lua``.
 

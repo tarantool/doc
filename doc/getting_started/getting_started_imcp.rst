@@ -57,12 +57,12 @@ if you want to get better acquainted with it.
 
         cartridge build
         cartridge start
-    
+
 ..  note::
 
     In case of a problem with `cartridge build`, run it with the `--verbose` flag
     to learn about the source of the problem. If there is a problem with Node.js (`npm`):
-    
+
     1.   Check that Node.js is in the `$PATH`.
 
     2.   Try forcefully removing the `node_modules` directory from the dependencies' directories:
@@ -154,9 +154,9 @@ located in the top right corner.
 Creating a data schema [2 minutes]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Let's start with the data schema -- take a look at the "Code" tab on the left.
+Let's start with the data schema -- take a look at the **Code** tab on the left.
 
-Here we can create a file called ``schema.yml``. In this file, you can
+There you can find a file called ``schema.yml``. In this file, you can
 describe the entire cluster's data schema, edit the current schema,
 validate its correctness, and apply it to the whole cluster.
 
@@ -168,8 +168,8 @@ We need to store:
 *   Videos with descriptions
 *   Likes for each video
 
-Create a ``schema.yml`` file to load the schema into the cluster.
-Copy and paste schema to this file. Click the "Apply" button.
+Copy the schema description from the code block below and paste it in the ``schema.yml`` file on the **Code** tab.
+Click the "Apply" button.
 After that, the data schema will be described in the cluster.
 
 This is what our data schema will look like:
@@ -332,14 +332,14 @@ Paste the code below into ``api.lua`` and click "Apply".
     function like_video(request)
         local video_id = request:post_param("video_id")
         local user_id = request:post_param("user_id")
- 
+
         local result, err = crud.insert_object('likes', {like_id = uuid.new(),
                                                     video_id = uuid.fromstr(video_id),
                                                     user_id = uuid.fromstr(user_id)})
         if err ~= nil then
             return {body = json.encode({status = "Error!", error = err}), status = 500}
         end
- 
+
         return {body = json.encode({status = "Success!", result = result}), status = 200}
     end
 
@@ -365,7 +365,7 @@ Paste the configuration example below into ``config.yml`` and click "Apply".
 
     ---
      functions:
-  
+
        add_user:
          module: extensions.api
          handler: add_user
@@ -392,7 +392,7 @@ Done! Let's make test requests from the console.
     curl -X POST --data "fullname=Taran Tool" url/add_user
 
 ..  note::
-    
+
     In the requests, substitute ``url`` with the address of your sandbox.
     The protocol must be strictly HTTP.
 
@@ -448,7 +448,7 @@ Looking at the data [1 minute]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ..  note::
-    
+
     The following instructions are for Tarantool Enterprise Edition and the Try Tarantool cloud service.
 
     The Space-Explorer tool is unavailable in the open-source version. Use the console to view data.
