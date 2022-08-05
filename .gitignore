@@ -71,6 +71,6 @@ locale/*
 
 # tntcxx submodule
 
-/doc/getting_started/getting_started_cxx.rst
-/doc/getting_started/_includes/
+/doc/how-to/getting_started_cxx.rst
+/doc/how-to/_includes
 /doc/book/connectors/cxx/
