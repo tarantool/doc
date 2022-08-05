@@ -8,8 +8,8 @@ box.watch()
 
     Subscribe to events broadcast by a local host.
 
-    :param string key: a key name of an event to subscribe to
-    :param function func: a callback to invoke when the key value is updated
+    :param string key: key name of the event to subscribe to
+    :param function func: callback to invoke when the key value is updated
 
     :return: a watcher handle. The handle consists of one method -- ``unregister()``, which unregisters the watcher.
 
@@ -23,11 +23,18 @@ box.watch()
 
     **Example:**
 
+    Server:
+
     ..  code-block:: lua
 
         -- Broadcast value 42 for the 'foo' key.
         box.broadcast('foo', 42)
 
+    Client:
+
+    ..  code-block:: lua
+        
+        conn = require('net.box').connect(URI)
         local log = require('log')
         -- Subscribe to updates of the 'foo' key.
         local w = box.watch('foo', function(key, value)

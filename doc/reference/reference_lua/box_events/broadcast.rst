@@ -8,15 +8,15 @@ box.broadcast()
 
     Update the value of a particular key and notify all key watchers of the update.
 
-    :param string key: a key name of an event to subscribe to
+    :param string key: key name of the event to subscribe to
     :param value: any data that can be encoded in MsgPack
 
     :return: none
 
     **Possible errors:**
 
-    * The value can't be encoded as MSgPack.
-    * The key refers to ``box.`` system event
+    * The value can't be encoded as MsgPack.
+    * The key refers to a ``box.`` system event
 
     **Example:**
 

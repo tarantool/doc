@@ -52,7 +52,7 @@ Value changes are rare.
 box.status
 ~~~~~~~~~~
 
-Contains generic blob about the instance status.
+Contains generic information about the instance status.
 
 *   ``is_ro``: :ref:`indicates the read-only mode <box_introspection-box_info>` or the ``orphan`` status.
 *   ``is_ro_cfg``: indicates the :ref:`read_only <cfg_basic-read_only>` mode for the instance.
@@ -69,7 +69,7 @@ Contains generic blob about the instance status.
 box.election
 ~~~~~~~~~~~~
 
-Contains fields of the :doc:`box.info.election </reference/reference_lua/box_info/election>`
+Contains fields of :doc:`box.info.election </reference/reference_lua/box_info/election>`
 that are necessary to find out the most recent writable leader.
 
 *   ``term``: shows the current election term.

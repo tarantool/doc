@@ -4,7 +4,7 @@ Event watchers
 ==============
 
 The ``box`` module contains some features related to event subscriptions, also known as :term:`watchers <watcher>`.
-The subscriptions are used to inform a client about the server-side :term:`events <event>`.
+The subscriptions are used to inform the client about server-side :term:`events <event>`.
 Each event subscription is defined by a certain key.
 
 ..  glossary::
@@ -12,7 +12,7 @@ Each event subscription is defined by a certain key.
     Event
 
         An event is a state change or a system update that triggers the action of other systems.
-        To read more about the built-in events in Tarantool,
+        To read more about built-in events in Tarantool,
         check the :doc:`system events </reference/reference_lua/box_events/system_events>` section.
 
     State
@@ -33,22 +33,22 @@ How the watcher works
 First, you register a watcher.
 After that, the watcher callback is invoked for the first time.
 In this case, the callback is triggered whether or not the key has already been broadcast.
-All subsequent invocations are triggered with the :doc:`box.broadcast() </reference/reference_lua/box_events/broadcast>`
+All subsequent invocations are triggered with :doc:`box.broadcast() </reference/reference_lua/box_events/broadcast>`
 called on the remote host.
 If a watcher is subscribed for a key that has not been broadcast yet, the callback is triggered only once,
 after the registration of the watcher.
 
 The watcher callback takes two arguments.
-The first argument is a name of the key for which it was registered.
+The first argument is the name of the key for which it was registered.
 The second one contains current key data.
-The callback is always invoked in a new fiber. It means that is allowed to yield in it.
+The callback is always invoked in a new fiber. It means that it is allowed to yield in it.
 A watcher callback is never executed in parallel with itself.
 If the key is updated while the watcher callback is running, the callback will be invoked again with the new
 value as soon as it returns.
 
 ``box.watch`` and ``box.broadcast`` functions can be used before :doc:`box.cfg </reference/reference_lua/box_cfg>`.
 
-Below is a list of all functions and members related to watchers or events.
+Below is a list of all functions and pages related to watchers or events.
 
 ..  container:: table
 
