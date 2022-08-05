@@ -1,4 +1,4 @@
-..  _net_box-module:
+zc..  _net_box-module:
 
 --------------------------------------------------------------------------------
 Module net.box
@@ -125,14 +125,16 @@ Below is a list of all ``net.box`` functions.
         *   -   :ref:`conn:call() <net_box-call>`                      
             -   Call a stored procedure               
         *   -   :ref:`conn:timeout() <conn-timeout>`                               
-            -   Set a timeout                 
+            -   Set a timeout
+        *   -   :ref:`conn:watch() <conn-watch>`
+            -   Subscribe to events broadcast by a remote host
         *   -   :ref:`conn:on_connect() <net_box-on_connect>`                            
             -   Define a connect trigger            
         *   -   :ref:`conn:on_disconnect() <net_box-on_disconnect>`                     
             -   Define a disconnect trigger 
         *   -   :ref:`conn:on_schema_reload() <net_box-on_schema_reload>`                    
             -   Define a trigger when schema is modified
-        *   -   :ref:`conn:new_stream() <conn-new_stream>`                    
+        *   -   :ref:`conn:new_stream() <conn-new_stream>`
             -   Create a stream             
         *   -   :ref:`stream:begin() <net_box-stream_begin>`                    
             -   Begin a stream transaction               
@@ -216,7 +218,7 @@ Below is a list of all ``net.box`` functions.
             support the specified features, the connection will fail with an error message. 
             With ``required_protocol_features = {'transactions'}``, all connections fail where the 
             server has ``transactions: false``.
-        
+
     ..  container:: table
 
     	..  list-table::
@@ -240,7 +242,7 @@ Below is a list of all ``net.box`` functions.
                -   IPROTO_FEATURE_ERROR_EXTENSION   
                -   2 and newer
            *   -   ``watchers``
-               -   Requires remote watchers support on the server
+               -   Requires remote :ref:`watchers <conn-watch>` support on the server
                -   IPROTO_FEATURE_WATCHERS   
                -   3 and newer      
             
@@ -533,7 +535,61 @@ Below is a list of all ``net.box`` functions.
             - B
             ...
 
+    ..  _conn-watch:
 
+    ..  method:: watch(key, func)
+
+        Subscribe to events broadcast by a remote host.
+
+        :param string key: a key name of an event to subscribe to
+        :param function func:  a callback to invoke when the key value is updated
+        :return: a watcher handle. The handle consists of one method -- ``unregister()``, which unregisters the watcher.
+
+        To read more about watchers, see the :ref:`Functions for watchers <box-watchers>` section.
+
+        The method has the same syntax as the :doc:`box.watch() </reference/reference_lua/box_events/broadcast>`
+        function, which is used for subscribing to events locally.
+
+        Watchers survive reconnection (see the ``reconnect_after`` connection :ref:`option <net_box-new>`).
+        All registered watchers are automatically resubscribed when the
+        connection is reestablished.
+
+        If a remote host supports watchers, the ``watchers`` key will be set in the
+        connection ``peer_protocol_features``.
+        For details, check the :ref:`net.box features table <net_box-new>`.
+
+        ..  note::
+
+            Keep in mind that garbage collection of a watcher handle doesn't lead to the watcher's destruction.
+            In this case, the watcher remains registered.
+            It is okay to discard the result of ``watch`` function if the watcher will never be unregistered.
+
+        **Example:**
+
+        Server:
+
+        ..  code-block:: lua
+
+            -- Broadcast value 42 for the 'foo' key.
+            box.broadcast('foo', 42)
+
+        Client:
+
+        ..  code-block:: lua
+
+            conn = net.box.connect(URI)
+            local log = require('log')
+            -- Subscribe to updates of the 'foo' key.
+            w = conn:watch('foo', function(key, value)
+                assert(key == 'foo')
+                log.info("The box.id value is '%d'", value)
+            end)
+
+        If you don't need the watcher anymore, you can unregister it using the command below:
+
+        ..  code-block:: lua
+
+            w:unregister()
 
     .. _conn-timeout:
 
