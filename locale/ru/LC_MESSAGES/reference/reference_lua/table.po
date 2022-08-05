@@ -4,10 +4,10 @@ msgstr "Модуль `table`"
 
 msgid ""
 "The :code:`table` module has everything in the `standard Lua table library "
-"<https://www.lua.org/pil/19.html>`_, and some Tarantool extensions."
+"<https://www.lua.org/manual/5.1/manual.html#5.5>`_, and some Tarantool extensions."
 msgstr ""
 "Модуль :code:`table` включает в себя всё из `стандартной библиотеки для "
-"работы с таблицами в Lua <https://www.lua.org/pil/19.html>`_, а также "
+"работы с таблицами в Lua <https://www.lua.org/manual/5.1/manual.html#5.5>`_, а также "
 "некоторые расширения специально для Tarantool."
 
 msgid ""
