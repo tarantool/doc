@@ -4,7 +4,6 @@ Printing the contents of .snap and .xlog files
 ..  code-block:: bash
 
     tt cat FILE .. [flags]
-ls
 
 ``tt cat`` prints the contents of :ref:`snapshot <internals-snapshot>` (``.snap``) and
 :ref:`WAL <internals-wal>` (``.xlog``) files to stdout. A single call of ``tt cat`` can
