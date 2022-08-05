@@ -11,13 +11,13 @@ scaling in Tarantool.
 Check out the :ref:`Quick start guide <vshard-quick-start>` -- or dive into the
 complete ``vshard`` documentation:
 
-.. toctree::
-   :maxdepth: 2
-   :numbered: 0
+..  toctree::
+    :maxdepth: 2
+    :numbered: 0
 
-   vshard_summary_index
-   vshard_architecture
-   vshard_admin
-   vshard_quick
-   vshard_ref
-   vshard_api
+    vshard_summary_index
+    vshard_architecture
+    vshard_admin
+    vshard_quick
+    vshard_ref
+    vshard_api

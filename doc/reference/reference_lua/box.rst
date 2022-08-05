@@ -37,6 +37,7 @@ with ``box``, with no arguments. The ``box`` module contains:
 
     box_txn_management
     box_sql
+    box_events
     box_once
     box_snapshot
 
