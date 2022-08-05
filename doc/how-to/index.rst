@@ -15,8 +15,6 @@ If you are new to Tarantool, please see our
 .. toctree::
     :maxdepth: 2
 
-    lua_tutorials
-    c_tutorial
-    sql_tutorial
-    improving_mysql
-    libslave
+    app/index
+    sql/index
+    other/index
