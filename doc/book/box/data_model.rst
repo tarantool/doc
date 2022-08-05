@@ -182,6 +182,10 @@ Lua versus MsgPack
             -   ext (for Tarantool ``uuid``)
             -   `cdata`_
             -   ``12a34b5c-de67-8f90-123g-h4567ab8901``
+        *   -   scalar
+            -   msgpack.NULL
+            -   `cdata`_
+            -   :ref:`box.NULL <box-null>`
         *   -   compound
             -   map
             -   `table`_ (with string keys)
