@@ -32,11 +32,11 @@ help for the given command.
             -   Check an application file for syntax errors
         *   -   :doc:`connect <connect>`
             -   Connect to a Tarantool instance
-        *   -   ``rocks``
+        *   -   :doc:`rocks <rocks>`
             -   Use the LuaRocks package manager
-        *   -   ``cat``
+        *   -   :doc:`cat <cat>`
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
-        *   -   ``play``
+        *   -   :doc:`play <play>`
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
 
 ..  toctree::
@@ -52,3 +52,6 @@ help for the given command.
     logrotate <logrotate>
     check <check>
     connect <connect>
+    rocks <rocks>
+    cat <cat>
+    play <play>
