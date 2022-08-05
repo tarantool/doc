@@ -65,7 +65,7 @@
                 book/replication/index
                 book/box/engines/index
                 book/connectors
+                how-to/index
                 reference/index
-                tutorials/index
                 release/index
                 contributing/index

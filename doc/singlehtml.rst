@@ -13,6 +13,6 @@
     getting_started/index
     book/index
     reference/index
-    tutorials/index
+    how-to/index
     release/index
     dev_guide/index
