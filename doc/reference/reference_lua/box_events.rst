@@ -27,8 +27,8 @@ Each event subscription is defined by a certain key.
         To create a remote watcher, use the ``watch()`` function from the ``net.box`` module.
         Note that it is possible to register more than one watcher for the same key.
 
-How the watcher works
----------------------
+How a watcher works
+-------------------
 
 First, you register a watcher.
 After that, the watcher callback is invoked for the first time.
