@@ -7,7 +7,7 @@
 .. module:: table
 
 The :code:`table` module has everything in the
-`standard Lua table library <https://www.lua.org/pil/19.html>`_,
+`standard Lua table library <https://www.lua.org/manual/5.1/manual.html#5.5>`_,
 and some Tarantool extensions.
 
 You can see this by saying "table": you will see this list of functions:

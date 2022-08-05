@@ -6,6 +6,8 @@
 
 There are some major problems with using Lua **nil** values in tables.
 For example: you can't correctly assess the length of a table that is not a sequence.
+(Learn more about data types in `Lua <https://www.lua.org/manual/5.1/manual.html#2.2>`__
+and `LuaJIT <http://luajit.org/ext_ffi_semantics.html>`__.)
 
 **Example:**
 
@@ -35,7 +37,7 @@ the end of the table differently. This is due to undefined behavior.
 
     Trying to find the length for sparse arrays in LuaJIT leads to another
     scenario of
-    `undefined behavior <https://www.lua.org/manual/5.2/manual.html#3.4.6>`_.
+    `undefined behavior <https://www.lua.org/manual/5.1/manual.html#2.5.5>`_.
 
 To avoid this problem, use Tarantool's ``box.NULL`` constant instead of **nil**.
 ``box.NULL`` is a placeholder for a **nil** value in tables to preserve a key
@@ -45,7 +47,7 @@ without a value.
 Using box.NULL
 ~~~~~~~~~~~~~~
 
-``box.NULL`` is a value of the cdata type representing a NULL pointer.
+``box.NULL`` is a value of the `cdata <http://luajit.org/ext_ffi_semantics.html>`__ type representing a NULL pointer.
 It is similar to ``msgpack.NULL``, ``json.NULL`` and ``yaml.NULL``. So it is
 some not **nil** value, even if it is a pointer to NULL.
 

@@ -84,7 +84,8 @@
         A replica also binds to this port, and accepts connections, but these
         connections can only serve reads until the replica becomes a master.
 
-    Starting from version 2.10.0, you can specify :ref:`several URIs <index-uri-several>`.
+    Starting from version 2.10.0, you can specify :ref:`several URIs <index-uri-several>`,
+    and the port number is always stored as an integer value.
 
     | Type: integer or string
     | Default: null
