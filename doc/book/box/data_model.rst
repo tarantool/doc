@@ -1211,21 +1211,28 @@ in the YAML format in a declarative way.
 
 The schema would look something like this:
 
-..  code:: yaml
+..  code-block:: yaml
 
     spaces:
-        users:
-          engine: memtx
-          is_local: false
-          temporary: false
-          format:
-          - {name: user_id, type: uuid, is_nullable: false}
-          - {name: fullname, type: string,  is_nullable: false}
-          indexes:
-          - name: user_id
-            unique: true
-            parts: [{path: user_id, type: uuid, is_nullable: false}]
-            type: HASH
+      users:
+        engine: memtx
+        is_local: false
+        temporary: false
+        format:
+        - {name: user_id, type: uuid, is_nullable: false}
+        - {name: fullname, type: string,  is_nullable: false}
+        - {name: bucket_id, type: unsigned, is_nullable: false}
+        indexes:
+        - name: user_id
+          unique: true
+          parts: [{path: user_id, type: uuid, is_nullable: false}]
+          type: HASH
+        - name: bucket_id
+          unique: false
+          parts: [{path: bucket_id, type: unsigned, is_nullable: false}]
+          type: TREE
+        sharding_key: [user_id]
+        sharding_func: test_module.sharding_func
 
 This alternative is simpler to use, and you do not have to dive deep into Lua.
 
