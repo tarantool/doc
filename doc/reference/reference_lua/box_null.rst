@@ -37,7 +37,7 @@ the end of the table differently. This is due to undefined behavior.
 
     Trying to find the length for sparse arrays in LuaJIT leads to another
     scenario of
-    `undefined behavior <https://www.lua.org/manual/5.2/manual.html#3.4.6>`_.
+    `undefined behavior <https://www.lua.org/manual/5.1/manual.html#2.5.5>`_.
 
 To avoid this problem, use Tarantool's ``box.NULL`` constant instead of **nil**.
 ``box.NULL`` is a placeholder for a **nil** value in tables to preserve a key
