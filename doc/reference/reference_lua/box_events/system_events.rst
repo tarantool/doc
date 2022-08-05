@@ -40,7 +40,7 @@ Value changes are rare.
 
 *   ``replicaset_uuid``: the value is unknown until the instance joins a replicaset or boots a new one.
 
-..  code-block:: lua
+..  code-block:: none
 
     -- box.id value
     {
@@ -58,7 +58,7 @@ Contains generic information about the instance status.
 *   ``is_ro_cfg``: indicates the :ref:`read_only <cfg_basic-read_only>` mode for the instance.
 *   ``status``: shows the status of an instance.
 
-..  code-block:: lua
+..  code-block:: none
 
     {
     MP_STR “is_ro”: MP_BOOL box.info.ro,
@@ -77,7 +77,7 @@ that are necessary to find out the most recent writable leader.
 *   ``is_ro``: :ref:`indicates the read-only mode <box_introspection-box_info>` or the ``orphan`` status.
 *   ``leader``: shows the leader node ID in the current term.
 
-..  code-block:: lua
+..  code-block:: none
 
     {
     MP_STR “term”: MP_UINT box.info.election.term,
@@ -93,7 +93,7 @@ Contains schema-related data.
 
 *   ``version``: shows the schema version.
 
-..  code-block:: lua
+..  code-block:: none
 
     {
     MP_STR “version”: MP_UINT schema_version,
