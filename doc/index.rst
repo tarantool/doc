@@ -67,5 +67,6 @@
                 book/connectors
                 how-to/index
                 reference/index
-                release/index
                 contributing/index
+                release/index
+                

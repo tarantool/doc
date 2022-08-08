@@ -13,7 +13,7 @@ senses defined below (any release with any release):
 
 *   No guarantees are given regarding compatibility between
     pre-releases/releases of non-consequent release series if the opposite
-    is not stated in the :doc:`release notes <notes>`.
+    is not stated in the :doc:`release notes </release/index>`.
 
 *   No guarantees are given regarding compatibility between alpha/beta
     versions and between alpha/beta and pre-release/release even within one series.

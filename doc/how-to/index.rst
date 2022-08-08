@@ -19,6 +19,7 @@ If you are new to Tarantool, please see our
     Basic Tarantool tutorial <getting_started_db>
     getting_started_connectors
     getting_started_cartridge
+    crud
     app/index
     sql/index
     other/index

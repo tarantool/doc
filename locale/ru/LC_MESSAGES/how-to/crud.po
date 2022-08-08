@@ -1,6 +1,6 @@
 
-msgid "Examples"
-msgstr "Примеры"
+msgid "CRUD operation examples"
+msgstr "Примеры CRUD-операций"
 
 msgid "Example: using box.space functions to read _space tuples"
 msgstr "Пример: использование функций box.space для чтения кортежей из _space"
