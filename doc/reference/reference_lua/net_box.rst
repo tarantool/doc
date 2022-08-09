@@ -16,13 +16,13 @@ network.
 
 You can call the following methods:
 
-* ``require('net.box')`` to get a ``net.box`` object
-  (named ``net_box`` for examples in this section),
-* ``net_box.connect()`` to connect and get a connection object
-  (named ``conn`` for examples in this section),
+* ``require('net.box')`` -- to get a ``net.box`` object
+  (named ``net_box`` for examples in this section)
+* ``net_box.connect()`` -- to connect and get a connection object
+  (named ``conn`` for examples in this section)
 * other ``net.box()`` routines, passing ``conn:``, to execute requests on
-  the remote database system,
-* ``conn:close`` to disconnect.
+  the remote database system
+* ``conn:close`` -- to disconnect
 
 All ``net.box`` methods are fiber-safe, that is, it is safe to share and use the
 same connection object across multiple concurrent fibers. In fact that is perhaps

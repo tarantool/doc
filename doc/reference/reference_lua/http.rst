@@ -74,7 +74,7 @@ Below is a list of all ``http`` functions.
        to be free, and close it, in order to avoid exceeding the ``max_connections`` cache size.
        In the worst case, libcurl will create a new socket for every request,
        even if all requests are going to the same host.
-       See `this Tarantool issue on github <https://github.com/tarantool/tarantool/issues/3945>`_
+       See `this Tarantool issue on Github <https://github.com/tarantool/tarantool/issues/3945>`_
        for details.
 
     :return: a new HTTP client instance
@@ -104,10 +104,10 @@ Below is a list of all ``http`` functions.
         :param table opts: table of connection options, with any of these
          components:
 
-          * ``ca_file`` -- path to an SSL certificate file to verify the peer with
+          * ``ca_file`` -- path to an SSL certificate file to verify the peer with.
           * ``ca_path`` -- path to a directory holding one or more certificates to
-            verify the peer with
-          * ``headers`` -- table of HTTP headers
+            verify the peer with.
+          * ``headers`` -- table of HTTP headers.
           * ``keepalive_idle`` -- delay, in seconds, that the operating system
             will wait while the connection is idle before sending keepalive
             probes. See also
@@ -153,10 +153,10 @@ Below is a list of all ``http`` functions.
             If ``no_proxy`` is not set, then a proxy-related environment variable
             (HTTP_PROXY) may be used. See also
             `CURLOPT_NOPROXY <https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html>`_
-          * ``proxy`` -- a proxy server host or IP address, or ''.
+          * ``proxy`` - a proxy server host or IP address, or ''.
             If ``proxy`` is a host or IP address, then it may begin with a scheme,
             for example ``https://`` for an https proxy or ``http://`` for an http proxy.
-            If ``proxy`` is set to '' an empty string, then proxy use is disabled,
+            If ``proxy`` is set to ``''`` -- an empty string, then proxy use is disabled,
             and no proxy-related environment variable will be used.
             If ``proxy`` is not set, then a proxy-related environment variable may be used, such as
             HTTP_PROXY or HTTPS_PROXY or FTP_PROXY, or ALL_PROXY if the
@@ -177,12 +177,12 @@ Below is a list of all ``http`` functions.
             certificate. See also
             `CURLOPT_SSLKEY <https://curl.haxx.se/libcurl/c/CURLOPT_SSLKEY.html>`_
           * ``timeout`` -- number of seconds to wait for a curl API read request
-            before timing out
+            before timing out. The default timeout is set to infinity (36586400100 seconds).
           * ``unix_socket`` -- a socket name to use instead of an Internet address,
             for a local connection. The Tarantool server must be built with
             ``libcurl`` 7.40 or later. See the :ref:`second example <http-example2>`
             later in this section.
-          * ``verbose`` -- set on/off verbose mode
+          * ``verbose`` -- set on/off verbose mode.
           * ``verify_host`` -- set on/off verification of the certificate's name
             (CN) against host. See also
             `CURLOPT_SSL_VERIFYHOST <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html>`_
