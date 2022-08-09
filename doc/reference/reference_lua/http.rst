@@ -104,35 +104,35 @@ Below is a list of all ``http`` functions.
         :param table opts: table of connection options, with any of these
          components:
 
-          * ``ca_file`` - path to an SSL certificate file to verify the peer with
-          * ``ca_path`` - path to a directory holding one or more certificates to
+          * ``ca_file`` -- path to an SSL certificate file to verify the peer with
+          * ``ca_path`` -- path to a directory holding one or more certificates to
             verify the peer with
-          * ``headers`` - table of HTTP headers
-          * ``keepalive_idle`` - delay, in seconds, that the operating system
+          * ``headers`` -- table of HTTP headers
+          * ``keepalive_idle`` -- delay, in seconds, that the operating system
             will wait while the connection is idle before sending keepalive
             probes. See also
             `CURLOPT_TCP_KEEPIDLE <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPIDLE.html>`_
             and the note below about keepalive_interval.
-          * ``keepalive_interval`` - the interval, in seconds, that the operating
+          * ``keepalive_interval`` -- the interval, in seconds, that the operating
             system will wait between sending keepalive probes. See also
             `CURLOPT_TCP_KEEPINTVL <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPINTVL.html>`_.
             If both ``keepalive_idle`` and ``keepalive_interval`` are set, then
             Tarantool will also set HTTP keepalive headers: ``Connection:Keep-Alive``
             and ``Keep-Alive:timeout=<keepalive_idle>``.
             Otherwise Tarantool will send ``Connection:close``
-          * ``low_speed_limit`` - set the "low speed limit" -- the average
+          * ``low_speed_limit`` -- set the "low speed limit" -- the average
             transfer speed in bytes per second that the transfer should be below
             during "low speed time" seconds for the library to consider it to be
             too slow and abort. See also
             `CURLOPT_LOW_SPEED_LIMIT <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html>`_
-          * ``low_speed_time`` - set the "low speed time" -- the time that the
+          * ``low_speed_time`` -- set the "low speed time" -- the time that the
             transfer speed should be below the "low speed limit" for the library
             to consider it too slow and abort. See also
             `CURLOPT_LOW_SPEED_TIME <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html>`_
-          * ``max_header_name_len`` - the maximal length of a header name. If a header
+          * ``max_header_name_len`` -- the maximal length of a header name. If a header
             name is bigger than this value, it is truncated to this length.
             The default value is '32'.
-          * ``follow_location`` - when the option is set to ``true`` (default)
+          * ``follow_location`` -- when the option is set to ``true`` (default)
             and the response has a 3xx code, the HTTP client will automatically issue
             another request to a location that a server sends in the ``Location``
             header. If the new response is 3xx again, the HTTP client will
@@ -140,7 +140,7 @@ Below is a list of all ``http`` functions.
             will be received. This last response will be returned as a result.
             Setting this option to ``false`` allows to disable this behavior.
             In this case, the HTTP client will return a 3xx response itself.
-          * ``no_proxy`` - a comma-separated list of hosts that do not require proxies, or '*', or ''.
+          * ``no_proxy`` -- a comma-separated list of hosts that do not require proxies, or '*', or ''.
             Set :samp:`no_proxy = {host} [, {host} ...]` to specify
             hosts that can be reached without requiring a proxy, even if ``proxy`` has
             been set to a non-blank value and/or if a proxy-related environment variable
@@ -153,7 +153,7 @@ Below is a list of all ``http`` functions.
             If ``no_proxy`` is not set, then a proxy-related environment variable
             (HTTP_PROXY) may be used. See also
             `CURLOPT_NOPROXY <https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html>`_
-          * ``proxy`` - a proxy server host or IP address, or ''.
+          * ``proxy`` -- a proxy server host or IP address, or ''.
             If ``proxy`` is a host or IP address, then it may begin with a scheme,
             for example ``https://`` for an https proxy or ``http://`` for an http proxy.
             If ``proxy`` is set to '' an empty string, then proxy use is disabled,
@@ -171,25 +171,25 @@ Below is a list of all ``http`` functions.
             or :samp:`proxy_user_pwd = :{password}`
             or :samp:`proxy_user_pwd = {user_name}:{password}`. See also
             `CURLOPT_USERPWD <https://curl.haxx.se/libcurl/c/CURLOPT_USERPWD.html>`_
-          * ``ssl_cert`` - path to a SSL client certificate file. See also
+          * ``ssl_cert`` -- path to a SSL client certificate file. See also
             `CURLOPT_SSLCERT <https://curl.haxx.se/libcurl/c/CURLOPT_SSLCERT.html>`_
-          * ``ssl_key`` - path to a private key file for a TLS and SSL client
+          * ``ssl_key`` -- path to a private key file for a TLS and SSL client
             certificate. See also
             `CURLOPT_SSLKEY <https://curl.haxx.se/libcurl/c/CURLOPT_SSLKEY.html>`_
-          * ``timeout`` - number of seconds to wait for a curl API read request
+          * ``timeout`` -- number of seconds to wait for a curl API read request
             before timing out
-          * ``unix_socket`` - a socket name to use instead of an Internet address,
+          * ``unix_socket`` -- a socket name to use instead of an Internet address,
             for a local connection. The Tarantool server must be built with
             ``libcurl`` 7.40 or later. See the :ref:`second example <http-example2>`
             later in this section.
-          * ``verbose`` - set on/off verbose mode
-          * ``verify_host`` - set on/off verification of the certificate's name
+          * ``verbose`` -- set on/off verbose mode
+          * ``verify_host`` -- set on/off verification of the certificate's name
             (CN) against host. See also
             `CURLOPT_SSL_VERIFYHOST <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html>`_
-          * ``verify_peer`` - set on/off verification of the peer's SSL
+          * ``verify_peer`` -- set on/off verification of the peer's SSL
             certificate. See also
             `CURLOPT_SSL_VERIFYPEER <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html>`_
-          * ``accept_encoding`` - enables automatic decompression of HTTP responses
+          * ``accept_encoding`` -- enables automatic decompression of HTTP responses
             by setting the contents of the `Accept-Encoding: header` sent in an 
             HTTP request and enabling decoding of a response when the `Content-Encoding: header` 
             is received. This option specifies what encoding to use.
@@ -203,11 +203,11 @@ Below is a list of all ``http`` functions.
 
         :return: connection information, with all of these components:
 
-          * ``status`` - HTTP response status
-          * ``reason`` - HTTP response status text
-          * ``headers`` - a Lua table with normalized HTTP headers
-          * ``body`` - response body
-          * ``proto`` - protocol version
+          * ``status`` -- HTTP response status
+          * ``reason`` -- HTTP response status text
+          * ``headers`` -- a Lua table with normalized HTTP headers
+          * ``body`` -- response body
+          * ``proto`` -- protocol version
 
         :rtype: table
 
@@ -256,23 +256,23 @@ Below is a list of all ``http`` functions.
 
         The following "shortcuts" exist for requests:
 
-        * ``http_client:get(url, options)`` - shortcut for
+        * ``http_client:get(url, options)`` -- shortcut for
           ``http_client:request("GET", url, nil, opts)``
-        * ``http_client:post (url, body, options)`` - shortcut for
+        * ``http_client:post (url, body, options)`` -- shortcut for
           ``http_client:request("POST", url, body, opts)``
-        * ``http_client:put(url, body, options)`` - shortcut for
+        * ``http_client:put(url, body, options)`` -- shortcut for
           ``http_client:request("PUT", url, body, opts)``
-        * ``http_client:patch(url, body, options)`` - shortcut for
+        * ``http_client:patch(url, body, options)`` -- shortcut for
           ``http_client:request("PATCH", url, body, opts)``
-        * ``http_client:options(url, options)`` - shortcut for
+        * ``http_client:options(url, options)`` -- shortcut for
           ``http_client:request("OPTIONS", url, nil, opts)``
-        * ``http_client:head(url, options)`` - shortcut for
+        * ``http_client:head(url, options)`` -- shortcut for
           ``http_client:request("HEAD", url, nil, opts)``
-        * ``http_client:delete(url, options)`` - shortcut for
+        * ``http_client:delete(url, options)`` -- shortcut for
           ``http_client:request("DELETE", url, nil, opts)``
-        * ``http_client:trace(url, options)`` - shortcut for
+        * ``http_client:trace(url, options)`` -- shortcut for
           ``http_client:request("TRACE", url, nil, opts)``
-        * ``http_client:connect:(url, options)`` - shortcut for
+        * ``http_client:connect:(url, options)`` -- shortcut for
           ``http_client:request("CONNECT", url, nil, opts)``
 
         Requests may be influenced by environment variables, for example
@@ -288,15 +288,15 @@ Below is a list of all ``http`` functions.
 
         The ``http_client:stat()`` function returns a table with statistics:
 
-        * ``active_requests`` - number of currently executing requests
-        * ``sockets_added`` - total number of sockets added into an event loop
-        * ``sockets_deleted`` - total number of sockets sockets from an event loop
-        * ``total_requests`` - total number of requests
-        * ``http_200_responses`` - total number of requests which have returned
+        * ``active_requests`` -- number of currently executing requests
+        * ``sockets_added`` -- total number of sockets added into an event loop
+        * ``sockets_deleted`` -- total number of sockets sockets from an event loop
+        * ``total_requests`` -- total number of requests
+        * ``http_200_responses`` -- total number of requests which have returned
           code HTTP 200
-        * ``http_other_responses`` - total number of requests which have not
+        * ``http_other_responses`` -- total number of requests which have not
           returned code HTTP 200
-        * ``failed_requests`` - total number of requests which have failed
+        * ``failed_requests`` -- total number of requests which have failed
           including system errors, curl errors, and HTTP errors
 
 .. _http-example1:
