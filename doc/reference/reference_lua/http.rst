@@ -156,7 +156,7 @@ Below is a list of all ``http`` functions.
           * ``proxy`` - a proxy server host or IP address, or ''.
             If ``proxy`` is a host or IP address, then it may begin with a scheme,
             for example ``https://`` for an https proxy or ``http://`` for an http proxy.
-            If ``proxy`` is set to ``''`` -- an empty string, then proxy use is disabled,
+            If ``proxy`` is set to '' -- an empty string, then proxy use is disabled,
             and no proxy-related environment variable will be used.
             If ``proxy`` is not set, then a proxy-related environment variable may be used, such as
             HTTP_PROXY or HTTPS_PROXY or FTP_PROXY, or ALL_PROXY if the
