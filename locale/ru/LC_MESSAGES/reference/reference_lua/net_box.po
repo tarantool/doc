@@ -43,7 +43,7 @@ msgstr ""
 "другие процедуры ``net.box()``, передающие ``conn:`` для выполнения запросов"
 " в удаленной системе базы данных;"
 
-msgid "``conn:close`` -- to disconnect."
+msgid "``conn:close`` -- to disconnect"
 msgstr "``conn:close`` -- для отключения."
 
 msgid ""

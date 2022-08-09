@@ -119,16 +119,16 @@ Below is a list of all ``http`` functions.
             If both ``keepalive_idle`` and ``keepalive_interval`` are set, then
             Tarantool will also set HTTP keepalive headers: ``Connection:Keep-Alive``
             and ``Keep-Alive:timeout=<keepalive_idle>``.
-            Otherwise Tarantool will send ``Connection:close``
+            Otherwise Tarantool will send ``Connection:close``.
           * ``low_speed_limit`` -- set the "low speed limit" -- the average
             transfer speed in bytes per second that the transfer should be below
             during "low speed time" seconds for the library to consider it to be
             too slow and abort. See also
-            `CURLOPT_LOW_SPEED_LIMIT <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html>`_
+            `CURLOPT_LOW_SPEED_LIMIT <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html>`_.
           * ``low_speed_time`` -- set the "low speed time" -- the time that the
             transfer speed should be below the "low speed limit" for the library
             to consider it too slow and abort. See also
-            `CURLOPT_LOW_SPEED_TIME <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html>`_
+            `CURLOPT_LOW_SPEED_TIME <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html>`_.
           * ``max_header_name_len`` -- the maximal length of a header name. If a header
             name is bigger than this value, it is truncated to this length.
             The default value is '32'.
@@ -152,7 +152,7 @@ Below is a list of all ``http`` functions.
             (HTTP_PROXY) is used.
             If ``no_proxy`` is not set, then a proxy-related environment variable
             (HTTP_PROXY) may be used. See also
-            `CURLOPT_NOPROXY <https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html>`_
+            `CURLOPT_NOPROXY <https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html>`_.
           * ``proxy`` - a proxy server host or IP address, or ''.
             If ``proxy`` is a host or IP address, then it may begin with a scheme,
             for example ``https://`` for an https proxy or ``http://`` for an http proxy.
@@ -161,21 +161,21 @@ Below is a list of all ``http`` functions.
             If ``proxy`` is not set, then a proxy-related environment variable may be used, such as
             HTTP_PROXY or HTTPS_PROXY or FTP_PROXY, or ALL_PROXY if the
             protocol can be any protocol. See also
-            `CURLOPT_PROXY <https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html>`_
+            `CURLOPT_PROXY <https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html>`_.
           * ``proxy_port`` -- a proxy server port.
             The default is 443 for an https proxy and 1080 for a non-https proxy.
             See also
-            `CURLOPT_PROXYPORT <https://curl.haxx.se/libcurl/c/CURLOPT_PROXYPORT.html>`_
+            `CURLOPT_PROXYPORT <https://curl.haxx.se/libcurl/c/CURLOPT_PROXYPORT.html>`_.
           * ``proxy_user_pwd`` -- a proxy server user name and/or password.
             Format: :samp:`proxy_user_pwd = {user_name}:`
             or :samp:`proxy_user_pwd = :{password}`
             or :samp:`proxy_user_pwd = {user_name}:{password}`. See also
-            `CURLOPT_USERPWD <https://curl.haxx.se/libcurl/c/CURLOPT_USERPWD.html>`_
+            `CURLOPT_USERPWD <https://curl.haxx.se/libcurl/c/CURLOPT_USERPWD.html>`_.
           * ``ssl_cert`` -- path to a SSL client certificate file. See also
-            `CURLOPT_SSLCERT <https://curl.haxx.se/libcurl/c/CURLOPT_SSLCERT.html>`_
+            `CURLOPT_SSLCERT <https://curl.haxx.se/libcurl/c/CURLOPT_SSLCERT.html>`_.
           * ``ssl_key`` -- path to a private key file for a TLS and SSL client
             certificate. See also
-            `CURLOPT_SSLKEY <https://curl.haxx.se/libcurl/c/CURLOPT_SSLKEY.html>`_
+            `CURLOPT_SSLKEY <https://curl.haxx.se/libcurl/c/CURLOPT_SSLKEY.html>`_.
           * ``timeout`` -- number of seconds to wait for a curl API read request
             before timing out. The default timeout is set to infinity (36586400100 seconds).
           * ``unix_socket`` -- a socket name to use instead of an Internet address,
@@ -185,10 +185,10 @@ Below is a list of all ``http`` functions.
           * ``verbose`` -- set on/off verbose mode.
           * ``verify_host`` -- set on/off verification of the certificate's name
             (CN) against host. See also
-            `CURLOPT_SSL_VERIFYHOST <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html>`_
+            `CURLOPT_SSL_VERIFYHOST <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html>`_.
           * ``verify_peer`` -- set on/off verification of the peer's SSL
             certificate. See also
-            `CURLOPT_SSL_VERIFYPEER <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html>`_
+            `CURLOPT_SSL_VERIFYPEER <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html>`_.
           * ``accept_encoding`` -- enables automatic decompression of HTTP responses
             by setting the contents of the `Accept-Encoding: header` sent in an 
             HTTP request and enabling decoding of a response when the `Content-Encoding: header` 
@@ -199,7 +199,7 @@ Below is a list of all ``http`` functions.
             response using the zlib algorithm, `gzip` which requests the gzip algorithm and `br` 
             which is brotli. Provide them in the string as a comma-separated list of accepted 
             encodings, like: ``"br, gzip, deflate"``. 
-            For details of the option, refer to `CURLOPT_ACCEPT_ENCODING <https://curl.haxx.se/libcurl/c/CURLOPT_ACCEPT_ENCODING.html>`_
+            For details of the option, refer to `CURLOPT_ACCEPT_ENCODING <https://curl.haxx.se/libcurl/c/CURLOPT_ACCEPT_ENCODING.html>`_.
 
         :return: connection information, with all of these components:
 
