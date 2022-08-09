@@ -104,7 +104,8 @@ based on :doc:`the legacy versioning policy <legacy-policy>`:
                 :doc:`1.10.10 <1.10.10>`,
                 :doc:`1.10.11 <1.10.11>`,
                 :doc:`1.10.12 <1.10.12>`,
-                :doc:`1.10.13 <1.10.13>`
+                :doc:`1.10.13 <1.10.13>`,
+                :doc:`1.10.14 <1.10.14>`
 
 
 For smaller feature changes and bug fixes, see closed
@@ -149,6 +150,7 @@ Release notes for series before 1.10 are also available:
     2.2.2
     2.2.1
     2.1.2
+    1.10.14
     1.10.13
     1.10.12
     1.10.11

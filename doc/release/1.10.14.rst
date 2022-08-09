@@ -1,0 +1,158 @@
+Tarantool 1.10.14
+=================
+
+Released on 2022-08-08.
+
+*   Release: :tarantool-release:`1.10.14`.
+*   Tag: ``1.10.14``.
+
+Overview
+--------
+
+1.10.14 is the next stable release in the :doc:`long-term support (LTS) version </release/policy>`
+1.10.x release series.
+
+The label “stable” means there are 1.10.x-based applications running in
+production for quite a while without known crashes, incorrect results or
+other showstopper bugs.
+
+This release introduces 10 improvements and resolves roughly 20 issues
+since the :doc:`1.10.13 </release/1.10.13>` version.
+
+Compatibility
+-------------
+
+Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary
+data layout, client-server protocol and replication protocol.
+
+Please
+`upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__
+using the ``box.schema.upgrade()`` procedure to unlock all the new
+features of the 1.10.x series.
+
+Functionality added or changed
+------------------------------
+
+Build
+~~~~~
+
+-  Fedora 35 is are now supported (:tarantool-issue:`6692`).
+-  Fedora 36 is now supported.
+-  Ubuntu 22.04 (Jammy Jellyfish) is now supported.
+-  Fedora 30, 31, 32, and 33 are no longer supported.
+-  Ubuntu 21.04 (Hirsute Hippo) is no longer supported.
+-  Updated OpenSSL used for static builds to version 1.1.1n. (:tarantool-issue:`6947`).
+-  Updated OpenSSL used for static builds to version 1.1.1q.
+-  Updated libcurl to version 7.83.0 (:tarantool-issue:`6029`).
+-  Updated libcurl to version 7.84.0.
+-  Updated libyaml to the version with fixed stack overflows.
+
+Bugs fixed
+----------
+
+Core
+~~~~
+
+-  Fixed a memory leak in the interactive console (:tarantool-issue:`6817`).
+-  Fixed an assertion fail when passing a tuple without the primary key
+   fields to a ``before_replace`` trigger. Now the tuple format is
+   checked before the execution of ``before_replace`` triggers and after
+   each of them (:tarantool-issue:`6780`).
+-  Now inserting a tuple with a wrong ``id`` field into the ``\_priv``
+   space returns the correct error (:tarantool-issue:`6295`).
+-  Fixed a bug that was making all fibers created with
+   ``fiber_attr_setstacksize()`` leak until the thread exit. Their
+   stacks also leaked except when ``fiber_set_joinable(..., true)`` was
+   used.
+-  Fixed a crash that happened when Tarantool was launched with multiple
+   ``-e`` or ``-l`` options without spaces between the options and their
+   values (:tarantool-issue:`5747`).
+-  Fixed the usage of ``box.session.peer()`` in
+   ``box.session.on_disconnect()`` triggers. Now it’s safe to assume
+   that ``box.session.peer()`` returns the address of the disconnected
+   peer, not nil, as it used to (:tarantool-issue:`7014`).
+-  Fixed a bug in the sequence cache that could result in an error
+   creating a new sequence (:tarantool-issue:`5306`).
+
+Vinyl
+~~~~~
+
+-  Immediate removal of compacted run files created after the last
+   checkpoint optimization now works for the initial JOIN stage of a
+   replica (:tarantool-issue:`6568`).
+-  Fixed a crash during the recovery of a secondary index in case the
+   primary index contains incompatible phantom tuples (:tarantool-issue:`6778`).
+-  Fixed a bug in the vinyl upsert squashing optimization that could
+   lead to a segmentation fault error (:tarantool-issue:`5080`).
+-  Fixed a bug in the vinyl read iterator that could result in a
+   significant performance degradation of range select requests in the
+   presence of an intensive write workload (:tarantool-issue:`5700`).
+
+Replication
+~~~~~~~~~~~
+
+-  Fixed replicas failing to bootstrap when the master has just
+   restarted (:tarantool-issue:`6966`).
+
+LuaJIT
+~~~~~~
+
+-  Fixed the top part of Lua stack (red zone, free slots, top slot)
+   unwinding in the ``lj-stack`` command.
+
+-  Added the value of ``g->gc.mmudata`` field to ``lj-gc`` output.
+
+-  Fixed a bug with ``string.char()`` builtin recording when no
+   arguments are provided (:tarantool-issue:`6371`, :tarantool-issue:`6548`).
+
+-  Actually made JIT respect the ``maxirconst`` trace limit while
+   recording (:tarantool-issue:`6548`).
+
+-  Backported patches from vanilla LuaJIT trunk (:tarantool-issue:`6548`, :tarantool-issue:`7230`).
+   In the scope of this activity, the following issues have been resolved:
+
+   -  Fixed emitting for fuse load of constant in GC64 mode (:tarantool-issue:`4095`,
+      :tarantool-issue:`4199`, :tarantool-issue:`4614`).
+   -  Now initialization of zero-filled struct is compiled (:tarantool-issue:`4630`,
+      :tarantool-issue:`5885`).
+   -  Actually implemented ``maxirconst`` option for tuning JIT
+      compiler.
+   -  Fixed JIT stack of Lua slots overflow during recording for
+      metamethod calls.
+   -  Fixed bytecode dump unpatching for JLOOP in up-recursion compiled
+      functions.
+   -  Fixed FOLD rule for strength reduction of widening in cdata
+      indexing.
+   -  Fixed ``string.char()`` recording without arguments.
+   -  Fixed ``print()`` behaviour with the reloaded default metatable
+      for numbers.
+   -  ``tonumber("-0")`` now saves the sign of number for conversion.
+   -  ``tonumber()`` now give predictable results for negative
+      non-base-10 numbers.
+   -  Fixed write barrier for ``debug.setupvalue()`` and
+      ``lua_setupvalue()``.
+   -  ``jit.p`` now flushes and closes output file after run, not at
+      program exit.
+   -  Fixed ``jit.p`` profiler interaction with GC finalizers.
+   -  Fixed the case for partial recording of vararg function body with
+      the fixed number of result values in with ``LJ_GC64``
+      (i.e. ``LJ_FR2`` enabled) (:tarantool-issue:`7172`).
+   -  Fixed handling of errors during trace snapshot restore.
+
+Box
+~~~
+
+-  Added the check of the iterator type in the ``select``, ``count``,
+   and ``pairs`` methods of the index object. Iterator can now be passed
+   to these methods directly: ``box.index.ALL``, ``box.index.GT``, and
+   so on (:tarantool-issue:`6501`).
+
+Recovery
+~~~~~~~~
+
+-  With the ``force_recovery`` cfg option, Tarantool is now able to boot
+   from ``snap``/``xlog`` combinations where ``xlog`` covers changes
+   committed both before and after the ``snap`` was created. For
+   example, ``0...0.xlog`` that covers everything up to vclock
+   ``{1: 15}`` and ``0...09.snap`` corresponding to vclock ``{1: 9}``
+   (:tarantool-issue:`6794`).
