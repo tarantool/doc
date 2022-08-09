@@ -21,10 +21,10 @@ Versions that only include bug fixes are not listed in this table.
             -   Feature
 
         *   -   2.10.1
-            -   Interactive transactions are now possible in remote binary consoles. |br|
-                Improved the string representation of datetime intervals.
+            -   Interactive transactions are now possible in remote binary consoles |br|
+                Improved string representation of datetime intervals
 
-       *   -   2.10.0-rc1
+       *    -   2.10.0-rc1
             -   Transaction isolation levels in Lua and IPROTO (:tarantool-issue:`6930`) |br|
                 Fencing and pre-voting in RAFT (:tarantool-issue:`6661`) |br|
                 Foreign keys and constraints support (:tarantool-issue:`6436`) |br|
