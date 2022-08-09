@@ -23,18 +23,11 @@ box.watch()
 
     **Example:**
 
-    Server:
-
     ..  code-block:: lua
 
         -- Broadcast value 42 for the 'foo' key.
         box.broadcast('foo', 42)
 
-    Client:
-
-    ..  code-block:: lua
-        
-        conn = require('net.box').connect(URI)
         local log = require('log')
         -- Subscribe to updates of the 'foo' key.
         local w = box.watch('foo', function(key, value)
