@@ -268,7 +268,7 @@ In the scope of this activity, the following issues have been resolved:
 
 -  ``tonumber("-0")`` now saves the sign of number for conversion.
 
--  ``tonumber()`` now give predictable results for negative non-base-10
+-  ``tonumber()`` now gives predictable results for negative non-base-10
    numbers.
 
 -  Fixed write barrier for ``debug.setupvalue()`` and
@@ -290,7 +290,7 @@ In the scope of this activity, the following issues have been resolved:
    enabled) (:tarantool-issue:`7172`).
 
 -  Added ``/proc/self/exe`` symlink resolution to the symtab module to
-   obtain the .symtab section for the Tarantool executable.
+   obtain the ``.symtab`` section for the Tarantool executable.
 
 -  Introduced stack sandwich support to sysprof’s parser (:tarantool-issue:`7244`).
 
@@ -323,7 +323,7 @@ Datetime
 ~~~~~~~~
 
 -  Fixed a bug when ``date:set{hour=nil,min=XXX}`` did not retain the
-   original ``hour`` value. (:tarantool-issue:`7298`).
+   original ``hour`` value (:tarantool-issue:`7298`).
 -  Introduced the validation of incoming data at the moment messagepack
    is converted to datetime (:tarantool-issue:`6723`).
 
@@ -331,12 +331,12 @@ HTTP client
 ~~~~~~~~~~~
 
 -  Enabled the automatic detection of system CA certificates in the
-   runtime (g:tarantool-issue:`7372`). It was disabled in 2.10.0, which led to the
+   runtime (:tarantool-issue:`7372`). It was disabled in 2.10.0, which led to the
    inability to use HTTPS without the ``verify_peer = false`` option.
 
 
 Build
 ~~~~~
 
--  Fixed a build failure with gcc if libpbf is installed. (:tarantool-issue:`7292`)
+-  Fixed a build failure with gcc if libpbf is installed (:tarantool-issue:`7292`).
 -  Fixed the static build on Mac OS 11 and newer (:tarantool-issue:`7459`).
