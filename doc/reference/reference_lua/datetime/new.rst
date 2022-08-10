@@ -119,7 +119,7 @@ datetime.new()
                     year = 2021,
 
                     tzoffset = 60,
-                    tz = Europe/Moscow
+                    tz = 'Europe/Moscow'
                     }
         ---
         - 2021-08-20T18:25:20.123456789 Europe/Moscow
