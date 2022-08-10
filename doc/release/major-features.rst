@@ -20,23 +20,22 @@ Versions that only include bug fixes are not listed in this table.
         *   -   Since version
             -   Feature
 
-        *   -   2.10.0-rc1
+        *   -   2.10.1
+            -   Interactive transactions are now possible in remote binary consoles |br|
+                Improved string representation of datetime intervals
+
+        *   -   2.10.0
             -   Transaction isolation levels in Lua and IPROTO (:tarantool-issue:`6930`) |br|
                 Fencing and pre-voting in RAFT (:tarantool-issue:`6661`) |br|
-                Foreign keys and constraints support (:tarantool-issue:`6436`) |br|
-                :ref:`New DATETIME type <2.10.0-rc1_datetime>`
-
-        *   -   2.10.0-beta2
-            -   HTTP/2 support for the HTTP client |br|
-                Preliminary support for the new DATETIME type (:tarantool-issue:`5941`) |br|
-
-        *   -   2.10.0-beta1
-            -   Preliminary support for GNU/Linux ARM64 and MacOS M1 (:tarantool-issue:`2712`, :tarantool-issue:`6065`,
+                :ref:`Foreign keys <index-box_foreign_keys>` and :ref:`constraints <index-constraints>` support (:tarantool-issue:`6436`) |br|
+                :ref:`New DATETIME type <2.10.0-datetime>` |br|
+                HTTP/2 support for the HTTP client |br|
+                Preliminary support for GNU/Linux ARM64 and MacOS M1 (:tarantool-issue:`2712`, :tarantool-issue:`6065`,
                 :tarantool-issue:`6066`, :tarantool-issue:`6084`, :tarantool-issue:`6093`, :tarantool-issue:`6098`,
                 :tarantool-issue:`6189`) |br|
                 :ref:`Streams and interactive transactions in iproto <txn_mode_stream-interactive-transactions>`
                 (:tarantool-issue:`5860`) |br|
-                :ref:`Consistent SQL type system <2.10.0-beta1-sql>` |br|
+                :ref:`Consistent SQL type system <2.10.0-sql>` |br|
                 Faster `net.box` module performance (improved up to 70%) (:tarantool-issue:`6241`) |br|
                 Compact mode for tuples (:tarantool-issue:`5385`) |br|
                 `memtx_allocator` option in `box.cfg{}` (:tarantool-issue:`5419`)

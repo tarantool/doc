@@ -477,6 +477,8 @@ Schema
 -   ``is_multikey`` option may now be passed to
     ``box.schema.func.create`` directly, without ``opts`` sub-table.
 
+..  _2.10.0-sql:
+
 SQL
 ~~~
 
@@ -1192,6 +1194,8 @@ Box
 
 -   Added iterator type checking and allow passing iterator as a
     ``box.index.{ALL,GT,...}`` directly (:tarantool-issue:`6501`).
+
+..  _2.10.0-datetime:
 
 Datetime
 ~~~~~~~~
