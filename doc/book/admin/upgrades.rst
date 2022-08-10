@@ -43,6 +43,15 @@ should have no or little trouble when upgrading from Tarantool 1.6 to 1.7, or
 from Tarantool 1.7 to 2.x. Meanwhile Tarantool 2.x may have incompatible changes
 when migrating from Tarantool 1.6. to 2.x directly.
 
+..  important::
+
+    The only way to upgrade Tarantool from 1.6 to 2.x **without downtime** is
+    taking an intermediate step by upgrading from 1.6 to 1.10 and then to 2.x.
+
+    Before upgrading Tarantool from 1.6 to 1.10, please read about the
+    `caveats associated with that upgrade <https://github.com/tarantool/tarantool/wiki/Caveats-when-upgrading-from-tarantool-1.6>`_.`
+
+
 .. _admin-upgrades_instance_17_to_20:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
