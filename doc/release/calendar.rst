@@ -98,6 +98,10 @@ End of series support means the release series will no longer receive any patche
             -   December 31, 2019
             -   April 20, 2020
 
+        *   -   :doc:`1.10.14 LTS </release/1.10.14>`
+            -   August 8, 2022
+            -   Not planned yet
+
         *   -   :doc:`1.10.13 LTS </release/1.10.13>`
             -   April 25, 2022
             -   Not planned yet
