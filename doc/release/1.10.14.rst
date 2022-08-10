@@ -36,12 +36,12 @@ Functionality added or changed
 Build
 ~~~~~
 
--  Fedora 35 is are now supported (:tarantool-issue:`6692`).
+-  Fedora 35 is now supported (:tarantool-issue:`6692`).
 -  Fedora 36 is now supported.
 -  Ubuntu 22.04 (Jammy Jellyfish) is now supported.
 -  Fedora 30, 31, 32, and 33 are no longer supported.
 -  Ubuntu 21.04 (Hirsute Hippo) is no longer supported.
--  Updated OpenSSL used for static builds to version 1.1.1n. (:tarantool-issue:`6947`).
+-  Updated OpenSSL used for static builds to version 1.1.1n (:tarantool-issue:`6947`).
 -  Updated OpenSSL used for static builds to version 1.1.1q.
 -  Updated libcurl to version 7.83.0 (:tarantool-issue:`6029`).
 -  Updated libcurl to version 7.84.0.
@@ -127,7 +127,7 @@ LuaJIT
    -  Fixed ``print()`` behaviour with the reloaded default metatable
       for numbers.
    -  ``tonumber("-0")`` now saves the sign of number for conversion.
-   -  ``tonumber()`` now give predictable results for negative
+   -  ``tonumber()`` now gives predictable results for negative
       non-base-10 numbers.
    -  Fixed write barrier for ``debug.setupvalue()`` and
       ``lua_setupvalue()``.
