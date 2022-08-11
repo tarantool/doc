@@ -72,7 +72,4 @@ To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
     :maxdepth: 2
 
     policy_index
-    notes
     compatibility
-    major-features
-    calendar
