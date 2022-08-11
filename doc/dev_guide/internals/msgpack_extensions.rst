@@ -20,7 +20,7 @@ The DECIMAL type
 The MessagePack EXT type ``MP_EXT`` together with the extension type
 ``MP_DECIMAL`` is a header for values of the DECIMAL type.
 
-``MP_DECIMAL`` is 1.
+``MP_DECIMAL`` type is 1.
 
 `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 defines two kinds of types:
@@ -108,11 +108,11 @@ The UUID type
 The MessagePack EXT type ``MP_EXT`` together with the extension type
 ``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 </release/2.4.1>`.
 
-``MP_UUID`` is 2.
+``MP_UUID`` type is 2.
 
 The `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
-defines ``d8`` to mean fixext with size 16, and a uuid's size is always 16.
-So the uuid MessagePack representation looks like this:
+defines ``d8`` to mean ``fixext`` with size 16, and a UUID's size is always 16.
+So the UUID MessagePack representation looks like this:
 
 ..  code-block:: none
 
@@ -121,12 +121,16 @@ So the uuid MessagePack representation looks like this:
     | = d8   | = 2        | = 16-byte value |
     +--------+------------+-----------------+
 
-
 The 16-byte value has 2 digits per byte.
-Typically it consists of 11 fields, which are encoded as big endian
-unsigned integers in the following order: time_low (4 bytes), time_mid
-(2 bytes), time_hi_and_version (2 bytes), clock_seq_hi_and_reserved (1
-byte), clock_seq_low (1 byte), node[0], ..., node[5] (1 byte each).
+Typically, it consists of 11 fields, which are encoded as big-endian
+unsigned integers in the following order:
+
+*   ``time_low`` (4 bytes)
+*   ``time_mid`` (2 bytes)
+*   ``time_hi_and_version`` (2 bytes)
+*   ``clock_seq_hi_and_reserved`` (1 byte)
+*   ``clock_seq_low`` (1 byte)
+*   ``node[0]``, ..., ``node[5]`` (1 byte each)
 
 Some of the functions in :ref:`Module uuid <uuid-module>` can produce values
 which are compatible with the UUID data type.
@@ -161,7 +165,7 @@ Notice, however, that there has been a renaming of a constant:
 formerly IPROTO_ERROR in ./box/iproto_constants.h was 0x31,
 now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31.
 
-``MP_ERROR`` is 3.
+``MP_ERROR`` type is 3.
 
 ..  code-block:: none
 
@@ -245,28 +249,31 @@ The DATETIME type
 **********************************
 
 Since version :doc:`2.10.0 </release/2.10.0>`.
-``MP_DATETIME`` is 4.
+The MessagePack EXT type ``MP_EXT`` together with the extension type
+``MP_DATETIME`` is a header for values of the DATETIME type.
+It creates a container of 8 or 16 bytes long payload.
 
-Datetime MessagePack serialization schema is MP_EXT extension, which creates container of 8 or 16 bytes long payload.
+``MP_DATETIME`` type is 4.
 
-The datetime MessagePack representation looks like this:
+The `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
+defines ``d7``to mean ``fixext`` with size 8 or ``d8`` to mean ``fixext`` with size 16.
+
+So the datetime MessagePack representation looks like this:
 
 ..  code-block:: none
 
-    +---------+--------+===============+-------------------------------+
-    |0xd7/0xd8|type (4)| seconds (8b)  | nsec; tzoffset; tzindex; (8b) |
-    +---------+--------+===============+-------------------------------+
+    +---------+----------------+==========+-----------------+
+    | MP_EXT  | MP_DATETIME    | seconds  | nsec; tzoffset; |
+    | = d7/d8 | = 4            |          | tzindex;        |
+    +---------+----------------+==========+-----------------+
 
-    +--------+-------------------+------------+===============+
-    | MP_EXT | length (optional) | MP_DECIMAL | PackedDecimal |
-    +--------+-------------------+------------+===============+
+MessagePack data contains:
 
-MessagePack data encoded using fixext8 (0xd7) or fixext16 (0xd8), and may contain:
+*   Seconds (8b) as full, unencoded, signed 64-bit integer, stored in little-endian order.
 
-[required] seconds parts as full, unencoded, signed 64-bit integer, stored in little-endian order;
-
-[optional] all the other fields (nsec, tzoffset, tzindex) if any of them were having not 0 value.
-They are packed naturally in little-endian order;
+*   The optional fields (8b), if any of them have a non-zero value.
+    The fields include nsec, tzoffset, and tzindex.
+    They are packed naturally in little-endian order.
 
 ..  _msgpack_ext-interval:
 
@@ -274,19 +281,19 @@ They are packed naturally in little-endian order;
 The INTERVAL type
 **********************************
 
+Since version :doc:`2.10.0 </release/2.10.0>`.
 The MessagePack EXT type ``MP_EXT`` together with the extension type
 ``MP_INTERVAL`` is a header for values of the INTERVAL type.
-Since version :doc:`2.10.0 </release/2.10.0>`.
 
-``MP_INTERVAL`` is 6.
+``MP_INTERVAL`` type is 6.
 
 The interval MessagePack representation looks like this:
 
 ..  code-block:: none
 
-    +--------+-------------------+------------+================+
-    | MP_EXT | length (optional) | MP_INTERVAL | PackedDecimal |
-    +--------+-------------------+------------+================+
+    +--------+-------------------+------------+=================+
+    | MP_EXT | length (optional) | MP_INTERVAL | PackedInterval |
+    +--------+-------------------+------------+=================+
 
 MessagePack encoding schema for intervals is a little bit more complex than one used by datetime values
 (strictly speaking - they has nothing in common whatsoever).
