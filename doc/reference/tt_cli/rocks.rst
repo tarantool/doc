@@ -7,10 +7,10 @@ Using the LuaRocks package manager
 
 ``tt rocks`` provides means to manage Lua modules (rocks) via the
 `LuaRocks <https://luarocks.org/>`_ package manager. `tt` uses its own
-LuaRocks installation connected to the `Tarantool rocks repository <https://www.tarantool.io/en/download/rocks>_`.
+LuaRocks installation connected to the `Tarantool rocks repository <https://www.tarantool.io/en/download/rocks>`_.
 
 Below are the lists of the supported LuaRocks flags and commands. For detailed information on
-their usage, refer to `LuaRocks documentation <https://github.com/luarocks/luarocks/wiki/Documentation>_`.
+their usage, refer to `LuaRocks documentation <https://github.com/luarocks/luarocks/wiki/Documentation>`_.
 
 Flags
 -----
@@ -23,16 +23,15 @@ Flags
 
         *   -   ``--dev``
             -   Enable the sub-repositories in rocks servers
-	            for rockspecs of in-development versions
+                for rockspecs of in-development versions
         *   -   ``--server=<server>``
             -   Fetch rocks/rockspecs from this server
-	            (takes priority over config file)
+                (takes priority over config file)
         *   -   ``--only-server=<server>``
             -   Fetch rocks/rockspecs from this server only
-	            (overrides any entries in the config file)
+                (overrides any entries in the config file)
         *   -   ``--only-sources=<url>``
-            -   Restrict downloads to paths matching the
-	            given URL.
+            -   Restrict downloads to paths matching the given URL.
         *   -   ``--lua-dir=<prefix>``
             -   Which Lua installation to use.
         *   -   ``--lua-version=<ver>``
@@ -48,8 +47,7 @@ Flags
             -   Display verbose output of commands executed.
         *   -   ``--timeout=<seconds>``
             -   Timeout on network operations, in seconds.
-	            0 means no timeout (wait forever).
-	            Default is 30.
+                0 means no timeout (wait forever). Default: 30.
 
 Commands
 --------
@@ -103,7 +101,7 @@ Commands
         *   -   ``write_rockspec``
             -   Write a template for a rockspec file.
 
-kExamples
+Examples
 --------
 
 *   Install the rock ``queue`` from the Tarantool rocks repository:
@@ -113,13 +111,13 @@ kExamples
         tt rocks install queue
 
 *   Search for the rock ``queue`` in **both** the Tarantool rocks repository and
-    the `default LuaRocks repository <https://luarocks.org>_`:
+    the `default LuaRocks repository <https://luarocks.org>`_:
 
     ..  code-block:: bash
 
         tt rocks search queue --server='https://luarocks.org'
 
-*   List the documentation file for the installed rock ``queue``:
+*   List the documentation files for the installed rock ``queue``:
 
     ..  code-block:: bash
 
