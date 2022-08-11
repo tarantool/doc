@@ -304,7 +304,7 @@ In this case, the number will be stored as `cdata`_.
 
 ..  _index-box_decimal:
 
-**decimal**. The Tarantool decimal type is stored as a MsgPack ext (Extension).
+**decimal**. The Tarantool decimal type is stored as a :ref:`MsgPack ext <msgpack_ext-decimal>` (Extension).
 Values with the decimal type are not floating-point values although
 they may contain decimal points.
 They are exact with up to 38 digits of precision.
@@ -315,7 +315,7 @@ Example: a value returned by a function in the :ref:`decimal <decimal>` module.
 **datetime**. Introduced in :tarantool-release:`2.10.0`.
 The Tarantool ``datetime`` type facilitates operations with date and time,
 accounting for leap years or the varying number of days in a month.
-It is stored as a MsgPack ext (Extension).
+It is stored as a :ref:`MsgPack ext <msgpack_ext-datetime>` (Extension).
 Operations with this data type use code from `c-dt <https://github.com/tarantool/c-dt>`_, a third-party library.
 
 For more information, see :doc:`Module datetime </reference/reference_lua/datetime>`.
@@ -326,7 +326,7 @@ For more information, see :doc:`Module datetime </reference/reference_lua/dateti
 The Tarantool ``interval`` type represents periods of time.
 They can be added to or subtracted from ``datetime`` values or each other.
 Operations with this data type use code from `c-dt <https://github.com/tarantool/c-dt>`_, a third-party library.
-
+The type is stored as a :ref:`MsgPack ext <msgpack_ext-interval>` (Extension).
 For more information, see :doc:`Module datetime </reference/reference_lua/datetime>`.
 
 ..  _index-box_string:
@@ -356,7 +356,7 @@ Example: ``"\65 \66 \67"``.
 **uuid**. The Tarantool uuid type is used for
 :ref:`Universally Unique Identifiers <uuid-module>`.
 Since version :doc:`2.4.1 </release/2.4.1>` Tarantool stores
-``uuid`` values as a MsgPack ext (Extension).
+``uuid`` values as a :ref:`MsgPack ext <msgpack_ext-uuid>` (Extension).
 
 Example: ``64d22e4d-ac92-4a23-899a-e5934af5479``.
 

@@ -272,8 +272,10 @@ MessagePack data contains:
 *   Seconds (8b) as full, unencoded, signed 64-bit integer, stored in little-endian order.
 
 *   The optional fields (8b), if any of them have a non-zero value.
-    The fields include nsec, tzoffset, and tzindex.
-    They are packed naturally in little-endian order.
+    The fields include nsec, tzoffset, and tzindex, packed in little-endian order.
+
+For more information about datetime, see :ref:`datetime field type details <index-box_datetime>`
+and :doc:`module datetime </reference/reference_lua/datetime>`.
 
 ..  _msgpack_ext-interval:
 
@@ -287,31 +289,34 @@ The MessagePack EXT type ``MP_EXT`` together with the extension type
 
 ``MP_INTERVAL`` type is 6.
 
+The idea is to save interval as variant of a map with predefined number of known attributes names.
+Some attributes might be undefined, then they will be omitted from the generated payload.
+
 The interval MessagePack representation looks like this:
 
 ..  code-block:: none
 
-    +--------+-------------------+------------+=================+
-    | MP_EXT | length (optional) | MP_INTERVAL | PackedInterval |
-    +--------+-------------------+------------+=================+
+    +--------+-------------------------+-------------+----------------+
+    | MP_EXT | Size of packed interval | MP_INTERVAL | PackedInterval |
+    +--------+-------------------------+-------------+----------------+
 
-MessagePack encoding schema for intervals is a little bit more complex than one used by datetime values
-(strictly speaking - they has nothing in common whatsoever).
+Packed interval consists of:
 
-The idea is to save interval as variant of a map with predefined number of known attributes names,
-where some attribute might be not defined so it will be ommitted from generated payload.
+*   packed number of non-zero fields
+*   packed non-null fields
+
+Each packed field has the following structure:
 
 ..  code-block:: none
 
-    +--------+-----------------------+-------------+----------------+
-    | MP_EXT |Size of packed interval| MP_INTERVAL | PackedInterval |
-    +--------+-----------------------+-------------+----------------+
+    +----------+=====================+
+    | field ID |     field value     |
+    +----------+=====================+
 
-Packed interval includes packed number of non-zero fields and packed non-null fields.
-Each packed field consists of two packed integer values - the field ID and its value.
-The number of non-null fields can be zero, in which case packed interval will be just packed integer 0.
+The number of defined (non-null) fields can be zero.
+In this case, the packed interval will be encoded as integer 0.
 
-List of IDs:
+List of the field IDs:
 
 *   0 -- year
 *   1 -- month
@@ -323,33 +328,9 @@ List of IDs:
 *   7 -- nanosecond
 *   8 -- adjust
 
-``PackedInterval`` has the following structure:
+**Example**
 
-..  code-block:: none
-
-    <--------- length bytes --------->
-    +----------+=====================+
-    | field ID |     field value     |
-    +----------+=====================+
-
-Here ``field ID`` is either ``MP_INT`` or ``MP_UINT``. |br|
-``scale`` = number of digits after the decimal point
-
-``BCD`` is a sequence of bytes representing decimal digits of the encoded number
-(each byte has two decimal digits each encoded using 4-bit ``nibbles``),
-so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit.
-The leftmost digit in the array is the most significant.
-The rightmost digit in the array is the least significant.
-
-The first byte of the ``BCD`` array contains the first digit of the number,
-represented as follows:
-
-..  code-block:: none
-
-    |  4 bits           |  4 bits           |
-       = 0x                = the 1st digit
-
-Example of packed interval value (1 year, 200 months, and -77 days):
+Interval value ``1 year, 200 months, -77 days`` is encoded in the following way:
 
 ..  code-block:: tarantoolsession
 
@@ -382,16 +363,18 @@ Example of packed interval value (1 year, 200 months, and -77 days):
 
 Where:
 
-C7 - MP_EXT;
-0B - size of a packed interval value, 11 bytes;
-06 - MP_INTERVAL;
-04 - number of defined fields;
-00 - ID of a field year;
-01 - packed value 1;
-01 - ID of a field month;
-CCC8 - packed value 200;
-03 - ID of a field day;
-D0B3 - packed value -77.
-08 - ID of a field adjust
-01 - packed value 1 (DT_LIMIT)
-From there we can see, that the packed interval is actually 1 year, 200 months, and -77 days.
+*   C7 -- MP_EXT
+*   0B -- size of a packed interval value (11 bytes)
+*   06 -- MP_INTERVAL type
+*   04 -- number of defined fields
+*   00 -- field ID (year)
+*   01 -- packed value ``1``
+*   01 -- field ID (month)
+*   CCC8 -- packed value ``200``
+*   03 -- field ID (day)
+*   D0B3 -- packed value ``-77``
+*   08 -- field ID (adjust)
+*   01 -- packed value ``1`` (DT_LIMIT)
+
+For more information about intervals, see :ref:`interval field type details <index-box_interval>`
+and :doc:`module datetime </reference/reference_lua/datetime>`.
