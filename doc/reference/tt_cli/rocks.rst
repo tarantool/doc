@@ -5,7 +5,12 @@ Using the LuaRocks package manager
 
     tt rocks [FLAG ...] [VAR=VALUE] COMMAND [ARGUMENT]
 
-``tt rocks`` call the functions of the `LuaRocks <https://luarocks.org/>`_ package manager.
+``tt rocks`` provides means to manage Lua modules (rocks) via the
+`LuaRocks <https://luarocks.org/>`_ package manager. `tt` uses its own
+LuaRocks installation connected to the `Tarantool rocks repository <https://www.tarantool.io/en/download/rocks>_`.
+
+Below are the lists of the supported LuaRocks flags and commands. For detailed information on
+their usage, refer to `LuaRocks documentation <https://github.com/luarocks/luarocks/wiki/Documentation>_`.
 
 Flags
 -----
@@ -36,7 +41,7 @@ Flags
             -   Which tree to operate on.
         *   -   ``--local``
             -   Use the tree in the user's home directory.
-                To enable it, see './tt rocks help path'.
+                Call ``tt rocks help path`` to learn how to enable it.
         *   -   ``--global``
             -   Use the system tree when `local_by_default` is `true`.
         *   -   ``--verbose``
@@ -64,7 +69,7 @@ Commands
         *   -   ``download``
             -   Download a specific rock file from a rocks server.
         *   -   ``help``
-            -   Help on commands. Type './tt rocks help <command>' for more.
+            -   Help on commands. Type 'tt rocks help <command>' for more.
         *   -   ``init``
             -   Initialize a directory for a Lua project using LuaRocks.
         *   -   ``install``
@@ -101,9 +106,39 @@ Commands
 kExamples
 --------
 
-*   TODO: description
+*   Install the rock ``queue`` from the Tarantool rocks repository:
 
     ..  code-block:: bash
 
-        tt rocks
+        tt rocks install queue
 
+*   Search for the rock ``queue`` in **both** the Tarantool rocks repository and
+    the `default LuaRocks repository <https://luarocks.org>_`:
+
+    ..  code-block:: bash
+
+        tt rocks search queue --server='https://luarocks.org'
+
+*   List the documentation file for the installed rock ``queue``:
+
+    ..  code-block:: bash
+
+        tt rocks doc queue --list
+
+*   Create a ``*.rock`` file from the installed rock ``queue``:
+
+    ..  code-block:: bash
+
+        tt rocks pack queue
+
+*   Unpack a ``*.rock`` file:
+
+    ..  code-block:: bash
+
+        tt rocks unpack queue-scm-1.all.rock
+
+*   Remove the installed rock ``queue``:
+
+    ..  code-block:: bash
+
+        tt rocks remove queue
