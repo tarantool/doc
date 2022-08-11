@@ -1,6 +1,4 @@
-.. _internals-msgpack_ext:
-
-.. _msgpack_ext-decimal:
+..  _internals-msgpack_ext:
 
 ----------------------------
 MessagePack extensions
@@ -12,6 +10,8 @@ of the special values. Extension types include ``MP_DECIMAL``, ``MP_UUID``,
 These types require special attention from the connector developers,
 as they must be treated separately from the default MessagePack types,
 and correctly mapped to programming language types.
+
+..  _msgpack_ext-decimal:
 
 *******************************
 The DECIMAL type
@@ -32,7 +32,7 @@ defines two kinds of types:
 
 The decimal MessagePack representation looks like this:
 
-.. code-block:: none
+..  code-block:: none
 
     +--------+-------------------+------------+===============+
     | MP_EXT | length (optional) | MP_DECIMAL | PackedDecimal |
@@ -43,7 +43,7 @@ Here ``length`` is the length of ``PackedDecimal`` field, and it is of type
 
 ``PackedDecimal`` has the following structure:
 
-.. code-block:: none
+..  code-block:: none
 
      <--- length bytes -->
     +-------+=============+
@@ -62,7 +62,7 @@ The rightmost digit in the array is the least significant.
 The first byte of the ``BCD`` array contains the first digit of the number,
 represented as follows:
 
-.. code-block:: none
+..  code-block:: none
 
     |  4 bits           |  4 bits           |
        = 0x                = the 1st digit
@@ -71,7 +71,7 @@ represented as follows:
 The last byte of the ``BCD`` array contains the last digit of the number and the
 final ``nibble``, represented as follows:
 
-.. code-block:: none
+..  code-block:: none
 
     |  4 bits           |  4 bits           |
        = the last digit    = nibble
@@ -85,7 +85,7 @@ The final ``nibble`` represents the number's sign:
 
 The decimal ``-12.34`` will be encoded as ``0xd6,0x01,0x02,0x01,0x23,0x4d``:
 
-.. code-block:: none
+..  code-block:: none
 
     |MP_EXT (fixext 4) | MP_DECIMAL | scale |  1   |  2,3 |  4 (minus) |
     |       0xd6       |    0x01    | 0x02  | 0x01 | 0x23 | 0x4d       |
@@ -93,13 +93,13 @@ The decimal ``-12.34`` will be encoded as ``0xd6,0x01,0x02,0x01,0x23,0x4d``:
 The decimal 0.000000000000000000000000000000000010
 will be encoded as ``0xc7,0x03,0x01,0x24,0x01,0x0c``:
 
-.. code-block:: none
+..  code-block:: none
 
     | MP_EXT (ext 8) | length | MP_DECIMAL | scale |  1   | 0 (plus) |
     |      0xc7      |  0x03  |    0x01    | 0x24  | 0x01 | 0x0c     |
 
 
-.. _msgpack_ext-uuid:
+..  _msgpack_ext-uuid:
 
 **********************************
 The UUID type
@@ -114,7 +114,7 @@ The `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 defines ``d8`` to mean fixext with size 16, and a uuid's size is always 16.
 So the uuid MessagePack representation looks like this:
 
-.. code-block:: none
+..  code-block:: none
 
     +--------+------------+-----------------+
     | MP_EXT | MP_UUID    | UuidValue       |
@@ -132,7 +132,7 @@ Some of the functions in :ref:`Module uuid <uuid-module>` can produce values
 which are compatible with the UUID data type.
 For example, after
 
-.. code-block:: none
+..  code-block:: none
 
     uuid = require('uuid')
     box.schema.space.create('t')
@@ -142,26 +142,28 @@ For example, after
 
 a peek at the server response packet will show that it contains
 
-.. code-block:: none
+..  code-block:: none
 
     d8 02 f6 42 3b df b4 9e 49 13 b3 61 07 40 c9 70 2e 4b
 
-.. _msgpack_ext-error:
+..  _msgpack_ext-error:
 
 ****************************************************
 The ERROR type
 ****************************************************
 
 Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information
-following what was described in :ref:`Box protocol -- responses for errors
-<box_protocol-responses_error>`.
+following what was described in
+:ref:`Box protocol -- responses for errors <box_protocol-responses_error>`.
 This is a "compatible" enhancement, because clients that expect old-style
 server responses should ignore map components that they do not recognize.
 Notice, however, that there has been a renaming of a constant:
 formerly IPROTO_ERROR in ./box/iproto_constants.h was 0x31,
 now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31.
 
-.. code-block:: none
+``MP_ERROR`` is 3.
+
+..  code-block:: none
 
     ++=========================+============================+
     ||                         |                            |
@@ -204,7 +206,7 @@ For example, in version 2.4.1 or later, if we try to create a duplicate space wi
 ``conn:eval([[box.schema.space.create('_space');]])`` |br|
 the server response will look like this:
 
-.. code-block:: none
+..  code-block:: none
 
     ce 00 00 00 88                  MP_UINT = HEADER + BODY SIZE
     83                              MP_MAP, size 3 (i.e. 3 items in header)
@@ -236,7 +238,7 @@ the server response will look like this:
             0a                              MP_UINT = eror code ER_SPACE_EXISTS
 
 
-.. _msgpack_ext-datetime:
+..  _msgpack_ext-datetime:
 
 **********************************
 The DATETIME type
@@ -245,15 +247,28 @@ The DATETIME type
 Since version :doc:`2.10.0 </release/2.10.0>`.
 ``MP_DATETIME`` is 4.
 
+Datetime MessagePack serialization schema is MP_EXT extension, which creates container of 8 or 16 bytes long payload.
+
 The datetime MessagePack representation looks like this:
 
-.. code-block:: none
+..  code-block:: none
+
+    +---------+--------+===============+-------------------------------+
+    |0xd7/0xd8|type (4)| seconds (8b)  | nsec; tzoffset; tzindex; (8b) |
+    +---------+--------+===============+-------------------------------+
 
     +--------+-------------------+------------+===============+
     | MP_EXT | length (optional) | MP_DECIMAL | PackedDecimal |
     +--------+-------------------+------------+===============+
 
-.. _msgpack_ext-interval:
+MessagePack data encoded using fixext8 (0xd7) or fixext16 (0xd8), and may contain:
+
+[required] seconds parts as full, unencoded, signed 64-bit integer, stored in little-endian order;
+
+[optional] all the other fields (nsec, tzoffset, tzindex) if any of them were having not 0 value.
+They are packed naturally in little-endian order;
+
+..  _msgpack_ext-interval:
 
 **********************************
 The INTERVAL type
@@ -267,8 +282,109 @@ Since version :doc:`2.10.0 </release/2.10.0>`.
 
 The interval MessagePack representation looks like this:
 
-.. code-block:: none
+..  code-block:: none
 
-    +--------+-------------------+------------+===============+
+    +--------+-------------------+------------+================+
     | MP_EXT | length (optional) | MP_INTERVAL | PackedDecimal |
-    +--------+-------------------+------------+===============+
+    +--------+-------------------+------------+================+
+
+MessagePack encoding schema for intervals is a little bit more complex than one used by datetime values
+(strictly speaking - they has nothing in common whatsoever).
+
+The idea is to save interval as variant of a map with predefined number of known attributes names,
+where some attribute might be not defined so it will be ommitted from generated payload.
+
+..  code-block:: none
+
+    +--------+-----------------------+-------------+----------------+
+    | MP_EXT |Size of packed interval| MP_INTERVAL | PackedInterval |
+    +--------+-----------------------+-------------+----------------+
+
+Packed interval includes packed number of non-zero fields and packed non-null fields.
+Each packed field consists of two packed integer values - the field ID and its value.
+The number of non-null fields can be zero, in which case packed interval will be just packed integer 0.
+
+List of IDs:
+
+*   0 -- year
+*   1 -- month
+*   2 -- week
+*   3 -- day
+*   4 -- hour
+*   5 -- minute
+*   6 -- second
+*   7 -- nanosecond
+*   8 -- adjust
+
+``PackedInterval`` has the following structure:
+
+..  code-block:: none
+
+    <--------- length bytes --------->
+    +----------+=====================+
+    | field ID |     field value     |
+    +----------+=====================+
+
+Here ``field ID`` is either ``MP_INT`` or ``MP_UINT``. |br|
+``scale`` = number of digits after the decimal point
+
+``BCD`` is a sequence of bytes representing decimal digits of the encoded number
+(each byte has two decimal digits each encoded using 4-bit ``nibbles``),
+so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit.
+The leftmost digit in the array is the most significant.
+The rightmost digit in the array is the least significant.
+
+The first byte of the ``BCD`` array contains the first digit of the number,
+represented as follows:
+
+..  code-block:: none
+
+    |  4 bits           |  4 bits           |
+       = 0x                = the 1st digit
+
+Example of packed interval value (1 year, 200 months, and -77 days):
+
+..  code-block:: tarantoolsession
+
+    tarantool> I = datetime.interval.new{year = 1, month = 200, day = -77}
+    ---
+    ...
+
+    tarantool> I
+    ---
+    - +1 years, 200 months, -77 days
+    ...
+
+    tarantool> M = msgpak.encode(I)
+    ---
+    ...
+
+    tarantool> M
+    ---
+    - !!binary xwsGBAABAczIA9CzCAE=
+    ...
+
+    tarantool> tohex = function(s) return (s:gsub('.', function(c) return string.format('%02X ', string.byte(c)) end)) end
+    ---
+    ...
+
+    tarantool> tohex(M)
+    ---
+    - 'C7 0B 06 04 00 01 01 CC C8 03 D0 B3 08 01 '
+    ...
+
+Where:
+
+C7 - MP_EXT;
+0B - size of a packed interval value, 11 bytes;
+06 - MP_INTERVAL;
+04 - number of defined fields;
+00 - ID of a field year;
+01 - packed value 1;
+01 - ID of a field month;
+CCC8 - packed value 200;
+03 - ID of a field day;
+D0B3 - packed value -77.
+08 - ID of a field adjust
+01 - packed value 1 (DT_LIMIT)
+From there we can see, that the packed interval is actually 1 year, 200 months, and -77 days.
