@@ -7,10 +7,11 @@ MessagePack extensions
 ----------------------------
 
 Tarantool uses predefined MessagePack extension types to represent some
-of the special values. Extension types include ``MP_DECIMAL``, ``MP_UUID``
-and ``MP_ERROR``. These types require special attention from the connector
-developers, as they must be treated separately from the default MessagePack
-types, and correctly mapped to programming language types.
+of the special values. Extension types include ``MP_DECIMAL``, ``MP_UUID``,
+``MP_ERROR``, ``MP_DATETIME``, and ``MP_INTERVAL``.
+These types require special attention from the connector developers,
+as they must be treated separately from the default MessagePack types,
+and correctly mapped to programming language types.
 
 *******************************
 The DECIMAL type
@@ -19,7 +20,7 @@ The DECIMAL type
 The MessagePack EXT type ``MP_EXT`` together with the extension type
 ``MP_DECIMAL`` is a header for values of the DECIMAL type.
 
-MP_DECIMAL is 1.
+``MP_DECIMAL`` is 1.
 
 `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 defines two kinds of types:
@@ -107,7 +108,7 @@ The UUID type
 The MessagePack EXT type ``MP_EXT`` together with the extension type
 ``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 </release/2.4.1>`.
 
-MP_UUID is 2.
+``MP_UUID`` is 2.
 
 The `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 defines ``d8`` to mean fixext with size 16, and a uuid's size is always 16.
@@ -233,3 +234,41 @@ the server response will look like this:
             00                              MP_UINT = error number
             05                              MP_ERROR_ERRCODE
             0a                              MP_UINT = eror code ER_SPACE_EXISTS
+
+
+.. _msgpack_ext-datetime:
+
+**********************************
+The DATETIME type
+**********************************
+
+Since version :doc:`2.10.0 </release/2.10.0>`.
+``MP_DATETIME`` is 4.
+
+The datetime MessagePack representation looks like this:
+
+.. code-block:: none
+
+    +--------+-------------------+------------+===============+
+    | MP_EXT | length (optional) | MP_DECIMAL | PackedDecimal |
+    +--------+-------------------+------------+===============+
+
+.. _msgpack_ext-interval:
+
+**********************************
+The INTERVAL type
+**********************************
+
+The MessagePack EXT type ``MP_EXT`` together with the extension type
+``MP_INTERVAL`` is a header for values of the INTERVAL type.
+Since version :doc:`2.10.0 </release/2.10.0>`.
+
+``MP_INTERVAL`` is 6.
+
+The interval MessagePack representation looks like this:
+
+.. code-block:: none
+
+    +--------+-------------------+------------+===============+
+    | MP_EXT | length (optional) | MP_INTERVAL | PackedDecimal |
+    +--------+-------------------+------------+===============+
