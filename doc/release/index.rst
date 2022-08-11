@@ -24,6 +24,7 @@ To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
 ..  toctree::
     :maxdepth: 1
 
+    2.10.1
     2.10.0
     2.10.0-rc1
     2.10.0-beta2
@@ -51,6 +52,7 @@ To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
     2.2.2
     2.2.1
     2.1.2
+    1.10.14
     1.10.13
     1.10.12
     1.10.11
