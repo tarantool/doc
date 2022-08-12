@@ -25,7 +25,7 @@ The MessagePack EXT type ``MP_EXT`` together with the extension type
 `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 defines two kinds of types:
 
-* ``fixext 1/2/4/8/16`` types have fixed length so the length is not encoded explicitly;
+* ``fixext 1/2/4/8/16`` types have fixed length so the length is not encoded explicitly.
 * ``ext 8/16/32`` types require the data length to be encoded.
 
 ``MP_EXP`` + optional ``length`` imply using one of these types.
@@ -289,8 +289,8 @@ The MessagePack EXT type ``MP_EXT`` together with the extension type
 
 ``MP_INTERVAL`` type is 6.
 
-The idea is to save interval as variant of a map with predefined number of known attributes names.
-Some attributes might be undefined, then they will be omitted from the generated payload.
+The interval is saved as variant of a map with predefined number of known attributes names.
+Some attributes might be undefined. In this case, they will be omitted from the generated payload.
 
 The interval MessagePack representation looks like this:
 
