@@ -1,5 +1,5 @@
 
-1.10.x
+1.10.x (LTS)
 ======
 
 Tarantool 1.10 LTS series includes the following releases:
