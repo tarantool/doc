@@ -162,10 +162,10 @@ following what was described in
 This is a "compatible" enhancement, because clients that expect old-style
 server responses should ignore map components that they do not recognize.
 Notice, however, that there has been a renaming of a constant:
-formerly IPROTO_ERROR in ./box/iproto_constants.h was 0x31,
-now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31.
+formerly ``IPROTO_ERROR`` in :file:`./box/iproto_constants.h` was ``0x31``,
+now ``IPROTO_ERROR`` is ``0x52`` and ``IPROTO_ERROR_24`` is ``0x31``.
 
-``MP_ERROR`` type is 3.
+```MP_ERROR`` type is 3.`
 
 ..  code-block:: none
 
@@ -177,8 +177,8 @@ now IPROTO_ERROR is 0x52 and IPROTO_ERROR_24 is 0x31.
     ++=========================+============================+
                             MP_MAP
 
-The extra information, most of which is also in :doc:`error object
-</reference/reference_lua/box_error/new>` fields, is:
+The extra information, most of which is also in
+:doc:`error object </reference/reference_lua/box_error/new>` fields, is:
 
 ``MP_ERROR_TYPE`` (0x00) (MP_STR) Type that implies source, as in :samp:`{error_object}.base_type`, for example "ClientError".
 
