@@ -63,10 +63,10 @@ replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 
 .. _admin-upgrades_replication_cluster:
 
-Upgrading Tarantool in a replication cluster
---------------------------------------------
+Upgrading Tarantool in a replica set
+------------------------------------
 
-Below are the general instructions for upgrading Tarantool in a cluster.
+Below are the general instructions for upgrading Tarantool in a replica set.
 Upgrading from some versions can involve certain specifics. You can find
 instructions for individual versions on Tarantool's
 `GitHub Wiki pages <https://github.com/tarantool/tarantool/wiki/Upgrade-instructions>`__.
@@ -80,13 +80,46 @@ instructions for individual versions on Tarantool's
     Before upgrading Tarantool from 1.x to 2.y, please read about the associated
     `caveats <https://github.com/tarantool/tarantool/wiki/Caveats-when-upgrading-from-tarantool-1.6>`_.
 
+Before the upgrade
+~~~~~~~~~~~~~~~~~~
 
-#. Pick any replica in the cluster.
+#. Check the replica set health by running the following code on every replica:
+
+   ..  code-block:: tarantoolsession
+
+       box.info.ro -- shouldn't be "orphan"
+       box.info.ro_reason -- since 2.10, shouldn't be "orphan"
+       box.info.status -- should be "running"
+
+   If ``box.info.ro``, ``box.info.ro_reason``, or ``box.info.status`` have the value ``orphan``,
+   first resolve the replication issues and only then continue.
+
+   If you're running Cartridge, you can also check node health in the UI.
+
+#. Make sure each replica connected to the rest of the replica set.
+   Run the following, replacing the ``id`` with the replica ID (the output of ``box.info.id``):
+
+   ..  code-block:: tarantoolsession
+
+       box.info.replication[id].upstream
+       box.info.replication[id].downstream
+
+   The ``status`` field in both outputs should have the value ``follow``.
+   This means that the replicas are connected and there are no errors in the data flow.
+
+   The value of the ``lag`` field should be less than 1 second.
+
+If the replica set is healthy, proceed to the upgrade.
+
+Upgrade procedure
+~~~~~~~~~~~~~~~~~
+
+#. Pick any replica in the replica set.
 
 #. Upgrade this replica to the new Tarantool version. See details in
    :ref:`Upgrading a Tarantool instance <admin-upgrades_instance>`.
 
-#. Make sure the replica connected to the rest of the cluster just fine:
+#. Make sure the replica connected to the rest of the replica set just fine:
 
    ..  code-block:: tarantoolsession
 
@@ -94,7 +127,6 @@ instructions for individual versions on Tarantool's
        box.info.replication[id].downstream
       
    The ``status`` field in both outputs should have the value ``follow``.
-   This means that the replicas are connected and there are no errors in the data flow.
 
 #. :ref:`Upgrade <admin-upgrades_instance>` all the replicas by repeating steps 1--3
    until only the master keeps running the old Tarantool version.
@@ -104,8 +136,8 @@ instructions for individual versions on Tarantool's
 
 #. :ref:`Upgrade <admin-upgrades_instance>` the former master.
 
-#. :ref:`Upgrade <admin-upgrades_db>` the database on the new master by running ``box.schema.upgrade()``.
+#. :ref:`Upgrade the database <admin-upgrades_db>` on the new master by running ``box.schema.upgrade()``.
    Changes are propagated to other
    nodes via the regular replication mechanism.
 
-#. Run ``box.snapshot()`` on every node in the cluster to take a snapshot of all the data.
+#. Run ``box.snapshot()`` on every node in the replica set to take a snapshot of all the data.
