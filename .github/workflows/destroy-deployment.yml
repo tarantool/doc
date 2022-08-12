@@ -1,5 +1,8 @@
 name: Destroy-deployments
 
+# When a pull request is merged or just closed, remove deployed docs from the dev server
+# and remove the GitHub deployment with the same name.
+
 on:
   pull_request:
     types:
@@ -7,29 +10,41 @@ on:
 jobs:
   destroy-deployment:
     runs-on: ubuntu-latest
+    env:
+      # we only remove deployments from the test site, never from prod
+      TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}
+      TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
+      VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
     steps:
       - uses: actions/checkout@v2
+        id: checkout
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Set branch name from source branch
-        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
+      - name: Set deployment name from source branch
+        id: set-deployment-name
+        run: echo "DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
 
-      - run: |
-          curl -X DELETE -d '{"update_key":"${{secrets.TARANTOOL_UPDATE_KEY}}"}' -H "Content-Type: application/json" ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}${{env.BRANCH_NAME}}/
+      - name: Remove dev server deployment at branch-${{env.DEPLOYMENT_NAME}}
+        id: delete-deployment-webhook
+        run: bash webhooks/delete_deployment.sh
 
-      - name: Remove dev server deployment at branch-${{env.BRANCH_NAME}}
-        uses: bobheadxi/deployments@v0.5.2
-        id: deployment
+      - name: Remove GitHub deployment at branch-${{env.DEPLOYMENT_NAME}}
+        uses: bobheadxi/deployments@v1
+        # remove GH deployment even if webhook failed
+        if: always()
+        id: remove-github-deployment
         with:
-          step: deactivate-env
+          step: delete-env
           token: ${{secrets.GITHUB_TOKEN}}
-          env: "branch-${{env.BRANCH_NAME}}"
+          env: "branch-${{env.DEPLOYMENT_NAME}}"
 
-      - name: Remove translation deployment at translate-${{env.BRANCH_NAME}}
-        uses: bobheadxi/deployments@v0.5.2
-        id: translation
+      - name: Send VK Teams message on failures
+        # bot token won't be accessible in the forks
+        if: ${{ failure() && env.VKTEAMS_BOT_TOKEN != '' }}
+        uses: tarantool/actions/report-job-status@master
         with:
-          step: deactivate-env
-          token: ${{secrets.GITHUB_TOKEN}}
-          env: "translation-${{env.BRANCH_NAME}}"
+          api-url: "https://api.internal.myteam.mail.ru/bot/v1/"
+          bot-token: ${{ env.VKTEAMS_BOT_TOKEN }}
+          chat-id: tt_docs_cicd_reports
+          job-steps: ${{ ToJson(steps) }}
