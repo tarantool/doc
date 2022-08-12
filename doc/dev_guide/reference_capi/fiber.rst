@@ -69,11 +69,13 @@
 
 .. c:function:: void fiber_cancel(struct fiber *f)
 
-    Cancel the subject fiber (set ``FIBER_IS_CANCELLED`` flag)
+    Cancel the subject fiber.
 
-    If target fiber's flag ``FIBER_IS_CANCELLABLE`` set, then it would be woken
-    up (maybe prematurely). Then current fiber yields until the target fiber is
-    dead (or is woken up by :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`).
+    Cancellation is asynchronous. Use :ref:`fiber_join()<c_api-fiber-fiber_join>`
+    to wait for the cancellation to complete.
+
+    After ``fiber_cancel()`` is called, the fiber may or may not check whether it
+    was cancelled. If the fiber does not check it, it cannot ever be cancelled.
 
     :param struct fiber* f: fiber to be cancelled
 
@@ -95,6 +97,8 @@
 
     :param struct fiber* f: fiber
     :param bool      yesno: status to set
+
+.. _c_api-fiber-fiber_join:
 
 .. c:function:: void fiber_join(struct fiber *f)
 
