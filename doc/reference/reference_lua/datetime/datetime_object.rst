@@ -11,7 +11,7 @@ datetime_object
 
     ..  method:: totable()
 
-        Convert the information from the ``datetime`` object into the table format.
+        Convert the information from a ``datetime`` object into the table format.
         Resulting table has the following fields:
 
         ..  container:: table
@@ -245,7 +245,7 @@ datetime_object
 
     ..  _datetime-add:
 
-    ..  method:: add( { input[, adjust ] } )
+    ..  method:: add( input[, { adjust } ] )
 
         Modify an existing datetime object by adding values of the input argument. [TBD]
 
