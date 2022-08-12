@@ -210,7 +210,7 @@ Lua versus MsgPack
 ..  note::
     
     The Lua `nil <http://www.lua.org/pil/2.1.html>`_ type is encoded as MsgPack ``nil`` but
-    decoded as ``msgpack.NULL``. For this reason, Tarantool uses a special constant, :ref:`box.NULL <box-null>`.
+    decoded as :ref:`msgpack.NULL <box-null>`.
 
 ..  _index_box_field_type_details:
 
