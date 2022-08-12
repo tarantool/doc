@@ -47,6 +47,12 @@ on this instance. This means that:
 
 *   Replica ids will change in accordance with the destination instance configuration.
 
+
+When calling ``tt play`` with filters by LSN (``--from`` and ``--to`` flags) and
+replica id (``--replica``), remember that LSNs differ across replicas.
+Thus, if you pass more than one replica id together with ``--from`` or ``to`` flags,
+the result may not reflect the actual sequence of operations.
+
 Examples
 --------
 
