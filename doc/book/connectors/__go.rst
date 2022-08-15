@@ -14,7 +14,7 @@ The following connectors are available:
 Feature comparison
 ------------------
 
-Last update: January 2022
+Last update: August 2022
 
 ..  list-table::
     :header-rows: 1
@@ -46,9 +46,9 @@ Last update: January 2022
         -   GitHub Actions
 
     *   -   GitHub Stars
-        -   127
-        -   43
-        -   12
+        -   140
+        -   45
+        -   14
 
     *   -   Static analysis
         -   golangci-lint, luacheck
@@ -96,12 +96,12 @@ Last update: January 2022
         -   Only if marshalled to structure
 
     *   -   `SQL <https://www.tarantool.io/en/doc/latest/reference/reference_sql/>`_ support
-        -   No (`#62 <https://github.com/tarantool/go-tarantool/issues/62>`_)
+        -   Yes
         -   No (`#18 <https://github.com/viciious/go-tarantool/issues/18>`_, closed)
         -   No
 
     *   -   `Interactive transactions <https://www.tarantool.io/en/doc/latest/book/box/stream/>`_
-        -   No (`#101 <https://github.com/tarantool/go-tarantool/issues/101>`_)
+        -   Yes
         -   No
         -   No
 
@@ -132,7 +132,7 @@ Last update: January 2022
         -   No
 
     *   -   `box.session.push() responses <https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_session/push/>`_
-        -   No (`#67 <https://github.com/tarantool/go-tarantool/issues/67>`_)
+        -   Yes
         -   No (`#21 <https://github.com/viciious/go-tarantool/issues/21>`_)
         -   Yes
 
@@ -157,7 +157,7 @@ Last update: January 2022
         -   No
 
     *   -   Connection pool
-        -   Yes (round-robin failover, no balancing, master discovering planned in `#113 <https://github.com/tarantool/go-tarantool/issues/113>`_)
+        -   Yes (round-robin failover, no balancing)
         -   No
         -   No
 
@@ -177,7 +177,7 @@ Last update: January 2022
         -   No
 
     *   -   Language features
-        -   No  (`#48 <https://github.com/tarantool/go-tarantool/issues/48>`_)
+        -   context
         -   context
         -   context
 
