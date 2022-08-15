@@ -58,3 +58,5 @@ Below is a list of the ``datetime`` module functions and methods.
     datetime/new
     datetime/datetime_object
     datetime/interval_new
+    datetime/interval_object
+    datetime/interval_arithm
