@@ -18,7 +18,7 @@ datetime.new()
 
     ..  _datetime-new-args:
 
-    **Possible input time units for ``datetime.new()**
+    **Possible input time units for ``datetime.new()``**
 
     ..  container:: table
 

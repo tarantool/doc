@@ -49,6 +49,9 @@ Below is a list of the ``datetime`` module functions and methods.
         *   -   :ref:`interval_object:totable() <interval-totable>`
             -   Convert the information from an ``interval`` object into the table format.
 
+        *   -   :doc:`./datetime/interval_arithm`
+            -   ... [TBD]
+
 ..  toctree::
     :hidden:
 

@@ -13,7 +13,7 @@ datetime.interval.new()
     :param table input: Table with :ref:`time units and parameters<interval-new-args>`. For all possible time units, the values are not restricted.
                                 If an empty table or no arguments are passed, the ``interval`` object with the default value ``0 seconds`` is created.
 
-    :return: :doc: interval object
+    :return: interval_object
     :rtype: cdata
 
     ..  _interval-new-args:
