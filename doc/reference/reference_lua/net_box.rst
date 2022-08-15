@@ -131,7 +131,9 @@ Below is a list of all ``net.box`` functions.
         *   -   :ref:`conn:on_connect() <net_box-on_connect>`                            
             -   Define a connect trigger            
         *   -   :ref:`conn:on_disconnect() <net_box-on_disconnect>`                     
-            -   Define a disconnect trigger 
+            -   Define a disconnect trigger
+        *   -   :ref:`conn:on_shutdown() <net_box-on_shutdown>`
+            -   Define a shutdown trigger
         *   -   :ref:`conn:on_schema_reload() <net_box-on_schema_reload>`                    
             -   Define a trigger when schema is modified
         *   -   :ref:`conn:new_stream() <conn-new_stream>`
@@ -820,9 +822,38 @@ With the ``net.box`` module, you can use the following
                                           be replaced by trigger-function
     :return: nil or function pointer
 
+..  _net_box-on_shutdown:
+
+..  function:: conn:on_shutdown([trigger-function[, old-trigger-function]])
+
+    Define a trigger for shutdown when a :ref:`box.shutdown <system-events_box-shutdown>` event is received.
+
+    The trigger is invoked in a new fiber.
+    While ``on_shutdown()`` trigger is running, the connection remains active.
+    It means that it is allowed to send new requests from a trigger callback.
+
+    After the ``on_shutdown()`` trigger return, the ``net.box`` connection switches to the ``graceful_shutdown`` state
+    (check :ref:`the state diagram <net_box-options>` for details).
+    In this state, no new requests are allowed.
+
+    If all in-progress requests are completed, the connection wil be closed.
+    It means that the ``net.box`` connection switches to the ``error`` or ``error_reconnect`` state.
+    The state depends on whether the ``reconnect_after`` option is set.
+
+    Servers that do not support the ``box.shutdown`` event or :ref:`IPROTO_WATCH <box_protocol-watch>`
+    close the connection abruptly.
+    In this case, the ``on_shutdown()`` triggers will never be executed.
+
+    :param function trigger-function: function which will become the trigger
+                                      function. Takes the ``conn``
+                                      object as the first argument
+    :param function old-trigger-function: existing trigger function which will
+                                          be replaced by trigger-function
+    :return: nil or function pointer
+
 .. _net_box-on_schema_reload:
 
-.. function:: conn:on_schema_reload([trigger-function[, old-trigger-function]])
+..  function:: conn:on_schema_reload([trigger-function[, old-trigger-function]])
 
     Define a trigger executed when some operation has been performed on the remote
     server after schema has been updated. So, if a server request fails due to a

@@ -3,6 +3,7 @@
 System events
 =============
 
+Since 2.10.0.
 Predefined events have a special naming schema -- theirs names always start with the reserved ``box.`` prefix.
 It means that you cannot create new events with it.
 
@@ -12,6 +13,7 @@ The system processes the following events:
 *   ``box.status``
 *   ``box.election``
 *   ``box.schema``
+*   ``box.shutdown``
 
 In response to each event, the server sends back certain ``IPROTO`` fields.
 
@@ -86,6 +88,7 @@ that are necessary to find out the most recent writable leader.
     MP_STR “leader”: MP_UINT box.info.election.leader,
     }
 
+
 box.schema
 ~~~~~~~~~~
 
@@ -98,6 +101,26 @@ Contains schema-related data.
     {
     MP_STR “version”: MP_UINT schema_version,
     }
+
+.. _system-events_box-shutdown:
+
+box.shutdown
+~~~~~~~~~~~~
+
+Contains a boolean value which states if there is an active shutdown request.
+
+``box.shutdown`` is supposed to be used with connectors to implement the graceful shutdown protocol.
+
+The event is generated when the server receives a shutdown request (``os.exit()`` command or
+:ref:`SIGTERM <admin-server_signals>` signal).
+The server calls :ref:`box.broadcast('box.shutdown', true) <box-broadcast>`
+from the :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>` trigger callback.
+Then the server stops accepting new connections.
+It waits for all the subscribed connections to be closed.
+The client receives the event marked as ``true`` and closes the connection gracefully.
+If all the subscribed connections are closed, the server will be shutdown.
+Otherwise, a timeout occurs.
+The timeout is configured with the :ref:`set_on_shutdown_timeout() <box_ctl-on_shutdown_timeout>` function.
 
 Usage example
 -------------
