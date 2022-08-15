@@ -136,8 +136,8 @@ Lua versus MsgPack
             -   Example value
         *   -   scalar
             -   nil
-            -   `nil`_
-            -   ``nil``
+            -   `cdata`_
+            -   :ref:`box.NULL <box-null>`
         *   -   scalar
             -   boolean
             -   `boolean`_
@@ -182,10 +182,6 @@ Lua versus MsgPack
             -   ext (for Tarantool ``uuid``)
             -   `cdata`_
             -   ``12a34b5c-de67-8f90-123g-h4567ab8901``
-        *   -   scalar
-            -   msgpack.NULL
-            -   `cdata`_
-            -   :ref:`box.NULL <box-null>`
         *   -   compound
             -   map
             -   `table`_ (with string keys)
@@ -199,18 +195,22 @@ Lua versus MsgPack
             -   tuple (`cdata`_)
             -   ``[12345, 'A B C']``
 
+..  _boolean: http://www.lua.org/pil/2.2.html
+..  _string: http://www.lua.org/pil/2.4.html
+..  _number: http://www.lua.org/pil/2.3.html
+..  _table: http://www.lua.org/pil/2.5.html
+..  _cdata: http://luajit.org/ext_ffi.html#call
+
 ..  note::
 
     MsgPack values have variable lengths.
     So, for example, the smallest number requires only one byte, but the largest number
     requires nine bytes.
 
-..  _nil: http://www.lua.org/pil/2.1.html
-..  _boolean: http://www.lua.org/pil/2.2.html
-..  _string: http://www.lua.org/pil/2.4.html
-..  _number: http://www.lua.org/pil/2.3.html
-..  _table: http://www.lua.org/pil/2.5.html
-..  _cdata: http://luajit.org/ext_ffi.html#call
+..  note::
+    
+    The Lua `nil <http://www.lua.org/pil/2.1.html>`_ type is encoded as MsgPack ``nil`` but
+    decoded as :ref:`msgpack.NULL <box-null>`.
 
 ..  _index_box_field_type_details:
 
