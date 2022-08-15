@@ -39,5 +39,5 @@ to write in/migrate to Tarantool.
    writing_cluster_code
 
 To continue exploring Tarantool and its ecosystem, you might want to check out
-Tarantool :doc:`tutorials and guides <../how-to/index>`. Among other things, they
-explore popular Lua and SQL use cases and teach how to write stored procedures in C.
+Tarantool :doc:`tutorials and guides <../how-to/index>`.
+The :ref:`Cartridge beginner tutorial <getting_started_cartridge>` can also be found there.
