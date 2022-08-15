@@ -165,7 +165,7 @@ Notice, however, that there has been a renaming of a constant:
 formerly ``IPROTO_ERROR`` in :file:`./box/iproto_constants.h` was ``0x31``,
 now ``IPROTO_ERROR`` is ``0x52`` and ``IPROTO_ERROR_24`` is ``0x31``.
 
-```MP_ERROR`` type is 3.`
+``MP_ERROR`` type is 3.
 
 ..  code-block:: none
 
