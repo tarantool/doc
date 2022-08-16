@@ -68,8 +68,7 @@ Upgrading Tarantool in a replica set
 
 Below are the general instructions for upgrading Tarantool in a replica set.
 Upgrading from some versions can involve certain specifics. You can find
-instructions for individual versions on Tarantool's
-`GitHub Wiki pages <https://github.com/tarantool/tarantool/wiki/Upgrade-instructions>`__.
+instructions for individual versions :ref:`in the list below <admin-upgrades_version_specifics>`.
 
 ..  important::
 
@@ -78,7 +77,7 @@ instructions for individual versions on Tarantool's
     This also applies to upgrading Tarantool from 1.7 and 1.9.
 
     Before upgrading Tarantool from 1.x to 2.y, please read about the associated
-    `caveats <https://github.com/tarantool/tarantool/wiki/Caveats-when-upgrading-from-tarantool-1.6>`_.
+    :ref:`caveats <admin-upgrades-1.6-1.10>`.
 
 Before the upgrade
 ~~~~~~~~~~~~~~~~~~
@@ -114,30 +113,15 @@ If the replica set is healthy, proceed to the upgrade.
 Upgrade procedure
 ~~~~~~~~~~~~~~~~~
 
-#. Pick any replica in the replica set.
+..  include:: ./_includes/upgrade_procedure.rst
 
-#. Upgrade this replica to the new Tarantool version. See details in
-   :ref:`Upgrading a Tarantool instance <admin-upgrades_instance>`.
+..  _admin-upgrades_version_specifics:
 
-#. Make sure the replica connected to the rest of the replica set just fine:
+Version specifics
+-----------------
 
-   ..  code-block:: tarantoolsession
+..  toctree::
+    :maxdepth: 1
 
-       box.info.replication[id].upstream
-       box.info.replication[id].downstream
-      
-   The ``status`` field in both outputs should have the value ``follow``.
-
-#. :ref:`Upgrade <admin-upgrades_instance>` all the replicas by repeating steps 1--3
-   until only the master keeps running the old Tarantool version.
-
-#. Make one of the updated replicas the new master.
-   Check that it continues following and being followed by all other replicas.
-
-#. :ref:`Upgrade <admin-upgrades_instance>` the former master.
-
-#. :ref:`Upgrade the database <admin-upgrades_db>` on the new master by running ``box.schema.upgrade()``.
-   Changes are propagated to other
-   nodes via the regular replication mechanism.
-
-#. Run ``box.snapshot()`` on every node in the replica set to take a snapshot of all the data.
+    upgrades/1.6-1.10
+    upgrades/2.10.1

@@ -1,0 +1,50 @@
+..  _admin-upgrades-2.10.1_decimal:
+
+Fix decimal values in vinyl spaces when upgrading to 2.10.1
+===========================================================
+
+This is an upgrade guide for fixing one specific problem which could happen with decimal values in vinyl spaces.
+It's only relevant when you're upgrading from Tarantool version <= 2.10.0 to anything >= 2.10.1.
+
+Before :tarantool-issue:`6377` was fixed, ``decimal`` and ``double`` values in a ``scalar`` or ``number`` index
+could end up in the wrong order after the update.
+If such an index has been built for a space that uses the ``vinyl`` storage engine,
+the index is persisted and is not rebuilt even after the upgrade.
+If this is the case, the user has to rebuild the affected indexes manually.
+
+Here are the rules to determine whether your installation was affected.
+If all of the statements listed below are true, you have to rebuild indexes for the affected ``vinyl`` spaces manually.
+
+*   You were running Tarantool version 2.10.0 and below.
+*   You have spaces with the ``vinyl`` storage engine.
+*   The ``vinyl`` spaces have ``number`` or ``scalar`` indexes.
+*   The tuples in these spaces may contain both ``decimal`` and ``double`` ``Inf`` or ``NaN`` values.
+
+If this is the case for you, you can run the following script, which will find all the affected indices:
+
+..  literalinclude:: ../_includes/script_find_indices.rst
+    :language: lua
+
+The indices requiring a rebuild will be stored in the ``require_rebuild`` table.
+If the table is empty, you're safe and can continue using Tarantool as before.
+
+If the ``require_rebuild`` table contains some entries,
+you can rebuild the affected indices with the following script.
+
+..  note::
+
+    Please run the script below only on the master node
+    and only after all the nodes are upgraded to the new Tarantool version.
+
+..  literalinclude:: ../_includes/script_rebuild_indices.rst
+    :language: lua
+
+The script might fail on some of the indices with the following error:
+"Cannot rebuild primary index index_name on space space_name. Please, recreate the space manually".
+If this happens, automatic index rebuild is impossible,
+and you have to manually re-create the space to ensure data integrity:
+
+1.  Create a new space with the same format as the existing one.
+2.  Define the same indices on the freshly created space.
+3.  Iterate over the old space's primary key and insert all the data into the new space.
+4.  Drop the old space.
