@@ -21,11 +21,11 @@ Flags
         *   -   ``--from``
             -   Play operations starting from the given LSN
         *   -   ``--to``
-            -   Play operations until the given LSN. Default: 18446744073709551615
+            -   Play operations up to the given LSN. Default: 18446744073709551615
         *   -   ``--replica``
-            -   Filter the operations by replica id. May be passed more than once
+            -   Filter the operations by replica id. Can be passed more than once
         *   -   ``--space``
-            -   Filter the operations by space id. May be passed more than once
+            -   Filter the operations by space id. Can be passed more than once
         *   -   ``--show-system``
             -   Play the operations on system spaces
 
@@ -43,14 +43,14 @@ on this instance. This means that:
     by adding the ``--show-system`` flag. With this flag, ``tt`` plays the operations that
     create and configure user-defined spaces.
 
-*   Operations' LSNs will change unless you play all operations that happened since the instance startup.
+*   The operations' LSNs will change unless you play all operations that took place since the instance startup.
 
-*   Replica ids will change in accordance with the destination instance configuration.
+*   Replica IDs will change in accordance with the destination instance configuration.
 
 
 When calling ``tt play`` with filters by LSN (``--from`` and ``--to`` flags) and
-replica id (``--replica``), remember that LSNs differ across replicas.
-Thus, if you pass more than one replica id together with ``--from`` or ``to`` flags,
+replica ID (``--replica``), remember that LSNs differ across replicas.
+Thus, if you pass more than one replica ID via ``--from`` or ``--to``,
 the result may not reflect the actual sequence of operations.
 
 Examples
@@ -70,7 +70,7 @@ Examples
 
         tt play 192.168.10.10:3301 00000000000000000012.snap --space 512 --space 513
 
-*   Play the contents of ``00000000000000000000.xlog`` including the operations on system spaces:
+*   Play the contents of ``00000000000000000000.xlog`` including operations on system spaces:
 
     ..  code-block:: bash
 

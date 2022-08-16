@@ -24,11 +24,11 @@ Flags
         *   -   ``--from``
             -   Show operations starting from the given LSN
         *   -   ``--to``
-            -   Show operations until the given LSN. Default: 18446744073709551615
+            -   Show operations up to the given LSN. Default: 18446744073709551615
         *   -   ``--replica``
-            -   Filter the output by replica id. May be passed more than once.
+            -   Filter the output by replica ID. Can be passed more than once
         *   -   ``--space``
-            -   Filter the output by space id. May be passed more than once
+            -   Filter the output by space ID. Can be passed more than once
         *   -   ``--show-system``
             -   Show the contents of system spaces
 
@@ -36,8 +36,8 @@ Details
 -------
 
 When calling ``tt cat`` with filters by LSN (``--from`` and ``--to`` flags) and
-replica id (``--replica``), remember that LSNs differ across replicas.
-Thus, if you pass more than one replica id together with ``--from`` or ``to`` flags,
+replica ID (``--replica``), remember that LSNs differ across replicas.
+Thus, if you pass more than one replica ID via ``--from`` or ``--to``,
 the result may not reflect the actual sequence of operations.
 
 Examples
@@ -56,7 +56,7 @@ Examples
 
         tt cat 00000000000000000012.snap --space 512 --space 513 --format json
 
-*   Output operations on all spaces including the system ones
+*   Output operations on all spaces, including system spaces,
     from the ``00000000000000000000.xlog`` WAL file:
 
     ..  code-block:: bash
@@ -69,4 +69,3 @@ Examples
     ..  code-block:: bash
 
         tt cat 00000000000000000000.xlog --from 100 --to 500 --replica 1
-

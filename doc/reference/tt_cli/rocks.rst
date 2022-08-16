@@ -9,7 +9,7 @@ Using the LuaRocks package manager
 `LuaRocks <https://luarocks.org/>`_ package manager. `tt` uses its own
 LuaRocks installation connected to the `Tarantool rocks repository <https://www.tarantool.io/en/download/rocks>`_.
 
-Below are the lists of the supported LuaRocks flags and commands. For detailed information on
+Below are lists of supported LuaRocks flags and commands. For detailed information on
 their usage, refer to `LuaRocks documentation <https://github.com/luarocks/luarocks/wiki/Documentation>`_.
 
 Flags
@@ -33,18 +33,18 @@ Flags
         *   -   ``--only-sources=<url>``
             -   Restrict downloads to paths matching the given URL
         *   -   ``--lua-dir=<prefix>``
-            -   Which Lua installation to use
+            -   Specify which Lua installation to use
         *   -   ``--lua-version=<ver>``
-            -   Which Lua version to use
+            -   Specify which Lua version to use
         *   -   ``--tree=<tree>``
-            -   Which tree to operate on
+            -   Specify which tree to operate on
         *   -   ``--local``
             -   Use the tree in the user's home directory.
                 Call ``tt rocks help path`` to learn how to enable it
         *   -   ``--global``
             -   Use the system tree when `local_by_default` is `true`
         *   -   ``--verbose``
-            -   Display verbose output of commands executed
+            -   Display verbose output for the command executed
         *   -   ``--timeout=<seconds>``
             -   Timeout on network operations, in seconds.
                 0 means no timeout (wait forever). Default: 30
@@ -67,7 +67,7 @@ Commands
         *   -   ``download``
             -   Download a specific rock file from a rocks server
         *   -   ``help``
-            -   Help on commands. Type 'tt rocks help <command>' for more
+            -   Help on commands. Type ``tt rocks help <command>`` for more
         *   -   ``init``
             -   Initialize a directory for a Lua project using LuaRocks
         *   -   ``install``
@@ -75,9 +75,9 @@ Commands
         *   -   ``lint``
             -   Check syntax of a rockspec
         *   -   ``list``
-            -   List currently installed rocks
+            -   List the currently installed rocks
         *   -   ``make``
-            -   Compile package in current directory using a rockspec
+            -   Compile package in the current directory using a rockspec
         *   -   ``make_manifest``
             -   Compile a manifest file for a repository
         *   -   ``new_version``
@@ -123,6 +123,8 @@ Examples
 
         tt rocks doc queue --list
 
+    Without the ``--list`` flag, this command displays documentation in the user's default browser.
+
 *   Create a ``*.rock`` file from the installed rock ``queue``:
 
     ..  code-block:: bash
@@ -140,3 +142,4 @@ Examples
     ..  code-block:: bash
 
         tt rocks remove queue
+        
