@@ -103,9 +103,20 @@ Once the leader is elected, it considers itself in the leader position until rec
 This can lead to the split situation if the other nodes elect a new leader upon losing the connectivity to the previous one.
 
 The issue is resolved in Tarantool version :doc:`2.10.0 </release/2.10.0>` by introducing the leader *fencing* mode.
-The mode can be switched on and off by the :ref:`election_fencing_enabled <repl_leader_elect_config>` configuration parameter.
-When the fencing is on, the leader resigns its leadership if it has less than the :ref:`replication_synchro_quorum <repl_leader_elect_config>`
-of alive connections to the cluster nodes. The resigning leader receives the status of a follower in the current election term and becomes read-only.
+The mode can be switched by the :ref:`election_fencing_mode <repl_leader_elect_config>` configuration parameter.
+When the fencing is set to ``soft`` or ``strict``, the leader resigns its leadership if it has less than
+:ref:`replication_synchro_quorum <repl_leader_elect_config>` of alive connections to the cluster nodes.
+The resigning leader receives the status of a follower in the current election term and becomes read-only.
+Leader *fencing* can be turned off by setting the :ref:`election_fencing_mode <repl_leader_elect_config>` configuration parameter to ``off``.
+
+In ``soft`` mode, a connection is considered dead if there are no responses for
+:ref:`4*replication_timeout <cfg_replication-replication_timeout>` seconds both on the current leader and the followers.
+
+In ``strict`` mode, a connection is considered dead if there are no responses
+for :ref:`2*replication_timeout <cfg_replication-replication_timeout>` seconds on the current leader and for
+:ref:`4*replication_timeout <cfg_replication-replication_timeout>` seconds on the followers.
+This improves chances that there will be only one leader at any time.
+
 Fencing applies to the instances that have the :ref:`election_mode <repl_leader_elect_config>` set to "candidate" or "manual".
 
 .. _repl_leader_elect_splitbrain:
@@ -144,7 +155,7 @@ Configuration
        election_timeout = <seconds>,
        replication_timeout = <seconds>,
        replication_synchro_quorum = <count>,
-       election_fencing_enabled = <boolean>
+       election_fencing_mode = <string>
    })
 
 * ``election_mode`` -- specifies the role of a node in the leader election
@@ -165,8 +176,8 @@ Configuration
   meaning that each node becomes a leader immediately after voting for itself.
   It is the best to set up this option value to the ``(<cluster size> / 2) + 1``.
   Otherwise, there is no guarantee that there is only one leader at a time.
-* ``election_fencing_enabled`` -- switches the :ref:`leader fencing mode <repl_leader_elect_fencing>` on and off.
-  For the details, refer to the :ref:`option description <cfg_replication-election_fencing_enabled>` in the configuration reference.
+* ``election_fencing_mode`` -- specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>`.
+  For the details, refer to the :ref:`option description <cfg_replication-election_fencing_mode>` in the configuration reference.
 
 Besides, it is important to know that
 being a leader is not the only requirement for a node to be writable.
