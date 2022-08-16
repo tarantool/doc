@@ -12,7 +12,7 @@
 * :ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>`
 * :ref:`election_mode <cfg_replication-election_mode>`
 * :ref:`election_timeout <cfg_replication-election_timeout>`
-* :ref:`election_fencing_enabled <cfg_replication-election_fencing_enabled>`
+* :ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`
 
 .. _cfg_replication-replication:
 
@@ -539,19 +539,38 @@
     | Environment variable: TT_ELECTION_TIMEOUT
     | Dynamic: **yes**
 
-..  _cfg_replication-election_fencing_enabled:
+..  _cfg_replication-election_fencing_mode:
 
-..  confval:: election_fencing_enabled
+..  confval:: election_fencing_mode
 
-    Since version :doc:`2.10.0 </release/2.10.0>`.
+    Since version :doc:`2.11.0 </release/2.11.0>`.
 
-    Switches on and off the :ref:`leader fencing mode <repl_leader_elect_fencing>` that affects the leader election process.
-    When the parameter is set to ``true``, the leader resigns its leadership if it has less than the :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
-    of alive connections to the cluster nodes. The resigning leader receives the status of a :ref:`follower <repl_leader_elect>` in the current election term and becomes read-only.
+    Switches the :ref:`leader fencing mode <repl_leader_elect_fencing>` that
+    affects the leader election process. When the parameter is set to ``soft``
+    or ``strict``, the leader resigns its leadership if it has less than the
+    :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
+    of alive connections to the cluster nodes.
+    The resigning leader receives the status of a
+    :ref:`follower <repl_leader_elect>` in the current election term and becomes
+    read-only. :ref:`Leader fencing <repl_leader_elect_fencing>` can be turned
+    off by setting the parameter to ``off``.
 
-    Fencing applies to the instances that have :ref:`election_mode <cfg_replication-election_mode>` set to "candidate" or "manual".
+    In ``soft`` mode connection is considered dead if the where no responses for
+    :ref:`4*replication_timeout <cfg_replication-replication_timeout>` both on
+    current leader and followers.
+
+    In ``strict`` mode connection is considered dead if the where no responses
+    for :ref:`2*replication_timeout <cfg_replication-replication_timeout>` on
+    current leader and
+    :ref:`4*replication_timeout <cfg_replication-replication_timeout>` on
+    followers. This improves chances that there will be only one leader at any
+    time.
+
+    Fencing applies to the instances that have
+    :ref:`election_mode <cfg_replication-election_mode>` set to "candidate" or
+    "manual".
 
     | Type: boolean
     | Default: true
-    | Environment variable: TT_ELECTION_FENCING_ENABLED
+    | Environment variable: TT_ELECTION_FENCING_MODE
     | Dynamic: **yes**
