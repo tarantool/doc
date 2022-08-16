@@ -24,7 +24,10 @@ space_object:truncate()
         Read more about `setuid` functions in the reference for
         :doc:`/reference/reference_lua/box_schema/func_create`.
 
-        The ``truncate`` method cannot be called from within a transaction.
+        ..  note::
+
+            Do not call this method within a transaction in
+            Tarantool older than :tarantool-release:`2.10.0`. See :tarantool-issue:`6123` for details.
 
         **Example:**
 

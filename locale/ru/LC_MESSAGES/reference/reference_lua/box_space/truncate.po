@@ -39,8 +39,10 @@ msgstr ""
 "`setuid` можно получить в справочнике по for "
 ":doc:`/reference/reference_lua/box_schema/func_create`."
 
-msgid "The ``truncate`` method cannot be called from within a transaction."
-msgstr "Метод ``truncate`` нельзя вызвать из транзакции."
+msgid "Do not call this method within a transaction in "
+"Tarantool older than :tarantool-release:`2.10.0`. See :tarantool-issue:`6123` for details."
+msgstr "В версиях Tarantool старше :tarantool-release:`2.10.0` "
+"не следует вызывать ``truncate`` из транзакции. Подробности в тикете :tarantool-issue:`6123`."
 
 msgid "**Example:**"
 msgstr "**Пример:**"
