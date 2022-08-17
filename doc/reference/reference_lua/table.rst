@@ -6,27 +6,28 @@
 
 ..  module:: table
 
-    The :code:`table` module has everything in the
-    `standard Lua table library <https://www.lua.org/manual/5.1/manual.html#5.5>`_,
-    and some Tarantool extensions.
+The :code:`table` module has everything in the
+`standard Lua table library <https://www.lua.org/manual/5.1/manual.html#5.5>`_,
+and some Tarantool extensions.
 
-    You can see this by saying "table": you will see this list of functions:
-    ``clear`` (LuaJIT extension = erase all elements),
-    `concat <https://www.lua.org/manual/5.1/manual.html#pdf-table.concat>`_ (concatenate),
-    ``copy`` (make a copy of an array),
-    ``deepcopy`` (see description below),
-    ``foreach``,
-    ``foreachi``,
-    `getn <https://www.lua.org/pil/19.1.html>`_ (get the number of elements in an array),
-    `insert <https://www.lua.org/manual/5.1/manual.html#pdf-table.insert>`_ (insert an element into an array),
-    `maxn <https://www.lua.org/manual/5.1/manual.html#pdf-table.maxn>`_ (get largest index)
-    `move <https://www.lua.org/manual/5.3/manual.html#pdf-table.move>`_ (move elements between tables),
-    ``new`` (LuaJIT extension = return a new table with pre-allocated elements),
-    `remove <https://www.lua.org/manual/5.1/manual.html#pdf-table.remove>`_ (remove an element from an array),
-    `sort <https://www.lua.org/manual/5.1/manual.html#pdf-table.sort>`_ (sort the elements of an array).
+Write ``table`` to see the list of functions:
 
-    In this section we only discuss the additional function
-    that the Tarantool developers have added: ``deepcopy``.
+*   ``clear`` (LuaJIT extension = erase all elements)
+*   `concat <https://www.lua.org/manual/5.1/manual.html#pdf-table.concat>`_ (concatenate)
+*   ``copy`` (make a copy of an array)
+*   ``deepcopy`` (see the :ref:`description <table-deepcopy>` below)
+*   ``foreach``
+*   ``foreachi``
+*   `getn <https://www.lua.org/pil/19.1.html>`_ (get the number of elements in an array)
+*   `insert <https://www.lua.org/manual/5.1/manual.html#pdf-table.insert>`_ (insert an element into an array)
+*   `maxn <https://www.lua.org/manual/5.1/manual.html#pdf-table.maxn>`_ (get the largest index)
+*   `move <https://www.lua.org/manual/5.3/manual.html#pdf-table.move>`_ (move elements between tables)
+*   ``new`` (LuaJIT extension = return a new table with pre-allocated elements)
+*   `remove <https://www.lua.org/manual/5.1/manual.html#pdf-table.remove>`_ (remove an element from an array)
+*   `sort <https://www.lua.org/manual/5.1/manual.html#pdf-table.sort>`_ (sort the elements of an array)
+
+In this section we only discuss the additional function
+that the Tarantool developers have added: ``deepcopy``.
 
 ..  _table-deepcopy:
 
@@ -96,7 +97,7 @@
 
     **Example:**
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: lua
 
         function tarantool_sort(input_table, collation)
             local c = collation or 'binary'
