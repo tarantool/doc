@@ -6,31 +6,6 @@ Upgrades
 For information about backwards compatibility,
 see the :ref:`compatibility guarantees <compatibility_guarantees>` description.
 
-.. _admin-upgrades_db:
-
-Upgrading a database
---------------------
-
-If you created a database with an older Tarantool version and have now installed
-a newer version, make the request ``box.schema.upgrade()``. This updates
-Tarantool system spaces to match the currently installed version of Tarantool.
-
-For example, here is what happens when you run ``box.schema.upgrade()`` with a
-database created with Tarantool version 1.6.4 to version 1.7.2 (only a small
-part of the output is shown):
-
-.. code-block:: tarantoolsession
-
-   tarantool> box.schema.upgrade()
-   alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]
-   alter space _schema set options to {}
-   create view _vindex...
-   grant read access to 'public' role for _vindex view
-   set schema version to 1.7.0
-   ---
-   ...
-
-
 .. _admin-upgrades_instance:
 
 Upgrading Tarantool on an instance
@@ -50,21 +25,12 @@ replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 3. Update the Tarantool server. See installation instructions at Tarantool
    `download page <http://tarantool.org/download.html>`_.
 
-4. Update the Tarantool database. Put the request ``box.schema.upgrade()``
-   inside a :doc:`box.once() </reference/reference_lua/box_once>` function in your Tarantool
-   :ref:`initialization file <index-init_label>`.
-   On startup, this will create new system spaces, update data type names (e.g.
-   num -> unsigned, str -> string) and options in Tarantool system spaces.
-
-5. Update application files, if needed.
-
-6. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
-
+After that, make sure to :ref:`finish the upgrade properly <admin-upgrades_db>`.
 
 .. _admin-upgrades_replication_cluster:
 
-Upgrading Tarantool in a replica set
-------------------------------------
+Upgrading Tarantool in a replica set without downtime
+-----------------------------------------------------
 
 Below are the general instructions for upgrading Tarantool in a replica set.
 Upgrading from some versions can involve certain specifics. You can find
@@ -72,11 +38,10 @@ instructions for individual versions :ref:`in the list below <admin-upgrades_ver
 
 ..  important::
 
-    The only way to upgrade Tarantool from 1.6 to 2.x **without downtime** is
-    taking an intermediate step by upgrading from 1.6 to 1.10 and then to 2.x.
-    This also applies to upgrading Tarantool from 1.7 and 1.9.
+    The only way to upgrade Tarantool from version 1.6, 1.7, or 1.9 to 2.x **without downtime** is
+    taking an intermediate step by upgrading to 1.10 and then to 2.x.
 
-    Before upgrading Tarantool from 1.x to 2.y, please read about the associated
+    Before upgrading Tarantool from 1.6 to 2.x, please read about the associated
     :ref:`caveats <admin-upgrades-1.6-1.10>`.
 
 Before the upgrade
@@ -114,6 +79,49 @@ Upgrade procedure
 ~~~~~~~~~~~~~~~~~
 
 ..  include:: ./_includes/upgrade_procedure.rst
+
+After upgrading the replica set, make sure to run ``box.schema.upgrade()`` on the new master
+as described below in the section ":ref:`Finishing the upgrade <admin-upgrades_db>`".
+There is no need  to run ``box.schema.upgrade()`` on every node:
+changes are propagated to other nodes via the regular replication mechanism.
+
+Finally, run ``box.snapshot()`` on every node in the replica set
+to make sure that the replicas immediately see the upgraded database state in case of restart.
+
+.. _admin-upgrades_db:
+
+Finishing the upgrade
+---------------------
+
+1.  If you created a database with an older Tarantool version and have now installed
+    a newer version, make the request ``box.schema.upgrade()``. This updates
+    Tarantool system spaces to match the currently installed version of Tarantool.
+
+    For example, here is what happens when you run ``box.schema.upgrade()`` with a
+    database created with Tarantool version 1.6.4 to version 1.7.2 (only a small
+    part of the output is shown):
+
+    .. code-block:: tarantoolsession
+
+       tarantool> box.schema.upgrade()
+       alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]
+       alter space _schema set options to {}
+       create view _vindex...
+       grant read access to 'public' role for _vindex view
+       set schema version to 1.7.0
+       ---
+       ...
+ 
+    You can also put the request ``box.schema.upgrade()``
+    inside a :doc:`box.once() </reference/reference_lua/box_once>` function in your Tarantool
+    :ref:`initialization file <index-init_label>`.
+    On startup, this will create new system spaces, update data type names (for example,
+    ``num`` -> ``unsigned``, ``str`` -> ``string``) and options in Tarantool system spaces.
+
+2.  Update your application files, if needed.
+
+3.  Launch the updated Tarantool server using ``tarantoolctl``, ``tt``, or ``systemctl``.
+
 
 ..  _admin-upgrades_version_specifics:
 
