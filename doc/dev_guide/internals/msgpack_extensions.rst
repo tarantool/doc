@@ -22,7 +22,7 @@ The MessagePack EXT type ``MP_EXT`` together with the extension type
 
 ``MP_DECIMAL`` type is 1.
 
-`MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
+`MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 defines two kinds of types:
 
 * ``fixext 1/2/4/8/16`` types have fixed length so the length is not encoded explicitly.
@@ -110,7 +110,7 @@ The MessagePack EXT type ``MP_EXT`` together with the extension type
 
 ``MP_UUID`` type is 2.
 
-The `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
+The `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
 defines ``d8`` to mean ``fixext`` with size 16, and a UUID's size is always 16.
 So the UUID MessagePack representation looks like this:
 
@@ -251,12 +251,12 @@ The DATETIME type
 Since version :doc:`2.10.0 </release/2.10.0>`.
 The MessagePack EXT type ``MP_EXT`` together with the extension type
 ``MP_DATETIME`` is a header for values of the DATETIME type.
-It creates a container of 8 or 16 bytes long payload.
+It creates a container with a payload of 8 or 16 bytes.
 
 ``MP_DATETIME`` type is 4.
 
-The `MessagePack spec <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
-defines ``d7``to mean ``fixext`` with size 8 or ``d8`` to mean ``fixext`` with size 16.
+The `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_
+defines ``d7`` to mean ``fixext`` with size 8 or ``d8`` to mean ``fixext`` with size 16.
 
 So the datetime MessagePack representation looks like this:
 
@@ -269,13 +269,13 @@ So the datetime MessagePack representation looks like this:
 
 MessagePack data contains:
 
-*   Seconds (8b) as full, unencoded, signed 64-bit integer, stored in little-endian order.
+*   Seconds (8 bytes) as an unencoded 64-bit signed integer stored in the little-endian order.
 
-*   The optional fields (8b), if any of them have a non-zero value.
-    The fields include nsec, tzoffset, and tzindex, packed in little-endian order.
+*   The optional fields (8 bytes), if any of them have a non-zero value.
+    The fields include ``nsec``, ``tzoffset``, and ``tzindex`` packed in the little-endian order.
 
-For more information about datetime, see :ref:`datetime field type details <index-box_datetime>`
-and :doc:`module datetime </reference/reference_lua/datetime>`.
+For more information about the datetime type, see :ref:`datetime field type details <index-box_datetime>`
+and :doc:`reference for the datetime module </reference/reference_lua/datetime>`.
 
 ..  _msgpack_ext-interval:
 
@@ -289,8 +289,8 @@ The MessagePack EXT type ``MP_EXT`` together with the extension type
 
 ``MP_INTERVAL`` type is 6.
 
-The interval is saved as variant of a map with predefined number of known attributes names.
-Some attributes might be undefined. In this case, they will be omitted from the generated payload.
+The interval is saved as a variant of a map with a predefined number of known attribute names.
+If some attributes are undefined, they are omitted from the generated payload.
 
 The interval MessagePack representation looks like this:
 
@@ -302,8 +302,8 @@ The interval MessagePack representation looks like this:
 
 Packed interval consists of:
 
-*   packed number of non-zero fields
-*   packed non-null fields
+*   Packed number of non-zero fields.
+*   Packed non-null fields.
 
 Each packed field has the following structure:
 
@@ -330,7 +330,7 @@ List of the field IDs:
 
 **Example**
 
-Interval value ``1 year, 200 months, -77 days`` is encoded in the following way:
+Interval value ``1 years, 200 months, -77 days`` is encoded in the following way:
 
 ..  code-block:: tarantoolsession
 
@@ -343,7 +343,7 @@ Interval value ``1 year, 200 months, -77 days`` is encoded in the following way:
     - +1 years, 200 months, -77 days
     ...
 
-    tarantool> M = msgpak.encode(I)
+    tarantool> M = msgpack.encode(I)
     ---
     ...
 
@@ -376,5 +376,5 @@ Where:
 *   08 -- field ID (adjust)
 *   01 -- packed value ``1`` (DT_LIMIT)
 
-For more information about intervals, see :ref:`interval field type details <index-box_interval>`
-and :doc:`module datetime </reference/reference_lua/datetime>`.
+For more information about the interval type, see :ref:`interval field type details <index-box_interval>`
+and :doc:`description of the datetime module </reference/reference_lua/datetime>`.
