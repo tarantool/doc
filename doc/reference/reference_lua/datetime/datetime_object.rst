@@ -92,14 +92,14 @@ datetime_object
 
     ..  _datetime-format:
 
-    ..  method:: format( ['convensions'] ) [TBD]
+    ..  method:: format( ['input_string'] )
 
         Convert the standard ``datetime`` object presentation into a formatted string.
-        The formatting convension specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ library. [TBD]
-        Additional convension for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below).
-        If no arguments are set for the method, the default convensions are used: `'%FT%T.%f%z'` (see the example below).
+        The conversion specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ library.
+        Additional specification for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below).
+        If no arguments are set for the method, the default conversions are used: `'%FT%T.%f%z'` (see the example below).
 
-        :param string convensions: string consisting of zero or more conversion specifications and ordinary characters [TBD]
+        :param string input_string: string consisting of zero or more conversion specifications and ordinary characters
 
         :return: string with the formatted date and time information
         :rtype: string
@@ -247,11 +247,11 @@ datetime_object
 
     ..  method:: add( input[, { adjust } ] )
 
-        Modify an existing datetime object by adding values of the input argument. [TBD]
+        Modify an existing datetime object by adding values of the input argument.
 
         :param table input: an :ref:`interval object <interval-new>` or an equivalent table (see **Example #1**)
         :param string adjust: defines how to round days in a month after an arithmetic operation.
-                                Possible values: ``none``, ``last``, ``excess`` (see **Example #2**). Defaults to ``none``. [TBD]
+                                Possible values: ``none``, ``last``, ``excess`` (see **Example #2**). Defaults to ``none``.
 
         :return: datetime_object
         :rtype: cdata
@@ -338,12 +338,12 @@ datetime_object
 
     ..  method:: sub( { input[, adjust ] } )
 
-        Modify an existing datetime object by subtracting values of the input argument. [TBD]
+        Modify an existing datetime object by subtracting values of the input argument.
 
         :param table input: an :ref:`interval object <interval-new>` or an equivalent table (see **Example**)
         :param string adjust: defines how to round days in a month after an arithmetic operation.
                                 Possible values: ``none``, ``last``, ``excess``. Defaults to ``none``.
-                                The logic is similar to the one of the ``:add()`` method -- see :ref:`Example #2 <datetime-add-example2>`. [TBD]
+                                The logic is similar to the one of the ``:add()`` method -- see :ref:`Example #2 <datetime-add-example2>`.
 
         :return: datetime_object
         :rtype: cdata

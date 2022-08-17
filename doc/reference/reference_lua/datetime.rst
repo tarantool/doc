@@ -38,10 +38,10 @@ Below is a list of the ``datetime`` module functions and methods.
             -   Convert an input string with the date and time information into a ``datetime`` object.
 
         *   -   :ref:`add() <datetime-add>`
-            -   Modify an existing datetime object by adding ... [TBD]
+            -   Modify an existing datetime object by adding values of the input arguments.
 
         *   -   :ref:`sub() <datetime-sub>`
-            -   Modify an existing datetime object by subtracting ... [TBD]
+            -   Modify an existing datetime object by subtracting values of the input arguments.
 
         *   -   :doc:`./datetime/interval_new`
             -   Create an ``interval`` object from a table of time units.
@@ -50,7 +50,7 @@ Below is a list of the ``datetime`` module functions and methods.
             -   Convert the information from an ``interval`` object into the table format.
 
         *   -   :doc:`./datetime/interval_arithm`
-            -   ... [TBD]
+            -   Arithmetic operations with datetime and interval objects.
 
 ..  toctree::
     :hidden:

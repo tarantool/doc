@@ -63,7 +63,7 @@ datetime.new()
                 -   1
 
             *   -   year
-                -   Year. ... [TBD year range and huge year number support]
+                -   Year.
                 -   number
                 -   1970
 

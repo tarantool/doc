@@ -68,12 +68,12 @@ datetime.interval.new()
                 -   0
 
             *   -   year
-                -   Year. ... [TBD year range and huge year number support]
+                -   Year
                 -   number
                 -   0
 
             *   -   adjust
-                -   ... [TBD]
+                -   Defines how to round days in a month after an arithmetic operation.
                 -   string
                 -   'none'
 

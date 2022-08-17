@@ -7,7 +7,7 @@ inverval_object
 
     Since :doc:`2.10.0 </release/2.10.0>`.
 
-    ..  _inverval-totable:
+    ..  _interval-totable:
 
     ..  method:: totable()
 
@@ -48,7 +48,7 @@ inverval_object
                     -   Week number
 
                 *   -   adjust
-                    -   ... [TBD]
+                    -   Defines how to round days in a month after an arithmetic operation.
 
         :return: table with the date and time parameters
         :rtype: table
