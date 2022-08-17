@@ -85,15 +85,15 @@ that the Tarantool developers have added: ``deepcopy``.
     #.  If the table has a mix of types, then they must be sorted as
         booleans, then numbers, then strings, then byte arrays.
 
-        Since all those features are available in Tarantool spaces,
-        the solution for Tarantool is simple: make a temporary Tarantool
-        space, put the table contents into it, retrieve the tuples from it
-        in order, and overwrite the table.
+    Since all those features are available in Tarantool spaces,
+    the solution for Tarantool is simple: make a temporary Tarantool
+    space, put the table contents into it, retrieve the tuples from it
+    in order, and overwrite the table.
 
-        Here then is ``tarantool_sort()`` which does the same thing as
-        ``table.sort`` but has those extra features. It is not fast and
-        it requires a database privilege, so it should only be used if the
-        extra features are necessary.
+    Here then is ``tarantool_sort()`` which does the same thing as
+    ``table.sort`` but has those extra features. It is not fast and
+    it requires a database privilege, so it should only be used if the
+    extra features are necessary.
 
     **Example:**
 
@@ -123,4 +123,5 @@ that the Tarantool developers have added: ``deepcopy``.
 
 
     For example, suppose :code:`table t = {1, 'A', -88.3, nil, true, 'b', 'B', nil, 'À'}`.
+
     After ``tarantool_sort(t, 'unicode_ci')`` ``t`` contains :code:`{nil, nil, true, -88.3, 1, 'A', 'À', 'b', 'B'}`.
