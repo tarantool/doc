@@ -3,22 +3,22 @@
 datetime.interval.new()
 =======================
 
-..  function:: datetime.interval.new( [{ units }] )
+..  function:: datetime.interval.new( [{ input }] )
 
     Since :doc:`2.10.0 </release/2.10.0>`.
 
     Create an object of the :ref:`interval type <index-box_interval>` from a table of time units.
     See :ref:`description of units <interval-new-args>` and :ref:`examples <interval-new-example>` below.
 
-    :param table units: Table of :ref:`time units <interval-new-args>`. For all possible time units, the values are not restricted.
+    :param table input: Table with :ref:`time units and parameters<interval-new-args>`. For all possible time units, the values are not restricted.
                                 If an empty table or no arguments are passed, the ``interval`` object with the default value ``0 seconds`` is created.
 
-    :return: :doc: interval object
+    :return: interval_object
     :rtype: cdata
 
     ..  _interval-new-args:
 
-    **Possible input time units for ``datetime.interval.new()**
+    **Possible input time units and parameters for ``datetime.interval.new()**
 
     ..  container:: table
 
@@ -71,6 +71,11 @@ datetime.interval.new()
                 -   Year
                 -   number
                 -   0
+
+            *   -   adjust
+                -   Defines how to round days in a month after an arithmetic operation.
+                -   string
+                -   'none'
 
     ..  _interval-new-example:
 

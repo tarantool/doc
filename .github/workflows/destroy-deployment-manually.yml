@@ -9,18 +9,40 @@ on:
 jobs:
   destroy-deployment-manually:
     runs-on: ubuntu-latest
+    env:
+      # we only remove deployments from the test site, never from prod
+      TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}
+      TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
+      VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
     steps:
+      - uses: actions/checkout@v2
+        id: checkout
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
       - name: Update inputs
+        id: update-inputs
         run: |
           echo "DEPLOYMENT_NAME=${{github.event.inputs.deployment_name}}" >> $GITHUB_ENV
           echo "workaround until actions/runner#655 is fixed"
 
       - name: Remove dev server deployment at ${{env.DEPLOYMENT_NAME}}
+        id: delete-deployment-webhook
+        run: bash webhooks/delete_deployment.sh
+
+      - name: Remove GitHub deployment at ${{env.DEPLOYMENT_NAME}}
         uses: strumwolf/delete-deployment-environment@v2
+        id: remove-github-deployment
         with:
           token: "${{ secrets.TARANTOOLBOT_TOKEN }}"
           environment: ${{ env.DEPLOYMENT_NAME }}
-#          onlyRemoveDeployments: true
 
-      - run: |
-          curl -X DELETE -d '{"update_key":"${{secrets.TARANTOOL_UPDATE_KEY}}"}' -H "Content-Type: application/json" ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}${{env.DEPLOYMENT_NAME}}/
+      - name: Send VK Teams message on failures
+        # bot token won't be accessible in the forks
+        if: ${{ failure() && env.VKTEAMS_BOT_TOKEN != '' }}
+        uses: tarantool/actions/report-job-status@master
+        with:
+          api-url: "https://api.internal.myteam.mail.ru/bot/v1/"
+          bot-token: ${{ env.VKTEAMS_BOT_TOKEN }}
+          chat-id: tt_docs_cicd_reports
+          job-steps: ${{ ToJson(steps) }}

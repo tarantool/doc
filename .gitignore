@@ -19,6 +19,9 @@ rocks
 # Crowdin API key
 apikey.txt
 
+# secrets for running webhooks locally
+webhooks/.env
+
 # README copied to contributor docs
 /doc/contributing/docs/_includes/README.rst
 

@@ -4,9 +4,9 @@
 box.info.replication
 ================================================================================
 
-.. module:: box.info
+..  module:: box.info
 
-.. data:: replication
+..  data:: replication
 
     The **replication** section of ``box.info()`` is a table array with
     statistics for all instances in the replica set that the current instance
@@ -126,3 +126,10 @@ box.info.replication
       ``status = 'stopped'``, ``message = 'unexpected EOF when reading
       from socket'``, and ``system_message = 'Broken pipe'``.
       See also :ref:`degraded state <replication-recover>`.
+
+
+    For better understanding, see the following diagram illustrating the ``upstream`` and ``downstream`` connections within the replica set of three instances:
+
+    ..  image:: /book/replication/replication.svg
+        :align: left
+

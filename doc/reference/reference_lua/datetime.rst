@@ -28,15 +28,29 @@ Below is a list of the ``datetime`` module functions and methods.
         *   -   :ref:`format() <datetime-format>`
             -   Convert the standard presentation of a ``datetime`` object into a formatted string.
 
-        *   -   :ref:`totable() <datetime-totable>`
+        *   -   :ref:`datetime_object:totable() <datetime-totable>`
             -   Convert the information from a ``datetime`` object into the table format.
 
         *   -   :ref:`set() <datetime-set>`
             -   Update the field values in the existing ``datetime`` object.
 
+        *   -   :ref:`parse() <datetime-parse>`
+            -   Convert an input string with the date and time information into a ``datetime`` object.
+
+        *   -   :ref:`add() <datetime-add>`
+            -   Modify an existing datetime object by adding values of the input arguments.
+
+        *   -   :ref:`sub() <datetime-sub>`
+            -   Modify an existing datetime object by subtracting values of the input arguments.
+
         *   -   :doc:`./datetime/interval_new`
             -   Create an ``interval`` object from a table of time units.
 
+        *   -   :ref:`interval_object:totable() <interval-totable>`
+            -   Convert the information from an ``interval`` object into the table format.
+
+        *   -   :doc:`./datetime/interval_arithm`
+            -   Arithmetic operations with datetime and interval objects.
 
 ..  toctree::
     :hidden:
@@ -44,3 +58,5 @@ Below is a list of the ``datetime`` module functions and methods.
     datetime/new
     datetime/datetime_object
     datetime/interval_new
+    datetime/interval_object
+    datetime/interval_arithm

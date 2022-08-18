@@ -2,9 +2,11 @@
 
 set -xe -o pipefail -o nounset
 
-BRANCH=$BRANCH_NAME
+BRANCH=$DEPLOYMENT_NAME
 ENDPOINT_URL=$S3_ENDPOINT_URL
 S3_PATH=$S3_UPLOAD_PATH
+
+echo "Upload produced documentation outputs to the S3 storage, tarantool/${BRANCH}"
 
 # don't upload the '*.pickle' files
 find output -name '*.pickle' -delete
@@ -33,8 +35,3 @@ aws s3 sync --acl public-read output/html/ru/_static $S3_PATH/$BRANCH/ru/_static
 aws s3 sync --acl public-read output/html/ru/_images $S3_PATH/$BRANCH/ru/_images --endpoint-url=$ENDPOINT_URL --delete --size-only
 aws s3 cp --acl public-read output/html/ru/singlehtml.html $S3_PATH/$BRANCH/ru/singlehtml.html --endpoint-url=$ENDPOINT_URL
 fi
-
-curl --fail --show-error \
-    --data '{"update_key":"'"$TARANTOOL_UPDATE_KEY"'"}' \
-    --header "Content-Type: application/json" \
-    --request POST "$TARANTOOL_UPDATE_URL""$BRANCH"/

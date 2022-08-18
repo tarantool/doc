@@ -3,7 +3,7 @@ name: Custom-deploy-branch
 on:
   workflow_dispatch:
     inputs:
-      env_name:
+      deployment_name:
         description: 'Enter unique name (version) of deployment'
         required: True
       cartridge:
@@ -40,20 +40,24 @@ jobs:
       S3_UPLOAD_PATH: ${{secrets.S3_UPLOAD_PATH}}
       TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}
+      VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
     steps:
       - uses: actions/checkout@v2
+        id: checkout
         with:
           submodules: recursive
 
       - name: Pull submodules
+        id: pull-submodules
         run: |
           git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
           git fetch --recurse-submodules
 
-      - name: Update inputs
+      - name: Update workflow inputs
+        id: update-workflow-inputs
         run: |
-          echo "BRANCH_NAME=${{github.event.inputs.env_name}}" >> $GITHUB_ENV
           echo "workaround until actions/runner#655 is fixed"
+          echo "DEPLOYMENT_NAME=${{github.event.inputs.deployment_name}}" >> $GITHUB_ENV
           echo "INPUT_CARTRIDGE=${{github.event.inputs.cartridge}}" >> $GITHUB_ENV
           echo "INPUT_CARTRIDGE_CLI=${{github.event.inputs.cartridge_cli}}" >> $GITHUB_ENV
           echo "INPUT_GRAFANA=${{github.event.inputs.grafana}}" >> $GITHUB_ENV
@@ -63,27 +67,50 @@ jobs:
           echo "INPUT_CPP_DRIVER=${{github.event.inputs.cpp_driver}}" >> $GITHUB_ENV
 
       - name: Start dev server deployment
-        uses: bobheadxi/deployments@v0.5.2
+        uses: bobheadxi/deployments@v1
         id: deployment
         with:
           step: start
           token: ${{secrets.GITHUB_TOKEN}}
-          env: ${{env.BRANCH_NAME}}
+          env: ${{env.DEPLOYMENT_NAME}}
           ref: ${{github.head_ref}}
 
       - run: cmake .
+        id: cmake
       - run: make pull-modules
+        id: make-pull-modules
       - run: make build-modules
+        id: make-build-modules
       - run: make json
+        id: make-json
       - run: make json-ru
+        id: make-json-ru
+
       - run: curl ${{secrets.WAKEUP_URL}} --connect-timeout 300 --retry 3 --retry-delay 30 >> /dev/null
+        id: wake-up-server
+
       - run: bash upload_output.sh
+        id: upload-output
+      - run: bash webhooks/update_deployment.sh
+        id: update-deployment-webhook
 
       - name: update deployment status
-        uses: bobheadxi/deployments@v0.5.2
+        id: finalize-deployment
+        uses: bobheadxi/deployments@v1
         with:
           step: finish
           token: ${{secrets.GITHUB_TOKEN}}
+          env: ${{env.DEPLOYMENT_NAME}}
           status: ${{job.status}}
           deployment_id: ${{steps.deployment.outputs.deployment_id}}
-          env_url: ${{secrets.TARANTOOL_HOST}}/doc/${{env.BRANCH_NAME}}
+          env_url: ${{secrets.TARANTOOL_HOST}}/doc/${{env.DEPLOYMENT_NAME}}
+
+      - name: Send VK Teams message on failures
+        # bot token won't be accessible in the forks
+        if: ${{ failure() && env.VKTEAMS_BOT_TOKEN != '' }}
+        uses: tarantool/actions/report-job-status@master
+        with:
+          api-url: "https://api.internal.myteam.mail.ru/bot/v1/"
+          bot-token: ${{ env.VKTEAMS_BOT_TOKEN }}
+          chat-id: tt_docs_cicd_reports
+          job-steps: ${{ ToJson(steps) }}

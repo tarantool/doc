@@ -3,7 +3,7 @@
 Monitoring a replica set
 ========================
 
-To learn what instances belong in the replica set, and obtain statistics for all
+To learn what instances belong to the replica set and obtain statistics for all
 these instances, issue a :doc:`/reference/reference_lua/box_info/replication` request:
 
 ..  code-block:: tarantoolsession
@@ -52,7 +52,7 @@ The primary indicators of replication health are:
 
 ..  _heartbeat:
 
-*   :ref:`idle <box_info_replication_upstream_idle>`, the time (in seconds) since
+*   :ref:`idle <box_info_replication_upstream_idle>`: the time (in seconds) since
     the instance received the last event from a master.
 
     If the master has no updates to send to the replicas, it sends heartbeat messages
@@ -65,7 +65,7 @@ The primary indicators of replication health are:
     seriously behind, because the master is running ahead of the replica, or the
     network link between the instances is down.
 
-*   :ref:`lag <box_info_replication_upstream_lag>`, the time difference between
+*   :ref:`lag <box_info_replication_upstream_lag>`: the time difference between
     the local time at the instance, recorded when the event was received, and the
     local time at another master recorded when the event was written to the
     :ref:`write ahead log <internals-wal>` on that master.
@@ -75,3 +75,9 @@ The primary indicators of replication health are:
     remote master clock being consistently behind the local instance's clock.
 
     For multi-master configurations, ``lag`` is the maximal lag.
+
+For better understanding, see the following diagram illustrating the ``upstream`` and ``downstream`` connections within the replica set of three instances:
+
+..  image:: replication.svg
+    :align: left
+
