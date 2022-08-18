@@ -44,8 +44,8 @@ instructions for individual versions :ref:`in the list below <admin-upgrades_ver
     Before upgrading Tarantool from 1.6 to 2.x, please read about the associated
     :ref:`caveats <admin-upgrades-1.6-1.10>`.
 
-Before the upgrade
-~~~~~~~~~~~~~~~~~~
+Preparations
+~~~~~~~~~~~~
 
 #. Check the replica set health by running the following code on every instance:
 
@@ -91,8 +91,8 @@ to make sure that the replicas immediately see the upgraded database state in ca
 
 .. _admin-upgrades_db:
 
-Finishing the upgrade
----------------------
+Finalizing the upgrade
+----------------------
 
 1.  If you created a database with an older Tarantool version and have now installed
     a newer version, make the request ``box.schema.upgrade()``. This updates
