@@ -44,8 +44,8 @@ msgstr ""
 "---\n"
 "..."
 
-msgid "Upgrading a Tarantool instance"
-msgstr "Обновление экземпляра Tarantool"
+msgid "Upgrading Tarantool on a single instance"
+msgstr "Обновление одиночного экземпляра Tarantool"
 
 msgid ""
 "Tarantool is backward compatible between two adjacent versions. For example,"

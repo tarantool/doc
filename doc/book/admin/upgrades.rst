@@ -8,8 +8,8 @@ see the :ref:`compatibility guarantees <compatibility_guarantees>` description.
 
 .. _admin-upgrades_instance:
 
-Upgrading Tarantool on an instance
-----------------------------------
+Upgrading Tarantool on a standalone instance
+--------------------------------------------
 
 This procedure is for upgrading a standalone Tarantool instance in production.
 Notice that this will **always imply a downtime**.
@@ -29,7 +29,7 @@ After that, make sure to :ref:`finish the upgrade properly <admin-upgrades_db>`.
 
 .. _admin-upgrades_replication_cluster:
 
-Upgrading Tarantool in a replica set without downtime
+Upgrading Tarantool in a replica set with no downtime
 -----------------------------------------------------
 
 Below are the general instructions for upgrading Tarantool in a replica set.
@@ -47,31 +47,32 @@ instructions for individual versions :ref:`in the list below <admin-upgrades_ver
 Before the upgrade
 ~~~~~~~~~~~~~~~~~~
 
-#. Check the replica set health by running the following code on every replica:
+#. Check the replica set health by running the following code on every instance:
 
    ..  code-block:: tarantoolsession
 
-       box.info.ro -- shouldn't be "orphan"
-       box.info.ro_reason -- since 2.10, shouldn't be "orphan"
+       box.info.ro -- "false" at least on one instance
        box.info.status -- should be "running"
-
-   If ``box.info.ro``, ``box.info.ro_reason``, or ``box.info.status`` have the value ``orphan``,
-   first resolve the replication issues and only then continue.
+ 
+   If all instances have ``box.info.ro = true``, this means there are no writable nodes.
+   If you're running Tarantool :doc:`v. 2.10.0 </release/2.10.0>` or later,
+   you can find out the reason by running ``box.info.ro_reason``.
+   If it has the value ``orphan``, the instance doesn't see the rest of the replica set.
+   Similarly, if ``box.info.status`` has the value ``orphan``, the instance doesn't see the rest of the replica set.
+   First resolve the replication issues and only then continue.
 
    If you're running Cartridge, you can also check node health in the UI.
 
 #. Make sure each replica connected to the rest of the replica set.
-   Run the following, replacing the ``id`` with the replica ID (the output of ``box.info.id``):
-
-   ..  code-block:: tarantoolsession
-
-       box.info.replication[id].upstream
-       box.info.replication[id].downstream
-
-   The ``status`` field in both outputs should have the value ``follow``.
+   Run ``box.info.replication`` and check the output table.
+   For each instance ``id``, there are ``upstream`` and ``downstream`` values.
+   Both of them should have the value ``follow``, except on the instance where you run this code.
    This means that the replicas are connected and there are no errors in the data flow.
 
-   The value of the ``lag`` field should be less than 1 second.
+   The value of the ``lag`` field can be less or equal than ``box.cfg.replication_timeout``,
+   but it can also be moderately larger.
+   For example, if ``box.cfg.replication_timeout`` is 1 second, it's generally OK to have a lag of about 10 seconds.
+   It is up to the user to decide what lag values are fine.
 
 If the replica set is healthy, proceed to the upgrade.
 
@@ -132,4 +133,5 @@ Version specifics
     :maxdepth: 1
 
     upgrades/1.6-1.10
+    upgrades/1.6-2.0-downtime
     upgrades/2.10.1

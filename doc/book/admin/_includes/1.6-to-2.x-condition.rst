@@ -1,0 +1,7 @@
+To perform a **live** upgrade from Tarantool 1.6 to a more recent version,
+like :doc:`2.8.4 </release/2.8.4>`, :doc:`2.10.1 </release/2.10.1>` and such,
+it is necessary to take an intermediate step by upgrading 1.6 -> 1.10 -> 2.x.
+This is the only way to perform the upgrade without downtime.
+
+However, a direct upgrade of a replica set from 1.6 to 2.x is also possible, but only
+**with downtime**.

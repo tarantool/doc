@@ -1,15 +1,12 @@
 ..  _admin-upgrades-1.6-1.10:
 
-Caveats when upgrading from Tarantool 1.6 to 1.10
-=================================================
+Live upgrade from Tarantool 1.6 to 1.10
+=======================================
 
 This page includes explanations and solutions to some common issues
-when upgrading the cluster from Tarantool 1.6 to 1.10.
-This will be of interest to anyone upgrading to the most recent Tarantool version,
-like 2.8.4, 2.10.0 and such, since taking an intermediate step with
-upgrading 1.6 -> 1.10 -> 2.x is the only way to perform the upgrade without downtime.
+when upgrading a replica set from Tarantool 1.6 to 1.10.
 
-A direct upgrade from 1.6 to 2.x is also possible, but only with downtime.
+..  include:: ../_includes/1.6-to-2.x-condition.rst
 
 Let's first reiterate the upgrade procedure for any Tarantool version:
 
