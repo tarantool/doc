@@ -12,6 +12,14 @@ Let's first reiterate the upgrade procedure for any Tarantool version:
 
 ..  include:: ../_includes/upgrade_procedure.rst
 
+7.  Run ``box.schema.upgrade()`` on the new master
+    as described in the section ":ref:`Finishing the upgrade <admin-upgrades_db>`".
+    There is no need  to run ``box.schema.upgrade()`` on every node:
+    changes are propagated to other nodes via the regular replication mechanism.
+
+8.  Run ``box.snapshot()`` on every node in the replica set
+    to make sure that the replicas immediately see the upgraded database state in case of restart.
+
 What's different when upgrading from Tarantool 1.6:
 
 **Step 2:** Tarantool 1.10+ fails to recover from 1.6 xlogs, unless ``box.cfg{force_recovery = true}`` is set.

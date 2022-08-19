@@ -71,7 +71,8 @@ Preparations
 
    The value of the ``lag`` field can be less or equal than ``box.cfg.replication_timeout``,
    but it can also be moderately larger.
-   For example, if ``box.cfg.replication_timeout`` is 1 second, it's generally OK to have a lag of about 10 seconds.
+   For example, if ``box.cfg.replication_timeout`` is 1 second and the write load on the master is high,
+   it's generally OK to have a lag of about 10 seconds on the master.
    It is up to the user to decide what lag values are fine.
 
 If the replica set is healthy, proceed to the upgrade.
