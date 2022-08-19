@@ -17,6 +17,15 @@ Name your branch so it's clear what you're doing. Examples:
 *   ``gh-1234-short-issue-description``
 *   ``your-github-handle/short-issue-description``
 
+..  important::
+
+    It is not recommended to submit PRs to the `documentation repository <https://github.com/tarantool/doc>`__
+    from forks.
+    Because of a GitHub failsafe mechanism, it is impossible to view changes from a fork
+    on the development website.
+    
+    Creating branches directly in the repository results in a more convenient workflow.
+
 Linking issues and PRs
 ----------------------
 
