@@ -66,7 +66,7 @@ Last update: August 2022
         -   No
 
     *   -   msgpack driver
-        -   `vmihailenco/msgpack/v2 <https://github.com/vmihailenco/msgpack/tree/v2>`_ (`#124 <https://github.com/tarantool/go-tarantool/issues/124>`_)
+        -   `vmihailenco/msgpack/v2 <https://github.com/vmihailenco/msgpack/tree/v2>`_ or `vmihailenco/msgpack/v5 <https://github.com/vmihailenco/msgpack/tree/v5>`_
         -   `tinylib/msgp <https://github.com/tinylib/msgp>`_
         -   `vmihailenco/msgpack/v5 <https://github.com/vmihailenco/msgpack/tree/v5>`_
 
