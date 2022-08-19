@@ -1,12 +1,10 @@
 .. _repl_sync:
 
-================================================================================
 Synchronous replication
-================================================================================
+=======================
 
---------------------------------------------------------------------------------
 Overview
---------------------------------------------------------------------------------
+--------
 
 By default, replication in Tarantool is **asynchronous**: if a transaction
 is committed locally on a master node, it does not mean it is replicated onto any
@@ -17,14 +15,13 @@ to a replica, from the client's point of view the transaction will disappear.
 are not considered committed and are not responded to a client until they are
 replicated onto some number of replicas.
 
---------------------------------------------------------------------------------
 Usage
---------------------------------------------------------------------------------
+-----
 
 Since version :doc:`2.5.1 </release/2.5.1>`,
 synchronous replication can be enabled per-space by using the ``is_sync`` option:
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.schema.create_space('test1', {is_sync = true})
 
@@ -34,15 +31,15 @@ Notice that DDL on this space (including truncation) is **not** synchronous.
 To control the behavior of synchronous transactions, there exist global
 ``box.cfg`` :ref:`options <cfg_replication-replication_synchro_quorum>`:
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.cfg{replication_synchro_quorum = <number of instances>}
 
 This option tells how many replicas should confirm the receipt of a synchronous
-transaction before it is committed. So far, this option accounts for all
-replicas including anonymous ones. As a usage example, consider this:
+transaction before it is committed. Since version :doc:`2.10.0 </release/2.10.0>`,
+this option does not account for anonymous replicas. As a usage example, consider this:
 
-.. code-block:: lua
+..  code-block:: lua
 
     -- Instance 1
     box.cfg{
@@ -53,7 +50,7 @@ replicas including anonymous ones. As a usage example, consider this:
     _ = box.schema.space.create('sync', {is_sync=true})
     _ = _:create_index('pk')
 
-.. code-block:: lua
+..  code-block:: lua
 
     -- Instance 2
     box.cfg{
@@ -61,7 +58,7 @@ replicas including anonymous ones. As a usage example, consider this:
         replication = 'localhost:3313'
     }
 
-.. code-block:: lua
+..  code-block:: lua
 
     -- Instance 1
     box.space.sync:replace{1}
@@ -74,12 +71,12 @@ replica. This is because the master instance itself also participates in the quo
 Now, if the second instance is down, the first one won't be able to commit any
 synchronous change.
 
-.. code-block:: lua
+..  code-block:: lua
 
     -- Instance 2
     Ctrl+D
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     -- Instance 1
     tarantool> box.space.sync:replace{2}
@@ -90,7 +87,7 @@ synchronous change.
 The transaction wasn't committed because it failed to achieve the quorum in the
 given time. The time is a second configuration option:
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.cfg{replication_synchro_timeout = <number of seconds, can be float>}
 
@@ -104,9 +101,8 @@ The ``timeout`` and ``quorum`` options are not used on replicas. It means if
 the master dies, the pending synchronous transactions will be kept waiting on
 the replicas until a new master is elected.
 
---------------------------------------------------------------------------------
 Synchronous and asynchronous transactions
---------------------------------------------------------------------------------
+-----------------------------------------
 
 A killer feature of Tarantool's synchronous replication is its being *per-space*.
 So, if you need it only rarely for some critical data changes, you won't pay for
@@ -134,9 +130,8 @@ This just means it will wait for the synchronous transaction to be committed.
 But once it is done, the asynchronous transaction will be committed
 immediately—it won't wait for being replicated itself.
 
---------------------------------------------------------------------------------
 Limitations and known problems
---------------------------------------------------------------------------------
+------------------------------
 
 Until version :doc:`2.5.2 </release/2.5.2>`,
 there was no way to enable synchronous replication for
@@ -146,22 +141,18 @@ existing spaces, but since 2.5.2 it can be enabled by
 Synchronous transactions work only for master-slave topology. You can have multiple
 replicas, anonymous replicas, but only one node can make synchronous transactions.
 
-Anonymous replicas participate in the quorum.
-However, this will change: it won't be possible
-for a synchronous transaction to gather quorum using anonymous replicas in the future.
+Since Tarantool :doc:`2.10.0 </release/2.10.0>`, anonymous replicas do not participate in the quorum.
 
---------------------------------------------------------------------------------
 Leader election
---------------------------------------------------------------------------------
+---------------
 
 Starting from version :doc:`2.6.1 </release/2.6.1>`,
 Tarantool has the built-in functionality
 managing automated leader election in a replica set. For more information,
 refer to the :ref:`corresponding chapter <repl_leader_elect>`.
 
---------------------------------------------------------------------------------
 Tips and tricks
---------------------------------------------------------------------------------
+---------------
 
 If a transaction is rolled back, it does not mean the ROLLBACK message reached
 the replicas. It still can happen that the master node suddenly dies, so the

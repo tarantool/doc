@@ -426,8 +426,10 @@
     Since version :doc:`2.5.1 </release/2.5.1>`.
     For :ref:`synchronous replication <repl_sync>` only.
     This option tells how many replicas should confirm the receipt of a
-    synchronous transaction before it can finish its commit. So far this
-    option accounts all replicas, including anonymous.
+    synchronous transaction before it can finish its commit.
+
+    Since version :doc:`2.10.0 </release/2.10.0>`, this option
+    does not account for anonymous replicas.
 
     It is 1 by default, so synchronous transactions work like asynchronous when
     not configured. 1 means successful WAL write on master is enough for
