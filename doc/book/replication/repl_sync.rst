@@ -36,8 +36,8 @@ To control the behavior of synchronous transactions, there exist global
     box.cfg{replication_synchro_quorum = <number of instances>}
 
 This option tells how many replicas should confirm the receipt of a synchronous
-transaction before it is committed. So far, this option accounts for all
-replicas including anonymous ones. As a usage example, consider this:
+transaction before it is committed. Since version :doc:`2.10.0 </release/2.10.0>`,
+this option does not account for anonymous replicas. As a usage example, consider this:
 
 ..  code-block:: lua
 
@@ -141,9 +141,7 @@ existing spaces, but since 2.5.2 it can be enabled by
 Synchronous transactions work only for master-slave topology. You can have multiple
 replicas, anonymous replicas, but only one node can make synchronous transactions.
 
-Anonymous replicas participate in the quorum.
-However, this will change: it won't be possible
-for a synchronous transaction to gather quorum using anonymous replicas in the future.
+Since Tarantool :doc:`2.10.0 </release/2.10.0>`, anonymous replicas do not participate in the quorum.
 
 Leader election
 ---------------
