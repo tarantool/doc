@@ -1,5 +1,5 @@
-Tarantool Translation Guidelines
-================================
+Localization guidelines
+=======================
 
 Use this guide when localizing Tarantool into Russian.
 
