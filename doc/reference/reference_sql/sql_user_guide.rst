@@ -640,7 +640,7 @@ type ANY.
 The difference between SCALAR and ANY is:
 
 *   SCALAR columns may not contain MAP or ARRAY values, but ANY columns may contain them.
-*   SCALAR values are comparable, while ANY values are not comparable. 
+*   SCALAR values are comparable, while ANY values are not comparable.
 
 Any value of any data type may be NULL. Ordinarily NULL will be cast to the
 data type of any operand it is being compared to or to the data type of the
