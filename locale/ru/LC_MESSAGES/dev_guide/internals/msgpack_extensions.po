@@ -170,9 +170,10 @@ msgstr "Тип UUID"
 
 msgid ""
 "The MessagePack EXT type ``MP_EXT`` together with the extension type "
-"``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 "
-"</release/2.4.1>`."
+"``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 </release/2.4.1>`."
 msgstr ""
+"Тип MessagePack EXT ``MP_EXT`` вместе с типом расширения ``MP_UUID`` "
+"является заголовком для значений типа UUID. Доступно с версии :doc:`2.4.1 </release/2.4.1>`."
 
 msgid "``MP_UUID`` type is 2."
 msgstr "MP_UUID -- это 2."
