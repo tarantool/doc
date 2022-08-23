@@ -8,14 +8,17 @@ when upgrading a replica set from Tarantool 1.6 to 1.10.
 
 ..  include:: ../_includes/1.6-to-2.x-condition.rst
 
-Let's first reiterate the upgrade procedure for any Tarantool version:
+The procedure of live upgrade from 1.6 to 1.10 is similar to the general upgrade procedure,
+which is as follows:
 
 ..  include:: ../_includes/upgrade_procedure.rst
 
-7.  Run ``box.schema.upgrade()`` on the new master
-    as described in the section ":ref:`Finishing the upgrade <admin-upgrades_db>`".
+7.  Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master.
+    This will update the Tarantool system spaces to match the currently installed version of Tarantool.
     There is no need  to run ``box.schema.upgrade()`` on every node:
     changes are propagated to other nodes via the regular replication mechanism.
+
+..  _admin-upgrades-1.6-1.10-step_8:
 
 8.  Run ``box.snapshot()`` on every node in the replica set
     to make sure that the replicas immediately see the upgraded database state in case of restart.
@@ -24,7 +27,8 @@ What's different when upgrading from Tarantool 1.6:
 
 **Step 2:** Tarantool 1.10+ fails to recover from 1.6 xlogs, unless ``box.cfg{force_recovery = true}`` is set.
 There is some small difference between 1.6 and 1.10 xlogs, which makes 1.6 xlogs appear erroneous to 1.10+ instances.
-In order to work around this, start the instance in ``force_recovery`` mode.
+In order to work around this, start the instance in ``force_recovery`` mode. To do so, add the line
+``force_recovery = true`` to the file where the instance is initialized -- for example, to ``init.lua``.
 
 **Step 3:** New Tarantool nodes follow 1.6 nodes just fine,
 but some 1.6 nodes might disconnect from new nodes with an ER_LOADING error.
@@ -38,10 +42,11 @@ This is not critical, the error goes away when replication on 1.6 is restarted:
 
 **Step 7:** There was a breaking change between 1.6 and 1.10 --
 in 1.6, the field type ``num`` was an alias to ``number``, and in 1.10, ``num`` is converted to ``unsigned``.
-This means that after ``box.schema.upgrade()`` is performed on master,
+This means that after ``box.schema.upgrade()`` is performed on the master,
 the user might have some spaces with ``unsigned`` fields containing non-unsigned values:
 ``double``, ``int``, and so on.
-This will make the snapshot inconsistent, unless an extra action is performed after ``box.schema.upgrade()``:
+This will make the snapshot inconsistent, unless an extra action is performed after ``box.schema.upgrade()``.
+Run this code in the Tarantool console on the new master:
 
 ..  code-block:: lua
 
@@ -51,9 +56,10 @@ This will make the snapshot inconsistent, unless an extra action is performed af
     a[problematic_field_no].type = 'number'
     box.space.problematic_space:format(a)
 
-Once this is performed on the master, it's safe to proceed to step 8, making snapshot on every node.
+Once this is performed on the master, it's safe to proceed to
+:ref:`step 8 <admin-upgrades-1.6-1.10-step_8>`, making a snapshot on every node.
 
 **Step 8:** The user might be concerned with snapshot size in 1.10 --
 it's drastically smaller than the one created by 1.6 (for example, ~300 Mb vs. 6 Gb in some corner cases).
-There's nothing to worry about.
+There is nothing to worry about.
 Tarantool 1.6 didn't compress snapshots, while Tarantool 1.10 and above does that.
