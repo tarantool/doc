@@ -25,9 +25,6 @@ Below is a list of all ``box.space`` functions and members.
         *   - Name
             - Use
 
-        *  - :doc:`./box_space/examples`
-           - Some useful examples
-
         *  - :doc:`./box_schema/space_create`
            - Create a space
 
@@ -172,10 +169,11 @@ Below is a list of all ``box.space`` functions and members.
         *  - :doc:`./box_space/_session_settings`
            - (Metadata) List of settings affecting behavior of the current session
 
+To see examples, visit the :ref:`how-to guide on CRUD operations <box_space_examples>`.
+
 .. toctree::
     :hidden:
 
-    box_space/examples
     box_schema/space_create
     box_space/alter
     box_space/auto_increment

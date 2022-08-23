@@ -300,3 +300,6 @@ msgstr ":doc:`./box_space/_session_settings`"
 msgid "(Metadata) List of settings affecting behavior of the current session"
 msgstr ""
 "(Метаданные) Список настроек, которые влияют на поведение текущего сеанса"
+
+msgid "To see examples, visit the :ref:`how-to guide on CRUD operations <box_space_examples>`."
+msgstr "См. также :ref:`практические примеры работы с CRUD-операциями <box_space_examples>`."

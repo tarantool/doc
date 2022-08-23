@@ -10,26 +10,9 @@
 -------------------------------------------------------------------------------
 
 .. wp_section::
-    :class: documentation-main-page-header
-
-    .. container:: documentation-main-page-header-path
-
-        |nbsp|
-
-.. wp_section::
     :class: b-documentation-toc
 
     .. container:: documentation-main-page
-
-        .. container:: documentation-main-page-title
-
-            Tarantool documentation
-
-        .. container:: documentation-main-page-description
-
-            This manual embraces all aspects of using Tarantool: from introductory
-            information and exercises for beginners -- to advanced instructions and
-            detailed references for power users and contributors.
 
         .. container:: documentation-main-page-content
 
@@ -64,10 +47,12 @@
                         </a>
                     </div>
 
-            .. toctree::
+            ..  toctree::
                 :maxdepth: 1
 
+                overview
                 getting_started/index
+                how-to/index
                 book/box/data_model
                 CRUD operations <reference/reference_lua/box_space>
                 book/box/indexes
@@ -82,6 +67,5 @@
                 book/box/engines/index
                 book/connectors
                 reference/index
-                tutorials/index
                 contributing/index
                 release/index

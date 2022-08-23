@@ -37,4 +37,7 @@ to write in/migrate to Tarantool.
    connecting_to_cluster
    change_schema_dynamically
    writing_cluster_code
-   whats_next
+
+To continue exploring Tarantool and its ecosystem, you might want to check out
+Tarantool :doc:`tutorials and guides <../how-to/index>`.
+The :ref:`Cartridge beginner tutorial <getting_started_cartridge>` can also be found there.

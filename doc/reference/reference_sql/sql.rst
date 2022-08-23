@@ -50,8 +50,7 @@ rather than starting with a NoSQL DBMS and adding syntax to it.
 What Tarantool's SQL manual delivers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following five parts of this document are: |br|
-The :ref:`SQL Beginners' Guide <sql_beginners_guide>` explains the basics of relational database management and SQL in particular. |br|
+The following parts of this document are: |br|
 The :ref:`SQL User Guide <sql_user_guide>` explains "How to get Started" and explains the terms and the syntax elements that
 apply for all SQL statements. |br|
 The :ref:`SQL Statements and Clauses <sql_statements_and_clauses>` guide explains, for each SQL statement, the format and the rules
@@ -61,3 +60,5 @@ and using the same database objects in both SQL and Lua. |br|
 The :ref:`SQL Features <sql>` list shows how the product conforms with the mandatory features of the SQL standard.
 
 Users are expected to know what databases are, and experience with other SQL DBMSs would be an advantage.
+To learn about the basics  of relational database management and SQL in particular,
+check the :ref:`SQL Beginners' Guide <sql_beginners_guide>` in the :ref:`How-to guides <how-to>` section.

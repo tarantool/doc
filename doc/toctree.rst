@@ -5,7 +5,9 @@
     :maxdepth: 7
     :includehidden:
 
+    overview
     getting_started/index
+    how-to/index
     book/box/data_model
     CRUD operations <reference/reference_lua/box_space>
     book/box/indexes
@@ -20,6 +22,5 @@
     book/box/engines/index
     book/connectors
     reference/index
-    tutorials/index
-    contributing/index
     release/index
+    contributing/index

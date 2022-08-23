@@ -4,7 +4,7 @@
 Connecting from your favorite language
 ================================================================================
 
-In the :doc:`previous sections </getting_started/getting_started_db>`,
+In the :ref:`previous sections <getting_started_db>`,
 you have learned how to create a Tarantool database.
 Now let's see how to connect to the database from different programming
 languages, such as Python, PHP, Go, and C++, and

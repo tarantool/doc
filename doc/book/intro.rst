@@ -16,7 +16,7 @@ To get started, you can install and launch Tarantool using
 or the online Tarantool server at http://try.tarantool.org.
 Either way, as the first tryout, you can follow the introductory exercises
 from :ref:`Chapter 2 "Getting started" <getting_started>`.
-If you want more hands-on experience, proceed to :ref:`Tutorials <tutorials>`
+If you want more hands-on experience, proceed to :ref:`How-to guides <how-to>`
 after you are through with Chapter 2.
 
 :ref:`Chapter 3 "Database" <database-chapter>` is about using Tarantool

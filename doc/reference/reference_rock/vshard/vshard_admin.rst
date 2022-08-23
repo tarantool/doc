@@ -20,7 +20,7 @@ To install the module, execute the following command:
 ..  NOTE::
 
     The ``vshard`` module requires Tarantool of the version 1.10.1 or higher,
-    `Tarantool development package <https://www.tarantool.io/en/doc/latest/tutorials/c_tutorial/#c-stored-procedures>`_,
+    :ref:`Tarantool development package <f_c_tutorial-c_stored_procedures>`,
     ``git``, ``cmake`` and ``gcc`` packages installed.
 
 .. _vshard-config-cluster:

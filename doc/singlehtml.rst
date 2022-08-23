@@ -11,8 +11,8 @@
 
     book/intro
     getting_started/index
+    how-to/index
     book/index
     reference/index
-    tutorials/index
     release/index
     dev_guide/index

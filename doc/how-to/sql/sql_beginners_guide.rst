@@ -788,3 +788,5 @@ The rules state that it should be impossible to use a low-level language to bypa
 integrity as defined in the relational-level language.
 In Tarantool's case, this is not true, for example one can execute a request
 with Tarantool's NoSQL to violate a foreign-key constraint that was defined with Tarantool's SQL.
+
+To learn more about SQL in Tarantool, check the :ref:`reference <reference_sql>`.

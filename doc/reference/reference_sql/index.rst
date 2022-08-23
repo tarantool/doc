@@ -14,7 +14,6 @@ This reference covers all the SQL statements and clauses supported by Tarantool.
     :numbered: 0
 
     sql
-    sql_beginners_guide
     sql_user_guide
     sql_statements_and_clauses
     sql_plus_lua
