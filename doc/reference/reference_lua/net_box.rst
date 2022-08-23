@@ -60,25 +60,29 @@ The diagram below shows possible connection states and transitions:
 
 .. ifconfig:: builder not in ('latex', )
 
-    .. image:: net_states.svg
+    .. image:: net_states.png
         :align: center
-        :alt: net_states.svg
+        :alt: net_states.png
 
 On this diagram:
 
-* ``net_box.connect()`` method spawns a worker fiber, which will establish the connection and start the state machine.
+*   ``net_box.connect()`` method spawns a worker fiber, which will establish the connection and start the state machine.
 
-* The state machine goes to the ‘initial‘ state.
+*   The state machine goes to the ``initial`` state.
 
-* Authentication and schema upload.
-  It is possible later on to re-enter the ‘fetch_schema’ state from ‘active’ to trigger schema reload.
+*   Authentication and schema upload.
+    It is possible later on to re-enter the ``fetch_schema`` state from ``active`` to trigger schema reload.
 
-* The transport goes to the ‘error’ state in case of an error.
-  It can happen, for example, if the server closed the connection.
-  If the ``reconnect_after`` option is set, instead of the ‘error’ state, the transport goes to the ‘error_reconnect’ state.
+*   If there was an active :ref:`on_shutdown <net_box-on_shutdown>` trigger, the state changes
+    to the ``graceful_shutdown`` state after the trigger return.
 
-* ``conn.close()`` method sets the state to ‘closed’ and kills the worker.
-  If the transport is already in the ‘error’ state, ``close()`` does nothing.
+*   The transport goes to the ‘error’ state in case of an error.
+    It can happen, for example, if the server closed the connection.
+    If the ``reconnect_after`` option is set, instead of the ‘error’ state,
+    the transport goes to the ``error_reconnect`` state.
+
+* ```conn.close()`` method sets the state to ``closed`` and kills the worker.
+  `If the transport is already in the ``error`` state, ``close()`` does nothing.
 
 ===============================================================================
                                     Index

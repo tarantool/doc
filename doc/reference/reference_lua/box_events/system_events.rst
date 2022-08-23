@@ -88,7 +88,6 @@ that are necessary to find out the most recent writable leader.
     MP_STR “leader”: MP_UINT box.info.election.leader,
     }
 
-
 box.schema
 ~~~~~~~~~~
 
