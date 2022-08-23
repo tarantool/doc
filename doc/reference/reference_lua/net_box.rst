@@ -81,8 +81,8 @@ On this diagram:
     If the ``reconnect_after`` option is set, instead of the ‘error’ state,
     the transport goes to the ``error_reconnect`` state.
 
-* ```conn.close()`` method sets the state to ``closed`` and kills the worker.
-  `If the transport is already in the ``error`` state, ``close()`` does nothing.
+*   ``conn.close()`` method sets the state to ``closed`` and kills the worker.
+    If the transport is already in the ``error`` state, ``close()`` does nothing.
 
 ===============================================================================
                                     Index

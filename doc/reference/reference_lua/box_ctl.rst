@@ -44,7 +44,7 @@ Below is a list of all ``box.ctl`` functions.
         *  - :doc:`./box_ctl/on_shutdown`
            - Create a "shutdown trigger"
 
-        *  - :doc:`.box_ctl/set_on_shutdown_timeout`
+        *  - :doc:`./box_ctl/set_on_shutdown_timeout`
            - Set a timeout in seconds for the ``on_shutdown`` trigger
 
         *  - :doc:`./box_ctl/is_recovery_finished`
