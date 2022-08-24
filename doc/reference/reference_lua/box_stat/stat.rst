@@ -1,9 +1,9 @@
 box.stat()
 ==========
 
-.. module:: box
+..  module:: box
 
-.. function:: stat()
+..  function:: stat()
 
     Shows the total number of requests since startup and
     the average number of requests per second,
@@ -18,42 +18,54 @@ box.stat()
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-        tarantool> box.stat() -- return 11 tables
+        tarantool> box.stat() -- return 15 tables
         ---
         - DELETE:
-            total: 1873949
-            rps: 123
-          SELECT:
-            total: 1237723
-            rps: 4099
-          INSERT:
             total: 0
             rps: 0
+          COMMIT:
+            total: 0
+            rps: 0
+          SELECT:
+            total: 12
+            rps: 0
+          ROLLBACK:
+            total: 0
+            rps: 0
+          INSERT:
+            total: 6
+            rps: 0
           EVAL:
+            total: 0
+            rps: 0
+          ERROR:
             total: 0
             rps: 0
           CALL:
             total: 0
             rps: 0
+          BEGIN:
+            total: 0
+            rps: 0
+          PREPARE:
+            total: 0
+            rps: 0
           REPLACE:
-            total: 1239123
-            rps: 7849
+            total: 0
+            rps: 0
           UPSERT:
             total: 0
             rps: 0
           AUTH:
             total: 0
             rps: 0
-          ERROR:
-            total: 0
-            rps: 0
           EXECUTE:
             total: 0
             rps: 0
           UPDATE:
-            total: 0
+            total: 2
             rps: 0
         ...
 
