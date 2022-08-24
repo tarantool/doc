@@ -3,6 +3,8 @@
 Event watchers
 ==============
 
+Since :doc:`2.10.0 </release/2.10.0>`.
+
 The ``box`` module contains some features related to event subscriptions, also known as :term:`watchers <watcher>`.
 The subscriptions are used to inform the client about server-side :term:`events <event>`.
 Each event subscription is defined by a certain key.

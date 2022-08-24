@@ -967,6 +967,8 @@ See the :ref:`Watchers <box-protocol-watchers>` section below.
 Watchers
 --------
 
+Since :doc:`2.10.0 </release/2.10.0>`.
+
 The commands below support asynchronous server-client notifications signalled
 with :ref:`box.broadcast() <box-broadcast>`.
 Servers that support the new feature set the ``IPROTO_FEATURE_WATCHERS`` feature in reply to the ``IPROTO_ID`` command.
@@ -1072,6 +1074,37 @@ The body is a 2-item map:
 
 ``IPROTO_EVENT_DATA`` (code 0x57) contains data sent to a remote watcher.
 The parameter is optional, the default value is ``nil``.
+
+..  _box-protocol-shutdown:
+
+Graceful shutdown protocol
+--------------------------
+
+Since :doc:`2.10.0 </release/2.10.0>`.
+
+The protocol uses the event subscription system.
+For more information about it, see :ref:`box.shutdown <bsystem-events_box-shutdown>`
+and :ref:`reference for the event watchers <box-watchers>`.
+
+The shutdown protocol works in the following way:
+
+#.  First, the server receives a shutdown request.
+    It can be either an ``os.exit()`` command or a :ref:`SIGTERM <admin-server_signals>` signal.
+
+#.  Then the :ref:`box.shutdown <system-events_box-shutdown>` event is generated.
+    The server broadcasts it to all subscribed remote watchers (see :ref:`IPROTO_WATCH <box_protocol-watch>`).
+    That is, the server calls :ref:`box.broadcast('box.shutdown', true) <box-broadcast>`
+    from the :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>` trigger callback.
+    Once this is done, the server stops accepting new connections.
+
+#.  From now on, the server waits until all subscribed connections are terminated.
+
+#.  At the same time, the client gets the ``box.shutdown`` event and shuts the connection down gracefully.
+
+#.  After all connections are closed, the server will be stopped.
+    Otherwise, a timeout occurs, and the Tarantool exits immediately.
+
+You can set up the required timeout with the :ref:`set_on_shutdown_timeout() <box_ctl-on_shutdown_timeout>` function.
 
 ..  _box_protocol-responses:
 

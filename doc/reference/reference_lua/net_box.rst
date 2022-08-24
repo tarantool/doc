@@ -73,10 +73,12 @@ On this diagram:
 *   Authentication and schema upload.
     It is possible later on to re-enter the ``fetch_schema`` state from ``active`` to trigger schema reload.
 
-*   If there was an active :ref:`on_shutdown <net_box-on_shutdown>` trigger, the state changes
-    to the ``graceful_shutdown`` state after the trigger return.
+*   The state changes to the ``graceful_shutdown`` state when the state machine
+    receives a :ref:`box.shutdown <system-events_box-shutdown>` event from the remote host
+    (see :ref:`<net_box-on_shutdown>`).
+    Once all pending requests are completed, the state machine switches to the ``error`` (``error_reconnect``) state.
 
-*   The transport goes to the ‘error’ state in case of an error.
+*   The transport goes to the ``error`` state in case of an error.
     It can happen, for example, if the server closed the connection.
     If the ``reconnect_after`` option is set, instead of the ‘error’ state,
     the transport goes to the ``error_reconnect`` state.
@@ -832,21 +834,22 @@ With the ``net.box`` module, you can use the following
 
     Define a trigger for shutdown when a :ref:`box.shutdown <system-events_box-shutdown>` event is received.
 
-    The trigger is invoked in a new fiber.
-    While ``on_shutdown()`` trigger is running, the connection remains active.
+    The trigger starts in a new fiber.
+    While the ``on_shutdown()`` trigger is running, the connection stays active.
     It means that it is allowed to send new requests from a trigger callback.
 
-    After the ``on_shutdown()`` trigger return, the ``net.box`` connection switches to the ``graceful_shutdown`` state
+    After the trigger return, the ``net.box`` connection goes to the ``graceful_shutdown`` state
     (check :ref:`the state diagram <net_box-options>` for details).
     In this state, no new requests are allowed.
+    The connection waits for all pending requests to be completed.
 
-    If all in-progress requests are completed, the connection wil be closed.
-    It means that the ``net.box`` connection switches to the ``error`` or ``error_reconnect`` state.
-    The state depends on whether the ``reconnect_after`` option is set.
+    Once all in-progress requests have been processed, the connection is closed.
+    The state changes to ``error`` or ``error_reconnect``
+    (if the ``reconnect_after`` option is defined).
 
     Servers that do not support the ``box.shutdown`` event or :ref:`IPROTO_WATCH <box_protocol-watch>`
-    close the connection abruptly.
-    In this case, the ``on_shutdown()`` triggers will never be executed.
+    just close the connection abruptly.
+    In this case, the ``on_shutdown()`` trigger is not executed.
 
     :param function trigger-function: function which will become the trigger
                                       function. Takes the ``conn``
