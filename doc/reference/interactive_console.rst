@@ -30,17 +30,17 @@ It includes:
         lsn: 0
     ...
 
+.. _interactive_console_input_output:
+
+Interactive console input and output
+------------------------------------
+
 The **input language** can be changed to SQL with ``\set language sql``
 or changed to Lua (the default) with ``\set language lua``.
 
 The **delimiter** can be changed to any character with :samp:`\set delimiter <character>`.
 The default is nothing, which means input does not need to end with a delimiter.
 But a common recommendation is to say ``set delimiter ;`` especially if input is SQL.
-
-.. _interactive_console_output:
-
-Interactive console output
---------------------------
 
 The **output format** can be changed to Lua with ``\set output lua``
 or changed to YAML (the default) with ``\set output yaml``.
@@ -126,7 +126,7 @@ call was ``console.set_default_output('lua')``.
 
             -   :code:`\x81 \xa3 \x6b \x65 \x79 \x01`
 
-.. _interactive_console-keyboard_shortcuts:
+.. _interactive_console-shortcuts:
 
 Keyboard shortcuts
 ------------------

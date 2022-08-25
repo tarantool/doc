@@ -215,7 +215,7 @@ Below is a list of all ``console`` functions.
    The output format can be changed within a session by executing
    :samp:`console.eval('\\\\set output {yaml}|{lua}')`; see the
    description of output format in the
-   :ref:`Interactive console <interactive_console_output>` section.
+   :ref:`Interactive console <interactive_console_input_output>` section.
 
 .. _console-eos:
 
