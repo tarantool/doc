@@ -131,16 +131,21 @@ call was ``console.set_default_output('lua')``.
 Keyboard shortcuts
 ------------------
 
-    ..  list-table::
-        :widths: 25 75
-        :header-rows: 1
+..  list-table::
+    :widths: 25 75
+    :header-rows: 1
 
-        *   - Keyboard shortcut
-            - Effect
+    *   - Keyboard shortcut
+        - Effect
 
-        *  - ``CTL+C``
-           - Discard current input with the ``SIGINT`` signal in the console mode and
-             jump to a new line with a default prompt.
+    *   - ``CTRL+C``
+        - Discard current input with the ``SIGINT`` signal in the console mode and
+          jump to a new line with a default prompt.
 
-        *  - ``CTL+D``
-           - Quit Tarantool interactive console.
+    *   - ``CTRL+D``
+        - Quit Tarantool interactive console.
+
+..  important::
+
+    Keep in mind that ``CTRL+C`` shortcut will shut Tarantool down if there is any currently running command
+    in the console.
