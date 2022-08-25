@@ -149,3 +149,4 @@ Keyboard shortcuts
 
     Keep in mind that ``CTRL+C`` shortcut will shut Tarantool down if there is any currently running command
     in the console.
+    The :ref:`SIGINT <admin-server_signals>` signal stops the instance running in a daemon mode.
