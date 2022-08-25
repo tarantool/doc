@@ -1083,7 +1083,7 @@ Graceful shutdown protocol
 Since :doc:`2.10.0 </release/2.10.0>`.
 
 The protocol uses the event subscription system.
-For more information about it, see :ref:`box.shutdown <bsystem-events_box-shutdown>`
+For more information about it, see :ref:`box.shutdown <system-events_box-shutdown>`
 and :ref:`reference for the event watchers <box-watchers>`.
 
 The shutdown protocol works in the following way:
@@ -1103,8 +1103,8 @@ The shutdown protocol works in the following way:
 
 #.  After all connections are closed, the server will be stopped.
     Otherwise, a timeout occurs, and the Tarantool exits immediately.
-
-You can set up the required timeout with the :ref:`set_on_shutdown_timeout() <box_ctl-on_shutdown_timeout>` function.
+    You can set up the required timeout with the
+    :ref:`set_on_shutdown_timeout() <box_ctl-on_shutdown_timeout>` function.
 
 ..  _box_protocol-responses:
 

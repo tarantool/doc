@@ -75,7 +75,7 @@ On this diagram:
 
 *   The state changes to the ``graceful_shutdown`` state when the state machine
     receives a :ref:`box.shutdown <system-events_box-shutdown>` event from the remote host
-    (see :ref:`<net_box-on_shutdown>`).
+    (see :ref:`conn:on_shutdown() <net_box-on_shutdown>`).
     Once all pending requests are completed, the state machine switches to the ``error`` (``error_reconnect``) state.
 
 *   The transport goes to the ``error`` state in case of an error.
