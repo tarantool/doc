@@ -131,6 +131,8 @@ call was ``console.set_default_output('lua')``.
 Keyboard shortcuts
 ------------------
 
+Since :doc:`2.10.0 </release/2.10.0>`.
+
 ..  list-table::
     :widths: 25 75
     :header-rows: 1
