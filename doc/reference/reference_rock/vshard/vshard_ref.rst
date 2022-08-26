@@ -21,7 +21,6 @@ Basic parameters
 * :ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`
 * :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`
 * :ref:`discovery_mode <cfg_basic-discovery_mode>`
-* :ref:`master <cfg_basic-master>`
 
 .. _cfg_basic-sharding:
 
@@ -175,14 +174,46 @@ Basic parameters
     | Default: 'on'
     | Dynamic: yes
 
-..  _cfg_basic-master:
+.. _vshard-config-replica-set-funcs:
+
+-------------------------------------------------------------------------------
+Replica set parameters
+-------------------------------------------------------------------------------
+
+* :ref:`uuid <cfg_replica_set-uuid>`
+* :ref:`weight <cfg_replica_set-weight>`
+* :ref:`master <cfg_replica_set-master>`
+
+.. _cfg_replica_set-uuid:
+
+.. confval:: uuid
+
+    A unique identifier of a replica set.
+
+    | Type:
+    | Default:
+    | Dynamic:
+
+.. _cfg_replica_set-weight:
+
+.. confval:: weight
+
+    A weight of a replica set. See the :ref:`Replica set weights <vshard-replica-set-weights>`
+    section for details.
+
+    | Type:
+    | Default: 1
+    | Dynamic:
+
+..  _cfg_replica_set-master:
 
 ..  confval:: master
 
     Turns on automated master discovery in a replica set if set to ``auto``.
     Applicable only to the configuration of a router; the storage configuration ignores this parameter.
 
-    The parameter should be specified per replica set and is not compatible with manual master selection.
+    The parameter should be specified per replica set.
+    The configuration is not compatible with a manual master selection.
 
     **Examples**
 
@@ -227,48 +258,19 @@ Basic parameters
             ...
         }
 
-    If configuration is incorrect configuration, it is not applied, and the ``vshard.router.cfg()`` call throws an error.
+    If the configuration is incorrect, it is not applied, and the ``vshard.router.cfg()`` call throws an error.
 
-
-    If the ``master`` parameter is set to ``auto`` for some replica sets, the router goes to these replica sets, discovers the master in each of them, and periodically checks if the master instance still has its master status.
-    When the master in the replica set stops being a master, the router goes around all the nodes of the replica set and finds out which one is the new master.
+    If the ``master`` parameter is set to ``auto`` for some replica sets, the router goes to these replica sets,
+    discovers the master in each of them, and periodically checks if the master instance still has its master status.
+    When the master in the replica set stops being a master, the router goes around all the nodes of the replica set
+    to find out which one is the new master.
 
     Without this setting, the router cannot detect master nodes in the configured replica sets on its own.
     It relies only on how they are specified in the configuration.
-    This becomes a problem when the master changes and the change is not delivered to the router's configuration:
+    This becomes a problem when the master changes, and the change is not delivered to the router's configuration:
     for instance, in case the router doesn't rely on a central configuration provider
     or the provider cannot deliver a new configuration due to some reason.
 
     | Type: string
     | Default: ``nil``
     | Dynamic: yes
-
-.. _vshard-config-replica-set-funcs:
-
--------------------------------------------------------------------------------
-Replica set parameters
--------------------------------------------------------------------------------
-
-* :ref:`uuid <cfg_replica_set-uuid>`
-* :ref:`weight <cfg_replica_set-weight>`
-
-.. _cfg_replica_set-uuid:
-
-.. confval:: uuid
-
-    A unique identifier of a replica set.
-
-    | Type:
-    | Default:
-    | Dynamic:
-
-.. _cfg_replica_set-weight:
-
-.. confval:: weight
-
-    A weight of a replica set. See the :ref:`Replica set weights <vshard-replica-set-weights>`
-    section for details.
-
-    | Type:
-    | Default: 1
-    | Dynamic:
