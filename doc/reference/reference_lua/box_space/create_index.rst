@@ -536,16 +536,18 @@ The result of the select request looks like this:
 
 Some restrictions exist:
 
-*   ``[*]`` must be alone or must be at the end of a name in the path
-*   ``[*]`` must not appear twice in the path
-*   if an index has a path with ``x[*]`` then no other index can have a path with
-    x.component
-*   ``[*]`` must not appear in the path of a primary-key
-*   if an index has ``unique=true`` and has a path with ``[*]``
-    then duplicate keys from different tuples are disallowed but duplicate keys
-    for the same tuple are allowed
-*   the field's value must have the same structure as in the path definition,
-    or be nil (nil is not indexed)
+*   ``[*]`` must be alone or must be at the end of a name in the path.
+*   ``[*]`` must not appear twice in the path.
+*   If an index has a path with ``x[*]``, then no other index can have a path with
+    x.component.
+*   ``[*]`` must not appear in the path of a primary-key.
+*   If an index has ``unique=true`` and has a path with ``[*]``,
+    then duplicate keys from different tuples are disallowed, but duplicate keys
+    for the same tuple are allowed.
+*   The field's value must have the same structure as in the path definition,
+    or be nil (nil is not indexed).
+*   In a space with multikey indexes on array fields (including arrays of maps), any tuple
+    :ref:`cannot contain more than ~8,000 elements indexed that way <limitations_fields_in_tuple_multikey_index>`.
 
 ..  _box_space-index_func:
 
