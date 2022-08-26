@@ -546,7 +546,7 @@ Some restrictions exist:
     for the same tuple are allowed.
 *   The field's value must have the same structure as in the path definition,
     or be nil (nil is not indexed).
-*   In a space with multikey indexes on array fields (including arrays of maps), any tuple
+*   In a space with multikey indexes, any tuple
     :ref:`cannot contain more than ~8,000 elements indexed that way <limitations_fields_in_tuple_multikey_index>`.
 
 ..  _box_space-index_func:

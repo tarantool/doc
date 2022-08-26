@@ -53,10 +53,10 @@ Limitations
 
 **Number of elements in array fields in a space with a multikey index**
 
-    In a Tarantool space that has :ref:`multikey indexes <box_space-path_multikey>` on array fields,
-    any tuple cannot contain more than ~8,000 elements indexed with that multikey index.
-    This is because every element has 4 bytes of metadata, and the sum of
-    metadata and elements in a tuple cannot exceed 2^16 bytes.
+    In a Tarantool space that has :ref:`multikey indexes <box_space-path_multikey>`,
+    any tuple cannot contain more than ~8,000 elements in a field indexed with that multikey index.
+    This is because every element has 4 bytes of metadata, and the tuple's metadata,
+    which includes multikey metadata, cannot exceed 2^16 bytes.
 
 .. _limitations_number_of_spaces:
 
