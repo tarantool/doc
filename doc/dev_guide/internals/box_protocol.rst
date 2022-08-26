@@ -1082,9 +1082,20 @@ Graceful shutdown protocol
 
 Since :doc:`2.10.0 </release/2.10.0>`.
 
+The graceful shutdown protocol is a mechanism that helps to prevent data loss in requests in case of a shutdown command.
+According to the protocol, when a server receives an ``os.exit()`` command or a ``SIGTERM``  signal,
+it does not exit immediately.
+Instead of that, first, the server stops listening for new connections.
+Then, the server sends the shutdown packets to all connections that support the graceful shutdown protocol.
+When a client is notified about the upcoming server exit, it stops serving any new requests and
+waits for active requests to complete before closing the connections.
+Once all connections are terminated, the server will be shut down.
+
 The protocol uses the event subscription system.
-For more information about it, see :ref:`box.shutdown <system-events_box-shutdown>`
-and :ref:`reference for the event watchers <box-watchers>`.
+That is, the feature is available if a server supports :ref:`box.shutdown <system-events_box-shutdown>` event
+and ``IPROTO_WATCH``.
+For more information about it, see :ref:`reference for the event watchers <box-watchers>`
+and the :ref:`corresponding section <box-protocol-watchers>` in Box Protocol.
 
 The shutdown protocol works in the following way:
 
@@ -1095,7 +1106,7 @@ The shutdown protocol works in the following way:
     The server broadcasts it to all subscribed remote watchers (see :ref:`IPROTO_WATCH <box_protocol-watch>`).
     That is, the server calls :ref:`box.broadcast('box.shutdown', true) <box-broadcast>`
     from the :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>` trigger callback.
-    Once this is done, the server stops accepting new connections.
+    Once this is done, the server stops listening for new connections.
 
 #.  From now on, the server waits until all subscribed connections are terminated.
 

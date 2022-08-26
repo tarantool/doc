@@ -56,6 +56,8 @@ Most ``net.box`` methods accept the last ``{options}`` argument, which can be:
   The default value is ``false``.
   For an example, see option description :ref:`below <net_box-return_raw>`.
 
+.. _net_box-state_diagram:
+
 The diagram below shows possible connection states and transitions:
 
 .. ifconfig:: builder not in ('latex', )
@@ -836,10 +838,10 @@ With the ``net.box`` module, you can use the following
 
     The trigger starts in a new fiber.
     While the ``on_shutdown()`` trigger is running, the connection stays active.
-    It means that it is allowed to send new requests from a trigger callback.
+    It means that the trigger callback is allowed to send new requests.
 
     After the trigger return, the ``net.box`` connection goes to the ``graceful_shutdown`` state
-    (check :ref:`the state diagram <net_box-options>` for details).
+    (check :ref:`the state diagram <net_box-state_diagram>` for details).
     In this state, no new requests are allowed.
     The connection waits for all pending requests to be completed.
 

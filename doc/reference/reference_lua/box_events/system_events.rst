@@ -29,7 +29,7 @@ This triggers the ``box.info`` event, which states that the value of ``box.info.
 while ``box.info.uuid`` and ``box.info.cluster.uuid`` remain the same.
 
 box.id
-~~~~~~
+------
 
 Contains :ref:`identification <box_info_info>` of the instance.
 Value changes are rare.
@@ -53,7 +53,7 @@ Value changes are rare.
     }
 
 box.status
-~~~~~~~~~~
+----------
 
 Contains generic information about the instance status.
 
@@ -70,7 +70,7 @@ Contains generic information about the instance status.
     }
 
 box.election
-~~~~~~~~~~~~
+------------
 
 Contains fields of :doc:`box.info.election </reference/reference_lua/box_info/election>`
 that are necessary to find out the most recent writable leader.
@@ -90,7 +90,7 @@ that are necessary to find out the most recent writable leader.
     }
 
 box.schema
-~~~~~~~~~~
+----------
 
 Contains schema-related data.
 
@@ -105,14 +105,17 @@ Contains schema-related data.
 .. _system-events_box-shutdown:
 
 box.shutdown
-~~~~~~~~~~~~
+------------
 
 Contains a boolean value which indicates whether there is an active shutdown request.
 
 The event is generated when the server receives a shutdown request (``os.exit()`` command or
 :ref:`SIGTERM <admin-server_signals>` signal).
 
-The ``box.shutdown`` event is supposed to be used with connectors.
+The ``box.shutdown`` event is applied for the graceful shutdown protocol.
+It is a feature which is available since :doc:`2.10.0 </release/2.10.0>`.
+This protocol is supposed to be used with connectors to signal a client about the upcoming server shutdown and
+close active connections without broken requests.
 For more information, refer to the :ref:`graceful shutdown protocol <box-protocol-shutdown>` section.
 
 Usage example
