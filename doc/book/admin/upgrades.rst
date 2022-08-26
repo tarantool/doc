@@ -1,152 +1,113 @@
-.. _admin-upgrades:
+..  _admin-upgrades:
 
-================================================================================
 Upgrades
-================================================================================
+========
 
 For information about backwards compatibility,
 see the :ref:`compatibility guarantees <compatibility_guarantees>` description.
 
-.. _admin-upgrades_db:
+..  _admin-upgrades_instance:
 
---------------------------------------------------------------------------------
-Upgrading a Tarantool database
---------------------------------------------------------------------------------
+Upgrading Tarantool on a standalone instance
+--------------------------------------------
 
-If you created a database with an older Tarantool version and have now installed
-a newer version, make the request ``box.schema.upgrade()``. This updates
-Tarantool system spaces to match the currently installed version of Tarantool.
-
-For example, here is what happens when you run ``box.schema.upgrade()`` with a
-database created with Tarantool version 1.6.4 to version 1.7.2 (only a small
-part of the output is shown):
-
-.. code-block:: tarantoolsession
-
-   tarantool> box.schema.upgrade()
-   alter index primary on _space set options to {"unique":true}, parts to [[0,"unsigned"]]
-   alter space _schema set options to {}
-   create view _vindex...
-   grant read access to 'public' role for _vindex view
-   set schema version to 1.7.0
-   ---
-   ...
-
-.. _admin-upgrades_instance:
-
---------------------------------------------------------------------------------
-Upgrading a Tarantool instance
---------------------------------------------------------------------------------
-
-Tarantool is backward compatible between two adjacent versions. For example, you
-should have no or little trouble when upgrading from Tarantool 1.6 to 1.7, or
-from Tarantool 1.7 to 2.x. Meanwhile Tarantool 2.x may have incompatible changes
-when migrating from Tarantool 1.6. to 2.x directly.
-
-.. _admin-upgrades_instance_17_to_20:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to upgrade from Tarantool 1.7 to 2.x
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-1. Stop the Tarantool server.
-
-2. Make a copy of all data (see an appropriate hot backup procedure in
-   :ref:`Backups <admin-backups>`) and the package from which the current (old)
-   version was installed (for rollback purposes).
-
-3. Update the Tarantool server. See installation instructions at Tarantool
-   `download page <http://tarantool.org/download.html>`_.
-
-4. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
-
-.. _admin-upgrades_instance_16_to_20:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to upgrade from Tarantool 1.6 to 2.x
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The procedure is fully analogous to
-:ref:`upgrading from 1.7 to 2.x <admin-upgrades_instance_17_to_20>`.
-
-.. _admin-upgrades_instance_16_to_17:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-How to upgrade from Tarantool 1.6 to 1.7
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This procedure is for upgrading a standalone Tarantool instance in production
-from 1.6.x to 1.7.x. Notice that this will **always imply a downtime**.
+This procedure is for upgrading a standalone Tarantool instance in production.
+Notice that this will **always imply a downtime**.
 To upgrade **without downtime**, you need several Tarantool servers running in a
 replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 
-Tarantool 1.7 has an incompatible :ref:`.snap <internals-snapshot>` and
-:ref:`.xlog <internals-wal>` file format: 1.6 files are
-supported during upgrade, but you won’t be able to return to 1.6 after running
-under 1.7 for a while. It also renames a few configuration parameters, but old
-parameters are supported. The full list of breaking changes is available in
-`release notes for Tarantool 1.7 <https://github.com/tarantool/tarantool/releases>`_.
+#.  Stop the Tarantool server.
 
-1. Check with application developers whether application files need to be
-   updated due to incompatible changes (see
-   `1.7 release notes <https://github.com/tarantool/tarantool/releases>`_).
-   If yes, back up the old application files.
+#.  Make a copy of all data (see an appropriate hot backup procedure in
+    :ref:`Backups <admin-backups>`) and the package from which the current (old)
+    version was installed (for rollback purposes).
 
-2. Stop the Tarantool server.
+#.  Update the Tarantool server. See installation instructions at Tarantool
+    `download page <http://tarantool.org/download.html>`_.
 
-3. Make a copy of all data (see an appropriate hot backup procedure in
-   :ref:`Backups <admin-backups>`) and the package from which the current (old)
-   version was installed (for rollback purposes).
+#.  Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master.
+    This will update the Tarantool system spaces to match the currently installed version of Tarantool.
+    There is no need  to run ``box.schema.upgrade()`` on every node:
+    changes are propagated to other nodes via the regular replication mechanism.
 
-4. Update the Tarantool server. See installation instructions at Tarantool
-   `download page <http://tarantool.org/download.html>`_.
+#.  Update your application files, if needed.
 
-5. Update the Tarantool database. Put the request ``box.schema.upgrade()``
-   inside a :doc:`box.once() </reference/reference_lua/box_once>` function in your Tarantool
-   :ref:`initialization file <index-init_label>`.
-   On startup, this will create new system spaces, update data type names (e.g.
-   num -> unsigned, str -> string) and options in Tarantool system spaces.
+#.  Launch the updated Tarantool server using ``tarantoolctl``, ``tt``, or ``systemctl``.
 
-6. Update application files, if needed.
+..  _admin-upgrades_replication_cluster:
 
-7. Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
+Upgrading Tarantool in a replica set with no downtime
+-----------------------------------------------------
 
-.. _admin-upgrades_replication_cluster:
+Below are the general instructions for upgrading Tarantool in a replica set.
+Upgrading from some versions can involve certain specifics. You can find
+instructions for individual versions :ref:`in the list below <admin-upgrades_version_specifics>`.
 
---------------------------------------------------------------------------------
-Upgrading Tarantool in a replication cluster
---------------------------------------------------------------------------------
+..  important::
 
-Tarantool 1.7 can work as a :ref:`replica <replication-architecture>`
-for Tarantool 1.6 and vice versa. Replicas
-perform capability negotiation on handshake, and new 1.7 replication features
-are not used with 1.6 replicas. This allows upgrading clustered configurations.
+    The only way to upgrade Tarantool from version 1.6, 1.7, or 1.9 to 2.x **without downtime** is
+    taking an intermediate step by upgrading to 1.10 and then to 2.x.
 
-This procedure allows for a rolling upgrade **without downtime** and works for
-any cluster configuration: master-master or master-replica.
+    Before upgrading Tarantool from 1.6 to 2.x, please read about the associated
+    :ref:`caveats <admin-upgrades-1.6-1.10>`.
 
-1. Upgrade Tarantool at all replicas (or at any master in a master-master
-   cluster). See details in
-   :ref:`Upgrading a Tarantool instance <admin-upgrades_instance>`.
+Preparations
+~~~~~~~~~~~~
 
-2. Verify installation on the replicas:
+#.  Check the replica set health by running the following code on every instance:
 
-   a. Start Tarantool.
+    ..  code-block:: tarantoolsession
 
-   b. Attach to the master and start working as before.
+        box.info.ro -- "false" at least on one instance
+        box.info.status -- should be "running"
+ 
+    If all instances have ``box.info.ro = true``, this means there are no writable nodes.
+    If you're running Tarantool :doc:`v. 2.10.0 </release/2.10.0>` or later,
+    you can find out the reason by running ``box.info.ro_reason``.
+    If it has the value ``orphan``, the instance doesn't see the rest of the replica set.
+    Similarly, if ``box.info.status`` has the value ``orphan``, the instance doesn't see the rest of the replica set.
+    First resolve the replication issues and only then continue.
 
-   The master runs the old Tarantool version, which is always compatible with
-   the next major version.
+    If you're running Cartridge, you can also check node health in the UI.
 
-3. Upgrade the master. The procedure is similar to upgrading a replica.
+#.  Make sure each replica is connected to the rest of the replica set.
+    To do this, run ``box.info.replication`` in the instance's console
+    and check the output table for values like ``upstream``, ``downstream``, and ``lag``.
 
-4. Verify master installation:
+    For each instance ``id``, there are ``upstream`` and ``downstream`` values.
+    Both of them should have the value ``follow``, except on the instance where you run this code.
+    This means that the replicas are connected and there are no errors in the data flow.
 
-   a. Start Tarantool with replica configuration to catch up.
+    The value of the ``lag`` field can be less or equal than ``box.cfg.replication_timeout``,
+    but it can also be moderately larger.
+    For example, if ``box.cfg.replication_timeout`` is 1 second and the write load on the master is high,
+    it's generally OK to have a lag of about 10 seconds on the master.
+    It is up to the user to decide what lag values are fine.
+    
+If the replica set is healthy, proceed to the upgrade.
 
-   b. Switch to master mode.
+Upgrade procedure
+~~~~~~~~~~~~~~~~~
 
-5. Upgrade the database on any master node in the cluster. Make the request
-   ``box.schema.upgrade()``. This updates Tarantool system spaces to match the
-   currently installed version of Tarantool. Changes are propagated to other
-   nodes via the regular replication mechanism.
+..  include:: ./_includes/upgrade_procedure.rst
+
+7.  Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master.
+    This will update the Tarantool system spaces to match the currently installed version of Tarantool.
+    There is no need  to run ``box.schema.upgrade()`` on every node:
+    changes are propagated to other nodes via the regular replication mechanism.
+
+8.  Run ``box.snapshot()`` on every node in the replica set
+    to make sure that the replicas immediately see the upgraded database state in case of restart.
+
+
+..  _admin-upgrades_version_specifics:
+
+Version specifics
+-----------------
+
+..  toctree::
+    :maxdepth: 1
+
+    upgrades/1.6-1.10
+    upgrades/1.6-2.0-downtime
+    upgrades/2.10.1

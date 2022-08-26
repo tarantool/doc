@@ -1,0 +1,20 @@
+..  _admin-upgrades-1.6-2.x_downtime:
+
+Upgrade from 1.6 directly to 2.x with downtime
+==============================================
+
+..  include:: ../_includes/1.6-to-2.x-condition.rst
+
+Here is how to upgrade from Tarantool 1.6 directly to 2.x:
+
+#.  Stop all instances in the replica set.
+
+#.  :ref:`Upgrade <admin-upgrades_instance>` Tarantool version to 2.x on every instance.
+
+#.  Upgrade the corresponding instance files and applications, if needed.
+
+#.  Start all the instances with Tarantool 2.x.
+
+#.  Execute ``box.schema.upgrade()`` on the master.
+
+#.  Execute ``box.snapshot()`` on every node in the replica set.
