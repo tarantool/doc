@@ -4,10 +4,8 @@
 Access control
 ================================================================================
 
-Understanding security details is primarily an issue for administrators.
-However, ordinary users should at least skim this section to get an idea
-of how Tarantool makes it possible for administrators to prevent unauthorized
-access to the database and to certain functions.
+This section explains how Tarantool makes it possible for administrators
+to prevent unauthorized access to the database and to certain functions.
 
 Briefly:
 

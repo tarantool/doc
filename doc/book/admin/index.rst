@@ -31,6 +31,7 @@ This chapter includes the following sections:
    start_stop_instance
    logs
    security
+   access_control
    server_introspection
    daemon_supervision
    disaster_recovery

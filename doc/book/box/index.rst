@@ -15,7 +15,7 @@ This chapter contains the following sections:
 
     data_model
     atomic
-    authentication
+    ../admin/access_control
     triggers
     limitations
     engines/index
