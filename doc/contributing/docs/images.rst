@@ -36,11 +36,13 @@ Exporting
 
 To save the diagram to a file:
 
-#   Make the frame opaque so that it isn't shown in the resulting image (opacity = 100%).
-#   Select all elements together with the frame and click **Copy as image**
+#.  Make the frame transparent so that it isn't shown in the resulting image (opacity = 0%).
+
+#.  Select all elements together with the frame and click **Copy as image**
     in the context menu (under the three dots). The image will
     be copied to the clipboard.
-#   Save it as an image file using any graphic editor, for example, GIMP.
+
+#.  Save it as an image file using any graphic editor, for example, GIMP.
 
 
 Screenshots
@@ -65,6 +67,7 @@ Markup
 Insert the images using the ``image`` directive:
 
 ..  code-block:: rst
+
     ..  image:: images/example_diagram.png
         :alt: Example diagram alt text
 
