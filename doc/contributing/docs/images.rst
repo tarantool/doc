@@ -43,7 +43,11 @@ To save the diagram to a file:
     in the context menu (under the three dots). The image will
     be copied to the clipboard.
 
-#.  Save it as an image file using any graphic editor, for example, GIMP.
+#.  Paste the image from the clipboard to any graphic editor, for example, GIMP.
+
+#.  Remove the Miro logo in the bottom right corner.
+
+#.  Export/save the image to PNG.
 
 
 Screenshots
