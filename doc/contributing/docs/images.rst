@@ -36,7 +36,8 @@ Exporting
 
 To save the diagram to a file:
 
-#.  Make the frame transparent so that it isn't shown in the resulting image (opacity = 0%).
+#.  Make the frame transparent so that it isn't shown in the resulting image (set its color
+    to "no color").
 
 #.  Select all elements together with the frame and click **Copy as image**
     in the context menu (under the three dots). The image will
