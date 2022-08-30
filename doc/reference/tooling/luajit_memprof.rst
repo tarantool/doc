@@ -1,3 +1,4 @@
+..  _luajit_memprof:
 
 LuaJIT memory profiler
 ======================

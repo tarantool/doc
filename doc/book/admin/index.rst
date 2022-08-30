@@ -29,6 +29,7 @@ This chapter includes the following sections:
 
    instance_config
    start_stop_instance
+   modules
    logs
    security
    access_control

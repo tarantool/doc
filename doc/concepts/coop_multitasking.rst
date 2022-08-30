@@ -1,31 +1,29 @@
-..  _application_server_fibers:
+..  _concepts-coop_multitasking:
 
-Fibers, yields and cooperative multitasking
-===========================================
+Fibers, yields, and cooperative multitasking
+--------------------------------------------
 
-But wait! If we launch it as shown above -- ``self.respawn()`` -- the function
-will be executed only once, just like all the other methods. But we need to
-execute ``respawn()`` every 60 seconds. Creating a :ref:`fiber <fiber-module>`
-is the Tarantool way of making application logic work in the background at all
-times.
+Creating a fiber is the Tarantool way of making application logic work in the background at all times.
+A **fiber** is a set of instructions that are executed with :ref:`cooperative multitasking <app-cooperative_multitasking>`:
+the instructions contain :ref:`yield <app-yields>` signals, upon which control is passed to another fiber.
 
-..  _app-temp_fibers:
+..  _app-fibers:
 
 Fibers
-------
+~~~~~~
 
-A **fiber** exists for executing instruction sequences but it is not a thread.
+Fibers are similar to threads of execution in computing.
 The key difference is that threads use
-preemptive multitasking, while fibers use :ref:`cooperative multitasking <app-cooperative_multitasking>`. This gives
-fibers the following two advantages over threads:
+preemptive multitasking, while fibers use cooperative multitasking (see :ref:`below <app-cooperative_multitasking>`).
+This gives fibers the following two advantages over threads:
 
-* Better controllability. Threads often depend on the kernel's thread scheduler
-  to preempt a busy thread and resume another thread, so preemption may occur
-  unpredictably. Fibers :ref:`yield <app-yields>` themselves to run another fiber while executing,
-  so yields are controlled by application logic.
-* Higher performance. Threads require more resources to preempt as they need to
-  address the system kernel. Fibers are lighter and faster as they don't need to
-  address the kernel to yield.
+*   Better controllability. Threads often depend on the kernel's thread scheduler
+    to preempt a busy thread and resume another thread, so preemption may occur
+    unpredictably. Fibers :ref:`yield <app-yields>` themselves to run another fiber while executing,
+    so yields are controlled by application logic.
+*   Higher performance. Threads require more resources to preempt as they need to
+    address the system kernel. Fibers are lighter and faster as they don't need to
+    address the kernel to yield.
 
 Yet fibers have some limitations as compared with threads, the main limitation
 being no multi-core mode. All fibers in an application belong to a single thread,
@@ -37,84 +35,45 @@ A fiber has all the features of a Lua
 `coroutine <http://www.lua.org/pil/contents.html#9>`_ and all programming
 concepts that apply for Lua coroutines will apply for fibers as well. However,
 Tarantool has made some enhancements for fibers and has used fibers internally.
-So, although use of coroutines is possible and supported, use of fibers is
+So, although the use of coroutines is possible and supported, the use of fibers is
 recommended.
 
-Well, performance or controllability are of little importance in our case. We'll
-launch ``respawn()`` in a fiber to make it work in the background all the time.
-To do so, we'll need to amend ``respawn()``:
+Any live fiber can be in one of three states: ``running``, ``suspended``, and 
+``ready``. After a fiber dies, the ``dead`` status returns.
 
-.. code-block:: lua
+To learn more about fibers, go to the :ref:`fiber <fiber-module>` module documentation.
 
-   respawn = function(self)
-       -- let's give our fiber a name;
-       -- this will produce neat output in fiber.info()
-       fiber.name('Respawn fiber')
-       while true do
-           for _, tuple in box.space.pokemons.index.status:pairs(
-                   self.state.CAUGHT) do
-               box.space.pokemons:update(
-                   tuple[self.ID],
-                   {{'=', self.STATUS, self.state.ACTIVE}}
-               )
-           end
-           fiber.sleep(self.respawn_time)
-       end
-   end
-
-and call it as a fiber in ``start()``:
-
-.. code-block:: lua
-
-    start = function(self)
-        -- create spaces and indexes
-            <...>
-        -- create models
-            <...>
-        -- compile models
-            <...>
-        -- start the game
-           self.pokemon_model = compiled_pokemon
-           self.player_model = compiled_player
-           fiber.create(self.respawn, self)
-           log.info('Started')
-        -- errors if schema creation or compilation fails
-           <...>
-    end
- 
 ..  _app-yields:
 
 Yields
-------
-
-Any live fiber can be in one of three states: ``running``, ``suspended``, and 
-``ready``. After a fiber dies, the ``dead`` status returns. By observing 
-fibers from the outside, you can only see ``running`` (for the current fiber) 
-and ``suspended`` for any other fiber waiting for an event from eventloop (``ev``) 
-for execution.
-
-
-.. image:: yields.svg
-    :align: center
-
+~~~~~~
 
 Yield is an action that occurs in a :ref:`cooperative <app-cooperative_multitasking>` environment that 
 transfers control of the thread from the current fiber to another fiber that is ready to execute.
 
+Any live fiber can be in one of three states: ``running``, ``suspended``, and 
+``ready``. After a fiber dies, the ``dead`` status is returned. By observing 
+fibers from the outside, you can only see ``running`` (for the current fiber) 
+and ``suspended`` for any other fiber waiting for an event from eventloop (``ev``) 
+for execution.
 
-After yield has occurred, the next ``ready`` fiber is taken from the queue and executed. 
+..  image:: yields.svg
+    :align: center
+
+
+After a yield has occurred, the next ``ready`` fiber is taken from the queue and executed. 
 When there are no more ``ready`` fibers, execution is transferred to the event loop.
 
 After a fiber has yielded and regained control, it immediately issues :ref:`testcancel <fiber-testcancel>`.
 
-There are :ref:`explicit <app-explicit-yields>` and :ref:`implicit <app-implicit-yields>` yields.
+Yields can be :ref:`explicit <app-explicit-yields>` or :ref:`implicit <app-implicit-yields>`.
 
 ..  _app-explicit-yields:
 
 Explicit yields
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
-**Explicit yield** is clearly visible from the invoking code. There are only two 
+**Explicit yields** are clearly visible from the invoking code. There are only two 
 explicit yields: :ref:`fiber.yield() <fiber-yield>` and :ref:`fiber.sleep(t) <fiber-sleep>`
 
 :ref:`fiber.yield() <fiber-yield>` yields execution to another ``ready`` fiber while putting itself in the ``ready`` state, 
@@ -130,7 +89,7 @@ be :ref:`cooperative <app-cooperative_multitasking>` to other waiting fibers.
 ..  _app-implicit-yields:
 
 Implicit yields
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 On the other hand, there are many operations, such as operations with sockets, file system, 
 and disk I/O, which imply some waiting for the current fiber while others can be 
@@ -162,10 +121,10 @@ Here is the list of implicitly yielding operations:
 
 ..  note::
 
-    Please note that all operations of ``os`` mosule are non-cooperative and 
+    Please note that all operations of the ``os`` mosule are non-cooperative and 
     exclusively block the whole tx thread.
 
-For :ref:`memtx <engines-chapter>`, since all data is in memory, there is no yielding for a read requests 
+For :ref:`memtx <engines-chapter>`, since all data is in memory, there is no yielding for a read request 
 (like ``:select``, ``:pairs``, ``:get``).
 
 For :ref:`vinyl <engines-chapter>`, since some data may not be in memory, there may be disk I/O for a 
@@ -216,8 +175,8 @@ That is why executing separate commands like ``select()``, ``insert()``, ``updat
 transaction without MVCC will cause it to an abort. This is due to implicit yield after each 
 chunk of code is executed in the console.
 
-
-**Example #1**
+Example 1
+~~~~~~~~~
 
 *   Engine = memtx.
 
@@ -271,7 +230,8 @@ at commit.
 The sequence may yield from 1 to 5 times.
 
 
-**Example #2**
+Example #2
+~~~~~~~~~~
 
 Assume that there are tuples in the :ref:`memtx <engines-chapter>` space ``tester`` where the third field
 represents a positive dollar amount. 
@@ -321,9 +281,9 @@ three times sequentially when sending requests to the network and awaiting the r
 Cooperative multitasking
 ------------------------
 
-Cooperative multitasking means that unless a running :ref:`fiber <fiber-module>` deliberately :ref:`yields <app-yields>`
+Cooperative multitasking means that unless a running fiber deliberately :ref:`yields <app-yields>`
 control, it is not preempted by some other fiber. But a running fiber will
-deliberately yield when it encounters a “yield point”: a transaction commit,
+deliberately yield when it encounters a "yield point": a transaction commit,
 an operating system call, or an explicit "yield" request.
 Any system call which can block will be performed asynchronously, and any running
 fiber which must wait for a system call will be preempted, so that another

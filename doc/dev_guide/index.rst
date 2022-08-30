@@ -13,4 +13,6 @@ Contributor's Guide
     reference_capi/index
     internals/index
     building_from_source
+    ../book/admin/modules
+    contributing_module
     guidelines_index

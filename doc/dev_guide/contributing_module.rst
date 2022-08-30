@@ -4,12 +4,13 @@
 Contributing a module
 ================================================================================
 
-We have already discussed
-:ref:`how to create a simple module in Lua for local usage <app_server-modules>`.
-Now let's discuss how to create a more advanced Tarantool module and then get it
+This page discusses how to create a Tarantool module and then get it
 published on `Tarantool rocks page <http://tarantool.org/rocks.html>`_ and
 included in
 `official Tarantool images <http://github.com/tarantool/docker>`_ for Docker.
+
+To learn how to create a simple module in Lua for local usage, check the corresponding
+:ref:`how-to guide <app_server-modules>`.
 
 To help our contributors, we have created
 `modulekit <http://github.com/tarantool/modulekit>`_, a set of templates for

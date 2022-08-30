@@ -1,3 +1,4 @@
+..  _luajit_getmetrics:
 
 LuaJIT getmetrics
 =================
@@ -124,7 +125,7 @@ Note: Although value names are similar to value names in
 `ujit.getmetrics() <https://ujit.readthedocs.io/en/latest/public/ujit-024.html#ujit-getmetrics>`_
 the values are not the same, primarily because many ujit numbers are not monotonic.
 
-Note: Although value names are similar to value names in :ref:`LuaJIT metrics <metrics-luajit>`,
+Note: Although value names are similar to value names in :ref:`LuaJIT metrics <metrics-reference-luajit>`,
 and the values are exactly the same, misc.getmetrics() is slightly easier
 because there is no need to ‘require’ the misc module.
 

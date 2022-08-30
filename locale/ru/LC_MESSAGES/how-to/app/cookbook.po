@@ -1,6 +1,6 @@
 
-msgid "Cookbook recipes"
-msgstr "Примеры и рекомендации по разработке"
+msgid "Lua cookbook recipes"
+msgstr "Примеры и рекомендации по разработке на Lua"
 
 msgid ""
 "Here are contributions of Lua programs for some frequent or tricky "

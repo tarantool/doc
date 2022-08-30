@@ -1,4 +1,3 @@
-:noindex:
 :fullwidth:
 
 .. _app_server-creating_app:

@@ -1,7 +1,7 @@
 .. _cookbook:
 
 --------------------------------------------------------------------------------
-Cookbook recipes
+Lua cookbook recipes
 --------------------------------------------------------------------------------
 
 Here are contributions of Lua programs for some frequent or tricky situations.
