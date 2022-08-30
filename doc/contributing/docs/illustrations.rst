@@ -1,19 +1,22 @@
-Illustrations
-=============
+Images
+======
 
-Technical illustrations are useful in explanations of concepts and structures.
+Images are useful in explanations of concepts and structures.
 When you introduce a term or describe a structure of multiple interconnected parts
 (such as a cluster), consider illustrating it with a diagram.
 
-Diagram components
-------------------
+Note that illustrations should complement the text, not replace it. Even with an image,
+the text should be enough for readers to understand the topic.
 
-A basic set of diagram elements – blocks, arrows, and other – is stored in
-`this Miro board <https://miro.com/app/board/uXjVOnEuEsQ=/>`_. It also provides
+Diagrams
+--------
+
+There is a basic set of diagram elements – blocks, arrows, and other – to use in Tarantool docs.
+It is stored in `this Miro board <https://miro.com/app/board/uXjVPbCIj_g=/>`_. It also provides
 basic rules for creating diagrams.
 
 Size
-----
+~~~~
 
 * The diagrams should have the same width. Examples in the Miro board have the
 right width. Copy them and place your diagram without changing the frame width.
@@ -31,5 +34,10 @@ Markup
 ------
 
 ..  code-block:: rst
-    ..  image:: diagram.png
+    ..  image:: images/example_diagram.png
         :align: center
+
+Result:
+
+..  image:: images/example_diagram.png
+    :align: center
