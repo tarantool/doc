@@ -191,7 +191,7 @@ The sequence has one yield, at the end of the insert, caused by implicit commit;
 
 *   Engine = memtx.
 
-..  code-block:: memtx
+..  code-block:: lua
 
     box.begin()
     space1:get()
@@ -205,7 +205,7 @@ The sequence has one yield, at the end of the ``box.commit``, none of the insert
 
 *   Engine = vinyl.
 
-..  code-block:: vinyl
+..  code-block:: lua
 
     space:get()
     space:insert()
@@ -217,7 +217,7 @@ at commit.
 
 *   Engine = vinyl.
 
-..  code-block:: vinyl
+..  code-block:: lua
 
     box.begin()
     space1:get()
