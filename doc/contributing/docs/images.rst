@@ -9,8 +9,8 @@ use a GUI, check if a screenshot can make the doc clearer.
 Note that illustrations should complement the text, not replace it. Even with an image,
 the text should be enough for readers to understand the topic.
 
-Don't overuse images: they are harder to support than text. Use them only if the profit
-is obvious.
+Don't overuse images: they are harder to support than text. Use them only if they bring
+an obvious benefit.
 
 Diagrams
 --------
@@ -24,12 +24,14 @@ Size
 
 There are two sizes of diagram elements:
 
-*   **M** with bigger blocks. Use it for diagrams with small number of elements.
-*   **S** with smaller blocks. Use it for diagrams with big number of elements.
+*   **M** – bigger elements for usage in diagrams with small number of elements.
+*   **S** – smaller elements for usage in diagrams with big number of elements.
 
-The diagrams should have the same width. This guarantees that the diagram blocks have the same
-size. The examples in the Miro board have frames of the right width. Copy the frame and and place your
-diagram in it without changing its width.
+Avoid changing the sizes of diagram elements unless it's absolutely necessary.
+
+The diagrams should have the same width. This guarantees that their elements have the same
+size on pages. The examples in the Miro board have frames of the right width.
+Copy the frame and and place your diagram in it without changing its width.
 
 Exporting
 ~~~~~~~~~
@@ -61,7 +63,7 @@ Ensure the screenshot consistency on a page:
     visual theme, and so on.
 
 *   The configuration and data must be consistent. For example, if you've shown spaces
-    with data on a screenshot, following screenshots must have them too.
+    with data on a screenshot, subsequent screenshots must have them too.
 
 *   Size and resolution must be the same across the page unless you want to zoom in to
     a specific part of the screen.
