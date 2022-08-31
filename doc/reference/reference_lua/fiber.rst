@@ -167,7 +167,7 @@ A **fiber** is a set of instructions which are executed with
 Fibers managed by the fiber module are associated with
 a user-supplied function called the *fiber function*.
 
-A fiber has three possible states: **running**, **suspended** or **dead**.
+A fiber has three possible states, detectable by :ref:`fiber.status() <fiber-status>`: **running**, **suspended** or **dead**.
 When a fiber is created with :ref:`fiber.create() <fiber-create>`, it is running.
 When a fiber is created with :ref:`fiber.new() <fiber-new>` or yields control
 with :ref:`fiber.sleep() <fiber-sleep>`, it is suspended.
