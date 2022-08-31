@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.info`"
-msgstr "Вложенный модуль `box.info`"
+msgid "Submodule box.info"
+msgstr "Вложенный модуль box.info"
 
 msgid ""
 "The ``box.info`` submodule provides access to information about server "

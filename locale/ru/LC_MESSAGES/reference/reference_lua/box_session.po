@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.session`"
-msgstr "Вложенный модуль `box.session`"
+msgid "Submodule box.session"
+msgstr "Вложенный модуль box.session"
 
 msgid ""
 "The ``box.session`` submodule allows querying the session state, writing to "

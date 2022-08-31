@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.error`"
-msgstr "Вложенный модуль `box.error`"
+msgid "Submodule box.error"
+msgstr "Вложенный модуль box.error"
 
 msgid ""
 "The ``box.error`` function is for raising an error. The difference between "

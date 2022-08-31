@@ -1,6 +1,6 @@
 
-msgid "Module `swim`"
-msgstr ""
+msgid "Module swim"
+msgstr "Модуль swim"
 
 msgid "Overview"
 msgstr "Общие сведения"

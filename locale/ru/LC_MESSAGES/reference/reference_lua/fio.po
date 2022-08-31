@@ -1,6 +1,6 @@
 
-msgid "Module `fio`"
-msgstr "Модуль `fio`"
+msgid "Module fio"
+msgstr "Модуль fio"
 
 msgid "Overview"
 msgstr "Общие сведения"

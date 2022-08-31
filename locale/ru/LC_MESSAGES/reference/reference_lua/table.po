@@ -1,6 +1,6 @@
 
-msgid "Module `table`"
-msgstr "Модуль `table`"
+msgid "Module table"
+msgstr "Модуль table"
 
 msgid ""
 "The :code:`table` module has everything in the `standard Lua table library "

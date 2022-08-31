@@ -1,6 +1,6 @@
 
-msgid "Module `iconv`"
-msgstr "Модуль `iconv`"
+msgid "Module iconv"
+msgstr "Модуль iconv"
 
 msgid "Overview"
 msgstr "Общие сведения"

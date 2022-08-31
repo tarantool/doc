@@ -1,6 +1,6 @@
 
-msgid "Module `merger`"
-msgstr ""
+msgid "Module merger"
+msgstr "Модуль merger"
 
 msgid "Overview"
 msgstr "Общие сведения"

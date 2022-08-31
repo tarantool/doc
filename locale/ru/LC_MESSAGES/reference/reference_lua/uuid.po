@@ -1,6 +1,6 @@
 
-msgid "Module `uuid`"
-msgstr "Модуль `uuid`"
+msgid "Module uuid"
+msgstr "Модуль uuid"
 
 msgid "Overview"
 msgstr "Общие сведения"

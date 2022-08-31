@@ -1,6 +1,6 @@
 
-msgid "Module `errno`"
-msgstr "Модуль `errno`"
+msgid "Module errno"
+msgstr "Модуль errno"
 
 msgid "Overview"
 msgstr "Общие сведения"

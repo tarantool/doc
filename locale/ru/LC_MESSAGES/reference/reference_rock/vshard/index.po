@@ -1,6 +1,6 @@
 
-msgid "Module `vshard`"
-msgstr "Модуль `vshard`"
+msgid "Module vshard"
+msgstr "Модуль vshard"
 
 msgid ""
 "The ``vshard`` module introduces an advanced sharding feature based on the "

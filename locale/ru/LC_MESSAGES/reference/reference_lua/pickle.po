@@ -1,6 +1,6 @@
 
-msgid "Module `pickle`"
-msgstr "Модуль `pickle`"
+msgid "Module pickle"
+msgstr "Модуль pickle"
 
 msgid "Index"
 msgstr "Указатель"

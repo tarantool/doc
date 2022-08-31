@@ -1,6 +1,6 @@
 
-msgid "Utility `tarantoolctl`"
-msgstr "Утилита `tarantoolctl`"
+msgid "Utility tarantoolctl"
+msgstr "Утилита tarantoolctl"
 
 msgid ""
 "``tarantoolctl`` is a utility for administering Tarantool :ref:`instances "

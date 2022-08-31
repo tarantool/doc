@@ -1,6 +1,6 @@
 
-msgid "Module `membership`"
-msgstr "Модуль `membership`"
+msgid "Module membership"
+msgstr "Модуль membership"
 
 msgid ""
 "This module is a ``membership`` library for Tarantool based on a gossip "

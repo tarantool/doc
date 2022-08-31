@@ -1,6 +1,6 @@
 
-msgid "Module `xlog`"
-msgstr "Модуль `xlog`"
+msgid "Module xlog"
+msgstr "Модуль xlog"
 
 msgid ""
 "The xlog module contains one function: ``pairs()``. It can be used to read "

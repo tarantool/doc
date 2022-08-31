@@ -1,6 +1,6 @@
 
-msgid "Module `uri`"
-msgstr "Модуль `uri`"
+msgid "Module uri"
+msgstr "Модуль uri"
 
 msgid "Overview"
 msgstr "Общие сведения"

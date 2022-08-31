@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.schema`"
-msgstr "Вложенный модуль `box.schema`"
+msgid "Submodule box.schema"
+msgstr "Вложенный модуль box.schema"
 
 msgid ""
 "The ``box.schema`` submodule has data-definition functions for spaces, "

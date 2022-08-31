@@ -1,6 +1,6 @@
 
-msgid "Module `os`"
-msgstr "Модуль `os`"
+msgid "Module os"
+msgstr "Модуль os"
 
 msgid "Overview"
 msgstr "Общие сведения"

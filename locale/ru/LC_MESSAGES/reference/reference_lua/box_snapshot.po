@@ -1,6 +1,6 @@
 
-msgid "Function `box.snapshot`"
-msgstr "Функция `box.snapshot`"
+msgid "Function box.snapshot"
+msgstr "Функция box.snapshot"
 
 msgid "**Memtx**"
 msgstr "**Memtx**"

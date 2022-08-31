@@ -1,6 +1,6 @@
 
-msgid "Module `buffer`"
-msgstr "Модуль `buffer`"
+msgid "Module buffer"
+msgstr "Модуль buffer"
 
 msgid ""
 "The ``buffer`` module returns a dynamically resizable buffer which is solely"

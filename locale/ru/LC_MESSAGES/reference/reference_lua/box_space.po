@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.space`"
-msgstr "Вложенный модуль `box.space`"
+msgid "Submodule box.space"
+msgstr "Вложенный модуль box.space"
 
 msgid ""
 "**CRUD operations** in Tarantool are implemented by the ``box.space`` "

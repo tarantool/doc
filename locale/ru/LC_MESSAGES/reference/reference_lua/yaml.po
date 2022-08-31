@@ -1,6 +1,6 @@
 
-msgid "Module `yaml`"
-msgstr "Модуль `yaml`"
+msgid "Module yaml"
+msgstr "Модуль yaml"
 
 msgid "Overview"
 msgstr "Общие сведения"

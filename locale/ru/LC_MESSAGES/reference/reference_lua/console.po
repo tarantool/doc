@@ -1,6 +1,6 @@
 
-msgid "Module `console`"
-msgstr "Модуль `console`"
+msgid "Module console"
+msgstr "Модуль console"
 
 msgid "Overview"
 msgstr "Общие сведения"

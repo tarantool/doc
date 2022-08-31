@@ -1,6 +1,6 @@
 
-msgid "Module `box`"
-msgstr "Модуль `box`"
+msgid "Module box"
+msgstr "Модуль box"
 
 msgid ""
 "As well as executing Lua chunks or defining your own functions, you can "

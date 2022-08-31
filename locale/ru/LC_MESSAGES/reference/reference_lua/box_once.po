@@ -1,6 +1,6 @@
 
-msgid "Function `box.once`"
-msgstr "Функция `box.once`"
+msgid "Function box.once"
+msgstr "Функция box.once"
 
 msgid ""
 "Execute a function, provided it has not been executed before. A passed value"

@@ -1,6 +1,6 @@
 
-msgid "Module `clock`"
-msgstr "Модуль `clock`"
+msgid "Module clock"
+msgstr "Модуль clock"
 
 msgid "Overview"
 msgstr "Общие сведения"

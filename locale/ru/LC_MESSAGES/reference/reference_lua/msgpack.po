@@ -1,6 +1,6 @@
 
-msgid "Module `msgpack`"
-msgstr "Модуль `msgpack`"
+msgid "Module msgpack"
+msgstr "Модуль msgpack"
 
 msgid "Overview"
 msgstr "Общие сведения"

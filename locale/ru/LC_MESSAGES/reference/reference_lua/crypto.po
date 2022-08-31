@@ -1,6 +1,6 @@
 
-msgid "Module `crypto`"
-msgstr "Модуль `crypto`"
+msgid "Module crypto"
+msgstr "Модуль crypto"
 
 msgid "Overview"
 msgstr "Общие сведения"

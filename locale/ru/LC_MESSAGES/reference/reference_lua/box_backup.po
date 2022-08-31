@@ -1,6 +1,6 @@
 
 msgid "Submodule box.backup"
-msgstr "Вложенный модуль `box.backup`"
+msgstr "Вложенный модуль box.backup"
 
 msgid ""
 "The box.backup submodule contains two functions that are helpful for "
