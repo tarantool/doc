@@ -1,6 +1,6 @@
 
-msgid "`libslave` tutorial"
-msgstr "Практические задания по `libslave`"
+msgid "libslave tutorial"
+msgstr "Практические задания по libslave"
 
 msgid ""
 "``libslave`` is a C++ library for reading data changes done by MysQL and, "
