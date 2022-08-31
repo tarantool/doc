@@ -9,7 +9,6 @@
     getting_started/index
     how-to/index
     concepts/index
-    book/box/data_model
     CRUD operations <reference/reference_lua/box_space>
     book/box/indexes
     book/box/atomic
