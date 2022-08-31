@@ -3,7 +3,7 @@ Images
 
 Images are useful in explanations of concepts and structures.
 When you introduce a term or describe a structure of multiple interconnected parts
-(such as a cluster), consider illustrating it with a diagram. If you explain how to
+(such as a cluster), consider illustrating it with a diagram. If you are explaining how to
 use a GUI, check if a screenshot can make the doc clearer.
 
 Note that illustrations should complement the text, not replace it. Even with an image,
@@ -15,7 +15,7 @@ an obvious benefit.
 Diagrams
 --------
 
-There is a basic set of diagram elements – blocks, arrows, and other – to use in Tarantool docs.
+There is a basic set of diagram elements -- blocks, arrows, and other -- to use in Tarantool docs.
 It is stored in `this Miro board <https://miro.com/app/board/uXjVPbCIj_g=/>`_. It also provides
 basic rules for creating diagrams.
 
@@ -24,14 +24,14 @@ Size
 
 There are two sizes of diagram elements:
 
-*   **M** – bigger elements for usage in diagrams with small number of elements.
-*   **S** – smaller elements for usage in diagrams with big number of elements.
+*   **M** – bigger elements to use in diagrams with a small number of elements.
+*   **S** – smaller elements to use in diagrams with a big number of elements.
 
-Avoid changing the sizes of diagram elements unless it's absolutely necessary.
+Avoid changing the size of diagram elements unless it's absolutely necessary.
 
 The diagrams should have the same width. This guarantees that their elements have the same
 size on pages. The examples in the Miro board have frames of the right width.
-Copy the frame and and place your diagram in it without changing its width.
+Copy the frame and and place your diagram in it without changing the frame width.
 
 Exporting
 ~~~~~~~~~
@@ -57,13 +57,13 @@ Screenshots
 
 Take screenshots with any tool you like.
 
-Ensure the screenshot consistency on a page:
+Ensure screenshot consistency on the page:
 
 *   Screenshots must show the same environment: operating system, product version,
     visual theme, and so on.
 
 *   The configuration and data must be consistent. For example, if you've shown spaces
-    with data on a screenshot, subsequent screenshots must have them too.
+    with data on a screenshot, subsequent screenshots must have the same data, too.
 
 *   Size and resolution must be the same across the page unless you want to zoom in to
     a specific part of the screen.
