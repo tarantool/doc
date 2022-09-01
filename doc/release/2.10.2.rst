@@ -51,7 +51,7 @@ Core
    log rotation during the program exit stage (:tarantool-issue:`4450`).
 -  Fixed crashes and undefined behaviour of triggers clearing other
    triggers (:tarantool-issue:`4264`).
--  Fixed a crash of secondary indexes without hints (:tarantool-issue:`7605`)
+-  Fixed a crash of secondary indexes without hints (:tarantool-issue:`7605`).
 
 Replication
 ~~~~~~~~~~~
