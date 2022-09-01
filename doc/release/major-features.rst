@@ -20,6 +20,9 @@ Versions that only include bug fixes are not listed in this table.
         *   -   Since version
             -   Feature
 
+        *   -   2.10.2
+            -   Internal fibers cannot be cancelled from the Lua public API anymore
+
         *   -   2.10.1
             -   Interactive transactions are now possible in remote binary consoles |br|
                 Improved string representation of datetime intervals
