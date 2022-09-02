@@ -1,6 +1,6 @@
 
-msgid "Module `json`"
-msgstr "Модуль `json`"
+msgid "Module json"
+msgstr "Модуль json"
 
 msgid "Overview"
 msgstr "Общие сведения"

@@ -1,6 +1,6 @@
 
-msgid "Module `csv`"
-msgstr "Модуль `csv`"
+msgid "Module csv"
+msgstr "Модуль csv"
 
 msgid "Overview"
 msgstr "Общие сведения"

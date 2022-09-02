@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.cfg`"
-msgstr "Вложенный модуль `box.cfg`"
+msgid "Submodule box.cfg"
+msgstr "Вложенный модуль box.cfg"
 
 msgid ""
 "The ``box.cfg`` submodule is used for specifying :ref:`server configuration "

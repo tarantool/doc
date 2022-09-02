@@ -1,7 +1,6 @@
 
-#, fuzzy
 msgid "Module tap"
-msgstr "Модуль `tap`"
+msgstr "Модуль tap"
 
 msgid "Overview"
 msgstr "Общие сведения"
@@ -454,15 +453,3 @@ msgstr ""
 "    # Some subtests for test2: end\n"
 "ok - some subtests for test2"
 
-#~ msgid ""
-#~ "Set ``taptest.strict=true`` if :ref:`taptest:is() <taptest-is>` and "
-#~ ":ref:`taptest:isnt() <taptest-isnt>` and :ref:`taptest:is_deeply() <taptest-"
-#~ "is_deeply>` must be compared strictly with ``nil``. Set "
-#~ "``taptest.strict=false`` if ``nil`` and ``box.NULL`` both have the same "
-#~ "effect. The default is false. For example, if and only if "
-#~ "``taptest.strict=true`` has happened, then ``taptest:is_deeply({a = "
-#~ "box.NULL}, {})`` will return ``false``."
-#~ msgstr ""
-
-#~ msgid "Note that ``taptest.strict`` is the same for subtests:"
-#~ msgstr ""

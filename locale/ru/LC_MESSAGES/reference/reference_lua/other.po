@@ -1,6 +1,6 @@
 
 msgid "Other package components"
-msgstr ""
+msgstr "Прочие компоненты пакета"
 
 msgid ""
 "All the Tarantool modules are, at some level, inside a package which, "

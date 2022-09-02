@@ -1,6 +1,6 @@
 
-msgid "Module `decimal`"
-msgstr ""
+msgid "Module decimal"
+msgstr "Модуль decimal"
 
 msgid ""
 "The ``decimal`` module has functions for working with exact numbers. This is"

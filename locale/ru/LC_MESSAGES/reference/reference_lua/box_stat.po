@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.stat`"
-msgstr "Вложенный модуль `box.stat`"
+msgid "Submodule box.stat"
+msgstr "Вложенный модуль box.stat"
 
 msgid ""
 "The ``box.stat`` submodule provides access to request and network "

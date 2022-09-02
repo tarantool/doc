@@ -1,6 +1,6 @@
 
-msgid "Constant `box.NULL`"
-msgstr "Константа `box.NULL`"
+msgid "Constant box.NULL"
+msgstr "Константа box.NULL"
 
 msgid ""
 "There are some major problems with using Lua **nil** values in tables. For "

@@ -1,6 +1,6 @@
 
-msgid "Module `key_def`"
-msgstr "Модуль `key_def`"
+msgid "Module key_def"
+msgstr "Модуль key_def"
 
 msgid ""
 "The `key_def` module has a function for defining the field numbers and types"

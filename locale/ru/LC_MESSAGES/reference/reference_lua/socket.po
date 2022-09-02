@@ -1,6 +1,6 @@
 
-msgid "Module `socket`"
-msgstr "Модуль `socket`"
+msgid "Module socket"
+msgstr "Модуль socket"
 
 msgid "Overview"
 msgstr "Общие сведения"

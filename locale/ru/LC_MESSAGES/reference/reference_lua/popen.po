@@ -1,6 +1,6 @@
 
-msgid "Module `popen`"
-msgstr "Модуль `popen`"
+msgid "Module popen"
+msgstr "Модуль popen"
 
 msgid "Overview"
 msgstr "Общие сведения"

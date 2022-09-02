@@ -1,6 +1,6 @@
 
-msgid "Module `net.box`"
-msgstr "Модуль `net.box`"
+msgid "Module net.box"
+msgstr "Модуль net.box"
 
 msgid "Overview"
 msgstr "Общие сведения"

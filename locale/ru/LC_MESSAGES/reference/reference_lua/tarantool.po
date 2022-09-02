@@ -1,6 +1,6 @@
 
-msgid "Module `tarantool`"
-msgstr "Модуль `tarantool`"
+msgid "Module tarantool"
+msgstr "Модуль tarantool"
 
 msgid ""
 "By saying ``require('tarantool')``, one can answer some questions about how "

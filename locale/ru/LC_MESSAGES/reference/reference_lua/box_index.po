@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.index`"
-msgstr "Вложенный модуль `box.index`"
+msgid "Submodule box.index"
+msgstr "Вложенный модуль box.index"
 
 msgid ""
 "The ``box.index`` submodule provides read-only access for index definitions "

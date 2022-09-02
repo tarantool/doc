@@ -1,7 +1,7 @@
 
 #, fuzzy
 msgid "Module fiber"
-msgstr "Модуль `fiber`"
+msgstr "Модуль fiber"
 
 msgid "Overview"
 msgstr "Общие сведения"

@@ -1,6 +1,6 @@
 
-msgid "Module `strict`"
-msgstr "Модуль `strict`"
+msgid "Module strict"
+msgstr "Модуль strict"
 
 msgid ""
 "The :code:`strict` module has functions for turning \"strict mode\" on or "

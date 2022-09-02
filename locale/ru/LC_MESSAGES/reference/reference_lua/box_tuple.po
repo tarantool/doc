@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.tuple`"
-msgstr "Вложенный модуль `box.tuple`"
+msgid "Submodule box.tuple"
+msgstr "Вложенный модуль box.tuple"
 
 msgid ""
 "The ``box.tuple`` submodule provides read-only access for the ``tuple`` "

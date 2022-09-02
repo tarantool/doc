@@ -1,6 +1,6 @@
 
-msgid "Module `string`"
-msgstr "Модуль `string`"
+msgid "Module string"
+msgstr "Модуль string"
 
 msgid "Overview"
 msgstr "Общие сведения"

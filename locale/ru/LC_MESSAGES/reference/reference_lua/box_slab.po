@@ -1,6 +1,6 @@
 
-msgid "Submodule `box.slab`"
-msgstr "Вложенный модуль `box.slab`"
+msgid "Submodule box.slab"
+msgstr "Вложенный модуль box.slab"
 
 msgid ""
 "The ``box.slab`` submodule provides access to slab allocator statistics. The"

@@ -1,6 +1,6 @@
 
-msgid "Module `utf8`"
-msgstr "Модуль `utf8`"
+msgid "Module utf8"
+msgstr "Модуль utf8"
 
 msgid "Overview"
 msgstr "Общие сведения"

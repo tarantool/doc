@@ -1,6 +1,6 @@
 
-msgid "Module `fun`"
-msgstr "Модуль `fun`"
+msgid "Module fun"
+msgstr "Модуль fun"
 
 msgid ""
 "Luafun, also known as the Lua Functional Library, takes advantage of the "

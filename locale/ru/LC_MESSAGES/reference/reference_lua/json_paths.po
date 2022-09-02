@@ -1,6 +1,6 @@
 
 msgid "JSON paths"
-msgstr ""
+msgstr "JSON-пути"
 
 msgid "Overview"
 msgstr "Общие сведения"

@@ -1,6 +1,6 @@
 
-msgid "Module `http`"
-msgstr "Модуль `http`"
+msgid "Module http"
+msgstr "Модуль http"
 
 msgid "Overview"
 msgstr "Общие сведения"

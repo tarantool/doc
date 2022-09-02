@@ -1,7 +1,7 @@
 .. _libslave:
 
 ================================================================================
-`libslave` tutorial
+libslave tutorial
 ================================================================================
 
 ``libslave`` is a C++ library for reading data changes done by MysQL and,

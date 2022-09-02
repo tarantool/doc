@@ -1,6 +1,6 @@
 
-msgid "Module `expirationd`"
-msgstr "Модуль `expirationd`"
+msgid "Module expirationd"
+msgstr "Модуль expirationd"
 
 msgid ""
 "For a commercial-grade example of a Lua `rock "
