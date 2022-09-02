@@ -1,0 +1,47 @@
+.doc body {
+    padding: 18px;
+}
+
+.doc .b-header {
+    display: none;
+}
+
+.doc .b-footer {
+    display: none;
+}
+
+.doc .b-wrapper {
+    padding-top: 0;
+}
+
+.doc .b-content {
+    margin: 0;
+    padding: 0;
+}
+
+.doc .b-cols_content_right_wrapper {
+    padding: 0;
+}
+
+.doc .b-cols_content_left {
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.doc .b-cols_content_right {
+    padding: 0;
+}
+
+.doc .doc-page-header {
+    padding: 0;
+    margin: 0;
+}
+
+.doc .b-page_over-tail {
+    margin-top: 30px;
+}
+
+.doc .b-article [id] {
+    scroll-margin-top: 20px;
+}

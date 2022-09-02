@@ -1,0 +1,334 @@
+{% set language_list = [
+  ("En", "/en/doc/{{ version }}", "en"),
+  ("Ru", "/ru/doc/{{ version }}", "ru"),
+] %}
+
+{%- macro abspath(path) -%}
+    {%- if rel_path == "true" -%}
+        {{ path }}
+    {%- elif nolang_path == "true" -%}
+        {{ [ "/", path ] | join('') }}
+    {%- else -%}
+        {{ [ "/", language, "/", path ] | join('') }}
+    {%- endif -%}
+{%- endmacro -%}
+
+{% set canonical_url = [
+  use_opensearch,
+  language,
+  '/',
+  pathto(pagename, 1),
+  '.html'
+] | join('')
+%}
+
+{%- macro convert_path_version(toversion) -%}
+  {%- if toversion == version -%}
+    {{ pathto("doc/" + version +  "/index") }}
+  {%- else -%}
+    {%- set lr = pathto("/" + pagename + file_suffix, True)
+               | replace(version, toversion) -%}
+    {{ abspath(lr.split("/", 1)[1]) }}
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro convert_path_i18n(tolang) -%}
+  {%- if tolang == "ru" -%}
+    {{ pathto('../ru/' + pagename + file_suffix, True) }}
+  {%- else -%}
+    {{ pathto('../en/' + pagename + file_suffix, True) }}
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro get_version_text(version) -%}
+  {%- if version == "1.9" -%}
+    {{ "1.9 (stable)" }}
+  {%- elif version == "2.0" -%}
+    {{ "2.0 (alpha)" }}
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro get_downloads_main_page_link() -%}
+  {%- set modified_pagename = pagename | replace("os-installation/1.9", "download") -%}
+  {%- set modified_pagename = modified_pagename | replace("os-installation/2.0", "download_20") -%}
+
+  {%- set splitted = modified_pagename.split('/') -%}
+  {%- set download_pagename = splitted[0] + '/' + splitted[1] -%}
+
+  {%- set lr = pathto("/" + download_pagename + file_suffix, True) -%}
+  {{ abspath(lr.split("/", 1)[1]) }}
+{%- endmacro -%}
+
+{% macro language_selector() %}
+    <ul class="b-doc-language_selector-list">
+    {% for lang in language_list %}
+      <li class="b-doc-language_selector-item">
+      {% if language == lang[2] %}
+        <a href="#" class="b-doc-language_selector-item-url p-active"> {{ lang[0] }} </a>
+      {% else %}
+        <a href="{{ convert_path_i18n(lang[2]) }}"
+           class="b-doc-language_selector-item-url"> {{ lang[0] }} </a>
+      {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+{% endmacro %}
+
+{% macro package_page_header() %}
+  <div class="b-download-header">
+    <div class="b-download-header-path">
+      <a href="{{ get_downloads_main_page_link() }}">Downloads</a> >
+      {%- set lr = pathto("/" + pagename + file_suffix, True) -%}
+      <a href="{{ abspath(lr.split("/", 1)[1]) }}"> Packages</a>
+    </div>
+    <div class="b-download-header-versions">
+      <p>Available versions:</p>
+      <p>
+        {% for elem in versions %}
+          {%- set version_text = get_version_text(elem) -%}
+
+          {%- set splitted = pagename.split('/') -%}
+          {%- set new_pagename = splitted[0] + '/' + splitted[1] + '/' + elem + '/' + splitted[3] -%}
+
+          {% if pagename != new_pagename %}
+            {%- set lr = pathto("/" + new_pagename + file_suffix, True) -%}
+            <a href="{{ abspath(lr.split("/", 1)[1]) }}">{{ version_text }}</a> &nbsp;
+          {% else %}
+            {%- set lr = pathto("/" + new_pagename + file_suffix, True) -%}
+            <a href="{{ abspath(lr.split("/", 1)[1]) }}" class="current-version">{{ version_text }}</a> &nbsp;
+          {% endif %}
+        {% endfor %}
+      </p>
+    </div>
+    <div class="b-download-header-menu-button">
+      <div class="b-download-header-icon compass-icon"></div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro versionswitcher() %}
+    <div class="version-switcher" data-component="version-switcher">
+      <div class="version-switcher-wrapper">
+        <div class="version-switcher-current" data-placeholder="version-switcher-trigger">
+          <h3 class="version-switcher-title">Version:</h3>
+          <a href="{{ convert_path_version(version) }}">
+            {{ version }}
+          </a>
+          <div class="version-switcher-item-icon close-icon"></div>
+        </div>
+        <ul class="version-switcher-drop on_light_bg" data-placeholder="version-switcher-drop" tabindex="-1">
+        {% for elem in versions %}
+          {% if elem != version %}
+            <li class="version-switcher-item">
+              <a href="{{ convert_path_version(elem) }}"> {{ elem }} </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro regular_page_header() %}
+  <div class="doc-page-header" id="doc-page-header">
+    {{- page_path() -}}
+    <div class="doc-page-header__menu-button">
+      <div class="compass-icon"></div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro page_path() %}
+  <div class="path">
+    {% for elem in parents %}
+      <a href="{{ elem.link|e }}" class="path-item">
+        {{ elem.title }}
+      </a>
+    {% endfor %}
+    <span class="path__current path-item">
+      {{ title }}
+    </span>
+  </div>
+{% endmacro %}
+
+<!-- {% macro breadcrumbs() %}
+  <div class="b-page_header">
+    <ul class="b-path-list">
+      <li class="b-path-list-item">
+        <div class="b-path-list-drop-wrapper">
+          <a href="{{ convert_path_version(version) }}"
+            class="b-path-list-item-url">
+            {{ version }}
+          </a>
+          <i class="b-path-list-item-icon fa p-drop-close"></i>
+        </div>
+        <ul class="b-path-list-drop">
+        {% for elem in versions %}
+          {% if elem != version %}
+            <li class="b-path-list-drop-item">
+              <a href="{{ convert_path_version(elem) }}"
+                 class="b-path-list-drop-item-url"> {{ elem }} </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </li>
+      {% for elem in parents %}
+        <li class="b-path-list-item">
+          <a href="{{ elem.link|e }}"
+             class="b-path-list-item-url b-ellipsis">
+            {{ elem.title }}
+          </a>
+        </li>
+      {% endfor %}
+      {% if title %}
+      <li class="b-path-list-item">
+        <div title="{{ title }}" class="b-path_current b-ellipsis">
+          {{ title }}
+        </div>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+{% endmacro %} -->
+
+{% macro navbar(head=True) %}
+  {% if next and prev %}
+    {% if head %}
+      <div class="b-page_over-head">
+    {% else %}
+      <div class="b-page_over-tail">
+    {% endif %}
+    {% if prev %}
+      <div class="b-page_over-prev">
+        <a href="{{ prev.link | e }}" class="b-prev b-ellipsis" title="{{ prev.title | e }}">
+          <i class="fa fa-caret-left"></i>
+          <span class="b-ellipsis">{{ prev.title }}</span>
+        </a>
+      </div>
+    {% endif %}
+    {% if next %}
+      <div class="b-page_over-next">
+        <a href="{{ next.link|e }}" class="b-next b-ellipsis" title="{{ next.title | e }}">
+          <span class="b-ellipsis">{{ next.title }}</span>
+          <i class="fa fa-caret-right"></i>
+        </a>
+      </div>
+    {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro disqus() %}
+  <div id="disqus_thread"></div>
+  <script>
+    // DON'T EDIT
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//tarantooldb.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+{% endmacro %}
+
+{# Modify i_links to add records to site #}
+{% if not wp_local %}
+  {% set i_links = [
+    ("Main",          "https://tarantool.org/{{ language }}/",                             "index"   ),
+    ("Try",           "https://tarantool.org/{{ language }}/try.html",                     "try"     ),
+    ("Documentation", "https://tarantool.org/{{ language }}/doc/{{ version }}/index.html", "doc"     ),
+    ("Download",      "https://tarantool.org/{{ language }}/download/download.html",       "download/download"),
+  ] %}
+{% else %}
+  {% set i_links = [
+    ("Main",          abspath("index.html"),                     "index"   ),
+    ("Try",           abspath("try.html"),                       "try"     ),
+    ("Documentation", abspath("doc/" + version + "/index.html"), "doc"     ),
+    ("Download",      abspath("download/download.html"),         "download/download"),
+  ] %}
+{% endif %}
+
+{#
+  ("Cloud",         "https://cloud.tarantool.org/",            "cloud"   ),
+#}
+
+{% macro i_menu() %}
+  <ul class="b-menu">
+    {% for item in i_links %}
+      {% if item[2] == pagename %}
+      <li class="b-menu-item p-active">
+      {% elif pagename is documentation and item[2] == "doc" %}
+      <li class="b-menu-item p-active">
+      {% elif item[2] == "cloud" %}
+      <li class="b-menu-item p-cloud">
+      {% else %}
+      <li class="b-menu-item">
+      {% endif %}
+        <a href="{{ item[1] }}" class="b-menu-item-url">{{ item[0] }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% macro i_header() %}
+  <header class="b-header">
+    <div class="b-header_menu_mobile">
+      <div class="b-burger-button">
+        <span></span>
+      </div>
+      <form role="search" class="b-header-search"
+            action="{{ pathto('search') }}" method="get">
+        <input name="q" type="search">
+      </form>
+    </div>
+    <div class="b-menu_mobile">
+      <div class="b-menu_mobile__wrapper">
+        <nav class="b-header_menu">
+          {{ i_menu() }}
+          {{ language_selector() }}
+        </nav>
+      </div>
+    </div>
+    <div class="b-header-wrapper">
+      <nav class="b-header_menu">
+        <div class="b-header_menu-top">
+          {{ i_menu() }}
+          <div class="b-header_menu-top-ctl">
+            <a class="b-search-btn" href="#">
+              <i class="fa fa-search"></i>
+            </a>
+          </div>
+        </div>
+        <div class="b-header_menu-bottom">
+          <form role="search" class="b-header_menu-search" action="{{ pathto('search') }}" method="get">
+            <input name="q" type="search" class="b-header_menu-search-text"
+                   placeholder="Search Tarantool.org web site and documentation">
+            <input class="b-header_menu-search-but" type="submit" value="Go">
+          </form>
+        </div>
+      </nav>
+    </div>
+  </header>
+{% endmacro %}
+
+{% macro i_footer() %}
+<footer class="b-footer">
+  <div class="b-footer-wrapper">
+    <nav class="b-footer_menu">
+      {{ i_menu() }}
+      <div class="b-footer-other">
+        <a href="http://15.tarantool.org">1.5 web site and downloads</a>
+      </div>
+    </nav>
+  </div>
+</footer>
+{% endmacro %}
+
+{# vim: set syntax=jinja ts=2 sts=2 sw=2 expandtab : #}

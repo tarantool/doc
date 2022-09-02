@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="451" height="1131" viewBox="0 0 451 1131">
+    <g fill="none" fill-rule="evenodd" opacity=".2">
+        <path stroke="#979797" stroke-linecap="square" d="M149.5 205.5L56.603 341.051"/>
+        <path stroke="#979797" stroke-linecap="square" d="M149.5 205.5L-50.914 322.453" opacity=".4"/>
+        <g transform="rotate(135 268.489 532.188)">
+            <ellipse cx="307.388" cy="244.824" fill="#D8D8D8" rx="5.393" ry="7.419"/>
+            <path stroke="#979797" stroke-linecap="square" d="M401.761 268.318L606.687 97.682" opacity=".4"/>
+            <path stroke="#979797" stroke-linecap="square" d="M577.925 542.818l140.212-160.744M484.45 473.574l249.866-106.338M399.964 268.318L484.45 471.1M399.964 268.318L506.022 161.98M399.964 268.318l-95.272-19.784"/>
+            <path stroke="#979797" stroke-linecap="square" d="M304.692 248.534l201.33-86.554" opacity=".5"/>
+            <path stroke="#979797" stroke-linecap="square" d="M504.224 161.98L552.76 8.655M552.759 8.655l53.928 89.027M606.687 97.682L504.224 161.98M608.484 97.682l124.034 69.244M549.164 6.182L727.125 144.67M504.224 161.98l240.877 22.256M272.335 1133.858l73.701-229.986"/>
+            <path stroke="#979797" stroke-linecap="square" d="M252.561 970.642l-248.067 42.04" opacity=".5"/>
+            <path stroke="#979797" stroke-linecap="square" d="M4.494 1015.155l116.368-167.518M6.292 1015.155l266.043 118.703M254.359 973.115l89.88-66.77M283.362 817.233L254.36 975.588M283.12 817.318l176.164-93.973M462.88 720.872L344.239 906.345M484.45 473.574l-23.368 249.77M461.082 723.345l116.843-180.527M484.45 473.574l93.475 66.77M121.337 846.993l131.224 123.649"/>
+            <ellipse cx="4.872" cy="1012.869" fill="#E9E6E6" rx="4.872" ry="6.702"/>
+            <ellipse cx="461.082" cy="723.345" fill="#D8D8D8" rx="6.292" ry="8.655"/>
+            <path stroke="#979797" stroke-linecap="square" d="M606.687 97.682l106.058 98.92"/>
+            <ellipse cx="552.759" cy="11.128" fill="#D8D8D8" rx="8.089" ry="11.128"/>
+            <path stroke="#979797" stroke-linecap="square" d="M342.441 903.872l364.91-74.19"/>
+            <path stroke="#979797" stroke-linecap="square" d="M579.723 542.818l125.831 296.756" opacity=".5"/>
+        </g>
+    </g>
+</svg>
