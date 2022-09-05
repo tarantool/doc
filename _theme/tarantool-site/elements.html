@@ -106,7 +106,7 @@
   </div>
 {% endmacro %}
 
-{% macro versionswitcher() %}
+{% macro version_switcher() %}
     <div class="version-switcher" data-component="version-switcher">
       <div class="version-switcher-wrapper">
         <div class="version-switcher-current" data-placeholder="version-switcher-trigger">
@@ -132,9 +132,6 @@
 {% macro regular_page_header() %}
   <div class="doc-page-header" id="doc-page-header">
     {{- page_path() -}}
-    <div class="doc-page-header__menu-button">
-      <div class="compass-icon"></div>
-    </div>
   </div>
 {% endmacro %}
 
@@ -278,55 +275,69 @@
 {% endmacro %}
 
 {% macro i_header() %}
-  <header class="b-header">
-    <div class="b-header_menu_mobile">
-      <div class="b-burger-button">
-        <span></span>
-      </div>
-      <form role="search" class="b-header-search"
-            action="{{ pathto('search') }}" method="get">
-        <input name="q" type="search">
-      </form>
-    </div>
-    <div class="b-menu_mobile">
-      <div class="b-menu_mobile__wrapper">
-        <nav class="b-header_menu">
-          {{ i_menu() }}
-          {{ language_selector() }}
-        </nav>
-      </div>
-    </div>
-    <div class="b-header-wrapper">
-      <nav class="b-header_menu">
-        <div class="b-header_menu-top">
-          {{ i_menu() }}
-          <div class="b-header_menu-top-ctl">
-            <a class="b-search-btn" href="#">
-              <i class="fa fa-search"></i>
-            </a>
-          </div>
+<div class="doc-header__wrapper" data-component="header">
+  <div class="doc-header">
+    <div class="doc-header__menu-bar">
+      <div>
+        <div class="doc-page-header__menu-button">
+          <div class="side-menu-icon"></div>
         </div>
-        <div class="b-header_menu-bottom">
-          <form role="search" class="b-header_menu-search" action="{{ pathto('search') }}" method="get">
-            <input name="q" type="search" class="b-header_menu-search-text"
-                   placeholder="Search Tarantool.org web site and documentation">
-            <input class="b-header_menu-search-but" type="submit" value="Go">
+      </div>
+      <a href=".">
+        <div class="doc-header__logo doc-header__logo_full">
+          <img src="https://static.tarantool.io/pub/220829-1248-ae7bca7/tarantool/images/logo-tarantool-full.svg" height="52" width="223" alt="Tarantool.io">
+        </div>
+        <div class="doc-header__logo doc-header__logo_small">
+          <img src="https://static.tarantool.io/pub/220829-1248-ae7bca7/tarantool/images/logo-tarantool-small.svg" height="52" width="52" alt="Tarantool.io">
+        </div>
+      </a>
+      <div class="doc-header__right-side">
+          <form class="sidebar_search_form doc-header__search" id="searchmenu" role="search" action="{{ pathto('search') }}" method="get">
+              <input name="q" type="search" placeholder="Search">
+              <input type="submit" value="">
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+              <button type="button" class="doc-sidebar__close-button doc-header__search-close" id="search_close"></button>
           </form>
-        </div>
-      </nav>
+          <button id="togglesearchbtn" class="header__btn doc-header__btn doc-header__btn-mob-search">
+              <img src="https://static.tarantool.io/pub/220829-1248-ae7bca7/tarantool/images/Search-doc-mobile.svg" width="32" height="32" alt="Search">
+          </button>
+      </div>
     </div>
-  </header>
+  </div>
+</div>
 {% endmacro %}
 
 {% macro i_footer() %}
-<footer class="b-footer">
-  <div class="b-footer-wrapper">
-    <nav class="b-footer_menu">
-      {{ i_menu() }}
-      <div class="b-footer-other">
-        <a href="http://15.tarantool.org">1.5 web site and downloads</a>
-      </div>
-    </nav>
+<footer class="doc-footer">
+  <div class="doc-footer__content">
+    <div class="doc-footer__head" id="footer-links">
+      <img src="{{ abspath("_static/images/logo-tarantool-full.svg") }}" alt="Tarantool Logo" class="doc-footer__logo">
+      <nav class="doc-footer__head__social_links">
+        <a href="https://t.me/tarantoolru" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-telegram.svg") }}" alt="telegram"></a>
+        <a href="https://stackoverflow.com/questions/tagged/tarantool" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-so.svg") }}" alt="stackoverflow"></a>
+        <a href="https://github.com/tarantool/tarantool" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-github.svg") }}" alt="github"></a>
+        <a href="https://twitter.com/tarantooldb" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-twitter.svg") }}" alt="twitter"></a>
+        <a href="https://www.linkedin.com/company/tarantool-enterprise-nosql/" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-linkedin.svg") }}" alt="linkedin"></a>
+      </nav>
+      <nav class="doc-footer__social-links">
+        <a href="https://t.me/tarantoolru" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-telegram.svg") }}" alt="telegram"></a>
+        <a href="https://stackoverflow.com/questions/tagged/tarantool" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-so.svg") }}" alt="stackoverflow"></a>
+        <a href="https://github.com/tarantool/tarantool" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-github.svg") }}" alt="github"></a>
+        <a href="https://twitter.com/tarantooldb" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-twitter.svg") }}" alt="twitter"></a>
+        <a href="https://www.linkedin.com/company/tarantool-enterprise-nosql/" target="_blank" rel="noreferer noopener" class="doc-footer__social">
+            <img src="{{ abspath("_static/images/doc-footer/footer-linkedin.svg") }}" alt="linkedin"></a>
+      </nav>
+    </div>
   </div>
 </footer>
 {% endmacro %}

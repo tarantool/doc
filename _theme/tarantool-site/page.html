@@ -1,21 +1,15 @@
 {%- extends "layout.html" %}
 
-{% from 'elements.html' import breadcrumbs          with context %}
-{% from 'elements.html' import page_path            with context %}
 {% from 'elements.html' import package_page_header  with context %}
 {% from 'elements.html' import regular_page_header  with context %}
-{% from 'elements.html' import versionswitcher      with context %}
+{% from 'elements.html' import version_switcher     with context %}
+{% from 'elements.html' import i_footer             with context %}
 {% from 'elements.html' import navbar               with context %}
-{% from 'elements.html' import language_selector    with context %}
 
 {% block body %}
   {% if is_website %}
     {% if is_mainpage %}
       <div class="doc-main-page b-clearbox">
-        <!-- <div class="selector-wrapper">
-          {{- language_selector() -}}
-        </div>
-        {{- versionswitcher() -}} -->
         {{ body }}
       </div>
     {% else %}
@@ -29,11 +23,6 @@
       {{ body }}
     </div>
   {% else %}
-    <!-- <section class="b-block-lightgray b-documentation_top b-clearbox p-documentation_in">
-      <div class="b-block-wrapper">
-        <h2 class="{{ header_class }}" title="{{ title }}"> {{ title }} </h2>
-      </div>
-    </section> -->
     {% if is_mainpage %}
       <section class="b-block b-documentation">
         <div class="b-block-wrapper">
@@ -43,28 +32,9 @@
         </div>
       </section>
     {% else %}
-      <div class="b-cols_content b-clearbox" id="b-cols_content">
-        <div class="b-cols_content_left" id="b-cols_content_left" data-component="menu-left">
-          <!-- <div class="doc-sidebar__header">
-            <button class="doc-sidebar__close-button" id="sidebar_close"></button>
-            <div class="flex_row_nowrap with_hpadding_20px with_vmargin_20px version-switcher__row">
-              {{ versionswitcher() }}
-            </div>
-          </div> -->
-          {{- toctree(maxdepth=-1, collapse=false, includehidden=true) }}
-        </div>
-        <div class="b-cols_content_right_wrapper">
-          <div class="b-cols_content_right">
-            <div class="b-cols_content_right-slot">
-              <div class="doc-content__background">
-                {{- regular_page_header() -}}
-                {{ content_pane }}
-                {{- navbar(False) -}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {{- regular_page_header() -}}
+      {{ content_pane }}
+      {{- navbar(False) -}}
     {% endif %}
   {% endif %}
 {% endblock %}
