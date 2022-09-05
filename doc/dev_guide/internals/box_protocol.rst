@@ -1092,10 +1092,10 @@ waits for active requests to complete before closing the connections.
 Once all connections are terminated, the server will be shut down.
 
 The protocol uses the event subscription system.
-That is, the feature is available if a server supports :ref:`box.shutdown <system-events_box-shutdown>` event
+That is, the feature is available if the server supports the :ref:`box.shutdown <system-events_box-shutdown>` event
 and ``IPROTO_WATCH``.
 For more information about it, see :ref:`reference for the event watchers <box-watchers>`
-and the :ref:`corresponding section <box-protocol-watchers>` in Box Protocol.
+and the :ref:`corresponding section <box-protocol-watchers>` of this document.
 
 The shutdown protocol works in the following way:
 
