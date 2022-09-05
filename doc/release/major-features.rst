@@ -20,9 +20,12 @@ Versions that only include bug fixes are not listed in this table.
         *   -   Since version
             -   Feature
 
+        *   -   2.10.2
+            -   Internal fibers cannot be cancelled from the Lua public API anymore (:tarantool-issue:`7473`)
+
         *   -   2.10.1
-            -   Interactive transactions are now possible in remote binary consoles |br|
-                Improved string representation of datetime intervals
+            -   Interactive transactions are now possible in remote binary consoles (:tarantool-issue:`7413`)|br|
+                Improved string representation of datetime intervals (:tarantool-issue:`7045`)
 
         *   -   2.10.0
             -   Transaction isolation levels in Lua and IPROTO (:tarantool-issue:`6930`) |br|
