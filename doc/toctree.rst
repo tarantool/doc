@@ -10,7 +10,6 @@
     how-to/index
     concepts/index
     CRUD operations <reference/reference_lua/box_space>
-    book/box/indexes
     book/box/atomic
     book/box/triggers
     reference/reference_rock/vshard/vshard_index
