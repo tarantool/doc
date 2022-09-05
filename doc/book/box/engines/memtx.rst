@@ -44,7 +44,7 @@ Within the TX thread, there is a memory area allocated for Tarantool to store da
 .. image:: memtx/arena2.svg
 
 Data is stored in :term:`spaces <space>`. Spaces contain database records—:term:`tuples <tuple>`.
-To access and manipulate the data stored in spaces and tuples, Tarantool builds :doc:`indexes </book/box/indexes>`.
+To access and manipulate the data stored in spaces and tuples, Tarantool builds :doc:`indexes </concepts/data_model/indexes>`.
 
 Special `allocators <https://github.com/tarantool/small>`__ manage memory allocations for spaces, tuples, and indexes within the Arena.
 The slab allocator is the main allocator used to store tuples.
@@ -117,7 +117,7 @@ The possible types are TREE, HASH, BITSET, and RTREE.
 Select query are possible against secondary index keys as well as primary keys.
 Indexes can have multi-part keys.
 
-For detailed information about indexes, refer to the :doc:`/book/box/indexes` page.
+For detailed information about indexes, refer to the :doc:`/concepts/data_model/indexes` page.
 
 .. _memtx-replication:
 

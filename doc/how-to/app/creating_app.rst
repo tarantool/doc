@@ -1,6 +1,7 @@
 :fullwidth:
 
-.. _app_server-creating_app:
+..  _app_server:
+..  _app_server-creating_app:
 
 Creating an application
 =======================
@@ -29,13 +30,13 @@ location in a while.
 We leave client-side applications outside the scope of this story. However, we
 promise a mini-demo in the end to simulate real users and give us some fun.
 
-.. image:: aster.svg
+..  image:: aster.svg
     :align: center
 
 
 Follow these topics to implement our application:
 
-.. toctree::
+..  toctree::
     :maxdepth: 3
 
     creating_app/modules_rocks_and_applications

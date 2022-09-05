@@ -180,7 +180,7 @@ Example 1
 
 *   Engine = memtx.
 
-..  code-block:: memtx
+..  code-block:: lua
 
     space:get()
     space:insert()

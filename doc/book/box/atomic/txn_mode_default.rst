@@ -19,7 +19,7 @@ To allow yielding inside a :ref:`memtx <engines-chapter>` transaction, see :ref:
 
 To switch back to the default mode, disable the transaction manager:
 
-..  code-block:: enabling
+..  code-block:: tarantoolsession
 
     box.cfg{memtx_use_mvcc_engine = false}
 

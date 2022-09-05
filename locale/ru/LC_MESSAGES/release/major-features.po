@@ -52,10 +52,10 @@ msgid "2.7.1"
 msgstr "2.7.1"
 
 msgid ""
-":doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>` (:tarantool-"
+":ref:`LuaJIT memory profiler <luajit_memprof>` (:tarantool-"
 "issue:`5442`)"
 msgstr ""
-":doc:`Профилировщик памяти LuaJIT </book/app_server/luajit_memprof>` "
+":ref:`Профилировщик памяти LuaJIT <luajit_memprof>` "
 "(:tarantool-issue:`5442`)"
 
 msgid ""

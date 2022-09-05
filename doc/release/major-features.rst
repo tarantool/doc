@@ -68,7 +68,7 @@ Versions that only include bug fixes are not listed in this table.
             -   ``--leak-only`` LuaJIT memory profiler option (:tarantool-issue:`5812`)
 
         *   -   2.7.1
-            -   :doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>` (:tarantool-issue:`5442`)
+            -   :ref:`LuaJIT memory profiler <luajit_memprof>` (:tarantool-issue:`5442`)
 
         *   -   2.7.1
             -   SQL :doc:`ALTER TABLE ADD COLUMN </reference/reference_sql/sql_statements_and_clauses>` statement support for empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`)
