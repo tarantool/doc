@@ -4,7 +4,7 @@ on:
   pull_request:
 jobs:
   deploy-branch:
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted, Linux, X64, flavor-8-16 ]
     container: tarantool/doc-builder:fat-4.1
     env:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
