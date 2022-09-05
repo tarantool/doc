@@ -10,6 +10,16 @@ Released on 2022-08-08.
 Overview
 --------
 
+..  warning::
+   
+    It is highly recommended to use Tarantool :doc:`v. 2.10.2 </release/2.10.2>` instead.
+
+    The 2.10.1 release introduced a severe regression (:tarantool-issue:`7605`),
+    which may pass testing with a low amount of data but impact a production server heavily.
+    It may crash the process and, that is worse, feed incorrect data.
+    The Tarantool development team has `decided <https://github.com/orgs/tarantool/discussions/7646>`_
+    to remove all the packages associated with this release.
+
 2.10.1 is the second
 :doc:`stable </release/policy/>` version of the 2.10 release series.
 It introduces 17 improvements and resolves 52 bugs since 2.10.0.
