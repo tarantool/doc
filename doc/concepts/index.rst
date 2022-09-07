@@ -73,6 +73,15 @@ that allows yielding within a longer transaction.
 This mode only works with the in-memory :ref:`memtx <engines-chapter>` storage engine.
 
 
+Storage engines
+---------------
+
+A storage engine is a set of low-level routines that store and
+retrieve values. Tarantool offers a choice of two storage engines:
+
+*   :ref:`memtx <engines-memtx>` is the in-memory storage engine used by default.
+*   :ref:`vinyl <engines-vinyl>` is the on-disk storage engine.
+
 
 ..  toctree::
     :hidden:
@@ -84,11 +93,10 @@ This mode only works with the in-memory :ref:`memtx <engines-chapter>` storage e
     modules
     Tarantool Cartridge <https://tarantool.io/doc/latest/book/cartridge>
     triggers
+    engines/index
 
     .. replication
-    .. storage_engines
 
 - Replication — сюда скопировать часть из Cluster on Cartridge, сам раздел про карж пока не трогаем
 - Binary protocol ([https://www.tarantool.io/en/doc/latest/dev_guide/internals/box_protocol/](https://www.tarantool.io/en/doc/latest/dev_guide/internals/box_protocol/)) — не забыть про переводы
   Tarantool instances communicate with each other using IProto -- a binary protocol. - в отрывок про репликацию
-- Storage engines (перемещаем весь раздел и переводы тоже)
