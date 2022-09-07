@@ -1,16 +1,17 @@
-.. _box_ctl-on_shutdown:
+..  _box_ctl-on_shutdown:
 
 ===============================================================================
 box.ctl.on_shutdown()
 ===============================================================================
 
-.. module:: box.ctl
+..  module:: box.ctl
 
 The ``box.ctl`` submodule also contains two functions for the two
 :ref:`server trigger <triggers>` definitions: ``on_shutdown`` and ``on_schema_init``.
 Please, familiarize yourself with the mechanism of trigger functions before using them.
+Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
 
-.. function:: on_shutdown(trigger-function [, old-trigger-function])
+..  function:: on_shutdown(trigger-function [, old-trigger-function])
 
      Create a "shutdown :ref:`trigger <triggers>`".
      The ``trigger-function`` will be executed
@@ -29,5 +30,6 @@ Please, familiarize yourself with the mechanism of trigger functions before usin
      If the parameters are (nil, old-trigger-function), then the old
      trigger is deleted.
 
-     Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section.
+     If you want to set a timeout for this trigger,
+     use the :ref:`set_on_shutdown_timeout <box_ctl-on_shutdown_timeout>` function.
 
