@@ -14,7 +14,7 @@ This chapter contains the following sections:
     :numbered: 0
 
     ../../concepts/data_model/index
-    atomic
+    ../../concepts/atomic
     ../admin/access_control
     ../../concepts/triggers
     limitations

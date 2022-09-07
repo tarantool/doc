@@ -26,12 +26,14 @@ Sharding
 Tarantool implements database sharding via the ``vshard`` module.
 :ref:`Learn more <sharding>`.
 
+
 Triggers
 --------
 
 Tarantool allows specifying callback functions that run upon certain database events.
 They can be useful for resolving replication conflicts.
 :ref:`Learn more <triggers>`.
+
 
 Application server
 ------------------
@@ -57,26 +59,36 @@ Tarantool executes code in :ref:`fibers <concepts-coop_multitasking>` that are m
 Learn more about Tarantool's :ref:`thread model <thread_model>`.
 
 
+Transactions
+------------
+
+Tarantool's ACID :ref:`transaction model <atomic-atomic_execution>` lets the user choose
+between two modes of transactions.
+
+The :ref:`default mode <txn_mode-default>` allows for fast monopolistic atomic transactions.
+It doesn't support interactive transactions, and in case of an error, all transaction changes are rolled back.
+
+The :ref:`MVCC mode <txn_mode_transaction-manager>` involves a multi-version concurrency control engine
+that allows yielding within a longer transaction.
+This mode only works with the in-memory :ref:`memtx <engines-chapter>` storage engine.
+
+
+
 ..  toctree::
     :hidden:
 
     data_model/index
     sharding/index
     coop_multitasking
+    atomic
     modules
     Tarantool Cartridge <https://tarantool.io/doc/latest/book/cartridge>
     triggers
 
-
-..  toctree::
-    :hidden:
-
-    .. transactions
     .. replication
     .. storage_engines
 
-- Transactions (перемещаем весь раздел)
 - Replication — сюда скопировать часть из Cluster on Cartridge, сам раздел про карж пока не трогаем
 - Binary protocol ([https://www.tarantool.io/en/doc/latest/dev_guide/internals/box_protocol/](https://www.tarantool.io/en/doc/latest/dev_guide/internals/box_protocol/)) — не забыть про переводы
-  Tarantool instances communicate with each other using IProto -- a binary protocol.
+  Tarantool instances communicate with each other using IProto -- a binary protocol. - в отрывок про репликацию
 - Storage engines (перемещаем весь раздел и переводы тоже)

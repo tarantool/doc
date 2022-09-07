@@ -55,7 +55,6 @@
                 how-to/index
                 concepts/index
                 CRUD operations <reference/reference_lua/box_space>
-                book/box/atomic
                 Cluster on Cartridge <book/cartridge/index>
                 book/admin/index
                 book/replication/index
