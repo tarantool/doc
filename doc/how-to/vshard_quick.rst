@@ -1,8 +1,7 @@
-.. _vshard-quick-start:
+..  _vshard-quick-start:
 
-===============================================================================
-Quick start guide
-===============================================================================
+Quick start with sharding
+=========================
 
 For installation instructions, check out the :ref:`vshard installation manual <vshard-install>`.
 
@@ -20,7 +19,7 @@ All instances are managed using the ``tarantoolctl`` administrative utility whic
 
 Change the directory to ``example/`` and use ``make`` to run the development cluster:
 
-.. code-block:: console
+..  code-block:: console
 
     $ cd example/
     $ make
@@ -60,25 +59,25 @@ Change the directory to ``example/`` and use ``make`` to run the development clu
 
 Some ``tarantoolctl`` commands:
 
-* ``tarantoolctl start router_1`` – start the router instance
-* ``tarantoolctl enter router_1``  – enter the admin console
+*   ``tarantoolctl start router_1`` – start the router instance
+*   ``tarantoolctl enter router_1``  – enter the admin console
 
 The full list of ``tarantoolctl`` commands for managing Tarantool instances is
 available in the :ref:`tarantoolctl reference <tarantoolctl>`.
 
 Essential ``make`` commands you need to know:
 
-* ``make start`` – start all Tarantool instances
-* ``make stop`` – stop all Tarantool instances
-* ``make logcat`` – show logs from all instances
-* ``make enter`` – enter the admin console on ``router_1``
-* ``make clean`` – clean up all persistent data
-* ``make test`` – run the test suite (you can also run ``test-run.py`` in the ``test`` directory)
-* ``make`` – execute ``make stop``, ``make clean``, ``make start`` and ``make enter``
+*   ``make start`` – start all Tarantool instances
+*   ``make stop`` – stop all Tarantool instances
+*   ``make logcat`` – show logs from all instances
+*   ``make enter`` – enter the admin console on ``router_1``
+*   ``make clean`` – clean up all persistent data
+*   ``make test`` – run the test suite (you can also run ``test-run.py`` in the ``test`` directory)
+*   ``make`` – execute ``make stop``, ``make clean``, ``make start`` and ``make enter``
 
 For example, to start all instances, use ``make start``:
 
-.. code-block:: console
+..  code-block:: console
 
     $ make start
     $ ps x|grep tarantool
@@ -91,7 +90,7 @@ For example, to start all instances, use ``make start``:
 To perform commands in the admin console, use the router's
 :ref:`public API <vshard_api_reference-router_public_api>`:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     unix/:./data/router_1.control> vshard.router.info()
     ---
@@ -121,15 +120,14 @@ To perform commands in the admin console, use the router's
       alerts: []
     ...
 
-.. _vshard-config-cluster-example:
+..  _vshard-config-cluster-example:
 
--------------------------------------------------------------------------------
 Sample configuration
--------------------------------------------------------------------------------
+--------------------
 
 The configuration of a simple sharded cluster can look like this:
 
-.. code-block:: kconfig
+..  code-block:: kconfig
 
     local cfg = {
         memtx_memory = 100 * 1024 * 1024,
@@ -175,7 +173,7 @@ See the :ref:`Configuration reference <vshard-config-reference>` section for det
 
 On routers, call ``vshard.router.cfg(cfg)``:
 
-.. code-block:: lua
+..  code-block:: lua
 
     cfg.listen = 3300
 
@@ -185,7 +183,7 @@ On routers, call ``vshard.router.cfg(cfg)``:
 
 On storages, call ``vshard.storage.cfg(cfg, instance_uuid)``:
 
-.. code-block:: lua
+..  code-block:: lua
 
     -- Get instance name
     local MY_UUID = "de0ea826-e71d-4a82-bbf3-b04a6413e417"

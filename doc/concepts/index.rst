@@ -21,10 +21,13 @@ Tarantool uses mechanisms like the write-ahead log (WAL) and snapshots.
 
 For details, check the :ref:`Data model <box_data_model>` page.
 
-..  toctree::
-    :hidden:
+    
 
-    data_model/index
+Sharding
+--------
+
+Tarantool implements database sharding via the ``vshard`` module.
+:ref:`Learn more <sharding>`.
 
 
 Application server
@@ -42,13 +45,6 @@ thus making the application work faster.
 To enable developers to work with LuaJIT, Tarantool provides tools like the :ref:`memory profiler <luajit_memprof>`
 and the :ref:`getmetrics <luajit_getmetrics>` module.
 
-..  toctree::
-    :hidden:
-
-    modules
-    Tarantool Cartridge <https://tarantool.io/doc/latest/book/cartridge>
-    Tooling <https://tarantool.io/doc/latest/reference/tooling>
-
 
 Fibers and cooperative multitasking
 -----------------------------------
@@ -60,13 +56,17 @@ Learn more about Tarantool's :ref:`thread model <thread_model>`.
 ..  toctree::
     :hidden:
 
+    data_model/index
+    sharding/index
     coop_multitasking
+    modules
+    Tarantool Cartridge <https://tarantool.io/doc/latest/book/cartridge>
+
 
 ..  toctree::
     :hidden:
 
     .. transactions
-    .. sharding
     .. replication
     .. storage_engines
 

@@ -20,6 +20,7 @@ If you are new to Tarantool, please see our
     getting_started_connectors
     getting_started_cartridge
     db/index
+    vshard_quick
     app/index
     sql/index
     other/index

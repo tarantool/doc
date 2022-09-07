@@ -518,8 +518,8 @@ msgstr ""
 "неприменимое к перемещаемому сегменту. В этом случае необходимо повторить "
 "попытку выполнения запроса."
 
-msgid "The `_bucket` system space"
-msgstr "Системный спейс `_bucket`"
+msgid "The _bucket system space"
+msgstr "Системный спейс _bucket"
 
 msgid ""
 "The ``_bucket`` system space of each replica set stores the ids of buckets "

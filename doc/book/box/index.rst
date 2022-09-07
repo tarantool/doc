@@ -13,7 +13,7 @@ This chapter contains the following sections:
     :maxdepth: 2
     :numbered: 0
 
-    data_model
+    ../../concepts/data_model/index
     atomic
     ../admin/access_control
     triggers

@@ -1,4 +1,8 @@
-.. _vshard-summary:
+..  _sharding:
+..  _vshard-summary:
+
+Sharding
+========
 
 Scaling databases in a growing project is often considered one of the most
 challenging issues. Once a single server cannot withstand the load, scaling
@@ -30,3 +34,14 @@ a server instance is active and available for all types of requests, or a failov
 occurred and the instance accepts only read requests.
 
 The ``vshard`` module provides router and storage API (public and internal) for sharding-aware applications.
+
+Check out the :ref:`quick start guide <vshard-quick-start>` or
+learn more about :ref:`how sharding works <vshard-architecture>` in Tarantool:
+
+..  toctree::
+    :maxdepth: 2
+
+    vshard_architecture
+
+You can also find out more about :ref:`sharding administration <vshard-admin>`
+or dive into the ``vshard`` configuration and API :ref:`reference <vshard>`.

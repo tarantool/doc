@@ -1,6 +1,14 @@
 
-msgid "Administration"
-msgstr "Администрирование"
+msgid "Sharding"
+msgstr "Шардирование"
+
+msgid ""
+"Sharding in Tarantool is implemented in the ``vshard`` module. "
+"For a quick start with ``vshard``, refer to the :ref:`guide <vshard-quick-start>`."
+msgstr ""
+"Шардирование БД в Tarantool реализует модуль ``vshard``. "
+"Вы можете обратиться к :ref:`руководству по быстрому запуску <vshard-quick-start>` "
+"этого модуля."
 
 msgid "Installation"
 msgstr "Установка"

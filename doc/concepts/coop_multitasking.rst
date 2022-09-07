@@ -175,8 +175,8 @@ That is why executing separate commands like ``select()``, ``insert()``, ``updat
 transaction without MVCC will cause it to an abort. This is due to implicit yield after each 
 chunk of code is executed in the console.
 
-Example 1
-~~~~~~~~~
+Example #1
+~~~~~~~~~~
 
 *   Engine = memtx.
 

@@ -33,6 +33,7 @@ This chapter includes the following sections:
    logs
    security
    access_control
+   vshard_admin
    server_introspection
    daemon_supervision
    disaster_recovery

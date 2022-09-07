@@ -57,7 +57,6 @@
                 CRUD operations <reference/reference_lua/box_space>
                 book/box/atomic
                 book/box/triggers
-                reference/reference_rock/vshard/vshard_index
                 Cluster on Cartridge <book/cartridge/index>
                 book/admin/index
                 book/replication/index
