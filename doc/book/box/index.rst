@@ -16,6 +16,6 @@ This chapter contains the following sections:
     ../../concepts/data_model/index
     atomic
     ../admin/access_control
-    triggers
+    ../../concepts/triggers
     limitations
     engines/index
