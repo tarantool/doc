@@ -143,9 +143,9 @@ msgstr ""
 "механизма транзакций нужно знать об ограничениях."
 
 msgid ""
-"For details, see the section about :doc:`transactions </book/box/atomic>`."
+"For details, see the section about :doc:`transactions </concepts/atomic>`."
 msgstr ""
-"Подробнее о них описано в разделе про :doc:`транзакции </book/box/atomic>`."
+"Подробнее о них описано в разделе про :doc:`транзакции </concepts/atomic>`."
 
 msgid "How you can apply migration"
 msgstr "Как применять миграции"

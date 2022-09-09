@@ -62,7 +62,7 @@ To learn how to call stored procedures in your programming language, see the cor
 * :ref:`for Python <getting_started-python>`
 * :ref:`for Go <getting_started-go>`
 * :ref:`for PHP <getting_started-php>`
-* :doc:`for C++ </getting_started/getting_started_cxx>`
+* :doc:`for C++ </how-to/getting_started_cxx>`
 
 For connectors to other languages, check the README for the connector of your choice
 `on GitHub <https://github.com/tarantool>`_.

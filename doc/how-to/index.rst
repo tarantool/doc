@@ -22,5 +22,6 @@ If you are new to Tarantool, please see our
     db/index
     vshard_quick
     app/index
+    replication/index
     sql/index
     other/index

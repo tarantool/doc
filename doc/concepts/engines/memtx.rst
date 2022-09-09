@@ -145,7 +145,7 @@ replicas.
 are not considered committed and are not responded to a client until they are
 replicated onto some number of replicas.
 
-For more information on replication, refer to the :doc:`corresponding chapter </book/replication/index>`.
+For more information on replication, refer to the :ref:`corresponding chapter <replication>`.
 
 .. _memtx-summary:
 

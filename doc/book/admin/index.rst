@@ -34,6 +34,7 @@ This chapter includes the following sections:
    security
    access_control
    vshard_admin
+   replication/index
    server_introspection
    daemon_supervision
    disaster_recovery

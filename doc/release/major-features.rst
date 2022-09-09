@@ -83,7 +83,7 @@ Versions that only include bug fixes are not listed in this table.
             -   :ref:`LuaJIT platform metrics <metrics-reference-luajit>` (:tarantool-issue:`5187`)
 
         *   -   2.6.1
-            -   :doc:`Automated leader election </book/replication/repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)
+            -   :ref:`Automated leader election <repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)
 
         *   -   2.6.1
             -   :ref:`Transactional manager <txn_mode_transaction-manager>` for memtx engine (:tarantool-issue:`4897`)
@@ -95,7 +95,7 @@ Versions that only include bug fixes are not listed in this table.
             -   :doc:`box.ctl.is_recovery_finished() </reference/reference_lua/box_ctl/is_recovery_finished>` for memtx engine (:tarantool-issue:`5187`)
 
         *   -   2.5.1
-            -   :doc:`Synchronous replication </book/replication/repl_sync>` (beta) (:tarantool-issue:`4842`)
+            -   :ref:`Synchronous replication <repl_sync>` (beta) (:tarantool-issue:`4842`)
 
         *   -   2.5.1
             -   Allow an :doc:`anonymous replica </reference/reference_lua/box_info/replication_anon>` to follow another anonymous replica (:tarantool-issue:`4696`)

@@ -13,7 +13,7 @@ to modify the schema after applying it.
 The easiest way to change it is to delete the database snapshots and create
 a schema from scratch. Of course, this is only acceptable during application
 development and debugging.
-For production scenarios, read the section on :ref:`migrations<migrations>`.
+For production scenarios, read the section on :ref:`migrations <migrations>`.
 
 To remove snapshots:
 
@@ -26,4 +26,4 @@ To remove snapshots:
     These files have the .snap and .xlog extensions respectively,
     and they are located in the Tarantool working directory.
 
-To understand how the Tarantool data schema works, read the :ref:`Data model<box_data_model>` section.
+To understand how the Tarantool data schema works, read the :ref:`Data model <box_data_model>` section.

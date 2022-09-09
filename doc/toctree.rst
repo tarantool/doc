@@ -12,7 +12,6 @@
     CRUD operations <reference/reference_lua/box_space>
     Cluster on Cartridge <book/cartridge/index>
     book/admin/index
-    book/replication/index
     book/connectors
     reference/index
     release/index

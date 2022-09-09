@@ -17,7 +17,6 @@ User's Guide
     box/index
     cartridge/index
     admin/index
-    replication/index
     monitoring/index
     connectors
     ../reference/reference_sql/index

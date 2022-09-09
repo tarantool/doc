@@ -1,7 +1,7 @@
 ..  _concepts-coop_multitasking:
 
 Fibers, yields, and cooperative multitasking
---------------------------------------------
+============================================
 
 Creating a fiber is the Tarantool way of making application logic work in the background at all times.
 A **fiber** is a set of instructions that are executed with :ref:`cooperative multitasking <app-cooperative_multitasking>`:
@@ -10,7 +10,7 @@ the instructions contain :ref:`yield <app-yields>` signals, upon which control i
 ..  _app-fibers:
 
 Fibers
-~~~~~~
+------
 
 Fibers are similar to threads of execution in computing.
 The key difference is that threads use
@@ -46,7 +46,7 @@ To learn more about fibers, go to the :ref:`fiber <fiber-module>` module documen
 ..  _app-yields:
 
 Yields
-~~~~~~
+------
 
 Yield is an action that occurs in a :ref:`cooperative <app-cooperative_multitasking>` environment that 
 transfers control of the thread from the current fiber to another fiber that is ready to execute.
@@ -71,7 +71,7 @@ Yields can be :ref:`explicit <app-explicit-yields>` or :ref:`implicit <app-impli
 ..  _app-explicit-yields:
 
 Explicit yields
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 **Explicit yields** are clearly visible from the invoking code. There are only two 
 explicit yields: :ref:`fiber.yield() <fiber-yield>` and :ref:`fiber.sleep(t) <fiber-sleep>`
@@ -89,7 +89,7 @@ be :ref:`cooperative <app-cooperative_multitasking>` to other waiting fibers.
 ..  _app-implicit-yields:
 
 Implicit yields
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 On the other hand, there are many operations, such as operations with sockets, file system, 
 and disk I/O, which imply some waiting for the current fiber while others can be 

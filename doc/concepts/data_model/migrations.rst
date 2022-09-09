@@ -87,7 +87,7 @@ Tarantool has a transaction mechanism. It is useful when writing a migration,
 because it allows you to work with the data atomically. But before using
 the transaction mechanism, you should explore its limitations.
 
-For details, see the section about :doc:`transactions </book/box/atomic>`.
+For details, see the section about :doc:`transactions </concepts/atomic>`.
 
 How you can apply migration
 ---------------------------

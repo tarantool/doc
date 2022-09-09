@@ -20,19 +20,26 @@ Tarantool uses mechanisms like the write-ahead log (WAL) and snapshots.
 For details, check the :ref:`Data model <box_data_model>` page.
 
 
-Sharding
---------
+Fibers and cooperative multitasking
+-----------------------------------
 
-Tarantool implements database sharding via the ``vshard`` module.
-:ref:`Learn more <sharding>`.
+Tarantool executes code in :ref:`fibers <concepts-coop_multitasking>` that are managed via
+:ref:`cooperative multitasking <concepts-coop_multitasking>`.
+Learn more about Tarantool's :ref:`thread model <thread_model>`.
 
 
-Triggers
---------
+Transactions
+------------
 
-Tarantool allows specifying callback functions that run upon certain database events.
-They can be useful for resolving replication conflicts.
-:ref:`Learn more <triggers>`.
+Tarantool's ACID-compliant :ref:`transaction model <atomic-atomic_execution>` lets the user choose
+between two modes of transactions.
+
+The :ref:`default mode <txn_mode-default>` allows for fast monopolistic atomic transactions.
+It doesn't support interactive transactions, and in case of an error, all transaction changes are rolled back.
+
+The :ref:`MVCC mode <txn_mode_transaction-manager>` relies on a multi-version concurrency control engine
+that allows yielding within a longer transaction.
+This mode only works with the default in-memory :ref:`memtx <engines-chapter>` storage engine.
 
 
 Application server
@@ -51,27 +58,38 @@ To enable developers to work with LuaJIT, Tarantool provides tools like the :ref
 and the :ref:`getmetrics <luajit_getmetrics>` module.
 
 
-Fibers and cooperative multitasking
------------------------------------
+Sharding
+--------
 
-Tarantool executes code in :ref:`fibers <concepts-coop_multitasking>` that are managed via
-:ref:`cooperative multitasking <concepts-coop_multitasking>`.
-Learn more about Tarantool's :ref:`thread model <thread_model>`.
+Tarantool implements database sharding via the ``vshard`` module.
+:ref:`Learn more <sharding>`.
 
 
-Transactions
-------------
+Triggers
+--------
 
-Tarantool's ACID :ref:`transaction model <atomic-atomic_execution>` lets the user choose
-between two modes of transactions.
+Tarantool allows specifying callback functions that run upon certain database events.
+They can be useful for resolving replication conflicts.
+:ref:`Learn more <triggers>`.
 
-The :ref:`default mode <txn_mode-default>` allows for fast monopolistic atomic transactions.
-It doesn't support interactive transactions, and in case of an error, all transaction changes are rolled back.
 
-The :ref:`MVCC mode <txn_mode_transaction-manager>` involves a multi-version concurrency control engine
-that allows yielding within a longer transaction.
-This mode only works with the in-memory :ref:`memtx <engines-chapter>` storage engine.
+Replication
+-----------
 
+Replication allows keeping the data in copies of the same database for better reliability.
+
+Several Tarantool instances can be organized in a replica set.
+They communicate and transfer data via the :ref:`iproto <box_protocol-iproto_protocol>` binary protocol.
+Learn more about Tarantool's :ref:`replication architecture <replication-architecture>`.
+
+By default, replication in Tarantool is asynchronous.
+A transaction committed locally on the master node
+may not get replicated onto other instances before the client receives a success response.
+Thus, if the master reports success and then dies, the client might not see the result of the transaction.
+
+With :ref:`synchronous replication <repl_sync>`, transactions on the master node are not considered committed
+or successful before they are replicated onto a number of instances. This is slower, but more reliable.
+Synchronous replication in Tarantool is based on an :ref:`implementation of the RAFT algorithm <repl_leader_elect>`.
 
 Storage engines
 ---------------
@@ -91,12 +109,7 @@ retrieve values. Tarantool offers a choice of two storage engines:
     coop_multitasking
     atomic
     modules
+    replication/index
     Tarantool Cartridge <https://tarantool.io/doc/latest/book/cartridge>
     triggers
     engines/index
-
-    .. replication
-
-- Replication — сюда скопировать часть из Cluster on Cartridge, сам раздел про карж пока не трогаем
-- Binary protocol ([https://www.tarantool.io/en/doc/latest/dev_guide/internals/box_protocol/](https://www.tarantool.io/en/doc/latest/dev_guide/internals/box_protocol/)) — не забыть про переводы
-  Tarantool instances communicate with each other using IProto -- a binary protocol. - в отрывок про репликацию
