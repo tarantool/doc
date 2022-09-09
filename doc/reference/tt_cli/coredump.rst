@@ -59,7 +59,7 @@ Examples
         tt coredump pack name.core
 
 
-*   Unpack a ``tar.gz`` archive packed by ``tt coredump pack``
+*   Unpack a ``tar.gz`` archive packed by ``tt coredump pack``:
 
     ..  code-block:: bash
 
