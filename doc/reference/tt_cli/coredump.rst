@@ -37,8 +37,8 @@ Details
 To be able to investigate Tarantool crashes, make sure that core dumps are enabled
 on the host. Here is the :ref:`instruction on enabling core dumps on Unix systems <admin-core_dumps>`.
 
-``tt coredump pack`` packs the given coredump together with files and data
-that can help the crash investigation. It includes:
+``tt coredump pack`` packs the given core dump together with files and data
+that can help the crash investigation. This includes:
 
 *   Tarantool executable
 *   Tarantool version information
