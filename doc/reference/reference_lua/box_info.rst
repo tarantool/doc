@@ -92,6 +92,10 @@ Below is a list of all ``box.info`` functions.
            - Show the current state of a replica set node
              in regards to leader election
 
+        *  - :doc:`./box_info/synchro`
+           - Show the current state of synchronous replication
+
+
 ..  toctree::
     :hidden:
 
@@ -102,3 +106,4 @@ Below is a list of all ``box.info`` functions.
     box_info/replication
     box_info/listen
     box_info/election
+    box_info/synchro
