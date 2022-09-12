@@ -37,7 +37,7 @@ To control the behavior of synchronous transactions, there exist global
 
 ..  code-block:: lua
 
-    box.cfg{replication_synchro_quorum = "(cluster_size/2)+1"}
+    box.cfg{replication_synchro_quorum = "N / 2 + 1"}
 
 This option tells how many replicas should confirm the receipt of a synchronous transaction before it is committed.
 Since version :doc:`2.5.3 </release/2.5.3>`, the parameter supports dynamic evaluation of the quorum number
