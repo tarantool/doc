@@ -38,6 +38,8 @@ help for the given command.
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   :doc:`play <play>`
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
+        *   -   :doc:`coredump <coredump>`
+            -   Manipulate Tarantool core dumps
 
 ..  toctree::
     :hidden:
@@ -55,3 +57,4 @@ help for the given command.
     rocks <rocks>
     cat <cat>
     play <play>
+    coredump <coredump>
