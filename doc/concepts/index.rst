@@ -41,6 +41,7 @@ The :ref:`MVCC mode <txn_mode_transaction-manager>` relies on a multi-version co
 that allows yielding within a longer transaction.
 This mode only works with the default in-memory :ref:`memtx <engines-chapter>` storage engine.
 
+..  _concepts-application_server:
 
 Application server
 ------------------

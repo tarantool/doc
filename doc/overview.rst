@@ -14,20 +14,26 @@ Here are some of Tarantool's key characteristics:
 
 *   **Easy handling of OLTP workloads**: processes hundreds of thousands RPS
 
-*   **Data integrity**: write-ahead log (WAL) and data snapshots 
+*   **Data integrity**: :ref:`write-ahead log (WAL) <concepts-data_model-persistence>`
+    and :ref:`data snapshots <concepts-data_model-persistence>` 
 
-*   **Cooperative multitasking**: transactions are performed in lightweight coroutines with no interthread locking
+*   **Cooperative multitasking**: transactions are performed in
+    :ref:`lightweight coroutines <concepts-coop_multitasking>` with no interthread locking
 
-*    **Advanced indexing**: composite indexes, locale support, indexing by nested fields and arrays
+*    **Advanced indexing**: :ref:`composite indexes <concepts-data_model_indexes>`,
+    :ref:`locale support <index-collation>`,
+    indexing by :ref:`nested fields and arrays <details_about_index_field_types>`
 
-*   **Compute close to data**: Lua server and Just-In-Time compiler on board
+*   **Compute close to data**: :ref:`Lua server <concepts-application_server>`
+    and Just-In-Time compiler on board
 
-*   **Durable distributed storage**: multiple failover modes and RAFT-based synchronous replication available
+*   **Durable distributed storage**: multiple failover modes and
+    :ref:`RAFT-based synchronous replication <repl_sync>` available
     
 
 Tarantool allows executing code alongside data, which helps increase the speed of operations.
-Developers can implement any business logic with Lua,
-and a single Tarantool instance can also receive SQL requests.
+Developers can :ref:`implement any business logic with Lua <app_server-creating_app>`,
+and a single Tarantool instance can also receive :ref:`SQL requests <sql_tutorial>`.
 
 Tarantool has a variety of compatible `modules <https://www.tarantool.io/en/download/rocks>`__ (Lua rocks).
 You can pick the ones that you need and install them manually.
