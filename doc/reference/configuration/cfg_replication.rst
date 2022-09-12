@@ -428,18 +428,39 @@
     This option tells how many replicas should confirm the receipt of a
     synchronous transaction before it can finish its commit.
 
+    Since version :doc:`2.5.3 </release/2.5.3>`,
+    the option supports dynamic evaluation of the quorum number.
+    That is, the number of quorum can be specified not as a constant number, but as a function instead.
+    In this case, the option returns the formula evaluated.
+    The result is treated as an integer number.
+    Once any replicas are added or removed, the expression is re-evaluated automatically.
+
+    For example,
+
+    ..  code-block:: lua
+
+        box.cfg{replication_synchro_quorum = "N / 2 + 1"}
+
+    Where `N` is a current number of registered replicas in a cluster.
+
+    Keep in mind that the example above represents a canonical quorum definition.
+    The formula ``at least 50% of the cluster size + 1`` guarantees data reliability.
+    Using a value less than the canonical one might lead to unexpected results,
+    including a :ref:`split-brain <repl_leader_elect_splitbrain>`.
+
     Since version :doc:`2.10.0 </release/2.10.0>`, this option
     does not account for anonymous replicas.
 
-    It is 1 by default, so synchronous transactions work like asynchronous when
-    not configured. 1 means successful WAL write on master is enough for
-    commit.
+    The default value for this parameter is ``N / 2 + 1``.
 
     It is not used on replicas, so if the master dies, the pending synchronous
     transactions will be kept waiting on the replicas until a new master is elected.
 
+    If the value for this option is set to ``1``, the synchronous transactions work like asynchronous when not configured.
+    `1` means that successful WAL write to the master is enough to commit.
+
     | Type: number
-    | Default: 1
+    | Default: N / 2 + 1 (before version :doc:`2.10.0 </release/2.10.0>`, the default value was 1)
     | Environment variable: TT_REPLICATION_SYNCHRO_QUORUM
     | Dynamic: **yes**
 

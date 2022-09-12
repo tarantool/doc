@@ -35,9 +35,16 @@ To control the behavior of synchronous transactions, there exist global
 
     box.cfg{replication_synchro_quorum = <number of instances>}
 
-This option tells how many replicas should confirm the receipt of a synchronous
-transaction before it is committed. Since version :doc:`2.10.0 </release/2.10.0>`,
-this option does not account for anonymous replicas. As a usage example, consider this:
+..  code-block:: lua
+
+    box.cfg{replication_synchro_quorum = "N / 2 + 1"}
+
+This option tells how many replicas should confirm the receipt of a synchronous transaction before it is committed.
+Since version :doc:`2.5.3 </release/2.5.3>`, the parameter supports dynamic evaluation of the quorum number
+(see :ref:`reference for the replication_synchro_quorum parameter <cfg_replication-replication_synchro_quorum>` for details).
+Since version :doc:`2.10.0 </release/2.10.0>`,
+this option does not account for anonymous replicas.
+As a usage example, consider this:
 
 ..  code-block:: lua
 

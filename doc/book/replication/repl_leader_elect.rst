@@ -119,8 +119,8 @@ Eventually, there will be two sets of nodes with the diverged data,
 and any node from one set is disconnected from any node from the other set with the ``ER_SPLIT_BRAIN`` error.
 
 Once noticing the error, a user can choose any representative from each of the sets and inspect the data on them.
-To correlate the data, the user should remove it from the nodes of one set, and reconnect them to the nodes from the other set that have the correct data.
-
+To correlate the data, the user should remove it from the nodes of one set,
+and reconnect them to the nodes from the other set that have the correct data.
 
 Also, if election is enabled on the node, it won't replicate from any nodes except
 the newest leader. This is done to avoid the issue when a new leader is elected,
