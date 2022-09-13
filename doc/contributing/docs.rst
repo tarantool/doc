@@ -17,6 +17,7 @@ The guidelines are a work in progress, and we welcome all contributions.
     docs/terms
     docs/markup
     docs/api
+    docs/images
     docs/build
     docs/sphinx-warnings
     docs/infra
