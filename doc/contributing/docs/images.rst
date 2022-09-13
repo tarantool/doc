@@ -16,7 +16,7 @@ Diagrams
 --------
 
 There is a basic set of diagram elements -- blocks, arrows, and other -- to use in Tarantool docs.
-It is stored in `this Miro board <https://miro.com/app/board/uXjVPbCIj_g=/>`_. It also provides
+It is stored in `this Miro board <https://miro.com/app/board/uXjVPYdYCng=/>`_. It also provides
 basic rules for creating diagrams.
 
 Size
