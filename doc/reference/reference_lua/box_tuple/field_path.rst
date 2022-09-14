@@ -30,8 +30,8 @@ tuple_object[field-path]
 
         In the following example, a tuple named ``t`` is returned from ``replace``
         and then only the relevant part (in this case, matching a name)
-        of a relevant field is returned. Namely: the second field, the
-        sixth part, the value following 'value='.
+        of a relevant field is returned. Namely: the second field, its
+        third item, the value following 'key='.
 
         .. code-block:: tarantoolsession
 
@@ -44,25 +44,19 @@ tuple_object[field-path]
             tarantool> format[2] = {name = 'field2', type = 'array'}
             ---
             ...
-            tarantool> format[3] = {name = 'field4', type = 'string' }
-            ---
-            ...
-            tarantool> format[4] = {name = "[2][6]['пw']['Я']", type = 'string'}
-            ---
-            ...
             tarantool> s = box.schema.space.create('test', {format = format})
             ---
             ...
             tarantool> pk = s:create_index('pk')
             ---
             ...
-            tarantool> field2 = {1, 2, 3, "4", {5,6,7}, {пw={Я="п"}, key="V!", value="K!"}}
+            tarantool> field2_value = {1, "ABC", {key="Hello", value="world"}}
             ---
             ...
-            tarantool> t = s:replace{1, field2, "123456", "Not K!"}
+            tarantool> t = s:replace{1, field2_value}
             ---
             ...
-            tarantool> t["[2][6]['value']"]
+            tarantool> t["[2][3]['key']"]
             ---
-            - K!
+            - Hello
             ...
