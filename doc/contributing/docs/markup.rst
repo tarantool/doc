@@ -19,3 +19,4 @@ This section will guide you through our typical documentation formatting cases.
     markup/code
     markup/gui
     markup/admonitions
+    markup/testimage
