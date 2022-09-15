@@ -1,9 +1,12 @@
+:fullwidth:
+
 .. _concepts:
 
 Concepts
 ========
 
-**Data model**
+Data model
+----------
 
 Tarantool is a NoSQL database. It stores data in :ref:`spaces <index-box_space>`,
 which can be thought of as tables in a relational database, and :ref:`tuples <index-box_tuple>`,
@@ -18,9 +21,8 @@ Tarantool uses mechanisms like the write-ahead log (WAL) and snapshots.
 
 For details, check the :ref:`Data model <box_data_model>` page.
 
-|br|
-
-**Fibers and cooperative multitasking**
+Fibers and cooperative multitasking
+-----------------------------------
 
 Tarantool executes code in :ref:`fibers <concepts-coop_multitasking>` that are managed via
 :ref:`cooperative multitasking <concepts-coop_multitasking>`.
@@ -28,9 +30,8 @@ Learn more about Tarantool's :ref:`thread model <thread_model>`.
 
 For details, check the page :ref:`Fibers, yields, and cooperative multitasking <concepts-coop_multitasking>`.
 
-|br|
-
-**Transactions**
+Transactions
+------------
 
 Tarantool's ACID-compliant :ref:`transaction model <atomic-atomic_execution>` lets the user choose
 between two modes of transactions.
@@ -44,11 +45,10 @@ This mode only works with the default in-memory :ref:`memtx <engines-chapter>` s
 
 For details, check the :ref:`Transactions <atomic-atomic_execution>` page.
 
-|br|
-
 ..  _concepts-application_server:
 
-**Application server**
+Application server
+------------------
 
 Using Tarantool as an application server, you can write
 applications in Lua, C, or C++. You can also create reusable :ref:`modules <concepts-modules>`.
@@ -66,24 +66,21 @@ For details on Tarantool's modular structure, check the :ref:`Modules <concepts-
 
 To learn how to use Tarantool as an application server, refer to the :ref:`guides <how-to-app-server>` in the How-to section.
 
-|br|
-
-**Sharding**
+Sharding
+--------
 
 Tarantool implements database sharding via the ``vshard`` module.
 For details, go to the :ref:`Sharding <sharding>` page.
 
-|br|
-
-**Triggers**
+Triggers
+--------
 
 Tarantool allows specifying callback functions that run upon certain database events.
 They can be useful for resolving replication conflicts.
 For details, go to the :ref:`Triggers <triggers>` page.
 
-|br|
-
-**Replication**
+Replication
+-----------
 
 Replication allows keeping the data in copies of the same database for better reliability.
 
@@ -102,9 +99,8 @@ Synchronous replication in Tarantool is based on an :ref:`implementation of the 
 
 For details, check the :ref:`Replication <replication>` section.
 
-|br|
-
-**Storage engines**
+Storage engines
+---------------
 
 A storage engine is a set of low-level routines that store and
 retrieve values. Tarantool offers a choice of two storage engines:
@@ -122,8 +118,8 @@ For details, check the :ref:`Storage engines <engines-chapter>` section.
     coop_multitasking
     atomic
     modules      
+    Tarantool Cartridge <https://tarantool.io/doc/latest/book/cartridge>
     sharding/index
     replication/index  
-    Tarantool Cartridge <https://tarantool.io/doc/latest/book/cartridge>
     triggers
     engines/index
