@@ -82,7 +82,7 @@ box.info.replication
     * :samp:`replication[{n}].downstream` appears (is not nil)
       with data about an instance that is following instance *n*
       or is intending to follow it, which ordinarily means
-      :samp:`replication[{n}].downstream.status` = ``follow``,
+      :samp:`replication[{n}].downstream.status` = ``follow``.
 
     * :samp:`replication[{n}].downstream.vclock` contains the
       :ref:`vector clock <replication-vector>`, which is a table of
@@ -119,9 +119,16 @@ box.info.replication
       * ``follow`` means that downstream replication is in progress (instance
         *n* is ready to accept data from the master or is currently doing so).
 
+    * :samp:`replication[{n}].downstream.lag` is the time difference between the
+      local time at the master node, recorded when a particular transaction was written to
+      the :ref:`write ahead log <internals-wal>`, and the local time recorded when it receives an acknowledgement
+      for this transaction from a replica.
+      Since version :doc:`2.10.0 </release/2.10.0>`.
+      See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+
     * :samp:`replication[{n}].downstream.message` and
       :samp:`replication[{n}].downstream.system_message`
-      will be nil unless a problem occurs with the connection.
+      will be ``nil`` unless a problem occurs with the connection.
       For example, if instance *n* goes down, then one may see
       ``status = 'stopped'``, ``message = 'unexpected EOF when reading
       from socket'``, and ``system_message = 'Broken pipe'``.
