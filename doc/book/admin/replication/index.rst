@@ -1,5 +1,5 @@
-Replication
-===========
+Replication administration
+==========================
 
 ..  toctree::
     :maxdepth: 2

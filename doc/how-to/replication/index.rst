@@ -1,7 +1,7 @@
 ..  _how-to-replication:
 
-Replication
-===========
+Replication tutorials
+=====================
 
 ..  toctree::
     :maxdepth: 2

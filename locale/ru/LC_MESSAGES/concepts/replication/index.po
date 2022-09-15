@@ -1,6 +1,6 @@
 
-msgid "Replication"
-msgstr "Репликация"
+msgid "Replication tutorials"
+msgstr "Руководство по репликации"
 
 msgid ""
 "Replication allows multiple Tarantool instances to work on copies of the "

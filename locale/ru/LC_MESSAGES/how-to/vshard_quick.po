@@ -1,6 +1,6 @@
 
-msgid "Sharding"
-msgstr "Шардирование"
+msgid "Quick start with sharding"
+msgstr "Введение в шардирование"
 
 msgid ""
 "For installation instructions, check out the :ref:`vshard installation "

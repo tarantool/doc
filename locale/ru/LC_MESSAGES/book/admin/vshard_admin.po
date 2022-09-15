@@ -1,6 +1,6 @@
 
-msgid "Sharding"
-msgstr "Шардирование"
+msgid "Sharding with vshard"
+msgstr "Шардирование с vshard"
 
 msgid ""
 "Sharding in Tarantool is implemented in the ``vshard`` module. "

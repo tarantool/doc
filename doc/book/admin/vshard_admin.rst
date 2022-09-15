@@ -1,7 +1,7 @@
 ..  _vshard-admin:
 
-Sharding
-========
+Sharding with vshard
+====================
 
 Sharding in Tarantool is implemented in the ``vshard`` module.
 For a quick start with ``vshard``, refer to the :ref:`guide <vshard-quick-start>`.

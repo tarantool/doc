@@ -1,7 +1,7 @@
 ..  _vshard-quick-start:
 
-Sharding
-========
+Quick start with sharding
+=========================
 
 For installation instructions, check out the :ref:`vshard installation manual <vshard-install>`.
 
