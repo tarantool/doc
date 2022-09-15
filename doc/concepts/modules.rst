@@ -1,7 +1,7 @@
 ..  _concepts-modules:
 
 Modules
--------
+=======
 
 Any logic that is used in Tarantool can be packaged as an application
 (like a :ref:`Cartridge application <tarantool-cartridge>`) or a reusable **module**. 

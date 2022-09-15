@@ -1,3 +1,5 @@
+..  _how-to-app-server:
+
 Developing applications with Tarantool
 ======================================
 
