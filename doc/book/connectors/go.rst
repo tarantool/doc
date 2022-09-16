@@ -1,3 +1,5 @@
+.. _index_connector_go:
+
 Go
 ==
 
