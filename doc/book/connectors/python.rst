@@ -1,3 +1,5 @@
+..  _index_connector_py:
+
 Python
 ======
 
@@ -8,7 +10,7 @@ of the Tarantool repository and must be installed separately (see below for deta
 Here is a complete Python program that inserts ``[99999,'Value','Value']`` into
 space ``examples`` via the high-level Python API.
 
-.. code-block:: python
+..  code-block:: python
 
     #!/usr/bin/python
     from tarantool import Connection
