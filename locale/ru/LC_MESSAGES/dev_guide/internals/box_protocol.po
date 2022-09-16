@@ -2,12 +2,15 @@
 msgid "Binary protocol"
 msgstr "Бинарный протокол"
 
+msgid "Introduction"
+msgstr "Введение"
+
 msgid ""
-"The binary protocol is called a \"request/response\" protocol because it is "
+"The binary protocol, iproto, is called a \"request/response\" protocol because it is "
 "for sending requests to a Tarantool server and receiving responses. There is"
 " complete access to Tarantool functionality, including:"
 msgstr ""
-"Бинарный протокол передает данные по схеме \"запрос-ответ\", то есть он "
+"Бинарный протокол iproto передает данные по схеме \"запрос-ответ\", то есть он "
 "предназначен для отправки запросов на сервер Tarantool и получения ответов. "
 "Протокол предоставляет полный доступ к функциям Tarantool, включая:"
 
@@ -2098,6 +2101,7 @@ msgstr ""
 "`netbox_encode_auth`` в файле `net_box.c "
 "<https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_."
 
+<<<<<<< HEAD
 msgid "Binary protocol -- streams"
 msgstr "Бинарный протокол — стримы"
 
@@ -3052,6 +3056,8 @@ msgstr ""
 "81                           2-й элемент Sub-Map: MP_MAP, размер 1\n"
 "01                             MP_UINT = 1 = id (1-я часть vclock)\n"
 "06                             MP_UINT = 6 = lsn (2-я часть vclock)"
+=======
+>>>>>>> Outline initial structure
 
 msgid "XLOG / SNAP"
 msgstr "XLOG / SNAP"

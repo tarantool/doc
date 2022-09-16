@@ -5,157 +5,83 @@
 Binary protocol
 ===============
 
-The binary protocol is called a "request/response" protocol because it is
+Introduction
+------------
+
+The binary protocol, iproto, is called a "request/response" protocol because it is
 for sending requests to a Tarantool server and receiving responses.
 There is complete access to Tarantool functionality, including:
 
-- request multiplexing, for example ability to issue multiple requests
-  asynchronously via the same connection
-- response format that supports zero-copy writes
+*   request multiplexing, for example ability to issue multiple requests
+    asynchronously via the same connection
+*   response format that supports zero-copy writes
 
 The protocol can be called "binary" because the most-frequently-used database accesses
-are done with binary codes instead of Lua request text. Tarantool experts use it
-to write their own connectors,
-to understand network messages,
-to support new features that their favorite connector doesn't support yet,
-or to avoid repetitive parsing by the server.
+are done with binary codes instead of Lua request text. Tarantool experts use it:
+
+*   to write their own connectors
+*   to understand network messages
+*   to support new features that their favorite connector doesn't support yet
+*   to avoid repetitive parsing by the server
+
+This document describes ``iproto`` :ref:`keys <box_protocol-key_list>` that are passed in binary code
+via the protocol.
+They are Tarantool constants that are either defined or mentioned in the
+`iproto_constants.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_constants.h>`_.
+
+..  _TODO:  shorten the introductory text
+            describe the document structure, provide links like in Concepts
+            Then goes the Symbols and terms section, and then the toctree
+
 
 ..  _box_protocol-notation:
 
 Symbols and terms
 -----------------
 
-Words that start with **MP_** mean:
+MP_*
+~~~~
+
+Words that start with **MP_** mean
 a `MessagePack <http://MessagePack.org>`_ type or a range of MessagePack types,
 including the signal and possibly including a value, with slight modification:
 
-* **MP_NIL**    nil
-* **MP_UINT**   unsigned integer
-* **MP_INT**    either integer or unsigned integer
-* **MP_STR**    string
-* **MP_BIN**    binary string
-* **MP_ARRAY**  array
-* **MP_MAP**    map
-* **MP_BOOL**   boolean
-* **MP_FLOAT**  float
-* **MP_DOUBLE** double
-* **MP_EXT**    extension (including the :ref:`DECIMAL type <msgpack_ext-decimal>` and UUID type)
-* **MP_OBJECT** any MessagePack object
+..  container:: table
+
+    ..  list-table::
+        :widths: 30 70
+        :header-rows: 0
+
+        *   -   **MP_NIL**
+            -   nil
+        *   -   **MP_UINT**
+            -   unsigned integer
+        *   -   **MP_INT**
+            -   either integer or unsigned integer
+        *   -   **MP_STR**
+            -   string
+        *   -   **MP_BIN**
+            -   binary string
+        *   -   **MP_ARRAY** 
+            -   array
+        *   -   **MP_MAP**
+            -   map
+        *   -   **MP_BOOL**
+            -   boolean
+        *   -   **MP_FLOAT**
+            -   float
+        *   -   **MP_DOUBLE**
+            -   double
+        *   -   **MP_EXT**
+            -   extension (including the :ref:`DECIMAL type <msgpack_ext-decimal>` and UUID type)
+        *   -   **MP_OBJECT**
+            -   any MessagePack object
 
 Short descriptions are in MessagePack's `"spec" page <https://github.com/msgpack/msgpack/blob/master/spec.md>`_.
 
-And words that start with **IPROTO_** mean:
-a Tarantool constant which is either defined or mentioned in the
-`iproto_constants.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_constants.h>`_.
-
-The IPROTO constants that identify requests that we will mention in this section are:
-
-..  code-block:: lua
-
-    IPROTO_SELECT=0x01
-    IPROTO_INSERT=0x02
-    IPROTO_REPLACE=0x03
-    IPROTO_UPDATE=0x04
-    IPROTO_DELETE=0x05
-    IPROTO_CALL_16=0x06
-    IPROTO_AUTH=0x07
-    IPROTO_EVAL=0x08
-    IPROTO_UPSERT=0x09
-    IPROTO_CALL=0x0a
-    IPROTO_EXECUTE=0x0b
-    IPROTO_NOP=0x0c
-    IPROTO_PREPARE=0x0d
-    IPROTO_BEGIN=0x0e
-    IPROTO_COMMIT=0x0f
-    IPROTO_ROLLBACK=0x10
-    IPROTO_RAFT_CONFIRM=0x28
-    IPROTO_RAFT_ROLLBACK=0x29
-    IPROTO_RAFT=0x1e
-    IPROTO_RAFT_PROMOTE=0x1f
-    IPROTO_RAFT_DEMOTE=0x20
-    IPROTO_PING=0x40
-    IPROTO_JOIN=0x41
-    IPROTO_SUBSCRIBE=0x42
-    IPROTO_VOTE_DEPRECATED=0x43
-    IPROTO_VOTE=0x44
-    IPROTO_FETCH_SNAPSHOT=0x45
-    IPROTO_REGISTER=0x46
-    IPROTO_ID=0x49
-    IPROTO_WATCH=0x4a
-    IPROTO_UNWATCH=0x4b
-    IPROTO_EVENT=0x4c
 
 
-The IPROTO constants that appear within requests or responses that we will describe in this section are:
-
-..  code-block:: lua
-
-    IPROTO_OK=0x00
-    IPROTO_REQUEST_TYPE=0x00
-    IPROTO_SYNC=0x01
-    IPROTO_REPLICA_ID=0x02
-    IPROTO_LSN=0x03
-    IPROTO_TIMESTAMP=0x04
-    IPROTO_SCHEMA_VERSION=0x05
-    IPROTO_FLAGS=0x09
-    IPROTO_STREAM_ID=0x0a
-    IPROTO_SPACE_ID=0x10
-    IPROTO_INDEX_ID=0x11
-    IPROTO_LIMIT=0x12
-    IPROTO_OFFSET=0x13
-    IPROTO_ITERATOR=0x14
-    IPROTO_INDEX_BASE=0x15
-    IPROTO_KEY=0x20
-    IPROTO_TUPLE=0x21
-    IPROTO_FUNCTION_NAME=0x22
-    IPROTO_USER_NAME=0x23
-    IPROTO_INSTANCE_UUID=0x24
-    IPROTO_CLUSTER_UUID=0x25
-    IPROTO_VCLOCK=0x26
-    IPROTO_EXPR=0x27
-    IPROTO_OPS=0x28
-    IPROTO_BALLOT=0x29
-    IPROTO_BALLOT_IS_RO_CFG=0x01
-    IPROTO_BALLOT_VCLOCK=0x02
-    IPROTO_BALLOT_GC_VCLOCK=0x03
-    IPROTO_BALLOT_IS_RO=0x04
-    IPROTO_BALLOT_IS_ANON=0x05
-    IPROTO_BALLOT_IS_BOOTED=0x06
-    IPROTO_BALLOT_CAN_LEAD=0x07
-    IPROTO_TUPLE_META=0x2a
-    IPROTO_OPTIONS=0x2b
-    IPROTO_DATA=0x30
-    IPROTO_ERROR_24=0x31
-    IPROTO_METADATA=0x32
-    IPROTO_BIND_METADATA=0x33
-    IPROTO_BIND_COUNT=0x34
-    IPROTO_SQL_TEXT=0x40
-    IPROTO_SQL_BIND=0x41
-    IPROTO_SQL_INFO=0x42
-    IPROTO_STMT_ID=0x43
-    IPROTO_ERROR=0x52
-    IPROTO_FIELD_NAME=0x00
-    IPROTO_FIELD_TYPE=0x01
-    IPROTO_FIELD_COLL=0x02
-    IPROTO_FIELD_IS_NULLABLE=0x03
-    IPROTO_FIELD_IS_AUTOINCREMENT=0x04
-    IPROTO_FIELD_SPAN=0x05
-    IPROTO_CHUNK=0x80
-    IPROTO_RAFT_TERM=0x00
-    IPROTO_RAFT_VOTE=0x01
-    IPROTO_RAFT_STATE=0x02
-    IPROTO_RAFT_VCLOCK=0x03
-    IPROTO_RAFT_LEADER_ID=0x04
-    IPROTO_RAFT_IS_LEADER_SEEN=0x05
-    IPROTO_VERSION=0x54
-    IPROTO_FEATURES=0x55
-    IPROTO_TIMEOUT=0x56
-    IPROTO_EVENT_KEY=0x57
-    IPROTO_EVENT_DATA=0x58
-    IPROTO_TXN_ISOLATION=0x59
-
-
-To denote message descriptions we will say ``msgpack(...)`` and within it we will use modified
+To denote message descriptions, we will say ``msgpack(...)`` and within it we will use modified
 `YAML <https://en.wikipedia.org/wiki/YAML>`_ so: |br|
 
 :code:`{...}` braces enclose an associative array, also called map, which in MsgPack is MP_MAP, |br|
@@ -165,98 +91,19 @@ which happen to always be unsigned 8-bit integers, |br|
 :code:`[...]` is for non-associative arrays, |br|
 :code:`#` starts a comment, especially for the beginning of a section, |br|
 everything else is "as is". |br|
-Map-items may appear in any order but in examples we usually use the order that net_box.c happens to use.
+Map-items may appear in any order but in examples we usually use the order that ``net_box.c`` happens to use.
 
-..  _internals-unified_packet_structure:
 
-..  _box_protocol-header:
 
-Header and body
----------------
+..  toctree::
 
-Except during connection (which involves a greeting from the server and optional
-:ref:`authentication <box_protocol-authentication>` that we will discuss later
-in this section), the protocol is pure request/response (the client requests and
-the server responds). It is legal to put more than one request in a packet.
-
-Almost all requests and responses contain three sections: size, header, and body.
-The size is an (MP_UINT) unsigned integer, usually a 32-bit unsigned integer.
-The header and body are (MP_MAP) maps.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    :samp:`{{MP_UINT unsigned integer}}`
-    # <header>
-    :samp:`{{MP_MAP with <header> map-items}}`
-    # <body>
-    :samp:`{{MP_MAP with <body> map-items}}`
-
-``<size>`` is the size of the header plus the size of the body.
-It may be useful to compare it with the number of bytes remaining in the packet.
-
-``<header>`` may contain, in any order:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    msgpack({
-        IPROTO_REQUEST_TYPE: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
-    })
-
-**IPROTO_REQUEST_TYPE** or Response-Code-Indicator = 0x00.
-An unsigned number that indicates what will be in the ``<body>``.
-In requests IPROTO_REQUEST_TYPE will be followed by IPROTO_SELECT etc.
-In responses Response-Code-Indicator will be followed by IPROTO_OK etc.
-
-**IPROTO_SYNC** = 0x01.
-An unsigned integer that should be incremented so that it is unique in every
-request. This integer is also returned from :doc:`/reference/reference_lua/box_session/sync`.
-The IPROTO_SYNC value of a response should be the same as
-the IPROTO_SYNC value of a request.
-
-**IPROTO_SCHEMA_VERSION** = 0x05.
-An unsigned number, sometimes called SCHEMA_ID, that goes up when there is a
-major change.
-In a request header IPROTO_SCHEMA_VERSION is optional, so the version will not
-be checked if it is absent.
-In a response header IPROTO_SCHEMA_VERSION is always present, and it is up to
-the client to check if it has changed.
-
-..  _box_protocol-iproto_stream_id:
-
-**IPROTO_STREAM_ID** = 0x0a.
-An unsigned number that should be unique in every stream.
-In requests IPROTO_STREAM_ID is optional and is useful for two things:
-ensuring that requests within transactions are done in separate groups,
-and ensuring strictly consistent execution of requests (whether or not they are within transactions).
-In responses IPROTO_STREAM_ID does not appear.
-See :ref:`Binary protocol -- streams <box_protocol-streams>`.
-
-Have a look at file
-`xrow.c <https://github.com/tarantool/tarantool/blob/master/src/box/xrow.c>`_
-function ``xrow_header_encode``, to see how Tarantool encodes the header.
-Have a look at file net_box.c, function ``netbox_decode_data``, to see how Tarantool
-decodes the header. For example, in a successful response to ``box.space:select()``,
-the Response-Code-Indicator value will be 0 = IPROTO_OK and the
-array will have all the tuples of the result.
-
-The ``<body>`` has the details of the request or response. In a request, it can also
-be absent or be an empty map. Both these states will be interpreted equally.
-Responses will contain the ``<body>`` anyway even for an
-:ref:`IPROTO_PING <box_protocol-ping>` request.
-
-..  _box_protocol-requests:
-
-Requests
---------
-
-A request has a size, a :ref:`header <box_protocol-header>`
-that contains the IPROTO key, and a body as described here.
+    iproto/format
+    iproto/keys
+    iproto/requests
+    iproto/events
+    iproto/streams
+    iproto/replication
+    Examples <../../how-to/other/iproto>
 
 
 ..  _box_protocol-select:
@@ -959,15 +806,13 @@ See the :ref:`Watchers <box-protocol-watchers>` section below.
 IPROTO_EVENT = 0x4c
 ~~~~~~~~~~~~~~~~~~~
 
-See the :ref:`Watchers <box-protocol-watchers>` section below.
+See the :ref:`Watchers <box-protocol-watchers>` section.
 
 
 ..  _box-protocol-watchers:
 
 Watchers
 --------
-
-Since :doc:`2.10.0 </release/2.10.0>`.
 
 The commands below support asynchronous server-client notifications signalled
 with :ref:`box.broadcast() <box-broadcast>`.
@@ -1074,48 +919,6 @@ The body is a 2-item map:
 
 ``IPROTO_EVENT_DATA`` (code 0x57) contains data sent to a remote watcher.
 The parameter is optional, the default value is ``nil``.
-
-..  _box-protocol-shutdown:
-
-Graceful shutdown protocol
---------------------------
-
-Since :doc:`2.10.0 </release/2.10.0>`.
-
-The graceful shutdown protocol is a mechanism that helps to prevent data loss in requests in case of a shutdown command.
-According to the protocol, when a server receives an ``os.exit()`` command or a ``SIGTERM``  signal,
-it does not exit immediately.
-Instead of that, first, the server stops listening for new connections.
-Then, the server sends the shutdown packets to all connections that support the graceful shutdown protocol.
-When a client is notified about the upcoming server exit, it stops serving any new requests and
-waits for active requests to complete before closing the connections.
-Once all connections are terminated, the server will be shut down.
-
-The protocol uses the event subscription system.
-That is, the feature is available if the server supports the :ref:`box.shutdown <system-events_box-shutdown>` event
-and ``IPROTO_WATCH``.
-For more information about it, see :ref:`reference for the event watchers <box-watchers>`
-and the :ref:`corresponding section <box-protocol-watchers>` of this document.
-
-The shutdown protocol works in the following way:
-
-#.  First, the server receives a shutdown request.
-    It can be either an ``os.exit()`` command or a :ref:`SIGTERM <admin-server_signals>` signal.
-
-#.  Then the :ref:`box.shutdown <system-events_box-shutdown>` event is generated.
-    The server broadcasts it to all subscribed remote watchers (see :ref:`IPROTO_WATCH <box_protocol-watch>`).
-    That is, the server calls :ref:`box.broadcast('box.shutdown', true) <box-broadcast>`
-    from the :ref:`box.ctl.on_shutdown() <box_ctl-on_shutdown>` trigger callback.
-    Once this is done, the server stops listening for new connections.
-
-#.  From now on, the server waits until all subscribed connections are terminated.
-
-#.  At the same time, the client gets the ``box.shutdown`` event and shuts the connection down gracefully.
-
-#.  After all connections are closed, the server will be stopped.
-    Otherwise, a timeout occurs, and the Tarantool exits immediately.
-    You can set up the required timeout with the
-    :ref:`set_on_shutdown_timeout() <box_ctl-on_shutdown_timeout>` function.
 
 ..  _box_protocol-responses:
 
@@ -1493,572 +1296,8 @@ To see how Tarantool handles this, look at
 `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_
 function ``netbox_encode_auth``.
 
-..  _box_protocol-streams:
 
-Binary protocol -- streams
---------------------------
 
-The :ref:`Streams and interactive transactions <txn_mode_stream-interactive-transactions>`
-feature, which was added in Tarantool version
-:tarantool-release:`2.10.0`, allows two things:
-sequential processing and interleaving.
-
-Sequential processing:
-With streams there is a guarantee that the server instance will not
-handle the next request in a stream until it has completed the previous one.
-
-Interleaving:
-For example, a series of requests can include
-"begin for stream #1", "begin for stream #2",
-"insert for stream #1", "insert for stream #2", "delete
-for stream #1", "commit for stream #1", "rollback for stream #2".
-
-To make these things possible,
-the engine should be :ref:`vinyl <engines-vinyl>` or :ref:`memtx with mvcc <cfg_basic-memtx_use_mvcc_engine>`, and
-the client is responsible for ensuring that the stream identifier,
-unsigned integer :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`, is in the request header.
-IPROTO_STREAM_ID can be any positive 64-bit number, and should be unique for the connection.
-If IPROTO_STREAM_ID equals zero the server instance will ignore it.
-
-For example, suppose that the client has started a stream with
-the :ref:`net.box module <net_box-module>`
-
-..  code-block:: lua
-
-    net_box = require('net.box')
-    conn = net_box.connect('localhost:3302')
-    stream = conn:new_stream()
-
-At this point the stream object will look like a duplicate of
-the conn object, with just one additional member: ``stream_id``.
-Now, using stream instead of conn, the client sends two requests:
-
-..  code-block:: lua
-
-    stream.space.T:insert{1}
-    stream.space.T:insert{2}
-
-The header and body of these requests will be the same as in
-non-stream :ref:`IPROTO_INSERT <box_protocol-insert>` requests, except
-that the header will contain an additional item: IPROTO_STREAM_ID=0x0a
-with MP_UINT=0x01. It happens to equal 1 for this example because
-each call to conn:new_stream() assigns a new number, starting with 1.
-
-..  _box_protocol-stream_transactions:
-
-The client makes stream transactions by sending, in order:
-
-1. IPROTO_BEGIN with an optional transaction timeout in the IPROTO_TIMEOUT field of the request body.
-2. The transaction data-change and query requests.
-3. IPROTO_COMMIT or IPROTO_ROLLBACK.
-
-All these requests must contain the same IPROTO_STREAM_ID value.
-
-A rollback will happen automatically if
-a disconnect occurs or the transaction timeout expires before the commit is possible.
-
-Thus there are now multiple ways to do transactions:
-with ``net_box`` ``stream:begin()`` and ``stream:commit()`` or ``stream:rollback()``
-which cause IPROTO_BEGIN and IPROTO_COMMIT or IPROTO_ROLLBACK with
-the current value of stream.stream_id;
-with :ref:`box.begin() <box-begin>` and :ref:`box.commit() <box-commit>` or :ref:`box.rollback() <box-rollback>`;
-with SQL and :ref:`START TRANSACTION <sql_start_transaction>` and :ref:`COMMIT <sql_commit>` or :ref:`ROLLBACK <sql_rollback>`.
-An application can use any or all of these ways.
-
-..  _box_protocol-replication:
-
-Replication
------------
-
-IPROTO_JOIN = 0x41
-~~~~~~~~~~~~~~~~~~
-
-First you must send an initial IPROTO_JOIN request.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_JOIN,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_INSTANCE_UUID: :samp:`{{uuid}}`
-    })
-
-Then the instance which you want to connect to will send its last SNAP file,
-by simply creating a number of INSERTs (with additional LSN and ServerID)
-(do not reply to this). Then that instance will send a vclock's MP_MAP and
-close a socket.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: 0,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_VCLOCK: :samp:`{{MP_INT SRV_ID, MP_INT SRV_LSN}}`
-    })
-
-IPROTO_SUBSCRIBE = 0x42
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Then you must send an IPROTO_SUBSCRIBE request.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_SUBSCRIBE,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_INSTANCE_UUID: :samp:`{{uuid}}`,
-        IPROTO_CLUSTER_UUID: :samp:`{{uuid}}`,
-    })
-    # <body>
-    msgpack({
-        IPROTO_VCLOCK: :samp:`{{MP_INT SRV_ID, MP_INT SRV_LSN}}`
-    })
-
-Then you must process every request that could come through other masters.
-Every request between masters will have additional LSN and SERVER_ID.
-
-
-..  _box_protocol-heartbeat:
-
-HEARTBEATS
-~~~~~~~~~~
-
-Frequently a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
-For example, if there is a replica with id = 2,
-and a timestamp with a moment in 2020, a master might send this:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: 0
-        IPROTO_REPLICA_ID: 2
-        IPROTO_TIMESTAMP: :samp:`{{Float 64 MP_DOUBLE 8-byte timestamp}}`
-    })
-
-and the replica might send back this:
-
-..  code-block:: none
-
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK
-        IPROTO_REPLICA_ID: 2
-        IPROTO_VCLOCK: {1, 6}
-    })
-
-Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-we will show actual byte codes of the above heartbeat examples.
-
-..  _box_protocol-ballots:
-
-BALLOTS
-~~~~~~~
-
-While connecting for replication, an instance sends a request with header IPROTO_VOTE (0x44).
-The normal response is ER_OK,and IPROTO_BALLOT (0x29).
-The fields within IPROTO_BALLOT are map items:
-
-..  code-block:: none
-
-    IPROTO_BALLOT_IS_RO_CFG (0x01) + MP_BOOL
-    IPROTO_BALLOT_VCLOCK (0x02) + vclock
-    IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock
-    IPROTO_BALLOT_IS_RO (0x04) + MP_BOOL
-    IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
-    IPROTO_BALLOT_IS_BOOTED = 0x06 + MP_BOOL
-    IPROTO_BALLOT_CAN_LEAD = 0x07 + MP_BOOL
-
-
-IPROTO_BALLOT_IS_RO_CFG and IPRO_BALLOT_VCLOCK and IPROTO_BALLOT_GC_VCLOCK and IPROTO_BALLOT_IS_RO
-were added in version :doc:`2.6.1 </release/2.6.1>`.
-IPROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
-IPROTO_BALLOT_IS_BOOTED was added in version 2.7.3 and 2.8.2 and 2.9.1.
-There have been some name changes starting with version 2.7.3 and 2.8.2 and 2.9.1:
-IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO,
-and IPROTO_BALLOT_IS_RO was formerly called IPROTO_BALLOT_IS_LOADING.
-
-IPROTO_BALLOT_IS_RO_CFG corresponds to :ref:`box.cfg.read_only <cfg_basic-read_only>`.
-
-IPROTO_BALLOT_GC_VCLOCK can be the vclock value of the instance's oldest
-WAL entry, which corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
-
-IPROTO_BALLOT_IS_RO is true if the instance is not writable,
-which may happen for a variety of reasons, such as:
-it was configured as :ref:`read_only <cfg_basic-read_only>`,
-or it has :ref:`orphan status <replication-orphan_status>`,
-or it is a :ref:`Raft <repl_leader_elect>` follower.
-
-IPROTO_BALLOT_IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
-
-IPROTO_BALLOT_IS_BOOTED is true if the instance has finished its
-bootstrap or recovery process.
-
-IPROTO_BALLOT_CAN_LEAD is true if the :ref:`election_mode <cfg_replication-election_mode>`
-configuration setting is either 'candidate' or 'manual', so that
-during the :ref:`leader election process <repl_leader_elect_process>`
-this instance may be preferred over instances whose configuration
-setting is 'voter'.
-IPROTO_BALLOT_CAN_LEAD support was added simultaneously in
-version :doc:`2.7.3 </release/2.7.3>`
-and version :doc:`2.8.2 </release/2.8.2>`.
-
-..  _box_protocol-flags:
-
-FLAGS
-~~~~~
-
-For replication of :ref:`synchronous transactions <repl_sync>`
-a header may contain a key = IPROTO_FLAGS and an MP_UINT value = one or more
-bits: IPROTO_FLAG_COMMIT or IPROTO_FLAG_WAIT_SYNC or IPROTO_FLAG_WAIT_ACK.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        # ... other header items ...,
-        IPROTO_FLAGS: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        # ... message for a transaction ...
-    })
-
-IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction,
-IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message for a transaction which cannot be completed immediately,
-IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchronous transaction.
-
-..  _box_protocol-raft:
-
-IPROTO_RAFT = 0x1e
-~~~~~~~~~~~~~~~~~~
-
-A node broadcasts the IPROTO_RAFT request to all the replicas connected to it when the RAFT state of the node changes.
-It can be any actions changing the state, like starting a new election, bumping the term, voting for another node, becoming the leader, and so on.
-
-If there should be a response, for example, in case of a vote request to other nodes, the response will also be an IPROTO_RAFT message.
-In this case, the node should be connected as a replica to another node from which the response is expected because the response is sent via the replication channel.
-In other words, there should be a full-mesh connection between the nodes.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_RAFT,
-        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,  # ID of the replica which the request came from
-
-    })
-    # <body>
-    msgpack({
-        IPROTO_RAFT_TERM: :samp:`{{MP_UINT unsigned integer}}`,     # RAFT term of the instance
-        IPROTO_RAFT_VOTE: :samp:`{{MP_UINT unsigned integer}}`,     # Instance vote in the current term (if any).
-        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state. Possible values: 1 -- follower, 2 -- candidate, 3 -- leader.
-        IPROTO_RAFT_VCLOCK: :samp:`{{MP_ARRAY {{MP_INT SRV_ID, MP_INT SRV_LSN}, {MP_INT SRV_ID, MP_INT SRV_LSN}, ...}}}`,   # Current vclock of the instance. Presents only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
-        IPROTO_RAFT_LEADER_ID: :samp:`{{MP_UINT unsigned integer}}`,     # Current leader node ID as seen by the node that issues the request. Since version :doc:`2.10.0 </release/2.10.0>`.
-        IPROTO_RAFT_IS_LEADER_SEEN: :samp:`{{MP_BOOL boolean}}`     # Shows whether the node has a direct connection to the leader node. Since version :doc:`2.10.0 </release/2.10.0>`.
-
-    })
-
-..  _box_protocol-illustration:
-
-Examples
---------
-
-
-To follow the examples in this section,
-get a single Linux computer and start three command-line shells ("terminals").
-
--- On terminal #1, Start monitoring port 3302 with `tcpdump <https://www.tcpdump.org/manpages/tcpdump.1.html>`_: |br|
-
-..  code-block:: bash
-
-    sudo tcpdump -i lo 'port 3302' -X
-
-On terminal #2, start a server with:
-
-..  code-block:: lua
-
-    box.cfg{listen=3302}
-    box.schema.space.create('tspace')
-    box.space.tspace:create_index('I')
-    box.space.tspace:insert{280}
-    box.schema.user.grant('guest','read,write,execute,create,drop','universe')
-
-On terminal #3, start another server, which will act as a client, with:
-
-..  code-block:: lua
-
-    box.cfg{}
-    net_box = require('net.box')
-    conn = net_box.connect('localhost:3302')
-    conn.space.tspace:select(280)
-
-Now look at what tcpdump shows for the job connecting to 3302 -- the "request".
-After the words "length 32" is a packet that ends with these 32 bytes
-(we have added indented comments):
-
-..  code-block:: none
-
-    ce 00 00 00 1b   MP_UINT = decimal 27 = number of bytes after this
-    82               MP_MAP, size 2 (we'll call this "Main-Map")
-    01                 IPROTO_SYNC (Main-Map Item#1)
-    04                 MP_INT = 4 = number that gets incremented with each request
-    00                 IPROTO_REQUEST_TYPE (Main-Map Item#2)
-    01                 IPROTO_SELECT
-    86                 MP_MAP, size 6 (we'll call this "Select-Map")
-    10                   IPROTO_SPACE_ID (Select-Map Item#1)
-    cd 02 00             MP_UINT = decimal 512 = id of tspace (could be larger)
-    11                   IPROTO_INDEX_ID (Select-Map Item#2)
-    00                   MP_INT = 0 = id of index within tspace
-    14                   IPROTO_ITERATOR (Select-Map Item#3)
-    00                   MP_INT = 0 = Tarantool iterator_type.h constant ITER_EQ
-    13                   IPROTO_OFFSET (Select-Map Item#4)
-    00                   MP_INT = 0 = amount to offset
-    12                   IPROTO_LIMIT (Select-Map Item#5)
-    ce ff ff ff ff       MP_UINT = 4294967295 = biggest possible limit
-    20                   IPROTO_KEY (Select-Map Item#6)
-    91                   MP_ARRAY, size 1 (we'll call this "Key-Array")
-    cd 01 18               MP_UINT = 280 (Select-Map Item#6, Key-Array Item#1)
-                           -- 280 is the key value that we are searching for
-
-Now read the source code file
-`net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_
-and skip to the line ``netbox_encode_select(lua_State *L)``.
-From the comments and from simple function calls like
-``mpstream_encode_uint(&stream, IPROTO_SPACE_ID);``
-you will be able to see how net_box put together the packet contents that you
-have just observed with tcpdump.
-
-There are libraries for reading and writing MessagePack objects.
-C programmers sometimes include `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_.
-
-Now you know how Tarantool itself makes requests with the binary protocol.
-When in doubt about a detail, consult ``net_box.c`` -- it has routines for each
-request. Some :ref:`connectors <index-box_connectors>` have similar code.
-
-For an IPROTO_UPDATE example, suppose a user changes field #2 in tuple #2
-in space #256 to ``'BBBB'``. The body will look like this:
-(notice that in this case there is an extra map item
-IPROTO_INDEX_BASE, to emphasize that field numbers
-start with 1, which is optional and can be omitted):
-
-..  code-block:: none
-
-    04               IPROTO_UPDATE
-    85               IPROTO_MAP, size 5
-    10                 IPROTO_SPACE_ID, Map Item#1
-    cd 02 00           MP_UINT 256
-    11                 IPROTO_INDEX_ID, Map Item#2
-    00                 MP_INT 0 = primary-key index number
-    15                 IPROTO_INDEX_BASE, Map Item#3
-    01                 MP_INT = 1 i.e. field numbers start at 1
-    21                 IPROTO_TUPLE, Map Item#4
-    91                 MP_ARRAY, size 1, for array of operations
-    93                   MP_ARRAY, size 3
-    a1 3d                   MP_STR = OPERATOR = '='
-    02                      MP_INT = FIELD_NO = 2
-    a5 42 42 42 42 42       MP_STR = VALUE = 'BBBB'
-    20                 IPROTO_KEY, Map Item#5
-    91                 MP_ARRAY, size 1, for array of key values
-    02                   MP_UINT = primary-key value = 2
-
-Byte codes for the :ref:`IPROTO_EXECUTE <box_protocol-execute>` example:
-
-..  code-block:: none
-
-    0b               IPROTO_EXECUTE
-    83               MP_MAP, size 3
-    43                 IPROTO_STMT_ID Map Item#1
-    ce d7 aa 74 1b     MP_UINT value of n.stmt_id
-    41                 IPROTO_SQL_BIND Map Item#2
-    92                 MP_ARRAY, size 2
-    01                   MP_INT = 1 = value for first parameter
-    a1 61                MP_STR = 'a' = value for second parameter
-    2b                 IPROTO_OPTIONS Map Item#3
-    90                 MP_ARRAY, size 0 (there are no options)
-
-Byte codes for the response to the :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}`
-example:
-
-..  code-block:: none
-
-    ce 00 00 00 20                MP_UINT = HEADER AND BODY SIZE
-    83                            MP_MAP, size 3
-    00                              Response-Code-Indicator
-    ce 00 00 00 00                  MP_UINT = IPROTO_OK
-    01                              IPROTO_SYNC
-    cf 00 00 00 00 00 00 00 53      MP_UINT = sync value
-    05                              IPROTO_SCHEMA_VERSION
-    ce 00 00 00 68                  MP_UINT = schema version
-    81                            MP_MAP, size 1
-    30                              IPROTO_DATA
-    dd 00 00 00 01                  MP_ARRAY, size 1 (row count)
-    91                              MP_ARRAY, size 1 (field count)
-    06                              MP_INT = 6 = the value that was inserted
-
-Byte codes for the response to the ``conn:eval([[box.schema.space.create('_space');]])``
-example:
-
-..  code-block:: none
-
-    ce 00 00 00 3b                  MP_UINT = HEADER AND BODY SIZE
-    83                              MP_MAP, size 3 (i.e. 3 items in header)
-       00                              Response-Code-Indicator
-       ce 00 00 80 0a                  MP_UINT = hexadecimal 800a
-       01                              IPROTO_SYNC
-       cf 00 00 00 00 00 00 00 26      MP_UINT = sync value
-       05                              IPROTO_SCHEMA_VERSION
-       ce 00 00 00 78                  MP_UINT = schema version value
-       81                              MP_MAP, size 1
-         31                              IPROTO_ERROR_24
-         db 00 00 00 1d 53 70 61 63 etc. MP_STR = "Space '_space' already exists"
-
-Byte codes, if we use the same net.box connection that
-we used for :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-and we say |br|
-``conn:execute([[CREATE TABLE t1 (dd INT PRIMARY KEY AUTOINCREMENT, дд STRING COLLATE "unicode");]])`` |br|
-``conn:execute([[INSERT INTO t1 VALUES (NULL, 'a'), (NULL, 'b');]])`` |br|
-and we watch what tcpdump displays, we will see two noticeable things:
-(1) the CREATE statement caused a schema change so the response has
-a new IPROTO_SCHEMA_VERSION value and the body includes
-the new contents of some system tables (caused by requests from net.box which users will not see);
-(2) the final bytes of the response to the INSERT will be:
-
-..  code-block:: none
-
-    81   MP_MAP, size 1
-    42     IPROTO_SQL_INFO
-    82     MP_MAP, size 2
-    00       Tarantool constant (not in iproto_constants.h) = SQL_INFO_ROW_COUNT
-    02       1 = row count
-    01       Tarantool constant (not in iproto_constants.h) = SQL_INFO_AUTOINCREMENT_ID
-    92       MP_ARRAY, size 2
-    01         first autoincrement number
-    02         second autoincrement number
-
-Byte codes for the SQL SELECT example,
-if we ask for full metadata by saying |br|
-:code:`conn.space._session_settings:update('sql_full_metadata', {{'=', 'value', true}})` |br|
-and we select the two rows from the table that we just created |br|
-:code:`conn:execute([[SELECT dd, дд AS д FROM t1;]])` |br|
-then tcpdump will show this response, after the header:
-
-..  code-block:: none
-
-    82                       MP_MAP, size 2 (i.e. metadata and rows)
-    32                         IPROTO_METADATA
-    92                         MP_ARRAY, size 2 (i.e. 2 columns)
-    85                           MP_MAP, size 5 (i.e. 5 items for column#1)
-    00 a2 44 44                    IPROTO_FIELD_NAME and 'DD'
-    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE and 'integer'
-    03 c2                          IPROTO_FIELD_IS_NULLABLE and false
-    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT and true
-    05 c0                          PROTO_FIELD_SPAN and nil
-    85                           MP_MAP, size 5 (i.e. 5 items for column#2)
-    00 a2 d0 94                    IPROTO_FIELD_NAME and 'Д' upper case
-    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE and 'string'
-    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL and 'unicode'
-    03 c3                          IPROTO_FIELD_IS_NULLABLE and true
-    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN and 'дд' lower case
-    30                         IPROTO_DATA
-    92                         MP_ARRAY, size 2
-    92                           MP_ARRAY, size 2
-    01                             MP_INT = 1 i.e. contents of row#1 column#1
-    a1 61                          MP_STR = 'a' i.e. contents of row#1 column#2
-    92                           MP_ARRAY, size 2
-    02                             MP_INT = 2 i.e. contents of row#2 column#1
-    a1 62                          MP_STR = 'b' i.e. contents of row#2 column#2
-
-Byte code for the SQL PREPARE example. If we said |br|
-:code:`conn:prepare([[SELECT dd, дд AS д FROM t1;]])` |br|
-then tcpdump would show almost the same response, but there would
-be no IPROTO_DATA. Instead, additional items will appear:
-
-..  code-block:: none
-
-    34                       IPROTO_BIND_COUNT
-    00                       MP_UINT = 0
-
-    33                       IPROTO_BIND_METADATA
-    90                       MP_ARRAY, size 0
-
-``MP_UINT = 0`` and ``MP_ARRAY`` has size 0 because there are no parameters to bind.
-Full output:
-
-..  code-block:: none
-
-    84                       MP_MAP, size 4
-    43                         IPROTO_STMT_ID
-    ce c2 3c 2c 1e             MP_UINT = statement id
-    34                         IPROTO_BIND_COUNT
-    00                         MP_INT = 0 = number of parameters to bind
-    33                         IPROTO_BIND_METADATA
-    90                         MP_ARRAY, size 0 = there are no parameters to bind
-    32                         IPROTO_METADATA
-    92                         MP_ARRAY, size 2 (i.e. 2 columns)
-    85                           MP_MAP, size 5 (i.e. 5 items for column#1)
-    00 a2 44 44                    IPROTO_FIELD_NAME and 'DD'
-    01 a7 69 6e 74 65 67 65 72     IPROTO_FIELD_TYPE and 'integer'
-    03 c2                          IPROTO_FIELD_IS_NULLABLE and false
-    04 c3                          IPROTO_FIELD_IS_AUTOINCREMENT and true
-    05 c0                          PROTO_FIELD_SPAN and nil
-    85                           MP_MAP, size 5 (i.e. 5 items for column#2)
-    00 a2 d0 94                    IPROTO_FIELD_NAME and 'Д' upper case
-    01 a6 73 74 72 69 6e 67        IPROTO_FIELD_TYPE and 'string'
-    02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL and 'unicode'
-    03 c3                          IPROTO_FIELD_IS_NULLABLE and true
-    05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN and 'дд' lower case
-
-Byte code for the heartbeat example. The master might send this body:
-
-..  code-block:: none
-
-    83                      MP_MAP, size 3
-    00                        Main-Map Item #1 IPROTO_REQUEST_TYPE
-    00                          MP_UINT = 0
-    02                        Main-Map Item #2 IPROTO_REPLICA_ID
-    02                          MP_UINT = 2 = id
-    04                        Main-Map Item #3 IPROTO_TIMESTAMP
-    cb                          MP_DOUBLE (MessagePack "Float 64")
-    41 d7 ba 06 7b 3a 03 21     8-byte timestamp
-
-Byte code for the heartbeat example. The replica might send back this body
-
-..  code-block:: none
-
-    81                       MP_MAP, size 1
-    00                         Main-Map Item #1 Response-code-indicator
-    00                         MP_UINT = 0 = IPROTO_OK
-    81                         Main-Map Item #2, MP_MAP, size 1
-    26                           Sub-Map Item #1 IPROTO_VCLOCK
-    81                           Sub-Map Item #2, MP_MAP, size 1
-    01                             MP_UINT = 1 = id (part 1 of vclock)
-    06                             MP_UINT = 6 = lsn (part 2 of vclock)
 
 
 
@@ -2102,3 +1341,4 @@ may be data tuples that have this form:
          MP_MAP                     MP_MAP
 
 See the example in the :ref:`File formats <internals-data_persistence>` section.
+
