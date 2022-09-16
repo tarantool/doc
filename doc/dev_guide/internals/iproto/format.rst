@@ -106,6 +106,10 @@ For example, in a successful response to ``box.space:select()``,
 the Response-Code-Indicator value will be 0 = ``IPROTO_OK`` and the
 array will have all the tuples of the result.
 
+Read the source code file `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_
+where the function "decode_metadata_optional" is an example of how Tarantool
+itself decodes extra items.
+
 Body
 ~~~~
 
@@ -114,3 +118,130 @@ be absent or be an empty map. Both these states will be interpreted equally.
 Responses will contain the ``<body>`` anyway even for an
 :ref:`IPROTO_PING <box_protocol-ping>` request.
 
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        Response-Code-Indicator: IPROTO_OK,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
+        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_DATA: :samp:`{{any type}}`
+    })
+
+- For :ref:`IPROTO_PING <box_protocol-ping>` the body will be an empty map.
+
+
+IPROTO_DATA is what we get with net_box and :ref:`Module buffer <buffer-module>`
+so if we were using net_box we could decode with
+:ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked_string>`,
+or we could convert to a string with :samp:`ffi.string({pointer},{length})`.
+The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful.
+
+Response body
+~~~~~~~~~~~~~
+
+After the :ref:`header <box_protocol-header>`, for a response,
+there will be a body.
+If there was no error, it will contain IPROTO_OK (0x00).
+If there was an error, it will contain an error code other than IPROTO_OK.
+Responses to SQL statements are slightly different and will be described
+in the later section,
+:ref:`Binary protocol -- responses for SQL <box_protocol-sql_protocol>`.
+
+For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body is a 1-item map.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        Response-Code-Indicator: IPROTO_OK,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
+        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_DATA: :samp:`{{any type}}`
+    })
+
+Responses for SQL
+-----------------
+
+After the :ref:`header <box_protocol-header>`, for a response to an SQL statement,
+there will be a body that is slightly different from the body for
+:ref:`Binary protocol -- responses if no error and no SQL <box_protocol-responses>`.
+
+If the SQL request is not SELECT or VALUES or PRAGMA, then the response body
+contains only IPROTO_SQL_INFO (0x42). Usually IPROTO_SQL_INFO is a map with only
+one item -- SQL_INFO_ROW_COUNT (0x00) -- which is the number of changed rows.
+
+..  _box_protocol-responses_error:
+
+Responses for errors
+--------------------
+
+For a response other than IPROTO_OK, the header Response-Code-Indicator will be
+``0x8XXX`` and the body will be a 1-item map.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(32)
+    # <header>
+    msgpack({
+        Response-Code-Indicator: :samp:`{{0x8XXX}}`,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
+        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_ERROR: :samp:`{{MP_STRING string}}`
+    })
+
+where ``0x8XXX`` is the indicator for an error and ``XXX`` is a value in
+`src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_.
+``src/box/errcode.h`` also has some convenience macros which define hexadecimal
+constants for return codes.
+
+Example: in version 2.4.0 and earlier,
+if this is the fifth message and the request is to create a duplicate
+space with
+``conn:eval([[box.schema.space.create('_space');]])``
+the unsuccessful response will look like this:
+
+..  code-block:: none
+
+    # <size>
+    msgpack(32)
+    # <header>
+    msgpack({
+        Response-Code-Indicator: 0x800a,
+        IPROTO_SYNC: 5,
+        IPROTO_SCHEMA_VERSION: 0x78
+    })
+    # <body>
+    msgpack({
+        IPROTO_ERROR:  "Space '_space' already exists"
+    })
+
+Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
+we will show actual byte codes of the response to the IPROTO_EVAL message.
+
+Looking in errcode.h we find that error code 0x0a (decimal 10) is
+ER_SPACE_EXISTS, and the string associated with ER_SPACE_EXISTS is
+"Space '%s' already exists".
+
+Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information
+following what was described above. This extra information is given via
+MP_ERROR extension type. See details in :ref:`MessagePack extensions
+<msgpack_ext-error>` section.

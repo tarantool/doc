@@ -2,6 +2,42 @@
 msgid "Replication"
 msgstr "Репликация"
 
+
+msgid ""
+"IPROTO_JOIN = 0x41 -- for replication\n"
+"IPROTO_SUBSCRIBE = 0x42 -- for replication SUBSCRIBE\n"
+"IPROTO_VOTE_DEPRECATED = 0x43 -- for old style vote, superseded by IPROTO_VOTE\n"
+"IPROTO_VOTE = 0x44 -- for master election\n"
+"IPROTO_FETCH_SNAPSHOT = 0x45 -- for starting anonymous replication\n"
+"IPROTO_REGISTER = 0x46 -- for leaving anonymous replication."
+msgstr ""
+"IPROTO_JOIN = 0x41 — для репликации\n"
+"IPROTO_SUBSCRIBE = 0x42 — для репликации SUBSCRIBE\n"
+"IPROTO_VOTE_DEPRECATED = 0x43 — для устаревшего типа голосования, взамен используется IPROTO_VOTE\n"
+"IPROTO_VOTE = 0x44 — для выбора мастера\n"
+"IPROTO_FETCH_SNAPSHOT = 0x45 — для начала анонимной репликации\n"
+"IPROTO_REGISTER = 0x46 — для выхода из анонимной репликации"
+
+msgid ""
+"Tarantool constants 0x41 to 0x46 (decimal 65 to 70) are for replication. "
+"Connectors and clients do not need to send replication packets. See "
+":ref:`Binary protocol -- replication <box_protocol-replication>`."
+msgstr ""
+"Константы Tarantool 0x41–0x46 (в десятичной системе 65-70) предназначены для"
+" репликации. Коннекторы и клиенты не должны отправлять репликационные "
+"пакеты. См. раздел о :ref:`репликации <box_protocol-replication>`."
+
+msgid ""
+"The next two IPROTO messages are used in replication connections between "
+"Tarantool nodes in :ref:`synchronous replication <repl_sync>`. The messages "
+"are not supposed to be used by any client applications in their regular "
+"connections."
+msgstr ""
+"Следующие два сообщения IPROTO используются в соединениях репликации между "
+"узлами Tarantool при :ref:`синхронной репликации <repl_sync>`. Эти сообщения"
+" не должны использоваться клиентскими приложениями при обычном соединении."
+
+
 msgid "IPROTO_JOIN = 0x41"
 msgstr "IPROTO_JOIN = 0x41"
 

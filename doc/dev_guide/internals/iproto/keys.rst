@@ -35,6 +35,20 @@ This section describes all the iproto keys used to pass request arguments.
         used with SQL within IPROTO_EXECUTE:
     IPROTO_OPTIONS=0x2b
     IPROTO_METADATA=0x32
+    * :samp:`IPROTO_METADATA: {array of column maps}` = array of column maps, with each column map containing
+  at least IPROTO_FIELD_NAME (0x00) and MP_STR, and IPROTO_FIELD_TYPE (0x01) and MP_STR.
+  Additionally, if ``sql_full_metadata`` in the
+  :ref:`_session_settings <box_space-session_settings>` system space
+  is TRUE, then the array will have these additional column maps
+  which correspond to components described in the
+  :ref:`box.execute() <box-sql_if_full_metadata>` section:
+
+..  code-block:: none
+
+    IPROTO_FIELD_COLL (0x02) and MP_STR
+    IPROTO_FIELD_IS_NULLABLE (0x03) and MP_BOOL
+    IPROTO_FIELD_IS_AUTOINCREMENT (0x04) and MP_BOOL
+    IPROTO_FIELD_SPAN (0x05) and MP_STR or MP_NIL
     IPROTO_BIND_METADATA=0x33
     IPROTO_BIND_COUNT=0x34
     IPROTO_SQL_TEXT=0x40
@@ -44,6 +58,23 @@ This section describes all the iproto keys used to pass request arguments.
 
     "No error" constant
     IPROTO_OK=0x00
+For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body is a 1-item map.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        Response-Code-Indicator: IPROTO_OK,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
+        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_DATA: :samp:`{{any type}}`
+    })
     
     box.session.sync(), like a clock, must be same for response and request
     IPROTO_SYNC=0x01
@@ -83,7 +114,7 @@ This section describes all the iproto keys used to pass request arguments.
     IPROTO_TIMESTAMP=0x04 Float 64 MP_DOUBLE 8-byte timestamp
     IPROTO_SCHEMA_VERSION=0x05
     Stream transactions
-    IPROTO_STREAM_ID=0x0a
+    IPROTO_STREAM_ID=0x0a Дать ссылку на подраздел про стримы
     IPROTO_TXN_ISOLATION=0x59
     IPROTO_FUNCTION_NAME=0x22
     user name
@@ -105,6 +136,9 @@ This section describes all the iproto keys used to pass request arguments.
     IPROTO_ERROR_24=0x31
 
     IPROTO_CHUNK=0x80
+    If the response is out-of-band, due to use of
+:ref:`box.session.push() <box_session-push>`,
+then the header Response-Code-Indicator will be IPROTO_CHUNK instead of IPROTO_OK.
 
     IPROTO_TIMEOUT=0x56
 
@@ -119,3 +153,11 @@ This section describes all the iproto keys used to pass request arguments.
 
     IPROTO_EVENT_KEY=0x57
     IPROTO_EVENT_DATA=0x58
+
+    IPROTO_SQL_INFO (0x42)
+    Usually IPROTO_SQL_INFO is a map with only one item -- SQL_INFO_ROW_COUNT (0x00) -- which is the number of changed rows
+    The IPROTO_SQL_INFO map may contain a second item -- :samp:`SQL_INFO_AUTO_INCREMENT_IDS
+(0x01)` -- which is the new primary-key value (or values) for an INSERT in a table
+defined with PRIMARY KEY AUTOINCREMENT.
+        SQL_INFO_ROW_COUNT (0x00)
+        SQL_INFO_AUTO_INCREMENT_IDS (0x01)

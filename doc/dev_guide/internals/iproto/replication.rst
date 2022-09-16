@@ -5,8 +5,37 @@ Replication requests and responses
 
 ..  _box_protocol-replication:
 
-Replication
------------
+ Replication
+    IPROTO_JOIN=0x41    
+    IPROTO_RAFT=0x1e
+    box.ctl.promote()
+    IPROTO_RAFT_PROMOTE=0x1f
+    box.ctl.demote()
+    IPROTO_RAFT_DEMOTE=0x20
+    IPROTO_RAFT_CONFIRM=0x28
+    IPROTO_RAFT_ROLLBACK=0x29
+    IPROTO_SUBSCRIBE=0x42
+    IPROTO_VOTE_DEPRECATED=0x43
+    IPROTO_VOTE=0x44
+    Register an anonymous replica so it is not anonymous anymore
+    IPROTO_REGISTER=0x46
+
+
+..  code-block:: lua
+
+    IPROTO_JOIN = 0x41 -- for replication
+    IPROTO_SUBSCRIBE = 0x42 -- for replication SUBSCRIBE
+    IPROTO_VOTE_DEPRECATED = 0x43 -- for old style vote, superseded by IPROTO_VOTE
+    IPROTO_VOTE = 0x44 -- for master election
+    IPROTO_FETCH_SNAPSHOT = 0x45 -- for starting anonymous replication
+    IPROTO_REGISTER = 0x46 -- for leaving anonymous replication.
+
+Tarantool constants 0x41 to 0x46 (decimal 65 to 70) are for replication.
+Connectors and clients do not need to send replication packets.
+See :ref:`Binary protocol -- replication <box_protocol-replication>`.
+
+..  _box_protocol-join:
+
 
 IPROTO_JOIN = 0x41
 ~~~~~~~~~~~~~~~~~~
@@ -72,6 +101,22 @@ Then you must send an IPROTO_SUBSCRIBE request.
 
 Then you must process every request that could come through other masters.
 Every request between masters will have additional LSN and SERVER_ID.
+
+IPROTO_ID_FILTER = 0x51
+ is an optional key used in SUBSCRIBE request followed by an array
+of ids of instances whose rows won't be relayed to the replica.
+
+SUBSCRIBE request is supplemented with an optional field of the
+following structure:
+
++====================+
+|      ID_FILTER     |
+|   0x51 : ID LIST   |
+| MP_INT : MP_ARRRAY |
+|                    |
++====================+
+
+The field is encoded only when the id list is not empty.
 
 
 ..  _box_protocol-heartbeat:
@@ -221,3 +266,70 @@ In other words, there should be a full-mesh connection between the nodes.
         IPROTO_RAFT_IS_LEADER_SEEN: :samp:`{{MP_BOOL boolean}}`     # Shows whether the node has a direct connection to the leader node. Since version :doc:`2.10.0 </release/2.10.0>`.
 
     })
+
+
+The next two IPROTO messages are used in replication connections between
+Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
+The messages are not supposed to be used by any client applications in their
+regular connections.
+
+
+
+
+..  _box_protocol-raft_confirm:
+
+IPROTO_RAFT_CONFIRM = 0x28
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This message confirms that the transactions originated from the instance
+with id = IPROTO_REPLICA_ID have achieved quorum and can be committed,
+up to and including LSN = IPROTO_LSN.
+Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_CONFIRM was called IPROTO_CONFIRM.
+
+The body is a 2-item map:
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_RAFT_CONFIRM,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,
+        IPROTO_LSN: :samp:`{{MP_INT integer}}`
+    })
+
+
+..  _box_protocol-raft_rollback:
+
+IPROTO_RAFT_ROLLBACK = 0x29
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This message says that the transactions originated from the instance
+with id = IPROTO_REPLICA_ID couldn't achieve quorum for some reason
+and should be rolled back, down to LSN = IPROTO_LSN and including it.
+Prior to Tarantool version 2.10, IPROTO_RAFT_ROLLBACK was called IPROTO_ROLLBACK.
+
+The body is a 2-item map:
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_RAFT_ROLLBACK,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,
+        IPROTO_LSN: :samp:`{{MP_INT integer}}`
+    })
+
