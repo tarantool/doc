@@ -7,7 +7,9 @@ Cleaning instance files
 
     tt clean INSTANCE
 
-``tt clean`` cleans stored files of Tarantool instances: logs and snapshots.
+``tt clean`` cleans stored files of Tarantool instances: logs, snapshots, and
+other files. To avoid accidental deletion of files, ``tt clean`` shows
+the files it is going to delete and asks for confirmation.
 
 Flags
 -----
@@ -21,7 +23,7 @@ Flags
         *   -   ``-f``
 
                 ``--force``
-            -   Clean file without confirmation
+            -   Clean files without confirmation
 
 
 Examples

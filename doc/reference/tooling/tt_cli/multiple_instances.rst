@@ -31,7 +31,7 @@ This directory should contain the following files:
 
     ..  note::
 
-        Do not use the dot (``.``) and dash (``--``) characters in the instance names.
+        Do not use the dot (``.``) and dash (``-``) characters in the instance names.
         They are reserved for system use.
 
 *   (Optional) Application files to run on specific instances.
@@ -43,11 +43,11 @@ This directory should contain the following files:
 Identifying instances in code
 -----------------------------
 
-When working, ach instance receives associated environment variables ``TARANTOOL_INSTANCE_NAME``
-and ``TARANTOOL_APP_NAME``. You can use them in the application code to identify the
-instance on which the code runs.
+When the application is working, each instance has associated environment variables
+``TARANTOOL_INSTANCE_NAME`` and ``TARANTOOL_APP_NAME``. You can use them in the application
+code to identify the instance on which the code runs.
 
-To obtain their values, do the following:
+To obtain the instance and application names, use the following code:
 
 ..  code:: lua
 
