@@ -1,29 +1,35 @@
+..  _box_protocol-authentication:
+
 Authentication
 ==============
-
-..  _box_protocol-authentication:
 
 Greeting message
 ----------------
 
 When a client connects to the server instance, the instance responds with
-a 128-byte text greeting message, not in MsgPack format: |br|
-64-byte Greeting text line 1 |br|
-64-byte Greeting text line 2 |br|
-44-byte base64-encoded salt |br|
-20-byte NULL
+a 128-byte text greeting message, not in MsgPack format:
+
+..  code-block:: none
+
+    Tarantool <version> (<protocol>) <instance-uuid>
+    <salt>
+
+For example:
+
+..  code-block:: none
+
+    Tarantool 2.10.0 (Binary) 29b74bed-fdc5-454c-a828-1d4bf42c639a
+    QK2HoFZGXTXBq2vFj7soCsHqTo6PGTF575ssUBAJLAI=
 
 The greeting contains two 64-byte lines of ASCII text.
-Each line ends with a newline character (:code:`\n`). The first line contains
-the instance version and protocol type. The second line contains up to 44 bytes
-of base64-encoded random string, to use in the authentication packet, and ends
-with up to 23 spaces.
+Each line ends with a newline character (:code:`\n`). If the line content is less than 64 bytes long,
+the rest of the line is filled up with symbols with an ASCII code of 0 that aren't displayed in the console.
 
-Part of the greeting is a base64-encoded session salt -
-a random string which can be used for authentication. The maximum length of an encoded
-salt (44 bytes) is more than the amount necessary to create the authentication
-message. An excess is reserved for future authentication
-schemas.
+The first line contains
+the instance version and protocol type. The second line contains the session salt --
+a base64-encoded random string, which is usually 44 bytes long.
+The salt is used in the authentication packet.
+
 
 Authentication is optional -- if it is skipped, then the session user is ``'guest'``
 (the ``'guest'`` user does not need a password).
