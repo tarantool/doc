@@ -8,13 +8,13 @@ multiple instances. With a single ``tt`` call, you can:
 
 *   start an application on multiple instances (``tt start``)
 *   check the status of an application instances (``tt status``)
-*   connect to an application running on on multiple instances (``tt connect``)
-*   stop all instances of an application (``tt stop``)
+*   connect to a specific instance of an application (``tt connect``)
+*   stop a specific instance of an application or all its instances (``tt stop``)
 
 To make an application run on multiple instances, prepare its configuration
-in a directory. Its name will be used as the application name.
+in a directory. The directory name is used as the application's identifier.
 
-The directory should contain the following files:
+This directory should contain the following files:
 
 *   The application file named ``init.lua``.
 *   The instances configuration file ``instances.yml`` with the following format:
@@ -38,9 +38,8 @@ The ``demo`` application runs on three instances: ``master`` and ``replica`` for
 storing data and ``router`` for connections. ``master`` and ``replica`` share
 the same code, and ``router`` has its own code.
 
-The application configuration is stored in the ``demo`` directory.
-This name is used as the application's identifier. The directory contains the
-following files:
+The application configuration is stored in the ``demo`` directory. The directory
+contains the following files:
 
 *   ``instances.yml`` -- the instances configuration:
 
@@ -54,7 +53,7 @@ following files:
 *   ``router.init.lua`` -- the code of ``router``.
 
 
-Start the ``demo`` application on three instances:
+Start all three instances of the ``demo`` application:
 
 ..  code-block:: bash
 

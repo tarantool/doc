@@ -29,3 +29,4 @@ and :doc:`Cartridge CLI </book/cartridge/cartridge_cli/index>`.
     arguments
     commands
     external_modules
+    multiple_instances

@@ -12,49 +12,52 @@ help for the given command.
         :widths: 30 70
         :header-rows: 0
 
-        *   -   :doc:`start <start>`
-            -   Start a Tarantool instance
-        *   -   :doc:`stop <stop>`
-            -   Stop a Tarantool instance
-        *   -   :doc:`status <status>`
-            -   Get the current status of a Tarantool instance
-        *   -   :doc:`restart <restart>`
-            -   Restart a Tarantool instance
-        *   -   :doc:`version <version>`
-            -   Show the ``tt`` version information
+        *   -   :doc:`cat <cat>`
+            -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
+        *   -   :doc:`check <check>`
+            -   Check an application file for syntax errors
+        *   -   :doc:`clean <clean>`
+            -   Clean instance files
         *   -   :doc:`completion <completion>`
             -   Generate completion for a specified shell
+        *   -   :doc:`connect <connect>`
+            -   Connect to a Tarantool instance
+        *   -   :doc:`coredump <coredump>`
+            -   Manipulate Tarantool core dumps
         *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
         *   -   :doc:`logrotate <logrotate>`
             -   Rotate instance logs
-        *   -   :doc:`check <check>`
-            -   Check an application file for syntax errors
-        *   -   :doc:`connect <connect>`
-            -   Connect to a Tarantool instance
-        *   -   :doc:`rocks <rocks>`
-            -   Use the LuaRocks package manager
-        *   -   :doc:`cat <cat>`
-            -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   :doc:`play <play>`
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
-        *   -   :doc:`coredump <coredump>`
-            -   Manipulate Tarantool core dumps
+        *   -   :doc:`restart <restart>`
+            -   Restart a Tarantool instance
+        *   -   :doc:`rocks <rocks>`
+            -   Use the LuaRocks package manager
+        *   -   :doc:`start <start>`
+            -   Start a Tarantool instance
+        *   -   :doc:`status <status>`
+            -   Get the current status of a Tarantool instance
+        *   -   :doc:`stop <stop>`
+            -   Stop a Tarantool instance
+        *   -   :doc:`version <version>`
+            -   Show the ``tt`` version information
 
 ..  toctree::
     :hidden:
 
-    start <start>
-    stop <stop>
-    status <status>
-    restart <restart>
-    version <version>
+    cat <cat>
+    check <check>
+    clean <clean>
     completion <completion>
+    connect <connect>
+    coredump <coredump>
     help <help>
     logrotate <logrotate>
-    check <check>
-    connect <connect>
-    rocks <rocks>
-    cat <cat>
     play <play>
-    coredump <coredump>
+    restart <restart>
+    rocks <rocks>
+    start <start>
+    status <status>
+    stop <stop>
+    version <version>
