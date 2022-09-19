@@ -10,8 +10,26 @@ Checking instance status
 Examples
 --------
 
-Check the status of the ``app`` instance:
+Single instance
+~~~~~~~~~~~~~~~
 
-..  code-block:: bash
+*   Check the status of the ``app`` instance:
 
-    tt status app
+    ..  code-block:: bash
+
+        tt status app
+
+Multiple instances
+~~~~~~~~~~~~~~~~~~
+
+*   Check the status of all instances of the ``app`` application:
+
+    ..  code-block:: bash
+
+        tt status app
+
+*   Check the status of the ``replica`` instance of the ``app`` application:
+
+    ..  code-block:: bash
+
+        tt status app:replica
