@@ -125,8 +125,8 @@ msgstr ":ref:`для Go <getting_started-go>`"
 msgid ":ref:`for PHP <getting_started-php>`"
 msgstr ":ref:`для PHP <getting_started-php>`"
 
-msgid ":doc:`for C++ </getting_started/getting_started_cxx>`"
-msgstr ":doc:`для C++ </getting_started/getting_started_cxx>`"
+msgid ":doc:`for C++ </how-to/getting_started_cxx>`"
+msgstr ":doc:`для C++ </how-to/getting_started_cxx>`"
 
 msgid ""
 "For connectors to other languages, check the README for the connector of "

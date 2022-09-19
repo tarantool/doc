@@ -68,7 +68,7 @@ Versions that only include bug fixes are not listed in this table.
             -   ``--leak-only`` LuaJIT memory profiler option (:tarantool-issue:`5812`)
 
         *   -   2.7.1
-            -   :doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>` (:tarantool-issue:`5442`)
+            -   :ref:`LuaJIT memory profiler <luajit_memprof>` (:tarantool-issue:`5442`)
 
         *   -   2.7.1
             -   SQL :doc:`ALTER TABLE ADD COLUMN </reference/reference_sql/sql_statements_and_clauses>` statement support for empty tables (:tarantool-issue:`2349`, :tarantool-issue:`3075`)
@@ -83,7 +83,7 @@ Versions that only include bug fixes are not listed in this table.
             -   :ref:`LuaJIT platform metrics <metrics-reference-luajit>` (:tarantool-issue:`5187`)
 
         *   -   2.6.1
-            -   :doc:`Automated leader election </book/replication/repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)
+            -   :ref:`Automated leader election <repl_leader_elect>` based on Raft algorithm (:tarantool-issue:`1146`)
 
         *   -   2.6.1
             -   :ref:`Transactional manager <txn_mode_transaction-manager>` for memtx engine (:tarantool-issue:`4897`)
@@ -95,7 +95,7 @@ Versions that only include bug fixes are not listed in this table.
             -   :doc:`box.ctl.is_recovery_finished() </reference/reference_lua/box_ctl/is_recovery_finished>` for memtx engine (:tarantool-issue:`5187`)
 
         *   -   2.5.1
-            -   :doc:`Synchronous replication </book/replication/repl_sync>` (beta) (:tarantool-issue:`4842`)
+            -   :ref:`Synchronous replication <repl_sync>` (beta) (:tarantool-issue:`4842`)
 
         *   -   2.5.1
             -   Allow an :doc:`anonymous replica </reference/reference_lua/box_info/replication_anon>` to follow another anonymous replica (:tarantool-issue:`4696`)

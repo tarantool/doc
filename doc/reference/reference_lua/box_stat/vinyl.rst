@@ -190,3 +190,4 @@ for dumping or compaction:
 
   A dump will also occur during a
   :doc:`snapshot </reference/reference_lua/box_snapshot>` operation.
+  

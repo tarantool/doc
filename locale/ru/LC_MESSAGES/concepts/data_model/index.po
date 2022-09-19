@@ -1,0 +1,12 @@
+
+msgid "Data model"
+msgstr "Модель данных"
+
+msgid ""
+"If you tried to create a database as suggested in our :ref:`basic "
+"tutorial <getting_started_db>`, then your test database now looks"
+" like this:"
+msgstr ""
+"Если вы пробовали создать базу данных, как предлагается в упражнениях в "
+":ref:`базовом практическом руководстве <getting_started_db>`, то ваша тестовая"
+" база данных выглядит следующим образом:"

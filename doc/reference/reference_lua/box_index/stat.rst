@@ -28,7 +28,7 @@ index_object:stat()
         * ``index_object:stat().dumps_per_compaction`` -- average number of dumps required to trigger major compaction in any range of the LSM tree.
 
         Summary index statistics are also available via
-        :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl_details>`.
+        :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>`.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.

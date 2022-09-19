@@ -130,6 +130,6 @@ box.info.replication
 
     For better understanding, see the following diagram illustrating the ``upstream`` and ``downstream`` connections within the replica set of three instances:
 
-    ..  image:: /book/replication/replication.svg
+    ..  image:: /concepts/replication/images/replication.svg
         :align: left
 

@@ -34,7 +34,7 @@ Notable changes are:
 
     Read more:
 
-    *   :doc:`/book/replication/repl_leader_elect`
+    *   :ref:`Automated leader election <repl_leader_elect>`
     *   :ref:`election_mode configuration parameter <cfg_replication-election_mode>`
     *   :ref:`election_timeout configuration parameter <cfg_replication-election_timeout>`
     *   :doc:`/reference/reference_lua/box_info/election`
@@ -111,7 +111,7 @@ Replication
 ~~~~~~~~~~~
 
 -   Automated leader election based on Raft algorithm (:tarantool-issue:`1146`).
-    Read more: :doc:`/book/replication/repl_leader_elect`.
+    Read more: :ref:`Automated leader election <repl_leader_elect>`.
 -   When election is enabled, a newly elected leader will automatically
     finish all the synchronous transactions, created by the old leader
     (:tarantool-issue:`5339`).

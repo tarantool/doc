@@ -47,7 +47,7 @@ switch languages and specify the end-of-statement delimiter.
 
 Here we say: default language is SQL and statements end with semicolons.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> \set language sql
     tarantool> \set delimiter ;

@@ -12,4 +12,5 @@ Contributing
     contributing
     release_notes
     ../dev_guide/building_from_source
+    ../dev_guide/contributing_module
     ../dev_guide/guidelines_index

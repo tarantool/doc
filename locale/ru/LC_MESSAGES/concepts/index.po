@@ -1,0 +1,13 @@
+
+msgid "Database"
+msgstr "Функциональность СУБД"
+
+msgid ""
+"In this chapter, we introduce the basic concepts of working with Tarantool "
+"as a database manager."
+msgstr ""
+"В данной главе мы рассмотрим основные понятия при работе с Tarantool в "
+"качестве системы управления базой данных."
+
+msgid "This chapter contains the following sections:"
+msgstr "Эта глава состоит из следующих разделов:"

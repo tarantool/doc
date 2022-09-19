@@ -17,7 +17,7 @@ issue <https://github.com/tarantool/tarantool/issues>`_ on GitHub.
 
 Notable changes are:
 
--   :doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>`;
+-   :ref:`LuaJIT memory profiler <luajit_memprof>`;
 -   Expression evaluation for ``replication_synchro_quorum``;
 -   The :ref:`ALTER TABLE ADD COLUMN <sql_alter_table>` statement.
 
@@ -64,7 +64,7 @@ LuaJIT
 
 -   Introduced the LuaJIT memory profiler (:tarantool-issue:`5442`) and the profile
     parser (:tarantool-issue:`5490`).
-    Read more: :doc:`/book/app_server/luajit_memprof`.
+    Read more: :ref:`LuaJIT memory profiler <luajit_memprof>`.
 
 Lua
 ~~~

@@ -44,7 +44,7 @@ In Tarantool we have 3 variants of css-style for admonitions:
 
         This block contains essential information that the user should know while doing something.
 
-        For example, the block :doc:`in Getting Started with Docker </getting_started/getting_started_go>` is used to warn the user against
+        For example, the block :doc:`in Getting Started with Docker </how-to/getting_started_go>` is used to warn the user against
         closing the terminal window.
 
 *   Custom admonition:

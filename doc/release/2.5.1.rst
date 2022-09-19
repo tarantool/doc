@@ -80,7 +80,7 @@ Replication
     exception is that anonymous replicas are indexed by their uuid
     strings (:tarantool-issue:`4900`).
 -   Allow anonymous replicas to be followed by other ones (:tarantool-issue:`4696`).
--   :doc:`Synchronous replication </book/replication/repl_sync>`
+-   :ref:`Synchronous replication <repl_sync>`
     can be enabled per-space using the ``is_sync`` space option (:tarantool-issue:`4842`).
 
 Build

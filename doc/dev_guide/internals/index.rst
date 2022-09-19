@@ -3,9 +3,8 @@
 
 .. _internals:
 
-================================================================================
 Internals
-================================================================================
+=========
 
 .. toctree::
     :maxdepth: 2
@@ -14,4 +13,4 @@ Internals
     msgpack_extensions
     file_formats
     recovery_internals
-    replication_internals
+    replication/index

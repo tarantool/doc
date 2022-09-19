@@ -24,7 +24,7 @@ msgstr ""
 msgid "Notable changes are:"
 msgstr ""
 
-msgid ":doc:`LuaJIT memory profiler </book/app_server/luajit_memprof>`;"
+msgid ":ref:`LuaJIT memory profiler <luajit_memprof>`;"
 msgstr ""
 
 msgid "Expression evaluation for ``replication_synchro_quorum``;"
@@ -106,7 +106,7 @@ msgstr ""
 msgid ""
 "Introduced the LuaJIT memory profiler (:tarantool-issue:`5442`) and the "
 "profile parser (:tarantool-issue:`5490`). Read more: "
-":doc:`/book/app_server/luajit_memprof`."
+":ref:`LuaJIT memory profiler <luajit_memprof>`."
 msgstr ""
 
 msgid "Lua"

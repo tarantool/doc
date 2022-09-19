@@ -126,7 +126,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-":doc:`Synchronous replication </book/replication/repl_sync>` can be enabled "
+":ref:`Synchronous replication <repl_sync>` can be enabled "
 "per-space using the ``is_sync`` space option (:tarantool-issue:`4842`)."
 msgstr ""
 

@@ -12,11 +12,11 @@ User's Guide
 
     intro
     ../getting_started/index
+    ../how-to/index
+    ../concepts/index
     box/index
     cartridge/index
-    app_server/index
     admin/index
-    replication/index
     monitoring/index
     connectors
     ../reference/reference_sql/index

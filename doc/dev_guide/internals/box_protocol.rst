@@ -1727,7 +1727,7 @@ and version :doc:`2.8.2 </release/2.8.2>`.
 FLAGS
 ~~~~~
 
-For replication of :doc:`synchronous transactions </book/replication/repl_sync>`
+For replication of :ref:`synchronous transactions <repl_sync>`
 a header may contain a key = IPROTO_FLAGS and an MP_UINT value = one or more
 bits: IPROTO_FLAG_COMMIT or IPROTO_FLAG_WAIT_SYNC or IPROTO_FLAG_WAIT_ACK.
 

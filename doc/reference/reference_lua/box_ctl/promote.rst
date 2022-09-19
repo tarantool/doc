@@ -7,7 +7,7 @@ box.ctl.promote()
 
     Wait, then choose new replication leader.
 
-    For :doc:`synchronous transactions </book/replication/repl_sync>` it is
+    For :ref:`synchronous transactions <how-to-repl_sync>` it is
     possible that a new leader will be chosen but the transactions
     of the old leader have not been completed. Therefore to
     finalize the transaction, the function ``box.ctl.promote()``

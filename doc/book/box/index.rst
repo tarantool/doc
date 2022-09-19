@@ -13,9 +13,9 @@ This chapter contains the following sections:
     :maxdepth: 2
     :numbered: 0
 
-    data_model
-    atomic
-    authentication
-    triggers
+    ../../concepts/data_model/index
+    ../../concepts/atomic
+    ../admin/access_control
+    ../../concepts/triggers
     limitations
-    engines/index
+    ../../concepts/engines/index
