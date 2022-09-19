@@ -5,7 +5,8 @@ Checking instance status
 
     tt status INSTANCE|APPLICATION
 
-``tt status`` prints the current status of the specified Tarantool instance.
+``tt status`` prints the current status of the specified Tarantool instance or
+all instances of an application.
 
 Examples
 --------
