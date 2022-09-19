@@ -7,7 +7,7 @@ Cleaning instance files
 
     tt clean INSTANCE
 
-``tt clean`` cleans stored files of a Tarantool instance: logs and snapshots.
+``tt clean`` cleans stored files of Tarantool instances: logs and snapshots.
 
 Flags
 -----
@@ -27,8 +27,26 @@ Flags
 Examples
 --------
 
+Single instance
+~~~~~~~~~~~~~~~
+
 *   Clean files of the ``app`` instance:
 
     ..  code-block:: bash
 
         tt clean app
+
+Multiple instances
+~~~~~~~~~~~~~~~~~~
+
+*   Clean files of all instances of the ``app`` application:
+
+    ..  code-block:: bash
+
+        tt clean app
+
+*   Clean files of the ``master`` instance of the ``app`` application:
+
+    ..  code-block:: bash
+
+        tt clean app:master
