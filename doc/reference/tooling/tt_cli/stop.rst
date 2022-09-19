@@ -5,7 +5,7 @@ Stopping a Tarantool instance
 
 ..  code-block:: bash
 
-    tt stop INSTANCE
+    tt stop INSTANCE|APPLICATION
 
 ``tt stop`` stops the specified running Tarantool instances.
 

@@ -3,7 +3,7 @@ Checking instance status
 
 ..  code-block:: bash
 
-    tt status INSTANCE
+    tt status INSTANCE|APPLICATION
 
 ``tt status`` prints the current status of the specified Tarantool instance.
 
