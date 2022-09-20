@@ -6,10 +6,10 @@ Managing multiple instances
 The ``tt`` utility can manage Tarantool applications that run on
 multiple instances. With a single ``tt`` call, you can:
 
-*   start an application on multiple instances (``tt start``)
-*   check the status of application instances (``tt status``)
-*   connect to a specific instance of an application (``tt connect``)
-*   stop a specific instance of an application or all its instances (``tt stop``)
+*   start an application on multiple instances (:ref:`tt start <tt-start>`)
+*   check the status of application instances (:ref:`tt status <tt-status>`)
+*   connect to a specific instance of an application (:ref:`tt connect <tt-connect>`)
+*   stop a specific instance of an application or all its instances (:ref:`tt stop <tt-stop>`)
 
 
 Application directory
@@ -21,7 +21,7 @@ in a directory. The directory name is used as the application's identifier.
 This directory should contain the following files:
 
 *   The application file named ``init.lua``.
-*   The instances configuration file ``instances.yml`` with the following format:
+*   The instances configuration file ``instances.yml`` with instance names followed by colons:
 
     ..  code:: yaml
 
