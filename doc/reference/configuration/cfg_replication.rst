@@ -482,6 +482,23 @@
     | Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT
     | Dynamic: **yes**
 
+.. confval:: replication_threads
+
+    Since version :doc:`2.10.0 </release/2.10.0>`.
+    The number of threads spawned to decode the incoming replication data.
+
+    The default value is `1`.
+    It means that a single separate thread handles all the incoming replication streams.
+
+    Possible values range from 1 to 1000.
+    If there are multiple replication threads, connections to serve are distributed evenly between the threads.
+
+    | Type: number
+    | Default: 1
+    | Possible values: from 1 to 1000
+    | Environment variable: TT_REPLICATION_THREADS
+    | Dynamic: **yes**
+
 ..  _cfg_replication-election_mode:
 
 ..  confval:: election_mode
