@@ -75,10 +75,11 @@ General
         *   -   IPROTO_INDEX_ID
             -   0x11
             -   Index identifier
-        *   -   IPROTO_TUPLE
+        *   -   :ref:`IPROTO_TUPLE <internals-iproto-keys-tuple>`
             -   0x21
             -   MP_ARRAY
-            -   
+            -   Tuple, arguments, operations, or authentication pair.
+                :ref:`See details <internals-iproto-keys-tuple>`
         *   -   IPROTO_KEY
             -   0x20
             -   MP_ARRAY
@@ -484,7 +485,6 @@ See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
 stream transactions in the binary protocol.
 
 
-
 ..  _internals-iproto-keys-ok:
 
 IPROTO_OK
@@ -546,6 +546,32 @@ IPROTO_ERROR_24 со строкой и IPROTO_ERROR с MP_EXT,
 так что новые клиенты могут использовать всю информацию из нового формата,
 а старые клиенты продолжат работать с простыми строками.    
 
+..  _internals-iproto-keys-tuple:
+
+IPROTO_TUPLE
+~~~~~~~~~~~~
+
+Multiple operations make use of this key in different ways:
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 30 70
+        :header-rows: 0
+
+        *   -   :ref:`IPROTO_INSERT <box_protocol-insert>`,
+                :ref:`IPROTO_REPLACE <box_protocol-replace>`,
+                :ref:`IPROTO_UPSERT <box_protocol-upsert>`
+            -   Tuple to be inserted
+        *   -   :ref:`IPROTO_UPSERT <box_protocol-update>`
+            -   Operations to perform
+        *   -   :ref:`IPROTO_AUTH <box_protocol-auth>`
+            -   Array of 2 fields:
+                authentication mechanism ("chap-sha1" is the only supported mechanism right now)
+                and scramble, encrypted according to the specified mechanism.
+                See more on the :ref:`authentication <box_protocol-authentication_sequence>` sequence.
+        *   -   :ref:`IPROTO_CALL <box_protocol-call>`, :ref:`IPROTO_EVAL <box_protocol-eval>`
+            -   Array of arguments
 
 ..  _internals-iproto-keys-metadata:
     

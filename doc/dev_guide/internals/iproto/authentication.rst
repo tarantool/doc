@@ -33,6 +33,8 @@ the instance version and protocol type. The second line contains the session sal
 a base64-encoded random string, which is usually 44 bytes long.
 The salt is used in the authentication packet -- the :ref:`IPROTO_AUTH message <box_protocol-auth>`.
 
+..  _box_protocol-authentication_sequence:
+
 Authentication
 --------------
 
