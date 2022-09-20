@@ -1,24 +1,53 @@
 ..  _internals-iproto-replication:
+..  _box_protocol-replication:
 
 Replication requests and responses
 ==================================
 
-..  _box_protocol-replication:
+This section describes internal requests and responses that happen during replication.
 
- Replication
-    IPROTO_JOIN=0x41    
-    IPROTO_RAFT=0x1e
-    box.ctl.promote()
-    IPROTO_RAFT_PROMOTE=0x1f
-    box.ctl.demote()
-    IPROTO_RAFT_DEMOTE=0x20
-    IPROTO_RAFT_CONFIRM=0x28
-    IPROTO_RAFT_ROLLBACK=0x29
-    IPROTO_SUBSCRIBE=0x42
-    IPROTO_VOTE_DEPRECATED=0x43
-    IPROTO_VOTE=0x44
-    Register an anonymous replica so it is not anonymous anymore
-    IPROTO_REGISTER=0x46
+Connectors and clients do not need to send replication packets.
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 25 15 60
+        :header-rows: 1
+
+        *   -   Name
+            -   Binary code
+            -   Description
+        *   -   IPROTO_JOIN
+            -   0x41
+            -
+        *   -   IPROTO_RAFT
+            -   0x1e
+            -   
+        *   -   IPROTO_RAFT_PROMOTE
+            -   0x1f
+            -   Wait, then choose new replication leader. See :ref:`box.ctl.promote() <box_ctl-promote>`
+        *   -   IPROTO_RAFT_DEMOTE
+            -   0x20
+            -   
+        *   -   IPROTO_RAFT_CONFIRM
+            -   0x28
+            -
+        *   -   IPROTO_RAFT_ROLLBACK
+            -   0x29
+            -
+        *   -   IPROTO_SUBSCRIBE
+            -   0x42
+            -
+        *   -   IPROTO_VOTE
+            -   0x44
+            -
+        *   -   IPROTO_VOTE_DEPRECATED
+            -   0x43
+            -
+        *   -   IPROTO_REGISTER
+            -   0x46
+            -   Register an anonymous replica so it is not anonymous anymore
+
 
 
 ..  code-block:: lua
@@ -30,9 +59,6 @@ Replication requests and responses
     IPROTO_FETCH_SNAPSHOT = 0x45 -- for starting anonymous replication
     IPROTO_REGISTER = 0x46 -- for leaving anonymous replication.
 
-Tarantool constants 0x41 to 0x46 (decimal 65 to 70) are for replication.
-Connectors and clients do not need to send replication packets.
-See :ref:`Binary protocol -- replication <box_protocol-replication>`.
 
 ..  _box_protocol-join:
 

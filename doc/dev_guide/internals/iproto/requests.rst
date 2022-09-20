@@ -3,13 +3,14 @@
 Client-server requests and responses
 ====================================
 
-This section describes client requests, their arguments and the values returned by the server.
+This section describes client requests, their arguments, and the values returned by the server.
 
 Some requests are described on separate pages. Those are the requests related to:
 
 *   :ref:`stream transactions <internals-iproto-streams>`
 *   :ref:`asynchronous server-client notifications <internals-events>`
 *   :ref:`replication <internals-iproto-replication>`
+*   :ref:`SQL-specific requests <internals-iproto-sql>`
 
 Overview
 --------
