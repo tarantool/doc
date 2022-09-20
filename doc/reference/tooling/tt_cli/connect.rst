@@ -1,3 +1,5 @@
+.. _tt-connect:
+
 Connecting to a Tarantool instance
 ==================================
 
@@ -60,6 +62,12 @@ Examples
     ..  code-block:: bash
 
         tt connect app
+
+*   Connect to the ``master`` instance of the ``app`` application in the same environment:
+
+    ..  code-block:: bash
+
+        tt connect app:master
 
 *   Connect to the ``192.168.10.10`` host on port ``3301`` with authentication:
 
