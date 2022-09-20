@@ -1,3 +1,5 @@
+.. _tt-status:
+
 Checking instance status
 ========================
 

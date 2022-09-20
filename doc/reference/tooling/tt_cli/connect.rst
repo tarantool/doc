@@ -1,3 +1,5 @@
+.. _tt-connect:
+
 Connecting to a Tarantool instance
 ==================================
 
