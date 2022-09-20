@@ -130,7 +130,7 @@ Connect to the instance:
 
 ..  code-block:: bash
 
-    tarantooctl connect 127.0.0.1:3301
+    tarantoolctl connect 127.0.0.1:3301
 
 Then try to execute the transaction with yield inside:
 

@@ -222,5 +222,5 @@ space_object:format()
         of the wrong type, the formatting or reformatting will fail.
 
 
-        **Note re storage engine:** vinyl supports formatting of non-empty
+        **Note regarding storage engine:** vinyl supports formatting of non-empty
         spaces. Primary index definition cannot be formatted.

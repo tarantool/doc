@@ -22,7 +22,7 @@ index_object:random()
 
         **Complexity factors:** Index size, Index type.
 
-        **Note re storage engine:** vinyl does not support ``random()``.
+        **Note regarding storage engine:** vinyl does not support ``random()``.
 
         **Example:**
 
