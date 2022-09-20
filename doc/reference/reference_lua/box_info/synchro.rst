@@ -11,46 +11,46 @@ box.info.synchro
     Since version :doc:`2.8.1 </release/2.8.1>`.
     Show the current state of synchronous replication.
 
-    In :ref:`synchronous replication <repl_sync>`, a transaction is considered committed only after achieving
+    In :ref:`synchronous replication <repl_sync>`, transaction is considered committed only after achieving
     the required quorum number.
-    While the transactions are collecting confirmations from remote nodes, these transactions are waiting in the queue.
+    While transactions are collecting confirmations from remote nodes, these transactions are waiting in the queue.
 
     The following information is provided:
 
     *   ``queue``:
 
-        -   ``owner`` -- ID of the replica that owns the synchronous transaction queue.
-            Once an owner instance appears, all other instances become read-only.
-            If the ``owner`` field is ``0``, then every instance is writeable,
+        -   ``owner`` (since version :doc:`2.10.0 </release/2.10.0>`) -- ID of the replica that owns the synchronous
+            transaction queue. Once an owner instance appears, all other instances become read-only.
+            If the ``owner`` field is ``0``, then every instance may be writable,
             but they can't create any synchronous transactions.
             To claim or reclaim the queue, use :ref:`box.ctl.promote() <box_ctl-promote>` on the instance that you want
             to promote.
-            With elections enabled, the instance runs ``box.ctl.promote()`` automatically after winning the elections.
-            Since version :doc:`2.10.0 </release/2.10.0>`.
+            With elections enabled, an instance runs ``box.ctl.promote()`` command automatically after winning the elections.
 
-        -   ``term`` -- current queue term.
-            It contains the term of the last ``PROMOTE``.
-            Usually it is equal to :ref:`box.info.election.term <box_info_election>`.
+        -   ``term`` (since version :doc:`2.10.0 </release/2.10.0>`) -- current queue term.
+            It contains the term of the last ``PROMOTE`` request.
+            Usually, it is equal to :ref:`box.info.election.term <box_info_election>`.
             However, the queue term value may be less than the corresponding one in the election term.
-            It can happen when a new round of elections started, but no one has promoted yet.
-            Since version :doc:`2.10.0 </release/2.10.0>`.
+            It can happen when a new round of elections started, but no instance has been promoted yet.
 
         -   ``len`` -- current number of entries that are waiting in the queue.
 
-        -   ``busy`` -- the boolean value is set to ``true`` if there is a synchronous transaction in progress.
-            Until the active transaction is complete, any other incoming synchronous transactions will be delayed.
-            Since version :doc:`2.10.0 </release/2.10.0>`.
+        -   ``busy`` (since version :doc:`2.10.0 </release/2.10.0>`) -- the boolean value is ``true``
+            when the instance is processing or writing some system request that modifies the queue
+            (for example, ``PROMOTE``, ``CONFIRM``, or ``ROLLBACK``).
+            Until the request is complete, any other incoming synchronous transactions and system requests
+            will be delayed.
 
     *   ``quorum`` -- evaluated value of the
         :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>` configuration option.
         Since version :doc:`2.5.3 </release/2.5.3>`, the option can be set as a dynamic formula.
-        In this case, the value in the ``quorum`` member depends on the current number of replicas.
+        In this case, the value of the ``quorum`` member depends on the current number of replicas.
 
     **Example 1:**
 
     In this example, the ``quorum`` field is equal to ``1``.
-    This means that the synchronous transactions work like asynchronous.
-    `1` means that successful WAL write to the master is enough to commit.
+    That is, synchronous transactions work like asynchronous ones.
+    `1` means that a successful WAL writing to the master is enough to commit.
 
     ..  code-block:: tarantoolsession
 
@@ -97,7 +97,7 @@ box.info.synchro
         tarantool> s = box.schema.space.create("sync", {is_sync=true})
         tarantool> _ = s:create_index('pk')
 
-    After that, use ``box.ctl.promote`` function to claim the queue:
+    After that, use ``box.ctl.promote()`` function to claim a queue:
 
     ..  code-block:: tarantoolsession
 
