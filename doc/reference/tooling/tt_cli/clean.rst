@@ -32,7 +32,7 @@ Examples
 Single instance
 ~~~~~~~~~~~~~~~
 
-*   Clean files of the ``app`` instance:
+*   Clean the files of the ``app`` instance:
 
     ..  code-block:: bash
 
@@ -41,13 +41,13 @@ Single instance
 Multiple instances
 ~~~~~~~~~~~~~~~~~~
 
-*   Clean files of all instances of the ``app`` application:
+*   Clean the files of all instances of the ``app`` application:
 
     ..  code-block:: bash
 
         tt clean app
 
-*   Clean files of the ``master`` instance of the ``app`` application:
+*   Clean the files of the ``master`` instance of the ``app`` application:
 
     ..  code-block:: bash
 
