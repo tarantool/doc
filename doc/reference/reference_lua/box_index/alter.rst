@@ -28,7 +28,7 @@ index_object:alter()
         * index does not exist,
         * the primary-key index cannot be changed to ``{unique = false}``.
 
-        **Note re storage engine:** vinyl does not support ``alter()``
+        **Note regarding storage engine:** vinyl does not support ``alter()``
         of a primary-key index unless the space is empty.
 
         **Example 1:**

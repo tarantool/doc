@@ -20,7 +20,7 @@ space_object:delete()
 
         **Complexity factors:** Index size, Index type
 
-        **Note re storage engine:**
+        **Note regarding storage engine:**
         vinyl will return ``nil``, rather than the deleted tuple.
 
         **Example:**

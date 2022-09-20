@@ -27,6 +27,6 @@ space_object:len()
             - 2
             ...
 
-        **Note re storage engine:** vinyl supports ``len()`` but the result may be approximate.
+        **Note regarding storage engine:** vinyl supports ``len()`` but the result may be approximate.
         If an exact result is necessary then use :doc:`count() </reference/reference_lua/box_space/count>`
         or :doc:`pairs():length() </reference/reference_lua/box_space/pairs>`.

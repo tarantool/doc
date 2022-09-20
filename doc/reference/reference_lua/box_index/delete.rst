@@ -21,5 +21,5 @@ index_object:delete()
         :return: the deleted tuple.
         :rtype:  tuple
 
-        **Note re storage engine:**
+        **Note regarding storage engine:**
         vinyl will return `nil`, rather than the deleted tuple.

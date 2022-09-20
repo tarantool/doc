@@ -486,7 +486,7 @@ must always be maps with the same path.
     ---
     - [1, {'FIO': {'surname': 'Xi', 'firstname': 'Ahmed'}}]
 
-**Note re storage engine:** vinyl supports only the TREE index type, and vinyl
+**Note regarding storage engine:** vinyl supports only the TREE index type, and vinyl
 secondary indexes must be created before tuples are inserted.
 
 ..  _box_space-path_multikey:

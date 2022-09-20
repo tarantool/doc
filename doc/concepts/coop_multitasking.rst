@@ -121,7 +121,7 @@ Here is the list of implicitly yielding operations:
 
 ..  note::
 
-    Please note that all operations of the ``os`` mosule are non-cooperative and 
+    Please note that all operations of the ``os`` module are non-cooperative and
     exclusively block the whole tx thread.
 
 For :ref:`memtx <engines-chapter>`, since all data is in memory, there is no yielding for a read request 

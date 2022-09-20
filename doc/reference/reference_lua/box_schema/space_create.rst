@@ -76,7 +76,7 @@ box.schema.space.create()
         |               | :ref:`write-ahead log <internals-wal>`             |         |                     |
         |               | and there is no                                    |         |                     |
         |               | :ref:`replication <replication>`.                  |         |                     |
-        |               | Note re storage engine: vinyl                      |         |                     |
+        |               | Note regarding storage engine: vinyl                      |         |                     |
         |               | does not support temporary spaces.                 |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
         | user          | name of the user who is considered to be           | string  | current user's name |
