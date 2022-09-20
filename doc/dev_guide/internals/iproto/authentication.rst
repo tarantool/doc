@@ -1,7 +1,10 @@
 ..  _box_protocol-authentication:
 
-Authentication
-==============
+Session start
+=============
+
+Every iproto session begins with a greeting and optional authentication.
+
 
 Greeting message
 ----------------
@@ -28,13 +31,15 @@ the rest of the line is filled up with symbols with an ASCII code of 0 that aren
 The first line contains
 the instance version and protocol type. The second line contains the session salt --
 a base64-encoded random string, which is usually 44 bytes long.
-The salt is used in the authentication packet.
+The salt is used in the authentication packet -- the :ref:`IPROTO_AUTH message <box_protocol-auth>`.
 
+Authentication
+--------------
 
-Authentication is optional -- if it is skipped, then the session user is ``'guest'``
+If authentication is skipped, then the session user is ``'guest'``
 (the ``'guest'`` user does not need a password).
 
-If authentication is not skipped, then at any time an authentication packet
+If authentication is not skipped, then at any time an :ref:`authentication packet <box_protocol-auth>`
 can be prepared using the greeting, the user's name and password,
 and `sha-1 <https://en.wikipedia.org/wiki/SHA-1>`_ functions, as follows.
 

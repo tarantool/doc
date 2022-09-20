@@ -4,31 +4,33 @@
 Streams
 =======
 
-Дать ссылку сюда из IPROTO_STREAM_ID из секции с типами ключей аргументов.
-
 The :ref:`Streams and interactive transactions <txn_mode_stream-interactive-transactions>`
 feature, which was added in Tarantool version
 :tarantool-release:`2.10.0`, allows two things:
 sequential processing and interleaving.
 
-Sequential processing:
+**Sequential processing**:
 With streams there is a guarantee that the server instance will not
 handle the next request in a stream until it has completed the previous one.
 
-Interleaving:
+**Interleaving**:
 For example, a series of requests can include
 "begin for stream #1", "begin for stream #2",
 "insert for stream #1", "insert for stream #2", "delete
 for stream #1", "commit for stream #1", "rollback for stream #2".
 
-To make these things possible,
-the engine should be :ref:`vinyl <engines-vinyl>` or :ref:`memtx with mvcc <cfg_basic-memtx_use_mvcc_engine>`, and
-the client is responsible for ensuring that the stream identifier,
-unsigned integer :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`, is in the request header.
-IPROTO_STREAM_ID can be any positive 64-bit number, and should be unique for the connection.
-If IPROTO_STREAM_ID equals zero the server instance will ignore it.
+To work with stream transactions using iproto, the following is required:
 
-For example, suppose that the client has started a stream with
+*   The engine should be :ref:`vinyl <engines-vinyl>` or :ref:`memtx with mvcc <cfg_basic-memtx_use_mvcc_engine>`.
+*   The client is responsible for ensuring that the stream identifier,
+    unsigned integer :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`, is in the request header.
+    IPROTO_STREAM_ID can be any positive 64-bit number, and should be unique for the connection.
+    If IPROTO_STREAM_ID equals zero, the server instance will ignore it.
+
+Example
+-------
+
+Suppose that the client has started a stream with
 the :ref:`net.box module <net_box-module>`
 
 ..  code-block:: lua
@@ -72,3 +74,82 @@ the current value of stream.stream_id;
 with :ref:`box.begin() <box-begin>` and :ref:`box.commit() <box-commit>` or :ref:`box.rollback() <box-rollback>`;
 with SQL and :ref:`START TRANSACTION <sql_start_transaction>` and :ref:`COMMIT <sql_commit>` or :ref:`ROLLBACK <sql_rollback>`.
 An application can use any or all of these ways.
+
+..  _box_protocol-begin:
+
+IPROTO_BEGIN = 0x0e
+-------------------
+
+Begin a transaction in the specified stream.
+See :ref:`stream:begin() <net_box-stream_begin>`.
+The body is optional and can contain two items:
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_BEGIN,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
+        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
+    })
+    # <body>
+    msgpack({
+        IPROTO_TIMEOUT: :samp:`{{MP_DOUBLE}}`,
+        IPROTO_TXN_ISOLATION: :samp:`{{MP_UINT unsigned integer}}`
+    })
+
+IPROTO_TIMEOUT is an optional timeout (in seconds). After it expires,
+the transaction will be rolled back automatically.
+
+
+
+..  _box_protocol-commit:
+
+IPROTO_COMMIT = 0x0f
+--------------------
+
+Commit the transaction in the specified stream.
+See :ref:`stream:commit() <net_box-stream_commit>`.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(7)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_COMMIT,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
+        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
+    })
+
+See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
+stream transactions in the binary protocol.
+
+
+..  _box_protocol-rollback:
+
+IPROTO_ROLLBACK = 0x10
+----------------------
+
+Rollback the transaction in the specified stream.
+See :ref:`stream:rollback() <net_box-stream_rollback>`.
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <size>
+    msgpack(7)
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_ROLLBACK,
+        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
+        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
+    })
+
+See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
+stream transactions in the binary protocol.
+

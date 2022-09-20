@@ -1,11 +1,18 @@
 ..  _internals-requests_responses:
 
-Client requests and responses
-=============================
+Client-server requests and responses
+====================================
 
-Секцию со всеми возможными пользовательскими запросами с описанием, что делает,
-какие аргументы принимает, что возвращает.
+This section describes client requests, their arguments and the values returned by the server.
 
+Some requests are described on separate pages. Those are the requests related to:
+
+*   :ref:`stream transactions <internals-iproto-streams>`
+*   :ref:`asynchronous server-client notifications <internals-events>`
+*   :ref:`replication <internals-iproto-replication>`
+
+Overview
+--------
 
 ..  container:: table
 
@@ -44,12 +51,12 @@ Client requests and responses
     
     Function remote call (conn:call())
     IPROTO_CALL=0x0a
-    IPROTO_CALL_16=0x06
+    IPROTO_CALL_16=0x06 Deprecated, use IPROTO_CALL (0x0a) instead
 
     Authentification
     IPROTO_AUTH=0x07
 
-    Evaluates a Lua expresstion (conn:eval())
+    Evaluate a Lua expresstion (conn:eval())
     IPROTO_EVAL=0x08
     
     Execute an SQL statement (box.execute())
@@ -76,33 +83,6 @@ Client requests and responses
 
     
     
-Everything OK? -> IPROTO_OK
-
-For IPROTO_OK, the header Response-Code-Indicator will be 0 and the body is a 1-item map.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
-Out-of-band? -> IPROTO_CHUNK
-If the response is out-of-band, due to use of
-:ref:`box.session.push() <box_session-push>`,
-then the header Response-Code-Indicator will be IPROTO_CHUNK instead of IPROTO_OK.
-
-Error? -> 0x8xxx where xxx is a value from errcode.h
-Instead of IPROTO_DATA... IPROTO_ERROR: :samp:`{{MP_STRING string}}`
 
 
 ..  _box_protocol-select:
@@ -708,98 +688,6 @@ The response will be a list of values, similar to the
 Response for SQL: ??? (fiure out why CALL and EVAL are the best place for SQL responses, according to locker)
 
 
-..  _box_protocol-execute:
-
-IPROTO_EXECUTE = 0x0b
----------------------
-
-See :ref:`box.execute() <box-sql_box_execute>`, this is only for SQL.
-The body is a 3-item map:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_EXECUTE,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_STMT_ID: :samp:`{{MP_INT integer}}` or IPROTO_SQL_TEXT: :samp:`{{MP_STR string}}`,
-        IPROTO_SQL_BIND: :samp:`{{MP_INT integer}}`,
-        IPROTO_OPTIONS: :samp:`{{MP_ARRAY array}}`
-    })
-
-Use IPROTO_STMT_ID (0x43) and statement-id (MP_INT) if executing a prepared statement,
-or use
-IPROTO_SQL_TEXT (0x40) and statement-text (MP_STR) if executing an SQL string, then
-IPROTO_SQL_BIND (0x41) and array of parameter values to match ? placeholders or
-:name placeholders, IPROTO_OPTIONS (0x2b) and array of options (usually empty).
-
-For example, suppose we prepare a statement
-with two ? placeholders, and execute with two parameters, thus: |br|
-:code:`n = conn:prepare([[VALUES (?, ?);]])` |br|
-:code:`conn:execute(n.stmt_id, {1,'a'})` |br|
-Then the body will look like this:
-
-..  code-block:: none
-
-    # <body>
-    msgpack({
-        IPROTO_STMT_ID: 0xd7aa741b,
-        IPROTO_SQL_BIND: [1, 'a'],
-        IPROTO_OPTIONS: []
-    })
-
-Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-we will show actual byte codes of the IPROTO_EXECUTE message.
-
-To call a prepared statement with named parameters from a connector pass the
-parameters within an array of maps. A client should wrap each element into a map,
-where the key holds a name of the parameter (with a colon) and the value holds
-an actual value. So, to bind foo and bar to 42 and 43, a client should send
-``IPROTO_SQL_TEXT: <...>, IPROTO_SQL_BIND: [{"foo": 42}, {"bar": 43}]``.
-
-If a statement has both named and non-named parameters, wrap only named ones
-into a map. The rest of the parameters are positional and will be substituted in order.
-
-Another example: 
-
-If we ask for full metadata by saying |br|
-:code:`conn.space._session_settings:update('sql_full_metadata', {{'=', 'value', true}})`
-we select the two rows from a table named t1 that has columns named DD and Д saying
-:code:`conn:prepare([[SELECT dd, дд AS д FROM t1;]])` |br|
-there would be no IPROTO_DATA and there would be two additional items: |br|
-``34 00 = IPROTO_BIND_COUNT and MP_UINT = 0`` (there are no parameters to bind), |br|
-``33 90 = IPROTO_BIND_METADATA and MP_ARRAY, size 0`` (there are no parameters to bind).
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <body>
-    msgpack({
-        IPROTO_STMT_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_BIND_COUNT: :samp:`{{MP_INT integer}}`,
-        IPROTO_BIND_METADATA: :samp:`{{array of parameter descriptors}}`,
-            IPROTO_METADATA: [
-                IPROTO_FIELD_NAME: 'DD',
-                IPROTO_FIELD_TYPE: 'integer',
-                IPROTO_FIELD_IS_NULLABLE: false
-                IPROTO_FIELD_IS_AUTOINCREMENT: true
-                IPROTO_FIELD_SPAN: nil,
-                IPROTO_FIELD_NAME: 'Д',
-                IPROTO_FIELD_TYPE: 'string',
-                IPROTO_FIELD_COLL: 'unicode',
-                IPROTO_FIELD_IS_NULLABLE: true,
-                IPROTO_FIELD_SPAN: 'дд'
-            ]
-        })
-
-
-
 ..  _box_protocol-nop:
 
 IPROTO_NOP = 0x0c
@@ -813,43 +701,15 @@ must be recorded.
 The body is: nothing.
 
 
-..  _box_protocol-prepare:
-
-IPROTO_PREPARE = 0x0d
----------------------
-
-See :ref:`box.prepare <box-sql_box_prepare>`, this is only for SQL.
-The body is a 1-item map:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_PREPARE,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_STMT_ID: :samp:`{{MP_INT integer}}` or IPROTO_SQL_TEXT: :samp:`{{MP_STR string}}`
-    })
-
-IPROTO_STMT_ID (0x43) and statement-id (MP_INT) if executing a prepared statement
-or
-IPROTO_SQL_TEXT (0x40) and statement-text (string) if executing an SQL string.
-Thus the IPROTO_PREPARE map item is the same as the first item of the
-:ref:`IPROTO_EXECUTE <box_protocol-execute>` body.
-
-
 ..  _box_protocol-auth:
 
 IPROTO_AUTH = 0x07
 ------------------
 
-See :ref:`authentication <authentication-users>`.
-See the later section :ref:`Binary protocol -- authentication <box_protocol-authentication>`.
+For general information, see the :ref:`Access control <authentication-users>` section in the administrator's guide.
+
+For more on how authentication is handled in the binary protocol,
+see the :ref:`Authentication <box_protocol-authentication>` section of this document.
 
 The client sends an authentication packet as an IPROTO_AUTH message:
 
@@ -878,97 +738,6 @@ The server instance responds to an authentication packet with a standard respons
 To see how Tarantool handles this, look at
 `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_
 function ``netbox_encode_auth``.
-
-
-Streams
--------
-
-..  _box_protocol-begin:
-
-IPROTO_BEGIN = 0x0e
--------------------
-
-Begin a transaction in the specified stream.
-See :ref:`stream:begin() <net_box-stream_begin>`.
-The body is optional and can contain two items:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_BEGIN,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_TIMEOUT: :samp:`{{MP_DOUBLE}}`,
-        IPROTO_TXN_ISOLATION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-
-IPROTO_TIMEOUT is an optional timeout (in seconds). After it expires,
-the transaction will be rolled back automatically.
-
-IPROTO_TXN_ISOLATION is the :ref:`transaction isolation level <txn_mode_mvcc-options>`.
-It can take the following values:
-
-- ``TXN_ISOLATION_DEFAULT = 0``	-- use the default level from ``box.cfg`` (default value)
-- ``TXN_ISOLATION_READ_COMMITTED = 1`` -- read changes that are committed but not confirmed yet
-- ``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read confirmed changes
-- ``TXN_ISOLATION_BEST_EFFORT = 3`` -- determine isolation level automatically
-
-See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
-stream transactions in the binary protocol.
-
-..  _box_protocol-commit:
-
-IPROTO_COMMIT = 0x0f
---------------------
-
-Commit the transaction in the specified stream.
-See :ref:`stream:commit() <net_box-stream_commit>`.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(7)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_COMMIT,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
-    })
-
-See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
-stream transactions in the binary protocol.
-
-
-..  _box_protocol-rollback:
-
-IPROTO_ROLLBACK = 0x10
-----------------------
-
-Rollback the transaction in the specified stream.
-See :ref:`stream:rollback() <net_box-stream_rollback>`.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(7)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_ROLLBACK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
-    })
-
-See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
-stream transactions in the binary protocol.
 
 
 ..  _box_protocol-ping:
@@ -1038,22 +807,6 @@ The body is a 2-item map:
         IPROTO_FEATURES: :samp:`{{MP_ARRAY array of unsigned integers}}}`
     })
 
-IPROTO_VERSION is an integer number reflecting the version of protocol that the
-client supports. The latest IPROTO_VERSION is |iproto_version|.
-
-Available IPROTO_FEATURES are the following:
-
-- ``IPROTO_FEATURE_STREAMS = 0`` -- streams support: :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
-  in the request header.
-- ``IPROTO_FEATURE_TRANSACTIONS = 1`` -- transaction support: IPROTO_BEGIN,
-  IPROTO_COMMIT, and IPROTO_ROLLBACK commands (with :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
-  in the request header). Learn more about :ref:`sending transaction commands <box_protocol-stream_transactions>`.
-- ``IPROTO_FEATURE_ERROR_EXTENSION = 2`` -- :ref:`MP_ERROR <msgpack_ext-error>`
-  MsgPack extension support. Clients that don't support this feature will receive
-  error responses for :ref:`IPROTO_EVAL <box_protocol-eval>` and
-  :ref:`IPROTO_CALL <box_protocol-call>` encoded to string error messages.
-- ``IPROTO_FEATURE_WATCHERS = 3`` -- remote watchers support: :ref:`IPROTO_WATCH <box_protocol-watch>`,
-  :ref:`IPROTO_UNWATCH <box_protocol-unwatch>`, and :ref:`IPROTO_EVENT <box_protocol-event>` commands.
 
 IPROTO_ID requests can be processed without authentication.
 

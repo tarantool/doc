@@ -154,7 +154,7 @@ we will show actual byte codes of the above heartbeat examples.
 
 ..  _box_protocol-ballots:
 
-BALLOTS
+Ballots
 ~~~~~~~
 
 While connecting for replication, an instance sends a request with header IPROTO_VOTE (0x44).

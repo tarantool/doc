@@ -3,10 +3,12 @@
 Request and response format
 ===========================
 
-*   We use `MessagePack <http://MessagePack.org>`_ and refer to MessagePack types in this document.
-*   Request size is passed before the request
-*   Request and response have the same sync number (IPROTO_SYNC)
+*   The types referred to in this document are `MessagePack <http://MessagePack.org>`_ types.
+*   Request size is passed before the request.
+*   Request and response have the same sync number (IPROTO_SYNC).
 *   It is legal to put more than one request in a packet.
+
+All IPROTO constants are unsigned 8-bit integers. 
 
 ..  _internals-unified_packet_structure:
 
@@ -17,6 +19,7 @@ Size
 
 The size is an MP_UINT -- unsigned integer, usually 32-bit.
 The header and body are maps (MP_MAP).
+Maximal iproto package body length is 2 GiB.
 
 ..  _box_protocol-header:
 
@@ -48,52 +51,18 @@ It may be useful to compare it with the number of bytes remaining in the packet.
         IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
     })
 
-IPROTO_SYNC
-^^^^^^^^^^^
+..
+    TODO: provide links to the constants above
+    <internals-iproto-keys-sync>
+    <internals-iproto-keys-schema_version>
+    <box_protocol-iproto_stream_id>
 
-Binary code: 0x01.
-
-This is an unsigned integer that should be incremented so that it is unique in every
-request. This integer is also returned from :doc:`community:reference/reference_lua/box_session/sync`.
-
-The IPROTO_SYNC value of a response should be the same as
-the IPROTO_SYNC value of a request.
-
-IPROTO_SCHEMA_VERSION
-^^^^^^^^^^^^^^^^^^^^^
-
-Binary code: 0x05.
-
-An unsigned number, sometimes called SCHEMA_ID, that goes up when there is a
-major change.
-
-In a request header, IPROTO_SCHEMA_VERSION is optional, so the version will not
-be checked if it is absent.
-
-In a response header, IPROTO_SCHEMA_VERSION is always present, and it is up to
-the client to check if it has changed.
-
-..  _box_protocol-iproto_stream_id:
-
-IPROTO_STREAM_ID
-^^^^^^^^^^^^^^^^
-
-Binary code: 0x0a.
-
-Only used in :ref:`streams <txn_mode_stream-interactive-transactions>`.
-This is an unsigned number that should be unique in every stream.
-
-In requests, IPROTO_STREAM_ID is useful for two things:
-ensuring that requests within transactions are done in separate groups,
-and ensuring strictly consistent execution of requests (whether or not they are within transactions).
-
-In responses, IPROTO_STREAM_ID does not appear.
-
-See :ref:`Binary protocol -- streams <box_protocol-streams>`.
-
+For replication of :ref:`synchronous transactions <repl_sync>`
+a header may contain a key = :ref:`IPROTO_FLAGS <box_protocol-flags>` and an MP_UINT value = one or more
+bits: IPROTO_FLAG_COMMIT or IPROTO_FLAG_WAIT_SYNC or IPROTO_FLAG_WAIT_ACK.
 
 Encoding and decoding
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 To see how Tarantool encodes the header, have a look at file
 `xrow.c <https://github.com/tarantool/tarantool/blob/master/src/box/xrow.c>`_,
@@ -245,3 +214,13 @@ Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra inf
 following what was described above. This extra information is given via
 MP_ERROR extension type. See details in :ref:`MessagePack extensions
 <msgpack_ext-error>` section.
+
+Перед 2.4 ошибки возвращались как строки.
+Начиная с 2.4 появилась возможность паковать ошибки в новом фомате (MP_EXT/MP_ERROR) 
+о стеком и чем-то там еще.
+Чтобы сохранить обратную совместимость мы возвращаем два ключа в случае ошибки:
+IPROTO_ERROR_24 со строкой и IPROTO_ERROR с MP_EXT,
+так что новые клиенты могут использовать всю информацию из нового формата,
+а старые клиенты продолжат работать с простыми строками.    
+
+
