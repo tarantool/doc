@@ -1,4 +1,4 @@
-.. _datetime_object:
+.. _datetime_obj:
 
 datetime_object
 ===============
@@ -249,7 +249,7 @@ datetime_object
 
         Modify an existing datetime object by adding values of the input argument.
 
-        :param table input: an :ref:`interval object <interval-new>` or an equivalent table (see **Example #1**)
+        :param table input: an :ref:`interval object <interval_obj>` or an equivalent table (see **Example #1**)
         :param string adjust: defines how to round days in a month after an arithmetic operation.
                                 Possible values: ``none``, ``last``, ``excess`` (see **Example #2**). Defaults to ``none``.
 
@@ -340,7 +340,7 @@ datetime_object
 
         Modify an existing datetime object by subtracting values of the input argument.
 
-        :param table input: an :ref:`interval object <interval-new>` or an equivalent table (see **Example**)
+        :param table input: an :ref:`interval object <interval_obj>` or an equivalent table (see **Example**)
         :param string adjust: defines how to round days in a month after an arithmetic operation.
                                 Possible values: ``none``, ``last``, ``excess``. Defaults to ``none``.
                                 The logic is similar to the one of the ``:add()`` method -- see :ref:`Example #2 <datetime-add-example2>`.

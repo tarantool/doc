@@ -13,7 +13,7 @@ datetime.new()
     :param table units: Table of :ref:`time units <datetime-new-args>`.
                                 If an empty table or no arguments are passed, the ``datetime`` object with the default values corresponding to Unix Epoch is created: ``1970-01-01T00:00:00Z``.
 
-    :return: :doc:`datetime object <./datetime/datetime_object>`
+    :return: :ref:`datetime object <datetime_obj>`
     :rtype: cdata
 
     ..  _datetime-new-args:

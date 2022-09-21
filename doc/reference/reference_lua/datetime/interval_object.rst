@@ -1,6 +1,6 @@
-.. _inverval_object:
+.. _interval_obj:
 
-inverval_object
+interval_object
 ===============
 
 ..  class:: interval_object

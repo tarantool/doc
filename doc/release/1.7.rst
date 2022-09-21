@@ -44,7 +44,7 @@ Incompatible changes:
     Please update your client libraries if you plan to use these new features
     (:tarantool-issue:`2802`).
   * :ref:`fiber_name() <fiber_object-name_get>` now raises an exception instead of truncating long fiber names.
-    We found that some Lua modules such as :ref:`expirationd <expirationd-module>` use ``fiber.name()``
+    We found that some Lua modules such as `expirationd <https://tarantool.github.io/expirationd/>`_ use ``fiber.name()``
     as a key to identify background tasks. If a name is truncated, this fact was
     silently missed. The new behavior allows to detect bugs caused by ``fiber.name()``
     truncation. Please use ``fiber.name(name, { truncate = true })`` to emulate
