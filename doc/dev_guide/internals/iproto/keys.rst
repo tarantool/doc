@@ -217,6 +217,10 @@ Synchronous replication
         :header-rows: 1
         :widths: 25 10 15 50
 
+        *   -   Name
+            -   Binary code
+            -   Type
+            -   Description
         *   -   IPROTO_FLAGS
             -   0x09
             -
@@ -262,8 +266,24 @@ Synchronous replication
 Watchers
 ~~~~~~~~
 
-    IPROTO_EVENT_KEY=0x57
-    IPROTO_EVENT_DATA=0x58
+..  container:: table
+
+    ..  list-table::
+        :header-rows: 1
+        :widths: 25 10 15 50
+
+        *   -   Name
+            -   Binary code
+            -   Type
+            -   Description
+        *   -   IPROTO_EVENT_KEY
+            -   0x57
+            -
+            -
+        *   -   IPROTO_EVENT_DATA
+            -   0x58
+            -
+            -
 
 SQL-specific
 ~~~~~~~~~~~~
