@@ -1,4 +1,5 @@
 ..  _internals-replication-orphan_status:
+..  _replication-orphan_status:
 
 Orphan status
 =============
