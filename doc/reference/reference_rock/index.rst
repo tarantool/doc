@@ -11,7 +11,7 @@ This reference covers third-party Lua modules for Tarantool.
 
     ../../book/cartridge/index
     membership
-    ../../book/monitoring/metrics_reference
+    Module metrics <../../book/monitoring/index>
     Module luatest <luatest/luatest_overview>
     vshard/index
     dbms
