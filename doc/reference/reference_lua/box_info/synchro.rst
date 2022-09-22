@@ -30,10 +30,10 @@ box.info.synchro
         -   ``term`` (since version :doc:`2.10.0 </release/2.10.0>`) -- current queue term.
             It contains the term of the last ``PROMOTE`` request.
             Usually, it is equal to :ref:`box.info.election.term <box_info_election>`.
-            However, the queue term value may be less than the corresponding one in the election term.
-            It can happen when a new round of elections started, but no instance has been promoted yet.
+            However, the queue term value may be less than the election term.
+            It can happen when a new round of elections has started, but no instance has been promoted yet.
 
-        -   ``len`` -- current number of entries that are waiting in the queue.
+        -   ``len`` -- the number of entries that are currently waiting in the queue.
 
         -   ``busy`` (since version :doc:`2.10.0 </release/2.10.0>`) -- the boolean value is ``true``
             when the instance is processing or writing some system request that modifies the queue
@@ -41,7 +41,7 @@ box.info.synchro
             Until the request is complete, any other incoming synchronous transactions and system requests
             will be delayed.
 
-    *   ``quorum`` -- evaluated value of the
+    *   ``quorum`` -- the resulting value of the
         :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>` configuration option.
         Since version :doc:`2.5.3 </release/2.5.3>`, the option can be set as a dynamic formula.
         In this case, the value of the ``quorum`` member depends on the current number of replicas.
@@ -103,7 +103,7 @@ box.info.synchro
 
         tarantool> box.ctl.promote()
 
-    Next, use the ``replace`` command:
+    Next, perform data manipulations:
 
     ..  code-block:: tarantoolsession
 
@@ -126,7 +126,7 @@ box.info.synchro
           id: 121
         ...
 
-    If you use the ``box.info.synchro`` command again,
+    If you call the ``box.info.synchro`` command again,
     you will see that now there are 3 transactions waiting in the queue:
 
     ..  code-block:: tarantoolsession
