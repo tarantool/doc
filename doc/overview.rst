@@ -20,7 +20,7 @@ Here are some of Tarantool's key characteristics:
 *   **Cooperative multitasking**: transactions are performed in
     :ref:`lightweight coroutines <concepts-coop_multitasking>` with no interthread locking
 
-*    **Advanced indexing**: :ref:`composite indexes <concepts-data_model_indexes>`,
+*   **Advanced indexing**: :ref:`composite indexes <concepts-data_model_indexes>`,
     :ref:`locale support <index-collation>`,
     indexing by :ref:`nested fields and arrays <details_about_index_field_types>`
 
