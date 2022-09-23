@@ -26,6 +26,8 @@ box.info.synchro
             To claim or reclaim the queue, use :ref:`box.ctl.promote() <box_ctl-promote>` on the instance that you want
             to promote.
             With elections enabled, an instance runs ``box.ctl.promote()`` command automatically after winning the elections.
+            To clear the ownership, call :ref:`box.ctl.demote() <box_ctl-demote>` on the instance that you want
+            to demote.
 
         -   ``term`` (since version :doc:`2.10.0 </release/2.10.0>`) -- current queue term.
             It contains the term of the last ``PROMOTE`` request.

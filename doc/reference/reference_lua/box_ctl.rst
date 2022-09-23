@@ -53,6 +53,9 @@ Below is a list of all ``box.ctl`` functions.
         *  - :doc:`./box_ctl/promote`
            - Wait, then choose replication leader
 
+        *  - :doc:`./box_ctl/demote`
+           - Revoke the leader role of the instance
+
 ..  toctree::
     :hidden:
 
@@ -63,3 +66,4 @@ Below is a list of all ``box.ctl`` functions.
     box_ctl/set_on_shutdown_timeout
     box_ctl/is_recovery_finished
     box_ctl/promote
+    box_ctl/demote
