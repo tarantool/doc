@@ -132,7 +132,7 @@ msgstr "кортеж или nil"
 msgid "**Possible errors:**"
 msgstr "**Возможные ошибки:**"
 
-msgid "It is illegal to modify a primary-key field."
+msgid "It is illegal to modify a primary key field."
 msgstr "Нельзя изменять поле первичного ключа."
 
 msgid ""

@@ -59,7 +59,7 @@ space_object:update()
 
         **Possible errors:**
 
-        *    it is illegal to modify a primary-key field.
+        *   It is illegal to modify a primary key field.
         *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
