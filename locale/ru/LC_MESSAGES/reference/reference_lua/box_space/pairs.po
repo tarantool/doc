@@ -37,11 +37,18 @@ msgstr ""
 msgid "**Possible errors:**"
 msgstr "**Возможные ошибки:**"
 
-msgid "no such space;"
-msgstr "отсутствие такого спейса."
+msgid "No such space."
+msgstr "Нет такого спейса."
 
-msgid "wrong type."
-msgstr "неправильный тип."
+msgid "Wrong type."
+msgstr "Неправильный тип."
+
+msgid ""
+":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the "
+":ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+":errcode:`ER_TRANSACTION_CONFLICT`, если обнаружен конфликт транзакций в "
+":ref:`транзакционном режиме MVCC <txn_mode_transaction-manager>`."
 
 msgid "**Complexity factors:** Index size, Index type."
 msgstr "**Факторы сложности:** Размер индекса, тип индекса."
