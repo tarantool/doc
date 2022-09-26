@@ -23,7 +23,7 @@ index_object:max()
 
         **Possible errors:**
 
-        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
         **Complexity factors:** index size, index type.
