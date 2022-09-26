@@ -57,7 +57,11 @@ space_object:update()
                  * nil if the key is not found
         :rtype:  tuple or nil
 
-        **Possible errors:** it is illegal to modify a primary-key field.
+        **Possible errors:**
+
+        *    it is illegal to modify a primary-key field.
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
         **Complexity factors:** Index size, Index type, number of indexes
         accessed, WAL settings.

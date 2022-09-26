@@ -18,7 +18,11 @@ space_object:get()
         :return: the tuple whose index key matches ``key``, or ``nil``.
         :rtype:  tuple
 
-        **Possible errors:** ``space_object`` does not exist.
+        **Possible errors:**
+
+        *   ``space_object`` does not exist.
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
         **Complexity factors:** Index size, Index type, Number of indexes
         accessed, WAL settings.

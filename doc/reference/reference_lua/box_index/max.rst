@@ -21,6 +21,11 @@ index_object:max()
 
         **Possible errors:** index is not of type 'TREE'.
 
+        **Possible errors:**
+
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
+
         **Complexity factors:** index size, index type.
 
         **Example:**

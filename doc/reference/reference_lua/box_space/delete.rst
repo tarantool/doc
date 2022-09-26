@@ -18,6 +18,11 @@ space_object:delete()
         :return: the deleted tuple
         :rtype:  tuple
 
+        **Possible errors:**
+
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
+
         **Complexity factors:** Index size, Index type
 
         **Note re storage engine:**
