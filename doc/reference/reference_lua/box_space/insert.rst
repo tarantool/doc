@@ -21,7 +21,7 @@ space_object:insert()
 
         *   :errcode:`ER_TUPLE_FOUND` if a tuple with the same unique-key value already
             exists.
-        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
         **Example:**

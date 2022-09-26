@@ -37,7 +37,7 @@ space_object:select()
 
         *   No such space.
         *   Wrong type.
-        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
 

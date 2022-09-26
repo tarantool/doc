@@ -37,7 +37,7 @@ space_object:upsert()
         *    It is illegal to modify a primary-key field.
         *    It is illegal to use upsert with a space that has a unique secondary
              index.
-        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
         **Complexity factors:** Index size, Index type, number of indexes

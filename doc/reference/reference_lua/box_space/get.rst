@@ -21,7 +21,7 @@ space_object:get()
         **Possible errors:**
 
         *   ``space_object`` does not exist.
-        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict in detected in the
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
         **Complexity factors:** Index size, Index type, Number of indexes
