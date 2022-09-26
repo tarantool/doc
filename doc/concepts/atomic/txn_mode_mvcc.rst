@@ -39,7 +39,6 @@ It consists of two parts:
 
     Since version :doc:`2.10.1 </release/2.10.1>`, the conflict manager detects conflicts right after
     the first one of several conflicting transactions is committed. After this moment, any CRUD operations
-```suggestion
     in the conflicted transaction will result in errors until the transaction is
     rolled back.
 
