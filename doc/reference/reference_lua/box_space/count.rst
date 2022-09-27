@@ -21,6 +21,11 @@ space_object:count()
 
         :return: Number of tuples.
 
+        **Possible errors:**
+
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
+            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
+
         **Example:**
 
         .. code-block:: tarantoolsession

@@ -23,6 +23,16 @@ msgstr "возвращает"
 msgid "Number of tuples in the space."
 msgstr "Количество кортежей в спейсе."
 
+msgid "**Possible errors:**"
+msgstr "**Возможные ошибки:**"
+
+msgid ""
+":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the "
+":ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+":errcode:`ER_TRANSACTION_CONFLICT`, если транзакция стала конфликтной в "
+":ref:`транзакционном режиме MVCC <txn_mode_transaction-manager>`."
+
 msgid "**Example:**"
 msgstr "**Пример:**"
 

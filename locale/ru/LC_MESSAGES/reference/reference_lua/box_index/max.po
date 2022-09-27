@@ -34,8 +34,18 @@ msgstr "тип возвращаемого значения"
 msgid "tuple"
 msgstr "tuple"
 
-msgid "**Possible errors:** index is not of type 'TREE'."
-msgstr "**Возможные ошибки:** тип индекса не 'TREE'."
+msgid "**Possible errors:**"
+msgstr "**Возможные ошибки:**"
+
+msgid "Index is not of type 'TREE'."
+msgstr "Тип индекса не 'TREE'."
+
+msgid ""
+":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the "
+":ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+":errcode:`ER_TRANSACTION_CONFLICT`, если транзакция стала конфликтной в "
+":ref:`транзакционном режиме MVCC <txn_mode_transaction-manager>`."
 
 msgid "**Complexity factors:** index size, index type."
 msgstr "**Факторы сложности:** размер индекса, тип индекса."

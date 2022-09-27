@@ -22,9 +22,12 @@ space_object:replace() / put()
         :return: the inserted tuple.
         :rtype:  tuple
 
-        **Possible errors:** :errcode:`ER_TUPLE_FOUND` if a different tuple with the same unique-key
-        value already exists. (This
-        will only happen if there is a unique secondary index.)
+        **Possible errors:**
+
+        *   :errcode:`ER_TUPLE_FOUND` if a different tuple with the same unique-key
+            value already exists. (This will only happen if there is a unique secondary index.)
+        *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
+            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
         **Complexity factors:** Index size, Index type,
         Number of indexes accessed, WAL settings.

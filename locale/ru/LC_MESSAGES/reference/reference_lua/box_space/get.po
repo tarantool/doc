@@ -27,8 +27,18 @@ msgstr "тип возвращаемого значения"
 msgid "tuple"
 msgstr "tuple"
 
-msgid "**Possible errors:** ``space_object`` does not exist."
-msgstr "**Возможные ошибки:** ``space_object`` не существует"
+msgid "**Possible errors:**"
+msgstr "**Возможные ошибки:**"
+
+msgid "``space_object`` does not exist."
+msgstr "``space_object`` не существует."
+
+msgid ""
+":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the "
+":ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+":errcode:`ER_TRANSACTION_CONFLICT`, если транзакция стала конфликтной в "
+":ref:`транзакционном режиме MVCC <txn_mode_transaction-manager>`."
 
 msgid ""
 "**Complexity factors:** Index size, Index type, Number of indexes accessed, "
