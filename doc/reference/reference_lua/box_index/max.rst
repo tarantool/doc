@@ -19,10 +19,10 @@ index_object:max()
                  returns nothing if ``key`` doesn't match any value in the index.
         :rtype:  tuple
 
-        **Possible errors:** index is not of type 'TREE'.
 
         **Possible errors:**
 
+        *   Index is not of type 'TREE'.
         *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
 
