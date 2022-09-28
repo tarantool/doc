@@ -10,6 +10,7 @@
 * :ref:`instance_uuid <cfg_replication-instance_uuid>`
 * :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
 * :ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>`
+* :ref:`replication_threads <cfg_replication-replication_replication_threads>`
 * :ref:`election_mode <cfg_replication-election_mode>`
 * :ref:`election_timeout <cfg_replication-election_timeout>`
 * :ref:`election_fencing_enabled <cfg_replication-election_fencing_enabled>`
@@ -482,6 +483,8 @@
     | Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT
     | Dynamic: **yes**
 
+.. _cfg_replication-replication_replication_threads:
+
 .. confval:: replication_threads
 
     Since version :doc:`2.10.0 </release/2.10.0>`.
@@ -489,6 +492,8 @@
 
     The default value is `1`.
     It means that a single separate thread handles all the incoming replication streams.
+    In most cases, one thread is enough for all incoming data.
+    Therefore, it is likely that the user will not need to set this configuration option.
 
     Possible values range from 1 to 1000.
     If there are multiple replication threads, connections to serve are distributed evenly between the threads.
@@ -497,7 +502,7 @@
     | Default: 1
     | Possible values: from 1 to 1000
     | Environment variable: TT_REPLICATION_THREADS
-    | Dynamic: **yes**
+    | Dynamic: **no**
 
 ..  _cfg_replication-election_mode:
 
