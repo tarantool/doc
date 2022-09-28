@@ -24,6 +24,8 @@ help for the given command.
             -   Connect to a Tarantool instance
         *   -   :doc:`coredump <coredump>`
             -   Manipulate Tarantool core dumps
+        *   -   :doc:`create <create>`
+            -   Manipulate Tarantool core dumps
         *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
         *   -   :doc:`logrotate <logrotate>`
@@ -52,6 +54,7 @@ help for the given command.
     completion <completion>
     connect <connect>
     coredump <coredump>
+    create <create>
     help <help>
     logrotate <logrotate>
     play <play>
