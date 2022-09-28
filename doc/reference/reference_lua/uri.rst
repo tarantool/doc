@@ -6,7 +6,8 @@
                                    Overview
 ===============================================================================
 
-A "URI" is a "Uniform Resource Identifier".
+*URI* stands for *Uniform Resource Identifier* - a sequence of characters that
+identifies a logical or physical resource.
 The `IETF standard <https://www.ietf.org/rfc/rfc2396.txt>`_
 says a URI string looks like this:
 
@@ -27,7 +28,7 @@ has three components:
 * ``tarantool.org/x.html`` is the path,
 * ``y`` is the fragment.
 
-Tarantool's URI module provides routines which convert URI strings into their
+Tarantool's URI module provides functions that convert URI strings into their
 components, or turn components into URI strings.
 
 ===============================================================================
@@ -71,8 +72,10 @@ Below is a list of all ``uri`` functions.
     *   ``service``
     *   ``unix``
 
+    ``uri.parse()`` is the reverse of :ref:`uri.format() <uri-format>`.
+
     :param URI-string: a Uniform Resource Identifier
-    :return: URI-components table.
+    :return: URI components table.
 
     :rtype: Table
 
@@ -108,15 +111,28 @@ Below is a list of all ``uri`` functions.
 
 .. function:: format(URI-components-table[, include-password])
 
-    Form a URI string from its components. ``uri.format()`` is the reverse of
-    :ref:`uri.parse() <uri-parse>`.
+    Form a URI string from its components. Possible components are:
+
+    *   ``fragment``
+    *   ``host``
+    *   ``ipv4``
+    *   ``ipv6``
+    *   ``login``
+    *   ``password``
+    *   ``path``
+    *   ``query``
+    *   ``scheme``
+    *   ``service``
+    *   ``unix``
+
+    ``uri.format()`` is the reverse of :ref:`uri.parse() <uri-parse>`.
 
     :param URI-components-table: a series of ``name=value`` pairs, one for each
                                  component
     :param include-password: boolean. If this is supplied and is ``true``, then
                              the password component is rendered in clear text,
                              otherwise it is omitted.
-    :return: URI-string
+    :return: URI string
     :rtype: string
 
     **Example:**
