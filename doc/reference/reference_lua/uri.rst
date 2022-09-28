@@ -58,7 +58,7 @@ Below is a list of all ``uri`` functions.
 
 .. function:: parse(URI-string)
 
-    Parse a URI string by components. Possible components are:
+    Parse a URI string into components. Possible components are:
 
     *   ``fragment``
     *   ``host``
