@@ -6,7 +6,8 @@
                                    Overview
 ===============================================================================
 
-A "URI" is a "Uniform Resource Identifier".
+*URI* stands for *Uniform Resource Identifier* - a sequence of characters that
+identifies a logical or physical resource.
 The `IETF standard <https://www.ietf.org/rfc/rfc2396.txt>`_
 says a URI string looks like this:
 
@@ -23,11 +24,11 @@ A common type, a hierarchical URI, looks like this:
 For example the string ``'https://tarantool.org/x.html#y'``
 has three components:
 
-* ``https`` is the scheme,
-* ``tarantool.org/x.html`` is the path,
+* ``https`` is the scheme.
+* ``tarantool.org/x.html`` is the path.
 * ``y`` is the fragment.
 
-Tarantool's URI module provides routines which convert URI strings into their
+Tarantool's URI module provides functions that convert URI strings into their
 components, or turn components into URI strings.
 
 ===============================================================================
@@ -57,9 +58,25 @@ Below is a list of all ``uri`` functions.
 
 .. function:: parse(URI-string)
 
+    Parse a URI string into components. Possible components are:
+
+    *   ``fragment``
+    *   ``host``
+    *   ``ipv4``
+    *   ``ipv6``
+    *   ``login``
+    *   ``password``
+    *   ``path``
+    *   ``query``
+    *   ``scheme``
+    *   ``service``
+    *   ``unix``
+
+    ``uri.parse()`` is the reverse of :ref:`uri.format() <uri-format>`.
+
     :param URI-string: a Uniform Resource Identifier
-    :return: URI-components-table. Possible components are fragment, host,
-             login, password, path, query, scheme, service.
+    :return: URI components table.
+
     :rtype: Table
 
     **Example:**
@@ -70,31 +87,61 @@ Below is a list of all ``uri`` functions.
         ---
         ...
 
-        tarantool> uri.parse('http://x.html#y')
+        tarantool> uri.parse('scheme://login:password@host:service'..
+        '/path1/path2/path3?q1=v1&q2=v2&q3=v3:1|v3:2#fragment')
         ---
-        - host: x.html
-          scheme: http
-          fragment: y
+        - login: login
+          params:
+            q1:
+            - v1
+            q2:
+            - v2
+            q3:
+            - v3:1|v3:2
+          service: service
+          fragment: fragment
+          password: password
+          scheme: scheme
+          query: q1=v1&q2=v2&q3=v3:1|v3:2
+          host: host
+          path: /path1/path2/path3
         ...
 
 .. _uri-format:
 
 .. function:: format(URI-components-table[, include-password])
 
-    :param URI-components-table: a series of name:value pairs, one for each
+    Form a URI string from its components. Possible components are:
+
+    *   ``fragment``
+    *   ``host``
+    *   ``ipv4``
+    *   ``ipv6``
+    *   ``login``
+    *   ``password``
+    *   ``path``
+    *   ``query``
+    *   ``scheme``
+    *   ``service``
+    *   ``unix``
+
+    ``uri.format()`` is the reverse of :ref:`uri.parse() <uri-parse>`.
+
+    :param URI-components-table: a series of ``name=value`` pairs, one for each
                                  component
     :param include-password: boolean. If this is supplied and is ``true``, then
                              the password component is rendered in clear text,
                              otherwise it is omitted.
-    :return: URI-string. Thus uri.format() is the reverse of uri.parse().
+    :return: URI string
     :rtype: string
 
     **Example:**
 
     .. code-block:: tarantoolsession
 
-        tarantool> uri.format({host = 'x.html', scheme = 'http', fragment = 'y'})
+        tarantool> uri.format({scheme='scheme', login='login', password='password', host='host',
+        service='service', path='/path1/path2/path3', query='q1=v1&q2=v2&q3=v3'})
         ---
-        - http://x.html#y
+        - scheme://login@host:service/path1/path2/path3
         ...
 
