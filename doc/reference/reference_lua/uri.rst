@@ -24,8 +24,8 @@ A common type, a hierarchical URI, looks like this:
 For example the string ``'https://tarantool.org/x.html#y'``
 has three components:
 
-* ``https`` is the scheme,
-* ``tarantool.org/x.html`` is the path,
+* ``https`` is the scheme.
+* ``tarantool.org/x.html`` is the path.
 * ``y`` is the fragment.
 
 Tarantool's URI module provides functions that convert URI strings into their
