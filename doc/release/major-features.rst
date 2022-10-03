@@ -23,7 +23,7 @@ Versions that only include bug fixes are not listed in this table.
         *   -   2.10.3
             -   RedOS 7.3 is now supported.  |br|
                 Added the ``-DENABLE_HARDENING=ON/OFF`` CMake option that enables
-                hardening against memory corruption attacks (:tarantool-issue:`gh-7536`).
+                hardening against memory corruption attacks (:tarantool-issue:`7536`).
 
         *   -   2.10.2
             -   Internal fibers cannot be cancelled from the Lua public API anymore (:tarantool-issue:`7473`)
