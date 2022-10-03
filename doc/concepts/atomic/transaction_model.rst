@@ -40,7 +40,7 @@ when the disk space is over. In this case, the isolation level of the concurrent
 would be *read committed*.
 
 
-The :ref:`MVСС mode <txn_mode_transaction-manager>` provides several options that allows you to tune 
+The :ref:`MVСС mode <txn_mode_transaction-manager>` provides several options that allow you to tune
 the visibility behavior during transaction execution. To achieve *serializable*, any write transaction 
 should read all data that has already been committed (otherwise it may conflict 
 when it reaches its commit). For read transactions, however, it is sufficient 
@@ -48,7 +48,7 @@ and safe to *read confirmed* data that is on disk (for asynchronous replication)
 (for synchronous replication).
 
 
-So, during transaction execution, the MVCC must choose between *read-commited* or *read-confirmed* visibility, 
+So, during transaction execution, the MVCC must choose between *read-committed* or *read-confirmed* visibility,
 which inevitably leads to the *serializable* isolation level.
 
 
@@ -66,16 +66,16 @@ and can no longer be committed.
 
 
 To minimize the possibility of conflicts, MVCC uses what is called *best-effort* visibility: 
-for write transactions it chooses *read-commited*, for read transactions it chooses *read-confirmed*. 
+for write transactions it chooses *read-committed*, for read transactions it chooses *read-confirmed*.
 Since there is no option for MVCC to analyze the whole transaction to make a decision, it makes the choice on 
 the first operation. The author of the transaction has more knowledge about the whole transaction and could give 
 a hint to minimize conflicts.
 
-Manual usage of *read-commited* for write transactions with reads is completely safe, as this 
+Manual usage of *read-committed* for write transactions with reads is completely safe, as this
 transaction will eventually result in a commit. And if some previous transactions fail, this 
 transaction will inevitably fail as well due to the *serializable* isolation level.
 
-Manual usage of *read-commited* for pure read transactions may be unsafe, as it may lead to phantom reads.
+Manual usage of *read-committed* for pure read transactions may be unsafe, as it may lead to phantom reads.
 
 
 

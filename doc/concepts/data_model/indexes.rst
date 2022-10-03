@@ -248,6 +248,13 @@ The option list of this type of index may contain ``dimension`` and ``distance``
 The ``parts`` definition must contain the one and only part with type ``array``.
 RTREE index can accept two types of ``distance`` functions: ``euclid`` and ``manhattan``.
 
+..  warning::
+
+    Currently, the :ref:`isolation level <transaction_model_levels>` of RTREE indexes
+    in :ref:`MVCC transaction mode <txn_mode_mvcc-tnx-manager>` is *read-committed* (not *serializable*, as stated).
+    If a transaction uses these indexes, it can read committed or confirmed data (depending on the isolation level).
+    However, the indexes are subject to different anomalies that can make them unserializable.
+
 **Example 1:**
 
 ..  code-block:: lua
@@ -423,6 +430,13 @@ BITSET indexes
 Bitset is a bit mask. You should use it when you need to search by bit masks.
 This can be, for example, storing a vector of attributes and searching by these
 attributes.
+
+..  warning::
+
+    Currently, the :ref:`isolation level <transaction_model_levels>` of BITSET indexes
+    in :ref:`MVCC transaction mode <txn_mode_mvcc-tnx-manager>` is *read-committed* (not *serializable*, as stated).
+    If a transaction uses these indexes, it can read committed or confirmed data (depending on the isolation level).
+    However, the indexes are subject to different anomalies that can make them unserializable.
 
 **Example 1:**
 
