@@ -504,6 +504,16 @@ and minimum / maximum literal examples.
      - (none)
      - 00000000-0000-0000- |br| 0000-000000000000
      - ffffffff-ffff-ffff- |br| dfff-ffffffffffff
+   * - DATETIME
+     - :ref:`datetime <index-box_datetime>`
+     - (none)
+     -
+     -
+   * - INTERVAL
+     - :ref:`interval <index-box_interval>`
+     - (none)
+     -
+     -
    * - SCALAR
      - (varies)
      - (none)
@@ -602,6 +612,155 @@ or with the :ref:`UUID() function <sql_function_uuid>`,
 or with the :ref:`CAST() function <sql_function_cast>`.
 UUID support in SQL was added in Tarantool version 2.9.1.
 
+.. _sql_data_type_datetime:
+
+DATETIME. Introduced in :tarantool-release:`2.10.0`.
+A datetime table field can be created by using this type, which is semantically equivalent to the standard TIMESTAMP WITH TIME ZONE type.
+
+..  code-block:: tarantoolsession
+
+    tarantool> create table T2(d datetime primary key);
+    ---
+    - row_count: 1
+    ...
+
+    tarantool> insert into t2 values ('2022-01-01');
+    ---
+    - null
+    - 'Type mismatch: can not convert string(''2022-01-01'') to datetime'
+    ...
+
+    tarantool> insert into t2 values (cast('2022-01-01' as datetime));
+    ---
+    - row_count: 1
+    ...
+
+    tarantool> select * from t2;
+    ---
+    - metadata:
+      - name: D
+        type: datetime
+      rows:
+      - ['2022-01-01T00:00:00Z']
+    ...
+
+There is no implicit cast available from a string expression to a datetime expression (dislike convention used by majority of SQL vendors).
+In such cases, you need to use explicit cast from a string value to a datetime value (see the example above).
+
+You can subtract datetime and datetime, datetime and interval, or add datetime and interval in any order (see examples of such arithmetics in the description of the :ref:`INTERVAL type <sql_data_type_interval>`).
+
+The built-in functions related to the DATETIME type are :ref:`DATE_PART() <sql_function_datepart>` and :ref:`NOW() <sql_function_now>`
+
+.. _sql_data_type_interval:
+
+INTERVAL. Introduced in :tarantool-release:`2.10.0`.
+Similarly to the :ref:`DATETIME <sql_data_type_datetime>` type, you can define a column of the INTERVAL type.
+
+..  code-block:: tarantoolsession
+
+    tarantool> create table T(d datetime primary key, i interval);
+    ---
+    - row_count: 1
+    ...
+
+    tarantool> insert into T values (cast('2022-02-02T01:01' as datetime), cast({'year': 1, 'month': 1} as interval));
+    ---
+    - row_count: 1
+    ...
+
+    tarantool> select * from t;
+    ---
+    - metadata:
+      - name: D
+        type: datetime
+      - name: I
+        type: interval
+      rows:
+      - ['2022-02-02T01:01:00Z', '+1 years, 1 months']
+    ...
+
+Dislike DATETIME, INTERVAL cannot be a part of an index.
+
+There is no implicit cast available for conversions to an interval from a string or any other type.
+But there is explicit cast allowed from maps (see examples below).
+
+Intervals can be used in arithmetic operations like ``+`` or ``-`` only with the datetime expression or another interval:
+
+..  code-block:: tarantoolsession
+
+    tarantool> select * from t
+    ---
+    - metadata:
+      - name: D
+        type: datetime
+      - name: I
+        type: interval
+      rows:
+      - ['2022-02-02T01:01:00Z', '+1 years, 1 months']
+    ...
+
+    tarantool> select d, d + i, d + cast({'year': 1, 'month': 2} as interval) from t
+    ---
+    - metadata:
+      - name: D
+        type: datetime
+      - name: COLUMN_1
+        type: datetime
+      - name: COLUMN_2
+        type: datetime
+      rows:
+      - ['2022-02-02T01:01:00Z', '2023-03-02T01:01:00Z', '2023-04-02T01:01:00Z']
+    ...
+
+    tarantool> select i + cast({'year': 1, 'month': 2} as interval) from t
+    ---
+    - metadata:
+      - name: COLUMN_1
+        type: interval
+      rows:
+      - ['+2 years, 3 months']
+    ...
+
+There is the predefined list of known attributes for the map if you want to convert one to the INTERVAL expression:
+
+*   ``year``
+*   ``month``
+*   ``week``
+*   ``day``
+*   ``hour``
+*   ``minute``
+*   ``second``
+*   ``nsec``
+
+..  code-block:: tarantoolsession
+
+    tarantool> select cast({'year': 1, 'month': 1, 'week': 1, 'day': 1, 'hour': 1, 'min': 1, 'sec': 1} as interval)
+    ---
+    - metadata:
+      - name: COLUMN_1
+        type: interval
+      rows:
+      - ['+1 years, 1 months, 1 weeks, 1 days, 1 hours, 1 minutes, 1 seconds']
+    ...
+
+    tarantool> \set language lua
+
+
+    tarantool> v = {year = 1, month = 1, week = 1, day = 1, hour = 1,
+             >      min = 1, sec = 1, nsec = 1, adjust = 'none'}
+    ---
+    ...
+
+    tarantool> box.execute('select cast(#v as interval);', {{['#v'] = v}})
+
+    ---
+    - metadata:
+      - name: COLUMN_1
+        type: interval
+      rows:
+      - ['+1 years, 1 months, 1 weeks, 1 days, 1 hours, 1 minutes, 1.000000001 seconds']
+    ...
+
 .. _sql_data_type_scalar:
 
 SCALAR can be used for
@@ -640,7 +799,7 @@ type ANY.
 The difference between SCALAR and ANY is:
 
 *   SCALAR columns may not contain MAP or ARRAY values, but ANY columns may contain them.
-*   SCALAR values are comparable, while ANY values are not comparable. 
+*   SCALAR values are comparable, while ANY values are not comparable.
 
 Any value of any data type may be NULL. Ordinarily NULL will be cast to the
 data type of any operand it is being compared to or to the data type of the

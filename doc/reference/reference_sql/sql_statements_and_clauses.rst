@@ -2751,7 +2751,7 @@ Now that does not happen. Behavior change is done by updating the
        (STRING) match -- MATCH clause |br|
        The system table is ``"_fk_constraint"``.
    * - collation_list
-     - 
+     -
      - Return a result set with one row for each
        supported collation. The first four collations
        are ``'none'`` and ``'unicode'`` and
@@ -2784,7 +2784,7 @@ Now that does not happen. Behavior change is done by updating the
        unique, 0 is false, 1 is true |br|
        The system table is ``"_index"``.
    * - stats
-     - 
+     -
      - Return a result set with
        one row for each index of each table.
        Each row contains: |br|
@@ -3226,6 +3226,72 @@ expression values are NULL, return NULL.
 Example:
   ``COALESCE(NULL, 17, 32)`` is 17.
 
+.. _sql_function_datepart:
+
+DATE_PART
++++++++++
+
+Syntax:
+
+:samp:`DATE_PART(value_requested , datetime)`
+
+Since :doc:`2.10.0 </release/2.10.0>`.
+
+The ``DATE_PART()`` function returns the requested information from a DATETIME value.
+It takes two arguments: the first one tells us what information is requested, the second is a DATETIME value.
+
+Below is a list of supported values of the first argument and what information is returned:
+
+*   ``millennium`` -- millennium
+*   ``century`` -- century
+*   ``decade`` -- decade
+*   ``year`` -- year
+*   ``quarter`` -- quarter of year
+*   ``month`` -- month of year
+*   ``week`` -- week of year
+*   ``day`` -- day of month
+*   ``dow`` -- day of week
+*   ``doy`` -- day of year
+*   ``hour`` -- hour of day
+*   ``minute`` -- minute of hour
+*   ``second`` -- second of minute
+*   ``millisecond`` -- millisecond of second
+*   ``microsecond`` -- microsecond of second
+*   ``nanosecond`` -- nanosecond of second
+*   ``epoch`` -- epoch
+*   ``timezone_offset`` -- time zone offset from the UTC, in minutes.
+
+Examples:
+
+..  code-block:: tarantoolsession
+
+    tarantool> select date_part('millennium', cast({'year': 2000, 'month': 4, 'day': 5, 'hour': 6, 'min': 33, 'sec': 22, 'nsec': 523999111} as datetime));
+    ---
+    - metadata:
+      - name: COLUMN_1
+        type: integer
+      rows:
+      - [2]
+    ...
+
+    tarantool> select date_part('day', cast({'year': 2000, 'month': 4, 'day': 5, 'hour': 6, 'min': 33, 'sec': 22, 'nsec': 523999111} as datetime));
+    ---
+    - metadata:
+      - name: COLUMN_1
+        type: integer
+      rows:
+      - [5]
+    ...
+
+    tarantool> select date_part('nanosecond', cast({'year': 2000, 'month': 4, 'day': 5, 'hour': 6, 'min': 33, 'sec': 22, 'nsec': 523999111} as datetime));
+    ---
+    - metadata:
+      - name: COLUMN_1
+        type: integer
+      rows:
+      - [523999111]
+    ...
+
 .. _sql_function_greatest:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3377,6 +3443,41 @@ Return the expression, with upper-case characters converted to lower case.
 The reverse of ``LOWER`` is :ref:`UPPER <sql_function_upper>`.
 
 Example: ``LOWER('ДA')`` is 'дa'
+
+.. _sql_function_now:
+
+NOW
++++
+
+Syntax:
+
+:samp:`NOW()`
+
+Since :doc:`2.10.0 </release/2.10.0>`.
+
+The NOW() function returns the current date and time as a DATETIME
+value.
+
+If the function is called more than once in a query, it returns
+the same result until the query completes, unless a yield has occurred.
+On yield, the value returned by NOW() is changing.
+
+Examples:
+
+..  code-block:: tarantoolsession
+
+    tarantool> select now(), now(), now()
+    ---
+    - metadata:
+      - name: COLUMN_1
+        type: datetime
+      - name: COLUMN_2
+        type: datetime
+      - name: COLUMN_3
+        type: datetime
+      rows:
+      - ['2022-07-20T19:02:02.010812282+0300', '2022-07-20T19:02:02.010812282+0300', '2022-07-20T19:02:02.010812282+0300']
+    ...
 
 .. _sql_function_nullif:
 
@@ -3885,7 +3986,7 @@ the three SELECT statements here will return results in three different orders: 
 Default function parameters
 ********************************************************************************
 
-Starting in Tarantool 2.10, if a parameter for an :ref:`aggregate function <sql_aggregate>` 
+Starting in Tarantool 2.10, if a parameter for an :ref:`aggregate function <sql_aggregate>`
 or a :ref:`built-in scalar SQL function <sql_functions>` is one of the ``extra-parameters``
 that can appear in :ref:`box.execute(...[,extra-parameters]) <box-sql_box_execute>`
 requests,
