@@ -11,8 +11,7 @@ Overview
 
 2.10.2 is the third
 :doc:`stable </release/policy/>` version of the 2.10 release series.
-version of the 2.10 release series. It introduces 1 improvement and
-resolves 8 bugs since 2.10.1.
+It introduces 1 improvement and resolves 8 bugs since 2.10.1.
 
 The “stable” label means that we have all planned features implemented
 and we see no high-impact issues. However, if you encounter an issue,
