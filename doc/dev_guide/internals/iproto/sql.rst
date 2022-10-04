@@ -49,8 +49,8 @@ Then the body will look like this:
         IPROTO_OPTIONS: []
     })
 
-Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-we will show actual byte codes of the IPROTO_EXECUTE message.
+The :ref:`Understanding binary protocol <box_protocol-illustration>`
+tutorial shows actual byte codes of the IPROTO_EXECUTE message.
 
 To call a prepared statement with named parameters from a connector pass the
 parameters within an array of maps. A client should wrap each element into a map,
@@ -93,8 +93,6 @@ there would be no IPROTO_DATA and there would be two additional items: |br|
             ]
         })
 
-
-
 ..  _box_protocol-prepare:
 
 IPROTO_PREPARE = 0x0d
@@ -130,6 +128,13 @@ Thus the IPROTO_PREPARE map item is the same as the first item of the
 Responses for SQL
 -----------------
 
+After the :ref:`header <box_protocol-header>`, for a response to an SQL statement,
+there will be a body that is slightly different from the body for non-SQL requests/responses.
+
+If the SQL request is not SELECT or VALUES or PRAGMA, then the response body
+contains only IPROTO_SQL_INFO (0x42). Usually IPROTO_SQL_INFO is a map with only
+one item -- SQL_INFO_ROW_COUNT (0x00) -- which is the number of changed rows.
+
 ..  cssclass:: highlight
 ..  parsed-literal::
 
@@ -137,7 +142,7 @@ Responses for SQL
     msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
     # <header>
     msgpack({
-        Response-Code-Indicator: IPROTO_OK,
+        IPROTO_REQUEST_TYPE: IPROTO_OK,
         IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
         IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
     })
@@ -169,7 +174,7 @@ If the SQL statement is SELECT or VALUES or PRAGMA, the response contains:
     msgpack(32)
     # <header>
     msgpack({
-        Response-Code-Indicator: IPROTO_OK,
+        IPROTO_REQUEST_TYPE: IPROTO_OK,
         IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
         IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
     })
@@ -211,5 +216,5 @@ we could get this response, in the body:
         ]
     })
 
-Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-we will show actual byte codes of responses to the above SQL messages.
+The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
+shows actual byte codes of responses to the above SQL messages.

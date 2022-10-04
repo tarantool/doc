@@ -1,12 +1,8 @@
 ..  _internals-events:
+..  _box-protocol-watchers:
 
 Events and subscriptions
 ========================
-
-..  _box-protocol-watchers:
-
-Watchers
---------
 
 The commands below support asynchronous server-client notifications signalled
 with :ref:`box.broadcast() <box-broadcast>`.

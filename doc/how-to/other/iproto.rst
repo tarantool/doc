@@ -135,7 +135,7 @@ example:
 
     ce 00 00 00 20                MP_UINT = HEADER AND BODY SIZE
     83                            MP_MAP, size 3
-    00                              Response-Code-Indicator
+    00                              IPROTO_REQUEST_TYPE
     ce 00 00 00 00                  MP_UINT = IPROTO_OK
     01                              IPROTO_SYNC
     cf 00 00 00 00 00 00 00 53      MP_UINT = sync value
@@ -154,7 +154,7 @@ example:
 
     ce 00 00 00 3b                  MP_UINT = HEADER AND BODY SIZE
     83                              MP_MAP, size 3 (i.e. 3 items in header)
-       00                              Response-Code-Indicator
+       00                              IPROTO_REQUEST_TYPE
        ce 00 00 80 0a                  MP_UINT = hexadecimal 800a
        01                              IPROTO_SYNC
        cf 00 00 00 00 00 00 00 26      MP_UINT = sync value
@@ -278,7 +278,7 @@ Byte code for the :ref:`heartbeat <box_protocol-heartbeat>` example. The replica
 ..  code-block:: none
 
     81                       MP_MAP, size 1
-    00                         Main-Map Item #1 Response-code-indicator
+    00                         Main-Map Item #1 IPROTO_REQUEST_TYPE
     00                         MP_UINT = 0 = IPROTO_OK
     81                         Main-Map Item #2, MP_MAP, size 1
     26                           Sub-Map Item #1 IPROTO_VCLOCK

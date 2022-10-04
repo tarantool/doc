@@ -5,8 +5,14 @@ Replication requests and responses
 ==================================
 
 This section describes internal requests and responses that happen during replication.
+Each of them is distinguished by the header,
+containing a unique :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>` value.
+These values and the corresponding packet body structures are considered below.
 
 Connectors and clients do not need to send replication packets.
+
+General
+-------
 
 ..  container:: table
 
@@ -15,38 +21,65 @@ Connectors and clients do not need to send replication packets.
         :header-rows: 1
 
         *   -   Name
-            -   Binary code
+            -   Code
             -   Description
+
         *   -   IPROTO_JOIN
             -   0x41
             -
-        *   -   IPROTO_RAFT
-            -   0x1e
-            -   
-        *   -   IPROTO_RAFT_PROMOTE
-            -   0x1f
-            -   Wait, then choose new replication leader. See :ref:`box.ctl.promote() <box_ctl-promote>`
-        *   -   IPROTO_RAFT_DEMOTE
-            -   0x20
-            -   
-        *   -   IPROTO_RAFT_CONFIRM
-            -   0x28
-            -
-        *   -   IPROTO_RAFT_ROLLBACK
-            -   0x29
-            -
+
         *   -   IPROTO_SUBSCRIBE
             -   0x42
             -
+
         *   -   IPROTO_VOTE
             -   0x44
             -
+
         *   -   IPROTO_VOTE_DEPRECATED
             -   0x43
             -
+
+        *   -   :ref:`IPROTO_BALLOT <box_protocol-ballots>`
+            -   0x29
+            -   Response to IPROTO_VOTE. Used during replica set bootstrap
+
         *   -   IPROTO_REGISTER
             -   0x46
             -   Register an anonymous replica so it is not anonymous anymore
+
+Synchronous
+-----------
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 25 15 60
+        :header-rows: 1
+
+        *   -   Name
+            -   Code
+            -   Description     
+
+        *   -   IPROTO_RAFT
+            -   0x1e
+            -   
+   
+        *   -   IPROTO_RAFT_PROMOTE
+            -   0x1f
+            -   Wait, then choose new replication leader. See :ref:`box.ctl.promote() <box_ctl-promote>`
+
+        *   -   IPROTO_RAFT_DEMOTE
+            -   0x20
+            -   
+
+        *   -   IPROTO_RAFT_CONFIRM
+            -   0x28
+            -
+
+        *   -   IPROTO_RAFT_ROLLBACK
+            -   0x29
+            -
 
 
 
@@ -58,7 +91,6 @@ Connectors and clients do not need to send replication packets.
     IPROTO_VOTE = 0x44 -- for master election
     IPROTO_FETCH_SNAPSHOT = 0x45 -- for starting anonymous replication
     IPROTO_REGISTER = 0x46 -- for leaving anonymous replication.
-
 
 ..  _box_protocol-join:
 
@@ -95,13 +127,15 @@ close a socket.
     msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
     # <header>
     msgpack({
-        Response-Code-Indicator: 0,
+        IPROTO_REQUEST_TYPE: IPROTO_OK,
         IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
     })
     # <body>
     msgpack({
         IPROTO_VCLOCK: :samp:`{{MP_INT SRV_ID, MP_INT SRV_LSN}}`
     })
+
+..  _internals-iproto-replication-subscribe:
 
 IPROTO_SUBSCRIBE = 0x42
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -170,94 +204,38 @@ and the replica might send back this:
 
     # <header>
     msgpack({
-        Response-Code-Indicator: IPROTO_OK
+        IPROTO_REQUEST_TYPE: IPROTO_OK
         IPROTO_REPLICA_ID: 2
         IPROTO_VCLOCK: {1, 6}
     })
 
-Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-we will show actual byte codes of the above heartbeat examples.
+The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
+shows actual byte codes of the above heartbeat examples.
 
 ..  _box_protocol-ballots:
 
-Ballots
-~~~~~~~
+IPROTO_BALLOT
+-------------
 
+Code: 0x29.
+
+This value of IPROTO_REQUEST_TYPE indicates a message sent in response to IPROTO_VOTE
+(not to be confused with the key IPROTO_RAFT_VOTE).
+IPROTO_BALLOT and IPROTO_VOTE are critical during replica set bootstrap.
 While connecting for replication, an instance sends a request with header IPROTO_VOTE (0x44).
-The normal response is ER_OK,and IPROTO_BALLOT (0x29).
 The fields within IPROTO_BALLOT are map items:
 
 ..  code-block:: none
 
     IPROTO_BALLOT_IS_RO_CFG (0x01) + MP_BOOL
-    IPROTO_BALLOT_VCLOCK (0x02) + vclock
-    IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock
+    IPROTO_BALLOT_VCLOCK (0x02) + vclock (MP_ARRAY)
+    IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock (MP_ARRAY)
     IPROTO_BALLOT_IS_RO (0x04) + MP_BOOL
     IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
     IPROTO_BALLOT_IS_BOOTED = 0x06 + MP_BOOL
     IPROTO_BALLOT_CAN_LEAD = 0x07 + MP_BOOL
 
-
-IPROTO_BALLOT_IS_RO_CFG and IPRO_BALLOT_VCLOCK and IPROTO_BALLOT_GC_VCLOCK and IPROTO_BALLOT_IS_RO
-were added in version :doc:`2.6.1 </release/2.6.1>`.
-IPROTO_BALLOT_IS_ANON was added in version :doc:`2.7.1 </release/2.7.1>`.
-IPROTO_BALLOT_IS_BOOTED was added in version 2.7.3 and 2.8.2 and 2.9.1.
-There have been some name changes starting with version 2.7.3 and 2.8.2 and 2.9.1:
-IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO,
-and IPROTO_BALLOT_IS_RO was formerly called IPROTO_BALLOT_IS_LOADING.
-
-IPROTO_BALLOT_IS_RO_CFG corresponds to :ref:`box.cfg.read_only <cfg_basic-read_only>`.
-
-IPROTO_BALLOT_GC_VCLOCK can be the vclock value of the instance's oldest
-WAL entry, which corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
-
-IPROTO_BALLOT_IS_RO is true if the instance is not writable,
-which may happen for a variety of reasons, such as:
-it was configured as :ref:`read_only <cfg_basic-read_only>`,
-or it has :ref:`orphan status <replication-orphan_status>`,
-or it is a :ref:`Raft <repl_leader_elect>` follower.
-
-IPROTO_BALLOT_IS_ANON corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
-
-IPROTO_BALLOT_IS_BOOTED is true if the instance has finished its
-bootstrap or recovery process.
-
-IPROTO_BALLOT_CAN_LEAD is true if the :ref:`election_mode <cfg_replication-election_mode>`
-configuration setting is either 'candidate' or 'manual', so that
-during the :ref:`leader election process <repl_leader_elect_process>`
-this instance may be preferred over instances whose configuration
-setting is 'voter'.
-IPROTO_BALLOT_CAN_LEAD support was added simultaneously in
-version :doc:`2.7.3 </release/2.7.3>`
-and version :doc:`2.8.2 </release/2.8.2>`.
-
-..  _box_protocol-flags:
-
-FLAGS
-~~~~~
-
-For replication of :ref:`synchronous transactions <repl_sync>`
-a header may contain a key = IPROTO_FLAGS and an MP_UINT value = one or more
-bits: IPROTO_FLAG_COMMIT or IPROTO_FLAG_WAIT_SYNC or IPROTO_FLAG_WAIT_ACK.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        # ... other header items ...,
-        IPROTO_FLAGS: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        # ... message for a transaction ...
-    })
-
-IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction,
-IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message for a transaction which cannot be completed immediately,
-IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchronous transaction.
+:ref:`Learn more about the keys <internals-iproto-keys-replication-general>`.
 
 ..  _box_protocol-raft:
 
