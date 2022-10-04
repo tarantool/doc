@@ -5,6 +5,9 @@ box.ctl.promote()
 
 .. function:: promote()
 
+    Since version :doc:`2.6.2 </release/2.6.2>`.
+    Renamed in release :doc:`2.6.3 </release/2.6.3>`.
+
     Wait, then choose new replication leader.
 
     For :ref:`synchronous transactions <how-to-repl_sync>` it is
@@ -20,5 +23,3 @@ box.ctl.promote()
     Parameters: none
      
     :return: nil or function pointer
-
-    Added in release :doc:`2.6.2 </release/2.6.2>`. Renamed in release :doc:`2.6.3 </release/2.6.3>`.

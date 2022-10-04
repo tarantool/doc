@@ -54,7 +54,7 @@ Below is a list of all ``box.ctl`` functions.
            - Wait, then choose replication leader
 
         *  - :doc:`./box_ctl/demote`
-           - Revoke the leader role of the instance
+           - Revoke the leader role from the instance
 
 ..  toctree::
     :hidden:

@@ -5,13 +5,11 @@ box.ctl.demote()
 
 ..  function:: demote()
 
-    Revoke the leader role of the instance.
+    Since version :doc:`2.10.0 </release/2.10.0>`.
 
-    The function is NOP (No operation) on any instance but the
-    :ref:`synchronous transaction queue owner <box_info_synchro>`.
-    If the node is not the owner, the function does nothing and returns immediately.
+    Revoke the leader role from the instance.
 
-    On synchronous transaction queue owner, the function works in the following way:
+    On :ref:`synchronous transaction queue owner <box_info_synchro>`, the function works in the following way:
 
     *   If :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is ``off``,
         the function writes a ``DEMOTE`` request to WAL.
@@ -21,8 +19,8 @@ box.ctl.demote()
     *   If :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is enabled in any mode, then the function
         makes the instance start a new term and give up the leader role.
 
+    On instances that are not queue owners, the function does nothing and returns immediately.
+
     Parameters: none
 
-    :return: nil or error
-
-    Added in release :doc:`2.10.0 </release/2.10.0>`.
+    :return: nil
