@@ -16,7 +16,7 @@ jobs:
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}
       VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         id: checkout
         with:
           submodules: recursive
