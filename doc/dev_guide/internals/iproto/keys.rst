@@ -20,7 +20,7 @@ General
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 15 50
+        :widths: 35 20 45
 
         *   -   Name
             -   Code, value type
@@ -131,7 +131,7 @@ Streams
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 15 50
+        :widths: 35 20 45
 
         *   -   Name
             -   Code, value type
@@ -237,7 +237,7 @@ Synchronous replication
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 15 50
+        :widths: 35 20 45
 
         *   -   Name
             -   Code, value type
@@ -279,7 +279,7 @@ Events and subscriptions
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 15 50
+        :widths: 35 20 45
 
         *   -   Name
             -   Code, value type
@@ -306,7 +306,7 @@ and :ref:`IPROTO_PREPARE <box_protocol-prepare>`.
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 15 50
+        :widths: 35 20 45
 
         *   -   Name
             -   Code, value type
