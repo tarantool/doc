@@ -4,11 +4,11 @@
 Keys used in requests and responses
 ===================================
 
-This section describes ``iproto`` keys that are passed via the protocol.
-They are Tarantool constants that are either defined or mentioned in the
+This section describes ``iproto`` keys contained in iproto requests and responses.
+The keys are Tarantool constants that are either defined or mentioned in the
 `iproto_constants.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_constants.h>`_.
 
-While the keys are unsigned 8-bit integers, their values can have different types.
+While the keys themselves are unsigned 8-bit integers, their values can have different types.
 
 Basic description
 -----------------
@@ -382,8 +382,8 @@ and :ref:`IPROTO_PREPARE <box_protocol-prepare>`.
                 Nested in :ref:`IPROTO_SQL_INFO <internals-iproto-keys-sql_info>`
 
 
-Details on specific keys
-------------------------
+Details on individual keys
+--------------------------
 
 ..  _internals-iproto-keys-version:
 

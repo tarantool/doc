@@ -66,5 +66,3 @@ In this section, ``k`` is always an unsigned-integer value = one of the IPROTO c
 Everything else is "as is".
 
 Map-items may appear in any order but in examples we usually use the order that ``net_box.c`` happens to use.
-
-All IPROTO constants are unsigned 8-bit integers.

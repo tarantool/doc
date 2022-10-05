@@ -1,10 +1,9 @@
 ..  _box_protocol-authentication:
 
-Session start
-=============
+Session start and authentication
+================================
 
 Every iproto session begins with a greeting and optional authentication.
-
 
 Greeting message
 ----------------
