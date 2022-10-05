@@ -20,10 +20,10 @@ General
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 20 45
+        :widths: 40 20 40
 
         *   -   Name
-            -   Code, value type
+            -   Code and value type
             -   Description
 
         *   -   :ref:`IPROTO_VERSION <internals-iproto-keys-version>`
@@ -131,10 +131,10 @@ Streams
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 20 45
+        :widths: 40 20 40
 
         *   -   Name
-            -   Code, value type
+            -   Code and value type
             -   Description
 
         *   -   :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
@@ -155,10 +155,10 @@ General replication
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 20 45
+        :widths: 40 20 40
 
         *   -   Name
-            -   Code, value type
+            -   Code and value type
             -   Description
 
         *   -   IPROTO_REPLICA_ID
@@ -237,10 +237,10 @@ Synchronous replication
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 20 45
+        :widths: 40 20 40
 
         *   -   Name
-            -   Code, value type
+            -   Code and value type
             -   Description
 
         *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
@@ -279,10 +279,10 @@ Events and subscriptions
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 20 45
+        :widths: 40 20 40
 
         *   -   Name
-            -   Code, value type
+            -   Code and value type
             -   Description
 
         *   -   IPROTO_EVENT_KEY
@@ -306,10 +306,10 @@ and :ref:`IPROTO_PREPARE <box_protocol-prepare>`.
 
     ..  list-table::
         :header-rows: 1
-        :widths: 35 20 45
+        :widths: 40 20 40
 
         *   -   Name
-            -   Code, value type
+            -   Code and value type
             -   Description
         
         *   -   IPROTO_SQL_TEXT

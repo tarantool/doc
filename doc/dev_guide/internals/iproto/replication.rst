@@ -17,7 +17,7 @@ General
 ..  container:: table
 
     ..  list-table::
-        :widths: 25 15 60
+        :widths: 40 20 40
         :header-rows: 1
 
         *   -   Name
@@ -54,7 +54,7 @@ Synchronous
 ..  container:: table
 
     ..  list-table::
-        :widths: 25 15 60
+        :widths: 40 20 40
         :header-rows: 1
 
         *   -   Name
