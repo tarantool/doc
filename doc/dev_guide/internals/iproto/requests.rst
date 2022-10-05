@@ -83,25 +83,34 @@ IPROTO_SELECT = 0x01
 See :ref:`space_object:select() <box_space-select>`.
 The body is a 6-item map.
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  uml::
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_SELECT,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_SPACE_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_INDEX_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_LIMIT: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_OFFSET: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_ITERATOR: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_KEY: :samp:`{{MP_ARRAY array of key values}}`
-    })
+    skinparam backgroundColor transparent
+
+    <style>
+      root {
+        FontColor #313131
+        HyperLinkColor #0077FF
+        LineColor #00EAFF
+        BackgroundColor white
+      }
+    </style>
+
+    json "**IPROTO_SELECT**" as select {
+      "Size": "MP_UINT",
+      "Header": {
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_SELECT",
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+      },
+      "Body": {
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SPACE_ID]]": "MP_UINT",
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INDEX_ID]]": "MP_UINT",
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_LIMIT]]": "MP_UINT",
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OFFSET]]": "MP_UINT",
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_ITERATOR]]": "MP_UINT",
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_KEY]]": "MP_ARRAY"
+      }
+    }
 
 Response:
 

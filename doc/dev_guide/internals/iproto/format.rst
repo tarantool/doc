@@ -13,15 +13,25 @@ Packet structure
 
 Requests and responses have similar structure. They contain three sections: size, header, and body.
 
-..  cssclass:: highlight
-..  parsed-literal::
 
-    # <size>
-    :samp:`{{MP_UINT unsigned integer}}`
-    # <header>
-    :samp:`{{MP_MAP with <header> map-items}}`
-    # <body>
-    :samp:`{{MP_MAP with <body> map-items}}`
+..  uml::
+
+    skinparam backgroundColor transparent
+
+    <style>
+      root {
+        FontColor #313131
+        HyperLinkColor #0077FF
+        LineColor #00EAFF
+        BackgroundColor white
+      }
+    </style>
+
+    json "**iproto packet**" as packet {
+      "Size": "MP_UINT",
+      "Header": "MP_MAP",
+      "Body": "MP_MAP"
+    }
 
 It is legal to put more than one request in a packet.
 
