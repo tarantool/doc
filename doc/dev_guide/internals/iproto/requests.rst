@@ -10,7 +10,8 @@ Some requests are described on separate pages. Those are the requests related to
 *   :ref:`stream transactions <internals-iproto-streams>`
 *   :ref:`asynchronous server-client notifications <internals-events>`
 *   :ref:`replication <internals-iproto-replication>`
-*   :ref:`SQL-specific requests <internals-iproto-sql>`
+*   :ref:`SQL <internals-iproto-sql>` --
+    :ref:`IPROTO_EXECUTE <box_protocol-execute>` and :ref:`IPROTO_PREPARE <box_protocol-prepare>`.
 
 Overview
 --------
@@ -19,71 +20,59 @@ Overview
 
     ..  list-table::
         :header-rows: 1
-        :widths: 17 16 17 50
+        :widths: 35 20 45
 
         *   -   Name
-            -   Binary code
-            -   Type
+            -   Code
             -   Description
+
         *   -   :ref:`IPROTO_SELECT <box_protocol-select>`
             -   0x01
-            -   Map
             -   :ref:`Select <box_space-select>` request
+
         *   -   :ref:`IPROTO_INSERT <box_protocol-insert>`
             -   0x02
-            -   Map
             -   :ref:`Insert <box_space-insert>` request
+
         *   -   :ref:`IPROTO_REPLACE <box_protocol-replace>`
             -   0x03
-            -   Map
             -   :ref:`Replace <box_space-insert>` request
+
         *   -   :ref:`IPROTO_UPDATE <box_protocol-update>`
             -   0x04
-            -   Map
             -   :ref:`Update <box_space-update>` request
+
         *   -   :ref:`IPROTO_UPSERT <box_protocol-upsert>`
             -   0x09
-            -   Map
             -   :ref:`Upsert <box_space-upsert>` request
+
         *   -   :ref:`IPROTO_DELETE <box_protocol-delete>`
             -   0x05
-            -   Map
             -   :ref:`Delete <box_space-delete>` request
-    
-    Function remote call (conn:call())
-    IPROTO_CALL=0x0a
-    IPROTO_CALL_16=0x06 Deprecated, use IPROTO_CALL (0x0a) instead
 
-    Authentification
-    IPROTO_AUTH=0x07
+        *   -   :ref:`IPROTO_CALL <box_protocol-call>`
+            -   0x0a 
+            -   Function remote call (:ref:`conn:call() <net_box-call>`)
+        
+        *   -   :ref:`IPROTO_AUTH <box_protocol-auth>`
+            -   0x07
+            -   Authentication request
 
-    Evaluate a Lua expresstion (conn:eval())
-    IPROTO_EVAL=0x08
-    
-    Execute an SQL statement (box.execute())
-    IPROTO_EXECUTE=0x0b
-    Prepare an SQL statement (box.prepare())
-    IPROTO_PREPARE=0x0d
+        *   -   :ref:`IPROTO_EVAL <box_protocol-eval>`
+            -   0x08
+            -   Evaluate a Lua expression (:ref:`conn:eval() <net_box-eval>`)
 
-    Increment the LSN and do nothing else
-    IPROTO_NOP=0x0c
+        *   -   :ref:`IPROTO_NOP <box_protocol-nop>`
+            -   0x0c
+            -   Increment the LSN and do nothing else
 
-    Transactions over streams
-    IPROTO_BEGIN=0x0e
-    IPROTO_COMMIT=0x0f
-    IPROTO_ROLLBACK=0x10
+        *   -   :ref:`IPROTO_PING <box_protocol-ping>`
+            -   0x40
+            -   Ping (:ref:`conn:eval() <net_box-ping>`)
 
-    Ping (conn:ping())
-    IPROTO_PING=0x40
-
-    Fetch snapshot
-    IPROTO_FETCH_SNAPSHOT=0x45
-
-    Share iproto version and supported features
-    IPROTO_ID=0x49
-
-    
-    
+        *   -   :ref:`IPROTO_ID <box_protocol-id>`
+            -   0x49
+            -   Share iproto version and supported features
 
 
 ..  _box_protocol-select:
@@ -688,18 +677,7 @@ The response will be a list of values, similar to the
 
 Response for SQL: ??? (fiure out why CALL and EVAL are the best place for SQL responses, according to locker)
 
-
-..  _box_protocol-nop:
-
-IPROTO_NOP = 0x0c
------------------
-
-There is no Lua request exactly equivalent to IPROTO_NOP.
-It causes the LSN to be incremented.
-It could be sometimes used for updates where the old and new values
-are the same, but the LSN must be increased because a data-change
-must be recorded.
-The body is: nothing.
+IPROTO_CALL_16=0x06 Deprecated, use IPROTO_CALL (0x0a) instead
 
 
 ..  _box_protocol-auth:
@@ -739,6 +717,18 @@ The server instance responds to an authentication packet with a standard respons
 To see how Tarantool handles this, look at
 `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_
 function ``netbox_encode_auth``.
+
+..  _box_protocol-nop:
+
+IPROTO_NOP = 0x0c
+-----------------
+
+There is no Lua request exactly equivalent to IPROTO_NOP.
+It causes the LSN to be incremented.
+It could be sometimes used for updates where the old and new values
+are the same, but the LSN must be increased because a data-change
+must be recorded.
+The body is: nothing.
 
 
 ..  _box_protocol-ping:
@@ -784,7 +774,7 @@ Response:
 ..  _box_protocol-id:
 
 IPROTO_ID = 0x49
-~~~~~~~~~~~~~~~~
+----------------
 
 Clients send this message to inform the server about the protocol version and
 features they support. Based on this information, the server can enable or

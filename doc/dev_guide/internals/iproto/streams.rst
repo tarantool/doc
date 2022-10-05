@@ -4,6 +4,9 @@
 Streams
 =======
 
+Overview
+--------
+
 The :ref:`Streams and interactive transactions <txn_mode_stream-interactive-transactions>`
 feature, which was added in Tarantool version
 :tarantool-release:`2.10.0`, allows two things:
@@ -27,53 +30,30 @@ To work with stream transactions using iproto, the following is required:
     IPROTO_STREAM_ID can be any positive 64-bit number, and should be unique for the connection.
     If IPROTO_STREAM_ID equals zero, the server instance will ignore it.
 
-Example
--------
+Basic request description
+-------------------------
 
-Suppose that the client has started a stream with
-the :ref:`net.box module <net_box-module>`
+..  container:: table
 
-..  code-block:: lua
+    ..  list-table::
+        :header-rows: 1
+        :widths: 35 20 45
 
-    net_box = require('net.box')
-    conn = net_box.connect('localhost:3302')
-    stream = conn:new_stream()
+        *   -   Name
+            -   Code
+            -   Description
 
-At this point the stream object will look like a duplicate of
-the conn object, with just one additional member: ``stream_id``.
-Now, using stream instead of conn, the client sends two requests:
+        *   -   :ref:`IPROTO_BEGIN <box_protocol-begin>`
+            -   0x0e
+            -   Begin a transaction in the specified stream
 
-..  code-block:: lua
-
-    stream.space.T:insert{1}
-    stream.space.T:insert{2}
-
-The header and body of these requests will be the same as in
-non-stream :ref:`IPROTO_INSERT <box_protocol-insert>` requests, except
-that the header will contain an additional item: IPROTO_STREAM_ID=0x0a
-with MP_UINT=0x01. It happens to equal 1 for this example because
-each call to conn:new_stream() assigns a new number, starting with 1.
-
-..  _box_protocol-stream_transactions:
-
-The client makes stream transactions by sending, in order:
-
-1. IPROTO_BEGIN with an optional transaction timeout in the IPROTO_TIMEOUT field of the request body.
-2. The transaction data-change and query requests.
-3. IPROTO_COMMIT or IPROTO_ROLLBACK.
-
-All these requests must contain the same IPROTO_STREAM_ID value.
-
-A rollback will happen automatically if
-a disconnect occurs or the transaction timeout expires before the commit is possible.
-
-Thus there are now multiple ways to do transactions:
-with ``net_box`` ``stream:begin()`` and ``stream:commit()`` or ``stream:rollback()``
-which cause IPROTO_BEGIN and IPROTO_COMMIT or IPROTO_ROLLBACK with
-the current value of stream.stream_id;
-with :ref:`box.begin() <box-begin>` and :ref:`box.commit() <box-commit>` or :ref:`box.rollback() <box-rollback>`;
-with SQL and :ref:`START TRANSACTION <sql_start_transaction>` and :ref:`COMMIT <sql_commit>` or :ref:`ROLLBACK <sql_rollback>`.
-An application can use any or all of these ways.
+        *   -   :ref:`IPROTO_COMMIT <box_protocol-commit>`
+            -   0x0f
+            -   Commit the transaction in the specified stream
+        
+        *   -   :ref:`IPROTO_ROLLBACK <box_protocol-rollback>`
+            -   0x10
+            -   Rollback the transaction in the specified stream
 
 ..  _box_protocol-begin:
 
@@ -150,6 +130,51 @@ See :ref:`stream:rollback() <net_box-stream_rollback>`.
         IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
     })
 
-See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
-stream transactions in the binary protocol.
 
+Example
+-------
+
+Suppose that the client has started a stream with
+the :ref:`net.box module <net_box-module>`
+
+..  code-block:: lua
+
+    net_box = require('net.box')
+    conn = net_box.connect('localhost:3302')
+    stream = conn:new_stream()
+
+At this point the stream object will look like a duplicate of
+the conn object, with just one additional member: ``stream_id``.
+Now, using stream instead of conn, the client sends two requests:
+
+..  code-block:: lua
+
+    stream.space.T:insert{1}
+    stream.space.T:insert{2}
+
+The header and body of these requests will be the same as in
+non-stream :ref:`IPROTO_INSERT <box_protocol-insert>` requests, except
+that the header will contain an additional item: IPROTO_STREAM_ID=0x0a
+with MP_UINT=0x01. It happens to equal 1 for this example because
+each call to conn:new_stream() assigns a new number, starting with 1.
+
+..  _box_protocol-stream_transactions:
+
+The client makes stream transactions by sending, in order:
+
+1. IPROTO_BEGIN with an optional transaction timeout in the IPROTO_TIMEOUT field of the request body.
+2. The transaction data-change and query requests.
+3. IPROTO_COMMIT or IPROTO_ROLLBACK.
+
+All these requests must contain the same IPROTO_STREAM_ID value.
+
+A rollback will happen automatically if
+a disconnect occurs or the transaction timeout expires before the commit is possible.
+
+Thus there are now multiple ways to do transactions:
+with ``net_box`` ``stream:begin()`` and ``stream:commit()`` or ``stream:rollback()``
+which cause IPROTO_BEGIN and IPROTO_COMMIT or IPROTO_ROLLBACK with
+the current value of stream.stream_id;
+with :ref:`box.begin() <box-begin>` and :ref:`box.commit() <box-commit>` or :ref:`box.rollback() <box-rollback>`;
+with SQL and :ref:`START TRANSACTION <sql_start_transaction>` and :ref:`COMMIT <sql_commit>` or :ref:`ROLLBACK <sql_rollback>`.
+An application can use any or all of these ways.

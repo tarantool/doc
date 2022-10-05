@@ -3,12 +3,35 @@
 SQL-specific requests and responses
 ===================================
 
+Basic request description
+-------------------------
+
+..  container:: table
+
+    ..  list-table::
+        :header-rows: 1
+        :widths: 35 20 45
+
+        *   -   Name
+            -   Code
+            -   Description
+
+        *   -   :ref:`IPROTO_EXECUTE <box_protocol-execute>`
+            -   0x0b
+            -   Execute an SQL statement (:ref:`box.execute() <box-sql_box_execute>`)
+
+        *   -   IPROTO_PREPARE
+            -   0x0d
+            -   Prepare an SQL statement (:ref:`box.prepare <box-sql_box_prepare>`)
+
+
 ..  _box_protocol-execute:
 
-IPROTO_EXECUTE = 0x0b
----------------------
+IPROTO_EXECUTE
+--------------
 
-See :ref:`box.execute() <box-sql_box_execute>`, this is only for SQL.
+Code: 0x0b.
+
 The body is a 3-item map:
 
 ..  cssclass:: highlight
@@ -95,10 +118,11 @@ there would be no IPROTO_DATA and there would be two additional items: |br|
 
 ..  _box_protocol-prepare:
 
-IPROTO_PREPARE = 0x0d
----------------------
+IPROTO_PREPARE
+--------------
 
-See :ref:`box.prepare <box-sql_box_prepare>`, this is only for SQL.
+Code: 0x0d.
+
 The body is a 1-item map:
 
 ..  cssclass:: highlight

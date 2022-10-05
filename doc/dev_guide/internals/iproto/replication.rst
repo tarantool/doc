@@ -44,9 +44,17 @@ General
             -   0x29
             -   Response to IPROTO_VOTE. Used during replica set bootstrap
 
+        *   -   IPROTO_FETCH_SNAPSHOT
+            -   0x45
+            -   Fetch the master's snapshot and start anonymous replication.
+                See :ref:`replication_anon <cfg_replication-replication_anon>`
+
         *   -   IPROTO_REGISTER
             -   0x46
             -   Register an anonymous replica so it is not anonymous anymore
+            
+Note that the master often sends :ref:`heartbeat <heartbeat>` messages to the replicas.
+The heartbeat message's IPROTO_REQUEST_TYPE is ``0``.
 
 Synchronous
 -----------
@@ -82,7 +90,6 @@ Synchronous
             -
 
 
-
 ..  code-block:: lua
 
     IPROTO_JOIN = 0x41 -- for replication
@@ -92,8 +99,44 @@ Synchronous
     IPROTO_FETCH_SNAPSHOT = 0x45 -- for starting anonymous replication
     IPROTO_REGISTER = 0x46 -- for leaving anonymous replication.
 
-..  _box_protocol-join:
 
+Details on individual requests
+------------------------------
+
+..  _box_protocol-heartbeat:
+
+Heartbeats
+~~~~~~~~~~
+
+Frequently a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
+For example, if there is a replica with id = 2,
+and a timestamp with a moment in 2020, a master might send this:
+
+..  cssclass:: highlight
+..  parsed-literal::
+
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: 0
+        IPROTO_REPLICA_ID: 2
+        IPROTO_TIMESTAMP: :samp:`{{Float 64 MP_DOUBLE 8-byte timestamp}}`
+    })
+
+and the replica might send back this:
+
+..  code-block:: none
+
+    # <header>
+    msgpack({
+        IPROTO_REQUEST_TYPE: IPROTO_OK
+        IPROTO_REPLICA_ID: 2
+        IPROTO_VCLOCK: {1, 6}
+    })
+
+The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
+shows actual byte codes of the above heartbeat examples.
+
+..  _box_protocol-join:
 
 IPROTO_JOIN = 0x41
 ~~~~~~~~~~~~~~~~~~
@@ -179,43 +222,10 @@ following structure:
 The field is encoded only when the id list is not empty.
 
 
-..  _box_protocol-heartbeat:
-
-HEARTBEATS
-~~~~~~~~~~
-
-Frequently a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
-For example, if there is a replica with id = 2,
-and a timestamp with a moment in 2020, a master might send this:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: 0
-        IPROTO_REPLICA_ID: 2
-        IPROTO_TIMESTAMP: :samp:`{{Float 64 MP_DOUBLE 8-byte timestamp}}`
-    })
-
-and the replica might send back this:
-
-..  code-block:: none
-
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_OK
-        IPROTO_REPLICA_ID: 2
-        IPROTO_VCLOCK: {1, 6}
-    })
-
-The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
-shows actual byte codes of the above heartbeat examples.
-
 ..  _box_protocol-ballots:
 
 IPROTO_BALLOT
--------------
+~~~~~~~~~~~~~
 
 Code: 0x29.
 
