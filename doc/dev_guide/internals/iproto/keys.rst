@@ -20,132 +20,107 @@ General
 
     ..  list-table::
         :header-rows: 1
-        :widths: 25 10 15 50
+        :widths: 35 15 50
 
         *   -   Name
-            -   Code
-            -   Value type
+            -   Code, value type
             -   Description
 
         *   -   :ref:`IPROTO_VERSION <internals-iproto-keys-version>`
-            -   0x54
-            -   MP_INT
+            -   0x54 |br| MP_INT
             -   Binary protocol version supported by the client
 
         *   -   :ref:`IPROTO_FEATURES <internals-iproto-keys-features>`
-            -   0x55
-            -   MP_ARRAY
+            -   0x55 |br|  MP_ARRAY
             -   Supported binary protocol features
 
         *   -   :ref:`IPROTO_SYNC <internals-iproto-keys-sync>`
-            -   0x01
-            -   MP_UINT
+            -   0x01 |br|  MP_UINT
             -   Unique request identifier
 
         *   -   :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`
-            -   0x05
-            -   MP_UINT
+            -   0x05 |br|  MP_UINT
             -   Identifier that is increased with every major change
 
         *   -   IPROTO_TIMESTAMP
-            -   0x04
-            -   MP_DOUBLE 
+            -   0x04 |br| MP_DOUBLE 
             -   Time in seconds since the Unix epoch
 
         *   -   :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>`
-            -   0x00
-            -   MP_UINT
+            -   0x00 |br| MP_UINT
             -   Request type or response type
             
         *   -   :ref:`IPROTO_OK <internals-iproto-keys-ok>`
-            -   0x00
-            -   MP_UINT
+            -   0x00 |br| MP_UINT
             -   Successful response indicator
         
         *   -   :ref:`IPROTO_CHUNK <internals-iproto-keys-chunk>`
-            -   0x80
-            -   MP_UINT
+            -   0x80 |br| MP_UINT
             -   Out-of-band response indicator
         
         *   -   :ref:`IPROTO_TYPE_ERROR <internals-iproto-keys-type_error>`
-            -   0x8XXX
-            -   MP_INT
+            -   0x8XXX |br| MP_INT
             -   Error response indicator
 
         *   -   :ref:`IPROTO_ERROR <internals-iproto-keys-error>`
-            -   0x52
-            -   :ref:`MP_ERROR <msgpack_ext-error>`
+            -   0x52 |br| :ref:`MP_ERROR <msgpack_ext-error>`
             -   Error response
 
         *   -   :ref:`IPROTO_ERROR_24 <internals-iproto-keys-error_24>`
-            -   0x31
-            -   MP_STR
-            -   Error as a string. Used in Tarantool versions prior to :doc:`2.4.1 </release/2.4.1>`
+            -   0x31 |br| MP_STR
+            -   Error as a string
 
         *   -   IPROTO_DATA
-            -   0x30
-            -   MP_OBJECT
-            -   Data passed in the transaction. Can be empty. Used in all requests
+            -   0x30 |br| MP_OBJECT
+            -   Data passed in the transaction. Can be empty. Used in all requests and responses
 
         *   -   IPROTO_SPACE_ID
-            -   0x10
-            -   MP_UINT
+            -   0x10 |br| MP_UINT
             -   Space identifier
 
         *   -   IPROTO_INDEX_ID
-            -   0x11
-            -   MP_UINT
+            -   0x11 |br| MP_UINT
             -   Index identifier
 
         *   -   :ref:`IPROTO_TUPLE <internals-iproto-keys-tuple>`
-            -   0x21
-            -   MP_ARRAY
+            -   0x21 |br| MP_ARRAY
             -   Tuple, arguments, operations, or authentication pair.
                 :ref:`See details <internals-iproto-keys-tuple>`
 
         *   -   IPROTO_KEY
-            -   0x20
-            -   MP_ARRAY
+            -   0x20 |br| MP_ARRAY
             -   Array of index keys in the request. See :ref:`space_object:select() <box_space-select>`
 
         *   -   IPROTO_LIMIT
-            -   0x12
-            -   MP_UINT
+            -   0x12 |br| MP_UINT
             -   Maximum number of tuples in the space
 
         *   -   IPROTO_OFFSET
-            -   0x13
-            -   MP_UINT
+            -   0x13 |br| MP_UINT
             -   Number of tuples to skip in the select
 
         *   -   :ref:`IPROTO_ITERATOR <internals-iproto-keys-iterator>`
-            -   0x14
-            -   MP_UINT
+            -   0x14 |br| MP_UINT
             -   Iterator type
 
         *   -   IPROTO_INDEX_BASE
-            -   0x15
-            -   MP_UINT
+            -   0x15 |br| MP_UINT
             -   Indicates whether the first field number is 1 or 0
 
         *   -   IPROTO_FUNCTION_NAME
-            -   0x22
-            -   MP_STR
+            -   0x22 |br| MP_STR
             -   Name of the called function. Used in :ref:`IPROTO_CALL <box_protocol-call>`
 
         *   -   IPROTO_USER_NAME
-            -   0x23
-            -   MP_STR
+            -   0x23 |br| MP_STR
             -   User name. Used in :ref:`IPROTO_AUTH <box_protocol-auth>`
 
         *   -   IPROTO_OPS
-            -   0x28
-            -   MP_ARRAY
+            -   0x28 |br| MP_ARRAY
             -   Array of operations. Used in :ref:`IPROTO_UPSERT <box_protocol-upsert>`
 
         *   -   IPROTO_EXPR
-            -   0x27
-            -   MP_STR
+            -   0x27 |br| MP_STR
             -   Command argument. Passed within :ref:`IPROTO_EVAL <box_protocol-eval>`
 
 
@@ -156,22 +131,19 @@ Streams
 
     ..  list-table::
         :header-rows: 1
-        :widths: 25 10 15 50
+        :widths: 35 15 50
 
         *   -   Name
-            -   Code
-            -   Type
+            -   Code, value type
             -   Description
 
         *   -   :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
-            -   0x0a
-            -   unsigned
+            -   0x0a |br| MP_UINT
             -   Unique :ref:`stream <txn_mode_stream-interactive-transactions>` identifier
 
         *   -   :ref:`IPROTO_TXN_ISOLATION <internals-iproto-keys-txn_isolation>`
-            -   0x59
-            -   unsigned
-            -   Transaction isolation level, used in :ref:`streams <txn_mode_stream-interactive-transactions>`
+            -   0x59 |br| MP_UINT
+            -   Transaction isolation level
 
 
 ..  _internals-iproto-keys-replication-general:
@@ -183,92 +155,77 @@ General replication
 
     ..  list-table::
         :header-rows: 1
-        :widths: 25 10 10 55
+        :widths: 35 20 45
 
         *   -   Name
-            -   Code
-            -   Type
+            -   Code, value type
             -   Description
 
         *   -   IPROTO_REPLICA_ID
-            -   0x02
-            -   MP_INT
+            -   0x02 |br| MP_INT
             -   Replica ID
 
         *   -   IPROTO_INSTANCE_UUID
-            -   0x24
-            -   :ref:`MP_UUID <msgpack_ext-uuid>`
+            -   0x24 |br| :ref:`MP_UUID <msgpack_ext-uuid>`
             -   Instance UUID
 
         *   -   IPROTO_VCLOCK
-            -   0x26
-            -   MP_UINT
+            -   0x26 |br| MP_UINT
             -   The instance's vector clock (vclock)
 
         *   -   IPROTO_CLUSTER_UUID
-            -   0x25
-            -   :ref:`MP_UUID <msgpack_ext-uuid>`
+            -   0x25 |br| :ref:`MP_UUID <msgpack_ext-uuid>`
             -   Cluster UUID
 
         *   -   IPROTO_LSN
-            -   0x03
-            -   MP_UINT
+            -   0x03 |br| MP_UINT
             -   Log sequence number of the transaction
 
         *   -   IPROTO_BALLOT_IS_RO_CFG
-            -   0x01
-            -   MP_BOOL
+            -   0x01 |br| MP_BOOL
             -   True if the instance is configured as :ref:`read_only <cfg_basic-read_only>`.
                 Since :doc:`2.6.1 </release/2.6.1>`
 
         *   -   IPROTO_BALLOT_VCLOCK
-            -   0x02
-            -   MP_ARRAY
+            -   0x02 |br| MP_ARRAY
             -   Current vector clock of the instance.
                 Since :doc:`2.6.1 </release/2.6.1>`
 
         *   -   IPROTO_BALLOT_GC_VCLOCK
-            -   0x03
-            -   MP_ARRAY
+            -   0x03 |br| MP_ARRAY
             -   Vclock of the instance’s oldest WAL entry. Corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
                 Since :doc:`2.6.1 </release/2.6.1>`
 
         *   -   IPROTO_BALLOT_IS_RO
-            -   0x04
-            -   MP_BOOL
+            -   0x04 |br| MP_BOOL
             -   True if the instance is not writable: configured as :ref:`read_only <cfg_basic-read_only>`,
                 has :ref:`orphan status <internals-replication-orphan_status>`, or
                 is a :ref:`Raft follower <repl_leader_elect>`.
                 Since :doc:`2.6.1 </release/2.6.1>`
 
         *   -   IPROTO_BALLOT_IS_ANON
-            -   0x05
-            -   MP_BOOL
+            -   0x05 |br| MP_BOOL
             -   True if the replica is anonymous.
                 Corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
                 Since :doc:`2.7.1 </release/2.7.1>`
 
         *   -   IPROTO_BALLOT_IS_BOOTED
-            -   0x06
-            -   MP_BOOL
+            -   0x06 |br| MP_BOOL
             -   True if the instance has finished its bootstrap or recovery process.
                 Since :doc:`2.7.3 </release/2.7.3>`, :doc:`2.8.2 </release/2.8.2>`, :doc:`2.10.0 </release/2.10.0>`
 
         *   -   IPROTO_BALLOT_CAN_LEAD
-            -   0x07
-            -   MP_BOOL
+            -   0x07 |br| MP_BOOL
             -   True if :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is ``candidate`` or ``manual``.
                 Since v. :doc:`2.7.3 </release/2.7.3>` and :doc:`2.8.2 </release/2.8.2>`
 
         *   -   IPROTO_ID_FILTER
-            -   0x51
-            -   MP_ARRAY
+            -   0x51 |br| MP_ARRAY
             -   Optional key used in :ref:`SUBSCRIBE request <internals-iproto-replication-subscribe>`,
                 followed by an array of ids of instances whose rows won't be relayed to the replica
 
         *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
-            -   0x09
-            -   MP_UINT
+            -   0x09 |br| MP_UINT
             -   Auxiliary data to indicate the last transaction message state
 
 There have been some name changes starting with versions 2.7.3, 2.8.2, and 2.10.0:
@@ -284,42 +241,35 @@ Synchronous replication
 
     ..  list-table::
         :header-rows: 1
-        :widths: 25 10 15 50
+        :widths: 35 15 50
 
         *   -   Name
-            -   Code
-            -   Type
+            -   Code, value type
             -   Description
 
         *   -   IPROTO_RAFT_TERM
-            -   0x00
-            -   MP_UINT
+            -   0x00 |br| MP_UINT
             -   :ref:`RAFT term <repl_leader_elect>` on an instance
         
         *   -   IPROTO_RAFT_VOTE
-            -   0x01
-            -   MP_UINT
+            -   0x01 |br| MP_UINT
             -   Instance vote in the current term (if any)
         
         *   -   IPROTO_RAFT_STATE
-            -   0x02
-            -   MP_UINT
+            -   0x02 |br| MP_UINT
             -   RAFT state. Possible values: ``1`` -- follower, ``2`` -- candidate, ``3`` -- leader
         
         *   -   IPROTO_RAFT_VCLOCK
-            -   0x03
-            -   MP_ARRAY
+            -   0x03 |br| MP_ARRAY
             -   Current vclock of the instance.
                 Present only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
         
         *   -   IPROTO_RAFT_LEADER_ID
-            -   0x04
-            -   MP_UINT
+            -   0x04 |br| MP_UINT
             -   Current leader node ID as seen by the node that issues the request. Since version :doc:`2.10.0 </release/2.10.0>`
         
         *   -   IPROTO_RAFT_IS_LEADER_SEEN
-            -   0x05
-            -   MP_BOOL
+            -   0x05 |br| MP_BOOL
             -   True if the node has a direct connection to the leader node. Since version :doc:`2.10.0 </release/2.10.0>`
 
 Events and subscriptions
@@ -329,21 +279,18 @@ Events and subscriptions
 
     ..  list-table::
         :header-rows: 1
-        :widths: 25 10 15 50
+        :widths: 35 15 50
 
         *   -   Name
-            -   Code
-            -   Type
+            -   Code, value type
             -   Description
 
         *   -   IPROTO_EVENT_KEY
-            -   0x56
-            -   MP_STR
+            -   0x56 |br| MP_STR
             -   :ref:`Event <box-protocol-watchers>` key name
 
         *   -   IPROTO_EVENT_DATA
-            -   0x57
-            -   MP_OBJECT
+            -   0x57 |br| MP_OBJECT
             -   :ref:`Event <box-protocol-watchers>` data sent to a remote watcher
 
 :ref:`Learn more about events and subscriptions in iproto <box-protocol-watchers>`.
@@ -359,94 +306,77 @@ and :ref:`IPROTO_PREPARE <box_protocol-prepare>`.
 
     ..  list-table::
         :header-rows: 1
-        :widths: 25 10 15 50
+        :widths: 35 15 50
 
         *   -   Name
-            -   Code
-            -   Type
+            -   Code, value type
             -   Description
         
         *   -   IPROTO_SQL_TEXT
-            -   0x40
-            -   MP_STR
+            -   0x40 |br| MP_STR
             -   SQL statement text
             
         *   -   IPROTO_STMT_ID
-            -   0x43
-            -   MP_INT
+            -   0x43 |br| MP_INT
             -   Identifier of the prepared statement
 
         *   -   IPROTO_OPTIONS
-            -   0x2b
-            -   MP_ARRAY
+            -   0x2b |br| MP_ARRAY
             -   SQL transaction options. Usually empty
 
         *   -   :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`
-            -   0x32
-            -   MP_ARRAY, contains MP_MAP items
+            -   0x32 |br| MP_ARRAY of MP_MAP items
             -   SQL transaction metadata
 
         *   -   IPROTO_FIELD_NAME
-            -   0x00
-            -   MP_STR
+            -   0x00 |br| MP_STR
             -   Field name. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`
 
         *   -   IPROTO_FIELD_TYPE
-            -   0x01
-            -   MP_STR
+            -   0x01 |br| MP_STR
             -   Field type. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`
 
         *   -   IPROTO_FIELD_COLL
-            -   0x02
-            -   MP_STR
+            -   0x02 |br| MP_STR
             -   Field collation. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`
 
         *   -   IPROTO_FIELD_IS_NULLABLE
-            -   0x03
-            -   MP_BOOL
+            -   0x03 |br| MP_BOOL
             -   True if the field is nullable. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`.
         
         *   -   IPROTO_FIELD_IS_AUTOINCREMENT
-            -   0x04
-            -   MP_BOOL
+            -   0x04 |br| MP_BOOL
             -   True if the field is auto-incremented.
                 Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`.
         
         *   -   IPROTO_FIELD_SPAN
-            -   0x05
-            -   MP_STR or MP_NIL
+            -   0x05 |br| MP_STR or MP_NIL
             -   Original expression under SELECT.
                 Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`.
                 See :ref:`box.execute() <box-sql_if_full_metadata>`
         
         *   -   IPROTO_BIND_METADATA
-            -   0x33
-            -   MP_ARRAY
+            -   0x33 |br| MP_ARRAY
             -   Bind variable names and types
         
         *   -   IPROTO_BIND_COUNT
-            -   0x34
-            -   MP_INT
+            -   0x34 |br| MP_INT
             -   Number of parameters to bind
         
         *   -   IPROTO_SQL_BIND
-            -   0x41
-            -   MP_ARRAY
+            -   0x41 |br| MP_ARRAY
             -   Parameter values to match ? placeholders or :name placeholders
         
         *   -   :ref:`IPROTO_SQL_INFO <internals-iproto-keys-sql_info>`
-            -   0x42
-            -   MP_MAP
+            -   0x42 |br| MP_MAP
             -   Additional SQL-related parameters
 
         *   -   :ref:`SQL_INFO_ROW_COUNT <internals-iproto-keys-sql_info>`
-            -   0x00
-            -   MP_UINT
+            -   0x00 |br| MP_UINT
             -   Number of changed rows. Nested in :ref:`IPROTO_SQL_INFO <internals-iproto-keys-sql_info>`
 
         *   -   :ref:`SQL_INFO_AUTO_INCREMENT_IDS <internals-iproto-keys-sql_info>`
-            -   0x01
-            -   MP_ARRAY, contains MP_UINT items
+            -   0x01 |br| MP_ARRAY of MP_UINT items
             -   New primary key value (or values) for an INSERT in a table
                 defined with PRIMARY KEY AUTOINCREMENT.
                 Nested in :ref:`IPROTO_SQL_INFO <internals-iproto-keys-sql_info>`
@@ -531,7 +461,7 @@ Possible values (see `iterator_type.h <https://github.com/tarantool/tarantool/bl
 
     ..  list-table::
         :header-rows: 0
-        :widths: 20 80
+        :widths: 15 85
 
         *   -   ``0``
             -   :ref:`EQ <box_index-pairs>`
@@ -707,7 +637,7 @@ Multiple operations make use of this key in different ways:
 ..  container:: table
 
     ..  list-table::
-        :widths: 30 70
+        :widths: 25 75
         :header-rows: 0
 
         *   -   :ref:`IPROTO_INSERT <box_protocol-insert>`,
