@@ -224,10 +224,6 @@ General replication
             -   Optional key used in :ref:`SUBSCRIBE request <internals-iproto-replication-subscribe>`,
                 followed by an array of ids of instances whose rows won't be relayed to the replica
 
-        *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
-            -   0x09 |br| MP_UINT
-            -   Auxiliary data to indicate the last transaction message state
-
 There have been some name changes starting with versions 2.7.3, 2.8.2, and 2.10.0:
 
 *   IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO
@@ -246,6 +242,10 @@ Synchronous replication
         *   -   Name
             -   Code, value type
             -   Description
+
+        *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
+            -   0x09 |br| MP_UINT
+            -   Auxiliary data to indicate the last transaction message state
 
         *   -   IPROTO_RAFT_TERM
             -   0x00 |br| MP_UINT
@@ -440,12 +440,12 @@ IPROTO_SCHEMA_VERSION
 
 Code: 0x05.
 
-An unsigned number that goes up when there is a major change.
+An unsigned number that goes up when there is a major change in the schema.
 
-In a request header, IPROTO_SCHEMA_VERSION is optional, so the version will not
+In a *request* header, IPROTO_SCHEMA_VERSION is optional, so the version will not
 be checked if it is absent.
 
-In a response header, IPROTO_SCHEMA_VERSION is always present, and it is up to
+In a *response* header, IPROTO_SCHEMA_VERSION is always present, and it is up to
 the client to check if it has changed.
 
 ..  _internals-iproto-keys-iterator:
@@ -662,7 +662,8 @@ IPROTO_FLAGS
 
 Code: 0x09.
 
-The IPROTO_FLAGS key can be included in the header. The key contains an MP_UINT value of one or more bits:
+When it comes to replicating synchronous transactions, the IPROTO_FLAGS key is included in the header.
+The key contains an MP_UINT value of one or more bits:
 
 *   IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction.
 *   IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message
