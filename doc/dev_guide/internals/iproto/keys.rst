@@ -222,12 +222,13 @@ General replication
         *   -   IPROTO_ID_FILTER
             -   0x51 |br| MP_ARRAY
             -   Optional key used in :ref:`SUBSCRIBE request <internals-iproto-replication-subscribe>`,
-                followed by an array of ids of instances whose rows won't be relayed to the replica
+                followed by an array of ids of instances whose rows won't be relayed to the replica.
+                Since v. :doc:`2.10.0 </release/2.10.0>`
 
 There have been some name changes starting with versions 2.7.3, 2.8.2, and 2.10.0:
 
-*   IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO
-*   IPROTO_BALLOT_IS_RO was formerly called IPROTO_BALLOT_IS_LOADING
+*   IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO.
+*   IPROTO_BALLOT_IS_RO was formerly called IPROTO_BALLOT_IS_LOADING.
 
 
 Synchronous replication
@@ -363,7 +364,7 @@ and :ref:`IPROTO_PREPARE <box_protocol-prepare>`.
             -   0x34 |br| MP_INT
             -   Number of parameters to bind
         
-        *   -   IPROTO_SQL_BIND
+        *   -   :ref:`IPROTO_SQL_BIND <internals-iproto-keys-sql_bind>`
             -   0x41 |br| MP_ARRAY
             -   Parameter values to match ? placeholders or :name placeholders
         
@@ -705,3 +706,36 @@ Additionally, if ``sql_full_metadata`` in the
 is TRUE, then the array will have these additional column maps
 which correspond to components described in the :ref:`box.execute() <box-sql_if_full_metadata>` section.
 
+..  _internals-iproto-keys-sql_bind:
+
+IPROTO_SQL_BIND
+~~~~~~~~~~~~~~~
+
+Code: 0x41.
+
+IPROTO_SQL_BIND is an array that can contain values of any type, including MP_MAP.
+
+*   Values that are not MP_MAP replace the ``?`` placeholders in the request.
+
+*   MP_MAP values must have the format ``{[name] = value}``,
+    where ``name`` is the named parameter in the request. Here is an example of such a request:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> conn:execute('SELECT ?, ?, :name1, ?, :name2, :name1', {1, 2, {[':name1'] = 5}, 'str', {[':name2'] = true}})
+        ---
+        - metadata:
+        - name: COLUMN_1
+            type: integer
+        - name: COLUMN_2
+            type: integer
+        - name: COLUMN_3
+            type: integer
+        - name: COLUMN_4
+            type: text
+        - name: COLUMN_5
+            type: boolean
+        - name: COLUMN_6
+            type: boolean
+        rows:
+        - [1, 2, 5, 'str', true, 5]  
