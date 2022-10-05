@@ -23,7 +23,7 @@ General
         :widths: 40 20 40
 
         *   -   Name
-            -   Code and value type
+            -   Code and |br| value type
             -   Description
 
         *   -   :ref:`IPROTO_VERSION <internals-iproto-keys-version>`
@@ -134,7 +134,7 @@ Streams
         :widths: 40 20 40
 
         *   -   Name
-            -   Code and value type
+            -   Code and |br| value type
             -   Description
 
         *   -   :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`
@@ -158,7 +158,7 @@ General replication
         :widths: 40 20 40
 
         *   -   Name
-            -   Code and value type
+            -   Code and |br| value type
             -   Description
 
         *   -   IPROTO_REPLICA_ID
@@ -241,7 +241,7 @@ Synchronous replication
         :widths: 40 20 40
 
         *   -   Name
-            -   Code and value type
+            -   Code and |br| value type
             -   Description
 
         *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
@@ -283,7 +283,7 @@ Events and subscriptions
         :widths: 40 20 40
 
         *   -   Name
-            -   Code and value type
+            -   Code and |br| value type
             -   Description
 
         *   -   IPROTO_EVENT_KEY
@@ -310,7 +310,7 @@ and :ref:`IPROTO_PREPARE <box_protocol-prepare>`.
         :widths: 40 20 40
 
         *   -   Name
-            -   Code and value type
+            -   Code and |br| value type
             -   Description
         
         *   -   IPROTO_SQL_TEXT
