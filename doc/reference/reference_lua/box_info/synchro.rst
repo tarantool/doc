@@ -9,6 +9,7 @@ box.info.synchro
 ..  data:: synchro
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
+
     Show the current state of synchronous replication.
 
     In :ref:`synchronous replication <repl_sync>`, transaction is considered committed only after achieving
@@ -26,6 +27,7 @@ box.info.synchro
             To claim or reclaim the queue, use :ref:`box.ctl.promote() <box_ctl-promote>` on the instance that you want
             to promote.
             With elections enabled, an instance runs ``box.ctl.promote()`` command automatically after winning the elections.
+            To clear the ownership, call :ref:`box.ctl.demote() <box_ctl-demote>` on the synchronous queue owner.
 
         -   ``term`` (since version :doc:`2.10.0 </release/2.10.0>`) -- current queue term.
             It contains the term of the last ``PROMOTE`` request.
