@@ -11,11 +11,11 @@ box.info.ro_reason
     Since :doc:`2.10.0 </release/2.10.0>`.
     Show the current mode of an instance (writable or read-only).
     Contains ``nil`` if the instance is in writable mode.
-    When the field is not ``nil``, it reports a reason why the instance is read-only.
+    When the field is not ``nil``, reports the reason why the instance is read-only.
 
     Possible error reasons:
 
-    *   ``election`` -- the instance is not a leader.
+    *   ``election`` -- the instance is not the leader.
         That is, ``box.cfg.election_mode`` is not ``off``.
         See :ref:`box.info.election <box_info_election>` for details.
 

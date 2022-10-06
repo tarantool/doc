@@ -32,7 +32,7 @@ variables.
   (same as :ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``),
   or if status is 'orphan'.
 * **ro_reason** is ``nil`` if the instance is in writable mode.
-  When the field is not ``nil``, it contains a reason why the instance is read-only.
+  When the field is not ``nil``, it contains the reason why the instance is read-only.
   Possible error reasons: ``election``, ``synchro``, ``config``, and ``orphan``
   (see :ref:`box.info.ro_reason <box_info_ro-reason>` for details).
 * **signature** is the sum of all ``lsn`` values from each :ref:`vector clock <replication-vector>`
