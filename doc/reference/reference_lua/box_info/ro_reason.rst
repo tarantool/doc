@@ -1,4 +1,4 @@
-.. _box_info_ro-reason:
+..  _box_info_ro-reason:
 
 ================================================================================
 box.info.ro_reason
@@ -6,7 +6,7 @@ box.info.ro_reason
 
 ..  module:: box.info
 
-.. data:: ro_reason
+..  data:: ro_reason
 
     Since :doc:`2.10.0 </release/2.10.0>`.
     Show the current mode of an instance (writable or read-only).
