@@ -85,16 +85,12 @@ The body is a 6-item map.
 
 ..  uml::
 
-    skinparam backgroundColor transparent
-
-    <style>
-      root {
-        FontColor #313131
-        HyperLinkColor #0077FF
-        LineColor #00EAFF
-        BackgroundColor white
-      }
-    </style>
+    skinparam map {
+      HyperlinkColor #0077FF
+      FontColor #313131
+      BorderColor #00EAFF
+      BackgroundColor transparent
+    }
 
     json "**IPROTO_SELECT**" as select {
       "Size": "MP_UINT",
