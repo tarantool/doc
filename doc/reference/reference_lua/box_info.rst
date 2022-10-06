@@ -28,9 +28,13 @@ variables.
 * **pid** is the process ID. This value is also shown by
   :ref:`tarantool <tarantool-build>` module
   and by the Linux command ``ps -A``.
-* **ro** is ``true`` if the instance is in "read-only" mode
+* **ro** is ``true`` if the instance is in read-only mode
   (same as :ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``),
   or if status is 'orphan'.
+* **ro_reason** is ``nil`` if the instance is in writable mode.
+  When the field is not ``nil``, it contains the reason why the instance is read-only.
+  Possible error reasons: ``election``, ``synchro``, ``config``, and ``orphan``
+  (see :ref:`box.info.ro_reason <box_info_ro-reason>` for details).
 * **signature** is the sum of all ``lsn`` values from each :ref:`vector clock <replication-vector>`
   (**vclock**) for all instances in the replica set.
 * **sql().cache.size** is the number of bytes in the SQL prepared statement cache.
@@ -56,7 +60,7 @@ variables.
 * **election** shows the current state of a replica set node regarding leader
   election (see :doc:`here </reference/reference_lua/box_info/election>`).
 
-Below is a list of all ``box.info`` functions.
+Below is a list of all ``box.info`` functions and members.
 
 ..  container:: table
 
@@ -95,6 +99,8 @@ Below is a list of all ``box.info`` functions.
         *  - :doc:`./box_info/synchro`
            - Show the current state of synchronous replication
 
+        *  - :doc:`./box_info/ro_reason`
+           - Show the current mode of an instance (writable or read-only)
 
 ..  toctree::
     :hidden:
@@ -107,3 +113,4 @@ Below is a list of all ``box.info`` functions.
     box_info/listen
     box_info/election
     box_info/synchro
+    box_info/ro_reason
