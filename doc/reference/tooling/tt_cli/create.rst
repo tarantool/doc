@@ -144,8 +144,8 @@ You can combine all three ways of passing variables in a single call of ``tt cre
 
 .. what if a variable in assigned in more than one way?
 
-Location
-~~~~~~~~
+Application: location and content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, the application will appear in the directory named after the provided
 application name (``--name`` value).
@@ -153,6 +153,13 @@ application name (``--name`` value).
 ..  What is the parent directory: working or current?
 
 To change the application location, use the ``-dst`` flag.
+
+The application directory contains the following files and directories:
+
+*   all directories from the template
+*   a Lua file from .tt.template
+*   All other files from the template
+*   Dockerfile?
 
 
 
