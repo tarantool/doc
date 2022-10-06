@@ -1,0 +1,16 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+map "**IPROTO_SELECT**" as IPROTO_SELECT {
+    size => MP_UINT
+    header => MP_MAP
+    body => MP_MAP
+}
+
+@enduml

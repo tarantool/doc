@@ -13,21 +13,7 @@ Packet structure
 
 Requests and responses have similar structure. They contain three sections: size, header, and body.
 
-
-..  uml::
-
-    skinparam map {
-      HyperlinkColor #0077FF
-      FontColor #313131
-      BorderColor #00EAFF
-      BackgroundColor transparent
-    }
-
-    json "**iproto packet**" as packet {
-      "Size": "MP_UINT",
-      "Header": "MP_MAP",
-      "Body": "MP_MAP"
-    }
+..  image:: images/format.svg
 
 It is legal to put more than one request in a packet.
 
