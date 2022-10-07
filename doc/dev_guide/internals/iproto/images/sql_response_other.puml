@@ -1,0 +1,24 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**Response to SQL requests other than SELECT, VALUES, or PRAGMA**" as sql_response_other {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
+      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
+    },
+    "Body": {
+      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys SQL_INFO]]": {
+        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys SQL_INFO_ROW_COUNT]]": "MP_UINT"
+      }
+    }
+}
+
+@enduml

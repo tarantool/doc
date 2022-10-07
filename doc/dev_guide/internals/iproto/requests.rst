@@ -230,11 +230,14 @@ The body is a 2-item map:
 
 ..  image:: images/eval.svg
 
-- For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
-  the response body will usually be an array but, since Lua requests can result in a wide variety
-  of structures, bodies can have a wide variety of structures.
+*   For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
+    the response body will usually be an array but, since Lua requests can result in a wide variety
+    of structures, bodies can have a wide variety of structures.
 
-Response for SQL: ??? (fiure out why CALL and EVAL are the best place for SQL responses, according to locker)
+..  note::
+
+    For SQL-specific responses, the body is a bit different.
+    :ref:`Learn more <internals-iproto-sql>` about this type of packets.
 
 Example
 ~~~~~~~
@@ -249,17 +252,19 @@ IPROTO_CALL = 0x0a
 ------------------
 
 See :ref:`conn:call() <net_box-call>`.
-This is a remote stored-procedure call. 
+This is a remote stored-procedure call.
+:doc:`/release/1.6` and earlier made use of the IPROTO_CALL_16 request (code: 0x06). It is now deprecated
+and superseded by IPROTO_CALL.
 
 The body is a 2-item map. The response will be a list of values, similar to the
 :ref:`IPROTO_EVAL <box_protocol-eval>` response. The return from conn:call is whatever the function returns.
 
 ..  image:: images/call.svg
 
-Response for SQL: ??? (fiure out why CALL and EVAL are the best place for SQL responses, according to locker)
+..  note::
 
-:doc:`/release/1.6` and earlier made use of the IPROTO_CALL_16 request (code: 0x06). It is now deprecated
-and superseded by IPROTO_CALL.
+    For SQL-specific responses, the body is a bit different.
+    :ref:`Learn more <internals-iproto-sql>` about this type of packets.
 
 ..  _box_protocol-auth:
 

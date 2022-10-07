@@ -1,0 +1,28 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**Body**" as sql_response_select_example {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_METADATA]]": {
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_NAME]]": "'DD'",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_TYPE]]": "'integer'",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_IS_NULLABLE]]": "false",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_IS_AUTOINCREMENT]]": "true",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_SPAN]]": "nil",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_NAME]]": "'Д'",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_TYPE]]": "'string'",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_COLL]]": "'unicode'",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_IS_NULLABLE]]": "true",
+                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_SPAN]]": "'дд'"
+      },
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": {
+          "MP_ARRAY": "[1, 'a'], [2, 'b']"
+      }
+}
+
+@enduml
