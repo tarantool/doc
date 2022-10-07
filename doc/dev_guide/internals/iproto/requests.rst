@@ -212,8 +212,10 @@ The body is a 3-item map:
 
 ..  _box_protocol-eval:
 
-IPROTO_EVAL = 0x08
-------------------
+IPROTO_EVAL
+-----------
+
+Code: 0x08.
 
 See :ref:`conn:eval() <net_box-eval>`.
 Since the argument is a Lua expression, this is
@@ -248,8 +250,10 @@ If this is the fifth message, :samp:`conn:eval('return 5;')` will cause:
 
 ..  _box_protocol-call:
 
-IPROTO_CALL = 0x0a
-------------------
+IPROTO_CALL
+-----------
+
+Code: 0x0a.
 
 See :ref:`conn:call() <net_box-call>`.
 This is a remote stored-procedure call.
@@ -268,8 +272,10 @@ The body is a 2-item map. The response will be a list of values, similar to the
 
 ..  _box_protocol-auth:
 
-IPROTO_AUTH = 0x07
-------------------
+IPROTO_AUTH
+-----------
+
+Code: 0x07.
 
 For general information, see the :ref:`Access control <authentication-users>` section in the administrator's guide.
 
@@ -292,8 +298,10 @@ function ``netbox_encode_auth``.
 
 ..  _box_protocol-nop:
 
-IPROTO_NOP = 0x0c
------------------
+IPROTO_NOP
+----------
+
+Code: 0x0c.
 
 There is no Lua request exactly equivalent to IPROTO_NOP.
 It causes the LSN to be incremented.
@@ -305,48 +313,22 @@ The body is: nothing.
 
 ..  _box_protocol-ping:
 
-IPROTO_PING = 0x40
-------------------
+IPROTO_PING
+-----------
+
+Code: 0x40.
 
 See :ref:`conn:ping() <conn-ping>`. The body will be an empty map because IPROTO_PING
 in the header contains all the information that the server instance needs.
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(5)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_PING,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-
-Response:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{}}`
-    })
-
-- For :ref:`IPROTO_PING <box_protocol-ping>` the body will be an empty map.
-
+..  image:: images/ping.svg
 
 ..  _box_protocol-id:
 
-IPROTO_ID = 0x49
-----------------
+IPROTO_ID
+---------
+
+Code: 0x49.
 
 Clients send this message to inform the server about the protocol version and
 features they support. Based on this information, the server can enable or
@@ -354,28 +336,10 @@ disable certain features in interacting with these clients.
 
 The body is a 2-item map:
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  image:: images/id.svg
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_ID,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_VERSION: :samp:`{{MP_UINT unsigned integer}}}`,
-        IPROTO_FEATURES: :samp:`{{MP_ARRAY array of unsigned integers}}}`
-    })
-
+The response body has the same structure as
+the request body. It informs the client about the protocol version and features
+that the server supports.
 
 IPROTO_ID requests can be processed without authentication.
-
-Response:
-
-- For :ref:`IPROTO_ID <box_protocol-id>`, the response body has the same structure as
-  the request body. It informs the client about the protocol version and features
-  that the server supports.
-
