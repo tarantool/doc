@@ -85,7 +85,8 @@ Code: 0x01.
 See :ref:`space_object:select() <box_space-select>`.
 The body is a 6-item map.
 
-..  image:: images/select.svg
+..  raw:: html
+    :file: images/select.svg
 
 Example
 ~~~~~~~
@@ -93,11 +94,11 @@ Example
 If the id of 'tspace' is 512 and this is the fifth message, |br|
 :samp:`{conn}.`:code:`space.tspace:select({0},{iterator='GT',offset=1,limit=2})` will cause:
 
-..  image:: images/select_example.svg
+..  raw:: html
+    :file: images/select_example.svg
 
 In the :ref:`examples <box_protocol-illustration>`,
 you can find actual byte codes of an IPROTO_SELECT message.
-
 
 ..  _box_protocol-insert:
 
@@ -109,7 +110,8 @@ Code: 0x02.
 See :ref:`space_object:insert()  <box_space-insert>`.
 The body is a 2-item map:
 
-..  image:: images/insert.svg
+..  raw:: html
+    :file: images/insert.svg
 
 For example, if the request is
 :samp:`INSERT INTO {table-name} VALUES (1), (2), (3)`, then the response body
@@ -123,7 +125,8 @@ Example
 If the id of 'tspace' is 512 and this is the fifth message, |br|
 :samp:`{conn}.`:code:`space.tspace:insert{1, 'AAA'}` will produce the following request and response packets:
 
-..  image:: images/insert_example.svg
+..  raw:: html
+    :file: images/insert_example.svg
 
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows actual byte codes of the response to the IPROTO_INSERT message.
@@ -138,7 +141,8 @@ Code: 0x03.
 See :ref:`space_object:replace()  <box_space-replace>`.
 The body is a 2-item map, the same as for IPROTO_INSERT:
 
-.. image:: images/replace.svg
+..  raw:: html
+    :file: images/replace.svg
 
 ..  _box_protocol-update:
 
@@ -151,29 +155,34 @@ See :ref:`space_object:update()  <box_space-update>`.
 
 The body is usually a 4-item map:
 
-..  image:: images/update.svg
+..  raw:: html
+    :file: images/update.svg
 
 Examples
 ~~~~~~~~
 
 If the operation specifies no values, then IPROTO_TUPLE is a 2-item array: 
 
-.. image:: images/update_example_0.svg
+..  raw:: html
+    :file: images/update_example_0.svg
 
 Normally field numbers start with 1.
 
 If the operation specifies one value, then IPROTO_TUPLE is a 3-item array:
 
-..  image:: images/update_example_1.svg
+..  raw:: html
+    :file: images/update_example_1.svg
 
 Otherwise IPROTO_TUPLE is a 5-item array:
 
-..  image:: images/update_example_regular.svg
+..  raw:: html
+    :file: images/update_example_regular.svg
 
 If the id of 'tspace' is 512 and this is the fifth message, |br|
 :samp:`{conn}.`:code:`space.tspace:update(999, {{'=', 2, 'B'}})` will cause:
 
-..  image:: images/update_example.svg
+..  raw:: html
+    :file: images/update_example.svg
 
 The map item IPROTO_INDEX_BASE is optional.
 
@@ -192,7 +201,8 @@ See :ref:`space_object:upsert()  <box_space-upsert>`.
 
 The body is usually a 4-item map:
 
-..  image:: images/upsert.svg
+..  raw:: html
+    :file: images/upsert.svg
 
 IPROTO_OPS is the array of operations. It is the same as the IPROTO_TUPLE of :ref:`IPROTO_UPDATE <box_protocol-update>`.
 
@@ -208,7 +218,8 @@ Code: 0x05.
 See :ref:`space_object:delete()  <box_space-delete>`.
 The body is a 3-item map:
 
-..  image:: images/delete.svg
+..  raw:: html
+    :file: images/delete.svg
 
 ..  _box_protocol-eval:
 
@@ -230,7 +241,8 @@ makes extensive use of ``eval``.
 
 The body is a 2-item map:
 
-..  image:: images/eval.svg
+..  raw:: html
+    :file: images/eval.svg
 
 *   For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
     the response body will usually be an array but, since Lua requests can result in a wide variety
@@ -246,7 +258,8 @@ Example
 
 If this is the fifth message, :samp:`conn:eval('return 5;')` will cause:
 
-..  image:: images/eval_example.svg
+..  raw:: html
+    :file: images/eval_example.svg
 
 ..  _box_protocol-call:
 
@@ -263,7 +276,8 @@ and superseded by IPROTO_CALL.
 The body is a 2-item map. The response will be a list of values, similar to the
 :ref:`IPROTO_EVAL <box_protocol-eval>` response. The return from conn:call is whatever the function returns.
 
-..  image:: images/call.svg
+..  raw:: html
+    :file: images/call.svg
 
 ..  note::
 
@@ -284,7 +298,8 @@ see the :ref:`Authentication <box_protocol-authentication>` section of this docu
 
 The client sends an authentication packet as an IPROTO_AUTH message:
 
-..  image:: images/auth.svg
+..  raw:: html
+    :file: images/auth.svg
 
 IPROTO_USERNAME holds the user name. IPROTO_TUPLE must be an array of 2 fields:
 authentication mechanism ("chap-sha1" is the only supported mechanism right now)
@@ -321,7 +336,8 @@ Code: 0x40.
 See :ref:`conn:ping() <conn-ping>`. The body will be an empty map because IPROTO_PING
 in the header contains all the information that the server instance needs.
 
-..  image:: images/ping.svg
+..  raw:: html
+    :file: images/ping.svg
 
 ..  _box_protocol-id:
 
@@ -336,7 +352,8 @@ disable certain features in interacting with these clients.
 
 The body is a 2-item map:
 
-..  image:: images/id.svg
+..  raw:: html
+    :file: images/id.svg
 
 The response body has the same structure as
 the request body. It informs the client about the protocol version and features

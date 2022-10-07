@@ -38,7 +38,8 @@ Code: 0x0b.
 
 The body is a 3-item map:
 
-..  image:: images/execute.svg
+..  raw:: html
+    :file: images/execute.svg
 
 *   Use IPROTO_STMT_ID (0x43) and statement-id (MP_INT) if executing a prepared statement. 
     Use IPROTO_SQL_TEXT (0x40) and statement-text (MP_STR) if executing an SQL string.
@@ -59,7 +60,8 @@ with two ? placeholders, and execute with two parameters, thus:
 
 Then the body will look like this:
 
-..  image:: images/execute_example_1.svg
+..  raw:: html
+    :file: images/execute_example_1.svg
 
 The :ref:`Understanding binary protocol <box_protocol-illustration>`
 tutorial shows actual byte codes of the IPROTO_EXECUTE message.
@@ -89,7 +91,8 @@ In the iproto request, there would be no IPROTO_DATA and there would be two addi
 *   ``34 00 = IPROTO_BIND_COUNT and MP_UINT = 0`` (there are no parameters to bind).
 *   ``33 90 = IPROTO_BIND_METADATA and MP_ARRAY, size 0`` (there are no parameters to bind).
 
-..  image:: images/execute_example_2.svg
+..  raw:: html
+    :file: images/execute_example_2.svg
 
 ..  _box_protocol-prepare:
 
@@ -100,7 +103,8 @@ Code: 0x0d.
 
 The body is a 1-item map:
 
-..  image:: images/prepare.svg
+..  raw:: html
+    :file: images/prepare.svg
 
 Thus the IPROTO_PREPARE map item is the same as the first item of the
 :ref:`IPROTO_EXECUTE <box_protocol-execute>` body.
@@ -118,7 +122,8 @@ Responses to SELECT, VALUES, or PRAGMA
 
 If the SQL statement is SELECT or VALUES or PRAGMA, the response contains:
 
-..  image:: images/sql_response_select.svg
+..  raw:: html
+    :file: images/sql_response_select.svg
 
 
 Example
@@ -134,7 +139,8 @@ and then select the two rows from a table named t1 that has columns named DD and
 
 The response body might look like this:
 
-..  image:: images/sql_response_select_example.svg
+..  raw:: html
+    :file: images/sql_response_select_example.svg
 
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows actual byte codes of responses to the above SQL messages.
@@ -147,7 +153,8 @@ If the SQL request is not SELECT or VALUES or PRAGMA, then the response body
 contains only IPROTO_SQL_INFO (0x42). Usually IPROTO_SQL_INFO is a map with only
 one item -- SQL_INFO_ROW_COUNT (0x00) -- which is the number of changed rows.
 
-..  image:: images/sql_response_other.svg
+..  raw:: html
+    :file: images/sql_response_other.svg
 
 For example, if the request is :samp:`INSERT INTO {table-name} VALUES (1), (2), (3)`, then the response body
 contains an :samp:`IPROTO_SQL_INFO` map with :samp:`SQL_INFO_ROW_COUNT = 3`.
