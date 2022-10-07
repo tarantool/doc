@@ -1,10 +1,11 @@
 ..  _box_protocol-iproto_protocol:
+..  _box_protocol:
 ..  _internals-box_protocol:
 
 Binary protocol
 ===============
 
-This seven-part document provides information on the Tarantool binary protocol, iproto.
+This section provides information on the Tarantool binary protocol, iproto.
 The protocol is called "binary" because the database is most frequently accessed
 via binary code instead of Lua request text. Tarantool experts use it:
 
@@ -19,13 +20,10 @@ The binary protocol provides complete access to Tarantool functionality, includi
     asynchronously via the same connection
 *   response format that supports zero-copy writes
 
-..  
-    TODO:  describe the document structure, provide links like in Concepts
-
 ..  toctree::
     :maxdepth: 1
 
-    iproto/symbols_terms
+    iproto/mp_types
     iproto/format
     iproto/authentication
     iproto/keys
