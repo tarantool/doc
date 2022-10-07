@@ -48,22 +48,50 @@ defining their initial structure and content. A template can include the applica
 code, configuration, build scripts, and other resources.
 
 .. git commit? as in cartridge
-.. don't include rocks?
+
+``tt`` searches templates in the directories specified in the ``templates`` section
+of its :ref:`configuration file <tt-config_file>`.
 
 Template structure
 ~~~~~~~~~~~~~~~~~~
 
 A minimal application template is a directory with two files:
 
-*   MANIFEST.yml
-*   *.lua.tt.template  .. restrictions on .tt.template file name?
+*   ``MANIFEST.yaml`` -- the template manifest.
+*   ``*.tt.template`` --  .. all files must be tt.template?
 
+The template manifest
 
+Example:
+
+..  code:: yaml
+
+    description: Template description
+    vars:
+      - prompt: User name
+        name: user_name
+        default: admin
+        re: ^\w+$
+
+      - prompt: Retry count
+        default: "3"
+        name: retry_count
+        re: ^\d+$
+    pre-hook: ./hooks/pre-gen.sh
+    post-hook: ./hooks/post-gen.sh
+    include:
+    - init.lua
+    - instances.yml
 
 Optional:
 pre-build
 post-build
 other files
+
+.. note::
+
+    Don't include the ``.rocks`` directory in your application template.
+    To specify application dependencies, use the ``.rockspec`` files.
 
 .. Manifest structure: required and optional components?
 
@@ -99,7 +127,7 @@ Example:
 
 Variables can be used in file names and their content. To use a variable, enclose its
 name with a period in the beginning in double curly braces: ``{{.var_name}}`` (as in
-the ``Golang text templates <https://golang.org/pkg/text/template/>`__ syntax).
+the `Golang text templates <https://golang.org/pkg/text/template/>`__ syntax).
 
 For example, variables usage in the template code can look like this:
 
@@ -157,7 +185,8 @@ To change the application location, use the ``-dst`` flag.
 The application directory contains the following files and directories:
 
 *   all directories from the template
-*   a Lua file from .tt.template
+*   a Lua file from .tt.template .. all files?
+
 *   All other files from the template
 *   Dockerfile?
 
@@ -173,10 +202,10 @@ Examples
         tt create simple_app --name app1
 
 
-*   Create the ``cartridge_app`` application in ``/opt/tt/apps/``, set the ``user_name``
+*   Create the ``app1`` application in ``/opt/tt/apps/``, set the ``user_name``
     variable to ``admin``, force rewrite the application directory if it already exists.
     User interaction is disabled.
 
     ..  code-block:: bash
 
-        tt create cartridge --name cartridge_app --var user_name=admin -f --non-interactive -dst /opt/tt/apps/
+        tt create cartridge --name app1 --var user_name=admin -f --non-interactive -dst /opt/tt/apps/

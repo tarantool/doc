@@ -29,6 +29,9 @@ The ``tt`` configuration file is a YAML file with the following content:
         log_maxage: num (days)
         log_maxbackups: num
         restart_on_failure: bool
+      templates:
+        - path: path/to/app/templates1
+        - path: path/to/app/templates2
 
 modules section
 ~~~~~~~~~~~~~~~
@@ -60,6 +63,12 @@ app section
     Default: not defined (log files aren't deleted based on their count).
 *   ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
     Default: ``false``.
+
+templates section
+~~~~~~~~~~~~~~~~~
+
+*   ``path`` -- a path to application templates used for creating applications with
+    :ref:`tt create <tt-create>`. May be specified more than once.
 
 .. _tt-config_modes:
 
