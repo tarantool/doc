@@ -68,7 +68,7 @@ Overview
 
         *   -   :ref:`IPROTO_PING <box_protocol-ping>`
             -   0x40
-            -   Ping (:ref:`conn:eval() <net_box-ping>`)
+            -   Ping (:ref:`conn:ping() <conn-ping>`)
 
         *   -   :ref:`IPROTO_ID <box_protocol-id>`
             -   0x49
@@ -83,71 +83,7 @@ IPROTO_SELECT = 0x01
 See :ref:`space_object:select() <box_space-select>`.
 The body is a 6-item map.
 
-..  uml::
-
-    skinparam map {
-      HyperlinkColor #0077FF
-      FontColor #313131
-      BorderColor #00EAFF
-      BackgroundColor transparent
-    }
-
-    json "**IPROTO_SELECT**" as select {
-      "Size": "MP_UINT",
-      "Header": {
-        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_SELECT",
-        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
-      },
-      "Body": {
-        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SPACE_ID]]": "MP_UINT",
-        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INDEX_ID]]": "MP_UINT",
-        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_LIMIT]]": "MP_UINT",
-        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OFFSET]]": "MP_UINT",
-        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_ITERATOR]]": "MP_UINT",
-        "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_KEY]]": "MP_ARRAY"
-      }
-    }
-
-Response:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
-For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
-:ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
-
-Response for SQL:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(32)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_METADATA: :samp:`{{array of column maps}}`,
-        IPROTO_DATA: :samp:`{{array of tuples}}`
-    })
+..  image:: images/select.svg
 
 Example
 ~~~~~~~
@@ -155,49 +91,10 @@ Example
 If the id of 'tspace' is 512 and this is the fifth message, |br|
 :samp:`{conn}.`:code:`space.tspace:select({0},{iterator='GT',offset=1,limit=2})` will cause:
 
-..  code-block:: none
-
-    <size>
-    msgpack(21)
-    # <header>
-    msgpack({
-        IPROTO_SYNC: 5,
-        IPROTO_REQUEST_TYPE: IPROTO_SELECT
-    })
-    # <body>
-    msgpack({
-        IPROTO_SPACE_ID: 512,
-        IPROTO_INDEX_ID: 0,
-        IPROTO_ITERATOR: 6,
-        IPROTO_OFFSET: 1,
-        IPROTO_LIMIT: 2,
-        IPROTO_KEY: [1]
-    })
+..  image:: images/select_example.svg
 
 In the :ref:`examples <box_protocol-illustration>`,
 you can find actual byte codes of an IPROTO_SELECT message.
-
-Response:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
-For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
-:ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
 
 
 ..  _box_protocol-insert:
@@ -208,113 +105,29 @@ IPROTO_INSERT = 0x02
 See :ref:`space_object:insert()  <box_space-insert>`.
 The body is a 2-item map:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_INSERT,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_SPACE_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_TUPLE: :samp:`{{MP_ARRAY array of field values}}`
-    })
-
-Response:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
-Response for SQL:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    ...
-    # <body>
-    msgpack({
-        IPROTO_SQL_INFO: {
-            SQL_INFO_ROW_COUNT: :samp:`{{MP_UINT}}`
+..  image:: images/insert.svg
 
 For example, if the request is
 :samp:`INSERT INTO {table-name} VALUES (1), (2), (3)`, then the response body
-contains an :samp:`IPROTO_SQL_INFO map with SQL_INFO_ROW_COUNT = 3`.
+contains an :samp:`IPROTO_SQL_INFO` map with :samp:`SQL_INFO_ROW_COUNT = 3`.
 :samp:`SQL_INFO_ROW_COUNT` can be 0 for statements that do not change rows,
 but can be 1 for statements that create new objects.
-
 
 Example
 ~~~~~~~
 
 If the id of 'tspace' is 512 and this is the fifth message, |br|
-:samp:`{conn}.`:code:`space.tspace:insert{1, 'AAA'}` will cause:
+:samp:`{conn}.`:code:`space.tspace:insert{1, 'AAA'}` will produce the following request and response packets:
 
-..  code-block:: none
+..  image:: images/insert_example.svg
 
-    # <size>
-    msgpack(17)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_INSERT,
-        IPROTO_SYNC: 5
-    })
-    # <body>
-    msgpack({
-        IPROTO_SPACE_ID: 512,
-        IPROTO_TUPLE: [1, 'AAA']
-    })
-
-(TODO: below is a response to another message, unite these examples into one)
-If this is the fifth message and the request is
-:codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}`,
-and the previous schema version was 100,
-a successful response will look like this:
-
-..  code-block:: none
-
-    # <size>
-    msgpack(32)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: 5,
-        IPROTO_SCHEMA_VERSION: 100
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: [[6]]
-    })
-
-Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-we will show actual byte codes of the response to the IPROTO_INSERT message.
-
-
-For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
-:ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
-
+The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
+shows actual byte codes of the response to the IPROTO_INSERT message.
 
 ..  _box_protocol-replace:
 
 IPROTO_REPLACE = 0x03
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 See :ref:`space_object:replace()  <box_space-replace>`.
 The body is a 2-item map, the same as for IPROTO_INSERT:

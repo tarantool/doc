@@ -1,0 +1,26 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_SELECT** example request" as select_example {
+    "Size": "21",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_SELECT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "5"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SPACE_ID]]": "512",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INDEX_ID]]": "0",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_ITERATOR]]": "6",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OFFSET]]": "1",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_LIMIT]]": "2",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_KEY]]": "[1]"
+    }
+}
+
+@enduml
