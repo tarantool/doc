@@ -1,0 +1,24 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_AUTH**" as auth_request {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_AUTH",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT (usually 1)"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_USER_NAME]]": "MP_STR",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TUPLE]]": {
+          "MP_ARRAY": "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/authentication Authentication mechanism]], [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/authentication scramble]]"
+      }
+    }
+}
+
+@enduml

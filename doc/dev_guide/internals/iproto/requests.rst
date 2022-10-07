@@ -278,23 +278,9 @@ see the :ref:`Authentication <box_protocol-authentication>` section of this docu
 
 The client sends an authentication packet as an IPROTO_AUTH message:
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  image:: images/auth.svg
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_AUTH,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, usually = 1}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_USER_NAME: :samp:`{{MP_STRING string <key>}}`,
-        IPROTO_TUPLE: ['chap-sha1', :samp:`{{MP_STRING 20-byte string}}`]
-    })
-
-:code:`<key>` holds the user name. :code:`<tuple>` must be an array of 2 fields:
+IPROTO_USERNAME holds the user name. IPROTO_TUPLE must be an array of 2 fields:
 authentication mechanism ("chap-sha1" is the only supported mechanism right now)
 and scramble, encrypted according to the specified mechanism.
 
