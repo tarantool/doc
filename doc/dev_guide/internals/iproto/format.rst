@@ -13,7 +13,8 @@ Packet structure
 
 Requests and responses have similar structure. They contain three sections: size, header, and body.
 
-..  image:: images/format.svg
+..  raw:: html
+    :file: images/format.svg
 
 It is legal to put more than one request in a packet.
 
@@ -31,7 +32,8 @@ Header
 
 The header is an MP_MAP. It may contain, in any order:
 
-..  image:: images/header.svg
+..  raw:: html
+    :file: images/header.svg
 
 *   Both the request and response make use of the :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>` key.
     It denotes the type of the packet.
@@ -78,7 +80,8 @@ Responses will contain the body anyway even for an
 
 A lot of responses contain the IPROTO_DATA map:
 
-..  image:: images/body.svg
+..  raw:: html
+    :file: images/body.svg
 
 For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
 :ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
@@ -112,7 +115,8 @@ and :ref:`IPROTO_ERROR_24 <internals-iproto-keys-error>`.
 While IPROTO_ERROR contains an MP_EXT value, IPROTO_ERROR_24 contains a string.
 The two keys are provided to accommodate clients with older and newer Tarantool versions.
 
-..  image:: images/error.svg
+..  raw:: html
+    :file: images/error.svg
 
 Error responses before 2.4.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,7 +128,8 @@ Let's consider an example. This is the fifth message, and the request was to cre
 space with ``conn:eval([[box.schema.space.create('_space');]])``.
 The unsuccessful response looks like this:
 
-..  image:: images/error_24.svg
+..  raw:: html
+    :file: images/error_24.svg
 
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows actual byte codes of the response to the IPROTO_EVAL message.
