@@ -31,15 +31,7 @@ Header
 
 The header is an MP_MAP. It may contain, in any order:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    msgpack({
-        IPROTO_REQUEST_TYPE: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
-    })
+..  image:: images/header.svg
 
 *   Both the request and response make use of the :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>` key.
     It denotes the type of the packet.
@@ -84,23 +76,13 @@ be absent or be an empty map. Both these states will be interpreted equally.
 Responses will contain the body anyway even for an
 :ref:`IPROTO_PING <box_protocol-ping>` request, where it will be an empty MP_MAP.
 
+A lot of responses contain the IPROTO_DATA map:
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  image:: images/body.svg
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
+For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
+:ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
+the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
 
 IPROTO_DATA is what we get with net_box and :ref:`Module buffer <buffer-module>`
 so if we were using net_box we could decode with
@@ -130,22 +112,7 @@ and :ref:`IPROTO_ERROR_24 <internals-iproto-keys-error>`.
 While IPROTO_ERROR contains an MP_EXT value, IPROTO_ERROR_24 contains a string.
 The two keys are provided to accommodate clients with older and newer Tarantool versions.
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(32)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: :samp:`{{0x8XXX}}`,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_ERROR: :samp:`{{MP_ERROR error object}}`,
-        IPROTO_ERROR_24: :samp:`{{MP_STR string}}`
-    })
+..  image:: images/error.svg
 
 Error responses before 2.4.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,20 +124,7 @@ Let's consider an example. This is the fifth message, and the request was to cre
 space with ``conn:eval([[box.schema.space.create('_space');]])``.
 The unsuccessful response looks like this:
 
-..  code-block:: none
-
-    # <size>
-    msgpack(32)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: 0x800a,
-        IPROTO_SYNC: 5,
-        IPROTO_SCHEMA_VERSION: 0x78
-    })
-    # <body>
-    msgpack({
-        IPROTO_ERROR:  "Space '_space' already exists"
-    })
+..  image:: images/error_24.svg
 
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows actual byte codes of the response to the IPROTO_EVAL message.
@@ -181,6 +135,6 @@ ER_SPACE_EXISTS, and the string associated with ER_SPACE_EXISTS is
 "Space '%s' already exists".
 
 Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information
-following what was described above. This extra information is given via
-MP_ERROR extension type. See details in :ref:`MessagePack extensions
+following what was described above. This extra information is given via the
+MP_ERROR extension type. See details in the :ref:`MessagePack extensions
 <msgpack_ext-error>` section.

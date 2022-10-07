@@ -1,0 +1,17 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+map "**Header**" as Header {
+    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]] => MP_UINT
+    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]] => MP_UINT
+    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]] => MP_UINT
+    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_STREAM_ID]] => MP_UINT
+}
+
+@enduml

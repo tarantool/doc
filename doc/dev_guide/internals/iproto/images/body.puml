@@ -7,10 +7,8 @@ skinparam map {
     BackgroundColor transparent
 }
 
-map "**Packet**" as Packet {
-    size => MP_UINT
-    header => MP_MAP
-    body => MP_MAP
+map "**Body**" as Body {
+    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]] => MP_OBJECT
 }
 
 @enduml
