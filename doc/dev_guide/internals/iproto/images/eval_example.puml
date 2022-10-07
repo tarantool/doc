@@ -1,0 +1,22 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_EVAL** example request" as eval_request {
+    "Size": "24",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_EVAL",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_EXPR]]": "'return 5;'",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TUPLE]]": "[]"
+    }
+}
+
+@enduml

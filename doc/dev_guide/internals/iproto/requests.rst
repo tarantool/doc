@@ -77,8 +77,10 @@ Overview
 
 ..  _box_protocol-select:
 
-IPROTO_SELECT = 0x01
---------------------
+IPROTO_SELECT
+-------------
+
+Code: 0x01.
 
 See :ref:`space_object:select() <box_space-select>`.
 The body is a 6-item map.
@@ -99,8 +101,10 @@ you can find actual byte codes of an IPROTO_SELECT message.
 
 ..  _box_protocol-insert:
 
-IPROTO_INSERT = 0x02
---------------------
+IPROTO_INSERT
+-------------
+
+Code: 0x02.
 
 See :ref:`space_object:insert()  <box_space-insert>`.
 The body is a 2-item map:
@@ -126,263 +130,85 @@ shows actual byte codes of the response to the IPROTO_INSERT message.
 
 ..  _box_protocol-replace:
 
-IPROTO_REPLACE = 0x03
----------------------
+IPROTO_REPLACE
+--------------
+
+Code: 0x03.
 
 See :ref:`space_object:replace()  <box_space-replace>`.
 The body is a 2-item map, the same as for IPROTO_INSERT:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_REPLACE,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_SPACE_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_TUPLE: :samp:`{{MP_ARRAY array of field values}}`
-    })
-
-Response:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
-For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
-:ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
-
-Response for SQL -- ??? (VALUES or no VALUES? Come up with a REPLACE request and see how it's encoded/decoded)
+.. image:: images/replace.svg
 
 ..  _box_protocol-update:
 
-IPROTO_UPDATE = 0x04
-~~~~~~~~~~~~~~~~~~~~
+IPROTO_UPDATE
+-------------
+
+Code: 0x04.
 
 See :ref:`space_object:update()  <box_space-update>`.
 
 The body is usually a 4-item map:
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  image:: images/update.svg
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_UPDATE,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_SPACE_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_INDEX_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_KEY: :samp:`{{MP_ARRAY array of index keys}}`,
-        IPROTO_TUPLE: :samp:`{{MP_ARRAY array of update operations}}`
-    })
+Examples
+~~~~~~~~
 
-If the operation specifies no values, then IPROTO_TUPLE is a 2-item array: |br|
-:samp:`[{MP_STR OPERATOR = '#', {MP_INT FIELD_NO = field number starting with 1}]`.
+If the operation specifies no values, then IPROTO_TUPLE is a 2-item array: 
+
+.. image:: images/update_example_0.svg
+
 Normally field numbers start with 1.
 
-If the operation specifies one value, then IPROTO_TUPLE is a 3-item array: |br|
-:samp:`[{MP_STR string OPERATOR = '+' or '-' or '^' or '^' or '|' or '!' or '='}, {MP_INT FIELD_NO}, {MP_OBJECT VALUE}]`. |br|
+If the operation specifies one value, then IPROTO_TUPLE is a 3-item array:
 
-Otherwise IPROTO_TUPLE is a 5-item array: |br|
-:samp:`[{MP_STR string OPERATOR = ':'}, {MP_INT integer FIELD_NO}, {MP_INT POSITION}, {MP_INT OFFSET}, {MP_STR VALUE}]`. |br|
+..  image:: images/update_example_1.svg
 
-Response:
+Otherwise IPROTO_TUPLE is a 5-item array:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
-For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
-:ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
-
-Response for SQL -- ??? (VALUES or no VALUES? Come up with an UPDATE request and see how it's encoded/decoded)
-
-Example
-~~~~~~~
+..  image:: images/update_example_regular.svg
 
 If the id of 'tspace' is 512 and this is the fifth message, |br|
 :samp:`{conn}.`:code:`space.tspace:update(999, {{'=', 2, 'B'}})` will cause:
 
-..  code-block:: none
+..  image:: images/update_example.svg
 
-    # <size>
-    msgpack(17)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_UPDATE,
-        IPROTO_SYNC: 5
-    })
-    # <body> ... the map-item IPROTO_INDEX_BASE is optional
-    msgpack({
-        IPROTO_SPACE_ID: 512,
-        IPROTO_INDEX_ID: 0,
-        IPROTO_INDEX_BASE: 1,
-        IPROTO_TUPLE: [['=',2,'B']],
-        IPROTO_KEY: [999]
-    })
+The map item IPROTO_INDEX_BASE is optional.
 
-Later in :ref:`Binary protocol -- illustration <box_protocol-illustration>`
-we will show actual byte codes of an IPROTO_UPDATE message.
+The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
+shows the actual byte codes of an IPROTO_UPDATE message.
 
 
 ..  _box_protocol-upsert:
 
-IPROTO_UPSERT = 0x09
-~~~~~~~~~~~~~~~~~~~~
+IPROTO_UPSERT
+-------------
+
+Code: 0x09.
 
 See :ref:`space_object:upsert()  <box_space-upsert>`.
 
 The body is usually a 4-item map:
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  image:: images/upsert.svg
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_UPSERT,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_SPACE_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_INDEX_BASE: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_OPS: :samp:`{{MP_ARRAY array of update operations}}`,
-        IPROTO_TUPLE: :samp:`{{MP_ARRAY array of primary-key field values}}`
-    })
+IPROTO_OPS is the array of operations. It is the same as the IPROTO_TUPLE of :ref:`IPROTO_UPDATE <box_protocol-update>`.
 
-The IPROTO_OPS is the same as the IPROTO_TUPLE of :ref:`IPROTO_UPDATE <box_protocol-update>`.
-
-
-Response:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
-For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
-:ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
-
-Response for SQL -- ??? (VALUES or no VALUES? Come up with an UPSERT request and see how it's encoded/decoded)
+IPROTO_TUPLE is an array of primary-key field values.
 
 ..  _box_protocol-delete:
 
-IPROTO_DELETE = 0x05
-~~~~~~~~~~~~~~~~~~~~
+IPROTO_DELETE
+-------------
+
+Code: 0x05.
 
 See :ref:`space_object:delete()  <box_space-delete>`.
 The body is a 3-item map:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_DELETE,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_SPACE_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_INDEX_ID: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_KEY: :samp:`{{MP_ARRAY array of key values}}`
-    })
-
-Response:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
-
-For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`,
-:ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.)
-the body is an IPROTO_DATA map with an array of tuples that contain an array of fields.
-
-Response for SQL:
-
-Response for SQL:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(32)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_METADATA: :samp:`{{array of column maps}}`,
-        IPROTO_DATA: :samp:`{{array of tuples}}`
-    })
-
+..  image:: images/delete.svg
 
 ..  _box_protocol-eval:
 
@@ -396,43 +222,13 @@ binary protocol. Any request that does not have
 its own code, for example :samp:`box.space.{space-name}:drop()`,
 will be handled either with :ref:`IPROTO_CALL <box_protocol-call>`
 or IPROTO_EVAL.
+
 The :ref:`tarantoolctl <tarantoolctl>` administrative utility
 makes extensive use of ``eval``.
+
 The body is a 2-item map:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_EVAL,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_EXPR: :samp:`{{MP_STR string}}`,
-        IPROTO_TUPLE: :samp:`{{MP_ARRAY array of arguments}}`
-    })
-
-Response:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        Response-Code-Indicator: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
+..  image:: images/eval.svg
 
 - For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>`
   the response body will usually be an array but, since Lua requests can result in a wide variety
@@ -445,22 +241,7 @@ Example
 
 If this is the fifth message, :samp:`conn:eval('return 5;')` will cause:
 
-..  code-block:: none
-
-    # <size>
-    msgpack(19)
-    # <header>
-    msgpack({
-        IPROTO_SYNC: 5
-        IPROTO_REQUEST_TYPE: IPROTO_EVAL
-    })
-    # <body>
-    msgpack({
-        IPROTO_EXPR: 'return 5;',
-        IPROTO_TUPLE: []
-    })
-
-
+..  image:: images/eval_example.svg
 
 ..  _box_protocol-call:
 
@@ -470,33 +251,15 @@ IPROTO_CALL = 0x0a
 See :ref:`conn:call() <net_box-call>`.
 This is a remote stored-procedure call. 
 
-The body is a 2-item map:
+The body is a 2-item map. The response will be a list of values, similar to the
+:ref:`IPROTO_EVAL <box_protocol-eval>` response. The return from conn:call is whatever the function returns.
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_CALL,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_FUNCTION_NAME: :samp:`{{MP_STR string}}`,
-        IPROTO_TUPLE: :samp:`{{MP_ARRAY array of arguments}}`
-    })
-
-The return from conn:call is whatever the function returns.
-
-The response will be a list of values, similar to the
-:ref:`IPROTO_EVAL <box_protocol-eval>` response.
+..  image:: images/call.svg
 
 Response for SQL: ??? (fiure out why CALL and EVAL are the best place for SQL responses, according to locker)
 
-IPROTO_CALL_16=0x06 Deprecated, use IPROTO_CALL (0x0a) instead
-
+:doc:`/release/1.6` and earlier made use of the IPROTO_CALL_16 request (code: 0x06). It is now deprecated
+and superseded by IPROTO_CALL.
 
 ..  _box_protocol-auth:
 
