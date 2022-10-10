@@ -24,21 +24,17 @@ General
             -   Code
             -   Description
 
-        *   -   IPROTO_JOIN
+        *   -   :ref:`IPROTO_JOIN <box_protocol-join>`
             -   0x41
-            -
+            -   Request to join a replica set
 
-        *   -   IPROTO_SUBSCRIBE
+        *   -   :ref:`IPROTO_SUBSCRIBE <internals-iproto-replication-subscribe>`
             -   0x42
-            -
+            -   Request to subscribe to a replica set
 
-        *   -   IPROTO_VOTE
+        *   -   :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`
             -   0x44
-            -
-
-        *   -   IPROTO_VOTE_DEPRECATED
-            -   0x43
-            -
+            -   Request for replication
 
         *   -   :ref:`IPROTO_BALLOT <box_protocol-ballots>`
             -   0x29
@@ -53,8 +49,112 @@ General
             -   0x46
             -   Register an anonymous replica so it is not anonymous anymore
             
-Note that the master often sends :ref:`heartbeat <heartbeat>` messages to the replicas.
+The master also sends :ref:`heartbeat <heartbeat>` messages to the replicas.
 The heartbeat message's IPROTO_REQUEST_TYPE is ``0``.
+
+Below are details on individual replication requests.
+For synchronous replication requests, see :ref:`below <internals-iproto-replication-synchronous>`.
+
+..  _box_protocol-heartbeat:
+
+Heartbeats
+~~~~~~~~~~
+
+Once in :ref:`replication_timeout <cfg_replication-replication_timeout>` seconds,
+a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
+The heartbeat message's IPROTO_REQUEST_TYPE is ``0``.
+
+In the example below, the master sends a heartbeat message to a replica with id = 2,
+and the timestamp is a moment in 2020. The replica sends a response.
+Note that the master's heartbeat has no body:
+
+..  raw:: html
+    :file: images/repl_heartbeat.svg
+
+IPROTO_TIMESTAMP is a float-64 MP_DOUBLE 8-byte timestamp.
+
+The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
+shows actual byte codes of the above heartbeat examples.
+
+..  _box_protocol-join:
+
+IPROTO_JOIN
+~~~~~~~~~~~
+
+Code: 0x41.
+
+To join a replica set, an instance must send an initial IPROTO_JOIN request to any node in the replica set:
+
+..  raw:: html
+    :file: images/repl_join_request.svg
+
+The node that receives the request sends its vclock in response:
+
+..  raw:: html
+    :file: images/repl_join_response.svg
+
+After that, the node sends its last SNAP file,
+by simply creating a number of INSERTs (with additional LSN and ServerID).
+The instance that sent the IPROTO_JOIN request should not reply to these INSERT requests.
+
+Then the node in the replica set sends the new vclock's MP_MAP in a response similar to the one above
+and closes the socket.
+
+..  _internals-iproto-replication-subscribe:
+
+IPROTO_SUBSCRIBE
+~~~~~~~~~~~~~~~~
+
+Code: 0x42.
+
+If :ref:`IPROTO_JOIN <box_protocol-join>` was successful,
+the initiator instance must send an IPROTO_SUBSCRIBE request
+to all the nodes listed in its :ref:`box.cfg.replication <cfg_replication-replication>`:
+
+..  raw:: html
+    :file: images/repl_subscribe_request.svg
+
+After an IPROTO_SUBSCRIBE request,
+the instance must process every request that could come through other masters.
+Every request between masters will have an additional pair in the vclock map.
+
+IPROTO_ID_FILTER (0x51)
+is an optional key used in SUBSCRIBE request followed by an array
+of ids of instances whose rows won't be relayed to the replica.
+The field is encoded only when the id list is not empty.
+
+..  _internals-iproto-replication-vote:
+
+IPROTO_VOTE
+~~~~~~~~~~~
+
+Code: 0x44.
+
+When connecting for replication, an instance sends an IPROTO_VOTE request. It has no body:
+
+..  raw:: html
+    :file: images/repl_vote.svg
+
+IPROTO_VOTE is critical during replica set bootstrap.
+The response to this request is :ref:`IPROTO_BALLOT <box_protocol-ballots>`.
+
+..  _box_protocol-ballots:
+
+IPROTO_BALLOT
+~~~~~~~~~~~~~
+
+Code: 0x29.
+
+This value of IPROTO_REQUEST_TYPE indicates a message sent in response to IPROTO_VOTE
+(not to be confused with the key IPROTO_RAFT_VOTE).
+
+IPROTO_BALLOT and IPROTO_VOTE are critical during replica set bootstrap.
+IPROTO_BALLOT corresponds to a map containing the following fields:
+
+..  raw:: html
+    :file: images/repl_ballot.svg
+
+..  _internals-iproto-replication-synchronous:
 
 Synchronous
 -----------
@@ -69,9 +169,9 @@ Synchronous
             -   Code
             -   Description     
 
-        *   -   IPROTO_RAFT
+        *   -   :ref:`IPROTO_RAFT <box_protocol-raft>`
             -   0x1e
-            -   
+            -   Inform that the node changed its RAFT status
    
         *   -   IPROTO_RAFT_PROMOTE
             -   0x1f
@@ -79,271 +179,84 @@ Synchronous
 
         *   -   IPROTO_RAFT_DEMOTE
             -   0x20
-            -   
+            -   Revoke the leader role from the instance. See :ref:`box.ctl.demote() <box_ctl-demote>`
 
-        *   -   IPROTO_RAFT_CONFIRM
+        *   -   :ref:`IPROTO_RAFT_CONFIRM <box_protocol-raft_confirm>`
             -   0x28
-            -
+            -   Confirm that the RAFT transactions have achieved quorum and can be committed
 
-        *   -   IPROTO_RAFT_ROLLBACK
+        *   -   :ref:`IPROTO_RAFT_ROLLBACK <box_protocol-raft_confirm>`
             -   0x29
-            -
+            -   Revoke the RAFT transactions because they haven't achieved quorum 
 
 
-..  code-block:: lua
-
-    IPROTO_JOIN = 0x41 -- for replication
-    IPROTO_SUBSCRIBE = 0x42 -- for replication SUBSCRIBE
-    IPROTO_VOTE_DEPRECATED = 0x43 -- for old style vote, superseded by IPROTO_VOTE
-    IPROTO_VOTE = 0x44 -- for master election
-    IPROTO_FETCH_SNAPSHOT = 0x45 -- for starting anonymous replication
-    IPROTO_REGISTER = 0x46 -- for leaving anonymous replication.
-
-
-Details on individual requests
-------------------------------
-
-..  _box_protocol-heartbeat:
-
-Heartbeats
-~~~~~~~~~~
-
-Frequently a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
-For example, if there is a replica with id = 2,
-and a timestamp with a moment in 2020, a master might send this:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: 0
-        IPROTO_REPLICA_ID: 2
-        IPROTO_TIMESTAMP: :samp:`{{Float 64 MP_DOUBLE 8-byte timestamp}}`
-    })
-
-and the replica might send back this:
-
-..  code-block:: none
-
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_OK
-        IPROTO_REPLICA_ID: 2
-        IPROTO_VCLOCK: {1, 6}
-    })
-
-The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
-shows actual byte codes of the above heartbeat examples.
-
-..  _box_protocol-join:
-
-IPROTO_JOIN = 0x41
-~~~~~~~~~~~~~~~~~~
-
-First you must send an initial IPROTO_JOIN request.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_JOIN,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_INSTANCE_UUID: :samp:`{{uuid}}`
-    })
-
-Then the instance which you want to connect to will send its last SNAP file,
-by simply creating a number of INSERTs (with additional LSN and ServerID)
-(do not reply to this). Then that instance will send a vclock's MP_MAP and
-close a socket.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_VCLOCK: :samp:`{{MP_INT SRV_ID, MP_INT SRV_LSN}}`
-    })
-
-..  _internals-iproto-replication-subscribe:
-
-IPROTO_SUBSCRIBE = 0x42
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Then you must send an IPROTO_SUBSCRIBE request.
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_SUBSCRIBE,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_INSTANCE_UUID: :samp:`{{uuid}}`,
-        IPROTO_CLUSTER_UUID: :samp:`{{uuid}}`,
-    })
-    # <body>
-    msgpack({
-        IPROTO_VCLOCK: :samp:`{{MP_INT SRV_ID, MP_INT SRV_LSN}}`
-    })
-
-Then you must process every request that could come through other masters.
-Every request between masters will have additional LSN and SERVER_ID.
-
-IPROTO_ID_FILTER = 0x51
- is an optional key used in SUBSCRIBE request followed by an array
-of ids of instances whose rows won't be relayed to the replica.
-
-SUBSCRIBE request is supplemented with an optional field of the
-following structure:
-
-+====================+
-|      ID_FILTER     |
-|   0x51 : ID LIST   |
-| MP_INT : MP_ARRRAY |
-|                    |
-+====================+
-
-The field is encoded only when the id list is not empty.
-
-
-..  _box_protocol-ballots:
-
-IPROTO_BALLOT
-~~~~~~~~~~~~~
-
-Code: 0x29.
-
-This value of IPROTO_REQUEST_TYPE indicates a message sent in response to IPROTO_VOTE
-(not to be confused with the key IPROTO_RAFT_VOTE).
-IPROTO_BALLOT and IPROTO_VOTE are critical during replica set bootstrap.
-While connecting for replication, an instance sends a request with header IPROTO_VOTE (0x44).
-The fields within IPROTO_BALLOT are map items:
-
-..  code-block:: none
-
-    IPROTO_BALLOT_IS_RO_CFG (0x01) + MP_BOOL
-    IPROTO_BALLOT_VCLOCK (0x02) + vclock (MP_ARRAY)
-    IPROTO_BALLOT_GC_VCLOCK (0x03) + vclock (MP_ARRAY)
-    IPROTO_BALLOT_IS_RO (0x04) + MP_BOOL
-    IPROTO_BALLOT_IS_ANON = 0x05 + MP_BOOL
-    IPROTO_BALLOT_IS_BOOTED = 0x06 + MP_BOOL
-    IPROTO_BALLOT_CAN_LEAD = 0x07 + MP_BOOL
-
-:ref:`Learn more about the keys <internals-iproto-keys-replication-general>`.
 
 ..  _box_protocol-raft:
 
-IPROTO_RAFT = 0x1e
-~~~~~~~~~~~~~~~~~~
+IPROTO_RAFT
+~~~~~~~~~~~
 
-A node broadcasts the IPROTO_RAFT request to all the replicas connected to it when the RAFT state of the node changes.
-It can be any actions changing the state, like starting a new election, bumping the term, voting for another node, becoming the leader, and so on.
+Code: 0x1e.
 
-If there should be a response, for example, in case of a vote request to other nodes, the response will also be an IPROTO_RAFT message.
-In this case, the node should be connected as a replica to another node from which the response is expected because the response is sent via the replication channel.
+A node broadcasts the IPROTO_RAFT request to all the replicas connected to it
+when the RAFT state of the node changes.
+It can be any actions changing the state, like starting a new election, bumping the term,
+voting for another node, becoming the leader, and so on.
+
+If there should be a response, for example, in case of a vote request to other nodes,
+the response will also be an IPROTO_RAFT message.
+In this case, the node should be connected as a replica to another node from which the response is expected
+because the response is sent via the replication channel.
 In other words, there should be a full-mesh connection between the nodes.
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  raw:: html
+    :file: images/repl_raft.svg
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_RAFT,
-        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,  # ID of the replica which the request came from
-
-    })
-    # <body>
-    msgpack({
-        IPROTO_RAFT_TERM: :samp:`{{MP_UINT unsigned integer}}`,     # RAFT term of the instance
-        IPROTO_RAFT_VOTE: :samp:`{{MP_UINT unsigned integer}}`,     # Instance vote in the current term (if any).
-        IPROTO_RAFT_STATE: :samp:`{{MP_UINT unsigned integer}}`,    # Instance state. Possible values: 1 -- follower, 2 -- candidate, 3 -- leader.
-        IPROTO_RAFT_VCLOCK: :samp:`{{MP_ARRAY {{MP_INT SRV_ID, MP_INT SRV_LSN}, {MP_INT SRV_ID, MP_INT SRV_LSN}, ...}}}`,   # Current vclock of the instance. Presents only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
-        IPROTO_RAFT_LEADER_ID: :samp:`{{MP_UINT unsigned integer}}`,     # Current leader node ID as seen by the node that issues the request. Since version :doc:`2.10.0 </release/2.10.0>`.
-        IPROTO_RAFT_IS_LEADER_SEEN: :samp:`{{MP_BOOL boolean}}`     # Shows whether the node has a direct connection to the leader node. Since version :doc:`2.10.0 </release/2.10.0>`.
-
-    })
-
-
-The next two IPROTO messages are used in replication connections between
-Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
-The messages are not supposed to be used by any client applications in their
-regular connections.
-
-
+IPROTO_REPLICA_ID is the replica from which the request came.
 
 
 ..  _box_protocol-raft_confirm:
 
-IPROTO_RAFT_CONFIRM = 0x28
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+IPROTO_RAFT_CONFIRM
+~~~~~~~~~~~~~~~~~~~
+
+Code: 0x28.
+
+This message is used in replication connections between
+Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
+It is not supposed to be used by any client applications in their
+regular connections.
 
 This message confirms that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID have achieved quorum and can be committed,
 up to and including LSN = IPROTO_LSN.
-Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_CONFIRM was called IPROTO_CONFIRM.
 
 The body is a 2-item map:
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  raw:: html
+    :file: images/repl_raft_confirm.svg
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_RAFT_CONFIRM,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,
-        IPROTO_LSN: :samp:`{{MP_INT integer}}`
-    })
-
+Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_CONFIRM was called IPROTO_CONFIRM.
 
 ..  _box_protocol-raft_rollback:
 
-IPROTO_RAFT_ROLLBACK = 0x29
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+IPROTO_RAFT_ROLLBACK
+~~~~~~~~~~~~~~~~~~~~
+
+Code: 0x29.
+
+This message is used in replication connections between
+Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
+It is not supposed to be used by any client applications in their
+regular connections.
 
 This message says that the transactions originated from the instance
 with id = IPROTO_REPLICA_ID couldn't achieve quorum for some reason
 and should be rolled back, down to LSN = IPROTO_LSN and including it.
-Prior to Tarantool version 2.10, IPROTO_RAFT_ROLLBACK was called IPROTO_ROLLBACK.
 
 The body is a 2-item map:
 
-..  cssclass:: highlight
-..  parsed-literal::
+..  raw:: html
+    :file: images/repl_raft_rollback.svg
 
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_RAFT_ROLLBACK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_REPLICA_ID: :samp:`{{MP_INT integer}}`,
-        IPROTO_LSN: :samp:`{{MP_INT integer}}`
-    })
-
+Prior to Tarantool version 2.10, IPROTO_RAFT_ROLLBACK was called IPROTO_ROLLBACK.

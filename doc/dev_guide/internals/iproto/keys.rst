@@ -169,9 +169,9 @@ General replication
             -   0x24 |br| :ref:`MP_UUID <msgpack_ext-uuid>`
             -   Instance UUID
 
-        *   -   IPROTO_VCLOCK
-            -   0x26 |br| MP_UINT
-            -   The instance's vector clock (vclock)
+        *   -   :ref:`IPROTO_VCLOCK <internals-iproto-keys-vclock>`
+            -   0x26 |br| MP_MAP
+            -   The instance's vclock
 
         *   -   IPROTO_CLUSTER_UUID
             -   0x25 |br| :ref:`MP_UUID <msgpack_ext-uuid>`
@@ -186,15 +186,13 @@ General replication
             -   True if the instance is configured as :ref:`read_only <cfg_basic-read_only>`.
                 Since :doc:`2.6.1 </release/2.6.1>`
 
-        *   -   IPROTO_BALLOT_VCLOCK
-            -   0x02 |br| MP_ARRAY
-            -   Current vector clock of the instance.
-                Since :doc:`2.6.1 </release/2.6.1>`
+        *   -   :ref:`IPROTO_BALLOT_VCLOCK <internals-iproto-keys-vclock>`
+            -   0x02 |br| MP_MAP
+            -   Current vclock of the instance
 
-        *   -   IPROTO_BALLOT_GC_VCLOCK
-            -   0x03 |br| MP_ARRAY
-            -   Vclock of the instance’s oldest WAL entry. Corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
-                Since :doc:`2.6.1 </release/2.6.1>`
+        *   -   :ref:`IPROTO_BALLOT_GC_VCLOCK <internals-iproto-keys-vclock>`
+            -   0x03 |br| MP_MAP
+            -   Vclock of the instance’s oldest WAL entry
 
         *   -   IPROTO_BALLOT_IS_RO
             -   0x04 |br| MP_BOOL
@@ -260,18 +258,19 @@ Synchronous replication
             -   0x02 |br| MP_UINT
             -   RAFT state. Possible values: ``1`` -- follower, ``2`` -- candidate, ``3`` -- leader
         
-        *   -   IPROTO_RAFT_VCLOCK
-            -   0x03 |br| MP_ARRAY
-            -   Current vclock of the instance.
-                Present only on the instances in the "candidate" state (IPROTO_RAFT_STATE == 2).
+        *   -   :ref:`IPROTO_RAFT_VCLOCK <internals-iproto-keys-vclock>`
+            -   0x03 |br| MP_MAP
+            -   Current vclock of the instance
         
         *   -   IPROTO_RAFT_LEADER_ID
             -   0x04 |br| MP_UINT
-            -   Current leader node ID as seen by the node that issues the request. Since version :doc:`2.10.0 </release/2.10.0>`
+            -   Current leader node ID as seen by the node that issues the request
+                Since version :doc:`2.10.0 </release/2.10.0>`
         
         *   -   IPROTO_RAFT_IS_LEADER_SEEN
             -   0x05 |br| MP_BOOL
-            -   True if the node has a direct connection to the leader node. Since version :doc:`2.10.0 </release/2.10.0>`
+            -   True if the node has a direct connection to the leader node. 
+                Since version :doc:`2.10.0 </release/2.10.0>`
 
 Events and subscriptions
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -688,6 +687,33 @@ Example:
         # ... message for a transaction ...
     })
 
+..  _internals-iproto-keys-vclock:
+
+Vclock keys
+~~~~~~~~~~~
+
+The vclock (vector clock) is a log sequence number map that defines the version of the dataset stored on the node.
+In fact, it represents the number of logical operations executed on a specific node. A vclock looks like this:
+
+..  raw:: html
+    :file: images/vclock.svg
+
+There are four keys that correspond to vector clocks in different contexts of replication.
+They all have the MP_MAP type:
+
+*   IPROTO_VCLOCK (0x26) is passed to a new instance :ref:`joining the replica set <box_protocol-join>`.
+
+*   IPROTO_BALLOT_VCLOCK (0x02) is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`.
+    This key was introduced in :doc:`/release/2.6.1`.
+
+*   IPROTO_BALLOT_GC_VCLOCK (0x03) is also sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`.
+    It is the vclock of the oldest WAL entry on the instance.
+    Corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
+    This key was introduced in :doc:`/release/2.6.1`.
+
+*   IPROTO_RAFT_VCLOCK (0x03) is included in the :ref:`IPROTO_RAFT <box_protocol-raft>` message.
+    It is present only on the instances in the :ref:`"candidate" state <cfg_replication-election_mode>`
+    (IPROTO_RAFT_STATE == 2).
 
 ..  _internals-iproto-keys-metadata:
     
