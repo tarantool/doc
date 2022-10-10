@@ -173,13 +173,13 @@ Synchronous
             -   0x1e
             -   Inform that the node changed its RAFT status
    
-        *   -   IPROTO_RAFT_PROMOTE
+        *   -   :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>`
             -   0x1f
-            -   Wait, then choose new replication leader. See :ref:`box.ctl.promote() <box_ctl-promote>`
+            -   Wait, then choose new replication leader
 
-        *   -   IPROTO_RAFT_DEMOTE
+        *   -   :ref:`IPROTO_RAFT_DEMOTE <internals-iproto-replication-raft_demote>`
             -   0x20
-            -   Revoke the leader role from the instance. See :ref:`box.ctl.demote() <box_ctl-demote>`
+            -   Revoke the leader role from the instance
 
         *   -   :ref:`IPROTO_RAFT_CONFIRM <box_protocol-raft_confirm>`
             -   0x28
@@ -212,8 +212,57 @@ In other words, there should be a full-mesh connection between the nodes.
 ..  raw:: html
     :file: images/repl_raft.svg
 
-IPROTO_REPLICA_ID is the replica from which the request came.
+IPROTO_REPLICA_ID is the ID of the replica from which the request came.
 
+..  _internals-iproto-replication-raft_promote:
+
+IPROTO_RAFT_PROMOTE
+~~~~~~~~~~~~~~~~~~~
+
+Code: 0x1f.
+
+See :ref:`box.ctl.promote() <box_ctl-promote>`.
+Here is what the request contains:
+
+..  raw:: html
+    :file: images/repl_raft_promote.svg
+
+In the header:
+
+*   IPROTO_REPLICA_ID is the replica ID of the node that sent the request.
+*   IPROTO_LSN is the actual LSN of the promote operation as recorded in the WAL.
+
+In the body:
+
+*   IPROTO_REPLICA_ID is the replica ID of the previous :ref:`synchronous queue owner <box_info_synchro>`.
+*   IPROTO_LSN is the LSN of the last operation on the previous synchronous queue owner.
+*   IPROTO_TERM is the term in which the node that sent the request becomes the synchronous queue owner.
+    This term corresponds to the value of :ref:`box.info.synchro.queue.term <box_info_synchro>` on the instance.
+
+..  _internals-iproto-replication-raft_demote:
+
+IPROTO_RAFT_DEMOTE
+~~~~~~~~~~~~~~~~~~
+
+Code: 0x20.
+
+See :ref:`box.ctl.demote() <box_ctl-demote>`.
+Here is what the request contains:
+
+..  raw:: html
+    :file: images/repl_raft_demote.svg
+
+In the header:
+
+*   IPROTO_REPLICA_ID is the replica ID of the the node that sent the request.
+*   IPROTO_LSN is the actual LSN of the demote operation as recorded in the WAL.
+
+In the body:
+
+*   IPROTO_REPLICA_ID is the replica ID of the the node that sent the request
+    (same as the value in the header).
+*   IPROTO_LSN is the LSN of the last synchronous transaction recorded in the node's WAL.
+*   IPROTO_TERM is the term in which the queue becomes empty.
 
 ..  _box_protocol-raft_confirm:
 

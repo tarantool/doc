@@ -1,0 +1,24 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_RAFT_DEMOTE**" as demote {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_RAFT_DEMOTE",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_LSN]]": "MP_UINT"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_LSN]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TERM]]": "MP_UINT"
+    }
+}
+
+@enduml

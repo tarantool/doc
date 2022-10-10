@@ -246,6 +246,11 @@ Synchronous replication
             -   0x09 |br| MP_UINT
             -   Auxiliary data to indicate the last transaction message state
 
+        *   -   IPROTO_TERM
+            -   0x53 |br| MP_UINT
+            -   The term in which the node becomes the :ref:`synchronous queue owner <box_info_synchro>`.
+                Used in :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>`
+
         *   -   IPROTO_RAFT_TERM
             -   0x00 |br| MP_UINT
             -   :ref:`RAFT term <repl_leader_elect>` on an instance
