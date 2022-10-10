@@ -368,19 +368,19 @@ and :ref:`IPROTO_PREPARE <box_protocol-prepare>`.
             -   0x41 |br| MP_ARRAY
             -   Parameter values to match ? placeholders or :name placeholders
         
-        *   -   :ref:`IPROTO_SQL_INFO <internals-iproto-keys-sql_info>`
+        *   -   IPROTO_SQL_INFO
             -   0x42 |br| MP_MAP
             -   Additional SQL-related parameters
 
-        *   -   :ref:`SQL_INFO_ROW_COUNT <internals-iproto-keys-sql_info>`
+        *   -   SQL_INFO_ROW_COUNT
             -   0x00 |br| MP_UINT
-            -   Number of changed rows. Nested in :ref:`IPROTO_SQL_INFO <internals-iproto-keys-sql_info>`
+            -   Number of changed rows. Is ``0`` for statements that do not change rows. Nested in IPROTO_SQL_INFO
 
-        *   -   :ref:`SQL_INFO_AUTO_INCREMENT_IDS <internals-iproto-keys-sql_info>`
+        *   -   SQL_INFO_AUTO_INCREMENT_IDS
             -   0x01 |br| MP_ARRAY of MP_UINT items
             -   New primary key value (or values) for an INSERT in a table
                 defined with PRIMARY KEY AUTOINCREMENT.
-                Nested in :ref:`IPROTO_SQL_INFO <internals-iproto-keys-sql_info>`
+                Nested in IPROTO_SQL_INFO
 
 
 Details on individual keys

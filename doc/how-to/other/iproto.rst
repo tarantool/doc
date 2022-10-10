@@ -165,7 +165,7 @@ example:
          db 00 00 00 1d 53 70 61 63 etc. MP_STR = "Space '_space' already exists"
 
 Byte codes, if we use the same net.box connection that
-we used for :ref:`Binary protocol -- illustration <box_protocol-illustration>`
+we used in the beginning
 and we say |br|
 ``conn:execute([[CREATE TABLE t1 (dd INT PRIMARY KEY AUTOINCREMENT, дд STRING COLLATE "unicode");]])`` |br|
 ``conn:execute([[INSERT INTO t1 VALUES (NULL, 'a'), (NULL, 'b');]])`` |br|
