@@ -901,7 +901,7 @@ The sandbox configuration for this example assumes that:
 
 Here are commands for a quick sandbox setup:
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.cfg{listen = 3301}
     s = box.schema.space.create('tester')
@@ -911,62 +911,65 @@ Here are commands for a quick sandbox setup:
 
 And here starts the example:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> net_box = require('net.box')
     ---
     ...
-    tarantool> function example()
-             >   local conn, wtuple
-             >   if net_box.self:ping() then
-             >     table.insert(ta, 'self:ping() succeeded')
-             >     table.insert(ta, '  (no surprise -- self connection is pre-established)')
-             >   end
-             >   if box.cfg.listen == '3301' then
-             >     table.insert(ta,'The local server listen address = 3301')
-             >   else
-             >     table.insert(ta, 'The local server listen address is not 3301')
-             >     table.insert(ta, '(  (maybe box.cfg{...listen="3301"...} was not stated)')
-             >     table.insert(ta, '(  (so connect will fail)')
-             >   end
-             >   conn = net_box.connect('127.0.0.1:3301')
-             >   conn.space.tester:delete({800})
-             >   table.insert(ta, 'conn delete done on tester.')
-             >   conn.space.tester:insert({800, 'data'})
-             >   table.insert(ta, 'conn insert done on tester, index 0')
-             >   table.insert(ta, '  primary key value = 800.')
-             >   wtuple = conn.space.tester:select({800})
-             >   table.insert(ta, 'conn select done on tester, index 0')
-             >   table.insert(ta, '  number of fields = ' .. #wtuple)
-             >   conn.space.tester:delete({800})
-             >   table.insert(ta, 'conn delete done on tester')
-             >   conn.space.tester:replace({800, 'New data', 'Extra data'})
-             >   table.insert(ta, 'conn:replace done on tester')
-             >   conn.space.tester:update({800}, {{'=', 2, 'Fld#1'}})
-             >   table.insert(ta, 'conn update done on tester')
-             >   conn:close()
-             >   table.insert(ta, 'conn close done')
-             > end
+    -- Self connection is pre-established.
+    -- In this case, `conn = net_box.connect('localhost:3301')`
+    -- can be replaced by `conn = net_box.self`.
+    tarantool> conn = net_box.self
     ---
     ...
-    tarantool> ta = {}
+    tarantool> conn:ping()
+    ---
+    - true
+    ...
+    -- Return all tuples where the key value is 600
+    tarantool> conn.space.tester:select{800}
+    ---
+    - - [800, 'TEST']
+    ...
+    -- Insert tuples
+    tarantool> conn.space.tester:insert({700, 'TEST700'})
+    ---
+    - [700, 'TEST700']
+    ...
+    tarantool> conn.space.tester:insert({600, 'TEST600'})
+    ---
+    - [600, 'TEST600']
+    ...
+    -- Search for a tuple where the key value is 600
+    tarantool> conn.space.tester:get({600})
+    ---
+    - [600, 'TEST600']
+    ...
+    -- Update the existing tuple
+    tarantool> conn.space.tester:update(800, {{'=', 2, 'TEST800'}})
+    ---
+    - [800, 'TEST800']
+    ...
+    -- Update the existing tuple
+    tarantool> conn.space.tester:upsert({500, 'TEST500'}, {{'=', 2, 'TEST'}})
     ---
     ...
-    tarantool> example()
+    -- Delete tuples where the key value is 600
+    tarantool> conn.space.tester:delete{600}
     ---
+    - [600, 'TEST600']
     ...
-    tarantool> ta
+    -- Replace the existing tuple with a new one
+    tarantool> conn.space.tester:replace{500, 'New data', 'Extra data'}
     ---
-    - - self:ping() succeeded
-      - '  (no surprise -- self connection is pre-established)'
-      - The local server listen address = 3301
-      - conn delete done on tester.
-      - conn insert done on tester, index 0
-      - '  primary key value = 800.'
-      - conn select done on tester, index 0
-      - '  number of fields = 1'
-      - conn delete done on tester
-      - conn:replace done on tester
-      - conn update done on tester
-      - conn close done
+    - [500, 'New data', 'Extra data']
     ...
+    -- Select all tuples
+    tarantool> conn.space.tester:select{}
+    ---
+    - - [800, 'TEST800']
+      - [500, 'New data', 'Extra data']
+      - [700, 'TEST700']
+    ...
+    -- Close the connection
+    tarantool> conn:close()
