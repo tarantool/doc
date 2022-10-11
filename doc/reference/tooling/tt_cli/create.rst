@@ -56,12 +56,12 @@ Template structure
 Application templates are directories with files.
 
 The main file of a template is its *manifest*. It defines how the applications
-that are created from this template will look.
+are instantiated from this template.
 
 A template manifest is a YAML file that can contain the following sections:
 
 *   ``description`` -- the template description
-*   ``vars`` -- :ref:`template variables <template_variables>`
+*   ``vars`` -- :ref:`template variables <template-variables>`
 *   ``pre-hook`` and ``post-hook`` -- paths to executables to run before and after the template
     instantiation
 *   ``include`` -- a list of files to keep in the application directory after
@@ -91,8 +91,8 @@ Example:
     - init.lua
     - instances.yml
 
-Other files and directories of a template define the initial structure of the
-instantiated applications.
+Files and directories of a template are copied to the application directory
+according to the ``include`` section of the manifest (or its absence).
 
 .. note::
 
@@ -100,7 +100,7 @@ instantiated applications.
     To specify application dependencies, use the ``.rockspec`` files.
 
 There is a special file type ``*.tt.template``. The content of such files is
-adjusted for each application with the help of :ref:`template variables <template_variables>`.
+adjusted for each application with the help of :ref:`template variables <template-variables>`.
 During the instantiation, the variables in these files are replaced with provided
 values and the ``*.tt.template`` extension is removed.
 
@@ -109,8 +109,7 @@ values and the ``*.tt.template`` extension is removed.
 Variables
 ~~~~~~~~~
 
-Templates can use variables. These variables are replaced with their
-values provided upon the template instantiation.
+Templates variables are replaced with their values provided upon the instantiation.
 
 All templates have the ``name`` variable. Its value is taken from the `--name`` flag.
 
@@ -164,14 +163,14 @@ flag to disable the interactive input. In this case, the values are searched in 
 
         tt create template app --var user_name=admin
 
-*   In a file. Specify ``var=value`` pairs in a file (each on a new line) and
+*   In a file. Specify ``var=value`` pairs in a plain text file, each on a new line, and
     pass it as the value of the ``--vars-file`` flag:
 
     ..  code-block:: bash
 
         tt create template app --vars-file variables.txt
 
-    ``variables.txt`` cal look like this:
+    ``variables.txt`` can look like this:
 
     ..  code-block:: text
 
@@ -179,13 +178,13 @@ flag to disable the interactive input. In this case, the values are searched in 
         password=p4$$w0rd
         version=2
 
-If a variable doesn't get a value in any of these ways, the default value
+If a variable isn't initialized in any of these ways, the default value
 from the manifest will be used.
 
 You can combine different ways of passing variables in a single call of ``tt create``.
 
-Application: location and content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Application directory
+~~~~~~~~~~~~~~~~~~~~~
 
 By default, the application will appear in the directory named after the provided
 application name (``--name`` value).

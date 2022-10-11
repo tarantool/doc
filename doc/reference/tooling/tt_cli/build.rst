@@ -33,14 +33,36 @@ The application directory must contain a ``.rockspec`` file to use for the build
 If there are more than one ``.rockspec`` files in the application directory, specify
 the one to use in the ``--spec`` argument.
 
-``tt build`` runs
+``tt build`` builds an application with the ``tt rocks make`` command.
 
-.. pre build?
-post build?
+The fully built application will appear in the ``.rocks directory.``
+You can start it locally from your application directory.
 
-In result
+Pre-build and post-build scripts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. result?
+In addition to building the application with LuaRocks, ``tt build``
+can execute *pre-build* and *post-build* scripts. These scripts should
+contain steps to execute right before and after building the application.
+These files must be named ``tt.pre-build`` and ``tt.post-build`` correspondingly
+and located in the application directory.
+
+.. note::
+
+    For compatibility with Cartridge applications, the pre-build and post-build scripts
+    can also have names ``cartridge.pre-build`` and ``cartridge.post-build``.
+
+If your application depends on closed-source rocks, or if the build should contain
+rocks from a project added as a submodule, **install** all these
+dependencies **before** building using the pre-build script.
+For example, add the following line:
+
+..  code-block:: bash
+
+    tt rocks make --chdir ./third_party/proj
+
+To learn more, read about
+:doc:`pre-build and post-build scripts </book/cartridge/cartridge_cli/pre-post-build>`.
 
 Examples
 --------
