@@ -1,6 +1,6 @@
 .. _tt-create:
 
-Create an application from a template
+Creating an application from a template
 =====================================
 
 ..  code-block:: bash
@@ -43,11 +43,9 @@ Flags
 Details
 -------
 
-*Application templates* streamline the development of Tarantool applications by
+*Application templates* speed up the development of Tarantool applications by
 defining their initial structure and content. A template can include the application
 code, configuration, build scripts, and other resources.
-
-.. git commit? as in cartridge
 
 ``tt`` searches templates in the directories specified in the ``templates`` section
 of its :ref:`configuration file <tt-config_file>`.
@@ -55,12 +53,22 @@ of its :ref:`configuration file <tt-config_file>`.
 Template structure
 ~~~~~~~~~~~~~~~~~~
 
-A minimal application template is a directory with two files:
+Application templates are directories with files.
 
-*   ``MANIFEST.yaml`` -- the template manifest.
-*   ``*.tt.template`` --  .. all files must be tt.template?
+The main file of a template is its *manifest*. It defines how the applications
+that are created from this template will look.
 
-The template manifest
+A template manifest is a YAML file that can contain the following sections:
+
+*   ``description`` -- the template description
+*   ``vars`` -- :ref:`template variables <template_variables>`
+*   ``pre-hook`` and ``post-hook`` -- paths to executables to run before and after the template
+    instantiation
+*   ``include`` -- a list of files to keep in the application directory after
+    instantiation. If this section is omitted, the application will contain all template files
+    and directories.
+
+All sections are optional.
 
 Example:
 
@@ -83,37 +91,36 @@ Example:
     - init.lua
     - instances.yml
 
-Optional:
-pre-build
-post-build
-other files
+Other files and directories of a template define the initial structure of the
+instantiated applications.
 
 .. note::
 
-    Don't include the ``.rocks`` directory in your application template.
+    Don't include the ``.rocks`` directory in application templates.
     To specify application dependencies, use the ``.rockspec`` files.
 
-.. Manifest structure: required and optional components?
+There is a special file type ``*.tt.template``. The content of such files is
+adjusted for each application with the help of :ref:`template variables <template_variables>`.
+During the instantiation, the variables in these files are replaced with provided
+values and the ``*.tt.template`` extension is removed.
 
+.. _template-variables:
 
 Variables
 ~~~~~~~~~
 
 Templates can use variables. These variables are replaced with their
-provided values upon the template instantiation.
+values provided upon the template instantiation.
 
 All templates have the ``name`` variable. Its value is taken from the `--name`` flag.
-.. what are built-in variables? name, something else?
 
-To add more variables, define them in the ``vars`` section of the template manifest.
+To add other variables, define them in the ``vars`` section of the template manifest.
 A variable can have the following attributes:
 
-*   ``prompt``: a line of text inviting to enter the variable value in the interactive mode
-*   ``name``: the variable name
-*   ``default``: the default value
-*   ``re``: a regular expression that the value must match
-
-.. what are optional and required var attributes?
+*   ``prompt``: a line of text inviting to enter the variable value in the interactive mode. Required.
+*   ``name``: the variable name. Required.
+*   ``default``: the default value. Optional.
+*   ``re``: a regular expression that the value must match. Optional.
 
 Example:
 
@@ -125,28 +132,32 @@ Example:
         default: cookie
         re: ^\w+$
 
-Variables can be used in file names and their content. To use a variable, enclose its
-name with a period in the beginning in double curly braces: ``{{.var_name}}`` (as in
-the `Golang text templates <https://golang.org/pkg/text/template/>`__ syntax).
+Variables can be used in all file names and the content of ``*.tt template`` files.
 
-For example, variables usage in the template code can look like this:
+.. note::
 
-..  code:: lua
+    Variables don't work in directory names.
 
-    local app_name = {{.name}}
-    local login = {{.user_name}}
+To use a variable, enclose its name with a period in the beginning in double curly braces:
+``{{.var_name}}`` (as in the `Golang text templates <https://golang.org/pkg/text/template/>`__
+syntax).
 
-And a file name containing a variable may be ``{{.user_name}}.txt``.
+Examples:
 
-Variables receive their values during the template instantiation. There are three
-ways to pass the values:
+*   ``init.lua.tt.template`` file:
 
-*   Interactively: when you call ``tt create``, you will be asked to enter the values.
-    You can use the ``-s`` (or ``--non-interactive``) flag to disable the interactive
-    input.
-.. what happens with non-provided values in non-interactive mode?
+    ..  code:: lua
 
-*   In ``--var`` flag. Pass a string of the ``var=value`` format after the ``--var``
+        local app_name = {{.name}}
+        local login = {{.user_name}}
+
+*   A file name ``{{.user_name}}.txt``
+
+Variables receive their values during the template instantiation. By default, ``tt create``
+asks you to provide the values interactively. You can use the ``-s`` (or ``--non-interactive``)
+flag to disable the interactive input. In this case, the values are searched in the following order:
+
+*   In the ``--var`` flag. Pass a string of the ``var=value`` format after the ``--var``
     flag. You can pass multiple variables, each after a separate ``--var`` flag:
 
     ..  code-block:: bash
@@ -154,7 +165,7 @@ ways to pass the values:
         tt create template app --var user_name=admin
 
 *   In a file. Specify ``var=value`` pairs in a file (each on a new line) and
-    pass it after the ``--vars-file`` flag:
+    pass it as the value of the ``--vars-file`` flag:
 
     ..  code-block:: bash
 
@@ -168,9 +179,10 @@ ways to pass the values:
         password=p4$$w0rd
         version=2
 
-You can combine all three ways of passing variables in a single call of ``tt create``.
+If a variable doesn't get a value in any of these ways, the default value
+from the manifest will be used.
 
-.. what if a variable in assigned in more than one way?
+You can combine different ways of passing variables in a single call of ``tt create``.
 
 Application: location and content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -178,19 +190,7 @@ Application: location and content
 By default, the application will appear in the directory named after the provided
 application name (``--name`` value).
 
-..  What is the parent directory: working or current?
-
 To change the application location, use the ``-dst`` flag.
-
-The application directory contains the following files and directories:
-
-*   all directories from the template
-*   a Lua file from .tt.template .. all files?
-
-*   All other files from the template
-*   Dockerfile?
-
-
 
 Examples
 --------

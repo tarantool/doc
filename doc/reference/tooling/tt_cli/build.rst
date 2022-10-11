@@ -1,6 +1,6 @@
 .. _tt-build:
 
-Build an application
+Building an application
 ====================
 
 ..  code-block:: bash
