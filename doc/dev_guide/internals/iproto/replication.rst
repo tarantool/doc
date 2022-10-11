@@ -61,11 +61,9 @@ Heartbeats
 ~~~~~~~~~~
 
 Once in :ref:`replication_timeout <cfg_replication-replication_timeout>` seconds,
-a master sends a :ref:`heartbeat <heartbeat>` message to a replica.
-The heartbeat message's IPROTO_REQUEST_TYPE is ``0``.
-
-In the example below, the master sends a heartbeat message to a replica with id = 2,
-and the timestamp is a moment in 2020. The replica sends a response.
+a master sends a :ref:`heartbeat <heartbeat>` message to a replica,
+and the replica sends a response.
+Both messages' IPROTO_REQUEST_TYPE is IPROTO_OK.
 Note that the master's heartbeat has no body:
 
 ..  raw:: html
@@ -88,17 +86,19 @@ To join a replica set, an instance must send an initial IPROTO_JOIN request to a
 ..  raw:: html
     :file: images/repl_join_request.svg
 
-The node that receives the request sends its vclock in response:
+The node that receives the request does the following in response:
 
-..  raw:: html
-    :file: images/repl_join_response.svg
+#.  It sends its vclock:
 
-After that, the node sends its last SNAP file,
-by simply creating a number of INSERTs (with additional LSN and ServerID).
-The instance that sent the IPROTO_JOIN request should not reply to these INSERT requests.
+    ..  raw:: html
+        :file: images/repl_join_response.svg
 
-Then the node in the replica set sends the new vclock's MP_MAP in a response similar to the one above
-and closes the socket.
+#.  It sends its last SNAP file,
+    by simply creating a number of :ref:`INSERT <box_protocol-insert>`\s (with additional LSN and ServerID).
+    The instance that sent the IPROTO_JOIN request should not reply to these INSERT requests.
+
+#.  It sends the new vclock's MP_MAP in a response similar to the one above
+    and closes the socket.
 
 ..  _internals-iproto-replication-subscribe:
 
@@ -119,7 +119,7 @@ the instance must process every request that could come through other masters.
 Every request between masters will have an additional pair in the vclock map.
 
 IPROTO_ID_FILTER (0x51)
-is an optional key used in SUBSCRIBE request followed by an array
+is an optional key used in the SUBSCRIBE request followed by an array
 of ids of instances whose rows won't be relayed to the replica.
 The field is encoded only when the id list is not empty.
 
@@ -276,14 +276,24 @@ Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
 It is not supposed to be used by any client applications in their
 regular connections.
 
-This message confirms that the transactions originated from the instance
-with id = IPROTO_REPLICA_ID have achieved quorum and can be committed,
-up to and including LSN = IPROTO_LSN.
+This message confirms that the transactions that originated from the instance
+with id = IPROTO_REPLICA_ID (body) have achieved quorum and can be committed,
+up to and including LSN = IPROTO_LSN (body).
 
 The body is a 2-item map:
 
 ..  raw:: html
     :file: images/repl_raft_confirm.svg
+
+In the header:
+
+*   IPROTO_REPLICA_ID is the ID of the replica that sends the confirm message.
+*   IPROTO_LSN is the LSN of the confirmation action.
+
+In the body:
+
+*   IPROTO_REPLICA_ID is the ID of the instance from which the transactions originated.
+*   IPROTO_LSN is the LSN of the last synchronous transaction.
 
 Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_CONFIRM was called IPROTO_CONFIRM.
 
@@ -299,13 +309,23 @@ Tarantool nodes in :ref:`synchronous replication <repl_sync>`.
 It is not supposed to be used by any client applications in their
 regular connections.
 
-This message says that the transactions originated from the instance
-with id = IPROTO_REPLICA_ID couldn't achieve quorum for some reason
-and should be rolled back, down to LSN = IPROTO_LSN and including it.
+This message says that the transactions that originated from the instance
+with id = IPROTO_REPLICA_ID (body) couldn't achieve quorum for some reason
+and should be rolled back, down to LSN = IPROTO_LSN (body) and including it.
 
 The body is a 2-item map:
 
 ..  raw:: html
     :file: images/repl_raft_rollback.svg
 
-Prior to Tarantool version 2.10, IPROTO_RAFT_ROLLBACK was called IPROTO_ROLLBACK.
+In the header:
+
+*   IPROTO_REPLICA_ID is the ID of the replica that sends the rollback message.
+*   IPROTO_LSN is the LSN of the rollback action.
+
+In the body:
+
+*   IPROTO_REPLICA_ID is the ID of the instance from which the transactions originated.
+*   IPROTO_LSN is the LSN of the last transaction before the chain of rolled-back transactions.
+
+Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_ROLLBACK was called IPROTO_ROLLBACK.

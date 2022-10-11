@@ -11,6 +11,8 @@ json "**IPROTO_RAFT_CONFIRM**" as raft_confirm {
     "Size": "MP_UINT",
     "Header": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_RAFT_CONFIRM",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_INT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_LSN]]": "MP_INT", 
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
     },
     "Body": {

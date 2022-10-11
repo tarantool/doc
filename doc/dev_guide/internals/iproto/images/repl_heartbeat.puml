@@ -10,8 +10,8 @@ skinparam map {
 json "**Heartbeat message from master**" as heartbeat_request {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "0",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "2",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_UINT",
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TIMESTAMP]]": "MP_DOUBLE"
     }
 }
@@ -20,10 +20,10 @@ json "**Response from replica**" as heartbeat_response {
     "Size": "MP_UINT",
     "Header": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "2"
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_VCLOCK]]": "{1, 6}"      
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_VCLOCK]]": "MP_MAP"      
     }
 }
 
