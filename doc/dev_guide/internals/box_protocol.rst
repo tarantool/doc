@@ -25,11 +25,11 @@ The binary protocol provides complete access to Tarantool functionality, includi
 
     iproto/mp_types
     iproto/format
-    iproto/authentication
     iproto/keys
     iproto/requests
+    iproto/authentication
     iproto/streams
     iproto/events
-    iproto/replication
     iproto/sql
+    iproto/replication
     Examples <../../how-to/other/iproto>
