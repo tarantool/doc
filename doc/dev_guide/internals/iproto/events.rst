@@ -9,7 +9,7 @@ with :ref:`box.broadcast() <box-broadcast>`.
 Servers that support the new feature set the ``IPROTO_FEATURE_WATCHERS`` feature in reply to the ``IPROTO_ID`` command.
 When the connection is closed, all watchers registered for it are unregistered.
 
-The remote :ref:`watcher <box-watchers>` protocol works in the following way:
+The remote watcher (event subscription) protocol works in the following way:
 
 #.  The client sends an ``IPROTO_WATCH`` packet to subscribe to the updates of a specified key defined on the server.
 
@@ -28,84 +28,44 @@ Therefore, neither of them has a sync number.
 
 ..  _box_protocol-watch:
 
-IPROTO_WATCH = 0x4a
-~~~~~~~~~~~~~~~~~~~
+IPROTO_WATCH
+------------
 
-Registers a new watcher for the given notification key or confirms a notification if the watcher is
+Code: 0x4a.
+
+Register a new watcher for the given notification key or confirms a notification if the watcher is
 already subscribed.
 The watcher is notified after registration.
 After that, the notification is sent every time the key is updated.
 The server doesn't reply to the request unless it fails to parse the packet.
 
-The body is a 2-item map:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_WATCH
-    })
-    # <body>
-    msgpack({
-        IPROTO_EVENT_KEY: :samp:`{{MP_STR string}}}`
-    })
-
-``IPROTO_EVENT_KEY`` (code 0x56) contains the key name.
+..  raw:: html
+    :file: images/events_watch.svg
 
 ..  _box_protocol-unwatch:
 
-IPROTO_UNWATCH = 0x4b
-~~~~~~~~~~~~~~~~~~~~~
+IPROTO_UNWATCH
+--------------
 
-Unregisters a watcher subscribed to the given notification key.
+Code: 0x4b.
+
+Unregister a watcher subscribed to the given notification key.
 The server doesn't reply to the request unless it fails to parse the packet.
 
-The body is a 2-item map:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_UNWATCH
-    })
-    # <body>
-    msgpack({
-        IPROTO_EVENT_KEY: :samp:`{{MP_STR string}}}`
-    })
-
-``IPROTO_EVENT_KEY`` (code 0x56) contains a key name.
+..  raw:: html
+    :file: images/events_unwatch.svg
 
 ..  _box_protocol-event:
 
-IPROTO_EVENT = 0x4c
-~~~~~~~~~~~~~~~~~~~
+IPROTO_EVENT
+------------
+
+Code: 0x4c.
 
 Sent by the server to notify a client about an update of a key.
 
-The body is a 2-item map:
-
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_EVENT
-    })
-    # <body>
-    msgpack({
-        IPROTO_EVENT_KEY: :samp:`{{MP_STR string}}}`,
-        IPROTO_EVENT_DATA: :samp:`{{MP_OBJECT value}}}`
-    })
-
-``IPROTO_EVENT_KEY`` (code 0x56) contains the key name.
-
-``IPROTO_EVENT_DATA`` (code 0x57) contains data sent to a remote watcher.
+..  raw:: html
+    :file: images/event.svg
+    
+``IPROTO_EVENT_DATA`` contains data sent to a remote watcher.
 The parameter is optional, the default value is ``nil``.

@@ -57,78 +57,46 @@ Basic request description
 
 ..  _box_protocol-begin:
 
-IPROTO_BEGIN = 0x0e
--------------------
+IPROTO_BEGIN
+------------
+
+Code: 0x0e.
 
 Begin a transaction in the specified stream.
 See :ref:`stream:begin() <net_box-stream_begin>`.
 The body is optional and can contain two items:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_BEGIN,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_TIMEOUT: :samp:`{{MP_DOUBLE}}`,
-        IPROTO_TXN_ISOLATION: :samp:`{{MP_UINT unsigned integer}}`
-    })
+..  raw:: html
+    :file: images/stream_begin.svg
 
 IPROTO_TIMEOUT is an optional timeout (in seconds). After it expires,
 the transaction will be rolled back automatically.
 
-
-
 ..  _box_protocol-commit:
 
-IPROTO_COMMIT = 0x0f
---------------------
+IPROTO_COMMIT
+-------------
+
+Code: 0x0f.
 
 Commit the transaction in the specified stream.
 See :ref:`stream:commit() <net_box-stream_commit>`.
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(7)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_COMMIT,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
-    })
-
-See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about
-stream transactions in the binary protocol.
-
+..  raw:: html
+    :file: images/stream_commit.svg
 
 ..  _box_protocol-rollback:
 
-IPROTO_ROLLBACK = 0x10
-----------------------
+IPROTO_ROLLBACK
+---------------
+
+Codde: 0x10.
 
 Rollback the transaction in the specified stream.
 See :ref:`stream:rollback() <net_box-stream_rollback>`.
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(7)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_ROLLBACK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer}}`,
-        IPROTO_STREAM_ID: :samp:`{{MP_UINT unsigned integer}}`
-    })
+..  raw:: html
+    :file: images/stream_rollback.svg
 
 
 Example

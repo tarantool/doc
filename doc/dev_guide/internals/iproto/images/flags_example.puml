@@ -1,0 +1,20 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**Example of IPROTO_FLAGS usage**" as flags_example {
+    "Size": "MP_UINT",
+    "Header": {
+      "...": "...",
+      "...": "...",
+      "IPROTO_FLAGS": "MP_UINT"
+    },
+    "Body": "..."
+}
+
+@enduml

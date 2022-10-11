@@ -141,6 +141,10 @@ Streams
             -   0x0a |br| MP_UINT
             -   Unique :ref:`stream <txn_mode_stream-interactive-transactions>` identifier
 
+        *   -   IPROTO_TIMEOUT
+            -   0x56 |br| MP_DOUBLE
+            -   Timeout in seconds, after which the transactions are rolled back
+
         *   -   :ref:`IPROTO_TXN_ISOLATION <internals-iproto-keys-txn_isolation>`
             -   0x59 |br| MP_UINT
             -   Transaction isolation level
@@ -558,23 +562,10 @@ IPROTO_OK
 
 Code: 0x00.
 
-The request type is contained in the header and signifies success. Here is an example:
+This request/response type is contained in the header and signifies success. Here is an example:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        IPROTO_REQUEST_TYPE: IPROTO_OK,
-        IPROTO_SYNC: :samp:`{{MP_UINT unsigned integer, may be 64-bit}}`,
-        IPROTO_SCHEMA_VERSION: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        IPROTO_DATA: :samp:`{{any type}}`
-    })
+..  raw:: html
+    :file: images/ok_example.svg
 
 ..  _internals-iproto-keys-chunk:
 
@@ -677,20 +668,8 @@ The key contains an MP_UINT value of one or more bits:
 
 Example:
 
-..  cssclass:: highlight
-..  parsed-literal::
-
-    # <size>
-    msgpack(:samp:`{{MP_UINT unsigned integer = size(<header>) + size(<body>)}}`)
-    # <header>
-    msgpack({
-        # ... other header items ...,
-        IPROTO_FLAGS: :samp:`{{MP_UINT unsigned integer}}`
-    })
-    # <body>
-    msgpack({
-        # ... message for a transaction ...
-    })
+..  raw:: html
+    :file: images/flags_example.svg
 
 ..  _internals-iproto-keys-vclock:
 
