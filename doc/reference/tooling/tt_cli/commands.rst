@@ -27,7 +27,7 @@ help for the given command.
         *   -   :doc:`coredump <coredump>`
             -   Manipulate Tarantool core dumps
         *   -   :doc:`create <create>`
-            -   Manipulate Tarantool core dumps
+            -   Create an application from a template
         *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
         *   -   :doc:`logrotate <logrotate>`

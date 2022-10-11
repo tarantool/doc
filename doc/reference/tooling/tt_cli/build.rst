@@ -35,8 +35,8 @@ the one to use in the ``--spec`` argument.
 
 ``tt build`` builds an application with the ``tt rocks make`` command.
 
-The fully built application will appear in the ``.rocks`` directory.
-You can start it locally from your application directory.
+The application dependencies will be downloaded into the ``.rocks`` directory,
+making the application ready to run locally.
 
 Pre-build and post-build scripts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
