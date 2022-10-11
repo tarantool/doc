@@ -12,7 +12,7 @@ including the signal and possibly including a value, with slight modification:
 ..  container:: table
 
     ..  list-table::
-        :widths: 30 70
+        :widths: 40 60
         :header-rows: 0
 
         *   -   **MP_NIL**
