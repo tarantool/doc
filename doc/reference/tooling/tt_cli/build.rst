@@ -53,16 +53,15 @@ and located in the application directory.
     can also have names ``cartridge.pre-build`` and ``cartridge.post-build``.
 
 If your application depends on closed-source rocks, or if the build should contain
-rocks from a project added as a submodule, **install** all these
-dependencies **before** building using the pre-build script.
+rocks from a project added as a submodule, **install** these
+dependencies using the pre-build script **before** building.
 For example, add the following line:
 
 ..  code-block:: bash
 
     tt rocks make --chdir ./third_party/proj
 
-To learn more, read about
-:doc:`pre-build and post-build scripts </book/cartridge/cartridge_cli/pre-post-build>`.
+Learn more about :doc:`pre-build and post-build scripts </book/cartridge/cartridge_cli/pre-post-build>`.
 
 Examples
 --------

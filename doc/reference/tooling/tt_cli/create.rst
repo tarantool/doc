@@ -58,7 +58,7 @@ Application templates are directories with files.
 The main file of a template is its *manifest*. It defines how the applications
 are instantiated from this template.
 
-A template manifest is a YAML file that can contain the following sections:
+A template manifest is a YAML file named ``MANIFEST.yaml``. It can contain the following sections:
 
 *   ``description`` -- the template description.
 *   ``vars`` -- :ref:`template variables <template-variables>`.
