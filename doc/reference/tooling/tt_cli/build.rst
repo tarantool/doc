@@ -8,7 +8,7 @@ Building an application
     tt build [PATH] [flags]
 
 
-``tt build `` builds a Tarantool application locally.
+``tt build`` builds a Tarantool application locally.
 
 Flags
 -----
@@ -30,7 +30,7 @@ The ``PATH`` argument should contain the path to the application directory
 (that is, to the build source). The default path is ``.`` (current directory).
 
 The application directory must contain a ``.rockspec`` file to use for the build.
-If there are more than one ``.rockspec`` files in the application directory, specify
+If there is more than one ``.rockspec`` file in the application directory, specify
 the one to use in the ``--spec`` argument.
 
 ``tt build`` builds an application with the ``tt rocks make`` command.

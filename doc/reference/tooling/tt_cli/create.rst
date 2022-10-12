@@ -44,7 +44,7 @@ Details
 -------
 
 *Application templates* speed up the development of Tarantool applications by
-defining their initial structure and content. A template can include the application
+defining their initial structure and content. A template can include application
 code, configuration, build scripts, and other resources.
 
 ``tt`` searches templates in the directories specified in the ``templates`` section
@@ -60,10 +60,10 @@ are instantiated from this template.
 
 A template manifest is a YAML file that can contain the following sections:
 
-*   ``description`` -- the template description
-*   ``vars`` -- :ref:`template variables <template-variables>`
+*   ``description`` -- the template description.
+*   ``vars`` -- :ref:`template variables <template-variables>`.
 *   ``pre-hook`` and ``post-hook`` -- paths to executables to run before and after the template
-    instantiation
+    instantiation.
 *   ``include`` -- a list of files to keep in the application directory after
     instantiation. If this section is omitted, the application will contain all template files
     and directories.
@@ -88,8 +88,8 @@ Example:
     pre-hook: ./hooks/pre-gen.sh
     post-hook: ./hooks/post-gen.sh
     include:
-    - init.lua
-    - instances.yml
+      - init.lua
+      - instances.yml
 
 Files and directories of a template are copied to the application directory
 according to the ``include`` section of the manifest (or its absence).
@@ -111,7 +111,7 @@ Variables
 
 Templates variables are replaced with their values provided upon the instantiation.
 
-All templates have the ``name`` variable. Its value is taken from the `--name`` flag.
+All templates have the ``name`` variable. Its value is taken from the ``--name`` flag.
 
 To add other variables, define them in the ``vars`` section of the template manifest.
 A variable can have the following attributes:
