@@ -42,6 +42,14 @@ On terminal #3, start another server, which will act as a client, with:
     box.cfg{}
     net_box = require('net.box')
     conn = net_box.connect('localhost:3302')
+
+IPROTO_SELECT
+~~~~~~~~~~~~~
+
+On terminal #3, run the following:
+
+..  code-block:: lua
+
     conn.space.tspace:select(280)
 
 Now look at what tcpdump shows for the job connecting to 3302 -- the "request".
@@ -87,6 +95,9 @@ Now you know how Tarantool itself makes requests with the binary protocol.
 When in doubt about a detail, consult ``net_box.c`` -- it has routines for each
 request. Some :ref:`connectors <index-box_connectors>` have similar code.
 
+IPROTO_UPDATE
+~~~~~~~~~~~~~
+
 For an IPROTO_UPDATE example, suppose a user changes field #2 in tuple #2
 in space #256 to ``'BBBB'``. The body will look like this:
 (notice that in this case there is an extra map item
@@ -113,6 +124,9 @@ start with 1, which is optional and can be omitted):
     91                 MP_ARRAY, size 1, for array of key values
     02                   MP_UINT = primary-key value = 2
 
+IPROTO_EXECUTE
+~~~~~~~~~~~~~~
+
 Byte codes for the :ref:`IPROTO_EXECUTE <box_protocol-execute>` example:
 
 ..  code-block:: none
@@ -127,6 +141,9 @@ Byte codes for the :ref:`IPROTO_EXECUTE <box_protocol-execute>` example:
     a1 61                MP_STR = 'a' = value for second parameter
     2b                 IPROTO_OPTIONS Map Item#3
     90                 MP_ARRAY, size 0 (there are no options)
+
+IPROTO_INSERT
+~~~~~~~~~~~~~
 
 Byte codes for the response to the :codenormal:`box.space.`:codeitalic:`space-name`:codenormal:`:insert{6}`
 example:
@@ -147,6 +164,9 @@ example:
     91                              MP_ARRAY, size 1 (field count)
     06                              MP_INT = 6 = the value that was inserted
 
+IPROTO_EVAL
+~~~~~~~~~~~
+
 Byte codes for the response to the ``conn:eval([[box.schema.space.create('_space');]])``
 example:
 
@@ -163,6 +183,9 @@ example:
        81                              MP_MAP, size 1
          31                              IPROTO_ERROR_24
          db 00 00 00 1d 53 70 61 63 etc. MP_STR = "Space '_space' already exists"
+
+Creating a table with IPROTO_EXECUTE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Byte codes, if we use the same net.box connection that
 we used in the beginning
@@ -186,6 +209,9 @@ the new contents of some system tables (caused by requests from net.box which us
     92       MP_ARRAY, size 2
     01         first autoincrement number
     02         second autoincrement number
+
+SELECT with SQL
+~~~~~~~~~~~~~~~
 
 Byte codes for the SQL SELECT example,
 if we ask for full metadata by saying |br|
@@ -219,6 +245,9 @@ then tcpdump will show this response, after the header:
     92                           MP_ARRAY, size 2
     02                             MP_INT = 2 i.e. contents of row#2 column#1
     a1 62                          MP_STR = 'b' i.e. contents of row#2 column#2
+
+IPROTO_PREPARE
+~~~~~~~~~~~~~~
 
 Byte code for the SQL PREPARE example. If we said |br|
 :code:`conn:prepare([[SELECT dd, дд AS д FROM t1;]])` |br|
@@ -259,6 +288,9 @@ Full output:
     02 a7 75 6e 69 63 6f 64 65     IPROTO_FIELD_COLL and 'unicode'
     03 c3                          IPROTO_FIELD_IS_NULLABLE and true
     05 a4 d0 b4 d0 b4              IPROTO_FIELD_SPAN and 'дд' lower case
+
+Heartbeat
+~~~~~~~~~
 
 Byte code for the :ref:`heartbeat <box_protocol-heartbeat>` example. The master might send this body:
 

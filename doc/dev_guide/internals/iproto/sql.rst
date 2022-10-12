@@ -26,7 +26,7 @@ Basic request description
 
         *   -   :ref:`IPROTO_PREPARE <box_protocol-prepare>`
             -   0x0d
-            -   Prepare an SQL statement (:ref:`box.prepare <box-sql_box_prepare>`)
+            -   Prepare an SQL statement (:ref:`box.prepare() <box-sql_box_prepare>`)
 
 
 ..  _box_protocol-execute:

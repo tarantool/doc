@@ -68,4 +68,4 @@ Sent by the server to notify a client about an update of a key.
     :file: images/event.svg
     
 ``IPROTO_EVENT_DATA`` contains data sent to a remote watcher.
-The parameter is optional, the default value is ``nil``.
+The parameter is optional, the default value is ``MP_NIL``.

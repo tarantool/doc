@@ -3,11 +3,14 @@
 MP_* MessagePack types
 ======================
 
-The binary protocol handles data in the MessagePack format, which makes use of MessagePack data types.
+The binary protocol handles data in the  `MessagePack <http://MessagePack.org>`_ format.
+Short descriptions of the basic MessagePack data types 
+are on MessagePack's `"spec" page <https://github.com/msgpack/msgpack/blob/master/spec.md>`_.
+Tarantool also introduces several MessagePack type :ref:`extensions <internals-msgpack_ext>`.
 
-This document makes use of words that start with **MP_**. They mean
-a `MessagePack <http://MessagePack.org>`_ type or a range of MessagePack types,
-including the signal and possibly including a value, with slight modification:
+In this document, MessagePack types are described by words that start with **MP_**.
+See this table:
+
 
 ..  container:: table
 
@@ -39,5 +42,3 @@ including the signal and possibly including a value, with slight modification:
             -   :ref:`extension <internals-msgpack_ext>`
         *   -   **MP_OBJECT**
             -   any MessagePack object
-
-Short descriptions are in MessagePack's `"spec" page <https://github.com/msgpack/msgpack/blob/master/spec.md>`_.

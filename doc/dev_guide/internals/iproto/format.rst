@@ -4,7 +4,7 @@ Request and response format
 ===========================
 
 The types referred to in this document are `MessagePack <http://MessagePack.org>`_ types.
-For type definitions, see the :ref:`Symbols and terms <box_protocol-notation>` section.
+For their definitions, see the :ref:`MP_* MessagePack types <box_protocol-notation>` section.
 
 ..  _internals-unified_packet_structure:
 
@@ -22,7 +22,7 @@ Size
 ----
 
 The size is an MP_UINT -- unsigned integer, usually 32-bit.
-It it the size of the header plus the size of the body.
+It the size of the header plus the size of the body.
 It may be useful to compare it with the number of bytes remaining in the packet.
 
 ..  _box_protocol-header:
@@ -65,7 +65,7 @@ the IPROTO_REQUEST_TYPE value will be 0 = ``IPROTO_OK`` and the
 array will have all the tuples of the result.
 
 Read the source code file `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`__
-where the function "decode_metadata_optional" is an example of how Tarantool
+where the function ``decode_metadata_optional`` is an example of how Tarantool
 itself decodes extra items.
 
 Body

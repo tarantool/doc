@@ -40,7 +40,7 @@ General
 
         *   -   :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`
             -   0x05 |br|  MP_UINT
-            -   Identifier that is increased with every major change
+            -   Version of the database schema
 
         *   -   IPROTO_TIMESTAMP
             -   0x04 |br| MP_DOUBLE 
@@ -109,7 +109,7 @@ General
 
         *   -   IPROTO_EXPR
             -   0x27 |br| MP_STR
-            -   Command argument. Passed within :ref:`IPROTO_EVAL <box_protocol-eval>`
+            -   Command argument. Used in :ref:`IPROTO_EVAL <box_protocol-eval>`
 
 
 Streams
@@ -455,7 +455,8 @@ IPROTO_SCHEMA_VERSION
 
 Code: 0x05.
 
-An unsigned number that goes up when there is a major change in the schema.
+Version of the database schema --
+an unsigned number that goes up when there is a major change in the schema.
 
 In a *request* header, IPROTO_SCHEMA_VERSION is optional, so the version will not
 be checked if it is absent.
