@@ -34,8 +34,7 @@ If there is more than one ``.rockspec`` file in the application directory, speci
 the one to use in the ``--spec`` argument.
 
 ``tt build`` builds an application with the ``tt rocks make`` command.
-
-The application dependencies will be downloaded into the ``.rocks`` directory,
+It downloads the application dependencies into the ``.rocks`` directory,
 making the application ready to run locally.
 
 Pre-build and post-build scripts
@@ -49,8 +48,9 @@ and located in the application directory.
 
 .. note::
 
-    For compatibility with Cartridge applications, the pre-build and post-build scripts
-    can also have names ``cartridge.pre-build`` and ``cartridge.post-build``.
+    For compatibility with Cartridge applications,
+    the pre-build and post-build scripts can also have names ``cartridge.pre-build``
+    and ``cartridge.post-build``.
 
 If your application depends on closed-source rocks, or if the build should contain
 rocks from a project added as a submodule, **install** these
