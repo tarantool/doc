@@ -4,7 +4,7 @@
 Keys used in requests and responses
 ===================================
 
-This section describes ``iproto`` keys contained in iproto requests and responses.
+This section describes ``iproto`` keys contained in requests and responses.
 The keys are Tarantool constants that are either defined or mentioned in the
 `iproto_constants.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_constants.h>`_.
 
@@ -706,7 +706,7 @@ IPROTO_METADATA
 
 Code: 0x32.
 
-Used with SQL within IPROTO_EXECUTE.
+Used with SQL within :ref:`IPROTO_EXECUTE <box_protocol-execute>`.
 
 The key contains an array of column maps, with each column map containing
 at least IPROTO_FIELD_NAME (0x00) and MP_STR, and IPROTO_FIELD_TYPE (0x01) and MP_STR.
@@ -723,7 +723,10 @@ IPROTO_SQL_BIND
 
 Code: 0x41.
 
-IPROTO_SQL_BIND is an array that can contain values of any type, including MP_MAP.
+Used with SQL within :ref:`IPROTO_EXECUTE <box_protocol-execute>`.
+
+IPROTO_SQL_BIND is an array of parameter values to match ? placeholders or :name placeholders.
+It can contain values of any type, including MP_MAP.
 
 *   Values that are not MP_MAP replace the ``?`` placeholders in the request.
 

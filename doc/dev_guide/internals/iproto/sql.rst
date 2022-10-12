@@ -91,6 +91,8 @@ In the iproto request, there would be no IPROTO_DATA and there would be two addi
 *   ``34 00 = IPROTO_BIND_COUNT and MP_UINT = 0`` (there are no parameters to bind).
 *   ``33 90 = IPROTO_BIND_METADATA and MP_ARRAY, size 0`` (there are no parameters to bind).
 
+Here is what the request body looks like:
+
 ..  raw:: html
     :file: images/execute_example_2.svg
 

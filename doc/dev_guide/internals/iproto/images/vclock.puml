@@ -7,10 +7,10 @@ skinparam map {
     BackgroundColor transparent
 }
 
-map vclock {
-    "replica_id1" => "LSN1",
-    "replica_id2" => "LSN2",
-    "..." => "..."
+map "**vclock**" as vclock {
+    replica_id1 => LSN1
+    replica_id2 => LSN2
+    ... => ...
 }
 
 @enduml
