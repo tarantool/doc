@@ -12,6 +12,8 @@ help for the given command.
         :widths: 30 70
         :header-rows: 0
 
+        *   -   :doc:`build <build>`
+            -   Build an application locally
         *   -   :doc:`cat <cat>`
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   :doc:`check <check>`
@@ -24,6 +26,8 @@ help for the given command.
             -   Connect to a Tarantool instance
         *   -   :doc:`coredump <coredump>`
             -   Manipulate Tarantool core dumps
+        *   -   :doc:`create <create>`
+            -   Create an application from a template
         *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
         *   -   :doc:`logrotate <logrotate>`
@@ -46,12 +50,14 @@ help for the given command.
 ..  toctree::
     :hidden:
 
+    build <build>
     cat <cat>
     check <check>
     clean <clean>
     completion <completion>
     connect <connect>
     coredump <coredump>
+    create <create>
     help <help>
     logrotate <logrotate>
     play <play>
