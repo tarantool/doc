@@ -26,6 +26,18 @@ Overview
             -   Code
             -   Description
 
+        *   -   :ref:`IPROTO_OK <internals-iproto-ok>`
+            -   0x00 |br| MP_UINT
+            -   Successful response
+        
+        *   -   :ref:`IPROTO_CHUNK <internals-iproto-chunk>`
+            -   0x80 |br| MP_UINT
+            -   Out-of-band response
+        
+        *   -   :ref:`IPROTO_TYPE_ERROR <internals-iproto-type_error>`
+            -   0x8XXX |br| MP_INT
+            -   Error response
+
         *   -   :ref:`IPROTO_SELECT <box_protocol-select>`
             -   0x01
             -   :ref:`Select <box_space-select>` request
@@ -74,6 +86,45 @@ Overview
             -   0x49
             -   Share iproto version and supported features
 
+
+
+..  _internals-iproto-ok:
+
+IPROTO_OK
+---------
+
+Code: 0x00.
+
+This request/response type is contained in the header and signifies success. Here is an example:
+
+..  raw:: html
+    :file: images/ok_example.svg
+
+..  _internals-iproto-chunk:
+
+IPROTO_CHUNK
+------------
+
+Code: 0x80.
+
+If the response is out-of-band, due to use of :ref:`box.session.push() <box_session-push>`,
+then IPROTO_REQUEST_TYPE is IPROTO_CHUNK instead of IPROTO_OK.
+
+..  _internals-iproto-type_error:
+
+IPROTO_TYPE_ERROR
+-----------------
+
+Code: 0x8XXX (see below).
+
+Instead of :ref:`IPROTO_OK <internals-iproto-keys-ok>`, an error response header
+has ``0x8XXX`` for IPROTO_REQUEST_TYPE. ``XXX`` is the error code -- a value in
+`src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_.
+``src/box/errcode.h`` also has some convenience macros which define hexadecimal
+constants for return codes.
+
+To learn more about error responses,
+check the section :ref:`Request and response format <box_protocol-responses_error>`.
 
 ..  _box_protocol-select:
 

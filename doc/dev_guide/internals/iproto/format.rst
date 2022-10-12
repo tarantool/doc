@@ -103,8 +103,8 @@ The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful.
 Error responses
 ---------------
 
-Instead of :ref:`IPROTO_OK <internals-iproto-keys-ok>`, an error response header
-has IPROTO_REQUEST_TYPE = :ref:`IPROTO_TYPE_ERROR <internals-iproto-keys-type_error>`.
+Instead of :ref:`IPROTO_OK <internals-iproto-ok>`, an error response header
+has IPROTO_REQUEST_TYPE = :ref:`IPROTO_TYPE_ERROR <internals-iproto-type_error>`.
 Its code is ``0x8XXX``, where ``XXX`` is the error code -- a value in
 `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_.
 ``src/box/errcode.h`` also has some convenience macros which define hexadecimal

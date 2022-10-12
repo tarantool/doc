@@ -14,9 +14,11 @@ json "**IPROTO_SUBSCRIBE**" as subscribe_request {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INSTANCE_UUID]]": "MP_UUID",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_CLUSTER_UUID]]": "MP_UUID",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INSTANCE_UUID]]": "MP_STR",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_CLUSTER_UUID]]": "MP_STR",
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_VCLOCK]]": "MP_MAP",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SERVER_VERSION]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ANON]]": "MP_BOOL",
       "(Optional) [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_ID_FILTER]]": "MP_ARRAY"
     }
 }

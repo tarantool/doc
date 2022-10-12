@@ -30,7 +30,7 @@ General
 
         *   -   :ref:`IPROTO_SUBSCRIBE <internals-iproto-replication-subscribe>`
             -   0x42
-            -   Request to subscribe to a replica set
+            -   Request to subscribe to a specific node in a replica set
 
         *   -   :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`
             -   0x44
@@ -93,9 +93,9 @@ The node that receives the request does the following in response:
     ..  raw:: html
         :file: images/repl_join_response.svg
 
-#.  It sends its last SNAP file,
-    by simply creating a number of :ref:`INSERT <box_protocol-insert>`\s (with additional LSN and ServerID).
-    The instance that sent the IPROTO_JOIN request should not reply to these INSERT requests.
+#.  It sends a number of :ref:`INSERT <box_protocol-insert>` requests (with additional LSN and ServerID).
+    In this way, the data is updated on the instance that sent the IPROTO_JOIN request.
+    The instance should not reply to these INSERT requests.
 
 #.  It sends the new vclock's MP_MAP in a response similar to the one above
     and closes the socket.
@@ -114,9 +114,10 @@ to all the nodes listed in its :ref:`box.cfg.replication <cfg_replication-replic
 ..  raw:: html
     :file: images/repl_subscribe_request.svg
 
-After an IPROTO_SUBSCRIBE request,
-the instance must process every request that could come through other masters.
-Every request between masters will have an additional pair in the vclock map.
+After a successful IPROTO_SUBSCRIBE request,
+the instance must process every request that could come from other masters.
+Each master's request includes a vclock pair corresponding to that master --
+its instance ID and its LSN, independent from other masters.
 
 IPROTO_ID_FILTER (0x51)
 is an optional key used in the SUBSCRIBE request followed by an array
@@ -187,7 +188,7 @@ Synchronous
 
         *   -   :ref:`IPROTO_RAFT_ROLLBACK <box_protocol-raft_confirm>`
             -   0x29
-            -   Revoke the RAFT transactions because they haven't achieved quorum 
+            -   Roll back the RAFT transactions because they haven't achieved quorum 
 
 
 
@@ -293,7 +294,7 @@ In the header:
 In the body:
 
 *   IPROTO_REPLICA_ID is the ID of the instance from which the transactions originated.
-*   IPROTO_LSN is the LSN of the last synchronous transaction.
+*   IPROTO_LSN is the LSN up to which the transactions should be confirmed.
 
 Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_CONFIRM was called IPROTO_CONFIRM.
 
@@ -326,6 +327,6 @@ In the header:
 In the body:
 
 *   IPROTO_REPLICA_ID is the ID of the instance from which the transactions originated.
-*   IPROTO_LSN is the LSN of the last transaction before the chain of rolled-back transactions.
+*   IPROTO_LSN is the LSN starting with which all pending synchronous transactions should be rolled back.
 
 Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_ROLLBACK was called IPROTO_ROLLBACK.

@@ -49,18 +49,6 @@ General
         *   -   :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>`
             -   0x00 |br| MP_UINT
             -   Request type or response type
-            
-        *   -   :ref:`IPROTO_OK <internals-iproto-keys-ok>`
-            -   0x00 |br| MP_UINT
-            -   Successful response indicator
-        
-        *   -   :ref:`IPROTO_CHUNK <internals-iproto-keys-chunk>`
-            -   0x80 |br| MP_UINT
-            -   Out-of-band response indicator
-        
-        *   -   :ref:`IPROTO_TYPE_ERROR <internals-iproto-keys-type_error>`
-            -   0x8XXX |br| MP_INT
-            -   Error response indicator
 
         *   -   :ref:`IPROTO_ERROR <internals-iproto-keys-error>`
             -   0x52 |br| :ref:`MP_ERROR <msgpack_ext-error>`
@@ -170,7 +158,7 @@ General replication
             -   Replica ID
 
         *   -   IPROTO_INSTANCE_UUID
-            -   0x24 |br| :ref:`MP_UUID <msgpack_ext-uuid>`
+            -   0x24 |br| MP_STR
             -   Instance UUID
 
         *   -   :ref:`IPROTO_VCLOCK <internals-iproto-keys-vclock>`
@@ -178,12 +166,16 @@ General replication
             -   The instance's vclock
 
         *   -   IPROTO_CLUSTER_UUID
-            -   0x25 |br| :ref:`MP_UUID <msgpack_ext-uuid>`
+            -   0x25 |br| MP_STR
             -   Cluster UUID
 
         *   -   IPROTO_LSN
             -   0x03 |br| MP_UINT
             -   Log sequence number of the transaction
+
+        *   -   IPROTO_TSN
+            -   0x08 |br| MP_UINT
+            -   Transaction sequence number
 
         *   -   IPROTO_BALLOT_IS_RO_CFG
             -   0x01 |br| MP_BOOL
@@ -220,6 +212,21 @@ General replication
             -   0x07 |br| MP_BOOL
             -   True if :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is ``candidate`` or ``manual``.
                 Since v. :doc:`2.7.3 </release/2.7.3>` and :doc:`2.8.2 </release/2.8.2>`
+        
+        *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
+            -   0x09 |br| MP_UINT
+            -   Auxiliary data to indicate the last transaction message state.
+                Included in the header of any DML request that is recorded in the WAL.
+
+        *   -   IPROTO_SERVER_VERSION
+            -   0x06 |br| MP_UINT
+            -   Tarantool version of the subscribing node,
+                in a compact representation
+
+        *   -   IPROTO_REPLICA_ANON
+            -   0x50 |br| MP_BOOL
+            -   Optional key used in :ref:`SUBSCRIBE request <internals-iproto-replication-subscribe>`.
+                True if the subscribing replica is anonymous
 
         *   -   IPROTO_ID_FILTER
             -   0x51 |br| MP_ARRAY
@@ -227,6 +234,7 @@ General replication
                 followed by an array of ids of instances whose rows won't be relayed to the replica.
                 Since v. :doc:`2.10.0 </release/2.10.0>`
 
+All IPROTO_BALLOT_* keys are only used in :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
 There have been some name changes starting with versions 2.7.3, 2.8.2, and 2.10.0:
 
 *   IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO.
@@ -245,10 +253,6 @@ Synchronous replication
         *   -   Name
             -   Code and |br| value type
             -   Description
-
-        *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
-            -   0x09 |br| MP_UINT
-            -   Auxiliary data to indicate the last transaction message state
 
         *   -   IPROTO_TERM
             -   0x53 |br| MP_UINT
@@ -280,6 +284,8 @@ Synchronous replication
             -   0x05 |br| MP_BOOL
             -   True if the node has a direct connection to the leader node. 
                 Since version :doc:`2.10.0 </release/2.10.0>`
+
+All ``IPROTO_RAFT_*`` keys are used only in ``IPROTO_RAFT*`` requests.
 
 Events and subscriptions
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -541,57 +547,12 @@ IPROTO_REQUEST_TYPE
 
 Code: 0x00.
 
-The key is used both in requests and responses. It indicates the request or response type.
-It can have the following values:
-
-*   :ref:`IPROTO_OK <internals-iproto-keys-ok>`.
-*   :ref:`IPROTO_CHUNK <internals-iproto-keys-chunk>`.
-*   :ref:`IPROTO_TYPE_ERROR <internals-iproto-keys-type_error>`, where the value depends on the error code.
-*   Any request or response name (example: IPROTO_AUTH).
-    See requests and responses for :ref:`client-server communication <internals-requests_responses>`,
-    :ref:`replication <internals-iproto-replication>`,
-    :ref:`events and subscriptions <box-protocol-watchers>`,
-    :ref:`streams and interactive transactions <internals-iproto-streams>`.
-
-The first three types are described below.
-
-..  _internals-iproto-keys-ok:
-
-IPROTO_OK
-~~~~~~~~~
-
-Code: 0x00.
-
-This request/response type is contained in the header and signifies success. Here is an example:
-
-..  raw:: html
-    :file: images/ok_example.svg
-
-..  _internals-iproto-keys-chunk:
-
-IPROTO_CHUNK
-~~~~~~~~~~~~
-
-Code: 0x80.
-
-If the response is out-of-band, due to use of :ref:`box.session.push() <box_session-push>`,
-then IPROTO_REQUEST_TYPE is IPROTO_CHUNK instead of IPROTO_OK.
-
-..  _internals-iproto-keys-type_error:
-
-IPROTO_TYPE_ERROR
-~~~~~~~~~~~~~~~~~
-
-Code: 0x8XXX (see below).
-
-Instead of :ref:`IPROTO_OK <internals-iproto-keys-ok>`, an error response header
-has ``0x8XXX`` for IPROTO_REQUEST_TYPE. ``XXX`` is the error code -- a value in
-`src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_.
-``src/box/errcode.h`` also has some convenience macros which define hexadecimal
-constants for return codes.
-
-To learn more about error responses,
-check the section :ref:`Request and response format <box_protocol-responses_error>`.
+The key is used both in requests and responses. It indicates the request or response type
+and has any request or response name for the value (example: IPROTO_AUTH).
+See requests and responses for :ref:`client-server communication <internals-requests_responses>`,
+:ref:`replication <internals-iproto-replication>`,
+:ref:`events and subscriptions <box-protocol-watchers>`,
+:ref:`streams and interactive transactions <internals-iproto-streams>`.
 
 ..  _internals-iproto-keys-error:
 
