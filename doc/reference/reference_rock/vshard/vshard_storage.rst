@@ -9,7 +9,7 @@ Storage API
     ..  rst-class:: left-align-column-2
 
     +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-    | :ref:`Storage public API                    | * :ref:`vshard.storage.cfg(cfg, name) <storage_api-cfg>`                                                  |
+    | :ref:`Storage public API                    | * :ref:`vshard.storage.cfg(cfg, instance_uuid) <storage_api-cfg>`                                         |
     | <vshard-storage_public_api>`                | * :ref:`vshard.storage.info() <storage_api-info>`                                                         |
     |                                             | * :ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) <storage_api-call>`          |
     |                                             | * :ref:`vshard.storage.sync(timeout) <storage_api-sync>`                                                  |
@@ -48,7 +48,7 @@ Storage public API
 
 ..  _storage_api-cfg:
 
-..  function:: vshard.storage.cfg(cfg, name)
+..  function:: vshard.storage.cfg(cfg, instance_uuid)
 
     Configure the database and start sharding for the specified ``storage``
     instance.
