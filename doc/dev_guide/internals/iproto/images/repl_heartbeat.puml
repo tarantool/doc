@@ -20,7 +20,8 @@ json "**Response from replica**" as heartbeat_response {
     "Size": "MP_UINT",
     "Header": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_UINT",
+      "(Optional) [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TIMESTAMP]]": "MP_DOUBLE"
     },
     "Body": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_VCLOCK]]": "MP_MAP"      

@@ -11,7 +11,7 @@ json "**IPROTO_AUTH**" as auth_request {
     "Size": "MP_UINT",
     "Header": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_AUTH",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT (usually 1)"
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
     },
     "Body": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_USER_NAME]]": "MP_STR",

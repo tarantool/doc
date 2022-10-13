@@ -14,7 +14,7 @@ json "**IPROTO_JOIN**" as join_request {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INSTANCE_UUID]]": "MP_UUID of this instance"
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INSTANCE_UUID]]": "MP_STR – UUID of this instance"
     }
 }
 
