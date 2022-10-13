@@ -3497,6 +3497,13 @@ Examples:
 * ``NULLIF('a', 'A')`` is 'a'.
 * ``NULLIF(1.00, 1)`` is NULL.
 
+..  note::
+
+    Before :doc:`/release/2.10.4`, the type of the result was always ``SCALAR``.
+    Since :doc:`/release/2.10.4`, the result of ``NULLIF`` matches the type of the first argument.
+    If the first argument is the ``NULL`` literal, then the result has the ``SCALAR`` type.
+
+
 .. _sql_function_position:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
