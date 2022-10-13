@@ -973,3 +973,121 @@ And here starts the example:
     ...
     -- Close the connection
     tarantool> conn:close()
+
+First, get the ``net.box`` object:
+
+..  code-block:: tarantoolsession
+
+    tarantool> net_box = require('net.box')
+    ---
+    ...
+
+In ``net.box``, self connection is pre-established.
+That is, ``conn = net_box.connect('localhost:3301')`` can be replaced with the following command:
+
+..  code-block:: tarantoolsession
+
+    tarantool> conn = net_box.self
+    ---
+    ...
+
+Then, make a ping:
+
+..  code-block:: tarantoolsession
+
+    tarantool> conn:ping()
+    ---
+    - true
+    ...
+
+Now, let's get to work with the data in the ``tester``space.
+The ``select`` command below returns all tuples where the key value is 600:
+//добавить еще кортеж с ключом 800
+..  code-block:: tarantoolsession
+
+    tarantool> conn.space.tester:select{800}
+    ---
+    - - [800, 'TEST']
+    ...
+
+Now, let's insert two tuples in the space:
+
+..  code-block:: tarantoolsession
+
+    tarantool> conn.space.tester:insert({700, 'TEST700'})
+    ---
+    - [700, 'TEST700']
+    ...
+    tarantool> conn.space.tester:insert({600, 'TEST600'})
+    ---
+    - [600, 'TEST600']
+    ...
+
+After the insert, we have one tuple where the key value is ``600``.
+To select this tuple, you can use the ``get()`` method.
+Unlike the ``select()`` command, ``get()`` returns only one tuple that satisfies the stated condition.
+
+..  code-block:: tarantoolsession
+
+    tarantool> conn.space.tester:get({600})
+    ---
+    - [600, 'TEST600']
+    ...
+
+To update the existing tuple, you can use either ``update()`` or ``upsert``.
+Use the first one to ...
+
+..  code-block:: tarantoolsession
+
+    -- Update the existing tuple
+    tarantool> conn.space.tester:update(800, {{'=', 2, 'TEST800'}})
+    ---
+    - [800, 'TEST800']
+    ...
+
+Use ``upsert`` to...
+
+..  code-block:: tarantoolsession
+
+    -- Update the existing tuple
+    tarantool> conn.space.tester:upsert({500, 'TEST500'}, {{'=', 2, 'TEST'}})
+    ---
+    ...
+
+To delete a tuple, run the method below:
+
+..  code-block:: tarantoolsession
+
+    -- Delete tuples where the key value is 600
+    tarantool> conn.space.tester:delete{600}
+    ---
+    - [600, 'TEST600']
+    ...
+
+Now, let's replace the existing tuple with a new one
+
+..  code-block:: tarantoolsession
+
+    tarantool> conn.space.tester:replace{500, 'New data', 'Extra data'}
+    ---
+    - [500, 'New data', 'Extra data']
+    ...
+
+Finally, let's select all tuples stored in the space:
+
+..  code-block:: tarantoolsession
+
+    tarantool> conn.space.tester:select{}
+    ---
+    - - [800, 'TEST800']
+      - [500, 'New data', 'Extra data']
+      - [700, 'TEST700']
+    ...
+
+In the end, close the connection when it is no longer needed:
+
+..  code-block:: tarantoolsession
+
+    tarantool> conn:close()
+    ---
+    ...
