@@ -1070,7 +1070,7 @@ msgstr "экземпляр Tarantool запущен на ``localhost 127.0.0.1:3
 
 msgid ""
 "there is a space named ``tester`` with a numeric primary key and with a "
-"tuple that contains a key value = 800,"
+"tuple that contains a key value = ``800``,"
 msgstr ""
 "создан спейс под названием ``tester`` с первичным числовым ключом и "
 "кортежем, в котором есть ключ со значением = 800,"
