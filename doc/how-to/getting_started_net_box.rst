@@ -3,7 +3,7 @@
 Getting started with net.box
 ============================
 
-The tutorial shows the use of some of the ``net.box`` methods.
+The tutorial shows how to work with some common ``net.box`` methods.
 
 For more information about the ``net.box`` module,
 check the :ref:`corresponding module reference <net_box-module>`.
@@ -15,7 +15,7 @@ The sandbox configuration for the tutorial assumes that:
 
 *   The Tarantool instance is running on ``localhost 127.0.0.1:3301``.
 *   There is a space named ``tester`` with a numeric primary key.
-*   The space contains a tuple with a key value = ``800``.
+*   The space contains a tuple with the key value = ``800``.
 *   The current user has read, write, and execute privileges.
 
 Use the commands below for a quick sandbox setup:
@@ -31,27 +31,23 @@ Use the commands below for a quick sandbox setup:
 Creating a net.box connection
 -----------------------------
 
-To start working with ``net.box``, get the ``net.box`` object:
+First, load the ``net.box`` module with:
 
 ..  code-block:: tarantoolsession
 
     tarantool> net_box = require('net.box')
-    ---
-    ...
 
-During the sandbox setup, ``box.cfg{...listen="3301"`` was called.
+During the sandbox setup, ``box.cfg{...listen="3301"}`` was called.
 It means that the local server listen address is ``3301``.
 If the connection fails, check the actual listen address.
 
 The next step is to create a new connection.
-In ``net.box``, self connection is pre-established.
+In ``net.box``, self-connection is pre-established.
 That is, ``conn = net_box.connect('localhost:3301')`` can be replaced with the following command:
 
 ..  code-block:: tarantoolsession
 
     tarantool> conn = net_box.self
-    ---
-    ...
 
 Then, make a ping:
 
@@ -62,10 +58,10 @@ Then, make a ping:
     - true
     ...
 
-Manipulating data
------------------
+Using data operations
+---------------------
 
-The ``select`` command below returns all tuples in the ``tester`` space where the key value is 800:
+The ``select()`` command below returns all tuples in the ``tester`` space where the key value is ``800``:
 
 ..  code-block:: tarantoolsession
 
@@ -74,7 +70,7 @@ The ``select`` command below returns all tuples in the ``tester`` space where th
     - - [800, 'TEST']
     ...
 
-Now, let's insert two tuples in the space:
+Insert two tuples into the space:
 
 ..  code-block:: tarantoolsession
 
@@ -98,25 +94,27 @@ Unlike the ``select()`` command, ``get()`` returns only one tuple that satisfies
     - [600, 'TEST600']
     ...
 
-To update the existing tuple, you can use either ``update()`` or ``upsert``.
-Use the first one to ...
+To update the existing tuple, you can use either ``update()`` or ``upsert()``.
+The ``update()`` method can be used for assignment, arithmetic (if the field is numeric),
+cutting and pasting fragments of a field, and deleting or inserting a field.
+
+The command below is used to update the tuple identified by primary key value = ``800``.
+The operation assigns a new value to the second field in the tuple:
 
 ..  code-block:: tarantoolsession
 
-    -- Update the existing tuple
     tarantool> conn.space.tester:update(800, {{'=', 2, 'TEST800'}})
     ---
     - [800, 'TEST800']
     ...
 
-Use ``upsert`` to...
+As for the ``upsert`` function, if there is an existing tuple which matches the key field of tuple, then the command
+has the same effect as ``update()``.
+Otherwise, the effect is equal to the ``insert()`` method.
 
 ..  code-block:: tarantoolsession
 
-    -- Update the existing tuple
     tarantool> conn.space.tester:upsert({500, 'TEST500'}, {{'=', 2, 'TEST'}})
-    ---
-    ...
 
 To delete a tuple, run the method below:
 
@@ -128,7 +126,7 @@ To delete a tuple, run the method below:
     - [600, 'TEST600']
     ...
 
-Now, let's replace the existing tuple with a new one
+Then, replace the existing tuple with a new one
 
 ..  code-block:: tarantoolsession
 
@@ -137,7 +135,7 @@ Now, let's replace the existing tuple with a new one
     - [500, 'New data', 'Extra data']
     ...
 
-Finally, let's select all tuples stored in the space:
+Finally, select all tuples from the space:
 
 ..  code-block:: tarantoolsession
 

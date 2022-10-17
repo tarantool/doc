@@ -13,6 +13,7 @@ variant, to be discussed later, is for connecting to MySQL or MariaDB or Postgre
 (see :ref:`SQL DBMS modules <dbms_modules>` reference). The other variant, which
 is discussed in this section, is for connecting to Tarantool server instances via a 
 network.
+For a quick start with ``net.box``, refer to the :ref:`tutorial <getting_started_net_box>`.
 
 You can call the following methods:
 
