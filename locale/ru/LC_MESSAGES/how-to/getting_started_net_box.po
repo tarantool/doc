@@ -8,7 +8,8 @@ msgstr "Ниже приводится пример использования б
 msgid ""
 "For more information about the ``net.box`` module, "
 "check the :ref:`corresponding module reference <net_box-module>`."
-msgstr "Подробную информацию о модуле ``net.box`` вы найдете "
+msgstr ""
+"Подробную информацию о модуле ``net.box`` вы найдете "
 "в соответствующем :ref:`разделе справочника по модулям <net_box-module>`."
 
 msgid "Sandbox configuration"
@@ -25,7 +26,7 @@ msgid "There is a space named ``tester`` with a numeric primary key."
 msgstr "создан спейс под названием ``tester`` с первичным числовым ключом;"
 
 msgid "The space contains a tuple with the key value = ``800``."
-mgstr "спейс содержит кортеж, в котором есть ключ со значением = 800;"
+msgstr "спейс содержит кортеж, в котором есть ключ со значением = 800;"
 
 msgid "The current user has read, write, and execute privileges."
 msgstr "у текущего пользователя есть права на чтение, запись и выполнение."
