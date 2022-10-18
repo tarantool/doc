@@ -1,0 +1,129 @@
+
+msgid "Getting started with net.box"
+msgstr "Начало работы с net.box"
+
+msgid "The tutorial shows how to work with some common ``net.box`` methods."
+msgstr "Ниже приводится пример использования большинства методов ``net.box``."
+
+msgid ""
+"For more information about the ``net.box`` module, "
+"check the :ref:`corresponding module reference <net_box-module>`."
+msgstr ""
+"Подробную информацию о модуле ``net.box`` вы найдете "
+"в соответствующем :ref:`разделе справочника по модулям <net_box-module>`."
+
+msgid "Sandbox configuration"
+msgstr "Настройка песочницы"
+
+msgid "The sandbox configuration for the tutorial assumes that:"
+msgstr ""
+"Данный пример сработает на конфигурации из песочницы, предполагается, что:"
+
+msgid "The Tarantool instance is running on ``localhost 127.0.0.1:3301``."
+msgstr "экземпляр Tarantool запущен на ``localhost 127.0.0.1:3301``;"
+
+msgid "There is a space named ``tester`` with a numeric primary key."
+msgstr "создан спейс под названием ``tester`` с первичным числовым ключом;"
+
+msgid "The space contains a tuple with the key value = ``800``."
+msgstr "спейс содержит кортеж, в котором есть ключ со значением = 800;"
+
+msgid "The current user has read, write, and execute privileges."
+msgstr "у текущего пользователя есть права на чтение, запись и выполнение."
+
+msgid "Use the commands below for a quick sandbox setup:"
+msgstr "Используйте команды ниже для быстрой настройки песочницы:"
+
+msgid "Creating a net.box connection"
+msgstr "Создание подключения"
+
+msgid ""
+"First, load the ``net.box`` module with "
+"the ``require('net.box')`` method:"
+msgstr ""
+"Чтобы начать работу, запустите модуль ``net.box``, "
+"используя команду ``require('net.box')``:"
+
+msgid ""
+"The next step is to create a new connection. "
+"In ``net.box``, self-connection is pre-established. That is, "
+"``conn = net_box.connect('localhost:3301')`` command can be "
+"replaced with the ``conn = net_box.self`` object call:"
+msgstr ""
+"Далее необходимо создать новое подключение. "
+"В ``net.box`` для локального Tarantool-сервера есть заданный объект ``self`` всегда "
+"установленного подключения. Таким образом, команду ``conn = net_box.connect('localhost:3301')`` "
+"можно заменить на вызов объекта ``conn = net_box.self``."
+
+msgid "Then, make a ping:"
+msgstr "Запустите команду ``ping()``:"
+
+msgid "Using data operations"
+msgstr "Операции с данными"
+
+msgid "Select all tuples in the ``tester`` space where the key value is ``800``:"
+msgstr "Сделайте выборку всех кортежей в спейсе ``tester``, у которых значение ключа равно ``800``:"
+
+msgid "Insert two tuples into the space:"
+msgstr "Вставьте два кортежа в спейс:"
+
+msgid ""
+"After the insert, there is one tuple where the key value is ``600``. "
+"To select this tuple, you can use the ``get()`` method. "
+"Unlike the ``select()`` command, ``get()`` returns only one tuple "
+"that satisfies the stated condition."
+msgstr ""
+"После вставки в спейсе появился один кортеж со значением ключа ``600``. "
+"Для выбора этого кортежа вы можете использовать метод ``get()``. "
+"В отличие от команды ``select()``, метод ``get()`` возвращает только один кортеж, "
+"удовлетворяющий заданным условиям."
+
+msgid ""
+"To update the existing tuple, you can use either ``update()`` or ``upsert()``. "
+"The ``update()`` method can be used for assignment, "
+"arithmetic (if the field is numeric), "
+"cutting and pasting fragments of a field, and deleting or inserting a field."
+msgstr ""
+"Чтобы обновить существующий кортеж, вы можете использовать как метод ``update()``, так и метод ``upsert()``. "
+"Функция ``update()`` может использоваться для присваивания, "
+"арифметических операций (если поле числовое), вырезания и вставки фрагментов"
+" поля, а также для удаления или вставки поля."
+
+msgid ""
+"In this tutorial, the ``update()`` command is used to update the tuple "
+"identified by primary key value = ``800``. "
+"The operation assigns a new value to the second field in the tuple:"
+msgstr ""
+"В этом  руководстве команда ``update()`` используется для обновления кортежа, "
+"определенного значением ключа ``800``. "
+"Операция присваивает новое значение второму полю в кортеже:"
+
+msgid ""
+"As for the ``upsert`` function, if there is an existing tuple "
+"that matches the key field of tuple, then the command "
+"has the same effect as ``update()``. "
+"Otherwise, the effect is equal to the ``insert()`` method."
+msgstr ""
+"Для функции ``upsert``, если уже существует кортеж, "
+"который совпадает с ключевыми полями tuple, запрос приведет к тому же "
+"результату, что и метод ``update()``. Если подходящего кортежа нет,"
+" запрос приведет к тому же результату, что и метод ``insert()``."
+
+msgid ""
+"To delete a tuple where the key value is ``600``, "
+"run the ``delete()`` method below:"
+msgstr ""
+"Чтобы удалить кортеж, в котором значение ключа равно ``600``, "
+"запустите метод ``delete()``:"
+
+msgid "Then, replace the existing tuple with a new one:"
+msgstr "Затем замените существующий кортеж на новый:"
+
+msgid "Finally, select all tuples from the space:"
+msgstr "Наконец, сделайте выборку по всем кортежам из спейса:"
+
+msgid "Closing the connection"
+msgstr "Закрытие подключения"
+
+msgid "In the end, close the connection when it is no longer needed:"
+msgstr "Закройте соединение явным образом, когда оно больше не используется:"

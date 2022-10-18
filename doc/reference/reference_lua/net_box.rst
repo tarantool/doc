@@ -13,6 +13,7 @@ variant, to be discussed later, is for connecting to MySQL or MariaDB or Postgre
 (see :ref:`SQL DBMS modules <dbms_modules>` reference). The other variant, which
 is discussed in this section, is for connecting to Tarantool server instances via a 
 network.
+For a quick start with ``net.box``, refer to the :ref:`tutorial <getting_started_net_box>`.
 
 You can call the following methods:
 
@@ -885,88 +886,3 @@ With the ``net.box`` module, you can use the following
 
         Details about trigger characteristics are in the
         :ref:`triggers <triggers-box_triggers>` section.
-
-============================================================================
-Example
-============================================================================
-
-This example shows the use of most of the ``net.box`` methods.
-
-The sandbox configuration for this example assumes that:
-
-* the Tarantool instance is running on ``localhost 127.0.0.1:3301``,
-* there is a space named ``tester`` with a numeric primary key and with a tuple
-  that contains a key value = 800,
-* the current user has read, write and execute privileges.
-
-Here are commands for a quick sandbox setup:
-
-.. code-block:: lua
-
-    box.cfg{listen = 3301}
-    s = box.schema.space.create('tester')
-    s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
-    t = s:insert({800, 'TEST'})
-    box.schema.user.grant('guest', 'read,write,execute', 'universe')
-
-And here starts the example:
-
-.. code-block:: tarantoolsession
-
-    tarantool> net_box = require('net.box')
-    ---
-    ...
-    tarantool> function example()
-             >   local conn, wtuple
-             >   if net_box.self:ping() then
-             >     table.insert(ta, 'self:ping() succeeded')
-             >     table.insert(ta, '  (no surprise -- self connection is pre-established)')
-             >   end
-             >   if box.cfg.listen == '3301' then
-             >     table.insert(ta,'The local server listen address = 3301')
-             >   else
-             >     table.insert(ta, 'The local server listen address is not 3301')
-             >     table.insert(ta, '(  (maybe box.cfg{...listen="3301"...} was not stated)')
-             >     table.insert(ta, '(  (so connect will fail)')
-             >   end
-             >   conn = net_box.connect('127.0.0.1:3301')
-             >   conn.space.tester:delete({800})
-             >   table.insert(ta, 'conn delete done on tester.')
-             >   conn.space.tester:insert({800, 'data'})
-             >   table.insert(ta, 'conn insert done on tester, index 0')
-             >   table.insert(ta, '  primary key value = 800.')
-             >   wtuple = conn.space.tester:select({800})
-             >   table.insert(ta, 'conn select done on tester, index 0')
-             >   table.insert(ta, '  number of fields = ' .. #wtuple)
-             >   conn.space.tester:delete({800})
-             >   table.insert(ta, 'conn delete done on tester')
-             >   conn.space.tester:replace({800, 'New data', 'Extra data'})
-             >   table.insert(ta, 'conn:replace done on tester')
-             >   conn.space.tester:update({800}, {{'=', 2, 'Fld#1'}})
-             >   table.insert(ta, 'conn update done on tester')
-             >   conn:close()
-             >   table.insert(ta, 'conn close done')
-             > end
-    ---
-    ...
-    tarantool> ta = {}
-    ---
-    ...
-    tarantool> example()
-    ---
-    ...
-    tarantool> ta
-    ---
-    - - self:ping() succeeded
-      - '  (no surprise -- self connection is pre-established)'
-      - The local server listen address = 3301
-      - conn delete done on tester.
-      - conn insert done on tester, index 0
-      - '  primary key value = 800.'
-      - conn select done on tester, index 0
-      - '  number of fields = 1'
-      - conn delete done on tester
-      - conn:replace done on tester
-      - conn update done on tester
-      - conn close done
-    ...

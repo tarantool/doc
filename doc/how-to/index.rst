@@ -20,6 +20,7 @@ If you are new to Tarantool, please see our
     getting_started_connectors
     getting_started_cartridge
     db/index
+    getting_started_net_box
     vshard_quick
     app/index
     replication/index
