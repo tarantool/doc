@@ -37,13 +37,9 @@ First, load the ``net.box`` module with the ``require('net.box')`` method:
 
     tarantool> net_box = require('net.box')
 
-During the sandbox setup, ``box.cfg{...listen="3301"}`` was called.
-It means that the local server listen address is ``3301``.
-If the connection fails, check the actual listen address.
-
 The next step is to create a new connection.
 In ``net.box``, self-connection is pre-established.
-That is, ``conn = net_box.connect('localhost:3301')`` can be replaced with the ``conn = net_box.self`` object call:
+That is, ``conn = net_box.connect('localhost:3301')`` command can be replaced with the ``conn = net_box.self`` object call:
 
 ..  code-block:: tarantoolsession
 
@@ -108,7 +104,7 @@ The operation assigns a new value to the second field in the tuple:
     - [800, 'TEST800']
     ...
 
-As for the ``upsert`` function, if there is an existing tuple which matches the key field of tuple, then the command
+As for the ``upsert`` function, if there is an existing tuple that matches the key field of tuple, then the command
 has the same effect as ``update()``.
 Otherwise, the effect is equal to the ``insert()`` method.
 
