@@ -31,7 +31,7 @@ Use the commands below for a quick sandbox setup:
 Creating a net.box connection
 -----------------------------
 
-First, load the ``net.box`` module with:
+First, load the ``net.box`` module with the ``require('net.box')`` method:
 
 ..  code-block:: tarantoolsession
 
@@ -43,7 +43,7 @@ If the connection fails, check the actual listen address.
 
 The next step is to create a new connection.
 In ``net.box``, self-connection is pre-established.
-That is, ``conn = net_box.connect('localhost:3301')`` can be replaced with the following command:
+That is, ``conn = net_box.connect('localhost:3301')`` can be replaced with the ``conn = net_box.self`` object call:
 
 ..  code-block:: tarantoolsession
 
@@ -61,7 +61,7 @@ Then, make a ping:
 Using data operations
 ---------------------
 
-The ``select()`` command below returns all tuples in the ``tester`` space where the key value is ``800``:
+Select all tuples in the ``tester`` space where the key value is ``800``:
 
 ..  code-block:: tarantoolsession
 
@@ -83,7 +83,7 @@ Insert two tuples into the space:
     - [600, 'TEST600']
     ...
 
-After the insert, we have one tuple where the key value is ``600``.
+After the insert, there is one tuple where the key value is ``600``.
 To select this tuple, you can use the ``get()`` method.
 Unlike the ``select()`` command, ``get()`` returns only one tuple that satisfies the stated condition.
 
@@ -98,7 +98,7 @@ To update the existing tuple, you can use either ``update()`` or ``upsert()``.
 The ``update()`` method can be used for assignment, arithmetic (if the field is numeric),
 cutting and pasting fragments of a field, and deleting or inserting a field.
 
-The command below is used to update the tuple identified by primary key value = ``800``.
+In this tutorial, the ``update()`` command is used to update the tuple identified by primary key value = ``800``.
 The operation assigns a new value to the second field in the tuple:
 
 ..  code-block:: tarantoolsession
@@ -116,17 +116,16 @@ Otherwise, the effect is equal to the ``insert()`` method.
 
     tarantool> conn.space.tester:upsert({500, 'TEST500'}, {{'=', 2, 'TEST'}})
 
-To delete a tuple, run the method below:
+To delete a tuple where the key value is ``600``, run the ``delete()`` method below:
 
 ..  code-block:: tarantoolsession
 
-    -- Delete tuples where the key value is 600
     tarantool> conn.space.tester:delete{600}
     ---
     - [600, 'TEST600']
     ...
 
-Then, replace the existing tuple with a new one
+Then, replace the existing tuple with a new one:
 
 ..  code-block:: tarantoolsession
 
@@ -145,6 +144,9 @@ Finally, select all tuples from the space:
       - [500, 'New data', 'Extra data']
       - [700, 'TEST700']
     ...
+
+Closing the connection
+----------------------
 
 In the end, close the connection when it is no longer needed:
 
