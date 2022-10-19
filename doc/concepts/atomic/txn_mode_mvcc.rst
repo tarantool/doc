@@ -42,10 +42,17 @@ It consists of two parts:
     in the conflicted transaction will result in errors until the transaction is
     rolled back.
 
-The transaction manager also provides a non-classical snapshot isolation level -- this snapshot is not 
+The transaction manager also provides a non-classical *snapshot* isolation level -- this snapshot is not
 necessarily tied to the start time of the transaction, like the classical snapshot where a transaction 
 can get a consistent snapshot of the database. The conflict manager decides if and when each transaction 
 gets which snapshot. This avoids some conflicts compared to the classic snapshot isolation approach.
+
+..  warning::
+
+    Currently, the :ref:`isolation level <transaction_model_levels>` of BITSET and RTREE indexes
+    in MVCC transaction mode is *read-committed* (not *serializable*, as stated).
+    If a transaction uses these indexes, it can read committed or confirmed data (depending on the isolation level).
+    However, the indexes are subject to different anomalies that can make them unserializable.
 
 ..  _txn_mode_mvcc-enabling:
 
@@ -101,11 +108,9 @@ to the one set in ``box.cfg``.
 You can also set the isolation level in the net.box :ref:`stream:begin() <net_box-stream_begin>` method
 and :ref:`IPROTO_BEGIN <box_protocol-begin>` binary protocol request.
 
-
 Choosing the better option depends on whether you have conflicts or not. 
 If you have many conflicts, you should set a different option or use 
 the :ref:`default transaction mode <txn_mode-default>`.
-
 
 ..  _txn_mode_mvcc-examples:
 
