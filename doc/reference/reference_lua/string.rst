@@ -281,7 +281,7 @@ Below is a list of all additional ``string`` functions.
     ``split-string`` occurs.
 
     :param string input-string: the string to split
-    :param integer split-string: the string to find within ``input-string``.
+    :param string split-string: the string to find within ``input-string``.
                                  Default = space.
     :param integer max: maximum number of delimiters to process counting
                         from the beginning of the input string. Result will
