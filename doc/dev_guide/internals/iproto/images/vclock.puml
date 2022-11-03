@@ -1,0 +1,16 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+map "**vclock**" as vclock {
+    replica_id1 => LSN1
+    replica_id2 => LSN2
+    ... => ...
+}
+
+@enduml

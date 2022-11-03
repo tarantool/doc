@@ -1,0 +1,36 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_EXECUTE**, prepared statement" as execute_request_prepared {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_EXECUTE",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_STMT_ID]]": "MP_INT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SQL_BIND]]": "MP_ARRAY",      
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OPTIONS]]": "MP_ARRAY"
+    }
+}
+
+json "**IPROTO_EXECUTE**, SQL string" as execute_request_string {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_EXECUTE",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SQL_TEXT]]": "MP_STR",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SQL_BIND]]": "MP_ARRAY",      
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OPTIONS]]": "MP_ARRAY"
+    }
+}
+
+@enduml

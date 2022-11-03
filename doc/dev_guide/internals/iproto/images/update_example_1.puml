@@ -1,0 +1,18 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**Body**" as update_body_1 {
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TUPLE]]": {
+        "[[https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/update/ Operator]]": "MP_STR: '+', '-', '^', '|', '!', or '='",
+        "[[https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/update/ Field number]]": "MP_INT",
+        "[[https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/update/ Value]]": "MP_OBJECT"
+    }
+}
+
+@enduml

@@ -1,14 +1,12 @@
 .. _internals-data_persistence:
 
---------------------------------------------------------------------------------
 File formats
---------------------------------------------------------------------------------
+============
 
 .. _internals-wal:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Data persistence and the WAL file format
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 To maintain data persistence, Tarantool writes each data change request (insert,
 update, delete, replace, upsert) into a write-ahead log (WAL) file in the
@@ -114,9 +112,8 @@ a secondary key, the record in the .xlog file will contain the primary key.
 
 .. _internals-snapshot:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The snapshot file format
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 The format of a snapshot .snap file is nearly the same as the format of a WAL .xlog file.
 However, the snapshot header differs: it contains the instance's global unique identifier
@@ -131,3 +128,43 @@ and ``_cluster`` -- will be at the start of the .snap file, before the records o
 any spaces that were created by users.
 
 Secondarily, the .snap file's records are ordered by primary key within space id.
+
+..  _box_protocol-xlog:
+
+Example
+-------
+
+The header of a ``.snap`` or ``.xlog`` file looks like:
+
+..  code-block:: none
+
+    <type>\n                  SNAP\n or XLOG\n
+    <version>\n               currently 0.13\n
+    Server: <server_uuid>\n   where UUID is a 36-byte string
+    VClock: <vclock_map>\n    e.g. {1: 0}\n
+    \n
+
+After the file header come the data tuples.
+Tuples begin with a row marker ``0xd5ba0bab`` and
+the last tuple may be followed by an EOF marker
+``0xd510aded``.
+Thus, between the file header and the EOF marker, there
+may be data tuples that have this form:
+
+..  code-block:: none
+
+    0            3 4                                         17
+    +-------------+========+============+===========+=========+
+    |             |        |            |           |         |
+    | 0xd5ba0bab  | LENGTH | CRC32 PREV | CRC32 CUR | PADDING |
+    |             |        |            |           |         |
+    +-------------+========+============+===========+=========+
+       MP_FIXEXT2    MP_INT     MP_INT       MP_INT      ---
+
+    +============+ +===================================+
+    |            | |                                   |
+    |   HEADER   | |                BODY               |
+    |            | |                                   |
+    +============+ +===================================+
+         MP_MAP                     MP_MAP
+

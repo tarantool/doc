@@ -1,0 +1,20 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_BALLOT body**" as ballot {
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BALLOT_IS_RO_CFG]]": "MP_BOOL",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BALLOT_VCLOCK]]": "MP_MAP",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BALLOT_GC_VCLOCK]]": "MP_MAP",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BALLOT_IS_RO]]": "MP_BOOL",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BALLOT_IS_ANON]]": "MP_BOOL",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BALLOT_IS_BOOTED]]": "MP_BOOL",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BALLOT_CAN_LEAD]]": "MP_BOOL"
+}
+
+@enduml

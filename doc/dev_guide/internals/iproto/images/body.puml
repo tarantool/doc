@@ -1,0 +1,14 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+map "**Body**" as Body {
+    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]] => MP_OBJECT
+}
+
+@enduml

@@ -257,7 +257,8 @@ Below is a list of all ``net.box`` functions.
                -   IPROTO_FEATURE_WATCHERS   
                -   3 and newer      
             
-    To learn more about IPROTO features, see :ref:`IPROTO_ID <box_protocol-id>`.
+    To learn more about IPROTO features, see :ref:`IPROTO_ID <box_protocol-id>`
+    and the :ref:`IPROTO_FEATURES <internals-iproto-keys-features>` key.
  
     :return: conn object
     :rtype:  userdata

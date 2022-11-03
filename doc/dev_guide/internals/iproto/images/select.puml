@@ -1,0 +1,38 @@
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_SELECT**" as select {
+    "Size": "MP_UINT",
+    "Header": {
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_SELECT",
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+    },
+    "Body": {
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SPACE_ID]]": "MP_UINT",
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INDEX_ID]]": "MP_UINT",
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_LIMIT]]": "MP_UINT",
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OFFSET]]": "MP_UINT",
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_ITERATOR]]": "MP_UINT",
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_KEY]]": "MP_ARRAY"
+    }
+}
+
+json "**Response to IPROTO_SELECT**" as select_response {
+    "Size": "MP_UINT",
+    "Header": {
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
+    },
+    "Body": {
+    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": "MP_OBJECT"
+    }
+}
+
+@enduml

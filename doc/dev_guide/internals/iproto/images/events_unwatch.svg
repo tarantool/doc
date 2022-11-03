@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="102px" preserveAspectRatio="none" style="width:402px;height:102px;background:#FFFFFF;" version="1.1" viewBox="0 0 402 102" width="402px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="81.1875" style="stroke:#313131;stroke-width:0.5;" width="381" x="7" y="7"/><text fill="#313131" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="145" x="125" y="21.9951">IPROTO_UNWATCH</text><line style="stroke:#313131;stroke-width:1.0;" x1="67" x2="67" y1="27.2969" y2="88.1875"/><line style="stroke:#313131;stroke-width:1.0;" x1="7" x2="388" y1="27.2969" y2="27.2969"/><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="12" y="42.292">Size</text><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="72" y="42.292">MP_UINT</text><line style="stroke:#313131;stroke-width:1.0;" x1="7" x2="388" y1="47.5938" y2="47.5938"/><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="12" y="62.5889">Header</text><line style="stroke:#313131;stroke-width:1.0;" x1="247" x2="247" y1="47.5938" y2="67.8906"/><line style="stroke:#313131;stroke-width:1.0;" x1="67" x2="388" y1="47.5938" y2="47.5938"/><a href="https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys" target="_top" title="https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys" xlink:actuate="onRequest" xlink:href="https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys" xlink:show="new" xlink:title="https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys" xlink:type="simple"><text fill="#0000FF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="170" x="72" y="62.5889">IPROTO_REQUEST_TYPE</text></a><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="252" y="62.5889">IPROTO_UNWATCH</text><line style="stroke:#313131;stroke-width:1.0;" x1="7" x2="388" y1="67.8906" y2="67.8906"/><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="12" y="82.8857">Body</text><line style="stroke:#313131;stroke-width:1.0;" x1="217" x2="217" y1="67.8906" y2="88.1875"/><line style="stroke:#313131;stroke-width:1.0;" x1="67" x2="388" y1="67.8906" y2="67.8906"/><a href="https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys" target="_top" title="https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys" xlink:actuate="onRequest" xlink:href="https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys" xlink:show="new" xlink:title="https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys" xlink:type="simple"><text fill="#0000FF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="140" x="72" y="82.8857">IPROTO_EVENT_KEY</text></a><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="222" y="82.8857">MP_STR</text><!--MD5=[b9bae650c15c250541686c913950f399]
+@startuml
+
+skinparam map {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_UNWATCH**" as unwatch {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_UNWATCH"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_EVENT_KEY]]": "MP_STR"
+    }
+}
+
+@enduml
+
+PlantUML version 1.2022.8(Sun Sep 25 12:00:33 IDT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
