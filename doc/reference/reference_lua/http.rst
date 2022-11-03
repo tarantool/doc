@@ -1,10 +1,10 @@
-.. _http-module:
+..  _http-module:
 
 -------------------------------------------------------------------------------
                           Module http
 -------------------------------------------------------------------------------
 
-.. module:: http.client
+..  module:: http.client
 
 ===============================================================================
                                    Overview
@@ -20,10 +20,10 @@ It uses routines in the `libcurl <https://curl.haxx.se/libcurl/>`_ library.
 
 Below is a list of all ``http`` functions.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
     +--------------------------------------+---------------------------------+
     | Name                                 | Use                             |
@@ -38,9 +38,9 @@ Below is a list of all ``http`` functions.
     | <client_object-stat>`                |                                 |
     +--------------------------------------+---------------------------------+
 
-.. _http-new:
+..  _http-new:
 
-.. function:: new([options])
+..  function:: new([options])
 
     Construct a new HTTP client instance.
 
@@ -55,7 +55,7 @@ Below is a list of all ``http`` functions.
     ``max_total_connections`` is the maximum number of active connections.
     It affects libcurl  `CURLMOPT_MAX_TOTAL_CONNECTIONS <https://curl.haxx.se/libcurl/c/CURLMOPT_MAX_TOTAL_CONNECTIONS.html>`_.
     It is ignored if the curl version is less than 7.30.
-    The default is 0, which allows libcurl to scale accordingly to easily handles count.
+    The default is ``0``, which allows libcurl to scale accordingly to easily handles count.
     
     The default option values are usually good enough but in rare cases it
     might be good to set them. In that case here are two tips.
@@ -82,17 +82,17 @@ Below is a list of all ``http`` functions.
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> http_client = require('http.client').new({max_connections = 5})
         ---
         ...
 
-.. class:: client_object
+..  class:: client_object
 
-    .. _client_object-request:
+    ..  _client_object-request:
 
-    .. method:: request(method, url, body, opts)
+    ..  method:: request(method, url, body, opts)
 
         If ``http_client`` is an HTTP client instance, ``http_client:request()`` will
         perform an HTTP request and, if there is a successful connection,
@@ -112,14 +112,14 @@ Below is a list of all ``http`` functions.
             will wait while the connection is idle before sending keepalive
             probes. See also
             `CURLOPT_TCP_KEEPIDLE <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPIDLE.html>`_
-            and the note below about keepalive_interval.
+            and the note below about ``keepalive_interval``.
           * ``keepalive_interval`` -- the interval, in seconds, that the operating
             system will wait between sending keepalive probes. See also
             `CURLOPT_TCP_KEEPINTVL <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPINTVL.html>`_.
             If both ``keepalive_idle`` and ``keepalive_interval`` are set, then
             Tarantool will also set HTTP keepalive headers: ``Connection:Keep-Alive``
             and ``Keep-Alive:timeout=<keepalive_idle>``.
-            Otherwise Tarantool will send ``Connection:close``.
+            Otherwise, Tarantool will send ``Connection:close``.
           * ``low_speed_limit`` -- set the "low speed limit" -- the average
             transfer speed in bytes per second that the transfer should be below
             during "low speed time" seconds for the library to consider it to be
@@ -131,7 +131,7 @@ Below is a list of all ``http`` functions.
             `CURLOPT_LOW_SPEED_TIME <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html>`_.
           * ``max_header_name_len`` -- the maximal length of a header name. If a header
             name is bigger than this value, it is truncated to this length.
-            The default value is '32'.
+            The default value is ``32``.
           * ``follow_location`` -- when the option is set to ``true`` (default)
             and the response has a 3xx code, the HTTP client will automatically issue
             another request to a location that a server sends in the ``Location``
@@ -149,9 +149,9 @@ Below is a list of all ``http`` functions.
             without requiring a proxy, which is equivalent to setting ``proxy=''``.
             Set ``no_proxy = ''`` to specify that no hosts can be reached
             without requiring a proxy, even if a proxy-related environment variable
-            (HTTP_PROXY) is used.
+            (``HTTP_PROXY``) is used.
             If ``no_proxy`` is not set, then a proxy-related environment variable
-            (HTTP_PROXY) may be used. See also
+            (``HTTP_PROXY``) may be used. See also
             `CURLOPT_NOPROXY <https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html>`_.
           * ``proxy`` - a proxy server host or IP address, or ''.
             If ``proxy`` is a host or IP address, then it may begin with a scheme,
@@ -159,11 +159,11 @@ Below is a list of all ``http`` functions.
             If ``proxy`` is set to '' -- an empty string, then proxy use is disabled,
             and no proxy-related environment variable will be used.
             If ``proxy`` is not set, then a proxy-related environment variable may be used, such as
-            HTTP_PROXY or HTTPS_PROXY or FTP_PROXY, or ALL_PROXY if the
+            ``HTTP_PROXY`` or ``HTTPS_PROXY`` or ``FTP_PROXY``, or ``ALL_PROXY`` if the
             protocol can be any protocol. See also
             `CURLOPT_PROXY <https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html>`_.
           * ``proxy_port`` -- a proxy server port.
-            The default is 443 for an https proxy and 1080 for a non-https proxy.
+            The default is ``443`` for an https proxy and ``1080`` for a non-https proxy.
             See also
             `CURLOPT_PROXYPORT <https://curl.haxx.se/libcurl/c/CURLOPT_PROXYPORT.html>`_.
           * ``proxy_user_pwd`` -- a proxy server user name and/or password.
@@ -272,7 +272,7 @@ Below is a list of all ``http`` functions.
           ``http_client:request("DELETE", url, nil, opts)``
         * ``http_client:trace(url, options)`` -- shortcut for
           ``http_client:request("TRACE", url, nil, opts)``
-        * ``http_client:connect:(url, options)`` -- shortcut for
+        * ``http_client:connect(url, options)`` -- shortcut for
           ``http_client:request("CONNECT", url, nil, opts)``
 
         Requests may be influenced by environment variables, for example
