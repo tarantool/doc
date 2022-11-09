@@ -55,7 +55,7 @@ unmaintained.
 Feature comparison
 ------------------
 
-Last update: July 2022
+Last update: November 2022
 
 ..  list-table::
     :header-rows: 1
@@ -84,12 +84,9 @@ Last update: July 2022
     *   -   Documentation
         -   Yes (`github.io <https://igorcoding.github.io/asynctnt/>`__)
         -   No
-        -   Yes (`tarantool.io
-            <https://www.tarantool.io/en/doc/latest/getting_started/getting_started_python/>`__
-            and `readthedocs
+        -   Yes (`readthedocs
             <https://tarantool-python.readthedocs.io/en/latest/quick-start.en.html>`__
-            (`obsolete
-            <https://github.com/tarantool/tarantool-python/issues/67>`__))
+            and :ref:`tarantool.io <getting_started-python>`)
 
     *   -   Testing / CI / CD
         -   GitHub Actions
@@ -97,9 +94,9 @@ Last update: July 2022
         -   GitHub Actions
 
     *   -   GitHub Stars
-        -   65
+        -   68
         -   17
-        -   84
+        -   85
 
     *   -   Static Analysis
         -   Yes (Flake8)
@@ -109,7 +106,7 @@ Last update: July 2022
     *   -   Packaging
         -   `pip <https://pypi.org/project/asynctnt/>`__
         -   `pip <https://pypi.org/project/gtarantool/>`__
-        -   `deb, rpm, pip <https://github.com/tarantool/tarantool-python#download-and-install>`__
+        -   `pip, deb, rpm <https://github.com/tarantool/tarantool-python#download-and-install>`__
 
     *   -   Code coverage
         -   Yes
@@ -144,47 +141,52 @@ Last update: July 2022
         -   No
         -   No
 
-    *   -   `SQL support <https://www.tarantool.io/en/doc/latest/reference/reference_sql/>`__
-        -   Yes (tests/test_op_sql.py)
+    *   -   :ref:`SQL support <reference_sql>`
+        -   Yes
         -   No
-        -   Yes (tarantool/connection.py)
+        -   Yes
 
-    *   -   `Interactive transactions <https://www.tarantool.io/en/doc/latest/book/box/stream/>`__
+    *   -   :ref:`Interactive transactions <txn_mode_stream-interactive-transactions>`
         -   Yes
         -   No
         -   No (`issue #163 <https://github.com/tarantool/tarantool-python/issues/163>`__)
 
-    *   -   `Varbinary support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
+    *   -   :ref:`Varbinary support <index-box_data-types>`
         -   Yes (in ``MP_BIN`` fields)
         -   No
         -   Yes
 
-    *   -   `UUID support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
+    *   -   :ref:`Decimal support <msgpack_ext-decimal>`
         -   Yes
         -   No
-        -   No
+        -   Yes
 
-    *   -   `Decimal support <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`__
+    *   -   :ref:`UUID support <msgpack_ext-uuid>`
         -   Yes
         -   No
-        -   No
+        -   Yes
 
-    *   -   `EXT_ERROR support <https://www.tarantool.io/ru/doc/latest/dev_guide/internals/msgpack_extensions/#the-error-type>`__
+    *   -   :ref:`EXT_ERROR support <msgpack_ext-error>`
         -   Yes
         -   No
-        -   No
+        -   Yes
 
-    *   -   `Datetime support <https://github.com/tarantool/tarantool/discussions/6244>`__
+    *   -   :ref:`Datetime support <msgpack_ext-datetime>`
         -   Yes
         -   No
-        -   No
+        -   Yes
 
-    *   -   `box.session.push() responses <https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_session/push/>`__
-        -   Yes (see push_subscribe option and docs/pushes.rst)
+    *   -   :ref:`Interval support <msgpack_ext-interval>`
+        -   No (`issue #30 <https://github.com/igorcoding/asynctnt/issues/30>`__)
         -   No
-        -   No
+        -   Yes
 
-    *   -   `Session settings <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_session_settings/>`__
+    *   -   :ref:`box.session.push() responses <box_session-push>`
+        -   Yes
+        -   No
+        -   Yes
+
+    *   -   :ref:`Session settings <box_space-session_settings>`
         -   No
         -   No
         -   No
@@ -194,15 +196,15 @@ Last update: July 2022
         -   No
         -   No
 
-    *   -   `IPROTO_ID (feature discovering) <https://github.com/tarantool/doc/issues/2419>`__
+    *   -   `IPROTO_ID (feature discovery) <https://github.com/tarantool/doc/issues/2419>`__
         -   Yes
         -   No
-        -   No
+        -   Yes
 
-    *   -   Support `CRUD <https://github.com/tarantool/crud>`__
+    *   -   `CRUD support <https://github.com/tarantool/crud>`__
         -   No
         -   No
-        -   No
+        -   No (`issue #205 <https://github.com/tarantool/tarantool-python/issues/205>`__)
 
     *   -   Transparent request retrying
         -   No
@@ -223,3 +225,8 @@ Last update: July 2022
         -   No
         -   No
         -   `Yes <https://github.com/tarantool/tarantool-python/wiki/PEP-249-Database-API>`__
+
+    *   -   `Encrypted connection (Tarantool Enterprise) <https://www.tarantool.io/en/enterprise_doc/security/#enterprise-iproto-encryption>`__
+        -   No (`issue #22 <https://github.com/igorcoding/asynctnt/issues/22>`__)
+        -   No
+        -   Yes
