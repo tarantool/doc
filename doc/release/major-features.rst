@@ -20,6 +20,11 @@ Versions that only include bug fixes are not listed in this table.
         *   -   Since version
             -   Feature
 
+        *   -   2.10.4
+            -   The JSON log format can now be used with the syslog logger (:tarantool-issue:`7860`).  |br|
+                SQL improvements: ``CASE`` (:tarantool-issue:`6990`) and ``NULLIF()`` (:tarantool-issue:`6989`).   |br|
+                Diagnostics now provide relative file paths instead of absolute ones (:tarantool-issue:`7808`).
+
         *   -   2.10.3
             -   RedOS 7.3 is now supported.  |br|
                 Added the ``-DENABLE_HARDENING=ON/OFF`` CMake option that enables
