@@ -338,11 +338,11 @@ Events and subscriptions
             -   Description
 
         *   -   IPROTO_EVENT_KEY
-            -   0x56 |br| MP_STR
+            -   0x57 |br| MP_STR
             -   :ref:`Event <box-protocol-watchers>` key name
 
         *   -   IPROTO_EVENT_DATA
-            -   0x57 |br| MP_OBJECT
+            -   0x58 |br| MP_OBJECT
             -   :ref:`Event <box-protocol-watchers>` data sent to a remote watcher
 
 :ref:`Learn more about events and subscriptions in iproto <box-protocol-watchers>`.
