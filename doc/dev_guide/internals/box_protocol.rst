@@ -30,6 +30,7 @@ The binary protocol provides complete access to Tarantool functionality, includi
     iproto/authentication
     iproto/streams
     iproto/events
+    iproto/graceful_shutdown
     iproto/sql
     iproto/replication
     Examples <../../how-to/other/iproto>
