@@ -22,7 +22,7 @@ jobs:
       DEPLOYMENT_NAME: latest
       VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         id: checkout
         with:
           submodules: recursive
