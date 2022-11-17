@@ -27,7 +27,7 @@ General
             -   Description
 
         *   -   :ref:`IPROTO_VERSION <internals-iproto-keys-version>`
-            -   0x54 |br| MP_INT
+            -   0x54 |br| MP_UINT
             -   Binary protocol version supported by the client
 
         *   -   :ref:`IPROTO_FEATURES <internals-iproto-keys-features>`
