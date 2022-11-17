@@ -91,8 +91,15 @@ jobs:
 
       - run: bash upload_output.sh
         id: upload-output
-      - run: bash webhooks/update_deployment.sh
+
+      - name: Create or update a dev server deployment with version ${{env.DEPLOYMENT_NAME}}
+        uses: nick-fields/retry@v2
         id: update-deployment-webhook
+        with:
+          command: bash webhooks/update_deployment.sh
+          timeout_seconds: 15
+          retry_wait_seconds: 15
+          max_attempts: 3
 
       - name: update deployment status
         id: finalize-deployment

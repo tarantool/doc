@@ -26,9 +26,14 @@ jobs:
           echo "DEPLOYMENT_NAME=${{github.event.inputs.deployment_name}}" >> $GITHUB_ENV
           echo "workaround until actions/runner#655 is fixed"
 
-      - name: Remove dev server deployment at ${{env.DEPLOYMENT_NAME}}
+      - name: Remove dev server deployment with version ${{env.DEPLOYMENT_NAME}}
+        uses: nick-fields/retry@v2
         id: delete-deployment-webhook
-        run: bash webhooks/delete_deployment.sh
+        with:
+          command: bash webhooks/delete_deployment.sh
+          timeout_seconds: 15
+          retry_wait_seconds: 15
+          max_attempts: 3
 
       - name: Remove GitHub deployment at ${{env.DEPLOYMENT_NAME}}
         uses: strumwolf/delete-deployment-environment@v2
