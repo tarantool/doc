@@ -25,9 +25,14 @@ jobs:
         id: set-deployment-name
         run: echo "DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
 
-      - name: Remove dev server deployment at branch-${{env.DEPLOYMENT_NAME}}
+      - name: Remove dev server deployment with version ${{env.DEPLOYMENT_NAME}}
+        uses: nick-fields/retry@v2
         id: delete-deployment-webhook
-        run: bash webhooks/delete_deployment.sh
+        with:
+          command: bash webhooks/delete_deployment.sh
+          timeout_seconds: 15
+          retry_wait_seconds: 15
+          max_attempts: 3
 
       - name: Remove GitHub deployment at branch-${{env.DEPLOYMENT_NAME}}
         uses: bobheadxi/deployments@v1
