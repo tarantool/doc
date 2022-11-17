@@ -21,7 +21,7 @@ The protocol uses the event subscription system.
 That is, the feature is available if the server supports the :ref:`box.shutdown <system-events_box-shutdown>` event
 and ``IPROTO_WATCH``.
 For more information about it, see :ref:`reference for the event watchers <box-watchers>`
-and the :ref:`corresponding section <box-protocol-watchers>` of this document.
+and the :ref:`corresponding page in the Binary Protocol section <box-protocol-watchers>`.
 
 How the graceful shutdown works
 -------------------------------
