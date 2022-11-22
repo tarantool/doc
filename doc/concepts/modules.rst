@@ -40,8 +40,7 @@ For example, here's a Lua application that uses ``myfun()`` from
    end
 
 Tarantool provides an `extensive library <https://www.tarantool.io/en/download/rocks>`_ of compatible modules.
-Install them using Tarantool's CLI utilities like :ref:`tarantoolctl <tarantoolctl>`
-or :ref:`tt CLI <tt-cli>`.
+Install them using Tarantool's CLI utility :ref:`tarantoolctl <tarantoolctl>`.
 Some modules are also included in the Tarantool repository and can be installed
 via your operating system's package manager.
 

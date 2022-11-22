@@ -8,7 +8,6 @@ to work with Tarantool.
     :maxdepth: 1
 
     interactive_console
-    tt_cli/index
     tarantoolctl
     luajit_memprof
     luajit_getmetrics
