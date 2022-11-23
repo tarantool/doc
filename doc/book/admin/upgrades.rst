@@ -32,7 +32,7 @@ replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 
 #.  Update your application files, if needed.
 
-#.  Launch the updated Tarantool server using ``tarantoolctl`` or ``systemctl``.
+#.  Launch the updated Tarantool server using ``tarantoolctl``, ``tt``, or ``systemctl``.
 
 ..  _admin-upgrades_replication_cluster:
 
