@@ -1,9 +1,15 @@
-name: Deploy to dev server
+name: Deploy branch tt
 
 on:
-  pull_request:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'tt'
+      # branch `deploy-tt` might be used for further development
+      # related to building and deploying branch `tt`
+      - 'deploy-tt'
 jobs:
-  deploy-branch:
+  deploy:
     runs-on: ubuntu-latest
     container: tarantool/doc-builder:fat-4.1
     env:
@@ -14,6 +20,7 @@ jobs:
       S3_UPLOAD_PATH: ${{secrets.S3_UPLOAD_PATH}}
       TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}
+      DEPLOYMENT_NAME: tt
       VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
     steps:
       - uses: actions/checkout@v3
@@ -25,19 +32,6 @@ jobs:
         id: fetch-submodules
         run: git fetch --recurse-submodules
 
-      - name: Set deployment name from source branch
-        id: set-deployment-name
-        run: echo "DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
-
-      - name: Start dev server deployment
-        uses: bobheadxi/deployments@v1
-        id: deployment
-        with:
-          step: start
-          token: ${{secrets.GITHUB_TOKEN}}
-          env: "branch-${{env.DEPLOYMENT_NAME}}"
-          ref: ${{github.head_ref}}
-
       - run: cmake .
         id: cmake
       - run: make pull-modules
@@ -48,11 +42,15 @@ jobs:
         id: make-json
       - run: make json-ru
         id: make-json-ru
+      - run: make pdf
+        id: make-pdf
+      - run: make pdf-ru
+        id: make-pdf-ru
 
       - run: bash upload_output.sh
         id: upload-output
 
-      - name: Create or update a dev server deployment with version ${{env.DEPLOYMENT_NAME}}
+      - name: Update test server deployment with version ${{env.DEPLOYMENT_NAME}}
         uses: nick-fields/retry@v2
         id: update-deployment-webhook
         with:
@@ -60,17 +58,6 @@ jobs:
           timeout_seconds: 15
           retry_wait_seconds: 15
           max_attempts: 3
-
-      - name: update deployment status
-        id: finalize-deployment
-        uses: bobheadxi/deployments@v1
-        with:
-          step: finish
-          token: ${{secrets.GITHUB_TOKEN}}
-          env: "branch-${{env.DEPLOYMENT_NAME}}"
-          status: ${{job.status}}
-          deployment_id: ${{steps.deployment.outputs.deployment_id}}
-          env_url: ${{secrets.TARANTOOL_HOST}}/doc/${{env.DEPLOYMENT_NAME}}/
 
       - name: Send VK Teams message on failures
         # bot token won't be accessible in the forks
