@@ -2,6 +2,29 @@ name: Deploy to dev server
 
 on:
   pull_request:
+
+# Cancel workflow runs on PRs when the PR is updated with a newer commit.
+# Such runs will have a concurrency group named
+# `{github.workflow}-{github.ref}`,
+# for example,
+# `deploy-branch/refs/add-concurrency`.
+#
+# Runs on branches `latest`, `tt`, and also tags, will never be canceled,
+# due to having a unique group name
+# `{github.run_id}-{github.run_attempt}`,
+# for example,
+# `3477882280-1`.
+concurrency:
+  group: ${{
+    (
+    github.ref == 'refs/heads/latest' ||
+    github.ref == 'refs/heads/tt' ||
+    startsWith(github.ref, 'refs/tags/')
+    ) &&
+    format('{0}-{1}', github.run_id, github.run_attempt) ||
+    format('{0}-{1}', github.workflow, github.ref) }}
+  cancel-in-progress: true
+
 jobs:
   deploy-branch:
     runs-on: ubuntu-latest
