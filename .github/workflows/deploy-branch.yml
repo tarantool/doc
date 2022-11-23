@@ -2,6 +2,9 @@ name: Deploy to dev server
 
 on:
   pull_request:
+  push:
+    branches:
+      - tt
 jobs:
   deploy-branch:
     runs-on: ubuntu-latest
