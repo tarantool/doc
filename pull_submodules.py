@@ -11,7 +11,6 @@ modules = {
     'grafana-dashboard': 'INPUT_GRAFANA',
     'luatest': 'INPUT_LUATEST',
     'metrics': 'INPUT_METRICS',
-    'tarantool-operator': 'INPUT_K8S_OPERATOR',
     'tntcxx': 'INPUT_CPP_DRIVER',
 }
 workdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'modules')

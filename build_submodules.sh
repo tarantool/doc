@@ -56,10 +56,6 @@ mkdir -p "${cartridge_cli_po_dest}"
 cd "${cartridge_cli_root}/locale/ru/LC_MESSAGES/doc/" || exit
 find . -name '*.po' -exec cp -rv --parents {} "${cartridge_cli_po_dest}" \;
 
-# Add Cartridge Kubernetes guide to the Cartridge toctree right after Cartridge CLI
-sed -i -e '/Cartridge CLI <cartridge_cli\/index>/a\' -e '\ \ \ Cartridge Kubernetes guide <cartridge_kubernetes_guide/index>' "${cartridge_rst_dest}/index.rst"
-
-
 # Monitoring
 monitoring_root="${project_root}/modules/metrics/doc/monitoring"
 monitoring_dest="${project_root}/doc/book"
@@ -85,16 +81,6 @@ cp -fa "${luatest_root}/rst/." "${luatest_dest}"
 cp "${luatest_root}/README.rst" "${luatest_dest}"
 mkdir -p "${luatest_dest}/_includes/"
 mv -fv "${luatest_dest}/index.rst" "${luatest_dest}/_includes/"
-
-
-# Kubernetes operator
-cartridge_kubernetes_root="${project_root}/modules/tarantool-operator/doc/cartridge_kubernetes_guide"
-cartridge_kubernetes_dest="${cartridge_rst_dest}/"
-
-# Copy Kubernetes operator docs to the right place
-mkdir -p "${cartridge_kubernetes_dest}"
-cp -rfv "${cartridge_kubernetes_root}" "${cartridge_kubernetes_dest}"
-
 
 # Tarantool C++ connector
 tntcxx_root="${project_root}/modules/tntcxx"
