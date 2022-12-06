@@ -86,9 +86,6 @@ jobs:
       - run: make json-ru
         id: make-json-ru
 
-      - run: curl ${{secrets.WAKEUP_URL}} --connect-timeout 300 --retry 3 --retry-delay 30 >> /dev/null
-        id: wake-up-server
-
       - run: bash upload_output.sh
         id: upload-output
 
