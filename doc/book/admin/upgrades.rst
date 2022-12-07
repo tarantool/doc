@@ -111,3 +111,5 @@ Version specifics
     upgrades/1.6-1.10
     upgrades/1.6-2.0-downtime
     upgrades/2.10.1
+    upgrades/2.10.4
+
