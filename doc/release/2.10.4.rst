@@ -32,9 +32,8 @@ Breaking Changes
 
 -  Now the empty string, ``n``, ``nu``, ``s``, and ``st`` (that is, leading parts of
    ``num`` and ``str``) are not accepted as valid field types (:tarantool-issue:`5940`).
-   `This instruction <https://github.com/tarantool/tarantool/wiki/Fix-illegal-field-type-in-a-space-format-when-upgrading-to-2.10.4>`__
-   will help you upgrade to Tarantool 2.10.4 and newer if you've previously used these
-   values in field types.
+   :ref:`This instruction <admin-upgrades-2.10.4_illegal_type_name>` will help you upgrade
+   to Tarantool 2.10.4 and newer if you've previously used these values in field types.
 
 Functionality added or changed
 ------------------------------
@@ -146,9 +145,8 @@ Box
 -  **[Breaking change]** Now the empty string, ``n``, ``nu``, ``s``, and
    ``st`` (that is, leading parts of ``num`` and ``str``) are not
    accepted as valid field types (:tarantool-issue:`5940`).
-   `This instruction <https://github.com/tarantool/tarantool/wiki/Fix-illegal-field-type-in-a-space-format-when-upgrading-to-2.10.4>`__
-   will help you upgrade to Tarantool 2.10.4 and newer if you've previously used these
-   values in field types.
+   :ref:`This instruction <admin-upgrades-2.10.4_illegal_type_name>` will help you upgrade
+   to Tarantool 2.10.4 and newer if you've previously used these values in field types.
 
 -  Fixed a bug when ``type = box.NULL`` in ``key_def.new()`` resulted in
    ``type = 'unsigned'`` (:tarantool-issue:`5222`).

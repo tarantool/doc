@@ -1,0 +1,76 @@
+..  _admin-upgrades-2.10.4_illegal_type_name:
+
+Fix illegal type names when upgrading to 2.10.4
+===============================================
+
+This is an upgrade guide for fixing one specific problem which could happen with field type names.
+It's only relevant when you're upgrading from a Tarantool version <=2.10.3 to >=2.10.4.
+
+Before :tarantool-issue:`5940` was fixed, the empty string, ``n``, ``nu``, ``s``,
+and ``st`` (that is, leading parts of ``num`` and ``str``) were accepted as valid field types.
+Since 2.10.4, Tarantool doesn't accept these strings and they must be replaced with
+correct values ``num`` and ``str``.
+
+This instruction is also available on `GitHub <https://github.com/tarantool/tarantool/wiki/Fix-illegal-field-type-in-a-space-format-when-upgrading-to-2.10.4>`__.
+
+Check if your snapshots contain illegal type names
+--------------------------------------------------
+
+A snapshot can be validated against the issue using the following script:
+
+..  literalinclude:: ../_includes/script_check_type_names.rst
+    :language: lua
+
+If the snapshot contains the values that aren't valid in 2.10.4, you'll get
+an output like the following:
+
+.. code-block::bash
+
+    $ ./verify.lua 00000000000002045336.snap
+    A field def in a _space entry "hehe" contains an illegal type: {"name":"id","type":"st"}
+    The following _space entry contains illegal type(s): {"HEADER":{"lsn":342,"type":"INSERT","timestamp":1662160874.6816},"BODY":{"space_id":280,"tuple":[589,1,"hehe","memtx",0,{},[{"name":"id","type":"st"}]]}}
+
+    00000000000002045336.snap has an illegal type in a space format
+    It is recommended to proceed with the upgrade instruction:
+    https://github.com/tarantool/tarantool/wiki/Fix-illegal-field-type-in-a-space-format-when-upgrading-to-2.10.4
+
+Fix an application file
+-----------------------
+
+To fix the application file that contains illegal type names, add the following code in it
+**before** the ``box.cfg()``/``vshard.cfg()``/``cartridge.cfg()`` call.
+
+.. note::
+
+    In Cartridge applications, the instance file is called ``init.lua``.
+
+
+..  literalinclude:: ../_includes/script_fix_type_names.rst
+    :language: lua
+
+You can delete these triggers **after** the ``box.cfg()``/``vshard.cfg()``/``cartridge.cfg()``
+call.
+
+An example for a Cartridge application:
+
+.. code-block::lua
+
+    -- <..define before_replace function..>
+    -- <..define on_schema_init function..>
+
+    -- Set the trigger on _space.
+    box.ctl.on_schema_init(on_schema_init)
+
+    -- Init cartridge. The snapshot is recovered while configuration.
+    cartridge.cfg(<...>)
+
+    -- Delete the triggers.
+    box.space._space:before_replace(nil, before_replace)
+    box.ctl.on_schema_init(nil, on_schema_init)
+
+The triggers will report the changes the make in the following form:
+
+.. code-block::bash
+
+    I> Transform a field def in a _space entry "hehe": {"name":"id","type":"st"} -> {"name":"id","type":"str"}
+    I> Transformed _space entry [589,1,"hehe","memtx",0,{},[{"name":"id","type":"st"}]] to [589,1,"hehe","memtx",0,{},[{"name":"id","type":"str"}]]
