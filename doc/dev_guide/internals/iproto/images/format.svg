@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="102px" preserveAspectRatio="none" style="width:150px;height:102px;background:#FFFFFF;" version="1.1" viewBox="0 0 150 102" width="150px" zoomAndPan="magnify"><defs/><g><g id="elem_Packet"><rect fill="none" height="81.1875" style="stroke:#313131;stroke-width:0.5;" width="129" x="7" y="7"/><text fill="#313131" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="53" x="45" y="21.9951">Packet</text><line style="stroke:#313131;stroke-width:1.0;" x1="7" x2="136" y1="27.2969" y2="27.2969"/><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="22.5" y="42.292">size</text><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="71" y="42.292">MP_UINT</text><line style="stroke:#313131;stroke-width:1.0;" x1="66" x2="66" y1="27.2969" y2="47.5938"/><line style="stroke:#313131;stroke-width:1.0;" x1="7" x2="136" y1="47.5938" y2="47.5938"/><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49" x="12" y="62.5889">header</text><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="71" y="62.5889">MP_MAP</text><line style="stroke:#313131;stroke-width:1.0;" x1="66" x2="66" y1="47.5938" y2="67.8906"/><line style="stroke:#313131;stroke-width:1.0;" x1="7" x2="136" y1="67.8906" y2="67.8906"/><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="19.5" y="82.8857">body</text><text fill="#313131" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="71" y="82.8857">MP_MAP</text><line style="stroke:#313131;stroke-width:1.0;" x1="66" x2="66" y1="67.8906" y2="88.1875"/></g><!--MD5=[c6b44187897ce00f9a68396b468525cb]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="102px" preserveAspectRatio="none" style="width:149px;height:102px;" version="1.1" viewBox="0 0 149 102" width="149px" zoomAndPan="magnify"><defs/><g><g id="elem_Packet"><rect fill="#F1F1F1" height="81.9531" style="stroke:#181818;stroke-width:0.5;" width="128" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="47" x="47.5" y="22.5352">Packet</text><line style="stroke:#181818;stroke-width:1.0;" x1="7" x2="135" y1="27.4883" y2="27.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27" x="22.5" y="43.0234">size</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="70" y="43.0234">MP_UINT</text><line style="stroke:#181818;stroke-width:1.0;" x1="65" x2="65" y1="27.4883" y2="47.9766"/><line style="stroke:#181818;stroke-width:1.0;" x1="7" x2="135" y1="47.9766" y2="47.9766"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="12" y="63.5117">header</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="57" x="70" y="63.5117">MP_MAP</text><line style="stroke:#181818;stroke-width:1.0;" x1="65" x2="65" y1="47.9766" y2="68.4648"/><line style="stroke:#181818;stroke-width:1.0;" x1="7" x2="135" y1="68.4648" y2="68.4648"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="19" y="84">body</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="57" x="70" y="84">MP_MAP</text><line style="stroke:#181818;stroke-width:1.0;" x1="65" x2="65" y1="68.4648" y2="88.9531"/></g><!--MD5=[d3294b41fd613fee77da32699820cd42]
 @startuml
 
-skinparam map {
+skinparam {
     HyperlinkColor #0077FF
     FontColor #313131
     BorderColor #313131
@@ -16,11 +16,11 @@ map "**Packet**" as Packet {
 
 @enduml
 
-PlantUML version 1.2022.8(Sun Sep 25 12:00:33 IDT 2022)
+PlantUML version 1.2022.13(Sat Nov 19 20:22:17 NOVT 2022)
 (GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
 Default Encoding: UTF-8
 Language: en
-Country: US
+Country: RU
 --></g></svg>
