@@ -1,6 +1,6 @@
 @startuml
 
-skinparam map {
+skinparam {
     HyperlinkColor #0077FF
     FontColor #313131
     BorderColor #313131
@@ -19,12 +19,12 @@ json "**IPROTO_PING**" as ping_request {
 json "**Response to IPROTO_PING**" as insert_response {
     "Size": "MP_UINT",
     "Header": {
-    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
-    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
-    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
     },
     "Body": {
-    "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": "MP_MAP, empty"
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": "MP_MAP, empty"
     }
 }
 
