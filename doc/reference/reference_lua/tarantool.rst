@@ -26,21 +26,20 @@ the tarantool module is recommended.
     ...
     tarantool> tarantool
     ---
-    - version: 2.4.0-35-g57f6fc932
+    - version: 2.10.4-0-g816000e
       build:
-        target: Linux-x86_64-RelWithDebInfo
-        options: cmake . -DCMAKE_INSTALL_PREFIX=/opt/tarantool-install
-    -DENABLE_BACKTRACE=ON
-        mod_format: so
-        flags: ' -fexceptions -funwind-tables -fno-omit-frame-pointer
-    -fno-stack-protector
-          -fno-common -fopenmp -msse2 -std=c11 -Wall -Wextra
-    -Wno-strict-aliasing -Wno-char-subscripts
-          -Wno-format-truncation -fno-gnu89-inline -Wno-cast-function-type'
-        compiler: /usr/bin/cc /usr/bin/c++
-      pid: 'function: 0x40016cd0'
+        target: Darwin-x86_64-Release
+        options: cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/Cellar/tarantool/2.10.4 -DENABLE_BACKTRACE=ON
+        linking: dynamic
+        mod_format: dylib
+        flags: ' -fexceptions -funwind-tables -fno-common -fopenmp -msse2 -Wformat -Wformat-security
+          -Werror=format-security -fstack-protector-strong -fPIC -fmacro-prefix-map=/tmp/tarantool-20221113-6655-1clb1lj/tarantool-2.10.4=.
+          -std=c11 -Wall -Wextra -Wno-strict-aliasing -Wno-char-subscripts -Wno-format-truncation
+          -Wno-gnu-alignof-expression -Wno-cast-function-type'
+        compiler: Clang-14.0.0.14000029
+      pid: 'function: 0x0102df34f8'
       package: Tarantool
-      uptime: 'function: 0x40016cb0'
+      uptime: 'function: 0x0102df34c0'
     ...
     tarantool> tarantool.pid()
     ---

@@ -35,7 +35,7 @@ Command options
     ..  code-block:: console
 
         $ ./tarantool --version
-        Tarantool 2.6.2-0-g34d504d
+        Tarantool 2.10.4-0-g816000e
         Target: Darwin-x86_64-Release
         ...
 
