@@ -16,7 +16,6 @@ network.
 For a quick start with ``net.box``, refer to the :ref:`tutorial <getting_started_net_box>`.
 
 You can call the following methods:
-
 * ``require('net.box')`` -- to get a ``net.box`` object
   (named ``net_box`` for examples in this section)
 * ``net_box.connect()`` -- to connect and get a connection object
@@ -24,7 +23,6 @@ You can call the following methods:
 * other ``net.box()`` routines, passing ``conn:``, to execute requests on
   the remote database system
 * ``conn:close`` -- to disconnect
-
 All ``net.box`` methods are fiber-safe, that is, it is safe to share and use the
 same connection object across multiple concurrent fibers. In fact that is perhaps
 the best programming practice with Tarantool. When multiple fibers use the same
