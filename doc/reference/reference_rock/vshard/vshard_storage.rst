@@ -10,7 +10,7 @@ Storage API
 
     +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
     | :ref:`Storage public API                    | * :ref:`vshard.storage.cfg(cfg, instance_uuid) <storage_api-cfg>`                                         |
-    | <vshard-storage_public_api>`                | * :ref:`vshard.storage.info() <storage_api-info>`                                                         |
+    | <vshard-storage_public_api>`                | * :ref:`vshard.storage.info({options}) <storage_api-info>`                                                |
     |                                             | * :ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) <storage_api-call>`          |
     |                                             | * :ref:`vshard.storage.sync(timeout) <storage_api-sync>`                                                  |
     |                                             | * :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`                                    |
@@ -58,9 +58,22 @@ Storage public API
 
 ..  _storage_api-info:
 
-..  function:: vshard.storage.info()
+..  function:: vshard.storage.info({options})
 
-    Return information about the storage instance in the following format:
+    Return information about the storage instance. Since vshard v.0.1.22, the
+    function also accepts options, which can be used to get additional
+    information.
+
+    :param options:
+
+       *    ``with_services`` — a bool value. If set to ``true``, the
+            function returns information about the background services
+            (such as garbage collector, rebalancer, recovery, or applier
+            of the routes) that are working on the current instance. See
+            :ref:`vshard.router.info <router_api-info>` for detailed
+            reference.
+
+    **Example:**
 
     ..  code-block:: tarantoolsession
 
