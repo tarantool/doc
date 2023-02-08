@@ -10,9 +10,6 @@
 [submodule "modules/luatest"]
 	path = modules/luatest
 	url = https://github.com/tarantool/luatest
-[submodule "modules/tarantool-operator"]
-	path = modules/tarantool-operator
-	url = https://github.com/tarantool/tarantool-operator.git
 [submodule "modules/grafana-dashboard"]
 	path = modules/grafana-dashboard
 	url = https://github.com/tarantool/grafana-dashboard

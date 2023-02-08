@@ -21,9 +21,6 @@ on:
       metrics:
         description: "Metrics branch or commit"
         required: false
-      k8s_operator:
-        description: "Kubernetes branch or commit"
-        required: false
       cpp_driver:
         description: "Cpp driver branch or commit"
         required: false
@@ -63,7 +60,6 @@ jobs:
           echo "INPUT_GRAFANA=${{github.event.inputs.grafana}}" >> $GITHUB_ENV
           echo "INPUT_LUATEST=${{github.event.inputs.luatest}}" >> $GITHUB_ENV
           echo "INPUT_METRICS=${{github.event.inputs.metrics}}" >> $GITHUB_ENV
-          echo "INPUT_K8S_OPERATOR=${{github.event.inputs.k8s_operator}}" >> $GITHUB_ENV
           echo "INPUT_CPP_DRIVER=${{github.event.inputs.cpp_driver}}" >> $GITHUB_ENV
 
       - name: Start dev server deployment
@@ -85,9 +81,6 @@ jobs:
         id: make-json
       - run: make json-ru
         id: make-json-ru
-
-      - run: curl ${{secrets.WAKEUP_URL}} --connect-timeout 300 --retry 3 --retry-delay 30 >> /dev/null
-        id: wake-up-server
 
       - run: bash upload_output.sh
         id: upload-output
