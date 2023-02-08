@@ -29,7 +29,7 @@ Router API
     |                                             | * :ref:`vshard.router.sync(timeout) <router_api-sync>`                                                    |
     |                                             | * :ref:`vshard.router.discovery_wakeup() <router_api-discovery_wakeup>`                                   |
     |                                             | * :ref:`vshard.router.discovery_set() <router_api-discovery_set>`                                         |
-    |                                             | * :ref:`vshard.router.info() <router_api-info>`                                                           |
+    |                                             | * :ref:`vshard.router.info({options}) <router_api-info>`                                                  |
     |                                             | * :ref:`vshard.router.buckets_info() <router_api-buckets_info>`                                           |
     |                                             | * :ref:`vshard.router.enable() <router_api-enable>`                                                       |
     |                                             | * :ref:`vshard.router.disable() <router_api-disable>`                                                     |
@@ -679,9 +679,18 @@ Router public API
 
 ..  _router_api-info:
 
-..  function:: vshard.router.info()
+..  function:: vshard.router.info({options})
 
-    Return information about each instance.
+    Return information about each instance. Since vshard v.0.1.22, the
+    function also accepts options, which can be used to get additional
+    information.
+
+    :param options:
+
+       *    ``with_services`` — a bool value. If set to ``true``, the
+            function returns information about the background services
+            (such as discovery, master search, or failover) that are
+            working on the current instance.
 
     :Return:
 
@@ -705,6 +714,17 @@ Router public API
     * ``available_rw``—the number of buckets known to the ``router`` and available for read and write requests
     * ``unavailable``—the number of buckets known to the ``router`` but unavailable for any requests
     * ``unreachable``—the number of buckets whose replica sets are not known to the ``router``
+
+    Service parameters:
+
+    * ``name`` — service name. Possible values: ``discovery``, ``failover``, ``master_search``.
+    * ``status`` — service status. Possible values: ``ok``, ``error``.
+    * ``error`` — error message that appears on the ``error`` status.
+    * ``activity`` — service state. It shows what the service is currently doing
+      (for example, ``updating replicas``).
+    * ``status_idx`` — incrementing counter of the status changes.
+      The ``ok`` status is updated on every successful iteration of the service.
+      The ``error`` status is updated only when it is fixed.
 
     **Example:**
 
@@ -736,6 +756,24 @@ Router public API
             available_rw: 3000
           status: 0
           alerts: []
+        ...
+
+        tarantool> vshard.router.info({with_services = true})
+        ---
+        <all info from vshard.router.info()>
+          services:
+            failover:
+              status_idx: 2
+              error:
+              activity: idling
+              name: failover
+              status: ok
+            discovery:
+              status_idx: 2
+              error: Error during discovery: TimedOut
+              activity: idling
+              name: discovery
+              status: error
         ...
 
 ..  _router_api-buckets_info:
