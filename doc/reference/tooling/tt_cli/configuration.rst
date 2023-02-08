@@ -27,6 +27,9 @@ The ``tt`` configuration file is a YAML file with the following content:
         log_dir: path/to/log_dir
         bin_dir: path/to/bin_dir
         inc_dir: path/to/inc_dir
+        wal_dir: path/to/wal_dir
+        vinyl_dir: path/to/vinyl_dir
+        memtx_dir: path/to/memtx_dir
         log_maxsize: num (MB)
         log_maxage: num (days)
         log_maxbackups: num
@@ -43,7 +46,8 @@ The ``tt`` configuration file is a YAML file with the following content:
 modules section
 ~~~~~~~~~~~~~~~
 
-* ``directory`` -- the directory where :doc:`external modules <external_modules>` are stored.
+*   ``directory`` -- the directory where :doc:`external modules <external_modules>`
+    are stored.
 
 .. _tt-config_file_app:
 
@@ -53,11 +57,18 @@ app section
 *   ``instances_available`` -- the directory where :ref:`instances <admin-instance_file>`
     are stored.
 *   ``run_dir``-- the directory for instance runtime artifacts, such as console
-    sockets or PID files.
-*   ``log_dir`` -- the directory where log files are stored.
-*   ``bin_dir`` -- the directory where binary files are stored.
+    sockets or PID files. Default: ``var/run``.
+*   ``log_dir`` -- the directory where log files are stored. Default: ``var/log``.
+*   ``bin_dir`` -- the directory where binary files are stored. Default: ``bin``.
 *   ``inc_dir`` -- the base directory for storing header files. They will
     be placed in the ``include`` subdirectory inside the specified directory.
+    Default: ``include``.
+*   ``wal_dir`` -- the directory where write-ahead log (``.xlog``) files are stored.
+    Default: ``var/lib``.
+*   ``memtx_dir`` -- the directory where memtx stores snapshot (``.snap``) files.
+    Default: ``var/lib``.
+*   ``vinyl_dir`` -- the directory where vinyl files or subdirectories are stored.
+    Default: ``var/lib``.
 *   ``log_maxsize`` -- the maximum size of the log file before it gets rotated,
     in megabytes. Default: 100.
 *   ``log_maxage`` -- the maximum age of log files in days. The age of a log
