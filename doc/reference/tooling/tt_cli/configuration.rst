@@ -25,10 +25,17 @@ The ``tt`` configuration file is a YAML file with the following content:
         instances_available: path/to/available/applications
         run_dir: path/to/run_dir
         log_dir: path/to/log_dir
+        bin_dir: path/to/bin_dir
+        inc_dir: path/to/inc_dir
         log_maxsize: num (MB)
         log_maxage: num (days)
         log_maxbackups: num
         restart_on_failure: bool
+      repo:
+        rocks: path/to/rocks
+        distfiles: path/to/install
+      ee:
+        credential_path: path/to/file
       templates:
         - path: path/to/app/templates1
         - path: path/to/app/templates2
@@ -48,6 +55,9 @@ app section
 *   ``run_dir``-- the directory for instance runtime artifacts, such as console
     sockets or PID files.
 *   ``log_dir`` -- the directory where log files are stored.
+*   ``bin_dir`` -- the directory where binary files are stored.
+*   ``inc_dir`` -- the base directory for storing header files. They will
+    be placed in the ``include`` subdirectory inside the specified directory.
 *   ``log_maxsize`` -- the maximum size of the log file before it gets rotated,
     in megabytes. Default: 100.
 *   ``log_maxage`` -- the maximum age of log files in days. The age of a log
@@ -63,6 +73,18 @@ app section
     Default: not defined (log files aren't deleted based on their count).
 *   ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
     Default: ``false``.
+
+repo section
+~~~~~~~~~~~~
+
+*   ``rocks`` -- the directory where rocks files are stored.
+*   ``distfiles`` -- the directory where installation files are stored.
+
+ee section
+~~~~~~~~~~
+
+*   ``credential_path`` -- a path to the file file with credentials used for
+    downloading Tarantool Enterprise.
 
 templates section
 ~~~~~~~~~~~~~~~~~
