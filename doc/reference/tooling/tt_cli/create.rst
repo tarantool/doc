@@ -1,7 +1,7 @@
 .. _tt-create:
 
 Creating an application from a template
-=====================================
+=======================================
 
 ..  code-block:: bash
 

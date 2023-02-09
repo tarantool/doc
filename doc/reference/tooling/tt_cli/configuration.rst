@@ -25,10 +25,20 @@ The ``tt`` configuration file is a YAML file with the following content:
         instances_available: path/to/available/applications
         run_dir: path/to/run_dir
         log_dir: path/to/log_dir
+        bin_dir: path/to/bin_dir
+        inc_dir: path/to/inc_dir
+        wal_dir: path/to/wal_dir
+        vinyl_dir: path/to/vinyl_dir
+        memtx_dir: path/to/memtx_dir
         log_maxsize: num (MB)
         log_maxage: num (days)
         log_maxbackups: num
         restart_on_failure: bool
+      repo:
+        rocks: path/to/rocks
+        distfiles: path/to/install
+      ee:
+        credential_path: path/to/file
       templates:
         - path: path/to/app/templates1
         - path: path/to/app/templates2
@@ -36,7 +46,8 @@ The ``tt`` configuration file is a YAML file with the following content:
 modules section
 ~~~~~~~~~~~~~~~
 
-* ``directory`` -- the directory where :doc:`external modules <external_modules>` are stored.
+*   ``directory`` -- the directory where :doc:`external modules <external_modules>`
+    are stored.
 
 .. _tt-config_file_app:
 
@@ -46,8 +57,18 @@ app section
 *   ``instances_available`` -- the directory where :ref:`instances <admin-instance_file>`
     are stored.
 *   ``run_dir``-- the directory for instance runtime artifacts, such as console
-    sockets or PID files.
-*   ``log_dir`` -- the directory where log files are stored.
+    sockets or PID files. Default: ``var/run``.
+*   ``log_dir`` -- the directory where log files are stored. Default: ``var/log``.
+*   ``bin_dir`` -- the directory where binary files are stored. Default: ``bin``.
+*   ``inc_dir`` -- the base directory for storing header files. They will
+    be placed in the ``include`` subdirectory inside the specified directory.
+    Default: ``include``.
+*   ``wal_dir`` -- the directory where write-ahead log (``.xlog``) files are stored.
+    Default: ``var/lib``.
+*   ``memtx_dir`` -- the directory where memtx stores snapshot (``.snap``) files.
+    Default: ``var/lib``.
+*   ``vinyl_dir`` -- the directory where vinyl files or subdirectories are stored.
+    Default: ``var/lib``.
 *   ``log_maxsize`` -- the maximum size of the log file before it gets rotated,
     in megabytes. Default: 100.
 *   ``log_maxage`` -- the maximum age of log files in days. The age of a log
@@ -63,6 +84,18 @@ app section
     Default: not defined (log files aren't deleted based on their count).
 *   ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
     Default: ``false``.
+
+repo section
+~~~~~~~~~~~~
+
+*   ``rocks`` -- the directory where rocks files are stored.
+*   ``distfiles`` -- the directory where installation files are stored.
+
+ee section
+~~~~~~~~~~
+
+*   ``credential_path`` -- a path to the file file with credentials used for
+    downloading Tarantool Enterprise.
 
 templates section
 ~~~~~~~~~~~~~~~~~

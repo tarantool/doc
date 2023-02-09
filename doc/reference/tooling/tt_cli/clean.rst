@@ -1,4 +1,4 @@
-.. _tt-stop:
+.. _tt-clean:
 
 Cleaning instance files
 =======================

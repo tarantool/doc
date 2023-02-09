@@ -1,7 +1,7 @@
 .. _tt-build:
 
 Building an application
-====================
+=======================
 
 ..  code-block:: bash
 
