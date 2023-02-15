@@ -30,6 +30,8 @@ help for the given command.
             -   Create an application from a template
         *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
+        *   -   :doc:`init <init>`
+            -   Create a new ``tt`` environment in the current directory
         *   -   :doc:`logrotate <logrotate>`
             -   Rotate instance logs
         *   -   :doc:`play <play>`
