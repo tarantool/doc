@@ -8,8 +8,11 @@ or ``apt``. If you need a specific ``tt`` build or use MacOS, you can build
 Using package managers
 ----------------------
 
-On Linux systems, you can install with ``yum`` or ``apt`` package managers.
-For example:
+On Linux systems, you can install with ``yum`` or ``apt`` package managers from
+the ``tarantool/modules`` repository. Learn how to `add this repository
+<https://www.tarantool.io/en/download/os-installation/ubuntu/>`_.
+
+The installation command looks like this:
 
 *   On Ubuntu:
 
