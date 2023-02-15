@@ -3,7 +3,7 @@ Installation
 
 To install the ``tt`` command-line utility, use a package manager -- ``yum``
 or ``apt``. If you need a specific ``tt`` build or use MacOS, you can build
-it from sources.
+``tt`` from sources.
 
 Using package managers
 ----------------------
@@ -50,7 +50,7 @@ Building from sources
 
       cd tt
 
-4.  (Optional) checkout a release tag to build a specific version:
+4.  (Optional) Checkout a release tag to build a specific version:
 
     ..  code-block:: bash
 
@@ -60,7 +60,6 @@ Building from sources
 
     ..  code-block:: bash
 
-      cd tt
       mage build
 
 ``tt`` will appear in the current directory.
