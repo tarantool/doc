@@ -1,7 +1,38 @@
 Installation
 ============
 
-To install the ``tt`` command-line utility:
+To install the ``tt`` command-line utility, use a package manager -- ``yum``
+or ``apt``. If you need a specific ``tt`` build or use MacOS, you can build
+``tt`` from sources.
+
+Using package managers
+----------------------
+
+On Linux systems, you can install with ``yum`` or ``apt`` package managers from
+the ``tarantool/modules`` repository. Learn how to `add this repository
+<https://www.tarantool.io/en/download/os-installation/ubuntu/>`_.
+
+The installation command looks like this:
+
+*   On Ubuntu:
+
+    .. code-block:: console
+
+      $ sudo apt-get install tt
+
+*   On CentOS:
+
+    .. code-block:: console
+
+      $ sudo yum install tt
+
+Building from sources
+---------------------
+
+.. note::
+
+    As of ``tt`` 1.0.0, there is no pre-built version for MacOS, so building
+    from sources is the only supported way to install ``tt`` on it.
 
 1.  Install third-party software required for building ``tt``:
 
@@ -16,11 +47,22 @@ To install the ``tt`` command-line utility:
 
       git clone https://github.com/tarantool/tt --recursive
 
-3.  Go to the ``tt/`` directory and build ``tt`` using mage:
+3.  Go to the ``tt/`` directory:
 
     ..  code-block:: bash
 
       cd tt
+
+4.  (Optional) Checkout a release tag to build a specific version:
+
+    ..  code-block:: bash
+
+      git checkout tags/v1.0.0
+
+5.  Build ``tt`` using mage:
+
+    ..  code-block:: bash
+
       mage build
 
 ``tt`` will appear in the current directory.
