@@ -100,7 +100,7 @@
     new transactions to a :ref:`write-ahead log<internals-wal>` (WAL).
     This option helps limit the rate at which a replica submits transactions to the WAL.
     Limiting the queue size might be useful when a replica is trying to sync with a master and
-    reads new transactions quicker than writing them to the WAL.
+    reads new transactions faster than writing them to the WAL.
 
     | Type: number
     | Default: 16777216
