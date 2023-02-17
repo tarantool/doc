@@ -103,6 +103,6 @@
     reads new transactions faster than writing them to the WAL.
 
     | Type: number
-    | Default: 16777216
+    | Default: 16777216 bytes
     | Environment variable: TT_WAL_QUEUE_MAX_SIZE
     | Dynamic: **yes**
