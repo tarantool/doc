@@ -55,7 +55,7 @@ For more details, see the ``box.slab`` module :doc:`reference </reference/refere
 .. image:: memtx/spaces_indexes.svg
 
 Also inside the TX thread, there is an event loop. Within the event loop, there are a number of :ref:`fibers <fiber-fibers>`.
-Fibers are cooperative primitives that allows interaction with spaces, that is, reading and writing the data.
+Fibers are cooperative primitives that allow interaction with spaces, that is, reading and writing the data.
 Fibers can interact with the event loop and between each other directly or by using special primitives called channels.
 Due to the usage of fibers and :ref:`cooperative multitasking <app-cooperative_multitasking>`, the ``memtx`` engine is lock-free in typical situations.
 
