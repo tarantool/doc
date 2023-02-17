@@ -1274,7 +1274,7 @@ Keys in the meta section are:
     message originator (can differ from
   * SWIM_META_SRC_ADDRESS and from SWIM_META_SRC_ADDRESS_PORT);
   * SWIM_ROUTE_DST_ADDRESS and SWIM_ROUTE_DST_PORT (destination
-    IP address and port, for the the message's final destination).
+    IP address and port, for the message's final destination).
 
   If a message was sent indirectly with the help of SWIM_META_ROUTING,
   then the reply should be sent back by the same route.

@@ -3961,7 +3961,7 @@ columns have the collation specified by ``CREATE TABLE``.
 
 In other words, to pick a collation, Tarantool uses: |br|
 the first ``COLLATE`` clause in an expression if it was specified, |br|
-else the the column's ``COLLATE`` clause if it was specified, |br|
+else the column's ``COLLATE`` clause if it was specified, |br|
 else ``"binary"``.
 
 However, for searches and sometimes for sorting, the collation may be an index's collation,
