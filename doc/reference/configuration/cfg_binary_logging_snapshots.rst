@@ -102,6 +102,11 @@
     Limiting the queue size might be useful when a replica is trying to sync with a master and
     reads new transactions faster than writing them to the WAL.
 
+    .. NOTE::
+
+        You might consider increasing the ``wal_queue_max_size`` value in case of
+        large tuples (approximately one megabyte or larger).
+
     | Type: number
     | Default: 16777216 bytes
     | Environment variable: TT_WAL_QUEUE_MAX_SIZE
