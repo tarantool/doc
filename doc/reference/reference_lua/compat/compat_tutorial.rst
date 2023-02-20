@@ -1,12 +1,9 @@
 .. _compat-tutorial:
 
-Tutorial on using compat API
-============================
+compat module tutorial
+======================
 
-[TBD] title above
-[TBD] some intro
-
-[TBD] intro sentence before the ToC
+This tutorial covers the following ``compat`` module API and its usage:
 
 ..  contents
     :local:
@@ -18,7 +15,7 @@ The options list is serialized in the interactive console with additional detail
 
 *   All non-obsolete options in order new > old > default.
 
-*   Serialization returns array-like table with tables {<option> = <value>}.
+*   Serialization returns array-like table with tables ``{<option> = <value>}``.
 
 *   The result of compat serialization can still be indexed as a normal key-value table.
 
@@ -39,9 +36,9 @@ The options list is serialized in the interactive console with additional detail
 Listing options details
 -----------------------
 
-*   current — the state of the option
-*   default — the default state of the option
-*   brief — text options description with a link to more detailed description
+*   ``current`` – the state of the option.
+*   ``default`` – the default state of the option.
+*   ``brief`` – text options description with a link to more detailed description.
 
 ..  code-block:: lua
 
@@ -56,7 +53,7 @@ Changing option value
 ---------------------
 
 You can do it directly, or by passing a table with option-value.
-Assignable values are 'new' , 'old', and 'default'.
+Possible values to assign are 'new' , 'old', and 'default'.
 
 ..  code-block:: lua
 
@@ -71,7 +68,7 @@ Assignable values are 'new' , 'old', and 'default'.
 Restoring defaults
 ------------------
 
-By setting 'default' value to it:
+By setting 'default' value to an option:
 
 ..  code-block:: lua
 

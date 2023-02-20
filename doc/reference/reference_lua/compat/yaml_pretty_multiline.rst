@@ -9,7 +9,7 @@ The ``yaml_pretty_multiline`` compat option allows to encode multiline strings i
 Old and new behavior
 --------------------
 
-``compat`` lets you chose between ``lua-yaml`` encoding multiline strings as usual or in enforced block scalar style:
+The ``compat`` module allows you to chose between the ``lua-yaml`` encodes multiline strings as usual or in the enforced block scalar style:
 
 ..  code-block:: lua
 
@@ -40,32 +40,18 @@ Old and new behavior
       - Item 2
     ...
 
-You can select new/old behavior in compat. It will affect global yaml encoder.
+You can select the new/old behavior in ``compat``. It affects the global YAML encoder.
 
 Known compatibility issues
 --------------------------
 
-At this point we do not know any incompatible modules.
+At this point, no incompatible modules are known.
 
 Detecting issues in you codebase
 --------------------------------
 
-Both encoding styles are correct from YAML standard standpoint, but if your module relies on encodings results bytewise, it may break with this change. Be cautious if you do the following:
+Both encoding styles are correct from the YAML standard standpoint, but if your module relies on encodings results bytewise, it may break with this change.
+Be cautious if you do the following:
 
-*   compare results of yaml encoding as strings
-*   hash results of yaml encoding.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*   Compare results of YAML encoding as strings.
+*   Hash results of yaml encoding.
