@@ -4,6 +4,7 @@
 * :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
 * :ref:`wal_queue_max_size <cfg_binary_logging_snapshots-wal_queue_max_size>`
+* :ref:`wal_cleanup_delay <cfg_binary_logging_snapshots-wal_cleanup_delay>`
 
 .. _cfg_binary_logging_snapshots-force_recovery:
 
@@ -110,4 +111,27 @@
     | Type: number
     | Default: 16777216 bytes
     | Environment variable: TT_WAL_QUEUE_MAX_SIZE
+    | Dynamic: **yes**
+
+.. _cfg_binary_logging_snapshots-wal_cleanup_delay:
+
+.. confval:: wal_cleanup_delay
+
+    Since version :doc:`2.8.1 </release/2.8.1>`.
+    The delay (in seconds) used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
+    from immediate removing :ref:`write-ahead log<internals-wal>` files after a node restart.
+    This delay helps :ref:`replicas <replication-roles>` sync with a master faster after its restart and
+    eliminates the need to download all the data again.
+
+    Once all the nodes in the replica set are up and running,
+    automatic cleanup is started again even if ``wal_cleanup_delay`` has not expired.
+
+    .. NOTE::
+
+        The ``wal_cleanup_delay`` option is not in effect if a node is running as an
+        :ref:`anonymous replica<cfg_replication-replication_anon>`.
+
+    | Type: number
+    | Default: 14400 seconds
+    | Environment variable: TT_WAL_CLEANUP_DELAY
     | Dynamic: **yes**
