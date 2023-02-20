@@ -5,7 +5,7 @@ compat module tutorial
 
 This tutorial covers the following ``compat`` module API and its usage:
 
-..  contents
+..  contents::
     :local:
 
 Listing options
