@@ -95,7 +95,7 @@
 
 .. confval:: wal_queue_max_size
 
-    Since version 2.6.3.
+    Since version :doc:`2.8.1 </release/2.8.1>`.
     The size of the queue (in bytes) used by a :ref:`replica <replication-roles>` to submit
     new transactions to a :ref:`write-ahead log<internals-wal>` (WAL).
     This option helps limit the rate at which a replica submits transactions to the WAL.
