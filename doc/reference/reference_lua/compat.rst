@@ -55,3 +55,4 @@ Existing compat options
     compat/fiber_channel_close_mode
     compat/box_cfg_replication_sync_timeout
     compat/sql_seq_scan_default
+    compat/fiber_slice_default
