@@ -119,7 +119,7 @@
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
     The delay (in seconds) used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
-    from immediate removing :ref:`write-ahead log<internals-wal>` files after a node restart.
+    from immediately removing :ref:`write-ahead log<internals-wal>` files after a node restart.
     This delay helps :ref:`replicas <replication-roles>` sync with a master faster after its restart and
     eliminates the need to download all the data again.
 
