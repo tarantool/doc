@@ -7,6 +7,7 @@ Tarantool 1.10 LTS series includes the following releases:
 ..  toctree::
     :maxdepth: 1
 
+    1.10.15
     1.10.14
     1.10.13
     1.10.12
