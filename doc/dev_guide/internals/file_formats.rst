@@ -11,7 +11,7 @@ Data persistence and the WAL file format
 To maintain data persistence, Tarantool writes each data change request (insert,
 update, delete, replace, upsert) into a write-ahead log (WAL) file in the
 :ref:`wal_dir <cfg_basic-wal_dir>` directory. A new WAL file is created
-when :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>` is reached.
+when the current one reaches the :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>` size.
 Each data change request gets assigned a continuously growing 64-bit log sequence
 number. The name of the WAL file is based on the log sequence number of the first
 record in the file, plus an extension ``.xlog``.
