@@ -103,6 +103,7 @@
 
 .. confval:: slab_alloc_granularity
 
+    Since version :doc:`2.8.1 </release/2.8.1>`.
     Specifies the granularity of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
     The value of ``slab_alloc_granularity`` should be a power of two and should greater than or equal to 4:
 
