@@ -210,7 +210,7 @@ SQL
 -  Fixed a bug when collation could change the type of a built-in
    function argument (:tarantool-issue:`7992`).
 -  Fixed several bugs happening because of improper handling of
-   ``malloc()`` failures. (:tarantool-sec-issue:`65`, :tarantool-sec-issue:`66`,
+   ``malloc()`` failures (:tarantool-sec-issue:`65`, :tarantool-sec-issue:`66`,
    :tarantool-sec-issue:`67`, :tarantool-sec-issue:`68`).
 
 Box
@@ -223,7 +223,7 @@ Box
    (:tarantool-issue:`5104`).
 -  Eliminated a code injection vulnerability in the processing of the
    ``replication_synchro_quorum`` ``box.cfg()`` option (:tarantool-sec-issue:`20`,
-   `GHSA-74jr-2fq7-vp42 <https://github.com/tarantool/tarantool/security/advisories/GHSA-74jr-2fq7-vp42>`__.
+   `GHSA-74jr-2fq7-vp42 <https://github.com/tarantool/tarantool/security/advisories/GHSA-74jr-2fq7-vp42>`__).
 
 Datetime
 ~~~~~~~~
