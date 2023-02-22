@@ -110,7 +110,7 @@
 
     * To store small tuples of approximately the same size, set ``slab_alloc_granularity`` to 4 to save memory.
 
-    * To store tuples of different sizes, you can increase ``slab_alloc_granularity`` value.
+    * To store tuples of different sizes, you can increase the ``slab_alloc_granularity`` value.
       This results in allocating tuples from the same ``mempool``.
 
     See also: :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
