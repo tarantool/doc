@@ -122,7 +122,7 @@
     from immediately removing :ref:`write-ahead log<internals-wal>` files after a node restart.
     This delay eliminates possible erroneous situations when the master deletes WALs
     needed by :ref:`replicas <replication-roles>` after restart.
-    As a consequence, replicas sync with a master faster after its restart and
+    As a consequence, replicas sync with the master faster after its restart and
     don't need to download all the data again.
 
     Once all the nodes in the replica set are up and running,
@@ -130,8 +130,8 @@
 
     .. NOTE::
 
-        The ``wal_cleanup_delay`` option is not in effect if a node is running as an
-        :ref:`anonymous replica<cfg_replication-replication_anon>`.
+        The ``wal_cleanup_delay`` option has no effect on nodes running as
+        :ref:`anonymous replicas<cfg_replication-replication_anon>`.
 
     | Type: number
     | Default: 14400 seconds
