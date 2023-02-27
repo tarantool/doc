@@ -104,11 +104,11 @@
 .. confval:: slab_alloc_granularity
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
-    Specifies the granularity of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
+    Specifies the granularity (in bytes) of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
     The value of ``slab_alloc_granularity`` should be a power of two and should be greater than or equal to 4.
     Below are few recommendations on how to adjust the ``slab_alloc_granularity`` value:
 
-    * To store small tuples of approximately the same size, set ``slab_alloc_granularity`` to 4 to save memory.
+    * To store small tuples of approximately the same size, set ``slab_alloc_granularity`` to 4 bytes to save memory.
 
     * To store tuples of different sizes, you can increase the ``slab_alloc_granularity`` value.
       This results in allocating tuples from the same ``mempool``.
@@ -116,7 +116,7 @@
     See also: :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
 
     | Type: number
-    | Default: 8
+    | Default: 8 bytes
     | Environment variable: TT_SLAB_ALLOC_GRANULARITY
     | Dynamic: no
 
