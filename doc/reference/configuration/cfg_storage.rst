@@ -105,7 +105,7 @@
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
     Specifies the granularity of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
-    The value of ``slab_alloc_granularity`` should be a power of two and should greater than or equal to 4.
+    The value of ``slab_alloc_granularity`` should be a power of two and should be greater than or equal to 4.
     Below are few recommendations on how to adjust the ``slab_alloc_granularity`` value:
 
     * To store small tuples of approximately the same size, set ``slab_alloc_granularity`` to 4 to save memory.
