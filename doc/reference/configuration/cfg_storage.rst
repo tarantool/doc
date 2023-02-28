@@ -95,7 +95,7 @@
     See also: :ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`
 
     | Type: float
-    | Default: 1.1
+    | Default: 1.05
     | Environment variable: TT_SLAB_ALLOC_FACTOR
     | Dynamic: no
 

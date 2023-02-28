@@ -17,7 +17,7 @@ To view the current configuration, say ``box.cfg`` without braces:
     ---
     - checkpoint_count: 2
       too_long_threshold: 0.5
-      slab_alloc_factor: 1.1
+      slab_alloc_factor: 1.05
       memtx_max_tuple_size: 1048576
       background: false
       <...>
