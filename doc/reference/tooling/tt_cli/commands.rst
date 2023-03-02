@@ -32,6 +32,8 @@ help for the given command.
             -   Display help for ``tt`` or a specific command
         *   -   :doc:`init <init>`
             -   Create a new ``tt`` environment in the current directory
+        *   -   :doc:`install <install>`
+            -   Install Tarantool or ``tt``
         *   -   :doc:`logrotate <logrotate>`
             -   Rotate instance logs
         *   -   :doc:`play <play>`
@@ -40,12 +42,16 @@ help for the given command.
             -   Restart a Tarantool instance
         *   -   :doc:`rocks <rocks>`
             -   Use the LuaRocks package manager
+        *   -   :doc:`search <search>`
+            -   Search available Tarantool and ``tt`` versions
         *   -   :doc:`start <start>`
             -   Start a Tarantool instance
         *   -   :doc:`status <status>`
             -   Get the current status of a Tarantool instance
         *   -   :doc:`stop <stop>`
             -   Stop a Tarantool instance
+        *   -   :doc:`uninstall <uninstall>`
+            -   Uninstall Tarantool or ``tt``
         *   -   :doc:`version <version>`
             -   Show the ``tt`` version information
 
@@ -61,11 +67,14 @@ help for the given command.
     coredump <coredump>
     create <create>
     help <help>
+    install <install>
     logrotate <logrotate>
     play <play>
     restart <restart>
     rocks <rocks>
+    search <search>
     start <start>
     status <status>
     stop <stop>
+    uninstall <uninstall>
     version <version>
