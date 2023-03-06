@@ -7,7 +7,7 @@ Uninstalling Tarantool software
 
     tt uninstall PROGRAM_NAME
 
-``tt uninstall`` a previously :doc:`installed <install>` Tarantool version.
+``tt uninstall`` uninstalls a previously :doc:`installed <install>` Tarantool version.
 
 Example
 --------
