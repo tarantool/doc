@@ -85,11 +85,15 @@ app section
 *   ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
     Default: ``false``.
 
+.. _tt-config_file_repo:
+
 repo section
 ~~~~~~~~~~~~
 
 *   ``rocks`` -- the directory where rocks files are stored.
 *   ``distfiles`` -- the directory where installation files are stored.
+
+.. _tt-config_file_ee:
 
 ee section
 ~~~~~~~~~~

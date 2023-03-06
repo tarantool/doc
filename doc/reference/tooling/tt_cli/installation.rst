@@ -10,7 +10,7 @@ Using package managers
 
 On Linux systems, you can install with ``yum`` or ``apt`` package managers from
 the ``tarantool/modules`` repository. Learn how to `add this repository
-<https://www.tarantool.io/en/download/os-installation/ubuntu/>`_.
+<https://www.tarantool.io/en/download/os-installation/>`_.
 
 The installation command looks like this:
 
