@@ -31,8 +31,8 @@ jobs:
         id: delete-deployment-webhook
         with:
           command: bash webhooks/delete_deployment.sh
-          timeout_seconds: 15
-          retry_wait_seconds: 15
+          timeout_seconds: 30
+          retry_wait_seconds: 30
           max_attempts: 3
 
       - name: Remove GitHub deployment at ${{env.DEPLOYMENT_NAME}}
