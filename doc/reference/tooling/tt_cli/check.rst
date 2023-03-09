@@ -10,7 +10,7 @@ Checking an application file
 Details
 -------
 
-``tt`` searches for ``APP_FILE`` inside the ``instances_available`` directory
+``tt`` searches for ``APP_FILE`` inside the ``instances_enabled`` directory
 specified in the :ref:`tt configuration file <tt-config_file_app>`. ``APP_FILE`` can be:
 
 *   the name of an application file without the ``.lua`` extension.
@@ -20,14 +20,14 @@ specified in the :ref:`tt configuration file <tt-config_file_app>`. ``APP_FILE``
 Examples
 --------
 
-*   Check the syntax of the ``app.lua`` file from the ``instances_available`` directory:
+*   Check the syntax of the ``app.lua`` file from the ``instances_enabled`` directory:
 
     ..  code-block:: bash
 
         tt check app
 
 
-*   Check the syntax of the ``init.lua`` file from the ``instance1/`` directory inside ``instances_available``:
+*   Check the syntax of the ``init.lua`` file from the ``instance1/`` directory inside ``instances_enabled``:
 
     ..  code-block:: bash
 
