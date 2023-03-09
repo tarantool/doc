@@ -21,8 +21,8 @@
     * 6 – ``VERBOSE``
     * 7 – ``DEBUG``
 
-    By setting ``log_level``, you can enable logging of all classes below
-    or equal to the given level. Tarantool prints its logs to the standard
+    By setting ``log_level``, you can enable logging of all events with severities above
+    or equal to the given level. Tarantool prints logs to the standard
     error stream by default, but this can be changed with the
     :ref:`log <cfg_logging-log>` configuration parameter.
 
@@ -42,15 +42,15 @@
 
     Since version 1.7.4.
     By default, Tarantool sends the log to the standard error stream
-    (``stderr``). If ``log`` is specified, Tarantool can send the log to ...
+    (``stderr``). If ``log`` is specified, Tarantool can send the log to a ...
 
-    * a file;
+    * file;
 
-    * a pipe;
+    * pipe;
 
-    * the system logger.
+    * system logger.
 
-    The example below shows how to send the log to the ``tarantool.log`` file:
+    The example below shows how to send logs to the ``tarantool.log`` file:
 
     .. code-block:: lua
 
@@ -95,8 +95,8 @@
     The setting can be 'syslog:', 'syslog:facility=...', 'syslog:identity=...',
     'syslog:server=...', or a combination.
 
-    * The ``syslog:identity`` setting is an arbitrary string which will be placed at
-      the beginning of all messages. The default value is: tarantool.
+    * The ``syslog:identity`` setting is an arbitrary string, which is placed at
+      the beginning of all messages. The default value is "tarantool".
 
     * The ``syslog:facility`` setting is currently ignored but will be used in the future.
       The value must be one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_
@@ -107,7 +107,7 @@
 
     * The ``syslog:server`` setting is the locator for the syslog server.
       It can be a Unix socket path beginning with "unix:", or an ipv4 port number.
-      The default socket value is: dev/log (on Linux) or /var/run/syslog (on Mac OS).
+      The default socket value is: ``dev/log`` (on Linux) or ``/var/run/syslog`` (on macOS).
       The default port value is: 514, the UDP port.
 
     When logging to a file, Tarantool reopens the log on `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
@@ -124,19 +124,23 @@
 .. confval:: log_nonblock
 
     Since version 1.7.4.
-    If ``log_nonblock`` equals true, Tarantool does not block during logging
+    If ``log_nonblock`` equals **true**, Tarantool does not block during logging
     when the system is not ready for writing, and drops the message
     instead. If :ref:`log_level <cfg_logging-log_level>` is high, and many
-    messages go to the log, setting ``log_nonblock`` to true may improve
+    messages go to the log, setting ``log_nonblock`` to **true** may improve
     logging performance at the cost of some log messages getting lost.
 
-    This parameter has effect only if the output is going to "syslog:" or
-    "pipe:".
+    This parameter has effect only if :ref:`log <cfg_logging-log>` is
+    configured to send logs to a pipe or system logger.
+    The default ``log_nonblock`` value is **nil**, which means that
+    blocking behavior corresponds to the logger type:
 
-    The default ``log_nonblock`` value is nil, which means that
-    blocking behavior corresponds to the type of logger.
+    * **false** for ``stderr`` and file loggers.
+
+    * **true** for a pipe and system logger.
+
     This is a behavior change: in earlier versions of the Tarantool
-    server, the default value was true.
+    server, the default value was **true**.
 
     | Type: boolean
     | Default: nil
@@ -150,7 +154,7 @@
     Since version 1.6.2.
     If processing a request takes longer than the given value (in seconds),
     warn about it in the log. Has effect only if :ref:`log_level
-    <cfg_logging-log_level>` is more than or equal to 4 (WARNING).
+    <cfg_logging-log_level>` is greater than or equal to 4 (WARNING).
 
     | Type: float
     | Default: 0.5
@@ -166,13 +170,13 @@
     * 'plain' (the default), or
     * 'json' (with more detail and with JSON labels).
 
-    Here is what a log entry looks like after ``box.cfg{log_format='plain'}``:
+    Here is what a log entry looks like if ``box.cfg{log_format='plain'}``:
 
     .. code-block:: text
 
         2017-10-16 11:36:01.508 [18081] main/101/interactive I> set 'log_format' configuration option to "plain"
 
-    Here is what a log entry looks like after ``box.cfg{log_format='json'}``:
+    Here is what a log entry looks like if ``box.cfg{log_format='json'}``:
 
     .. code-block:: text
 
@@ -186,12 +190,12 @@
         "file": "builtin\/box\/load_cfg.lua",
         "line": 317}
 
-    The ``log_format='plain'`` entry has time, process id,
+    The ``log_format='plain'`` entry has a time value, process ID,
     cord name, :ref:`fiber_id <fiber_object-id>`,
     :ref:`fiber_name <fiber_object-name_get>`,
     :ref:`log level <cfg_logging-log_level>`, and message.
 
-    The ``log_format='json'`` entry has the same things along with their labels,
+    The ``log_format='json'`` entry has the same fields along with their labels,
     and in addition has the file name and line number of the Tarantool source.
 
     Setting ``log_format`` to 'json' is illegal if the output is going to "syslog:".
