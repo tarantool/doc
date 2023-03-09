@@ -35,7 +35,7 @@ jobs:
           max_attempts: 3
 
       - name: Remove GitHub deployment at branch-${{env.DEPLOYMENT_NAME}}
-        uses: bobheadxi/deployments@v1
+        uses: bobheadxi/deployments@v1.3.0
         # remove GH deployment even if webhook failed
         if: always()
         id: remove-github-deployment
