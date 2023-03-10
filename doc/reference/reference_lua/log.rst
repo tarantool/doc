@@ -61,21 +61,21 @@ Below is a list of all ``log`` functions.
 
     * ``level``: Specifies the level of detail the log has.
 
-      See also: :ref:`log_level <cfg_logging-log_level>`.
+      Learn more: :ref:`log_level <cfg_logging-log_level>`.
 
     * ``log``: Specifies where to send the log's output, for example,
       to a file, pipe, or system logger.
 
-      See also: :ref:`log <cfg_logging-log>`.
+      Learn more: :ref:`log <cfg_logging-log>`.
 
     * ``nonblock``: If **true**, Tarantool does not block during logging when the system
       is not ready for writing, and drops the message instead.
 
-      See also: :ref:`log_nonblock <cfg_logging-log_nonblock>`.
+      Learn more: :ref:`log_nonblock <cfg_logging-log_nonblock>`.
 
     * ``format``: Specifies the log format: 'plain' or 'json'.
 
-      See also: :ref:`log_format <cfg_logging-log_format>`.
+      Learn more: :ref:`log_format <cfg_logging-log_format>`.
 
     The example below shows how to set the log level to 'debug' and how to send the resulting log
     to the 'tarantool.log' file:
@@ -121,7 +121,6 @@ Below is a list of all ``log`` functions.
 
                              .. code-block:: lua
 
-                                 box.cfg{}
                                  log = require('log')
                                  log.error({500,'Internal error'})
 
