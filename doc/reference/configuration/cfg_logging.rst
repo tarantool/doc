@@ -115,7 +115,7 @@ application.
       The default port value is: 514, the UDP port.
 
     When logging to a file, Tarantool reopens the log on `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
-    When log is a program, its PID is saved in the :ref:`log.logger_pid <log-logger_pid>`
+    When log is a program, its PID is saved in the :ref:`log.pid <log-pid>`
     variable. You need to send it a signal to rotate logs.
 
     | Type: string
