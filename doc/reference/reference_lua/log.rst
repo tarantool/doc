@@ -57,10 +57,11 @@ Below is a list of all ``log`` functions.
 .. function:: log.cfg({})
 
     Allows you to configure logging options.
-    The following logging options are available:
+    The following options are available:
 
     * ``level``: Specifies the level of detail the log has.
-      This property has the same effect as :ref:`log_level <cfg_logging-log_level>`.
+
+      See also: :ref:`log_level <cfg_logging-log_level>`.
 
     * ``log``: Specifies where to to send the log's output, for example,
       to a file, pipe, or system logger.
@@ -73,10 +74,9 @@ Below is a list of all ``log`` functions.
       See also: :ref:`log_nonblock <cfg_logging-log_nonblock>`
 
     * ``format``: Specifies the log format: 'plain' or 'json'.
-
       See also: :ref:`log_format <cfg_logging-log_format>`
 
-    The example below shows how set the log level to 'debug' and how to send the resulting log
+    The example below shows how to set the log level to 'debug' and how to send the resulting log
     to the 'tarantool.log' file:
 
     .. code-block:: lua
@@ -93,36 +93,38 @@ Below is a list of all ``log`` functions.
               verbose(message)
               debug(message)
 
-    Output a user-generated message to the :ref:`log file <cfg_logging-log>`,
-    given log_level_function_name = ``error`` or ``warn`` or ``info`` or
-    ``verbose`` or ``debug``.
+    Logs a message with the specified logging level.
+    You can learn more about the available levels from the
+    :ref:`log_level <cfg_logging-log_level>` property description.
 
-    As explained in the description of the configuration setting for
-    :ref:`log_level <cfg_logging-log_level>`, there are seven levels of detail:
+    The example below shows how to log a message with the ``info`` level:
 
-    * 1 – ``SYSERROR``
-    * 2 – ``ERROR`` -- this corresponds to ``log.error(...)``
-    * 3 – ``CRITICAL``
-    * 4 – ``WARNING``  -- this corresponds to ``log.warn(...)``
-    * 5 – ``INFO`` -- this corresponds to ``log.info(...)``
-    * 6 – ``VERBOSE``  -- this corresponds to ``log.verbose(...)``
-    * 7 – ``DEBUG`` -- this corresponds to ``log.debug(...)``
+    .. code-block:: lua
 
-    For example, if ``box.cfg.log_level`` is currently 5 (the default value),
-    then ``log.error(...)``, ``log.warn(...)`` and ``log.info(...)`` messages
-    will go to the log file. However, ``log.verbose(...)`` and
-    ``log.debug(...)`` messages will not go to the log file, because they
-    correspond to higher levels of detail.
+        log = require('log')
+        log.info('Hello, world!')
 
-    :param any message:    Usually a string.
+    :param any message:    A log message.
 
-                           Messages may contain C-style format specifiers %d or
-                           %s, so :samp:`log.error('...%d...%s', {x}, {y})`
-                           will work if ``x`` is a number and ``y`` is a string.
+                           * A message can be a string.
 
-                           Less commonly, messages may be other scalar data types,
-                           or even tables. So :code:`log.error({'x',18.7,true})`
-                           will work.
+                           * A messages may contain C-style format specifiers ``%d`` or
+                           ``%s``. Example:
+
+                           .. code-block:: lua
+
+                               box.cfg{}
+                               log = require('log')
+                               log.info('Info %s', box.info.version)
+
+                           * A message may be other scalar data types,
+                           or even tables. Example:
+
+                           .. code-block:: lua
+
+                               box.cfg{}
+                               log = require('log')
+                               log.error({500,'Internal error'})
 
     :return: nil
 
@@ -141,36 +143,12 @@ Below is a list of all ``log`` functions.
 
 .. function:: logger_pid()
 
-    :return: PID of a logger
+    :return: Returns a PID of a logger.
 
 .. _log-rotate:
 
 .. function:: rotate()
 
-    Rotate the log.
+    Rotates the log.
 
     :return: nil
-
-=================================================
-                     Example
-=================================================
-
-.. code-block:: tarantoolsession
-
-    $ tarantool
-    tarantool> box.cfg{log_level=3, log='tarantool.txt'}
-    tarantool> log = require('log')
-    tarantool> log.error('Error')
-    tarantool> log.info('Info %s', box.info.version)
-    tarantool> os.exit()
-
-.. code-block:: console
-
-    $ less tarantool.txt
-    2017-09-20 ... [68617] main/101/interactive C> version 1.7.5-31-ge939c6ea6
-    2017-09-20 ... [68617] main/101/interactive C> log level 3
-    2017-09-20 ... [68617] main/101/interactive [C]:-1 E> Error
-
-The 'Error' line is visible in ``tarantool.txt`` preceded by the letter E.
-
-The 'Info' line is not present because the ``log_level`` is 3.
