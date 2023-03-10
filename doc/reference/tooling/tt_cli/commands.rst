@@ -34,6 +34,8 @@ help for the given command.
             -   Create a new ``tt`` environment in the current directory
         *   -   :doc:`install <install>`
             -   Install Tarantool or ``tt``
+        *   -   :doc:`instances <instances>`
+            -   List enabled applications
         *   -   :doc:`logrotate <logrotate>`
             -   Rotate instance logs
         *   -   :doc:`play <play>`
@@ -42,6 +44,8 @@ help for the given command.
             -   Restart a Tarantool instance
         *   -   :doc:`rocks <rocks>`
             -   Use the LuaRocks package manager
+        *   -   :doc:`run <run>`
+            -   Run Lua code in a Tarantool instance
         *   -   :doc:`search <search>`
             -   Search available Tarantool and ``tt`` versions
         *   -   :doc:`start <start>`
@@ -68,10 +72,12 @@ help for the given command.
     create <create>
     help <help>
     install <install>
+    instances <instances>
     logrotate <logrotate>
     play <play>
     restart <restart>
     rocks <rocks>
+    run <run>
     search <search>
     start <start>
     status <status>

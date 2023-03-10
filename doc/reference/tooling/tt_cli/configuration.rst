@@ -22,7 +22,7 @@ The ``tt`` configuration file is a YAML file with the following content:
       modules:
         directory: path/to/modules/dir
       app:
-        instances_available: path/to/available/applications
+        instances_enabled: path/to/applications
         run_dir: path/to/run_dir
         log_dir: path/to/log_dir
         bin_dir: path/to/bin_dir
@@ -54,7 +54,7 @@ modules section
 app section
 ~~~~~~~~~~~
 
-*   ``instances_available`` -- the directory where :ref:`instances <admin-instance_file>`
+*   ``instances_enabled`` -- the directory where :ref:`instances <admin-instance_file>`
     are stored.
 *   ``run_dir``-- the directory for instance runtime artifacts, such as console
     sockets or PID files. Default: ``var/run``.

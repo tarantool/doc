@@ -12,7 +12,7 @@ Starting a Tarantool instance
 Details
 -------
 
-The application files must be stored inside the ``instances_available``
+The application files must be stored inside the ``instances_enabled``
 directory specified in the :ref:`tt configuration file <tt-config_file_app>`.
 The ``APPLICATION`` value can be:
 
@@ -29,7 +29,7 @@ Examples
 Single instance
 ~~~~~~~~~~~~~~~
 
-*   Start an instance with the ``app.lua`` application from the ``instances_available``
+*   Start an instance with the ``app.lua`` application from the ``instances_enabled``
     directory:
 
     ..  code-block:: bash
@@ -41,13 +41,14 @@ Multiple instances
 ~~~~~~~~~~~~~~~~~~
 
 *   Start all instances of the application stored in the ``app/`` directory inside
-    ``instances_available`` in accordance with the :ref:`instances configuration <tt-instances>`:
+    ``instances_enabled`` in accordance with the :ref:`instances configuration <tt-instances>`:
 
     ..  code-block:: bash
 
         tt start app
 
-*   Start only the ``master`` instance of the application stored in the ``app/`` directory inside ``instances_available``:
+*   Start only the ``master`` instance of the application stored in the ``app/`` directory inside ``instances_enabled``:
+
     ..  code-block:: bash
 
         tt start app:master
