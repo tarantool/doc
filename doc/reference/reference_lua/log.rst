@@ -108,23 +108,21 @@ Below is a list of all ``log`` functions.
 
                            * A message can be a string.
 
-                           * A messages may contain C-style format specifiers ``%d`` or
-                           ``%s``. Example:
+                           * A message may contain C-style format specifiers ``%d`` or ``%s``. Example:
 
-                           .. code-block:: lua
+                             .. code-block:: lua
 
-                               box.cfg{}
-                               log = require('log')
-                               log.info('Info %s', box.info.version)
+                                 box.cfg{}
+                                 log = require('log')
+                                 log.info('Info %s', box.info.version)
 
-                           * A message may be other scalar data types,
-                           or even tables. Example:
+                           * A message may be a scalar data type or a table. Example:
 
-                           .. code-block:: lua
+                             .. code-block:: lua
 
-                               box.cfg{}
-                               log = require('log')
-                               log.error({500,'Internal error'})
+                                 box.cfg{}
+                                 log = require('log')
+                                 log.error({500,'Internal error'})
 
     :return: nil
 
