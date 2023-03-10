@@ -5,7 +5,7 @@ Running code in a Tarantool instance
 
 ..  code-block:: bash
 
-    tt run SCRIPT|-e EXPR [flags]
+    tt run [SCRIPT|-e EXPR] [flags]
 
 ``tt run`` executes Lua code in a Tarantool instance.
 
@@ -40,7 +40,7 @@ Details
 
 ``tt run`` executes arbitrary Lua code in a Tarantool instance. The code can be
 provided either in a Lua file, or in a string passed after the ``-e``/``--evaluate``
-flag.
+flag. When called without arguments or flags, ``tt run`` opens the Tarantool console.
 
 If libraries are required for execution, pass their names after the ``-l``/``--library``
 flag.
