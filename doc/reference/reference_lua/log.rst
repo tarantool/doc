@@ -130,12 +130,11 @@ Below is a list of all ``log`` functions.
 
     * the current timestamp,
     * a module name,
-    * 'E', 'W', 'I', 'V' or 'D' depending on ``log_level_function_name``, and
+    * 'E', 'W', 'I', 'V' or 'D' depending on the called function, and
     * ``message``.
 
-    Output will not occur if ``log_level_function_name``
-    is for a type greater than :ref:`log_level
-    <cfg_logging-log_level>`.
+    Note that the message will not be logged if the severity level corresponding to
+    the called function is less than :ref:`log_level <cfg_logging-log_level>`.
 
 .. _log-pid:
 
@@ -148,5 +147,7 @@ Below is a list of all ``log`` functions.
 .. function:: rotate()
 
     Rotates the log.
+    For example, you need to call this function to continue logging after a log rotation program
+    renames or moves a file with the latest logs.
 
     :return: nil
