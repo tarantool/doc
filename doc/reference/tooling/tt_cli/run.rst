@@ -45,7 +45,7 @@ flag. When called without arguments or flags, ``tt run`` opens the Tarantool con
 If libraries are required for execution, pass their names after the ``-l``/``--library``
 flag.
 
-By default, a Tarantool instance started by ``tt run`` shuts down after the code
+By default, a Tarantool instance started by ``tt run`` shuts down after code
 execution completes. To leave this instance running and continue working in its
 console, add the ``-i``/``--interactive`` flag.
 
