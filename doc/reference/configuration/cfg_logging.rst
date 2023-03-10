@@ -1,5 +1,9 @@
 .. _cfg_logging:
 
+This section provides information on how to configure options related to logging.
+You can also use the :ref:`log module <log-module>` to configure logging in your
+application.
+
 * :ref:`log_level <cfg_logging-log_level>`
 * :ref:`log <cfg_logging-log>`
 * :ref:`log_nonblock <cfg_logging-log_nonblock>`
