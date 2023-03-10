@@ -13,7 +13,7 @@
 Tarantool provides a set of :ref:`options <cfg_logging>` used to configure logging
 in various ways: you can set a level of logging, specify where to send the log's output,
 configure a log format, and so on.
-The ``log`` module allows you to configure logging in you application and
+The ``log`` module allows you to configure logging in your application and
 provides additional capabilities, for example, logging custom messages and
 rotating log files.
 
@@ -31,24 +31,24 @@ Below is a list of all ``log`` functions.
     +--------------------------------------+---------------------------------+
     | Name                                 | Use                             |
     +======================================+=================================+
-    | :ref:`log.cfg({})                    | Configure a logger              |
+    | :ref:`log.cfg({})                    | Configures a logger             |
     | <log-cfg>`                           |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`log.error()                    |                                 |
     | <log-ug_message>` |br|               |                                 |
     | :ref:`log.warn()                     |                                 |
     | <log-ug_message>` |br|               |                                 |
-    | :ref:`log.info()                     | Log a message with the          |
+    | :ref:`log.info()                     | Logs a message with the         |
     | <log-ug_message>` |br|               | specified level                 |
     | :ref:`log.verbose()                  |                                 |
     | <log-ug_message>` |br|               |                                 |
     | :ref:`log.debug()                    |                                 |
     | <log-ug_message>`                    |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`log.logger_pid()               | Get the PID of a logger         |
-    | <log-logger_pid>`                    |                                 |
+    | :ref:`log.pid()                      | Gets the PID of a logger        |
+    | <log-pid>`                           |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`log.rotate()                   | Rotate a log file               |
+    | :ref:`log.rotate()                   | Rotates a log file              |
     | <log-rotate>`                        |                                 |
     +--------------------------------------+---------------------------------+
 
@@ -63,18 +63,19 @@ Below is a list of all ``log`` functions.
 
       See also: :ref:`log_level <cfg_logging-log_level>`.
 
-    * ``log``: Specifies where to to send the log's output, for example,
+    * ``log``: Specifies where to send the log's output, for example,
       to a file, pipe, or system logger.
 
-      See also: :ref:`log <cfg_logging-log>`
+      See also: :ref:`log <cfg_logging-log>`.
 
     * ``nonblock``: If **true**, Tarantool does not block during logging when the system
       is not ready for writing, and drops the message instead.
 
-      See also: :ref:`log_nonblock <cfg_logging-log_nonblock>`
+      See also: :ref:`log_nonblock <cfg_logging-log_nonblock>`.
 
     * ``format``: Specifies the log format: 'plain' or 'json'.
-      See also: :ref:`log_format <cfg_logging-log_format>`
+
+      See also: :ref:`log_format <cfg_logging-log_format>`.
 
     The example below shows how to set the log level to 'debug' and how to send the resulting log
     to the 'tarantool.log' file:
@@ -137,11 +138,11 @@ Below is a list of all ``log`` functions.
     is for a type greater than :ref:`log_level
     <cfg_logging-log_level>`.
 
-.. _log-logger_pid:
+.. _log-pid:
 
-.. function:: logger_pid()
+.. function:: pid()
 
-    :return: Returns a PID of a logger.
+    :return: A PID of a logger.
 
 .. _log-rotate:
 
