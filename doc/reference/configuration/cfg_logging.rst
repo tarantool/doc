@@ -66,7 +66,7 @@ application.
     directory. If the ``log`` string has no prefix or has the prefix "file:",
     then the string is interpreted as a file path.
 
-    The example below shows how to send the log to a pipe:
+    This example shows how to send the log to a pipe:
 
     .. code-block:: lua
 
@@ -218,67 +218,69 @@ Logging example
 This example illustrates how "rotation" works, that is, what happens when the server
 instance is writing to a log and signals are used when archiving it.
 
-Start with two terminal shells, Terminal #1 and Terminal #2.
+1. Start with two terminal shells: Terminal #1 and Terminal #2.
 
-On Terminal #1: start an interactive Tarantool session, then say the logging
-will go to `Log_file`, then put a message "Log Line #1" in the log file:
+2. In Terminal #1, start an interactive Tarantool session.
+   Then, use the ``log`` property to send logs to `Log_file` and
+   call ``log.info`` to put a message in the log file.
 
-.. code-block:: lua
+   .. code-block:: lua
 
-    box.cfg{log='Log_file'}
-    log = require('log')
-    log.info('Log Line #1')
+       box.cfg{log='Log_file'}
+       log = require('log')
+       log.info('Log Line #1')
 
-On Terminal #2: use ``mv`` so the log file is now named `Log_file.bak`.
-The result of this is: the next log message will go to `Log_file.bak`.
+3. In Terminal #2, use the ``mv`` command to rename the log file to `Log_file.bak`.
 
-.. cssclass:: highlight
-.. parsed-literal::
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-    mv Log_file Log_file.bak
+       mv Log_file Log_file.bak
 
-On Terminal #1: put a message "Log Line #2" in the log file.
+   As the result, the next log message will go to `Log_file.bak`.
 
-.. code-block:: lua
+4. Go back to Terminal #1 and put a message "Log Line #2" in the log file.
 
-    log.info('Log Line #2')
+   .. code-block:: lua
 
-On Terminal #2: use ``ps`` to find the process ID of the Tarantool instance.
+       log.info('Log Line #2')
 
-.. cssclass:: highlight
-.. parsed-literal::
+5. In Terminal #2, use ``ps`` to find the process ID of the Tarantool instance.
 
-    ps -A | grep tarantool
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-On Terminal #2: use ``kill -HUP`` to send a SIGHUP signal to the Tarantool instance.
-The result of this is: Tarantool will open `Log_file` again, and
-the next log message will go to `Log_file`.
-(The same effect could be accomplished by executing log.rotate() on the instance.)
+       ps -A | grep tarantool
 
-.. cssclass:: highlight
-.. parsed-literal::
+6. In Terminal #2, execute ``kill -HUP`` to send a SIGHUP signal to the Tarantool instance.
+   The result of this is: Tarantool will open `Log_file` again, and
+   the next log message will go to `Log_file`.
+   (The same effect could be accomplished by executing log.rotate() on the instance.)
 
-    kill -HUP *process_id*
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-On Terminal #1: put a message "Log Line #3" in the log file.
+       kill -HUP *process_id*
 
-.. code-block:: lua
+7. In Terminal #1, put a message "Log Line #3" in the log file.
 
-    log.info('Log Line #3')
+   .. code-block:: lua
 
-On Terminal #2: use ``less`` to examine files. `Log_file.bak` will have these lines,
-except that the date and time will depend on when the example is done:
+       log.info('Log Line #3')
 
-.. cssclass:: highlight
-.. parsed-literal::
+8. In Terminal #2, use ``less`` to examine files.
+   `Log_file.bak` will have the following lines ...
 
-    2015-11-30 15:13:06.373 [27469] main/101/interactive I> Log Line #1`
-    2015-11-30 15:14:25.973 [27469] main/101/interactive I> Log Line #2`
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-and `Log_file` will have
+       2015-11-30 15:13:06.373 [27469] main/101/interactive I> Log Line #1`
+       2015-11-30 15:14:25.973 [27469] main/101/interactive I> Log Line #2`
 
-.. cssclass:: highlight
-.. parsed-literal::
+   ... and `Log_file` will look like this:
 
-    log file has been reopened
-    2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3
+   .. cssclass:: highlight
+   .. parsed-literal::
+
+       log file has been reopened
+       2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3

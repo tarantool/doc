@@ -141,6 +141,7 @@ Below is a list of all ``log`` functions.
 .. function:: pid()
 
     :return: A PID of a logger.
+    You can use this PID to send a signal to a log rotation program, so it can rotate logs.
 
 .. _log-rotate:
 
