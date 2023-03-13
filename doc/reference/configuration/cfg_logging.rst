@@ -237,7 +237,7 @@ instance is writing to a log and signals are used when archiving it.
 
        mv Log_file Log_file.bak
 
-   As the result, the next log message will go to `Log_file.bak`.
+   As a result, the next log message will go to `Log_file.bak`.
 
 4. Go back to Terminal #1 and put a message "Log Line #2" in the log file.
 
@@ -253,14 +253,14 @@ instance is writing to a log and signals are used when archiving it.
        ps -A | grep tarantool
 
 6. In Terminal #2, execute ``kill -HUP`` to send a SIGHUP signal to the Tarantool instance.
-   The result of this is: Tarantool will open `Log_file` again, and
-   the next log message will go to `Log_file`.
-   (The same effect could be accomplished by executing log.rotate() on the instance.)
+   Tarantool will open `Log_file` again, and the next log message will go to `Log_file`.
 
    .. cssclass:: highlight
    .. parsed-literal::
 
        kill -HUP *process_id*
+
+   The same effect could be accomplished by calling :ref:`log.rotate <log-rotate>`.
 
 7. In Terminal #1, put a message "Log Line #3" in the log file.
 
