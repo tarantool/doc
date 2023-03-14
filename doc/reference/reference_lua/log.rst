@@ -128,10 +128,10 @@ Below is a list of all ``log`` functions.
 
     The actual output will be a line in the log, containing:
 
-    * the current timestamp,
-    * a module name,
-    * 'E', 'W', 'I', 'V' or 'D' depending on the called function, and
-    * ``message``.
+    * the current timestamp
+    * a module name
+    * 'E', 'W', 'I', 'V' or 'D' depending on the called function
+    * ``message``
 
     Note that the message will not be logged if the severity level corresponding to
     the called function is less than :ref:`log_level <cfg_logging-log_level>`.

@@ -27,7 +27,7 @@ application.
 
     By setting ``log_level``, you can enable logging of all events with severities above
     or equal to the given level. Tarantool prints logs to the standard
-    error stream by default, but this can be changed with the
+    error stream by default. This can be changed with the
     :ref:`log <cfg_logging-log>` configuration parameter.
 
     | Type: integer
@@ -35,10 +35,11 @@ application.
     | Environment variable: TT_LOG_LEVEL
     | Dynamic: **yes**
 
-    Warning: prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was
-    level 6. Starting with Tarantool 1.7.5, ``VERBOSE`` is level 6 and ``DEBUG`` is level 7.
-    ``VERBOSE`` is a new level for monitoring repetitive events which would cause
-    too much log writing if ``INFO`` were used instead.
+    ..  note::
+        Prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was
+        level 6. Starting with Tarantool 1.7.5, ``VERBOSE`` is level 6 and ``DEBUG`` is level 7.
+        ``VERBOSE`` is a new level for monitoring repetitive events which would cause
+        too much log writing if ``INFO`` were used instead.
 
 .. _cfg_logging-log:
 
@@ -46,15 +47,15 @@ application.
 
     Since version 1.7.4.
     By default, Tarantool sends the log to the standard error stream
-    (``stderr``). If ``log`` is specified, Tarantool can send the log to a ...
+    (``stderr``). If ``log`` is specified, Tarantool can send the log to a:
 
-    * file;
+    * file
 
-    * pipe;
+    * pipe
 
-    * system logger.
+    * system logger
 
-    The example below shows how to send logs to the ``tarantool.log`` file:
+    Example 1: sending the log to the ``tarantool.log`` file.
 
     .. code-block:: lua
 
@@ -66,7 +67,7 @@ application.
     directory. If the ``log`` string has no prefix or has the prefix "file:",
     then the string is interpreted as a file path.
 
-    This example shows how to send the log to a pipe:
+    Example 2: sending the log to a pipe.
 
     .. code-block:: lua
 
@@ -80,7 +81,7 @@ application.
     then the string is interpreted as a Unix
     `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
 
-    The example below shows how to send the log to syslog:
+    Example 3: sending the log to syslog.
 
     .. code-block:: lua
 
@@ -96,8 +97,8 @@ application.
     interpreted as a message for the
     `syslogd <https://linux.die.net/man/8/syslogd>`_ program, which normally
     is running in the background on any Unix-like platform.
-    The setting can be 'syslog:', 'syslog:facility=...', 'syslog:identity=...',
-    'syslog:server=...', or a combination.
+    The setting can be ``syslog:``, ``syslog:facility=...``, ``syslog:identity=...``,
+    ``syslog:server=...``, or a combination.
 
     * The ``syslog:identity`` setting is an arbitrary string, which is placed at
       the beginning of all messages. The default value is "tarantool".
