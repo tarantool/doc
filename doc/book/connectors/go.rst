@@ -16,7 +16,7 @@ The following connectors are available:
 Feature comparison
 ------------------
 
-Last update: August 2022
+Last update: January 2023
 
 ..  list-table::
     :header-rows: 1
@@ -33,9 +33,9 @@ Last update: August 2022
         -   BSD 2-Clause
 
     *   -   Last update
+        -   2023
         -   2022
-        -   2021
-        -   2021
+        -   2022
 
     *   -   Documentation
         -   README with examples and up-to-date GoDoc
@@ -48,7 +48,7 @@ Last update: August 2022
         -   GitHub Actions
 
     *   -   GitHub Stars
-        -   140
+        -   147
         -   45
         -   14
 
@@ -124,7 +124,7 @@ Last update: August 2022
 
     *   -   `EXT_ERROR <https://www.tarantool.io/ru/doc/latest/dev_guide/internals/msgpack_extensions/#the-error-type>`_
             support
-        -   No
+        -   Yes
         -   No
         -   No
 
@@ -139,17 +139,17 @@ Last update: August 2022
         -   Yes
 
     *   -   `Session settings <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_session_settings/>`_
-        -   No
+        -   Yes
         -   No
         -   No
 
     *   -   `Graceful shutdown <https://github.com/tarantool/tarantool/issues/5924>`_
-        -   No
+        -   Yes
         -   No
         -   No
 
     *   -   `IPROTO_ID (feature discovering) <https://github.com/tarantool/tarantool/issues/6253>`_
-        -   No
+        -   Yes
         -   No
         -   No
 
@@ -174,7 +174,12 @@ Last update: August 2022
         -   No
 
     *   -   `Watchers <https://github.com/tarantool/tarantool/pull/6510>`_
+        -   Yes
         -   No
+        -   No
+
+    *   -   `Pagination <https://github.com/tarantool/tarantool/issues/7639>`_
+        -   Yes
         -   No
         -   No
 
