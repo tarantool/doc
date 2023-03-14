@@ -399,6 +399,11 @@ Logging
 
 ..  include:: cfg_logging.rst
 
+Feedback
+^^^^^^^^
+
+..  include:: cfg_feedback.rst
+
 Deprecated parameters
 ^^^^^^^^^^^^^^^^^^^^^
 
