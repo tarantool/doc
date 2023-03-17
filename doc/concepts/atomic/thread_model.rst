@@ -6,9 +6,9 @@ Thread model
 ..  _main_threads:
 
 Main threads
--------
+------------
 
-The thread model assumes that a query received by Tarantool via network 
+The thread model assumes that a :ref:`query <index-box_operations>` received by Tarantool via network
 is processed with three operating system **threads**:
 
 1.  The **network thread** (or :ref:`threads <cfg_networking-iproto_threads>`)
@@ -60,9 +60,9 @@ be permanently stuck on the same fiber.
 ..  _supplementary_threads:
 
 Supplementary threads
--------
+---------------------
 
-There are also several auxiliary threads that serve additional capabilities:
+There are also several supplementary threads that serve additional capabilities:
 
 * For :ref:`replication <replication-architecture>`, Tarantool creates a separate thread for each connected replica.
   This thread reads a write-ahead log and sends it to the replica, following its position in the log.
