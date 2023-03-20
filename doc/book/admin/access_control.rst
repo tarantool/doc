@@ -78,13 +78,6 @@ to the instance. Thus the original value ‘x’ is never stored anywhere except
 in the user’s head, and the hashed value is never passed down a network wire
 except when mixed with a random salt.
 
-.. NOTE::
-
-   For more details of the password hashing algorithm (e.g. for the purpose of writing
-   a new client application), read the
-   `scramble.h <https://github.com/tarantool/tarantool/blob/master/src/scramble.h>`_
-   header file.
-
 This system prevents malicious onlookers from finding passwords by snooping
 in the log files or snooping on the wire. It is the same system as in
 `MySQL <http://dev.mysql.com/doc/refman/5.7/en/password-hashing.html>`_,
