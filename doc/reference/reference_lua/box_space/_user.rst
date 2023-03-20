@@ -34,10 +34,10 @@ box.space._user
         | Name        | ID | Type | Description                                                    |
         +=============+====+======+================================================================+
         | guest       | 0  | user | Default user when connecting remotely.                         |
-        |             |    |      | Usually an untrusted user with few privileges.                 |
+        |             |    |      | Usually, an untrusted user with few privileges.                |
         +-------------+----+------+----------------------------------------------------------------+
         | admin       | 1  | user | Default user when using Tarantool as a console.                |
-        |             |    |      | Usually an                                                     |
+        |             |    |      | Usually, an                                                    |
         |             |    |      | :ref:`administrative user <authentication-owners_privileges>`  |
         |             |    |      | with all privileges.                                           |
         +-------------+----+------+----------------------------------------------------------------+
@@ -62,8 +62,8 @@ box.space._user
         +-------------+----+------+----------------------------------------------------------------+
 
     To select a tuple from the ``_user`` space, use ``box.space._user:select()``.
-    For example, here is what happens with a select for user id = 0, which is
-    the 'guest' user, which by default has no password:
+    In the example below, ``select`` is executed for a user with id = 0.
+    This is the 'guest' user that has no password.
 
     .. code-block:: tarantoolsession
 
@@ -75,8 +75,8 @@ box.space._user
     .. WARNING::
 
        To change tuples in the ``_user`` space, do not use ordinary ``box.space``
-       functions for insert or update or delete. The ``_user`` space is special,
-       so there are special functions which have appropriate error checking.
+       functions for insert, update, or delete. The ``_user`` space is special,
+       so there are special functions that have appropriate error checking.\
 
     To create a new user, use :doc:`/reference/reference_lua/box_schema/user_create`:
 
@@ -86,7 +86,7 @@ box.space._user
         box.schema.user.create(*user-name*, {if_not_exists = true})
         box.schema.user.create(*user-name*, {password = *password*})
 
-    To change the user's password, use :doc:`/reference/reference_lua/box_schema/user_password`:
+    To change the user's password, use :doc:`/reference/reference_lua/box_schema/user_passwd`:
 
     .. code-block:: lua
 
