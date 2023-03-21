@@ -111,6 +111,10 @@ General
             -   0x27 |br| MP_STR
             -   Command argument. Used in :ref:`IPROTO_EVAL <box_protocol-eval>`
 
+        *   -   IPROTO_AUTH_TYPE
+            -   0x5b |br| MP_STR
+            -   A :ref:`protocol <authentication-passwords>` used to generate user authentication data
+
 
 Streams
 ~~~~~~~
