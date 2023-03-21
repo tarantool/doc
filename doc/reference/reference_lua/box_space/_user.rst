@@ -12,11 +12,13 @@ box.space._user
 
     Tuples in this space contain the following fields:
 
-    * the numeric id of the tuple ("id"),
-    * the numeric id of the tuple’s creator,
-    * the name,
-    * the type: 'user' or 'role',
-    * optional password.
+    * a numeric id of the tuple ("id")
+    * a numeric id of the tuple’s creator
+    * a name
+    * a type: 'user' or 'role'
+    * (optional) a password hash
+    * (optional) an array of previous authentication data
+    * (optional) a timestamp of the last password update
 
     There are five special tuples in the ``_user`` space: 'guest', 'admin',
     'public', 'replication', and 'super'.

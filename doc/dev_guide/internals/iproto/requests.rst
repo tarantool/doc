@@ -353,7 +353,7 @@ The client sends an authentication packet as an IPROTO_AUTH message:
     :file: images/auth.svg
 
 IPROTO_USERNAME holds the user name. IPROTO_TUPLE must be an array of 2 fields:
-authentication mechanism ("chap-sha1" is the only supported mechanism right now)
+authentication mechanism
 and scramble, encrypted according to the specified mechanism.
 
 The server instance responds to an authentication packet with a standard response with 0 tuples.

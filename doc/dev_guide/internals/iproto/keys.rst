@@ -606,8 +606,7 @@ Multiple operations make use of this key in different ways:
             -   Operations to perform
         *   -   :ref:`IPROTO_AUTH <box_protocol-auth>`
             -   Array of 2 fields:
-                authentication mechanism ("chap-sha1" is the only supported mechanism right now)
-                and scramble, encrypted according to the specified mechanism.
+                authentication mechanism and scramble, encrypted according to the specified mechanism.
                 See more on the :ref:`authentication <box_protocol-authentication_sequence>` sequence.
         *   -   :ref:`IPROTO_CALL <box_protocol-call>`, :ref:`IPROTO_EVAL <box_protocol-eval>`
             -   Array of arguments

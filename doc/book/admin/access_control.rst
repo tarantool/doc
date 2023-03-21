@@ -73,12 +73,12 @@ so that, if the password is ‘x’, the stored hash-password is a long string
 like ‘lL3OvhkIPOKh+Vn9Avlkx69M/Ck=‘.
 Tarantool supports two protocols for authenticating users:
 
-*   `CHAP <https://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol>`_ with ``SHA-1`` hashing.
+*   `CHAP <https://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol>`_ with ``SHA-1`` hashing
 
     Note that CHAP stores password hashes in the ``_user`` space unsalted.
     As a result, if an attacker gains access to the database, they may crack a password using a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
 
-*   (Tarantool Enterprise) `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ with ``SHA256`` hashing.
+*   `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ with ``SHA256`` hashing (Tarantool Enterprise)
 
     For PAP, a password is salted with a user-unique salt before saving it in the database,
     which keeps the database protected from cracking using a rainbow table.
@@ -90,7 +90,7 @@ There are two functions for managing passwords in Tarantool:
 
 *   :doc:`/reference/reference_lua/box_schema/user_password` returns a hash of a user's password.
 
-Tarantool Enterprise also allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on. Learn more from the `Access control <https://www.tarantool.io/en/enterprise_doc/security/#access-control/>`__ section.
+Tarantool Enterprise also allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on. Learn more from the `Access control <https://www.tarantool.io/en/enterprise_doc/security/#access-control>`__ section.
 
 
 
