@@ -40,4 +40,4 @@ box.schema.user.password()
 
     .. code-block:: lua
 
-        box.schema.user.password('ЛЕНА')
+        box.schema.user.password('foobar')
