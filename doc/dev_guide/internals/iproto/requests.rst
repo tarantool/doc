@@ -407,7 +407,7 @@ The body is a 2-item map:
     :file: images/id.svg
 
 The response body has the same structure as
-the request body. It informs the client about the protocol version and features
-that the server supports.
+the request body. It informs the client about the protocol version, features
+supported by the server, and a protocol used to generate user authentication data.
 
 IPROTO_ID requests can be processed without authentication.

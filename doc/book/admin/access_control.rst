@@ -75,13 +75,13 @@ Tarantool supports two protocols for authenticating users:
 
 *   `CHAP <https://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol>`_ with ``SHA-1`` hashing
 
-    Note that CHAP stores password hashes in the ``_user`` space unsalted.
-    As a result, if an attacker gains access to the database, they may crack a password using a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
+    In this case, password hashes are stored in the ``_user`` space unsalted.
+    For example, if an attacker gains access to the database, they may crack a password using a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
 
 *   `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ with ``SHA256`` hashing (Tarantool Enterprise)
 
-    For PAP, a password is salted with a user-unique salt before saving it in the database,
-    which keeps the database protected from cracking using a rainbow table.
+    For PAP, a password is salted with a user-unique salt before saving it in the ``_user`` space.
+    This keeps the database protected from cracking using a rainbow table.
     Note that PAP sends a password as plain text, so you need to configure SSL/TLS for a connection.
 
 There are two functions for managing passwords in Tarantool:
