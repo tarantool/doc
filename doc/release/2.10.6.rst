@@ -54,4 +54,4 @@ Box
 ~~~
 
 -  Fixed a bug where ``box.cfg.force_recovery`` doesn’t work when there
-   is no user spaces in a snapshot (:tarantool-issue:`gh-7974`).
+   is no user spaces in a snapshot (:tarantool-issue:`7974`).
