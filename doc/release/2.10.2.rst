@@ -68,4 +68,4 @@ Box
 -  Fixed inheritance of field options in indexes when index parts are
    specified the old Tarantool 1.6 style: ``{<field>, <type>, ...}``
    (:tarantool-issue:`7614`).
--  Fixed unauthorized inserts into the ``_truncate`` space (`ghs-5 <https://github.com/tarantool/security/issues/5>`_).
+-  Fixed unauthorized inserts into the ``_truncate`` space (:tarantool-sec-issue:`5`).
