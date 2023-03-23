@@ -6,7 +6,7 @@ box.schema.user.create()
 
 .. module:: box.schema
 
-.. function:: box.schema.user.create(user-name [, {options}])
+.. function:: box.schema.user.create(name [, {options}])
 
     Create a user.
     For explanation of how Tarantool maintains user data, see
@@ -27,8 +27,7 @@ box.schema.user.create()
 
         The maximum number of users is 32.
 
-    :param string user-name: name of user, which should
-                             conform to the :ref:`rules for object names <app_server-names>`
+    :param string name: a user name, which should conform to the :ref:`rules for object names <app_server-names>`
     :param table options: ``if_not_exists``, ``password``
 
     :return: nil
@@ -37,6 +36,6 @@ box.schema.user.create()
 
     .. code-block:: lua
 
-        box.schema.user.create('Lena')
-        box.schema.user.create('Lena', {password = 'X'})
-        box.schema.user.create('Lena', {if_not_exists = false})
+        box.schema.user.create('testuser')
+        box.schema.user.create('testuser', {password = 'foobar'})
+        box.schema.user.create('testuser', {if_not_exists = false})

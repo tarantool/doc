@@ -15,7 +15,8 @@ json "**IPROTO_ID**" as id_request {
     },
     "Body": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_VERSION]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FEATURES]]": "MP_ARRAY of MP_UINT items"
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FEATURES]]": "MP_ARRAY of MP_UINT items",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_AUTH_TYPE]]": "MP_STR"
     }
 }
 
