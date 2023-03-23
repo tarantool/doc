@@ -71,35 +71,28 @@ system space with a
 `cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_
 so that, if the password is ‘x’, the stored hash-password is a long string
 like ‘lL3OvhkIPOKh+Vn9Avlkx69M/Ck=‘.
-When a client connects to a Tarantool instance, the instance sends a random
-`salt value <https://en.wikipedia.org/wiki/Salt_%28cryptography%29>`_
-which the client must mix with the hashed-password before sending
-to the instance. Thus the original value ‘x’ is never stored anywhere except
-in the user’s head, and the hashed value is never passed down a network wire
-except when mixed with a random salt.
+Tarantool supports two protocols for authenticating users:
 
-.. NOTE::
+*   `CHAP <https://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol>`_ with ``SHA-1`` hashing
 
-   For more details of the password hashing algorithm (e.g. for the purpose of writing
-   a new client application), read the
-   `scramble.h <https://github.com/tarantool/tarantool/blob/master/src/scramble.h>`_
-   header file.
+    In this case, password hashes are stored in the ``_user`` space `unsalted <https://en.wikipedia.org/wiki/Salt_(cryptography)>`_.
+    If an attacker gains access to the database, they may crack a password using, for example, a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
 
-This system prevents malicious onlookers from finding passwords by snooping
-in the log files or snooping on the wire. It is the same system as in
-`MySQL <http://dev.mysql.com/doc/refman/5.7/en/password-hashing.html>`_,
-which has proved adequate for medium-security installations.
-Nevertheless, administrators should warn users that no system
-is foolproof against determined long-term attacks, so passwords should be
-guarded and changed occasionally. Administrators should also advise users to
-choose long unobvious passwords, but it is ultimately up to the users to choose
-or change their own passwords.
+*   `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ with ``SHA256`` hashing (Tarantool Enterprise)
+
+    For PAP, a password is salted with a user-unique salt before saving it in the ``_user`` space.
+    This keeps the database protected from cracking using a rainbow table.
+    Note that PAP sends a password as plain text, so you need to configure SSL/TLS for a connection.
 
 There are two functions for managing passwords in Tarantool:
-:doc:`/reference/reference_lua/box_schema/user_passwd` for changing a user's
-password and
-:doc:`/reference/reference_lua/box_schema/user_password` for getting a hash
-of a user's password.
+
+*   :doc:`/reference/reference_lua/box_schema/user_passwd` allows you to change a user's password.
+
+*   :doc:`/reference/reference_lua/box_schema/user_password` returns a hash of a user's password.
+
+Tarantool Enterprise also allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on. Learn more from the `Access control <https://www.tarantool.io/en/enterprise_doc/security/#access-control>`__ section.
+
+
 
 .. _authentication-owners_privileges:
 

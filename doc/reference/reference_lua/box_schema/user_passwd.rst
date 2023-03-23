@@ -6,23 +6,22 @@ box.schema.user.passwd()
 
 .. module:: box.schema
 
-.. function:: box.schema.user.passwd([user-name,] password)
+.. function:: box.schema.user.passwd([name,] new_password)
 
-    Associate a password with the user who is currently logged in,
-    or with the user specified by user-name. The user must exist and must not be 'guest'.
+    Sets a password for a currently logged in or a specified user:
 
-    Users who wish to change their own passwords should
-    use ``box.schema.user.passwd(password)`` syntax.
+    *   A currently logged in user can change their password using
+        ``box.schema.user.passwd(new_password)``.
 
-    Administrators who wish to change passwords of other users should
-    use ``box.schema.user.passwd(user-name, password)`` syntax.
+    *   An administrator can change the password of another user with
+        ``box.schema.user.passwd(name, new_password)``.
 
-    :param string user-name: user-name
-    :param string password: password
+    :param string user-name: name
+    :param string password: new_password
 
     **Example:**
 
     .. code-block:: lua
 
-        box.schema.user.passwd('ЛЕНА')
-        box.schema.user.passwd('Lena', 'ЛЕНА')
+        box.schema.user.passwd('foobar')
+        box.schema.user.passwd('testuser', 'foobar')
