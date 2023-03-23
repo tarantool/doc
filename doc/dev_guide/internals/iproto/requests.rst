@@ -353,7 +353,7 @@ The client sends an authentication packet as an IPROTO_AUTH message:
     :file: images/auth.svg
 
 IPROTO_USERNAME holds the user name. IPROTO_TUPLE must be an array of 2 fields:
-authentication mechanism ("chap-sha1" is the only supported mechanism right now)
+authentication mechanism
 and scramble, encrypted according to the specified mechanism.
 
 The server instance responds to an authentication packet with a standard response with 0 tuples.
@@ -407,7 +407,7 @@ The body is a 2-item map:
     :file: images/id.svg
 
 The response body has the same structure as
-the request body. It informs the client about the protocol version and features
-that the server supports.
+the request body. It informs the client about the protocol version, features
+supported by the server, and a protocol used to generate user authentication data.
 
 IPROTO_ID requests can be processed without authentication.
