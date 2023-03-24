@@ -10,7 +10,7 @@ Storage API
 
     +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
     | :ref:`Storage public API                    | * :ref:`vshard.storage.cfg(cfg, instance_uuid) <storage_api-cfg>`                                         |
-    | <vshard-storage_public_api>`                | * :ref:`vshard.storage.info() <storage_api-info>`                                                         |
+    | <vshard-storage_public_api>`                | * :ref:`vshard.storage.info({options}) <storage_api-info>`                                                |
     |                                             | * :ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) <storage_api-call>`          |
     |                                             | * :ref:`vshard.storage.sync(timeout) <storage_api-sync>`                                                  |
     |                                             | * :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`                                    |
@@ -29,6 +29,7 @@ Storage API
     |                                             | * :ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`                                         |
     |                                             | * :ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`                                       |
     |                                             | * :ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`                                     |
+    |                                             | * :ref:`vshard.storage.on_bucket_event() <storage_api-on_bucket_event>`                                   |
     +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
     | :ref:`Storage internal API                  | * :ref:`vshard.storage.bucket_stat(bucket_id) <storage_api-bucket_stat>`                                  |
     | <vshard-storage_internal_api>`              | * :ref:`vshard.storage.bucket_recv(bucket_id, from, data) <storage_api-bucket_recv>`                      |
@@ -58,9 +59,22 @@ Storage public API
 
 ..  _storage_api-info:
 
-..  function:: vshard.storage.info()
+..  function:: vshard.storage.info({options})
 
-    Return information about the storage instance in the following format:
+    Return information about the storage instance. Since vshard v.0.1.22, the
+    function also accepts options, which can be used to get additional
+    information.
+
+    :param options:
+
+       *    ``with_services`` — a bool value. If set to ``true``, the
+            function returns information about the background services
+            (such as garbage collector, rebalancer, recovery, or applier
+            of the routes) that are working on the current instance. See
+            :ref:`vshard.router.info <router_api-info>` for detailed
+            reference.
+
+    **Example:**
 
     ..  code-block:: tarantoolsession
 
@@ -310,6 +324,58 @@ Storage public API
             ck_constraint: []
         ...
 
+..  _storage_api-on_bucket_event:
+
+..  function:: vshard.storage.on_bucket_event([trigger-function[, old-trigger-function]])
+
+    Since vshard v.0.1.22. Define a trigger for execution when the data from
+    the user spaces is changed (deleted or inserted) due to the rebalancing
+    process. The trigger is invoked each time the data batch changes.
+
+    :param function trigger-function: function which will become the trigger function.
+    :param function old-trigger-function: existing trigger function which will
+                                          be replaced by trigger-function.
+
+    :return: nil or function pointer
+
+    The ``trigger-function`` can have up to three parameters:
+
+      * ``event_type`` (string) -- in order to distinguish event, you can compare
+        this argument with the supported event types, ``bucket_data_recv_txn``
+        and ``bucket_data_gc_txn``.
+      * ``bucket_id`` (unsigned) -- bucket id.
+      * ``data`` (table) -- additional information about data change transaction.
+        Currently it only includes an array of all spaces (``data.spaces``),
+        affected by a transaction in which trigger-function is executed.
+
+    **Example:**
+
+    ..  code-block:: lua
+
+        vshard.storage.on_bucket_event(function(event, bucket_id, data)
+            if event == 'bucket_data_recv_txn' then
+                -- Handle it.
+                for idx, space in ipairs(data.spaces) do
+                    ...
+                end
+            elseif event == 'bucket_data_gc_txn' then
+                -- Handle it.
+                ...
+            end
+        end)
+
+    .. NOTE::
+
+        As everything executed inside triggers is already in a transaction,
+        you shouldn't use transactions, yield-operations (:ref:`explicit <app-yields>`
+        or not), changes to different space engines (see :ref:`rule #2 <box-txn_management>`).
+
+        If the parameters are ``(nil, old-trigger-function)``, then the old trigger
+        is deleted. If both parameters are omitted, then the response is a list of
+        existing trigger functions.
+
+        Details about trigger characteristics are in the
+        :ref:`triggers <triggers-box_triggers>` section.
 
 ..  _vshard-storage_internal_api:
 

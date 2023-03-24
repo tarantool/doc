@@ -1,7 +1,9 @@
 * :ref:`memtx_memory <cfg_storage-memtx_memory>`
 * :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`
 * :ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`
+* :ref:`memtx_allocator <cfg_storage-memtx_allocator>`
 * :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
+* :ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`
 * :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`
 * :ref:`vinyl_cache <cfg_storage-vinyl_cache>`
 * :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`
@@ -61,6 +63,26 @@
     | Environment variable: TT_MEMTX_MIN_TUPLE_SIZE
     | Dynamic: no
 
+.. _cfg_storage-memtx_allocator:
+
+.. confval:: memtx_allocator
+
+    Since version :doc:`2.10.0 </release/2.10.0>`.
+    Specifies the allocator used for memtx tuples.
+    The possible values are ``system``  and ``small``:
+
+    * ``system`` is based on the ``malloc`` function.
+      This allocator allocates memory as needed, checking that the quota is not exceeded.
+
+    * ``small`` is a special `slab allocator <https://github.com/tarantool/small>`_.
+      Note that this allocator is prone to unresolvable fragmentation on specific workloads,
+      so you can switch to ``system`` in such cases.
+
+    | Type: string
+    | Default: 'small'
+    | Environment variable: TT_MEMTX_ALLOCATOR
+    | Dynamic: No
+
 .. _cfg_storage-slab_alloc_factor:
 
 .. confval:: slab_alloc_factor
@@ -70,9 +92,32 @@
     memory depending on the total amount of memory available and the
     distribution of item sizes. Allowed values range from 1 to 2.
 
+    See also: :ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`
+
     | Type: float
-    | Default: 1.1
+    | Default: 1.05
     | Environment variable: TT_SLAB_ALLOC_FACTOR
+    | Dynamic: no
+
+.. _cfg_storage-slab_alloc_granularity:
+
+.. confval:: slab_alloc_granularity
+
+    Since version :doc:`2.8.1 </release/2.8.1>`.
+    Specifies the granularity (in bytes) of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
+    The value of ``slab_alloc_granularity`` should be a power of two and should be greater than or equal to 4.
+    Below are few recommendations on how to adjust the ``slab_alloc_granularity`` value:
+
+    * To store small tuples of approximately the same size, set ``slab_alloc_granularity`` to 4 bytes to save memory.
+
+    * To store tuples of different sizes, you can increase the ``slab_alloc_granularity`` value.
+      This results in allocating tuples from the same ``mempool``.
+
+    See also: :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
+
+    | Type: number
+    | Default: 8 bytes
+    | Environment variable: TT_SLAB_ALLOC_GRANULARITY
     | Dynamic: no
 
 .. _cfg_storage-vinyl_bloom_fpr:

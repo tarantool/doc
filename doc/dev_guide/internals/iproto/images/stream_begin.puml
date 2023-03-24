@@ -1,6 +1,6 @@
 @startuml
 
-skinparam map {
+skinparam {
     HyperlinkColor #0077FF
     FontColor #313131
     BorderColor #313131
@@ -10,13 +10,13 @@ skinparam map {
 json "**IPROTO_BEGIN**" as begin {
     "Size": "MP_UINT",
     "Header": {
-      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_BEGIN",
-      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
-      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_STREAM_ID]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_BEGIN",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_STREAM_ID]]": "MP_UINT"
     },
     "Body": {
-      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TIMEOUT]]": "MP_DOUBLE",
-      "[[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TXN_ISOLATION]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TIMEOUT]]": "MP_DOUBLE",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TXN_ISOLATION]]": "MP_UINT"
     }
 }
 

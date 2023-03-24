@@ -1,6 +1,6 @@
 @startuml
 
-skinparam map {
+skinparam {
     HyperlinkColor #0077FF
     FontColor #313131
     BorderColor #313131

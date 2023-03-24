@@ -35,7 +35,7 @@ Command options
     ..  code-block:: console
 
         $ ./tarantool --version
-        Tarantool 2.6.2-0-g34d504d
+        Tarantool 2.10.4-0-g816000e
         Target: Darwin-x86_64-Release
         ...
 
@@ -175,7 +175,7 @@ You can do this in different ways:
         box.cfg { listen = "127.0.0.1:3301?p1=value1&p2=value2, /unix.sock?p3=value3" }
 
 *   Using the ``params`` table: a URI is passed in a table with additional parameters in the "params" table.
-    Parameters in the "params" table overwrite the ones from a URI string ("value2" overwries "value1" for ``p1`` in the example below).
+    Parameters in the "params" table overwrite the ones from a URI string ("value2" overwrites "value1" for ``p1`` in the example below).
 
     ..  code-block:: lua
 
@@ -398,6 +398,11 @@ Logging
 ^^^^^^^
 
 ..  include:: cfg_logging.rst
+
+Feedback
+^^^^^^^^
+
+..  include:: cfg_feedback.rst
 
 Deprecated parameters
 ^^^^^^^^^^^^^^^^^^^^^

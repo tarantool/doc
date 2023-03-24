@@ -1,5 +1,9 @@
 .. _cfg_logging:
 
+This section provides information on how to configure options related to logging.
+You can also use the :ref:`log module <log-module>` to configure logging in your
+application.
+
 * :ref:`log_level <cfg_logging-log_level>`
 * :ref:`log <cfg_logging-log>`
 * :ref:`log_nonblock <cfg_logging-log_nonblock>`
@@ -11,7 +15,7 @@
 .. confval:: log_level
 
     Since version 1.6.2.
-    What level of detail the :ref:`log <admin-logs>` will have. There are seven levels:
+    Specifies the level of detail the :ref:`log <admin-logs>` has. There are seven levels:
 
     * 1 – ``SYSERROR``
     * 2 – ``ERROR``
@@ -21,9 +25,9 @@
     * 6 – ``VERBOSE``
     * 7 – ``DEBUG``
 
-    By setting log_level, one can enable logging of all classes below
-    or equal to the given level. Tarantool prints its logs to the standard
-    error stream by default, but this can be changed with the
+    By setting ``log_level``, you can enable logging of all events with severities above
+    or equal to the given level. Tarantool prints logs to the standard
+    error stream by default. This can be changed with the
     :ref:`log <cfg_logging-log>` configuration parameter.
 
     | Type: integer
@@ -31,10 +35,11 @@
     | Environment variable: TT_LOG_LEVEL
     | Dynamic: **yes**
 
-    Warning: prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was
-    level 6. Starting with Tarantool 1.7.5 ``VERBOSE`` is level 6 and ``DEBUG`` is level 7.
-    ``VERBOSE`` is a new level for monitoring repetitive events which would cause
-    too much log writing if ``INFO`` were used instead.
+    ..  note::
+        Prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was
+        level 6. Starting with Tarantool 1.7.5, ``VERBOSE`` is level 6 and ``DEBUG`` is level 7.
+        ``VERBOSE`` is a new level for monitoring repetitive events which would cause
+        too much log writing if ``INFO`` were used instead.
 
 .. _cfg_logging-log:
 
@@ -42,10 +47,15 @@
 
     Since version 1.7.4.
     By default, Tarantool sends the log to the standard error stream
-    (``stderr``). If ``log`` is specified, Tarantool sends the log to a file,
-    or to a pipe, or to the system logger.
+    (``stderr``). If ``log`` is specified, Tarantool can send the log to a:
 
-    Example setting for sending the log to a file:
+    * file
+
+    * pipe
+
+    * system logger
+
+    Example 1: sending the log to the ``tarantool.log`` file.
 
     .. code-block:: lua
 
@@ -53,25 +63,25 @@
         -- or
         box.cfg{log = 'file:tarantool.log'}
 
-    This will open the file ``tarantool.log`` for output on the server’s default
+    This opens the file ``tarantool.log`` for output on the server's default
     directory. If the ``log`` string has no prefix or has the prefix "file:",
     then the string is interpreted as a file path.
 
-    Example setting for sending the log to a pipe:
+    Example 2: sending the log to a pipe.
 
     .. code-block:: lua
 
         box.cfg{log = '| cronolog tarantool.log'}
         -- or
-        box.cfg{log = 'pipe: cronolog tarantool.log'}'
+        box.cfg{log = 'pipe: cronolog tarantool.log'}
 
-    This will start the program `cronolog <https://linux.die.net/man/1/cronolog>`_ when the server starts, and
-    will send all log messages to the standard input (``stdin``) of cronolog.
+    This starts the program `cronolog <https://linux.die.net/man/1/cronolog>`_ when the server starts, and
+    sends all log messages to the standard input (``stdin``) of ``cronolog``.
     If the ``log`` string begins with '|' or has the prefix "pipe:",
     then the string is interpreted as a Unix
     `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
 
-    Example setting for sending the log to syslog:
+    Example 3: sending the log to syslog.
 
     .. code-block:: lua
 
@@ -85,29 +95,28 @@
 
     If the ``log`` string begins with "syslog:", then it is
     interpreted as a message for the
-    `syslogd <http://www.rfc-base.org/txt/rfc-5424.txt>`_ program which normally
-    is running in the background of any Unix-like platform.
-    The setting can be 'syslog:', 'syslog:facility=...', 'syslog:identity=...',
-    'syslog:server=...', or a combination.
+    `syslogd <https://linux.die.net/man/8/syslogd>`_ program, which normally
+    is running in the background on any Unix-like platform.
+    The setting can be ``syslog:``, ``syslog:facility=...``, ``syslog:identity=...``,
+    ``syslog:server=...``, or a combination.
 
-    The ``syslog:identity`` setting is an arbitrary string which will be placed at
-    the beginning of all messages. The default value is: tarantool.
+    * The ``syslog:identity`` setting is an arbitrary string, which is placed at
+      the beginning of all messages. The default value is "tarantool".
 
-    The ``syslog:facility`` setting is currently ignored but will be used in the future.
-    The value must be one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_
-    keywords, which tell syslogd where the message should go.
-    The possible values are: auth, authpriv, cron, daemon, ftp,
-    kern, lpr, mail, news, security, syslog, user, uucp, local0, local1, local2,
-    local3, local4, local5, local6, local7. The default value is: local7.
+    * The ``syslog:facility`` setting is currently ignored but will be used in the future.
+      The value must be one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_
+      keywords, which tell syslogd where the message should go.
+      The possible values are: auth, authpriv, cron, daemon, ftp,
+      kern, lpr, mail, news, security, syslog, user, uucp, local0, local1, local2,
+      local3, local4, local5, local6, local7. The default value is: local7.
 
-    The ``syslog:server`` setting is the locator for the syslog server.
-    It can be a Unix socket path beginning with "unix:", or an ipv4 port number.
-    The default socket value is: dev/log (on Linux) or /var/run/syslog (on Mac OS).
-    The default port value is: 514, the UDP port.
+    * The ``syslog:server`` setting is the locator for the syslog server.
+      It can be a Unix socket path beginning with "unix:", or an ipv4 port number.
+      The default socket value is: ``dev/log`` (on Linux) or ``/var/run/syslog`` (on macOS).
+      The default port value is: 514, the UDP port.
 
     When logging to a file, Tarantool reopens the log on `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
-    When log is
-    a program, its pid is saved in the :ref:`log.logger_pid <log-logger_pid>`
+    When log is a program, its PID is saved in the :ref:`log.pid <log-pid>`
     variable. You need to send it a signal to rotate logs.
 
     | Type: string
@@ -120,21 +129,23 @@
 .. confval:: log_nonblock
 
     Since version 1.7.4.
-    If ``log_nonblock`` equals true, Tarantool does not block during logging
+    If ``log_nonblock`` equals **true**, Tarantool does not block during logging
     when the system is not ready for writing, and drops the message
     instead. If :ref:`log_level <cfg_logging-log_level>` is high, and many
-    messages go to the log, setting ``log_nonblock`` to true may improve
+    messages go to the log, setting ``log_nonblock`` to **true** may improve
     logging performance at the cost of some log messages getting lost.
 
-    This parameter has effect only if the output is going to "syslog:" or
-    "pipe:".
-    Setting ``log_nonblock`` to true is illegal if the output is going to
-    a file.
+    This parameter has effect only if :ref:`log <cfg_logging-log>` is
+    configured to send logs to a pipe or system logger.
+    The default ``log_nonblock`` value is **nil**, which means that
+    blocking behavior corresponds to the logger type:
 
-    The default ``log_nonblock`` value is nil, which means that
-    blocking behavior corresponds to the type of logger.
+    * **false** for ``stderr`` and file loggers.
+
+    * **true** for a pipe and system logger.
+
     This is a behavior change: in earlier versions of the Tarantool
-    server, the default value was true.
+    server, the default value was **true**.
 
     | Type: boolean
     | Default: nil
@@ -148,7 +159,7 @@
     Since version 1.6.2.
     If processing a request takes longer than the given value (in seconds),
     warn about it in the log. Has effect only if :ref:`log_level
-    <cfg_logging-log_level>` is more than or equal to 4 (WARNING).
+    <cfg_logging-log_level>` is greater than or equal to 4 (WARNING).
 
     | Type: float
     | Default: 0.5
@@ -164,13 +175,13 @@
     * 'plain' (the default), or
     * 'json' (with more detail and with JSON labels).
 
-    Here is what a log entry looks like after ``box.cfg{log_format='plain'}``:
+    Here is what a log entry looks like if ``box.cfg{log_format='plain'}``:
 
     .. code-block:: text
 
         2017-10-16 11:36:01.508 [18081] main/101/interactive I> set 'log_format' configuration option to "plain"
 
-    Here is what a log entry looks like after ``box.cfg{log_format='json'}``:
+    Here is what a log entry looks like if ``box.cfg{log_format='json'}``:
 
     .. code-block:: text
 
@@ -184,12 +195,12 @@
         "file": "builtin\/box\/load_cfg.lua",
         "line": 317}
 
-    The ``log_format='plain'`` entry has time, process id,
+    The ``log_format='plain'`` entry has a time value, process ID,
     cord name, :ref:`fiber_id <fiber_object-id>`,
     :ref:`fiber_name <fiber_object-name_get>`,
     :ref:`log level <cfg_logging-log_level>`, and message.
 
-    The ``log_format='json'`` entry has the same things along with their labels,
+    The ``log_format='json'`` entry has the same fields along with their labels,
     and in addition has the file name and line number of the Tarantool source.
 
     Setting ``log_format`` to 'json' is illegal if the output is going to "syslog:".
@@ -205,122 +216,72 @@
 Logging example
 *********************
 
-This will illustrate how "rotation" works, that is, what happens when the server
+This example illustrates how "rotation" works, that is, what happens when the server
 instance is writing to a log and signals are used when archiving it.
 
-Start with two terminal shells, Terminal #1 and Terminal #2.
+1. Start with two terminal shells: Terminal #1 and Terminal #2.
 
-On Terminal #1: start an interactive Tarantool session, then say the logging
-will go to `Log_file`, then put a message "Log Line #1" in the log file:
+2. In Terminal #1, start an interactive Tarantool session.
+   Then, use the ``log`` property to send logs to `Log_file` and
+   call ``log.info`` to put a message in the log file.
 
-.. code-block:: lua
+   .. code-block:: lua
 
-    box.cfg{log='Log_file'}
-    log = require('log')
-    log.info('Log Line #1')
+       box.cfg{log='Log_file'}
+       log = require('log')
+       log.info('Log Line #1')
 
-On Terminal #2: use ``mv`` so the log file is now named `Log_file.bak`.
-The result of this is: the next log message will go to `Log_file.bak`.
+3. In Terminal #2, use the ``mv`` command to rename the log file to `Log_file.bak`.
 
-.. cssclass:: highlight
-.. parsed-literal::
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-    mv Log_file Log_file.bak
+       mv Log_file Log_file.bak
 
-On Terminal #1: put a message "Log Line #2" in the log file.
+   As a result, the next log message will go to `Log_file.bak`.
 
-.. code-block:: lua
+4. Go back to Terminal #1 and put a message "Log Line #2" in the log file.
 
-    log.info('Log Line #2')
+   .. code-block:: lua
 
-On Terminal #2: use ``ps`` to find the process ID of the Tarantool instance.
+       log.info('Log Line #2')
 
-.. cssclass:: highlight
-.. parsed-literal::
+5. In Terminal #2, use ``ps`` to find the process ID of the Tarantool instance.
 
-    ps -A | grep tarantool
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-On Terminal #2: use ``kill -HUP`` to send a SIGHUP signal to the Tarantool instance.
-The result of this is: Tarantool will open `Log_file` again, and
-the next log message will go to `Log_file`.
-(The same effect could be accomplished by executing log.rotate() on the instance.)
+       ps -A | grep tarantool
 
-.. cssclass:: highlight
-.. parsed-literal::
+6. In Terminal #2, execute ``kill -HUP`` to send a SIGHUP signal to the Tarantool instance.
+   Tarantool will open `Log_file` again, and the next log message will go to `Log_file`.
 
-    kill -HUP *process_id*
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-On Terminal #1: put a message "Log Line #3" in the log file.
+       kill -HUP *process_id*
 
-.. code-block:: lua
+   The same effect could be accomplished by calling :ref:`log.rotate <log-rotate>`.
 
-    log.info('Log Line #3')
+7. In Terminal #1, put a message "Log Line #3" in the log file.
 
-On Terminal #2: use ``less`` to examine files. `Log_file.bak` will have these lines,
-except that the date and time will depend on when the example is done:
+   .. code-block:: lua
 
-.. cssclass:: highlight
-.. parsed-literal::
+       log.info('Log Line #3')
 
-    2015-11-30 15:13:06.373 [27469] main/101/interactive I> Log Line #1`
-    2015-11-30 15:14:25.973 [27469] main/101/interactive I> Log Line #2`
+8. In Terminal #2, use ``less`` to examine files.
+   `Log_file.bak` will have the following lines ...
 
-and `Log_file` will have
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-.. cssclass:: highlight
-.. parsed-literal::
+       2015-11-30 15:13:06.373 [27469] main/101/interactive I> Log Line #1`
+       2015-11-30 15:14:25.973 [27469] main/101/interactive I> Log Line #2`
 
-    log file has been reopened
-    2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3
+   ... and `Log_file` will look like this:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Feedback
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   .. cssclass:: highlight
+   .. parsed-literal::
 
-* :ref:`feedback_enabled <cfg_logging-feedback_enabled>`
-* :ref:`feedback_host <cfg_logging-feedback_host>`
-* :ref:`feedback_interval <cfg_logging-feedback_interval>`
-
-By default a Tarantool daemon sends a small packet
-once per hour, to ``https://feedback.tarantool.io``.
-The packet contains three values from :ref:`box.info <box_introspection-box_info>`:
-``box.info.version``, ``box.info.uuid``, and ``box.info.cluster_uuid``.
-By changing the feedback configuration parameters, users can
-adjust or turn off this feature.
-
-.. _cfg_logging-feedback_enabled:
-
-.. confval:: feedback_enabled
-
-    Since version 1.10.1. Whether to send feedback.
-
-    If this is set to ``true``, feedback will be sent as described above.
-    If this is set to ``false``, no feedback will be sent.
-
-    | Type: boolean
-    | Default: true
-    | Environment variable: TT_FEEDBACK_ENABLED
-    | Dynamic: **yes**
-
-.. _cfg_logging-feedback_host:
-
-.. confval:: feedback_host
-
-    Since version 1.10.1. The address to which the packet is sent.
-    Usually the recipient is Tarantool, but it can be any URL.
-
-    | Type: string
-    | Default: ``https://feedback.tarantool.io``
-    | Environment variable: TT_FEEDBACK_HOST
-    | Dynamic: **yes**
-
-.. _cfg_logging-feedback_interval:
-
-.. confval:: feedback_interval
-
-    Since version 1.10.1. The number of seconds between sendings, usually 3600 (1 hour).
-
-    | Type: float
-    | Default: 3600
-    | Environment variable: TT_FEEDBACK_INTERVAL
-    | Dynamic: **yes**
+       log file has been reopened
+       2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3

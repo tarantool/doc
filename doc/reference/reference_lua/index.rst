@@ -23,6 +23,7 @@ This reference covers Tarantool's built-in Lua modules.
     box
     buffer
     clock
+    compat
     console
     crypto
     csv

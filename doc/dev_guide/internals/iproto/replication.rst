@@ -255,12 +255,12 @@ Here is what the request contains:
 
 In the header:
 
-*   IPROTO_REPLICA_ID is the replica ID of the the node that sent the request.
+*   IPROTO_REPLICA_ID is the replica ID of the node that sent the request.
 *   IPROTO_LSN is the actual LSN of the demote operation as recorded in the WAL.
 
 In the body:
 
-*   IPROTO_REPLICA_ID is the replica ID of the the node that sent the request
+*   IPROTO_REPLICA_ID is the replica ID of the node that sent the request
     (same as the value in the header).
 *   IPROTO_LSN is the LSN of the last synchronous transaction recorded in the node's WAL.
 *   IPROTO_TERM is the term in which the queue becomes empty.

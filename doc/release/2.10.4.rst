@@ -27,12 +27,12 @@ Please :doc:`upgrade </book/admin/upgrades>`
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
-Breaking Changes
-----------------
+..  note::
 
--  Now the empty string, ``n``, ``nu``, ``s``, and ``st`` (that is,
-   leading parts of
-   ``num`` and ``str``) are not accepted as valid field types (:tarantool-issue:`5940`).
+    Now the empty string, ``n``, ``nu``, ``s``, and ``st`` (that is, leading parts of
+    ``num`` and ``str``) are not accepted as valid field types (:tarantool-issue:`5940`).
+    :ref:`This instruction <admin-upgrades-2.10.4_illegal_type_name>` will help you upgrade
+    to Tarantool 2.10.4 and newer if you've previously used these values in field types.
 
 Functionality added or changed
 ------------------------------
@@ -126,7 +126,7 @@ SQL
 -  Fixed an assertion when ``INDEXED BY`` was used with an index that
    was at least third in a space (:tarantool-issue:`5976`).
 -  Fixed a crash that could occur when selecting tuples with more fields
-   than specified in the space format (:tarantool-issue:`5310, gh-4666`).
+   than specified in the space format (:tarantool-issue:`5310`, :tarantool-issue:`4666`).
 -  Fixed an assertion in ``JOIN`` when using an unsupported index
    (:tarantool-issue:`5678`).
 -  Creating indexes on newly added fields no longer leads to assertions
@@ -141,9 +141,12 @@ Box
 
 -  Revoked execute access rights to the ``LUA`` function from the public
    role (:tarantool-sec-issue:`14`).
--  **[Breaking change]** Now the empty string, ``n``, ``nu``, ``s``, and
+-  Now the empty string, ``n``, ``nu``, ``s``, and
    ``st`` (that is, leading parts of ``num`` and ``str``) are not
    accepted as valid field types (:tarantool-issue:`5940`).
+   :ref:`This instruction <admin-upgrades-2.10.4_illegal_type_name>` will help you upgrade
+   to Tarantool 2.10.4 and newer if you've previously used these values in field types.
+
 -  Fixed a bug when ``type = box.NULL`` in ``key_def.new()`` resulted in
    ``type = 'unsigned'`` (:tarantool-issue:`5222`).
 -  The ``_vfunc`` system space now has the same format as ``_func``

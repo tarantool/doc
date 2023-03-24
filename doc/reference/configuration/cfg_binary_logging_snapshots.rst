@@ -3,6 +3,8 @@
 * :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`
 * :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
+* :ref:`wal_queue_max_size <cfg_binary_logging_snapshots-wal_queue_max_size>`
+* :ref:`wal_cleanup_delay <cfg_binary_logging_snapshots-wal_cleanup_delay>`
 
 .. _cfg_binary_logging_snapshots-force_recovery:
 
@@ -89,3 +91,49 @@
     | Default: 2
     | Environment variable: TT_WAL_DIR_RESCAN_DELAY
     | Dynamic: no
+
+.. _cfg_binary_logging_snapshots-wal_queue_max_size:
+
+.. confval:: wal_queue_max_size
+
+    Since version :doc:`2.8.1 </release/2.8.1>`.
+    The size of the queue (in bytes) used by a :ref:`replica <replication-roles>` to submit
+    new transactions to a :ref:`write-ahead log<internals-wal>` (WAL).
+    This option helps limit the rate at which a replica submits transactions to the WAL.
+    Limiting the queue size might be useful when a replica is trying to sync with a master and
+    reads new transactions faster than writing them to the WAL.
+
+    .. NOTE::
+
+        You might consider increasing the ``wal_queue_max_size`` value in case of
+        large tuples (approximately one megabyte or larger).
+
+    | Type: number
+    | Default: 16777216 bytes
+    | Environment variable: TT_WAL_QUEUE_MAX_SIZE
+    | Dynamic: **yes**
+
+.. _cfg_binary_logging_snapshots-wal_cleanup_delay:
+
+.. confval:: wal_cleanup_delay
+
+    Since version :doc:`2.6.3 </release/2.6.3>`.
+    The delay (in seconds) used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
+    from immediately removing :ref:`write-ahead log<internals-wal>` files after a node restart.
+    This delay eliminates possible erroneous situations when the master deletes WALs
+    needed by :ref:`replicas <replication-roles>` after restart.
+    As a consequence, replicas sync with the master faster after its restart and
+    don't need to download all the data again.
+
+    Once all the nodes in the replica set are up and running,
+    automatic cleanup is started again even if ``wal_cleanup_delay`` has not expired.
+
+    .. NOTE::
+
+        The ``wal_cleanup_delay`` option has no effect on nodes running as
+        :ref:`anonymous replicas<cfg_replication-replication_anon>`.
+
+    | Type: number
+    | Default: 14400 seconds
+    | Environment variable: TT_WAL_CLEANUP_DELAY
+    | Dynamic: **yes**
