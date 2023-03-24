@@ -63,23 +63,28 @@ INSERT
     ---
     - [1, 'Scorpions', 1965]
     ...
+
     -- Conflicting primary key: error --
     tarantool> bands:insert{1, 'Scorpions', 1965}
     ---
     - error: Duplicate key exists in unique index "primary" in space "bands" with old
         tuple - [1, "Scorpions", 1965] and new tuple - [1, "Scorpions", 1965]
     ...
+
     -- Conflicting unique secondary key: error --
     tarantool> bands:insert{2, 'Scorpions', 1965}
     ---
     - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
         - [1, "Scorpions", 1965] and new tuple - [2, "Scorpions", 1965]
     ...
-    tarantool> -- Key {1} exists in sk_non_uniq index, but it is not unique: ok --
+
+    -- Non-unique indexes: ok --
     tarantool> bands:insert{2, 'Pink Floyd', 1965}
     ---
     - [2, 'Pink Floyd', 1965]
     ...
+
+    -- Delete all tuples --
     tarantool> bands:truncate()
     ---
     ...
@@ -90,114 +95,94 @@ INSERT
 DELETE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``delete`` accepts a full key of any unique index.
+:ref:`delete <box_space-delete>` accepts a full key of any unique index.
 
 ``space:delete`` is an alias for "delete by primary key".
 
 .. code-block:: tarantoolsession
 
-    tarantool> -- Insert some test data --
-    tarantool> s:insert{3, 4, 5}
-    ---
-    - [3, 4, 5]
-    ...
-    tarantool> s:insert{6, 7, 8}
-    ---
-    - [6, 7, 8]
-    ...
-    tarantool> s:insert{9, 10, 11}
-    ---
-    - [9, 10, 11]
-    ...
-    tarantool> s:insert{12, 13, 14}
-    ---
-    - [12, 13, 14]
-    ...
-    tarantool> -- Nothing done here: no {4} key in pk index --
-    tarantool> s:delete{4}
+    -- Insert some test data --
+    tarantool> bands:insert{1, 'Roxette', 1986}
+               bands:insert{2, 'Scorpions', 1965}
+               bands:insert{3, 'Ace of Base', 1987}
+               bands:insert{4, 'The Beatles', 1960}
+
+    -- Nothing done here: no {5} key in primary index --
+    tarantool> bands:delete{5}
     ---
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [3, 4, 5]
-      - [6, 7, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
     ...
-    tarantool> -- Delete by a primary key: ok --
-    tarantool> s:delete{3}
+
+    -- Delete by a primary key: ok --
+    tarantool> bands:delete{4}
     ---
-    - [3, 4, 5]
+    - [4, 'The Beatles', 1960]
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [6, 7, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+      - [3, 'Ace of Base', 1987]
     ...
-    tarantool> -- Explicitly delete by a primary key: ok --
-    tarantool> s.index.pk:delete{6}
+
+    -- Explicitly delete by a primary key: ok --
+    tarantool> bands.index.primary:delete{3}
     ---
-    - [6, 7, 8]
+    - [3, 'Ace of Base', 1987]
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [9, 10, 11]
-      - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
     ...
-    tarantool> -- Delete by a unique secondary key: ok --
-    s.index.sk_uniq:delete{10}
+
+    -- Delete by a unique secondary key: ok --
+    tarantool> bands.index.band:delete{'Scorpions'}
     ---
-    - [9, 10, 11]
+    - [2, 'Scorpions', 1965]
     ...
-    s:select{}
+    tarantool> bands:select()
     ---
-    - - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
     ...
-    tarantool> -- Delete by a non-unique secondary index: error --
-    tarantool> s.index.sk_non_uniq:delete{14}
+
+    -- Delete by a non-unique secondary index: error --
+    tarantool> bands.index.year:delete(1986)
     ---
     - error: Get() doesn't support partial keys and non-unique indexes
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [12, 13, 14]
-    ...
-    tarantool> s:truncate()
-    ---
+    - - [1, 'Roxette', 1986]
     ...
 
-The key must be full: ``delete`` cannot work with partial keys.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s2 = box.schema.create_space('test2')
-    ---
-    ...
-    tarantool> pk2 = s2:create_index('pk2', {parts = {{1, 'unsigned'}, {2, 'unsigned'}}})
-    ---
-    ...
-    tarantool> s2:insert{1, 1}
-    ---
-    - [1, 1]
-    ...
-    tarantool> -- Delete by a partial key: error --
-    tarantool> s2:delete{1}
+    -- Delete by a partial key: error --
+    tarantool> bands.index.band_year:delete('Roxette')
     ---
     - error: Invalid key part count in an exact match (expected 2, got 1)
     ...
-    tarantool> -- Delete by a full key: ok --
-    tarantool> s2:delete{1, 1}
+
+    -- Delete by a full key: ok --
+    tarantool> bands.index.band_year:delete{'Roxette', 1986}
     ---
-    - [1, 1]
+    - [1, 'Roxette', 1986]
     ...
-    tarantool> s2:select{}
+    tarantool> bands:select()
     ---
     - []
     ...
-    tarantool> s2:drop()
+
+    -- Delete all tuples --
+    tarantool> bands:truncate()
     ---
     ...
+
 
 .. _box_space-operations-update:
 
