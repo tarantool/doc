@@ -3,130 +3,11 @@
 CRUD operation examples
 =======================
 
--------------------------------------------------------------------------------
-Example: using box.space functions to read _space tuples
--------------------------------------------------------------------------------
-
-This function will illustrate how to look at all the spaces, and for each
-display: approximately how many tuples it contains, and the first field of
-its first tuple. The function uses Tarantool ``box.space`` functions ``len()``
-and ``pairs()``. The iteration through the spaces is coded as a scan of the
-``_space`` system space, which contains metadata. The third field in
-``_space`` contains the space name, so the key instruction
-``space_name = v[3]`` means ``space_name`` is the ``space_name`` field in
-the tuple of ``_space`` that we've just fetched with ``pairs()``. The function
-returns a table:
-
-.. code-block:: lua
-
-    function example()
-      local tuple_count, space_name, line
-      local ta = {}
-      for k, v in box.space._space:pairs() do
-        space_name = v[3]
-        if box.space[space_name].index[0] ~= nil then
-          tuple_count = '1 or more'
-        else
-          tuple_count = '0'
-        end
-        line = space_name .. ' tuple_count =' .. tuple_count
-        if tuple_count == '1 or more' then
-          for k1, v1 in box.space[space_name]:pairs() do
-            line = line .. '. first field in first tuple = ' .. v1[1]
-            break
-          end
-        end
-        table.insert(ta, line)
-      end
-      return ta
-    end
-
-And here is what happens when one invokes the function:
-
-.. code-block:: tarantoolsession
-
-    tarantool> example()
-    ---
-    - - _schema tuple_count =1 or more. first field in first tuple = cluster
-      - _space tuple_count =1 or more. first field in first tuple = 272
-      - _vspace tuple_count =1 or more. first field in first tuple = 272
-      - _index tuple_count =1 or more. first field in first tuple = 272
-      - _vindex tuple_count =1 or more. first field in first tuple = 272
-      - _func tuple_count =1 or more. first field in first tuple = 1
-      - _vfunc tuple_count =1 or more. first field in first tuple = 1
-      - _user tuple_count =1 or more. first field in first tuple = 0
-      - _vuser tuple_count =1 or more. first field in first tuple = 0
-      - _priv tuple_count =1 or more. first field in first tuple = 1
-      - _vpriv tuple_count =1 or more. first field in first tuple = 1
-      - _cluster tuple_count =1 or more. first field in first tuple = 1
-    ...
-
--------------------------------------------------------------------------------
-Example: using box.space functions to organize a _space tuple
--------------------------------------------------------------------------------
-
-The objective is to display field names and field types of a system space --
-using metadata to find metadata.
-
-To begin: how can one select the ``_space`` tuple that describes ``_space``?
-
-A simple way is to look at the constants in ``box.schema``,
-which tell us that there is an item named SPACE_ID == 288,
-so these statements will retrieve the correct tuple:
-
-.. code-block:: lua
-
-    box.space._space:select{ 288 }
-    -- or --
-    box.space._space:select{ box.schema.SPACE_ID }
-
-Another way is to look at the tuples in ``box.space._index``,
-which tell us that there is a secondary index named 'name' for space
-number 288, so this statement also will retrieve the correct tuple:
-
-.. code-block:: lua
-
-    box.space._space.index.name:select{ '_space' }
-
-However, the retrieved tuple is not easy to read:
-
-.. code-block:: tarantoolsession
-
-    tarantool> box.space._space.index.name:select{'_space'}
-    ---
-    - - [280, 1, '_space', 'memtx', 0, {}, [{'name': 'id', 'type': 'num'}, {'name': 'owner',
-            'type': 'num'}, {'name': 'name', 'type': 'str'}, {'name': 'engine', 'type': 'str'},
-          {'name': 'field_count', 'type': 'num'}, {'name': 'flags', 'type': 'str'}, {
-            'name': 'format', 'type': '*'}]]
-    ...
-
-It looks disorganized because field number 7 has been formatted with recommended
-names and data types. How can one get those specific sub-fields? Since it's
-visible that field number 7 is an array of maps, this `for` loop will do the
-organizing:
-
-.. code-block:: tarantoolsession
-
-    tarantool> do
-             >   local tuple_of_space = box.space._space.index.name:get{'_space'}
-             >   for _, field in ipairs(tuple_of_space[7]) do
-             >     print(field.name .. ', ' .. field.type)
-             >   end
-             > end
-    id, num
-    owner, num
-    name, str
-    engine, str
-    field_count, num
-    flags, str
-    format, *
-    ---
-    ...
 
 .. _box_space-operations-detailed-examples:
 
 -------------------------------------------------------------------------------
-Example: using data operations
+Using data operations
 -------------------------------------------------------------------------------
 
 This example demonstrates all legal scenarios -- as well as typical errors --
@@ -140,19 +21,31 @@ for each :ref:`data operation <index-box_data-operations>` in Tarantool:
 
 .. code-block:: lua
 
-    -- Bootstrap the database --
-    box.cfg{}
-    format = {}
-    format[1] = {'field1', 'unsigned'}
-    format[2] = {'field2', 'unsigned'}
-    format[3] = {'field3', 'unsigned'}
-    s = box.schema.create_space('test', {format = format})
+    -- Run a server --
+    tarantool> box.cfg{}
+
+    -- Create a space --
+    tarantool> bands = box.schema.space.create('bands')
+
+    -- Specify field names and types --
+    tarantool> bands:format({
+                   {name = 'id', type = 'unsigned'},
+                   {name = 'band_name', type = 'string'},
+                   {name = 'year', type = 'unsigned'}
+               })
+
     -- Create a primary index --
-    pk = s:create_index('pk', {parts = {{'field1'}}})
+    tarantool> bands:create_index('primary', {parts = {'id'}})
+
     -- Create a unique secondary index --
-    sk_uniq = s:create_index('sk_uniq', {parts = {{'field2'}}})
+    tarantool> bands:create_index('band', {parts = {'band_name'}})
+
     -- Create a non-unique secondary index --
-    sk_non_uniq = s:create_index('sk_non_uniq', {parts = {{'field3'}}, unique = false})
+    tarantool> bands:create_index('year', {parts = {{'year'}}, unique = false})
+
+    -- Create a multi-part index --
+    tarantool> bands:create_index('band_year', {parts = {{'band_name'}, {'year'}}})
+
 
 .. _box_space-operations-insert:
 
@@ -160,31 +53,34 @@ for each :ref:`data operation <index-box_data-operations>` in Tarantool:
 INSERT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``insert`` accepts a well-formatted tuple and checks all keys for duplicates.
+:ref:`insert <box_space-insert>` accepts a well-formatted tuple and checks all keys for duplicates.
+
 
 .. code-block:: tarantoolsession
 
-    tarantool> -- Unique indexes: ok --
-    tarantool> s:insert({1, 1, 1})
+    -- Unique indexes: ok --
+    tarantool> bands:insert{1, 'Scorpions', 1965}
     ---
-    - [1, 1, 1]
+    - [1, 'Scorpions', 1965]
     ...
-    tarantool> -- Conflicting primary key: error --
-    tarantool> s:insert({1, 1, 1})
+    -- Conflicting primary key: error --
+    tarantool> bands:insert{1, 'Scorpions', 1965}
     ---
-    - error: Duplicate key exists in unique index 'pk' in space 'test'
+    - error: Duplicate key exists in unique index "primary" in space "bands" with old
+        tuple - [1, "Scorpions", 1965] and new tuple - [1, "Scorpions", 1965]
     ...
-    tarantool> -- Conflicting unique secondary key: error --
-    tarantool> s:insert({2, 1, 1})
+    -- Conflicting unique secondary key: error --
+    tarantool> bands:insert{2, 'Scorpions', 1965}
     ---
-    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
+    - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
+        - [1, "Scorpions", 1965] and new tuple - [2, "Scorpions", 1965]
     ...
     tarantool> -- Key {1} exists in sk_non_uniq index, but it is not unique: ok --
-    tarantool> s:insert({2, 2, 1})
+    tarantool> bands:insert{2, 'Pink Floyd', 1965}
     ---
-    - [2, 2, 1]
+    - [2, 'Pink Floyd', 1965]
     ...
-    tarantool> s:truncate()
+    tarantool> bands:truncate()
     ---
     ...
 
@@ -611,4 +507,126 @@ matches the specified key part.
     ---
     - - [7, 8, 9]
       - [10, 11, 9]
+    ...
+
+
+
+-------------------------------------------------------------------------------
+Using box.space functions to read _space tuples
+-------------------------------------------------------------------------------
+
+This function will illustrate how to look at all the spaces, and for each
+display: approximately how many tuples it contains, and the first field of
+its first tuple. The function uses Tarantool ``box.space`` functions ``len()``
+and ``pairs()``. The iteration through the spaces is coded as a scan of the
+``_space`` system space, which contains metadata. The third field in
+``_space`` contains the space name, so the key instruction
+``space_name = v[3]`` means ``space_name`` is the ``space_name`` field in
+the tuple of ``_space`` that we've just fetched with ``pairs()``. The function
+returns a table:
+
+.. code-block:: lua
+
+    function example()
+      local tuple_count, space_name, line
+      local ta = {}
+      for k, v in box.space._space:pairs() do
+        space_name = v[3]
+        if box.space[space_name].index[0] ~= nil then
+          tuple_count = '1 or more'
+        else
+          tuple_count = '0'
+        end
+        line = space_name .. ' tuple_count =' .. tuple_count
+        if tuple_count == '1 or more' then
+          for k1, v1 in box.space[space_name]:pairs() do
+            line = line .. '. first field in first tuple = ' .. v1[1]
+            break
+          end
+        end
+        table.insert(ta, line)
+      end
+      return ta
+    end
+
+And here is what happens when one invokes the function:
+
+.. code-block:: tarantoolsession
+
+    tarantool> example()
+    ---
+    - - _schema tuple_count =1 or more. first field in first tuple = cluster
+      - _space tuple_count =1 or more. first field in first tuple = 272
+      - _vspace tuple_count =1 or more. first field in first tuple = 272
+      - _index tuple_count =1 or more. first field in first tuple = 272
+      - _vindex tuple_count =1 or more. first field in first tuple = 272
+      - _func tuple_count =1 or more. first field in first tuple = 1
+      - _vfunc tuple_count =1 or more. first field in first tuple = 1
+      - _user tuple_count =1 or more. first field in first tuple = 0
+      - _vuser tuple_count =1 or more. first field in first tuple = 0
+      - _priv tuple_count =1 or more. first field in first tuple = 1
+      - _vpriv tuple_count =1 or more. first field in first tuple = 1
+      - _cluster tuple_count =1 or more. first field in first tuple = 1
+    ...
+
+-------------------------------------------------------------------------------
+Using box.space functions to organize a _space tuple
+-------------------------------------------------------------------------------
+
+The objective is to display field names and field types of a system space --
+using metadata to find metadata.
+
+To begin: how can one select the ``_space`` tuple that describes ``_space``?
+
+A simple way is to look at the constants in ``box.schema``,
+which tell us that there is an item named SPACE_ID == 288,
+so these statements will retrieve the correct tuple:
+
+.. code-block:: lua
+
+    box.space._space:select{ 288 }
+    -- or --
+    box.space._space:select{ box.schema.SPACE_ID }
+
+Another way is to look at the tuples in ``box.space._index``,
+which tell us that there is a secondary index named 'name' for space
+number 288, so this statement also will retrieve the correct tuple:
+
+.. code-block:: lua
+
+    box.space._space.index.name:select{ '_space' }
+
+However, the retrieved tuple is not easy to read:
+
+.. code-block:: tarantoolsession
+
+    tarantool> box.space._space.index.name:select{'_space'}
+    ---
+    - - [280, 1, '_space', 'memtx', 0, {}, [{'name': 'id', 'type': 'num'}, {'name': 'owner',
+            'type': 'num'}, {'name': 'name', 'type': 'str'}, {'name': 'engine', 'type': 'str'},
+          {'name': 'field_count', 'type': 'num'}, {'name': 'flags', 'type': 'str'}, {
+            'name': 'format', 'type': '*'}]]
+    ...
+
+It looks disorganized because field number 7 has been formatted with recommended
+names and data types. How can one get those specific sub-fields? Since it's
+visible that field number 7 is an array of maps, this `for` loop will do the
+organizing:
+
+.. code-block:: tarantoolsession
+
+    tarantool> do
+             >   local tuple_of_space = box.space._space.index.name:get{'_space'}
+             >   for _, field in ipairs(tuple_of_space[7]) do
+             >     print(field.name .. ', ' .. field.type)
+             >   end
+             > end
+    id, num
+    owner, num
+    name, str
+    engine, str
+    field_count, num
+    flags, str
+    format, *
+    ---
     ...
