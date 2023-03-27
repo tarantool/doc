@@ -190,7 +190,7 @@ DELETE
 UPDATE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Similarly to ``delete``, ``update`` accepts a full key of any unique index,
+Similarly to ``delete``, :ref:`update <box_space-update>` accepts a full key of any unique index,
 and also the operations to execute.
 
 ``space:update`` is an alias for "update by primary key".
@@ -282,7 +282,7 @@ and also the operations to execute.
 UPSERT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``upsert`` accepts a well-formatted tuple and update operations.
+:ref:`upsert <box_space-upsert>` accepts a well-formatted tuple and update operations.
 
 If an old tuple is found by the primary key of the specified tuple,
 then the update operations are applied to the old tuple,
@@ -388,7 +388,7 @@ if the new tuple ruins the uniqueness of a secondary index.
 REPLACE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``replace`` accepts a well-formatted tuple and searches for an old tuple
+:ref:`replace <box_space-replace>` accepts a well-formatted tuple and searches for an old tuple
 by the primary key of the new tuple.
 
 If the old tuple is found, then it is deleted, and the new tuple is inserted.
@@ -447,7 +447,7 @@ If the old tuple was not found, then just the new tuple is inserted.
 SELECT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``select`` works with any indexes (primary/secondary) and with any keys
+:ref:`select <box_space-select>` works with any indexes (primary/secondary) and with any keys
 (unique/non-unique, full/partial).
 
 If a key is partial, then ``select`` searches by all keys, where the prefix
@@ -455,45 +455,38 @@ matches the specified key part.
 
 .. code-block:: tarantoolsession
 
-    tarantool> s:insert{1, 2, 3}
+    tarantool> bands:insert{1, 'Roxette', 1986}
+               bands:insert{2, 'Scorpions', 1965}
+               bands:insert{3, 'The Doors', 1965}
+               bands:insert{4, 'The Beatles', 1960}
+
+    tarantool> bands:select(1)
     ---
-    - [1, 2, 3]
+    - - [1, 'Roxette', 1986]
     ...
-    tarantool> s:insert{4, 5, 6}
+
+    tarantool> bands:select()
     ---
-    - [4, 5, 6]
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+      - [3, 'The Doors', 1965]
+      - [4, 'The Beatles', 1960]
     ...
-    tarantool> s:insert{7, 8, 9}
+
+    tarantool> bands.index.primary:select(2)
     ---
-    - [7, 8, 9]
+    - - [2, 'Scorpions', 1965]
     ...
-    tarantool> s:insert{10, 11, 9}
+
+    tarantool> bands.index.band:select('The Doors')
     ---
-    - [10, 11, 9]
+    - - [3, 'The Doors', 1965]
     ...
-    tarantool> s:select{1}
+
+    tarantool> bands.index.year:select(1965)
     ---
-    - - [1, 2, 3]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [1, 2, 3]
-      - [4, 5, 6]
-      - [7, 8, 9]
-      - [10, 11, 9]
-    ...
-    tarantool> s.index.pk:select{4}
-    ---
-    - - [4, 5, 6]
-    ...
-    tarantool> s.index.sk_uniq:select{8}
-    ---
-    - - [7, 8, 9]
-    ...
-    tarantool> s.index.sk_non_uniq:select{9}
-    ---
-    - - [7, 8, 9]
-      - [10, 11, 9]
+    - - [2, 'Scorpions', 1965]
+      - [3, 'The Doors', 1965]
     ...
 
 
