@@ -270,10 +270,10 @@ and also the operations to execute.
       - [4, 'The Beatles', 1960]
     ...
 
-   -- Delete all tuples --
-   tarantool> bands:truncate()
-   ---
-   ...
+    -- Delete all tuples --
+    tarantool> bands:truncate()
+    ---
+    ...
 
 
 .. _box_space-operations-upsert:
