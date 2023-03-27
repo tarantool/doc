@@ -101,13 +101,13 @@ DELETE
 
 .. code-block:: tarantoolsession
 
-    -- Insert some test data --
+    -- Insert test data --
     tarantool> bands:insert{1, 'Roxette', 1986}
                bands:insert{2, 'Scorpions', 1965}
                bands:insert{3, 'Ace of Base', 1987}
                bands:insert{4, 'The Beatles', 1960}
 
-    -- Nothing done here: no {5} key in primary index --
+    -- Does nothing: no {5} key in the primary index --
     tarantool> bands:delete{5}
     ---
     ...
@@ -197,85 +197,83 @@ and also the operations to execute.
 
 .. code-block:: tarantoolsession
 
-    tarantool> -- Insert some test data --
-    tarantool> s:insert{3, 4, 5}
-    ---
-    - [3, 4, 5]
-    ...
-    tarantool> s:insert{6, 7, 8}
-    ---
-    - [6, 7, 8]
-    ...
-    tarantool> s:insert{9, 10, 11}
-    ---
-    - [9, 10, 11]
-    ...
-    tarantool> s:insert{12, 13, 14}
-    ---
-    - [12, 13, 14]
-    ...
-    tarantool> -- Nothing done here: no {4} key in pk index --
-    s:update({4}, {{'=', 2, 400}})
+    -- Insert test data --
+    tarantool> bands:insert{1, 'Roxette', 1986}
+               bands:insert{2, 'Scorpions', 1965}
+               bands:insert{3, 'Ace of Base', 1987}
+               bands:insert{4, 'The Beatles', 1960}
+
+    -- Nothing done here: no {5} key in the primary index --
+    tarantool> bands:update({5}, {{'=', 2, 'Pink Floyd'}})
     ---
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [3, 4, 5]
-      - [6, 7, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
     ...
-    tarantool> -- Update by a primary key: ok --
-    tarantool> s:update({3}, {{'=', 2, 400}})
+
+    -- Update by a primary key: ok --
+    tarantool> bands:update({2}, {{'=', 2, 'Pink Floyd'}})
     ---
-    - [3, 400, 5]
+    - [2, 'Pink Floyd', 1965]
     ...
-    tarantool> s:select{}
+
+    tarantool> bands:select()
     ---
-    - - [3, 400, 5]
-      - [6, 7, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
+      - [2, 'Pink Floyd', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
     ...
-    tarantool> -- Explicitly update by a primary key: ok --
-    tarantool> s.index.pk:update({6}, {{'=', 2, 700}})
+
+    -- Explicitly update by a primary key: ok --
+    tarantool> bands.index.primary:update({2}, {{'=', 2, 'The Rolling Stones'}})
     ---
-    - [6, 700, 8]
+    - [2, 'The Rolling Stones', 1965]
     ...
-    tarantool> s:select{}
+
+    tarantool> bands:select()
     ---
-    - - [3, 400, 5]
-      - [6, 700, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
+      - [2, 'The Rolling Stones', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
     ...
-    tarantool> -- Update by a unique secondary key: ok --
-    tarantool> s.index.sk_uniq:update({10}, {{'=', 2, 1000}})
+
+    -- Update by a unique secondary key: ok --
+    tarantool> bands.index.band:update({'The Rolling Stones'}, {{'=', 2, 'The Doors'}})
     ---
-    - [9, 1000, 11]
+    - [2, 'The Doors', 1965]
     ...
-    tarantool> s:select{}
+
+    tarantool> bands:select()
     ---
-    - - [3, 400, 5]
-      - [6, 700, 8]
-      - [9, 1000, 11]
-      - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
+      - [2, 'The Doors', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
     ...
-    tarantool> -- Update by a non-unique secondary key: error --
-    tarantool> s.index.sk_non_uniq:update({14}, {{'=', 2, 1300}})
+
+    -- Update by a non-unique secondary key: error --
+    tarantool> bands.index.year:update({1965}, {{'=', 2, 'Scorpions'}})
     ---
     - error: Get() doesn't support partial keys and non-unique indexes
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [3, 400, 5]
-      - [6, 700, 8]
-      - [9, 1000, 11]
-      - [12, 13, 14]
+    - - [1, 'Roxette', 1986]
+      - [2, 'The Doors', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
     ...
-    tarantool> s:truncate()
-    ---
-    ...
+
+   -- Delete all tuples --
+   tarantool> bands:truncate()
+   ---
+   ...
 
 .. _box_space-operations-upsert:
 
