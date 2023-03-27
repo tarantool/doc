@@ -294,61 +294,59 @@ Indexes have no ``upsert`` method - this is a method of a space.
 
 .. code-block:: tarantoolsession
 
-    tarantool> s.index.pk.upsert == nil
+    tarantool> bands.index.primary.upsert == nil
     ---
     - true
     ...
-    tarantool> s.index.sk_uniq.upsert == nil
+    tarantool> bands.upsert ~= nil
     ---
     - true
     ...
-    tarantool> s.upsert ~= nil
-    ---
-    - true
-    ...
+
     tarantool> -- As the first argument, upsert accepts --
     tarantool> -- a well-formatted tuple, NOT a key! --
-    tarantool> s:insert{1, 2, 3}
+    tarantool> bands:insert{1, 'Scorpions', 1965}
     ---
-    - [1, 2, 3]
+    - [1, 'Scorpions', 1965]
     ...
-    tarantool> s:upsert({1}, {{'=', 2, 200}})
+    tarantool> bands:upsert({2}, {{'=', 2, 'Pink Floyd'}})
     ---
-    - error: Tuple field 2 required by space format is missing
+    - error: Tuple field 2 (band_name) required by space format is missing
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [1, 2, 3]
+    - - [1, 'Scorpions', 1965]
     ...
-    tarantool> s:delete{1}
+    tarantool> bands:delete(1)
     ---
-    - [1, 2, 3]
+    - [1, 'Scorpions', 1965]
     ...
 
 ``upsert`` turns into ``insert`` when no old tuple is found by the primary key.
 
 .. code-block:: tarantoolsession
 
-    tarantool> s:upsert({1, 2, 3}, {{'=', 2, 200}})
+    tarantool> bands:upsert({1, 'Scorpions', 1965}, {{'=', 2, 'The Doors'}})
     ---
     ...
-    tarantool> -- As you can see, {1, 2, 3} were inserted, --
-    tarantool> -- and the update operations were not applied. --
-    s:select{}
+    -- As you can see, {1, 'Scorpions', 1965} were inserted, --
+    -- and the update operations were not applied. --
+    bands:select()
     ---
-    - - [1, 2, 3]
+    - - [1, 'Scorpions', 1965]
     ...
-    tarantool> -- Performing another upsert with the same primary key, --
-    tarantool> -- but different values in the other fields. --
-    s:upsert({1, 20, 30}, {{'=', 2, 200}})
+
+    -- Performing another upsert with the same primary key, --
+    -- but different values in the other fields. --
+    bands:upsert({1, 'Scorpions', 1965}, {{'=', 2, 'The Doors'}})
     ---
     ...
-    tarantool> -- The old tuple was found by the primary key {1} --
-    tarantool> -- and update operations were applied. --
-    tarantool> -- The new tuple was ignored. --
+    -- The old tuple was found by the primary key {1} --
+    -- and update operations were applied. --
+    -- The new tuple was ignored. --
     tarantool> s:select{}
     ---
-    - - [1, 200, 3]
+    - - [1, 'The Doors', 1965]
     ...
 
 ``upsert`` searches for an old tuple by the primary index,
@@ -357,24 +355,28 @@ if the new tuple ruins the uniqueness of a secondary index.
 
 .. code-block:: tarantoolsession
 
-    tarantool> s:upsert({2, 200, 3}, {{'=', 3, 300}})
+    tarantool> bands:upsert({2, 'The Doors', 1965}, {{'=', 2, 'Pink Floyd'}})
     ---
-    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
+    - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
+        - [1, "The Doors", 1965] and new tuple - [2, "The Doors", 1965]
     ...
-    s:select{}
+    bands:select()
     ---
-    - - [1, 200, 3]
+    - - [1, 'The Doors', 1965]
     ...
-    tarantool> -- But this works, when uniqueness is preserved. --
-    tarantool> s:upsert({2, 0, 0}, {{'=', 3, 300}})
+
+    -- But this works, when uniqueness is preserved. --
+    tarantool> bands:upsert({2, 'The Beatles', 1960}, {{'=', 2, 'Pink Floyd'}})
     ---
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [1, 200, 3]
-      - [2, 0, 0]
+    - - [1, 'The Doors', 1965]
+      - [2, 'The Beatles', 1960]
     ...
-    tarantool> s:truncate()
+
+    -- Delete all tuples --
+    tarantool> bands:truncate()
     ---
     ...
 
