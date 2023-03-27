@@ -10,7 +10,7 @@ CRUD operation examples
 Using data operations
 -------------------------------------------------------------------------------
 
-This section shows basic scenarios and typical errors for each
+This section shows basic usage scenarios and typical errors for each
 :ref:`data operation <index-box_data-operations>` in Tarantool:
 :ref:`INSERT <box_space-operations-insert>`,
 :ref:`DELETE <box_space-operations-delete>`,
@@ -18,6 +18,7 @@ This section shows basic scenarios and typical errors for each
 :ref:`UPSERT <box_space-operations-upsert>`,
 :ref:`REPLACE <box_space-operations-replace>`, and
 :ref:`SELECT <box_space-operations-select>`.
+Before trying out the examples, you need to bootstrap a Tarantool instance as shown below.
 
 .. code-block:: tarantoolsession
 
@@ -53,11 +54,11 @@ This section shows basic scenarios and typical errors for each
 INSERT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :ref:`insert <box_space-insert>` request accepts a well-formatted tuple and checks all the keys for duplicates.
+The :ref:`space.insert <box_space-insert>` request accepts a well-formatted tuple and checks all the keys for duplicates.
 
 .. code-block:: tarantoolsession
 
-    -- Insert a tuple with a unique index --
+    -- Insert a tuple with a unique primary key --
     tarantool> bands:insert{1, 'Scorpions', 1965}
     ---
     - [1, 'Scorpions', 1965]
@@ -77,7 +78,7 @@ The :ref:`insert <box_space-insert>` request accepts a well-formatted tuple and 
         - [1, "Scorpions", 1965] and new tuple - [2, "Scorpions", 1965]
     ...
 
-    -- Insert a second tuple with a unique index --
+    -- Insert a second tuple with unique primary and secondary keys --
     tarantool> bands:insert{2, 'Pink Floyd', 1965}
     ---
     - [2, 'Pink Floyd', 1965]
@@ -95,7 +96,7 @@ DELETE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :ref:`space.delete <box_space-delete>` allows you to delete a tuple identified by a primary key.
-You can also delete a tuple identified by any unique index using :ref:`index.delete <box_index-delete>`.
+You can also use :ref:`index.delete <box_index-delete>` to delete a tuple by the specified unique index.
 
 .. code-block:: tarantoolsession
 
@@ -105,7 +106,7 @@ You can also delete a tuple identified by any unique index using :ref:`index.del
                bands:insert{3, 'Ace of Base', 1987}
                bands:insert{4, 'The Beatles', 1960}
 
-    -- Try to delete a tuple with a missing key value: no effect --
+    -- Try to delete a tuple with a missing key: no effect --
     tarantool> bands:delete{5}
     ---
     ...
@@ -117,7 +118,7 @@ You can also delete a tuple identified by any unique index using :ref:`index.del
       - [4, 'The Beatles', 1960]
     ...
 
-    -- Delete a tuple with an existing key value --
+    -- Delete a tuple with an existing key --
     tarantool> bands:delete{4}
     ---
     - [4, 'The Beatles', 1960]
@@ -189,9 +190,9 @@ UPDATE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :ref:`space.update <box_space-update>` allows you to update a tuple identified by a primary key.
-Its :ref:`index.update <box_index-update>` counterpart updates a tuple identified by any unique index.
+Its :ref:`index.update <box_index-update>` counterpart updates a tuple identified by the specified unique index.
 
-Similarly to ``delete``, ``update`` requests accepts a full key of a unique index and an operation to execute.
+Similarly to ``delete``, ``update`` requests accept a full key and an operation to execute.
 
 .. code-block:: tarantoolsession
 
@@ -201,7 +202,7 @@ Similarly to ``delete``, ``update`` requests accepts a full key of a unique inde
                bands:insert{3, 'Ace of Base', 1987}
                bands:insert{4, 'The Beatles', 1960}
 
-    -- Try to delete a tuple with a missing key value: no effect--
+    -- Try to delete a tuple with a missing key: no effect --
     tarantool> bands:update({5}, {{'=', 2, 'Pink Floyd'}})
     ---
     ...
@@ -213,7 +214,7 @@ Similarly to ``delete``, ``update`` requests accepts a full key of a unique inde
       - [4, 'The Beatles', 1960]
     ...
 
-    -- Update a tuple with an existing key value --
+    -- Update a tuple with an existing key --
     tarantool> bands:update({2}, {{'=', 2, 'Pink Floyd'}})
     ---
     - [2, 'Pink Floyd', 1965]
@@ -227,7 +228,7 @@ Similarly to ``delete``, ``update`` requests accepts a full key of a unique inde
       - [4, 'The Beatles', 1960]
     ...
 
-    -- Update a tuple by a primary key value --
+    -- Update a tuple by the primary index --
     tarantool> bands.index.primary:update({2}, {{'=', 2, 'The Rolling Stones'}})
     ---
     - [2, 'The Rolling Stones', 1965]
@@ -241,7 +242,7 @@ Similarly to ``delete``, ``update`` requests accepts a full key of a unique inde
       - [4, 'The Beatles', 1960]
     ...
 
-    -- Update a tuple by a unique secondary key value --
+    -- Update a tuple by a unique secondary index --
     tarantool> bands.index.band:update({'The Rolling Stones'}, {{'=', 2, 'The Doors'}})
     ---
     - [2, 'The Doors', 1965]
@@ -255,7 +256,7 @@ Similarly to ``delete``, ``update`` requests accepts a full key of a unique inde
       - [4, 'The Beatles', 1960]
     ...
 
-    -- Try to update a tuple by a non-unique secondary key value --
+    -- Try to update a tuple by a non-unique secondary index --
     tarantool> bands.index.year:update({1965}, {{'=', 2, 'Scorpions'}})
     ---
     - error: Get() doesn't support partial keys and non-unique indexes
@@ -280,13 +281,13 @@ Similarly to ``delete``, ``update`` requests accepts a full key of a unique inde
 UPSERT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`space.upsert <box_space-upsert>` updates or inserts a tuple:
+:ref:`space.upsert <box_space-upsert>` updates an existing tuple or inserts a new one:
 
 *   If an existing tuple is found by the primary key of the specified tuple,
-    then the update operations are applied to the old tuple,
-    and the new tuple is ignored.
-*   If no existing tuple is found, the new tuple is inserted, and the
-    update operations are **ignored**.
+    Tarantool applies the update operations to the existing tuple
+    and ignores the new tuple.
+*   If no existing tuple is found,
+    Tarantool inserts the new tuple and ignores the update operations.
 
 .. code-block:: tarantoolsession
 
@@ -308,7 +309,7 @@ UPSERT
     - [1, 'Scorpions', 1965]
     ...
 
-``upsert`` acts as ``insert`` when no old tuple is found by the primary key.
+``upsert`` acts as ``insert`` when no existing tuple is found by the primary key.
 
 .. code-block:: tarantoolsession
 
@@ -332,7 +333,7 @@ UPSERT
     - - [1, 'The Doors', 1965]
     ...
 
-``upsert`` searches for an old tuple by the primary index,
+``upsert`` searches for an existing tuple by the primary index,
 NOT by a secondary index. This can lead to a duplication error
 if the new tuple violates the uniqueness of a secondary index.
 
@@ -370,11 +371,11 @@ if the new tuple violates the uniqueness of a secondary index.
 REPLACE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`replace <box_space-replace>` accepts a well-formatted tuple and searches for an old tuple
-by the primary key of the new tuple:
+:ref:`replace <box_space-replace>` accepts a well-formatted tuple and searches for an existing tuple
+by the primary key of a new tuple:
 
-*   If an existing tuple is found, then it is deleted, and a new tuple is inserted.
-*   If an existing tuple is not found, then only a new tuple is inserted.
+*   If an existing tuple is found, Tarantool deletes it and inserts a new tuple.
+*   If an existing tuple is not found, Tarantool only inserts a new tuple.
 
 
 .. code-block:: tarantoolsession
@@ -410,10 +411,6 @@ by the primary key of the new tuple:
     ---
     - [2, 'The Beatles', 1960]
     ...
-
-    -- This replace fails, because if the new tuple replaces --
-    -- the old tuple by the primary key from the primary index, --
-    -- this results in a duplicate unique secondary key in the 'band' index. --
     tarantool> bands:replace{2, 'Scorpions', 1965}
     ---
     - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
@@ -429,9 +426,9 @@ by the primary key of the new tuple:
 SELECT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`space.select <box_space-select>` searches for a tuple or a set of tuples in the given space.
+The :ref:`space.select <box_space-select>` request searches for a tuple or a set of tuples in the given space.
 To search by the specified index, use :ref:`index.select <box_index-select>`.
-This function works with any indexes (primary/secondary) and any keys
+The ``select`` function works with any indexes (primary/secondary) and any keys
 (unique/non-unique, full/partial).
 If a key is partial, ``select`` searches by all keys where the prefix matches the specified key part.
 
