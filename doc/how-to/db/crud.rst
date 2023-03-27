@@ -275,6 +275,7 @@ and also the operations to execute.
    ---
    ...
 
+
 .. _box_space-operations-upsert:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -380,6 +381,7 @@ if the new tuple ruins the uniqueness of a secondary index.
     ---
     ...
 
+
 .. _box_space-operations-replace:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -395,23 +397,23 @@ If the old tuple was not found, then just the new tuple is inserted.
 
 .. code-block:: tarantoolsession
 
-    tarantool> s:replace{1, 2, 3}
+    tarantool> bands:replace{1, 'Scorpions', 1965}
     ---
-    - [1, 2, 3]
+    - [1, 'Scorpions', 1965]
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [1, 2, 3]
+    - - [1, 'Scorpions', 1965]
     ...
-    tarantool> s:replace{1, 3, 4}
+    tarantool> bands:replace{1, 'The Beatles', 1960}
     ---
-    - [1, 3, 4]
+    - [1, 'The Beatles', 1960]
     ...
-    tarantool> s:select{}
+    tarantool> bands:select()
     ---
-    - - [1, 3, 4]
+    - - [1, 'The Beatles', 1960]
     ...
-    tarantool> s:truncate()
+    tarantool> bands:truncate()
     ---
     ...
 
@@ -419,23 +421,23 @@ If the old tuple was not found, then just the new tuple is inserted.
 
 .. code-block:: tarantoolsession
 
-    tarantool> s:insert{1, 1, 1}
-    ---
-    - [1, 1, 1]
+    tarantool> bands:insert{1, 'Scorpions', 1965}
+    - [1, 'Scorpions', 1965]
     ...
-    tarantool> s:insert{2, 2, 2}
+    tarantool> bands:insert{2, 'The Beatles', 1960}
     ---
-    - [2, 2, 2]
+    - [2, 'The Beatles', 1960]
     ...
-    tarantool> -- This replace fails, because if the new tuple {1, 2, 0} replaces --
-    tarantool> -- the old tuple by the primary key from 'pk' index {1, 1, 1}, --
-    tarantool> -- this results in a duplicate unique secondary key in 'sk_uniq' index: --
-    tarantool> -- key {2} is used both in the new tuple and in {2, 2, 2}. --
-    tarantool> s:replace{1, 2, 0}
+
+    -- This replace fails, because if the new tuple replaces --
+    -- the old tuple by the primary key from the primary index, --
+    -- this results in a duplicate unique secondary key in the 'band' index. --
+    tarantool> bands:replace{2, 'Scorpions', 1965}
     ---
-    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
+    - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
+        - [1, "Scorpions", 1965] and new tuple - [2, "Scorpions", 1965]
     ...
-    tarantool> s:truncate()
+    tarantool> bands:truncate()
     ---
     ...
 
