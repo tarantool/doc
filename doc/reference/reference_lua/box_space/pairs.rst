@@ -77,8 +77,8 @@ space_object:pairs()
             ---
             ...
 
-            -- Select all tuples whose key values are between 3 and 6 --
-            tarantool> for _, tuple in bands.index.year:pairs(3, {iterator = "GE"}) do
+            -- Select all tuples whose primary key values are between 3 and 6 --
+            tarantool> for _, tuple in bands:pairs(3, {iterator = "GE"}) do
                          if (tuple[1] > 6) then break end
                          print(tuple)
                        end
