@@ -8,96 +8,117 @@ index_object:select()
 
     ..  method:: select(search-key, options)
 
-        This is an alternative to :ref:`box.space...select() <box_space-select>`
-        which goes via a particular index and can make use of additional
-        parameters that specify the iterator type, and the limit, and the offset.
+        Search for a tuple or a set of tuples by the current index.
+        To search by the primary index in the specified space, use the :ref:`space.select` method.
 
         :param index_object index_object: an :ref:`object reference
-                                          <app_server-object_reference>`.
-        :param scalar/table      key: values to be matched against the index key
+                                          <app_server-object_reference>`
+        :param scalar/table      key: a value to be matched against the index key, which may be multi-part
         :param table/nil     options: none, any, or all of the following parameters:
 
-                                      * ``iterator`` -- the :ref:`type of iterator <box_index-iterator-types>`
+                                      * ``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
                                       * ``limit`` -- the maximum number of tuples
                                       * ``offset`` -- the number of tuples to skip
-                                        (do not use it. See
-                                        :ref:`warning <offset-warning>`)
+                                        (use this parameter carefully for :ref:`large data sets <offset-warning>`)
+                                      * ``options.after`` -- a tuple or a tuple's position, after which ``select`` continues searching
+                                      * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value
 
 
-        :return: the tuple or tuples that match the field values.
+        :return:
+
+            This function might return one or two values:
+
+            *   The tuples whose fields are equal to the fields of the passed key.
+                If the number of passed fields is less than the
+                number of fields in the current key, then only the passed
+                fields are compared, so ``select{1,2}`` will match a tuple
+                whose primary key is ``{1,2,3}``.
+            *   (Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing
+                the position of the last selected tuple as the second value.
+
         :rtype:  array of tuples
 
         .. _offset-warning:
 
         ..  WARNING::
 
-            We do not recommend using the ``offset`` option for scanning
-            large values because it linearly increases the number
-            of scanned tuples and leads to the full scan of the space.
+            Use the ``offset`` option carefully for scanning
+            large data sets as it linearly increases the number
+            of scanned tuples and leads to a full space scan.
+            Instead, you can use the ``after`` and ``fetch_pos`` options.
 
-            For unique indexes, you can build cursors with
-            :doc:`pairs() </reference/reference_lua/box_index/pairs>`:
 
-            ..  code-block:: lua
+        Below are few examples of using ``select`` with different parameters.
+        To try out these examples, you need to bootstrap a Tarantool instance
+        as described in :ref:`Using data operations <box_space-operations-detailed-examples>`.
 
-                index_obj:pairs(key, {iterator = 'GT'})
-
-        **Example:**
+        **Examples:**
 
         ..  code-block:: tarantoolsession
 
-            -- Create a space named tester.
-            tarantool> sp = box.schema.space.create('tester')
-            -- Create a unique index 'primary'
-            -- which won't be needed for this example.
-            tarantool> sp:create_index('primary', {parts = {1, 'unsigned' }})
-            -- Create a non-unique index 'secondary'
-            -- with an index on the second field.
-            tarantool> sp:create_index('secondary', {
-                     >   type = 'tree',
-                     >   unique = false,
-                     >   parts = {2, 'string'}
-                     > })
-            -- Insert three tuples, values in field[2]
-            -- equal to 'X', 'Y', and 'Z'.
-            tarantool> sp:insert{1, 'X', 'Row with field[2]=X'}
-            tarantool> sp:insert{2, 'Y', 'Row with field[2]=Y'}
-            tarantool> sp:insert{3, 'Z', 'Row with field[2]=Z'}
-            -- Select all tuples where the secondary index
-            -- keys are greater than 'X'.
-            tarantool> sp.index.secondary:select({'X'}, {
-                     >   iterator = 'GT',
-                     >   limit = 1000
-                     > })
-
-        The result will be a table of tuple and will look like this:
-
-        ..  code-block:: yaml
-
+            -- Insert test data --
+            tarantool> bands:insert{1, 'Roxette', 1986}
+                       bands:insert{2, 'Scorpions', 1965}
+                       bands:insert{3, 'Ace of Base', 1987}
+                       bands:insert{4, 'The Beatles', 1960}
+                       bands:insert{5, 'Pink Floyd', 1965}
+                       bands:insert{6, 'The Rolling Stones', 1962}
+                       bands:insert{7, 'The Doors', 1965}
+                       bands:insert{8, 'Nirvana', 1987}
+                       bands:insert{9, 'Led Zeppelin', 1968}
+                       bands:insert{10, 'Queen', 1970}
             ---
-            - - [2, 'Y', 'Row with field[2]=Y']
-              - [3, 'Z', 'Row with field[2]=Z']
             ...
 
-        ..  NOTE::
+            -- Select all tuples by the specified secondary index --
+            tarantool> bands.index.band:select()
+            ---
+            - - [3, 'Ace of Base', 1987]
+              - [9, 'Led Zeppelin', 1968]
+              - [8, 'Nirvana', 1987]
+              - [5, 'Pink Floyd', 1965]
+              - [10, 'Queen', 1970]
+              - [1, 'Roxette', 1986]
+              - [2, 'Scorpions', 1965]
+              - [4, 'The Beatles', 1960]
+              - [7, 'The Doors', 1965]
+              - [6, 'The Rolling Stones', 1962]
+            ...
 
-            The arguments are optional. If you call
-            :samp:`box.space.{space-name}:select{}`, then every key in the index
-            is considered to be a match, regardless of the iterator type. Therefore,
-            for the example above, ``box.space.tester:select{}`` will select every
-            tuple in the ``tester`` space via the first (primary-key) index.
+            -- Select a tuple by the specified multi-part secondary key --
+            tarantool> bands.index.band_year:select{'The Beatles', 1960}
+            ---
+            - - [4, 'The Beatles', 1960]
+            ...
 
-        ..  NOTE::
+            -- Select maximum 3 tuples with the key value greater than 1965
+            tarantool> bands.index.year:select({1965}, {iterator='GT', limit = 3})
+            ---
+            - - [9, 'Led Zeppelin', 1968]
+              - [10, 'Queen', 1970]
+              - [1, 'Roxette', 1986]
+            ...
 
-            :samp:`index.{index-name}` is optional. If it is omitted, then the assumed
-            index is the first (primary-key) index. Therefore, for the example
-            above, ``box.space.tester:select({1}, {iterator = 'GT'})`` would have
-            returned the same two rows, via the 'primary' index.
+            -- Select maximum 3 tuples after the specified tuple
+            tarantool> bands.index.primary:select({}, {after = {4, 'The Beatles', 1960}, limit = 3})
+            ---
+            - - [5, 'Pink Floyd', 1965]
+              - [6, 'The Rolling Stones', 1962]
+              - [7, 'The Doors', 1965]
+            ...
 
-        ..  NOTE::
+            -- Step 1: select first 3 tuples and fetch a last tuple's position.
+            tarantool> result, position = bands.index.primary:select({}, {limit = 3, fetch_pos = true})
+            ---
+            ...
+            -- Step 2: pass the last tuple's position as the 'after' parameter.
+            tarantool> bands.index.primary:select({}, {limit = 3, after = position})
+            ---
+            - - [4, 'The Beatles', 1960]
+              - [5, 'Pink Floyd', 1965]
+              - [6, 'The Rolling Stones', 1962]
+            ...
 
-            :samp:`iterator = {iterator-type}` is optional. If it is omitted, then
-            ``iterator = 'EQ'`` is assumed.
 
         ..  _box_index-note:
 
