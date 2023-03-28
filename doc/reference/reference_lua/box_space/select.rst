@@ -23,19 +23,21 @@ space_object:select()
                                           * ``options.limit`` the maximum number of tuples
                                           * ``options.offset`` the number of tuples to skip
                                           * ``options.after`` a tuple or a tuple's position, after which ``select`` continues searching
-                                          * ``options.fetch_pos`` if **true**, the ``select`` method returns the position of the last selected tuple as the second returned value
+                                          * ``options.fetch_pos`` if **true**, the ``select`` method returns the position of the last selected tuple as the second value
 
-        :return: *   the tuples whose primary-key fields are equal to the fields of
-                 the passed key. If the number of passed fields is less than the
-                 number of fields in the primary key, then only the passed
-                 fields are compared, so ``select{1,2}`` will match a tuple
-                 whose primary key is ``{1,2,3}``.
-                 *  if ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing
-                    the position of the last selected tuple as the second value
+        :return:
+
+            *   the tuples whose primary-key fields are equal to the fields of
+                the passed key. If the number of passed fields is less than the
+                number of fields in the primary key, then only the passed
+                fields are compared, so ``select{1,2}`` will match a tuple
+                whose primary key is ``{1,2,3}``.
+            *   if ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing
+                the position of the last selected tuple as the second value
+
         :rtype:  array of tuples
 
-        A ``select`` request can also be done with a specific index and index
-        options, which are the subject of :doc:`/reference/reference_lua/box_index/select`.
+        To search by the specific index, use the :doc:`/reference/reference_lua/box_index/select` method.
 
         **Possible errors:**
 
@@ -101,9 +103,6 @@ space_object:select()
               - [5, 'Pink Floyd', 1965]
               - [6, 'The Rolling Stones', 1962]
             ...
-
-
-        To learn how to search by the specified index, see :ref:`index.select <box_index-select>`.
 
         .. note::
 
