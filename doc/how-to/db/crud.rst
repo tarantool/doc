@@ -426,10 +426,10 @@ by the primary key of a new tuple:
 SELECT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :ref:`space.select <box_space-select>` request searches for a tuple or a set of tuples in the given space.
+The :ref:`space.select <box_space-select>` request searches for a tuple or a set of tuples in the given space
+by the primary key.
 To search by the specified index, use :ref:`index.select <box_index-select>`.
-The ``select`` function works with any indexes (primary/secondary) and any keys
-(unique/non-unique, full/partial).
+These methods work with any keys, including unique and non-unique, full and partial.
 If a key is partial, ``select`` searches by all keys where the prefix matches the specified key part.
 
 .. code-block:: tarantoolsession

@@ -17,9 +17,9 @@ index_object:select()
         :param scalar/table      key: values to be matched against the index key
         :param table/nil     options: none, any, or all of the following parameters:
 
-                                      * ``iterator`` -- type of iterator
-                                      * ``limit`` -- maximum number of tuples
-                                      * ``offset`` -- start tuple number
+                                      * ``iterator`` -- the :ref:`type of iterator <box_index-iterator-types>`
+                                      * ``limit`` -- the maximum number of tuples
+                                      * ``offset`` -- the number of tuples to skip
                                         (do not use it. See
                                         :ref:`warning <offset-warning>`)
 
@@ -35,7 +35,7 @@ index_object:select()
             large values because it linearly increases the number
             of scanned tuples and leads to the full scan of the space.
 
-            For unique indexes you can build cursors with
+            For unique indexes, you can build cursors with
             :doc:`pairs() </reference/reference_lua/box_index/pairs>`:
 
             ..  code-block:: lua
