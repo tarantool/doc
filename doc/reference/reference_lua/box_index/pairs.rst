@@ -11,6 +11,7 @@ index_object:pairs()
 
         Search for a tuple or a set of tuples via the given index,
         and allow iterating over one tuple at a time.
+        To search by the primary index in the specified space, use the :ref:`box_space-pairs` method.
 
         The :samp:`{key}` parameter specifies what must match within the index.
 
@@ -266,11 +267,14 @@ index_object:pairs()
                 :header-rows: 1
                 :delim: 0x3B
 
+
+        **Examples:**
+
         Below are few examples of using ``pairs`` with different parameters.
         To try out these examples, you need to bootstrap a Tarantool instance
         as described in :ref:`Using data operations <box_space-operations-detailed-examples>`.
 
-        **Examples:**
+
 
         ..  code-block:: tarantoolsession
 

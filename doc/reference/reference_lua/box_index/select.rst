@@ -48,11 +48,11 @@ index_object:select()
             Instead, you can use the ``after`` and ``fetch_pos`` options.
 
 
+       **Examples:**
+
         Below are few examples of using ``select`` with different parameters.
         To try out these examples, you need to bootstrap a Tarantool instance
         as described in :ref:`Using data operations <box_space-operations-detailed-examples>`.
-
-        **Examples:**
 
         ..  code-block:: tarantoolsession
 
