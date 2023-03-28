@@ -44,14 +44,15 @@ index_object:pairs()
         documentation.
 
         :param index_object index_object: an :ref:`object reference
-                                          <app_server-object_reference>`.
+                                          <app_server-object_reference>`
         :param scalar/table key: value to be matched against the index key,
                                  which may be multi-part
         :param iterator: as defined in tables below. The default iterator type
                          is 'EQ'
+        :param after: a tuple, after which ``pairs`` continues searching
 
 
-        :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
+        :return: the `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
                  used in a for/end loop or with `totable()
                  <https://luafun.github.io/reducing.html#fun.totable>`_
 
@@ -265,90 +266,75 @@ index_object:pairs()
                 :header-rows: 1
                 :delim: 0x3B
 
-        **First example of index pairs():**
+        Below are few examples of using ``pairs`` with different parameters.
+        To try out these examples, you need to bootstrap a Tarantool instance
+        as described in :ref:`Using data operations <box_space-operations-detailed-examples>`.
 
-        Default 'TREE' Index and ``pairs()`` function:
+        **Examples:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-            tarantool> s = box.schema.space.create('space17')
-            ---
-            ...
-            tarantool> s:create_index('primary', {
-                     >   parts = {1, 'string', 2, 'string'}
-                     > })
-            ---
-            ...
-            tarantool> s:insert{'C', 'C'}
-            ---
-            - ['C', 'C']
-            ...
-            tarantool> s:insert{'B', 'A'}
-            ---
-            - ['B', 'A']
-            ...
-            tarantool> s:insert{'C', '!'}
-            ---
-            - ['C', '!']
-            ...
-            tarantool> s:insert{'A', 'C'}
-            ---
-            - ['A', 'C']
-            ...
-            tarantool> function example()
-                     >   for _, tuple in
-                     >     s.index.primary:pairs(nil, {
-                     >         iterator = box.index.ALL}) do
-                     >       print(tuple)
-                     >   end
-                     > end
-            ---
-            ...
-            tarantool> example()
-            ['A', 'C']
-            ['B', 'A']
-            ['C', '!']
-            ['C', 'C']
-            ---
-            ...
-            tarantool> s:drop()
+            -- Insert test data --
+            tarantool> bands:insert{1, 'Roxette', 1986}
+                       bands:insert{2, 'Scorpions', 1965}
+                       bands:insert{3, 'Ace of Base', 1987}
+                       bands:insert{4, 'The Beatles', 1960}
+                       bands:insert{5, 'Pink Floyd', 1965}
+                       bands:insert{6, 'The Rolling Stones', 1962}
+                       bands:insert{7, 'The Doors', 1965}
+                       bands:insert{8, 'Nirvana', 1987}
+                       bands:insert{9, 'Led Zeppelin', 1968}
+                       bands:insert{10, 'Queen', 1970}
             ---
             ...
 
-        **Second example of index pairs():**
+            -- Select all tuples by the primary index --
+            tarantool> for _, tuple in bands.index.primary:pairs() do
+                           print(tuple)
+                       end
+            [1, 'Roxette', 1986]
+            [2, 'Scorpions', 1965]
+            [3, 'Ace of Base', 1987]
+            [4, 'The Beatles', 1960]
+            [5, 'Pink Floyd', 1965]
+            [6, 'The Rolling Stones', 1962]
+            [7, 'The Doors', 1965]
+            [8, 'Nirvana', 1987]
+            [9, 'Led Zeppelin', 1968]
+            [10, 'Queen', 1970]
+            ---
+            ...
 
-        This Lua code finds all the tuples whose primary key values begin with 'XY'.
-        The assumptions include that there is a one-part primary-key
-        TREE index on the first field, which must be a string. The iterator loop ensures
-        that the search will return tuples where the first value
-        is greater than or equal to 'XY'. The conditional statement
-        within the loop ensures that the looping will stop when the
-        first two letters are not 'XY'.
+            -- Select all tuples whose secondary key values start with the specified string --
+            tarantool> for _, tuple in bands.index.band:pairs("The", {iterator = "GE"}) do
+                         if (string.sub(tuple[2], 1, 3) ~= "The") then break end
+                         print(tuple)
+                       end
+            [4, 'The Beatles', 1960]
+            [7, 'The Doors', 1965]
+            [6, 'The Rolling Stones', 1962]
+            ---
+            ...
 
-        .. code-block:: lua
+            -- Select all tuples whose secondary key values are between 1965 and 1970 --
+            tarantool> for _, tuple in bands.index.year:pairs(1965, {iterator = "GE"}) do
+                         if (tuple[3] > 1970) then break end
+                         print(tuple)
+                       end
+            [2, 'Scorpions', 1965]
+            [5, 'Pink Floyd', 1965]
+            [7, 'The Doors', 1965]
+            [9, 'Led Zeppelin', 1968]
+            [10, 'Queen', 1970]
+            ---
+            ...
 
-            for _, tuple in
-            box.space.t.index.primary:pairs("XY",{iterator = "GE"}) do
-              if (string.sub(tuple[1], 1, 2) ~= "XY") then break end
-              print(tuple)
-            end
-
-        **Third example of index pairs():**
-
-        This Lua code finds all the tuples whose primary key values are
-        greater than or equal to 1000, and less than or equal to 1999
-        (this type of request is sometimes called a "range search" or a "between search").
-        The assumptions include that there is a one-part primary-key
-        TREE index on the first field, which must be a :ref:`number <index-box_number>`. The iterator loop ensures
-        that the search will return tuples where the first value
-        is greater than or equal to 1000. The conditional statement
-        within the loop ensures that the looping will stop when the
-        first value is greater than 1999.
-
-        .. code-block:: lua
-
-            for _, tuple in
-            box.space.t2.index.primary:pairs(1000,{iterator = "GE"}) do
-              if (tuple[1] > 1999) then break end
-              print(tuple)
-            end
+            -- Select all tuples after the specified tuple --
+            tarantool> for _, tuple in bands.index.primary:pairs({}, {after={7, 'The Doors', 1965}}) do
+                           print(tuple)
+                       end
+            [8, 'Nirvana', 1987]
+            [9, 'Led Zeppelin', 1968]
+            [10, 'Queen', 1970]
+            ---
+            ...

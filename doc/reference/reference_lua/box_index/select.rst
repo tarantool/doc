@@ -91,7 +91,7 @@ index_object:select()
             - - [4, 'The Beatles', 1960]
             ...
 
-            -- Select maximum 3 tuples with the key value greater than 1965
+            -- Select maximum 3 tuples with the key value greater than 1965 --
             tarantool> bands.index.year:select({1965}, {iterator='GT', limit = 3})
             ---
             - - [9, 'Led Zeppelin', 1968]
@@ -99,7 +99,7 @@ index_object:select()
               - [1, 'Roxette', 1986]
             ...
 
-            -- Select maximum 3 tuples after the specified tuple
+            -- Select maximum 3 tuples after the specified tuple --
             tarantool> bands.index.primary:select({}, {after = {4, 'The Beatles', 1960}, limit = 3})
             ---
             - - [5, 'Pink Floyd', 1965]
@@ -107,11 +107,11 @@ index_object:select()
               - [7, 'The Doors', 1965]
             ...
 
-            -- Step 1: select first 3 tuples and fetch a last tuple's position.
+            -- Step 1: select first 3 tuples and fetch a last tuple's position --
             tarantool> result, position = bands.index.primary:select({}, {limit = 3, fetch_pos = true})
             ---
             ...
-            -- Step 2: pass the last tuple's position as the 'after' parameter.
+            -- Step 2: pass the last tuple's position as the 'after' parameter --
             tarantool> bands.index.primary:select({}, {limit = 3, after = position})
             ---
             - - [4, 'The Beatles', 1960]

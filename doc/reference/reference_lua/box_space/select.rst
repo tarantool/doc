@@ -82,7 +82,7 @@ space_object:select()
             - - [4, 'The Beatles', 1960]
             ...
 
-            -- Select maximum 3 tuples with the primary key value greater than 3
+            -- Select maximum 3 tuples with the primary key value greater than 3 --
             tarantool> bands:select({3}, {iterator='GT', limit = 3})
             ---
             - - [4, 'The Beatles', 1960]
@@ -90,7 +90,7 @@ space_object:select()
               - [6, 'The Rolling Stones', 1962]
             ...
 
-            -- Select maximum 3 tuples after the specified tuple
+            -- Select maximum 3 tuples after the specified tuple --
             tarantool> bands:select({}, {after = {4, 'The Beatles', 1960}, limit = 3})
             ---
             - - [5, 'Pink Floyd', 1965]
@@ -98,11 +98,11 @@ space_object:select()
               - [7, 'The Doors', 1965]
             ...
 
-            -- Step 1: select first 3 tuples and fetch a last tuple's position.
+            -- Step 1: select first 3 tuples and fetch a last tuple's position --
             tarantool> result, position = bands:select({}, {limit = 3, fetch_pos = true})
             ---
             ...
-            -- Step 2: pass the last tuple's position as the 'after' parameter.
+            -- Step 2: pass the last tuple's position as the 'after' parameter --
             tarantool> bands:select({}, {limit = 3, after = position})
             ---
             - - [4, 'The Beatles', 1960]
