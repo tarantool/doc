@@ -46,7 +46,7 @@ index_object:select()
             Instead, you can use the ``after`` and ``fetch_pos`` options.
 
 
-       **Examples:**
+        **Examples:**
 
         Below are few examples of using ``select`` with different parameters.
         To try out these examples, you need to bootstrap a Tarantool instance
