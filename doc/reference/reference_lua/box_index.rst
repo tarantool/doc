@@ -84,6 +84,9 @@ Below is a list of all ``box.index`` functions and members.
         *  - :doc:`./box_index/compact`
            - Remove unused index space
 
+        *  - :doc:`./box_index/tuple_pos`
+           - Return a tuple's position for an index
+
         *  - :doc:`./box_index/user_defined`
            - Any function / method that any user wants to add
 
