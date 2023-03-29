@@ -23,7 +23,6 @@ index_object:select()
                                       * ``options.after`` -- a tuple or a tuple's position, after which ``select`` continues searching
                                       * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value
 
-
         :return:
 
             This function might return one or two values:
