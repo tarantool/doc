@@ -13,15 +13,14 @@ index_object:select()
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`
-        :param scalar/table      key: a value to be matched against the index key, which may be multi-part
-        :param table/nil     options: none, any, or all of the following parameters:
+        :param scalar/table          key: a value to be matched against the index key, which may be multi-part
+        :param table/nil         options: none, any, or all of the following parameters:
 
-                                      * ``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
-                                      * ``limit`` -- the maximum number of tuples
-                                      * ``offset`` -- the number of tuples to skip
-                                        (use this parameter carefully for :ref:`large data sets <offset-warning>`)
-                                      * ``options.after`` -- a tuple or a tuple's position, after which ``select`` continues searching
-                                      * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value
+                                          * ``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
+                                          * ``limit`` -- the maximum number of tuples
+                                          * ``offset`` -- the number of tuples to skip (use this parameter carefully for :ref:`large data sets <offset-warning>`)
+                                          * ``options.after`` -- a tuple or a tuple's position, after which ``select`` continues searching
+                                          * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value
 
         :return:
 
