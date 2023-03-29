@@ -9,7 +9,7 @@ index_object:select()
     ..  method:: select(search-key, options)
 
         Search for a tuple or a set of tuples by the current index.
-        To search by the primary index in the specified space, use the :ref:`space.select` method.
+        To search by the primary index in the specified space, use the :ref:`box_space-select` method.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`
