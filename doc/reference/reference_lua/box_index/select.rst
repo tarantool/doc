@@ -105,11 +105,11 @@ index_object:select()
               - [7, 'The Doors', 1965]
             ...
 
-            -- Select first 3 tuples and fetch a last tuple's position ... --
+            -- Select first 3 tuples and fetch a last tuple's position --
             tarantool> result, position = bands.index.primary:select({}, {limit = 3, fetch_pos = true})
             ---
             ...
-            -- ... and pass this position as the 'after' parameter --
+            -- Then, pass this position as the 'after' parameter --
             tarantool> bands.index.primary:select({}, {limit = 3, after = position})
             ---
             - - [4, 'The Beatles', 1960]
