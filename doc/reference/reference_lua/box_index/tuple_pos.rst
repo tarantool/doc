@@ -27,6 +27,7 @@ index_object:tuple_pos()
         as described in :ref:`Using data operations <box_space-operations-detailed-examples>`.
 
         .. code-block:: tarantoolsession
+
             -- Insert test data --
             tarantool> bands:insert{1, 'Roxette', 1986}
                        bands:insert{2, 'Scorpions', 1965}

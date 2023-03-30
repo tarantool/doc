@@ -8,7 +8,7 @@ space_object:delete()
 
     .. method:: delete(key)
 
-        Delete a tuple identified by a primary key.
+        Delete a tuple identified by the primary key.
 
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`

@@ -95,7 +95,7 @@ The :ref:`space.insert <box_space-insert>` request accepts a well-formatted tupl
 DELETE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`space.delete <box_space-delete>` allows you to delete a tuple identified by a primary key.
+:ref:`space.delete <box_space-delete>` allows you to delete a tuple identified by the primary key.
 You can also use :ref:`index.delete <box_index-delete>` to delete a tuple by the specified unique index.
 
 .. code-block:: tarantoolsession
@@ -189,7 +189,7 @@ You can also use :ref:`index.delete <box_index-delete>` to delete a tuple by the
 UPDATE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`space.update <box_space-update>` allows you to update a tuple identified by a primary key.
+:ref:`space.update <box_space-update>` allows you to update a tuple identified by the primary key.
 Its :ref:`index.update <box_index-update>` counterpart updates a tuple identified by the specified unique index.
 
 Similarly to ``delete``, ``update`` requests accept a full key and an operation to execute.
@@ -283,11 +283,11 @@ UPSERT
 
 :ref:`space.upsert <box_space-upsert>` updates an existing tuple or inserts a new one:
 
-*   If an existing tuple is found by the primary key of the specified tuple,
-    Tarantool applies the update operations to the existing tuple
+*   If the existing tuple is found by the primary key,
+    Tarantool applies the update operation to this tuple
     and ignores the new tuple.
 *   If no existing tuple is found,
-    Tarantool inserts the new tuple and ignores the update operations.
+    Tarantool inserts the new tuple and ignores the update operation.
 
 .. code-block:: tarantoolsession
 
@@ -316,15 +316,15 @@ UPSERT
     tarantool> bands:upsert({1, 'Scorpions', 1965}, {{'=', 2, 'The Doors'}})
     ---
     ...
-    -- As you can see, {1, 'Scorpions', 1965} was inserted, --
-    -- and the update operations were not applied. --
+    -- As you can see, {1, 'Scorpions', 1965} is inserted, --
+    -- and the update operation is not applied. --
     bands:select()
     ---
     - - [1, 'Scorpions', 1965]
     ...
 
     -- upsert with the same primary key but different values in other fields --
-    -- applies the update operation and ignores a new tuple. --
+    -- applies the update operation and ignores the new tuple. --
     bands:upsert({1, 'Scorpions', 1965}, {{'=', 2, 'The Doors'}})
     ---
     ...
@@ -333,9 +333,9 @@ UPSERT
     - - [1, 'The Doors', 1965]
     ...
 
-``upsert`` searches for an existing tuple by the primary index,
-NOT by a secondary index. This can lead to a duplication error
-if the new tuple violates the uniqueness of a secondary index.
+``upsert`` searches for the existing tuple by the primary index,
+not by the secondary index. This can lead to a duplication error
+if the tuple violates a secondary index uniqueness.
 
 .. code-block:: tarantoolsession
 
@@ -349,7 +349,7 @@ if the new tuple violates the uniqueness of a secondary index.
     - - [1, 'The Doors', 1965]
     ...
 
-    -- But this works if uniqueness is preserved. --
+    -- This works if uniqueness is preserved. --
     tarantool> bands:upsert({2, 'The Beatles', 1960}, {{'=', 2, 'Pink Floyd'}})
     ---
     ...
@@ -371,11 +371,11 @@ if the new tuple violates the uniqueness of a secondary index.
 REPLACE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`replace <box_space-replace>` accepts a well-formatted tuple and searches for an existing tuple
-by the primary key of a new tuple:
+:ref:`replace <box_space-replace>` accepts a well-formatted tuple and searches for the existing tuple
+by the primary key of the new tuple:
 
-*   If an existing tuple is found, Tarantool deletes it and inserts a new tuple.
-*   If an existing tuple is not found, Tarantool only inserts a new tuple.
+*   If the existing tuple is found, Tarantool deletes it and inserts the new tuple.
+*   If the existing tuple is not found, Tarantool inserts the new tuple.
 
 
 .. code-block:: tarantoolsession

@@ -50,7 +50,7 @@ index_object:pairs()
                                  which may be multi-part
         :param iterator: as defined in tables below. The default iterator type
                          is 'EQ'
-        :param after: a tuple, after which ``pairs`` continues searching
+        :param after: a tuple after which ``pairs`` starts the search
 
 
         :return: the `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
