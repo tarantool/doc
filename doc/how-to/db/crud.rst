@@ -54,7 +54,7 @@ Before trying out the examples, you need to bootstrap a Tarantool instance as sh
 INSERT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :ref:`space.insert <box_space-insert>` request accepts a well-formatted tuple and checks all the keys for duplicates.
+The :ref:`space_object.insert <box_space-insert>` method accepts a well-formatted tuple and checks all the keys for duplicates.
 
 .. code-block:: tarantoolsession
 
@@ -95,8 +95,8 @@ The :ref:`space.insert <box_space-insert>` request accepts a well-formatted tupl
 DELETE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`space.delete <box_space-delete>` allows you to delete a tuple identified by the primary key.
-You can also use :ref:`index.delete <box_index-delete>` to delete a tuple by the specified unique index.
+:ref:`space_object.delete <box_space-delete>` allows you to delete a tuple identified by the primary key.
+You can also use :ref:`index_object.delete <box_index-delete>` to delete a tuple by the specified unique index.
 
 .. code-block:: tarantoolsession
 
@@ -189,10 +189,10 @@ You can also use :ref:`index.delete <box_index-delete>` to delete a tuple by the
 UPDATE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`space.update <box_space-update>` allows you to update a tuple identified by the primary key.
-Its :ref:`index.update <box_index-update>` counterpart updates a tuple identified by the specified unique index.
+:ref:`space_object.update <box_space-update>` allows you to update a tuple identified by the primary key.
+Its :ref:`index_object.update <box_index-update>` counterpart updates a tuple identified by the specified unique index.
 
-Similarly to ``delete``, ``update`` requests accept a full key and an operation to execute.
+Similarly to ``delete``, the ``update`` method accepts a full key and an operation to execute.
 
 .. code-block:: tarantoolsession
 
@@ -281,7 +281,7 @@ Similarly to ``delete``, ``update`` requests accept a full key and an operation 
 UPSERT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`space.upsert <box_space-upsert>` updates an existing tuple or inserts a new one:
+:ref:`space_object.upsert <box_space-upsert>` updates an existing tuple or inserts a new one:
 
 *   If the existing tuple is found by the primary key,
     Tarantool applies the update operation to this tuple
@@ -318,14 +318,14 @@ UPSERT
     ...
     -- As you can see, {1, 'Scorpions', 1965} is inserted, --
     -- and the update operation is not applied. --
-    bands:select()
+    tarantool> bands:select()
     ---
     - - [1, 'Scorpions', 1965]
     ...
 
     -- upsert with the same primary key but different values in other fields --
     -- applies the update operation and ignores the new tuple. --
-    bands:upsert({1, 'Scorpions', 1965}, {{'=', 2, 'The Doors'}})
+    tarantool> bands:upsert({1, 'Scorpions', 1965}, {{'=', 2, 'The Doors'}})
     ---
     ...
     tarantool> bands:select()
@@ -344,7 +344,7 @@ if the tuple violates a secondary index uniqueness.
     - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
         - [1, "The Doors", 1965] and new tuple - [2, "The Doors", 1965]
     ...
-    bands:select()
+    tarantool> bands:select()
     ---
     - - [1, 'The Doors', 1965]
     ...
@@ -371,11 +371,11 @@ if the tuple violates a secondary index uniqueness.
 REPLACE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`replace <box_space-replace>` accepts a well-formatted tuple and searches for the existing tuple
+:ref:`space_object.replace <box_space-replace>` accepts a well-formatted tuple and searches for the existing tuple
 by the primary key of the new tuple:
 
 *   If the existing tuple is found, Tarantool deletes it and inserts the new tuple.
-*   If the existing tuple is not found, Tarantool inserts the new tuple.
+*   If no existing tuple is found, Tarantool inserts the new tuple.
 
 
 .. code-block:: tarantoolsession
@@ -426,9 +426,9 @@ by the primary key of the new tuple:
 SELECT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :ref:`space.select <box_space-select>` request searches for a tuple or a set of tuples in the given space
+The :ref:`space_object.select <box_space-select>` request searches for a tuple or a set of tuples in the given space
 by the primary key.
-To search by the specified index, use :ref:`index.select <box_index-select>`.
+To search by the specified index, use :ref:`index_object.select <box_index-select>`.
 These methods work with any keys, including unique and non-unique, full and partial.
 If a key is partial, ``select`` searches by all keys where the prefix matches the specified key part.
 
@@ -539,7 +539,7 @@ To begin: how can one select the ``_space`` tuple that describes ``_space``?
 
 A simple way is to look at the constants in ``box.schema``,
 which shows that there is an item named SPACE_ID == 288,
-so these statements will retrieve the correct tuple:
+so these statements retrieve the correct tuple:
 
 .. code-block:: lua
 
@@ -549,7 +549,7 @@ so these statements will retrieve the correct tuple:
 
 Another way is to look at the tuples in ``box.space._index``,
 which shows that there is a secondary index named 'name' for a space
-number 288, so this statement also will retrieve the correct tuple:
+number 288, so this statement also retrieve the correct tuple:
 
 .. code-block:: lua
 

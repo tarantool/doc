@@ -685,7 +685,7 @@ Below is a list of all ``net.box`` functions.
             - [10, 'Queen', 1970]
             ...
 
-            -- Iterate through a space with 10 records to get data in chunks with 3 records --
+            -- Iterate through a space with 10 records to get data in chunks of 3 records --
             tarantool> while true do
                            future = conn.space.bands:select({}, {limit=3, after=position, fetch_pos=true, is_async=true})
                            result = future:wait_result()

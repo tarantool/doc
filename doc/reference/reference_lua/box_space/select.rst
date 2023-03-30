@@ -36,7 +36,7 @@ space_object:select()
             *   The tuples whose primary-key fields are equal to the fields of the passed key.
                 If the number of passed fields is less than the
                 number of fields in the primary key, then only the passed
-                fields are compared, so ``select{1,2}`` will match a tuple
+                fields are compared, so ``select{1,2}`` matches a tuple
                 whose primary key is ``{1,2,3}``.
             *   (Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing
                 the position of the last selected tuple as the second value.
@@ -98,11 +98,11 @@ space_object:select()
               - [7, 'The Doors', 1965]
             ...
 
-            -- Step 1: select first 3 tuples and fetch a last tuple's position --
+            -- Select first 3 tuples and fetch a last tuple's position ... --
             tarantool> result, position = bands:select({}, {limit = 3, fetch_pos = true})
             ---
             ...
-            -- Step 2: pass the last tuple's position as the 'after' parameter --
+            -- ... and pass this position as the 'after' parameter --
             tarantool> bands:select({}, {limit = 3, after = position})
             ---
             - - [4, 'The Beatles', 1960]

@@ -19,21 +19,21 @@ space_object:pairs()
         :param         iterator: the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
         :param after: a tuple after which ``pairs`` starts the search
 
-        :return: `iterator <https://www.lua.org/pil/7.1.html>`_ which can be
+        :return: the `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
                  used in a for/end loop or with `totable()
                  <https://luafun.github.io/reducing.html#fun.totable>`_
 
         **Possible errors:**
 
-        *    No such space.
-        *    Wrong type.
+        *    no such space
+        *    wrong type
         *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
-            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
+            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`
 
 
         **Complexity factors:** Index size, Index type.
 
-        For information about iterators' internal structures see the
+        For information about iterators' internal structures, see the
         `"Lua Functional library" <https://luafun.github.io/index.html>`_
         documentation.
 

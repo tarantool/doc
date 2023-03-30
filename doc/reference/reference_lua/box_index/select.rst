@@ -18,7 +18,7 @@ index_object:select()
 
                                           * ``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
                                           * ``limit`` -- the maximum number of tuples
-                                          * ``offset`` -- the number of tuples to skip (use this parameter carefully for :ref:`large data sets <offset-warning>`)
+                                          * ``offset`` -- the number of tuples to skip (use this parameter carefully when scanning :ref:`large data sets <offset-warning>`)
                                           * ``options.after`` -- a tuple or the position of a tuple after which ``select`` starts the search
                                           * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value
 
@@ -29,7 +29,7 @@ index_object:select()
             *   The tuples whose fields are equal to the fields of the passed key.
                 If the number of passed fields is less than the
                 number of fields in the current key, then only the passed
-                fields are compared, so ``select{1,2}`` will match a tuple
+                fields are compared, so ``select{1,2}`` matches a tuple
                 whose primary key is ``{1,2,3}``.
             *   (Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing
                 the position of the last selected tuple as the second value.
@@ -40,7 +40,7 @@ index_object:select()
 
         ..  WARNING::
 
-            Use the ``offset`` option carefully for scanning
+            Use the ``offset`` option carefully when scanning
             large data sets as it linearly increases the number
             of scanned tuples and leads to a full space scan.
             Instead, you can use the ``after`` and ``fetch_pos`` options.
@@ -105,11 +105,11 @@ index_object:select()
               - [7, 'The Doors', 1965]
             ...
 
-            -- Step 1: select first 3 tuples and fetch a last tuple's position --
+            -- Select first 3 tuples and fetch a last tuple's position ... --
             tarantool> result, position = bands.index.primary:select({}, {limit = 3, fetch_pos = true})
             ---
             ...
-            -- Step 2: pass the last tuple's position as the 'after' parameter --
+            -- ... and pass this position as the 'after' parameter --
             tarantool> bands.index.primary:select({}, {limit = 3, after = position})
             ---
             - - [4, 'The Beatles', 1960]

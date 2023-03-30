@@ -40,7 +40,7 @@ index_object:pairs()
         <c_lua_tutorial-indexed_pattern_search>` shows one way that iterators
         and yields can be used together.
 
-        For information about iterators' internal structures see the
+        For information about iterators' internal structures, see the
         `"Lua Functional library" <https://luafun.github.io/index.html>`_
         documentation.
 
@@ -59,9 +59,10 @@ index_object:pairs()
 
         **Possible errors:**
 
-        * no such space; wrong type;
-        * selected iteration type is not supported for the index type;
-        * key is not supported for the iteration type.
+        * no such space
+        * wrong type
+        * selected iteration type is not supported for the index type
+        * key is not supported for the iteration type
 
         **Complexity factors:** Index size, Index type; Number of tuples
         accessed.

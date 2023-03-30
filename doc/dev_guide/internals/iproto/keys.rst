@@ -125,7 +125,7 @@ General
 
         *   -   IPROTO_FETCH_POSITION
             -   0x1f |br| MP_BOOL
-            -   If **true**, ``select`` returns the position of the last selected tuple
+            -   If **true**, :ref:`space_object:select() <box_space-select>` returns the position of the last selected tuple
 
         *   -   IPROTO_POSITION
             -   0x35 |br| MP_STR
