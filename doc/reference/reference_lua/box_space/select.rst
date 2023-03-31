@@ -16,18 +16,18 @@ space_object:select()
             Note that this method doesn't yield. For details, see :ref:`Cooperative multitasking <app-cooperative_multitasking>`.
 
         :param space_object space_object: an :ref:`object reference
-                                          <app_server-object_reference>`
+                                          <app_server-object_reference>`.
         :param scalar/table          key: a value to be matched against the index
-                                          key, which may be multi-part
+                                          key, which may be multi-part.
         :param table/nil         options: none, any, or all of the same options that
                                           :doc:`/reference/reference_lua/box_index/select`
                                           allows:
 
-                                          * ``options.iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
-                                          * ``options.limit`` -- the maximum number of tuples
-                                          * ``options.offset`` -- the number of tuples to skip
-                                          * ``options.after`` -- a tuple or the position of a tuple after which ``select`` starts the search
-                                          * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value
+                                          * ``options.iterator`` -- the :ref:`iterator type .<box_index-iterator-types>`. The default iterator type is 'EQ'.
+                                          * ``options.limit`` -- the maximum number of tuples.
+                                          * ``options.offset`` -- the number of tuples to skip.
+                                          * ``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option.
+                                          * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value.
 
         :return:
 
@@ -38,10 +38,13 @@ space_object:select()
                 number of fields in the primary key, then only the passed
                 fields are compared, so ``select{1,2}`` matches a tuple
                 whose primary key is ``{1,2,3}``.
-            *   (Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing
-                the position of the last selected tuple as the second value.
+            *   (Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing the position of the last selected tuple as the second value.
+                If now tuples are fetched, returns ``nil``.
 
-        :rtype:  array of tuples
+        :rtype:
+
+            *   array of tuples
+            *   (Optionally) string
 
 
         **Possible errors:**
@@ -50,6 +53,7 @@ space_object:select()
         *   Wrong type.
         *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
+        *   Iterator position is invalid.
 
 
         **Complexity factors:** Index size, Index type.

@@ -45,17 +45,16 @@ index_object:pairs()
         documentation.
 
         :param index_object index_object: an :ref:`object reference
-                                          <app_server-object_reference>`
+                                          <app_server-object_reference>`.
         :param scalar/table key: value to be matched against the index key,
-                                 which may be multi-part
-        :param iterator: as defined in tables below. The default iterator type
-                         is 'EQ'
-        :param after: a tuple after which ``pairs`` starts the search
+                                 which may be multi-part.
+        :param iterator: as defined in tables below. The default iterator type is 'EQ'.
+        :param after: a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``pairs`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option.
 
 
-        :return: the `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
+        :return: The `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
                  used in a for/end loop or with `totable()
-                 <https://luafun.github.io/reducing.html#fun.totable>`_
+                 <https://luafun.github.io/reducing.html#fun.totable>`_.
 
         **Possible errors:**
 
@@ -63,6 +62,7 @@ index_object:pairs()
         * wrong type
         * selected iteration type is not supported for the index type
         * key is not supported for the iteration type
+        * iterator position is invalid
 
         **Complexity factors:** Index size, Index type; Number of tuples
         accessed.

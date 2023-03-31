@@ -17,18 +17,19 @@ space_object:pairs()
         :param scalar/table key: value to be matched against the index key,
                                  which may be multi-part
         :param         iterator: the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
-        :param after: a tuple after which ``pairs`` starts the search
+        :param after: a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``pairs`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option.
 
-        :return: the `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
+        :return: The `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
                  used in a for/end loop or with `totable()
-                 <https://luafun.github.io/reducing.html#fun.totable>`_
+                 <https://luafun.github.io/reducing.html#fun.totable>`_.
 
         **Possible errors:**
 
-        *    no such space
-        *    wrong type
+        *   no such space
+        *   wrong type
         *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
             :ref:`MVCC transaction mode <txn_mode_transaction-manager>`
+        *   iterator position is invalid
 
 
         **Complexity factors:** Index size, Index type.

@@ -12,15 +12,15 @@ index_object:select()
         To search by the primary index in the specified space, use the :ref:`box_space-select` method.
 
         :param index_object index_object: an :ref:`object reference
-                                          <app_server-object_reference>`
-        :param scalar/table          key: a value to be matched against the index key, which may be multi-part
+                                          <app_server-object_reference>`.
+        :param scalar/table          key: a value to be matched against the index key, which may be multi-part.
         :param table/nil         options: none, any, or all of the following parameters:
 
-                                          * ``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
-                                          * ``limit`` -- the maximum number of tuples
-                                          * ``offset`` -- the number of tuples to skip (use this parameter carefully when scanning :ref:`large data sets <offset-warning>`)
-                                          * ``options.after`` -- a tuple or the position of a tuple after which ``select`` starts the search
-                                          * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value
+                                          * ``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'.
+                                          * ``limit`` -- the maximum number of tuples.
+                                          * ``offset`` -- the number of tuples to skip (use this parameter carefully when scanning :ref:`large data sets <offset-warning>`).
+                                          * ``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option.
+                                          * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value.
 
         :return:
 
@@ -31,10 +31,13 @@ index_object:select()
                 number of fields in the current key, then only the passed
                 fields are compared, so ``select{1,2}`` matches a tuple
                 whose primary key is ``{1,2,3}``.
-            *   (Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing
-                the position of the last selected tuple as the second value.
+            *   (Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing the position of the last selected tuple as the second value.
+                If now tuples are fetched, returns ``nil``.
 
-        :rtype:  array of tuples
+        :rtype:
+
+            *   array of tuples
+            *   (Optionally) string
 
         .. _offset-warning:
 

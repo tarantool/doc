@@ -9,9 +9,12 @@ index_object:tuple_pos()
     .. method:: tuple_pos(tuple)
 
         Return a tuple's position for an index.
-        This value can be passed to the ``after`` option of the
-        :ref:`index_object:select <box_index-select>`/:ref:`space_object:select <box_space-select>`
-        methods.
+        This value can be passed to the ``after`` option of the ``select`` and ``pairs`` methods:
+
+            *   :ref:`index_object:select <box_index-select>`/:ref:`space_object:select <box_space-select>`
+            *   :ref:`index_object:pairs <box_index-pairs>`/:ref:`space_object:pairs <box_space-pairs>`
+
+        Note that ``tuple_pos`` does not work with :ref:`functional <box_space-index_func>` and multikey indexes.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`
