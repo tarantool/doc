@@ -23,7 +23,7 @@ space_object:select()
                                           :doc:`/reference/reference_lua/box_index/select`
                                           allows:
 
-                                          * ``options.iterator`` -- the :ref:`iterator type .<box_index-iterator-types>`. The default iterator type is 'EQ'.
+                                          * ``options.iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'.
                                           * ``options.limit`` -- the maximum number of tuples.
                                           * ``options.offset`` -- the number of tuples to skip.
                                           * ``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option.
@@ -31,7 +31,7 @@ space_object:select()
 
                                             .. NOTE::
 
-                                                Note that the ``after`` and ``fetch_pos`` options are supported for the ``TREE`` :ref:`index <index-types>` only.
+                                                The ``after`` and ``fetch_pos`` options are supported for the ``TREE`` :ref:`index <index-types>` only.
 
         :return:
 

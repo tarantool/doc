@@ -189,7 +189,7 @@ We give an overview of index features in the following table:
             - \-
             - \-
 
-        *   - Pagination (see :ref:`after <box_index-select>`)
+        *   - Pagination (the :ref:`after <box_index-select>` option)
             - \+
             - \-
             - \-
