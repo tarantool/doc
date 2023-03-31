@@ -281,7 +281,7 @@ LuaJIT
 -   Introduced support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py``
     (:tarantool-issue:`6224`).
 
--   Introduced preliminary support of GNU/Linux ARM64 and MacOS M1. In
+-   Introduced preliminary support of GNU/Linux ARM64 and macOS M1. In
     the scope of this activity, the following issues have been resolved:
 
     -   Introduced support for a full 64-bit range of lightuserdata values
