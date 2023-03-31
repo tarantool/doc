@@ -24,7 +24,7 @@ index_object:select()
 
                                             .. NOTE::
 
-                                                Note that the ``after`` and ``fetch_pos`` options are supported for the ``TREE`` :ref:`index <index-types> only.
+                                                Note that the ``after`` and ``fetch_pos`` options are supported for the ``TREE`` :ref:`index <index-types>` only.
 
 
 
