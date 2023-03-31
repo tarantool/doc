@@ -1,15 +1,15 @@
 Installation
 ============
 
-To install the ``tt`` command-line utility, use a package manager -- ``yum``
-or ``apt``. If you need a specific ``tt`` build or use MacOS, you can build
+To install the ``tt`` command-line utility, use a package manager -- Yum or
+APT on Linux, or Homebrew on MacOS. If you need a specific build, you can build
 ``tt`` from sources.
 
-Using package managers
-----------------------
+Using Linux package managers
+----------------------------
 
-On Linux systems, you can install with ``yum`` or ``apt`` package managers from
-the ``tarantool/modules`` repository. Learn how to `add this repository
+On Linux systems, you can install ``tt`` with ``yum`` or ``apt`` package managers
+from the ``tarantool/modules`` repository. Learn how to `add this repository
 <https://www.tarantool.io/en/download/os-installation/>`_.
 
 The installation command looks like this:
@@ -26,13 +26,19 @@ The installation command looks like this:
 
       $ sudo yum install tt
 
+Using Homebrew on MacOS
+-----------------------
+
+On MacOS, use Homebrew to install ``tt``:
+
+.. code-block:: console
+
+  $ brew install tt
+
 Building from sources
 ---------------------
 
-.. note::
-
-    As of ``tt`` 1.0.0, there is no pre-built version for MacOS, so building
-    from sources is the only supported way to install ``tt`` on it.
+To build ``tt`` from sources:
 
 1.  Install third-party software required for building ``tt``:
 
