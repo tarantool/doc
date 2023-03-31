@@ -184,8 +184,8 @@ the session:
 
 ..  note::
 
-    On MacOS, a report will be different for the same chunk of code because
-    Tarantool and LuaJIT are built with the GC64 mode enabled for MacOS.
+    On macOS, a report will be different for the same chunk of code because
+    Tarantool and LuaJIT are built with the GC64 mode enabled for macOS.
 
 
 Let's examine the report structure. A report has four sections:

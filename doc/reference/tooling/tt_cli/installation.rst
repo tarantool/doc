@@ -2,7 +2,7 @@ Installation
 ============
 
 To install the ``tt`` command-line utility, use a package manager -- Yum or
-APT on Linux, or Homebrew on MacOS. If you need a specific build, you can build
+APT on Linux, or Homebrew on macOS. If you need a specific build, you can build
 ``tt`` from sources.
 
 Using Linux package managers
@@ -26,10 +26,10 @@ The installation command looks like this:
 
       $ sudo yum install tt
 
-Using Homebrew on MacOS
+Using Homebrew on macOS
 -----------------------
 
-On MacOS, use Homebrew to install ``tt``:
+On macOS, use Homebrew to install ``tt``:
 
 .. code-block:: console
 

@@ -276,7 +276,7 @@ See also
 
 *   `Tarantool README.md <https://github.com/tarantool/tarantool/blob/master/README.md>`_
 
-*   `Building Tarantool on MacOS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_
+*   `Building Tarantool on macOS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_
 
 *   `Building Tarantool on FreeBSD <https://github.com/tarantool/tarantool/blob/master/README.FreeBSD>`_
 
