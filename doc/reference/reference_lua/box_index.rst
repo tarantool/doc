@@ -112,6 +112,6 @@ Below is a list of all ``box.index`` functions and members.
     box_index/rename
     box_index/bsize
     box_index/stat
-    box_index/tuple_pos
     box_index/compact
+    box_index/tuple_pos
     box_index/user_defined
