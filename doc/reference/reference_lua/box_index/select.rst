@@ -19,7 +19,7 @@ index_object:select()
                                           * ``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'.
                                           * ``limit`` -- the maximum number of tuples.
                                           * ``offset`` -- the number of tuples to skip (use this parameter carefully when scanning :ref:`large data sets <offset-warning>`).
-                                          * ``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option.
+                                          * ``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option to start the search from the first tuple.
                                           * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value.
 
                                             .. NOTE::

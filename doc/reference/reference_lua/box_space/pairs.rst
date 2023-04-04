@@ -17,7 +17,7 @@ space_object:pairs()
         :param scalar/table key: value to be matched against the index key,
                                  which may be multi-part
         :param         iterator: the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'
-        :param after: a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``pairs`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option.
+        :param after: a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``pairs`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option to start the search from the first tuple.
 
         :return: The `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
                  used in a for/end loop or with `totable()

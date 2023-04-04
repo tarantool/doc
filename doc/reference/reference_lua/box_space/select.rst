@@ -26,7 +26,7 @@ space_object:select()
                                           * ``options.iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'.
                                           * ``options.limit`` -- the maximum number of tuples.
                                           * ``options.offset`` -- the number of tuples to skip.
-                                          * ``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option.
+                                          * ``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option to start the search from the first tuple.
                                           * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value.
 
                                             .. NOTE::
@@ -53,11 +53,11 @@ space_object:select()
 
         **Possible errors:**
 
-        *   No such space.
-        *   Wrong type.
+        *   no such space
+        *   wrong type
         *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
-            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
-        *   Iterator position is invalid.
+            :ref:`MVCC transaction mode <txn_mode_transaction-manager>`
+        *   iterator position is invalid
 
 
         **Complexity factors:** Index size, Index type.
