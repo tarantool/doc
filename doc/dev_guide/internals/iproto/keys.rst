@@ -185,6 +185,10 @@ General replication
             -   0x26 |br| MP_MAP
             -   The instance's vclock
 
+        *   -   :ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>`
+            -   0x5a |br| MP_UINT
+            -   vclock synchronization request identifier
+
         *   -   IPROTO_CLUSTER_UUID
             -   0x25 |br| MP_STR
             -   Cluster UUID
@@ -232,6 +236,14 @@ General replication
             -   0x07 |br| MP_BOOL
             -   True if :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is ``candidate`` or ``manual``.
                 Since v. :doc:`2.7.3 </release/2.7.3>` and :doc:`2.8.2 </release/2.8.2>`
+
+        *   -   IPROTO_BALLOT_BOOTSTRAP_LEADER_UUID
+            -   0x08 |br| ?
+                Since v. 2.11
+
+        *   -   IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS
+            -   0x09 |br| ?
+                Since v. 2.11
         
         *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
             -   0x09 |br| MP_UINT
@@ -667,6 +679,8 @@ There are four keys that correspond to vector clocks in different contexts of re
 They all have the MP_MAP type:
 
 *   IPROTO_VCLOCK (0x26) is passed to a new instance :ref:`joining the replica set <box_protocol-join>`.
+
+*   IPROTO_VCLOCK_SYNC (0x5a) is sent
 
 *   IPROTO_BALLOT_VCLOCK (0x02) is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`.
     This key was introduced in :doc:`/release/2.6.1`.
