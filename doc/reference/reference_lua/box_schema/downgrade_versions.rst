@@ -7,8 +7,8 @@ box.schema.downgrade_versions()
 
 ..  function:: box.schema.downgrade_versions()
 
-    :return: a list of Tarantool versions
-    :rtype: table
-
     Return a list of Tarantool versions available for downgrade.
     To learn how to downgrade a database to the specified Tarantool version, see :ref:`box.schema.downgrade() <box_schema-downgrade>`.
+
+    :return: a list of Tarantool versions
+    :rtype: table
