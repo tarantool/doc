@@ -17,7 +17,7 @@ Below is a list of all ``box.schema`` functions.
     ..  rst-class:: left-align-column-2
 
     ..  list-table::
-        :widths: 25 75
+        :widths: 30 70
         :header-rows: 1
 
         *   - Name

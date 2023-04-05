@@ -3,6 +3,9 @@
 Upgrades
 ========
 
+This topic outlines the general upgrade process for Tarantool.
+If required, you can also downgrade to one of the previous versions using a similar procedure.
+
 For information about backwards compatibility,
 see the :ref:`compatibility guarantees <compatibility_guarantees>` description.
 
@@ -29,6 +32,10 @@ replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
     This will update the Tarantool system spaces to match the currently installed version of Tarantool.
     There is no need  to run ``box.schema.upgrade()`` on every node:
     changes are propagated to other nodes via the regular replication mechanism.
+
+    .. NOTE::
+
+        To downgrade system spaces, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
 
 #.  Update your application files, if needed.
 
@@ -95,6 +102,10 @@ Upgrade procedure
     This will update the Tarantool system spaces to match the currently installed version of Tarantool.
     There is no need  to run ``box.schema.upgrade()`` on every node:
     changes are propagated to other nodes via the regular replication mechanism.
+
+    .. NOTE::
+
+        To downgrade system spaces, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
 
 8.  Run ``box.snapshot()`` on every node in the replica set
     to make sure that the replicas immediately see the upgraded database state in case of restart.

@@ -7,24 +7,22 @@ box.schema.downgrade()
 
 ..  function:: box.schema.downgrade(version)
 
-    :return: null
-
     Allows you to downgrade a database to the specified Tarantool version.
     This might be useful if you need to run a database on older Tarantool versions.
 
     To prepare a database for using it on an older Tarantool instance:
 
-    1. Call ``box.schema.downgrade`` and pass the desired Tarantool version:
+    #. Call ``box.schema.downgrade`` and pass the desired Tarantool version:
 
-    ..  code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-        tarantool> box.schema.downgrade('2.8.4')
+            tarantool> box.schema.downgrade('2.8.4')
 
-    2. Take a data snapshot using :ref:`box.snapshot() <box-snapshot>`:
+    #. Take a data snapshot using :ref:`box.snapshot() <box-snapshot>`:
 
-    ..  code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-        tarantool> box.snapshot()
+            tarantool> box.snapshot()
 
 
     To see Tarantool versions available for downgrade, call :ref:`box.schema.downgrade_versions() <box_schema-downgrade_versions>`. The oldest supported release available for downgrade is `2.8.2`.
@@ -33,7 +31,7 @@ box.schema.downgrade()
     in the target Tarantool version.
     You can see all such issues using the :ref:`box.schema.downgrade_issues() <box_schema-downgrade_issues>` method,
     which accepts the target version.
-    For example, ``downgrade`` to the ``2.8.4`` version fails if you use `tuple compression <https://www.tarantool.io/en/enterprise_doc/tuple_compression/>`__ and field :ref:`constraints <index-constraint_functions>` in your database:
+    For example, ``downgrade`` to the ``2.8.4`` version fails if you use `tuple compression <https://www.tarantool.io/en/enterprise_doc/tuple_compression/>`__ or field :ref:`constraints <index-constraint_functions>` in your database:
 
     ..  code-block:: tarantoolsession
 
