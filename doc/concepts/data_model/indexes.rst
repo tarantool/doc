@@ -189,6 +189,12 @@ We give an overview of index features in the following table:
             - \-
             - \-
 
+        *   - Pagination (the :ref:`after <box_index-select>` option)
+            - \+
+            - \-
+            - \-
+            - \-
+
         *   - :doc:`iterator types </reference/reference_lua/box_index/pairs>`
             - ALL, EQ, REQ, GT, GE, LT, LE
             - ALL, EQ, GT

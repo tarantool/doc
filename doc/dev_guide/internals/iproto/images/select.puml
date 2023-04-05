@@ -19,7 +19,10 @@ json "**IPROTO_SELECT**" as select {
     "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_LIMIT]]": "MP_UINT",
     "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OFFSET]]": "MP_UINT",
     "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_ITERATOR]]": "MP_UINT",
-    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_KEY]]": "MP_ARRAY"
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_KEY]]": "MP_ARRAY",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_AFTER_POSITION]]": "MP_STR",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_AFTER_TUPLE]]": "MP_ARRAY",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FETCH_POSITION]]": "MP_BOOL"
     }
 }
 
@@ -31,7 +34,8 @@ json "**Response to IPROTO_SELECT**" as select_response {
     "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
     },
     "Body": {
-    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": "MP_OBJECT"
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": "MP_OBJECT",
+    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_POSITION]]": "MP_STR"
     }
 }
 
