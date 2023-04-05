@@ -115,6 +115,22 @@ General
             -   0x5b |br| MP_STR
             -   A :ref:`protocol <authentication-passwords>` used to generate user authentication data
 
+        *   -   IPROTO_AFTER_POSITION
+            -   0x2e |br| MP_STR
+            -   The position of a tuple after which :ref:`space_object:select() <box_space-select>` starts the search
+
+        *   -   IPROTO_AFTER_TUPLE
+            -   0x2f |br| MP_ARRAY
+            -   A tuple after which :ref:`space_object:select() <box_space-select>` starts the search
+
+        *   -   IPROTO_FETCH_POSITION
+            -   0x1f |br| MP_BOOL
+            -   If **true**, :ref:`space_object:select() <box_space-select>` returns the position of the last selected tuple
+
+        *   -   IPROTO_POSITION
+            -   0x35 |br| MP_STR
+            -   If ``IPROTO_FETCH_POSITION`` is **true**, returns a base64-encoded string representing
+                the position of the last selected tuple
 
 Streams
 ~~~~~~~
