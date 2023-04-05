@@ -10,5 +10,5 @@ box.schema.downgrade_issues()
     :return: a list of downgrade issues
     :rtype: table
 
-Return a list of downgrade issues for the specified Tarantool version.
-To learn how to downgrade a database to the specified Tarantool version, see :ref:`box.schema.downgrade() <box_schema-downgrade>`.
+    Return a list of downgrade issues for the specified Tarantool version.
+    To learn how to downgrade a database to the specified Tarantool version, see :ref:`box.schema.downgrade() <box_schema-downgrade>`.
