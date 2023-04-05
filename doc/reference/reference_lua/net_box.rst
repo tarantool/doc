@@ -668,20 +668,13 @@ Below is a list of all ``net.box`` functions.
         if a response for a discarded object is received then it will be ignored, so that
         the size of the requests table will be reduced and other requests will be faster.
 
-        **Example:**
+        **Examples:**
 
-        .. code-block:: lua
+        .. code-block:: tarantoolsession
 
-            tarantool> future = conn.space.tester:insert({900},{is_async=true})
+            -- Insert a tuple asynchronously --
+            tarantool> future = conn.space.bands:insert({10, 'Queen', 1970}, {is_async=true})
             ---
-            ...
-            tarantool> future
-            ---
-            - method: insert
-              response: [900]
-              cond: cond
-              on_push_ctx: []
-              on_push: 'function: builtin#91'
             ...
             tarantool> future:is_ready()
             ---
@@ -689,8 +682,27 @@ Below is a list of all ``net.box`` functions.
             ...
             tarantool> future:result()
             ---
-            - [900]
+            - [10, 'Queen', 1970]
             ...
+
+            -- Iterate through a space with 10 records to get data in chunks of 3 records --
+            tarantool> while true do
+                           future = conn.space.bands:select({}, {limit=3, after=position, fetch_pos=true, is_async=true})
+                           result = future:wait_result()
+                           tuples = result[1]
+                           position = result[2]
+                           if position == nil then
+                               break
+                           end
+                           print('Chunk size: '..#tuples)
+                       end
+            Chunk size: 3
+            Chunk size: 3
+            Chunk size: 3
+            Chunk size: 1
+            ---
+            ...
+
 
         Typically ``{is_async=true}`` is used only if the load is
         large (more than 100,000 requests per second) and latency

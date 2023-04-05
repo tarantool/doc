@@ -3,13 +3,467 @@
 CRUD operation examples
 =======================
 
+
+.. _box_space-operations-detailed-examples:
+
 -------------------------------------------------------------------------------
-Example: using box.space functions to read _space tuples
+Using data operations
 -------------------------------------------------------------------------------
 
-This function will illustrate how to look at all the spaces, and for each
+This section shows basic usage scenarios and typical errors for each
+:ref:`data operation <index-box_data-operations>` in Tarantool:
+:ref:`INSERT <box_space-operations-insert>`,
+:ref:`DELETE <box_space-operations-delete>`,
+:ref:`UPDATE <box_space-operations-update>`,
+:ref:`UPSERT <box_space-operations-upsert>`,
+:ref:`REPLACE <box_space-operations-replace>`, and
+:ref:`SELECT <box_space-operations-select>`.
+Before trying out the examples, you need to bootstrap a Tarantool instance as shown below.
+
+.. code-block:: tarantoolsession
+
+    -- Run a server --
+    tarantool> box.cfg{}
+
+    -- Create a space --
+    tarantool> bands = box.schema.space.create('bands')
+
+    -- Specify field names and types --
+    tarantool> bands:format({
+                   {name = 'id', type = 'unsigned'},
+                   {name = 'band_name', type = 'string'},
+                   {name = 'year', type = 'unsigned'}
+               })
+
+    -- Create a primary index --
+    tarantool> bands:create_index('primary', {parts = {'id'}})
+
+    -- Create a unique secondary index --
+    tarantool> bands:create_index('band', {parts = {'band_name'}})
+
+    -- Create a non-unique secondary index --
+    tarantool> bands:create_index('year', {parts = {{'year'}}, unique = false})
+
+    -- Create a multi-part index --
+    tarantool> bands:create_index('band_year', {parts = {{'band_name'}, {'year'}}})
+
+
+.. _box_space-operations-insert:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+INSERT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The :ref:`space_object.insert <box_space-insert>` method accepts a well-formatted tuple.
+
+.. code-block:: tarantoolsession
+
+    -- Insert a tuple with a unique primary key --
+    tarantool> bands:insert{1, 'Scorpions', 1965}
+    ---
+    - [1, 'Scorpions', 1965]
+    ...
+
+
+``insert`` also checks all the keys for duplicates.
+
+.. code-block:: tarantoolsession
+
+    -- Try to insert a tuple with a duplicate primary key --
+    tarantool> bands:insert{1, 'Scorpions', 1965}
+    ---
+    - error: Duplicate key exists in unique index "primary" in space "bands" with old
+        tuple - [1, "Scorpions", 1965] and new tuple - [1, "Scorpions", 1965]
+    ...
+
+    -- Try to insert a tuple with a duplicate secondary key --
+    tarantool> bands:insert{2, 'Scorpions', 1965}
+    ---
+    - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
+        - [1, "Scorpions", 1965] and new tuple - [2, "Scorpions", 1965]
+    ...
+
+    -- Insert a second tuple with unique primary and secondary keys --
+    tarantool> bands:insert{2, 'Pink Floyd', 1965}
+    ---
+    - [2, 'Pink Floyd', 1965]
+    ...
+
+    -- Delete all tuples --
+    tarantool> bands:truncate()
+    ---
+    ...
+
+.. _box_space-operations-delete:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DELETE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ref:`space_object.delete <box_space-delete>` allows you to delete a tuple identified by the primary key.
+
+.. code-block:: tarantoolsession
+
+    -- Insert test data --
+    tarantool> bands:insert{1, 'Roxette', 1986}
+               bands:insert{2, 'Scorpions', 1965}
+               bands:insert{3, 'Ace of Base', 1987}
+               bands:insert{4, 'The Beatles', 1960}
+
+    -- Delete a tuple with an existing key --
+    tarantool> bands:delete{4}
+    ---
+    - [4, 'The Beatles', 1960]
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+      - [3, 'Ace of Base', 1987]
+    ...
+
+You can also use :ref:`index_object.delete <box_index-delete>` to delete a tuple by the specified unique index.
+
+.. code-block:: tarantoolsession
+
+    -- Delete a tuple by the primary index --
+    tarantool> bands.index.primary:delete{3}
+    ---
+    - [3, 'Ace of Base', 1987]
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+    ...
+
+    -- Delete a tuple by a unique secondary index --
+    tarantool> bands.index.band:delete{'Scorpions'}
+    ---
+    - [2, 'Scorpions', 1965]
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+    ...
+
+    -- Try to delete a tuple by a non-unique secondary index --
+    tarantool> bands.index.year:delete(1986)
+    ---
+    - error: Get() doesn't support partial keys and non-unique indexes
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+    ...
+
+    -- Try to delete a tuple by a partial key --
+    tarantool> bands.index.band_year:delete('Roxette')
+    ---
+    - error: Invalid key part count in an exact match (expected 2, got 1)
+    ...
+
+    -- Delete a tuple by a full key --
+    tarantool> bands.index.band_year:delete{'Roxette', 1986}
+    ---
+    - [1, 'Roxette', 1986]
+    ...
+    tarantool> bands:select()
+    ---
+    - []
+    ...
+
+    -- Delete all tuples --
+    tarantool> bands:truncate()
+    ---
+    ...
+
+
+.. _box_space-operations-update:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+UPDATE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ref:`space_object.update <box_space-update>` allows you to update a tuple identified by the primary key.
+Similarly to ``delete``, the ``update`` method accepts a full key and also an operation to execute.
+
+.. code-block:: tarantoolsession
+
+    -- Insert test data --
+    tarantool> bands:insert{1, 'Roxette', 1986}
+               bands:insert{2, 'Scorpions', 1965}
+               bands:insert{3, 'Ace of Base', 1987}
+               bands:insert{4, 'The Beatles', 1960}
+
+    -- Update a tuple with an existing key --
+    tarantool> bands:update({2}, {{'=', 2, 'Pink Floyd'}})
+    ---
+    - [2, 'Pink Floyd', 1965]
+    ...
+
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'Pink Floyd', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
+    ...
+
+
+:ref:`index_object.update <box_index-update>` updates a tuple identified by the specified unique index.
+
+.. code-block:: tarantoolsession
+
+    -- Update a tuple by the primary index --
+    tarantool> bands.index.primary:update({2}, {{'=', 2, 'The Rolling Stones'}})
+    ---
+    - [2, 'The Rolling Stones', 1965]
+    ...
+
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'The Rolling Stones', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
+    ...
+
+    -- Update a tuple by a unique secondary index --
+    tarantool> bands.index.band:update({'The Rolling Stones'}, {{'=', 2, 'The Doors'}})
+    ---
+    - [2, 'The Doors', 1965]
+    ...
+
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'The Doors', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
+    ...
+
+    -- Try to update a tuple by a non-unique secondary index --
+    tarantool> bands.index.year:update({1965}, {{'=', 2, 'Scorpions'}})
+    ---
+    - error: Get() doesn't support partial keys and non-unique indexes
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'The Doors', 1965]
+      - [3, 'Ace of Base', 1987]
+      - [4, 'The Beatles', 1960]
+    ...
+
+    -- Delete all tuples --
+    tarantool> bands:truncate()
+    ---
+    ...
+
+
+.. _box_space-operations-upsert:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+UPSERT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ref:`space_object.upsert <box_space-upsert>` updates an existing tuple or inserts a new one:
+
+*   If the existing tuple is found by the primary key,
+    Tarantool applies the update operation to this tuple
+    and ignores the new tuple.
+*   If no existing tuple is found,
+    Tarantool inserts the new tuple and ignores the update operation.
+
+.. code-block:: tarantoolsession
+
+    tarantool> bands:insert{1, 'Scorpions', 1965}
+    ---
+    - [1, 'Scorpions', 1965]
+    ...
+    -- As the first argument, upsert accepts a tuple, not a key --
+    tarantool> bands:upsert({2}, {{'=', 2, 'Pink Floyd'}})
+    ---
+    - error: Tuple field 2 (band_name) required by space format is missing
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'Scorpions', 1965]
+    ...
+    tarantool> bands:delete(1)
+    ---
+    - [1, 'Scorpions', 1965]
+    ...
+
+``upsert`` acts as ``insert`` when no existing tuple is found by the primary key.
+
+.. code-block:: tarantoolsession
+
+    tarantool> bands:upsert({1, 'Scorpions', 1965}, {{'=', 2, 'The Doors'}})
+    ---
+    ...
+    -- As you can see, {1, 'Scorpions', 1965} is inserted, --
+    -- and the update operation is not applied. --
+    tarantool> bands:select()
+    ---
+    - - [1, 'Scorpions', 1965]
+    ...
+
+    -- upsert with the same primary key but different values in other fields --
+    -- applies the update operation and ignores the new tuple. --
+    tarantool> bands:upsert({1, 'Scorpions', 1965}, {{'=', 2, 'The Doors'}})
+    ---
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'The Doors', 1965]
+    ...
+
+``upsert`` searches for the existing tuple by the primary index,
+not by the secondary index. This can lead to a duplication error
+if the tuple violates a secondary index uniqueness.
+
+.. code-block:: tarantoolsession
+
+    tarantool> bands:upsert({2, 'The Doors', 1965}, {{'=', 2, 'Pink Floyd'}})
+    ---
+    - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
+        - [1, "The Doors", 1965] and new tuple - [2, "The Doors", 1965]
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'The Doors', 1965]
+    ...
+
+    -- This works if uniqueness is preserved. --
+    tarantool> bands:upsert({2, 'The Beatles', 1960}, {{'=', 2, 'Pink Floyd'}})
+    ---
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'The Doors', 1965]
+      - [2, 'The Beatles', 1960]
+    ...
+
+    -- Delete all tuples --
+    tarantool> bands:truncate()
+    ---
+    ...
+
+
+.. _box_space-operations-replace:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REPLACE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ref:`space_object.replace <box_space-replace>` accepts a well-formatted tuple and searches for the existing tuple
+by the primary key of the new tuple:
+
+*   If the existing tuple is found, Tarantool deletes it and inserts the new tuple.
+*   If no existing tuple is found, Tarantool inserts the new tuple.
+
+
+.. code-block:: tarantoolsession
+
+    tarantool> bands:replace{1, 'Scorpions', 1965}
+    ---
+    - [1, 'Scorpions', 1965]
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'Scorpions', 1965]
+    ...
+    tarantool> bands:replace{1, 'The Beatles', 1960}
+    ---
+    - [1, 'The Beatles', 1960]
+    ...
+    tarantool> bands:select()
+    ---
+    - - [1, 'The Beatles', 1960]
+    ...
+    tarantool> bands:truncate()
+    ---
+    ...
+
+``replace`` can violate unique constraints, like ``upsert`` does.
+
+.. code-block:: tarantoolsession
+
+    tarantool> bands:insert{1, 'Scorpions', 1965}
+    - [1, 'Scorpions', 1965]
+    ...
+    tarantool> bands:insert{2, 'The Beatles', 1960}
+    ---
+    - [2, 'The Beatles', 1960]
+    ...
+    tarantool> bands:replace{2, 'Scorpions', 1965}
+    ---
+    - error: Duplicate key exists in unique index "band" in space "bands" with old tuple
+        - [1, "Scorpions", 1965] and new tuple - [2, "Scorpions", 1965]
+    ...
+    tarantool> bands:truncate()
+    ---
+    ...
+
+.. _box_space-operations-select:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SELECT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The :ref:`space_object.select <box_space-select>` request searches for a tuple or a set of tuples in the given space
+by the primary key.
+To search by the specified index, use :ref:`index_object.select <box_index-select>`.
+These methods work with any keys, including unique and non-unique, full and partial.
+If a key is partial, ``select`` searches by all keys where the prefix matches the specified key part.
+
+.. code-block:: tarantoolsession
+
+    tarantool> bands:insert{1, 'Roxette', 1986}
+               bands:insert{2, 'Scorpions', 1965}
+               bands:insert{3, 'The Doors', 1965}
+               bands:insert{4, 'The Beatles', 1960}
+
+    tarantool> bands:select(1)
+    ---
+    - - [1, 'Roxette', 1986]
+    ...
+
+    tarantool> bands:select()
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+      - [3, 'The Doors', 1965]
+      - [4, 'The Beatles', 1960]
+    ...
+
+    tarantool> bands.index.primary:select(2)
+    ---
+    - - [2, 'Scorpions', 1965]
+    ...
+
+    tarantool> bands.index.band:select('The Doors')
+    ---
+    - - [3, 'The Doors', 1965]
+    ...
+
+    tarantool> bands.index.year:select(1965)
+    ---
+    - - [2, 'Scorpions', 1965]
+      - [3, 'The Doors', 1965]
+    ...
+
+
+
+-------------------------------------------------------------------------------
+Using box.space functions to read _space tuples
+-------------------------------------------------------------------------------
+
+This example illustrates how to look at all the spaces, and for each
 display: approximately how many tuples it contains, and the first field of
-its first tuple. The function uses Tarantool ``box.space`` functions ``len()``
+its first tuple. The function uses the Tarantool's ``box.space`` functions ``len()``
 and ``pairs()``. The iteration through the spaces is coded as a scan of the
 ``_space`` system space, which contains metadata. The third field in
 ``_space`` contains the space name, so the key instruction
@@ -41,7 +495,7 @@ returns a table:
       return ta
     end
 
-And here is what happens when one invokes the function:
+The output below shows what happens if you invoke this function:
 
 .. code-block:: tarantoolsession
 
@@ -62,17 +516,17 @@ And here is what happens when one invokes the function:
     ...
 
 -------------------------------------------------------------------------------
-Example: using box.space functions to organize a _space tuple
+Using box.space functions to organize a _space tuple
 -------------------------------------------------------------------------------
 
-The objective is to display field names and field types of a system space --
+This examples shows how to display field names and field types of a system space --
 using metadata to find metadata.
 
 To begin: how can one select the ``_space`` tuple that describes ``_space``?
 
 A simple way is to look at the constants in ``box.schema``,
-which tell us that there is an item named SPACE_ID == 288,
-so these statements will retrieve the correct tuple:
+which shows that there is an item named SPACE_ID == 288,
+so these statements retrieve the correct tuple:
 
 .. code-block:: lua
 
@@ -81,8 +535,8 @@ so these statements will retrieve the correct tuple:
     box.space._space:select{ box.schema.SPACE_ID }
 
 Another way is to look at the tuples in ``box.space._index``,
-which tell us that there is a secondary index named 'name' for space
-number 288, so this statement also will retrieve the correct tuple:
+which shows that there is a secondary index named 'name' for a space
+number 288, so this statement also retrieve the correct tuple:
 
 .. code-block:: lua
 
@@ -121,494 +575,4 @@ organizing:
     flags, str
     format, *
     ---
-    ...
-
-.. _box_space-operations-detailed-examples:
-
--------------------------------------------------------------------------------
-Example: using data operations
--------------------------------------------------------------------------------
-
-This example demonstrates all legal scenarios -- as well as typical errors --
-for each :ref:`data operation <index-box_data-operations>` in Tarantool:
-:ref:`INSERT <box_space-operations-insert>`,
-:ref:`DELETE <box_space-operations-delete>`,
-:ref:`UPDATE <box_space-operations-update>`,
-:ref:`UPSERT <box_space-operations-upsert>`,
-:ref:`REPLACE <box_space-operations-replace>`, and
-:ref:`SELECT <box_space-operations-select>`.
-
-.. code-block:: lua
-
-    -- Bootstrap the database --
-    box.cfg{}
-    format = {}
-    format[1] = {'field1', 'unsigned'}
-    format[2] = {'field2', 'unsigned'}
-    format[3] = {'field3', 'unsigned'}
-    s = box.schema.create_space('test', {format = format})
-    -- Create a primary index --
-    pk = s:create_index('pk', {parts = {{'field1'}}})
-    -- Create a unique secondary index --
-    sk_uniq = s:create_index('sk_uniq', {parts = {{'field2'}}})
-    -- Create a non-unique secondary index --
-    sk_non_uniq = s:create_index('sk_non_uniq', {parts = {{'field3'}}, unique = false})
-
-.. _box_space-operations-insert:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-INSERT
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-``insert`` accepts a well-formatted tuple and checks all keys for duplicates.
-
-.. code-block:: tarantoolsession
-
-    tarantool> -- Unique indexes: ok --
-    tarantool> s:insert({1, 1, 1})
-    ---
-    - [1, 1, 1]
-    ...
-    tarantool> -- Conflicting primary key: error --
-    tarantool> s:insert({1, 1, 1})
-    ---
-    - error: Duplicate key exists in unique index 'pk' in space 'test'
-    ...
-    tarantool> -- Conflicting unique secondary key: error --
-    tarantool> s:insert({2, 1, 1})
-    ---
-    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
-    ...
-    tarantool> -- Key {1} exists in sk_non_uniq index, but it is not unique: ok --
-    tarantool> s:insert({2, 2, 1})
-    ---
-    - [2, 2, 1]
-    ...
-    tarantool> s:truncate()
-    ---
-    ...
-
-.. _box_space-operations-delete:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-DELETE
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-``delete`` accepts a full key of any unique index.
-
-``space:delete`` is an alias for "delete by primary key".
-
-.. code-block:: tarantoolsession
-
-    tarantool> -- Insert some test data --
-    tarantool> s:insert{3, 4, 5}
-    ---
-    - [3, 4, 5]
-    ...
-    tarantool> s:insert{6, 7, 8}
-    ---
-    - [6, 7, 8]
-    ...
-    tarantool> s:insert{9, 10, 11}
-    ---
-    - [9, 10, 11]
-    ...
-    tarantool> s:insert{12, 13, 14}
-    ---
-    - [12, 13, 14]
-    ...
-    tarantool> -- Nothing done here: no {4} key in pk index --
-    tarantool> s:delete{4}
-    ---
-    ...
-    tarantool> s:select{}
-    ---
-    - - [3, 4, 5]
-      - [6, 7, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
-    ...
-    tarantool> -- Delete by a primary key: ok --
-    tarantool> s:delete{3}
-    ---
-    - [3, 4, 5]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [6, 7, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
-    ...
-    tarantool> -- Explicitly delete by a primary key: ok --
-    tarantool> s.index.pk:delete{6}
-    ---
-    - [6, 7, 8]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [9, 10, 11]
-      - [12, 13, 14]
-    ...
-    tarantool> -- Delete by a unique secondary key: ok --
-    s.index.sk_uniq:delete{10}
-    ---
-    - [9, 10, 11]
-    ...
-    s:select{}
-    ---
-    - - [12, 13, 14]
-    ...
-    tarantool> -- Delete by a non-unique secondary index: error --
-    tarantool> s.index.sk_non_uniq:delete{14}
-    ---
-    - error: Get() doesn't support partial keys and non-unique indexes
-    ...
-    tarantool> s:select{}
-    ---
-    - - [12, 13, 14]
-    ...
-    tarantool> s:truncate()
-    ---
-    ...
-
-The key must be full: ``delete`` cannot work with partial keys.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s2 = box.schema.create_space('test2')
-    ---
-    ...
-    tarantool> pk2 = s2:create_index('pk2', {parts = {{1, 'unsigned'}, {2, 'unsigned'}}})
-    ---
-    ...
-    tarantool> s2:insert{1, 1}
-    ---
-    - [1, 1]
-    ...
-    tarantool> -- Delete by a partial key: error --
-    tarantool> s2:delete{1}
-    ---
-    - error: Invalid key part count in an exact match (expected 2, got 1)
-    ...
-    tarantool> -- Delete by a full key: ok --
-    tarantool> s2:delete{1, 1}
-    ---
-    - [1, 1]
-    ...
-    tarantool> s2:select{}
-    ---
-    - []
-    ...
-    tarantool> s2:drop()
-    ---
-    ...
-
-.. _box_space-operations-update:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-UPDATE
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Similarly to ``delete``, ``update`` accepts a full key of any unique index,
-and also the operations to execute.
-
-``space:update`` is an alias for "update by primary key".
-
-.. code-block:: tarantoolsession
-
-    tarantool> -- Insert some test data --
-    tarantool> s:insert{3, 4, 5}
-    ---
-    - [3, 4, 5]
-    ...
-    tarantool> s:insert{6, 7, 8}
-    ---
-    - [6, 7, 8]
-    ...
-    tarantool> s:insert{9, 10, 11}
-    ---
-    - [9, 10, 11]
-    ...
-    tarantool> s:insert{12, 13, 14}
-    ---
-    - [12, 13, 14]
-    ...
-    tarantool> -- Nothing done here: no {4} key in pk index --
-    s:update({4}, {{'=', 2, 400}})
-    ---
-    ...
-    tarantool> s:select{}
-    ---
-    - - [3, 4, 5]
-      - [6, 7, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
-    ...
-    tarantool> -- Update by a primary key: ok --
-    tarantool> s:update({3}, {{'=', 2, 400}})
-    ---
-    - [3, 400, 5]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [3, 400, 5]
-      - [6, 7, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
-    ...
-    tarantool> -- Explicitly update by a primary key: ok --
-    tarantool> s.index.pk:update({6}, {{'=', 2, 700}})
-    ---
-    - [6, 700, 8]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [3, 400, 5]
-      - [6, 700, 8]
-      - [9, 10, 11]
-      - [12, 13, 14]
-    ...
-    tarantool> -- Update by a unique secondary key: ok --
-    tarantool> s.index.sk_uniq:update({10}, {{'=', 2, 1000}})
-    ---
-    - [9, 1000, 11]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [3, 400, 5]
-      - [6, 700, 8]
-      - [9, 1000, 11]
-      - [12, 13, 14]
-    ...
-    tarantool> -- Update by a non-unique secondary key: error --
-    tarantool> s.index.sk_non_uniq:update({14}, {{'=', 2, 1300}})
-    ---
-    - error: Get() doesn't support partial keys and non-unique indexes
-    ...
-    tarantool> s:select{}
-    ---
-    - - [3, 400, 5]
-      - [6, 700, 8]
-      - [9, 1000, 11]
-      - [12, 13, 14]
-    ...
-    tarantool> s:truncate()
-    ---
-    ...
-
-.. _box_space-operations-upsert:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-UPSERT
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-``upsert`` accepts a well-formatted tuple and update operations.
-
-If an old tuple is found by the primary key of the specified tuple,
-then the update operations are applied to the old tuple,
-and the new tuple is ignored.
-
-If no old tuple is found, then the new tuple is inserted, and the
-update operations are **ignored**.
-
-Indexes have no ``upsert`` method - this is a method of a space.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s.index.pk.upsert == nil
-    ---
-    - true
-    ...
-    tarantool> s.index.sk_uniq.upsert == nil
-    ---
-    - true
-    ...
-    tarantool> s.upsert ~= nil
-    ---
-    - true
-    ...
-    tarantool> -- As the first argument, upsert accepts --
-    tarantool> -- a well-formatted tuple, NOT a key! --
-    tarantool> s:insert{1, 2, 3}
-    ---
-    - [1, 2, 3]
-    ...
-    tarantool> s:upsert({1}, {{'=', 2, 200}})
-    ---
-    - error: Tuple field 2 required by space format is missing
-    ...
-    tarantool> s:select{}
-    ---
-    - - [1, 2, 3]
-    ...
-    tarantool> s:delete{1}
-    ---
-    - [1, 2, 3]
-    ...
-
-``upsert`` turns into ``insert`` when no old tuple is found by the primary key.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s:upsert({1, 2, 3}, {{'=', 2, 200}})
-    ---
-    ...
-    tarantool> -- As you can see, {1, 2, 3} were inserted, --
-    tarantool> -- and the update operations were not applied. --
-    s:select{}
-    ---
-    - - [1, 2, 3]
-    ...
-    tarantool> -- Performing another upsert with the same primary key, --
-    tarantool> -- but different values in the other fields. --
-    s:upsert({1, 20, 30}, {{'=', 2, 200}})
-    ---
-    ...
-    tarantool> -- The old tuple was found by the primary key {1} --
-    tarantool> -- and update operations were applied. --
-    tarantool> -- The new tuple was ignored. --
-    tarantool> s:select{}
-    ---
-    - - [1, 200, 3]
-    ...
-
-``upsert`` searches for an old tuple by the primary index,
-NOT by a secondary index. This can lead to a duplication error
-if the new tuple ruins the uniqueness of a secondary index.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s:upsert({2, 200, 3}, {{'=', 3, 300}})
-    ---
-    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
-    ...
-    s:select{}
-    ---
-    - - [1, 200, 3]
-    ...
-    tarantool> -- But this works, when uniqueness is preserved. --
-    tarantool> s:upsert({2, 0, 0}, {{'=', 3, 300}})
-    ---
-    ...
-    tarantool> s:select{}
-    ---
-    - - [1, 200, 3]
-      - [2, 0, 0]
-    ...
-    tarantool> s:truncate()
-    ---
-    ...
-
-.. _box_space-operations-replace:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-REPLACE
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-``replace`` accepts a well-formatted tuple and searches for an old tuple
-by the primary key of the new tuple.
-
-If the old tuple is found, then it is deleted, and the new tuple is inserted.
-
-If the old tuple was not found, then just the new tuple is inserted.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s:replace{1, 2, 3}
-    ---
-    - [1, 2, 3]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [1, 2, 3]
-    ...
-    tarantool> s:replace{1, 3, 4}
-    ---
-    - [1, 3, 4]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [1, 3, 4]
-    ...
-    tarantool> s:truncate()
-    ---
-    ...
-
-``replace`` can ruin unique constraints, like ``upsert`` does.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s:insert{1, 1, 1}
-    ---
-    - [1, 1, 1]
-    ...
-    tarantool> s:insert{2, 2, 2}
-    ---
-    - [2, 2, 2]
-    ...
-    tarantool> -- This replace fails, because if the new tuple {1, 2, 0} replaces --
-    tarantool> -- the old tuple by the primary key from 'pk' index {1, 1, 1}, --
-    tarantool> -- this results in a duplicate unique secondary key in 'sk_uniq' index: --
-    tarantool> -- key {2} is used both in the new tuple and in {2, 2, 2}. --
-    tarantool> s:replace{1, 2, 0}
-    ---
-    - error: Duplicate key exists in unique index 'sk_uniq' in space 'test'
-    ...
-    tarantool> s:truncate()
-    ---
-    ...
-
-.. _box_space-operations-select:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-SELECT
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-``select`` works with any indexes (primary/secondary) and with any keys
-(unique/non-unique, full/partial).
-
-If a key is partial, then ``select`` searches by all keys, where the prefix
-matches the specified key part.
-
-.. code-block:: tarantoolsession
-
-    tarantool> s:insert{1, 2, 3}
-    ---
-    - [1, 2, 3]
-    ...
-    tarantool> s:insert{4, 5, 6}
-    ---
-    - [4, 5, 6]
-    ...
-    tarantool> s:insert{7, 8, 9}
-    ---
-    - [7, 8, 9]
-    ...
-    tarantool> s:insert{10, 11, 9}
-    ---
-    - [10, 11, 9]
-    ...
-    tarantool> s:select{1}
-    ---
-    - - [1, 2, 3]
-    ...
-    tarantool> s:select{}
-    ---
-    - - [1, 2, 3]
-      - [4, 5, 6]
-      - [7, 8, 9]
-      - [10, 11, 9]
-    ...
-    tarantool> s.index.pk:select{4}
-    ---
-    - - [4, 5, 6]
-    ...
-    tarantool> s.index.sk_uniq:select{8}
-    ---
-    - - [7, 8, 9]
-    ...
-    tarantool> s.index.sk_non_uniq:select{9}
-    ---
-    - - [7, 8, 9]
-      - [10, 11, 9]
     ...

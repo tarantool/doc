@@ -8,7 +8,7 @@ index_object:get()
 
     .. method:: get(key)
 
-        Search for a tuple via the given index, as described :ref:`earlier <box_index-note>`.
+        Search for a tuple via the given index, as described in the :ref:`select <box_index-note>` topic.
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
