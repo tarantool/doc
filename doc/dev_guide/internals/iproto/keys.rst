@@ -187,7 +187,7 @@ General replication
 
         *   -   :ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>`
             -   0x5a |br| MP_UINT
-            -   vclock synchronization request identifier
+            -   ID of the vclock synchronization request
 
         *   -   IPROTO_CLUSTER_UUID
             -   0x25 |br| MP_STR
@@ -239,11 +239,11 @@ General replication
 
         *   -   IPROTO_BALLOT_BOOTSTRAP_LEADER_UUID
             -   0x08 |br| ?
-                Since v. 2.11
+            -   Since v. 2.11
 
         *   -   IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS
             -   0x09 |br| ?
-                Since v. 2.11
+            -   Since v. 2.11
         
         *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
             -   0x09 |br| MP_UINT
@@ -675,12 +675,16 @@ In fact, it represents the number of logical operations executed on a specific n
 ..  raw:: html
     :file: images/vclock.svg
 
-There are four keys that correspond to vector clocks in different contexts of replication.
+There are five keys that correspond to vector clocks in different contexts of replication.
 They all have the MP_MAP type:
 
 *   IPROTO_VCLOCK (0x26) is passed to a new instance :ref:`joining the replica set <box_protocol-join>`.
 
-*   IPROTO_VCLOCK_SYNC (0x5a) is sent
+*   IPROTO_VCLOCK_SYNC (0x5a) is used by replication heartbeats.
+    The master sends its heartbeats, including this monotonically growing key, to a replica.
+    Once the replica receives a heartbeat with a non-zero IPROTO_VCLOCK_SYNC value,
+    it starts responding with the same value in all its acknowledgements.
+    This key was introduced in :doc:`/release/2.11.0`.
 
 *   IPROTO_BALLOT_VCLOCK (0x02) is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`.
     This key was introduced in :doc:`/release/2.6.1`.

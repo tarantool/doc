@@ -1,0 +1,20 @@
+@startuml
+
+skinparam {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**Heartbeat message from master**" as heartbeat_request {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general-replication IPROTO_REPLICA_ID]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general IPROTO_TIMESTAMP]]": "MP_DOUBLE",
+      "(Optional) [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general-replication IPROTO_VCLOCK_SYNC]]": "MP_UINT"
+    }
+}
+
+@enduml

@@ -64,12 +64,20 @@ Once in :ref:`replication_timeout <cfg_replication-replication_timeout>` seconds
 a master sends a :ref:`heartbeat <heartbeat>` message to a replica,
 and the replica sends a response.
 Both messages' IPROTO_REQUEST_TYPE is IPROTO_OK.
+IPROTO_TIMESTAMP is a float-64 MP_DOUBLE 8-byte timestamp.
+
+Since version :doc:`2.11.0 </release/2.11.0>`, both messages have an optional field that contains
+the :ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>` key.
+
 Note that the master's heartbeat has no body:
 
 ..  raw:: html
-    :file: images/repl_heartbeat.svg
+    :file: images/repl_heartbeat_message.svg
 
-IPROTO_TIMESTAMP is a float-64 MP_DOUBLE 8-byte timestamp.
+The response from replica looks like this:
+
+..  raw:: html
+    :file: images/repl_heartbeat_response.svg
 
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows actual byte codes of the above heartbeat examples.
