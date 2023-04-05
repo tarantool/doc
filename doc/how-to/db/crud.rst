@@ -54,7 +54,7 @@ Before trying out the examples, you need to bootstrap a Tarantool instance as sh
 INSERT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :ref:`space_object.insert <box_space-insert>` method accepts a well-formatted tuple and checks all the keys for duplicates.
+The :ref:`space_object.insert <box_space-insert>` method accepts a well-formatted tuple.
 
 .. code-block:: tarantoolsession
 
@@ -63,6 +63,11 @@ The :ref:`space_object.insert <box_space-insert>` method accepts a well-formatte
     ---
     - [1, 'Scorpions', 1965]
     ...
+
+
+``insert`` also checks all the keys for duplicates.
+
+.. code-block:: tarantoolsession
 
     -- Try to insert a tuple with a duplicate primary key --
     tarantool> bands:insert{1, 'Scorpions', 1965}
@@ -96,7 +101,6 @@ DELETE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :ref:`space_object.delete <box_space-delete>` allows you to delete a tuple identified by the primary key.
-You can also use :ref:`index_object.delete <box_index-delete>` to delete a tuple by the specified unique index.
 
 .. code-block:: tarantoolsession
 
@@ -105,18 +109,6 @@ You can also use :ref:`index_object.delete <box_index-delete>` to delete a tuple
                bands:insert{2, 'Scorpions', 1965}
                bands:insert{3, 'Ace of Base', 1987}
                bands:insert{4, 'The Beatles', 1960}
-
-    -- Try to delete a tuple with a missing key: no effect --
-    tarantool> bands:delete{5}
-    ---
-    ...
-    tarantool> bands:select()
-    ---
-    - - [1, 'Roxette', 1986]
-      - [2, 'Scorpions', 1965]
-      - [3, 'Ace of Base', 1987]
-      - [4, 'The Beatles', 1960]
-    ...
 
     -- Delete a tuple with an existing key --
     tarantool> bands:delete{4}
@@ -129,6 +121,10 @@ You can also use :ref:`index_object.delete <box_index-delete>` to delete a tuple
       - [2, 'Scorpions', 1965]
       - [3, 'Ace of Base', 1987]
     ...
+
+You can also use :ref:`index_object.delete <box_index-delete>` to delete a tuple by the specified unique index.
+
+.. code-block:: tarantoolsession
 
     -- Delete a tuple by the primary index --
     tarantool> bands.index.primary:delete{3}
@@ -190,9 +186,7 @@ UPDATE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :ref:`space_object.update <box_space-update>` allows you to update a tuple identified by the primary key.
-Its :ref:`index_object.update <box_index-update>` counterpart updates a tuple identified by the specified unique index.
-
-Similarly to ``delete``, the ``update`` method accepts a full key and an operation to execute.
+Similarly to ``delete``, the ``update`` method accepts a full key and also an operation to execute.
 
 .. code-block:: tarantoolsession
 
@@ -201,18 +195,6 @@ Similarly to ``delete``, the ``update`` method accepts a full key and an operati
                bands:insert{2, 'Scorpions', 1965}
                bands:insert{3, 'Ace of Base', 1987}
                bands:insert{4, 'The Beatles', 1960}
-
-    -- Try to delete a tuple with a missing key: no effect --
-    tarantool> bands:update({5}, {{'=', 2, 'Pink Floyd'}})
-    ---
-    ...
-    tarantool> bands:select()
-    ---
-    - - [1, 'Roxette', 1986]
-      - [2, 'Scorpions', 1965]
-      - [3, 'Ace of Base', 1987]
-      - [4, 'The Beatles', 1960]
-    ...
 
     -- Update a tuple with an existing key --
     tarantool> bands:update({2}, {{'=', 2, 'Pink Floyd'}})
@@ -227,6 +209,11 @@ Similarly to ``delete``, the ``update`` method accepts a full key and an operati
       - [3, 'Ace of Base', 1987]
       - [4, 'The Beatles', 1960]
     ...
+
+
+:ref:`index_object.update <box_index-update>` updates a tuple identified by the specified unique index.
+
+.. code-block:: tarantoolsession
 
     -- Update a tuple by the primary index --
     tarantool> bands.index.primary:update({2}, {{'=', 2, 'The Rolling Stones'}})
