@@ -10,16 +10,29 @@ box.schema.downgrade()
     Allows you to downgrade a database to the specified Tarantool version.
     This might be useful if you need to run a database on older Tarantool versions.
 
+    To prepare a database for using it on an older Tarantool instance, follow the steps below:
+
+    #. Call ``box.schema.downgrade`` and pass the desired Tarantool version:
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> box.schema.downgrade('2.8.4')
+
+    #. Run :ref:`box.snapshot() <box-snapshot>` to take a snapshot of data:
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> box.snapshot()
+
+    #. Stop the server instance using the :ref:`os.exit() <os-exit>` command:
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> os.exit()
+
     .. NOTE::
 
         The Tarantool's downgrade procedure is similar to the upgrade process that is described in the :ref:`Upgrades <admin-upgrades>` topic.
-
-    To prepare a database for using it on an older Tarantool instance,
-    call ``box.schema.downgrade`` and pass the desired Tarantool version:
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.schema.downgrade('2.8.4')
 
     To see Tarantool versions available for downgrade, call :ref:`box.schema.downgrade_versions() <box_schema-downgrade_versions>`. The oldest release available for downgrade is ``2.8.2``.
 
