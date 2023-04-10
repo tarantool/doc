@@ -131,7 +131,6 @@ The configuration of a simple sharded cluster can look like this:
 
     local cfg = {
         memtx_memory = 100 * 1024 * 1024,
-        replication_connect_quorum = 0,
         bucket_count = 10000,
         rebalancer_disbalance_threshold = 10,
         rebalancer_max_receiving = 100,

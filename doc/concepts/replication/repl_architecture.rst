@@ -242,9 +242,8 @@ The maximal number of replicas in a mesh is 32.
 Orphan status
 -------------
 
-During ``box.cfg()``, an instance will try to join all masters listed
+During ``box.cfg()``, an instance tries to join all nodes listed
 in :ref:`box.cfg.replication <cfg_replication-replication>`.
-If the instance does not succeed with at least
-the number of masters specified in
-:ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`,
-then it will switch to :ref:`orphan status <internals-replication-orphan_status>`.
+If the instance does not succeed with connecting to the required number of nodes
+(see :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`),
+it switches to the :ref:`orphan status <internals-replication-orphan_status>`.

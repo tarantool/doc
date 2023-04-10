@@ -1,5 +1,6 @@
 * :ref:`replication <cfg_replication-replication>`
 * :ref:`replication_anon <cfg_replication-replication_anon>`
+* :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`
 * :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
 * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
 * :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`
@@ -204,6 +205,29 @@
     | Environment variable: TT_REPLICATION_ANON
     | Dynamic: **yes**
 
+
+.. _cfg_replication-bootstrap_strategy:
+
+.. confval:: bootstrap_strategy
+
+    Since version 2.11.
+    Allows you to specify a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`.
+    The following strategies are available:
+
+    *   ``auto``: in this case, a node doesn't boot if a half or more of other nodes in a replica set are not connected.
+        For example, if the :ref:`replication <cfg_replication-replication>` parameter contains 2 or 3 nodes,
+        a node requires 2 connected instances.
+        In case of 4 or 5 nodes, at least 3 connected instances are required.
+        Moreover, a bootstrap leader fails to boot unless every connected node has chosen it as a bootstrap leader.
+
+    *   ``legacy``: in this case, a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
+
+    | Type: string
+    | Default: auto
+    | Environment variable: TT_BOOTSTRAP_STRATEGY
+    | Dynamic: **yes**
+
+
 .. _cfg_replication-replication_connect_timeout:
 
 .. confval:: replication_connect_timeout
@@ -228,25 +252,21 @@
 .. confval:: replication_connect_quorum
 
     Since version 1.9.0.
-    By default a replica will try to connect to all the masters,
-    or it will not start. (The default is recommended so that all replicas
-    will receive the same replica set UUID.)
+    Specifies the number of nodes to be up and running to start a replica set.
+    This option is in effect if :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`
+    is set to ``legacy``.
 
-    However, by specifying ``replication_connect_quorum = N``, where
-    N is a number greater than or equal to zero,
-    users can state that the replica only needs to connect to N masters.
-
-    This parameter has effect during bootstrap and during
+    This parameter has effect during :ref:`bootstrap <replication-leader>` or
     :ref:`configuration update <replication-configuration_update>`.
-    Setting ``replication_connect_quorum = 0`` makes Tarantool
+    Setting ``replication_connect_quorum`` to ``0`` makes Tarantool
     require no immediate reconnect only in case of recovery.
-    See :ref:`orphan status <replication-orphan_status>` for details.
+    See :ref:`Orphan status <replication-orphan_status>` for details.
 
     Example:
 
     .. code-block:: lua
 
-        box.cfg{replication_connect_quorum=2}
+        box.cfg { replication_connect_quorum = 2 }
 
     | Type: integer
     | Default: null
@@ -313,9 +333,8 @@
 .. confval:: replication_sync_timeout
 
     Since version 1.10.2.
-    The number of seconds that a replica will wait when trying to
-    sync with a master in a cluster,
-    or a :ref:`quorum <cfg_replication-replication_connect_quorum>` of masters,
+    The number of seconds that a node waits when trying to sync with
+    other nodes in a replica set (see :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`),
     after connecting or during :ref:`configuration update <replication-configuration_update>`.
     This could fail indefinitely if ``replication_sync_lag`` is smaller
     than network latency, or if the replica cannot keep pace with master
