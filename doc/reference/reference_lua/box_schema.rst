@@ -17,7 +17,7 @@ Below is a list of all ``box.schema`` functions.
     ..  rst-class:: left-align-column-2
 
     ..  list-table::
-        :widths: 25 75
+        :widths: 35 65
         :header-rows: 1
 
         *   - Name
@@ -28,6 +28,15 @@ Below is a list of all ``box.schema`` functions.
 
         *  - :doc:`./box_schema/upgrade`
            - Upgrade a database
+
+        *  - :doc:`./box_schema/downgrade`
+           - Downgrade a database
+
+        *  - :doc:`./box_schema/downgrade_issues`
+           - List downgrade issues for the specified Tarantool version
+
+        *  - :doc:`./box_schema/downgrade_versions`
+           - List Tarantool versions available for downgrade
 
         *  - :doc:`./box_schema/user_create`
            - Create a user
@@ -88,6 +97,9 @@ Below is a list of all ``box.schema`` functions.
 
     box_schema/space_create
     box_schema/upgrade
+    box_schema/downgrade
+    box_schema/downgrade_versions
+    box_schema/downgrade_issues
     box_schema/user_create
     box_schema/user_drop
     box_schema/user_exists
