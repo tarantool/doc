@@ -35,7 +35,7 @@ replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 
     .. NOTE::
 
-        To downgrade system spaces, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
+        To rollback system spaces in a case of failed upgrade, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
 
 #.  Update your application files, if needed.
 
@@ -105,7 +105,7 @@ Upgrade procedure
 
     .. NOTE::
 
-        To downgrade system spaces, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
+        To rollback system spaces in a case of failed upgrade, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
 
 8.  Run ``box.snapshot()`` on every node in the replica set
     to make sure that the replicas immediately see the upgraded database state in case of restart.
