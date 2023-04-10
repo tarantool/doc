@@ -10,6 +10,7 @@ box.schema.upgrade()
     If you created a database with an older Tarantool version and have now installed
     a newer version, make the request ``box.schema.upgrade()``. This updates
     Tarantool system spaces to match the currently installed version of Tarantool.
+    You can learn about the general upgrade process from the :ref:`Upgrades <admin-upgrades>` topic.
 
     For example, here is what happens when you run ``box.schema.upgrade()`` with a
     database created with Tarantool version 1.6.4 to version 1.7.2 (only a small
@@ -31,3 +32,5 @@ box.schema.upgrade()
     :ref:`initialization file <index-init_label>`.
     On startup, this will create new system spaces, update data type names (for example,
     ``num`` -> ``unsigned``, ``str`` -> ``string``) and options in Tarantool system spaces.
+
+    See also: :ref:`box.schema.downgrade() <box_schema-downgrade>`
