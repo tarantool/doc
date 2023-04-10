@@ -73,7 +73,6 @@ default settings to all the parameters:
       replicaset_uuid              = nil -- generated automatically
       replication                  = nil
       replication_anon             = false
-      replication_connect_quorum   = nil
       replication_connect_timeout  = 30
       replication_skip_conflict    = false
       replication_sync_lag         = 10
