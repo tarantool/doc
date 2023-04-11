@@ -189,9 +189,10 @@ General replication
             -   0x5a |br| MP_UINT
             -   ID of the vclock synchronization request
 
-        *   -   IPROTO_CLUSTER_UUID
+        *   -   :ref:`IPROTO_REPLICASET_UUID <internals-iproto-keys-replicaset-uuid>`
             -   0x25 |br| MP_STR
-            -   Cluster UUID
+            -   Replicaset UUID.
+                Prior to Tarantool :doc:`v. 2.11.0 </release/2.11.0>`, IPROTO_REPLICASET_UUID was called IPROTO_CLUSTER_UUID.
 
         *   -   IPROTO_LSN
             -   0x03 |br| MP_UINT
@@ -697,6 +698,15 @@ They all have the MP_MAP type:
 *   IPROTO_RAFT_VCLOCK (0x03) is included in the :ref:`IPROTO_RAFT <box_protocol-raft>` message.
     It is present only on the instances in the :ref:`"candidate" state <cfg_replication-election_mode>`
     (IPROTO_RAFT_STATE == 2).
+
+..  _internals-iproto-keys-replicaset-uuid:
+
+Code: 0x25.
+
+In case of error, the response body contains IPROTO_ERROR and :ref:`IPROTO_ERROR_24 <internals-iproto-keys-error_24>`
+instead of IPROTO_DATA.
+
+To learn more about error responses, check the section :ref:`Request and response format <box_protocol-responses_error>`.
 
 ..  _internals-iproto-keys-metadata:
     
