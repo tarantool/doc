@@ -211,16 +211,16 @@
 .. confval:: bootstrap_strategy
 
     Since version 2.11.
-    Allows you to specify a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`.
+    Specifies a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`.
     The following strategies are available:
 
-    *   ``auto``: in this case, a node doesn't boot if a half or more of other nodes in a replica set are not connected.
+    *   ``auto``: a node doesn't boot if a half or more of other nodes in a replica set are not connected.
         For example, if the :ref:`replication <cfg_replication-replication>` parameter contains 2 or 3 nodes,
         a node requires 2 connected instances.
         In the case of 4 or 5 nodes, at least 3 connected instances are required.
         Moreover, a bootstrap leader fails to boot unless every connected node has chosen it as a bootstrap leader.
 
-    *   ``legacy``: in this case, a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
+    *   ``legacy``: a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
 
     | Type: string
     | Default: auto
@@ -253,7 +253,7 @@
 
     Since version 1.9.0.
     Specifies the number of nodes to be up and running to start a replica set.
-    This option is in effect if :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`
+    Since version 2.11, this option is in effect if :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`
     is set to ``legacy``.
 
     This parameter has effect during :ref:`bootstrap <replication-leader>` or

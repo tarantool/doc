@@ -47,7 +47,7 @@ Configuration
 It is important to know that being a leader is not the only requirement for a node to be writable.
 The leader should also satisfy the following requirements:
 
-*   The :ref:`read_only <cfg_basic-read_only>` option is to ``false``.
+*   The :ref:`read_only <cfg_basic-read_only>` option is set to ``false``.
 
 *   The leader shouldn't be in the orphan state.
 
