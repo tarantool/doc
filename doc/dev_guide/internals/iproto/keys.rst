@@ -187,12 +187,13 @@ General replication
 
         *   -   :ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>`
             -   0x5a |br| MP_UINT
-            -   ID of the vclock synchronization request
+            -   ID of the vclock synchronization request.
+                Since 2.11
 
-        *   -   :ref:`IPROTO_REPLICASET_UUID <internals-iproto-keys-replicaset-uuid>`
+        *   -   IPROTO_REPLICASET_UUID
             -   0x25 |br| MP_STR
             -   Replicaset UUID.
-                Prior to Tarantool :doc:`v. 2.11.0 </release/2.11.0>`, IPROTO_REPLICASET_UUID was called IPROTO_CLUSTER_UUID.
+                Prior to Tarantool version 2.11, IPROTO_REPLICASET_UUID was called IPROTO_CLUSTER_UUID.
 
         *   -   IPROTO_LSN
             -   0x03 |br| MP_UINT
@@ -681,11 +682,11 @@ They all have the MP_MAP type:
 
 *   IPROTO_VCLOCK (0x26) is passed to a new instance :ref:`joining the replica set <box_protocol-join>`.
 
-*   IPROTO_VCLOCK_SYNC (0x5a) is used by replication heartbeats.
+*   IPROTO_VCLOCK_SYNC (0x5a) is used by :ref:`replication heartbeats <box_protocol-heartbeat>`.
     The master sends its heartbeats, including this monotonically growing key, to a replica.
     Once the replica receives a heartbeat with a non-zero IPROTO_VCLOCK_SYNC value,
     it starts responding with the same value in all its acknowledgements.
-    This key was introduced in :doc:`/release/2.11.0`.
+    This key was introduced in version 2.11.
 
 *   IPROTO_BALLOT_VCLOCK (0x02) is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`.
     This key was introduced in :doc:`/release/2.6.1`.
@@ -698,15 +699,6 @@ They all have the MP_MAP type:
 *   IPROTO_RAFT_VCLOCK (0x03) is included in the :ref:`IPROTO_RAFT <box_protocol-raft>` message.
     It is present only on the instances in the :ref:`"candidate" state <cfg_replication-election_mode>`
     (IPROTO_RAFT_STATE == 2).
-
-..  _internals-iproto-keys-replicaset-uuid:
-
-Code: 0x25.
-
-In case of error, the response body contains IPROTO_ERROR and :ref:`IPROTO_ERROR_24 <internals-iproto-keys-error_24>`
-instead of IPROTO_DATA.
-
-To learn more about error responses, check the section :ref:`Request and response format <box_protocol-responses_error>`.
 
 ..  _internals-iproto-keys-metadata:
     

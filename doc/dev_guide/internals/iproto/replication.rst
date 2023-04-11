@@ -66,7 +66,7 @@ and the replica sends a response.
 Both messages' IPROTO_REQUEST_TYPE is IPROTO_OK.
 IPROTO_TIMESTAMP is a float-64 MP_DOUBLE 8-byte timestamp.
 
-Since version :doc:`2.11.0 </release/2.11.0>`, both messages have an optional field that contains
+Since version 2.11, both messages have an optional field that contains
 the :ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>` key.
 
 Note that the master's heartbeat has no body:
