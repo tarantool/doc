@@ -192,7 +192,7 @@ General replication
 
         *   -   IPROTO_REPLICASET_UUID
             -   0x25 |br| MP_STR
-            -   Replicaset UUID.
+            -   UUID of the replica set.
                 Prior to Tarantool version 2.11, IPROTO_REPLICASET_UUID was called IPROTO_CLUSTER_UUID.
 
         *   -   IPROTO_LSN
