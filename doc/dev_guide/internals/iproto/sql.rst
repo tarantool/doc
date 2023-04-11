@@ -108,7 +108,7 @@ The body is a 1-item map:
 ..  raw:: html
     :file: images/prepare.svg
 
-Thus the IPROTO_PREPARE map item is the same as the first item of the
+The IPROTO_PREPARE map item is the same as the first item of the
 :ref:`IPROTO_EXECUTE <box_protocol-execute>` body for an SQL string.
 
 ..  _box_protocol-sql_protocol:
