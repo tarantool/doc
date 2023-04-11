@@ -44,13 +44,12 @@ Configuration
 *   ``election_fencing_enabled`` -- switches the :ref:`leader fencing mode <repl_leader_elect_fencing>` on and off.
     For the details, refer to the :ref:`option description <cfg_replication-election_fencing_enabled>` in the configuration reference.
 
-Besides, it is important to know that
-being a leader is not the only requirement for a node to be writable.
-A leader node should have its :ref:`read_only <cfg_basic-read_only>` option set
-to ``false`` (``box.cfg{read_only = false}``),
-and its :ref:`connectivity quorum <cfg_replication-replication_connect_quorum>`
-should be satisfied (``box.cfg{replication_connect_quorum = <count>}``)
-or disabled (``box.cfg{replication_connect_quorum = 0}``).
+It is important to know that being a leader is not the only requirement for a node to be writable.
+The leader should also satisfy the following requirements:
+
+*   The :ref:`read_only <cfg_basic-read_only>` option is set to ``false``.
+
+*   The leader shouldn't be in the orphan state.
 
 Nothing prevents from setting the ``read_only`` option to ``true``,
 but the leader just won't be writable then. The option doesn't affect the

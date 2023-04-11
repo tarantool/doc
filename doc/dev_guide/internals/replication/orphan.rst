@@ -6,12 +6,11 @@ Orphan status
 
 Starting with Tarantool version 1.9, there is a change to the
 procedure when an instance joins a replica set.
-During ``box.cfg()`` the instance will try to join all masters listed
+During ``box.cfg()`` the instance tries to join all nodes listed
 in :ref:`box.cfg.replication <cfg_replication-replication>`.
-If the instance does not succeed with at least
-the number of masters specified in
-:ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`,
-then it will switch to **orphan status**.
+If the instance does not succeed with connecting to the required number of nodes
+(see :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`),
+it switches to the **orphan** status.
 While an instance is in orphan status, it is read-only.
 
 To "join" a master, a replica instance must "connect" to the
@@ -34,12 +33,10 @@ is less than or equal to the number of seconds specified in
 If ``replication_sync_lag`` is unset (nil) or set to TIMEOUT_INFINITY, then
 the replica skips the "sync" state and switches to "follow" immediately.
 
-In order to leave orphan mode you need to sync with a sufficient number
-(:ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`) of
-instances. To do so, you may either:
+In order to leave orphan mode, you need to sync with a sufficient number of
+instances (:ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`).
+To do so, you may either:
 
-*   Set :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-    to a lower value.
 *   Reset ``box.cfg.replication`` to exclude instances that cannot be reached
     or synced with.
 *   Set ``box.cfg.replication`` to ``""`` (empty string).
@@ -53,16 +50,15 @@ The following situations are possible.
 Here ``box.cfg{}`` is being called for the first time.
 A replica is joining but no replica set exists yet.
 
-    1.  Set status to 'orphan'.
-    2.  Try to connect to all nodes from ``box.cfg.replication``,
-        or to the number of nodes required by
-        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`.
-        Retrying up to 3 times in 30 seconds is possible because this is bootstrap,
-        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
-        is overridden.
+    1.  Set the status to 'orphan'.
 
-    3.  Abort and throw an error if not connected to all nodes in ``box.cfg.replication`` or
-        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`.
+    2.  Try to connect to all nodes from ``box.cfg.replication``.
+        The replica tries to connect for the
+        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
+        number of seconds and retries each
+        :ref:`replication_timeout <cfg_replication-replication_timeout>` seconds if needed.
+
+    3.  Abort and throw an error if a replica is not connected to the majority of nodes in ``box.cfg.replication``.
 
     4.  This instance might be elected as the replica set 'leader'.
         Criteria for electing a leader include vclock value (largest is best),
@@ -93,13 +89,11 @@ It is being called again in order to perform recovery.
     1.  Perform :ref:`recovery <internals-recovery_process>` from the last local
         snapshot and the WAL files.
 
-    2.  Connect to at least
-        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
-        nodes. If failed -- set status to 'orphan'.
-        (Attempts to sync will continue in the background and when/if they succeed
-        then 'orphan' will be changed to 'connected'.)
+    2.  Try to establish connections to all other nodes for the
+        :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>` number of seconds.
+        Once ``replication_connect_timeout`` is expired or all the connections are established, proceed to the "sync" state with all the established connections.
 
-    3.  If connected - sync with all connected nodes, until the difference is not more than
+    3.  If connected, sync with all connected nodes, until the difference is not more than
         :ref:`replication_sync_lag <cfg_replication-replication_sync_lag>` seconds.
 
 ..  _replication-configuration_update:
@@ -111,8 +105,6 @@ It is being called again because some replication parameter
 or something in the replica set has changed.
 
     1.  Try to connect to all nodes from ``box.cfg.replication``,
-        or to the number of nodes required by
-        :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`,
         within the time period specified in
         :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`.
 
