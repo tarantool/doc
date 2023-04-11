@@ -217,7 +217,7 @@
     *   ``auto``: in this case, a node doesn't boot if a half or more of other nodes in a replica set are not connected.
         For example, if the :ref:`replication <cfg_replication-replication>` parameter contains 2 or 3 nodes,
         a node requires 2 connected instances.
-        In case of 4 or 5 nodes, at least 3 connected instances are required.
+        In the case of 4 or 5 nodes, at least 3 connected instances are required.
         Moreover, a bootstrap leader fails to boot unless every connected node has chosen it as a bootstrap leader.
 
     *   ``legacy``: in this case, a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
