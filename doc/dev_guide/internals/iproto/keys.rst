@@ -203,7 +203,7 @@ General replication
             -   0x08 |br| MP_UINT
             -   Transaction sequence number
 
-        *   -   IPROTO_BALLOT_IS_RO_CFG
+        *   -   :ref:`IPROTO_BALLOT_IS_RO_CFG <internals-iproto-keys-ballot>`
             -   0x01 |br| MP_BOOL
             -   True if the instance is configured as :ref:`read_only <cfg_basic-read_only>`.
                 Since :doc:`2.6.1 </release/2.6.1>`
@@ -216,36 +216,39 @@ General replication
             -   0x03 |br| MP_MAP
             -   Vclock of the instance’s oldest WAL entry
 
-        *   -   IPROTO_BALLOT_IS_RO
+        *   -   :ref:`IPROTO_BALLOT_IS_RO <internals-iproto-keys-ballot>`
             -   0x04 |br| MP_BOOL
             -   True if the instance is not writable: configured as :ref:`read_only <cfg_basic-read_only>`,
                 has :ref:`orphan status <internals-replication-orphan_status>`, or
                 is a :ref:`Raft follower <repl_leader_elect>`.
                 Since :doc:`2.6.1 </release/2.6.1>`
 
-        *   -   IPROTO_BALLOT_IS_ANON
+        *   -   :ref:`IPROTO_BALLOT_IS_ANON <internals-iproto-keys-ballot>`
             -   0x05 |br| MP_BOOL
             -   True if the replica is anonymous.
                 Corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
                 Since :doc:`2.7.1 </release/2.7.1>`
 
-        *   -   IPROTO_BALLOT_IS_BOOTED
+        *   -   :ref:`IPROTO_BALLOT_IS_BOOTED <internals-iproto-keys-ballot>`
             -   0x06 |br| MP_BOOL
             -   True if the instance has finished its bootstrap or recovery process.
                 Since :doc:`2.7.3 </release/2.7.3>`, :doc:`2.8.2 </release/2.8.2>`, :doc:`2.10.0 </release/2.10.0>`
 
-        *   -   IPROTO_BALLOT_CAN_LEAD
+        *   -   :ref:`IPROTO_BALLOT_CAN_LEAD <internals-iproto-keys-ballot>`
             -   0x07 |br| MP_BOOL
             -   True if :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is ``candidate`` or ``manual``.
                 Since v. :doc:`2.7.3 </release/2.7.3>` and :doc:`2.8.2 </release/2.8.2>`
 
-        *   -   IPROTO_BALLOT_BOOTSTRAP_LEADER_UUID
-            -   0x08 |br| ?
-            -   Since v. 2.11
+        *   -   :ref:`IPROTO_BALLOT_BOOTSTRAP_LEADER_UUID <internals-iproto-keys-ballot>`
+            -   0x08 |br| MP_STR
+            -   UUID of the bootstrap leader. The UUID is encoded as a 36-byte string.
+                Since v. 2.11
 
-        *   -   IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS
-            -   0x09 |br| ?
-            -   Since v. 2.11
+        *   -   :ref:`IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS <internals-iproto-keys-ballot>`
+            -   0x09 |br| MP_ARRAY
+            -   An array that contains the UUIDs of the registered members in the replica set.
+                Each UUID is encoded as a 36-byte string.
+                Since v. 2.11
         
         *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
             -   0x09 |br| MP_UINT
@@ -268,12 +271,7 @@ General replication
                 followed by an array of ids of instances whose rows won't be relayed to the replica.
                 Since v. :doc:`2.10.0 </release/2.10.0>`
 
-All IPROTO_BALLOT_* keys are only used in :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
-There have been some name changes starting with versions 2.7.3, 2.8.2, and 2.10.0:
-
-*   IPROTO_BALLOT_IS_RO_CFG was formerly called IPROTO_BALLOT_IS_RO.
-*   IPROTO_BALLOT_IS_RO was formerly called IPROTO_BALLOT_IS_LOADING.
-
+..  _internals-iproto-keys-syncro-replication:
 
 Synchronous replication
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -288,10 +286,9 @@ Synchronous replication
             -   Code and |br| value type
             -   Description
 
-        *   -   IPROTO_TERM
+        *   -   :ref:`IPROTO_TERM <internals-iproto-keys-term>`
             -   0x53 |br| MP_UINT
-            -   The term in which the node becomes the :ref:`synchronous queue owner <box_info_synchro>`.
-                Used in :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>`
+            -   The term in which the node becomes the :ref:`synchronous queue owner <box_info_synchro>`
 
         *   -   IPROTO_RAFT_TERM
             -   0x00 |br| MP_UINT
@@ -666,6 +663,19 @@ Example:
 ..  raw:: html
     :file: images/flags_example.svg
 
+..  _internals-iproto-keys-term:
+
+IPROTO_TERM
+~~~~~~~~~~~
+
+Code: 0x53.
+
+*   The key is used in the :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>`
+    and :ref:`IPROTO_RAFT_DEMOTE <internals-iproto-replication-raft_demote>` requests.
+
+*   Since version 2.11, the key is included in response to a :ref:`heartbeat message <box_protocol-heartbeat>`.
+    The term corresponds to the value of :ref:`box.info.synchro.queue.term <box_info_synchro>` on the sender instance.
+
 ..  _internals-iproto-keys-vclock:
 
 Vclock keys
@@ -688,10 +698,12 @@ They all have the MP_MAP type:
     it starts responding with the same value in all its acknowledgements.
     This key was introduced in version 2.11.
 
-*   IPROTO_BALLOT_VCLOCK (0x02) is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`.
+*   IPROTO_BALLOT_VCLOCK (0x02) is included in the :ref:`IPROTO_BALLOT <box_protocol-ballots>` message.
+    IPROTO_BALLOT is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` request.
     This key was introduced in :doc:`/release/2.6.1`.
 
-*   IPROTO_BALLOT_GC_VCLOCK (0x03) is also sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>`.
+*   IPROTO_BALLOT_GC_VCLOCK (0x03) is also included in the :ref:`IPROTO_BALLOT <box_protocol-ballots>` message.
+    IPROTO_BALLOT is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` request.
     It is the vclock of the oldest WAL entry on the instance.
     Corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
     This key was introduced in :doc:`/release/2.6.1`.
@@ -699,6 +711,18 @@ They all have the MP_MAP type:
 *   IPROTO_RAFT_VCLOCK (0x03) is included in the :ref:`IPROTO_RAFT <box_protocol-raft>` message.
     It is present only on the instances in the :ref:`"candidate" state <cfg_replication-election_mode>`
     (IPROTO_RAFT_STATE == 2).
+
+..  _internals-iproto-keys-ballot:
+
+IPROTO_BALLOT keys
+~~~~~~~~~~~~~~~~~~
+
+All IPROTO_BALLOT_* keys are only used in :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
+There have been some name changes starting with versions :doc:`release/2.7.3`, :doc:`/release/2.8.2`,
+and :doc:`/release/2.10.0`:
+
+*   IPROTO_BALLOT_IS_RO_CFG (0x01) was formerly called IPROTO_BALLOT_IS_RO.
+*   IPROTO_BALLOT_IS_RO was (0x04) formerly called IPROTO_BALLOT_IS_LOADING.
 
 ..  _internals-iproto-keys-metadata:
     

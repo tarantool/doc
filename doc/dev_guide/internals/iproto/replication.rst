@@ -79,6 +79,8 @@ The response from replica looks like this:
 ..  raw:: html
     :file: images/repl_heartbeat_response.svg
 
+
+
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows actual byte codes of the above heartbeat examples.
 
@@ -154,8 +156,8 @@ IPROTO_BALLOT
 
 Code: 0x29.
 
-This value of IPROTO_REQUEST_TYPE indicates a message sent in response to IPROTO_VOTE
-(not to be confused with the key IPROTO_RAFT_VOTE).
+This value of IPROTO_REQUEST_TYPE indicates a message sent in response
+to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` (not to be confused with the key IPROTO_RAFT_VOTE).
 
 IPROTO_BALLOT and IPROTO_VOTE are critical during replica set bootstrap.
 IPROTO_BALLOT corresponds to a map containing the following fields:
