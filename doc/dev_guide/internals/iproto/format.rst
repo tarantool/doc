@@ -22,7 +22,7 @@ Size
 ----
 
 The size is an MP_UINT -- unsigned integer, usually 32-bit.
-It the size of the header plus the size of the body.
+It is the size of the header plus the size of the body.
 It may be useful to compare it with the number of bytes remaining in the packet.
 
 ..  _box_protocol-header:

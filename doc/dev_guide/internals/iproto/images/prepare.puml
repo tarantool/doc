@@ -14,7 +14,7 @@ json "**IPROTO_PREPARE**" as prepare_request {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_STMT_ID]]": "MP_INT"
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SQL_TEXT]]": "MP_STR"
     }
 }
 
