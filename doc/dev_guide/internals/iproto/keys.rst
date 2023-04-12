@@ -246,7 +246,7 @@ General replication
 
         *   -   :ref:`IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS <internals-iproto-keys-ballot>`
             -   0x09 |br| MP_ARRAY
-            -   An array that contains the UUIDs of the registered members in the replica set.
+            -   An array of MP_STR elements that contains the UUIDs of the registered members in the replica set.
                 Each UUID is encoded as a 36-byte string.
                 Since v. 2.11
         

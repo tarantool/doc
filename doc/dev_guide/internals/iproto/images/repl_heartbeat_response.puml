@@ -16,7 +16,7 @@ json "**Response from replica**" as heartbeat_response {
     },
     "Body": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general-replication IPROTO_VCLOCK]]": "MP_MAP",
-      "(Optional) [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general IPROTO_VCLOCK_SYNC]]": "MP_UINT",
+      "(Optional) [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general-replication IPROTO_VCLOCK_SYNC]]": "MP_UINT",
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#synchronous-replication IPROTO_TERM]]": "MP_UINT"
     }
 }

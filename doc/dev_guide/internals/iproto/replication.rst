@@ -66,20 +66,19 @@ and the replica sends a response.
 Both messages' IPROTO_REQUEST_TYPE is IPROTO_OK.
 IPROTO_TIMESTAMP is a float-64 MP_DOUBLE 8-byte timestamp.
 
-Since version 2.11, both messages have an optional field that contains
+Since version 2.11, both messages have an optional field in the body that contains
 the :ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>` key.
+The master's heartbeat has no body if the IPROTO_VCLOCK_SYNC key is omitted.
 
-Note that the master's heartbeat has no body:
+The message from master to a replica:
 
 ..  raw:: html
     :file: images/repl_heartbeat_message.svg
 
-The response from replica looks like this:
+The response from replica:
 
 ..  raw:: html
     :file: images/repl_heartbeat_response.svg
-
-
 
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows actual byte codes of the above heartbeat examples.
@@ -132,7 +131,7 @@ its instance ID and its LSN, independent from other masters.
 IPROTO_ID_FILTER (0x51)
 is an optional key used in the SUBSCRIBE request followed by an array
 of ids of instances whose rows won't be relayed to the replica.
-The field is encoded only when the id list is not empty.
+The field is encoded only when the ID list is not empty.
 
 ..  _internals-iproto-replication-vote:
 
@@ -164,6 +163,9 @@ IPROTO_BALLOT corresponds to a map containing the following fields:
 
 ..  raw:: html
     :file: images/repl_ballot.svg
+
+IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS has the MP_ARRAY type.
+The array contains MP_STR elements.
 
 ..  _internals-iproto-replication-synchronous:
 
