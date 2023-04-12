@@ -38,7 +38,7 @@ index_object:select()
                 fields are compared, so ``select{1,2}`` matches a tuple
                 whose primary key is ``{1,2,3}``.
             *   (Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing the position of the last selected tuple as the second value.
-                If now tuples are fetched, returns ``nil``.
+                If no tuples are fetched, returns ``nil``.
 
         :rtype:
 
