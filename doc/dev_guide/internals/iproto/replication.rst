@@ -184,7 +184,7 @@ Synchronous
 
         *   -   :ref:`IPROTO_RAFT <box_protocol-raft>`
             -   0x1e
-            -   Inform that the node changed its RAFT status
+            -   Inform that the node changed its :ref:`RAFT status <repl_leader_elect>`
    
         *   -   :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>`
             -   0x1f
@@ -235,7 +235,6 @@ IPROTO_RAFT_PROMOTE
 Code: 0x1f.
 
 See :ref:`box.ctl.promote() <box_ctl-promote>`.
-Here is what the request contains:
 
 ..  raw:: html
     :file: images/repl_raft_promote.svg
@@ -260,7 +259,6 @@ IPROTO_RAFT_DEMOTE
 Code: 0x20.
 
 See :ref:`box.ctl.demote() <box_ctl-demote>`.
-Here is what the request contains:
 
 ..  raw:: html
     :file: images/repl_raft_demote.svg

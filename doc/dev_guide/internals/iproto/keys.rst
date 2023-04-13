@@ -288,11 +288,12 @@ Synchronous replication
 
         *   -   :ref:`IPROTO_TERM <internals-iproto-keys-term>`
             -   0x53 |br| MP_UINT
-            -   The term in which the node becomes the :ref:`synchronous queue owner <box_info_synchro>`
+            -   :ref:`RAFT term <repl_leader_elect>` on an instance
 
         *   -   IPROTO_RAFT_TERM
             -   0x00 |br| MP_UINT
-            -   :ref:`RAFT term <repl_leader_elect>` on an instance
+            -   :ref:`RAFT term <repl_leader_elect>` on an instance.
+                The key is only used for requests with the :ref:`IPROTO_RAFT <box_protocol-raft> type`.
         
         *   -   IPROTO_RAFT_VOTE
             -   0x01 |br| MP_UINT
@@ -300,7 +301,7 @@ Synchronous replication
         
         *   -   IPROTO_RAFT_STATE
             -   0x02 |br| MP_UINT
-            -   RAFT state. Possible values: ``1`` -- follower, ``2`` -- candidate, ``3`` -- leader
+            -   :ref:`RAFT state <repl_leader_elect>`. Possible values: ``1`` -- follower, ``2`` -- candidate, ``3`` -- leader
         
         *   -   :ref:`IPROTO_RAFT_VCLOCK <internals-iproto-keys-vclock>`
             -   0x03 |br| MP_MAP
