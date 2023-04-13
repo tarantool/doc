@@ -246,7 +246,7 @@ General replication
 
         *   -   :ref:`IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS <internals-iproto-keys-ballot>`
             -   0x09 |br| MP_ARRAY
-            -   An array of MP_STR elements that contains the UUIDs of the registered members in the replica set.
+            -   An array of MP_STR elements that contains the UUIDs of members registered in the replica set.
                 Each UUID is encoded as a 36-byte string.
                 Since v. 2.11
         
@@ -700,11 +700,11 @@ They all have the MP_MAP type:
     This key was introduced in version 2.11.
 
 *   IPROTO_BALLOT_VCLOCK (0x02) is included in the :ref:`IPROTO_BALLOT <box_protocol-ballots>` message.
-    IPROTO_BALLOT is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` request.
+    IPROTO_BALLOT is sent in response to the :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` request.
     This key was introduced in :doc:`/release/2.6.1`.
 
 *   IPROTO_BALLOT_GC_VCLOCK (0x03) is also included in the :ref:`IPROTO_BALLOT <box_protocol-ballots>` message.
-    IPROTO_BALLOT is sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` request.
+    IPROTO_BALLOT is sent in response to the :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` request.
     It is the vclock of the oldest WAL entry on the instance.
     Corresponds to :ref:`box.info.gc().vclock <box_info_gc>`.
     This key was introduced in :doc:`/release/2.6.1`.
@@ -718,12 +718,12 @@ They all have the MP_MAP type:
 IPROTO_BALLOT keys
 ~~~~~~~~~~~~~~~~~~
 
-All IPROTO_BALLOT_* keys are only used in :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
-There have been some name changes starting with versions :doc:`release/2.7.3`, :doc:`/release/2.8.2`,
+All IPROTO_BALLOT_* keys are only used in the :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
+There have been the following name changes starting with versions :doc:`/release/2.7.3`, :doc:`/release/2.8.2`,
 and :doc:`/release/2.10.0`:
 
 *   IPROTO_BALLOT_IS_RO_CFG (0x01) was formerly called IPROTO_BALLOT_IS_RO.
-*   IPROTO_BALLOT_IS_RO was (0x04) formerly called IPROTO_BALLOT_IS_LOADING.
+*   IPROTO_BALLOT_IS_RO (0x04) was formerly called IPROTO_BALLOT_IS_LOADING.
 
 ..  _internals-iproto-keys-metadata:
     

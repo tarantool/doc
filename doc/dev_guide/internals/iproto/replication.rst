@@ -75,7 +75,7 @@ The message from master to a replica:
 ..  raw:: html
     :file: images/repl_heartbeat_message.svg
 
-The response from replica:
+The response from the replica:
 
 ..  raw:: html
     :file: images/repl_heartbeat_response.svg
@@ -180,7 +180,7 @@ Synchronous
 
         *   -   Name
             -   Code
-            -   Description     
+            -   Description
 
         *   -   :ref:`IPROTO_RAFT <box_protocol-raft>`
             -   0x1e
