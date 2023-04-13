@@ -1,0 +1,24 @@
+@startuml
+
+skinparam {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**Response from replica**" as heartbeat_response {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/key/#general IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general-replication IPROTO_REPLICA_ID]]": "MP_UINT",
+      "(Optional) [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general IPROTO_TIMESTAMP]]": "MP_DOUBLE"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general-replication IPROTO_VCLOCK]]": "MP_MAP",
+      "(Optional) [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#general-replication IPROTO_VCLOCK_SYNC]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys/#synchronous-replication IPROTO_TERM]]": "MP_UINT"
+    }
+}
+
+@enduml
