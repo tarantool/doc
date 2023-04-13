@@ -64,12 +64,21 @@ Once in :ref:`replication_timeout <cfg_replication-replication_timeout>` seconds
 a master sends a :ref:`heartbeat <heartbeat>` message to a replica,
 and the replica sends a response.
 Both messages' IPROTO_REQUEST_TYPE is IPROTO_OK.
-Note that the master's heartbeat has no body:
+IPROTO_TIMESTAMP is a float-64 MP_DOUBLE 8-byte timestamp.
+
+Since version 2.11, both messages have an optional field in the body that contains
+the :ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>` key.
+The master's heartbeat has no body if the IPROTO_VCLOCK_SYNC key is omitted.
+
+The message from master to a replica:
 
 ..  raw:: html
-    :file: images/repl_heartbeat.svg
+    :file: images/repl_heartbeat_message.svg
 
-IPROTO_TIMESTAMP is a float-64 MP_DOUBLE 8-byte timestamp.
+The response from the replica:
+
+..  raw:: html
+    :file: images/repl_heartbeat_response.svg
 
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows actual byte codes of the above heartbeat examples.
@@ -122,7 +131,7 @@ its instance ID and its LSN, independent from other masters.
 IPROTO_ID_FILTER (0x51)
 is an optional key used in the SUBSCRIBE request followed by an array
 of ids of instances whose rows won't be relayed to the replica.
-The field is encoded only when the id list is not empty.
+The field is encoded only when the ID list is not empty.
 
 ..  _internals-iproto-replication-vote:
 
@@ -146,14 +155,17 @@ IPROTO_BALLOT
 
 Code: 0x29.
 
-This value of IPROTO_REQUEST_TYPE indicates a message sent in response to IPROTO_VOTE
-(not to be confused with the key IPROTO_RAFT_VOTE).
+This value of IPROTO_REQUEST_TYPE indicates a message sent in response
+to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` (not to be confused with the key IPROTO_RAFT_VOTE).
 
 IPROTO_BALLOT and IPROTO_VOTE are critical during replica set bootstrap.
 IPROTO_BALLOT corresponds to a map containing the following fields:
 
 ..  raw:: html
     :file: images/repl_ballot.svg
+
+IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS has the MP_ARRAY type.
+The array contains MP_STR elements.
 
 ..  _internals-iproto-replication-synchronous:
 
@@ -168,11 +180,11 @@ Synchronous
 
         *   -   Name
             -   Code
-            -   Description     
+            -   Description
 
         *   -   :ref:`IPROTO_RAFT <box_protocol-raft>`
             -   0x1e
-            -   Inform that the node changed its RAFT status
+            -   Inform that the node changed its :ref:`RAFT status <repl_leader_elect>`
    
         *   -   :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>`
             -   0x1f
@@ -223,7 +235,6 @@ IPROTO_RAFT_PROMOTE
 Code: 0x1f.
 
 See :ref:`box.ctl.promote() <box_ctl-promote>`.
-Here is what the request contains:
 
 ..  raw:: html
     :file: images/repl_raft_promote.svg
@@ -248,7 +259,6 @@ IPROTO_RAFT_DEMOTE
 Code: 0x20.
 
 See :ref:`box.ctl.demote() <box_ctl-demote>`.
-Here is what the request contains:
 
 ..  raw:: html
     :file: images/repl_raft_demote.svg

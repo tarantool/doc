@@ -304,16 +304,23 @@ Byte code for the :ref:`heartbeat <box_protocol-heartbeat>` example. The master 
     04                        Main-Map Item #3 IPROTO_TIMESTAMP
     cb                          MP_DOUBLE (MessagePack "Float 64")
     41 d7 ba 06 7b 3a 03 21     8-byte timestamp
+    81                      MP_MAP (body), size 1
+    5a                      Body Map Item #1 IPROTO_VCLOCK_SYNC
+    14                        MP_UINT = 20 (vclock sync value)
 
-Byte code for the :ref:`heartbeat <box_protocol-heartbeat>` example. The replica might send back this body
+Byte code for the :ref:`heartbeat <box_protocol-heartbeat>` example. The replica might send back this body:
 
 ..  code-block:: none
 
     81                       MP_MAP, size 1
     00                         Main-Map Item #1 IPROTO_REQUEST_TYPE
     00                         MP_UINT = 0 = IPROTO_OK
-    81                         Main-Map Item #2, MP_MAP, size 1
-    26                           Sub-Map Item #1 IPROTO_VCLOCK
-    81                           Sub-Map Item #2, MP_MAP, size 1
-    01                             MP_UINT = 1 = id (part 1 of vclock)
-    06                             MP_UINT = 6 = lsn (part 2 of vclock)
+    83                         MP_MAP (body), size 3
+    26                           Body Map Item #1 IPROTO_VCLOCK
+    81                             MP_MAP, size 1 (vclock of 1 component)
+    01                               MP_UINT = 1 = id (part 1 of vclock)
+    06                               MP_UINT = 6 = lsn (part 2 of vclock)
+    5a                           Body Map Item #2 IPROTO_VCLOCK_SYNC
+    14                             MP_UINT = 20 (vclock sync value)
+    53                           Body Map Item #3 IPROTO_TERM
+    31                             MP_UINT = 49 (term value)
