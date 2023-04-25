@@ -6,7 +6,7 @@ box.read_view.list()
 
 .. function:: read_view.list()
 
-    Returns an array of all active database read views.
+    Return an array of all active database read views.
     This array might include the following read view types:
 
     *   `read views <https://www.tarantool.io/en/enterprise_doc/read_views/>`_ created by application code (available in Tarantool Enterprise only)
@@ -14,9 +14,9 @@ box.read_view.list()
     *   system read views (used, for example, to make a :ref:`checkpoint <book_cfg_checkpoint_daemon>`
         or join a new :ref:`replica <replication-architecture>`)
 
-    Read views created by application code also have the ``space`` field,
-    which lists all spaces available in a read view, and may be used like
-    a read view object returned by ``box.read_view.open()``.
+    Read views created by application code also have the ``space`` field.
+    The field lists all spaces available in a read view,
+    and may be used like a read view object returned by ``box.read_view.open()``.
 
     .. NOTE::
 

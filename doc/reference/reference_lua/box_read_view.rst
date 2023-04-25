@@ -17,7 +17,7 @@ The box.read_view submodule contains functions related to read views.
             - Use
 
         *  - :doc:`./box_read_view/list`
-           - Returns an array of all active database read views.
+           - Return an array of all active database read views.
 
 
 ..  toctree::
