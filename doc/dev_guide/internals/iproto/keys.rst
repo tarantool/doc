@@ -293,7 +293,7 @@ Synchronous replication
         *   -   IPROTO_RAFT_TERM
             -   0x00 |br| MP_UINT
             -   :ref:`RAFT term <repl_leader_elect>` on an instance.
-                The key is only used for requests with the :ref:`IPROTO_RAFT <box_protocol-raft> type`.
+                The key is only used for requests with the :ref:`IPROTO_RAFT <box_protocol-raft>` type.
         
         *   -   IPROTO_RAFT_VOTE
             -   0x01 |br| MP_UINT
