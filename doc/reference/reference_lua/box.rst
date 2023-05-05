@@ -42,6 +42,8 @@ with ``box``, with no arguments. The ``box`` module contains:
     box_snapshot
 
     box_null
+    sandbox-datetime-timezone2
+    sandbox-sequence
 
 
 .. // moved to "User Guide > 5. Server administration":
