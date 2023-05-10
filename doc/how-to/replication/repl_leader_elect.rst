@@ -17,10 +17,10 @@ Configuration
 
     box.cfg({
         election_mode = <string>,
+        election_fencing_mode = <string>,
         election_timeout = <seconds>,
         replication_timeout = <seconds>,
-        replication_synchro_quorum = <count>,
-        election_fencing_mode = <string>
+        replication_synchro_quorum = <count>
     })
 
 *   ``election_mode`` -- specifies the role of a node in the leader election
