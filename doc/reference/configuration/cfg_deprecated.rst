@@ -15,6 +15,7 @@ These parameters are deprecated since Tarantool version 1.7.4:
 * :ref:`snapshot_count <cfg_checkpoint_daemon-snapshot_count_deprecated>`
 * :ref:`snapshot_period <cfg_checkpoint_daemon-snapshot_period_deprecated>`
 * :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`
+* :ref:`election_fencing_enabled <cfg_election-election_fencing_enabled_deprecated>`
 
 .. _cfg_basic-coredump_deprecated:
 
@@ -145,3 +146,21 @@ These parameters are deprecated since Tarantool version 1.7.4:
     **Deprecated** in favor of
     :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`.
     The parameter does not allow to properly limit size of WAL logs.
+
+.. _cfg_election-election_fencing_enabled_deprecated:
+
+.. confval:: election_fencing_enabled
+
+    **Deprecated** in Tarantool v2.11 in favor of
+    :ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`.
+
+    The parameter does not allow using the ``strict`` fencing mode. Setting to ``true``
+    is equivalent to setting the ``soft``
+    :ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`.
+    Setting to ``false`` is equivalent to setting the ``off``
+    :ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`.
+
+    | Type: boolean
+    | Default: true
+    | Environment variable: TT_ELECTION_FENCING_ENABLED
+    | Dynamic: yes

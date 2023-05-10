@@ -8,7 +8,7 @@ Tarantool has the built-in functionality
 managing automated *leader election* in a replica set.
 This functionality increases the fault tolerance of the systems built
 on the base of Tarantool and decreases
-dependency on the external tools for replica set management.
+dependency on external tools for replica set management.
 
 To learn how to configure and monitor automated leader elections,
 check the :ref:`how-to guide <how-to-repl_leader_elect>`.
@@ -59,7 +59,7 @@ set, it increases the term and starts a new leader election round.
 Leader election happens via votes. The node, which started the election, votes
 for itself and sends vote requests to other nodes.
 Upon receiving vote requests, a node votes for the first of them, and then cannot
-do anything in the same term but wait for a leader being elected.
+do anything in the same term but wait for a leader to be elected.
 
 The node that collected a quorum of votes defined by the :ref:`replication_synchro_quorum <repl_leader_elect_config>` parameter
 becomes the leader
@@ -71,7 +71,7 @@ request with a greater term arrives during this time period.
 Eventually, a leader is elected.
 
 If any unfinalized synchronous transactions are left from the previous leader,
-the new leader finalises them automatically.
+the new leader finalizes them automatically.
 
 All the non-leader nodes are called *followers*. The nodes that start a new
 election round are called *candidates*. The elected leader sends heartbeats to
@@ -96,24 +96,35 @@ to a quorum of replicas, that data wouldn't be lost.
 
 When :ref:`election is enabled <repl_leader_elect_config>`, there must be connections
 between each node pair so as it would be the full mesh topology. This is needed
-because election messages for voting and other internal things need direct
+because election messages for voting and other internal things need a direct
 connection between the nodes.
 
 .. _repl_leader_elect_fencing:
 
 In the classic Raft algorithm, a leader doesn't track its connectivity to the rest of the cluster.
 Once the leader is elected, it considers itself in the leader position until receiving a new term from another cluster node.
-This can lead to the split situation if the other nodes elect a new leader upon losing the connectivity to the previous one.
+This can lead to a split situation if the other nodes elect a new leader upon losing the connectivity to the previous one.
 
 The issue is resolved in Tarantool version :doc:`2.10.0 </release/2.10.0>` by introducing the leader *fencing* mode.
-The mode can be switched on and off by the :ref:`election_fencing_enabled <repl_leader_elect_config>` configuration parameter.
-When the fencing is on, the leader resigns its leadership if it has less than the :ref:`replication_synchro_quorum <repl_leader_elect_config>`
-of alive connections to the cluster nodes. The resigning leader receives the status of a follower in the current election term and becomes read-only.
+The mode can be switched by the :ref:`election_fencing_mode <repl_leader_elect_config>` configuration parameter.
+When the fencing is set to ``soft`` or ``strict``, the leader resigns its leadership if it has less than
+:ref:`replication_synchro_quorum <repl_leader_elect_config>` of alive connections to the cluster nodes.
+The resigning leader receives the status of a follower in the current election term and becomes read-only.
+Leader *fencing* can be turned off by setting the :ref:`election_fencing_mode <repl_leader_elect_config>` configuration parameter to ``off``.
+
+In ``soft`` mode, a connection is considered dead if there are no responses for
+:ref:`4*replication_timeout <cfg_replication-replication_timeout>` seconds both on the current leader and the followers.
+
+In ``strict`` mode, a connection is considered dead if there are no responses
+for :ref:`2*replication_timeout <cfg_replication-replication_timeout>` seconds on the current leader and for
+:ref:`4*replication_timeout <cfg_replication-replication_timeout>` seconds on the followers.
+This improves chances that there is only one leader at any time.
+
 Fencing applies to the instances that have the :ref:`election_mode <repl_leader_elect_config>` set to "candidate" or "manual".
 
 .. _repl_leader_elect_splitbrain:
 
-There can still be a situation when a replica set has two leaders working independently (so called *split-brain*).
+There can still be a situation when a replica set has two leaders working independently (so-called *split-brain*).
 It can happen, for example, if a user mistakenly lowered the :ref:`replication_synchro_quorum <repl_leader_elect_config>` below ``N / 2 + 1``.
 In this situation, to preserve the data integrity, if an instance detects the split-brain anomaly in the incoming replication data,
 it breaks the connection with the instance sending the data and writes the ``ER_SPLIT_BRAIN`` error in the log.
@@ -130,7 +141,7 @@ the newest leader. This is done to avoid the issue when a new leader is elected,
 but the old leader has somehow survived and tries to send more changes
 to the other nodes.
 
-Term numbers also work as a kind of a filter.
+Term numbers also work as a kind of filter.
 For example, you can be sure that if election
 is enabled on two nodes and ``node1`` has the term number less than ``node2``,
 then ``node2`` won't accept any transactions from ``node1``.
