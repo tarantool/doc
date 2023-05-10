@@ -23,6 +23,9 @@ Configuration
         election_fencing_mode = <string>
     })
 
+*   ``election_mode`` -- specifies the role of a node in the leader election
+    process. For the details, refer to the :ref:`option description <cfg_replication-election_mode>`
+    in the configuration reference.
 *   ``election_fencing_mode`` -- specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>`.
     For the details, refer to the :ref:`option description <cfg_replication-election_fencing_mode>` in the configuration reference.
 *   ``election_timeout`` -- specifies the timeout between election rounds if the
