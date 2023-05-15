@@ -292,15 +292,47 @@ Configuration parameters have the form:
 Since ``box.cfg`` may contain many configuration parameters and since some of the
 parameters (such as directory addresses) are semi-permanent, it's best to keep
 ``box.cfg`` in a Lua file. Typically this Lua file is the initialization file
-which is specified on the tarantool command line.
+which is specified on the Tarantool command line.
 
 Most configuration parameters are for allocating resources, opening ports, and
-specifying database behavior. All parameters are optional. A few parameters are
-dynamic, that is, they can be changed at runtime by calling ``box.cfg{}``
-a second time.
+specifying database behavior. All parameters are optional.
+A few parameters are dynamic, that is, they can be changed at runtime by calling ``box.cfg{}`` a second time.
+For example, the command below sets the :ref:`listen port <cfg_basic-listen>` to ``3301``.
 
-To see all the non-null parameters, say ``box.cfg`` (no parentheses). To see a
-particular parameter, for example, the listen address, say ``box.cfg.listen``.
+..  code-block:: tarantoolsession
+
+    tarantool> box.cfg{ listen = 3301 }
+    2023-05-10 13:28:54.667 [31326] main/103/interactive I> tx_binary: stopped
+    2023-05-10 13:28:54.667 [31326] main/103/interactive I> tx_binary: bound to [::]:3301
+    2023-05-10 13:28:54.667 [31326] main/103/interactive/box.load_cfg I> set 'listen' configuration option to 3301
+    ---
+    ...
+
+
+To see all the non-null parameters, execute ``box.cfg`` (no parentheses).
+
+..  code-block:: tarantoolsession
+
+    tarantool> box.cfg
+    ---
+    - replication_skip_conflict: false
+      wal_queue_max_size: 16777216
+      feedback_host: https://feedback.tarantool.io
+      memtx_dir: .
+      memtx_min_tuple_size: 16
+      -- other parameters --
+    ...
+
+To see a particular parameter value, call a corresponding ``box.cfg`` option.
+For example, ``box.cfg.listen`` shows the specified :ref:`listen address <cfg_basic-listen>.
+
+..  code-block:: tarantoolsession
+
+    tarantool> box.cfg.listen
+    ---
+    - 3301
+    ...
+
 
 ..  _box-cfg-params-prior:
 
