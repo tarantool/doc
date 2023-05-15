@@ -323,7 +323,8 @@ To see all the non-null parameters, execute ``box.cfg`` (no parentheses).
       -- other parameters --
     ...
 
-To see a particular parameter, for example, the :ref:`listen address <cfg_basic-listen>`, execute ``box.cfg.listen``.
+To see a particular parameter value, call a corresponding ``box.cfg`` option.
+For example, ``box.cfg.listen`` shows the specified :ref:`listen address <cfg_basic-listen>.
 
 ..  code-block:: tarantoolsession
 
