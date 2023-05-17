@@ -63,6 +63,18 @@ Below is a list of all ``fiber`` functions and members.
     | :ref:`fiber.testcancel()             | Check if the current fiber has  |
     | <fiber-testcancel>`                  | been cancelled                  |
     +--------------------------------------+---------------------------------+
+    | :ref:`fiber.set_max_slice()          | Set the default maximum slice   |
+    | <fiber-set_max_slice>`               | for all fibers                  |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.set_slice()              | Set a slice for the current     |
+    | <fiber-set_slice>`                   | fiber execution                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.extend_slice()           | Extend a slice for the          |
+    | <fiber-extend_slice>`                | current fiber execution         |
+    +--------------------------------------+---------------------------------+
+    | :ref:`fiber.check_slice()            | Check whether a slice for       |
+    | <fiber-check_slice>`                 | the current fiber is over       |
+    +--------------------------------------+---------------------------------+
     | :ref:`fiber.time()                   | Get the system time in seconds  |
     | <fiber-time>`                        |                                 |
     +--------------------------------------+---------------------------------+
@@ -92,6 +104,9 @@ Below is a list of all ``fiber`` functions and members.
     | :ref:`fiber_object:cancel()          | Cancel a fiber                  |
     | <fiber_object-cancel>`               |                                 |
     +--------------------------------------+---------------------------------+
+    | :ref:`fiber_object.set_max_slice()   | Set a fiber's maximum slice     |
+    | <fiber_object-set_max_slice>`        |                                 |
+    +--------------------------------------+---------------------------------+
     | :ref:`fiber_object.storage           | Local storage within the fiber  |
     | <fiber_object-storage>`              |                                 |
     +--------------------------------------+---------------------------------+
@@ -100,8 +115,6 @@ Below is a list of all ``fiber`` functions and members.
     +--------------------------------------+---------------------------------+
     | :ref:`fiber_object:join()            | Wait for a fiber's state to     |
     | <fiber_object-join>`                 | become 'dead'                   |
-    +--------------------------------------+---------------------------------+
-    | :ref:`Examples <fiber-example>`      | Some useful examples            |
     +--------------------------------------+---------------------------------+
     | **Channels**                                                           |
     +--------------------------------------+---------------------------------+
@@ -161,32 +174,127 @@ Below is a list of all ``fiber`` functions and members.
 Fibers
 ------
 
-A **fiber** is a set of instructions which are executed with
-:ref:`cooperative multitasking <app-cooperative_multitasking>`.
-(Learn more about :ref:`transactions <thread_model>` in Tarantool.)
-Fibers managed by the fiber module are associated with
-a user-supplied function called the *fiber function*.
+A :ref:`fiber <app-fibers>` is a set of instructions that are executed with cooperative multitasking.
+The ``fiber`` module enables you to :ref:`create a fiber <fibers_create_fiber>` and
+associate it with a user-supplied function called a *fiber function*.
 
-A fiber has three possible states, detectable by :ref:`fiber.status() <fiber-status>`: **running**, **suspended** or **dead**.
-When a fiber is created with :ref:`fiber.create() <fiber-create>`, it is running.
-When a fiber is created with :ref:`fiber.new() <fiber-new>` or yields control
-with :ref:`fiber.sleep() <fiber-sleep>`, it is suspended.
-When a fiber ends (because the fiber function ends), it is dead.
+A fiber has the following possible states: ``running``, ``suspended``, ``ready``, or ``dead``.
+A program with fibers is, at any given time, running only one of its fibers.
+This running fiber only suspends its execution when it explicitly
+:ref:`yields control <fibers_yield_control>` to another fiber that is ready to execute.
 
-All fibers are part of the fiber registry. This registry can be searched
-with :ref:`fiber.find() <fiber-find>` - via fiber id (fid), which is a numeric
-identifier.
+When the fiber function ends, the fiber ends and becomes ``dead``.
+If required, you can :ref:`cancel <fibers_cancel_fiber>` a running or suspended fiber.
+Another useful capability is :ref:`limiting <fibers_limit_execution_time>`
+a fiber execution time for long-running operations.
 
-A runaway fiber can be stopped with :ref:`fiber_object.cancel <fiber_object-cancel>`.
-However, :ref:`fiber_object.cancel <fiber_object-cancel>` is advisory — it works
-only if the runaway fiber calls :ref:`fiber.testcancel() <fiber-testcancel>`
-occasionally. Most ``box.*`` functions, such as
-:ref:`box.space...delete() <box_space-delete>` or
-:ref:`box.space...update() <box_space-update>`, do call
-:ref:`fiber.testcancel() <fiber-testcancel>` but
-:ref:`box.space...select{} <box_space-select>` does not. In practice, a runaway
-fiber can only become unresponsive if it does many computations and does not
-check whether it has been cancelled.
+.. NOTE::
+
+    By default, each :ref:`transaction <thread_model>` in Tarantool is executed in
+    a single fiber on a single thread, sees a consistent database state, and commits all changes atomically.
+
+.. _fibers_create_fiber:
+
+Create a fiber
+~~~~~~~~~~~~~~
+
+To create a fiber, call one of the following functions:
+
+*   :ref:`fiber.create() <fiber-create>` creates a fiber and runs it immediately.
+    The initial fiber state is ``running``.
+
+*   :ref:`fiber.new() <fiber-new>` creates a fiber but does not start it.
+    The initial fiber state is ``ready``.
+    You can join such fibers by calling the :ref:`fiber_object:join() <fiber_object-join>` function
+    and get the result returned by the fiber's function.
+
+
+.. _fibers_yield_control:
+
+Yield control
+~~~~~~~~~~~~~
+
+:ref:`Yield <app-yields>` is an action that occurs in a cooperative environment that
+transfers control of the thread from the current fiber to another fiber that is ready to execute.
+The ``fiber`` module provides the following functions that yield control to another fiber explicitly:
+
+*   :ref:`fiber.yield() <fiber-yield>` yields control to the scheduler.
+
+*   :ref:`fiber.sleep() <fiber-sleep>` yields control to the scheduler and sleeps for the specified number of seconds.
+
+
+
+.. _fibers_cancel_fiber:
+
+Cancel a fiber
+~~~~~~~~~~~~~~
+
+To cancel a fiber, use the :ref:`fiber_object.cancel <fiber_object-cancel>` function.
+You can also call :ref:`fiber.kill() <fiber-kill>` to locate a fiber by its numeric ID and cancel it.
+
+
+.. _fibers_limit_execution_time:
+
+Limit execution time
+~~~~~~~~~~~~~~~~~~~~
+
+If a fiber works too long without yielding control, you can use a fiber slice to limit its execution time.
+The :ref:`fiber_slice_default <compat-option-fiber-slice>` ``compat`` option controls the default value of the maximum fiber slice.
+
+There are two slice types: a warning and an error slice.
+
+*   When a warning slice is over, a :ref:`warning <cfg_logging-log_level>` message is logged, for example:
+
+    .. code-block:: console
+
+        fiber has not yielded for more than 0.500 seconds
+
+*   When an error slice is over, the ``FiberSliceIsExceeded`` error is thrown:
+
+    .. code-block:: console
+
+        FiberSliceIsExceeded: fiber slice is exceeded
+
+    Control is passed to another fiber that is ready to execute.
+
+The fiber slice is checked by all functions operating on spaces and indexes, such as :ref:`index_object.select() <box_index-select>`, :ref:`space_object.replace() <box_space-replace>`, and so on.
+You can also use the :ref:`fiber.check_slice() <fiber-check_slice>` function in application code to check whether the slice for the current fiber is over.
+
+The following functions override the the default value of the maximum fiber slice:
+
+* :ref:`fiber.set_max_slice(slice) <fiber-set_max_slice>` sets the default maximum slice for all fibers.
+* :ref:`fiber_object:set_max_slice(slice) <fiber_object-set_max_slice>` sets the maximum slice for a particular fiber.
+
+The maximum slice is set when a fiber wakes up.
+This might be its first run or wake up after ``fiber.yield()``.
+
+You can change or increase the slice for a current fiber's execution using the following functions:
+
+* :ref:`fiber.set_slice(slice) <fiber-set_slice>` sets the slice for a current fiber execution.
+* :ref:`fiber.extend_slice(slice) <fiber-extend_slice>` extends the slice for a current fiber execution.
+
+Note that the specified values don't affect a fiber's execution after ``fiber.yield()``.
+
+
+.. _fibers_information:
+
+Information about fibers
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To get information about all fibers or a specific fiber, use the following functions:
+
+*   :ref:`fiber.info <fiber-info>` returns information about all fibers.
+
+*   :ref:`fiber.status() <fiber-status>` gets the current fiber's status.
+    To get the status of the specified fiber, call :ref:`fiber_object:status() <fiber_object-status>`.
+
+*   :ref:`fiber.top() <fiber-top>` shows all alive fibers and their CPU consumption.
+
+
+.. _fibers_garbage_collection:
+
+Garbage collection
+~~~~~~~~~~~~~~~~~~
 
 Like all Lua objects, dead fibers are garbage collected. The Lua garbage collector
 frees pool allocator memory owned by the fiber, resets all fiber data, and
@@ -195,10 +303,16 @@ can be reused when another fiber is created.
 
 A fiber has all the features of a Lua
 `coroutine <http://www.lua.org/pil/contents.html#9>`_ and all the programming
-concepts that apply for Lua coroutines will apply for fibers as well. However,
+concepts that apply to Lua coroutines apply to fibers as well. However,
 Tarantool has made some enhancements for fibers and has used fibers internally.
-So, although use of coroutines is possible and supported, use of fibers is
+So, although the use of coroutines is possible and supported, the use of fibers is
 recommended.
+
+
+.. _fibers_api_reference:
+
+API reference
+~~~~~~~~~~~~~
 
 ..  module:: fiber
 
@@ -209,71 +323,83 @@ recommended.
     Create and start a fiber. The fiber is created and begins to run immediately.
 
     :param function: the function to be associated with the fiber
-    :param function-arguments: what will be passed to function
+    :param function-arguments: arguments to be passed to the function
 
     :return: created fiber object
     :rtype: userdata
 
     **Example:**
 
-    ..  code-block:: tarantoolsession
+    The script below shows how to create a fiber using ``fiber.create``:
 
-        tarantool> fiber = require('fiber')
-        ---
-        ...
-        tarantool> function function_name()
-                 >   print("I'm a fiber")
-                 > end
-        ---
-        ...
-        tarantool> fiber_object = fiber.create(function_name); print("Fiber started")
-        I'm a fiber
-        Fiber started
-        ---
-        ...
+    ..  code-block:: lua
+
+        -- app.lua --
+        fiber = require('fiber')
+
+        function greet(name)
+            print('Hello, '..name)
+        end
+
+        greet_fiber = fiber.create(greet, 'John')
+        print('Fiber already started')
+
+    The following output should be displayed after :ref:`running <app_server-launching_app_binary>` ``app.lua``:
+
+    ..  code-block:: console
+
+        $ tarantool app.lua
+        Hello, John
+        Fiber already started
 
 ..  _fiber-new:
 
 ..  function:: new(function [, function-arguments])
 
-    Create but do not start a fiber: the fiber is created but does not
-    begin to run immediately -- it starts after the fiber creator
-    (that is, the job that is calling ``fiber.new()``) yields,
-    under :ref:`transaction control <atomic-atomic_execution>`.
-    The initial fiber state is 'suspended'.
-    Thus ``fiber.new()`` differs slightly from
-    :ref:`fiber.create() <fiber-create>`.
+    Create a fiber but do not start it.
+    The created fiber starts after the fiber creator
+    (that is, the job that is calling ``fiber.new()``) yields.
+    The initial fiber state is ``ready``.
 
-    Ordinarily ``fiber.new()`` is used in conjunction with
-    :ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`
-    and
-    :ref:`fiber_object:join() <fiber_object-join>`.
+    .. NOTE::
+
+        Note that :ref:`fiber.status() <fiber-status>` returns the ``suspended`` state
+        for ``ready`` fibers because the ``ready`` state is not observable
+        using the ``fiber`` module API.
+
+    You can join fibers created using ``fiber.new`` by calling the
+    :ref:`fiber_object:join() <fiber_object-join>` function and get the result returned by the fiber's function.
+    To join the fiber, you need to make it joinable using :ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`.
 
     :param function: the function to be associated with the fiber
-    :param function-arguments: what will be passed to function
+    :param function-arguments: arguments to be passed to the function
 
     :return: created fiber object
     :rtype: userdata
 
     **Example:**
 
-    ..  code-block:: tarantoolsession
+    The script below shows how to create a fiber using ``fiber.new``:
 
-        tarantool> fiber = require('fiber')
-        ---
-        ...
-        tarantool> function function_name(arg)
-                 >   print("I'm a fiber, " .. arg)
-                 > end
-        ---
-        ...
-        tarantool> fiber_object = fiber.new(function_name, 'yay!'); print("Fiber not started yet")
+    ..  code-block:: lua
+
+        -- app.lua --
+        fiber = require('fiber')
+
+        function greet(name)
+            print('Hello, '..name)
+        end
+
+        greet_fiber = fiber.new(greet, 'John')
+        print('Fiber not started yet')
+
+    The following output should be displayed after :ref:`running <app_server-launching_app_binary>` ``app.lua``:
+
+    ..  code-block:: console
+
+        $ tarantool app.lua
         Fiber not started yet
-        ---
-        ...
-        tarantool> I'm a fiber, yay!
-        ---
-        ...
+        Hello, John
 
 ..  _fiber-self:
 
@@ -325,11 +451,55 @@ recommended.
 
     **Example:**
 
+    The ``increment`` function below contains an infinite loop
+    that adds 1 to the ``counter`` global variable.
+    Then, the current fiber goes to sleep for ``period`` seconds.
+    ``sleep`` causes an implicit :ref:`fiber.yield() <fiber-yield>`.
+
+    ..  code-block:: lua
+
+        -- app.lua --
+        fiber = require('fiber')
+
+        counter = 0
+        function increment(period)
+            while true do
+                counter = counter + 1
+                fiber.sleep(period)
+            end
+        end
+
+        increment_fiber = fiber.create(increment, 2)
+        require('console').start()
+
+    After running the script above, print the information about the fiber:
+    a fiber ID, its status, and the counter value.
+
     ..  code-block:: tarantoolsession
 
-        tarantool> fiber.sleep(1.5)
+        tarantool> print('ID: ' .. increment_fiber:id() .. '\nStatus: ' .. increment_fiber:status() .. '\nCounter: ' .. counter)
+        ID: 104
+        Status: suspended
+        Counter: 8
         ---
         ...
+
+    Then, cancel the fiber and print the information about the fiber one more time.
+    This time the fiber status is ``dead``.
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> increment_fiber:cancel()
+        ---
+        ...
+
+        tarantool> print('ID: ' .. increment_fiber:id() .. '\nStatus: ' .. increment_fiber:status() .. '\nCounter: ' .. counter)
+        ID: 104
+        Status: dead
+        Counter: 12
+        ---
+        ...
+
 
 ..  _fiber-yield:
 
@@ -341,21 +511,52 @@ recommended.
 
     **Example:**
 
-    ..  code-block:: tarantoolsession
+    In the example below, two fibers are associated with the same function.
+    Each fiber yields control after printing a greeting.
 
-        tarantool> fiber.yield()
-        ---
-        ...
+    ..  code-block:: lua
+
+        -- app.lua --
+        fiber = require('fiber')
+
+        function greet()
+            while true do
+                print('Enter a name:')
+                name = io.read()
+                print('Hello, '..name..'. I am fiber '..fiber.id())
+                fiber.yield()
+            end
+        end
+
+        for i = 1, 2 do
+            fiber_object = fiber.create(greet)
+            fiber_object:cancel()
+        end
+
+    The output might look as follows:
+
+    ..  code-block:: console
+
+        $ tarantool app.lua
+        Enter a name:
+        John
+        Hello, John. I am fiber 104
+        Enter a name:
+        Jane
+        Hello, Jane. I am fiber 105
+
 
 ..  _fiber-status:
 
 ..  function:: status([fiber_object])
 
     Return the status of the current fiber.
-    Or, if optional fiber_object is passed, return the status of the
+    If the ``fiber_object`` is passed, return the status of the
     specified fiber.
 
-    :return: the status of ``fiber``. One of: “dead”, “suspended”, or “running”.
+    :param fiber_object: (optional) the fiber object
+
+    :return: the status of ``fiber``. One of: ``dead``, ``suspended``, or ``running``.
     :rtype: string
 
     **Example:**
@@ -377,7 +578,7 @@ recommended.
                               Set to ``false`` to show less information (symbol resolving can be expensive).
     :param boolean bt: same as ``backtrace``, but with lower priority.
     :return: number of context switches (``csw``), backtrace, total memory, used
-             memory, fiber id (``fid``), fiber name.
+             memory, fiber ID (``fid``), fiber name.
              If fiber.top is enabled or Tarantool was built with ``ENABLE_FIBER_TOP``,
              processor time (``time``) is also returned.
     :rtype: table
@@ -445,10 +646,10 @@ recommended.
     ``cpu`` itself is a table whose keys are strings containing fiber ids and names.
     The three metrics available for each fiber are:
 
-    #.  ``instant`` (in per cent), which indicates the share of time the fiber
+    #.  ``instant`` (in percent), which indicates the share of time the fiber
         was executing during the previous event loop iteration.
 
-    #.  ``average`` (in per cent), which is calculated as an exponential moving
+    #.  ``average`` (in percent), which is calculated as an exponential moving
         average of instant values over all the previous event loop iterations.
 
     #.  ``time`` (in seconds), which estimates how much CPU time each fiber spent
@@ -468,8 +669,6 @@ recommended.
     rescheduled to a different CPU core, Tarantool just assumes the CPU delta was
     zero for the latest measurement. This lowers the precision of our computations,
     so the bigger ``cpu misses`` value the lower the precision of ``fiber.top()`` results.
-
-    Let's take a look at the example:
 
     **Example:**
 
@@ -542,18 +741,18 @@ recommended.
     ..  NOTE::
 
         Enabling ``fiber.top()`` slows down fiber switching by about 15%,
-        so it is disabled by default. To enable it, say ``fiber.top_enable()``.
-        To disable it after you finished debugging, with ``fiber.top_disable()``.
+        so it is disabled by default. To enable it, use ``fiber.top_enable()``.
+        To disable it after you finished debugging, use ``fiber.top_disable()``.
 
 ..  _fiber-kill:
 
 ..  function:: kill(id)
 
-    Locate a fiber by its numeric id and cancel it. In other words,
+    Locate a fiber by its numeric ID and cancel it. In other words,
     :ref:`fiber.kill() <fiber-kill>` combines :ref:`fiber.find() <fiber-find>` and
     :ref:`fiber_object:cancel() <fiber_object-cancel>`.
 
-    :param id: the id of the fiber to be cancelled.
+    :param id: the ID of the fiber to be cancelled.
     :Exception: the specified fiber does not exist or cancel is not permitted.
 
     **Example:**
@@ -590,6 +789,157 @@ recommended.
         ---
         - error: fiber is cancelled
         ...
+
+
+..  _fiber-set_max_slice:
+
+..  function:: set_max_slice(slice)
+
+    Set the default maximum slice for all fibers.
+    A :ref:`fiber slice <fibers_limit_execution_time>` limits the time period of executing a fiber without yielding control.
+
+    :param number/table slice: a fiber slice, which can one of the following:
+
+                               * a time period (in seconds) that specifies the error slice. Example: ``fiber.set_max_slice(3)``.
+                               * a table that specifies the warning and error slices (in seconds). Example: ``fiber.set_max_slice({warn = 1.5, err = 3})``.
+
+    **Example:**
+
+    The example below shows how to use ``set_max_slice`` to limit the slice for all fibers.
+    :ref:`fiber.check_slice() <fiber-check_slice>` is called inside a long-running operation to determine whether a slice for the current fiber is over.
+
+    ..  code-block:: lua
+
+        -- app.lua --
+        fiber = require('fiber')
+        clock = require('clock')
+
+        fiber.set_max_slice({warn = 1.5, err = 3})
+        time = clock.monotonic()
+        function long_operation()
+            while clock.monotonic() - time < 5 do
+                fiber.check_slice()
+                -- Long-running operation ⌛⌛⌛ --
+            end
+        end
+
+        long_operation_fiber = fiber.create(long_operation)
+
+    The output should look as follows:
+
+    ..  code-block:: console
+
+        $ tarantool app.lua
+        fiber has not yielded for more than 1.500 seconds
+        FiberSliceIsExceeded: fiber slice is exceeded
+
+
+..  _fiber-set_slice:
+
+..  function:: set_slice(slice)
+
+    Set a slice for the current fiber execution.
+    A :ref:`fiber slice <fibers_limit_execution_time>` limits the time period of executing a fiber without yielding control.
+
+    :param number/table slice: a fiber slice, which can one of the following:
+
+                               * a time period (in seconds) that specifies the error slice. Example: ``fiber.set_slice(3)``.
+                               * a table that specifies the warning and error slices (in seconds). Example: ``fiber.set_slice({warn = 1.5, err = 3})``.
+
+    **Example:**
+
+    The example below shows how to use ``set_slice`` to limit the slice for the current fiber execution.
+    :ref:`fiber.check_slice() <fiber-check_slice>` is called inside a long-running operation to determine whether a slice for the current fiber is over.
+
+    ..  code-block:: lua
+
+        -- app.lua --
+        fiber = require('fiber')
+        clock = require('clock')
+
+        time = clock.monotonic()
+        function long_operation()
+            fiber.set_slice({warn = 1.5, err = 3})
+            while clock.monotonic() - time < 5 do
+                fiber.check_slice()
+                -- Long-running operation ⌛⌛⌛ --
+            end
+        end
+
+        long_operation_fiber = fiber.create(long_operation)
+
+    The output should look as follows.
+
+    ..  code-block:: console
+
+        $ tarantool app.lua
+        fiber has not yielded for more than 1.500 seconds
+        FiberSliceIsExceeded: fiber slice is exceeded
+
+
+..  _fiber-extend_slice:
+
+..  function:: extend_slice(slice)
+
+    Extend a :ref:`slice <fibers_limit_execution_time>` for the current fiber execution.
+    For example, if the default error slice is set using :ref:`fiber.set_max_slice() <fiber-set_max_slice>`
+    to 3 seconds, ``extend_slice(1)`` extends the error slice to 4 seconds.
+
+    :param number/table slice: a fiber slice, which can one of the following:
+
+                               * a time period (in seconds) that specifies the error slice. Example: ``fiber.extend_slice(1)``.
+                               * a table that specifies the warning and error slices (in seconds). Example: ``fiber.extend_slice({warn = 0.5, err = 1})``.
+
+    **Example:**
+
+    The example below shows how to use ``extend_slice``
+    to extend the slice for the current fiber execution.
+    The default fiber slice is set using ``set_max_slice``.
+
+    ..  code-block:: lua
+
+        -- app.lua --
+        fiber = require('fiber')
+        clock = require('clock')
+
+        fiber.set_max_slice({warn = 1.5, err = 3})
+        time = clock.monotonic()
+        function long_operation()
+            fiber.extend_slice({warn = 0.5, err = 1})
+            while clock.monotonic() - time < 5 do
+                fiber.check_slice()
+                -- Long-running operation ⌛⌛⌛ --
+            end
+        end
+
+        long_operation_fiber = fiber.create(long_operation)
+
+    The output should look as follows.
+
+    ..  code-block:: console
+
+        $ tarantool app.lua
+        fiber has not yielded for more than 2.000 seconds
+        FiberSliceIsExceeded: fiber slice is exceeded
+
+    ``FiberSliceIsExceeded`` is thrown after 4 seconds.
+
+
+..  _fiber-check_slice:
+
+..  function:: check_slice()
+
+    Check whether a slice for the current fiber is over.
+    A :ref:`fiber slice <fibers_limit_execution_time>` limits the time period of executing a fiber without yielding control.
+
+    **Example:**
+
+    See the examples for the following functions:
+
+    *   :ref:`fiber.set_max_slice() <fiber-set_max_slice>`
+    *   :ref:`fiber.set_slice() <fiber-set_slice>`
+    *   :ref:`fiber.extend_slice() <fiber-extend_slice>`
+
 
 ..  _fiber-time:
 
@@ -681,7 +1031,7 @@ recommended.
                              from :ref:`fiber.create <fiber-create>`
                              or :ref:`fiber.self <fiber-self>`
                              or :ref:`fiber.find <fiber-find>`
-        :return: id of the fiber.
+        :return: ID of the fiber.
         :rtype: number
 
         ``fiber.self():id()`` can also be expressed as ``fiber.id()``.
@@ -768,7 +1118,7 @@ recommended.
         :return: the status of fiber. One of: “dead”, “suspended”, or “running”.
         :rtype: string
 
-        ``fiber.self():status(`` can also be expressed as ``fiber.status()``.
+        ``fiber.self():status()`` can also be expressed as ``fiber.status()``.
 
         **Example:**
 
@@ -784,10 +1134,10 @@ recommended.
     ..  method:: cancel()
 
         Send a cancellation request to the fiber. Running and suspended fibers can be cancelled.
-        After a fiber has been cancelled, attempts to operate on it will
-        cause errors, for example :ref:`fiber_object:name() <fiber_object-name_get>`
-        will cause ``error: the fiber is dead``. But a dead fiber can still
-        report its id and status.
+        After a fiber has been cancelled, attempts to operate on it
+        cause errors, for example, :ref:`fiber_object:name() <fiber_object-name_get>`
+        causes ``error: the fiber is dead``. But a dead fiber can still
+        report its ID and status.
         
         Cancellation is asynchronous.
         Use :ref:`fiber_object:join() <fiber_object-join>` to wait for the cancellation to complete.
@@ -804,29 +1154,62 @@ recommended.
 
         **Example:**
 
-        ..  code-block:: tarantoolsession
+        See the :ref:`fiber.sleep() <fiber-sleep>` example.
 
-            tarantool> fiber.self():cancel() -- kill self, may make program end
-            ---
-            ...
-            tarantool> fiber.self():cancel()
-            ---
-            - error: fiber is cancelled
-            ...
-            tarantool> fiber.self:id()
-            ---
-            - 163
-            ...
-            tarantool> fiber.self:status()
-            ---
-            - dead
-            ...
+
+
+    ..  _fiber_object-set_max_slice:
+
+    ..  method:: set_max_slice(slice)
+
+        Set a fiber's maximum slice.
+        A :ref:`fiber slice <fibers_limit_execution_time>` limits the time period of executing a fiber without yielding control.
+
+        :param number/table slice: a fiber slice, which can one of the following:
+
+                                   * a time period (in seconds) that specifies the error slice. Example: ``long_operation_fiber.set_max_slice(3)``.
+                                   * a table that specifies the warning and error slices (in seconds). Example: ``long_operation_fiber.set_max_slice({warn = 1.5, err = 3})``.
+
+        **Example:**
+
+        The example below shows how to use ``set_max_slice`` to limit the fiber slice.
+        :ref:`fiber.check_slice() <fiber-check_slice>` is called inside a long-running operation to determine whether a slice for the fiber is over.
+
+        ..  code-block:: lua
+
+            -- app.lua --
+            fiber = require('fiber')
+            clock = require('clock')
+
+            time = clock.monotonic()
+            function long_operation()
+                while clock.monotonic() - time < 5 do
+                    fiber.check_slice()
+                    -- Long-running operation ⌛⌛⌛ --
+                end
+            end
+
+            long_operation_fiber = fiber.new(long_operation)
+            long_operation_fiber:set_max_slice({warn = 1.5, err = 3})
+
+        The output should look as follows.
+
+        ..  code-block:: console
+
+            $ tarantool app.lua
+            fiber has not yielded for more than 1.500 seconds
+            FiberSliceIsExceeded: fiber slice is exceeded
+
+
+
+
+
 
     ..  _fiber_object-storage:
 
     ..  data:: storage
 
-        Local storage within the fiber. It is a Lua table created when it is
+        A local storage within the fiber. It is a Lua table created when it is
         first accessed. The storage can contain any number of named values,
         subject to memory limitations. Naming may be done with
         :samp:`{fiber_object}.storage.{name}` or
@@ -845,56 +1228,65 @@ recommended.
         :doc:`2.4.1 </release/2.4.1>`, and all later versions.
 
         This storage may be created for a fiber, no matter how the fiber
-        itself was created -- from C or from Lua. For example, a fiber can
+        itself is created -- from C or from Lua. For example, a fiber can
         be created in C using ``fiber_new()``, then it can insert into a
         space, which has Lua ``on_replace`` triggers, and one of the triggers
-        can create ``fiber.storage``. That storage will be deleted when the
+        can create ``fiber.storage``. That storage is deleted when the
         fiber is stopped.
 
         **Example:**
 
-        ..  code-block:: tarantoolsession
+        The example below shows how to save the last entered name in a fiber storage
+        and get this value before cancelling a fiber.
 
-            tarantool> fiber = require('fiber')
-            ---
-            ...
-            tarantool> function f () fiber.sleep(1000); end
-            ---
-            ...
-            tarantool> fiber_function = fiber.create(f)
-            ---
-            ...
-            tarantool> fiber_function.storage.str1 = 'string'
-            ---
-            ...
-            tarantool> fiber_function.storage['str1']
-            ---
-            - string
-            ...
-            tarantool> fiber_function:cancel()
-            ---
-            ...
-            tarantool> fiber_function.storage['str1']
-            ---
-            - error: '[string "return fiber_function.storage[''str1'']"]:1: the fiber is dead'
-            ...
+        ..  code-block:: lua
+
+            -- app.lua --
+            fiber = require('fiber')
+
+            function greet()
+                while true do
+                    print('Enter a name:')
+                    name = io.read()
+                    if name ~= 'bye' then
+                        fiber.self().storage.name = name
+                        print('Hello, ' .. name)
+                    else
+                        print('Goodbye, ' .. fiber.self().storage['name'])
+                        fiber.self():cancel()
+                    end
+                end
+            end
+
+            fiber_object = fiber.create(greet)
+
+        The output might look as follows:
+
+        ..  code-block:: console
+
+            $ tarantool app.lua
+            Enter a name:
+            John
+            Hello, John
+            Enter a name:
+            Jane
+            Hello, Jane
+            Enter a name:
+            bye
+            Goodbye, Jane
 
         See also :doc:`/reference/reference_lua/box_session/storage`.
 
     ..  _fiber_object-set_joinable:
 
-    ..  method:: set_joinable(true_or_false)
+    ..  method:: set_joinable(is_joinable)
 
-        ``fiber_object:set_joinable(true)`` makes a fiber joinable;
-        ``fiber_object:set_joinable(false)`` makes a fiber not joinable;
-        the default is false.
+        Make a fiber joinable.
+        A joinable fiber can be waited for using :ref:`fiber_object:join() <fiber_object-join>`.
 
-        A joinable fiber can be waited for, with
-        :ref:`fiber_object:join() <fiber_object-join>`.
-
-        Best practice is to call ``fiber_object:set_joinable()`` before the
-        fiber function begins to execute, because otherwise the fiber could
-        become 'dead' before ``fiber_object:set_joinable()`` takes effect.
+        The best practice is to call ``fiber_object:set_joinable()`` before the
+        fiber function begins to execute because otherwise the fiber could
+        become ``dead`` before ``fiber_object:set_joinable()`` takes effect.
         The usual sequence could be:
 
         1.  Call ``fiber.new()`` instead of ``fiber.create()`` to create a new
@@ -914,152 +1306,75 @@ recommended.
             fiber's status may become 'suspended' when the fiber function ends,
             instead of 'dead'.
 
-        :param true_or_false: the boolean value that changes the ``set_joinable``
-                              flag
+        :param boolean is_joinable: the boolean value that specifies whether the fiber is joinable
 
         :return: nil
 
         **Example:**
 
-        The result of the following sequence of requests is:
-
-        *   the global variable ``d`` will be 6 (which proves that the function
-            was not executed until after ``d`` was set to 1, when
-            ``fiber.sleep(1)`` caused a yield);
-        *   ``fiber.status(fi2)`` will be 'suspended' (which proves that after
-            the function was executed the fiber status did not change to 'dead').
-
-        ..  code-block:: lua
-
-            fiber=require('fiber')
-            d=0
-            function fu2() d=d+5 end
-            fi2=fiber.new(fu2) fi2:set_joinable(true) d=1 fiber.sleep(1)
-            print(d)
-            fiber.status(fi2)
+        See the :ref:`fiber_object.join() <fiber_object-join>` example.
 
     ..  _fiber_object-join:
 
     ..  method:: join()
 
-        "Join" a joinable fiber.
-        That is, let the fiber's function run and wait
-        until the fiber's status is 'dead' (normally a status
-        becomes 'dead' when the function execution finishes).
-        Joining will cause a yield, therefore, if the fiber is
-        currently in a suspended state, execution of its fiber
-        function will resume.
+        Join a fiber.
+        Joining a fiber enables you to get the result returned by the fiber's function.
 
-        This kind of waiting is more convenient than going into
-        a loop and periodically checking the status; however,
-        it works only if the fiber was created with
-        :ref:`fiber.new() <fiber-new>`
-        and was made joinable with
+        Joining a fiber runs the fiber's function and waits until the fiber's status is ``dead``.
+        Normally a status becomes ``dead`` when the function execution finishes.
+        Joining the fiber causes a yield, therefore, if the fiber is
+        currently in the ``suspended`` state, execution of its fiber function resumes.
+
+        Note that joining a fiber works only if the fiber is created using
+        :ref:`fiber.new() <fiber-new>` and is made joinable using
         :ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`.
 
-        :return: two values. The first value is boolean.
-                 If the first value is true, then the join succeeded
-                 because the fiber's function ended normally and the
-                 second result has the return value from the fiber's function.
-                 If the first value is false, then the join succeeded
-                 because the fiber's function ended abnormally and the
-                 second result has the details about the error, which
-                 one can unpack in the same way that one unpacks
-                 :ref:`a pcall result <error_handling>`.
+        :return:
 
-        :rtype: boolean +result type, or boolean + struct error
+            The ``join`` method returns two values:
+
+            *    The boolean value that indicates whether the join is succeeded
+                 because the fiber's function ended normally.
+            *    The return value of the fiber's function.
+
+            If the first value is ``false``, then the ``join`` succeeded
+            because the fiber's function ended abnormally and the
+            second result has the details about the error, which
+            one can unpack in the same way that one unpacks
+            :ref:`a pcall result <error_handling>`.
+
+        :rtype: boolean + result type, or boolean + struct error
 
         **Example:**
 
-        The result of the following sequence of requests is:
-
-        *   the first ``fiber.status()`` call returns 'suspended',
-        *   the ``join()`` call returns true,
-        *   the elapsed time is usually 5 seconds, and
-        *   the second ``fiber.status()`` call returns 'dead'.
-
-        This proves that the ``join()`` function blocks the execution
-        of the fiber that called it until the ``fi2`` fiber becomes 'dead'.
+        The example below shows how to get the result returned by the fiber's function.
 
         ..  code-block:: lua
 
-            fiber=require('fiber')
-            function fu2() fiber.sleep(5) end
-            fi2=fiber.new(fu2) fi2:set_joinable(true)
-            start_time = os.time()
-            fiber.status(fi2)
-            fi2:join()
-            print('elapsed = ' .. os.time() - start_time)
-            fiber.status(fi2)
+            fiber = require('fiber')
 
-..  _fiber-example:
+            function add(a, b)
+                return a + b
+            end
 
-Example
-~~~~~~~
+            add_fiber = fiber.new(add, 5, 6)
+            add_fiber:set_joinable(true)
+            is_success, result = add_fiber:join()
+            print('Is successful: '.. tostring(is_success))
+            print('Returned value: '..result)
 
-Make the function which will be associated with the fiber. This function
-contains an infinite loop. Each iteration
-of the loop adds 1 to a global variable named gvar, then goes to sleep for
-2 seconds. The sleep causes an implicit :ref:`fiber.yield() <fiber-yield>`.
+        The output should look as follows.
 
-..  code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
-    tarantool> fiber = require('fiber')
-    tarantool> function function_x()
-             >   gvar = 0
-             >   while true do
-             >     gvar = gvar + 1
-             >     fiber.sleep(2)
-             >   end
-             > end
-    ---
-    ...
+            $ tarantool app.lua
+            Is successful: true
+            Returned value: 11
 
-Make a fiber, associate function_x with the fiber, and start function_x.
-It will immediately "detach" so it will be running independently of the caller.
 
-..  code-block:: tarantoolsession
 
-    tarantool> gvar = 0
 
-    tarantool> fiber_of_x = fiber.create(function_x)
-    ---
-    ...
-
-Get the id of the fiber (fid), to be used in later displays.
-
-..  code-block:: tarantoolsession
-
-    tarantool> fid = fiber_of_x:id()
-    ---
-    ...
-
-Pause for a while, while the detached function runs. Then ... Display the fiber
-id, the fiber status, and gvar (gvar will have gone up a bit depending how long
-the pause lasted). The status is suspended because the fiber spends almost all
-its time sleeping or yielding.
-
-..  code-block:: tarantoolsession
-
-    tarantool> print('#', fid, '. ', fiber_of_x:status(), '. gvar=', gvar)
-    # 102 .  suspended . gvar= 399
-    ---
-    ...
-
-Pause for a while, while the detached function runs. Then ...  cancel the fiber.
-Then, once again ... Display the fiber id, the fiber status, and gvar (gvar
-will have gone up a bit more depending how long the pause lasted). This time
-the status is dead because the cancel worked.
-
-..  code-block:: tarantoolsession
-
-    tarantool> fiber_of_x:cancel()
-    ---
-    ...
-    tarantool> print('#', fid, '. ', fiber_of_x:status(), '. gvar=', gvar)
-    # 102 .  dead . gvar= 421
-    ---
-    ...
 
 ..  _fiber-fail:
 
@@ -1069,7 +1384,7 @@ Example of yield failure
 Warning: :ref:`yield() <fiber-yield>` and any function which implicitly yields
 (such as :ref:`sleep() <fiber-sleep>`) can fail (raise an exception).
 
-For example, this function has a loop which repeats until
+For example, this function has a loop that repeats until
 :ref:`cancel() <fiber_object-cancel>` happens.
 The last thing that it will print is 'before yield', which demonstrates
 that ``yield()`` failed, the loop did not continue until
@@ -1102,7 +1417,7 @@ check channel status.
 
 Message exchange is synchronous. The Lua garbage collector will mark or free the
 channel when no one is
-using it, as with any other Lua object. Use object-oriented syntax, for example
+using it, as with any other Lua object. Use object-oriented syntax, for example,
 ``channel:put(message)`` rather than ``fiber.channel.put(message)``.
 
 ..  _fiber-channel:
@@ -1358,7 +1673,7 @@ Call ``cond:broadcast()`` to send a signal to all fibers that have executed
 Example
 ~~~~~~~
 
-Assume that a tarantool instance is running and listening for connections on
+Assume that a Tarantool instance is running and listening for connections on
 localhost port 3301. Assume that guest users have privileges to connect. We will
 use the tarantoolctl utility (a utility for administrators) to start two clients.
 

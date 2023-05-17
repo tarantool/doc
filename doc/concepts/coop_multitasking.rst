@@ -74,14 +74,11 @@ Explicit yields
 ~~~~~~~~~~~~~~~
 
 **Explicit yields** are clearly visible from the invoking code. There are only two 
-explicit yields: :ref:`fiber.yield() <fiber-yield>` and :ref:`fiber.sleep(t) <fiber-sleep>`
+explicit yields: :ref:`fiber.yield() <fiber-yield>` and :ref:`fiber.sleep(t) <fiber-sleep>`.
 
-:ref:`fiber.yield() <fiber-yield>` yields execution to another ``ready`` fiber while putting itself in the ``ready`` state, 
-meaning that it will be executed again as soon as possible while being polite to other fibers 
-waiting for execution.
+* :ref:`fiber.yield() <fiber-yield>` yields execution to another ``ready`` fiber while putting itself in the ``ready`` state, meaning that it will be executed again as soon as possible while being polite to other fibers waiting for execution.
 
-:ref:`fiber.sleep(n) <fiber-sleep>` yields execution to another ``ready`` fiber and puts itself in the ``suspended`` 
-state for time ``t`` until time pass and the event loop wakes up that fiber to the ``ready`` state.
+* :ref:`fiber.sleep(t) <fiber-sleep>` yields execution to another ``ready`` fiber and puts itself in the ``suspended`` state for time ``t`` until time passes and the event loop wakes up this fiber to the ``ready`` state.
 
 In general, it is good behavior for long-running cpu-intensive tasks to yield periodically to 
 be :ref:`cooperative <app-cooperative_multitasking>` to other waiting fibers.
@@ -303,4 +300,4 @@ However, a function may perform complex calculations or be written in
 such a way that yields take a long time to occur. This can lead to
 unfair scheduling when a single client throttles the rest of the system, or to
 apparent stalls in processing requests. It is the responsibility of the function 
-author to avoid this situation.
+author to avoid this situation. As a protective mechanism, a :ref:`fiber slice <fibers_limit_execution_time>` can be used.
