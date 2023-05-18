@@ -20,6 +20,23 @@ Versions that only include bug fixes are not listed in this table.
         *   -   Since version
             -   Feature
 
+        *   -   :doc:`2.11.0 </release/2.11.0>`
+            -   **Tarantool Enterprise** |br|
+                Security enhancements: `Encrypted SSL/TLS keys <https://www.tarantool.io/en/enterprise_doc/security/#traffic-encryption>`_, new `security enforcement options <https://www.tarantool.io/en/enterprise_doc/security/#password-policy>`_, `PAP-SHA256 support <https://www.tarantool.io/en/enterprise_doc/security/#authentication-protocol>`_ |br|
+                `Read views <https://www.tarantool.io/en/enterprise_doc/read_views/>`_ |br|
+                ``zlib`` support for `tuple compression <https://www.tarantool.io/en/enterprise_doc/tuple_compression/>`_ |br|
+                `WAL extensions <https://www.tarantool.io/en/enterprise_doc/wal_extensions/>`_ |br|
+                **Tarantool Community** |br|
+                Pagination support (the :ref:`after <box_index-select>` option) |br|
+                Support for downgrading a database (:ref:`box.schema.downgrade() <box_schema-downgrade>`) |br|
+                :ref:`New bootstrap strategy <cfg_replication-bootstrap_strategy>` |br|
+                :ref:`Limitation of fiber execution time <fibers_limit_execution_time>` |br|
+                Per-module logging |br|
+                HTTP client enhancements |br|
+                Linearizable read |br|
+                Explicit sequential scanning in SQL |br|
+                :ref:`Strict fencing in RAFT <cfg_replication-election_fencing_mode>`
+
         *   -   2.10.5
             -   Introduced the ``_vspace_sequence`` system space view of the ``_space_sequence``
                 system space (:tarantool-issue:`7858`). |br|
