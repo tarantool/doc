@@ -24,6 +24,7 @@ To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
 ..  toctree::
     :maxdepth: 1
 
+    2.11_series
     2.10_series
     1.10_series
     eol_versions
