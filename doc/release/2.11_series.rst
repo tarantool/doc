@@ -1,0 +1,10 @@
+
+2.11.x (LTS)
+============
+
+Tarantool 2.11 series includes the following releases:
+
+..  toctree::
+    :maxdepth: 1
+
+    2.11.0
