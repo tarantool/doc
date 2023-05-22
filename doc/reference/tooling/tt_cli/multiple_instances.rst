@@ -1,4 +1,4 @@
-.. _tt-instances:
+.. _tt-multi-instances:
 
 Managing multiple instances
 ===========================

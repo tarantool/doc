@@ -71,6 +71,7 @@ help for the given command.
     coredump <coredump>
     create <create>
     help <help>
+    init <init>
     install <install>
     instances <instances>
     logrotate <logrotate>

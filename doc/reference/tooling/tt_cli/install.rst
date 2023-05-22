@@ -58,8 +58,8 @@ dependencies, such as a C compiler. Make sure they are available in the system.
 Tarantool EE is installed from prebuilt packages.
 
 You can also set up a local repository with installation files you need.
-To use it, specify its location in the :ref:`repo section` of the ``tt`` configuration
-file and run ``tt install`` with the ``--local-repo`` flag.
+To use it, specify its location in the :ref:`repo section <tt-config_file_repo>`
+of the ``tt`` configuration file and run ``tt install`` with the ``--local-repo`` flag.
 
 To uninstall a Tarantool or ``tt`` version, use :doc:`tt uninstall <uninstall>`.
 
