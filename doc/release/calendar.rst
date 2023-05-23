@@ -32,7 +32,7 @@ after the specified date.
         *   -   Version
             -   Release date
             -   End of life
-            -   End of series support
+            -   End of support
 
         *   -   :doc:`2.11.0 LTS </release/2.11.0>`
             -   May 22, 2023
