@@ -35,43 +35,43 @@ after the specified date.
             -   End of support
 
         *   -   :doc:`2.11.0 LTS </release/2.11.0>`
-            -   May 22, 2023
-            -   May 22, 2025
+            -   May 23, 2023
+            -   May 23, 2025
             -   Not planned yet
 
         *   -   :doc:`2.10.6 </release/2.10.6>`
             -   March 22, 2023
-            -   May 22, 2023
+            -   May 24, 2023
             -   Not planned yet
 
         *   -   :doc:`2.10.5 </release/2.10.5>`
             -   February 20, 2023
-            -   May 22, 2023
+            -   May 24, 2023
             -   Not planned yet
 
         *   -   :doc:`2.10.4 </release/2.10.4>`
             -   November 11, 2022
-            -   May 22, 2023
+            -   May 24, 2023
             -   Not planned yet
 
         *   -   :doc:`2.10.3 </release/2.10.3>`
             -   September 30, 2022
-            -   May 22, 2023
+            -   May 24, 2023
             -   Not planned yet
 
         *   -   :doc:`2.10.2 </release/2.10.2>`
             -   September 1, 2022
-            -   May 22, 2023
+            -   May 24, 2023
             -   Not planned yet
 
         *   -   :doc:`2.10.1 </release/2.10.1>`
             -   August 8, 2022
-            -   May 22, 2023
+            -   May 24, 2023
             -   Not planned yet
 
         *   -   :doc:`2.10.0 </release/2.10.0>`
             -   May 22, 2022
-            -   May 22, 2023
+            -   May 24, 2023
             -   Not planned yet
 
         *   -   :doc:`2.8.4 </release/2.8.4>`
