@@ -8,11 +8,10 @@ box.info.replication
 
 ..  data:: replication
 
-    The **replication** section of ``box.info()`` is a table array with
-    statistics for all instances in the replica set that the current instance
-    belongs to (see also :ref:`"Monitoring a replica set" <replication-monitoring>`):
+    The **replication** section of ``box.info()`` is a table with statistics for all instances in the replica set that the current instance belongs to.
+    To see the example, refer to :ref:`Monitoring a replica set <replication-monitoring>`.
 
-    In the following, *n* is the index number of one table item, for example
+    In the following, *n* is the index number of one table item, for example,
     :samp:`replication[1]`, which has data about server instance number 1,
     which may or may not be the same as the current instance
     (the "current instance" is what is responding to ``box.info``).
@@ -27,8 +26,8 @@ box.info.replication
     * :samp:`replication[{n}].lsn` is the
       :ref:`log sequence number <replication-mechanism>`
       (LSN) for the latest entry in instance *n*'s
-      :ref:`write ahead log <index-box_persistence>` (WAL).
-    * :samp:`replication[{n}].upstream` appears (is not nil)
+      :ref:`write-ahead log <index-box_persistence>` (WAL).
+    * :samp:`replication[{n}].upstream` appears (is not ``nil``)
       if the current instance is following or intending to follow instance *n*,
       which ordinarily means
       :samp:`replication[{n}].upstream.status` = ``follow``,
@@ -40,53 +39,56 @@ box.info.replication
       and is not read-only, and was specified in ``box.cfg{replication={...}}``,
       so it is shown in :ref:`box.cfg.replication <cfg_replication-replication>`.
     * :samp:`replication[{n}].upstream.status` is the replication status of the
-      connection with instance *n*:
+      connection with the instance *n*:
 
-      * ``auth`` means that :ref:`authentication <authentication>` is happening.
-      * ``connecting`` means that connection is happening.
-      * ``disconnected`` means that it is not connected to the replica set
-        (due to network problems, not replication errors).
-      * ``follow`` means that the current instance's role is "replica" (read-only,
-        or not read-only but acting as a replica for this remote peer in a
-        master-master configuration), and is receiving or able to receive data
-        from instance *n*'s (upstream) master.
-      * ``stopped`` means that replication was stopped due to a replication
-        error (for example :ref:`duplicate key <error_codes>`).
-      * ``sync`` means that the master and replica are synchronizing to have
-        the same data.
+      * ``connect``: an instance is connecting to the master.
+      * ``auth``: :ref:`authentication <authentication>` is being performed.
+      * ``wait_snapshot``: an instance is receiving metadata from the master. If join fails with a non-critical :ref:`error <error_codes>` at this stage (for example, ``ER_READONLY``, ``ER_ACCESS_DENIED``, or a network-related issue), an instance tries to find a new master to join.
+      * ``fetch_snapshot``: an instance is receiving data from the master's ``.snap`` files.
+      * ``final_join``: an instance is receiving new data added during ``fetch_snapshot``.
+      * ``sync``: the master and replica are synchronizing to have the same data.
+      * ``follow``: the current instance's role is **replica**.
+        This means that the instance is read-only or acts as a replica for this remote peer in :ref:`master-master <replication-roles>` configuration.
+        The instance is receiving or able to receive data from the instance *n*'s (upstream) master.
+      * ``stopped``: replication is stopped due to a replication
+        error (for example, :ref:`duplicate key <error_codes>`).
+      * ``disconnected``: an instance is not connected to the replica set
+        (for example, due to network issues, not replication errors).
+
+      Learn more from :ref:`Replication stages <replication_stages>`.
 
     .. _box_info_replication_upstream_idle:
 
     * :samp:`replication[{n}].upstream.idle` is the time (in seconds) since
       the last event was received.
       This is the primary indicator of replication health.
-      See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+      Learn more from :ref:`Monitoring a replica set <replication-monitoring>`.
 
     .. _box_info_replication_upstream_peer:
 
     * :samp:`replication[{n}].upstream.peer` contains instance *n*'s
-      :ref:`URI <index-uri>` for example 127.0.0.1:3302.
-      See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+      :ref:`URI <index-uri>`, for example, 127.0.0.1:3302.
+      Learn more from :ref:`Monitoring a replica set <replication-monitoring>`.
 
     .. _box_info_replication_upstream_lag:
 
     * :samp:`replication[{n}].upstream.lag` is the time difference between the
       local time of instance *n*, recorded when the event was received, and
       the local time at another master recorded when the event was written to
-      the :ref:`write ahead log <internals-wal>` on that master.
-      See more in :ref:`Monitoring a replica set <replication-monitoring>`.
+      the :ref:`write-ahead log <internals-wal>` on that master.
+      Learn more from :ref:`Monitoring a replica set <replication-monitoring>`.
 
     * :samp:`replication[{n}].upstream.message` contains an error message in
-      case of a :ref:`degraded state <replication-recover>`, otherwise it is nil.
+      case of a :ref:`degraded state <replication-recover>`; otherwise, it is ``nil``.
 
-    * :samp:`replication[{n}].downstream` appears (is not nil)
+    * :samp:`replication[{n}].downstream` appears (is not ``nil``)
       with data about an instance that is following instance *n*
       or is intending to follow it, which ordinarily means
       :samp:`replication[{n}].downstream.status` = ``follow``.
 
     * :samp:`replication[{n}].downstream.vclock` contains the
       :ref:`vector clock <replication-vector>`, which is a table of
-      '**id**, **lsn**' pairs, for example
+      '**id**, **lsn**' pairs, for example,
       :code:`vclock: {1: 3054773, 4: 8938827, 3: 285902018}`.
       (Notice that the table may have multiple pairs although ``vclock`` is
       a singular name).
@@ -105,9 +107,9 @@ box.info.replication
       vector clock), and the replica replies with what is in its entire
       vector clock table.
 
-      Also the replica sends its entire vector clock table in response
+      A replica also sends its entire vector clock table in response
       to a master's heartbeat message, see the heartbeat-message examples
-      in section :ref:`Binary protocol -- replication <box_protocol-heartbeat>`.
+      in the section :ref:`Binary protocol -- replication <box_protocol-heartbeat>`.
 
     * :samp:`replication[{n}].downstream.idle` is the time (in seconds) since the
       last time that instance *n* sent events through the downstream replication.
@@ -121,7 +123,7 @@ box.info.replication
 
     * :samp:`replication[{n}].downstream.lag` is the time difference between the
       local time at the master node, recorded when a particular transaction was written to
-      the :ref:`write ahead log <internals-wal>`, and the local time recorded when it receives an acknowledgement
+      the :ref:`write-ahead log <internals-wal>`, and the local time recorded when it receives an acknowledgment
       for this transaction from a replica.
       Since version :doc:`2.10.0 </release/2.10.0>`.
       See more in :ref:`Monitoring a replica set <replication-monitoring>`.
