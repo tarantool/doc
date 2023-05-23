@@ -8,7 +8,7 @@ To keep track of the major features in each version of the Tarantool easier, you
 
 Later versions inherit features from earlier ones in the same release series.
 Note that versions before 2.10.* are numbered according to the :doc:`legacy release policy </release/legacy-policy>`,
-while versions 2.10.0-beta1 and later adhere to the :doc:`current release policy </release/policy>`.
+while versions 2.10.0 and later adhere to the :doc:`current release policy </release/policy>`.
 Versions that only include bug fixes are not listed in this table.
 
 ..  container:: table
