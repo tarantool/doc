@@ -1,7 +1,7 @@
 Tarantool 2.11.0
 ================
 
-Released on 2023-05-22.
+Released on 2023-05-24.
 
 *   Release: :tarantool-release:`2.11.0`.
 *   Tag: ``2.11.0``.
