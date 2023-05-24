@@ -9,6 +9,7 @@ See the :doc:`release calendar <calendar>` for more information.
 ..  toctree::
     :maxdepth: 1
 
+    2.10.7
     2.10.6
     2.10.5
     2.10.4
