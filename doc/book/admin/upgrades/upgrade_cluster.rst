@@ -6,7 +6,7 @@ Replication cluster upgrade
 
 Below are the general instructions for upgrading a Tarantool cluster with replication.
 Upgrading from some versions can involve certain specifics. You can find
-instructions for individual versions :ref:`in the list below <admin-upgrades_version_specifics>`.
+instructions for individual versions :ref:`in this list <admin-upgrades_version_specifics>`.
 
 ..  important::
 
@@ -16,7 +16,7 @@ instructions for individual versions :ref:`in the list below <admin-upgrades_ver
     Before upgrading Tarantool from 1.6 to 2.x, please read about the associated
     :ref:`caveats <admin-upgrades-1.6-1.10>`.
 
-..  include:: ./_includes/upgrade_procedure.rst
+..  include:: ./../_includes/upgrade_procedure.rst
 
 Pre-upgrade checks
 ------------------
@@ -25,9 +25,9 @@ Perform these steps before and after the upgrade to ensure that your cluster
 is working correctly:
 
 #.  Check the cluster health:
-    *   On each ``router`` instance, perform the vshard.router check.
-    *   On each ``storage`` instance, perform the replication check.
-    *   On each ``storage`` instance, perform the vshard.storage check.
+    *   On each ``router`` instance, perform the :ref:`vshard.router check <upgrade_router_check>`.
+    *   On each ``storage`` instance, perform the :ref:`replication check <upgrade_replication_check>`.
+    *   On each ``storage`` instance, perform the :ref:`vshard.storage check <upgrade_storage_check>`.
 
 #.  Check all instances' logs for errors.
 
@@ -45,6 +45,8 @@ do this using a package manager or the :ref:`tt utility <tt-cli>`.
 See the installation instructions at Tarantool `download page <http://tarantool.org/download.html>`_
 and in the :ref:`tt install reference <tt-install>`.
 
+Check that the target Tarantool version is installed by running ``tarantool -v``.
+
 Upgrading routers
 ~~~~~~~~~~~~~~~~~
 
@@ -53,48 +55,61 @@ Upgrade ``router`` instances one by one:
 #.  Stop one ``router`` instance.
 #.  Start this instance on the target Tarantool version.
 #.  Repeat previous steps for each ``router`` instance.
-#.  On each ``router`` instance, perform the vshard.router check.
+#.  On each ``router`` instance, perform the :ref:`vshard.router check <upgrade_router_check>`.
 
-Upgrading storages/replicasets
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Upgrading storages
+~~~~~~~~~~~~~~~~~~
 
-Upgrade replicasets one by one:
+To upgrade storage instances, perform the following steps on each replicaset:
 
 #.  Disable failover.
 #.  Disable rebalancer.
-#.  Make sure that the Cartridge ``upgrade_shema`` flad is disabled:
-#.  Pick a read-only instance from the replicaset and restart it on
-    the target Tarantool version. Wait until it reaches the ``running``
-    status (``box.info.status == running``).
-#.  Perform the replication check on each instance on the replicaset.
-#.  Restart all other read-only instances of the repicaset on the target
-    version.
-#.  Perform the replication check on each instance on the replicaset once again.
+#.  Make sure that the Cartridge ``upgrade_schema`` :ref:`option <book/cartridge/cartridge_api/modules/cartridge/#cfg-opts-box-opts>`
+    is disabled.
+#.  Pick a read-only instance from the replicaset and restart it on the target
+    Tarantool version. Wait until it reaches the ``running`` status (``box.info.status == running``).
+#.  Perform the :ref:`replication check <upgrade_replication_check>` on each
+    instance of the replicaset.
+#.  Restart all other **read-only** instances of the replicaset on the target
+    version one by one.
+#.  Perform the :ref:`replication check <upgrade_replication_check>` on each
+    instance of the replicaset.
 #.  Make one of the updated replicas the new master:
-    *   Switch master (link)
-    *   Replication check
-    *   No return for 1.6
-#.  Update the last instance of the replicaset (the former master instance).
-#.  Perform the replication check on each instance on the replicaset once again.
+    *   :ref:`Switch master <upgrade_switch_master>'
+    *   Perform the :ref:`replication check <upgrade_replication_check>` on each
+        instance of the replicaset
+
+    .. warning::
+
+        This step is the no-return point for upgrading from version 1.6.
+
+#.  Restart the last instance of the replicaset (the former master, now
+    a read-only instance) on the target version.
+#.  Perform the :ref:`replication check <upgrade_replication_check>` on each
+    instance of the replicaset.
 #.  Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master.
-    This will update the Tarantool system spaces to match the currently installed version of Tarantool.
-    There is no need  to run ``box.schema.upgrade()`` on every node:
-    changes are propagated to other nodes via the regular replication mechanism.
+    This will update the Tarantool system spaces to match the currently installed
+    version of Tarantool. There is no need  to run ``box.schema.upgrade()`` on every
+    node: changes are propagated to other nodes via the regular replication mechanism.
+
+    .. warning::
+
+        This step is the no-return point.
 
     .. NOTE::
 
         To undo schema upgrade in a case of failed upgrade, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
 
-#.  Run ``box.snapshot()`` on every node in the replica set
-    to make sure that the replicas immediately see the upgraded database state in case of restart.
+#.  Run ``box.snapshot()`` on every node in the replica set to make sure that the
+    replicas immediately see the upgraded database state in case of restart.
 
 Post-upgrade checks
 -------------------
 
-#.  Perform the vshard storage check.
+#.  On each ``router`` instance, perform the :ref:`vshard.router check <upgrade_router_check>`.
 #.  Check all instance logs for errors.
-#.  Enable rebalancer
-#.  Enable failover
+#.  Enable rebalancer.
+#.  Enable failover.
 
 Rollback
 --------
@@ -102,14 +117,41 @@ Rollback
 Procedures and checks
 ---------------------
 
+.. _upgrade_replication_check:
+
 Replication check
 ~~~~~~~~~~~~~~~~~
+
+Run ``box.info`` and check that the following conditions are satisfied:
+
+*   ``box.info.status == running``
+*   ``box.info.replication[*].status == running``
+*   ``box.info.replication`` doesn't contain ``stopped`` or ``error`` statuses
+*   ``box.info.replication[*].upstream.lag`` values don't exceed one second
+
+Then run ``box.info` once more and check that ``box.info.replication[*].upstream.lag``
+values are updated.
+
+
+.. _upgrade_storage_check:
 
 vshard.storage check
 ~~~~~~~~~~~~~~~~~~~~
 
+Run ``vshard.storage.info()`` and check that the following conditions are satisfied:
+
+*   there are no issues or alerts
+*   replication status is ``healthy``
+
+.. _upgrade_router_check:
+
 vshard.router check
 ~~~~~~~~~~~~~~~~~~~
+
+Run ``vshard.router.info()`` and check that the following conditions are satisfied:
+
+*   there are no issues or alerts
+*   all buckets are available (``available`_rw`)
 
 Disabling failover
 ~~~~~~~~~~~~~~~~~~
@@ -123,6 +165,8 @@ Disabling rebalancer
 Enabling rebalancer
 ~~~~~~~~~~~~~~~~~~~~
 
+..  _upgrade_switch_master:
+
 Switching the master
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -133,7 +177,7 @@ Restoring xlog
 Pre-upgrade old
 ---------------
 
-.. // old shit
+.. // old check
 
 #.  Check the replica set health by running the following code on every instance:
 
@@ -167,4 +211,4 @@ Pre-upgrade old
 
 If the replica set is healthy, proceed to the upgrade.
 
-.. // end of old shit
+.. // end of old check

@@ -119,6 +119,8 @@ Version specifics
 ..  toctree::
     :maxdepth: 1
 
+    upgrades/upgrade_standalone
+    upgrades/upgrade_cluster
     upgrades/1.6-1.10
     upgrades/1.6-2.0-downtime
     upgrades/2.10.1

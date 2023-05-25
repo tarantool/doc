@@ -7,12 +7,13 @@ Standalone instance upgrade
 This procedure is for upgrading a standalone Tarantool instance in production.
 Notice that this will **always imply a downtime**.
 To upgrade **without downtime**, you need several Tarantool servers running in a
-replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
+replication cluster. Find detailed instructions in :ref:`Replication cluster upgrade <admin-upgrades_replication_cluster>`).
 
-..  include:: ./_includes/upgrade_procedure.rst
+..  include:: ./../_includes/upgrade_procedure.rst
 
 Upgrading a standalone instance
 -------------------------------
+
 #.  Stop the Tarantool instance.
 
 #.  Make a copy of all data and the package from which the current (old)
