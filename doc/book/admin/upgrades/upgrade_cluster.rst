@@ -16,7 +16,7 @@ instructions for individual versions :ref:`in this list <admin-upgrades_version_
     Before upgrading Tarantool from 1.6 to 2.x, please read about the associated
     :ref:`caveats <admin-upgrades-1.6-1.10>`.
 
-..  include:: ./../_includes/upgrade_procedure.rst
+..  include:: ./../_includes/upgrade_check_app.rst
 
 Pre-upgrade checks
 ------------------
@@ -25,6 +25,7 @@ Perform these steps before and after the upgrade to ensure that your cluster
 is working correctly:
 
 #.  Check the cluster health:
+
     *   On each ``router`` instance, perform the :ref:`vshard.router check <upgrade_router_check>`.
     *   On each ``storage`` instance, perform the :ref:`replication check <upgrade_replication_check>`.
     *   On each ``storage`` instance, perform the :ref:`vshard.storage check <upgrade_storage_check>`.
@@ -50,7 +51,7 @@ Check that the target Tarantool version is installed by running ``tarantool -v``
 Upgrading routers
 ~~~~~~~~~~~~~~~~~
 
-Upgrade ``router`` instances one by one:
+Upgrade **router** instances one by one:
 
 #.  Stop one ``router`` instance.
 #.  Start this instance on the target Tarantool version.
@@ -60,13 +61,13 @@ Upgrade ``router`` instances one by one:
 Upgrading storages
 ~~~~~~~~~~~~~~~~~~
 
-To upgrade storage instances, perform the following steps on each replicaset:
+To upgrade **storage** instances, perform the following steps on each replicaset:
 
 #.  Disable failover.
 #.  Disable rebalancer.
-#.  Make sure that the Cartridge ``upgrade_schema`` :ref:`option <book/cartridge/cartridge_api/modules/cartridge/#cfg-opts-box-opts>`
+#.  Make sure that the Cartridge ``upgrade_schema`` :doc:`option </book/cartridge/cartridge_api/modules/cartridge/#cfg-opts-box-opts>`
     is disabled.
-#.  Pick a read-only instance from the replicaset and restart it on the target
+#.  Pick a **read-only** instance from the replicaset and restart it on the target
     Tarantool version. Wait until it reaches the ``running`` status (``box.info.status == running``).
 #.  Perform the :ref:`replication check <upgrade_replication_check>` on each
     instance of the replicaset.
@@ -75,7 +76,8 @@ To upgrade storage instances, perform the following steps on each replicaset:
 #.  Perform the :ref:`replication check <upgrade_replication_check>` on each
     instance of the replicaset.
 #.  Make one of the updated replicas the new master:
-    *   :ref:`Switch master <upgrade_switch_master>'
+
+    *   :ref:`Switch master <upgrade_switch_master>`
     *   Perform the :ref:`replication check <upgrade_replication_check>` on each
         instance of the replicaset
 
@@ -122,14 +124,20 @@ Procedures and checks
 Replication check
 ~~~~~~~~~~~~~~~~~
 
-Run ``box.info`` and check that the following conditions are satisfied:
+Run ``box.info``:
+
+    ..  code-block:: tarantoolsession
+
+        box.info
+
+Check that the following conditions are satisfied:
 
 *   ``box.info.status == running``
 *   ``box.info.replication[*].status == running``
 *   ``box.info.replication`` doesn't contain ``stopped`` or ``error`` statuses
 *   ``box.info.replication[*].upstream.lag`` values don't exceed one second
 
-Then run ``box.info` once more and check that ``box.info.replication[*].upstream.lag``
+Then run ``box.info`` once more and check that ``box.info.replication[*].upstream.lag``
 values are updated.
 
 
@@ -138,7 +146,13 @@ values are updated.
 vshard.storage check
 ~~~~~~~~~~~~~~~~~~~~
 
-Run ``vshard.storage.info()`` and check that the following conditions are satisfied:
+Run ``vshard.storage.info()``:
+
+    ..  code-block:: tarantoolsession
+
+        vshard.storage.info()
+
+Check that the following conditions are satisfied:
 
 *   there are no issues or alerts
 *   replication status is ``healthy``
@@ -148,10 +162,16 @@ Run ``vshard.storage.info()`` and check that the following conditions are satisf
 vshard.router check
 ~~~~~~~~~~~~~~~~~~~
 
-Run ``vshard.router.info()`` and check that the following conditions are satisfied:
+Run ``vshard.router.info()``:
+
+    ..  code-block:: tarantoolsession
+
+        vshard.router.info()
+
+Check that the following conditions are satisfied:
 
 *   there are no issues or alerts
-*   all buckets are available (``available`_rw`)
+*   all buckets are available (``available_rw`)
 
 Disabling failover
 ~~~~~~~~~~~~~~~~~~

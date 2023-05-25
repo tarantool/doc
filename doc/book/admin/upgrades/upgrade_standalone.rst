@@ -9,7 +9,7 @@ Notice that this will **always imply a downtime**.
 To upgrade **without downtime**, you need several Tarantool servers running in a
 replication cluster. Find detailed instructions in :ref:`Replication cluster upgrade <admin-upgrades_replication_cluster>`).
 
-..  include:: ./../_includes/upgrade_procedure.rst
+..  include:: ./../_includes/upgrade_check_app.rst
 
 Upgrading a standalone instance
 -------------------------------
