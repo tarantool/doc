@@ -9,57 +9,18 @@ If required, you can also downgrade to one of the previous versions using a simi
 For information about backwards compatibility,
 see the :ref:`compatibility guarantees <compatibility_guarantees>` description.
 
-..  _admin-upgrades_instance:
+..  _admin-upgrades_check_app:
 
-Upgrading Tarantool on a standalone instance
---------------------------------------------
 
-This procedure is for upgrading a standalone Tarantool instance in production.
-Notice that this will **always imply a downtime**.
-To upgrade **without downtime**, you need several Tarantool servers running in a
-replication cluster (see :ref:`below <admin-upgrades_replication_cluster>`).
 
-#.  Stop the Tarantool server.
 
-#.  Make a copy of all data (see an appropriate hot backup procedure in
-    :ref:`Backups <admin-backups>`) and the package from which the current (old)
-    version was installed (for rollback purposes).
 
-#.  Update the Tarantool server. See installation instructions at Tarantool
-    `download page <http://tarantool.org/download.html>`_.
 
-#.  Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master.
-    This will update the Tarantool system spaces to match the currently installed version of Tarantool.
-    There is no need  to run ``box.schema.upgrade()`` on every node:
-    changes are propagated to other nodes via the regular replication mechanism.
 
-    .. NOTE::
 
-        To undo schema upgrade in a case of failed upgrade, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
 
-#.  Update your application files, if needed.
 
-#.  Launch the updated Tarantool server using ``tarantoolctl``, ``tt``, or ``systemctl``.
-
-..  _admin-upgrades_replication_cluster:
-
-Upgrading Tarantool in a replica set with no downtime
------------------------------------------------------
-
-Below are the general instructions for upgrading Tarantool in a replica set.
-Upgrading from some versions can involve certain specifics. You can find
-instructions for individual versions :ref:`in the list below <admin-upgrades_version_specifics>`.
-
-..  important::
-
-    The only way to upgrade Tarantool from version 1.6, 1.7, or 1.9 to 2.x **without downtime** is
-    taking an intermediate step by upgrading to 1.10 and then to 2.x.
-
-    Before upgrading Tarantool from 1.6 to 2.x, please read about the associated
-    :ref:`caveats <admin-upgrades-1.6-1.10>`.
-
-Preparations
-~~~~~~~~~~~~
+.. // old shit
 
 #.  Check the replica set health by running the following code on every instance:
 
@@ -93,22 +54,61 @@ Preparations
     
 If the replica set is healthy, proceed to the upgrade.
 
+.. // end of old shit
+
 Upgrade procedure
 ~~~~~~~~~~~~~~~~~
 
-..  include:: ./_includes/upgrade_procedure.rst
+#.  Install the target Tarantool version on all hosts of the cluster. You can
+    do this using a package manager or the :ref:`tt utility <tt-cli>`.
+    See the installation instructions at Tarantool `download page <http://tarantool.org/download.html>`_
+    and in the :ref:`tt install reference <tt-install>`.
 
-7.  Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master.
-    This will update the Tarantool system spaces to match the currently installed version of Tarantool.
-    There is no need  to run ``box.schema.upgrade()`` on every node:
-    changes are propagated to other nodes via the regular replication mechanism.
+#.  Upgrade ``router`` instances one by one:
 
-    .. NOTE::
+    #.  Stop one ``router`` instance.
+    #.  Start this instance on the target Tarantool version.
+    #.  Repeat previous steps for each ``router`` instance.
+    #.  On each ``router`` instance, perform the vshard.router check.
 
-        To undo schema upgrade in a case of failed upgrade, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
+#.  Upgrade a replicaset:
 
-8.  Run ``box.snapshot()`` on every node in the replica set
-    to make sure that the replicas immediately see the upgraded database state in case of restart.
+    #.  Disable failover.
+    #.  Disable rebalancer.
+    #.  Make sure that the Cartridge ``upgrade_shema`` flad is disabled:
+    #.  Pick a read-only instance from the replicaset and restart it on
+        the target Tarantool version. Wait until it reaches the ``running``
+        status (``box.info.status == running``).
+    #.  Perform the replication check on each instance on the replicaset.
+    #.  Restart all other read-only instances of the repicaset on the target
+        version.
+    #.  Perform the replication check on each instance on the replicaset once again.
+    #.  Make one of the updated replicas the new master:
+        *   Switch master (link)
+        *   Replication check
+        *   No return for 1.6
+    #.  Update the last instance of the replicaset (the former master instance).
+    #.  Perform the replication check on each instance on the replicaset once again.
+    #.  Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master.
+        This will update the Tarantool system spaces to match the currently installed version of Tarantool.
+        There is no need  to run ``box.schema.upgrade()`` on every node:
+        changes are propagated to other nodes via the regular replication mechanism.
+
+        .. NOTE::
+
+            To undo schema upgrade in a case of failed upgrade, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
+
+    #.  Run ``box.snapshot()`` on every node in the replica set
+        to make sure that the replicas immediately see the upgraded database state in case of restart.
+
+    #.  Perform the vshard storage check.
+    #.  Check all instance logs for errors.
+    #.  Enable rebalancer
+    #.  Enable failover
+
+
+Downgrade/Troubleshooting
+-------------------------
 
 
 ..  _admin-upgrades_version_specifics:
