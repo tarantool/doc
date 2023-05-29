@@ -16,13 +16,42 @@ instructions for individual versions :ref:`in this list <admin-upgrades_version_
     Before upgrading Tarantool from 1.6 to 2.x, please read about the associated
     :ref:`caveats <admin-upgrades-1.6-1.10>`.
 
+Instances of a replication cluster can be upgraded without downtime one by one due
+to redundancy. When you disconnect a node, there still remain nodes that serve the
+same purpose: store the same data buckets or work as a router.
+
+The high-level steps of cluster upgrade are the following:
+
+#.  :ref:`Ensure the application compatibility <upgrade_cluster-check-app>` with
+    the target Tarantool version.
+#.  :ref:`Check the cluster health <upgrade_cluster-pre-check>`.
+#.  :ref:`Install the target Tarantool version <upgrade_cluster-install>` on the
+    cluster nodes.
+#.  :ref:`Upgrade router <upgrade_cluster-routers>` nodes one by one.
+#.  :ref:`Upgrade storage replicasets <upgrade_cluster-storage>`one by one.
+
+The detailed upgrade instructions contain repeating steps, such as replication check
+that should be performed several times during upgrade. These steps are described
+in the :ref:`Procedures and checks <upgrade_cluster-procedure>` section.
+
+If you experience issues during upgrade, you can roll back to the source version.
+The rollback instructions are provided in the :ref:`Rollback <upgrade_cluster-rollback>`
+section.
+
+.. _upgrade_cluster-check-app:
+
+Checking your application
+-------------------------
+
 ..  include:: ./../_includes/upgrade_check_app.rst
+
+
+.. _upgrade_cluster-pre-check:
 
 Pre-upgrade checks
 ------------------
 
-Perform these steps before and after the upgrade to ensure that your cluster
-is working correctly:
+Perform these steps before the upgrade to ensure that your cluster is working correctly:
 
 #.  Check the cluster health:
 
@@ -38,15 +67,20 @@ before starting the upgrade procedure.
 Upgrading a Tarantool cluster with no downtime
 ----------------------------------------------
 
+.. _upgrade_cluster-install:
+
 Installing target version
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Install the target Tarantool version on all hosts of the cluster. You can
-do this using a package manager or the :ref:`tt utility <tt-cli>`.
+Install the target Tarantool version on all hosts of the cluster. You can do this
+using a package manager or the :ref:`tt utility <tt-cli>`.
 See the installation instructions at Tarantool `download page <http://tarantool.org/download.html>`_
 and in the :ref:`tt install reference <tt-install>`.
 
 Check that the target Tarantool version is installed by running ``tarantool -v``.
+
+
+.. _upgrade_cluster-routers:
 
 Upgrading routers
 ~~~~~~~~~~~~~~~~~
@@ -57,6 +91,9 @@ Upgrade **router** instances one by one:
 #.  Start this instance on the target Tarantool version.
 #.  Repeat previous steps for each ``router`` instance.
 #.  On each ``router`` instance, perform the :ref:`vshard.router check <upgrade_router_check>`.
+
+
+.. _upgrade_cluster-storages:
 
 Upgrading storages
 ~~~~~~~~~~~~~~~~~~
@@ -113,8 +150,14 @@ Post-upgrade checks
 #.  Enable rebalancer.
 #.  Enable failover.
 
+
+.. _upgrade_cluster-rollback:
+
 Rollback
 --------
+
+
+.. _upgrade_cluster-procedures:
 
 Procedures and checks
 ---------------------
@@ -171,7 +214,8 @@ Run ``vshard.router.info()``:
 Check that the following conditions are satisfied:
 
 *   there are no issues or alerts
-*   all buckets are available (``available_rw`)
+*   all buckets are available (the sum of ``available_rw`` on all replicas equals
+    the total number of buckets)
 
 Disabling failover
 ~~~~~~~~~~~~~~~~~~

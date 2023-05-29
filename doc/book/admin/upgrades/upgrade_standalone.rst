@@ -4,10 +4,15 @@
 Standalone instance upgrade
 ===========================
 
-This procedure is for upgrading a standalone Tarantool instance in production.
-Notice that this will **always imply a downtime**.
-To upgrade **without downtime**, you need several Tarantool servers running in a
-replication cluster. Find detailed instructions in :ref:`Replication cluster upgrade <admin-upgrades_replication_cluster>`).
+This page describes the process of upgrading a standalone Tarantool instance in production.
+Note that this **always implies a downtime** because the application needs to be
+stopped and restarted on the target version.
+
+To upgrade **without downtime**, you need multiple Tarantool servers running in a
+replication cluster. Find detailed instructions in :ref:`Replication cluster upgrade <admin-upgrades_replication_cluster>`.
+
+Checking your application
+-------------------------
 
 ..  include:: ./../_includes/upgrade_check_app.rst
 
@@ -17,7 +22,7 @@ Upgrading a standalone instance
 #.  Stop the Tarantool instance.
 
 #.  Make a copy of all data and the package from which the current (old)
-    version was installed. You may need the for rollback purposes. Find the
+    version was installed. You may need it for rollback purposes. Find the
     backup instruction in the appropriate hot backup procedure in
     :ref:`Backups <admin-backups>`.
 
@@ -26,6 +31,10 @@ Upgrading a standalone instance
     See the installation instructions at Tarantool `download page <http://tarantool.org/download.html>`_
     and in the :ref:`tt install reference <tt-install>`.
 
+    Check that the target Tarantool version is installed by running ``tarantool -v``.
+
+#.  Start your application on the target version.
+
 #.  Run :ref:`box.schema.upgrade() <box_schema-upgrade>`.
     This will update the Tarantool system spaces to match the currently installed version of Tarantool.
 
@@ -33,6 +42,9 @@ Upgrading a standalone instance
 
         To undo schema upgrade in a case of failed upgrade, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`.
 
-#.  Update your application files, if needed.
+Rollback
+--------
 
-#.  Launch the updated Tarantool server using ``tarantoolctl``, ``tt``, or ``systemctl``.
+The rollback procedure for a standalone instance in the almost same as the upgrade.
+The only difference is in the last step: you should call ``:ref:`box.schema.downgrade() <box_schema-downgrade>``
+to return the schema to the original version.

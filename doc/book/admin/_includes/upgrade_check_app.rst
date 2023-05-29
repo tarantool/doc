@@ -1,6 +1,3 @@
-Checking your application
--------------------------
-
 Before upgrading, make sure your application works with the target Tarantool version
 in a development environment:
 
