@@ -14,7 +14,7 @@ replication cluster. Find detailed instructions in :ref:`Replication cluster upg
 Checking your application
 -------------------------
 
-..  include:: ./../_includes/upgrade_check_app.rst
+..  include:: ../_includes/upgrade_check_app.rst
 
 Upgrading a standalone instance
 -------------------------------
