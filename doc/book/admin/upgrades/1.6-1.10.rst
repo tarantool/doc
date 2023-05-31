@@ -11,7 +11,7 @@ when upgrading a replica set from Tarantool 1.6 to 1.10.
 The procedure of live upgrade from 1.6 to 1.10 is similar to the general
 :ref:`cluster upgrade procedure <admin-upgrades-replication-cluster>`,
 but with slight differences in the :ref:`Upgrading storages <admin-upgrades-cluster-storages>` step.
-Find below the general storage upgrade procedure and the 1.6 specific notes for its
+Find below the general storage upgrade procedure and the 1.6-specific notes for its
 steps.
 
 General storage upgrade
@@ -22,39 +22,39 @@ General storage upgrade
 1.6 storage upgrade specifics
 -----------------------------
 
-**Replication check:** New Tarantool nodes follow 1.6 nodes just fine,
-but some 1.6 nodes might disconnect from new nodes with an ER_LOADING error.
-This is not critical, the error goes away when replication on 1.6 is restarted:
+*   **Replication check:** New Tarantool nodes follow 1.6 nodes just fine,
+    but some 1.6 nodes might disconnect from new nodes with an ER_LOADING error.
+    This is not critical, the error goes away when replication on 1.6 is restarted:
 
-..  code-block:: lua
+    ..  code-block:: lua
 
-    old_repl = box.cfg.replication
-    box.cfg{replication = ""}
-    box.cfg{replication = old_repl}
+        old_repl = box.cfg.replication
+        box.cfg{replication = ""}
+        box.cfg{replication = old_repl}
 
-**Restarting on the target version (steps 1 and 2):** Tarantool 1.10+ fails to recover
-from 1.6 xlogs, unless ``box.cfg{force_recovery = true}`` is set. There is a slight
-difference between 1.6 and 1.10 xlogs, which makes 1.6 xlogs appear erroneous to 1.10+ instances.
-In order to work around this, start the instance in ``force_recovery`` mode. To do so, add the line
-``force_recovery = true`` to the file where the instance is initialized -- for example, to ``init.lua``.
+*   **Restarting on the target version (steps 1, 2, and 4):** Tarantool 1.10+ fails to recover
+    from 1.6 xlogs, unless ``box.cfg{force_recovery = true}`` is set. There is a slight
+    difference between 1.6 and 1.10 xlogs, which makes 1.6 xlogs appear erroneous to 1.10+ instances.
+    In order to work around this, start the instance in ``force_recovery`` mode. To do so, add the line
+    ``force_recovery = true`` to the file where the instance is initialized -- for example, to ``init.lua``.
 
-**Running box.schema.upgrade() (step 5):** There was a breaking change between 1.6 and 1.10 --
-in 1.6, the field type ``num`` was an alias to ``number``, and in 1.10, ``num`` is converted to ``unsigned``.
-This means that after ``box.schema.upgrade()`` is performed on the master,
-the user might have some spaces with ``unsigned`` fields containing non-unsigned values:
-``double``, ``int``, and so on.
-This will make the snapshot inconsistent, unless an extra action is performed after ``box.schema.upgrade()``.
-Run this code in the Tarantool console on the new master:
+*   **Running box.schema.upgrade() (step 5):** There was a breaking change between 1.6 and 1.10 --
+    in 1.6, the field type ``num`` was an alias to ``number``, and in 1.10, ``num`` is converted to ``unsigned``.
+    This means that after ``box.schema.upgrade()`` is performed on the master,
+    the user might have some spaces with ``unsigned`` fields containing non-unsigned values:
+    ``double``, ``int``, and so on.
+    This will make the snapshot inconsistent, unless an extra action is performed after ``box.schema.upgrade()``.
+    Run this code in the Tarantool console on the new master:
 
-..  code-block:: lua
+    ..  code-block:: lua
 
-    -- First find all spaces containing unsigned fields with non-unsigned values in them.
-    -- Say, we have one such space denoted problematic_space and the problem is in field problematic_field_no.
-    a = box.space.problematic_space:format()
-    a[problematic_field_no].type = 'number'
-    box.space.problematic_space:format(a)
+        -- First find all spaces containing unsigned fields with non-unsigned values in them.
+        -- Say, we have one such space denoted problematic_space and the problem is in field problematic_field_no.
+        a = box.space.problematic_space:format()
+        a[problematic_field_no].type = 'number'
+        box.space.problematic_space:format(a)
 
-**Taking snapshots (step 6):** The user might be concerned with snapshot size in 1.10 --
-it's drastically smaller than the one created by 1.6 (for example, ~300 Mb vs. 6 Gb in some corner cases).
-There is nothing to worry about.
-Tarantool 1.6 didn't compress snapshots, while Tarantool 1.10 and above does that.
+*   **Taking snapshots (step 6):** The user might be concerned with snapshot size in 1.10 --
+    it's drastically smaller than the one created by 1.6 (for example, ~300 Mb vs. 6 Gb in some corner cases).
+    There is nothing to worry about.
+    Tarantool 1.6 didn't compress snapshots, while Tarantool 1.10 and above does that.

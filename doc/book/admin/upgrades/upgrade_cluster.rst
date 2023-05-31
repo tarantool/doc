@@ -39,7 +39,7 @@ The high-level steps of cluster upgrade are the following:
     to avoid overloading the general instruction with details. Typically, these are
     checks you should repeat during the upgrade to ensure it goes well.
 
-If you experience issues during upgrade, you can roll back to the source version.
+If you experience issues during upgrade, you can roll back to the original version.
 The rollback instructions are provided in the :ref:`Rollback <admin-upgrades-cluster-rollback>`
 section.
 
@@ -58,45 +58,11 @@ Pre-upgrade checks
 
 Perform these steps before the upgrade to ensure that your cluster is working correctly:
 
-#.  On each ``router`` instance, perform the :ref:`vshard.router check <admin-upgrades-router-check>`:
-
-    ..  code-block:: tarantoolsession
-
-        vshard.router.info()
-        -- no issues in the output
-        -- sum of 'bucket.available_rw' == total number of buckets
-
-#.  On each ``storage`` instance, perform the :ref:`replication check <admin-upgrades-replication-check>`:
-
-    ..  code-block:: tarantoolsession
-
-        box.info
-        -- box.info.status == 'running'
-        -- box.info.ro == 'false' on one instance in each replica set.
-        -- box.info.replication[*].upstream.status == 'follow'
-        -- box.info.replication[*].downstream.status == 'follow'
-        -- box.info.replication[*].upstream.lag <= box.cfg.replication_timeout
-        -- can also be moderately larger under a write load
-
-
-#.  On each ``storage`` instance, perform the :ref:`vshard.storage check <admin-upgrades-storage-check>`:
-
-    ..  code-block:: tarantoolsession
-
-        vshard.storage.info()
-        -- no issues in the output
-        -- replication.status == 'follow'
-
-#.  Check all instances' logs for application errors.
-
-.. note::
-
-    If you're running Cartridge, you can check the health of the cluster instances
-    on the **Cluster** tab of its web interface.
+..  include:: ../_includes/upgrade_checks_pre.rst
 
 In case of any issues, make sure to fix them before starting the upgrade procedure.
 
-.. _upgrade_cluster-install:
+.. _admin-upgrades-cluster-install:
 
 Installing the target version
 -----------------------------
@@ -136,8 +102,10 @@ Upgrading storages
 Post-upgrade checks
 -------------------
 
-#.  On each ``router`` instance, perform the :ref:`vshard.router check <uadmin-upgrades-router-check>`.
-#.  Check all instance logs for errors.
+Perform these steps after the upgrade to ensure that your cluster is working correctly:
+
+..  include:: ../_includes/upgrade_checks_pre.rst
+
 
 .. _admin-upgrades-cluster-rollback:
 
@@ -150,20 +118,20 @@ Rollback before the point of no return
 If you decide to roll back before reaching the :ref:`point of no return <admin-upgrades-no-return>`,
 your data is fully compatible with the version you had before the upgrade.
 In this case, you can roll back the same way: restart the nodes you've already
-upgraded on the source version.
+upgraded on the original version.
 
 Rollback after the point of no return
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you've passed the :ref:`point of no return <admin-upgrades-no-return>` (that is,
 executed ``box.schema.upgrade()``) during the upgrade, then a rollback requires
-downgrading the schema to the source version.
+downgrading the schema to the original version.
 
-To check if an automatic downgrade is available for your source version, use
+To check if an automatic downgrade is available for your original version, use
 ``box.schema.downgrade_versions()``. If the version you need is on the list,
 execute the following steps on **each upgraded replica set** to roll back:
 
-#.  Run ``box.schema.downgrade(<version>)`` on master specifying the source version.
+#.  Run ``box.schema.downgrade(<version>)`` on master specifying the original version.
 #.  Run ``box.snapshot()`` on every instance in the replica set to make sure that the
     replicas immediately see the downgraded database state after restart.
 #.  Restart all **read-only** instances of the replica set on the source
@@ -171,24 +139,41 @@ execute the following steps on **each upgraded replica set** to roll back:
 #.  Make one of the updated replicas the new master using the applicable instruction
     from :ref:`Switching the master <admin-upgrades-switch-master>`.
 #.  Restart the last instance of the replica set (the former master, now
-    a replica) on the source version.
+    a replica) on the original version.
 
 Then enable failover or rebalancer back as described in the :ref:`Upgrading storages <admin-upgrades-cluster-storages>`.
 
-Recovering an upgrade failure after the point of no return
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Recovering from an upgrade failure after the point of no return
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. warning::
 
     This section applies to cases when the upgrade procedure has failed and the
-    cluster is not functioning properly anymore.
+    cluster is not functioning properly anymore. Thus, it implies a downtime and
+    a full cluster restart.
 
-In case of an upgrade failure after passing the :ref:`point of no return <admin-upgrades-no-return>`
-
+In case of an upgrade failure after passing the :ref:`point of no return <admin-upgrades-no-return>`,
+follow these steps to roll back to the original version:
 
 #.  Stop all cluster instances.
-#.  Save snapshot and xlog files from all instances on which (there were changes)?
-#.
+#.  Save snapshot and xlog files from all instances on which the data was changed
+    during the upgrade. You will use them to manually restore these changes later.
+#.  Save original backups from all instances.
+#.  Restore the original Tarantool version on all hosts of the cluster.
+#.  Launch the cluster on the original version.
+
+    .. note::
+
+        At this point, the application becomes fully functional. However, the data
+        changes that happened during the upgrade are lost and must be restored manually.
+
+#.  Manually restore the data changes made during the upgrade using the :ref:`xlog <xlog>`
+    module. On instances where such changes happened (see step 2), do the following
+
+    #.  Find out the vclock value of the latest operation in the original WAL.
+    #.  Play the operations from the newer xlog starting from this vclock on the
+        instance.
+
 
 .. _admin-upgrades-cluster-procedures:
 
@@ -289,7 +274,7 @@ Switching the master
         the replica set state by calling ``box.cfg{ read_only == false }`` on the master.
         Then pick another candidate and restart the procedure.
 
-After switching the master, perform the :ref:`replication check <upgrade_replication_check>`
+After switching the master, perform the :ref:`replication check <upgrades-admin-replication-check>`
 on each instance of the replica set.
 
 Restoring xlog

@@ -14,8 +14,8 @@ Before upgrading **storage** instances:
 
         vshard.storage.rebalancer_disable()
 
-*   Make sure that the Cartridge ``upgrade_schema`` :doc:`option </book/cartridge/cartridge_api/modules/cartridge/#cfg-opts-box-opts>`
-    is disabled.
+*   Make sure that the Cartridge ``upgrade_schema`` :doc:`option </book/cartridge/cartridge_api/modules/cartridge>`
+    is ``false``.
 
 Then upgrade storage instances by performing the following steps for each replica set:
 
@@ -36,7 +36,7 @@ Then upgrade storage instances by performing the following steps for each replic
     .. warning::
 
         This is the point of no return when upgrading from version 1.6: once you
-        complete it, the schema is no longer compatible with the source Tarantool version.
+        complete it, the schema is no longer compatible with the pre-upgrade version.
 
 4.  Restart the last instance of the replica set (the former master, now
     a replica) on the target version.
@@ -51,7 +51,7 @@ Then upgrade storage instances by performing the following steps for each replic
     .. warning::
 
         This is the point of no return: once you complete it, the schema is no
-        longer compatible with the source Tarantool version.
+        longer compatible with the pre-upgrade version.
 
     .. NOTE::
 

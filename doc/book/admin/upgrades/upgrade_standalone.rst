@@ -46,5 +46,5 @@ Rollback
 --------
 
 The rollback procedure for a standalone instance in the almost same as the upgrade.
-The only difference is in the last step: you should call ``:ref:`box.schema.downgrade() <box_schema-downgrade>``
+The only difference is in the last step: you should call :ref:`box.schema.downgrade() <box_schema-downgrade>`
 to return the schema to the original version.
