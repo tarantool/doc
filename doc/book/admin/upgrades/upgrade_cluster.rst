@@ -143,8 +143,8 @@ execute the following steps on **each upgraded replica set** to roll back:
 
 Then enable failover or rebalancer back as described in the :ref:`Upgrading storages <admin-upgrades-cluster-storages>`.
 
-Recovering from an upgrade failure after the point of no return
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Recovering from a failed upgrade
+--------------------------------
 
 .. warning::
 
@@ -156,24 +156,33 @@ In case of an upgrade failure after passing the :ref:`point of no return <admin-
 follow these steps to roll back to the original version:
 
 #.  Stop all cluster instances.
-#.  Save snapshot and xlog files from all instances on which the data was changed
-    during the upgrade. You will use them to manually restore these changes later.
-#.  Save original backups from all instances.
+#.  Save snapshot and xlog files from all instances whose data was modified
+    after the last backup procedure. These files will help apply these modifications
+    later.
+#.  Save latest backups from all instances.
 #.  Restore the original Tarantool version on all hosts of the cluster.
-#.  Launch the cluster on the original version.
+#.  Launch the cluster on the original Tarantool version.
 
     .. note::
 
-        At this point, the application becomes fully functional. However, the data
-        changes that happened during the upgrade are lost and must be restored manually.
+        At this point, the application becomes fully functional and contains data
+        from the backups. However, the data modifications made after the backups
+        were taken must be restored manually.
 
-#.  Manually restore the data changes made during the upgrade using the :ref:`xlog <xlog>`
-    module. On instances where such changes happened (see step 2), do the following
+#.  Manually apply the latest data modifications from xlog files you saved on step 2
+    using the :ref:`xlog <xlog>` module. On instances where such changes happened,
+    do the following
 
     #.  Find out the vclock value of the latest operation in the original WAL.
     #.  Play the operations from the newer xlog starting from this vclock on the
         instance.
 
+    .. important::
+
+        If the upgrade has failed after an execution of ``box.schema.upgrade()``,
+        **don't apply** the modifications of system spaces done by this call.
+
+Find more information about the Tarantool recovery in :ref:`Disaster recovery <admin-disaster_recovery>`.
 
 .. _admin-upgrades-cluster-procedures:
 
@@ -276,6 +285,3 @@ Switching the master
 
 After switching the master, perform the :ref:`replication check <upgrades-admin-replication-check>`
 on each instance of the replica set.
-
-Restoring xlog
-~~~~~~~~~~~~~~
