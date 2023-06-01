@@ -27,7 +27,7 @@ concurrency:
 jobs:
   deploy-branch:
     runs-on: ubuntu-latest
-    container: tarantool/doc-builder:fat-4.1
+    container: tarantool/doc-builder:fat-4.3
     env:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
@@ -38,6 +38,10 @@ jobs:
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}
       VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
     steps:
+      - name: Prevent dubious ownership
+        id: add-safe-directory
+        run: git config --global --add safe.directory '*'
+
       - uses: actions/checkout@v3
         id: checkout
         with:
