@@ -171,7 +171,7 @@ follow these steps to roll back to the original version:
 
 #.  Manually apply the latest data modifications from xlog files you saved on step 2
     using the :ref:`xlog <xlog>` module. On instances where such changes happened,
-    do the following
+    do the following:
 
     #.  Find out the vclock value of the latest operation in the original WAL.
     #.  Play the operations from the newer xlog starting from this vclock on the
@@ -179,8 +179,9 @@ follow these steps to roll back to the original version:
 
     .. important::
 
-        If the upgrade has failed after an execution of ``box.schema.upgrade()``,
+        If the upgrade has failed after calling ``box.schema.upgrade()``,
         **don't apply** the modifications of system spaces done by this call.
+        This can make the schema incompatible with the original Tarantool version.
 
 Find more information about the Tarantool recovery in :ref:`Disaster recovery <admin-disaster_recovery>`.
 
