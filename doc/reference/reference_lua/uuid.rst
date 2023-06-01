@@ -15,51 +15,56 @@ applications, UUIDs are better.
 Tarantool generates UUIDs following the rules for RFC 4122
 `version 4 variant 1 <https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)>`_.
 
-
 Index
 -----
 
 Below is list of all ``uuid`` functions and members.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
-    +--------------------------------------+---------------------------------+
-    | Name                                 | Use                             |
-    +======================================+=================================+
-    | :ref:`uuid.nil <uuid-nil>`           | A nil object                    |
-    +--------------------------------------+---------------------------------+
-    | :ref:`uuid() <uuid-__call>` |br|     |                                 |
-    | :ref:`uuid.bin() <uuid-bin>` |br|    | Get a UUID                      |
-    | :ref:`uuid.str() <uuid-str>`         |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`uuid.new() <uuid-new>`         | Create a UUID                   |
-    +--------------------------------------+---------------------------------+
-    | :ref:`uuid.fromstr()                 |                                 |
-    | <uuid-fromstr>` |br|                 |                                 |
-    | :ref:`uuid.frombin()                 |                                 |
-    | <uuid-frombin>` |br|                 | Get a converted UUID            |
-    | :ref:`uuid_object:bin()              |                                 |
-    | <uuid-object_bin>` |br|              |                                 |
-    | :ref:`uuid_object:str()              |                                 |
-    | <uuid-object_str>`                   |                                 |
-    +--------------------------------------+---------------------------------+
-    | :ref:`uuid.is_uuid() <uuid-is_uuid>` | Check if the specified value    |
-    |                                      | has uuid type                   |
-    +--------------------------------------+---------------------------------+
-    | :ref:`uuid_object:isnil()            | Check if a UUID is an all-zero  |
-    | <uuid-isnil>`                        | value                           |
-    +--------------------------------------+---------------------------------+
+    ..  list-table::
+        :widths: 30 70
+        :header-rows: 1
+
+        *   - Name
+            - Use
+
+        *  - :ref:`uuid.NULL <uuid-null>`
+           - A NULL object
+
+        *  - :ref:`uuid() <uuid-__call>` |br|
+             :ref:`uuid.bin() <uuid-bin>` |br|
+             :ref:`uuid.str() <uuid-str>`
+
+           - Get a UUID
+
+        *  - :ref:`uuid.new() <uuid-new>`
+           - Create a UUID
+
+        *  - :ref:`uuid.fromstr() <uuid-fromstr>` |br|
+             :ref:`uuid.frombin() <uuid-frombin>` |br|
+             :ref:`uuid_object:bin() <uuid-object_bin>` |br|
+             :ref:`uuid_object:str() <uuid-object_str>`
+
+           - Get a converted UUID
+
+        *  - :ref:`uuid.is_uuid() <uuid-is_uuid>`
+           - Check if the specified value has UUID type
+
+        *  - :ref:`uuid_object:isnil() <uuid-isnil>`
+           - Check if a UUID is an all-zero value
+
 
 .. module:: uuid
 
-.. _uuid-nil:
+.. _uuid-null:
 
-.. data:: nil
+.. data:: null
 
-    A nil object
+    A NULL object
 
 .. _uuid-new:
 
@@ -185,7 +190,7 @@ Below is list of all ``uuid`` functions and members.
 
     .. method:: isnil()
 
-        The all-zero UUID value can be expressed as uuid.NULL, or as
+        The all-zero UUID value can be expressed as :ref:`uuid.NULL <uuid-null>`, or as
         ``uuid.fromstr('00000000-0000-0000-0000-000000000000')``.
         The comparison with an all-zero value can also be expressed as
         ``uuid_with_type_cdata == uuid.NULL``.
