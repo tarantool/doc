@@ -200,14 +200,6 @@ Below is a list of all ``net.box`` functions.
             It will not be present in the next major release. All programming language drivers will gradually be switched
             to the new CALL. To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``.
 
-        *   ``console``: an option to use different connection support methods (as if instances of different
-            classes are returned). With ``console = true``, you can use the ``conn`` methods ``close()``,
-            ``is_connected()``, ``wait_state()``, ``eval()`` (in this case both binary and Lua console
-            network protocols are supported).
-            With ``console = false`` (default), you can also use ``conn`` database methods (in this case only the
-            binary protocol is supported). Deprecation note: ``console = true`` is deprecated, users should use
-            :ref:`console.connect() <console-connect>` instead.
-
         *   ``connect_timeout``: a number of seconds to wait before returning "error: Connection timed out".
 
         *   ``fetch_schema``: a boolean option that controls fetching schema changes from the server. Default: ``true``.
