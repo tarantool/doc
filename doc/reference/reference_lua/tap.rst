@@ -1,3 +1,5 @@
+..  _tap-module:
+
 Module tap
 ==========
 
@@ -5,15 +7,14 @@ Overview
 --------
 
 The ``tap`` module streamlines the testing of other modules. It allows writing
-of tests in the
-`TAP protocol <https://en.wikipedia.org/wiki/Test_Anything_Protocol>`_. The results from the tests can be parsed by
-standard TAP-analyzers so they can be passed to utilities such as
-`prove <https://metacpan.org/pod/distribution/Test-Harness/bin/prove>`_. Thus
-one can run tests and then use the results for statistics, decision-making, and
+of tests in the `TAP protocol <https://en.wikipedia.org/wiki/Test_Anything_Protocol>`_.
+The results from the tests can be parsed by standard TAP-analyzers so they can be passed to utilities such as
+`prove <https://metacpan.org/pod/distribution/Test-Harness/bin/prove>`_.
+Thus, one can run tests and then use the results for statistics, decision-making, and
 so on.
 
-Index
------
+API Reference
+-------------
 
 ..  container:: table
 
@@ -79,11 +80,11 @@ Index
         *  - :ref:`taptest.strict <taptest-strict>`
            - Flag, true if comparisons with ``nil`` should be strict
 
-.. module:: tap
+..  module:: tap
 
-.. _tap-test:
+..  _tap-test:
 
-.. function:: test(test-name)
+..  function:: test(test-name)
 
     Initialize.
 
@@ -100,11 +101,11 @@ Index
         tap = require('tap')
         taptest = tap.test('test-name')
 
-.. class:: taptest
+..  class:: taptest
 
-    .. _taptest-test:
+    ..  _taptest-test:
 
-    .. method:: test(test-name, func)
+    ..  method:: test(test-name, func)
 
         Create a subtest (if no ``func`` argument specified), or
         (if all arguments are specified)
@@ -117,18 +118,18 @@ Index
         :return: taptest
         :rtype:  userdata or string
 
-    .. _taptest-plan:
+    ..  _taptest-plan:
 
-    .. method:: plan(count)
+    ..  method:: plan(count)
 
         Indicate how many tests will be performed.
 
         :param number count:
         :return: nil
 
-    .. _taptest-check:
+    ..  _taptest-check:
 
-    .. method:: check()
+    ..  method:: check()
 
         Checks the number of tests performed.
 
@@ -151,18 +152,18 @@ Index
         :return: true or false.
         :rtype:  boolean
 
-    .. _taptest-diag:
+    ..  _taptest-diag:
 
-    .. method:: diag(message)
+    ..  method:: diag(message)
 
         Display a diagnostic message.
 
         :param string message: the message to be displayed.
         :return: nil
 
-    .. _taptest-ok:
+    ..  _taptest-ok:
 
-    .. method:: ok(condition, test-name)
+    ..  method:: ok(condition, test-name)
 
         This is a basic function which is used by other functions. Depending
         on the value of ``condition``, print 'ok' or 'not ok' along with
@@ -176,7 +177,7 @@ Index
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> taptest:ok(true, 'x')
             ok - x
@@ -196,9 +197,9 @@ Index
             - true
             ...
 
-    .. _taptest-fail:
+    ..  _taptest-fail:
 
-    .. method:: fail(test-name)
+    ..  method:: fail(test-name)
 
         ``taptest:fail('x')`` is equivalent to ``taptest:ok(false, 'x')``.
         Displays the message.
@@ -208,9 +209,9 @@ Index
         :return: true or false.
         :rtype:  boolean
 
-    .. _taptest-skip:
+    ..  _taptest-skip:
 
-    .. method:: skip(message)
+    ..  method:: skip(message)
 
         ``taptest:skip('x')`` is equivalent to
         ``taptest:ok(true, 'x' .. '# skip')``.
@@ -222,7 +223,7 @@ Index
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        ..  code-block:: tarantoolsession
 
             tarantool> taptest:skip('message')
             ok - message # skip
@@ -230,9 +231,9 @@ Index
             - true
             ...
 
-    .. _taptest-is:
+    ..  _taptest-is:
 
-    .. method:: is(got, expected, test-name)
+    ..  method:: is(got, expected, test-name)
 
         Check whether the first argument equals the second argument.
         Displays extensive message if the result is false.
@@ -243,9 +244,9 @@ Index
         :return: true or false.
         :rtype:  boolean
 
-    .. _taptest-isnt:
+    ..  _taptest-isnt:
 
-    .. method:: isnt(got, expected, test-name)
+    ..  method:: isnt(got, expected, test-name)
 
         This is the negation of :ref:`taptest:is() <taptest-is>`.
 
@@ -256,9 +257,9 @@ Index
         :return: true or false.
         :rtype:  boolean
 
-    .. _taptest-is_deeply:
+    ..  _taptest-is_deeply:
 
-    .. method:: is_deeply(got, expected, test-name)
+    ..  method:: is_deeply(got, expected, test-name)
 
         Recursive version of ``taptest:is(...)``, which can be used to
         compare tables as well as scalar values.
@@ -270,9 +271,9 @@ Index
         :param lua-value expected: expected result
         :param string test-name: name of the test
 
-    .. _taptest-like:
+    ..  _taptest-like:
 
-    .. method:: like(got, expected, test-name)
+    ..  method:: like(got, expected, test-name)
 
         Verify a string against a
         `pattern <http://lua-users.org/wiki/PatternsTutorial>`_.
@@ -285,13 +286,13 @@ Index
         :param lua-value expected: pattern
         :param string test-name: name of the test
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         test:like(tarantool.version, '^[1-9]', "version")
 
-    .. _taptest-unlike:
+    ..  _taptest-unlike:
 
-    .. method:: unlike(got, expected, test-name)
+    ..  method:: unlike(got, expected, test-name)
 
         This is the negation of :ref:`taptest:like() <taptest-like>`.
 
@@ -302,9 +303,9 @@ Index
         :return: true or false.
         :rtype:  boolean
 
-    .. _taptest-istype:
+    ..  _taptest-istype:
 
-    .. method:: isnil(value, message, extra)
+    ..  method:: isnil(value, message, extra)
                 isstring(value, message, extra)
                 isnumber(value, message, extra)
                 istable(value, message, extra)
@@ -328,9 +329,9 @@ Index
         test:iscdata(slab_info.quota_size, ffi.typeof('uint64_t'), 'memcached.slab.info().quota_size returns a cdata')
 
 
-    .. _taptest-strict:
+    ..  _taptest-strict:
 
-    .. data:: strict
+    ..  data:: strict
 
         Set ``taptest.strict=true`` if :ref:`taptest:is() <taptest-is>`
         and :ref:`taptest:isnt() <taptest-isnt>`
@@ -357,7 +358,7 @@ Index
             end)
 
 
-.. _tap-example:
+..  _tap-example:
 
 =================================================
                      Example
@@ -367,7 +368,7 @@ To run this example: put the script in a file named ./tap.lua, then make
 tap.lua executable by saying ``chmod a+x ./tap.lua``, then execute using
 Tarantool as a script processor by saying ./tap.lua.
 
-.. code-block:: lua
+..  code-block:: lua
 
     #!/usr/bin/tarantool
     local tap = require('tap')
@@ -383,7 +384,7 @@ Tarantool as a script processor by saying ./tap.lua.
 
 The output from the above script will look approximately like this:
 
-.. code-block:: tap
+..  code-block:: tap
 
     TAP version 13
     1..2

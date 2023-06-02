@@ -1,4 +1,4 @@
-.. _uuid-module:
+..  _uuid-module:
 
 Module uuid
 ===========
@@ -15,8 +15,8 @@ applications, UUIDs are better.
 Tarantool generates UUIDs following the rules for RFC 4122
 `version 4 variant 1 <https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)>`_.
 
-Index
------
+API Reference
+-------------
 
 Below is list of all ``uuid`` functions and members.
 
@@ -33,7 +33,7 @@ Below is list of all ``uuid`` functions and members.
             - Use
 
         *  - :ref:`uuid.NULL <uuid-null>`
-           - A NULL object
+           - A nil UUID object
 
         *  - :ref:`uuid() <uuid-__call>` |br|
              :ref:`uuid.bin() <uuid-bin>` |br|
@@ -58,30 +58,30 @@ Below is list of all ``uuid`` functions and members.
            - Check if a UUID is an all-zero value
 
 
-.. module:: uuid
+..  module:: uuid
 
-.. _uuid-null:
+..  _uuid-null:
 
-.. data:: null
+..  data:: NULL
 
-    A NULL object
+    A nil UUID object. Contains the all-zero UUID value -- ``00000000-0000-0000-0000-000000000000``.
 
-.. _uuid-new:
+..  _uuid-new:
 
-.. function:: new()
+..  function:: new()
 
     Since version :doc:`2.4.1 </release/2.4.1>`.
     Create a UUID sequence. You can use it in an index over a
-    :ref:`uuid field <details_about_index_field_types>`.
-    For example, to create such index for a space named `test`, say:
+    :ref:`UUID field <details_about_index_field_types>`.
+    For example, to create such index for a space named ``test``, say:
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> box.space.test:create_index("pk", {parts={{field = 1, type = 'uuid'}}})
 
-    Now you can insert uuids into the space:
+    Now you can insert UUIDs into the space:
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         tarantool> box.space.test:insert{uuid.new()}
         ---
@@ -102,93 +102,93 @@ Below is list of all ``uuid`` functions and members.
     :return: a UUID
     :rtype: cdata
 
-.. _uuid-__call:
+..  _uuid-__call:
 
-.. function:: __call()
+..  function:: __call()
 
     :return: a UUID
     :rtype: cdata
 
-.. _uuid-bin:
+..  _uuid-bin:
 
-.. function:: bin([byte-order])
+..  function:: bin([byte-order])
 
     :param string byte-order:  Byte order of the resulting UUID:
 
-      * ``'l'`` - little-endian
-      * ``'b'`` - big-endian
-      * ``'h'``, ``'host'`` - endianness depends on host (default)
-      * ``'n'``, ``'network'`` - endianness depends on network
+      * ``'l'`` -- little-endian
+      * ``'b'`` -- big-endian
+      * ``'h'``, ``'host'`` -- endianness depends on host (default)
+      * ``'n'``, ``'network'`` -- endianness depends on network
 
     :return: a UUID
     :rtype: 16-byte string
 
-.. _uuid-str:
+..  _uuid-str:
 
-.. function:: str()
+..  function:: str()
 
     :return: a UUID
     :rtype: 36-byte binary string
 
-.. _uuid-fromstr:
+..  _uuid-fromstr:
 
-.. function:: fromstr(uuid-str)
+..  function:: fromstr(uuid-str)
 
     :param string uuid-str: UUID in 36-byte hexadecimal string
     :return: converted UUID
     :rtype: cdata
 
-.. _uuid-frombin:
+..  _uuid-frombin:
 
-.. function:: frombin(uuid-bin [, byte-order])
+..  function:: frombin(uuid-bin [, byte-order])
 
     :param string uuid-bin: UUID in 16-byte binary string
     :param string byte-order:  Byte order of the given string:
 
-      * ``'l'`` - little-endian
-      * ``'b'`` - big-endian
-      * ``'h'``, ``'host'`` - endianness depends on host (default)
-      * ``'n'``, ``'network'`` - endianness depends on network
+      * ``'l'`` -- little-endian
+      * ``'b'`` -- big-endian
+      * ``'h'``, ``'host'`` -- endianness depends on host (default)
+      * ``'n'``, ``'network'`` -- endianness depends on network
 
     :return: converted UUID
     :rtype: cdata
 
-.. _uuid-is_uuid:
+..  _uuid-is_uuid:
 
-.. method:: is_uuid(value)
+..  method:: is_uuid(value)
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
 
     :param value: a value to check
-    :return: ``true`` if the specified value is a uuid, and ``false`` otherwise
+    :return: ``true`` if the specified value is a UUID, and ``false`` otherwise
     :rtype: bool
 
-.. class:: uuid_object
+..  class:: uuid_object
 
-    .. _uuid-object_bin:
+    ..  _uuid-object_bin:
 
-    .. method:: bin([byte-order])
+    ..  method:: bin([byte-order])
 
         :param string byte-order:  Byte order of the resulting UUID:
 
-          * ``'l'`` - little-endian
-          * ``'b'`` - big-endian
-          * ``'h'``, ``'host'`` - endianness depends on host (default)
-          * ``'n'``, ``'network'`` - endianness depends on network
+          * ``'l'`` -- little-endian
+          * ``'b'`` -- big-endian
+          * ``'h'``, ``'host'`` -- endianness depends on host (default)
+          * ``'n'``, ``'network'`` -- endianness depends on network
 
         :return: UUID converted from cdata input value.
         :rtype: 16-byte binary string
 
-    .. _uuid-object_str:
+    ..  _uuid-object_str:
 
-    .. method:: str()
+    ..  method:: str()
 
         :return: UUID converted from cdata input value.
         :rtype: 36-byte hexadecimal string
 
-    .. _uuid-isnil:
+    ..  _uuid-isnil:
 
-    .. method:: isnil()
+    ..  method:: isnil()
 
         The all-zero UUID value can be expressed as :ref:`uuid.NULL <uuid-null>`, or as
         ``uuid.fromstr('00000000-0000-0000-0000-000000000000')``.
@@ -202,7 +202,7 @@ Below is list of all ``uuid`` functions and members.
 Example
 -------
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     tarantool> uuid = require('uuid')
     ---

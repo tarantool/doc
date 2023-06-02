@@ -16,7 +16,7 @@ If you are new to Tarantool, please see our
 ..  toctree::
     :maxdepth: 2
 
-    Basic Tarantool tutorial <getting_started_db>
+    Creating Tarantool database <getting_started_db>
     getting_started_connectors
     getting_started_cartridge
     db/index

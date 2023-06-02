@@ -112,7 +112,7 @@ constants for return codes.
 
 The error response body is a map that contains two keys: :ref:`IPROTO_ERROR <internals-iproto-keys-error>`
 and :ref:`IPROTO_ERROR_24 <internals-iproto-keys-error>`.
-While IPROTO_ERROR contains an MP_EXT value, IPROTO_ERROR_24 contains a string.
+While IPROTO_ERROR contains an MP_MAP value, IPROTO_ERROR_24 contains a string.
 The two keys are provided to accommodate clients with older and newer Tarantool versions.
 
 ..  raw:: html
