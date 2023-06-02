@@ -710,19 +710,19 @@ Router public API
 
     Bucket parameters:
 
-    * ``available_ro``—the number of buckets known to the ``router`` and available for read requests
-    * ``available_rw``—the number of buckets known to the ``router`` and available for read and write requests
-    * ``unavailable``—the number of buckets known to the ``router`` but unavailable for any requests
-    * ``unreachable``—the number of buckets whose replica sets are not known to the ``router``
+    * ``available_ro`` -- the number of buckets known to the ``router`` and available for read requests
+    * ``available_rw`` -- the number of buckets known to the ``router`` and available for read and write requests
+    * ``unreachable`` -- the number of buckets known to the ``router`` but unavailable for any requests
+    * ``unknown`` -- the number of buckets whose replica sets are not known to the ``router``
 
     Service parameters:
 
-    * ``name`` — service name. Possible values: ``discovery``, ``failover``, ``master_search``.
-    * ``status`` — service status. Possible values: ``ok``, ``error``.
-    * ``error`` — error message that appears on the ``error`` status.
-    * ``activity`` — service state. It shows what the service is currently doing
+    * ``name`` -- service name. Possible values: ``discovery``, ``failover``, ``master_search``.
+    * ``status`` -- service status. Possible values: ``ok``, ``error``.
+    * ``error`` -- error message that appears on the ``error`` status.
+    * ``activity`` -- service state. It shows what the service is currently doing
       (for example, ``updating replicas``).
-    * ``status_idx`` — incrementing counter of the status changes.
+    * ``status_idx`` -- incrementing counter of the status changes.
       The ``ok`` status is updated on every successful iteration of the service.
       The ``error`` status is updated only when it is fixed.
 
