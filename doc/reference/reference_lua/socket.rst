@@ -364,7 +364,7 @@ the function invocations will look like ``sock:function_name(...)``.
         :param integer    limit: maximum number of bytes to read, for
                                  example 50 means "stop after 50 bytes"
         :param string delimiter: separator for example
-                                 '?' means "stop after a question mark"
+                                 ``?`` means "stop after a question mark"; this parameter can accept a table of separators, for example, ``delimiter = {"\n", "\r"}``
         :param number   timeout: maximum number of seconds to wait, for
                                  example 50 means "stop after 50 seconds".
         :param table    options: :samp:`chunk={limit}` and/or

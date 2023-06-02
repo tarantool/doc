@@ -36,7 +36,7 @@ Then check the logs:
     2017-04-04 15:54:04.989 [29255] main C> entering the event loop
     2017-04-04 15:54:47.147 [29255] main/107/console/unix/: I> Hello for the manual readers
 
-When logging to a file, the system administrator must ensure logs are
+When :ref:`logging to a file <cfg_logging-log>`, the system administrator must ensure logs are
 rotated timely and do not take up all the available disk space. With
 ``tarantoolctl``, log rotation is pre-configured to use ``logrotate`` program,
 which you must have installed.
