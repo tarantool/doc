@@ -45,7 +45,6 @@ Spaces
 ------
 
 Tarantool stores tuples in containers called spaces.
-In the example above, there's a space called ``tester``.
 
 ..  glossary::
 
