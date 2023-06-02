@@ -603,28 +603,6 @@ Below is a list of all ``net.box`` functions.
 
             w:unregister()
 
-    .. _conn-timeout:
-
-    .. method:: timeout(timeout)
-
-        ``timeout(...)`` is a wrapper which sets a timeout for the request that
-        follows it. Since version 1.7.4 this method is deprecated -- it is better
-        to pass a timeout value for a method's ``{options}`` parameter.
-
-        **Example:**
-
-        .. code-block:: lua
-
-            conn:timeout(0.5).space.tester:update({1}, {{'=', 2, 15}})
-
-        Although ``timeout(...)`` is deprecated, all
-        remote calls support its use. Using a wrapper object makes
-        the remote connection API compatible with the local one, removing the need
-        for a separate ``timeout`` argument, which the local version would ignore. Once
-        a request is sent, it cannot be revoked from the remote server even if a
-        timeout expires: the timeout expiration only aborts the wait for the remote
-        server response, not the request itself.
-
     ..  _net_box-is_async:
 
     ..  method:: request(... {is_async=...})
