@@ -40,7 +40,7 @@ msgid "Use"
 msgstr "Назначение"
 
 msgid ":ref:`uuid.NULL <uuid-null>`"
-msgstr ":ref:`uuid.null <uuid-null>`"
+msgstr ":ref:`uuid.NULL <uuid-null>`"
 
 msgid "A nil UUID object"
 msgstr "Объект c нулевым UUID"
@@ -174,8 +174,8 @@ msgstr "'b' -- порядок от старшего к младшему,"
 msgid "'h' -- endianness depends on host (default),"
 msgstr "'h' -- порядок зависит от хоста (по умолчанию),"
 
-msgid "'n' -- endianness depends on network"
-msgstr "'n' -- порядок зависит от сети"
+msgid "'n' -- endianness depends on network."
+msgstr "'n' -- порядок зависит от сети."
 
 msgid "one of ``'l'``, ``'b'``, ``'h'`` or ``'n'``."
 msgstr "один из ``'l'``, ``'b'``, ``'h'`` или ``'n'``."
