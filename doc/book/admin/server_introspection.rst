@@ -107,7 +107,7 @@ To check the boot log, on systems with ``systemd``, say:
     Jan 21 21:17:47 localhost.localdomain tarantoolctl[5969]: /usr/bin/tarantoolctl: Starting instance...
     Jan 21 21:17:47 localhost.localdomain systemd[1]: Started Tarantool Database Server
 
-For more details, use the reports provided by functions in the following submodules:
+For more specific checks, use the reports provided by functions in the following submodules:
 
 * :doc:`/reference/reference_lua/box_cfg` (check and specify all
   configuration parameters for the Tarantool server)
@@ -121,10 +121,10 @@ For more details, use the reports provided by functions in the following submodu
 * :doc:`/reference/reference_lua/box_stat` (introspect Tarantool
   request and network statistics)
 
-You can also try `prometheus <https://github.com/tarantool/metrics/tree/master/metrics/plugins/prometheus>`_,
-a plugin that makes it easy to collect metrics (e.g. memory usage or number
-of requests) from Tarantool applications and databases and expose them via the
-Prometheus protocol.
+Finally, there is the `metrics <https://github.com/tarantool/metrics/tree/master/metrics>`_
+library, which enables collecting metrics (such as memory usage or number
+of requests) from Tarantool applications and expose them via various
+protocols, including Prometheus. Check :ref:`Monitoring <monitoring>` for more details.
 
 **Example**
 
