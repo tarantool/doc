@@ -121,7 +121,7 @@ For more specific checks, use the reports provided by functions in the following
 * :doc:`/reference/reference_lua/box_stat` (introspect Tarantool
   request and network statistics)
 
-Finally, there is the `metrics <https://github.com/tarantool/metrics/tree/master/metrics>`_
+Finally, there is the `metrics <https://github.com/tarantool/metrics>`_
 library, which enables collecting metrics (such as memory usage or number
 of requests) from Tarantool applications and expose them via various
 protocols, including Prometheus. Check :ref:`Monitoring <monitoring>` for more details.

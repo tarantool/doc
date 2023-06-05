@@ -208,8 +208,8 @@ Below is a list of all ``net.box`` functions.
 
             .. important::
 
-                If ``fetch_schema`` is ``false``, remote spaces are unavailable and the :ref:``on_schema_reload <net_box-on_schema_reload>``
-                trigger won't work.
+                In connections with ``fetch_schema == false``, remote spaces are unavailable
+                and the :ref:`on_schema_reload <net_box-on_schema_reload>` triggers don't work.
 
         *   ``required_protocol_version``: a minimum version of the :ref:`IPROTO protocol <box_protocol-id>`
             supported by the server. If the version of the :ref:`IPROTO protocol <box_protocol-id>` supported
