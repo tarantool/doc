@@ -19,7 +19,7 @@ box.space._session_settings
     a special structure. Default = false. |br|
     ``sql_default_engine``: default :ref:`storage engine <engines-chapter>` for new SQL tables. Default = 'memtx'. |br|
     ``sql_defer_foreign_keys``: whether foreign-key checks can wait till commit. Default = false. |br|
-    ``sql_full_column_names``: no effect at this time. Default = false. |br|
+    ``sql_full_column_names``: whether a full column name is used in :ref:`SQL result set metadata <box-sql_result_sets>`. Default = false. |br|
     ``sql_full_metadata``: whether :ref:`SQL result set metadata <box-sql_result_sets>` will have more than just name and type. Default = false. |br|
     ``sql_parser_debug``: whether to show parser steps for following statements. Default = false. |br|
     ``sql_recursive_triggers``: whether a triggered statement can activate a :ref:`trigger <sql_create_trigger>`. Default = true. |br|
