@@ -202,19 +202,6 @@ index_object:pairs()
             |               |           | The number of returned tuples will be 0 or 1.  |
             |               |           | This is the default.                           |
             +---------------+-----------+------------------------------------------------+
-            | box.index.GT  | search    | The comparison operator is '>' (greater than). |
-            | or 'GT'       | value     | If a hash of an index key is greater than a    |
-            |               |           | hash of a search value, it matches.            |
-            |               |           | Tuples are returned in ascending order by hash |
-            |               |           | of index key, which will appear to be random.  |
-            |               |           | Provided that the space is not being updated,  |
-            |               |           | one can retrieve all the tuples in a space,    |
-            |               |           | N tuples at a time, by using                   |
-            |               |           | {iterator='GT', limit=N}                       |
-            |               |           | in each search, and using the last returned    |
-            |               |           | value from the previous result as the start    |
-            |               |           | search value for the next search.              |
-            +---------------+-----------+------------------------------------------------+
 
             **Iterator types for BITSET indexes**
 
