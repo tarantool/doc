@@ -118,4 +118,4 @@ This file is usually called ``init.lua``.
 ..  WARNING::
 
     It is forbidden to modify the data schema in DDL after it has been applied.
-    For migration, there are different scenarios described below.
+    For migration, there are different scenarios described in the :ref:`Migrations <migrations>` section.

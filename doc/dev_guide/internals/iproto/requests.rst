@@ -117,7 +117,7 @@ IPROTO_TYPE_ERROR
 
 Code: 0x8XXX (see below).
 
-Instead of :ref:`IPROTO_OK <internals-iproto-keys-ok>`, an error response header
+Instead of :ref:`IPROTO_OK <internals-iproto-ok>`, an error response header
 has ``0x8XXX`` for IPROTO_REQUEST_TYPE. ``XXX`` is the error code -- a value in
 `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_.
 ``src/box/errcode.h`` also has some convenience macros which define hexadecimal
@@ -142,8 +142,8 @@ The body is a 6-item map.
 Example
 ~~~~~~~
 
-If the id of 'tspace' is 512 and this is the fifth message, |br|
-:samp:`{conn}.`:code:`space.tspace:select({0},{iterator='GT',offset=1,limit=2})` will cause:
+If the ID of ``tspace`` is 512 and this is the fifth message, |br|
+:samp:`{conn}.`:code:`space.tspace:select({0},{iterator='GT',offset=1,limit=2})` will cause the following request packet:
 
 ..  raw:: html
     :file: images/select_example.svg
@@ -173,7 +173,7 @@ but can be 1 for statements that create new objects.
 Example
 ~~~~~~~
 
-If the id of 'tspace' is 512 and this is the fifth message, |br|
+If the ID of ``tspace`` is 512 and this is the fifth message, |br|
 :samp:`{conn}.`:code:`space.tspace:insert{1, 'AAA'}` will produce the following request and response packets:
 
 ..  raw:: html
@@ -229,8 +229,9 @@ Otherwise IPROTO_TUPLE is a 5-item array:
 ..  raw:: html
     :file: images/update_example_regular.svg
 
-If the id of 'tspace' is 512 and this is the fifth message, |br|
-:samp:`{conn}.`:code:`space.tspace:update(999, {{'=', 2, 'B'}})` will cause:
+
+If the ID of ``tspace`` is 512 and this is the fifth message, |br|
+:samp:`{conn}.`:code:`space.tspace:update(999, {{'=', 2, 'B'}})` will cause the following request packet:
 
 ..  raw:: html
     :file: images/update_example.svg
@@ -239,7 +240,6 @@ The map item IPROTO_INDEX_BASE is optional.
 
 The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>`
 shows the actual byte codes of an IPROTO_UPDATE message.
-
 
 ..  _box_protocol-upsert:
 

@@ -8,39 +8,39 @@ Storage API
     ..  rst-class:: left-align-column-1
     ..  rst-class:: left-align-column-2
 
-    +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-    | :ref:`Storage public API                    | * :ref:`vshard.storage.cfg(cfg, instance_uuid) <storage_api-cfg>`                                         |
-    | <vshard-storage_public_api>`                | * :ref:`vshard.storage.info({options}) <storage_api-info>`                                                |
-    |                                             | * :ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) <storage_api-call>`          |
-    |                                             | * :ref:`vshard.storage.sync(timeout) <storage_api-sync>`                                                  |
-    |                                             | * :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`                                    |
-    |                                             | * :ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`                                |
-    |                                             | * :ref:`vshard.storage.bucket_ref(bucket_id, mode) <storage_api-bucket_ref>`                              |
-    |                                             | * :ref:`vshard.storage.bucket_refro() <storage_api-bucket_refro>`                                         |
-    |                                             | * :ref:`vshard.storage.bucket_refrw() <storage_api-bucket_refrw>`                                         |
-    |                                             | * :ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-bucket_unref>`                          |
-    |                                             | * :ref:`vshard.storage.bucket_unrefro() <storage_api-bucket_unrefro>`                                     |
-    |                                             | * :ref:`vshard.storage.bucket_unrefrw() <storage_api-bucket_unrefrw>`                                     |
-    |                                             | * :ref:`vshard.storage.find_garbage_bucket(bucket_index, control) <storage_api-find_garbage_bucket>`      |
-    |                                             | * :ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`                             |
-    |                                             | * :ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`                               |
-    |                                             | * :ref:`vshard.storage.is_locked() <storage_api-is_locked>`                                               |
-    |                                             | * :ref:`vshard.storage.rebalancing_is_in_progress() <storage_api-rebalancing_is_in_progress>`             |
-    |                                             | * :ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`                                         |
-    |                                             | * :ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`                                       |
-    |                                             | * :ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`                                     |
-    |                                             | * :ref:`vshard.storage.on_bucket_event() <storage_api-on_bucket_event>`                                   |
-    +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
-    | :ref:`Storage internal API                  | * :ref:`vshard.storage.bucket_stat(bucket_id) <storage_api-bucket_stat>`                                  |
-    | <vshard-storage_internal_api>`              | * :ref:`vshard.storage.bucket_recv(bucket_id, from, data) <storage_api-bucket_recv>`                      |
-    |                                             | * :ref:`vshard.storage.bucket_delete_garbage(bucket_id) <storage_api-bucket_delete_garbage>`              |
-    |                                             | * :ref:`vshard.storage.bucket_collect(bucket_id) <storage_api-bucket_collect>`                            |
-    |                                             | * :ref:`vshard.storage.bucket_force_create(first_bucket_id, count) <storage_api-bucket_force_create>`     |
-    |                                             | * :ref:`vshard.storage.bucket_force_drop(bucket_id, to) <storage_api-bucket_force_drop>`                  |
-    |                                             | * :ref:`vshard.storage.bucket_send(bucket_id, to) <storage_api-bucket_send>`                              |
-    |                                             | * :ref:`vshard.storage.buckets_discovery() <storage_api-buckets_discovery>`                               |
-    |                                             | * :ref:`vshard.storage.rebalancer_request_state() <storage_api-rebalancer_request_state>`                 |
-    +---------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+    +---------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+    | :ref:`Storage public API                    | * :ref:`vshard.storage.cfg(cfg, instance_uuid) <storage_api-cfg>`                                                  |
+    | <vshard-storage_public_api>`                | * :ref:`vshard.storage.info({options}) <storage_api-info>`                                                         |
+    |                                             | * :ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) <storage_api-call>`                   |
+    |                                             | * :ref:`vshard.storage.sync(timeout) <storage_api-sync>`                                                           |
+    |                                             | * :ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`                                             |
+    |                                             | * :ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`                                         |
+    |                                             | * :ref:`vshard.storage.bucket_ref(bucket_id, mode) <storage_api-bucket_ref>`                                       |
+    |                                             | * :ref:`vshard.storage.bucket_refro(bucket_id) <storage_api-bucket_refro>`                                         |
+    |                                             | * :ref:`vshard.storage.bucket_refrw(bucket_id) <storage_api-bucket_refrw>`                                         |
+    |                                             | * :ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-bucket_unref>`                                   |
+    |                                             | * :ref:`vshard.storage.bucket_unrefro(bucket_id) <storage_api-bucket_unrefro>`                                     |
+    |                                             | * :ref:`vshard.storage.bucket_unrefrw(bucket_id) <storage_api-bucket_unrefrw>`                                     |
+    |                                             | * :ref:`vshard.storage.find_garbage_bucket(bucket_index, control) <storage_api-find_garbage_bucket>`               |
+    |                                             | * :ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`                                      |
+    |                                             | * :ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`                                        |
+    |                                             | * :ref:`vshard.storage.is_locked() <storage_api-is_locked>`                                                        |
+    |                                             | * :ref:`vshard.storage.rebalancing_is_in_progress() <storage_api-rebalancing_is_in_progress>`                      |
+    |                                             | * :ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`                                                  |
+    |                                             | * :ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`                                                |
+    |                                             | * :ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`                                              |
+    |                                             | * :ref:`vshard.storage.on_bucket_event() <storage_api-on_bucket_event>`                                            |
+    +---------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+    | :ref:`Storage internal API                  | * :ref:`vshard.storage.bucket_stat(bucket_id) <storage_api-bucket_stat>`                                           |
+    | <vshard-storage_internal_api>`              | * :ref:`vshard.storage.bucket_recv(bucket_id, from, data) <storage_api-bucket_recv>`                               |
+    |                                             | * :ref:`vshard.storage.bucket_delete_garbage(bucket_id) <storage_api-bucket_delete_garbage>`                       |
+    |                                             | * :ref:`vshard.storage.bucket_collect(bucket_id) <storage_api-bucket_collect>`                                     |
+    |                                             | * :ref:`vshard.storage.bucket_force_create(first_bucket_id, count) <storage_api-bucket_force_create>`              |
+    |                                             | * :ref:`vshard.storage.bucket_force_drop(bucket_id, to) <storage_api-bucket_force_drop>`                           |
+    |                                             | * :ref:`vshard.storage.bucket_send(bucket_id, to) <storage_api-bucket_send>`                                       |
+    |                                             | * :ref:`vshard.storage.buckets_discovery() <storage_api-buckets_discovery>`                                        |
+    |                                             | * :ref:`vshard.storage.rebalancer_request_state() <storage_api-rebalancer_request_state>`                          |
+    +---------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
 
 ..  _vshard-storage_public_api:
 
@@ -169,17 +169,27 @@ Storage public API
 
 ..  _storage_api-bucket_refro:
 
-..  function:: vshard.storage.bucket_refro()
+..  function:: vshard.storage.bucket_refro(bucket_id)
 
     An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in
     the RO mode.
 
+    :param bucket_id: a bucket identifier
+
+    :return: ``true`` if the bucket ref is created successfully; or ``nil`` and
+             ``err`` explaining why the ref cannot be created
+
 ..  _storage_api-bucket_refrw:
 
-..  function:: vshard.storage.bucket_refrw()
+..  function:: vshard.storage.bucket_refrw(bucket_id)
 
     An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in
     the RW mode.
+
+    :param bucket_id: a bucket identifier
+
+    :return: ``true`` if the bucket ref is created successfully; or ``nil`` and
+             ``err`` explaining why the ref cannot be created
 
 ..  _storage_api-bucket_unref:
 
@@ -195,17 +205,29 @@ Storage public API
 
 ..  _storage_api-bucket_unrefro:
 
-..  function:: vshard.storage.bucket_unrefro()
+..  function:: vshard.storage.bucket_unrefro(bucket_id)
 
     An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` in
     the RO mode.
 
+    :param bucket_id: a bucket identifier
+
+    :return: ``true`` if the bucket ref is removed successfully; or ``nil`` and
+             ``err`` explaining why the ref cannot be removed
+
+
 ..  _storage_api-bucket_unrefrw:
 
-..  function:: vshard.storage.bucket_unrefrw()
+..  function:: vshard.storage.bucket_unrefrw(bucket_id)
 
     An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` in
     the RW mode.
+
+    :param bucket_id: a bucket identifier
+
+    :return: ``true`` if the bucket ref is removed successfully; or ``nil`` and
+             ``err`` explaining why the ref cannot be removed
+
 
 ..  _storage_api-find_garbage_bucket:
 

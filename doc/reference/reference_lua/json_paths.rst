@@ -8,8 +8,8 @@
                                    Overview
 ===============================================================================
 
-Since version 2.3 Tarantool supports JSON path updates. Now you can update/upsert
-formatted :doc:`tuple </reference/reference_lua/box_tuple/update>` /
+Since version :doc:`2.3 </release/2.3.2>`, Tarantool supports JSON path updates.
+You can update or upsert formatted :doc:`tuple </reference/reference_lua/box_tuple/update>` /
 :ref:`space <box_space-update>` /
 :doc:`index </reference/reference_lua/box_index/update>`
 fields by name (not only by field number). Updates of nested structures are also supported.

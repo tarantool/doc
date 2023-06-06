@@ -44,7 +44,7 @@ Command options
     “Tarantool” is the name of the reusable asynchronous networking
     programming framework.
 
-    The 3-number version follows the standard ``<major>-<minor>-<patch>``
+    :ref:`The 3-number version <release-policy>` follows the standard ``<major>-<minor>-<patch>``
     scheme, in which ``<major>`` number is changed only rarely, ``<minor>`` is
     incremented for each new milestone and indicates possible incompatible
     changes, and ``<patch>`` stands for the number of bug fix releases made after
@@ -324,7 +324,7 @@ To see all the non-null parameters, execute ``box.cfg`` (no parentheses).
     ...
 
 To see a particular parameter value, call a corresponding ``box.cfg`` option.
-For example, ``box.cfg.listen`` shows the specified :ref:`listen address <cfg_basic-listen>.
+For example, ``box.cfg.listen`` shows the specified :ref:`listen address <cfg_basic-listen>`.
 
 ..  code-block:: tarantoolsession
 

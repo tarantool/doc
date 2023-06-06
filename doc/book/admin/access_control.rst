@@ -222,7 +222,7 @@ to user 'U'.
       box.schema.user.grant('U','create','function')
       box.schema.user.grant('U','read,write','space','_func')
     -- So that 'U' can create any object of any type
-      box.schema.user.grant('guest','read,write,create','universe')
+      box.schema.user.grant('U','read,write,create','universe')
     -- So that 'U' can grant access on objects that 'U' created
       box.schema.user.grant('U','write','space','_priv')
     -- So that 'U' can select or get from a space named 'T'
