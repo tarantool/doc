@@ -203,8 +203,6 @@ application.
     The ``log_format='json'`` entry has the same fields along with their labels,
     and in addition has the file name and line number of the Tarantool source.
 
-    Setting ``log_format`` to 'json' is illegal if the output is going to "syslog:".
-
     | Type: string
     | Default: 'plain'
     | Environment variable: TT_LOG_FORMAT
