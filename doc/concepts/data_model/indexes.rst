@@ -197,9 +197,13 @@ We give an overview of index features in the following table:
 
         *   - :doc:`iterator types </reference/reference_lua/box_index/pairs>`
             - ALL, EQ, REQ, GT, GE, LT, LE
-            - ALL, EQ, GT
+            - ALL, EQ
             - ALL, EQ, GT, GE, LT, LE, OVERLAPS, NEIGHBOR
             - ALL, EQ, BITS_ALL_SET, BITS_ANY_SET, BITS_ALL_NOT_SET
+
+.. NOTE::
+
+    In :doc:`2.11.0 </release/2.11.0>`, the ``GT`` index type is deprecated for HASH indexes.
 
 .. _indexes-tree:
 
