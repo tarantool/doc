@@ -24,11 +24,11 @@ box.execute()
       name. An extra parameter is any Lua expression.
 
       If placeholders are question marks, then they are replaced by
-      extra-parameter values in corresponding positions. That is, the first ``?``
+      ``extra-parameters`` values in corresponding positions. That is, the first ``?``
       is replaced by the first extra parameter, the second ``?`` is
       replaced by the second extra parameter, and so on.
 
-      If placeholders are ``:names``, then they are replaced by ``extra-parameter`` values with
+      If placeholders are ``:names``, then they are replaced by ``extra-parameters`` values with
       corresponding names.
 
       For example, this request that contains literal values ``1`` and ``'x'``:
