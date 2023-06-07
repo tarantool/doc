@@ -68,7 +68,7 @@ Below is a list of all ``clock`` functions.
               realtime()
               realtime64()
 
-    The wall clock time. Derived from C function ```clock_gettime(CLOCK_REALTIME)``.
+    The wall clock time. Derived from C function ``clock_gettime(CLOCK_REALTIME)``.
 
     :return: seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted.
     :rtype: number or cdata (ctype<int64_t>)
