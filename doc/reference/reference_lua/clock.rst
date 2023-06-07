@@ -1,4 +1,4 @@
-.. _clock-module:
+..  _clock-module:
 
 -------------------------------------------------------------------------------
                             Module clock
@@ -19,10 +19,10 @@ nanoseconds.
 
 Below is a list of all ``clock`` functions.
 
-.. container:: table
+..  container:: table
 
-    .. rst-class:: left-align-column-1
-    .. rst-class:: left-align-column-2
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
 
     +--------------------------------------+---------------------------------+
     | Name                                 | Use                             |
@@ -59,23 +59,23 @@ Below is a list of all ``clock`` functions.
     | <clock-bench>`                       | takes within a processor        |
     +--------------------------------------+---------------------------------+
 
-.. module:: clock
+..  module:: clock
 
-.. _clock-time:
+..  _clock-time:
 
-.. function:: time()
+..  function:: time()
               time64()
               realtime()
               realtime64()
 
-    The wall clock time. Derived from C function clock_gettime(CLOCK_REALTIME).
+    The wall clock time. Derived from C function ``clock_gettime(CLOCK_REALTIME)``.
 
     :return: seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted.
     :rtype: number or cdata (ctype<int64_t>)
 
     **Example:**
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         -- This will print an approximate number of years since 1970.
         clock = require('clock')
@@ -84,12 +84,12 @@ Below is a list of all ``clock`` functions.
     See also :ref:`fiber.time64 <fiber-time64>` and the standard Lua function
     `os.clock <http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_.
 
-.. _clock-monotonic:
+..  _clock-monotonic:
 
-.. function:: monotonic()
+..  function:: monotonic()
               monotonic64()
 
-    The monotonic time. Derived from C function clock_gettime(CLOCK_MONOTONIC).
+    The monotonic time. Derived from C function ``clock_gettime(CLOCK_MONOTONIC)``.
     Monotonic time is similar to wall clock time but is not affected by changes
     to or from daylight saving time, or by changes done by a user.
     This is the best function to use with benchmarks that need to calculate
@@ -100,15 +100,15 @@ Below is a list of all ``clock`` functions.
 
     **Example:**
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         -- This will print nanoseconds since the start.
         clock = require('clock')
         print(clock.monotonic64())
 
-.. _clock-proc:
+..  _clock-proc:
 
-.. function:: proc()
+..  function:: proc()
               proc64()
 
     The processor time. Derived from C function
@@ -121,15 +121,15 @@ Below is a list of all ``clock`` functions.
 
     **Example:**
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         -- This will print nanoseconds in the CPU since the start.
         clock = require('clock')
         print(clock.proc64())
 
-.. _clock-thread:
+..  _clock-thread:
 
-.. function:: thread()
+..  function:: thread()
               thread64()
 
     The thread time. Derived from C function
@@ -142,15 +142,15 @@ Below is a list of all ``clock`` functions.
 
     **Example:**
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         -- This will print seconds in the thread since the start.
         clock = require('clock')
         print(clock.thread64())
 
-.. _clock-bench:
+..  _clock-bench:
 
-.. function:: bench(function[, ...])
+..  function:: bench(function[, ...])
 
     The time that a function takes within a processor. This function uses
     ``clock.proc()``, therefore it calculates elapsed CPU time. Therefore it is
@@ -159,12 +159,12 @@ Below is a list of all ``clock`` functions.
     :param function function: function or function reference
     :param               ...: whatever values are required by the function.
 
-    :return: **table**. first element - seconds of CPU time, second element -
+    :return: **table**. first element -- seconds of CPU time, second element --
              whatever the function returns.
 
     **Example:**
 
-    .. code-block:: lua
+    ..  code-block:: lua
 
         -- Benchmark a function which sleeps 10 seconds.
         -- NB: bench() will not calculate sleep time.
@@ -177,4 +177,4 @@ Below is a list of all ``clock`` functions.
         end
         clock.bench(f, 10)
 
-.. _CLOCK_GETTIME: http://pubs.opengroup.org/onlinepubs/9699919799/functions/clock_getres.html
+..  _CLOCK_GETTIME: http://pubs.opengroup.org/onlinepubs/9699919799/functions/clock_getres.html
