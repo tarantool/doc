@@ -81,7 +81,7 @@
 
 .. c:function:: bool fiber_set_cancellable(bool yesno)
 
-    Make it possible or not possible to wakeup the current fiber immediately
+    Deprecated since :doc:`2.11.0 </release/2.11.0>`. Make it possible or not possible to wakeup the current fiber immediately
     when it's cancelled.
 
     :param struct fiber* f: fiber
