@@ -670,6 +670,10 @@ API reference
     zero for the latest measurement. This lowers the precision of our computations,
     so the bigger ``cpu misses`` value the lower the precision of ``fiber.top()`` results.
 
+    .. NOTE::
+
+        With :doc:`2.11.0 </release/2.11.0>`, ``cpu_misses`` is deprecated and always returns 0.
+
     **Example:**
 
     ..  code-block:: tarantoolsession
