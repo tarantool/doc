@@ -102,6 +102,9 @@ Below is a list of all ``box.info`` functions and members.
         *  - :doc:`./box_info/ro_reason`
            - Show the current mode of an instance (writable or read-only)
 
+        *  - :doc:`./box_info/schema_version`
+           - Show the database schema version
+
 ..  toctree::
     :hidden:
 
@@ -114,3 +117,4 @@ Below is a list of all ``box.info`` functions and members.
     box_info/election
     box_info/synchro
     box_info/ro_reason
+    box_info/schema_version
