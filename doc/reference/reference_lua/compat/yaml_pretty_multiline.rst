@@ -47,8 +47,8 @@ Known compatibility issues
 
 At this point, no incompatible modules are known.
 
-Detecting issues in you codebase
---------------------------------
+Detecting issues in your codebase
+---------------------------------
 
 Both encoding styles are correct from the YAML standard standpoint, but if your module relies on encodings results bytewise, it may break with this change.
 Be cautious if you do the following:

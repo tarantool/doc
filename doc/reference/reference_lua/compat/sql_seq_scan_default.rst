@@ -88,8 +88,8 @@ Known compatibility issues
 
 At this point, no incompatible modules are known.
 
-Detecting issues in you codebase
---------------------------------
+Detecting issues in your codebase
+---------------------------------
 
 We expect most SELECTs that do not use indexes to fail after the ``sql_seq_scan`` session setting is set to false.
 The best way to avoid this is to refactor the query to use indexes.
