@@ -15,6 +15,7 @@ _theme/tarantool/static/design.css.map
 .idea
 rocks
 .vscode/
+doc/code_snippets/.rocks
 
 # Crowdin API key
 apikey.txt
