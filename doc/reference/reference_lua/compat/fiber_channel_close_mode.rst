@@ -99,8 +99,8 @@ Known compatibility issues
 
 At this point, no incompatible modules are known.
 
-Detecting issues in you codebase
---------------------------------
+Detecting issues in your codebase
+---------------------------------
 
 The new behavior is mostly backward compatible.
 The only known problem that can appear is when the code relies on channel being entirely closed after ``ch:close()`` and ``ch:get()`` returning ``nil``.

@@ -346,6 +346,11 @@
     | Environment variable: TT_REPLICATION_SYNC_TIMEOUT
     | Dynamic: **yes**
 
+    .. NOTE::
+
+        The default ``replication_sync_timeout`` value is going to be changed in future versions from ``300`` to ``0``.
+        You can learn the reasoning behind this decision from the :ref:`Default value for replication_sync_timeout <compat-option-replication-timeout>` topic, which also describes how to try the new behavior in the current version.
+
 .. _cfg_replication-replication_timeout:
 
 .. confval:: replication_timeout

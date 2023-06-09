@@ -23,8 +23,8 @@ Known compatibility issues
 
 At this point, no incompatible modules are known.
 
-Detecting issues in you codebase
---------------------------------
+Detecting issues in your codebase
+---------------------------------
 
 If you see a warning like this in the log:
 
