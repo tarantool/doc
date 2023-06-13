@@ -20,20 +20,20 @@ and variables which are outside all modules.
     | :ref:`dostring()                     | Parse and execute an arbitrary  |
     | <other-dostring>`                    | chunk of Lua code               |
     +--------------------------------------+---------------------------------+
-    | :ref:`package.path                   | Where Tarantool looks for Lua   |
-    | <other-package_path>`                | additions                       |
+    | :ref:`package.path                   | Get file paths used to search   |
+    | <other-package_path>`                | for Lua modules                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`package.cpath                  | Where Tarantool looks for C     |
-    | <other-package_cpath>`               | additions                       |
+    | :ref:`package.cpath                  | Get file paths used to search   |
+    | <other-package_cpath>`               | for C modules                   |
     +--------------------------------------+---------------------------------+
-    | :ref:`package.loaded                 | What Tarantool has already      |
-    | <other-package_loaded>`              | looked for and found            |
-    +--------------------------------------+---------------------------------+
-    | :ref:`package.setsearchroot          | Set the root path for a         |
-    | <other-package_setsearchroot>`       | directory search                |
+    | :ref:`package.loaded                 | Show Lua or C modules           |
+    | <other-package_loaded>`              | loaded by Tarantool             |
     +--------------------------------------+---------------------------------+
     | :ref:`package.searchroot             | Get the root path for a         |
     | <other-package_searchroot>`          | directory search                |
+    +--------------------------------------+---------------------------------+
+    | :ref:`package.setsearchroot          | Set the root path for a         |
+    | <other-package_setsearchroot>`       | directory search                |
     +--------------------------------------+---------------------------------+
 
 
@@ -140,59 +140,114 @@ and variables which are outside all modules.
 
 .. data:: package.path
 
-    This is a string that Tarantool uses to search for Lua modules,
-    especially important for ``require()``.
-    See :ref:`Modules, rocks and applications <app_server-modules>`.
+    Get file paths used to search for Lua :ref:`modules <app_server-modules>`.
+    For example, these paths are used to find modules loaded using the ``require()`` directive.
+
+    See also: :ref:`package.searchroot() <other-package_searchroot>`
 
 .. _other-package_cpath:
 
 .. data:: package.cpath
 
-    This is a string that Tarantool uses to search for C modules,
-    especially important for ``require()``.
-    See :ref:`Modules, rocks and applications <app_server-modules>`.
+    Get file paths used to search for C :ref:`modules <app_server-modules>`.
+    For example, these paths are used to find modules loaded using the ``require()`` directive.
+
+    See also: :ref:`package.searchroot() <other-package_searchroot>`
 
 .. _other-package_loaded:
 
 .. data:: package.loaded
 
-    This is a string that shows what Lua or C modules Tarantool
-    has loaded, so that their functions and members are available.
-    Initially it has all the pre-loaded modules, which don't need
-    ``require()``.
+    Show Lua or C modules loaded by Tarantool, so that their functions and members are available.
+    ``loaded`` shows both pre-loaded modules and modules added using the ``require()`` directive.
 
-.. _other-package_setsearchroot:
-
-.. function:: package.setsearchroot([search-root])
-
-    Set the search root. The search root is the root directory from
-    which dependencies are loaded.
-
-    :param string search-root: the path. Default = current directory.
-
-    The search-root string must contain a relative or absolute path.
-    If it is a relative path, then it will be expanded to an
-    absolute path.
-    If search-root is omitted, or is box.NULL, then the search root
-    is reset to the current directory, which is found with debug.sourcedir().
-
-    Example:
-
-    Suppose that a Lua file ``myapp/init.lua`` is the project root. |br|
-    Suppose the current path is ``/home/tara``. |br|
-    Add this as the first line of ``myapp/init.lua``: |br|
-    :code:`package.setsearchroot()` |br|
-    Start the project with |br|
-    :code:`$ tarantool myapp/init.lua` |br|
-    The search root will be the default, made absolute: ``/home/tara/myapp``.
-    Within the Lua application all dependencies will be searched relative
-    to ``/home/tara/myapp``.
+    See also: :ref:`package.searchroot() <other-package_searchroot>`
 
 .. _other-package_searchroot:
 
 .. function:: package.searchroot()
 
-    Return a string with the current search root.
-    After ``package.setsearchroot('/home')`` the returned
-    string will be ``/home'``.
+    Return the current search root, which defines the path to the root directory from which dependencies are loaded.
+    By default, the search root is the current directory.
 
+    .. NOTE::
+
+        The current directory is obtained using :ref:`debug.sourcedir() <debug-sourcedir>`.
+
+    **Example**
+
+    Suppose the application has the following structure:
+
+    .. code-block:: none
+
+        /home/testuser/myapp
+        ├── .rocks/share/tarantool/
+        │   └── foo.lua
+        ├── init.lua
+        └── modules
+            └── bar.lua
+
+    In this case, modules are placed in the same directory as the application initialization file.
+    If you :ref:`run the application <app_server-launching_app_binary>` using the ``tarantool`` command from the ``myapp`` directory, ...
+
+    .. code-block:: console
+
+        /home/testuser/myapp$ tarantool init.lua
+
+    ... the search root is ``/home/testuser/myapp`` and Tarantool finds all modules in this directory automatically.
+    This means that to load the ``foo`` and ``modules.bar`` modules in ``init.lua``, you only need to add the corresponding ``require`` directives:
+
+    .. code-block:: lua
+
+        -- init.lua --
+        require('foo')
+        require('modules.bar')
+
+    Starting with :doc:`2.11.0 </release/2.11.0>`, you can also run the application using the ``tarantool`` command from the directory other than ``myapp``:
+
+    .. code-block:: console
+
+        /home/testuser$ tarantool myapp/init.lua
+
+    In this case, the path to the initialization file (``/home/testuser/myapp``) is added to search paths for modules.
+
+    To load modules placed outside of the path to the application directory, use :ref:`package.setsearchroot() <other-package_setsearchroot>`.
+
+.. _other-package_setsearchroot:
+
+.. function:: package.setsearchroot([search-root])
+
+    Set the search root, which defines the path to the root directory from which dependencies are loaded.
+    By default, the search root is the current directory (see :ref:`package.searchroot() <other-package_searchroot>`).
+
+    :param string search-root: a relative or absolute path to the search root. If ``search-root`` is a relative path, it is expanded to an absolute path. You can omit this argument or set it to :ref:`box.NULL <box-null>` to reset the search root to the current directory.
+
+    **Example**
+
+    Suppose external modules are stored outside the application directory, for example:
+
+    .. code-block:: none
+
+        /home/testuser/
+        ├── myapp
+        │   └── init.lua
+        └── mymodules
+            ├── .rocks/share/tarantool/
+            │   └── foo.lua
+            └── modules
+                └── bar.lua
+
+    In this case, you can specify the ``/home/testuser/mymodules`` path as the search root for modules in the following way:
+
+    .. code-block:: lua
+
+        -- init.lua --
+        package.setsearchroot('/home/testuser/mymodules')
+
+    Then, you can load the ``foo`` and ``bar`` modules using the ``require()`` directive:
+
+    .. code-block:: lua
+
+        -- init.lua --
+        require('foo')
+        require('modules.bar')
