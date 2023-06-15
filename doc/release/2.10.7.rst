@@ -9,7 +9,7 @@ Released on 2023-05-24.
 Overview
 --------
 
-2.10.8 is the 8th
+2.10.7 is the 8th
 :doc:`stable </release/policy/>` version of the 2.10 release series.
 It resolves 17 bugs since 2.10.6.
 
