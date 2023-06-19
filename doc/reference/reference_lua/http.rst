@@ -696,10 +696,10 @@ client_object
 
     .. data:: decoders
 
+        **Since:** :doc:`2.11.0 </release/2.11.0>`
+
         Decoders used to deserialize response data based on the ``Content-Type`` header value.
         Learn more from :ref:`Deserialization <response_deserialization>`.
-
-        **Since:** :doc:`2.11.0 </release/2.11.0>`
 
 ..  _request_options:
 
@@ -732,14 +732,14 @@ request_options
 
     .. data:: chunked
 
+        **Since:** :doc:`2.11.0 </release/2.11.0>`
+
         Specifies whether an HTTP client should return the full response (:ref:`response_object <response_object>`) or
         an IO object (:ref:`io_object <io_object>`) used for streaming download/upload.
 
         :rtype: boolean
 
         **See also:** :ref:`Streaming download <response_streaming_download>`, :ref:`Streaming upload <request_streaming_upload>`
-
-        **Since:** :doc:`2.11.0 </release/2.11.0>`
 
     ..  _request_options-headers:
 
@@ -753,6 +753,8 @@ request_options
 
     .. data:: params
 
+        **Since:** :doc:`2.11.0 </release/2.11.0>`
+
         A table of parameters passed to a request.
         The behavior of this option depends on the request type, for example:
 
@@ -760,8 +762,6 @@ request_options
         *   For a :ref:`POST <client_object-post>` request, this option specifies :ref:`form parameters <request_form_parameters>` to be sent using the ``application/x-www-form-urlencoded`` type.
 
         :rtype: table
-
-        **Since:** :doc:`2.11.0 </release/2.11.0>`
 
     ..  _request_options-keepalive_idle:
 
@@ -1077,14 +1077,14 @@ response_object
 
     .. function:: decode()
 
+        **Since:** :doc:`2.11.0 </release/2.11.0>`
+
         Decode the response body to a Lua object based on the content type.
 
         :return: a decoded body
         :rtype: table
 
         **See also:** :ref:`Deserialization <response_deserialization>`
-
-        **Since:** :doc:`2.11.0 </release/2.11.0>`
 
 
 
@@ -1096,10 +1096,10 @@ io_object
 
 ..  class:: io_object
 
+    **Since:** :doc:`2.11.0 </release/2.11.0>`
+
     An IO object used to read or write data in chunks.
     To get an IO object instead of the full response (:ref:`response_object <response_object>`), you need to set the :ref:`chunked <request_options-chunked>` request option to ``true``.
-
-    **Since:** :doc:`2.11.0 </release/2.11.0>`
 
     .. _io_object-read:
 
