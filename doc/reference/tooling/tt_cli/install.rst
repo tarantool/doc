@@ -5,7 +5,7 @@ Installing Tarantool software
 
 ..  code-block:: bash
 
-    tt install PROGRAM_NAME[=version] [flags]
+    tt install PROGRAM_NAME [version] [flags]
 
 ``tt install`` installs the latest or an explicitly specified version of Tarantool
 or ``tt``. The possible values of ``PROGRAM_NAME`` are:
@@ -29,6 +29,8 @@ Flags
         :widths: 20 80
         :header-rows: 0
 
+        *   -   ``--dynamic``
+            -   (``tarantool`` and ``tarantool-ee``) Use dynamic linking for building Tarantool
         *   -   ``-f``
 
                 ``--force``
@@ -42,7 +44,7 @@ Flags
         *   -   ``--reinstall``
             -   Reinstall a previously installed program
         *   -   ``--use-docker``
-            -   Build Tarantool in an Ubuntu 16.04 Docker container
+            -   (``tarantool`` and ``tarantool-ee``) Build Tarantool in an Ubuntu 18.04 Docker container
 
 Details
 -------
@@ -72,14 +74,14 @@ Example
 
         tt install tarantool
 
-*   Install Tarantool 2.10.5 from the local repository:
+*   Install Tarantool 2.11.0 from the local repository:
 
     ..  code-block:: bash
 
-        tt install tarantool=2.10.5 --local-repo
+        tt install tarantool 2.11.0 --local-repo
 
-*   Reinstall Tarantool 2.10.5:
+*   Reinstall Tarantool 2.10.7:
 
     ..  code-block:: bash
 
-        tt install tarantool=2.10.5 --reinstall
+        tt install tarantool 2.10.7 --reinstall
