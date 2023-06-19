@@ -5,6 +5,7 @@ master_doc = 'singlehtml'
 locale_dirs = ['../locale']
 
 extensions = [
+    'myst_parser',
     'sphinx.ext.todo',
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',

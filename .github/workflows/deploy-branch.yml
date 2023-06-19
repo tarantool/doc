@@ -74,6 +74,10 @@ jobs:
         id: make-json
       - run: make json-ru
         id: make-json-ru
+      - run: make pdf
+        id: make-pdf
+      - run: make pdf-ru
+        id: make-pdf-ru
 
       - run: bash upload_output.sh
         id: upload-output
