@@ -894,15 +894,14 @@ class LuaDomain(Domain):
             # Otherwise, we have too many due to unknown type used
             # as parameter type in function description (number, string...).
             if type != "obj":
-                env.warn_node(
+                print('WARNING '
                     'no target found for cross-reference '
-                    '%r' % (target), node)
+                    '%r' % target)
             return None
         elif len(matches) > 1:
-            env.warn_node(
+            print('WARNING: '
                 'more than one target found for cross-reference '
-                '%r: %s' % (target, ', '.join(match[0] for match in matches)),
-                node)
+                '%r: %s' % (target, ', '.join(match[0] for match in matches)))
         name, obj = matches[0]
 
         return make_refnode(builder, fromdocname, obj[0], obj[2],
