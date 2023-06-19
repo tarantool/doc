@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.abspath('..'))
 master_doc = 'index'
 
 extensions = [
+    'myst_parser',
     'sphinx.ext.todo',
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
@@ -50,7 +51,10 @@ plantuml_output_format = 'svg_img'
 imgmath_image_format = 'svg'
 
 primary_domain = 'lua'
-source_suffix = '.rst'
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 project = u'Tarantool'
 

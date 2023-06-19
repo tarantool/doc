@@ -89,7 +89,7 @@ and refresh the browser page.
 
 ..  code-block:: bash
 
-    docker run --rm -it -p 8000:8000 -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make autobuild"
+    docker run --rm -it -p 8000:8000 -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make autobuild"
 
 First build will take some time.
 When it's done, open `127.0.0.1:8000 <http://127.0.0.1:8000>`_ in the browser.
