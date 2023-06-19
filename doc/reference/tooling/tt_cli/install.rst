@@ -29,6 +29,8 @@ Flags
         :widths: 20 80
         :header-rows: 0
 
+        *   -   ``--dynamic``
+            -   (``tarantool`` and ``tarantool-ee``) Use dynamic linking for building Tarantool
         *   -   ``-f``
 
                 ``--force``
@@ -42,7 +44,7 @@ Flags
         *   -   ``--reinstall``
             -   Reinstall a previously installed program
         *   -   ``--use-docker``
-            -   Build Tarantool in an Ubuntu 16.04 Docker container
+            -   (``tarantool`` and ``tarantool-ee``) Build Tarantool in an Ubuntu 18.04 Docker container
 
 Details
 -------

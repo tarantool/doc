@@ -29,10 +29,14 @@ Flags
         :widths: 20 80
         :header-rows: 0
 
+        *   -   ``--debug``
+            -   (``tarantool-ee`` only) Search for debug builds of Tarantool Enterprise SDK
         *   -   ``--local-repo``
             -   Search in the local repository, which is specified in the
                 :ref:`repo section <tt-config_file_repo>` of the ``tt``
-                configuration file.
+                configuration file
+        *   -   ``--version``
+            -   (``tarantool-ee`` only) Tarantool Enterprise version
 
 Example
 --------
