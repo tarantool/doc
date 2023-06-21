@@ -97,7 +97,42 @@ on each of them.
 Upgrading storages
 ~~~~~~~~~~~~~~~~~~
 
+Before upgrading **storage** instances:
+
+*   Disable :doc:`Cartridge failover </book/cartridge/cartridge_cli/commands/failover/>`: run
+
+    ..  code-block:: bash
+
+        cartridge failover disable
+
+    or use the Cartridge web interface (**Cluster** tab, **Failover: <Mode>** button).
+
+*   Disable :ref:`rebalancer <storage_api-rebalancer_disable>`: run
+
+    ..  code-block:: tarantoolsession
+
+        vshard.storage.rebalancer_disable()
+
+*   Make sure that the Cartridge ``upgrade_schema`` :doc:`option </book/cartridge/cartridge_api/modules/cartridge>`
+    is ``false``.
+
 ..  include:: ../_includes/upgrade_storages.rst
+
+Once you complete the steps, enable failover or rebalancer back:
+
+*   Enable :doc:`Cartridge failover </book/cartridge/cartridge_cli/commands/failover/>`: run
+
+    ..  code-block:: bash
+
+        cartridge failover set [mode]
+
+    or use the Cartridge web interface (**Cluster** tab, **Failover: Disabled** button).
+
+*   Enable :ref:`rebalancer <storage_api-rebalancer_enable>`: run
+
+    ..  code-block:: tarantoolsession
+
+        vshard.storage.rebalancer_enable()
 
 Post-upgrade checks
 -------------------

@@ -1,23 +1,6 @@
-Before upgrading **storage** instances:
 
-*   Disable :doc:`Cartridge failover </book/cartridge/cartridge_cli/commands/failover/>`: run
 
-    ..  code-block:: bash
-
-        cartridge failover disable
-
-    or use the Cartridge web interface (**Cluster** tab, **Failover: <Mode>** button).
-
-*   Disable :ref:`rebalancer <storage_api-rebalancer_disable>`: run
-
-    ..  code-block:: tarantoolsession
-
-        vshard.storage.rebalancer_disable()
-
-*   Make sure that the Cartridge ``upgrade_schema`` :doc:`option </book/cartridge/cartridge_api/modules/cartridge>`
-    is ``false``.
-
-Then upgrade storage instances by performing the following steps for each replica set:
+Upgrade storage instances by performing the following steps for each replica set:
 
 .. note::
 
@@ -59,19 +42,3 @@ Then upgrade storage instances by performing the following steps for each replic
 
 6.  Run ``box.snapshot()`` on every node in the replica set to make sure that the
     replicas immediately see the upgraded database state in case of restart.
-
-Once you complete the steps, enable failover or rebalancer back:
-
-*   Enable :doc:`Cartridge failover </book/cartridge/cartridge_cli/commands/failover/>`: run
-
-    ..  code-block:: bash
-
-        cartridge failover set [mode]
-
-    or use the Cartridge web interface (**Cluster** tab, **Failover: Disabled** button).
-
-*   Enable :ref:`rebalancer <storage_api-rebalancer_enable>`: run
-
-    ..  code-block:: tarantoolsession
-
-        vshard.storage.rebalancer_enable()
