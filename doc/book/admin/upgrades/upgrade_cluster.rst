@@ -5,14 +5,13 @@ Replication cluster upgrade
 ===========================
 
 Below are the general instructions for upgrading a Tarantool cluster with replication.
-Upgrading from some versions can involve certain specifics. To find out if it is your
-your case, check the version-specific topics of the :ref:`Upgrades <admin-upgrades>`
+Upgrading from some versions can involve certain specifics. To find out if it is your case, check the version-specific topics of the :ref:`Upgrades <admin-upgrades>`
 section.
 
 A replication cluster can be upgraded without downtime due to its redundancy.
 When you disconnect a single instance for an upgrade, there is always another
 instance that takes over its functionality: being a master storage for the same
-data buckets or work as a router. This way, you can upgrade all the instances one by one.
+data buckets or working as a router. This way, you can upgrade all the instances one by one.
 
 The high-level steps of cluster upgrade are the following:
 
@@ -69,7 +68,7 @@ Installing the target version
 
 Install the target Tarantool version on all hosts of the cluster. You can do this
 using a package manager or the :ref:`tt utility <tt-cli>`.
-See the installation instructions at Tarantool `download page <http://tarantool.org/download.html>`_
+See the installation instructions at the Tarantool `download page <http://tarantool.org/download.html>`_
 and in the :ref:`tt install reference <tt-install>`.
 
 Check that the target Tarantool version is installed by running ``tarantool -v``
@@ -87,7 +86,7 @@ Upgrade **router** instances one by one:
 
 #.  Stop one ``router`` instance.
 #.  Start this instance on the target Tarantool version.
-#.  Repeat previous steps for each ``router`` instance.
+#.  Repeat the previous steps for each ``router`` instance.
 
 After completing the router instances upgrade, perform the :ref:`vshard.router check <admin-upgrades-router-check>`
 on each of them.
@@ -128,7 +127,7 @@ Once you complete the steps, enable failover or rebalancer back:
 
     or use the Cartridge web interface (**Cluster** tab, **Failover: Disabled** button).
 
-*   Enable :ref:`rebalancer <storage_api-rebalancer_enable>`: run
+*   Enable the :ref:`rebalancer <storage_api-rebalancer_enable>`: run
 
     ..  code-block:: tarantoolsession
 
@@ -191,10 +190,10 @@ In case of an upgrade failure after passing the :ref:`point of no return <admin-
 follow these steps to roll back to the original version:
 
 #.  Stop all cluster instances.
-#.  Save snapshot and xlog files from all instances whose data was modified
+#.  Save snapshot and ``xlog`` files from all instances whose data was modified
     after the last backup procedure. These files will help apply these modifications
     later.
-#.  Save latest backups from all instances.
+#.  Save the latest backups from all instances.
 #.  Restore the original Tarantool version on all hosts of the cluster.
 #.  Launch the cluster on the original Tarantool version.
 
@@ -204,7 +203,7 @@ follow these steps to roll back to the original version:
         from the backups. However, the data modifications made after the backups
         were taken must be restored manually.
 
-#.  Manually apply the latest data modifications from xlog files you saved on step 2
+#.  Manually apply the latest data modifications from ``xlog`` files you saved on step 2
     using the :ref:`xlog <xlog>` module. On instances where such changes happened,
     do the following:
 
@@ -291,11 +290,11 @@ Check that the following conditions are satisfied:
 Switching the master
 ~~~~~~~~~~~~~~~~~~~~
 
-*   **Cartridge**. If your cluster runs on Cartridge, you can switch master in the web interface.
-    To do this, go to the **Cluster** tab, click **Edit replica set** and drag an
+*   **Cartridge**. If your cluster runs on Cartridge, you can switch the master in the web interface.
+    To do this, go to the **Cluster** tab, click **Edit replica set**, and drag an
     instance to the top of **Failover priority** list to make it the master.
 
-*   **Raft**. If you cluster uses :ref:`automated leader election <repl_leader_elect>`,
+*   **Raft**. If your cluster uses :ref:`automated leader election <repl_leader_elect>`,
     switch the master by following these steps:
 
     #.  Pick a *candidate* -- a read-only instance to become the new master.
