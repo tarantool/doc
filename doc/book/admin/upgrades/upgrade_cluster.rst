@@ -27,7 +27,7 @@ The high-level steps of cluster upgrade are the following:
 ..  important::
 
     The only way to upgrade Tarantool from version 1.6, 1.7, or 1.9 to 2.x **without downtime** is
-    taking an intermediate step by upgrading to 1.10 and then to 2.x.
+    to take an intermediate step by upgrading to 1.10 and then to 2.x.
 
     Before upgrading Tarantool from 1.6 to 2.x, please read about the associated
     :ref:`caveats <admin-upgrades-1.6-1.10>`.
