@@ -106,7 +106,7 @@ Before upgrading **storage** instances:
 
     or use the Cartridge web interface (**Cluster** tab, **Failover: <Mode>** button).
 
-*   Disable :ref:`rebalancer <storage_api-rebalancer_disable>`: run
+*   Disable the :ref:`rebalancer <storage_api-rebalancer_disable>`: run
 
     ..  code-block:: tarantoolsession
 
@@ -116,6 +116,17 @@ Before upgrading **storage** instances:
     is ``false``.
 
 ..  include:: ../_includes/upgrade_storages.rst
+
+    .. warning::
+
+        This is the point of no return for upgrading from versions earlier than 2.8.2:
+        once you complete it, the schema is no longer compatible with the initial version.
+
+        When upgrading from version 2.8.2 or newer, you can undo the schema upgrade
+        using :ref:`box.schema.downgrade() <box_schema-downgrade>`.
+
+6.  Run ``box.snapshot()`` on every node in the replica set to make sure that the
+    replicas immediately see the upgraded database state in case of restart.
 
 Once you complete the steps, enable failover or rebalancer back:
 
@@ -168,7 +179,7 @@ execute the following steps on **each upgraded replica set** to roll back:
 #.  Run ``box.schema.downgrade(<version>)`` on master specifying the original version.
 #.  Run ``box.snapshot()`` on every instance in the replica set to make sure that the
     replicas immediately see the downgraded database state after restart.
-#.  Restart all **read-only** instances of the replica set on the source
+#.  Restart all **read-only** instances of the replica set on the initial
     version one by one.
 #.  Make one of the updated replicas the new master using the applicable instruction
     from :ref:`Switching the master <admin-upgrades-switch-master>`.
@@ -304,12 +315,12 @@ Switching the master
     #.  Check that the candidate became the new master: its ``box.info.ro``
         must be ``false``.
 
-*   **Legacy**. If your cluster doesn't work on Cartridge or have automated leader election,
+*   **Legacy**. If your cluster neither works on Cartridge nor has automated leader election,
     switch the master by following these steps:
 
     #.  Pick a *candidate* -- a read-only instance to become the new master.
     #.  Run `box.cfg{ read_only = true }` on the current master.
-    #.  Check that the candidates vclock matches the master's vclock:
+    #.  Check that the candidate's vclock value matches the master's:
         The value of ``box.info.vclock[<master_id>]`` on the candidate must be equal
         to ``box.info.lsn`` on the master. ``<master_id>`` here is the value of
         ``box.info.id`` on the master.

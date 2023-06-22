@@ -19,6 +19,9 @@ General storage upgrade
 
 ..  include:: ../_includes/upgrade_storages.rst
 
+6.  Run ``box.snapshot()`` on every node in the replica set to make sure that the
+    replicas immediately see the upgraded database state in case of restart.
+
 1.6 storage upgrade specifics
 -----------------------------
 
@@ -31,6 +34,10 @@ General storage upgrade
         old_repl = box.cfg.replication
         box.cfg{replication = ""}
         box.cfg{replication = old_repl}
+
+*   **Point of no return:** When upgrading from Tarantool 1.6, the step 3 (switching
+    the master) is the point of no return: once you complete it, **the schema is no
+    longer compatible with the initial version**.
 
 *   **Restarting on the target version (steps 1, 2, and 4):** Tarantool 1.10+ fails to recover
     from 1.6 xlogs, unless ``box.cfg{force_recovery = true}`` is set. There is a slight

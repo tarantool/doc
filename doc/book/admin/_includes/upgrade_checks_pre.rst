@@ -27,7 +27,7 @@
         -- no issues in the output
         -- replication.status == 'follow'
 
-#.  Check all instances' logs for application errors.
+#.  Check all instances' :ref:`logs <admin-logs>` for application errors.
 
 .. note::
 
