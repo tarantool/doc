@@ -2,7 +2,7 @@
 
     ..  code-block:: tarantoolsession
 
-        vshard.router.info()
+        tarantool> vshard.router.info()
         -- no issues in the output
         -- sum of 'bucket.available_rw' == total number of buckets
 
@@ -10,7 +10,7 @@
 
     ..  code-block:: tarantoolsession
 
-        box.info
+        tarantool> box.info
         -- box.info.status == 'running'
         -- box.info.ro == 'false' on one instance in each replica set.
         -- box.info.replication[*].upstream.status == 'follow'
@@ -23,7 +23,7 @@
 
     ..  code-block:: tarantoolsession
 
-        vshard.storage.info()
+        tarantool> vshard.storage.info()
         -- no issues in the output
         -- replication.status == 'follow'
 

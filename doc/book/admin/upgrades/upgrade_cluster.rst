@@ -34,7 +34,7 @@ The high-level steps of cluster upgrade are the following:
 
 .. note::
 
-    Some upgrade steps are moved to the separate section :ref:`Procedures and checks <upgrade_cluster-procedures>`
+    Some upgrade steps are moved to the separate section :ref:`Procedures and checks <admin-upgrades-cluster-procedures>`
     to avoid overloading the general instruction with details. Typically, these are
     checks you should repeat during the upgrade to ensure it goes well.
 
@@ -110,7 +110,7 @@ Before upgrading **storage** instances:
 
     ..  code-block:: tarantoolsession
 
-        vshard.storage.rebalancer_disable()
+        tarantool> vshard.storage.rebalancer_disable()
 
 *   Make sure that the Cartridge ``upgrade_schema`` :doc:`option </book/cartridge/cartridge_api/modules/cartridge>`
     is ``false``.
@@ -142,7 +142,7 @@ Once you complete the steps, enable failover or rebalancer back:
 
     ..  code-block:: tarantoolsession
 
-        vshard.storage.rebalancer_enable()
+        tarantool> vshard.storage.rebalancer_enable()
 
 Post-upgrade checks
 -------------------
@@ -244,7 +244,7 @@ Run ``box.info``:
 
 ..  code-block:: tarantoolsession
 
-    box.info
+    tarantool> box.info
 
 Check that the following conditions are satisfied:
 
@@ -272,7 +272,7 @@ Run ``vshard.storage.info()``:
 
 ..  code-block:: tarantoolsession
 
-    vshard.storage.info()
+    tarantool> vshard.storage.info()
 
 Check that the following conditions are satisfied:
 
@@ -288,7 +288,7 @@ Run ``vshard.router.info()``:
 
 ..  code-block:: tarantoolsession
 
-    vshard.router.info()
+    tarantool> vshard.router.info()
 
 Check that the following conditions are satisfied:
 

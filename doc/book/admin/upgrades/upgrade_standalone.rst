@@ -9,7 +9,7 @@ Note that this **always implies a downtime** because the application needs to be
 stopped and restarted on the target version.
 
 To upgrade **without downtime**, you need multiple Tarantool servers running in a
-replication cluster. Find detailed instructions in :ref:`Replication cluster upgrade <admin-upgrades_replication_cluster>`.
+replication cluster. Find detailed instructions in :ref:`Replication cluster upgrade <admin-upgrades-replication-cluster>`.
 
 Checking your application
 -------------------------
@@ -30,8 +30,7 @@ Upgrading a standalone instance
     using a package manager or the :ref:`tt utility <tt-cli>`.
     See the installation instructions at Tarantool `download page <http://tarantool.org/download.html>`_
     and in the :ref:`tt install reference <tt-install>`.
-
-    Check that the target Tarantool version is installed by running ``tarantool -v``.
+   To check that the target Tarantool version is installed, run ``tarantool -v``.
 
 #.  Start your application on the target version.
 

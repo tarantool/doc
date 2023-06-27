@@ -9,7 +9,7 @@ main upgrade scenarios for different use cases:
 *   :doc:`Live upgrade <upgrades/upgrade_cluster>` (without downtime) for replication clusters.
 *   :doc:`Upgrade with downtime <upgrades/upgrade_standalone>` for standalone instances.
 
-If required, you can also to downgrade to an earlier version using a similar procedure.
+You can also downgrade to an earlier version using a similar procedure.
 
 For information about backwards compatibility,
 see the :ref:`compatibility guarantees <compatibility_guarantees>` description.
