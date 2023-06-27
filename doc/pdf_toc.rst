@@ -1,6 +1,6 @@
 :orphan:
 
-.. ifconfig:: builder == 'singlehtml'
+.. ifconfig:: builder == 'pdf'
 
     ---------------------------------------------------------------------------
                            Tarantool - Documentation
@@ -14,7 +14,7 @@
     how-to/index
     concepts/index
     CRUD operations <reference/reference_lua/box_space>
-    Cluster on Cartridge <book/cartridge/index>
+    book/cartridge/index
     book/admin/index
     book/connectors
     reference/index
