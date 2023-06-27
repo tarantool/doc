@@ -36,7 +36,7 @@ General storage upgrade
         box.cfg{replication = old_repl}
 
 *   **Point of no return:** When upgrading from Tarantool 1.6, the step 3 (switching
-    the master) is the point of no return: once you complete it, **the schema is no
+    the master) is the point of no return. Оnce you complete it, **the schema is no
     longer compatible with the initial version**.
 
 *   **Restarting on the target version (steps 1, 2, and 4):** Tarantool 1.10+ fails to recover

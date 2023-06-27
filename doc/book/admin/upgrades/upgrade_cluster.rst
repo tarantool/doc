@@ -117,13 +117,13 @@ Before upgrading **storage** instances:
 
 ..  include:: ../_includes/upgrade_storages.rst
 
-    .. warning::
+.. warning::
 
-        This is the point of no return for upgrading from versions earlier than 2.8.2:
-        once you complete it, the schema is no longer compatible with the initial version.
+    This is the point of no return for upgrading from versions earlier than 2.8.2:
+    once you complete it, the schema is no longer compatible with the initial version.
 
-        When upgrading from version 2.8.2 or newer, you can undo the schema upgrade
-        using :ref:`box.schema.downgrade() <box_schema-downgrade>`.
+    When upgrading from version 2.8.2 or newer, you can undo the schema upgrade
+    using :ref:`box.schema.downgrade() <box_schema-downgrade>`.
 
 6.  Run ``box.snapshot()`` on every node in the replica set to make sure that the
     replicas immediately see the upgraded database state in case of restart.

@@ -1,6 +1,5 @@
 .. // this instruction does not include the final step (calling box.snapshot())
 .. // because we need to add a warning after step 5 in one use of this instruction
-
 Upgrade storage instances by performing the following steps for each replica set:
 
 .. note::
@@ -8,6 +7,7 @@ Upgrade storage instances by performing the following steps for each replica set
     To detect possible upgrade issues early, we recommend that you perform
     a :ref:`replication check <admin-upgrades-replication-check>` on all instances of
     the replica set **after each step**.
+
 
 1.  Pick a replica (a **read-only** instance) from the replica set. Stop this replica
     and start it again on the target Tarantool version. Wait until it reaches the
