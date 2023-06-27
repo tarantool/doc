@@ -18,13 +18,13 @@ First of all, pull the image for building the docs.
 
 ..  code-block:: bash
 
-    docker pull tarantool/doc-builder:fat-4.1
+    docker pull tarantool/doc-builder:fat-4.3
 
 Next, initialize a Makefile for your OS:
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "cmake ."
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "cmake ."
 
 Update submodules and generate documentation sources from code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,13 +61,13 @@ To include their latest contents in the docs, run these two steps.
 
     ..  code-block:: bash
 
-        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make pull-modules"
+        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make pull-modules"
 
 2.  Build the submodules content:
 
     ..  code-block:: bash
 
-        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make build-modules"
+        docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make build-modules"
 
     This command will do two things:
 
@@ -101,8 +101,8 @@ and then serve them using python3 built-in server:
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make html"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make html-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make html"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make html-ru"
     python3 -m http.server --directory output/html
 
 or python2 built-in server:
@@ -119,17 +119,17 @@ in the ``tarantool/doc-builder`` container:
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make html"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make html-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make singlehtml"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make singlehtml-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make pdf"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make pdf-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make json"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make json-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make epub"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make epub-ru"
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make update-po"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make html"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make html-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make singlehtml"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make singlehtml-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make pdf"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make pdf-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make json"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make json-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make epub"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make epub-ru"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make update-po"
 
 Linkcheck
 ---------
@@ -138,13 +138,13 @@ There's a specific build mode which checks internal and external links instead o
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make linkcheck"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make linkcheck"
 
 If you need to save the linkcheck's report in a file, you can use the following trick:
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make linkcheck" 2>&1 | tee linkcheck.log
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make linkcheck" 2>&1 | tee linkcheck.log
 
 Here ``2>&1`` redirects the ``stderr`` output to ``stdout``, and then ``tee`` both
 shows in on screen and writes to a file.
@@ -167,7 +167,7 @@ To update the translation files, run the `make update-po` task:
 
 ..  code-block:: bash
 
-    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.1 sh -c "make update-po"
+    docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "make update-po"
 
 Translate the strings in the updated files and then commit the changes.
 
