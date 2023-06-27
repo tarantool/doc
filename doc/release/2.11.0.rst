@@ -14,7 +14,6 @@ You can find the detailed changelog on GitHub: :tarantool-release:`2.11.0`.
 2.11 is the long-term support (LTS) release with four years of maintenance.
 This means that you will continue to receive all the necessary security fixes and bug fixes throughout this period.
 You can learn more about the Tarantool release policy from the :doc:`corresponding document </release/policy>`.
-The :doc:`Upgrades </book/admin/upgrades>` topic contains procedures for upgrading Tarantool.
 
 
 ..  container:: table
@@ -40,19 +39,30 @@ The :doc:`Upgrades </book/admin/upgrades>` topic contains procedures for upgradi
                 * :ref:`Explicit sequential scanning in SQL <sequential_scanning_sql>`
                 * :ref:`Strict fencing in RAFT <strict_fencing_raft>`
 
-.. _enterprise:
+.. _2-11-upgrades:
+
+Upgrading to Tarantool 2.11
+---------------------------
+
+Tarantool provides the live upgrade mechanism that enables cluster upgrade without
+downtime. In case of upgrade issues, you can roll back to the original state
+without downtime as well.
+
+To learn how to upgrade to Tarantool 2.11.0, see :doc:`Upgrades </book/admin/upgrades>`.
+
+.. _2-11-enterprise:
 
 Tarantool Enterprise
 --------------------
 
 
-.. _security_enhancements:
+.. _2-11-security_enhancements:
 
 Security enhancements
 ~~~~~~~~~~~~~~~~~~~~~
 
 
-.. _encrypted_ssl_tls_keys:
+.. _2-11-encrypted_ssl_tls_keys:
 
 Encrypted SSL/TLS keys
 **********************
@@ -78,7 +88,7 @@ A password can be provided using either the new ``ssl_password`` URI parameter o
 To learn more, see `Traffic encryption <https://www.tarantool.io/en/enterprise_doc/security/#traffic-encryption>`_.
 
 
-.. _security_enforcement_options:
+.. _2-11-security_enforcement_options:
 
 Security enforcement options
 ****************************
@@ -103,7 +113,7 @@ You can learn more about all the available options from the
 `Password policy <https://www.tarantool.io/en/enterprise_doc/security/#password-policy>`_ sections.
 
 
-.. _pap_sha_256:
+.. _2-11-pap_sha_256:
 
 PAP-SHA256 authentication method
 ********************************
@@ -128,7 +138,7 @@ Learn more from the `Authentication protocol <https://www.tarantool.io/en/enterp
 
 
 
-.. _read_views:
+.. _2-11-read_views:
 
 Read views
 ~~~~~~~~~~
@@ -165,7 +175,7 @@ Working with read views consists of three main steps:
 To learn more, see the `Read views <https://www.tarantool.io/en/enterprise_doc/read_views/>`_ topic.
 
 
-.. _data_compression_improvements:
+.. _2-11-data_compression_improvements:
 
 Data compression improvements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -194,7 +204,7 @@ The new ``compress`` module provides an API for compressing and decompressing ar
 
 
 
-.. _wal_extensions:
+.. _2-11-wal_extensions:
 
 WAL extensions
 ~~~~~~~~~~~~~~
@@ -214,12 +224,12 @@ See the `WAL extensions <https://www.tarantool.io/en/enterprise_doc/wal_extensio
 
 
 
-.. _community:
+.. _2-11-community:
 
 Tarantool Community
 -------------------
 
-.. _pagination:
+.. _2-11-pagination:
 
 Pagination
 ~~~~~~~~~~
@@ -263,7 +273,7 @@ For example, you can use these options to get data :ref:`asynchronously <net_box
 
 
 
-.. _downgrading_database:
+.. _2-11-downgrading_database:
 
 Downgrading a database
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -282,7 +292,7 @@ The earliest release available for downgrade is :doc:`2.8.2 </release/2.8.2>`.
 
 
 
-.. _new_bootstrap_strategy:
+.. _2-11-new_bootstrap_strategy:
 
 New bootstrap strategy
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -307,7 +317,7 @@ Currently, ``bootstrap_strategy`` accepts two values:
 
 
 
-.. _limit_fiber_execution:
+.. _2-11-limit_fiber_execution:
 
 Limitation of fiber execution time
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -368,7 +378,7 @@ The output should look as follows:
 To learn more about fiber slices, see the :ref:`Limit execution time <fibers_limit_execution_time>` section.
 
 
-.. _per_module_logging:
+.. _2-11-per_module_logging:
 
 Per-module logging
 ~~~~~~~~~~~~~~~~~~
@@ -417,12 +427,12 @@ Similarly, ``module2_log`` swallows all events with severities below the ``error
 
 
 
-.. _http_client:
+.. _2-11-http_client:
 
 HTTP client enhancements
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _content_serialization:
+.. _2-11-content_serialization:
 
 Content serialization
 *********************
@@ -470,7 +480,7 @@ To send data in a YAML or MsgPack format, set the ``Content-Type`` header explic
 
 
 
-.. _query_and_form_parameters:
+.. _2-11-query_and_form_parameters:
 
 Query and form parameters
 *************************
@@ -497,7 +507,7 @@ Similarly, you can send form parameters using the ``application/x-www-form-urlen
     })
 
 
-.. _streaming:
+.. _2-11-streaming:
 
 Streaming
 *********
@@ -542,7 +552,7 @@ The request data is written line-by-line, and each line represents an ``etcd`` c
 
 
 
-.. _linearizable_read:
+.. _2-11-linearizable_read:
 
 Linearizable read
 ~~~~~~~~~~~~~~~~~
@@ -568,7 +578,7 @@ There are several prerequisites for linearizable transactions:
 
 
 
-.. _sequential_scanning_sql:
+.. _2-11-sequential_scanning_sql:
 
 Explicit sequential scanning in SQL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -597,7 +607,7 @@ In future versions, ``SEQSCAN`` will be required for scanning queries with the a
 The new behavior can be enabled using a :ref:`corresponding compat option <compat-option-sql-scan>`.
 
 
-.. _strict_fencing_raft:
+.. _2-11-strict_fencing_raft:
 
 Strict fencing in RAFT
 ~~~~~~~~~~~~~~~~~~~~~~
