@@ -1,8 +1,13 @@
 exec(open('../conf.py').read())
 
-master_doc = 'singlehtml'
-
 locale_dirs = ['../locale']
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title, author, documentclass
+# [howto/manual]).
+latex_documents = [
+ ('pdf_toc', 'tarantool.tex', u'Tarantool Community Edition', u'', 'manual'),
+]
 
 extensions = [
     'myst_parser',
@@ -24,3 +29,4 @@ extensions = [
     'ext.ModuleBlock',
     'ext.DownloadPageBlock'
 ]
+
