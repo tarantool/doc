@@ -72,13 +72,15 @@ option to enable it via ``box.cfg``.
 Setting the transaction isolation level
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The transaction manager has three options for the :ref:`transaction isolation level <transaction_model_levels>`:
+The transaction manager has the following options for the :ref:`transaction isolation level <transaction_model_levels>`:
 
 *   ``best-effort`` (default)
 
 *   ``read-committed``
 
 *   ``read-confirmed``
+
+*   ``linearizable`` (only for a specific transaction)
 
 Using ``best-effort`` as the default option allows MVCC to consider the actions of transactions
 independently and determine the best :ref:`isolation level <transaction_model_levels>` for them.
@@ -88,22 +90,25 @@ To set another default isolation level, for example, ``read-committed``, use the
 
 ..  code-block:: lua
 
-    box.cfg{txn_isolation = 'read-committed'}
+    box.cfg { txn_isolation = 'read-committed' }
 
-You can also set an isolation level for a specific transaction in its ``box.begin()`` call:
+Note that the ``linearizable`` isolation level can't be set as default and can be used for a specific transaction only.
+You can set an isolation level for a specific transaction in its ``box.begin()`` call:
 
 ..  code-block:: lua
 
-    box.begin({tnx_isolation = 'best-effort'})
+    box.begin({ tnx_isolation = 'best-effort' })
 
 In this case, you can also use the ``default`` option. It sets the transaction's isolation level
 to the one set in ``box.cfg``.
 
 ..  note::
 
-    For autocommit transactions (actions with a statement without explicit ``box.begin/commit`` calls)
-    there is an obvious rule: read-only transactions (for example, ``select``) are performed with ``read-confirmed``;
-    all others (for example, ``replace``) -- with ``read-committed``.
+    For autocommit transactions (actions with a statement without explicit ``box.begin/box.commit`` calls)
+    there is a rule:
+
+    *   Read-only transactions (for example, ``select``) are performed with ``read-confirmed``.
+    *   All other transactions (for example, ``replace``) are performed with ``read-committed``.
 
 You can also set the isolation level in the net.box :ref:`stream:begin() <net_box-stream_begin>` method
 and :ref:`IPROTO_BEGIN <box_protocol-begin>` binary protocol request.
@@ -136,11 +141,11 @@ Create a file ``init.lua``, containing the following:
         if_not_exists = true
     })
 
-Connect to the instance:
+Connect to the instance using the :ref:`tt connect <tt-connect>` command:
 
 ..  code-block:: bash
 
-    tarantoolctl connect 127.0.0.1:3301
+    tt connect 127.0.0.1:3301
 
 Then try to execute the transaction with yield inside:
 
@@ -162,11 +167,9 @@ Also, if you leave a transaction open while returning from a request, you will g
 ..  code-block:: tarantoolsession
     
     127.0.0.1:3301> box.begin()
-    ---
-    - error: Transaction is active at return from function
-    ...
+        ⨯ Failed to execute command: Transaction is active at return from function
 
-Change ``memtx_use_mvcc_engine`` to ``true``, restart tarantool and try again:
+Change ``memtx_use_mvcc_engine`` to ``true``, restart Tarantool, and try again:
 
 ..  code-block:: tarantoolsession
     
@@ -194,18 +197,20 @@ Since :tarantool-release:`2.10.0`, IPROTO implements streams and interactive
 transactions that can be used when :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`
 is enabled on the server.
 
-..  glossary::
 
-    Stream
-        A stream supports multiplexing several transactions over one connection. 
-        Each stream has its own identifier, which is unique within the connection.
-        All requests with the same non-zero stream ID belong to the same stream.
-        All requests in a stream are executed strictly sequentially. 
-        This allows the implementation of
-        :term:`interactive transactions <interactive transaction>`.
-        If the stream ID of a request is ``0``, it does not belong to any stream and is 
-        processed in the old way.
+.. _txn_mode_stream:
 
+Stream
+~~~~~~
+
+A *stream* supports multiplexing several transactions over one connection.
+Each stream has its own identifier, which is unique within the connection.
+All requests with the same non-zero stream ID belong to the same stream.
+All requests in a stream are executed strictly sequentially.
+This allows the implementation of
+:ref:`interactive transactions <txn_mode_interactive_transaction>`.
+If the stream ID of a request is ``0``, it does not belong to any stream and is
+processed in the old way.
 
 In :doc:`net.box </reference/reference_lua/net_box>`, a stream is an object above 
 the connection that has the same methods but allows sequential execution of requests.
@@ -216,17 +221,20 @@ they must transmit the ``stream_id`` over the :ref:`IPROTO protocol <box_protoco
 Unlike a thread, which involves multitasking and execution within a program,
 a stream transfers data via the protocol between a client and a server.
 
-..  glossary::
 
-    Interactive transaction
-        An interactive transaction is one that does not need to be sent in a single request.
-        There are multiple ways to begin, commit, and roll back a transaction, and they can be mixed. 
-        You can use :ref:`stream:begin() <net_box-stream_begin>`, :ref:`stream:commit() <net_box-stream_commit>`, 
-        :ref:`stream:rollback() <net_box-stream_rollback>` or the appropriate stream methods 
-        -- ``call``, ``eval``, or ``execute`` -- using the SQL transaction syntax. 
+.. _txn_mode_interactive_transaction:
+
+Interactive transaction
+~~~~~~~~~~~~~~~~~~~~~~~
+
+An *interactive transaction* is one that does not need to be sent in a single request.
+There are multiple ways to begin, commit, and roll back a transaction, and they can be mixed.
+You can use :ref:`stream:begin() <net_box-stream_begin>`, :ref:`stream:commit() <net_box-stream_commit>`,
+:ref:`stream:rollback() <net_box-stream_rollback>` or the appropriate stream methods
+-- ``call``, ``eval``, or ``execute`` -- using the SQL transaction syntax.
 
 
-Let’s create a Lua client (``client.lua``) and run it with tarantool:
+Let’s create a Lua client (``client.lua``) and run it with Tarantool:
 
 ..  code-block:: lua
 
@@ -284,6 +292,3 @@ Then call it and see the following output:
     - [1, 768]
     - [2, 429]
     ...```
-
-
-

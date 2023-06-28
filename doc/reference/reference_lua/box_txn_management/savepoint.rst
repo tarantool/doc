@@ -18,3 +18,10 @@ box.savepoint()
              transaction.
 
     **Possible errors:** error if for some reason memory cannot be allocated.
+
+    **Example**
+
+    ..  literalinclude:: /code_snippets/test/transactions/box_rollback_savepoint_test.lua
+        :language: lua
+        :lines: 29-40
+        :dedent:

@@ -3,7 +3,7 @@ msgid "box.begin()"
 msgstr ""
 
 msgid ""
-"Begin the transaction. Disable :ref:`implicit yields <atomic-implicit-"
+"Begin the transaction. Disable :ref:`implicit yields <app-implicit-"
 "yields>` until the transaction ends. Signal that writes to the :ref:`write-"
 "ahead log <internals-wal>` will be deferred until the transaction ends. In "
 "effect the fiber which executes ``box.begin()`` is starting an \"active "
