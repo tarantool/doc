@@ -78,6 +78,10 @@ jobs:
         id: make-pdf
       - run: make pdf-ru
         id: make-pdf-ru
+      - run: make singlehtml
+        id: make-singlehtml
+      - run: make singlehtml-ru
+        id: make-singlehtml-ru
 
       - run: bash upload_output.sh
         id: upload-output
