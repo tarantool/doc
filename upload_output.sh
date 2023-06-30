@@ -25,13 +25,13 @@ if [ -f output/_latex_ru/tarantool.pdf ]; then
 fi
 
 # upload singlehtml and assets
-if [ -f output/html/en/singlehtml.html ]; then
-aws s3 sync --acl public-read output/html/en/_static $S3_PATH/$BRANCH/en/_static --endpoint-url=$ENDPOINT_URL --delete --size-only
-aws s3 sync --acl public-read output/html/en/_images $S3_PATH/$BRANCH/en/_images --endpoint-url=$ENDPOINT_URL --delete --size-only
-aws s3 cp --acl public-read output/html/en/singlehtml.html $S3_PATH/$BRANCH/en/singlehtml.html --endpoint-url=$ENDPOINT_URL
-fi
-if [ -f output/html/ru/singlehtml.html ]; then
-aws s3 sync --acl public-read output/html/ru/_static $S3_PATH/$BRANCH/ru/_static --endpoint-url=$ENDPOINT_URL --delete --size-only
-aws s3 sync --acl public-read output/html/ru/_images $S3_PATH/$BRANCH/ru/_images --endpoint-url=$ENDPOINT_URL --delete --size-only
-aws s3 cp --acl public-read output/html/ru/singlehtml.html $S3_PATH/$BRANCH/ru/singlehtml.html --endpoint-url=$ENDPOINT_URL
-fi
+# if [ -f output/html/en/singlehtml.html ]; then
+# aws s3 sync --acl public-read output/html/en/_static $S3_PATH/$BRANCH/en/_static --endpoint-url=$ENDPOINT_URL --delete --size-only
+# aws s3 sync --acl public-read output/html/en/_images $S3_PATH/$BRANCH/en/_images --endpoint-url=$ENDPOINT_URL --delete --size-only
+# aws s3 cp --acl public-read output/html/en/singlehtml.html $S3_PATH/$BRANCH/en/singlehtml.html --endpoint-url=$ENDPOINT_URL
+# fi
+# if [ -f output/html/ru/singlehtml.html ]; then
+# aws s3 sync --acl public-read output/html/ru/_static $S3_PATH/$BRANCH/ru/_static --endpoint-url=$ENDPOINT_URL --delete --size-only
+# aws s3 sync --acl public-read output/html/ru/_images $S3_PATH/$BRANCH/ru/_images --endpoint-url=$ENDPOINT_URL --delete --size-only
+# aws s3 cp --acl public-read output/html/ru/singlehtml.html $S3_PATH/$BRANCH/ru/singlehtml.html --endpoint-url=$ENDPOINT_URL
+# fi
