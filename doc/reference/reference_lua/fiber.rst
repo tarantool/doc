@@ -249,7 +249,7 @@ There are two slice types: a warning and an error slice.
 
         fiber has not yielded for more than 0.500 seconds
 
-*   When an error slice is over, the ``FiberSliceIsExceeded`` error is thrown:
+*   When an error slice is over, the fiber is cancelled and the ``FiberSliceIsExceeded`` error is thrown:
 
     .. code-block:: console
 

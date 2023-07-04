@@ -22,22 +22,22 @@ You can learn more about the Tarantool release policy from the :doc:`correspondi
         :widths: 50 50
         :header-rows: 1
 
-        *   -   :ref:`Tarantool Enterprise <enterprise>`
-            -   :ref:`Tarantool Community <community>`
+        *   -   :ref:`Tarantool Enterprise <2-11-enterprise>`
+            -   :ref:`Tarantool Community <2-11-community>`
 
-        *   -   * :ref:`Security enhancements <security_enhancements>`
-                * :ref:`Read views <read_views>`
-                * :ref:`Data compression improvements <data_compression_improvements>`
-                * :ref:`WAL extensions <wal_extensions>`
-            -   * :ref:`Pagination <pagination>`
-                * :ref:`Downgrading a database <downgrading_database>`
-                * :ref:`New bootstrap strategy <new_bootstrap_strategy>`
-                * :ref:`Limitation of fiber execution time <limit_fiber_execution>`
-                * :ref:`Per-module logging <per_module_logging>`
-                * :ref:`HTTP client enhancements <http_client>`
-                * :ref:`Linearizable read <linearizable_read>`
-                * :ref:`Explicit sequential scanning in SQL <sequential_scanning_sql>`
-                * :ref:`Strict fencing in RAFT <strict_fencing_raft>`
+        *   -   * :ref:`Security enhancements <2-11-security_enhancements>`
+                * :ref:`Read views <2-11-read_views>`
+                * :ref:`Data compression improvements <2-11-data_compression_improvements>`
+                * :ref:`WAL extensions <2-11-wal_extensions>`
+            -   * :ref:`Pagination <2-11-pagination>`
+                * :ref:`Downgrading a database <2-11-downgrading_database>`
+                * :ref:`New bootstrap strategy <2-11-new_bootstrap_strategy>`
+                * :ref:`Limitation of fiber execution time <2-11-limit_fiber_execution>`
+                * :ref:`Per-module logging <2-11-per_module_logging>`
+                * :ref:`HTTP client enhancements <2-11-http_client>`
+                * :ref:`Linearizable read <2-11-linearizable_read>`
+                * :ref:`Explicit sequential scanning in SQL <2-11-sequential_scanning_sql>`
+                * :ref:`Strict fencing in RAFT <2-11-strict_fencing_raft>`
 
 .. _2-11-upgrades:
 
@@ -334,7 +334,7 @@ There are two slice types - a warning and an error slice:
 
             fiber has not yielded for more than 0.500 seconds
 
-*   When an error slice is over, the ``FiberSliceIsExceeded`` error is thrown:
+*   When an error slice is over, the fiber is cancelled and the ``FiberSliceIsExceeded`` error is thrown:
 
         .. code-block:: console
 
