@@ -57,8 +57,8 @@ Core
     :tarantool-issue:`2916`). Read more:
 
     -   :ref:`UUID field type <index-box_uuid>`
-    -   :ref:`mapping UUID field to index types <box_space-index_field_types>`
-    -   :ref:`uuid.new() <uuid-new>`.
+    -   :ref:`mapping UUID field to index types <index-box_indexed-field-types>`
+    -   :ref:`uuid.new() <uuid-new>`
 
 -   Add ability to encode/decode UUIDs to MsgPack (:tarantool-issue:`4268`, :tarantool-issue:`2916`). Read more:
     :ref:`MessagePack extensions (UUID type) <msgpack_ext-uuid>`.

@@ -21,13 +21,11 @@ index_object:count()
 
         **Example:**
 
-        .. code-block:: tarantoolsession
+        Below are few examples of using ``count``.
+        To try out these examples, you need to bootstrap a Tarantool database
+        as described in :ref:`Using data operations <box_space-operations-detailed-examples>`.
 
-            tarantool> box.space.tester.index.primary:count(999)
-            ---
-            - 0
-            ...
-            tarantool> box.space.tester.index.primary:count('Alpha!', { iterator = 'LE' })
-            ---
-            - 1
-            ...
+        ..  literalinclude:: /code_snippets/test/indexes/index_aggr_functions_test.lua
+            :language: lua
+            :lines: 42-68
+            :dedent:

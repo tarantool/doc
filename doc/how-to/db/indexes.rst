@@ -38,7 +38,7 @@ Be careful! Using ``select()`` for huge spaces hangs your instance.
 
 An index definition may also include identifiers of tuple fields
 and their expected **types**. See allowed indexed field types in section
-:ref:`Details about indexed field types <details_about_index_field_types>`:
+:ref:`Details about indexed field types <index-box_indexed-field-types>`:
 
 ..  cssclass:: highlight
 ..  parsed-literal::
@@ -64,107 +64,66 @@ Index operations
 Index operations are automatic: if a data manipulation request changes a tuple,
 then it also changes the index keys defined for the tuple.
 
-#.  Let's create a sample space named ``tester`` and
-    put it in a variable ``my_space``:
+#.  Create a sample space named ``bands``:
 
-    ..  code-block:: tarantoolsession
-
-        tarantool> my_space = box.schema.space.create('tester')
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 21
+        :dedent:
 
 #.  Format the created space by specifying field names and types:
 
-    ..  code-block:: tarantoolsession
-
-        tarantool> my_space:format({
-                 > {name = 'id', type = 'unsigned'},
-                 > {name = 'band_name', type = 'string'},
-                 > {name = 'year', type = 'unsigned'},
-                 > {name = 'rate', type = 'unsigned', is_nullable = true}})
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 24-28
+        :dedent:
 
 #.  Create the **primary** index (named ``primary``):
 
-    ..  code-block:: tarantoolsession
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 31
+        :dedent:
 
-        tarantool> my_space:create_index('primary', {
-                 > type = 'tree',
-                 > parts = {'id'}
-                 > })
-
-    This is a primary index based on the ``id`` field of each tuple.
+    This index is based on the ``id`` field of each tuple.
 
 #.  Insert some :ref:`tuples <index-box_tuple>` into the space:
 
-    ..  code-block:: tarantoolsession
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 43-52
+        :dedent:
 
-        tarantool> my_space:insert{1, 'Roxette', 1986, 1}
-        tarantool> my_space:insert{2, 'Scorpions', 2015, 4}
-        tarantool> my_space:insert{3, 'Ace of Base', 1993}
-        tarantool> my_space:insert{4, 'Roxette', 2016, 3}
+#.  Create **secondary indexes**:
 
-#.  Create a **secondary index**:
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 33-37
+        :dedent:
 
-    ..  code-block:: tarantoolsession
+#.  Create a **multi-part index** with two parts:
 
-        tarantool> box.space.tester:create_index('secondary', {parts = {{field=3, type='unsigned'}}})
-        ---
-        - unique: true
-          parts:
-          - type: unsigned
-            is_nullable: false
-            fieldno: 3
-          id: 2
-          space_id: 512
-          type: TREE
-          name: secondary
-        ...
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 40
+        :dedent:
 
-#.  Create a **multi-part index** with three parts:
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.tester:create_index('thrine', {parts = {
-                 > {field = 2, type = 'string'},
-                 > {field = 3, type = 'unsigned'},
-                 > {field = 4, type = 'unsigned'}
-                 > }})
-        ---
-        - unique: true
-          parts:
-          - type: string
-            is_nullable: false
-            fieldno: 2
-          - type: unsigned
-            is_nullable: false
-            fieldno: 3
-          - type: unsigned
-            is_nullable: true
-            fieldno: 4
-          id: 6
-          space_id: 513
-          type: TREE
-          name: thrine
-        ...
-
-**There are the following SELECT variations:**
+There are the following SELECT variations:
 
 *   The search can use **comparisons** other than equality:
 
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.tester:select(1, {iterator = 'GT'})
-        ---
-        - - [2, 'Scorpions', 2015, 4]
-          - [3, 'Ace of Base', 1993]
-          - [4, 'Roxette', 2016, 3]
-        ...
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 98-106
+        :dedent:
 
     The :ref:`comparison operators <box_index-iterator-types>` are:
 
     *   ``LT`` for "less than"
     *   ``LE`` for "less than or equal"
     *   ``GT`` for "greater"
-    *   ``GE`` for "greater than or equal" .
-    *   ``EQ`` for "equal",
+    *   ``GE`` for "greater than or equal"
+    *   ``EQ`` for "equal"
     *   ``REQ`` for "reversed equal"
 
     Value comparisons make sense if and only if the index type is TREE.
@@ -179,16 +138,10 @@ then it also changes the index keys defined for the tuple.
 
 *   The search can use a **secondary index**.
 
-    For a primary-key search, it is optional to specify an index name as
-    was demonstrated above.
-    For a secondary-key search, it is mandatory.
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.tester.index.secondary:select({1993})
-        ---
-        - - [3, 'Ace of Base', 1993]
-        ...
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 62-68
+        :dedent:
 
     .. _partial_key_search:
 
@@ -196,31 +149,19 @@ then it also changes the index keys defined for the tuple.
     the prefix of the key. Note that partial key searches are available
     only in TREE indexes.
 
-    ..  code-block:: tarantoolsession
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 78-86
+        :dedent:
 
-        tarantool> box.space.tester.index.thrine:select({'Scorpions', 2015})
-        ---
-        - - [2, 'Scorpions', 2015, 4]
-        ...
 
 *   The search can be for all fields, using a table as the value:
 
-    ..  code-block:: tarantoolsession
+    ..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+        :language: lua
+        :lines: 70-76
+        :dedent:
 
-        tarantool> box.space.tester.index.thrine:select({'Roxette', 2016, 3})
-        ---
-        - - [4, 'Roxette', 2016, 3]
-        ...
-
-    or the search can be for one field, using a table or a scalar:
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.tester.index.thrine:select({'Roxette'})
-        ---
-        - - [1, 'Roxette', 1986, 5]
-          - [4, 'Roxette', 2016, 3]
-        ...
 
 ..  admonition:: Tip
     :class: fact

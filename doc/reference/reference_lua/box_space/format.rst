@@ -18,9 +18,9 @@ space_object:format()
 
         **Possible errors:**
 
-        * ``space_object`` does not exist;
-        * field names are duplicated;
-        * type is not legal.
+        * ``space_object`` does not exist
+        * field names are duplicated
+        * type is not legal
 
         .. NOTE::
 
@@ -35,17 +35,16 @@ space_object:format()
         The format clause contains, for each field, a definition within braces:
         ``{name='...',type='...'[,is_nullable=...]}``, where:
 
-        * the ``name`` value may be any string, provided that two fields do not
-          have the same name;
-        * the ``type`` value may be any of allowed types: any | unsigned | string |
+        * The ``name`` value may be any string, provided that two fields do not
+          have the same name.
+        * The ``type`` value may be any of allowed types: any | unsigned | string |
           integer | number | varbinary | boolean | double | decimal | uuid | array |
           map | scalar, but for creating an index use only
           :ref:`indexed fields <index-box_indexed-field-types>`;
-        * the optional ``is_nullable`` value may be either ``true`` or ``false``
-          (the same as the requirement in
-          :ref:`"Options for space_object:create_index" <box_space-create_index-options>`).
-          See also the warning notice in section
-          :ref:`Allowing null for an indexed key <box_space-is_nullable>`.
+        * (Optional) The ``is_nullable`` boolean value specifies whether ``nil`` can be used as a field value.
+          See also: :ref:`key_part.is_nullable <key_part_is_nullable>`.
+        * (Optional) The ``collation`` string value specifies the :ref:`collation <index-collation>` used to compare field values.
+          See also: :ref:`key_part.collation <key_part_collation>`.
 
         It is not legal for tuples to contain values that have the wrong type.
         The example below will cause an error:

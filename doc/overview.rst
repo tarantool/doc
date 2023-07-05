@@ -22,7 +22,7 @@ Here are some of Tarantool's key characteristics:
 
 *   **Advanced indexing**: :ref:`composite indexes <concepts-data_model_indexes>`,
     :ref:`locale support <index-collation>`,
-    indexing by :ref:`nested fields and arrays <details_about_index_field_types>`
+    indexing by :ref:`nested fields and arrays <index-box_indexed-field-types>`
 
 *   **Compute close to data**: :ref:`Lua server <concepts-application_server>`
     and Just-In-Time compiler on board

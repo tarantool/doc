@@ -83,7 +83,7 @@ The NoSQL :ref:`basic data operation requests <index-box_data-operations>`
 select, insert, replace, upsert, update, delete will all work.
 Particularly interesting are the requests that come only via NoSQL.
 
-To create an index on things (remark) with a non-default :ref:`option <box_space-create_index-options>` for example a special id, say: |br|
+To create an index on things (remark) with a non-default :ref:`option <index_opts_object>` for example a special id, say: |br|
 ``box.space.THINGS:create_index('idx_100_things_2', {id=100, parts={2, 'scalar'}})``
 
 (If the SQL data type name is SCALAR, then the NoSQL type is 'scalar',

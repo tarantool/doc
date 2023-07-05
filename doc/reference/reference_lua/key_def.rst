@@ -25,7 +25,7 @@ to extract or compare the index key values.
 
     The parts table has components which are the same as
     the ``parts`` option in
-    :ref:`Options for space_object:create_index() <box_space-create_index-options>`.
+    :ref:`Options for space_object:create_index() <index_opts_object>`.
 
     ``fieldno`` (integer), for example, ``fieldno = 1``.
     It is legal to use ``field`` instead of ``fieldno``.

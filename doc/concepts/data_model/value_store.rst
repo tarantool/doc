@@ -177,43 +177,62 @@ Field type details
 
 ..  _index-box_nil:
 
-**nil**. In Lua, the nil type has only one possible value, also called ``nil``.
+nil
+***
+
+In Lua, the nil type has only one possible value, also called ``nil``.
 Tarantool displays it as ``null`` when using the default
 :ref:`YAML <interactive_console>` format.
 Nil may be compared to values of any types with == (is-equal)
 or ~= (is-not-equal), but other comparison operations will not work.
 Nil may not be used in Lua tables; the workaround is to use
 :ref:`box.NULL <box-null>` because ``nil == box.NULL`` is true.
-Example: ``nil``.
+**Example:** ``nil``.
 
 ..  _index-box_boolean:
 
-**boolean**. A boolean is either ``true`` or ``false``.
-Example: ``true``.
+boolean
+*******
+
+A boolean is either ``true`` or ``false``.
+
+**Example:** ``true``.
 
 ..  _index-box_integer:
 
-**integer**. The Tarantool integer type is for integers between
+integer
+*******
+
+The Tarantool integer type is for integers between
 -9223372036854775808 and 18446744073709551615, which is about 18 quintillion.
 This type corresponds to the number type in Lua and to the integer type in MsgPack.
-Example: ``-2^63``.
+
+**Example:** ``-2^63``.
 
 ..  _index-box_unsigned:
 
-**unsigned**. The Tarantool unsigned type is for integers between
+unsigned
+********
+
+The Tarantool unsigned type is for integers between
 0 and 18446744073709551615. So it is a subset of integer.
-Example: ``123456``.
+
+**Example:** ``123456``.
 
 ..  _index-box_double:
 
-**double**. The double field type exists
+double
+******
+
+The double field type exists
 mainly to be equivalent to Tarantool/SQL's
 :ref:`DOUBLE data type <sql_data_type_double>`.
 In `msgpuck.h <https://github.com/rtsisyk/msgpuck>`_ (Tarantool's interface to MsgPack),
 the storage type is ``MP_DOUBLE`` and the size of the encoded value is always 9 bytes.
 In Lua, fields of the double type can only contain non-integer numeric values and
 cdata values with double floating-point numbers.
-Examples: ``1.234``, ``-44``, ``1.447e+44``.
+
+**Examples:** ``1.234``, ``-44``, ``1.447e+44``.
 
 To avoid using the wrong kind of values inadvertently, use
 ``ffi.cast()`` when searching or changing ``double`` fields.
@@ -222,7 +241,8 @@ For example, instead of
 use
 ``ffi = require('ffi') ...``
 :samp:`{space_object}:insert`:code:`({ffi.cast('double',`:samp:`{value}`:code:`)})`.
-Example:
+
+**Example:**
 
 ..  code-block:: tarantoolsession
 
@@ -243,7 +263,10 @@ Tarantool/SQL does
 
 ..  _index-box_number:
 
-**number**. The Tarantool number field may have both
+number
+******
+
+The Tarantool number field may have both
 integer and floating-point values, although in Lua a ``number``
 is a double-precision floating-point.
 
@@ -262,15 +285,22 @@ In this case, the number will be stored as `cdata`_.
 
 ..  _index-box_decimal:
 
-**decimal**. The Tarantool decimal type is stored as a :ref:`MsgPack ext <msgpack_ext-decimal>` (Extension).
+decimal
+*******
+
+The Tarantool decimal type is stored as a :ref:`MsgPack ext <msgpack_ext-decimal>` (Extension).
 Values with the decimal type are not floating-point values although
 they may contain decimal points.
 They are exact with up to 38 digits of precision.
-Example: a value returned by a function in the :ref:`decimal <decimal>` module.
+
+**Example:** a value returned by a function in the :ref:`decimal <decimal>` module.
 
 ..  _index-box_datetime:
 
-**datetime**. Introduced in :tarantool-release:`2.10.0`.
+datetime
+********
+
+Introduced in :tarantool-release:`2.10.0`.
 The Tarantool ``datetime`` type facilitates operations with date and time,
 accounting for leap years or the varying number of days in a month.
 It is stored as a :ref:`MsgPack ext <msgpack_ext-datetime>` (Extension).
@@ -280,7 +310,11 @@ For more information, see :doc:`Module datetime </reference/reference_lua/dateti
 
 ..  _index-box_interval:
 
-**interval**. Introduced in :tarantool-release:`2.10.0`.
+interval
+********
+
+**Since:** :tarantool-release:`2.10.0`
+
 The Tarantool ``interval`` type represents periods of time.
 They can be added to or subtracted from ``datetime`` values or each other.
 Operations with this data type use code from `c-dt <https://github.com/tarantool/c-dt>`_, a third-party library.
@@ -289,7 +323,10 @@ For more information, see :doc:`Module datetime </reference/reference_lua/dateti
 
 ..  _index-box_string:
 
-**string**. A string is a variable-length sequence of bytes, usually represented with
+string
+******
+
+A string is a variable-length sequence of bytes, usually represented with
 alphanumeric characters inside single quotes. In both Lua and MsgPack, strings
 are treated as binary data, with no attempts to determine a string's
 character set or to perform any string conversion -- unless there is an optional
@@ -299,53 +336,90 @@ collation rules applied.
 For example, numbers are ordered by their point on the number line, so 2345 is
 greater than 500; meanwhile, strings are ordered by the encoding of the first
 byte, then the encoding of the second byte, and so on, so ``'2345'`` is less than ``'500'``.
-Example: ``'A, B, C'``.
+
+**Example:** ``'A, B, C'``.
 
 ..  _index-box_bin:
 
-**bin**. A bin (binary) value is not directly supported by Lua but there is
+bin
+***
+
+A bin (binary) value is not directly supported by Lua but there is
 a Tarantool type ``varbinary`` which is encoded as MsgPack binary.
 For an (advanced) example showing how to insert varbinary into a database,
 see the Cookbook Recipe for :ref:`ffi_varbinary_insert <cookbook-ffi_varbinary_insert>`.
-Example: ``"\65 \66 \67"``.
+
+**Example:** ``"\65 \66 \67"``.
 
 ..  _index-box_uuid:
 
-**uuid**. The Tarantool uuid type is used for
+uuid
+****
+
+The Tarantool uuid type is used for
 :ref:`Universally Unique Identifiers <uuid-module>`.
 Since version :doc:`2.4.1 </release/2.4.1>` Tarantool stores
 ``uuid`` values as a :ref:`MsgPack ext <msgpack_ext-uuid>` (Extension).
 
-Example: ``64d22e4d-ac92-4a23-899a-e5934af5479``.
+**Example:** ``64d22e4d-ac92-4a23-899a-e5934af5479``.
 
 ..  _index-box_array:
 
-**array**. An array is represented in Lua with ``{...}`` (`braces <https://www.lua.org/pil/11.1.html>`_).
-Examples: lists of numbers representing points in geometric figures:
+array
+*****
+
+An array is represented in Lua with ``{...}`` (`braces <https://www.lua.org/pil/11.1.html>`_).
+
+**Examples:** lists of numbers representing points in geometric figures:
 ``{10, 11}``, ``{3, 5, 9, 10}``.
 
-**table**. Lua tables with string keys are stored as MsgPack maps;
+..  _index-box_table:
+
+table
+*****
+
+Lua tables with string keys are stored as MsgPack maps;
 Lua tables with integer keys starting with 1 are stored as MsgPack arrays.
 Nils may not be used in Lua tables; the workaround is to use
 :ref:`box.NULL <box-null>`.
-Example: a ``box.space.tester:select()`` request will return a Lua table.
 
-**tuple**. A tuple is a light reference to a MsgPack array stored in the database.
+**Example:** a ``box.space.tester:select()`` request will return a Lua table.
+
+..  _index-box_tuple_ref:
+
+tuple
+*****
+
+A tuple is a light reference to a MsgPack array stored in the database.
 It is a special type (cdata) to avoid conversion to a Lua table on retrieval.
 A few functions may return tables with multiple tuples. For tuple examples,
 see :ref:`box.tuple <box_tuple>`.
 
 ..  _index-box_scalar:
 
-**scalar**. Values in a scalar field can be boolean, integer, unsigned, double,
+scalar
+******
+
+Values in a scalar field can be boolean, integer, unsigned, double,
 number, decimal, string, uuid, or varbinary; but not array, map, or tuple.
-Examples: ``true``, ``1``, ``'xxx'``.
+
+**Examples:** ``true``, ``1``, ``'xxx'``.
 
 ..  _index-box_any:
 
-**any**. Values in a field of this type can be boolean, integer, unsigned, double,
+any
+***
+
+Values in a field of this type can be boolean, integer, unsigned, double,
 number, decimal, string, uuid, varbinary, array, map, or tuple.
-Examples: ``true``, ``1``, ``'xxx'``, ``{box.NULL, 0}``.
+
+**Examples:** ``true``, ``1``, ``'xxx'``, ``{box.NULL, 0}``.
+
+
+.. _examples_different_field_types:
+
+Examples
+********
 
 Examples of insert requests with different field types:
 

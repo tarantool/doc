@@ -20,32 +20,10 @@ This section shows basic usage scenarios and typical errors for each
 :ref:`SELECT <box_space-operations-select>`.
 Before trying out the examples, you need to bootstrap a Tarantool instance as shown below.
 
-.. code-block:: tarantoolsession
-
-    -- Run a server --
-    tarantool> box.cfg{}
-
-    -- Create a space --
-    tarantool> bands = box.schema.space.create('bands')
-
-    -- Specify field names and types --
-    tarantool> bands:format({
-                   {name = 'id', type = 'unsigned'},
-                   {name = 'band_name', type = 'string'},
-                   {name = 'year', type = 'unsigned'}
-               })
-
-    -- Create a primary index --
-    tarantool> bands:create_index('primary', {parts = {'id'}})
-
-    -- Create a unique secondary index --
-    tarantool> bands:create_index('band', {parts = {'band_name'}})
-
-    -- Create a non-unique secondary index --
-    tarantool> bands:create_index('year', {parts = {{'year'}}, unique = false})
-
-    -- Create a multi-part index --
-    tarantool> bands:create_index('band_year', {parts = {{'band_name'}, {'year'}}})
+..  literalinclude:: /code_snippets/test/indexes/index_select_test.lua
+    :language: lua
+    :lines: 20-40
+    :dedent:
 
 
 .. _box_space-operations-insert:
@@ -158,13 +136,13 @@ You can also use :ref:`index_object.delete <box_index-delete>` to delete a tuple
     ...
 
     -- Try to delete a tuple by a partial key --
-    tarantool> bands.index.band_year:delete('Roxette')
+    tarantool> bands.index.year_band:delete('Roxette')
     ---
     - error: Invalid key part count in an exact match (expected 2, got 1)
     ...
 
     -- Delete a tuple by a full key --
-    tarantool> bands.index.band_year:delete{'Roxette', 1986}
+    tarantool> bands.index.year_band:delete{1986, 'Roxette'}
     ---
     - [1, 'Roxette', 1986]
     ...

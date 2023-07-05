@@ -27,19 +27,26 @@ To test all the examples, go to the `doc/code_snippets` folder and execute the `
 .rocks/bin/luatest
 ```
 
-To run a specific example with tests, use the `luatest` command with the `-c` option, for example:
+To test the examples from the specified directory, pass its relative path to the `luatest` command:
+
+```shell
+.rocks/bin/luatest test/transactions
+```
+
+To test a specific example with the `stdout` output enabled, use the `luatest` command with the `-c` option, for example:
 
 ```shell
 .rocks/bin/luatest -c test/http_client/get_test.lua
 ```
 
-You can also run the `httpbin` service locally using Docker:
+Note that the HTTP client samples (placed in `test/http_client`) use the `httpbin` service.
+You can run `httpbin` locally using Docker to stabilize test results:
 
 ```shell
 docker run -p 80:80 kennethreitz/httpbin
 ```
 
-In this case, replace `https://httpbin.org` links with `http://127.0.0.1` to test the examples.
+In this case, you need to replace `https://httpbin.org` links with `http://127.0.0.1`.
 
 
 ## Referencing code snippets

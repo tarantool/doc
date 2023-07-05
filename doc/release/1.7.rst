@@ -32,12 +32,12 @@ New options are available for:
   * space :ref:`formats <box_space-format>` (user-defined field names and types),
   * :ref:`base64 <digest-base64_encode>` (``urlsafe`` option), and
   * index :ref:`creation <box_space-create_index>`
-    (collation, :ref:`is-nullable <box_space-is_nullable>`, field names).
+    (collation, :ref:`is-nullable <key_part_is_nullable>`, field names).
 
 Incompatible changes:
 
   * Layout of ``box.space._index`` has been extended to support
-    :ref:`is_nullable <box_space-is_nullable>`
+    :ref:`is_nullable <key_part_is_nullable>`
     and :ref:`collation <index-collation>` features.
     All new indexes created on columns with ``is_nullable`` or ``collation``
     properties will have the new definition format.
@@ -79,7 +79,7 @@ Functionality added or changed:
     By default, all fields in Tarantool are  "NOT NULL".
     Starting from Tarantool 1.7.6, you can use
     ``is_nullable`` option in :ref:`space:format() <box_space-format>`
-    or :ref:`inside an index part definition <box_space-is_nullable>`
+    or :ref:`inside an index part definition <key_part_is_nullable>`
     to allow storing NULL in indexes.
     Tarantool partially implements
     `three-valued logic <https://en.wikipedia.org/wiki/Three-valued_logic>`_

@@ -359,7 +359,7 @@ Column definition -- relation to NoSQL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All of the SQL data types except SCALAR correspond to
-:ref:`Tarantool/NoSQL types with the same name <box_space-index_field_types>`.
+:ref:`Tarantool/NoSQL types with the same name <index-box_indexed-field-types>`.
 For example an SQL STRING is stored in a NoSQL space as type = 'string'.
 
 Therefore specifying an SQL data type X determines that the storage will be
@@ -2633,7 +2633,7 @@ what is sometimes called a "full table scan", even if there is an index for
 Ordinarily Tarantool chooses the appropriate index or lookup method depending
 on a complex set of "optimizer" rules; the INDEXED BY clause overrides the
 optimizer choice. If the index was defined with the
-:ref:`exclude_null <box_space-is_nullable>` parts option,
+:ref:`exclude_null <key_part_exclude_null>` parts option,
 it will only be used if the user specifies it.
 
 Example:

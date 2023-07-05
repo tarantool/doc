@@ -72,7 +72,7 @@ Below is list of all ``uuid`` functions and members.
 
     Since version :doc:`2.4.1 </release/2.4.1>`.
     Create a UUID sequence. You can use it in an index over a
-    :ref:`UUID field <details_about_index_field_types>`.
+    :ref:`UUID field <index-box_indexed-field-types>`.
     For example, to create such index for a space named ``test``, say:
 
     ..  code-block:: tarantoolsession

@@ -8,6 +8,8 @@ index_object.unique
 
     .. data:: unique
 
-        True if the index is unique, false if the index is not unique.
+        ``true`` if the index is unique, ``false`` if the index is not unique.
 
         :rtype: boolean
+
+        **See also:** :ref:`index_opts.unique <index_opts_unique>`

@@ -30,9 +30,11 @@ index_object:max()
 
         **Example:**
 
-        ..  code-block:: tarantoolsession
+        Below are few examples of using ``max``.
+        To try out these examples, you need to bootstrap a Tarantool database
+        as described in :ref:`Using data operations <box_space-operations-detailed-examples>`.
 
-            tarantool> box.space.tester.index.primary:max()
-            ---
-            - ['Gamma!', 55, 'This is the third tuple!']
-            ...
+        ..  literalinclude:: /code_snippets/test/indexes/index_aggr_functions_test.lua
+            :language: lua
+            :lines: 42-53,86-100
+            :dedent:

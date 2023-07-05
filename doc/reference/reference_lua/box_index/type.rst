@@ -8,4 +8,8 @@ index_object.type
 
     .. data:: type
 
-        Index type, 'TREE' or 'HASH' or 'BITSET' or 'RTREE'.
+        The :ref:`index type <index-types>`.
+
+        :rtype: string
+
+        **See also:** :ref:`index_opts.type <index_opts_type>`
