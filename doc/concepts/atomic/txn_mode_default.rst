@@ -7,7 +7,7 @@ By default, Tarantool does not allow :ref:`"yielding" <app-yields>` inside a :re
 transaction and the :ref:`transaction manager <txn_mode_mvcc-tnx-manager>` is disabled. This allows fast 
 atomic transactions without conflicts, but brings some limitations:
 
-*   You cannot use interactive transactions.
+*   You cannot use :ref:`interactive transactions <txn_mode_interactive_transaction>`.
 
 *   Any fiber yield leads to the abort of a transaction.
 
@@ -15,13 +15,13 @@ atomic transactions without conflicts, but brings some limitations:
     the transaction is rolled back, including the return of the previous data.
 
 
-To allow yielding inside a :ref:`memtx <engines-chapter>` transaction, see :ref:`Transaction mode: MVCC <txn_mode_transaction-manager>`.
+To learn how to enable yielding inside a :ref:`memtx <engines-chapter>` transaction, see :ref:`Transaction mode: MVCC <txn_mode_transaction-manager>`.
 
 To switch back to the default mode, disable the transaction manager:
 
-..  code-block:: tarantoolsession
+..  code-block:: lua
 
-    box.cfg{memtx_use_mvcc_engine = false}
+    box.cfg { memtx_use_mvcc_engine = false }
 
 
 

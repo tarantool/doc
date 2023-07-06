@@ -15,15 +15,9 @@ box.rollback_to_savepoint()
 
     **Possible errors:** error if the savepoint does not exist.
 
-    **Example:**
+    **Example**
 
-    .. code-block:: lua
-
-        function f()
-          box.begin()           -- start transaction
-          box.space.t:insert{1} -- this will not be rolled back
-          local s = box.savepoint()
-          box.space.t:insert{2} -- this will be rolled back
-          box.rollback_to_savepoint(s)
-          box.commit()          -- end transaction
-        end
+    ..  literalinclude:: /code_snippets/test/transactions/box_rollback_savepoint_test.lua
+        :language: lua
+        :lines: 29-40
+        :dedent:

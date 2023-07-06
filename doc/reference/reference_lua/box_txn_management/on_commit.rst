@@ -33,57 +33,44 @@ box.on_commit()
     Details about trigger characteristics are in the
     :ref:`triggers <triggers-box_triggers>` section.
 
-    **Simple and useless example:** this will display 'commit happened':
+    **Example 1**
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/transactions/box_on_commit_test.lua
+        :language: lua
+        :lines: 29-43
+        :dedent:
 
-        function f()
-        function f() print('commit happened') end
-        box.begin() box.on_commit(f) box.commit()
+    **Example 2**
 
-    But of course there is more to it: the function parameter can be an ITERATOR.
-
+    The function parameter can be an iterator.
     The iterator goes through the effects of every request that changed a space
     during the transaction.
 
-    The iterator will have:
+    The iterator has:
 
-    * an ordinal request number,
+    * an ordinal request number
     * the old value of the tuple before the request
-      (this will be nil for an insert request),
+      (``nil`` for an ``insert`` request)
     * the new value of the tuple after the request
-      (this will be nil for a delete request),
-    * and the id of the space.
+      (``nil`` for a ``delete`` request)
+    * the ID of the space
 
-    **Less simple more useful example:** this will display the effects of two
-    replace requests:
+    The example below displays the effects of two ``replace`` requests:
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/transactions/box_on_commit_iterator_test.lua
+        :language: lua
+        :lines: 29-49
+        :dedent:
 
-        box.space.test:drop()
-        s = box.schema.space.create('test')
-        i = box.space.test:create_index('i')
-        function f(iterator)
-          for request_number, old_tuple, new_tuple, space_id in iterator() do
-            print('request_number ' .. tostring(request_number))
-            print('  old_tuple ' .. tostring(old_tuple[1]) .. ' ' .. old_tuple[2])
-            print('  new_tuple ' .. tostring(new_tuple[1]) .. ' ' .. new_tuple[2])
-            print('  space_id ' .. tostring(space_id))
-          end
-        end
-        s:insert{1,'-'}
-        box.begin() s:replace{1,'x'} s:replace{1,'y'} box.on_commit(f) box.commit()
+    The output might look like this:
 
-    The result will look like this:
+    .. code-block:: console
 
-    .. code-block:: tarantoolsession
-
-        tarantool> box.begin() s:replace{1,'x'} s:replace{1,'y'} box.on_commit(f) box.commit()
-        request_number 1
-          old_tuple 1 -
-          new_tuple 1 x
-          space_id 517
-        request_number 2
-          old_tuple 1 x
-          new_tuple 1 y
-          space_id 517
+        request_number: 1
+        old_tuple: [1, 'Roxette', 1986]
+        new_tuple: [1, 'The Beatles', 1960]
+        space_id: 512
+        request_number: 2
+        old_tuple: [2, 'Scorpions', 1965]
+        new_tuple: [2, 'The Rolling Stones', 1965]
+        space_id: 512
