@@ -10,7 +10,7 @@ going forward one line at a time, backtracing, and showing information about
 fibers. The display features include: using different colors for different
 situations, including line numbers, and adding hints.
 
-It is not supplied as part of the Tarantool repository; it must be installed
+It is not supplied as part of the Tarantool repository; it must b\e installed
 separately. Here is the usual way:
 
 .. code-block:: console

@@ -278,36 +278,27 @@ different results:
     ---
     ...
 
-    tarantool> yaml.encode(setmetatable({'A', 'B'}, { __serialize="sequence"}))
+    tarantool> print(yaml.encode(setmetatable({'A', 'B'}, { __serialize="sequence"})))
     ---
-    - '---
-
-      - A
-
-      - B
-
-      ...
-
-      '
+    - A
+    - B
     ...
 
-    tarantool> yaml.encode(setmetatable({'A', 'B'}, { __serialize="seq"}))
     ---
-    - '--- [''A'', ''B'']
-
-      ...
-
-      '
     ...
 
-    tarantool> yaml.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="map"})})
+    tarantool> print(yaml.encode(setmetatable({'A', 'B'}, { __serialize="seq"})))
+    --- ['A', 'B']
+    ...
+
     ---
-    - '---
+    ...
 
-      - {''f2'': ''B'', ''f1'': ''A''}
+    tarantool> print(yaml.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="map"})}))
+    ---
+    - {'f2': 'B', 'f1': 'A'}
+    ...
 
-      ...
-
-      '
+    ---
     ...
 

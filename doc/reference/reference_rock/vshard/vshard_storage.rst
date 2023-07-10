@@ -80,29 +80,26 @@ Storage public API
 
         tarantool> vshard.storage.info()
         ---
-        - buckets:
-            2995:
-              status: active
-              id: 2995
-            2997:
-              status: active
-              id: 2997
-            2999:
-              status: active
-              id: 2999
-          replicasets:
-            2dd0a343-624e-4d3a-861d-f45efc571cd3:
-              uuid: 2dd0a343-624e-4d3a-861d-f45efc571cd3
+        - replicasets:
+            c862545d-d966-45ff-93ad-763dce4a9723:
+              uuid: c862545d-d966-45ff-93ad-763dce4a9723
               master:
-                state: active
-                uri: storage:storage@127.0.0.1:3301
-                uuid: 2ec29309-17b6-43df-ab07-b528e1243a79
-            c7ad642f-2cd8-4a8c-bb4e-4999ac70bba1:
-              uuid: c7ad642f-2cd8-4a8c-bb4e-4999ac70bba1
+                uri: admin@localhost:3302
+            1990be71-f06e-4d9a-bcf9-4514c4e0c889:
+              uuid: 1990be71-f06e-4d9a-bcf9-4514c4e0c889
               master:
-                state: active
-                uri: storage:storage@127.0.0.1:3303
-                uuid: 810d85ef-4ce4-4066-9896-3c352fec9e64
+                uri: admin@localhost:3304
+          bucket:
+            receiving: 0
+            active: 15000
+            total: 15000
+            garbage: 0
+            pinned: 0
+            sending: 0
+          status: 0
+          replication:
+            status: master
+          alerts: []
         ...
 
 ..  _storage_api-call:

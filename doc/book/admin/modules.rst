@@ -35,10 +35,10 @@ Installing a module from deb/rpm
 Follow these steps:
 
 1. Install Tarantool as recommended on the
-   `download page <http://tarantool.org/download.html>`_.
+   `download page <https://tarantool.io/download.html>`_.
 
 2. Install the module you need. Look up the module's name on
-   `Tarantool rocks page <http://tarantool.org/rocks.html>`_ and put the prefix
+   `Tarantool rocks page <https://tarantool.io/rocks.html>`_ and put the prefix
    "tarantool-" before the module name to avoid ambiguity:
 
    .. code-block:: console
@@ -50,11 +50,11 @@ Follow these steps:
        $ sudo yum install tarantool-<module-name>
 
    For example, to install the module
-   `shard <http://github.com/tarantool/shard>`_ on Ubuntu, say:
+   `vshard <http://github.com/tarantool/vshard>`_ on Ubuntu, say:
 
    .. code-block:: console
 
-       $ sudo apt-get install tarantool-shard
+       $ sudo apt-get install tarantool-vshard
 
 Once these steps are complete, you can:
 
@@ -68,7 +68,7 @@ Once these steps are complete, you can:
 
   .. code-block:: tarantoolsession
 
-      tarantool> shard = require('shard')
+      tarantool> vshard = require('vshard')
 
 * search locally for installed modules using ``package.path`` (Lua) or
   ``package.cpath`` (C):

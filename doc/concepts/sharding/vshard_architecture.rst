@@ -201,10 +201,10 @@ distribution of buckets across the shards. During rebalancing, buckets are being
 migrated among replica sets.
 
 The rebalancer "wakes up" periodically and redistributes data from the most
-loaded nodes to less loaded nodes. Rebalancing starts if the **disbalance threshold**
+loaded nodes to less loaded nodes. Rebalancing starts if the **replicaset disbalance**
 of a replica set exceeds a disbalance threshold specified in the configuration.
 
-The disbalance threshold is calculated as follows:
+The replicaset disbalance is calculated as follows:
 
 ..  code-block:: none
 

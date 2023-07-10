@@ -117,7 +117,7 @@ Basic parameters
 .. confval:: rebalancer_disbalance_threshold
 
     A maximum bucket disbalance threshold, in percent.
-    The threshold is calculated for each replica set using the following formula:
+    The disbalance is calculated for each replica set using the following formula:
 
     .. code-block:: none
 
