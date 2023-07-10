@@ -74,9 +74,6 @@
 
     :param box_tuple_t* tuple: a tuple
 
-    :return: -1 on error
-    :return: 0 otherwise
-
     See also: :ref:`box_tuple_ref()<c_api-tuple-box_tuple_ref>`
 
 .. _c_api-tuple-box_tuple_field_count:

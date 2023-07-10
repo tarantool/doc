@@ -50,11 +50,11 @@ Follow these steps:
        $ sudo yum install tarantool-<module-name>
 
    For example, to install the module
-   `shard <http://github.com/tarantool/shard>`_ on Ubuntu, say:
+   `vshard <http://github.com/tarantool/vshard>`_ on Ubuntu, say:
 
    .. code-block:: console
 
-       $ sudo apt-get install tarantool-shard
+       $ sudo apt-get install tarantool-vshard
 
 Once these steps are complete, you can:
 
@@ -68,7 +68,7 @@ Once these steps are complete, you can:
 
   .. code-block:: tarantoolsession
 
-      tarantool> shard = require('shard')
+      tarantool> vshard = require('vshard')
 
 * search locally for installed modules using ``package.path`` (Lua) or
   ``package.cpath`` (C):
