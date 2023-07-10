@@ -197,8 +197,8 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify
-          a shard with the bucket id, it will retry until the timeout is reached.
+        * ``timeout`` — a request timeout, in seconds.If the ``router`` cannot identify a
+          shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
@@ -230,8 +230,8 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify
-          a shard with the bucket id, it will retry until the timeout is reached.
+        * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify a
+          shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
@@ -265,8 +265,8 @@ Router public API
     :param argument_list: an array of the function's arguments
     :param options:
 
-        * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify
-          a shard with the bucket id, it will retry until the timeout is reached.
+        * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify a
+          shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
@@ -863,8 +863,8 @@ Router public API
         :param argument_list: array of the function's arguments
         :param options:
 
-            * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify
-              a shard with the bucket id, it will retry until the timeout is reached.
+            * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify a
+          shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
             * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
               ``buffer``, ``on_push`` are also supported.
@@ -890,8 +890,8 @@ Router public API
         :param argument_list: array of the function's arguments
         :param options:
 
-            * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify
-              a shard with the bucket id, it will retry until the timeout is reached.
+            * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify a
+          shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
             * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
               ``buffer``, ``on_push`` are also supported.
@@ -928,8 +928,8 @@ Router public API
         :param argument_list: array of the function's arguments
         :param options:
 
-            * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify
-              a shard with the bucket id, it will retry until the timeout is reached.
+            * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify a
+          shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
             * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
               ``buffer``, ``on_push`` are also supported.
@@ -956,8 +956,8 @@ Router public API
         :param argument_list: array of the function's arguments
         :param options:
 
-            * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify
-              a shard with the bucket id, it will retry until the timeout is reached.
+            * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify a
+          shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
             * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
               ``buffer``, ``on_push`` are also supported.
