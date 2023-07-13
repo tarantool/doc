@@ -807,7 +807,7 @@ column it is in. If the data type of NULL cannot be determined from context,
 it is BOOLEAN.
 
 Most of the SQL data types correspond to
-:ref:`Tarantool/NoSQL types <details_about_index_field_types>` with the same name.
+:ref:`Tarantool/NoSQL types <index-box_indexed-field-types>` with the same name.
 In Tarantool versions before :tarantool-release:`2.10.0`,
 There were also some Tarantool/NoSQL data types which had no corresponding SQL data types.
 In those versions, if Tarantool/SQL reads a Tarantool/NoSQL value of a type that has no SQL equivalent,

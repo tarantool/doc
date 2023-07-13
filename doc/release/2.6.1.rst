@@ -69,7 +69,7 @@ Core
     Read more: :doc:`/reference/reference_lua/box_space/alter`.
 -   Composite types extraction is now supported in key_def (:tarantool-issue:`4538`).
 -   Make memtx tuple hints an optional feature (:tarantool-issue:`4927`).
-    Read more: :ref:`Options for space_object:create_index() <box_space-create_index-options>`.
+    Read more: :ref:`Options for space_object:create_index() <index_opts_object>`.
 
 Vinyl
 ~~~~~

@@ -78,7 +78,7 @@ Functionality added or changed:
   * (Application server) :ref:`box.info.memory() <box_info_memory>` provides a high-level overview of
     server memory usage, including networking, Lua, transaction and index memory.
     (:tarantool-issue:`934`).
-  * (Database) it is now possible to :ref:`add missing tuple fields <box_space-is_nullable>` to an index,
+  * (Database) it is now possible to :ref:`add missing tuple fields <key_part_is_nullable>` to an index,
     which is very useful when adding an index along with the evolution of the
     database schema.
     :tarantool-issue:`2988`).
@@ -87,7 +87,7 @@ Functionality added or changed:
     (:tarantool-issue:`2893`,
     :tarantool-issue:`3011` and
     :tarantool-issue:`3008`).
-  * (Database) it is now possible to turn on :ref:`is_nullable <box_space-is_nullable>` property on a field
+  * (Database) it is now possible to turn on :ref:`is_nullable <key_part_is_nullable>` property on a field
     even if the space is not empty, the change is instantaneous.
     (:tarantool-issue:`2973`).
   * (Database) :ref:`logging <log-module>` has been improved in many respects: individual messages

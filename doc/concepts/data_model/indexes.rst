@@ -52,11 +52,10 @@ while an ``‘integer’`` index contains *any* integer values.
 
 The default field type is ``'unsigned'`` and the default index type is TREE.
 Although ``'nil'`` is not a legal indexed field type, indexes may contain `nil`
-:ref:`as a non-default option <box_space-is_nullable>`.
+:ref:`as a non-default option <key_part_is_nullable>`.
 
 To learn more about field types, check the
-:ref:`Field type details <index_box_field_type_details>` section and the more elaborate
-:ref:`Details about index field types <details_about_index_field_types>` in the reference.
+:ref:`Field type details <index_box_field_type_details>` section.
 
 ..  container:: table
 
@@ -92,7 +91,7 @@ To learn more about field types, check the
             -   TREE, BITSET, or HASH
         *   -   ``'varbinary'``
             -   :ref:`varbinary <index-box_bin>`
-            -   TREE, HASH, or BITSET (since version 2.7)
+            -   TREE, HASH, or BITSET (since version :doc:`2.7.1 </release/2.7.1>`)
         *   -   ``'uuid'``
             -   :ref:`uuid <index-box_uuid>`
             -   TREE or HASH
@@ -153,7 +152,7 @@ We give an overview of index features in the following table:
             - \+
             - \+
 
-        *   - :ref:`is_nullable <box_space-is_nullable>`
+        *   - :ref:`is_nullable <key_part_is_nullable>`
             - \+
             - \-
             - \-

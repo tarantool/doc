@@ -17,19 +17,18 @@ index_object:alter()
 
         :param index_object index_object: an :ref:`object reference
                                           <app_server-object_reference>`.
-        :param table options: options list, same as the options list for
-                              ``create_index``, see the chart named
-                              :ref:`Options for space_object:create_index() <box_space-create_index>`.
+        :param table options: index options (see :ref:`index_opts <index_opts_object>`)
 
         :return: nil
 
         **Possible errors:**
 
-        * index does not exist,
-        * the primary-key index cannot be changed to ``{unique = false}``.
+        * index does not exist
+        * the primary-key index cannot be changed to ``{unique = false}``
 
-        **Note regarding storage engine:** vinyl does not support ``alter()``
-        of a primary-key index unless the space is empty.
+        .. NOTE::
+
+            Vinyl does not support ``alter()`` of a primary-key index unless the space is empty.
 
         **Example 1:**
 
