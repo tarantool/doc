@@ -58,10 +58,10 @@ msgstr "**Для пользователей Linux/macOS:**"
 
 msgid ""
 "Install Tarantool from the `Download page "
-"<https://tarantool.io/ru/download>`__."
+"<https://tarantool.io/download>`__."
 msgstr ""
 "Установите Tarantool `со страницы установки "
-"<https://tarantool.io/ru/download>`__."
+"<https://tarantool.io/download>`__."
 
 msgid "Install the ``cartridge-cli`` utility through your package manager:"
 msgstr "Установите через ваш пакетный менеджер утилиту ``cartridge-cli``:"

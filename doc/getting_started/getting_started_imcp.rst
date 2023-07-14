@@ -33,7 +33,7 @@ if you want to get better acquainted with it.
 
 **For Linux/macOS users:**
 
-*   Install Tarantool from the `Download page <https://tarantool.io/ru/download>`__.
+*   Install Tarantool from the `Download page <https://tarantool.io/download>`__.
 *   Install `Node.js <https://nodejs.org/en/download/>`_, which is required for the tutorial frontend.
 *   Install the ``cartridge-cli`` utility through your package manager:
 
