@@ -44,6 +44,12 @@ Below is a list of all ``box.ctl`` functions.
         *  - :doc:`./box_ctl/on_shutdown`
            - Create a "shutdown trigger"
 
+        *  - :doc:`./box_ctl/on_recovery_state`
+           - Create a trigger executed on different stages of a node recovery or initial configuration
+
+        *  - :doc:`./box_ctl/on_election`
+           - Create a :ref:`trigger <triggers>` executed every time the current state of a replica set node in regard to :ref:`leader election <repl_leader_elect>` changes
+
         *  - :doc:`./box_ctl/set_on_shutdown_timeout`
            - Set a timeout in seconds for the ``on_shutdown`` trigger
 
@@ -63,6 +69,8 @@ Below is a list of all ``box.ctl`` functions.
     box_ctl/wait_rw
     box_ctl/on_schema_init
     box_ctl/on_shutdown
+    box_ctl/on_recovery_state
+    box_ctl/on_election
     box_ctl/set_on_shutdown_timeout
     box_ctl/is_recovery_finished
     box_ctl/promote
