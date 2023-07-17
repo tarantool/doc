@@ -40,10 +40,10 @@ HTTP method
 
 The main way of making HTTP requests is the :ref:`request <client_object-request>` method, which accepts the following arguments:
 
-*   an HTTP method, such as ``GET``, ``POST``, ``PUT``, and so on
-*   a request URL
-*   (optional) a request body for the ``POST``, ``PUT``, and ``PATCH`` methods
-*   (optional) request options, such as request headers, SSL settings, and so on
+*   An HTTP method, such as ``GET``, ``POST``, ``PUT``, and so on.
+*   A request URL. You can use the :ref:`uri <uri-module>` module to construct a URL from its components.
+*   (Optional) a request body for the ``POST``, ``PUT``, and ``PATCH`` methods.
+*   (Optional) request options, such as request headers, SSL settings, and so on.
 
 The example below shows how to make the ``GET`` request to the ``https://httpbin.org/get`` URL:
 

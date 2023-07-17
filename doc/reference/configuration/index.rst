@@ -116,7 +116,8 @@ In certain circumstances, a Unix domain socket may be used
 where a URI is expected, for example, "unix/:/tmp/unix_domain_socket.sock" or
 simply "/tmp/unix_domain_socket.sock".
 
-A method for parsing URIs is illustrated in :ref:`Module uri <uri-parse>`.
+The :ref:`uri <uri-module>` module provides functions that convert URI strings into their
+components, or turn components into URI strings.
 
 .. _index-uri-several:
 
