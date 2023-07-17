@@ -1,0 +1,6 @@
+extends: existence
+message: "Rewrite '%s' to be plural without parentheses."
+level: warning
+ignorecase: true
+raw:
+  - '\b\w+\(s\)(?<!http\(s\))'
