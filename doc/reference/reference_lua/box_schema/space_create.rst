@@ -36,6 +36,10 @@ box.schema.space.create()
         +---------------+----------------------------------------------------+---------+---------------------+
         | Name          | Effect                                             | Type    | Default             |
         +===============+====================================================+=========+=====================+
+        | constraint    | constraints that space tuples must satisfy.        | table   | (blank)             |
+        |               | See :ref:`Constraints <index-constraints>` for     |         |                     |
+        |               | details.                                           |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
         | engine        | 'memtx' or 'vinyl'                                 | string  | 'memtx'             |
         +---------------+----------------------------------------------------+---------+---------------------+
         | field_count   | fixed count of :ref:`fields <index-box_tuple>`:    | number  | 0 i.e. not fixed    |
@@ -43,6 +47,10 @@ box.schema.space.create()
         |               | field_count=5, it is illegal                       |         |                     |
         |               | to insert a tuple with fewer                       |         |                     |
         |               | than or more than 5 fields                         |         |                     |
+        +---------------+----------------------------------------------------+---------+---------------------+
+        | foreign_key   | foreign keys for space fields.                     | table   | (blank)             |
+        |               | See :ref:`Foreign keys <index-box_foreign_keys>`   |         |                     |
+        |               | for details.                                       |         |                     |
         +---------------+----------------------------------------------------+---------+---------------------+
         | format        | field names and types:                             | table   | (blank)             |
         |               | See the illustrations of format clauses in the     |         |                     |

@@ -673,21 +673,25 @@ Each constraint can have an optional name:
 Foreign keys
 ------------
 
-**Foreign keys** provide links between related spaces, therefore maintaining the
+**Foreign keys** provide links between related fields, therefore maintaining the
 `referential integrity <https://en.wikipedia.org/wiki/Referential_integrity>`_
 of the database.
 
-Some fields can only contain values present in other spaces. For example,
-shop orders always belong to existing customers. Hence, all values of the ``customer``
-field of the ``orders`` space must exist in the ``customers`` space. In this case,
-``customers`` is a **parent space** for ``orders`` (its **child space**). When two
-spaces are linked with a foreign key, each time a tuple is inserted or modified
-in the child space, Tarantool checks that a corresponding value is present in
-the parent space.
-
+Some fields can only contain values that exist in other fields. For example,
+a shop order always belongs to a customer. Hence, all values of the ``customer``
+field of the ``orders`` space must also exist in the ``id`` field of the ``customers``
+space. In this case, ``customers`` is a **parent space** for ``orders`` (its **child space**).
+When two spaces are linked with a foreign key, each time a tuple is inserted or
+modified in the child space, Tarantool checks that a corresponding value is present
+in the parent space.
 
 ..  image:: foreign_key.svg
     :align: center
+
+.. note::
+
+    A foreign key can link a field to another field in the same space. In this
+    case, the space is its own parent and child.
 
 Foreign key types
 ~~~~~~~~~~~~~~~~~
@@ -714,6 +718,7 @@ Creating foreign keys
     For each foreign key, there must exist an index that includes all its fields.
 
 To create a foreign key in a space, specify the parent space and linked fields in the ``foreign_key`` parameter.
+Parent spaces can be referenced by name or by id. When linking to the same space, the space can be omitted.
 Fields can be referenced by name or by number:
 
 *   Field foreign keys: when setting up the space format.
