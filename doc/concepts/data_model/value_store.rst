@@ -617,7 +617,7 @@ Constraint functions take two parameters:
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
-        :lines: 25-27
+        :lines: 28-30
         :dedent:
 
 
@@ -639,7 +639,7 @@ in the ``constraint`` parameter:
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
-        :lines: 29-30
+        :lines: 25-26
         :dedent:
 
 *   Field constraints: when setting up the space format:
@@ -654,7 +654,7 @@ Each constraint can have an optional name:
 
 ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
     :language: lua
-    :lines: 55-58
+    :lines: 54-57
     :dedent:
 
 ..  note::
@@ -731,7 +731,7 @@ Fields can be referenced by name or by number:
 
     ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
         :language: lua
-        :lines: 34-42
+        :lines: 34-46
         :dedent:
 
 ..  note::
@@ -743,14 +743,14 @@ Foreign keys can have an optional name.
 
     ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
         :language: lua
-        :lines: 56-59
+        :lines: 60-63
         :dedent:
 
 A space can have multiple tuple foreign keys. In this case, they all must have names.
 
     ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
         :language: lua
-        :lines: 74-78
+        :lines: 78-82
         :dedent:
 
 Tarantool performs integrity checks upon data modifications in parent spaces.

@@ -18,16 +18,16 @@ end)
 g.test_constraints = function(cg)
     cg.server:exec(function()
 
-        -- Tuple constraint function --
+        -- Define a tuple constraint function --
         box.schema.func.create('check_person',
             {language = 'LUA', is_deterministic = true, body = 'function(t, c) return (t.age >= 0 and #(t.name) > 3) end'})
 
-        -- Field constraint function --
+        -- Create a space with tuple constraint --
+        customers = box.schema.space.create('customers', {constraint = 'check_person'})
+
+        -- Define a field constraint function --
         box.schema.func.create('check_age',
             {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
-
-        -- Create a space with tuple constraint --
-        customers = box.schema.space.create('customers', { engine = 'memtx', constraint = 'check_person'})
 
         -- Specify format with a field constraint --
         box.space.customers:format({
@@ -35,7 +35,6 @@ g.test_constraints = function(cg)
             {name = 'name', type = 'string'},
             {name = 'age',  type = 'number', constraint = 'check_age'},
         })
-
 
         box.space.customers:create_index('primary', { parts = { 1 } })
 

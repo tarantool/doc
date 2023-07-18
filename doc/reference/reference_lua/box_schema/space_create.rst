@@ -153,6 +153,13 @@ space_opts
         | Type: table
         | Default: blank
 
+        **Example:**
+
+        ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
+            :language: lua
+            :lines: 21-26
+            :dedent:
+
     ..  _space_opts_foreign_key:
 
     .. data:: foreign_key
@@ -161,6 +168,13 @@ space_opts
 
         | Type: table
         | Default: blank
+
+        **Example:**
+
+        ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
+            :language: lua
+            :lines: 34-46
+            :dedent:
 
     Saying ``box.cfg{read_only=true...}`` during :ref:`configuration <cfg_basic-read_only>`
     affects spaces differently depending on the options that were used during
