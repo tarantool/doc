@@ -606,23 +606,20 @@ To create a constraint function, use :ref:`func.create with function body <box_s
 
 Constraint functions take two parameters:
 
-*   The field value and the constraint name for field constraints.
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.schema.func.create('check_age',
-                 > {language = 'LUA', is_deterministic = true, body = 'function(f, c) return (f >= 0 and f < 150) end'})
-        ---
-        ...
-
 *   The tuple and the constraint name for tuple constraints.
 
-    ..  code-block:: tarantoolsession
+    ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
+        :language: lua
+        :lines: 21-23
+        :dedent:
 
-        tarantool> box.schema.func.create('check_person',
-                 > {language = 'LUA', is_deterministic = true, body = 'function(t, c) return (t.age >= 0 and #(t.name) > 3) end'})
-        ---
-        ...
+*   The field value and the constraint name for field constraints.
+
+    ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
+        :language: lua
+        :lines: 25-27
+        :dedent:
+
 
 ..  warning::
 
@@ -638,28 +635,27 @@ Creating constraints
 To create a constraint in a space, specify the corresponding function's name
 in the ``constraint`` parameter:
 
-*   Field constraints: when setting up the space format:
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.person:format({
-                 > {name = 'id',   type = 'number'},
-                 > {name = 'name', type = 'string'},
-                 > {name = 'age',  type = 'number', constraint = 'check_age'},
-                 > })
-
 *   Tuple constraints: when creating or altering a space:
 
-    ..  code-block:: tarantoolsession
+    ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
+        :language: lua
+        :lines: 29-30
+        :dedent:
 
-        tarantool> box.schema.space.create('person', { engine = 'memtx', constraint = 'check_tuple'})
+*   Field constraints: when setting up the space format:
+
+    ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
+        :language: lua
+        :lines: 32-37
+        :dedent:
 
 In both cases, ``constraint`` can contain multiple function names passed as a tuple.
 Each constraint can have an optional name:
 
-..  code-block:: lua
-
-    constraint = {'age_constraint' = 'check_age', 'name_constraint' = 'check_name'}
+..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
+    :language: lua
+    :lines: 55-58
+    :dedent:
 
 ..  note::
 
@@ -690,8 +686,10 @@ in the parent space.
 
 .. note::
 
-    A foreign key can link a field to another field in the same space. In this
-    case, the space is its own parent and child.
+    A foreign key can link a field to another field in the same space. In this case,
+    the child field must be nullable. Otherwise, it will be impossible to insert
+    the first tuple in such a space because there is no parent tuple to which
+    it can link.
 
 Foreign key types
 ~~~~~~~~~~~~~~~~~
@@ -723,28 +721,18 @@ Fields can be referenced by name or by number:
 
 *   Field foreign keys: when setting up the space format.
 
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.space.orders:format({
-                 > {name = 'id',   type = 'number'},
-                 > {name = 'customer_id', foreign_key = {space = 'customers', field = 'id'}}, -- or field = 1
-                 > {name = 'price_total',  type = 'number'},
-                 > })
+    ..  literalinclude:: /code_snippets/test/foreign_keys/field_foreign_key_test.lua
+        :language: lua
+        :lines: 34-41
+        :dedent:
 
 *   Tuple foreign keys: when creating or altering a space. Note that for foreign
     keys with multiple fields there must exist an index that includes all these fields.
 
-  ..  code-block:: tarantoolsession
-
-      tarantool> box.schema.space.create("orders", {foreign_key={space='customers', field={customer_id='id', customer_name='name'}}})
-      ---
-      ...
-      tarantool> box.space.orders:format({
-               > {name = "id", type = "number"},
-               > {name = "customer_id" },
-               > {name = "customer_name"},
-               > {name = "price_total",    type = "number"},
-               > })
+    ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
+        :language: lua
+        :lines: 34-42
+        :dedent:
 
 ..  note::
 
@@ -753,15 +741,17 @@ Fields can be referenced by name or by number:
 
 Foreign keys can have an optional name.
 
-..  code-block:: lua
-
-    foreign_key = {customer = {space = '...', field = {...}}}
+    ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
+        :language: lua
+        :lines: 56-59
+        :dedent:
 
 A space can have multiple tuple foreign keys. In this case, they all must have names.
 
-..  code-block:: lua
-
-    foreign_key = {customer = {space = '...', field = {...} }, item = { space = '...', field = {...}}}
+    ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
+        :language: lua
+        :lines: 74-78
+        :dedent:
 
 Tarantool performs integrity checks upon data modifications in parent spaces.
 If you try to remove a tuple referenced by a foreign key or an entire parent space,
