@@ -434,7 +434,7 @@ timing out. But in the case of workload surges, some wait time is still
 possible. That’s why we also introduced an insertion timeout (the
 ``vinyl_timeout`` parameter), which is set to 60 seconds by default. The write
 operation itself is executed in dedicated threads. The number of these threads
-(2 by default) is controlled by the ``vinyl_write_threads`` parameter. The default
+(4 by default) is controlled by the ``vinyl_write_threads`` parameter. The default
 value of 2 allows doing dumps and compactions in parallel, which is also
 necessary for ensuring system predictability.
 
