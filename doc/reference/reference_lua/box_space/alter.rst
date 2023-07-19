@@ -11,9 +11,9 @@ space_object:alter()
         Since version :doc:`2.5.2 </release/2.5.2>`.
         Alter an existing space. This method changes certain space parameters.
 
-        :param table options: ``field_count``, ``user``,
-                              ``format``, ``temporary``, ``is_sync``, and ``name``
-                              -- the meaning of these parameters is the same as in
+        :param table options: the space options such as ``field_count``, ``user``,
+                              ``format``, ``name``, and other. The full list of
+                              these options with descriptions parameters is provided in
                               :doc:`/reference/reference_lua/box_schema/space_create`
 
         :return: nothing in case of success; an error when fails

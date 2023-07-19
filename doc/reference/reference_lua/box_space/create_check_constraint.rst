@@ -4,6 +4,13 @@
 box.space.create_check_constraint()
 ===============================================================================
 
+.. warning::
+
+    This function was removed in :doc:`2.11.0 </release/2.11.0>`.
+    The check constraint mechanism is replaced with the new tuple constraints.
+    Learn more about tuple constraints in :ref:`Constraints <index-constraints>`.
+
+
 .. class:: space_object
 
     .. method:: create_check_constraint(check_constraint_name, expression)
