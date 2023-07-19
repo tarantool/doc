@@ -610,14 +610,14 @@ Constraint functions take two parameters:
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
-        :lines: 21-23
+        :lines: 21-26
         :dedent:
 
 *   The field value and the constraint name for field constraints.
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
-        :lines: 28-30
+        :lines: 31-36
         :dedent:
 
 
@@ -639,14 +639,14 @@ in the ``constraint`` parameter:
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
-        :lines: 25-26
+        :lines: 28-29
         :dedent:
 
 *   Field constraints: when setting up the space format:
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
-        :lines: 32-37
+        :lines: 38-43
         :dedent:
 
 In both cases, ``constraint`` can contain multiple function names passed as a tuple.
@@ -654,7 +654,7 @@ Each constraint can have an optional name:
 
 ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
     :language: lua
-    :lines: 54-57
+    :lines: 57-64
     :dedent:
 
 ..  note::
@@ -713,7 +713,8 @@ Creating foreign keys
 
 ..  important::
 
-    For each foreign key, there must exist an index that includes all its fields.
+    For each foreign key, there must exist a parent space index that includes
+    all its fields.
 
 To create a foreign key in a space, specify the parent space and linked fields in the ``foreign_key`` parameter.
 Parent spaces can be referenced by name or by id. When linking to the same space, the space can be omitted.
@@ -731,7 +732,7 @@ Fields can be referenced by name or by number:
 
     ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
         :language: lua
-        :lines: 34-46
+        :lines: 34-47
         :dedent:
 
 ..  note::
@@ -743,14 +744,14 @@ Foreign keys can have an optional name.
 
     ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
         :language: lua
-        :lines: 60-63
+        :lines: 61-69
         :dedent:
 
 A space can have multiple tuple foreign keys. In this case, they all must have names.
 
     ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
         :language: lua
-        :lines: 78-82
+        :lines: 84-96
         :dedent:
 
 Tarantool performs integrity checks upon data modifications in parent spaces.

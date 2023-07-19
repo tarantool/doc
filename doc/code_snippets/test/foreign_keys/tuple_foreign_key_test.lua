@@ -32,11 +32,12 @@ g.test_foreign_keys = function(cg)
         customers:insert({1, 'Alice'})
 
         -- Create a space with a tuple foreign key --
-        box.schema.space.create("orders",
-                {foreign_key = { space = 'customers',
-                                 field = {customer_id = 'id', customer_name = 'name'}}
-                }
-        )
+        box.schema.space.create("orders", {
+            foreign_key = {
+                space = 'customers',
+                field = {customer_id = 'id', customer_name = 'name'}
+            }
+        })
 
         box.space.orders:format({
             {name = "id", type = "number"},
@@ -59,7 +60,12 @@ g.test_foreign_keys = function(cg)
 
         -- Set a foreign key with an optional name --
         box.space.orders:alter{
-            foreign_key = {customer = {space = 'customers', field = { customer_id = 'id', customer_name = 'name'}}}
+            foreign_key = {
+                customer = {
+                    space = 'customers',
+                    field = { customer_id = 'id', customer_name = 'name'}
+                }
+            }
         }
 
         items = box.schema.space.create('items')
@@ -77,8 +83,16 @@ g.test_foreign_keys = function(cg)
 
         -- Set two foreign keys: names are mandatory --
         box.space.orders:alter{
-            foreign_key = {customer = {space = 'customers', field = {customer_id = 'id', customer_name = 'name'}},
-                           item = {space = 'items', field = {item_id = 'id'}}}
+            foreign_key = {
+                customer = {
+                    space = 'customers',
+                    field = {customer_id = 'id', customer_name = 'name'}
+                },
+                item = {
+                    space = 'items',
+                    field = {item_id = 'id'}
+                }
+            }
         }
     end)
 end
