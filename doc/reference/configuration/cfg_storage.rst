@@ -265,7 +265,7 @@
     concurrent operations, such as I/O and compression.
 
     | Type: integer
-    | Default: 2
+    | Default: 4
     | Environment variable: TT_VINYL_WRITE_THREADS
     | Dynamic: no
 
