@@ -613,19 +613,18 @@ Constraint functions take two parameters:
         :lines: 21-26
         :dedent:
 
+    ..  warning::
+
+        Tarantool doesn't check field names used in tuple constraint functions.
+        If a field referenced in a tuple constraint gets renamed, this constraint will break
+        and prevent further insertions and modifications in the space.
+
 *   The field value and the constraint name for field constraints.
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
         :lines: 31-36
         :dedent:
-
-
-..  warning::
-
-    Tarantool doesn't check field names used in tuple constraint functions.
-    If a field referenced in a tuple constraint gets renamed, this constraint will break
-    and prevent further insertions and modifications in the space.
 
 ..  _index-constraint_apply:
 
@@ -635,14 +634,14 @@ Creating constraints
 To create a constraint in a space, specify the corresponding function's name
 in the ``constraint`` parameter:
 
-*   Tuple constraints: when creating or altering a space:
+*   Tuple constraints: when creating or altering a space.
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
         :lines: 28-29
         :dedent:
 
-*   Field constraints: when setting up the space format:
+*   Field constraints: when setting up the space format.
 
     ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
         :language: lua
