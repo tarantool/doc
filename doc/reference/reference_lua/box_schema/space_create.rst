@@ -157,7 +157,7 @@ space_opts
 
         ..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
             :language: lua
-            :lines: 21-26
+            :lines: 21-29
             :dedent:
 
     ..  _space_opts_foreign_key:
@@ -173,7 +173,7 @@ space_opts
 
         ..  literalinclude:: /code_snippets/test/foreign_keys/tuple_foreign_key_test.lua
             :language: lua
-            :lines: 34-46
+            :lines: 34-47
             :dedent:
 
     Saying ``box.cfg{read_only=true...}`` during :ref:`configuration <cfg_basic-read_only>`

@@ -46,7 +46,7 @@ space_object:format()
         * (Optional) The ``collation`` string value specifies the :ref:`collation <index-collation>` used to compare field values.
           See also: :ref:`key_part.collation <key_part_collation>`.
         * (Optional) The ``constraint`` table specifies the :ref:`constraints <index-constraints>` that the field value must satisfy.
-        * (Optional) The ``foreign_key`` table specifies the :ref:`foreign key <index-box_foreign_keys>` for the field.
+        * (Optional) The ``foreign_key`` table specifies the :ref:`foreign keys <index-box_foreign_keys>` for the field.
 
         It is not legal for tuples to contain values that have the wrong type.
         The example below will cause an error:

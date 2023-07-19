@@ -710,6 +710,7 @@ more strict references.
 Creating foreign keys
 ~~~~~~~~~~~~~~~~~~~~~
 
+
 ..  important::
 
     For each foreign key, there must exist a parent space index that includes
