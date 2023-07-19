@@ -673,7 +673,7 @@ Foreign keys
 `referential integrity <https://en.wikipedia.org/wiki/Referential_integrity>`_
 of the database.
 
-Some fields can only contain values that exist in other fields. For example,
+Fields can contain values that exist only in other fields. For example,
 a shop order always belongs to a customer. Hence, all values of the ``customer``
 field of the ``orders`` space must also exist in the ``id`` field of the ``customers``
 space. In this case, ``customers`` is a **parent space** for ``orders`` (its **child space**).
@@ -687,7 +687,7 @@ in the parent space.
 .. note::
 
     A foreign key can link a field to another field in the same space. In this case,
-    the child field must be nullable. Otherwise, it will be impossible to insert
+    the child field must be nullable. Otherwise, it is impossible to insert
     the first tuple in such a space because there is no parent tuple to which
     it can link.
 

@@ -37,7 +37,7 @@ g.test_foreign_keys = function(cg)
         box.space.orders:format({
             {name = 'id',   type = 'number'},
             {name = 'customer_id', foreign_key = {space = 'customers', field = 'id'}},
-            {name = 'price_total',  type = 'number'},
+            {name = 'price_total', type = 'number'},
         })
 
         orders = box.space.orders

@@ -17,7 +17,7 @@ box.schema.space.create()
     There are :ref:`three syntax variations <app_server-object_reference>`
     for object references targeting space objects, for example
     :samp:`box.schema.space.drop({space-id})`
-    will drop a space. However, the common approach is to use functions
+    drops a space. However, the common approach is to use functions
     attached to the space objects, for example
     :ref:`space_object:drop() <box_space-drop>`.
 
@@ -52,7 +52,7 @@ space_opts
 
     .. data:: if_not_exists
 
-        Create space only if a space with the same name does not exist already.
+        Create a space only if a space with the same name does not exist already.
         Otherwise, do nothing but do not cause an error.
 
         | Type: boolean
@@ -62,7 +62,7 @@ space_opts
 
     .. data:: engine
 
-        :ref:`Storage engine <engines-chapter>`.
+        A :ref:`storage engine <engines-chapter>`.
 
         | Type: string
         | Default: `memtx`
@@ -82,7 +82,7 @@ space_opts
 
     .. data:: field_count
 
-        Fixed count of :ref:`fields <index-box_tuple>`. For example, if ``field_count=5``,
+        A fixed count of :ref:`fields <index-box_tuple>`. For example, if ``field_count=5``,
         it is illegal to insert a tuple with fewer than or more than 5 fields.
 
         | Type: number
@@ -164,7 +164,7 @@ space_opts
 
     .. data:: foreign_key
 
-        :ref:`Foreign keys <index-box_foreign_keys>` for space fields.
+        The :ref:`foreign keys <index-box_foreign_keys>` for space fields.
 
         | Type: table
         | Default: blank

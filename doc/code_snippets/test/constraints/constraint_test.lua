@@ -31,7 +31,7 @@ g.test_constraints = function(cg)
 
         -- Specify format with a field constraint --
         box.space.customers:format({
-            {name = 'id',   type = 'number'},
+            {name = 'id', type = 'number'},
             {name = 'name', type = 'string'},
             {name = 'age',  type = 'number', constraint = 'check_age'},
         })
