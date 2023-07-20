@@ -191,7 +191,7 @@ datetime_object
 
         :param string input_string: string with the date and time information.
         :param string format: indicator of the input_sting format. Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string.
-                                If no value is set, the default formating  is used.
+                                If no value is set, the default formatting  is used.
         :param number tzoffset: time zone offset from UTC, in minutes.
 
         :return: a datetime_object
@@ -329,7 +329,7 @@ datetime_object
             ---
             ...
 
-            tarantool> dt:add{month = 1, adjust = 'exсess'}
+            tarantool> dt:add{month = 1, adjust = 'excess'}
             ---
             - 2020-03-02T00:00:00Z
             ...
