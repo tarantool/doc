@@ -31,32 +31,35 @@ Below is a list of all ``log`` functions.
     +--------------------------------------+---------------------------------+
     | Name                                 | Use                             |
     +======================================+=================================+
-    | :ref:`log.cfg({})                    | Configures a logger             |
+    | :ref:`log.cfg({})                    | Configure a logger              |
     | <log-cfg>`                           |                                 |
     +--------------------------------------+---------------------------------+
     | :ref:`log.error()                    |                                 |
     | <log-ug_message>` |br|               |                                 |
     | :ref:`log.warn()                     |                                 |
     | <log-ug_message>` |br|               |                                 |
-    | :ref:`log.info()                     | Logs a message with the         |
+    | :ref:`log.info()                     | Log a message with the          |
     | <log-ug_message>` |br|               | specified level                 |
     | :ref:`log.verbose()                  |                                 |
     | <log-ug_message>` |br|               |                                 |
     | :ref:`log.debug()                    |                                 |
     | <log-ug_message>`                    |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`log.pid()                      | Gets the PID of a logger        |
+    | :ref:`log.pid()                      | Get the PID of a logger         |
     | <log-pid>`                           |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`log.rotate()                   | Rotates a log file              |
+    | :ref:`log.rotate()                   | Rotate a log file               |
     | <log-rotate>`                        |                                 |
+    +--------------------------------------+---------------------------------+
+    | :ref:`log.new()                      | Create a new logger with        |
+    | <log-new>`                           | the specified name              |
     +--------------------------------------+---------------------------------+
 
 .. _log-cfg:
 
 .. function:: log.cfg({})
 
-    Allows you to configure logging options.
+    Configure logging options.
     The following options are available:
 
     * ``level``: Specifies the level of detail the log has.
@@ -77,6 +80,10 @@ Below is a list of all ``log`` functions.
 
       Learn more: :ref:`log_format <cfg_logging-log_format>`.
 
+    * ``modules``: Configures the specified log levels for different modules.
+
+      Learn more: :ref:`log_modules <cfg_logging-log_modules>`.
+
     The example below shows how to set the log level to 'debug' and how to send the resulting log
     to the 'tarantool.log' file:
 
@@ -85,6 +92,11 @@ Below is a list of all ``log`` functions.
         log = require('log')
         log.cfg{ level='debug', log='tarantool.log'}
 
+    .. NOTE::
+
+        Note that calling ``log.cfg()`` before ``box.cfg()`` takes into account
+        logging options specified using :ref:`environment variables <box-cfg-params-env>`,
+        such as ``TT_LOG`` and ``TT_LOG_LEVEL``.
 
 .. _log-ug_message:
 
@@ -94,16 +106,16 @@ Below is a list of all ``log`` functions.
               verbose(message)
               debug(message)
 
-    Logs a message with the specified logging level.
+    Log a message with the specified logging level.
     You can learn more about the available levels from the
     :ref:`log_level <cfg_logging-log_level>` property description.
 
     The example below shows how to log a message with the ``info`` level:
 
-    .. code-block:: lua
-
-        log = require('log')
-        log.info('Hello, world!')
+    ..  literalinclude:: /code_snippets/test/logging/log_test.lua
+        :language: lua
+        :lines: 13-21
+        :dedent:
 
     :param any message:    A log message.
 
@@ -146,8 +158,46 @@ Below is a list of all ``log`` functions.
 
 .. function:: rotate()
 
-    Rotates the log.
+    Rotate the log.
     For example, you need to call this function to continue logging after a log rotation program
     renames or moves a file with the latest logs.
 
     :return: nil
+
+.. _log-new:
+
+.. function:: new(name)
+
+    **Since:** :doc:`2.11.0 </release/2.11.0>`
+
+    Create a new logger with the specified name.
+    You can configure a specific log level for a new logger using the :ref:`log_modules <cfg_logging-log_modules>` configuration property.
+
+    :param string name: a logger name
+    :return: a logger instance
+
+    **Example:**
+
+    The code snippet below shows how to set the ``verbose`` level for ``module1`` and the ``error`` level for ``module2``:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
+        :language: lua
+        :lines: 9-13
+        :dedent:
+
+    To create the ``module1`` and ``module2`` loggers, call the ``new()`` function:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
+        :language: lua
+        :lines: 17-19
+        :dedent:
+
+    Then, you can call functions corresponding to different logging levels to make sure
+    that events with severities above or equal to the given levels are shown:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
+        :language: lua
+        :lines: 21-41
+        :dedent:
+
+    At the same time, the events with severities below the specified levels are swallowed.
