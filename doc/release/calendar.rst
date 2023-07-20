@@ -171,55 +171,55 @@ after the specified date.
 
         *   -   :doc:`1.10.12 LTS </release/1.10.12>`
             -   December 22, 2021
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :doc:`1.10.11 LTS </release/1.10.11>`
             -   August 19, 2021
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :doc:`1.10.10 LTS </release/1.10.10>`
             -   April 24, 2021
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :doc:`1.10.9 LTS </release/1.10.9>`
             -   December 30, 2020
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :doc:`1.10.8 LTS </release/1.10.8>`
             -   October 22, 2020
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :doc:`1.10.7 LTS </release/1.10.7>`
             -   July 17, 2020
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :doc:`1.10.6 LTS </release/1.10.6>`
             -   April 20, 2020
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :doc:`1.10.5 LTS </release/1.10.5>`
             -   January 14, 2020
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :ref:`1.10.4 LTS <whats_new_1104>`
             -   September 26, 2019
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :ref:`1.10.3 LTS <whats_new_1103>`
             -   April 1, 2019
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
 
         *   -   :ref:`1.10.2 LTS <whats_new_1102>`
             -   October 13, 2018
+            -   February 20, 2022
             -   February 20, 2023
-            -   February, 2024
