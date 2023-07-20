@@ -98,7 +98,7 @@ repo section
 ee section
 ~~~~~~~~~~
 
-*   ``credential_path`` -- a path to the file file with credentials used for
+*   ``credential_path`` -- a path to the file with credentials used for
     downloading Tarantool Enterprise.
 
 templates section
