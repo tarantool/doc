@@ -18,5 +18,5 @@ box.commit()
 
     ..  literalinclude:: /code_snippets/test/transactions/box_commit_test.lua
         :language: lua
-        :lines: 29-38
+        :lines: 29-44
         :dedent:
