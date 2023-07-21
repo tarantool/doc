@@ -1,0 +1,8 @@
+extends: existence
+message: "Don't use exclamation points in text."
+nonword: true
+level: error
+action:
+  name: remove
+tokens:
+  - '\w+!(?:\s|$)'
