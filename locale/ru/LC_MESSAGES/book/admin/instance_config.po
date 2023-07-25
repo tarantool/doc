@@ -157,8 +157,8 @@ msgstr ""
 "это приводит как к замусориванию самого файла, так и к ненужному копированию"
 " кода при необходимости запустить несколько экземпляров приложения."
 
-msgid "`tarantoolctl` configuration file"
-msgstr "Конфигурационный файл `tarantoolctl`"
+msgid "tarantoolctl configuration file"
+msgstr "Конфигурационный файл tarantoolctl"
 
 msgid ""
 "While instance files contain instance configuration, the ``tarantoolctl`` "

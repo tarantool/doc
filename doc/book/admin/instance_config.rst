@@ -87,7 +87,7 @@ you need to run multiple instances of an application.
 .. _admin-tarantoolctl_config_file:
 
 --------------------------------------------------------------------------------
-`tarantoolctl` configuration file
+tarantoolctl configuration file
 --------------------------------------------------------------------------------
 
 While instance files contain instance configuration, the ``tarantoolctl``
