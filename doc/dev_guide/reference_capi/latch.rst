@@ -21,8 +21,9 @@
 
 .. c:function:: void box_latch_lock(box_latch_t *latch)
 
-   Lock a latch. Waits indefinitely until the current fiber can gain access to
-   the latch.
+    Lock a latch. Waits indefinitely until the current fiber can gain access to
+    the latch. Since version :doc:`2.11.0 </release/2.11.0>`, locks are acquired
+    exactly in the order in which they were requested.
 
     :param box_latch_t* latch: latch to lock
 
