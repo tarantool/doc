@@ -216,3 +216,15 @@
 
     :return: 0 on success and -1 otherwise. In case of an error user
                 could get it via ``box_error_last()``.
+
+.. _box_box_session_id:
+
+.. c:function:: uint64_t box_session_id(void);
+
+    Since version :doc:`2.11.0 </release/2.11.0>`.
+    Return the unique identifier (ID) for the current session.
+
+    :return: the unique identifier (ID) for the current session
+    :return: 0 or -1 if there is no session
+
+    See also :ref:`box.session.id()<box_session-id>`
