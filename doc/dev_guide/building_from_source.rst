@@ -3,13 +3,16 @@
 Building to contribute
 ======================
 
-To build Tarantool from source files, you will need the following tools:
+To build Tarantool from source files, you need the following tools:
 
 *   Git
 *   GCC. Or Clang for Mac OS
-*   CMake 3.3+
+*   CMake 3.3 or later
 *   GNU Make
-*   `ReadLine <http://www.gnu.org/software/readline/>`_, any version
+*   `Autoconf <http://www.gnu.org/software/autoconf/>`_, any version
+*   `Automake <http://www.gnu.org/software/automake/>`_, any version
+*   `Libtool <http://www.gnu.org/software/libtool/>`_, any version
+*   `Readline <http://www.gnu.org/software/readline/>`_, any version
 *   `ncurses <https://www.gnu.org/software/ncurses/>`_, any version
 *   `OpenSSL <https://www.openssl.org>`_, any version
 *   `ICU <http://site.icu-project.org/download>`_, any version
@@ -47,8 +50,8 @@ Ubuntu/Debian
 
 ..  code-block:: console
 
-    $ apt-get -y install git build-essential cmake make zlib1g-dev \
-      libreadline-dev libncurses5-dev libssl-dev libunwind-dev libicu-dev \
+    $ apt-get -y install git build-essential cmake autoconf automake libtool make \
+      zlib1g-dev libreadline-dev libncurses5-dev libssl-dev libunwind-dev libicu-dev \
       python3 python3-yaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
@@ -76,8 +79,8 @@ Fedora
 
 ..  code-block:: console
 
-    $ dnf install -y git gcc gcc-c++ cmake make readline-devel ncurses-devel \
-      openssl-devel zlib-devel libunwind-devel libicu-devel \
+    $ dnf install -y git gcc gcc-c++ cmake  autoconf automake libtool make \
+      readline-devel ncurses-devel openssl-devel zlib-devel libunwind-devel libicu-devel \
       python3-pyyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
@@ -110,8 +113,8 @@ RHEL/CentOS 7
 
     $ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | bash
 
-    $ yum install -y git gcc cmake3 make gcc-c++ zlib-devel readline-devel \
-      ncurses-devel openssl-devel libunwind-devel libicu-devel \
+    $ yum install -y git gcc cmake3  autoconf automake libtool make gcc-c++ zlib-devel \
+      readline-devel ncurses-devel openssl-devel libunwind-devel libicu-devel \
       python3-pyyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
@@ -141,8 +144,8 @@ CentOS 8
 
     $ dnf install -y epel-release
 
-    $ dnf install -y git gcc cmake3 libarchive make gcc-c++ zlib-devel \
-      readline-devel ncurses-devel openssl-devel libunwind-devel libicu-devel \
+    $ dnf install -y git gcc cmake3  autoconf automake libtool libarchive make gcc-c++ \
+      zlib-devel readline-devel ncurses-devel openssl-devel libunwind-devel libicu-devel \
       python3-pyyaml python3-six python3-gevent
 
     $ git clone https://github.com/tarantool/tarantool.git --recursive
@@ -183,7 +186,7 @@ if you use MacPorts.
 
     $ git submodule update --init --recursive
 
-    $ brew install git openssl readline curl icu4c libiconv zlib cmake
+    $ brew install git openssl readline curl icu4c libiconv zlib cmake autoconf automake libtool
 
     $ pip install --user -r test-run/requirements.txt
 
@@ -212,7 +215,7 @@ FreeBSD
 
     $ git submodule update --init --recursive
 
-    $ pkg install -y git cmake gmake readline icu
+    $ pkg install -y git cmake autoconf automake libtool gmake readline icu
 
     $ pip install --user -r test-run/requirements.txt
 
@@ -239,8 +242,8 @@ Additional steps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The CMake option for hinting that the result will be distributed is
-:code:`-DENABLE_DIST=ON`. If this option is on, then later ``make install``
-will install ``tarantoolctl`` files in addition to ``tarantool`` files.
+:code:`-DENABLE_DIST=ON`. With this option, ``make install``
+installs ``tarantoolctl`` files in addition to ``tarantool`` files.
 
 .. _building_from_source-rpm_packages:
 
