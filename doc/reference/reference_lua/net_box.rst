@@ -470,7 +470,7 @@ Below is a list of all ``net.box`` functions.
     .. method:: conn.space.<space-name>:upsert({field-value, ...} [, {options}])
 
         :samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent
-        of the local call :samp:`box.space.{space-name}:upsert(...)`. (:ref:`see details <box_space-upsert>`)
+        of the local call :samp:`box.space.{space-name}:upsert(...)`. (:ref:`see details <box_space-upsert>`).
         For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`.
 
     .. _conn-delete:
@@ -794,16 +794,20 @@ With the ``net.box`` module, you can use the following
 
     Define a trigger for execution when a new connection is established, and authentication
     and schema fetch are completed due to an event such as ``net_box.connect``.
+
+    If a trigger function issues ``net_box`` requests, they must be :ref:`asynchronous <net_box-is_async>`
+    (``{is_async = true}``). An attempt to wait for request completion with ``future:pairs()``
+    or ``future:wait_result()`` in the trigger function will result in an error.
+
     If the trigger execution fails and an exception happens, the connection's
     state changes to 'error'. In this case, the connection is terminated, regardless of the
     ``reconnect_after`` option's value. Can be called as many times as
     reconnection happens, if ``reconnect_after`` is greater than zero.
 
-    :param function trigger-function: function which will become the trigger
-                                      function. Takes the ``conn``
-                                      object as the first argument
-    :param function old-trigger-function: existing trigger function which will
-                                          be replaced by trigger-function
+    :param function trigger-function: the trigger function. Takes the ``conn``
+                                      object as the first argument.
+    :param function old-trigger-function: an existing trigger function to replace
+                                          with ``trigger-function``
     :return: nil or function pointer
 
 .. _net_box-on_disconnect:
@@ -815,11 +819,11 @@ With the ``net.box`` module, you can use the following
     Execution stops after a connection is explicitly closed, or once the Lua
     garbage collector removes it.
 
-    :param function trigger-function: function which will become the trigger
+    :param function trigger-function: the trigger
                                       function. Takes the ``conn``
                                       object as the first argument
-    :param function old-trigger-function: existing trigger function which will
-                                          be replaced by trigger-function
+    :param function old-trigger-function: an existing trigger function to replace
+                                          with ``trigger-function``
     :return: nil or function pointer
 
 ..  _net_box-on_shutdown:
@@ -845,11 +849,10 @@ With the ``net.box`` module, you can use the following
     just close the connection abruptly.
     In this case, the ``on_shutdown()`` trigger is not executed.
 
-    :param function trigger-function: function which will become the trigger
-                                      function. Takes the ``conn``
+    :param function trigger-function: the trigger function. Takes the ``conn``
                                       object as the first argument
-    :param function old-trigger-function: existing trigger function which will
-                                          be replaced by trigger-function
+    :param function old-trigger-function: an existing trigger function to replace
+                                          with ``trigger-function``
     :return: nil or function pointer
 
 .. _net_box-on_schema_reload:
@@ -860,11 +863,14 @@ With the ``net.box`` module, you can use the following
     server after schema has been updated. So, if a server request fails due to a
     schema version mismatch error, schema reload is triggered.
 
-    :param function trigger-function: function which will become the trigger
-                                      function. Takes the ``conn``
+    If a trigger function issues ``net_box`` requests, they must be :ref:`asynchronous <net_box-is_async>`
+    (``{is_async = true}``). An attempt to wait for request completion with ``future:pairs()``
+    or ``future:wait_result()`` in the trigger function will result in an error.
+
+    :param function trigger-function: the trigger function. Takes the ``conn``
                                       object as the first argument
-    :param function old-trigger-function: existing trigger function which will
-                                          be replaced by trigger-function
+    :param function old-trigger-function: an existing trigger function to replace
+                                          with ``trigger-function``
     :return: nil or function pointer
 
     .. NOTE::
@@ -875,5 +881,5 @@ With the ``net.box`` module, you can use the following
         If both parameters are omitted, then the response is a list of
         existing trigger functions.
 
-        Details about trigger characteristics are in the
+        Find the detailed information about triggers in the
         :ref:`triggers <triggers-box_triggers>` section.
