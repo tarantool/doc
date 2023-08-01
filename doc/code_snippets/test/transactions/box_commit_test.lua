@@ -31,13 +31,19 @@ g.test_space_is_updated = function(cg)
         box.space.bands:insert { 2, 'Scorpions', 1965 }
         box.space.bands:insert { 3, 'Ace of Base', 1987 }
 
-        -- Commit the transaction --
+        -- Begin and commit the transaction explicitly --
         box.begin()
         box.space.bands:insert { 4, 'The Beatles', 1960 }
         box.space.bands:replace { 1, 'Pink Floyd', 1965 }
         box.commit()
 
-        t.assert_equals(box.space.bands:count(), 4)
-        t.assert_equals(box.space.bands:select { 1 }[1], { 1, 'Pink Floyd', 1965 })
+        -- Begin the transaction with the specified isolation level --
+        box.begin({ txn_isolation = 'read-committed' })
+        box.space.bands:insert { 5, 'The Rolling Stones', 1962 }
+        box.space.bands:replace { 1, 'The Doors', 1965 }
+        box.commit()
+
+        t.assert_equals(box.space.bands:count(), 5)
+        t.assert_equals(box.space.bands:select { 1 }[1], { 1, 'The Doors', 1965 })
     end)
 end
