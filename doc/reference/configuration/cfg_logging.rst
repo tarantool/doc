@@ -9,6 +9,7 @@ application.
 * :ref:`log_nonblock <cfg_logging-log_nonblock>`
 * :ref:`too_long_threshold <cfg_logging-too_long_threshold>`
 * :ref:`log_format <cfg_logging-log_format>`
+* :ref:`log_modules <cfg_logging-log_modules>`
 
 .. _cfg_logging-log_level:
 
@@ -207,6 +208,113 @@ application.
     | Default: 'plain'
     | Environment variable: TT_LOG_FORMAT
     | Dynamic: **yes**
+
+
+.. _cfg_logging-log_modules:
+
+.. confval:: log_modules
+
+    Since version :doc:`2.11.0 </release/2.11.0>`.
+    Configure the specified log levels (:ref:`log_level <cfg_logging-log_level>`) for different modules.
+
+    You can specify a logging level for the following module types:
+
+    *   Modules (files) that use the default logger.
+        Example: :ref:`Set log levels for files that use the default logger <cfg_logging-logging_example_existing_modules>`.
+
+    *   Modules that use custom loggers created using the :ref:`log.new() <log-new>` function.
+        Example: :ref:`Set log levels for modules that use custom loggers <cfg_logging-logging_example_new_modules>`.
+
+    *   The ``tarantool`` module that enables you to configure the logging level for Tarantool core messages. Specifically, it configures the logging level for messages logged from non-Lua code, including C modules.
+        Example: :ref:`Set a log level for C modules <cfg_logging-logging_example_tarantool_module>`.
+
+    | Type: table
+    | Default: blank
+    | Environment variable: TT_LOG_MODULES
+    | Dynamic: **yes**
+    |
+
+
+    .. _cfg_logging-logging_example_existing_modules:
+
+    **Example 1: Set log levels for files that use the default logger**
+
+    Suppose you have two identical modules placed by the following paths: ``test/logging/module1.lua`` and ``test/logging/module2.lua``.
+    These modules use the default logger and look as follows:
+
+    ..  literalinclude:: /code_snippets/test/logging/module1.lua
+        :language: lua
+        :dedent:
+
+    To load these modules in your application, you need to add the corresponding ``require`` directives:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_existing_modules_test.lua
+        :language: lua
+        :lines: 7-8
+        :dedent:
+
+    To configure logging levels, you need to provide module names corresponding to paths to these modules.
+    In the example below, the ``box_cfg`` variable contains logging settings that can be passed to the ``box.cfg()`` function:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_existing_modules_test.lua
+        :language: lua
+        :lines: 17-20
+        :dedent:
+
+    Given that ``module1`` has the ``verbose`` logging level and ``module2`` has the ``error`` level, calling ``module1.say_hello()`` shows a message but ``module2.say_hello()`` is swallowed:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_existing_modules_test.lua
+        :language: lua
+        :lines: 24-37
+        :dedent:
+
+    .. _cfg_logging-logging_example_new_modules:
+
+    **Example 2: Set log levels for modules that use custom loggers**
+
+    In the example below, the ``box_cfg`` variable contains logging settings that can be passed to the ``box.cfg()`` function.
+    This example shows how to set the ``verbose`` level for ``module1`` and the ``error`` level for ``module2``:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
+        :language: lua
+        :lines: 9-13
+        :dedent:
+
+    To create custom loggers, call the :ref:`log.new() <log-new>` function:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
+        :language: lua
+        :lines: 17-19
+        :dedent:
+
+    Given that ``module1`` has the ``verbose`` logging level and ``module2`` has the ``error`` level, calling ``module1_log.info()`` shows a message but ``module2_log.info()`` is swallowed:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
+        :language: lua
+        :lines: 21-41
+        :dedent:
+
+    .. _cfg_logging-logging_example_tarantool_module:
+
+    **Example 3: Set a log level for C modules**
+
+    In the example below, the ``box_cfg`` variable contains logging settings that can be passed to the ``box.cfg()`` function.
+    This example shows how to set the ``info`` level for the ``tarantool`` module:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_existing_c_modules_test.lua
+        :language: lua
+        :lines: 9-10
+        :dedent:
+
+    The specified level affects messages logged from C modules:
+
+    ..  literalinclude:: /code_snippets/test/logging/log_existing_c_modules_test.lua
+        :language: lua
+        :lines: 14-29
+        :dedent:
+
+    The example above uses the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call C functions provided by the ``say`` module.
+
 
 .. _cfg_logging-logging_example:
 
