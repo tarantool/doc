@@ -6,10 +6,6 @@ box.ctl.on_schema_init()
 
 .. module:: box.ctl
 
-The ``box.ctl`` submodule also contains two functions for the two
-:ref:`server trigger <triggers>` definitions: ``on_shutdown`` and ``on_schema_init``.
-Please, familiarize yourself with the mechanism of trigger functions before using them.
-
 .. function:: on_schema_init(trigger-function [, old-trigger-function])
 
     Create a "schema_init :ref:`trigger <triggers>`".
