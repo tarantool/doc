@@ -62,11 +62,13 @@ The alternative Lua format for console output is the following:
 So, when an input is a Lua object description, the output in the Lua format equals it.
 
 For the Lua output format, you can specify an **end of statement** symbol.
-It is added to the end of each output statement and can be used for parsing the output
-by scripts. By default, the end of statement symbol is empty. You can change it to
-any character or character sequence. To set an end of statement symbol, run
-``set output lua,local_eos=<symbol>``, for example, `set output lua,local_eos=#``.
-To switch back to the empty end of statement symbol, run ``set output lua,local_eos=``
+It is added to the end of each output statement in the current session and
+can be used for parsing the output by scripts. By default, the end of statement
+symbol is empty. You can change it to any character or character sequence.
+To set an end of statement symbol for the current session, run ``set output lua,local_eos=<symbol>``,
+for example, ``set output lua,local_eos=#``.
+To switch back to the empty end of statement symbol, run ``set output lua,local_eos=``.
+
 
 The YAML output has better readability.
 The Lua output can be reused in requests.
