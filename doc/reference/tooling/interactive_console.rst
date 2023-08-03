@@ -41,6 +41,9 @@ language, run ``\set language <language>``, for example:
 
     -- Set input language to SQL --
     tarantool> \set language sql
+    ---
+    - true
+    ...
 
 The **delimiter** can be changed to any character with ``\set delimiter <character>``.
 By default, the delimiter is empty, which means the input does not need to end
@@ -51,6 +54,9 @@ For example, a common recommendation for SQL input is to use the semicolon delim
 
     -- Set ';' delimiter --
     tarantool> \set delimiter ;
+    ---
+    ...
+
 
 The **output format** can be either `YAML <http://yaml.org/spec>`_ (default) or Lua.
 To change the output format, run ``\set output <format>``, for example:
@@ -59,6 +65,7 @@ To change the output format, run ``\set output <format>``, for example:
 
     -- Set output format Lua --
     tarantool> \set output lua
+    true
 
 The default YAML output format is the following:
 
@@ -86,6 +93,7 @@ for example:
 
     -- Set output format Lua and '#' end of statement symbol --
     tarantool> \set output lua,local_eos=#
+    true#
 
 To switch back to the empty end of statement symbol:
 
@@ -93,7 +101,7 @@ To switch back to the empty end of statement symbol:
 
     -- Set output format Lua and empty end of statement symbol --
     tarantool> \set output lua,local_eos=
-
+    true
 
 The YAML output has better readability.
 The Lua output can be reused in requests.
