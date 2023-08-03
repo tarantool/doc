@@ -1,8 +1,7 @@
 .. _interactive_console:
 
---------------------------------------------------------------------------------
 Interactive console
---------------------------------------------------------------------------------
+===================
 
 The interactive console is Tarantool's basic command-line interface for entering requests
 and seeing results.
@@ -35,35 +34,71 @@ It includes:
 Interactive console input and output
 ------------------------------------
 
-The **input language** can be changed to SQL with ``\set language sql``
-or changed to Lua (the default) with ``\set language lua``.
+The **input language** can be either Lua (default) or SQL. To change the input
+language, run ``\set language <language>``, for example:
 
-The **delimiter** can be changed to any character with :samp:`\set delimiter <character>`.
-The default is nothing, which means input does not need to end with a delimiter.
-But a common recommendation is to say ``set delimiter ;`` especially if input is SQL.
+..  code-block:: tarantoolsession
 
-The **output format** can be changed to Lua with ``\set output lua``
-or changed to YAML (the default) with ``\set output yaml``.
+    -- Set input language to SQL
+    tarantool> \set language sql
 
-Ordinarily, output from the console has `YAML format <http://yaml.org/spec>`_.
-That means that there is a line for document-start ``"---"``,
-and each item begins on a separate line starting with ``"- "``,
-and each sub-item in a nested structure is indented,
-and there is a line for document-end ``"..."``.
+The **delimiter** can be changed to any character with ``\set delimiter <character>``.
+By default, the delimiter is empty, which means the input does not need to end
+with a delimiter.
+For example, a common recommendation for SQL input is to use the semicolon delimiter:
 
-Optionally, output from the console can have Lua format.
-That means that there are no lines for document-start or document-end,
-and items are not on separate lines (they are only separated by commas),
-and each sub-item in a nested structure is placed inside "``{}``" braces.
-So, when input is a Lua object description, output will equal input.
+..  code-block:: tarantoolsession
 
-YAML is good for readability.
-Lua is good for re-using results as requests.
-The third format, MsgPack, is good for database storage.
-Currently the default output format is YAML but it may be Lua in a future version,
-and it may be Lua if
-the last :ref:`set_default_output <console-set_default_output>`
-call was ``console.set_default_output('lua')``.
+    -- Set ';' delimiter
+    tarantool> \set delimiter ;
+
+The **output format** can be either `YAML <http://yaml.org/spec>`_ (default) or Lua.
+To change the output format, run ``\set output <format>``, for example:
+
+..  code-block:: tarantoolsession
+
+    -- Set output format Lua
+    tarantool> \set output lua
+
+The default YAML output format is the following:
+
+*   The output starts from a document-start line ``"---"``.
+*   Each item begins on a separate line starting with ``"- "``.
+*   Each sub-item in a nested structure is indented.
+*   The output ends with a document-end line ``"..."``.
+
+The alternative Lua format for console output is the following:
+
+*   There are no lines for document-start or document-end.
+*   Items are separated by commas.
+*   Each sub-item in a nested structure is placed inside "``{}``" braces.
+
+So, when an input is a Lua object description, the output in the Lua format equals it.
+
+For the Lua output format, you can specify an **end of statement** symbol.
+It is added to the end of each output statement in the current session and
+can be used for parsing the output by scripts. By default, the end of statement
+symbol is empty. You can change it to any character or character sequence.
+To set an end of statement symbol for the current session, run `\`set output lua,local_eos=<symbol>``,
+for example:
+
+..  code-block:: tarantoolsession
+
+    -- Set output format Lua and '#' end of statement symbol
+    tarantool> \set output lua,local_eos=#
+
+To switch back to the empty end of statement symbol:
+
+..  code-block:: tarantoolsession
+
+    -- Set output format Lua and empty end of statement symbol
+    tarantool> \set output lua,local_eos=``.
+
+
+The YAML output has better readability.
+The Lua output can be reused in requests.
+The table below shows output examples in these formats compared with the MsgPack
+format, which is good for database storage.
 
 ..  container:: table
 
@@ -125,6 +160,9 @@ call was ``console.set_default_output('lua')``.
                 | :code:`...`
 
             -   :code:`\x81 \xa3 \x6b \x65 \x79 \x01`
+
+The console parameters of a Tarantool instance can also be changed from another
+instance using the :ref:`console <console-module>` built-in module functions.
 
 .. _interactive_console-shortcuts:
 
