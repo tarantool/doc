@@ -88,14 +88,14 @@ generated from the sequence:
 
 ..  literalinclude:: /code_snippets/test/sequence/sequence_test.lua
     :language: lua
-    :lines: 44-63
+    :lines: 44-64
     :dedent:
 
 Insert a tuple without specifying a value for the primary key:
 
 ..  literalinclude:: /code_snippets/test/sequence/sequence_test.lua
     :language: lua
-    :lines: 65-71
+    :lines: 65-72
     :dedent:
 
 The result is a new tuple where the first field is assigned the next value from

@@ -28,5 +28,5 @@ box.space._space_sequence
 
     ..  literalinclude:: /code_snippets/test/sequence/sequence_test.lua
         :language: lua
-        :lines: 44-48,73-86
+        :lines: 20-21,44-48,73-86
         :dedent:
