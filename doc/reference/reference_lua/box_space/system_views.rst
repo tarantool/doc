@@ -1,9 +1,7 @@
 .. _box_space-sysviews:
     
-===============================================================================
 System space views
-===============================================================================
-
+==================
 
 A system space view, also called a 'sysview', is a restricted read-only copy of a system space.
 
@@ -14,6 +12,7 @@ The system space views and the system spaces that they are associated with are: 
 ``_vpriv``, a view of :ref:`_priv <box_space-priv>`, |br|
 ``_vsequence``, a view of :ref:`_sequence <box_space-sequence>`, |br|
 ``_vspace``, a view of :ref:`_space <box_space-space>`, |br|
+``_vspace_sequence``, a view of :ref:`_space_sequence <box_space-space-sequence>`, |br|
 ``_vuser``, a view of :ref:`_user <box_space-user>`.
 
 The structure of a system space view's tuples is identical to the

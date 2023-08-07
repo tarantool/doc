@@ -148,6 +148,13 @@ Below is a list of all ``box.space`` functions and members.
         *  - :doc:`./box_space/_vspace`
            - (Metadata) List of spaces accessible for the current user
 
+        *  - :doc:`./box_space/_space_sequence`
+           - (Metadata) List of connections between spaces and sequences
+
+        *  - :doc:`./box_space/_vspace_sequence`
+           - (Metadata) List of connections between spaces and sequences accessible
+             for the current user
+
         *  - :doc:`./box_space/_user`
            - (Metadata) List of users
 
@@ -215,6 +222,8 @@ To see examples, visit the :ref:`how-to guide on CRUD operations <box_space_exam
     box_space/_sequence_data
     box_space/_space
     box_space/_vspace
+    box_space/_space_sequence
+    box_space/_vspace_sequence
     box_space/_user
     box_space/_vuser
     box_space/_ck_constraint
