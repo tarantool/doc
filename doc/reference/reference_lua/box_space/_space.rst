@@ -1,8 +1,7 @@
 .. _box_space-space:
 
-===============================================================================
 box.space._space
-===============================================================================
+================
 
 .. module:: box.space
 
@@ -20,6 +19,8 @@ box.space._space
     * ``format`` (as made by a :doc:`format clause </reference/reference_lua/box_space/format>`).
 
     These fields are established by :doc:`/reference/reference_lua/box_schema/space_create`.
+
+    The :ref:`system space view <box_space-sysviews>` for ``_space`` is ``_vspace``.
 
     **Example #1:**
 
@@ -98,6 +99,3 @@ box.space._space
         ---
         - - [12345, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]
         ...
-        
-    The :ref:`system space view <box_space-sysviews>` for ``_space`` is ``_vspace``.
-

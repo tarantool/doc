@@ -9,7 +9,7 @@ As with spaces and indexes, you should specify the sequence **name** and let
 Tarantool generate a unique numeric identifier (sequence ID).
 
 As well, you can specify several options when creating a new sequence.
-The options determine what value will be generated whenever the sequence is used.
+The options determine the values that are generated whenever the sequence is used.
 
 ..  _index-box_sequence-options:
 
@@ -63,75 +63,43 @@ the next value, or associated with an index.
 Associating a sequence with an index
 ------------------------------------
 
-For an initial example, we generate a sequence named 'S'.
+First, create a sequence:
 
-..  code-block:: tarantoolsession
-
-    tarantool> box.schema.sequence.create('S',{min=5, start=5})
-    ---
-    - step: 1
-      id: 5
-      min: 5
-      cache: 0
-      uid: 1
-      max: 9223372036854775807
-      cycle: false
-      name: S
-      start: 5
-    ...
+..  literalinclude:: /code_snippets/test/sequence/sequence_test.lua
+    :language: lua
+    :lines: 20-34
+    :dedent:
 
 The result shows that the new sequence has all default values,
 except for the two that were specified, ``min`` and ``start``.
 
-Then we get the next value, with the ``next()`` function.
+Get the next value from the sequence by calling the ``next()`` function:
 
-..  code-block:: tarantoolsession
+..  literalinclude:: /code_snippets/test/sequence/sequence_test.lua
+    :language: lua
+    :lines: 36-42
+    :dedent:
 
-    tarantool> box.sequence.S:next()
-    ---
-    - 5
-    ...
+The result is the same as the start value. The next call increases the value
+by one (the default sequence step).
 
-The result is the same as the start value. If we called ``next()``
-again, we would get 6 (because the previous value plus the
-step value is 6), and so on.
+Create a space and specify that its primary key should be
+generated from the sequence:
 
-Then we create a new table and specify that its primary key should be
-generated from the sequence.
+..  literalinclude:: /code_snippets/test/sequence/sequence_test.lua
+    :language: lua
+    :lines: 44-64
+    :dedent:
 
-..  code-block:: tarantoolsession
+Insert a tuple without specifying a value for the primary key:
 
-    tarantool> s=box.schema.space.create('T')
-    ---
-    ...
-    tarantool> s:create_index('I',{sequence='S'})
-    ---
-    - parts:
-      - type: unsigned
-        is_nullable: false
-        fieldno: 1
-      sequence_id: 1
-      id: 0
-      space_id: 520
-      unique: true
-      type: TREE
-      sequence_fieldno: 1
-      name: I
-    ...
-    ---
-    ...
+..  literalinclude:: /code_snippets/test/sequence/sequence_test.lua
+    :language: lua
+    :lines: 65-72
+    :dedent:
 
-Then we insert a tuple without specifying a value for the primary key.
-
-..  code-block:: tarantoolsession
-
-     tarantool> box.space.T:insert{nil,'other stuff'}
-     ---
-     - [6, 'other stuff']
-     ...
-
-The result is a new tuple where the first field has a value of 6.
-This arrangement, where the system automatically generates the
+The result is a new tuple where the first field is assigned the next value from
+the sequence. This arrangement, where the system automatically generates the
 values for a primary key, is sometimes called "auto-incrementing"
 or "identity".
 
