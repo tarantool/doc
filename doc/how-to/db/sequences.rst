@@ -73,7 +73,7 @@ First, create a sequence:
 The result shows that the new sequence has all default values,
 except for the two that were specified, ``min`` and ``start``.
 
-Get the next value from the sequence by calling the ``next()`` function.
+Get the next value from the sequence by calling the ``next()`` function:
 
 ..  literalinclude:: /code_snippets/test/sequence/sequence_test.lua
     :language: lua
