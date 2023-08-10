@@ -39,6 +39,16 @@ in the cluster but don't use synchronous spaces at all.
 Synchronous replication has a separate :ref:`documentation section <repl_sync>`.
 Leader election is described below.
 
+..  note::
+
+    The system behavior can be specified exactly according to the Raft algorithm. To do this:
+
+    *   Ensure that the user has only synchronous spaces.
+    *   Set the :ref:`replication_synchro_quorum <repl_leader_elect_config>` option to ``N / 2 + 1``.
+    *   Set the :ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>` option to infinity.
+    *   In the :ref:`election_fencing_mode <repl_leader_elect_config>` option, select either the ``soft`` mode (the default)
+        or the ``strict`` mode, which is more restrictive.
+
 .. _repl_leader_elect_process:
 
 Leader election process
@@ -56,7 +66,7 @@ After the first boot, each node has its term equal to 1. When a node sees that
 it is not a leader and there is no leader available for some time in the replica
 set, it increases the term and starts a new leader election round.
 
-Leader election happens via votes. The node, which started the election, votes
+Leader election happens via votes. The node that started the election votes
 for itself and sends vote requests to other nodes.
 Upon receiving vote requests, a node votes for the first of them, and then cannot
 do anything in the same term but wait for a leader to be elected.
@@ -67,7 +77,7 @@ and notifies other nodes about that. Also, a split vote can happen
 when no nodes received a quorum of votes. In this case,
 after a :ref:`random timeout <repl_leader_elect_config>`,
 each node increases its term and starts a new election round if no new vote
-request with a greater term arrives during this time period.
+request with a greater term arrives during this time.
 Eventually, a leader is elected.
 
 If any unfinalized synchronous transactions are left from the previous leader,
@@ -85,7 +95,8 @@ a non-leader node starts a new election if the following conditions are met:
 
 ..  note::
 
-    A cluster member considers the leader node to be alive if the member received heartbeats from the leader at least once during the period of ``replication_timeout * 4``,
+    A cluster member considers the leader node to be alive if the member received heartbeats from the leader at least
+    once during the ``replication_timeout * 4``,
     and there are no replication errors (the connection is not broken due to timeout or due to an error).
 
 Terms and votes are persisted by each instance to preserve certain Raft guarantees.
@@ -136,12 +147,11 @@ Once noticing the error, a user can choose any representative from each of the s
 To correlate the data, the user should remove it from the nodes of one set,
 and reconnect them to the nodes from the other set that have the correct data.
 
-Also, if election is enabled on the node, it won't replicate from any nodes except
+Also, if election is enabled on the node, it doesn't replicate from any nodes except
 the newest leader. This is done to avoid the issue when a new leader is elected,
 but the old leader has somehow survived and tries to send more changes
 to the other nodes.
 
 Term numbers also work as a kind of filter.
-For example, you can be sure that if election
-is enabled on two nodes and ``node1`` has the term number less than ``node2``,
-then ``node2`` won't accept any transactions from ``node1``.
+For example, if election is enabled on two nodes and ``node1`` has the term number less than ``node2``,
+then ``node2`` doesn't accept any transactions from ``node1``.

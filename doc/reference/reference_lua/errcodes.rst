@@ -4,12 +4,12 @@
 Database error codes
 -------------------------------------------------------------------------------
 
-In the current version of the binary protocol, error messages, which are normally
+In the current version of the binary protocol, error messages, which are usually
 more descriptive than error codes, are not present in server responses. The actual
-message may contain a file name, a detailed reason or operating system error code.
+message may contain a filename, a detailed reason or operating system error code.
 All such messages, however, are logged in the error log. Below are general
 descriptions of some popular codes. A complete list of errors can be found in file
-`errcode.h <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_ in the source tree.
+`errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/error.h>`_ in the source tree.
 
 .. container:: table
 
@@ -122,7 +122,7 @@ For example consider the :ref:`fio_read.lua <cookbook-fio_read>` program in our 
     f:close()
     print(data)
 
-After a function call that might fail, like fio.open() above,
+After a function call that might fail, like ``fio.open()`` above,
 it is common to see syntax like ``if not f then ...``
 or ``if f == nil then ...``, which check
 for common failures. But if there had been a syntax
@@ -130,7 +130,7 @@ error, for example fio.opex instead of fio.open, then
 there would have been a Lua error and f would not have
 been changed. If checking for such an obvious error
 had been a concern, the programmer would probably have
-used pcall().
+used ``pcall()``.
 
 All functions in Tarantool modules should work this way,
 unless the manual explicitly says otherwise.

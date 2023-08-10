@@ -80,35 +80,35 @@ refer to the :doc:`function description </reference/reference_lua/box_info/elect
 
 The Raft-based election implementation logs all its actions
 with the ``RAFT:`` prefix. The actions are new Raft message handling,
-node state changing, voting, term bumping, and so on.
+node state changing, voting, and term bumping.
 
 ..  _repl_leader_elect_important:
 
 Important notes
 ---------------
 
-Leader election won't work correctly if the election quorum is set to less or equal
+Leader election doesn't work correctly if the election quorum is set to less or equal
 than ``<cluster size> / 2`` because in that case, a split vote can lead to
 a state when two leaders are elected at once.
 
-For example, let's assume there are five nodes. When the quorum is set to ``2``, ``node1``
+For example, suppose there are five nodes. When the quorum is set to ``2``, ``node1``
 and ``node2`` can both vote for ``node1``. ``node3`` and ``node4`` can both vote
 for ``node5``. In this case, ``node1`` and ``node5`` both win the election.
 When the quorum is set to the cluster majority, that is
-``(<cluster size> / 2) + 1`` or bigger, the split vote is not possible.
+``(<cluster size> / 2) + 1`` or greater, the split vote is impossible.
 
 That should be considered when adding new nodes.
 If the majority value is changing, it's better to update the quorum on all the existing nodes
 before adding a new one.
 
-Also, the automated leader election won't bring many benefits in terms of data
+Also, the automated leader election doesn't bring many benefits in terms of data
 safety when used *without* :ref:`synchronous replication <repl_sync>`.
 If the replication is asynchronous and a new leader gets elected,
 the old leader is still active and considers itself the leader.
 In such case, nothing stops
 it from accepting requests from clients and making transactions.
-Non-synchronous transactions will be successfully committed because
-they won't be checked against the quorum of replicas.
-Synchronous transactions will fail because they won't be able
-to collect the quorum -- most of the replicas will reject
+Non-synchronous transactions are successfully committed because
+they are not checked against the quorum of replicas.
+Synchronous transactions fail because they are not able
+to collect the quorum -- most of the replicas reject
 these old leader's transactions since it is not a leader anymore.
