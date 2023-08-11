@@ -84,7 +84,7 @@ Some of the table members shown here are used in the examples that come later in
     +----------------------+--------------------------------------------------+------------+
     | gc_steps_sweep       | number of steps of garbage collector,            | yes        |
     |                      | sweep phases                                     |            | 
-    |                      | See external `Sweep Phase Description`_          |            |
+    |                      | (see the `Sweep phase description`_)             |            |
     +----------------------+--------------------------------------------------+------------+
     | gc_steps_sweepstring | number of steps of garbage collector,            | yes        |
     |                      | sweep phases for strings                         |            |
@@ -118,7 +118,7 @@ Some of the table members shown here are used in the examples that come later in
 
 .. comment: Links are not inline because they would make the table cells wider.
 
-.. _Sweep phase description: http://wiki.luajit.org/New-Garbage-Collector#sweep-phase
+.. _Sweep phase description: https://ujit.readthedocs.io/en/latest/public/tut-new-gc.html#sweep-phase
 .. _Snap tutorial: https://ujit.readthedocs.io/en/latest/public/tut-snap.html
 
 Note: Although value names are similar to value names in
