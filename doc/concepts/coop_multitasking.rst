@@ -54,7 +54,7 @@ transfers control of the thread from the current fiber to another fiber that is 
 Any live fiber can be in one of three states: ``running``, ``suspended``, and 
 ``ready``. After a fiber dies, the ``dead`` status is returned. By observing 
 fibers from the outside, you can only see ``running`` (for the current fiber) 
-and ``suspended`` for any other fiber waiting for an event from eventloop (``ev``) 
+and ``suspended`` for any other fiber waiting for an event from the event loop (``ev``)
 for execution.
 
 ..  image:: yields.svg

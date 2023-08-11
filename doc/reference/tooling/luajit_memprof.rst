@@ -36,7 +36,7 @@ you need to place this part between two ``misc.memprof`` functions,
 namely, ``misc.memprof.start()`` and ``misc.memprof.stop()``, and then execute
 the code under Tarantool.
 
-Below is a chunk of simple Lua code named ``test.lua`` to illustrate this.
+Below is a chunk of Lua code named ``test.lua`` to illustrate this.
 
 .. _profiler_usage_example01:
 
@@ -135,7 +135,7 @@ Parsing binary profile and generating profiling report
 After getting the memory profile in binary format, the next step is
 to parse it to get a human-readable profiling report. You can do this
 via Tarantool by using the following command
-(mind the hyphen ``-`` prior to the file name):
+(mind the hyphen ``-`` before the filename):
 
 ..  code-block:: console
 
@@ -425,7 +425,7 @@ Reasonable questions regarding the report can be:
 
 *   Why are there no allocations related to the ``concat()`` function?
 *   Why is the number of allocations not a round number?
-*   Why are there approximately 20K allocations instead of 10K?
+*   Why are there about 20K allocations instead of 10K?
 
 First of all, LuaJIT doesn't create a new string if the string with the same
 payload exists (see details on `lua-users.org/wiki <http://lua-users.org/wiki/ImmutableObjects>`_).
@@ -447,7 +447,7 @@ You can see the difference in behavior by adding the line
 ``local _ = tostring(i)`` between lines 22 and 23.
 
 To profile only the ``concat()`` function, comment out line 23 (which is
-``local f = format(i)``) and run the profiler. Now the output will look like this:
+``local f = format(i)``) and run the profiler. Now the output looks like this:
 
 ..  code-block:: console
 

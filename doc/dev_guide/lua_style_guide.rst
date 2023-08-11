@@ -65,16 +65,19 @@ Indentation and formatting
 
     ..  code-block:: lua
 
+        -- Good
         if (a == true and b == false) or (a == false and b == true) then
             <...>
-        end -- good
+        end
 
+        -- Bad
         if a == true and b == false or a == false and b == true then
             <...>
-        end -- bad
+        end
 
+        -- Good but not explicit
         if a ^ b == true then
-        end -- good, but not explicit
+        end
 
 *   Type conversion
 
@@ -83,31 +86,32 @@ Indentation and formatting
 
     ..  code-block:: lua
 
+        -- Bad
         local a = 123
         a = a .. ''
-        -- bad
 
+        -- Good
         local a = 123
         a = tostring(a)
-        -- good
 
+        -- Bad
         local a = '123'
         a = a + 5 -- 128
-        -- bad
 
+        -- Good
         local a = '123'
         a = tonumber(a) + 5 -- 128
-        -- good
 
 *   Try to avoid multiple nested ``if``'s with common body:
 
     ..  code-block:: lua
 
+        -- Good
         if (a == true and b == false) or (a == false and b == true) then
             do_something()
         end
-        -- good
 
+        -- Bad
         if a == true then
             if b == false then
                 do_something()
@@ -117,56 +121,59 @@ Indentation and formatting
                 do_something()
             end
         end
-        -- bad
 
 *   Avoid multiple concatenations in one statement, use ``string.format`` instead:
 
     ..  code-block:: lua
 
+        -- Bad
         function say_greeting(period, name)
             local a = "good  " .. period .. ", " .. name
         end
-        -- bad
 
+        -- Good
         function say_greeting(period, name)
             local a = string.format("good %s, %s", period, name)
         end
-        -- good
 
+        -- Best
         local say_greeting_fmt = "good %s, %s"
         function say_greeting(period, name)
             local a = say_greeting_fmt:format(period, name)
         end
-        -- best
 
 *   Use ``and``/``or`` for default variable values
 
     ..  code-block:: lua
 
+        -- Good
         function(input)
             input = input or 'default_value'
-        end -- good
+        end
 
+        -- Ok but excessive
         function(input)
             if input == nil then
                 input = 'default_value'
             end
-        end -- ok, but excessive
+        end
 
 *   ``if``'s and return statements:
 
     ..  code-block:: lua
 
+        -- Good
         if a == true then
             return do_something()
         end
-        do_other_thing() -- good
+        do_other_thing()
 
+        -- Bad
         if a == true then
             return do_something()
         else
             do_other_thing()
-        end -- bad
+        end
 
 *   Using spaces:
 
@@ -175,22 +182,24 @@ Indentation and formatting
 
         .. code-block:: lua
 
+            -- Bad
             function name (arg1,arg2,...)
-            end -- bad
+            end
 
+            -- Good
             function name(arg1, arg2, ...)
-            end -- good
+            end
 
     -   Add a space after comment markers:
 
         ..  code-block:: lua
 
-            while true do -- inline comment
-            -- comment
-            do_something()
+            while true do -- Inline comment
+                -- Comment
+                do_something()
             end
             --[[
-            multiline
+            Multiline
             comment
             ]]--
 
@@ -198,46 +207,46 @@ Indentation and formatting
 
         ..  code-block:: lua
 
+            -- Bad
             local thing=1
             thing = thing-1
             thing = thing*1
             thing = 'string'..'s'
-            -- bad
 
+            -- Good
             local thing = 1
             thing = thing - 1
             thing = thing * 1
             thing = 'string' .. 's'
-            -- good
 
     -   Add a space after commas in tables:
 
         ..  code-block:: lua
 
+            -- Bad
             local thing = {1,2,3}
             thing = {1 , 2 , 3}
             thing = {1 ,2 ,3}
-            -- bad
 
+            -- Good
             local thing = {1, 2, 3}
-            -- good
 
     -   Add a space in map definitions after equals signs and commas:
 
         ..  code-block:: lua
 
+            -- Bad
             return {1,2,3,4}
             return {
                 key1 = val1,key2=val2
             }
-            -- bad
 
+            -- Good
             return {1, 2, 3, 4}
             return {
                 key1 = val1, key2 = val2,
-                key3 = vallll
+                key3 = val3
             }
-            -- good
 
         You can also use alignment:
 
@@ -258,25 +267,25 @@ Indentation and formatting
 
         ..  code-block:: lua
 
+            -- Bad
             if thing ~= nil then
-                -- ...stuff...
+                -- ... stuff ...
             end
             function derp()
-                -- ...stuff...
+                -- ... stuff ...
             end
             local wat = 7
-            -- bad
 
+            -- Good
             if thing ~= nil then
-                -- ...stuff...
+                -- ... stuff ...
             end
 
             function derp()
-                -- ...stuff...
+                -- ... stuff ...
             end
 
             local wat = 7
-            -- good
 
     -   Delete whitespace at EOL (strongly forbidden. Use ``:s/\s\+$//gc`` in vim
         to delete them).
@@ -290,14 +299,18 @@ add a prefix, or add a table instead of a prefix:
 
 ..  code-block:: lua
 
+    -- Very bad
     function bad_global_example()
-    end -- very, very bad
+    end
 
     function good_local_example()
     end
-    _G.modulename_good_local_example = good_local_example -- good
+    -- Good
+    _G.modulename_good_local_example = good_local_example
+
+    -- Better
     _G.modulename = {}
-    _G.modulename.good_local_example = good_local_example -- better
+    _G.modulename.good_local_example = good_local_example
 
 Always use a prefix to avoid name conflicts.
 
@@ -369,11 +382,11 @@ To write modules, use one of the two patterns (don't use ``modules()``):
     local M = {}
 
     function M.foo()
-    ...
+        ...
     end
 
     function M.bar()
-    ...
+        ...
     end
 
     return M
@@ -383,16 +396,16 @@ or
 ..  code-block:: lua
 
     local function foo()
-    ...
+        ...
     end
 
     local function bar()
-    ...
+        ...
     end
 
     return {
-    foo = foo,
-    bar = bar,
+        foo = foo,
+        bar = bar,
     }
 
 Commenting
@@ -401,6 +414,8 @@ Commenting
 Don't forget to comment your Lua code. You shouldn't comment Lua syntax (assume that the reader already
 knows the Lua language). Instead, tell about functions/variable names/etc.
 
+Start a sentence with a capital letter and end with a period.
+
 Multiline comments: use matching (``--[[ ]]--``) instead of simple
 (``--[[ ]]``).
 
@@ -408,10 +423,10 @@ Public function comments:
 
 ..  code-block:: lua
 
-    --- Copy any table (shallow and deep version)
+    --- Copy any table (shallow and deep version).
     -- * deepcopy: copies all levels
     -- * shallowcopy: copies only first level
-    -- Supports __copy metamethod for copying custom tables with metatables
+    -- Supports __copy metamethod for copying custom tables with metatables.
     -- @function gsplit
     -- @table         inp  original table
     -- @shallow[opt]  sep  flag for shallow copy
@@ -429,43 +444,44 @@ Use the ``tap`` module for writing efficient tests. Example of a test file:
     local test = require('tap').test('table')
     test:plan(31)
 
-    do -- check basic table.copy (deepcopy)
+    do
+        -- Check basic table.copy (deepcopy).
         local example_table = {
-            {1, 2, 3},
-            {"help, I'm very nested", {{{ }}} }
+            { 1, 2, 3 },
+            { "help, I'm very nested", { { { } } } }
         }
 
         local copy_table = table.copy(example_table)
 
         test:is_deeply(
-            example_table,
-            copy_table,
-            "checking, that deepcopy behaves ok"
+                example_table,
+                copy_table,
+                "checking, that deepcopy behaves ok"
         )
         test:isnt(
-            example_table,
-            copy_table,
-            "checking, that tables are different"
+                example_table,
+                copy_table,
+                "checking, that tables are different"
         )
         test:isnt(
-            example_table[1],
-            copy_table[1],
-            "checking, that tables are different"
+                example_table[1],
+                copy_table[1],
+                "checking, that tables are different"
         )
         test:isnt(
-            example_table[2],
-            copy_table[2],
-            "checking, that tables are different"
+                example_table[2],
+                copy_table[2],
+                "checking, that tables are different"
         )
         test:isnt(
-            example_table[2][2],
-            copy_table[2][2],
-            "checking, that tables are different"
+                example_table[2][2],
+                copy_table[2][2],
+                "checking, that tables are different"
         )
         test:isnt(
-            example_table[2][2][1],
-            copy_table[2][2][1],
-            "checking, that tables are different"
+                example_table[2][2][1],
+                copy_table[2][2][1],
+                "checking, that tables are different"
         )
     end
 
