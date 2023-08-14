@@ -9,7 +9,7 @@ msgid ""
 "operating system error code. All such messages, however, are logged in the "
 "error log. Below are general descriptions of some popular codes. A complete "
 "list of errors can be found in file `errcode.h "
-"<https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_ in the"
+"<https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_ in the"
 " source tree."
 msgstr ""
 
