@@ -120,7 +120,7 @@ Versions that only include bug fixes are not listed in this table.
         *   -   2.4.1
             -   :ref:`UUID type for field and index <index-box_uuid>` (:tarantool-issue:`4268`, :tarantool-issue:`2916`) |br|
                 :doc:`popen </reference/reference_lua/popen>` built-in module (:tarantool-issue:`4031`) |br|
-                Ability to create :doc:`custom error types </reference/reference_lua/box_error/custom_type>` (:tarantool-issue:`4398`) |br|
+                Ability to create :ref:`custom error types <box_error_raise_custom_error>` (:tarantool-issue:`4398`) |br|
                 :doc:`Transparent marshalling </reference/reference_lua/box_error/new>` through ``net.box`` (:tarantool-issue:`4398`) |br|
                 :doc:`Stacked diagnostic area </reference/reference_lua/box_error/error_object>` (:tarantool-issue:`1148`) |br|
 

@@ -37,7 +37,7 @@ Or a no-throw version:
 
 When a custom type is specified, it is reported in the ``err.type`` attribute.
 When it is not specified, ``err.type`` reports one of built-in errors such as
-``'ClientError'``, ``'OurOfMemory'``, etc.
+``'ClientError'``, ``'OutOfMemory'``, etc.
 
 The maximum name length for a custom type is *63 bytes*. Everything longer than
 this limit is truncated.

@@ -1,4 +1,4 @@
-..  checks-module:
+..  _checks-module:
 
 Module checks
 =============

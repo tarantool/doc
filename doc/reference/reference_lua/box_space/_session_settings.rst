@@ -15,8 +15,6 @@ box.space._session_settings
     Every settings tuple has two fields: ``name`` (the primary key) and ``value``.
     The tuples' names and default values are:
 
-    *   ``error_marshaling_enabled``: whether :doc:`error objects </reference/reference_lua/box_error/new>` have
-        a special structure. Default: ``false``.
     *   ``sql_default_engine``: default :ref:`storage engine <engines-chapter>` for new SQL tables. Default: ``memtx``.
     *   ``sql_full_column_names``: use full column names in :ref:`SQL result set metadata <box-sql_result_sets>`.
         Default: ``false``.
@@ -29,8 +27,10 @@ box.space._session_settings
         Default: ``false``.
     *   ``sql_select_debug``: show execution steps during :ref:`SELECT <sql_select>`. Default:``false``.
     *   ``sql_vdbe_debug``: for internal use. Default:``false``.
-    *   ``sql_defer_foreign_keys``: **(removed in :doc:`2.11.0 </release/2.11.0>`)** whether foreign-key checks can wait till
+    *   ``sql_defer_foreign_keys`` (removed in :doc:`2.11.0 </release/2.11.0>`): whether foreign-key checks can wait till
         commit. Default: ``false``.
+    *   ``error_marshaling_enabled`` (removed in :doc:`2.10.0 </release/2.10.0>`): whether :doc:`error objects </reference/reference_lua/box_error/new>` have
+        a special structure. Default: ``false``.
 
     Three requests are possible: :doc:`select </reference/reference_lua/box_space/select>`, :doc:`get </reference/reference_lua/box_space/get>`
     and :doc:`update </reference/reference_lua/box_space/update>`.

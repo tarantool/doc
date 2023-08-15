@@ -4,28 +4,19 @@
 box.error.set()
 ===============================================================================
 
-.. function:: box.error.set(error object)
+.. function:: box.error.set(error_object)
 
-    Since version :doc:`2.4.1 </release/2.4.1>`.
-    Set an error as the last system error explicitly. Accepts an error object and
-    makes it available via :doc:`/reference/reference_lua/box_error/last`.
+    **Since:** :doc:`2.4.1 </release/2.4.1>`
 
-    **Example:**
+    Set the specified error as the last system error explicitly.
+    This error is returned by :doc:`/reference/reference_lua/box_error/last`.
 
-    .. code-block:: tarantoolsession
+    :param error_object error_object: an error object
 
-        tarantool> err = box.error.new({code = 111, reason = 'cause'})
-        ---
-        ...
-        tarantool> box.error.last()
-        ---
-        - error: '[string "return tarantool> box.error.last()"]:1: attempt to compare two
-            nil values'
-        ...
-        tarantool> box.error.set(err)
-        ---
-        ...
-        tarantool> box.error.last()
-        ---
-        - cause
-        ...
+    **Example**
+
+    ..  literalinclude:: /code_snippets/test/errors/set_error_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:
