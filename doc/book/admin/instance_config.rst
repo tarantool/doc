@@ -124,7 +124,7 @@ by semicolons:
     $ TT_PRELOAD="/preload/path/script.lua;preload.module" tarantool main.lua
 
 In the preload script, the three dots (``...``) value contains the module name
-if you're preloading a module or the path to the script if you're running a script in.
+if you're preloading a module or the path to the script if you're running a script.
 
 The :ref:`arg <index-init_label>` value from the main script is visible in
 the preload script or module.
