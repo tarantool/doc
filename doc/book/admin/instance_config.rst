@@ -1,8 +1,7 @@
 .. _admin-instance_config:
 
-================================================================================
 Instance configuration
-================================================================================
+======================
 
 For each Tarantool instance, you need two files:
 
@@ -50,9 +49,8 @@ For each Tarantool instance, you need two files:
 
 .. _admin-instance_file:
 
---------------------------------------------------------------------------------
 Instance file
---------------------------------------------------------------------------------
+-------------
 
 After this short introduction, you may wonder what an instance file is, what it
 is for, and how ``tarantoolctl`` uses it. After all, Tarantool is an application
@@ -84,11 +82,83 @@ entire application business logic in it. We, however, do not recommend this,
 since it clutters the instance file and leads to unnecessary copy-paste when
 you need to run multiple instances of an application.
 
+.. _admin-tt-preload:
+
+Preloading Lua scripts and modules
+----------------------------------
+
+Tarantool supports loading and running chunks of Lua code before the loading instance file.
+To load or run Lua code immediately upon Tarantool startup, specify the ``TT_PRELOAD``
+environment variable. Its value can be either a path to a Lua script or a Lua module name:
+
+*   To run the Lua script ``script.lua`` from the ``preload/path/`` directory inside
+    the working directory in Tarantool before ``main.lua``, set ``TT_PRELOAD`` as follows:
+
+    .. code-block:: console
+
+        $ TT_PRELOAD=/preload/path/script.lua tarantool main.lua
+
+    Tarantool runs the ``script.lua`` code, waits for it to complete, and
+    then starts running ``main.lua``.
+
+*   To load the ``preload.module`` into the Tarantool Lua interpreter
+    executing ``main.lua``, set ``TT_PRELOAD`` as follows:
+
+    .. code-block:: console
+
+        $ TT_PRELOAD=preload.module tarantool main.lua
+
+    Tarantool loads the ``preload.module`` code into the interpreter and
+    starts running ``main.lua`` as if its first statement was ``require('preload.module')``.
+
+    .. warning::
+
+        ``TT_PRELOAD`` values that end with ``.lua`` are considered scripts,
+        so avoid module names with this ending.
+
+To load several scripts or modules, pass them in a single quoted string, separated
+by semicolons:
+
+.. code-block:: console
+
+    $ TT_PRELOAD="/preload/path/script.lua;preload.module" tarantool main.lua
+
+In the preload script, the three dots (``...``) value contains the module name
+if you're preloading a module or the path to the script if you're running a script.
+
+The :ref:`arg <index-init_label>` value from the main script is visible in
+the preload script or module.
+
+For example, when preloading this script:
+
+.. code-block:: lua
+
+    -- preload.lua --
+    print("Preloading:")
+    print("... arg is:", ...)
+    print("Passed args:", arg[1], arg[2])
+
+You get the following output:
+
+.. code-block:: console
+
+    $ TT_PRELOAD=preload.lua tarantool main.lua arg1 arg2
+    Preloading:
+    ... arg is:	preload.lua
+    Passed args:	arg1	arg2
+    'strip_core' is set but unsupported
+    ... main/103/main.lua I> Tarantool 2.11.0-0-g247a9a4 Darwin-x86_64-Release
+    ... main/103/main.lua I> log level 5
+    ... main/103/main.lua I> wal/engine cleanup is paused
+    < ... >
+
+If an error happens during the execution of the preload script or module, Tarantool
+reports the problem and exits.
+
 .. _admin-tarantoolctl_config_file:
 
---------------------------------------------------------------------------------
 tarantoolctl configuration file
---------------------------------------------------------------------------------
+-------------------------------
 
 While instance files contain instance configuration, the ``tarantoolctl``
 configuration file contains the configuration that ``tarantoolctl`` uses to
