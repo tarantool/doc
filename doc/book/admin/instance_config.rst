@@ -92,7 +92,7 @@ To load or run Lua code immediately upon Tarantool startup, specify the ``TT_PRE
 environment variable. Its value can be either a path to a Lua script or a Lua module name:
 
 *   To run the Lua script ``script.lua`` from the ``preload/path/`` directory inside
-    the working directory in Tarantool before executing ``main.lua``:
+    the working directory in Tarantool before ``main.lua``, set ``TT_PRELOAD`` as follows:
 
     .. code-block:: console
 
@@ -102,7 +102,7 @@ environment variable. Its value can be either a path to a Lua script or a Lua mo
     then starts running ``main.lua``.
 
 *   To load the ``preload.module`` into the Tarantool Lua interpreter
-    executing ``main.lua``:
+    executing ``main.lua``, set ``TT_PRELOAD`` as follows:
 
     .. code-block:: console
 
