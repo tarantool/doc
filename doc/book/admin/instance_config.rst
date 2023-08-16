@@ -89,7 +89,7 @@ Preloading Lua scripts and modules
 
 Tarantool supports loading and running chunks of Lua code before the loading instance file.
 To load or run Lua code immediately upon Tarantool startup, specify the ``TT_PRELOAD``
-environment variable. Its value can be either a path to a Lua script, or a Lua module name:
+environment variable. Its value can be either a path to a Lua script or a Lua module name:
 
 *   To run the Lua script ``script.lua`` from the ``preload/path/`` directory inside
     the working directory in Tarantool before executing ``main.lua``:
@@ -114,7 +114,7 @@ environment variable. Its value can be either a path to a Lua script, or a Lua m
     .. warning::
 
         ``TT_PRELOAD`` values that end with ``.lua`` are considered scripts,
-        so avoid modules names with this ending.
+        so avoid module names with this ending.
 
 To load several scripts or modules, pass them in a single quoted string, separated
 by semicolons:
