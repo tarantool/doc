@@ -644,7 +644,7 @@ A datetime table field can be created by using this type, which is semantically 
       - ['2022-01-01T00:00:00Z']
     ...
 
-There is no implicit cast available from a string expression to a datetime expression (dislike convention used by majority of SQL vendors).
+There is no implicit cast available from a string expression to a datetime expression (unlike convention used by majority of SQL vendors).
 In such cases, you need to use explicit cast from a string value to a datetime value (see the example above).
 
 You can subtract datetime and datetime, datetime and interval, or add datetime and interval in any order (see examples of such arithmetics in the description of the :ref:`INTERVAL type <sql_data_type_interval>`).
@@ -679,7 +679,7 @@ Similarly to the :ref:`DATETIME <sql_data_type_datetime>` type, you can define a
       - ['2022-02-02T01:01:00Z', '+1 years, 1 months']
     ...
 
-Dislike DATETIME, INTERVAL cannot be a part of an index.
+Unlike DATETIME, INTERVAL cannot be a part of an index.
 
 There is no implicit cast available for conversions to an interval from a string or any other type.
 But there is explicit cast allowed from maps (see examples below).
