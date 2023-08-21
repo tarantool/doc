@@ -1710,17 +1710,20 @@ to update the
 :ref:`box.space._session_settings <box_space-session_settings>`
 temporary system space.
 
-``setting-name`` can be any one of
-``"error_marshaling_enabled"``.
-``"sql_default_engine"``.
-``"sql_defer_foreign_keys"``,
-``"sql_full_column_names"``,
-``"sql_full_metadata"``,
-``"sql_parser_debug"``,
-``"sql_recursive_triggers"``,
-``"sql_reverse_unordered_selects"``,
-``"sql_select_debug"``,
-``"sql_vdbe_debug"``. The quote marks are necessary.
+``setting-name`` can have the following values:
+
+*   ``"error_marshaling_enabled"``
+*   ``"sql_default_engine"``
+*   ``"sql_full_column_names"``
+*   ``"sql_full_metadata"``
+*   ``"sql_parser_debug"``
+*   ``"sql_recursive_triggers"``
+*   ``"sql_reverse_unordered_selects"``
+*   ``"sql_select_debug"``
+*   ``"sql_vdbe_debug"``
+*   ``"sql_defer_foreign_keys"`` **(removed in :doc:`2.11.0 </release/2.11.0>`)**
+
+The quote marks are necessary.
 
 If ``setting-name`` is ``"sql_default_engine"``, then
 ``setting-value`` can be either 'vinyl' or 'memtx'.
