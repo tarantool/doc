@@ -4,7 +4,6 @@ Other rocks
 This page features a list of links to third-party Tarantool module documentation
 that is hosted externally -- mostly on GitHub pages or in READMEs:
 
-*   `checks <https://github.com/tarantool/checks/#readme>`_
 *   `crud <https://github.com/tarantool/crud#readme>`_
 *   `expirationd <https://tarantool.github.io/expirationd/>`_
 *   `icu-date <https://github.com/tarantool/icu-date#readme>`_
