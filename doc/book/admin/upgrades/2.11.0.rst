@@ -28,12 +28,12 @@ a recovery error:
     option to ``true``.
 2.  Make new snapshots on the instances, so that the old snapshots aren't used
     for recovery anymore.
-3.  Set ``force_recovery`` back to ``false.
+3.  Set ``force_recovery`` back to ``false``.
 
 Replication doesn't work
 ------------------------
 
-After all the instances are started successfully, WALs with mixed transactions
-may still lead to replication issues. If some instances can't replicate from other
+After all the instances start successfully, WALs with mixed transactions
+may still lead to replication issues. Some instances may fail to replicate from other
 instances because they are sending incorrect WALs. To fix the replication issues,
 rebootstrap the instances that fail to replicate.
