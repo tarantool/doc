@@ -1,0 +1,39 @@
+..  _admin-upgrades-2.8.1_mixed_transactions:
+
+Recover from WALs with mixed transactions when upgrading to 2.11.0
+==================================================================
+
+This is a guide on fixing a specific problem that could happen when upgrading
+from a Tarantool version between 2.1.2 and 2.2.0 to 2.8.1 or later. The described
+solution is applicable since version 2.11.0.
+
+The problem is described in the issue :tarantool-issue:`7932`. If two or more
+transactions happened simultaneously in Tarantool 2.1.2-2.2.0, their operations
+could be written to the write-ahead log mixed with each other. Starting from version
+2.8.1, Tarantool recovers transactions atomically and expects all WAL entries
+between a transaction's ``begin`` and ``commit`` operations to belong to one transaction.
+If there is an operation belonging to another transaction, Tarantool fails to recover
+from such a WAL.
+
+Starting from version :doc:`2.11.0 </release/2.11.0>`, Tarantool can recover from
+WALs with mixed transactions in the ``force_recovery`` mode.
+
+Instances fail to start
+-----------------------
+
+If all instances or some of them fail to start after upgrading to 2.11 or a newer
+version due to a recovery error:
+
+1.  Start these instances with the :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`
+    option to ``true``.
+2.  Make new snapshots on the instances so that the old WALs with mixed transactions
+    aren't used for recovery anymore. To do this, call :ref:`box.snapshot() <box-snapshot>`.
+3.  Set ``force_recovery`` back to ``false``.
+
+Replication doesn't work
+------------------------
+
+After all the instances start successfully, WALs with mixed transactions
+may still lead to replication issues. Some instances may fail to replicate from other
+instances because they are sending incorrect WALs. To fix the replication issues,
+rebootstrap the instances that fail to replicate.

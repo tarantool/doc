@@ -29,4 +29,5 @@ This section includes the following topics:
     upgrades/1.6-2.0-downtime
     upgrades/2.10.1
     upgrades/2.10.4
+    upgrades/2.11.0
 
