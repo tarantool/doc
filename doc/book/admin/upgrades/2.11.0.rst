@@ -27,7 +27,7 @@ version due to a recovery error:
 1.  Start these instances with the :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`
     option to ``true``.
 2.  Make new snapshots on the instances so that the old WALs with mixed transactions
-    aren't used for recovery anymore.
+    aren't used for recovery anymore. To do this, call :ref:`box.snapshot() <box-snapshot>`.
 3.  Set ``force_recovery`` back to ``false``.
 
 Replication doesn't work
