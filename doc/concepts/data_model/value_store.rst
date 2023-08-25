@@ -598,11 +598,11 @@ a wider range of limitations.
 Constraint functions
 ~~~~~~~~~~~~~~~~~~~~
 
-Constraints use stored Lua functions, which must return ``true`` when the constraint
+Constraints use stored Lua functions or :ref:`SQL expressions <sql_expressions>`, which must return ``true`` when the constraint
 is satisfied. Other return values (including ``nil``) and exceptions make the
 check fail and prevent tuple insertion or modification.
 
-To create a constraint function, use :ref:`func.create with function body <box_schema-func_create_with-body>`.
+To create a constraint function, call :ref:`box.schema.func.create() <box_schema-func_create>` with the function definition specified in the ``body`` attribute.
 
 Constraint functions take two parameters:
 
