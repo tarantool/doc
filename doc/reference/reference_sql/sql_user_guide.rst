@@ -1,9 +1,8 @@
 
 .. _sql_user_guide:
 
---------------------------------------------------------------------------------
 SQL user guide
---------------------------------------------------------------------------------
+==============
 
 The User Guide describes how users can start up with SQL with Tarantool, and necessary concepts.
 
@@ -25,9 +24,8 @@ The User Guide describes how users can start up with SQL with Tarantool, and nec
 
 .. _sql_getting_started:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Getting Started
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------
 
 The explanations for installing and starting the Tarantool server are in earlier chapters of the Tarantool manual.
 
@@ -74,9 +72,8 @@ It is also legal to enclose SQL statements inside single or double quote marks i
 
 .. _sql_supported_syntax:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Supported Syntax
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------
 
 Keywords, for example CREATE or INSERT or VALUES, may be entered in either upper case or lower case.
 
@@ -105,9 +102,8 @@ Expressions, for example ``a + b`` or ``a > b AND NOT a <= b``, may have arithme
 
 .. _sql_concepts:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Concepts
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------
 
 In the :ref:`SQL beginners' guide <sql_beginners_guide>` there was discussion of: |br|
 What are: relational databases, tables, views, rows, and columns? |br|
@@ -134,9 +130,8 @@ possible with NoSQL. Mixing SQL statements with NoSQL requests is allowed.
 
 .. _sql_tokens:
 
-********************************************************************************
 Tokens
-********************************************************************************
+~~~~~~
 
 The token is the minimum SQL-syntax unit that Tarantool understands.
 These are the types of tokens:
@@ -159,9 +154,8 @@ but for readability one would usually use spaces to separate tokens: |br|
 
 .. _sql_literals:
 
-********************************************************************************
 Literals
-********************************************************************************
+~~~~~~~~
 
 There are eight kinds of literals: BOOLEAN INTEGER DOUBLE DECIMAL STRING VARBINARY MAP ARRAY.
 
@@ -258,9 +252,8 @@ one must say ``UPDATE ... SET string_column = CAST(X'41' AS STRING);``. |br|
 
 .. _sql_identifiers:
 
-********************************************************************************
 Identifiers
-********************************************************************************
+~~~~~~~~~~~
 
 All database objects -- tables, triggers, indexes, columns, constraints, functions, collations -- have identifiers.
 An identifier should begin with a letter or underscore (``'_'``) and should contain
@@ -275,9 +268,8 @@ so Cyrillic identifiers consume a tiny amount more space.
 
 .. _sql_reserved_words:
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Reserved words
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************
 
 Certain words are reserved and should not be used for identifiers.
 The simple rule is: if a word means something in Tarantool SQL syntax,
@@ -404,9 +396,9 @@ The following example shows that conversion to upper case affects regular identi
 
 .. _sql_operands:
 
-********************************************************************************
 Operands
-********************************************************************************
+~~~~~~~~
+
 
 An operand is something that can be operated on. Literals and column identifiers are operands. So are NULL and DEFAULT.
 
@@ -414,9 +406,11 @@ NULL and DEFAULT are keywords which represent values whose data types are not kn
 so they are known by the technical term "contextually typed value specifications".
 (Exception: for the non-standard statement "SELECT NULL FROM table-name;"  NULL has data type BOOLEAN.)
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. _sql_operand_data_types:
+
 Operand data types
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+******************
 
 Every operand has a data type.
 
@@ -816,9 +810,12 @@ For example, ``SELECT "flags" FROM "_vspace";`` would return a column whose type
 Such columns can only be manipulated in SQL by
 :ref:`invoking Lua functions <sql_calling_lua>`.
 
-********************************************************************************
+
+.. _sql_operators:
+
 Operators
-********************************************************************************
+~~~~~~~~~
+
 
 An operator signifies what operation can be performed on operands.
 
@@ -849,150 +846,228 @@ Starting with Tarantool version 2.10.1, arithmetic operands cannot be NUMBERs.
 
 .. _sql_operator_addition:
 
-``+`` addition (arithmetic)
-Add two numerics according to standard arithmetic rules.
-Example: ``1 + 5``, result = 6.
+*   ``+`` addition (arithmetic)
+
+    Add two numerics according to standard arithmetic rules.
+    Example: ``1 + 5``, result = 6.
 
 .. _sql_operator_subtraction:
 
-``-`` subtraction (arithmetic)
-Subtract second numeric from first numeric according to standard arithmetic rules.
-Example: ``1 - 5``, result = -4.
+*   ``-`` subtraction (arithmetic)
 
-``*`` multiplication (arithmetic)
-Multiply two numerics according to standard arithmetic rules.
-Example: ``2 * 5``, result = 10.
+    Subtract second numeric from first numeric according to standard arithmetic rules.
 
-``/`` division (arithmetic)
-Divide second numeric into first numeric according to standard arithmetic rules.
-Division by zero is not legal.
-Division of integers always results in rounding toward zero,
-use :ref:`CAST <sql_function_cast>` to DOUBLE or to DECIMAL to get
-non-integer results.
-Example: ``5 / 2``, result = 2.
+    Example: ``1 - 5``, result = -4.
 
-``%`` modulus (arithmetic)
-Divide second numeric into first numeric according to standard arithmetic rules.
-The result is the remainder.
-Starting with Tarantool version 2.10.1, operands must be INTEGER or UNSIGNED.
-Example: ``17 % 5``, result = 2.
-Example: ``-123 % 4``, result = -3.
+*   ``*`` multiplication (arithmetic)
 
-``<<`` shift left (arithmetic)
-Shift the first numeric to the left N times, where N = the second numeric.
-For positive numerics, each 1-bit shift to the left is equivalent to multiplying times 2.
-Example: ``5 << 1``, result = 10.
-Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
+    Multiply two numerics according to standard arithmetic rules.
 
-``>>`` shift right (arithmetic)
-Shift the first numeric to the right N times, where N = the second numeric.
-For positive numerics, each 1-bit shift to the right is equivalent to dividing by 2.
-Example: ``5 >> 1``, result = 2.
-Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
+    Example: ``2 * 5``, result = 10.
 
-``&`` and (arithmetic)
-Combine the two numerics, with 1 bits in the result if and only if both original numerics have 1 bits.
-Example: ``5 & 4``, result = 4.
-Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
+*   ``/`` division (arithmetic)
 
-``|`` or (arithmetic)
-Combine the two numerics, with 1 bits in the result if either original numeric has a 1 bit.
-Example: ``5 | 2``, result = 7.
-Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
+    Divide second numeric into first numeric according to standard arithmetic rules.
+    Division by zero is not legal.
+    Division of integers always results in rounding toward zero,
+    use :ref:`CAST <sql_function_cast>` to DOUBLE or to DECIMAL to get
+    non-integer results.
 
-``~`` negate (arithmetic), sometimes called bit inversion
-Change 0 bits to 1 bits, change 1 bits to 0 bits.
-Example: ``~5``, result = -6.
-Starting with Tarantool version 2.10.1, the operand must be non-negative INTEGER or UNSIGNED.
+    Example: ``5 / 2``, result = 2.
+
+*   ``%`` modulus (arithmetic)
+
+    Divide second numeric into first numeric according to standard arithmetic rules.
+    The result is the remainder.
+    Starting with Tarantool version 2.10.1, operands must be INTEGER or UNSIGNED.
+
+    Examples: ``17 % 5``, result = 2; ``-123 % 4``, result = -3.
+
+*   ``<<`` shift left (arithmetic)
+
+    Shift the first numeric to the left N times, where N = the second numeric.
+    For positive numerics, each 1-bit shift to the left is equivalent to multiplying times 2.
+
+    Example: ``5 << 1``, result = 10.
+
+    .. NOTE::
+
+        Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
+
+*   ``>>`` shift right (arithmetic)
+
+    Shift the first numeric to the right N times, where N = the second numeric.
+    For positive numerics, each 1-bit shift to the right is equivalent to dividing by 2.
+
+    Example: ``5 >> 1``, result = 2.
+
+    .. NOTE::
+
+        Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
+
+*   ``&`` and (arithmetic)
+
+    Combine the two numerics, with 1 bits in the result if and only if both original numerics have 1 bits.
+
+    Example: ``5 & 4``, result = 4.
+
+    .. NOTE::
+
+        Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
+
+*   ``|`` or (arithmetic)
+
+    Combine the two numerics, with 1 bits in the result if either original numeric has a 1 bit.
+
+    Example: ``5 | 2``, result = 7.
+
+    .. NOTE::
+
+        Starting with Tarantool version 2.10.1, operands must be non-negative INTEGER or UNSIGNED.
+
+*   ``~`` negate (arithmetic), sometimes called bit inversion
+
+    Change 0 bits to 1 bits, change 1 bits to 0 bits.
+
+    Example: ``~5``, result = -6.
+
+    .. NOTE::
+
+        Starting with Tarantool version 2.10.1, the operand must be non-negative INTEGER or UNSIGNED.
 
 .. _sql_operator_comparison:
 
-``<`` less than (comparison)
-Return TRUE if the first operand is less than the second by arithmetic or collation rules.
-Example for numerics: ``5 < 2``, result = FALSE. Example for strings: ``'C' < ' '``, result = FALSE.
+*   ``<`` less than (comparison)
 
-``<=`` less than or equal (comparison)
-Return TRUE if the first operand is less than or equal to the second by arithmetic or collation rules.
-Example for numerics: ``5 <= 5``, result = TRUE. Example for strings: ``'C' <= 'B'``, result = FALSE.
+    Return TRUE if the first operand is less than the second by arithmetic or collation rules.
 
-``>`` greater than (comparison)
-Return TRUE if the first operand is greater than the second by arithmetic or collation rules.
-Example for numerics: ``5 > -5``, result = TRUE. Example for strings: ``'C' > '!'``, result = TRUE.
+    Example for numerics: ``5 < 2``, result = FALSE
 
-``>=`` greater than or equal (comparison)
-Return TRUE if the first operand is greater than or equal to the second by arithmetic or collation rules.
-Example for numerics: ``0 >= 0``, result = TRUE. Example for strings: ``'Z' >= 'Γ'``, result = FALSE.
+    Example for strings: ``'C' < ' '``, result = FALSE
+
+*   ``<=`` less than or equal (comparison)
+
+    Return TRUE if the first operand is less than or equal to the second by arithmetic or collation rules.
+
+    Example for numerics: ``5 <= 5``, result = TRUE
+
+    Example for strings: ``'C' <= 'B'``, result = FALSE
+
+*   ``>`` greater than (comparison)
+
+    Return TRUE if the first operand is greater than the second by arithmetic or collation rules.
+
+    Example for numerics: ``5 > -5``, result = TRUE
+
+    Example for strings: ``'C' > '!'``, result = TRUE
+
+*   ``>=`` greater than or equal (comparison)
+
+    Return TRUE if the first operand is greater than or equal to the second by arithmetic or collation rules.
+
+    Example for numerics: ``0 >= 0``, result = TRUE
+    Example for strings: ``'Z' >= 'Γ'``, result = FALSE
 
 .. _sql_equal:
 
-``=`` equal (assignment or comparison)
-After the word SET, "=" means the first operand gets the value from the second operand.
-In other contexts, "=" returns TRUE if operands are equal.
-Example for assignment: ``... SET column1 = 'a';``
-Example for numerics: ``0 = 0``, result = TRUE. Example for strings: ``'1' = '2 '``, result = FALSE.
+*   ``=`` equal (assignment or comparison)
 
-``==`` equal (assignment), or equal (comparison)
-This is a non-standard equivalent of
-:ref:`"= equal (assignment or comparison)" <sql_equal>`.
+    After the word SET, "=" means the first operand gets the value from the second operand.
+    In other contexts, "=" returns TRUE if operands are equal.
+
+    Example for assignment: ``... SET column1 = 'a';``
+
+    Example for numerics: ``0 = 0``, result = TRUE
+
+    Example for strings: ``'1' = '2 '``, result = FALSE
+
+*   ``==`` equal (assignment), or equal (comparison)
+
+    This is a non-standard equivalent of
+    :ref:`"= equal (assignment or comparison)" <sql_equal>`.
 
 .. _sql_not_equal:
 
-``<>`` not equal (comparison)
-Return TRUE if the first operand is not equal to the second by arithmetic or collation rules.
-Example for strings: ``'A' <> 'A     '`` is TRUE.
+*   ``<>`` not equal (comparison)
 
-``!=`` not equal (comparison)
-This is a non-standard equivalent of
-:ref:`"\<\> not equal (comparison)" <sql_not_equal>`.
+    Return TRUE if the first operand is not equal to the second by arithmetic or collation rules.
+
+    Example for strings: ``'A' <> 'A     '`` is TRUE.
+
+*   ``!=`` not equal (comparison)
+
+    This is a non-standard equivalent of
+    :ref:`"\<\> not equal (comparison)" <sql_not_equal>`.
+
+*   ``[`` , ``]`` (indexed access operator)
+
+    Array example: ``['a', 'b', 'c'] [2]`` (returns ``'b'``)
+
+    Map example: ``{'a' : 123, 7: 'asd'}['a']`` (returns ``123``)
+
+    See also: :ref:`ARRAY index expression <sql_array_index_expression>` and :ref:`MAP index expression <sql_map_index_expression>`.
 
 .. _sql_is_null:
 
-``IS NULL`` and ``IS NOT NULL`` (comparison)
-For IS NULL: Return TRUE if the first operand is NULL, otherwise return FALSE.
-Example: column1 IS NULL, result = TRUE if column1 contains NULL.
-For IS NOT NULL: Return FALSE if the first operand is NULL, otherwise return TRUE.
-Example: ``column1 IS NOT NULL``, result = FALSE if column1 contains NULL.
+*   ``IS NULL`` and ``IS NOT NULL`` (comparison)
+
+    For IS NULL: Return TRUE if the first operand is NULL, otherwise return FALSE.
+    Example: column1 IS NULL, result = TRUE if column1 contains NULL.
+
+    For IS NOT NULL: Return FALSE if the first operand is NULL, otherwise return TRUE.
+    Example: ``column1 IS NOT NULL``, result = FALSE if column1 contains NULL.
 
 .. _sql_operator_like:
 
-``LIKE`` (comparison)
-Perform a comparison of two string operands.
-If the second operand contains ``'_'``, the ``'_'`` matches any single character in the first operand.
-If the second operand contains ``'%'``, the ``'%'`` matches 0 or more characters in the first operand.
-If it is necessary to search for either ``'_'`` or ``'%'`` within a string without treating it specially,
-an optional clause can be added, ESCAPE single-character-operand, for example
-``'abc_' LIKE 'abcX_' ESCAPE 'X'`` is TRUE because ``X'`` means "following character is not
-special". Matching is also affected by the string's collation.
+*   ``LIKE`` (comparison)
+
+    Perform a comparison of two string operands.
+    If the second operand contains ``'_'``, the ``'_'`` matches any single character in the first operand.
+    If the second operand contains ``'%'``, the ``'%'`` matches 0 or more characters in the first operand.
+    If it is necessary to search for either ``'_'`` or ``'%'`` within a string without treating it specially,
+    an optional clause can be added, ESCAPE single-character-operand, for example
+    ``'abc_' LIKE 'abcX_' ESCAPE 'X'`` is TRUE because ``X'`` means "following character is not
+    special". Matching is also affected by the string's collation.
 
 .. _sql_operator_between:
 
-``BETWEEN`` (comparison)
-:samp:`{x} BETWEEN {y} AND {z}` is shorthand for :samp:`{x} >= {y} AND {x} <= {z}`.
+*   ``BETWEEN`` (comparison)
 
-``NOT`` negation (logic)
-Return TRUE if operand is FALSE return FALSE if operand is TRUE, else return UNKNOWN.
-Example: ``NOT (1 > 1)``, result = TRUE.
+    :samp:`{x} BETWEEN {y} AND {z}` is shorthand for :samp:`{x} >= {y} AND {x} <= {z}`.
 
-``IN`` is equal to one of a list of operands (comparison)
-Return TRUE if first operand equals any of the operands in a parenthesized list.
-Example: ``1 IN (2,3,4,1,7)``, result = TRUE.
+*   ``NOT`` negation (logic)
 
-``AND`` and (logic)
-Return TRUE if both operands are TRUE.
-Return UNKNOWN if both operands are UNKNOWN.
-Return UNKNOWN if one operand is TRUE and the other operand is UNKNOWN.
-Return FALSE if one operand is FALSE and the other operand is (UNKNOWN or TRUE or FALSE).
+    Return TRUE if operand is FALSE return FALSE if operand is TRUE, else return UNKNOWN.
 
-``OR`` or (logic)
-Return TRUE if either operand is TRUE.
-Return FALSE if both operands are FALSE.
-Return UNKNOWN if one operand is UNKNOWN and the other operand is (UNKNOWN or FALSE).
+    Example: ``NOT (1 > 1)``, result = TRUE.
+
+*   ``IN`` is equal to one of a list of operands (comparison)
+
+    Return TRUE if first operand equals any of the operands in a parenthesized list.
+
+    Example: ``1 IN (2,3,4,1,7)``, result = TRUE.
+
+*   ``AND`` and (logic)
+
+    Return TRUE if both operands are TRUE.
+    Return UNKNOWN if both operands are UNKNOWN.
+    Return UNKNOWN if one operand is TRUE and the other operand is UNKNOWN.
+    Return FALSE if one operand is FALSE and the other operand is (UNKNOWN or TRUE or FALSE).
+
+*   ``OR`` or (logic)
+
+    Return TRUE if either operand is TRUE.
+    Return FALSE if both operands are FALSE.
+    Return UNKNOWN if one operand is UNKNOWN and the other operand is (UNKNOWN or FALSE).
 
 .. _sql_operator_concatenate:
 
-``||`` concatenate (string manipulation)
-Return the value of the first operand concatenated with the value of the second operand.
-Example: ``'A' || 'B'``, result = ``'AB'``.
+*   ``||`` concatenate (string manipulation)
+
+    Return the value of the first operand concatenated with the value of the second operand.
+
+    Example: ``'A' || 'B'``, result = ``'AB'``.
+
 
 The precedence of dyadic operators is:
 
@@ -1007,11 +1082,13 @@ The precedence of dyadic operators is:
     AND
     OR
 
-To ensure a desired precedence, use () parentheses.
+To ensure a desired precedence, use ``()`` parentheses.
 
-********************************************************************************
+
+.. _sql_special_situations:
+
 Special situations
-********************************************************************************
+~~~~~~~~~~~~~~~~~~
 
 If one of the operands has data type DOUBLE, Tarantool uses floating-point arithmetic.
 This means that exact results are not guaranteed and rounding may occur without warning.
@@ -1036,11 +1113,11 @@ Limitations: (`Issue#2346 <https://github.com/tarantool/tarantool/issues/2346>`_
 * Some words, for example MATCH and REGEXP, are reserved but are not necessary for current or planned Tarantool versions |br|
 * 999999999999999 << 210 yields 0.
 
+
 .. _sql_expressions:
 
-********************************************************************************
 Expressions
-********************************************************************************
+~~~~~~~~~~~
 
 An expression is a chunk of syntax that causes return of a value.
 Expressions may contain literals, column-names, operators, and parentheses.
@@ -1050,18 +1127,39 @@ Therefore these are examples of expressions:
 
 Also there are two expressions that involve keywords:
 
-value IS [NOT] NULL |br|
-  ... for determining whether value is (not) NULL
+*  ``value IS [NOT] NULL``: determine whether value is (not) ``NULL``.
 
-CASE ... WHEN ... THEN ... ELSE ... END |br|
-  ... for setting a series of conditions.
+*  ``CASE ... WHEN ... THEN ... ELSE ... END``: set a series of conditions.
+
+.. _sql_array_expression:
+
+
+ARRAY expressions
+*****************
+
+Usage: ``[ value ... ]``
+
+Examples: ``[1,2,3,4]``, ``[1,[2,3],4]``, ``['a', "column_1", uuid()]``
+
+An expression has data type = ARRAY if it is a sequence of zero or more values
+enclosed in square brackets (``[`` and ``]``).
+Often the values in the sequence are called "elements".
+The element data type may be anything, including ARRAY -- that is, ARRAYs may be nested.
+Different elements may have different types.
+The Lua equivalent type is `'array' <https://www.lua.org/pil/11.1.html>`_.
+
 
 .. _sql_map_expression:
 
-{ key : value } |br|
-... for MAP expressions. |br|
-Literal examples: ``{'a':1}``, ``{ "column_1" : X'1234' }`` |br|
-Non-literal examples: ``{"a":"a"}``, ``{UUID(): (SELECT 1) + 1}``, ``{1:'a123', 'two':uuid()}`` |br|
+MAP expressions
+***************
+
+Usage: ``{ key : value }``
+
+Literal examples: ``{'a':1}``, ``{ "column_1" : X'1234' }``
+
+Non-literal examples: ``{"a":"a"}``, ``{UUID(): (SELECT 1) + 1}``, ``{1:'a123', 'two':uuid()}``
+
 An expression has data type = MAP if it is enclosed in curly brackets
 (also called braces) ``{`` and ``}`` and contains a key for identification,
 then a colon ``:``, then a value for what the key identifies.
@@ -1070,39 +1168,49 @@ The value data type may be anything, including MAP -- that is, MAPs may be neste
 The Lua equivalent type is 'map' but the syntax is slightly different,
 for example the SQL value ``{'a': 1}`` is represented in Lua as ``{a = 1}``.
 
-.. _sql_array_expression:
-
-[ value ... ] |br|
-... for ARRAY expressions. |br|
-Examples: ``[1,2,3,4]``, ``[1,[2,3],4]``, ``['a', "column_1", uuid()]`` |br|
-An expression has data type = ARRAY if it is a sequence of zero or more values
-enclosed in square brackets (``[`` and ``]``).
-Often the values in the sequence are called "elements".
-The element data type may be anything, including ARRAY -- that is, ARRAYs may be nested.
-Different elements may have different types.
-The Lua equivalent type is `'array' <https://www.lua.org/pil/11.1.html>`_.
-
 .. _sql_array_index_expression:
 
-ARRAY index expression: |br|
-array-value [square bracket] index [square bracket] |br|
-Example: ``['a', 'b', 'c'] [2]`` (this returns 'b') |br|
+ARRAY index expression
+**********************
+
+Usage: ``array-value [square bracket] index [square bracket]``
+
+Example: ``['a', 'b', 'c'] [2]`` (this returns 'b')
+
 As in other languages, an element of an array can be referenced with an
 integer inside square brackets.
 The returned value is of type ANY.
 
+The ``SELECT`` query below retrieves all score values stored in the second position of the ``scores`` array field:
+
+..  literalinclude:: /code_snippets/test/sql/array_access_test.lua
+    :language: sql
+    :lines: 22,25,28,31-36
+    :dedent:
+
 .. _sql_map_index_expression:
 
-MAP index expression: |br|
-map-value [square bracket] index [square bracket] |br|
-Example: ``{'a' : 123, 7: 'asd'}['a']`` (this returns 123)
-The returned value is of type ANY.
+MAP index expression
+********************
+
+Usage: ``map-value [square bracket] index [square bracket]``
+
+Example: ``{'a' : 123, 7: 'asd'}['a']`` (this returns 123). The returned value is of type ANY.
+
+The ``SELECT`` query below retrieves all values stored in the ``name`` attribute of the ``info`` map field:
+
+..  literalinclude:: /code_snippets/test/sql/map_access_test.lua
+    :language: sql
+    :lines: 22,25,28,31-36
+    :dedent:
 
 See also: :ref:`subquery <sql_subquery>`.
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. _sql_expressions_comparing_and_ordering:
+
 Comparing and ordering
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**********************
 
 There are rules for determining whether value-1 is "less than", "equal to", or "greater than" value-2.
 These rules are applied for searches, for sorting results in order by column values,
@@ -1155,9 +1263,11 @@ When comparing any value to an ARRAY or MAP or ANY: |br|
 Limitations: |br|
 * LIKE is not expected to work with VARBINARY.
 
-********************************************************************************
+
+.. _sql_statements:
+
 Statements
-********************************************************************************
+~~~~~~~~~~
 
 A statement consists of SQL-language keywords and expressions that direct Tarantool to do something with a database.
 Statements begin with one of the words
@@ -1169,9 +1279,10 @@ A client sends a statement to the Tarantool server.
 The Tarantool server parses the statement and executes it.
 If there is an error, Tarantool returns an error message.
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+.. _sql_list_of_legal_statements:
+
 List of legal statements
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+************************
 
 In alphabetical order, the following statements are legal.
 
@@ -1222,9 +1333,8 @@ In alphabetical order, the following statements are legal.
 
 .. _sql_data_type_conversion:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Data Type Conversion
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Data type conversion, also called casting, is necessary for any operation involving two operands X and Y,
 when X and Y have different data types. |br|
@@ -1322,9 +1432,8 @@ the assignment will fail.
 
 .. _sql-implicit_cast:
 
-********************************************************************************
 Implicit string/numeric cast
-********************************************************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The examples in this section are true only for Tarantool versions before Tarantool 2.10.
 Starting with Tarantool 2.10, implicit string/numeric cast is no longer allowed.

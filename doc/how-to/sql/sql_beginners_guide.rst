@@ -1,8 +1,7 @@
 .. _sql_beginners_guide:
 
---------------------------------------------------------------------------------
 SQL beginners' guide
---------------------------------------------------------------------------------
+====================
 
 The Beginners' Guide describes how users can start up with SQL with Tarantool, and necessary concepts.
 
@@ -10,7 +9,10 @@ The SQL Beginners' Guide is about databases in general, and about the relationsh
 Tarantool's NoSQL and SQL products.
 Most of the matters in the Beginners' Guide will already be familiar to people who have used relational databases before.
 
-**Sample Simple Table**
+.. _sql_beginners_sample_table:
+
+Sample Table
+------------
 
 In football training camp it is traditional for the trainer to begin by showing a football
 and saying "this is a football". In that spirit, this is a table:
@@ -27,7 +29,7 @@ and saying "this is a football". In that spirit, this is a table:
      Row#3 | Row#3,Column#1  | Row#3,Column#2 | Row#3,Column#3 |
            +-----------------+----------------+----------------+
 
-but the labels are misleading -- one usually doesn't identify rows and columns by their ordinal positions,
+But the labels are misleading -- one usually doesn't identify rows and columns by their ordinal positions,
 one prefers to pick out specific items by their contents. In that spirit, this is a table:
 
 .. code-block:: none
@@ -42,18 +44,22 @@ one prefers to pick out specific items by their contents. In that spirit, this i
     | crypto          |    4 | Cryptography        |
     +-----------------+------+---------------------+
 
-so one does not use longitude/latitude navigation by talking about "Row#2 Column #2",
+So one does not use longitude/latitude navigation by talking about "Row#2 Column #2",
 one uses the contents of the Name column and the name of the Size column
 by talking about "the size, where the name is 'clock'".
 To be more exact, this is what one says:
 
-``SELECT size FROM modules WHERE name = 'clock';``
+..  code-block:: sql
+
+    SELECT size FROM modules WHERE name = 'clock';
 
 If you're familiar with Tarantool's architecture -- and ideally you read
 about that before coming to this chapter -- then you know that there is a NoSQL
 way to get the same thing:
 
-``box.space.MODULES:select()[2][2]``
+..  code-block:: lua
+
+    box.space.MODULES:select()[2][2]
 
 Well, you can do that. One of the advantages of Tarantool is that if you can get
 data via an SQL statement, then you can get the same data via a NoSQL request.
@@ -69,11 +75,16 @@ Tarantool/NoSQL's "format" clause causes the same restrictions.
 So an SQL "table" is a NoSQL "tuple set with format restrictions",
 an SQL "row" is a NoSQL "tuple", an SQL "column" is a NoSQL "list of fields within a tuple set".
 
-**Creating a table**
+.. _sql_beginners_creating_a_table:
+
+Creating a table
+----------------
 
 This is how to create the modules table:
 
-``CREATE TABLE modules (name STRING, size INTEGER, purpose STRING, PRIMARY KEY (name));``
+..  code-block:: sql
+
+    CREATE TABLE modules (name STRING, size INTEGER, purpose STRING, PRIMARY KEY (name));
 
 The words that are IN CAPITAL LETTERS are "keywords" (although it is only a convention in
 this manual that keywords are in capital letters, in practice many programmers prefer to avoid shouting).
@@ -93,7 +104,8 @@ The final clause, PRIMARY KEY (name), means that the name column is the main col
 
 .. _sql_nulls:
 
-**Nulls**
+Nulls
+-----
 
 Frequently it is necessary, at least temporarily, that a column value should be NULL.
 Typical situations are: the value is unknown, or the value is not applicable.
@@ -108,12 +120,17 @@ When nil means "unknown" or "inapplicable", yes.
 But when nil means "nonexistent" or "type is nil", no.
 NULL is a value, it has a data type because it is inside a column which is defined with that data type. 
 
-**Creating an index**
+.. _sql_beginners_creating_an_index:
+
+Creating an index
+-----------------
 
 This is how to create indexes for the modules table:
 
-``CREATE INDEX size ON modules (size);`` |br|
-``CREATE UNIQUE INDEX purpose ON modules (purpose);``
+.. code-block:: sql
+
+    CREATE INDEX size ON modules (size);
+    CREATE UNIQUE INDEX purpose ON modules (purpose);
 
 There is no need to create an index on the name column,
 because Tarantool creates an index automatically when it sees a PRIMARY KEY clause in the CREATE TABLE statement.
@@ -127,7 +144,10 @@ Another use for indexes is to enforce uniqueness.
 When an index is created with CREATE UNIQUE INDEX for the purpose column,
 it is not possible to have duplicate values in that column.
 
-**Data change**
+.. _sql_beginners_data_change:
+
+Data change
+-----------
 
 Putting data into a table is called "inserting".
 Changing data is called "updating".
@@ -136,23 +156,32 @@ Together, the three SQL statements INSERT plus UPDATE plus DELETE are the three 
 
 This is how to insert, update, and delete a row in the modules table:
 
-``INSERT INTO modules VALUES ('json', 14, 'format functions for JSON');`` |br|
-``UPDATE modules SET size = 15 WHERE name = 'json';`` |br|
-``DELETE FROM modules WHERE name = 'json';``
+.. code-block:: sql
+
+    INSERT INTO modules VALUES ('json', 14, 'format functions for JSON');
+    UPDATE modules SET size = 15 WHERE name = 'json';
+    DELETE FROM modules WHERE name = 'json';
 
 The corresponding non-SQL Tarantool requests would be:
 
-``box.space.MODULES:insert{'json', 14, 'format functions for JSON'}`` |br|
-``box.space.MODULES:update('json', {{'=', 2, 15}})`` |br|
-``box.space.MODULES:delete{'json'}`` |br|
+.. code-block:: lua
+
+    box.space.MODULES:insert{'json', 14, 'format functions for JSON'}
+    box.space.MODULES:update('json', {{'=', 2, 15}})
+    box.space.MODULES:delete{'json'}
 
 This is how one would populate the table with the values that was shown earlier:
 
-``INSERT INTO modules VALUES ('box', 1432, 'Database Management');`` |br|
-``INSERT INTO modules VALUES ('clock', 188, 'Seconds');`` |br|
-``INSERT INTO modules VALUES ('crypto', 4, 'Cryptography');`` |br|
+.. code-block:: sql
 
-**Constraints**
+    INSERT INTO modules VALUES ('box', 1432, 'Database Management');
+    INSERT INTO modules VALUES ('clock', 188, 'Seconds');
+    INSERT INTO modules VALUES ('crypto', 4, 'Cryptography');
+
+.. _sql_beginners_constraints:
+
+Constraints
+-----------
 
 Some data-change statements are illegal due to something in the table's definition.
 This is called "constraining what can be done". Some types of constraints have already been shown ...
@@ -204,8 +233,10 @@ it can be defined like this:
 
 Now try to insert a new row into this submodules table:
 
-``INSERT INTO submodules VALUES`` |br|
-|nbsp| |nbsp| ``('space', 'Box', 10000, 'insert etc.');``
+.. code-block:: sql
+
+    INSERT INTO submodules VALUES
+      ('space', 'Box', 10000, 'insert etc.');
 
 The insert will fail because the second column (module_name)
 refers to the name column in the modules table, and the name
@@ -213,12 +244,16 @@ column in the modules table does not contain 'Box'.
 However, it does contain 'box'.
 By default searches in Tarantool's SQL use a binary collation. This will work:
 
-``INSERT INTO submodules`` |br|
-|nbsp| |nbsp| ``VALUES ('space', 'box', 10000, 'insert etc.');``
+.. code-block:: sql
+
+    INSERT INTO submodules
+      VALUES ('space', 'box', 10000, 'insert etc.');
 
 Now try to delete the corresponding row from the modules table:
 
-``DELETE FROM modules WHERE name = 'box';``
+.. code-block:: sql
+
+    DELETE FROM modules WHERE name = 'box';
 
 The delete will fail because the second column (module_name) in the submodules
 table refers to the name column in the modules table, and the name column
@@ -233,7 +268,10 @@ and hard to bypass with SQL.
 This is often seen as a difference between SQL and NoSQL -- SQL emphasizes law and order,
 NoSQL emphasizes freedom and making your own rules.
 
-**Table Relationships**
+.. _sql_beginners_table_relationships:
+
+Table Relationships
+-------------------
 
 Think about the two tables that have been discussed so far:
 
@@ -269,11 +307,16 @@ do not trust anyone who tells you that databases made with SQL are relational
 "because there are relationships between tables".
 That is wrong, as will be clear in the discussion about what makes a database relational, later.
 
-**Selecting with WHERE**
+.. _sql_beginners_selecting_with_where:
+
+Selecting with WHERE
+--------------------
 
 We gave a simple example of a SELECT statement earlier:
 
-``SELECT size FROM modules WHERE name = 'clock';``
+.. code-block:: sql
+
+    SELECT size FROM modules WHERE name = 'clock';
 
 The clause "WHERE name = 'clock'" is legal in other statements -- it
 is in examples with UPDATE and DELETE -- but here the only examples will be with SELECT.
@@ -281,7 +324,9 @@ is in examples with UPDATE and DELETE -- but here the only examples will be with
 The first variation is that the WHERE clause does not have to be specified at all,
 it is optional. So this statement would return all rows:
 
-``SELECT size FROM modules;``
+.. code-block:: sql
+
+    SELECT size FROM modules;
 
 The second variation is that the comparison operator does not have to be '=',
 it can be anything that makes sense: '>' or '>=' or '<' or '<=',
@@ -290,8 +335,10 @@ contain wildcard characters '_' meaning 'match any one character'
 or '%' meaning 'match any zero or one or many characters'.
 These are legal statements which return all rows:
 
-``SELECT size FROM modules WHERE name >= '';`` |br|
-``SELECT size FROM modules WHERE name LIKE '%';``
+.. code-block:: sql
+
+    SELECT size FROM modules WHERE name >= '';
+    SELECT size FROM modules WHERE name LIKE '%';
 
 The third variation is that IS [NOT] NULL is a special condition.
 Remembering that the NULL value can mean "it is unknown what the value should be",
@@ -303,7 +350,9 @@ So when searching for NULL, say IS NULL;
 when searching anything that is not NULL, say IS NOT NULL.
 This statement will return all rows because (due to the definition) there are no NULLs in the name column:
 
-``SELECT size FROM modules WHERE name IS NOT NULL;``
+.. code-block:: sql
+
+    SELECT size FROM modules WHERE name IS NOT NULL;
 
 The fourth variation is that conditions can be combined with AND / OR, and negated with NOT.
 
@@ -320,7 +369,9 @@ but the second condition is true, and OR means "return true if either condition 
 
 Yet again, here is a simple example of a SELECT statement:
 
-``SELECT size FROM modules WHERE name = 'clock';``
+.. code-block:: sql
+
+    SELECT size FROM modules WHERE name = 'clock';
 
 The words between SELECT and FROM are the select list.
 In this case, the select list is just one word: size.
@@ -329,7 +380,9 @@ and technically the name for picking a particular column is called "projection".
 
 The first variation is that one can specify any column in any order:
 
-``SELECT name, purpose, size FROM modules;``
+.. code-block:: sql
+
+    SELECT name, purpose, size FROM modules;
 
 The second variation is that one can specify an expression,
 it does not have to be a column name, it does not even have to include a column name.
@@ -337,15 +390,19 @@ The common expression operators for numbers are the arithmetic operators ``+ - /
 the common expression operator for strings is the concatenation operator ||.
 For example this statement will return 8, 'XY':
 
-``SELECT size * 2, 'X' || 'Y' FROM modules WHERE size = 4;``
+.. code-block:: sql
+
+    SELECT size * 2, 'X' || 'Y' FROM modules WHERE size = 4;
 
 The third variation is that one can add a clause [AS name] after every expression,
 so that in the return the column titles will make sense.
 This is especially important when a title might otherwise be ambiguous or meaningless.
 For example this statement will return 8, 'XY' as before
 
-``SELECT size * 2 AS double_size, 'X' || 'Y' AS concatenated_literals  FROM modules`` |br|
-|nbsp| |nbsp| ``WHERE size = 4;``
+.. code-block:: sql
+
+    SELECT size * 2 AS double_size, 'X' || 'Y' AS concatenated_literals  FROM modules
+      WHERE size = 4;
 
 but displayed as a table the result will look like
 
@@ -361,11 +418,15 @@ but displayed as a table the result will look like
 
 Instead of listing columns in a select list, one can just say ``'*'``. For example
 
-``SELECT * FROM modules;``
+.. code-block:: sql
+
+    SELECT * FROM modules;
 
 This is the same thing as
 
-``SELECT name, size, purpose FROM modules;``
+.. code-block:: sql
+
+    SELECT name, size, purpose FROM modules;
 
 Selecting with ``"*"``  saves time for the writer,
 but it is unclear to a reader who has not memorized what the column names are.
@@ -374,7 +435,10 @@ definition (the ALTER statement, which is an advanced topic).
 Nevertheless, although it might be bad to use it for production,
 it is handy to use it for introduction, so ``"*"`` will appear in some following examples.
 
-**Select with subqueries**
+.. _sql_beginners_select_with_subqueries:
+
+Select with subqueries
+----------------------
 
 Remember that there is a modules table and there is a submodules table.
 Suppose that there is a desire to list the submodules that refer to modules for which the purpose is X.
@@ -422,14 +486,23 @@ But it is true that the query syntax allows for a structural component,
 namely the subquery, and that was the original idea.
 However, there is a different way to combine tables -- with joins instead of subqueries.
 
-**Select with Cartesian join**
+.. _sql_beginners_select_with_cartesian_join:
+
+Select with Cartesian join
+--------------------------
 
 Until now only "FROM modules" or "FROM submodules" was used in SELECT statements.
 What if there was more than one table in the FROM clause? For example
 
-``SELECT * FROM modules, submodules;`` |br|
+.. code-block:: sql
+
+    SELECT * FROM modules, submodules;
+
 or
-``SELECT * FROM modules JOIN submodules;``
+
+.. code-block:: sql
+
+    SELECT * FROM modules JOIN submodules;
 
 That is legal. Usually it is not what you want, but it is a learning aid. The result will be:
 
@@ -488,7 +561,10 @@ It is good to start by looking at Cartesian joins because they show the concept.
 Many people, though, prefer to use different syntaxes for joins because they
 look better or clearer. So now those alternatives will be shown.
 
-**Select with join with ON clause**
+.. _sql_beginners_select_with_join_with_on_clause:
+
+Select with join with ON clause
+-------------------------------
 
 The ON clause would have the same comparisons as the WHERE clause that was illustrated
 for the previous section, but the use of different syntax would be making it clear
@@ -496,30 +572,44 @@ for the previous section, but the use of different syntax would be making it cle
 Readers can see at a glance that it is, in concept at least, an initial step before
 the result rows are filtered. For example this
 
-``SELECT * FROM modules JOIN submodules`` |br|
-|nbsp| |nbsp| ``ON (modules.name = submodules.module_name);``
+.. code-block:: sql
+
+    SELECT * FROM modules JOIN submodules
+      ON (modules.name = submodules.module_name);
 
 is the same as
 
-``SELECT * FROM modules, submodules`` |br|
-|nbsp| |nbsp| ``WHERE modules.name = submodules.module_name;``
+.. code-block:: sql
 
-**Select with join with USING clause**
+    SELECT * FROM modules, submodules
+      WHERE modules.name = submodules.module_name;
+
+.. _sql_beginners_select_with_join_with_using_clause:
+
+Select with join with USING clause
+----------------------------------
 
 The USING clause would take advantage of names that are held in common between the two tables,
 with the assumption that the intent is to match those columns with '=' comparisons. For example,
 
-``SELECT * FROM modules JOIN submodules USING (name);``
+.. code-block:: sql
+
+    SELECT * FROM modules JOIN submodules USING (name);
 
 has the same effect as
 
-``SELECT * FROM modules JOIN submodules WHERE modules.name = submodules.name;``
+.. code-block:: sql
+
+    SELECT * FROM modules JOIN submodules WHERE modules.name = submodules.name;
 
 If the table had been created with a plan in advance to use USING clauses,
 that would save time. But that did not happen.
 So, although the above example "works", the results will not be sensible.
 
-**Select with natural join**
+.. _sql_beginners_select_with_natural_join:
+
+Select with natural join
+------------------------
 
 A natural join would take advantage of names that are held in common between the two tables,
 and would do the filtering automatically based on that knowledge, and throw away duplicate columns.
@@ -527,13 +617,18 @@ and would do the filtering automatically based on that knowledge, and throw away
 If the table had been created with a plan in advance to use natural joins, that would be very handy.
 But that did not happen. So, although the following example "works", the results won't be sensible.
 
-``SELECT * FROM modules NATURAL JOIN submodules;``
+.. code-block:: sql
+
+    SELECT * FROM modules NATURAL JOIN submodules;
 
 Result: nothing, because modules.name does not match submodules.name,
 and so on And even if there had been a result, it would only have included
 four columns: name, module_name, size, purpose.
 
-**Select with left join**
+.. _sql_beginners_select_with_left_join:
+
+Select with left join
+---------------------
 
 Now what if there is a desire to join modules to submodules,
 but it's necessary to be sure that all the modules are found?
@@ -566,7 +661,10 @@ which returns:
 Thus, for the submodules of the clock module and the submodules of the crypto
 module -- which do not exist -- there are NULLs in every column.
 
-**Select with functions**
+.. _sql_beginners_select_with_functions:
+
+Select with functions
+---------------------
 
 A function can take any expression, including an expression that contains another function,
 and return a scalar value. There are many such functions. Here will be a description of only one, SUBSTR,
@@ -601,7 +699,9 @@ all that is important is their aggregation, that is, take the attributes of the 
 SQL allows aggregation functions including: AVG (average), SUM, MIN (minimum), MAX (maximum), and COUNT.
 For example
 
-``SELECT AVG(size), SUM(size), MIN(size), MAX(size), COUNT(size) FROM modules;``
+.. code-block:: sql
+
+    SELECT AVG(size), SUM(size), MIN(size), MAX(size), COUNT(size) FROM modules;
 
 The result will look like this:
 
@@ -636,14 +736,22 @@ The result will look like this:
      +------------+--------------+-----------+-----------+-----------+-------------+
 
 
-**Select with common table expression**
+.. _sql_beginners_select_with_common_table_expression:
+
+Select with common table expression
+-----------------------------------
 
 It is possible to define a temporary (viewed) table within a statement,
 usually within a SELECT statement, using a WITH clause. For example:
 
-``WITH tmp_table AS (SELECT x1 FROM t1) SELECT * FROM tmp_table;``
+.. code-block:: sql
 
-**Select with order, limit, and offset clauses**
+    WITH tmp_table AS (SELECT x1 FROM t1) SELECT * FROM tmp_table;
+
+.. _sql_beginners_select_with_order_limit_and_offset_clauses:
+
+Select with order, limit, and offset clauses
+--------------------------------------------
 
 So far, tor every search in the modules table, the rows have come out in alphabetical order by name:
 'box', then 'clock', then 'crypto'.
@@ -653,24 +761,33 @@ it is necessary to be explicit and add a clause:
 (ASC stands for ASCending, DESC stands for DESCending.)
 For example:
 
-``SELECT * FROM modules ORDER BY name DESC;``
+.. code-block:: sql
+
+    SELECT * FROM modules ORDER BY name DESC;
 
 The result will be the usual rows, in descending alphabetical order: 'crypto' then 'clock' then 'box'.
 
 After the ORDER BY clause there can be a clause LIMIT n, where n is the maximum number of rows to retrieve. For example:
 
-``SELECT * FROM modules ORDER BY name DESC LIMIT 2;``
+.. code-block:: sql
+
+    SELECT * FROM modules ORDER BY name DESC LIMIT 2;
 
 The result will be the first two rows, 'crypto' and 'clock'.
 
 After the ORDER BY clause and the LIMIT clause there can be a clause OFFSET n,
 where n is the row to start with. The first offset is 0. For example:
 
-``SELECT * FROM modules ORDER BY name DESC LIMIT 2 OFFSET 2;``
+.. code-block:: sql
+
+    SELECT * FROM modules ORDER BY name DESC LIMIT 2 OFFSET 2;
 
 The result will be the third row, 'box'.
 
-**Views**
+.. _sql_beginners_views:
+
+Views
+-----
 
 A view is a canned SELECT. If you have a complex SELECT that you want to run frequently, create a view and then do a simple SELECT on the view. For example:
 
@@ -682,7 +799,10 @@ A view is a canned SELECT. If you have a complex SELECT that you want to run fre
     ORDER BY size_times_5;
     SELECT * FROM v;
 
-**Transactions**
+.. _sql_beginners_transactions:
+
+Transactions
+------------
 
 Tarantool has a "Write Ahead Log" (WAL).
 Effects of data-change statements are logged before they are permanently stored on disk.
@@ -717,7 +837,10 @@ After START TRANSACTION, statements are not automatically committed -- Tarantool
 that a transaction is now "active", until the transaction ends with a COMMIT statement or a ROLLBACK statement.
 While a transaction is active, all statements are legal except another START TRANSACTION.
 
-**Implementing Tarantool's SQL On Top of NoSQL**
+.. _sql_beginners_implementing_tarantool_sql_on_top_of_no_sql:
+
+Implementing Tarantool's SQL On Top of NoSQL
+--------------------------------------------
 
 Tarantool's SQL data is the same as Tarantool's NoSQL data. When you create a table or an index with SQL,
 you are creating a space or an index in NoSQL. For example:
@@ -759,7 +882,10 @@ use SQL to access the database's metadata catalog.
 Fields in NoSQL spaces can be accessed with SQL if and only if they are scalar and are defined
 in format clauses. Indexes of NoSQL spaces will be used with SQL if and only if they are TREE indexes.
 
-**Relational Databases**
+.. _sql_beginners_relational_databases:
+
+Relational Databases
+--------------------
 
 Edgar F. Codd, the person most responsible for researching and explaining relational database concepts,
 listed the main criteria as
