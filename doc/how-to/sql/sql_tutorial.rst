@@ -90,7 +90,7 @@ Here is ``CREATE TABLE`` with more details:
                          column4 DOUBLE,
                          PRIMARY KEY (column1, column2));
 
-The result is: "``row_count: 1``" (no error).
+The result is: ``row_count: 1``.
 
 INSERT
 ~~~~~~
@@ -99,7 +99,7 @@ Put four rows in the table:
 
 *   The INTEGER and DOUBLE columns get numbers
 *   The VARCHAR and SCALAR columns get strings
-    (the SCALAR strings are expressed as hexadecimals).
+    (the SCALAR strings are expressed as hexadecimals)
 
 .. code-block:: sql
 
@@ -174,8 +174,8 @@ and
       - [1, 'CD', '  ', 10000]
       - [2, 'AB', '  ', 12.34567]
 
-SELECT with GROUP BY and aggregating
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SELECT with GROUP BY and aggregate functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Retrieve with grouping.
 
@@ -225,7 +225,7 @@ The results are:
 Indexes
 ~~~~~~~
 
-Make a new index on ``column4``.
+Create a new index on ``column4``.
 
 There already is an index for the primary key. Indexes are useful for making queries
 faster. In this case, the index also acts as a constraint, because it prevents
@@ -236,16 +236,16 @@ that ``column4`` has multiple occurrences of NULLs.
 
     CREATE UNIQUE INDEX i ON table2 (column4);
 
-The result is: "``rowcount: 1``" (no error).
+The result is: ``rowcount: 1``.
 
 Create a subset table
 ~~~~~~~~~~~~~~~~~~~~~
 
-Make a table ``table3``, which contains a subset of the ``table2`` columns
+Create a table ``table3``, which contains a subset of the ``table2`` columns
 and a subset of the ``table2`` rows.
 
 You can do this by combining ``INSERT`` with ``SELECT``. Then select everything
-in the resultant subset table.
+from the result table.
 
 .. code-block:: sql
 
@@ -299,7 +299,7 @@ column values from another table.
         WHERE table2.column1 = table3.column1 AND table2.column2 = table3.column2
         ORDER BY table2.column4;
 
-The result will be:
+The result is:
 
 .. code-block:: tarantoolsession
 
@@ -309,13 +309,13 @@ The result will be:
       - [1, 'AB', 'AB', 5.5, 1, 'AB']
       - [1, 'CD', ' ', 10000, 1, 'CD']
 
-.. _sql_tutorial-constraints_affecting_updates:
+.. _sql_tutorial-constraints_and_foreign_keys:
 
-Constraints affecting updates
+Constraints and foreign keys
 -----------------------------
 
 CREATE TABLE with a CHECK clause
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Create a table which includes a constraint that there must not be any rows
 containing ``13`` in ``column2``. Then try to insert such a row.
@@ -330,7 +330,7 @@ Result: the insert fails, as it should, with the message
 ``Check constraint failed ''ck_unnamed_TABLE4_1'': column2 <> 13``.
 
 CREATE TABLE with a FOREIGN KEY clause
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Create a table which includes a constraint that there must not be any rows containing
 values that do not appear in ``table2``.
@@ -394,8 +394,8 @@ The result is:
 *   The second ``DELETE`` statement succeeds.
 *   The ``SELECT`` statement shows that there are 5 rows remaining.
 
-ALTER TABLE, with a FOREIGN KEY clause
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ALTER TABLE with a FOREIGN KEY clause
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Create another constraint that there must not be any rows in ``table1``
 containing values that do not appear in ``table5``. This was impossible
@@ -564,7 +564,7 @@ Create such a view and select from it:
                  >= 0)
     SELECT * FROM cte;
 
-Result: the same as the ``CREATE VIEW`` result:
+The result is the same as the ``CREATE VIEW`` result:
 
 .. code-block:: tarantoolsession
 
@@ -594,7 +594,8 @@ Metadata
 ~~~~~~~~
 
 
-To find out about different database objects, select from the Tarantool system tables:
+To find out the internal structure of the Tarantool database with SQL,
+select from the Tarantool system tables:
 
 * tables: ``SELECT * FROM "_space";``
 * indexes: ``SELECT * FROM "_index";``
@@ -602,7 +603,7 @@ To find out about different database objects, select from the Tarantool system t
 
 Actually, these statements select from NoSQL "system spaces".
 
-Select from ``_space``.
+Select from ``_space``:
 
 .. code-block:: sql
 
@@ -614,36 +615,33 @@ The result is:
 
     - - [517, 'TABLE3', 1, 'memtx']
 
-.. _sql_tutorial-calling_from_a_host_language:
+.. _sql_tutorial-using_sql_from_lua:
 
-Calling from a host language to make a big table
-------------------------------------------------
+Using SQL from Lua
+------------------
+
+You can execute SQL statements directly from the Lua code without switching to
+the SQL input.
+
+Change the settings so that the console accepts statements written in Lua instead
+of statements written in SQL:
+
+.. code-block:: tarantoolsession
+
+    tarantool> \set language lua
 
 box.execute()
 ~~~~~~~~~~~~~
-
-Change the settings so that the console accepts statements written in Lua instead
-of statements written in SQL.
-
 You can invoke SQL statements using the Lua function ``box.execute(string)``.
 
-Switch languages and select again from ``table3``.
-These statements must be entered separately.
+.. code-block:: tarantoolsession
+
+    tarantool> box.execute([[SELECT * FROM table3;]]);
+
+The result is:
 
 .. code-block:: tarantoolsession
 
-    tarantool> \set language lua
-    tarantool> box.execute([[SELECT * FROM table3;]]);
-
-Showing both the statements and the results:
-
-.. code-block:: tarantoolsession
-
-    tarantool> \set language lua
-    ---
-    ...
-    tarantool> box.execute([[SELECT * FROM table3;]]);
-    ---
     - - [-1000, '']
       - [0, '!!!']
       - [0, '!!@']
@@ -694,16 +692,6 @@ The result is: you now have a table with a million rows, with a message saying
 
 Select from a million-row table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Now that we have something a bit larger to play with,
-let's see how long it takes to SELECT.
-
-The first query we'll do will automatically go via
-an index, because ``s1`` is the primary key.
-
-The second query we'll do will not go via
-an index, because for ``s2`` we didn't say
-``CREATE INDEX xxxx ON tester (s2);``.
 
 Check how ``SELECT`` works on the million-row table:
 
