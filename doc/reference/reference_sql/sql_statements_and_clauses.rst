@@ -1712,7 +1712,6 @@ temporary system space.
 
 ``setting-name`` can have the following values:
 
-*   ``"error_marshaling_enabled"``
 *   ``"sql_default_engine"``
 *   ``"sql_full_column_names"``
 *   ``"sql_full_metadata"``
@@ -1721,7 +1720,8 @@ temporary system space.
 *   ``"sql_reverse_unordered_selects"``
 *   ``"sql_select_debug"``
 *   ``"sql_vdbe_debug"``
-*   ``"sql_defer_foreign_keys"`` **(removed in :doc:`2.11.0 </release/2.11.0>`)**
+*   ``"sql_defer_foreign_keys"`` (removed in :doc:`2.11.0 </release/2.11.0>`)
+*   ``"error_marshaling_enabled"`` (removed in :doc:`2.10.0 </release/2.10.0>`)
 
 The quote marks are necessary.
 

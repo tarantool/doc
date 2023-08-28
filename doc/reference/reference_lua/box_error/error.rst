@@ -1,70 +1,115 @@
 .. _box_error-error:
 
-===============================================================================
 box.error()
-===============================================================================
+===========
+
+.. _box_error-error-no-arg:
 
 .. function:: box.error()
 
-    When called without arguments, ``box.error()`` re-throws whatever the last
-    error was.
+    Raise the last error.
 
-.. function:: box.error{reason = string [, code = number]}
+    **See also:** :ref:`box.error.last() <box_error-last>`
 
-    Throw an error. When called with a Lua-table argument, the code and reason
-    have any user-desired values. The result will be those values.
+.. _box_error-error-object:
 
-    :param string reason: description of an error, defined by user
-    :param integer  code: numeric code for this error, defined by user
+.. function:: box.error(error_object)
 
-.. function:: box.error(code, errtext [, errtext ...])
+    Raise the error defined by :ref:`error_object <box_error-error_object>`.
 
-    Throw an error. This method emulates a request error, with text based on one
-    of the pre-defined Tarantool errors defined in the file `errcode.h
-    <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_ in
-    the source tree. Lua constants which correspond to those Tarantool errors are
-    defined as members of ``box.error``, for example ``box.error.NO_SUCH_USER == 45``.
+    :param error_object error_object: an error object
 
-    :param number       code: number of a pre-defined error
-    :param string errtext(s): part of the message which will accompany the error
+    **Example**
 
-    For example:
+    ..  literalinclude:: /code_snippets/test/errors/raise_new_error_table_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:
 
-    the ``NO_SUCH_USER`` message is "``User '%s' is not found``" -- it includes
-    one "``%s``" component which will be replaced with errtext. Thus a call to
-    ``box.error(box.error.NO_SUCH_USER, 'joe')`` or ``box.error(45, 'joe')``
-    will result in an error with the accompanying message "``User 'joe' is not found``".
+.. _box_error-error-table:
 
-    :except: whatever is specified in errcode-number.
+.. function:: box.error({ reason = string[, code = number, type = string] })
 
-    ``box.error()`` accepts two sets of arguments:
+    Raise the error defined by the specified parameters.
 
-    * error code and reason/errtext (``box.error{code = 555, reason = 'Arbitrary
-      message'}``), or
-    * error object (``box.error(err)``).
+    :param string reason: an error description
+    :param integer  code: (optional) a numeric code for this error
+    :param string   type: (optional) an error type
 
-    In both cases the error is promoted as the last error.
+    **Example 1**
 
-    **Example:**
+    ..  literalinclude:: /code_snippets/test/errors/raise_error_table_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:
 
-    .. code-block:: tarantoolsession
+    **Example 2: custom type**
 
-        tarantool> e1 = box.error.new({code = 111, reason = 'Сause'})
-        ---
-        ...
-        tarantool> box.error(e1)
-        ---
-        - error: Сause
-        ...
-        tarantool> box.error{code = 555, reason = 'Arbitrary message'}
-        ---
-        - error: Arbitrary message
-        ...
-        tarantool> box.error()
-        ---
-        - error: Arbitrary message
-        ...
-        tarantool> box.error(box.error.FUNCTION_ACCESS_DENIED, 'A', 'B', 'C')
-        ---
-        - error: A access denied for user 'B' to function 'C'
-        ...
+    ..  literalinclude:: /code_snippets/test/errors/raise_error_table_custom_type_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:
+
+.. _box_error-error-array:
+
+.. function:: box.error(type, reason[, ...])
+
+    Raise the error defined by the specified type and description.
+
+    :param string   type: an error type
+    :param string reason: an error description
+    :param           ...: description arguments
+
+    **Example 1: without arguments**
+
+    ..  literalinclude:: /code_snippets/test/errors/raise_error_array_custom_type_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:
+
+    **Example 2: with arguments**
+
+    ..  literalinclude:: /code_snippets/test/errors/raise_error_array_custom_type_args_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:
+
+.. _box_error-error-predefined:
+
+.. function:: box.error(code[, ...])
+
+    Raise a predefined :ref:`Tarantool error <error_codes>` specified by its identifier.
+    You can see all Tarantool errors in the `errcode.h
+    <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_ file.
+
+    :param number code: a pre-defined error identifier; Lua constants that correspond to those Tarantool errors are defined as members of ``box.error``, for example, ``box.error.NO_SUCH_USER == 45``
+    :param         ...: description arguments
+
+    **Example 1: no arguments**
+
+    ..  literalinclude:: /code_snippets/test/errors/raise_tarantool_error_no_arg_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:
+
+    **Example 2: one argument**
+
+    ..  literalinclude:: /code_snippets/test/errors/raise_tarantool_error_one_arg_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:
+
+    **Example 3: two arguments**
+
+    ..  literalinclude:: /code_snippets/test/errors/raise_tarantool_error_multiple_arg_test.lua
+        :language: lua
+        :start-after: snippet_start
+        :end-before: snippet_end
+        :dedent:

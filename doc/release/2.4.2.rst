@@ -103,7 +103,7 @@ Lua
 ~~~
 
 -   Added format string usage to form a CustomError message (:tarantool-issue:`4903`).
-    Read more: :doc:`/reference/reference_lua/box_error/custom_type`.
+    Read more: :ref:`Custom error <box_error_raise_custom_error>`.
 -   Fixed error while closing socket.tcp_server socket (:tarantool-issue:`4087`).
 -   Extended box.error objects reference counter to 64 bit to prevent
     possible overflow (:tarantool-issue:`4902`).

@@ -6,21 +6,12 @@ box.error.clear()
 
 .. function:: box.error.clear()
 
-    Clear the record of errors, so functions like ``box.error()``
-    or ``box.error.last()`` will have no effect.
+    Clear the errors.
 
-    **Example:**
+    **Example**
 
-    .. code-block:: tarantoolsession
-
-        tarantool> box.error.last()
-        ---
-        - Invalid identifier '' (expected printable symbols only or it is too long)
-        ...
-        tarantool> box.error.clear()
-        ---
-        ...
-        tarantool> box.error.last()
-        ---
-        - null
-        ...
+    ..  literalinclude:: /code_snippets/test/errors/unpack_clear_error_test.lua
+        :language: lua
+        :start-after: Clear the errors: start
+        :end-before: Clear the errors: end
+        :dedent:
