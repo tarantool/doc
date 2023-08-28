@@ -4,7 +4,7 @@ SQL tutorial
 ============
 
 This tutorial is a demonstration of the support for SQL in Tarantool.
-It includes the functionality that you'd encounter in an "SQL-101"course.
+It includes the functionality that you'd encounter in an "SQL-101" course.
 
 .. _sql_tutorial-starting_up_with_a_first_table_and_selects:
 
@@ -400,7 +400,7 @@ ALTER TABLE with a FOREIGN KEY clause
 Create another constraint that there must not be any rows in ``table1``
 containing values that do not appear in ``table5``. This was impossible
 during the ``table1`` creation because at that time ``table5`` did not exist.
-You can add constraints to existing tables withthe ``ALTER TABLE`` statement.
+You can add constraints to existing tables with the ``ALTER TABLE`` statement.
 
 .. code-block:: sql
 
