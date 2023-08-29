@@ -291,7 +291,7 @@ NULL NUM NUMBER NUMERIC OF ON OR ORDER OUT OUTER OVER PARTIAL
 PARTITION PRAGMA PRECISION PRIMARY PROCEDURE RANGE RANK
 READS REAL RECURSIVE REFERENCES REGEXP RELEASE RENAME
 REPEAT REPLACE RESIGNAL RETURN REVOKE RIGHT ROLLBACK ROW
-ROWS ROW_NUMBER SAVEPOINT SCALAR SELECT SENSITIVE SESSION SET
+ROWS ROW_NUMBER SAVEPOINT SCALAR SELECT SENSITIVE SEQSCAN SESSION SET
 SIGNAL SIMPLE SMALLINT SPECIFIC SQL START STRING SYSTEM TABLE
 TEXT THEN TO TRAILING TRANSACTION TRIGGER TRIM TRUE
 TRUNCATE UNION UNIQUE UNKNOWN UNSIGNED UPDATE USER USING UUID VALUES
@@ -1316,7 +1316,7 @@ In alphabetical order, the following statements are legal.
 |nbsp| :ref:`ROLLBACK [TO [SAVEPOINT] savepoint-name]; <sql_rollback>` |br|
 |nbsp| :ref:`SAVEPOINT savepoint-name; <sql_savepoint>` |br|
 |nbsp| :ref:`SELECT [DISTINCT|ALL] expression [, expression ...] <sql_select>` |br|
-|nbsp| |nbsp| |nbsp| |nbsp| :ref:`FROM table-name | joined-table-names [AS alias]  <sql_select>` |br|
+|nbsp| |nbsp| |nbsp| |nbsp| :ref:`FROM [SEQSCAN] table-name | joined-table-names [AS alias]  <sql_select>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[WHERE expression] <sql_select>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[GROUP BY expression [, expression ...]] <sql_group_by>` |br|
 |nbsp| |nbsp| |nbsp| |nbsp| :ref:`[HAVING expression] <sql_having>` |br|

@@ -11,7 +11,7 @@ Most of the matters in the Beginners' Guide will already be familiar to people w
 
 .. _sql_beginners_sample_table:
 
-Sample Table
+Sample table
 ------------
 
 In football training camp it is traditional for the trainer to begin by showing a football
@@ -270,7 +270,7 @@ NoSQL emphasizes freedom and making your own rules.
 
 .. _sql_beginners_table_relationships:
 
-Table Relationships
+Table relationships
 -------------------
 
 Think about the two tables that have been discussed so far:
@@ -311,6 +311,22 @@ That is wrong, as will be clear in the discussion about what makes a database re
 
 Selecting with WHERE
 --------------------
+
+.. important::
+
+    By default, Tarantool prohibits ``SELECT`` queries that scan table rows
+    instead of using indexes to avoid unwanted heavy load.
+
+    For the purposes of this tutorial, allow SQL scan queries in Tarantool
+    by running by running the command:
+
+    .. code-block:: sql
+
+        SET SESSION "sql_seq_scan" = true;
+
+    Alternatively, you can allow a specific query to perform a table scan by adding
+    the ``SEQSCAN`` keyword before the table name. Learn more about using ``SEQSCAN``
+    in SQL scan queries in the :ref:`SQL FROM clause description <sql_from>`.
 
 We gave a simple example of a SELECT statement earlier:
 
@@ -884,7 +900,7 @@ in format clauses. Indexes of NoSQL spaces will be used with SQL if and only if 
 
 .. _sql_beginners_relational_databases:
 
-Relational Databases
+Relational databases
 --------------------
 
 Edgar F. Codd, the person most responsible for researching and explaining relational database concepts,

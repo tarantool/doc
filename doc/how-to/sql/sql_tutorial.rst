@@ -117,6 +117,50 @@ Then try to put another row:
 This ``INSERT`` fails because of a primary-key violation: the row with the primary
 key ``1, 'AB'`` already exists.
 
+The SEQSCAN keyword
+~~~~~~~~~~~~~~~~~~~
+
+In Tarantool, SQL queries that perform sequential scans (that is, go through all
+the table instead of using indexes) are prohibited by default. For example, this
+query leads to the error ``Scanning is not allowed for 'table2':
+
+.. code-block:: sql
+
+    SELECT * FROM table2
+
+To execute a scan query, put the ``SEQSCAN`` keyword before the table name:
+
+.. code-block:: sql
+
+    SELECT * FROM SEQSCAN table2
+
+If a query uses indexed fields in filters, it can still be a scan query.
+Try to execute these queries that seem to return the same result:
+
+.. code-block:: sql
+
+    SELECT * FROM table2 WHERE column1 = 1;
+    SELECT * FROM table2 WHERE column1 + 1 = 2
+
+The result is:
+
+*   the first query returns
+
+    .. code-block:: tarantoolsession
+
+        - [1, 'AB', 'AB', 10.5]
+        - [1, 'CD', '  ', 10005]
+
+*   the second query fails with the error ``Scanning is not allowed for 'TABLE2'``.
+
+.. note::
+
+    You can allow SQL scan queries without ``SEQSCAN`` for the current session
+    by running ``SET SESSION "sql_seq_scan" = true;``.
+
+
+Learn more about using ``SEQSCAN`` in the :ref:`SQL FROM clause description <sql_from>`.
+
 SELECT with ORDER BY clause
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -127,8 +171,11 @@ Retrieve the 4 rows in the table, in descending order by ``column2``, then
 
 .. code-block:: sql
 
-    SELECT * FROM table2 ORDER BY column2 DESC, column4 ASC;
+    SELECT * FROM SEQSCAN table2 ORDER BY column2 DESC, column4 ASC;
 
+.. important::
+
+    Tarantool has its own
 The result is:
 
 .. code-block:: tarantoolsession
@@ -152,7 +199,7 @@ Retrieve some of what you inserted:
 
 .. code-block:: sql
 
-    SELECT column1, column2, column1 * column4 FROM table2 WHERE column2
+    SELECT column1, column2, column1 * column4 FROM SEQSCAN table2 WHERE column2
     LIKE 'A%';
     SELECT column1, column2, column3, column4 FROM table2
         WHERE (column1 < 2 AND column4 < 10)
@@ -184,8 +231,8 @@ The rows which have the same values for ``column2`` are grouped and are aggregat
 
 .. code-block:: sql
 
-    SELECT column2, SUM(column4), COUNT(column4), AVG(column4)
-    FROM table2
+    SELECT SEQSCAN column2, SUM(column4), COUNT(column4), AVG(column4)
+    FROM SEQSCAN table2
     GROUP BY column2;
 
 The result is:
@@ -251,8 +298,8 @@ from the result table.
 
     CREATE TABLE table3 (column1 INTEGER, column2 VARCHAR(100), PRIMARY KEY
     (column2));
-    INSERT INTO table3 SELECT column1, column2 FROM table2 WHERE column1 <> 2;
-    SELECT * FROM table3;
+    INSERT INTO table3 SELECT column1, column2 FROM SEQSCAN table2 WHERE column1 <> 2;
+    SELECT * FROM SEQSCAN table3;
 
 The result is:
 
@@ -274,8 +321,8 @@ present in ``table3``.
 
 .. code-block:: sql
 
-    SELECT * FROM table2 WHERE (column1, column2) NOT IN (SELECT column1,
-    column2 FROM table3);
+    SELECT * FROM SEQSCAN table2 WHERE (column1, column2) NOT IN (SELECT column1,
+    column2 FROM SEQSCAN table3);
 
 The result is the single row that was excluded when inserting the rows with
 the ``INSERT ... SELECT`` statement:
@@ -295,7 +342,7 @@ column values from another table.
 
 .. code-block:: sql
 
-    SELECT * FROM table2, table3
+    SELECT * FROM SEQSCAN table2, table3
         WHERE table2.column1 = table3.column1 AND table2.column2 = table3.column2
         ORDER BY table2.column4;
 
@@ -327,7 +374,7 @@ containing ``13`` in ``column2``. Then try to insert such a row.
     INSERT INTO table4 VALUES (12, 13);
 
 Result: the insert fails, as it should, with the message
-``Check constraint failed ''ck_unnamed_TABLE4_1'': column2 <> 13``.
+``Check constraint 'ck_unnamed_TABLE4_1' failed for tuple``.
 
 CREATE TABLE with a FOREIGN KEY clause
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -348,7 +395,7 @@ Result:
 *   The first ``INSERT`` statement succeeds because
     ``table3`` contains a row with ``[2, 'AB', ' ', 12.34567]``.
 *   The second ``INSERT`` statement, correctly, fails with the message
-    ``Failed to execute SQL statement: FOREIGN KEY constraint failed``.
+    ``Foreign key constraint ''fk_unnamed_TABLE5_1'' failed: foreign tuple was not found``.
 
 UPDATE
 ~~~~~~
@@ -361,7 +408,7 @@ Use ``SELECT`` to see what happened to ``column4``.
 .. code-block:: sql
 
     UPDATE table2 SET column4 = column4 + 5 WHERE column4 <> 0;
-    SELECT column4 FROM table2 ORDER BY column4;
+    SELECT column4 FROM SEQSCAN table2 ORDER BY column4;
 
 The result is: ``{NULL, NULL, 0, 10.5, 17.34567, 10005}``.
 
@@ -385,11 +432,11 @@ Try to delete the last and first of these rows:
 
     DELETE FROM table2 WHERE column1 = 2;
     DELETE FROM table2 WHERE column1 = -1000;
-    SELECT COUNT(column1) FROM table2;
+    SELECT COUNT(column1) FROM SEQSCAN table2;
 
 The result is:
 
-*   The first ``DELETE`` statement causes an error message because
+*   The first ``DELETE`` statement causes an error because
     there's a foreign-key constraint.
 *   The second ``DELETE`` statement succeeds.
 *   The ``SELECT`` statement shows that there are 5 rows remaining.
@@ -461,7 +508,7 @@ in many ways. For example:
 
 .. code-block:: sql
 
-    SELECT column2, column2 || column2, SUBSTR(column2, 2, 1) FROM table2;
+    SELECT column2, column2 || column2, SUBSTR(column2, 2, 1) FROM SEQSCAN table2;
 
 The result is:
 
@@ -479,12 +526,12 @@ Number operations
 You can also manipulate number data (usually defined with ``INTEGER``
 or ``DOUBLE`` data types) in many ways. For example:
 
-* shift lleft with the ``<<`` operator
+* shift left with the ``<<`` operator
 * get modulo with the ``%`` operator
 
 .. code-block:: sql
 
-    SELECT column1, column1 << 1, column1 << 2, column1 % 2 FROM table2;
+    SELECT column1, column1 << 1, column1 << 2, column1 % 2 FROM SEQSCAN table2;
 
 The result is:
 
@@ -516,7 +563,7 @@ with arithmetic on a number column and ordering by a string column.
     INSERT INTO t6 VALUES (+1234567890, 'GD', 1e30);
     INSERT INTO t6 VALUES (10, 'FADEW?', 0.000001);
     INSERT INTO t6 VALUES (5, 'ABCDEFG', NULL);
-    SELECT column1 + 1, column2, column4 * 2 FROM t6 ORDER BY column2;
+    SELECT column1 + 1, column2, column4 * 2 FROM SEQSCAN t6 ORDER BY column2;
 
 The result is:
 
@@ -636,7 +683,7 @@ You can invoke SQL statements using the Lua function ``box.execute(string)``.
 
 .. code-block:: tarantoolsession
 
-    tarantool> box.execute([[SELECT * FROM table3;]]);
+    tarantool> box.execute([[SELECT * FROM SEQSCAN table3;]]);
 
 The result is:
 
@@ -684,7 +731,7 @@ a bit:
     start_time = os.clock();
     main_function();
     end_time = os.clock();
-    'insert done in ' .. end_time - start_time .. ' seconds';
+    print('insert done in ' .. end_time - start_time .. ' seconds');
 
 The result is: you now have a table with a million rows, with a message saying
 "``insert done in 88.570578 seconds``".
@@ -701,7 +748,7 @@ Check how ``SELECT`` works on the million-row table:
 .. code-block:: lua
 
     box.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);
-    box.execute([[SELECT * FROM tester WHERE s2 LIKE 'QFML%';]]);
+    box.execute([[SELECT * FROM SEQSCAN tester WHERE s2 LIKE 'QFML%';]]);
 
 The result is:
 

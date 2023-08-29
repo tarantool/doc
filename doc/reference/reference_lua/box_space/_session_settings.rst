@@ -26,6 +26,7 @@ box.space._session_settings
     *   ``sql_reverse_unordered_selects``: return result rows in reverse order if there is no :ref:`ORDER BY clause <sql_order_by>`.
         Default: ``false``.
     *   ``sql_select_debug``: show execution steps during :ref:`SELECT <sql_select>`. Default:``false``.
+    *   ``sql_seq_scan``: allow sequential scans in SQL :ref:`SELECT <sql_select>`. Default: ``true``.
     *   ``sql_vdbe_debug``: for internal use. Default:``false``.
     *   ``sql_defer_foreign_keys`` (removed in :doc:`2.11.0 </release/2.11.0>`): whether foreign-key checks can wait till
         commit. Default: ``false``.

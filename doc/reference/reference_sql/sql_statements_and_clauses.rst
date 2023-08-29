@@ -1855,7 +1855,7 @@ FROM clause
 
 Syntax:
 
-:samp:`FROM table-reference [, table-reference ...]`
+:samp:`FROM [SEQSCAN] table-reference [, table-reference ...]`
 
 |br|
 
@@ -1889,18 +1889,35 @@ Parentheses are allowed, and ``[[AS] correlation-name]`` is allowed.
 
 The maximum number of joins in a FROM clause is 64.
 
+The ``SEQSCAN`` keyword (since :doc:`2.11 </release/2.11.0>`) marks the queries that
+perform sequential scans during the execution. It happens if the query can't use indexes,
+and goes through all the table rows one by one, sometimes causing a heavy load.
+Such queries are called *scan queries*. If a scan query doesn't have the
+``SEQSCAN`` keyword, Tarantool raises an error. ``SEQSCAN`` must precede all
+names of the tables that the query scans.
+
+To find out if a query performs a sequential scan, use ``EXPLAIN QUERY PLAN``.
+For scan queries, the result contains ``SCAN_TABLE``.
+
+..  note::
+
+    For backward compatibility, the scan queries without the ``SEQSCAN`` keyword
+    are allowed in Tarantool 2.11. The errors on scan queries will be the default
+    behavior starting from 3.0. You can change the default behavior of scan queries
+    using the :ref:`compat option sql_seq_scan <compat-option-sql-scan>`.
+
 Examples:
 
 .. code-block:: sql
 
    -- the simplest form:
-   SELECT * FROM t;
+   SELECT * FROM SEQSCAN t;
    -- with two tables, making a Cartesian join:
-   SELECT * FROM t1, t2;
+   SELECT * FROM SEQSCAN t1, SEQSCAN t2;
    -- with one table joined to itself, requiring correlation names:
-   SELECT a.*, b.* FROM t1 AS a, t1 AS b;
+   SELECT a.*, b.* FROM SEQSCAN t1 AS a, SEQSCAN t1 AS b;
    -- with a left outer join:
-   SELECT * FROM t1 LEFT JOIN t2;
+   SELECT * FROM SEQSCAN t1 LEFT JOIN SEQSCAN t2;
 
 .. _sql_where:
 
