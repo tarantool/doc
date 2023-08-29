@@ -2,6 +2,10 @@ stack (
   line(
     choice(
       line(
+        choice(
+          None,
+          line(' SEQSCAN ')
+         ),
         'table-name',
         choice(
           None,
