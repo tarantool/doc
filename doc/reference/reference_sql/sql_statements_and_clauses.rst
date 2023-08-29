@@ -404,18 +404,18 @@ The column-constraint or default clause may be as follows:
    * - NOT NULL
      - means "it is illegal to assign a NULL to this column"
    * -  PRIMARY KEY
-     - explained in the later section
-       :ref:`"Table Constraint Definition" <sql_table_constraint_def>`
+     - explained in the
+       :ref:`Table constraint definition <sql_table_constraint_def>` section
    * - UNIQUE
-     - explained in the later section
-       "Table Constraint Definition"
+     - explained in the
+       :ref:`Table constraint definition <sql_table_constraint_def>` section
    * - CHECK (expression)
-     - explained in the later section
-       "Table Constraint Definition"
+     - explained in the
+       :ref:`Table constraint definition <sql_table_constraint_def>` section
    * - foreign-key-clause
-     - explained in the later section
-       :ref:`"Table Constraint Definition for foreign keys"
-       <sql_foreign_key>`
+     - explained in the
+       :ref:`Table constraint definition for foreign keys
+       <sql_foreign_key>` section
    * - DEFAULT expression
      - means
        "if INSERT does not assign to this column
@@ -493,7 +493,7 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
 .. _sql_table_constraint_def:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Table Constraint Definition
+Table constraint definition
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Syntax:
@@ -617,143 +617,93 @@ causes no error message, although (s1, s1) is probably a user error.
 .. _sql_foreign_key:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Table Constraint Definition for foreign keys
+Table constraint definition for foreign keys
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-FOREIGN KEY constraints look like this: |br|
-:samp:`FOREIGN KEY ({referencing-column-name} [, {referencing-column-name}...]) REFERENCES {referenced-table-name} [({referenced-column-name} [, {referenced-column-name}...]]) [MATCH FULL] [update-or-delete-rules]`
+A :ref:`foreign key <index-box_foreign_keys>` is a constraint that can be used to enforce data integrity across related tables.
+A foreign key constraint is defined on the child table that references the parent table's column values.
 
-There is a shorthand: specifying REFERENCES in a :ref:`column definition <sql_column_def_constraint>`.
-
-The referencing column names must be defined in the table that is being created.
-The referenced table name must refer to a table that already exists,
-or to the table that is being created.
-The referenced column names must be defined in the referenced table,
-and have similar data types.
-There must be a PRIMARY KEY or UNIQUE constraint or UNIQUE index on the referenced column names.
-
-The words MATCH FULL are optional and have no effect.
-
-If a foreign-key constraint exists, then the values in the referencing columns
-must equal values in the referenced columns of the referenced table,
-or at least one of the referencing columns must contain NULL.
-
-Examples:
+Foreign key constraints look like this:
 
 .. code-block:: sql
 
-    -- A foreign key referencing a primary key in the same table
-    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER, FOREIGN KEY (s2) REFERENCES t1 (s1));
-    -- The same thing with column shorthand
-    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER REFERENCES t1(s1));
-    -- An attempt to violate the constraint -- this will fail
-    INSERT INTO t1 VALUES (1, 2);
-    -- A NULL in the referencing column -- this will succeed
-    INSERT INTO t1 VALUES (1, NULL);
-    -- A reference to a primary key that now exists -- this will succeed
-    INSERT INTO t1 VALUES (2, 1);
+    FOREIGN KEY ({referencing_column_name} [, {referencing_column_name}...])
+        REFERENCES {referenced_table_name} [({referenced_column_name} [, {referenced_column_name}...]])
 
-The optional update-or-delete rules look like this: |br|
-``ON {UPDATE|DELETE} { CASCADE | SET DEFAULT | SET NULL | RESTRICT | NO ACTION}`` |br|
-and the idea is: if something changes the referenced key, then one of these possible "referential actions" takes place: |br|
-``CASCADE``: the change that is applied for the referenced key is applied for the referencing key. |br|
-``SET DEFAULT``: the referencing key is set to its default value. |br|
-``SET NULL``: the referencing key is set to NULL. |br|
-``RESTRICT``: the UPDATE or DELETE fails if a referencing key exists; checked immediately. |br|
-``NO ACTION``: the UPDATE or DELETE fails if a referencing key exists; checked at statement end. |br|
-The default is ``NO ACTION``.
-
-For example:
+You can also add a reference in a :ref:`column definition <sql_column_def_constraint>`:
 
 .. code-block:: sql
 
-    CREATE TABLE f1 (ordinal INTEGER PRIMARY KEY,
-                 referenced_planet STRING UNIQUE NOT NULL);
-    CREATE TABLE f2 (
-        ordinal INTEGER PRIMARY KEY,
-        referring_planet STRING DEFAULT 'Earth',
-        FOREIGN KEY (referring_planet) REFERENCES f1 (referenced_planet)
-            ON UPDATE SET DEFAULT
-            ON DELETE CASCADE);
-    INSERT INTO f1 VALUES (1, 'Mercury'), (2,' Venus'), (3, 'Earth');
-    INSERT INTO f2 VALUES (1, 'Mercury'), (2, 'Mercury');
-    UPDATE f1 SET referenced_planet = 'Mars'
-        WHERE referenced_planet = 'Mercury';
-    SELECT * FROM f2;
-    DELETE FROM f1 WHERE referenced_planet = 'Earth';
-    SELECT * FROM f2;
-    ... In this example, the UPDATE statement changes the referenced key,
-        and the clause is ON UPDATE SET DEFAULT, therefore both of the
-        rows in f2 have referring_planet set to their default value,
-        which is 'Earth'. The DELETE statement deletes the row that
-        has 'Earth', and the clause is ON DELETE CASCADE,
-        therefore both of the rows in f2 are deleted.
+    {referencing_column_name} {column_definition}
+        REFERENCES {referenced_table_name}({referenced_column_name})
 
-Limitations: |br|
-* Foreign keys can have a MATCH clause (`Issue#3455 <https://github.com/tarantool/tarantool/issues/3455>`_).
+.. NOTE::
 
-.. COMMENT
-   Constraint Conflict Clauses are temporarily disabled.
-   However, the description is here, as a big comment.
+    Since :doc:`2.11.0 </release/2.11.0>`, the following referencing options aren't supported anymore:
 
-   Constraint Conflict Clauses
+    *   The ``ON UPDATE`` and ``ON DELETE`` triggers. The ``RESTRICT`` trigger action is used implicitly.
+    *   The ``MATCH`` subclause. ``MATCH FULL`` is used implicitly.
+    *   ``DEFERRABLE`` constraints. The ``INITIALLY IMMEDIATE`` constraint check time rule is used implicitly.
 
-   In a CREATE TABLE statement:
-   CREATE TABLE ... constraint-definition ON CONFLICT {ABORT | FAIL | IGNORE | REPLACE | ROLLBACK} ...;
+Note that a referenced column should meet one of the following requirements:
 
-   In an INSERT or UPDATE statement:
-   {INSERT|UPDATE} OR {ABORT | FAIL | IGNORE | REPLACE | ROLLBACK} ...;
+-   A referenced column is a PRIMARY KEY column.
+-   A referenced column has a UNIQUE constraint.
+-   A referenced column has a UNIQUE index.
 
-   The standard way to handle a constraint violation is "statement rollback" -- all rows affected by the statement are restored to their original values -- and an error is returned. However, Tarantool allows the user to specify non-standard ways to handle PRIMARY KEY, UNIQUE, CHECK, and NOT NULL constraint violations.
+**Example**
 
-   ABORT -- do statement rollback and return an error. This is the default and is recommended, so a user's best strategy is to never use constraint conflict clauses.
+This example shows how to create a relation between the parent and child tables through a single-column foreign key:
 
-   FAIL -- return an error but do not do statement rollback.
+1.  First, create a parent ``author`` table:
 
-   IGNORE -- do not insert or update the row whose update would cause an error, but do not do statement rollback and do not return an error. Due to optimizations related to NoSQL, handling with IGNORE may be slightly faster than handling with ABORT.
+    ..  literalinclude:: /code_snippets/test/sql/foreign_key_table_constraint_test.lua
+        :language: sql
+        :start-after: create_parent_start
+        :end-before: create_parent_end
+        :dedent:
 
-   REPLACE -- (for a UNIQUE or PRIMARY KEY constraint) --  instead of inserting a new row, delete the old row before putting in the new one;  (for a NOT NULL constraint for a column that has a non-NULL default value) replace the NULL value with the column's default value; (for a NOT NULL constraint for a column that has a NULL default value) do statement rollback and return an error; (for a CHECK constraint) -- do statement rollback and return an error. If REPLACE action causes a row to be deleted, and if PRAGMA recursive_triggers was specified earlier, then delete triggers (if any) are activated.
+    Then, insert data to this table:
 
-   ROLLBACK -- do transaction rollback and return an error.
+    ..  literalinclude:: /code_snippets/test/sql/foreign_key_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_parent_start
+        :end-before: insert_parent_end
+        :dedent:
 
-   The order of constraint evaluation is described in section Order of Execution in Data-Change Statements.
+2.  Create a child ``book`` table whose ``author_id`` column references the ``id`` column from the ``author`` table:
 
-   For example, suppose a new table  t has one column and the column has a unique constraint.
-   A transaction starts with START TRANSACTION.
-   The first statement in the transaction is INSERT INTO t VALUES (1), (2);
-   that is, "insert 1, then insert 2" -- Tarantool processes the new rows in order.
-   This statement always succeeds, there are no constraint violations.
-   The second SQL statement is INSERT INTO t VALUES (3), (2), (5);
-   that is, "insert 3, then insert 2".
-   Inserting 3 is not a problem, but inserting 2 is a problem -- it would violate the UNIQUE constraint.
+    ..  literalinclude:: /code_snippets/test/sql/foreign_key_table_constraint_test.lua
+        :language: sql
+        :start-after: create_child_start
+        :end-before: create_child_end
+        :dedent:
 
-   If behavior is ABORT: the second statement is rolled back, there is an error message. The table now contains (1), (2).
+    Insert data to the ``book`` table:
 
-   If behavior is FAIL: the second statement is not rolled back, there is an error message. The table now contains (1), (2), (3).
+    ..  literalinclude:: /code_snippets/test/sql/foreign_key_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_child_start
+        :end-before: insert_child_end
+        :dedent:
 
-   If behavior is IGNORE: the second statement is not rolled back, the (2) is not inserted, there is no error message. The table now contains (1), (2), (3), (5).
+3.  Check how the created foreign key constraint enforces data integrity.
+    The following error is raised on an attempt to insert a new book with the ``author_id`` value that doesn't exist in the parent ``author`` table:
 
-   If behavior is REPLACE: the second statement is not rolled back, the first (2) is replaced by the second (2), there is no error message. The table now contains (1), (2), (3), (5).
+    ..  literalinclude:: /code_snippets/test/sql/foreign_key_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_error_start
+        :end-before: insert_error_end
+        :dedent:
 
-   If behavior is ROLLBACK: the statement is rolled back, and the first statement is rolled back,
-   and there is an error message. The table now contains nothing.
+    On an attempt to delete an author that already has books in the ``book`` table, the following error is raised:
 
-   There are two ways to specify the behavior: at the end of the CREATE TABLE statement constraint clause, or as an extra clause in an INSERT or UPDATE statement. Specification in the INSERT or UPDATE statement takes precedence.
+    ..  literalinclude:: /code_snippets/test/sql/foreign_key_table_constraint_test.lua
+        :language: sql
+        :start-after: delete_error_start
+        :end-before: delete_error_end
+        :dedent:
 
-   Another example:
-   DROP TABLE t1;
-   CREATE TABLE t1 (s1 INTEGER PRIMARY KEY ON CONFLICT REPLACE, s2 INTEGER);
-   INSERT INTO t1 VALUES (1, NULL);      -- now t1 contains (1,NULL)
-   INSERT INTO t1 VALUES (1, 1);         -- now t1 contains (1, 1)
-   INSERT OR ABORT INTO t1 VALUES (1, 2); -- now t1 contains (1, 1)
-   INSERT OR IGNORE INTO t1 VALUES (1, 2), (3, 4); -- now t1 contains (1, 1), (3, 4)
-   PRAGMA recursive_triggers(true);
-   CREATE TRIGGER t1d
-     AFTER DELETE ON t1 FOR EACH ROW
-     BEGIN
-     INSERT INTO t1 VALUES (18, 25);
-     END;
-   INSERT INTO t1 VALUES (1, 4); -- now t1 contains (1, 4), (3, 4), (18, 35)
 
 .. _sql_drop_table:
 
