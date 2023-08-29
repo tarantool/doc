@@ -122,7 +122,7 @@ The SEQSCAN keyword
 
 In Tarantool, SQL queries that perform sequential scans (that is, go through all
 the table instead of using indexes) are prohibited by default. For example, this
-query leads to the error ``Scanning is not allowed for 'table2':
+query leads to the error ``Scanning is not allowed for 'table2'``:
 
 .. code-block:: sql
 
@@ -140,23 +140,27 @@ Try to execute these queries that seem to return the same result:
 .. code-block:: sql
 
     SELECT * FROM table2 WHERE column1 = 1;
-    SELECT * FROM table2 WHERE column1 + 1 = 2
+    SELECT * FROM table2 WHERE column1 + 1 = 2;
 
 The result is:
 
-*   the first query returns
+*   The first query returns rows:
 
     .. code-block:: tarantoolsession
 
         - [1, 'AB', 'AB', 10.5]
         - [1, 'CD', '  ', 10005]
 
-*   the second query fails with the error ``Scanning is not allowed for 'TABLE2'``.
+*   The second query fails with the error ``Scanning is not allowed for 'TABLE2'``.
 
 .. note::
 
     You can allow SQL scan queries without ``SEQSCAN`` for the current session
-    by running ``SET SESSION "sql_seq_scan" = true;``.
+    by running the command:
+
+    .. code-block:: sql
+
+        SET SESSION "sql_seq_scan" = true;
 
 
 Learn more about using ``SEQSCAN`` in the :ref:`SQL FROM clause description <sql_from>`.

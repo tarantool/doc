@@ -315,10 +315,8 @@ Selecting with WHERE
 .. important::
 
     By default, Tarantool prohibits ``SELECT`` queries that scan table rows
-    instead of using indexes to avoid unwanted heavy load.
-
-    For the purposes of this tutorial, allow SQL scan queries in Tarantool
-    by running by running the command:
+    instead of using indexes to avoid unwanted heavy load. For the purposes of
+    this tutorial, allow SQL scan queries in Tarantool by running the command:
 
     .. code-block:: sql
 
