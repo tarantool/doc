@@ -33,3 +33,4 @@ storages
 dereference
 upsert
 tt
+SEQSCAN
