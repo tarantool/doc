@@ -1897,7 +1897,7 @@ Such queries are called *scan queries*. If a scan query doesn't have the
 names of the tables that the query scans.
 
 To find out if a query performs a sequential scan, use ``EXPLAIN QUERY PLAN``.
-For scan queries, the result contains ``SCAN_TABLE table_name``.
+For scan queries, the result contains ``SCAN TABLE table_name``.
 
 ..  note::
 
