@@ -1902,7 +1902,7 @@ For scan queries, the result contains ``SCAN TABLE table_name``.
 ..  note::
 
     For backward compatibility, the scan queries without the ``SEQSCAN`` keyword
-    are allowed in Tarantool 2.11. The errors on scan queries will be the default
+    are allowed in Tarantool 2.11. The errors on scan queries are the default
     behavior starting from 3.0. You can change the default behavior of scan queries
     using the :ref:`compat option sql_seq_scan <compat-option-sql-scan>`.
 
