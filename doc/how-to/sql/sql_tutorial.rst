@@ -120,22 +120,21 @@ key ``1, 'AB'`` already exists.
 The SEQSCAN keyword
 ~~~~~~~~~~~~~~~~~~~
 
-In Tarantool, SQL queries that perform sequential scans (that is, go through all
-the table instead of using indexes) are prohibited by default. For example, this
-query leads to the error ``Scanning is not allowed for 'table2'``:
+In Tarantool, ``SELECT`` SQL queries that perform sequential scans (that is, go
+through all the table rows instead of using indexes) are prohibited by default.
+For example, this query leads to the error ``Scanning is not allowed for 'table2'``:
 
 .. code-block:: sql
 
-    SELECT * FROM table2
+    SELECT * FROM table2;
 
 To execute a scan query, put the ``SEQSCAN`` keyword before the table name:
 
 .. code-block:: sql
 
-    SELECT * FROM SEQSCAN table2
+    SELECT * FROM SEQSCAN table2;
 
-If a query uses indexed fields in filters, it can still be a scan query.
-Try to execute these queries that seem to return the same result:
+Try to execute these queries that use indexed ``column1`` in filters:
 
 .. code-block:: sql
 
@@ -152,6 +151,8 @@ The result is:
         - [1, 'CD', '  ', 10005]
 
 *   The second query fails with the error ``Scanning is not allowed for 'TABLE2'``.
+    Although ``column1`` is indexed, the expression ``column1 + 1`` is not calculated
+    from the index, which makes this ``SELECT`` a scan query.
 
 .. note::
 
@@ -205,7 +206,7 @@ Retrieve some of what you inserted:
 
     SELECT column1, column2, column1 * column4 FROM SEQSCAN table2 WHERE column2
     LIKE 'A%';
-    SELECT column1, column2, column3, column4 FROM table2
+    SELECT column1, column2, column3, column4 FROM SEQSCAN table2
         WHERE (column1 < 2 AND column4 < 10)
         OR column3 = X'2020';
 
@@ -235,7 +236,7 @@ The rows which have the same values for ``column2`` are grouped and are aggregat
 
 .. code-block:: sql
 
-    SELECT SEQSCAN column2, SUM(column4), COUNT(column4), AVG(column4)
+    SELECT column2, SUM(column4), COUNT(column4), AVG(column4)
     FROM SEQSCAN table2
     GROUP BY column2;
 
@@ -588,8 +589,8 @@ Create a view ``v3`` based on ``table3`` and select from it:
 
 .. code-block:: sql
 
-    CREATE VIEW v3 AS SELECT SUBSTR(column2,1,2), column4 FROM t6 WHERE
-    column4 >= 0;
+    CREATE VIEW v3 AS SELECT SUBSTR(column2,1,2), column4 FROM SEQSCAN t6
+    WHERE column4 >= 0;
     SELECT * FROM v3;
 
 The result is:
@@ -611,8 +612,8 @@ Create such a view and select from it:
 .. code-block:: sql
 
     WITH cte AS (
-                 SELECT SUBSTR(column2,1,2), column4 FROM t6 WHERE column4
-                 >= 0)
+                 SELECT SUBSTR(column2,1,2), column4 FROM SEQSCAN t6
+                 WHERE column4 >= 0)
     SELECT * FROM cte;
 
 The result is the same as the ``CREATE VIEW`` result:
@@ -644,17 +645,18 @@ The result of both these statements is:
 Metadata
 ~~~~~~~~
 
-
 To find out the internal structure of the Tarantool database with SQL,
-select from the Tarantool system tables:
+select from the Tarantool system tables ``_space``, ``_index``, and ``_trigger``:
 
-* tables: ``SELECT * FROM "_space";``
-* indexes: ``SELECT * FROM "_index";``
-* triggers: ``SELECT * FROM "_trigger";``
+.. code-block:: sql
+
+    SELECT * FROM SEQSCAN "_space";
+    SELECT * FROM SEQSCAN "_index";
+    SELECT * FROM SEQSCAN "_trigger";
 
 Actually, these statements select from NoSQL "system spaces".
 
-Select from ``_space``:
+Select from ``_space`` by a table name:
 
 .. code-block:: sql
 
