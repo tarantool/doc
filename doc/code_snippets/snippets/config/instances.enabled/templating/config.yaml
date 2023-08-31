@@ -1,0 +1,10 @@
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            snapshot:
+              dir: ./var/{{ instance_name }}/snapshots
+            wal:
+              dir: ./var/{{ instance_name }}/wals

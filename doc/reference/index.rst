@@ -10,6 +10,7 @@ Reference
 .. toctree::
     :maxdepth: 2
 
+    configuration/configuration_reference
     configuration/index
     tooling/index
     reference_sql/index
