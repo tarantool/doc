@@ -1,0 +1,30 @@
+credentials:
+  users:
+    replicator:
+      password: 'topsecret'
+      roles: [replication]
+    client:
+      password: 'secret'
+      roles: [super]
+
+iproto:
+  advertise:
+    peer: replicator@
+
+replication:
+  failover: election
+
+groups:
+  group-001:
+    replicasets:
+      replicaset-001:
+        instances:
+          instance-001:
+            iproto:
+              listen: 127.0.0.1:3301
+          instance-002:
+            iproto:
+              listen: 127.0.0.1:3302
+          instance-003:
+            iproto:
+              listen: 127.0.0.1:3303
