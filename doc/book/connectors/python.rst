@@ -52,7 +52,7 @@ unmaintained.
 Feature comparison
 ------------------
 
-Last update: November 2022
+Last update: September 2023
 
 ..  list-table::
     :header-rows: 1
@@ -85,12 +85,12 @@ Last update: November 2022
         -   GitHub Actions
 
     *   -   GitHub Stars
-        -   68
-        -   85
+        -   73
+        -   92
 
     *   -   Static Analysis
         -   Yes (Flake8)
-        -   No
+        -   Yes (Flake8, Pylint)
 
     *   -   Packaging
         -   `pip <https://pypi.org/project/asynctnt/>`__
@@ -106,7 +106,7 @@ Last update: November 2022
 
     *   -   Batching support
         -   No
-        -   No (`issue #55 <https://github.com/tarantool/tarantool-python/issues/55>`__)
+        -   Yes (with CRUD API)
 
     *   -   Schema reload
         -   Yes (automatically, see `auto_refetch_schema <https://igorcoding.github.io/asynctnt/api.html>`__)
@@ -170,7 +170,7 @@ Last update: November 2022
 
     *   -   `CRUD support <https://github.com/tarantool/crud>`__
         -   No
-        -   No (`issue #205 <https://github.com/tarantool/tarantool-python/issues/205>`__)
+        -   Yes
 
     *   -   Transparent request retrying
         -   No
