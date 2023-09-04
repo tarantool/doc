@@ -40,7 +40,7 @@ necessary for good practice. For that, please see
 Also there are several community-driven Python connectors:
 
 * `asynctnt <https://github.com/igorcoding/asynctnt>`__ with asyncio support
-* `aiotarantool <https://github.com/shveenkov/aiotarantool>`__ also with asyncio support
+* `aiotarantool <https://github.com/shveenkov/aiotarantool>`__ also with asyncio support, **no active maintenance**
 * `gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent support, **no active maintenance**
 
 The table below contains a feature comparison for asynctnt, gtarantool and
