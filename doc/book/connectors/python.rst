@@ -43,8 +43,8 @@ Also there are several community-driven Python connectors:
 * `aiotarantool <https://github.com/shveenkov/aiotarantool>`__ also with asyncio support, **no active maintenance**
 * `gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent support, **no active maintenance**
 
-The table below contains a feature comparison for asynctnt, gtarantool and
-tarantool-python. aiotarantool is absent there because it is quite outdated and
+The table below contains a feature comparison for asynctnt and
+tarantool-python. aiotarantool and gtarantool are absent there because they are quite outdated and
 unmaintained.
 
 ..  _python-feature-comparison:
@@ -60,170 +60,134 @@ Last update: November 2022
 
     *   -   Parameter
         -   `igorcoding/asynctnt <https://github.com/igorcoding/asynctnt>`__
-        -   `shveenkov/gtarantool <https://github.com/shveenkov/gtarantool>`__
         -   `tarantool/tarantool-python <https://github.com/tarantool/tarantool-python>`__
 
     *   -   License
         -   Apache License 2.0
-        -   LGPL
         -   BSD-2
 
     *   -   Is maintained
         -   Yes
-        -   No (last updated in 2016)
         -   Yes
 
     *   -   Known Issues
         -   None
         -   None
-        -   None
 
     *   -   Documentation
         -   Yes (`github.io <https://igorcoding.github.io/asynctnt/>`__)
-        -   No
         -   Yes (`readthedocs
             <https://tarantool-python.readthedocs.io/en/latest/quick-start.en.html>`__
             and :ref:`tarantool.io <getting_started-python>`)
 
     *   -   Testing / CI / CD
         -   GitHub Actions
-        -   No (tests exist)
         -   GitHub Actions
 
     *   -   GitHub Stars
         -   68
-        -   17
         -   85
 
     *   -   Static Analysis
         -   Yes (Flake8)
         -   No
-        -   No
 
     *   -   Packaging
         -   `pip <https://pypi.org/project/asynctnt/>`__
-        -   `pip <https://pypi.org/project/gtarantool/>`__
         -   `pip, deb, rpm <https://github.com/tarantool/tarantool-python#download-and-install>`__
 
     *   -   Code coverage
         -   Yes
-        -   No
         -   Yes
 
     *   -   Support asynchronous mode
         -   Yes, `asyncio <https://docs.python.org/3/library/asyncio.html>`__
-        -   Yes (`gevent
-            <https://www.gevent.org/api/gevent.event.html#gevent.event.AsyncResult>`__,
-            example: `test_gevent.py
-            <https://github.com/shveenkov/gtarantool/blob/master/tests/test_gevent.py>`__)
         -   No
 
     *   -   Batching support
-        -   No
         -   No
         -   No (`issue #55 <https://github.com/tarantool/tarantool-python/issues/55>`__)
 
     *   -   Schema reload
         -   Yes (automatically, see `auto_refetch_schema <https://igorcoding.github.io/asynctnt/api.html>`__)
         -   Yes (automatically)
-        -   Yes (automatically)
 
     *   -   Space / index names
-        -   Yes
         -   Yes
         -   Yes
 
     *   -   Access tuple fields by names
         -   Yes
         -   No
-        -   No
 
     *   -   :ref:`SQL support <reference_sql>`
         -   Yes
-        -   No
         -   Yes
 
     *   -   :ref:`Interactive transactions <txn_mode_stream-interactive-transactions>`
         -   Yes
-        -   No
         -   No (`issue #163 <https://github.com/tarantool/tarantool-python/issues/163>`__)
 
     *   -   :ref:`Varbinary support <index-box_data-types>`
         -   Yes (in ``MP_BIN`` fields)
-        -   No
         -   Yes
 
     *   -   :ref:`Decimal support <msgpack_ext-decimal>`
         -   Yes
-        -   No
         -   Yes
 
     *   -   :ref:`UUID support <msgpack_ext-uuid>`
         -   Yes
-        -   No
         -   Yes
 
     *   -   :ref:`EXT_ERROR support <msgpack_ext-error>`
         -   Yes
-        -   No
         -   Yes
 
     *   -   :ref:`Datetime support <msgpack_ext-datetime>`
         -   Yes
-        -   No
         -   Yes
 
     *   -   :ref:`Interval support <msgpack_ext-interval>`
         -   No (`issue #30 <https://github.com/igorcoding/asynctnt/issues/30>`__)
-        -   No
         -   Yes
 
     *   -   :ref:`box.session.push() responses <box_session-push>`
         -   Yes
-        -   No
         -   Yes
 
     *   -   :ref:`Session settings <box_space-session_settings>`
-        -   No
         -   No
         -   No
 
     *   -   `Graceful shutdown <https://github.com/tarantool/tarantool/issues/5924>`__
         -   No
         -   No
-        -   No
 
     *   -   `IPROTO_ID (feature discovery) <https://github.com/tarantool/doc/issues/2419>`__
         -   Yes
-        -   No
         -   Yes
 
     *   -   `CRUD support <https://github.com/tarantool/crud>`__
-        -   No
         -   No
         -   No (`issue #205 <https://github.com/tarantool/tarantool-python/issues/205>`__)
 
     *   -   Transparent request retrying
         -   No
         -   No
-        -   No
 
     *   -   Transparent reconnecting
         -   Autoreconnect
-        -   Yes (reconnect_max_attempts, reconnect_delay)
         -   Yes (reconnect_max_attempts, reconnect_delay), checking of connection liveness
 
     *   -   Connection pool
-        -   No
         -   No
         -   Yes (with master discovery)
 
     *   -   Support of `PEP 249 -- Python Database API Specification v2.0 <https://www.python.org/dev/peps/pep-0249/>`__
         -   No
-        -   No
         -   `Yes <https://github.com/tarantool/tarantool-python/wiki/PEP-249-Database-API>`__
 
     *   -   `Encrypted connection (Tarantool Enterprise) <https://www.tarantool.io/en/enterprise_doc/security/#enterprise-iproto-encryption>`__
         -   No (`issue #22 <https://github.com/igorcoding/asynctnt/issues/22>`__)
-        -   No
         -   Yes
