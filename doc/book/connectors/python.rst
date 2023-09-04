@@ -36,9 +36,6 @@ all went well. If the tuple already exists, the program will throw
 The example program only shows one request and does not show all that's
 necessary for good practice. For that, please see
 `tarantool-python <http://github.com/tarantool/tarantool-python>`__ project at GitHub.
-For an example of using Python API with
-`queue managers for Tarantool <https://github.com/tarantool/queue>`__, see
-`queue-python <https://github.com/tarantool/queue-python>`__ project at GitHub.
 
 Also there are several community-driven Python connectors:
 
