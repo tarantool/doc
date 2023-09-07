@@ -1,9 +1,10 @@
 ---
 name: FSTEK document
 about: Create/Update FSTEK related documentation
-title: "{feature_name}"
+title:
 labels: 
 assignees:
 ---
-**Doc title:**
-**Link to Word file:**
+**Ссылка на документ Word:**
+
+**Требования:**
