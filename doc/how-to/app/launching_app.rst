@@ -55,7 +55,7 @@ the following command will start Tarantool without any application:
 .. code-block:: console
 
     $ # create a temporary container and run it in interactive mode
-    $ docker run --rm -t -i tarantool/tarantool:1
+    $ docker run --rm -t -i tarantool/tarantool:latest
 
 To run Tarantool with our application, we can say:
 
@@ -66,7 +66,7 @@ To run Tarantool with our application, we can say:
     $ docker run --rm -t -i \
                  -v `pwd`/myapp.lua:/opt/tarantool/myapp.lua \
                  -v /data/dir/on/host:/var/lib/tarantool \
-                 tarantool/tarantool:1 tarantool /opt/tarantool/myapp.lua
+                 tarantool/tarantool:latest tarantool /opt/tarantool/myapp.lua
 
 Here two resources on the host get mounted in the container:
 
