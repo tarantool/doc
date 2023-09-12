@@ -100,7 +100,7 @@ To declare that one of the replicas must now take over as a new master:
    If there are updates on the old master that were not propagated before the
    old master went down,
    :ref:`re-apply them manually <admin-disaster_recovery-master_replica>` to the
-   new master using ``tarantoolctl cat`` and ``tarantoolctl play`` commands.
+   new master using ``tt cat`` and ``tt play`` commands.
 
 There is no automatic way for a replica to detect that the master is gone
 forever, since sources of failure and replication environments vary

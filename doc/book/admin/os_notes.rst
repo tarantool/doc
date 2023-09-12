@@ -10,7 +10,7 @@ Notes for operating systems
 Mac OS
 --------------------------------------------------------------------------------
 
-On Mac OS, you can administer Tarantool instances only with ``tarantoolctl``.
+On Mac OS, you can administer Tarantool instances only with :ref:`tt <tt_cli>`.
 No native system tools are supported.
 
 .. _admin-os_notes-freebsd:

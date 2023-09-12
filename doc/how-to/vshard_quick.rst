@@ -15,7 +15,7 @@ This example includes 5 Tarantool instances and 2 replica sets:
 * ``storage_2_a`` – a ``storage`` instance, the **master** of the **second** replica set
 * ``storage_2_b`` – a ``storage`` instance, the **replica** of the **second** replica set
 
-All instances are managed using the ``tarantoolctl`` administrative utility which comes with Tarantool.
+All instances are managed using the :ref:`tt <tt_cli>` administrative utility.
 
 Change the directory to ``example/`` and use ``make`` to run the development cluster:
 
@@ -57,13 +57,13 @@ Change the directory to ``example/`` and use ``make`` to run the development clu
     connected to unix/:./data/router_1.control
     unix/:./data/router_1.control>
 
-Some ``tarantoolctl`` commands:
+Some ``tt`` commands:
 
-*   ``tarantoolctl start router_1`` – start the router instance
-*   ``tarantoolctl enter router_1``  – enter the admin console
+*   ``tt start router_1`` – start the router instance
+*   ``tt enter router_1``  – enter the admin console
 
-The full list of ``tarantoolctl`` commands for managing Tarantool instances is
-available in the :ref:`tarantoolctl reference <tarantoolctl>`.
+The full list of ``tt`` commands for managing Tarantool instances is
+available in the :ref:`tt CLI reference <tt_cli>`.
 
 Essential ``make`` commands you need to know:
 

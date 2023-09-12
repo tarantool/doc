@@ -81,7 +81,7 @@ To acquire it, do a separate installation:
 
   .. code-block:: console
 
-      $ tarantoolctl rocks install shard
+      $ tt rocks install shard
 
 * install with `yum` or `apt`, for example on Ubuntu say:
 

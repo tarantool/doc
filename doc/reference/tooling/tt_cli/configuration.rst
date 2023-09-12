@@ -1,3 +1,5 @@
+.. _tt-config:
+
 Configuration
 =============
 

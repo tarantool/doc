@@ -113,14 +113,14 @@ This method is described in the README file of the
     There are also two other methods that we **do not recommend**,
     but you may find them useful for one reason or another.
 
-    **Method 3**: the ``tarantoolctl`` utility
+    **Method 3**: the :ref:`tt <tt-cli>` utility
 
-    The ``tarantoolctl`` utility ships with Tarantool.
-    Connect to the necessary instance using ``tarantoolctl connect``.
+    The ``tt`` utility ships with Tarantool.
+    Connect to the necessary instance using ``tt connect``.
 
     ..  code:: console
 
-        $ tarantoolctl connect admin:password@localhost:3301
+        $ tt connect admin:password@localhost:3301
 
     -   If your migration is written in a Lua file, you can execute it
         using ``dofile()``. Call this function and specify the path to the
