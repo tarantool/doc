@@ -21,9 +21,7 @@ Problem: INSERT/UPDATE-requests result in ER_MEMORY_ISSUE error
   .. code-block:: console
 
       $ # attaching to a Tarantool instance
-      $ tarantoolctl enter <instance_name>
-      $ # -- OR --
-      $ tarantoolctl connect <URI>
+      $ tt connect <instance_name|URI>
 
   .. code-block:: tarantoolsession
 
@@ -76,16 +74,15 @@ over 60% CPU.
 
 **Solution**
 
-Attach to the Tarantool instance with :ref:`tarantoolctl <tarantoolctl>` utility,
+Attach to the Tarantool instance with :ref:`tt <tt-cli>` utility,
 analyze the query statistics with :doc:`box.stat() </reference/reference_lua/box_stat>`
 and spot the CPU consumption leader. The following commands can help:
 
 .. code-block:: console
 
     $ # attaching to a Tarantool instance
-    $ tarantoolctl enter <instance_name>
-    $ # -- OR --
-    $ tarantoolctl connect <URI>
+    $ tt connect <instance_name|URI>
+
 
 .. code-block:: tarantoolsession
 
@@ -134,15 +131,14 @@ Problem: Query processing times out
 
      This parameter can be changed on the fly, so you don't need to restart
      Tarantool. Attach to the Tarantool instance with
-     :ref:`tarantoolctl <tarantoolctl>` utility and call ``box.cfg{}`` with a
+     :ref:`tt <tt-cli>` utility and call ``box.cfg{}`` with a
      new ``readahead`` value:
 
      .. code-block:: console
 
          $ # attaching to a Tarantool instance
-         $ tarantoolctl enter <instance_name>
-         $ # -- OR --
-         $ tarantoolctl connect <URI>
+         $ tt connect <instance_name|URI>
+
 
      .. code-block:: tarantoolsession
 
@@ -258,9 +254,7 @@ Restart replication with the following commands (at each master instance):
 .. code-block:: console
 
     $ # attaching to a Tarantool instance
-    $ tarantoolctl enter <instance_name>
-    $ # -- OR --
-    $ tarantoolctl connect <URI>
+    $ tt connect <instance_name|URI>
 
 .. code-block:: tarantoolsession
 
@@ -294,9 +288,7 @@ Example of calculating memory usage statistics:
 .. code-block:: console
 
     $ # attaching to a Tarantool instance
-    $ tarantoolctl enter <instance_name>
-    $ # -- OR --
-    $ tarantoolctl connect <URI>
+    $ tt connect <instance_name|URI>
 
 .. code-block:: tarantoolsession
 

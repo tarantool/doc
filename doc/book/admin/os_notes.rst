@@ -10,7 +10,7 @@ Notes for operating systems
 Mac OS
 --------------------------------------------------------------------------------
 
-On Mac OS, you can administer Tarantool instances only with :ref:`tt <tt_cli>`.
+On Mac OS, you can administer Tarantool instances only with :ref:`tt <tt-cli>`.
 No native system tools are supported.
 
 .. _admin-os_notes-freebsd:
@@ -18,6 +18,7 @@ No native system tools are supported.
 --------------------------------------------------------------------------------
 FreeBSD
 --------------------------------------------------------------------------------
+.. TODO TT
 
 To make ``tarantoolctl`` work along with ``init.d`` utilities on FreeBSD, use
 paths other than those suggested in

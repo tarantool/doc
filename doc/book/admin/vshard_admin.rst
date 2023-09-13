@@ -16,7 +16,7 @@ To install the module, execute the following command:
 
 ..  code-block:: console
 
-    $ tarantoolctl rocks install vshard
+    $ tt rocks install vshard
 
 ..  note::
 
@@ -51,12 +51,6 @@ highly discouraged and should be avoided on production deployments.
 
 All ``storage`` instances can be deployed using identical instance (configuration)
 files.
-
-Self-identification is currently performed using ``tarantoolctl``:
-
-..  code-block:: console
-
-    $ tarantoolctl instance_name
 
 All ``router`` instances can also be deployed using identical instance (configuration)
 files.

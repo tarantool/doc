@@ -23,47 +23,6 @@ Change the directory to ``example/`` and use ``make`` to run the development clu
 
     $ cd example/
     $ make
-    tarantoolctl stop storage_1_a  # stop the first storage instance
-    Stopping instance storage_1_a...
-    tarantoolctl stop storage_1_b
-    <...>
-    rm -rf data/
-    tarantoolctl start storage_1_a # start the first storage instance
-    Starting instance storage_1_a...
-    Starting configuration of replica 8a274925-a26d-47fc-9e1b-af88ce939412
-    I am master
-    Taking on replicaset master role...
-    Run console at unix/:./data/storage_1_a.control
-    started
-    mkdir ./data/storage_1_a
-    <...>
-    tarantoolctl start router_1 # start the router
-    Starting instance router_1...
-    Starting router configuration
-    Calling box.cfg()...
-    <...>
-    Run console at unix/:./data/router_1.control
-    started
-    mkdir ./data/router_1
-    Waiting cluster to start
-    echo "vshard.router.bootstrap()" | tarantoolctl enter router_1
-    connected to unix/:./data/router_1.control
-    unix/:./data/router_1.control> vshard.router.bootstrap()
-    ---
-    - true
-    ...
-    unix/:./data/router_1.control>
-    tarantoolctl enter router_1 # enter the admin console
-    connected to unix/:./data/router_1.control
-    unix/:./data/router_1.control>
-
-Some ``tt`` commands:
-
-*   ``tt start router_1`` – start the router instance
-*   ``tt enter router_1``  – enter the admin console
-
-The full list of ``tt`` commands for managing Tarantool instances is
-available in the :ref:`tt CLI reference <tt_cli>`.
 
 Essential ``make`` commands you need to know:
 

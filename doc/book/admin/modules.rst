@@ -114,7 +114,7 @@ Here's an example that illustrates the most typical case -- "update and reload".
 
     In this example, we use recommended :ref:`administration practices <admin>`
     based on :ref:`instance files <admin-instance_file>` and
-    :ref:`tarantoolctl <tarantoolctl>` utility.
+    :ref:`tt <tt-cli>` utility.
 
 1. Update the application file.
 
@@ -196,11 +196,11 @@ Here's an example that illustrates the most typical case -- "update and reload".
 
 3. Manually reload the application file.
 
-   For example, using ``tarantoolctl``:
+   For example, using ``tt``:
 
    .. code-block:: console
 
-       $ tarantoolctl eval my_app /etc/tarantool/instances.enabled/my_app.lua
+       $ tt connect my_app -f /etc/tarantool/instances.enabled/my_app.lua
 
 .. _app_server-reloading_c_module:
 

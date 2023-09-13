@@ -1,3 +1,5 @@
+.. _tt-logrotate:
+
 Rotate instance logs
 ====================
 

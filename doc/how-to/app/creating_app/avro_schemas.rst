@@ -11,7 +11,7 @@ will contain only field values, and thus take a lot less space than the original
 document. In avro-schema terms, converting JSON documents to tuples is
 "flattening", and restoring the original documents is "unflattening".
 
-First you need to :ref:`install <app_server-installing_module>`_
+First you need to :ref:`install <app_server-installing_module>`
 the module with ``tt rocks install avro-schema``.
 
 Further usage is quite straightforward:

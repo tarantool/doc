@@ -19,8 +19,7 @@ Tarantool displays a prompt (e.g. "tarantool>") and you can enter requests.
 When used this way, Tarantool can be a client for a remote server.
 See basic examples in :ref:`Getting started <getting_started>`.
 
-The interactive mode is used by ``tarantoolctl`` to implement "enter" and
-"connect" commands.
+The interactive mode is used in the ``tt`` utility's :ref:`connect <tt-connect>` command.
 
 .. _admin-executing_code_on_an_instance:
 
@@ -28,15 +27,15 @@ Executing code on an instance
 -----------------------------
 
 You can attach to an instance's :ref:`admin console <admin-security>` and
-execute some Lua code using ``tarantoolctl``:
+execute some Lua code using ``tt``:
 
 .. code-block:: console
 
     $ # for local instances:
-    $ tarantoolctl enter my_app
-    /bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available
-    /bin/tarantoolctl: Connecting to /var/run/tarantool/my_app.control
-    /bin/tarantoolctl: connected to unix/:/var/run/tarantool/my_app.control
+    $ tt connect my_app
+       • Connecting to the instance...
+       • Connected to unix/:/var/run/tarantool/my_app.control
+
     unix/:/var/run/tarantool/my_app.control> 1 + 1
     ---
     - 2
@@ -44,21 +43,21 @@ execute some Lua code using ``tarantoolctl``:
     unix/:/var/run/tarantool/my_app.control>
 
     $ # for local and remote instances:
-    $ tarantoolctl connect username:password@127.0.0.1:3306
+    $ tt connect username:password@127.0.0.1:3306
 
-You can also use ``tarantoolctl`` to execute Lua code on an instance without
+You can also use ``tt`` to execute Lua code on an instance without
 attaching to its admin console. For example:
 
 .. code-block:: console
 
     $ # executing commands directly from the command line
-    $ <command> | tarantoolctl eval my_app
+    $ <command> | tt connect my_app -f
     <...>
 
     $ # - OR -
 
     $ # executing commands from a script file
-    $ tarantoolctl eval my_app script.lua
+    $ tt connect my_app -f script.lua
     <...>
 
 .. NOTE::
@@ -67,7 +66,7 @@ attaching to its admin console. For example:
     :ref:`net.box <net_box-module>` module from a Tarantool server. Also, you can
     write your client programs with any of the
     :ref:`connectors <index-box_connectors>`. However, most of the examples in
-    this manual illustrate usage with either ``tarantoolctl connect`` (for administrative purposes) or
+    this manual illustrate usage with either ``tt connect`` or
     :ref:`using the Tarantool server as a client <admin-using_tarantool_as_a_client>`.
 
 .. _admin-health_checks:
@@ -79,9 +78,9 @@ To check the instance status, say:
 
 .. code-block:: console
 
-    $ tarantoolctl status my_app
-    my_app is running (pid: /var/run/tarantool/my_app.pid)
-
+    $ tt status my_app
+    INSTANCE     STATUS      PID
+    my_app       RUNNING     67172
     $ # - OR -
 
     $ systemctl status tarantool@my_app
@@ -236,7 +235,7 @@ First, enter your instance’s interactive administrator console:
 
 .. code-block:: console
 
-    $ tarantoolctl enter NAME
+    $ tt connect NAME|URI
 
 Once there, load the ``fiber`` module:
 
@@ -508,13 +507,13 @@ Once you do this, install Lua bindings:
 
 .. code-block:: console
 
-    $ tarantoolctl rocks install gperftools
+    $ tt rocks install gperftools
 
 Now you're ready to go. Enter your instance’s interactive administrator console:
 
 .. code-block:: console
 
-    $ tarantoolctl enter NAME
+    $ tt connect NAME|URI
 
 To start profiling, say:
 

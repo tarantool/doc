@@ -227,14 +227,14 @@ So let’s proceed.
 
    .. code-block:: bash
 
-      tt start example.lua
+      tt start example
 
 #. Now let’s enter our Tarantool instance, where we can check that our target
    spaces were successfully created:
 
    .. code-block:: bash
 
-      tt connect example.lua
+      tt connect example
 
    .. code-block:: tarantoolsession
 
@@ -296,7 +296,7 @@ So let’s proceed.
 
    .. code-block:: bash
 
-      tt connect example.lua
+      tt connect example
 
    .. code-block:: tarantoolsession
 
@@ -328,7 +328,7 @@ So let’s proceed.
 
    .. code-block:: bash
 
-      tt connect example.lua
+      tt connect example
 
    .. code-block:: tarantoolsession
 

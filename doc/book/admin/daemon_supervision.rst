@@ -57,12 +57,11 @@ an instance:
 
     $ systemctl status tarantool@my_app|grep PID
     Main PID: 5885 (tarantool)
-    $ tarantoolctl enter my_app
-    /bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available
-    /bin/tarantoolctl: Connecting to /var/run/tarantool/my_app.control
-    /bin/tarantoolctl: connected to unix/:/var/run/tarantool/my_app.control
+    $ tt connect my_app
+       • Connecting to the instance...
+       • Connected to unix/:/var/run/tarantool/my_app.control
     unix/:/var/run/tarantool/my_app.control> os.exit(-1)
-    /bin/tarantoolctl: unix/:/var/run/tarantool/my_app.control: Remote host closed connection
+       ⨯ Connection was closed. Probably instance process isn't running anymore
 
 Now let’s make sure that ``systemd`` has restarted the instance:
 
@@ -118,9 +117,11 @@ instance:
 .. code-block:: console
 
     $ # !!! please never do this on a production system !!!
-    $ tarantoolctl enter my_app
+    $ tt connect my_app
+       • Connecting to the instance...
+       • Connected to unix/:/var/run/tarantool/my_app.control
     unix/:/var/run/tarantool/my_app.control> require('ffi').cast('char *', 0)[0] = 48
-    /bin/tarantoolctl: unix/:/var/run/tarantool/my_app.control: Remote host closed connection
+       ⨯ Connection was closed. Probably instance process isn't running anymore
 
 Alternatively, if you know the process ID of the instance (here we refer to it
 as $PID), you can abort a Tarantool instance by running ``gdb`` debugger:

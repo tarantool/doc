@@ -9,7 +9,7 @@ Tarantool allows for two types of connections:
 * With :ref:`console.listen() <console-listen>` function from ``console`` module,
   you can set up a port which can be used to open an administrative console to
   the server. This is for administrators to connect to a running instance and
-  make requests. ``tarantoolctl`` invokes ``console.listen()`` to create a
+  make requests. ``tt`` invokes ``console.listen()`` to create a
   control socket for each started instance.
 
 * With :ref:`box.cfg{listen=...} <cfg_basic-listen>` parameter from ``box``
@@ -40,8 +40,8 @@ and a typical connection :ref:`URI <index-uri>` is:
 
 if the listener has the privilege to write on ``/var/lib/tarantool`` and the
 connector has the privilege to read on ``/var/lib/tarantool``. Alternatively,
-to connect to an admin console of an instance started with ``tarantoolctl``, use
-:ref:`tarantoolctl enter <admin-executing_code_on_an_instance>`.
+to connect to an admin console of an instance started with ``tt``, use
+:ref:`tt connect <tt-connect>`.
 
 To find out whether a TCP port is a port for admin console, use ``telnet``.
 For example:
@@ -66,7 +66,9 @@ When you connect to a binary port:
 * The user is automatically ':ref:`guest <authentication-users>`'.
 * To change the user, it’s necessary to authenticate.
 
-For ease of use, ``tarantoolctl connect`` command automatically detects the type
+.. TODO TT
+
+For ease of use, ``tt connect`` command automatically detects the type
 of connection during handshake and uses :ref:`EVAL <box_protocol-eval>`
 binary protocol command when it’s necessary to execute Lua commands over a binary
 connection. To execute EVAL, the authenticated user must have global "EXECUTE"
