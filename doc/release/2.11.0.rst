@@ -1,15 +1,12 @@
-Tarantool 2.11.0
-================
+Tarantool 2.11 (LTS)
+====================
 
-Released on 2023-05-24.
+Release date: May 24, 2023
 
-*   Release: :tarantool-release:`2.11.0`.
-*   Tag: ``2.11.0``.
-
+Releases on GitHub: :tarantool-release:`2.11.1`, :tarantool-release:`2.11.0`
 
 The 2.11 release of Tarantool includes many new features and fixes.
 This document provides an overview of the most important features for Enterprise and Community versions.
-You can find the detailed changelog on GitHub: :tarantool-release:`2.11.0`.
 
 2.11 is the long-term support (LTS) release with four years of maintenance.
 This means that you will continue to receive all the necessary security fixes and bug fixes throughout this period.
@@ -48,7 +45,7 @@ Tarantool provides the live upgrade mechanism that enables cluster upgrade witho
 downtime. In case of upgrade issues, you can roll back to the original state
 without downtime as well.
 
-To learn how to upgrade to Tarantool 2.11.0, see :doc:`Upgrades </book/admin/upgrades>`.
+To learn how to upgrade to Tarantool 2.11, see :doc:`Upgrades </book/admin/upgrades>`.
 
 .. _2-11-enterprise:
 
