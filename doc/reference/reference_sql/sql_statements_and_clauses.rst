@@ -241,7 +241,7 @@ Syntax:
 
 :samp:`column-name data-type [, column-constraint]`
 
-Define a column, which is a table-element used in a :ref:`CREATE TABLE <sql_create_table>` statement.
+Define a column, which is a table element used in a :ref:`CREATE TABLE <sql_create_table>` statement.
 
 The ``column-name`` must be an identifier which is valid according to the rules
 for identifiers.
@@ -496,95 +496,191 @@ Data types may also appear in :ref:`CAST <sql_function_cast>` functions.
 Table constraint definition
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Syntax:
+A table :ref:`constraint <index-constraints>` restricts the data you can add to the table.
+If you try to insert invalid data on a column, Tarantool throws an error.
 
-:samp:`[CONSTRAINT {constraint-name}] primary-key-constraint | unique-constraint | check-constraint | foreign-key-constraint`
-
-|br|
-
-.. image:: constraint.svg
-    :align: left
-
-|br|
-
-Define a constraint, which is a table-element used in a CREATE TABLE statement.
-
-The constraint-name must be an identifier which is valid according to the rules for identifiers.
-The constraint-name must be unique within the table.
-
-PRIMARY KEY constraints look like this: |br|
-:samp:`PRIMARY KEY ({column-name} [, {column-name}...])`
-
-There is a shorthand: specifying PRIMARY KEY in a :ref:`column definition <sql_column_def_constraint>`.
-
-Every table must have one and only one primary key. |br|
-Primary-key columns are automatically NOT NULL. |br|
-Primary-key columns are automatically indexed. |br|
-Primary-key columns are unique, that is, it is illegal to have two rows which
-have the same values for the columns specified in the constraint.
-
-Examples:
+A table constraint has the following syntax:
 
 .. code-block:: sql
 
-    -- this is a table with a one-column primary-key constraint
-    CREATE TABLE t1 (s1 INTEGER, PRIMARY KEY (s1));
-    -- this is the column-definition shorthand for the same thing:
-    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY);
-    -- this is a table with a two-column primary-key constraint
-    CREATE TABLE t2 (s1 INTEGER, s2 INTEGER, PRIMARY KEY (s1, s2));
-    -- this is an example of an attempted primary-key violation
-    -- (the third INSERT will fail because 55, 'a' is a duplicate)
-    CREATE TABLE t3 (s1 INTEGER, s2 STRING, PRIMARY KEY (s1, s2));
-    INSERT INTO t3 VALUES (55, 'a');
-    INSERT INTO t3 VALUES (55, 'b');
-    INSERT INTO t3 VALUES (55, 'a');
+    [CONSTRAINT [name]] constraint_expression
 
-PRIMARY KEY plus AUTOINCREMENT modifier may be specified in one of two ways: |br|
-- In a column definition after the words PRIMARY KEY, as in ``CREATE TABLE t (c INTEGER PRIMARY KEY AUTOINCREMENT);`` |br|
-- In a PRIMARY KEY (column-list) after a column name, as in ``CREATE TABLE t (c INTEGER, PRIMARY KEY (c AUTOINCREMENT));`` |br|
-When AUTOINCREMENT is specified, the column must be a primary-key column and it must be INTEGER or UNSIGNED. |br|
+    constraint_expression:
+      | PRIMARY KEY (column_name, ...)
+      | UNIQUE (column_name, ...)
+      | CHECK (expression)
+      | FOREIGN KEY (column_name, ...) foreign_key_clause
+
+
+Define a constraint, which is a table element used in a CREATE TABLE statement.
+
+A constraint name must be an identifier that is valid according to the rules for identifiers.
+A constraint name must be unique within the table for a specific constraint type.
+For example, the CHECK and FOREIGN KEY constraints can have the same name.
+
+**PRIMARY KEY constraints**
+
+PRIMARY KEY constraints look like this:
+
+.. code-block:: sql
+
+    PRIMARY KEY (column_name, ...)
+
+There is a shorthand: specifying PRIMARY KEY in a :ref:`column definition <sql_column_def_constraint>`.
+
+-   Every table must have one and only one primary key.
+-   Primary-key columns are automatically ``NOT NULL``.
+-   Primary-key columns are automatically indexed.
+-   Primary-key columns are unique. That means it is illegal to have two rows with the same values for the columns specified in the constraint.
+
+**Example 1: one-column primary key**
+
+1.  Create an ``author`` table with the ``id`` primary key column:
+
+    ..  literalinclude:: /code_snippets/test/sql/primary_key_table_constraint_test.lua
+        :language: sql
+        :start-after: create_author_table_start
+        :end-before: create_author_table_end
+        :dedent:
+
+    Insert data into this table:
+
+    ..  literalinclude:: /code_snippets/test/sql/primary_key_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_authors_start
+        :end-before: insert_authors_end
+        :dedent:
+
+2.  On an attempt to add an author with the existing id, the following error is raised:
+
+    ..  literalinclude:: /code_snippets/test/sql/primary_key_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_duplicate_author_start
+        :end-before: insert_duplicate_author_end
+        :dedent:
+
+
+**Example 2: two-column primary key**
+
+1.  Create a ``book`` table with the primary key defined on two columns:
+
+    ..  literalinclude:: /code_snippets/test/sql/primary_key_table_constraint_test.lua
+        :language: sql
+        :start-after: create_book_table_start
+        :end-before: create_book_table_end
+        :dedent:
+
+    Insert data into this table:
+
+    ..  literalinclude:: /code_snippets/test/sql/primary_key_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_books_start
+        :end-before: insert_books_end
+        :dedent:
+
+2.  On an attempt to add the existing book, the following error is raised:
+
+    ..  literalinclude:: /code_snippets/test/sql/primary_key_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_duplicate_book_start
+        :end-before: insert_duplicate__book_end
+        :dedent:
+
+PRIMARY KEY with the AUTOINCREMENT modifier may be specified in one of two ways:
+
+-   In a column definition after the words PRIMARY KEY, as in ``CREATE TABLE t (c INTEGER PRIMARY KEY AUTOINCREMENT);``
+
+-   In a PRIMARY KEY (column-list) after a column name, as in ``CREATE TABLE t (c INTEGER, PRIMARY KEY (c AUTOINCREMENT));``
+
+When AUTOINCREMENT is specified, the column must be a primary-key column and it must be INTEGER or UNSIGNED.
+
 Only one column in the table may be autoincrement.
 However, it is legal to say ``PRIMARY KEY (a, b, c AUTOINCREMENT)`` -- in that case, there
-are three columns in the primary key but only the first column (``a``) is AUTOINCREMENT.
+are three columns in the primary key but only the third column (``c``) is AUTOINCREMENT.
 
 As the name suggests, values in an autoincrement column are automatically incremented.
 That is: if a user inserts NULL in the column, then the stored value will be the smallest
 non-negative integer that has not already been used.
 This occurs because autoincrement columns are associated with :doc:`sequences </reference/reference_lua/box_schema_sequence/create_index>`.
 
-UNIQUE constraints look like this: |br|
-:samp:`UNIQUE ({column-name} [, {column-name}...])`
+**UNIQUE constraints**
+
+UNIQUE constraints look like this:
+
+.. code-block:: sql
+
+    UNIQUE (column_name, ...)
 
 There is a shorthand: specifying UNIQUE in a :ref:`column definition <sql_column_def_constraint>`.
 
 Unique constraints are similar to primary-key constraints, except that:
-a table may have any number of unique keys, and unique keys are not automatically NOT NULL. |br|
-Unique columns are automatically indexed. |br|
-Unique columns are unique, that is, it is illegal to have two rows with the same values in the unique-key columns.
 
-Examples:
+-   A table may have any number of unique keys, and unique keys are not automatically NOT NULL.
+-   Unique columns are automatically indexed.
+-   Unique columns are unique. That means it is illegal to have two rows with the same values in the unique-key columns.
+
+**Example 1: one-column unique constraint**
+
+1.  Create an ``author`` table with the unique ``name`` column:
+
+    ..  literalinclude:: /code_snippets/test/sql/unique_table_constraint_test.lua
+        :language: sql
+        :start-after: create_author_table_start
+        :end-before: create_author_table_end
+        :dedent:
+
+    Insert data into this table:
+
+    ..  literalinclude:: /code_snippets/test/sql/unique_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_authors_start
+        :end-before: insert_authors_end
+        :dedent:
+
+2.  On an attempt to add an author with the same name, the following error is raised:
+
+    ..  literalinclude:: /code_snippets/test/sql/unique_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_duplicate_author_start
+        :end-before: insert_duplicate_author_end
+        :dedent:
+
+
+**Example 2: two-column unique constraint**
+
+1.  Create a ``book`` table with the unique constraint defined on two columns:
+
+    ..  literalinclude:: /code_snippets/test/sql/unique_table_constraint_test.lua
+        :language: sql
+        :start-after: create_book_table_start
+        :end-before: create_book_table_end
+        :dedent:
+
+    Insert data into this table:
+
+    ..  literalinclude:: /code_snippets/test/sql/unique_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_books_start
+        :end-before: insert_books_end
+        :dedent:
+
+2.  On an attempt to add a book with duplicated values, the following error is raised:
+
+    ..  literalinclude:: /code_snippets/test/sql/unique_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_duplicate_book_start
+        :end-before: insert_duplicate__book_end
+        :dedent:
+
+
+**CHECK constraints**
+
+The CHECK constraint is used to limit the value range that a column can store.
+CHECK constraints look like this:
 
 .. code-block:: sql
 
-    -- this is a table with a one-column primary-key constraint
-    -- and a one-column unique constraint
-    CREATE TABLE t1 (s1 INTEGER, s2 INTEGER, PRIMARY KEY (s1), UNIQUE (s2));
-    -- this is the column-definition shorthand for the same thing:
-    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER UNIQUE);
-    -- this is a table with a two-column unique constraint
-    CREATE TABLE t2 (s1 INTEGER PRIMARY KEY, s2 INTEGER, UNIQUE (s2, s1));
-    -- this is an example of an attempted unique-key violation
-    -- (the third INSERT will not fail because NULL is not a duplicate)
-    -- (the fourth INSERT will fail because 'a' is a duplicate)
-    CREATE TABLE t3 (s1 INTEGER PRIMARY KEY, s2 STRING, UNIQUE (s2));
-    INSERT INTO t3 VALUES (1, 'a');
-    INSERT INTO t3 VALUES (2, NULL);
-    INSERT INTO t3 VALUES (3, NULL);
-    INSERT INTO t3 VALUES (4, 'a');
-
-CHECK constraints look like this: |br|
-:samp:`CHECK ({expression})`
+    CHECK (expression)
 
 There is a shorthand: specifying CHECK in a :ref:`column definition <sql_column_def_constraint>`.
 
@@ -596,23 +692,32 @@ If a CHECK constraint is specified, the table must not contain rows where the ex
 Constraint checking may be stopped with :ref:`ALTER TABLE ... DISABLE CHECK CONSTRAINT <sql_alter_table>`
 and restarted with ALTER TABLE ... ENABLE CHECK CONSTRAINT.
 
-Examples:
+**Example**
 
-.. code-block:: sql
+1.  Create an ``author`` table with the ``name`` column that should contain values longer than 4 characters:
 
-    -- this is a table with a one-column primary-key constraint
-    -- and a check constraint
-    CREATE TABLE t1 (s1 INTEGER PRIMARY KEY, s2 INTEGER, CHECK (s2 <> s1));
-    -- this is an attempt to violate the constraint, it will fail
-    INSERT INTO t1 VALUES (1, 1);
-    -- this is okay because comparison with NULL will not return FALSE
-    INSERT INTO t1 VALUES (1, NULL);
-    -- a constraint that makes it difficult to insert lower case
-    CHECK (s1 = UPPER(s1))
+    ..  literalinclude:: /code_snippets/test/sql/check_table_constraint_test.lua
+        :language: sql
+        :start-after: create_author_table_start
+        :end-before: create_author_table_end
+        :dedent:
 
-Limitations: (`Issue#3503 <https://github.com/tarantool/tarantool/issues/3503>`_): |br|
-* ``CREATE TABLE t99 (s1 INTEGER, UNIQUE(s1, s1),PRIMARY KEY(s1));``
-causes no error message, although (s1, s1) is probably a user error.
+    Insert data into this table:
+
+    ..  literalinclude:: /code_snippets/test/sql/check_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_authors_start
+        :end-before: insert_authors_end
+        :dedent:
+
+2.  On an attempt to add an author with a name shorter than 5 characters, the following error is raised:
+
+    ..  literalinclude:: /code_snippets/test/sql/check_table_constraint_test.lua
+        :language: sql
+        :start-after: insert_short_name_start
+        :end-before: insert_short_name_end
+        :dedent:
+
 
 .. _sql_foreign_key:
 
@@ -620,22 +725,22 @@ causes no error message, although (s1, s1) is probably a user error.
 Table constraint definition for foreign keys
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-A :ref:`foreign key <index-box_foreign_keys>` is a constraint that can be used to enforce data integrity across related tables.
+A :ref:`foreign key <index-box_foreign_keys>` is a :ref:`constraint <index-constraints>` that can be used to enforce data integrity across related tables.
 A foreign key constraint is defined on the child table that references the parent table's column values.
 
 Foreign key constraints look like this:
 
 .. code-block:: sql
 
-    FOREIGN KEY ({referencing_column_name} [, {referencing_column_name}...])
-        REFERENCES {referenced_table_name} [({referenced_column_name} [, {referenced_column_name}...]])
+    FOREIGN KEY (referencing_column_name, ...)
+        REFERENCES referenced_table_name (referenced_column_name, ...)
 
 You can also add a reference in a :ref:`column definition <sql_column_def_constraint>`:
 
 .. code-block:: sql
 
-    {referencing_column_name} {column_definition}
-        REFERENCES {referenced_table_name}({referenced_column_name})
+    referencing_column_name column_definition
+        REFERENCES referenced_table_name(referenced_column_name)
 
 .. NOTE::
 
@@ -651,6 +756,10 @@ Note that a referenced column should meet one of the following requirements:
 -   A referenced column has a UNIQUE constraint.
 -   A referenced column has a UNIQUE index.
 
+Note that before the :doc:`2.11.0 </release/2.11.0>` version, an index existence for the referenced columns is checked when creating a constraint (for example, using ``CREATE TABLE`` or ``ALTER TABLE``).
+Starting with 2.11.0, this check is weakened and the existence of an index is checked during data insertion.
+
+
 **Example**
 
 This example shows how to create a relation between the parent and child tables through a single-column foreign key:
@@ -663,7 +772,7 @@ This example shows how to create a relation between the parent and child tables 
         :end-before: create_parent_end
         :dedent:
 
-    Then, insert data to this table:
+    Insert data into this table:
 
     ..  literalinclude:: /code_snippets/test/sql/foreign_key_table_constraint_test.lua
         :language: sql
@@ -678,6 +787,16 @@ This example shows how to create a relation between the parent and child tables 
         :start-after: create_child_start
         :end-before: create_child_end
         :dedent:
+
+    Alternatively, you can add a reference in a column definition:
+
+    .. code-block:: sql
+
+        CREATE TABLE book (
+            id INTEGER PRIMARY KEY,
+            title STRING NOT NULL,
+            author_id INTEGER NOT NULL UNIQUE REFERENCES author(id)
+        );
 
     Insert data to the ``book`` table:
 
