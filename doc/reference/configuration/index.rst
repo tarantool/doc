@@ -28,40 +28,100 @@ Command options
 
 .. _index-tarantool_version:
 
-..  option:: -V, --version
+..  option:: -v, -V, --version
 
-    Print product name and version, for example:
+    Print the product name and version.
+
+    **Example**
 
     ..  code-block:: console
 
-        $ ./tarantool --version
-        Tarantool 2.10.4-0-g816000e
-        Target: Darwin-x86_64-Release
+        % tarantool --version
+        Tarantool 2.11.1-0-g96877bd
+        Target: Darwin-arm64-Release
         ...
 
     In this example:
 
-    “Tarantool” is the name of the reusable asynchronous networking
-    programming framework.
+    *   ``2.11.1`` is a Tarantool version.
+        Tarantool follows semantic versioning, which is described in the :ref:`Tarantool release policy <release-policy>` section.
 
-    :ref:`The 3-number version <release-policy>` follows the standard ``<major>-<minor>-<patch>``
-    scheme, in which ``<major>`` number is changed only rarely, ``<minor>`` is
-    incremented for each new milestone and indicates possible incompatible
-    changes, and ``<patch>`` stands for the number of bug fix releases made after
-    the start of the milestone. For non-released versions only, there may be a
-    commit number and commit SHA1 to indicate how much this particular build has
-    diverged from the last release.
+    *   ``Target`` is the platform Tarantool is built on.
+        Platform-specific details may follow this line.
 
-    “Target” is the platform tarantool was built on. Some platform-specific details
-    may follow this line.
 
-    ..  NOTE::
+..  option:: -e EXPR
 
-        Tarantool uses
-        `git describe <http://www.kernel.org/pub/software/scm/git/docs/git-describe.html>`_
-        to produce its version id, and this id can be used at any time to check
-        out the corresponding source from our
-        `git repository <http://github.com/tarantool/tarantool.git>`_.
+    Execute the 'EXPR' string. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_.
+
+    **Example**
+
+    ..  code-block:: console
+
+        % tarantool -e "print('Hello, world!')"
+        Hello, world!
+
+..  option:: -l NAME
+
+    Require the 'NAME' library. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_.
+
+    **Example**
+
+    ..  code-block:: console
+
+        % tarantool -l luatest.coverage script.lua
+
+..  option:: -j cmd
+
+    Perform a LuaJIT control command. See also: `Command Line Options <https://luajit.org/running.html>`_.
+
+    **Example**
+
+    ..  code-block:: console
+
+        % tarantool -j off app.lua
+
+..  option:: -b ...
+
+    Save or list bytecode. See also: `Command Line Options <https://luajit.org/running.html>`_.
+
+    **Example**
+
+    ..  code-block:: console
+
+        % tarantool -b test.lua test.out
+
+..  option:: -d SCRIPT
+
+    Activate a debugging session for 'SCRIPT'. See also: `luadebug.lua <https://github.com/tarantool/tarantool/blob/master/third_party/lua/README-luadebug.md>`_.
+
+    **Example**
+
+    ..  code-block:: console
+
+        % tarantool -d app.lua
+
+
+..  option:: -i [SCRIPT]
+
+    Enter an :ref:`interactive mode <interactive_console>` after executing 'SCRIPT'.
+
+    **Example**
+
+    ..  code-block:: console
+
+        % tarantool -i
+
+
+..  option:: --
+
+    Stop handling options. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_.
+
+
+..  option:: -
+
+    Stop handling options and execute the standard input as a file. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_.
+
 
 .. _index-uri:
 
