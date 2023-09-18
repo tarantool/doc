@@ -1,3 +1,5 @@
+.. _tt-completion:
+
 Generating completion for tt
 ============================
 

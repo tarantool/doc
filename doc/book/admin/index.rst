@@ -3,9 +3,8 @@
 
 .. _admin:
 
-********************************************************************************
 Administration
-********************************************************************************
+==============
 
 Tarantool is designed to have multiple running instances on the same host.
 
@@ -13,7 +12,7 @@ Here we show how to administer Tarantool instances using any of the following
 utilities:
 
 * ``systemd`` native utilities, or
-* :ref:`tt <tt-cli>`, an administrative command-line utility.
+* :ref:`tt <tt-cli>`, an command-line utility for managing Tarantool-based applications.
 
 .. NOTE::
 

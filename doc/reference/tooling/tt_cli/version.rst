@@ -1,3 +1,5 @@
+.. _tt-version:
+
 Displaying the tt version
 =========================
 

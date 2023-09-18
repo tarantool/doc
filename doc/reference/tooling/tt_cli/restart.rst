@@ -1,3 +1,5 @@
+.. _tt-restart:
+
 Restarting a Tarantool instance
 ===============================
 
