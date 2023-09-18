@@ -16,6 +16,8 @@ help for the given command.
             -   Build an application locally
         *   -   :doc:`cat <cat>`
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
+        *   -   :doc:`cfg <cfg>`
+            -   Manage a ``tt`` environment configuration
         *   -   :doc:`check <check>`
             -   Check an application file for syntax errors
         *   -   :doc:`clean <clean>`
@@ -64,6 +66,7 @@ help for the given command.
 
     build <build>
     cat <cat>
+    cfg <cfg>
     check <check>
     clean <clean>
     completion <completion>
