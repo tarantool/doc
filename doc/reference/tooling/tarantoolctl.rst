@@ -7,7 +7,7 @@ Utility tarantoolctl (deprecated)
 
     ``tarantoolctl`` is deprecated in favor of :ref:`tt CLI <tt-cli>`.
     Find the instructions on switching from ``tarantoolctl`` to ``tt`` in
-    :ref:` Migration from tarantooctl to tt <tarantoolctl-migration-to-tt>``.
+    :ref:` Migration from tarantoolctl to tt <tarantoolctl-migration-to-tt>``.
 
 ``tarantoolctl`` is a utility for administering Tarantool
 :ref:`instances <tarantoolctl-instance_management>`,
@@ -25,7 +25,7 @@ Migration from tarantoolctl to tt
 ---------------------------------
 
 :ref:``tt <tt-cli>`` is a command-line utility for managing Tarantool applications
-that comes to replace ``tarantoolctl``. Starting from version 3.0, ``tarantooctl``
+that comes to replace ``tarantoolctl``. Starting from version 3.0, ``tarantoolctl``
 is no longer shipped as a part of Tarantool distribution; ``tt`` is the only
 recommended tool for managing Tarantool application from the command line.
 
@@ -40,7 +40,7 @@ System-wide configuration
 
 ``tt`` supports system-wide environment configuration by default. If you have
 Tarantool instances managed by ``tarantoolctl`` in such an environment, you can
-switch to ``tt`` without additional migration steps or use ``tt`` along with ``tarantooctl``.
+switch to ``tt`` without additional migration steps or use ``tt`` along with ``tarantoolctl``.
 
 Example:
 
@@ -126,7 +126,7 @@ After that, you can start manage Tarantool instances in this environment with ``
 Commands difference
 ~~~~~~~~~~~~~~~~~~~
 
-Most ``tarantooctl`` commands look the same in ``tt``: ``tarantoolctl start`` and
+Most ``tarantoolctl`` commands look the same in ``tt``: ``tarantoolctl start`` and
 ``tt start``, ``tarantoolctl play`` and ``tt play``, and so on. To migrate such
 calls, it is usually enough to replace the utility name. There can be slight differences
 in command flags and format. For details on ``tt`` commands, see the
@@ -140,9 +140,9 @@ The following commands are different in ``tt``:
         :widths: 30 70
         :header-rows: 1
 
-        *   -   ``tarantooctl`` command
+        *   -   ``tarantoolctl`` command
             -   ``tt`` command
-        *   -   ``tarantooctl enter``
+        *   -   ``tarantoolctl enter``
             -   ``tt connect``
         *   -   ``tarantoolctl eval``
             -   ``tt connect`` with ``-f`` flag
@@ -155,7 +155,7 @@ Example:
 
 ..  code-block:: bash
 
-    # tarantooctl enter
+    # tarantoolctl enter
     $ tarantoolctl enter app1
     connected to unix/:./run/tarantool/app1.control
     unix/:./run/tarantool/app1.control>
@@ -164,14 +164,14 @@ Example:
     • Connecting to the instance...
     • Connected to /home/user/run/tarantool/app1/app1.control
 
-    # tarantooctl eval
+    # tarantoolctl eval
     $ tarantoolctl eval app1 eval.lua
     connected to unix/:./run/tarantool/app1.control
     ---
     - 42
     ...
 
-    # tarantooctl connect
+    # tarantoolctl connect
     $ tarantoolctl connect localhost:3301
     connected to localhost:3301
     localhost:3301>

@@ -72,7 +72,7 @@ For ease of use, ``tt connect`` command automatically detects the type
 of connection during handshake and uses :ref:`EVAL <box_protocol-eval>`
 binary protocol command when it’s necessary to execute Lua commands over a binary
 connection. To execute EVAL, the authenticated user must have global "EXECUTE"
-privilege. The ``tarantoolctl connect`` command is for administrators.
+privilege.
 
 Therefore, when ``ssh`` access to the machine is not available, creating a
 Tarantool user with global "EXECUTE" privilege and non-empty password can be
