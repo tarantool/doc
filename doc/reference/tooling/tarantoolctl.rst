@@ -7,7 +7,7 @@ Utility tarantoolctl (deprecated)
 
     ``tarantoolctl`` is deprecated in favor of :ref:`tt CLI <tt-cli>`.
     Find the instructions on switching from ``tarantoolctl`` to ``tt`` in
-    :ref:`Migration from tarantoolctl to tt <tarantoolctl-migration-to-tt>``.
+    :ref:`Migration from tarantoolctl to tt <tarantoolctl-migration-to-tt>`.
 
 ``tarantoolctl`` is a utility for administering Tarantool
 :ref:`instances <tarantoolctl-instance_management>`,

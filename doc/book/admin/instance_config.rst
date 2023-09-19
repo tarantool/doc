@@ -159,7 +159,7 @@ reports the problem and exits.
 tt configuration file
 ---------------------
 
-While instance files contain instance configuration, the ``tt`` configuration file
+While instance files contain instance configuration, the :ref:`tt <tt-cli>` configuration file
 contains the configuration that ``tt`` uses to set up the application environment.
 This includes the path to instance files, various working directories, and other
 parameters that connect the application to the system.
