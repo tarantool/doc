@@ -40,6 +40,8 @@ help for the given command.
             -   List enabled applications
         *   -   :doc:`logrotate <logrotate>`
             -   Rotate instance logs
+        *   -   :doc:`pack <pack>`
+            -   Package an application
         *   -   :doc:`play <play>`
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
         *   -   :doc:`restart <restart>`
@@ -78,6 +80,7 @@ help for the given command.
     install <install>
     instances <instances>
     logrotate <logrotate>
+    pack <pack>
     play <play>
     restart <restart>
     rocks <rocks>
