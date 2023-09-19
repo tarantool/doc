@@ -210,7 +210,8 @@
 
 .. confval:: bootstrap_strategy
 
-    Since version 2.11.
+    Since :doc:`2.11.0 </release/2.11.0>`.
+
     Specifies a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`.
     The following strategies are available:
 
@@ -220,7 +221,8 @@
         In the case of 4 or 5 nodes, at least 3 connected instances are required.
         Moreover, a bootstrap leader fails to boot unless every connected node has chosen it as a bootstrap leader.
 
-    *   ``legacy``: a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
+    *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
+        This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
 
     | Type: string
     | Default: auto
@@ -251,11 +253,10 @@
 
 .. confval:: replication_connect_quorum
 
-    Since version 1.9.0.
-    Specifies the number of nodes to be up and running to start a replica set.
-    Since version 2.11, this option is in effect if :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`
-    is set to ``legacy``.
+    Deprecated since :doc:`2.11.0 </release/2.11.0>`.
+    This option is in effect if :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>` is set to ``legacy``.
 
+    Specifies the number of nodes to be up and running to start a replica set.
     This parameter has effect during :ref:`bootstrap <replication-leader>` or
     :ref:`configuration update <replication-configuration_update>`.
     Setting ``replication_connect_quorum`` to ``0`` makes Tarantool
