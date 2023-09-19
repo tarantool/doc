@@ -34,13 +34,13 @@ execute some Lua code using ``tt``:
     $ # for local instances:
     $ tt connect my_app
        • Connecting to the instance...
-       • Connected to unix/:/var/run/tarantool/my_app.control
+       • Connected to /var/run/tarantool/example.control
 
-    unix/:/var/run/tarantool/my_app.control> 1 + 1
+    /var/run/tarantool/my_app.control> 1 + 1
     ---
     - 2
     ...
-    unix/:/var/run/tarantool/my_app.control>
+    /var/run/tarantool/my_app.control>
 
     $ # for local and remote instances:
     $ tt connect username:password@127.0.0.1:3306
@@ -51,7 +51,7 @@ attaching to its admin console. For example:
 .. code-block:: console
 
     $ # executing commands directly from the command line
-    $ <command> | tt connect my_app -f
+    $ <command> | tt connect my_app -f -
     <...>
 
     $ # - OR -
@@ -74,37 +74,23 @@ attaching to its admin console. For example:
 Health checks
 -------------
 
-To check the instance status, say:
+To check the instance status, run:
 
 .. code-block:: console
 
     $ tt status my_app
     INSTANCE     STATUS      PID
     my_app       RUNNING     67172
+
     $ # - OR -
 
     $ systemctl status tarantool@my_app
-    tarantool@my_app.service - Tarantool Database Server
-    Loaded: loaded (/etc/systemd/system/tarantool@.service; disabled; vendor preset: disabled)
-    Active: active (running)
-    Docs: man:tarantool(1)
-    Process: 5346 ExecStart=/usr/bin/tarantoolctl start %I (code=exited, status=0/SUCCESS)
-    Main PID: 5350 (tarantool)
-    Tasks: 11 (limit: 512)
-    CGroup: /system.slice/system-tarantool.slice/tarantool@my_app.service
-    + 5350 tarantool my_app.lua <running>
 
-To check the boot log, on systems with ``systemd``, say:
+To check the boot log, on systems with ``systemd``, run:
 
 .. code-block:: console
 
     $ journalctl -u tarantool@my_app -n 5
-    -- Logs begin at Fri 2016-01-08 12:21:53 MSK, end at Thu 2016-01-21 21:17:47 MSK. --
-    Jan 21 21:17:47 localhost.localdomain systemd[1]: Stopped Tarantool Database Server.
-    Jan 21 21:17:47 localhost.localdomain systemd[1]: Starting Tarantool Database Server...
-    Jan 21 21:17:47 localhost.localdomain tarantoolctl[5969]: /usr/bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available
-    Jan 21 21:17:47 localhost.localdomain tarantoolctl[5969]: /usr/bin/tarantoolctl: Starting instance...
-    Jan 21 21:17:47 localhost.localdomain systemd[1]: Started Tarantool Database Server
 
 For more specific checks, use the reports provided by functions in the following submodules:
 
@@ -345,7 +331,7 @@ the ``fiber-info.txt`` file:
 .. code-block:: console
 
     $ rm -f fiber.info.txt
-    $ watch -n 0.5 "echo 'require(\"fiber\").info()' | tarantoolctl enter NAME | tee -a fiber-info.txt"
+    $ watch -n 0.5 "echo 'require(\"fiber\").info()' | tt connect NAME -f - | tee -a fiber-info.txt"
 
 If you can't understand which fiber causes performance issues, collect the
 metrics of the ``fiber.info()`` output for 10-15 seconds using the script above

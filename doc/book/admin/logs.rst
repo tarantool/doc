@@ -14,9 +14,9 @@ Let’s write something to the log file:
 
     $ tt connect my_app
        • Connecting to the instance...
-       • Connected to unix/:/var/run/tarantool/my_app.control
+       • Connected to /var/run/tarantool/my_app.control
 
-    unix/:/var/run/tarantool/my_app.control> require('log').info("Hello for the manual readers")
+    /var/run/tarantool/my_app.control> require('log').info("Hello for the manual readers")
 
 Then check the logs:
 
