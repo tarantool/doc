@@ -13,6 +13,17 @@ Here you can find its source code, the changelog, and usage examples.
 This section provides instructions on ``tt`` installation and configuration,
 concept explanation, and the ``tt`` command reference.
 
+.. toctree::
+    :maxdepth: 1
+    :numbered: 0
+
+    installation
+    configuration
+    arguments
+    commands
+    external_modules
+    multiple_instances
+
 tt environments
 ---------------
 
@@ -26,13 +37,13 @@ you can think of ``tt`` environments as their analog.
 each running on its own Tarantool version and configuration, on a single host in
 an isolated manner.
 
-To create a `tt`` environment in a directory, run :ref:`tt init <tt-init>` in it.
+To create a ``tt`` environment in a directory, run :ref:`tt init <tt-init>` in it.
 
 Multi-instance applications
 ---------------------------
 
 ``tt`` supports Tarantool applications that run on multiple instances. For example,
-you can write an application that includes different code for storage and router
+you can write an application that includes different source files for storage and router
 instances. With ``tt``, you can start and stop them in a single call, or manage
 each instance independently.
 
@@ -48,13 +59,3 @@ The instructions on migration to ``tt`` are provided on the corresponding docume
 pages: :ref:`tarantoolctl <tarantoolctl-migration-to-tt>` and :doc:`Cartridge CLI </book/cartridge/cartridge_cli/index>`.
 
 
-.. toctree::
-    :maxdepth: 1
-    :numbered: 0
-
-    installation
-    configuration
-    arguments
-    commands
-    external_modules
-    multiple_instances

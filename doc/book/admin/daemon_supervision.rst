@@ -70,7 +70,7 @@ Now let’s make sure that ``systemd`` has restarted the instance:
     $ systemctl status tarantool@my_app|grep PID
     Main PID: 5914 (tarantool)
 
-Finally, check the boot logs:
+Additionally, you can find the information about the instance restart in the boot logs:
 
 .. code-block:: console
 

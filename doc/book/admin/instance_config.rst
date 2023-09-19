@@ -28,8 +28,7 @@ For each Tarantool instance, you need two files:
 * An :ref:`instance file <admin-instance_file>` with
   instance-specific initialization logic and parameters. Put this file, or a
   symlink to it, into the **instance directory**
-  (see :ref:`instance_dir <admin-instance_dir>` parameter in ``tarantoolctl``
-  configuration file).
+  (see ``instances_enabled`` parameter in :ref:`tt configuration file <tt-config_file>`).
 
   For example, ``/etc/tarantool/instances.enabled/my_app.lua`` (here we load
   ``my_app.lua`` module and make a call to ``start()`` function from that
@@ -53,7 +52,7 @@ Instance file
 -------------
 
 After this short introduction, you may wonder what an instance file is, what it
-is for, and how ``tarantoolctl`` uses it. After all, Tarantool is an application
+is for, and how ``tt`` uses it. After all, Tarantool is an application
 server, so why not start the application stored in ``/usr/share/tarantool``
 directly?
 
@@ -76,7 +75,7 @@ An instance file is designed to not differ in any way from a Lua application.
 It must, however, configure the database, i.e. contain a call to
 :doc:`box.cfg{} </reference/reference_lua/box_cfg>` somewhere in it, because it’s the
 only way to turn a Tarantool script into a background process, and
-``tarantoolctl`` is a tool to manage background processes. Other than that, an
+``tt`` is a tool to manage background processes. Other than that, an
 instance file may contain arbitrary Lua code, and, in theory, even include the
 entire application business logic in it. We, however, do not recommend this,
 since it clutters the instance file and leads to unnecessary copy-paste when
@@ -155,82 +154,24 @@ You get the following output:
 If an error happens during the execution of the preload script or module, Tarantool
 reports the problem and exits.
 
-.. _admin-tarantoolctl_config_file:
+.. _admin-tt_config_file:
 
-tarantoolctl configuration file
--------------------------------
+tt configuration file
+---------------------
 
-While instance files contain instance configuration, the ``tarantoolctl``
-configuration file contains the configuration that ``tarantoolctl`` uses to
-override instance configuration. In other words, it contains system-wide
-configuration defaults. If ``tarantoolctl`` fails to find this file with
-the method described in section
-:ref:`Starting/stopping an instance <admin-start_stop_instance>`, it uses
-default settings.
+While instance files contain instance configuration, the ``tt`` configuration file
+contains the configuration that ``tt`` uses to set up the application environment.
+This includes the path to instance files, various working directories, and other
+parameters that connect the application to the system.
 
-Most of the parameters are similar to those used by
-:doc:`box.cfg{} </reference/reference_lua/box_cfg>`. Here are the default settings
-(possibly installed in ``/etc/default/tarantool`` or ``/etc/sysconfig/tarantool``
-as part of Tarantool distribution -- see OS-specific default paths in
-:ref:`Notes for operating systems <admin-os_notes>`):
+To create a default ``tt`` configuration, run ``tt init``. This creates a ``tt.yaml``
+configuration file. Its location depends on the :ref:`tt launch mode <tt-config_modes>`
+(system or local).
 
-.. code-block:: lua
+Some ``tt`` configuration parameters are similar to those used by
+:doc:`box.cfg{} </reference/reference_lua/box_cfg>`, for example, ``memxt_dir``
+or ``wal_dir``. Other parameters define the ``tt`` environment, for example,
+paths to installation files used by ``tt`` or to connected :ref:`external modules <tt-external_modules>`.
 
-   default_cfg = {
-       pid_file  = "/var/run/tarantool",
-       wal_dir   = "/var/lib/tarantool",
-       memtx_dir = "/var/lib/tarantool",
-       vinyl_dir = "/var/lib/tarantool",
-       log       = "/var/log/tarantool",
-       username  = "tarantool",
-       language  = "Lua",
-   }
-   instance_dir = "/etc/tarantool/instances.enabled"
-
-where:
-
-* | ``pid_file``
-  | Directory for the pid file and control-socket file; ``tarantoolctl`` will
-    add “/instance_name” to the directory name.
-
-* | ``wal_dir``
-  | Directory for write-ahead .xlog files; ``tarantoolctl`` will add
-    "/instance_name" to the directory name.
-
-* | ``memtx_dir``
-  | Directory for snapshot .snap files; ``tarantoolctl`` will add
-    "/instance_name" to the directory name.
-
-* | ``vinyl_dir``
-  | Directory for vinyl files; ``tarantoolctl`` will add "/instance_name" to the
-    directory name.
-
-* | ``log``
-  | The place where the application log will go; ``tarantoolctl`` will add
-    "/instance_name.log" to the name.
-
-* | ``username``
-  | The user that runs the Tarantool instance. This is the operating-system user
-    name rather than the Tarantool-client user name. Tarantool will change its
-    effective user to this user after becoming a daemon.
-
-* | ``language``
-  | The :ref:`interactive console <interactive_console>` language. Can be either ``Lua`` or ``SQL``.
-
-.. _admin-instance_dir:
-
-* | ``instance_dir``
-  | The directory where all instance files for this host are stored. Put
-    instance files in this directory, or create symbolic links.
-
-  The default instance directory depends on Tarantool's ``WITH_SYSVINIT``
-  build option: when ON, it is ``/etc/tarantool/instances.enabled``,
-  otherwise (OFF or not set) it is ``/etc/tarantool/instances.available``.
-  The latter case is typical for Tarantool builds for Linux distros with
-  ``systemd``.
-
-  To check the build options, say ``tarantool --version``.
-
-As a full-featured example, you can take
-`example.lua <https://github.com/tarantool/tarantool/blob/2.1/extra/dist/example.lua>`_
-script that ships with Tarantool and defines all configuration options.
+Find the detailed information about the ``tt`` configuration parameters and launch modes
+on the :ref:`tt configuration page <tt-config>`.

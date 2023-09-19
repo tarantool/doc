@@ -1,3 +1,5 @@
+.. _tt-external_modules::
+
 Extending the tt functionality
 ==============================
 
