@@ -236,8 +236,6 @@ FreeBSD
 Additional steps
 ----------------
 
-.. TODO TT
-
 .. _building_from_source-tarantoolctl:
 
 -DENABLE_DIST=ON for tarantoolctl installation

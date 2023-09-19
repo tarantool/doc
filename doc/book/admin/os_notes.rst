@@ -18,7 +18,6 @@ No native system tools are supported.
 --------------------------------------------------------------------------------
 FreeBSD
 --------------------------------------------------------------------------------
-.. TODO TT
 
 To make ``tarantoolctl`` work along with ``init.d`` utilities on FreeBSD, use
 paths other than those suggested in

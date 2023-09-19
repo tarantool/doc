@@ -66,8 +66,6 @@ When you connect to a binary port:
 * The user is automatically ':ref:`guest <authentication-users>`'.
 * To change the user, it’s necessary to authenticate.
 
-.. TODO TT
-
 For ease of use, ``tt connect`` command automatically detects the type
 of connection during handshake and uses :ref:`EVAL <box_protocol-eval>`
 binary protocol command when it’s necessary to execute Lua commands over a binary
