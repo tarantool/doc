@@ -221,8 +221,8 @@ Supported options:
 tarantoolctl configuration file
 -------------------------------
 
-While instance files contain instance configuration, the ``tarantoolctl``
-configuration file contains the configuration that ``tarantoolctl`` uses to
+The ``tarantoolctl`` configuration file named ``.tarantoolctl``
+contains the configuration that ``tarantoolctl`` uses to
 override instance configuration. In other words, it contains system-wide
 configuration defaults. If ``tarantoolctl`` fails to find this file with
 the method described in section
