@@ -216,6 +216,72 @@ Supported options:
 * ``--server=server_name`` check this server first, then the usual list.
 * ``--only-server=server_name`` check this server only, ignore the usual list.
 
+.. _tarantoolctl-config_file:
+
+tarantoolctl configuration file
+-------------------------------
+
+While instance files contain instance configuration, the ``tarantoolctl``
+configuration file contains the configuration that ``tarantoolctl`` uses to
+override instance configuration. In other words, it contains system-wide
+configuration defaults. If ``tarantoolctl`` fails to find this file with
+the method described in section
+:ref:`Starting/stopping an instance <admin-start_stop_instance>`, it uses
+default settings.
+
+Most of the parameters are similar to those used by
+:doc:`box.cfg{} </reference/reference_lua/box_cfg>`. Here are the default settings
+(possibly installed in ``/etc/default/tarantool`` or ``/etc/sysconfig/tarantool``
+as part of Tarantool distribution -- see OS-specific default paths in
+:ref:`Notes for operating systems <admin-os_notes>`):
+
+.. code-block:: lua
+   default_cfg = {
+       pid_file  = "/var/run/tarantool",
+       wal_dir   = "/var/lib/tarantool",
+       memtx_dir = "/var/lib/tarantool",
+       vinyl_dir = "/var/lib/tarantool",
+       log       = "/var/log/tarantool",
+       username  = "tarantool",
+       language  = "Lua",
+   }
+   instance_dir = "/etc/tarantool/instances.enabled"
+where:
+
+* | ``pid_file``
+  | Directory for the pid file and control-socket file; ``tarantoolctl`` will
+    add “/instance_name” to the directory name.
+* | ``wal_dir``
+  | Directory for write-ahead .xlog files; ``tarantoolctl`` will add
+    "/instance_name" to the directory name.
+* | ``memtx_dir``
+  | Directory for snapshot .snap files; ``tarantoolctl`` will add
+    "/instance_name" to the directory name.
+* | ``vinyl_dir``
+  | Directory for vinyl files; ``tarantoolctl`` will add "/instance_name" to the
+    directory name.
+* | ``log``
+  | The place where the application log will go; ``tarantoolctl`` will add
+    "/instance_name.log" to the name.
+* | ``username``
+  | The user that runs the Tarantool instance. This is the operating-system user
+    name rather than the Tarantool-client user name. Tarantool will change its
+    effective user to this user after becoming a daemon.
+* | ``language``
+  | The :ref:`interactive console <interactive_console>` language. Can be either ``Lua`` or ``SQL``.
+
+* | ``instance_dir``
+  | The directory where all instance files for this host are stored. Put
+    instance files in this directory, or create symbolic links.
+
+  The default instance directory depends on Tarantool's ``WITH_SYSVINIT``
+  build option: when ON, it is ``/etc/tarantool/instances.enabled``,
+  otherwise (OFF or not set) it is ``/etc/tarantool/instances.available``.
+  The latter case is typical for Tarantool builds for Linux distros with
+  ``systemd``.
+
+  To check the build options, say ``tarantool --version``.
+
 .. _tarantoolctl-migration-to-tt:
 
 Migration from tarantoolctl to tt
