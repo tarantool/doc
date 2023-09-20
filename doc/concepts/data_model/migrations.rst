@@ -115,7 +115,6 @@ This method is described in the README file of the
 
     **Method 3**: the :ref:`tt <tt-cli>` utility
 
-    The ``tt`` utility ships with Tarantool.
     Connect to the necessary instance using ``tt connect``.
 
     ..  code:: console
@@ -134,6 +133,13 @@ This method is described in the README file of the
 
     -   (or) Copy the migration script code,
         paste it into the console, and run it.
+
+    You can also connect to the instance and execute the migration script in a single call:
+
+    ..  code:: console
+
+        $ tt connect admin:password@localhost:3301 -f 0001-delete-space.lua
+
 
     **Method 4**: applying migration with Ansible
 
