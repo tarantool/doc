@@ -76,7 +76,7 @@ app section
 
         In all directories specified in ``*_dir`` parameters, ``tt`` creates a
         directory for each application and instance directories inside it.
-        Names is these directories match the names of applications and instances.
+        Names of these directories match the names of applications and instances.
 
 *   ``log_maxsize`` -- the maximum size of the log file before it gets rotated,
     in megabytes. Default: 100.
