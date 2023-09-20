@@ -282,6 +282,37 @@ where:
 
   To check the build options, say ``tarantool --version``.
 
+.. _tarantoolctl-log-rotation:
+
+Log rotation in tarantooctl
+---------------------------
+
+With ``tarantoolctl``, :ref:`log rotation <admin-logs>` is pre-configured to use
+``logrotate`` program, which you must have installed.
+
+File ``/etc/logrotate.d/tarantool`` is part of the standard Tarantool
+distribution, and you can modify it to change the default behavior. This is what
+this file is usually like:
+
+.. code-block:: text
+
+   /var/log/tarantool/*.log {
+       daily
+       size 512k
+       missingok
+       rotate 10
+       compress
+       delaycompress
+       create 0640 tarantool adm
+       postrotate
+           /usr/bin/tt logrotate `basename ${1%%.*}`
+       endscript
+   }
+
+If you use a different log rotation program, you can invoke
+``tarantoolctl logrotate`` command to request instances to reopen their log
+files after they were moved by the program of your choice.
+
 .. _tarantoolctl-migration-to-tt:
 
 Migration from tarantoolctl to tt

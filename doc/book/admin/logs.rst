@@ -1,14 +1,16 @@
 .. _admin-logs:
 
-================================================================================
 Logs
-================================================================================
+====
 
-Tarantool logs important events to a file, e.g. ``/var/log/tarantool/my_app.log``.
-To build the log file path, ``tt`` takes the instance name, prepends
-the instance directory and appends “.log” extension.
+Each Tarantool instance logs important events to its own log file ``<instance-name>.log``.
+For instances started with :ref:`tt <tt-cli>`, the log location is defined by
+the ``log_dir`` parameter in the :ref:`tt configuration <tt-config>`.
+By default, it's ``/var/log/tarantool`` in the ``tt`` :ref:`system mode <config_modes>`,
+and the ``var/log/`` subdirectory of the ``tt`` working directory in the :ref:`local mode <config_modes>`.
+In the specified location, ``tt`` creates separate directories for each instance's logs.
 
-Let’s write something to the log file:
+To check how logging works, write something to the log using the :ref:`log <log-module>` module:
 
 .. code-block:: console
 
@@ -34,41 +36,57 @@ Then check the logs:
     2023-09-12 18:13:00.396 [67173] main I> entering the event loop
     2023-09-12 18:13:11.656 [67173] main/114/console/unix/:/tarantool I> Hello for the manual readers
 
+.. _admin-logs-rotation:
+
+Log rotation
+------------
+
 When :ref:`logging to a file <cfg_logging-log>`, the system administrator must ensure logs are
-rotated timely and do not take up all the available disk space. With
-``tt``, log rotation is pre-configured to use ``logrotate`` program,
-which you must have installed.
+rotated timely and do not take up all the available disk space.
+To prevent log files from growing infinitely, ``tt`` automatically rotates instance
+logs. The following ``tt`` configuration parameters define the log rotation:
+``log_maxsize`` (in megabytes) and ``log_maxage`` (in days). When any of these
+limits is reached, the log is rotated.
+Additionally, there is the ``log_maxbackups`` parameter (the number of stored log
+files for an instance), which enables automatic removal of old log files.
 
-File ``/etc/logrotate.d/tarantool`` is part of the standard Tarantool
-distribution, and you can modify it to change the default behavior. This is what
-this file is usually like:
+..  code-block:: yaml
 
-.. code-block:: text
+    # tt.yaml
+    tt:
+      app:
+        log_maxsize: 100
+        log_maxage: 3
+        log_maxbackups: 50
+        # ...
 
-   /var/log/tarantool/*.log {
-       daily
-       size 512k
-       missingok
-       rotate 10
-       compress
-       delaycompress
-       create 0640 tarantool adm
-       postrotate
-           /usr/bin/tt logrotate `basename ${1%%.*}`
-       endscript
-   }
+There is also the :ref:`tt logrotate <tt-logrotate>` command that performs log
+rotation on demand.
 
-If you use a different log rotation program, you can invoke
-:ref:`tt logrotate <tt-logrotate>` command to request instances to reopen their log
-files after they were moved by the program of your choice.
+..  code-block:: bash
 
-Tarantool can write its logs to a log file, ``syslog`` or a program specified
-in the configuration file (see :ref:`log <cfg_logging-log>` parameter).
+    tt logrotate my_app
 
-By default, logs are written to a file as defined in ``tt``
-defaults. ``tt`` automatically detects if an instance is using
-``syslog`` or an external program for logging, and does not override the log
-destination in this case. In such configurations, log rotation is usually
-handled by the external program used for logging. So,
-``tt logrotate`` command works only if logging-into-file is enabled
-in the instance file.
+To learn about log rotation in the deprecated ``tarantoolctl`` utility,
+check its :ref:`documentation <tarantoolctl-log-rotation>`.
+
+
+.. _admin-logs-formats:
+
+Log formats
+-----------
+
+Tarantool can write its logs to a log file, to ``syslog``, or to a specified program
+through a pipe.
+
+File is the default log format for ``tt``. To send logs to a pipe or ``syslog``,
+specify the :ref:`box.cfg.log <cfg_logging-log>` parameter, for example:
+
+.. code-block:: lua
+
+    box.cfg{log = '| cronolog tarantool.log'}
+    -- or
+    box.cfg{log = 'syslog:identity=tarantool,facility=user'}
+
+In such configurations, log rotation is usually handled by the external program
+used for logging.

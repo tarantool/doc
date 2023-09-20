@@ -35,7 +35,7 @@ Location
 External modules must be located in the modules directory specified in the
 :ref:`configuration file <tt-config_file>`:
 
-    ..  code:: yaml
+    ..  code-block:: yaml
 
         tt:
           modules:

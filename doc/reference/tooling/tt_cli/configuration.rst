@@ -18,7 +18,7 @@ You can also pass the configuration file explicitly in the ``--cfg``
 
 The ``tt`` configuration file is a YAML file with the following content:
 
-..  code:: yaml
+..  code-block:: yaml
 
     tt:
       modules:
