@@ -37,7 +37,7 @@ It is important to set the desired behavior before the initial ``box.cfg{}`` cal
     ---
     - error: 'builtin/box/load_cfg.lua:253: The compat  option ''box_cfg_replication_sync_timeout''
         takes effect only before the initial box.cfg() call'
-...
+    ...
 
 A fresh Tarantool run:
 

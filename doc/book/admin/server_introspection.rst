@@ -19,8 +19,7 @@ Tarantool displays a prompt (e.g. "tarantool>") and you can enter requests.
 When used this way, Tarantool can be a client for a remote server.
 See basic examples in :ref:`Getting started <getting_started>`.
 
-The interactive mode is used by ``tarantoolctl`` to implement "enter" and
-"connect" commands.
+The interactive mode is used in the ``tt`` utility's :ref:`connect <tt-connect>` command.
 
 .. _admin-executing_code_on_an_instance:
 
@@ -28,37 +27,37 @@ Executing code on an instance
 -----------------------------
 
 You can attach to an instance's :ref:`admin console <admin-security>` and
-execute some Lua code using ``tarantoolctl``:
+execute some Lua code using ``tt``:
 
 .. code-block:: console
 
     $ # for local instances:
-    $ tarantoolctl enter my_app
-    /bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available
-    /bin/tarantoolctl: Connecting to /var/run/tarantool/my_app.control
-    /bin/tarantoolctl: connected to unix/:/var/run/tarantool/my_app.control
-    unix/:/var/run/tarantool/my_app.control> 1 + 1
+    $ tt connect my_app
+       • Connecting to the instance...
+       • Connected to /var/run/tarantool/example.control
+
+    /var/run/tarantool/my_app.control> 1 + 1
     ---
     - 2
     ...
-    unix/:/var/run/tarantool/my_app.control>
+    /var/run/tarantool/my_app.control>
 
     $ # for local and remote instances:
-    $ tarantoolctl connect username:password@127.0.0.1:3306
+    $ tt connect username:password@127.0.0.1:3306
 
-You can also use ``tarantoolctl`` to execute Lua code on an instance without
+You can also use ``tt`` to execute Lua code on an instance without
 attaching to its admin console. For example:
 
 .. code-block:: console
 
     $ # executing commands directly from the command line
-    $ <command> | tarantoolctl eval my_app
+    $ <command> | tt connect my_app -f -
     <...>
 
     $ # - OR -
 
     $ # executing commands from a script file
-    $ tarantoolctl eval my_app script.lua
+    $ tt connect my_app -f script.lua
     <...>
 
 .. NOTE::
@@ -67,7 +66,7 @@ attaching to its admin console. For example:
     :ref:`net.box <net_box-module>` module from a Tarantool server. Also, you can
     write your client programs with any of the
     :ref:`connectors <index-box_connectors>`. However, most of the examples in
-    this manual illustrate usage with either ``tarantoolctl connect`` (for administrative purposes) or
+    this manual illustrate usage with either ``tt connect`` or
     :ref:`using the Tarantool server as a client <admin-using_tarantool_as_a_client>`.
 
 .. _admin-health_checks:
@@ -75,37 +74,23 @@ attaching to its admin console. For example:
 Health checks
 -------------
 
-To check the instance status, say:
+To check the instance status, run:
 
 .. code-block:: console
 
-    $ tarantoolctl status my_app
-    my_app is running (pid: /var/run/tarantool/my_app.pid)
+    $ tt status my_app
+    INSTANCE     STATUS      PID
+    my_app       RUNNING     67172
 
     $ # - OR -
 
     $ systemctl status tarantool@my_app
-    tarantool@my_app.service - Tarantool Database Server
-    Loaded: loaded (/etc/systemd/system/tarantool@.service; disabled; vendor preset: disabled)
-    Active: active (running)
-    Docs: man:tarantool(1)
-    Process: 5346 ExecStart=/usr/bin/tarantoolctl start %I (code=exited, status=0/SUCCESS)
-    Main PID: 5350 (tarantool)
-    Tasks: 11 (limit: 512)
-    CGroup: /system.slice/system-tarantool.slice/tarantool@my_app.service
-    + 5350 tarantool my_app.lua <running>
 
-To check the boot log, on systems with ``systemd``, say:
+To check the boot log, on systems with ``systemd``, run:
 
 .. code-block:: console
 
     $ journalctl -u tarantool@my_app -n 5
-    -- Logs begin at Fri 2016-01-08 12:21:53 MSK, end at Thu 2016-01-21 21:17:47 MSK. --
-    Jan 21 21:17:47 localhost.localdomain systemd[1]: Stopped Tarantool Database Server.
-    Jan 21 21:17:47 localhost.localdomain systemd[1]: Starting Tarantool Database Server...
-    Jan 21 21:17:47 localhost.localdomain tarantoolctl[5969]: /usr/bin/tarantoolctl: Found my_app.lua in /etc/tarantool/instances.available
-    Jan 21 21:17:47 localhost.localdomain tarantoolctl[5969]: /usr/bin/tarantoolctl: Starting instance...
-    Jan 21 21:17:47 localhost.localdomain systemd[1]: Started Tarantool Database Server
 
 For more specific checks, use the reports provided by functions in the following submodules:
 
@@ -236,7 +221,7 @@ First, enter your instance’s interactive administrator console:
 
 .. code-block:: console
 
-    $ tarantoolctl enter NAME
+    $ tt connect NAME|URI
 
 Once there, load the ``fiber`` module:
 
@@ -346,7 +331,7 @@ the ``fiber-info.txt`` file:
 .. code-block:: console
 
     $ rm -f fiber.info.txt
-    $ watch -n 0.5 "echo 'require(\"fiber\").info()' | tarantoolctl enter NAME | tee -a fiber-info.txt"
+    $ watch -n 0.5 "echo 'require(\"fiber\").info()' | tt connect NAME -f - | tee -a fiber-info.txt"
 
 If you can't understand which fiber causes performance issues, collect the
 metrics of the ``fiber.info()`` output for 10-15 seconds using the script above
@@ -508,13 +493,13 @@ Once you do this, install Lua bindings:
 
 .. code-block:: console
 
-    $ tarantoolctl rocks install gperftools
+    $ tt rocks install gperftools
 
 Now you're ready to go. Enter your instance’s interactive administrator console:
 
 .. code-block:: console
 
-    $ tarantoolctl enter NAME
+    $ tt connect NAME|URI
 
 To start profiling, say:
 

@@ -15,7 +15,7 @@ This example includes 5 Tarantool instances and 2 replica sets:
 * ``storage_2_a`` – a ``storage`` instance, the **master** of the **second** replica set
 * ``storage_2_b`` – a ``storage`` instance, the **replica** of the **second** replica set
 
-All instances are managed using the ``tarantoolctl`` administrative utility which comes with Tarantool.
+All instances are managed using the :ref:`tt <tt-cli>` administrative utility.
 
 Change the directory to ``example/`` and use ``make`` to run the development cluster:
 
@@ -23,47 +23,6 @@ Change the directory to ``example/`` and use ``make`` to run the development clu
 
     $ cd example/
     $ make
-    tarantoolctl stop storage_1_a  # stop the first storage instance
-    Stopping instance storage_1_a...
-    tarantoolctl stop storage_1_b
-    <...>
-    rm -rf data/
-    tarantoolctl start storage_1_a # start the first storage instance
-    Starting instance storage_1_a...
-    Starting configuration of replica 8a274925-a26d-47fc-9e1b-af88ce939412
-    I am master
-    Taking on replicaset master role...
-    Run console at unix/:./data/storage_1_a.control
-    started
-    mkdir ./data/storage_1_a
-    <...>
-    tarantoolctl start router_1 # start the router
-    Starting instance router_1...
-    Starting router configuration
-    Calling box.cfg()...
-    <...>
-    Run console at unix/:./data/router_1.control
-    started
-    mkdir ./data/router_1
-    Waiting cluster to start
-    echo "vshard.router.bootstrap()" | tarantoolctl enter router_1
-    connected to unix/:./data/router_1.control
-    unix/:./data/router_1.control> vshard.router.bootstrap()
-    ---
-    - true
-    ...
-    unix/:./data/router_1.control>
-    tarantoolctl enter router_1 # enter the admin console
-    connected to unix/:./data/router_1.control
-    unix/:./data/router_1.control>
-
-Some ``tarantoolctl`` commands:
-
-*   ``tarantoolctl start router_1`` – start the router instance
-*   ``tarantoolctl enter router_1``  – enter the admin console
-
-The full list of ``tarantoolctl`` commands for managing Tarantool instances is
-available in the :ref:`tarantoolctl reference <tarantoolctl>`.
 
 Essential ``make`` commands you need to know:
 

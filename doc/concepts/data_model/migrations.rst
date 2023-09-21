@@ -113,14 +113,13 @@ This method is described in the README file of the
     There are also two other methods that we **do not recommend**,
     but you may find them useful for one reason or another.
 
-    **Method 3**: the ``tarantoolctl`` utility
+    **Method 3**: the :ref:`tt <tt-cli>` utility
 
-    The ``tarantoolctl`` utility ships with Tarantool.
-    Connect to the necessary instance using ``tarantoolctl connect``.
+    Connect to the necessary instance using ``tt connect``.
 
     ..  code:: console
 
-        $ tarantoolctl connect admin:password@localhost:3301
+        $ tt connect admin:password@localhost:3301
 
     -   If your migration is written in a Lua file, you can execute it
         using ``dofile()``. Call this function and specify the path to the
@@ -134,6 +133,13 @@ This method is described in the README file of the
 
     -   (or) Copy the migration script code,
         paste it into the console, and run it.
+
+    You can also connect to the instance and execute the migration script in a single call:
+
+    ..  code:: console
+
+        $ tt connect admin:password@localhost:3301 -f 0001-delete-space.lua
+
 
     **Method 4**: applying migration with Ansible
 

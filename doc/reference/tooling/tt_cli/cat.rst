@@ -1,3 +1,5 @@
+.. _tt-cat:
+
 Printing the contents of .snap and .xlog files
 ==============================================
 

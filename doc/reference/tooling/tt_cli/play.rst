@@ -1,3 +1,5 @@
+.. _tt-play:
+
 Playing the contents of .snap and .xlog files to a Tarantool instance
 =====================================================================
 

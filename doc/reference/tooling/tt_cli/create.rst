@@ -72,7 +72,7 @@ All sections are optional.
 
 Example:
 
-..  code:: yaml
+..  code-block:: yaml
 
     description: Template description
     vars:
@@ -123,7 +123,7 @@ A variable can have the following attributes:
 
 Example:
 
-..  code:: yaml
+..  code-block:: yaml
 
     vars:
       - prompt: Cluster cookie

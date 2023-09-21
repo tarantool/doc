@@ -1679,13 +1679,13 @@ Example
 
 Assume that a Tarantool instance is running and listening for connections on
 localhost port 3301. Assume that guest users have privileges to connect. We will
-use the tarantoolctl utility (a utility for administrators) to start two clients.
+use the :ref:`tt <tt-cli>` utility to start two clients.
 
 On terminal #1, say
 
 ..  code-block:: tarantoolsession
 
-    $ tarantoolctl connect '3301'
+    $ tt connect localhost:3301
     tarantool> fiber = require('fiber')
     tarantool> cond = fiber.cond()
     tarantool> cond:wait()
@@ -1697,7 +1697,7 @@ On terminal #2, say
 
 ..  code-block:: tarantoolsession
 
-    $ tarantoolctl connect '3301'
+    $ tt connect localhost:3301
     tarantool> cond:signal()
 
 Now look again at terminal #1. It will show that the waiting stopped, and the

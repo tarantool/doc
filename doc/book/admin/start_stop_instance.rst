@@ -27,7 +27,7 @@ Here is what ``tarantoolctl`` does when you issue the command:
    (``$HOME/.config/tarantool/tarantool``). If no configuration file is found
    there, or in the ``/usr/local/etc/default/tarantool`` file,
    then ``tarantoolctl`` falls back to
-   :ref:`built-in defaults <admin-tarantoolctl_config_file>`.
+   :ref:`built-in defaults <admin-tt_config_file>`.
 
 3. Look up the instance file in the instance directory, for example
    ``/etc/tarantool/instances.enabled``. To build the instance file path,

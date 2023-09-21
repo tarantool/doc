@@ -78,7 +78,7 @@ transferred to the replica before crash. If you were able to salvage the master
 
       .. code-block:: console
 
-          $ tarantoolctl <new_master_uri> <xlog_file> play --from 23425 --replica 1
+          $ tt play <new_master_uri> <xlog_file> --from 23425 --replica 1
 
 .. _admin-disaster_recovery-master_master:
 
@@ -118,9 +118,9 @@ Your actions:
    made with older checkpoints until :doc:`/reference/reference_lua/box_backup/stop` is called.
 
 2. Get the latest valid :ref:`.snap file <internals-snapshot>` and
-   use ``tarantoolctl cat`` command to calculate at which lsn the data loss occurred.
+   use ``tt cat`` command to calculate at which lsn the data loss occurred.
 
-3. Start a new instance (instance#1) and use ``tarantoolctl play`` command to
+3. Start a new instance (instance#1) and use ``tt play`` command to
    play to it the contents of .snap/.xlog files up to the calculated lsn.
 
 4. Bootstrap a new replica from the recovered master (instance#1).

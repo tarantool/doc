@@ -222,18 +222,19 @@ So let’s proceed.
       mkdir instances.enabled
       ln -s /instances.available/example.lua instances.enabled
 
-#. Next we can start up our Lua program with ``tarantoolctl``, a wrapper for systemd:
+#. Next we can start up our Lua program with ``tt``, the Tarantool command-line
+   utility:
 
    .. code-block:: bash
 
-      tarantoolctl start example.lua
+      tt start example
 
 #. Now let’s enter our Tarantool instance, where we can check that our target
    spaces were successfully created:
 
    .. code-block:: bash
 
-      tarantoolctl enter example.lua
+      tt connect example
 
    .. code-block:: tarantoolsession
 
@@ -295,7 +296,7 @@ So let’s proceed.
 
    .. code-block:: bash
 
-      tarantoolctl enter example.lua
+      tt connect example
 
    .. code-block:: tarantoolsession
 
@@ -327,7 +328,7 @@ So let’s proceed.
 
    .. code-block:: bash
 
-      tarantoolctl enter example.lua
+      tt connect example
 
    .. code-block:: tarantoolsession
 

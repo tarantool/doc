@@ -58,7 +58,7 @@ index_opts
 
     .. NOTE::
 
-    These options are also passed to :doc:`/reference/reference_lua/box_index/alter`.
+        These options are also passed to :doc:`/reference/reference_lua/box_index/alter`.
 
     ..  _index_opts_type:
 
@@ -289,7 +289,7 @@ key_part
 
         .. NOTE::
 
-        To create a key part by a field name, you need to specify :ref:`space_object:format() <box_space-format>` first.
+            To create a key part by a field name, you need to specify :ref:`space_object:format() <box_space-format>` first.
 
         | Type: string or number
 

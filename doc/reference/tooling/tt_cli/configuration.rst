@@ -1,3 +1,5 @@
+.. _tt-config:
+
 Configuration
 =============
 
@@ -16,7 +18,7 @@ You can also pass the configuration file explicitly in the ``--cfg``
 
 The ``tt`` configuration file is a YAML file with the following content:
 
-..  code:: yaml
+..  code-block:: yaml
 
     tt:
       modules:
@@ -69,6 +71,13 @@ app section
     Default: ``var/lib``.
 *   ``vinyl_dir`` -- the directory where vinyl files or subdirectories are stored.
     Default: ``var/lib``.
+
+    .. note::
+
+        In all directories specified in ``*_dir`` parameters, ``tt`` creates a
+        directory for each application and instance directories inside it.
+        Names of these directories match the names of applications and instances.
+
 *   ``log_maxsize`` -- the maximum size of the log file before it gets rotated,
     in megabytes. Default: 100.
 *   ``log_maxage`` -- the maximum age of log files in days. The age of a log

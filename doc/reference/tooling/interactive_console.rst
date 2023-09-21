@@ -6,8 +6,7 @@ Interactive console
 The interactive console is Tarantool's basic command-line interface for entering requests
 and seeing results.
 It is what users see when they start the server
-without an :ref:`instance file <admin-instance_file>`,
-or start :ref:`tarantoolctl <tarantoolctl>` with ``enter``.
+without an :ref:`instance file <admin-instance_file>`.
 The interactive console is often called the Lua console to distinguish it from the administrative console,
 but in fact it can handle both Lua and SQL input.
 

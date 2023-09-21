@@ -31,7 +31,7 @@ The options list is serialized in the interactive console with additional detail
     - - option_2: old
     - - option_default_old: default (old)
     - - option_default_new: default (new)
-...
+    ...
 
 Listing options details
 -----------------------

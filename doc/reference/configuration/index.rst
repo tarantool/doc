@@ -405,7 +405,7 @@ The priority of parameter sources is the following, from higher to lower:
 
 *   ``box.cfg`` options
 *   :ref:`environment variables <box-cfg-params-env>`
-*   :doc:`tarantoolctl </reference/tooling/tarantoolctl>` options
+*   :ref:`tt configuration <tt-config>`
 *   default values.
 
 ..  _box-cfg-params-env:

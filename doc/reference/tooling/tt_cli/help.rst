@@ -1,3 +1,5 @@
+.. _tt-help:
+
 Displaying help for tt and its commands
 =======================================
 

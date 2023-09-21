@@ -329,5 +329,5 @@ Switching the master
         the replica set state by calling ``box.cfg{ read_only == false }`` on the master.
         Then pick another candidate and restart the procedure.
 
-After switching the master, perform the :ref:`replication check <upgrades-admin-replication-check>`
+After switching the master, perform the :ref:`replication check <admin-upgrades-replication-check>`
 on each instance of the replica set.

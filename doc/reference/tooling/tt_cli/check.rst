@@ -1,3 +1,5 @@
+.. _tt-check:
+
 Checking an application file
 ============================
 

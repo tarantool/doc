@@ -287,7 +287,7 @@ its own code, for example :samp:`box.space.{space-name}:drop()`,
 will be handled either with :ref:`IPROTO_CALL <box_protocol-call>`
 or IPROTO_EVAL.
 
-The :ref:`tarantoolctl <tarantoolctl>` administrative utility
+The :ref:`tt <tt-cli>` administrative utility
 makes extensive use of ``eval``.
 
 The body is a 2-item map:

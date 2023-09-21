@@ -1,3 +1,5 @@
+.. _tt-rocks:
+
 Using the LuaRocks package manager
 ==================================
 

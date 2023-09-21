@@ -23,7 +23,7 @@ This directory should contain the following files:
 *   The application file named ``init.lua``.
 *   The instances configuration file ``instances.yml`` with instance names followed by colons:
 
-    ..  code:: yaml
+    ..  code-block:: yaml
 
         <instance_name1>:
         <instance_name2>:
@@ -67,7 +67,7 @@ contains the following files:
 
 *   ``instances.yml`` -- the instances configuration:
 
-    ..  code:: yaml
+    ..  code-block:: yaml
 
         master:
         replica:
