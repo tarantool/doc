@@ -245,7 +245,7 @@ Additional steps
 
     ``tarantoolctl`` is deprecated in favor of :ref:`tt CLI <tt-cli>`.
     Find the instructions on switching from ``tarantoolctl`` to ``tt`` in
-    :ref:`Migration from tarantoolctl to tt <tarantoolctl-migration-to-tt>``.
+    :ref:`Migration from tarantoolctl to tt <tarantoolctl-migration-to-tt>`.
 
 The CMake option for hinting that the result will be distributed is
 :code:`-DENABLE_DIST=ON`. With this option, ``make install``

@@ -46,7 +46,7 @@ space_opts
 
     .. NOTE::
 
-    These options are also passed to :doc:`/reference/reference_lua/box_space/alter`.
+        These options are also passed to :doc:`/reference/reference_lua/box_space/alter`.
 
     ..  _space_opts_if_not_exists:
 

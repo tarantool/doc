@@ -1,7 +1,7 @@
 .. _tt-logrotate:
 
 Rotating instance logs
-====================
+======================
 
 ..  code-block:: bash
 

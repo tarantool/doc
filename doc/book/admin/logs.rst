@@ -6,8 +6,8 @@ Logs
 Each Tarantool instance logs important events to its own log file ``<instance-name>.log``.
 For instances started with :ref:`tt <tt-cli>`, the log location is defined by
 the ``log_dir`` parameter in the :ref:`tt configuration <tt-config>`.
-By default, it's ``/var/log/tarantool`` in the ``tt`` :ref:`system mode <config_modes>`,
-and the ``var/log/`` subdirectory of the ``tt`` working directory in the :ref:`local mode <config_modes>`.
+By default, it's ``/var/log/tarantool`` in the ``tt`` :ref:`system mode <tt-config_modes>`,
+and the ``var/log/`` subdirectory of the ``tt`` working directory in the :ref:`local mode <tt-config_modes>`.
 In the specified location, ``tt`` creates separate directories for each instance's logs.
 
 To check how logging works, write something to the log using the :ref:`log <log-module>` module:

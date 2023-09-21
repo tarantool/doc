@@ -15,7 +15,7 @@ This example includes 5 Tarantool instances and 2 replica sets:
 * ``storage_2_a`` – a ``storage`` instance, the **master** of the **second** replica set
 * ``storage_2_b`` – a ``storage`` instance, the **replica** of the **second** replica set
 
-All instances are managed using the :ref:`tt <tt_cli>` administrative utility.
+All instances are managed using the :ref:`tt <tt-cli>` administrative utility.
 
 Change the directory to ``example/`` and use ``make`` to run the development cluster:
 

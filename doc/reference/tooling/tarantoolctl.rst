@@ -236,6 +236,7 @@ as part of Tarantool distribution -- see OS-specific default paths in
 :ref:`Notes for operating systems <admin-os_notes>`):
 
 .. code-block:: lua
+
    default_cfg = {
        pid_file  = "/var/run/tarantool",
        wal_dir   = "/var/lib/tarantool",
@@ -246,6 +247,7 @@ as part of Tarantool distribution -- see OS-specific default paths in
        language  = "Lua",
    }
    instance_dir = "/etc/tarantool/instances.enabled"
+
 where:
 
 * | ``pid_file``

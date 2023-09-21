@@ -181,6 +181,7 @@ Retrieve the 4 rows in the table, in descending order by ``column2``, then
 .. important::
 
     Tarantool has its own
+
 The result is:
 
 .. code-block:: tarantoolsession
