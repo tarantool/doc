@@ -51,4 +51,4 @@ Example
 
     ..  code-block:: bash
 
-        tt search tt --local-repo
+        tt search --local-repo tt
