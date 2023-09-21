@@ -27,7 +27,7 @@ concept explanation, and the ``tt`` command reference.
 tt environments
 ---------------
 
-The key aspect of the ``tt`` usage is an *environment*. An ``tt`` environment
+The key aspect of the ``tt`` usage is an *environment*. A ``tt`` environment
 is a directory that includes a ``tt`` configuration, Tarantool installations,
 application files, and other resources. If you're familiar with `Python virtual
 environments <https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment>`_,

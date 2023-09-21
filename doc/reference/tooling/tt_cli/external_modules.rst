@@ -1,4 +1,4 @@
-.. _tt-external_modules::
+.. _tt-external_modules:
 
 Extending the tt functionality
 ==============================

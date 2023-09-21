@@ -401,7 +401,7 @@ Example:
     • Found existing config '.tarantoolctl'
     • Environment config is written to 'tt.yaml'
 
-After that, you can start manage Tarantool instances in this environment with ``tt``:
+After that, you can start managing Tarantool instances in this environment with ``tt``:
 
 ..  code-block:: bash
 

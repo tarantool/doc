@@ -12,7 +12,7 @@ Here we show how to administer Tarantool instances using any of the following
 utilities:
 
 * ``systemd`` native utilities, or
-* :ref:`tt <tt-cli>`, an command-line utility for managing Tarantool-based applications.
+* :ref:`tt <tt-cli>`, a command-line utility for managing Tarantool-based applications.
 
 .. NOTE::
 
