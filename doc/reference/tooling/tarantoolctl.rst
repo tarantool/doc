@@ -225,7 +225,7 @@ The ``tarantoolctl`` configuration file named ``.tarantoolctl``
 contains the configuration that ``tarantoolctl`` uses to
 override instance configuration. In other words, it contains system-wide
 configuration defaults. If ``tarantoolctl`` fails to find this file with
-the method described in section
+the method described in the section
 :ref:`Starting/stopping an instance <admin-start_stop_instance>`, it uses
 default settings.
 
@@ -264,7 +264,7 @@ where:
   | The place where the application log will go; ``tarantoolctl`` will add
     "/instance_name.log" to the name.
 * | ``username``
-  | The user that runs the Tarantool instance. This is the operating-system user
+  | The user that runs the Tarantool instance. This is the operating system user
     name rather than the Tarantool-client user name. Tarantool will change its
     effective user to this user after becoming a daemon.
 * | ``language``
@@ -380,7 +380,7 @@ Local configuration
 
 If you have a local ``tarantoolctl`` configuration, create a ``tt`` environment
 based on the existing ``.tarantoolctl`` configuration file. To do this, run
-``tt init`` in the directory where the file in located.
+``tt init`` in the directory where the file is located.
 
 Example:
 
