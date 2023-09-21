@@ -6,51 +6,16 @@ Notes for operating systems
 
 .. _admin-os_notes-mac:
 
---------------------------------------------------------------------------------
 macOS
---------------------------------------------------------------------------------
+-----
 
-On macOS, you can administer Tarantool instances only with :ref:`tt <tt-cli>`.
-No native system tools are supported.
-
-.. _admin-os_notes-freebsd:
-
---------------------------------------------------------------------------------
-FreeBSD
---------------------------------------------------------------------------------
-
-To make ``tarantoolctl`` work along with ``init.d`` utilities on FreeBSD, use
-paths other than those suggested in
-:ref:`Instance configuration <admin-instance_config>`. Instead of
-``/usr/share/tarantool/`` directory, use ``/usr/local/etc/tarantool/`` and
-create the following subdirectories:
-
-* ``default`` for ``tarantoolctl`` defaults (see example below),
-* ``instances.available`` for all available instance files, and
-* ``instances.enabled`` for instance files to be auto-started by sysvinit.
-
-Here is an example of ``tarantoolctl`` defaults on FreeBSD:
-
-.. code-block:: lua
-
-   default_cfg = {
-       pid_file   = "/var/run/tarantool", -- /var/run/tarantool/${INSTANCE}.pid
-       wal_dir    = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}/
-       snap_dir   = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
-       vinyl_dir = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
-       logger     = "/var/log/tarantool", -- /var/log/tarantool/${INSTANCE}.log
-       username   = "admin"
-   }
-
-   -- instances.available - all available instances
-   -- instances.enabled - instances to autostart by sysvinit
-   instance_dir = "/usr/local/etc/tarantool/instances.available"
+On macOS, no native system tools for administering Tarantool are supported.
+The recommended way to administer Tarantool instances is using :ref:`tt CLI <tt-cli>`.
 
 .. _admin-os_notes-gentoo:
 
---------------------------------------------------------------------------------
 Gentoo Linux
---------------------------------------------------------------------------------
+------------
 
 The section below is about a dev-db/tarantool package installed from the
 official layman overlay (named ``tarantool``).
@@ -73,3 +38,12 @@ Checking that it works:
 
     $ /etc/init.d/your_service_name start
     $ tail -f -n 100 /var/log/tarantool/your_service_name.log
+
+
+.. _admin-os_notes-freebsd:
+
+FreeBSD
+-------
+
+To learn about specifics of using the deprecated ``tarantoolctl`` utility on FreeBSD,
+check its :ref:`documentation <tarantoolctl-freebsd>`.

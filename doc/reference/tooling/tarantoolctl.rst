@@ -313,6 +313,39 @@ If you use a different log rotation program, you can invoke
 ``tarantoolctl logrotate`` command to request instances to reopen their log
 files after they were moved by the program of your choice.
 
+.. _tarantoolctl-freebsd:
+
+Using tarantooctl on FreeBSD
+----------------------------
+
+
+To make ``tarantoolctl`` work along with ``init.d`` utilities on FreeBSD, use
+paths other than those suggested in
+:ref:`Instance configuration <admin-instance_config>`. Instead of
+``/usr/share/tarantool/`` directory, use ``/usr/local/etc/tarantool/`` and
+create the following subdirectories:
+
+* ``default`` for ``tarantoolctl`` defaults (see example below),
+* ``instances.available`` for all available instance files, and
+* ``instances.enabled`` for instance files to be auto-started by sysvinit.
+
+Here is an example of ``tarantoolctl`` defaults on FreeBSD:
+
+.. code-block:: lua
+
+   default_cfg = {
+       pid_file   = "/var/run/tarantool", -- /var/run/tarantool/${INSTANCE}.pid
+       wal_dir    = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}/
+       snap_dir   = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
+       vinyl_dir = "/var/db/tarantool", -- /var/db/tarantool/${INSTANCE}
+       logger     = "/var/log/tarantool", -- /var/log/tarantool/${INSTANCE}.log
+       username   = "admin"
+   }
+
+   -- instances.available - all available instances
+   -- instances.enabled - instances to autostart by sysvinit
+   instance_dir = "/usr/local/etc/tarantool/instances.available"
+
 .. _tarantoolctl-migration-to-tt:
 
 Migration from tarantoolctl to tt

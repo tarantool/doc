@@ -8,7 +8,7 @@ Tarantool-based applications. It covers a wide range of tasks -- from installing
 a specific Tarantool version to managing remote instances and developing applications.
 
 ``tt`` is developed in its own `GitHub repository <https://github.com/tarantool/tt>`_.
-Here you can find its source code, the changelog, and usage examples.
+Here you can find its source code, changelog, and releases information.
 
 This section provides instructions on ``tt`` installation and configuration,
 concept explanation, and the ``tt`` command reference.
