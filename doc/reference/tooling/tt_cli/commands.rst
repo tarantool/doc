@@ -12,6 +12,8 @@ help for the given command.
         :widths: 30 70
         :header-rows: 0
 
+        *   -   :doc:`binaries <binaries>`
+            -   Show a list of installed binaries and their versions
         *   -   :doc:`build <build>`
             -   Build an application locally
         *   -   :doc:`cat <cat>`
@@ -66,6 +68,7 @@ help for the given command.
 ..  toctree::
     :hidden:
 
+    binaries <binaries>
     build <build>
     cat <cat>
     cfg <cfg>

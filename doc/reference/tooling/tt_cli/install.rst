@@ -10,9 +10,10 @@ Installing Tarantool software
 ``tt install`` installs the latest or an explicitly specified version of Tarantool
 or ``tt``. The possible values of ``PROGRAM_NAME`` are:
 
-*   ``tarantool``
-*   ``tarantool-ee``
-*   ``tt``
+*   ``tarantool``: Install Tarantool Community edition.
+*   ``tarantool-dev``: Install Tarantool from a local build directory.
+*   ``tarantool-ee``: Install Tarantool Enterprise edition.
+*   ``tt``: Install the ``tt`` command-line utility.
 
 .. note::
 
@@ -74,14 +75,20 @@ Example
 
         tt install tarantool
 
-*   Install Tarantool 2.11.0 from the local repository:
+*   Install Tarantool 2.11.1 from the local repository:
 
     ..  code-block:: bash
 
-        tt install tarantool 2.11.0 --local-repo
+        tt install tarantool 2.11.1 --local-repo
 
-*   Reinstall Tarantool 2.10.7:
+*   Reinstall Tarantool 2.10.8:
 
     ..  code-block:: bash
 
-        tt install tarantool 2.10.7 --reinstall
+        tt install tarantool 2.10.8 --reinstall
+
+*   Install Tarantool :ref:`built from sources <building_from_source>`:
+
+    ..  code-block:: bash
+
+        tt install tarantool-dev ~/src/tarantool/build
