@@ -16,6 +16,8 @@ help for the given command.
             -   Show a list of installed binaries and their versions
         *   -   :doc:`build <build>`
             -   Build an application locally
+        *   -   :doc:`cartridge <cartridge>`
+            -   Manage a Cartridge application
         *   -   :doc:`cat <cat>`
             -   Print the contents of ``.snap`` or ``.xlog`` files into stdout
         *   -   :doc:`cfg <cfg>`
@@ -70,6 +72,7 @@ help for the given command.
 
     binaries <binaries>
     build <build>
+    cartridge <cartridge>
     cat <cat>
     cfg <cfg>
     check <check>
