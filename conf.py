@@ -41,6 +41,7 @@ extensions = [
 extlinks = {
     'tarantool-issue': ('https://github.com/tarantool/tarantool/issues/%s', 'gh-'),
     'tarantool-release': ('https://github.com/tarantool/tarantool/releases/%s', 'v. '),
+    'tt-release': ('https://github.com/tarantool/tt/releases/v%s', 'v. '),
     'doc-issue': ('https://github.com/tarantool/doc/issues/%s', 'doc-'),
     'tarantool-sec-issue': ('https://github.com/tarantool/security/issues/%s', 'ghs-'),
 }
@@ -59,7 +60,7 @@ source_suffix = {
 project = u'Tarantool'
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "2.11.0"
+release = "2.11.1"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 

@@ -5,6 +5,11 @@ To install the ``tt`` command-line utility, use a package manager -- Yum or
 APT on Linux, or Homebrew on macOS. If you need a specific build, you can build
 ``tt`` from sources.
 
+.. NOTE::
+
+    A Tarantool Enterprise's `release package <https://www.tarantool.io/en/enterprise_doc/setup/#package-contents>`_ includes the `tt` utility extended with additional features like :ref:`importing <tt-import>` and :ref:`exporting <tt-export>` data.
+
+
 Using Linux package managers
 ----------------------------
 
