@@ -91,7 +91,7 @@ Basic instance management
 
     .. note::
 
-    The ``-y`` option responds "yes" to confirmation prompt automatically.
+        The ``-y`` option responds "yes" to confirmation prompt automatically.
 
 *   ``tt stop`` -- stop the instance:
 
@@ -113,7 +113,7 @@ Basic instance management
 
     .. note::
 
-    The ``-f`` option removes the files without confirmation.
+        The ``-f`` option removes the files without confirmation.
 
 .. _admin-start_stop_instance-running_locally:
 
