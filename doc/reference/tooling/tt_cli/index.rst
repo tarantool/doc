@@ -24,6 +24,8 @@ concept explanation, and the ``tt`` command reference.
     external_modules
     multiple_instances
 
+..  _tt-cli-environments:
+
 tt environments
 ---------------
 

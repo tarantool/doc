@@ -11,12 +11,19 @@ Restarting a Tarantool instance
 A ``tt restart`` call is equivalent to consecutive calls of
 :doc:`tt stop <stop>` and :doc:`tt start <start>`.
 
+Options
+-------
+
+..  option:: -y, --yes
+
+    Automatic "Yes" to confirmation prompt.
+
 Examples
 --------
 
-Restart the ``app`` instance:
+Restart the ``app`` instance with automatic confirmation:
 
 ..  code-block:: bash
 
-    tt restart app
+    tt restart app -y
 
