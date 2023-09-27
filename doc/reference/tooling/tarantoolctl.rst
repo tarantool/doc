@@ -400,18 +400,6 @@ Here is what ``tarantoolctl`` does when you issue the command:
 
 7. Finally, use Lua ``dofile`` command to execute the instance file.
 
-If you start an instance using ``systemd`` tools, like this (the instance name
-is ``my_app``):
-
-.. code-block:: console
-
-    $ systemctl start tarantool@my_app
-    $ ps axuf|grep my_app
-    taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 tarantool my_app.lua <running>
-
-... this actually calls ``tarantoolctl`` like in case of
-``tarantoolctl start my_app``.
-
 To check the instance file for syntax errors prior to starting ``my_app``
 instance, say:
 
@@ -419,27 +407,17 @@ instance, say:
 
     $ tarantoolctl check my_app
 
-To enable ``my_app`` instance for auto-load during system startup, say:
-
-.. code-block:: console
-
-    $ systemctl enable tarantool@my_app
-
 To stop a running ``my_app`` instance, say:
 
 .. code-block:: console
 
     $ tarantoolctl stop my_app
-    $ # - OR -
-    $ systemctl stop tarantool@my_app
 
 To restart (i.e. stop and start) a running ``my_app`` instance, say:
 
 .. code-block:: console
 
     $ tarantoolctl restart my_app
-    $ # - OR -
-    $ systemctl restart tarantool@my_app
 
 .. _tarantoolctl-start_stop_instance-running_locally:
 
