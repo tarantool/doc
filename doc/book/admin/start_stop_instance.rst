@@ -3,6 +3,9 @@
 Starting and stopping instances
 ===============================
 
+Quick start
+-----------
+
 To start a Tarantool instance from an :ref:`instance file <admin-instance_file>`
 using the :ref:`tt <tt-cli>` utility:
 
@@ -17,13 +20,18 @@ using the :ref:`tt <tt-cli>` utility:
            • Starting an instance [my_app]...
 
 In this case, ``tt`` starts an instance from any ``*.lua`` file it finds in ``/etc/tarantool/instances.enabled/``.
-If there are several Lua files, ``tt`` starts a separate instance for each of them.
-All the instance files or directories placed in this directory are called
-*enabled instances*.
+
+Starting instances
+------------------
+
+All the instance files or directories placed in the ``instances_enabled`` directory
+specified in :ref:`tt configuration <tt-config_file>` are called *enabled instances*.
+If there are several enabled instances, ``tt start`` starts a separate instance for each of them.
+
 Learn more about working with multiple Tarantool instances in
 :ref:`Managing multiple instances <tt-multi-instances>`.
 
-To start a specific enabled instance to start, specify its name in the ``tt start`` argument:
+To start a specific enabled instance, specify its name in the ``tt start`` argument:
 
 .. code-block:: console
 
@@ -35,7 +43,6 @@ When starting an instance, ``tt`` uses its :ref:`configuration file <tt-config>`
 The default ``tt`` configuration file is created automatically in ``/etc/tarantool/``.
 Learn how to set up a ``tt`` environment in a directory of your choice in
 :ref:`Running Tarantool locally <admin-start_stop_instance-running_locally>`.
-
 
 After the instance has started and worked for some time, you can find its artifacts
 in the directories specified in the ``tt`` configuration. These are the default
@@ -51,6 +58,11 @@ locations:
 
 Basic instance management
 -------------------------
+
+.. note::
+
+    These commands can be called without an instance name. In this case, they are
+    executed for all enabled instances.
 
 ``tt`` provides a set of commands for performing basic operations over instances:
 
@@ -102,9 +114,6 @@ Basic instance management
     .. note::
 
     The ``-f`` option removes the files without confirmation.
-
-These commands can be called without an instance name. In this case, they are
-executed for all enabled instances.
 
 .. _admin-start_stop_instance-running_locally:
 
