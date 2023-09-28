@@ -3,9 +3,6 @@
 Starting and stopping instances
 ===============================
 
-Quick start
------------
-
 To start a Tarantool instance from an :ref:`instance file <admin-instance_file>`
 using the :ref:`tt <tt-cli>` utility:
 
@@ -26,7 +23,8 @@ Starting instances
 
 All the instance files or directories placed in the ``instances_enabled`` directory
 specified in :ref:`tt configuration <tt-config_file>` are called *enabled instances*.
-If there are several enabled instances, ``tt start`` starts a separate instance for each of them.
+If there are several enabled instances, ``tt start`` starts a separate Tarantool
+instance for each of them.
 
 Learn more about working with multiple Tarantool instances in
 :ref:`Managing multiple instances <admin-start_stop_instance-multi-instance>`.
@@ -89,9 +87,7 @@ Basic instance management
            • The Instance my_app (PID = 729) has been terminated.
            • Starting an instance [my_app]...
 
-    .. note::
-
-        The ``-y`` option responds "yes" to the confirmation prompt automatically.
+    The ``-y`` option responds "yes" to the confirmation prompt automatically.
 
 *   ``tt stop`` -- stop the instance:
 
@@ -111,9 +107,7 @@ Basic instance management
            • /var/lib/tarantool/my_app/00000000000000000000.snap
            • /var/lib/tarantool/my_app/00000000000000000000.xlog
 
-    .. note::
-
-        The ``-f`` option removes the files without confirmation.
+    The ``-f`` option removes the files without confirmation.
 
 .. _admin-start_stop_instance-multi-instance:
 
@@ -160,9 +154,9 @@ This directory should contain the following files:
     For example, if your application has separate source files for the ``router`` and ``storage``
     instances, place the router code in the ``router.init.lua`` file.
 
-Example: a ``demo`` application that has three instances:``storage1``, ``storage2``, and ``router``.
-Storage instances share the same code, and ``router`` has its own. The application
-directory ``demo`` inside ``instances_enabled`` must contain the following files:
+For example, take a ``demo`` application that has three instances:``storage1``,
+``storage2``, and ``router``. Storage instances share the same code, and ``router`` has its own.
+The application directory ``demo`` inside ``instances_enabled`` must contain the following files:
 
 *   ``instances.yml`` -- the instances configuration:
 
@@ -259,7 +253,6 @@ Running Tarantool locally
 Sometimes you may need to run a Tarantool instance locally, for example, for test
 purposes. ``tt`` runs in a local environment if it finds a ``tt.yaml`` configuration
 file in the current directory or any of its enclosing directories.
-To force ``tt`` into the local mode, add the ``-L`` or ``--local`` argument.
 
 To set up a local environment for ``tt``:
 
@@ -298,6 +291,13 @@ the current directory:
 *   logs in ``var/log/<instance_name>``
 *   snapshots and write-ahead logs in ``var/lib/<instance_name>``
 *   control sockets and PID files in ``var/run/<instance_name>``
+
+To work with a local environment from a directory outside it, issue ``tt`` calls with
+the ``-L`` or ``--local`` argument with the path to this environment as its value:
+
+.. code-block:: console
+
+    $ tt --local=/usr/tt/env/ start
 
 .. _admin-start_stop_instance-systemd:
 
