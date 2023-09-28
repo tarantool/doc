@@ -22,7 +22,6 @@ concept explanation, and the ``tt`` command reference.
     arguments
     commands
     external_modules
-    multiple_instances
 
 ..  _tt-cli-environments:
 

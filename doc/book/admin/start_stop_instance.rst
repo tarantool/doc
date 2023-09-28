@@ -125,21 +125,22 @@ A typical example is a cluster application that includes router and storage
 instances. The ``tt`` utility enables managing such applications.
 With a single ``tt`` call, you can:
 
-*   start an application on multiple instances (:ref:`tt start <tt-start>`)
-*   check the status of application instances (:ref:`tt status <tt-status>`)
-*   connect to a specific instance of an application (:ref:`tt connect <tt-connect>`)
-*   stop a specific instance of an application or all its instances (:ref:`tt stop <tt-stop>`)
+*   start an application on multiple instances
+*   check the status of application instances
+*   connect to a specific instance of an application
+*   stop a specific instance of an application or all its instances
 
-Application directory
-~~~~~~~~~~~~~~~~~~~~~
+Application layout
+~~~~~~~~~~~~~~~~~~
 
-To create an multi-instance application, prepare its configuration
+To create an multi-instance application, prepare its layout
 in a directory inside ``instances_enabled``. The directory name is used as
 the application identifier.
 
 This directory should contain the following files:
 
-*   The application file named ``init.lua``.
+*   The default instance file named ``init.lua``. This file is used for all
+    instances of the application unless there are specific instance files (see below).
 *   The instances configuration file ``instances.yml`` with instance names followed by colons:
 
     ..  code-block:: yaml
@@ -153,25 +154,25 @@ This directory should contain the following files:
         Do not use the dot (``.``) and dash (``-``) characters in the instance names.
         They are reserved for system use.
 
-*   (Optional) Application files to run on specific instances.
+*   (Optional) Specific instances files.
     These files should have names ``<instance_name>.init.lua``, where ``<instance_name>``
     is the name specified in ``instances.yml``.
     For example, if your application has separate source files for the ``router`` and ``storage``
     instances, place the router code in the ``router.init.lua`` file.
 
-Example: a ``demo`` application that has three instances (``master``, ``replica``, and ``router``).
-``master and ``replica`` share the same code and ``router`` has its own. Its directory
-``demo`` inside ``instances_enabled`` must contain the following files:
+Example: a ``demo`` application that has three instances (``storage1``, ``storage2``, and ``router``).
+Storage instances share the same code, and ``router`` has its own. The application
+directory ``demo`` inside ``instances_enabled`` must contain the following files:
 
 *   ``instances.yml`` -- the instances configuration:
 
     ..  code-block:: yaml
 
-        master:
-        replica:
+        storage1:
+        storage2:
         router:
 
-*   ``init.lua`` -- the code of ``master`` and ``replica``
+*   ``init.lua`` -- the code of ``storage1`` and ``storage2``
 *   ``router.init.lua`` -- the code of ``router``
 
 
@@ -195,34 +196,34 @@ Managing multi-instance applications
 
 Start all three instances of the ``demo`` application:
 
-..  code-block:: bash
+..  code-block:: console
 
     $ tt start demo
-       • Starting an instance [demo:master]...
-       • Starting an instance [demo:replica]...
        • Starting an instance [demo:router]...
+       • Starting an instance [demo:storage1]...
+       • Starting an instance [demo:storage2]...
 
 Check the status of ``demo`` instances:
 
-..  code-block:: bash
+..  code-block:: console
 
     $ tt status demo
     INSTANCE         STATUS      PID
-    demo:master      RUNNING     55
-    demo:replica     RUNNING     56
-    demo:router      RUNNING     57
+    demo:router      RUNNING     55
+    demo:storage1    RUNNING     56
+    demo:storage2    RUNNING     57
 
 Check the status of a specific instance:
 
-..  code-block:: bash
+..  code-block:: console
 
-    $ tt status demo:replica
+    $ tt status demo:router
     INSTANCE         STATUS      PID
-    demo:replica     RUNNING     56
+    demo:router      RUNNING     55
 
 Connect to an instance:
 
-..  code-block:: bash
+..  code-block:: console
 
     $ tt connect demo:router
        • Connecting to the instance...
@@ -232,23 +233,23 @@ Connect to an instance:
 
 Stop a specific instance:
 
-..  code-block:: bash
+..  code-block:: console
 
-    $ tt stop demo:replica
-       • The Instance demo:replica (PID = 56) has been terminated.
+    $ tt stop demo:storage1
+       • The Instance demo:storage1 (PID = 56) has been terminated.
 
-Stop all ``demo`` instances:
+Stop all running instances of the ``demo`` application:
 
-..  code-block:: bash
+..  code-block:: console
 
     $ tt stop demo
-       • The Instance demo:master (PID = 55) has been terminated.
-       • can't "stat" the PID file. Error: "stat /var/run/tarantool/demo/replica/replica.pid: no such file or directory"
-       • The Instance demo:router (PID = 57) has been terminated.
+       • The Instance demo:router (PID = 55) has been terminated.
+       • can't "stat" the PID file. Error: "stat /var/run/tarantool/demo/storage1/storage1.pid: no such file or directory"
+       • The Instance demo:storage2 (PID = 57) has been terminated.
 
 .. note::
 
-    The error message indicates that ``replica`` is already not running.
+    The error message indicates that ``storage1`` is already not running.
 
 .. _admin-start_stop_instance-running_locally:
 
