@@ -48,12 +48,12 @@ After the instance has started and worked for some time, you can find its artifa
 in the directories specified in the ``tt`` configuration. These are the default
 locations:
 
-*   ``/var/log/tarantool/<instance_name>.log`` -- instance :ref:`logs <admin-logs>`
-*   ``/var/lib/tarantool/<instance_name>/`` -- snapshots and write-ahead logs
-*   ``/var/run/tarantool/<instance_name>.control`` -- control socket. This is
-    a Unix socket with Lua console attached to it. This file is used to connect
+*   ``/var/log/tarantool/<instance_name>.log`` -- instance :ref:`logs <admin-logs>`.
+*   ``/var/lib/tarantool/<instance_name>/`` -- snapshots and write-ahead logs.
+*   ``/var/run/tarantool/<instance_name>.control`` -- a control socket. This is
+    a Unix socket with the Lua console attached to it. This file is used to connect
     to the instance console.
-*   ``/var/run/tarantool/<instance_name>.pid`` -- PID file that ``tt`` uses to
+*   ``/var/run/tarantool/<instance_name>.pid`` -- a PID file that ``tt`` uses to
     check the instance status and send control commands.
 
 Basic instance management
@@ -91,7 +91,7 @@ Basic instance management
 
     .. note::
 
-        The ``-y`` option responds "yes" to confirmation prompt automatically.
+        The ``-y`` option responds "yes" to the confirmation prompt automatically.
 
 *   ``tt stop`` -- stop the instance:
 
@@ -133,7 +133,7 @@ With a single ``tt`` call, you can:
 Application layout
 ~~~~~~~~~~~~~~~~~~
 
-To create an multi-instance application, prepare its layout
+To create a multi-instance application, prepare its layout
 in a directory inside ``instances_enabled``. The directory name is used as
 the application identifier.
 
@@ -160,7 +160,7 @@ This directory should contain the following files:
     For example, if your application has separate source files for the ``router`` and ``storage``
     instances, place the router code in the ``router.init.lua`` file.
 
-Example: a ``demo`` application that has three instances (``storage1``, ``storage2``, and ``router``).
+Example: a ``demo`` application that has three instances:``storage1``, ``storage2``, and ``router``.
 Storage instances share the same code, and ``router`` has its own. The application
 directory ``demo`` inside ``instances_enabled`` must contain the following files:
 
