@@ -1,56 +1,308 @@
 .. _admin-start_stop_instance:
 
-================================================================================
-Starting/stopping an instance
-================================================================================
+Starting and stopping instances
+===============================
 
-While a Lua application is executed by Tarantool, an instance file is executed
-by ``tarantoolctl`` which is a Tarantool script.
+To start a Tarantool instance from an :ref:`instance file <admin-instance_file>`
+using the :ref:`tt <tt-cli>` utility:
 
-Here is what ``tarantoolctl`` does when you issue the command:
+1.  Place the instance file (for example, ``my_app.lua``) into ``/etc/tarantool/instances.enabled/``.
+    This is the default location where ``tt`` searches for instance files.
+
+2.  Run ``tt start``:
+
+    .. code-block:: console
+
+        $ tt start
+           • Starting an instance [my_app]...
+
+In this case, ``tt`` starts an instance from any ``*.lua`` file it finds in ``/etc/tarantool/instances.enabled/``.
+
+Starting instances
+------------------
+
+All the instance files or directories placed in the ``instances_enabled`` directory
+specified in :ref:`tt configuration <tt-config_file>` are called *enabled instances*.
+If there are several enabled instances, ``tt start`` starts a separate Tarantool
+instance for each of them.
+
+Learn more about working with multiple Tarantool instances in
+:ref:`Managing multiple instances <admin-start_stop_instance-multi-instance>`.
+
+To start a specific enabled instance, specify its name in the ``tt start`` argument:
 
 .. code-block:: console
 
-    $ tarantoolctl start <instance_name>
+    $ tt start my_app
+       • Starting an instance [my_app]...
 
-1. Read and parse the command line arguments. The last argument, in our case,
-   contains an instance name.
+When starting an instance, ``tt`` uses its :ref:`configuration file <tt-config>`
+``tt.yaml`` to set up a :ref:`tt environment <tt-cli-environments>` in which the instance runs.
+The default ``tt`` configuration file is created automatically in ``/etc/tarantool/``.
+Learn how to set up a ``tt`` environment in a directory of your choice in
+:ref:`Running Tarantool locally <admin-start_stop_instance-running_locally>`.
 
-2. Read and parse its own configuration file. This file contains ``tarantoolctl``
-   defaults, like the path to the directory where instances should be searched
-   for.
+After the instance has started and worked for some time, you can find its artifacts
+in the directories specified in the ``tt`` configuration. These are the default
+locations:
 
-   When ``tarantool`` is invoked by root, it looks for a configuration file in
-   ``/etc/default/tarantool``. When ``tarantool`` is invoked by a local (non-root)
-   user, it looks for a configuration file first in the current directory
-   (``$PWD/.tarantoolctl``), and then in the current user's home directory
-   (``$HOME/.config/tarantool/tarantool``). If no configuration file is found
-   there, or in the ``/usr/local/etc/default/tarantool`` file,
-   then ``tarantoolctl`` falls back to
-   :ref:`built-in defaults <admin-tt_config_file>`.
+*   ``/var/log/tarantool/<instance_name>.log`` -- instance :ref:`logs <admin-logs>`.
+*   ``/var/lib/tarantool/<instance_name>/`` -- snapshots and write-ahead logs.
+*   ``/var/run/tarantool/<instance_name>.control`` -- a control socket. This is
+    a Unix socket with the Lua console attached to it. This file is used to connect
+    to the instance console.
+*   ``/var/run/tarantool/<instance_name>.pid`` -- a PID file that ``tt`` uses to
+    check the instance status and send control commands.
 
-3. Look up the instance file in the instance directory, for example
-   ``/etc/tarantool/instances.enabled``. To build the instance file path,
-   ``tarantoolctl`` takes the instance name, prepends the instance directory and
-   appends ".lua" extension to the instance file.
+Basic instance management
+-------------------------
 
-4. Override :doc:`box.cfg{} </reference/reference_lua/box_cfg>` function to pre-process
-   its parameters and ensure that instance paths are pointing to the paths
-   defined in the ``tarantoolctl`` configuration file. For example, if the
-   configuration file specifies that instance work directory must be in
-   ``/var/tarantool``, then the new implementation of ``box.cfg{}`` ensures that
-   :ref:`work_dir <cfg_basic-work_dir>` parameter in ``box.cfg{}`` is set to
-   ``/var/tarantool/<instance_name>``, regardless of what the path is set to in
-   the instance file itself.
+.. note::
 
-5. Create a so-called "instance control file". This is a Unix socket with Lua
-   console attached to it. This file is used later by ``tarantoolctl`` to query
-   the instance state, send commands to the instance and so on.
+    These commands can be called without an instance name. In this case, they are
+    executed for all enabled instances.
 
-6. Set the TARANTOOLCTL environment variable to 'true'. This allows the user to
-   know that the instance was started by ``tarantoolctl``.
+``tt`` provides a set of commands for performing basic operations over instances:
 
-7. Finally, use Lua ``dofile`` command to execute the instance file.
+*   ``tt check`` -- check the instance file for syntax errors:
+
+    .. code-block:: console
+
+        $ tt check my_app
+           • Result of check: syntax of file '/etc/tarantool/instances.enabled/my_app.lua' is OK
+
+*   ``tt status`` -- check the instance status:
+
+    .. code-block:: console
+
+        $ tt status my_app
+        INSTANCE     STATUS          PID
+        my_app       NOT RUNNING
+
+*   ``tt restart`` -- restart the instance:
+
+    .. code-block:: console
+
+        $ tt restart my_app -y
+           • The Instance my_app (PID = 729) has been terminated.
+           • Starting an instance [my_app]...
+
+    The ``-y`` option responds "yes" to the confirmation prompt automatically.
+
+*   ``tt stop`` -- stop the instance:
+
+    .. code-block:: console
+
+        $ tt stop my_app
+           • The Instance my_app (PID = 639) has been terminated.
+
+*   ``tt clean`` -- remove instance artifacts: logs, snapshots, and other files.
+
+    .. code-block:: console
+
+        $ tt clean my_app -f
+           • List of files to delete:
+
+           • /var/log/tarantool/my_app.log
+           • /var/lib/tarantool/my_app/00000000000000000000.snap
+           • /var/lib/tarantool/my_app/00000000000000000000.xlog
+
+    The ``-f`` option removes the files without confirmation.
+
+.. _admin-start_stop_instance-multi-instance:
+
+Multi-instance applications
+---------------------------
+
+Tarantool applications can include multiple instances that run different code.
+A typical example is a cluster application that includes router and storage
+instances. The ``tt`` utility enables managing such applications.
+With a single ``tt`` call, you can:
+
+*   start an application on multiple instances
+*   check the status of application instances
+*   connect to a specific instance of an application
+*   stop a specific instance of an application or all its instances
+
+Application layout
+~~~~~~~~~~~~~~~~~~
+
+To create a multi-instance application, prepare its layout
+in a directory inside ``instances_enabled``. The directory name is used as
+the application identifier.
+
+This directory should contain the following files:
+
+*   The default instance file named ``init.lua``. This file is used for all
+    instances of the application unless there are specific instance files (see below).
+*   The instances configuration file ``instances.yml`` with instance names followed by colons:
+
+    ..  code-block:: yaml
+
+        <instance_name1>:
+        <instance_name2>:
+        ...
+
+    ..  note::
+
+        Do not use the dot (``.``) and dash (``-``) characters in the instance names.
+        They are reserved for system use.
+
+*   (Optional) Specific instances files.
+    These files should have names ``<instance_name>.init.lua``, where ``<instance_name>``
+    is the name specified in ``instances.yml``.
+    For example, if your application has separate source files for the ``router`` and ``storage``
+    instances, place the router code in the ``router.init.lua`` file.
+
+For example, take a ``demo`` application that has three instances:``storage1``,
+``storage2``, and ``router``. Storage instances share the same code, and ``router`` has its own.
+The application directory ``demo`` inside ``instances_enabled`` must contain the following files:
+
+*   ``instances.yml`` -- the instances configuration:
+
+    ..  code-block:: yaml
+
+        storage1:
+        storage2:
+        router:
+
+*   ``init.lua`` -- the code of ``storage1`` and ``storage2``
+*   ``router.init.lua`` -- the code of ``router``
+
+
+Identifying instances in code
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When the application is working, each instance has associated environment variables
+``TARANTOOL_INSTANCE_NAME`` and ``TARANTOOL_APP_NAME``. You can use them in the application
+code to identify the instance on which the code runs.
+
+To obtain the instance and application names, use the following code:
+
+..  code:: lua
+
+    local inst_name = os.getenv('TARANTOOL_INSTANCE_NAME')
+    local app_name = os.getenv('TARANTOOL_APP_NAME')
+
+
+Managing multi-instance applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Start all three instances of the ``demo`` application:
+
+..  code-block:: console
+
+    $ tt start demo
+       • Starting an instance [demo:router]...
+       • Starting an instance [demo:storage1]...
+       • Starting an instance [demo:storage2]...
+
+Check the status of ``demo`` instances:
+
+..  code-block:: console
+
+    $ tt status demo
+    INSTANCE         STATUS      PID
+    demo:router      RUNNING     55
+    demo:storage1    RUNNING     56
+    demo:storage2    RUNNING     57
+
+Check the status of a specific instance:
+
+..  code-block:: console
+
+    $ tt status demo:router
+    INSTANCE         STATUS      PID
+    demo:router      RUNNING     55
+
+Connect to an instance:
+
+..  code-block:: console
+
+    $ tt connect demo:router
+       • Connecting to the instance...
+       • Connected to /var/run/tarantool/demo/router/router.control
+
+    /var/run/tarantool/demo/router/router.control>
+
+Stop a specific instance:
+
+..  code-block:: console
+
+    $ tt stop demo:storage1
+       • The Instance demo:storage1 (PID = 56) has been terminated.
+
+Stop all running instances of the ``demo`` application:
+
+..  code-block:: console
+
+    $ tt stop demo
+       • The Instance demo:router (PID = 55) has been terminated.
+       • can't "stat" the PID file. Error: "stat /var/run/tarantool/demo/storage1/storage1.pid: no such file or directory"
+       • The Instance demo:storage2 (PID = 57) has been terminated.
+
+.. note::
+
+    The error message indicates that ``storage1`` is already not running.
+
+.. _admin-start_stop_instance-running_locally:
+
+Running Tarantool locally
+-------------------------
+
+Sometimes you may need to run a Tarantool instance locally, for example, for test
+purposes. ``tt`` runs in a local environment if it finds a ``tt.yaml`` configuration
+file in the current directory or any of its enclosing directories.
+
+To set up a local environment for ``tt``:
+
+1.  Create a home directory for the environment.
+
+2.   Run ``tt init`` in this directory:
+
+    .. code-block:: console
+
+        $ tt init
+           • Environment config is written to 'tt.yaml'
+
+This command creates a default ``tt`` configuration file ``tt.yaml`` for a local
+environment and the directories for instance files, control sockets, logs, and other
+artifacts:
+
+.. code-block:: console
+
+    $ ls
+    bin  distfiles  include  instances.enabled  modules  templates  tt.yaml
+
+To run a Tarantool instance in the local environment:
+
+1.  Place the instance file into the ``instances.enabled/`` directory inside the
+    current directory.
+
+2.  Run ``tt start``:
+
+    .. code-block:: console
+
+        $ tt start
+
+After the instance is started, you can find its artifacts in their locations inside
+the current directory:
+
+*   logs in ``var/log/<instance_name>``
+*   snapshots and write-ahead logs in ``var/lib/<instance_name>``
+*   control sockets and PID files in ``var/run/<instance_name>``
+
+To work with a local environment from a directory outside it, issue ``tt`` calls with
+the ``-L`` or ``--local`` argument with the path to this environment as its value:
+
+.. code-block:: console
+
+    $ tt --local=/usr/tt/env/ start
+
+.. _admin-start_stop_instance-systemd:
+
+Using systemd tools
+-------------------
 
 If you start an instance using ``systemd`` tools, like this (the instance name
 is ``my_app``):
@@ -61,15 +313,8 @@ is ``my_app``):
     $ ps axuf|grep my_app
     taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 tarantool my_app.lua <running>
 
-... this actually calls ``tarantoolctl`` like in case of
+This actually calls ``tarantoolctl`` like in case of
 ``tarantoolctl start my_app``.
-
-To check the instance file for syntax errors prior to starting ``my_app``
-instance, say:
-
-.. code-block:: console
-
-    $ tarantoolctl check my_app
 
 To enable ``my_app`` instance for auto-load during system startup, say:
 
@@ -77,138 +322,14 @@ To enable ``my_app`` instance for auto-load during system startup, say:
 
     $ systemctl enable tarantool@my_app
 
-To stop a running ``my_app`` instance, say:
+To stop a running ``my_app`` instance with ``systemctl``, run:
 
 .. code-block:: console
 
-    $ tarantoolctl stop my_app
-    $ # - OR -
     $ systemctl stop tarantool@my_app
 
-To restart (i.e. stop and start) a running ``my_app`` instance, say:
+To restart a running ``my_app`` instance with ``systemctl``, run:
 
 .. code-block:: console
 
-    $ tarantoolctl restart my_app
-    $ # - OR -
     $ systemctl restart tarantool@my_app
-
-.. _admin-start_stop_instance-running_locally:
-
---------------------------------------------------------------------------------
-Running Tarantool locally
---------------------------------------------------------------------------------
-
-Sometimes you may need to run a Tarantool instance locally, e.g. for test
-purposes. Let's configure a local instance, then start and monitor it with
-``tarantoolctl``.
-
-First, we create a sandbox directory on the user's path:
-
-.. code-block:: console
-
-    $ mkdir ~/tarantool_test
-
-... and set default ``tarantoolctl`` configuration in
-``$HOME/.config/tarantool/tarantool``. Let the file contents be:
-
-.. code-block:: lua
-
-   default_cfg = {
-       pid_file  = "/home/user/tarantool_test/my_app.pid",
-       wal_dir   = "/home/user/tarantool_test",
-       snap_dir  = "/home/user/tarantool_test",
-       vinyl_dir = "/home/user/tarantool_test",
-       log       = "/home/user/tarantool_test/log",
-   }
-   instance_dir = "/home/user/tarantool_test"
-
-.. NOTE::
-
-   * Specify a full path to the user's home directory instead of "~/".
-
-   * Omit ``username`` parameter. ``tarantoolctl`` normally doesn't have
-     permissions to switch current user when invoked by a local user. The
-     instance will be running under 'admin'.
-
-Next, we create the instance file ``~/tarantool_test/my_app.lua``. Let the file
-contents be:
-
-.. code-block:: lua
-
-   box.cfg{listen = 3301}
-   box.schema.user.passwd('Gx5!')
-   box.schema.user.grant('guest','read,write,execute','universe')
-   fiber = require('fiber')
-   box.schema.space.create('tester')
-   box.space.tester:create_index('primary',{})
-   i = 0
-   while 0 == 0 do
-       fiber.sleep(5)
-       i = i + 1
-       print('insert ' .. i)
-       box.space.tester:insert{i, 'my_app tuple'}
-   end
-
-Let’s verify our instance file by starting it without ``tarantoolctl`` first:
-
-.. code-block:: console
-
-    $ cd ~/tarantool_test
-    $ tarantool my_app.lua
-    2017-04-06 10:42:15.762 [54085] main/101/my_app.lua C> version 1.7.3-489-gd86e36d5b
-    2017-04-06 10:42:15.763 [54085] main/101/my_app.lua C> log level 5
-    2017-04-06 10:42:15.764 [54085] main/101/my_app.lua I> mapping 268435456 bytes for tuple arena...
-    2017-04-06 10:42:15.774 [54085] iproto/101/main I> binary: bound to [::]:3301
-    2017-04-06 10:42:15.774 [54085] main/101/my_app.lua I> initializing an empty data directory
-    2017-04-06 10:42:15.789 [54085] snapshot/101/main I> saving snapshot `./00000000000000000000.snap.inprogress'
-    2017-04-06 10:42:15.790 [54085] snapshot/101/main I> done
-    2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> vinyl checkpoint done
-    2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> ready to accept requests
-    insert 1
-    insert 2
-    insert 3
-    <...>
-
-Now we tell ``tarantoolctl`` to start the Tarantool instance:
-
-.. code-block:: console
-
-    $ tarantoolctl start my_app
-
-Expect to see messages indicating that the instance has started. Then:
-
-.. code-block:: console
-
-    $ ls -l ~/tarantool_test/my_app
-
-Expect to see the .snap file and the .xlog file. Then:
-
-.. code-block:: console
-
-    $ less ~/tarantool_test/log/my_app.log
-
-Expect to see the contents of ``my_app``‘s log, including error messages, if
-any. Then:
-
-.. code-block:: console
-
-    $ tarantoolctl enter my_app
-    tarantool> box.cfg{}
-    tarantool> console = require('console')
-    tarantool> console.connect('localhost:3301')
-    tarantool> box.space.tester:select({0}, {iterator = 'GE'})
-
-Expect to see several tuples that ``my_app`` has created.
-
-Stop now. A polite way to stop ``my_app`` is with ``tarantoolctl``, thus we say:
-
-.. code-block:: console
-
-    $ tarantoolctl stop my_app
-
-Finally, we make a cleanup.
-
-.. code-block:: console
-
-    $ rm -R tarantool_test

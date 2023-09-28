@@ -22,7 +22,8 @@ concept explanation, and the ``tt`` command reference.
     arguments
     commands
     external_modules
-    multiple_instances
+
+..  _tt-cli-environments:
 
 tt environments
 ---------------
@@ -47,7 +48,7 @@ you can write an application that includes different source files for storage an
 instances. With ``tt``, you can start and stop them in a single call, or manage
 each instance independently.
 
-Learn more about working with multi-instance applications in :ref:`Managing multiple instances <tt-multi-instances>`.
+Learn more about working with multi-instance applications in :ref:`Multi-instance applications <admin-start_stop_instance-multi-instance>`.
 
 Replacement for tarantooctl and Cartridge CLI
 ---------------------------------------------
