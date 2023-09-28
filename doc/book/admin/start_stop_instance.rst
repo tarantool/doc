@@ -29,7 +29,7 @@ specified in :ref:`tt configuration <tt-config_file>` are called *enabled instan
 If there are several enabled instances, ``tt start`` starts a separate instance for each of them.
 
 Learn more about working with multiple Tarantool instances in
-:ref:`Managing multiple instances <tt-multi-instances>`.
+:ref:`Managing multiple instances <admin-start_stop_instance-multi-instance>`.
 
 To start a specific enabled instance, specify its name in the ``tt start`` argument:
 
@@ -73,7 +73,7 @@ Basic instance management
         $ tt check my_app
            • Result of check: syntax of file '/etc/tarantool/instances.enabled/my_app.lua' is OK
 
-*   ``tt status`` -- check the instance's status:
+*   ``tt status`` -- check the instance status:
 
     .. code-block:: console
 
@@ -100,7 +100,7 @@ Basic instance management
         $ tt stop my_app
            • The Instance my_app (PID = 639) has been terminated.
 
-*   ``tt clean`` -- remove instance artifacts: logs, snapshots, an other files.
+*   ``tt clean`` -- remove instance artifacts: logs, snapshots, and other files.
 
     .. code-block:: console
 
@@ -114,6 +114,141 @@ Basic instance management
     .. note::
 
         The ``-f`` option removes the files without confirmation.
+
+.. _admin-start_stop_instance-multi-instance:
+
+Multi-instance applications
+---------------------------
+
+Tarantool applications can include multiple instances that run different code.
+A typical example is a cluster application that includes router and storage
+instances. The ``tt`` utility enables managing such applications.
+With a single ``tt`` call, you can:
+
+*   start an application on multiple instances (:ref:`tt start <tt-start>`)
+*   check the status of application instances (:ref:`tt status <tt-status>`)
+*   connect to a specific instance of an application (:ref:`tt connect <tt-connect>`)
+*   stop a specific instance of an application or all its instances (:ref:`tt stop <tt-stop>`)
+
+Application directory
+~~~~~~~~~~~~~~~~~~~~~
+
+To create an multi-instance application, prepare its configuration
+in a directory inside ``instances_enabled``. The directory name is used as
+the application identifier.
+
+This directory should contain the following files:
+
+*   The application file named ``init.lua``.
+*   The instances configuration file ``instances.yml`` with instance names followed by colons:
+
+    ..  code-block:: yaml
+
+        <instance_name1>:
+        <instance_name2>:
+        ...
+
+    ..  note::
+
+        Do not use the dot (``.``) and dash (``-``) characters in the instance names.
+        They are reserved for system use.
+
+*   (Optional) Application files to run on specific instances.
+    These files should have names ``<instance_name>.init.lua``, where ``<instance_name>``
+    is the name specified in ``instances.yml``.
+    For example, if your application has separate source files for the ``router`` and ``storage``
+    instances, place the router code in the ``router.init.lua`` file.
+
+Example: a ``demo`` application that has three instances (``master``, ``replica``, and ``router``).
+``master and ``replica`` share the same code and ``router`` has its own. Its directory
+``demo`` inside ``instances_enabled`` must contain the following files:
+
+*   ``instances.yml`` -- the instances configuration:
+
+    ..  code-block:: yaml
+
+        master:
+        replica:
+        router:
+
+*   ``init.lua`` -- the code of ``master`` and ``replica``
+*   ``router.init.lua`` -- the code of ``router``
+
+
+Identifying instances in code
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When the application is working, each instance has associated environment variables
+``TARANTOOL_INSTANCE_NAME`` and ``TARANTOOL_APP_NAME``. You can use them in the application
+code to identify the instance on which the code runs.
+
+To obtain the instance and application names, use the following code:
+
+..  code:: lua
+
+    local inst_name = os.getenv('TARANTOOL_INSTANCE_NAME')
+    local app_name = os.getenv('TARANTOOL_APP_NAME')
+
+
+Managing multi-instance applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Start all three instances of the ``demo`` application:
+
+..  code-block:: bash
+
+    $ tt start demo
+       • Starting an instance [demo:master]...
+       • Starting an instance [demo:replica]...
+       • Starting an instance [demo:router]...
+
+Check the status of ``demo`` instances:
+
+..  code-block:: bash
+
+    $ tt status demo
+    INSTANCE         STATUS      PID
+    demo:master      RUNNING     55
+    demo:replica     RUNNING     56
+    demo:router      RUNNING     57
+
+Check the status of a specific instance:
+
+..  code-block:: bash
+
+    $ tt status demo:replica
+    INSTANCE         STATUS      PID
+    demo:replica     RUNNING     56
+
+Connect to an instance:
+
+..  code-block:: bash
+
+    $ tt connect demo:router
+       • Connecting to the instance...
+       • Connected to /var/run/tarantool/demo/router/router.control
+
+    /var/run/tarantool/demo/router/router.control>
+
+Stop a specific instance:
+
+..  code-block:: bash
+
+    $ tt stop demo:replica
+       • The Instance demo:replica (PID = 56) has been terminated.
+
+Stop all ``demo`` instances:
+
+..  code-block:: bash
+
+    $ tt stop demo
+       • The Instance demo:master (PID = 55) has been terminated.
+       • can't "stat" the PID file. Error: "stat /var/run/tarantool/demo/replica/replica.pid: no such file or directory"
+       • The Instance demo:router (PID = 57) has been terminated.
+
+.. note::
+
+    The error message indicates that ``replica`` is already not running.
 
 .. _admin-start_stop_instance-running_locally:
 
