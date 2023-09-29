@@ -27,7 +27,7 @@ If there are several enabled instances, ``tt start`` starts a separate Tarantool
 instance for each of them.
 
 Learn more about working with multiple Tarantool instances in
-:ref:`Managing multiple instances <admin-start_stop_instance-multi-instance>`.
+:ref:`Multi-instance applications <admin-start_stop_instance-multi-instance>`.
 
 To start a specific enabled instance, specify its name in the ``tt start`` argument:
 
