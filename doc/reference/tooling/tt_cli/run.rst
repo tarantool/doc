@@ -3,9 +3,9 @@
 Running code in a Tarantool instance
 ====================================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt run [SCRIPT|-e EXPR] [OPTION ...]
+    $ tt run [SCRIPT|-e EXPR] [OPTION ...]
 
 ``tt run`` executes Lua code in a Tarantool instance.
 

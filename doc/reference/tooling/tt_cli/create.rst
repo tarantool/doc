@@ -5,7 +5,7 @@ Creating an application from a template
 
 ..  code-block:: console
 
-    tt create TEMPLATE_NAME [OPTION ...]
+    $ tt create TEMPLATE_NAME [OPTION ...]
 
 
 ``tt create`` creates a new Tarantool application from a template.

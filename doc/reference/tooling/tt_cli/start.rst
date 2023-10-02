@@ -5,7 +5,7 @@ Starting a Tarantool instance
 
 ..  code-block:: console
 
-    tt start APPLICATION
+    $ tt start {INSTANCE|APPLICATION[:APP_INSTANCE]}
 
 ``tt start`` starts Tarantool applications.
 

@@ -5,7 +5,7 @@ Uninstalling Tarantool software
 
 ..  code-block:: console
 
-    tt uninstall PROGRAM_NAME [VERSION]
+    $ tt uninstall PROGRAM_NAME [VERSION]
 
 ``tt uninstall`` uninstalls a previously :doc:`installed <install>` Tarantool version.
 

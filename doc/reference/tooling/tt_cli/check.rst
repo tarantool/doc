@@ -5,7 +5,7 @@ Checking an application file
 
 ..  code-block:: console
 
-    tt check APP_FILE
+    $ tt check APP_FILE
 
 ``tt check`` checks the specified Tarantool application file for syntax errors.
 

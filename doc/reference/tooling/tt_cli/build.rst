@@ -5,7 +5,7 @@ Building an application
 
 ..  code-block:: console
 
-    tt build [PATH] [--spec SPEC_FILE_PATH]
+    $ tt build [PATH] [--spec SPEC_FILE_PATH]
 
 
 ``tt build`` builds a Tarantool application locally.

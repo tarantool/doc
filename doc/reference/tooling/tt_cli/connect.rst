@@ -5,7 +5,7 @@ Connecting to a Tarantool instance
 
 ..  code-block:: console
 
-    tt connect URI|INSTANCE [OPTION ...]
+    $ tt connect URI|INSTANCE [OPTION ...]
 
 
 ``tt connect`` connects to a Tarantool instance by its URI or name specified
@@ -14,15 +14,15 @@ during its startup (``tt start``).
 Options
 -------
 
-..  option:: -u, --username
+..  option:: -u USERNAME, --username USERNAME
 
     Username
 
-..  option:: -p, --password
+..  option:: -p PASSWORD, --password PASSWORD
 
     Password
 
-..  option:: -f, --file
+..  option:: -f FILEPATH, --file FILEPATH
 
     Connect and evaluate the script from a file.
 

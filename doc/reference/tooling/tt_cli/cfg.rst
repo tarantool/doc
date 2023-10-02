@@ -3,7 +3,7 @@ Environment configuration
 
 ..  code-block:: console
 
-    tt cfg COMMAND [OPTION ...]
+    $ tt cfg COMMAND [OPTION ...]
 
 ``tt cfg`` manages a ``tt`` environment :ref:`configuration <tt-config_file>`.
 

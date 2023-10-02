@@ -5,7 +5,7 @@ Displaying help for tt and its commands
 
 ..  code-block:: console
 
-    tt help [COMMAND]
+    $ tt help [COMMAND]
 
 ``tt help`` displays help:
 

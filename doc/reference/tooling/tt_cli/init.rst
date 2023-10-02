@@ -5,7 +5,7 @@ Creating a tt environment
 
 ..  code-block:: console
 
-    tt init
+    $ tt init
 
 ``tt init`` creates a ``tt`` environment in the current directory. This includes:
 

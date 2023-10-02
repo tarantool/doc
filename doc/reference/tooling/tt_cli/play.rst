@@ -3,9 +3,9 @@
 Playing the contents of .snap and .xlog files to a Tarantool instance
 =====================================================================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt play URI FILE ... [OPTION ...]
+    $ tt play URI FILE ... [OPTION ...]
 
 ``tt play`` plays the contents of :ref:`snapshot <internals-snapshot>` (``.snap``) and
 :ref:`WAL <internals-wal>` (``.xlog``) files to another Tarantool instance.

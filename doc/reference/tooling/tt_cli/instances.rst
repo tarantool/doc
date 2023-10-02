@@ -5,7 +5,7 @@ Listing enabled applications
 
 ..  code-block:: console
 
-    tt instances
+    $ tt instances
 
 ``tt instances`` shows the list of enabled applications.
 

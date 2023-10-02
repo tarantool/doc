@@ -5,7 +5,7 @@ Printing the contents of .snap and .xlog files
 
 ..  code-block:: console
 
-    tt cat FILE ... [OPTION ...]
+    $ tt cat FILE ... [OPTION ...]
 
 ``tt cat`` prints the contents of :ref:`snapshot <internals-snapshot>` (``.snap``) and
 :ref:`WAL <internals-wal>` (``.xlog``) files to stdout. A single call of ``tt cat`` can
@@ -15,7 +15,7 @@ print the contents of multiple files.
 Options
 -------
 
-..  option:: --format {yaml|json|lua}
+..  option:: --format FORMAT
 
     Output format: ``yaml`` (default), ``json``, or ``lua``.
 

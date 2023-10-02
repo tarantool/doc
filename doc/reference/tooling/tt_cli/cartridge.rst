@@ -5,7 +5,7 @@ Managing a Cartridge application
 
 ..  code-block:: console
 
-    tt cartridge COMMAND [command options]
+    $ tt cartridge COMMAND {[OPTION ...]|SUBCOMMAND}
 
 ``tt cartridge`` manages a Cartridge application.
 ``COMMAND`` is one of the following:
@@ -24,7 +24,7 @@ admin
 
 ..  code-block:: console
 
-    tt cartridge admin ADMIN_FUNC_NAME [options]
+    $ tt cartridge admin ADMIN_FUNC_NAME [ADMIN_OPTION ...]
 
 ``tt cartridge admin`` calls `admin functions <https://github.com/tarantool/cartridge-cli-extensions/blob/master/doc/admin.md>`_ provided by the application.
 
@@ -56,8 +56,8 @@ Options
 
 .. _tt_cartridge_admin_examples:
 
-Example
-~~~~~~~
+Examples
+~~~~~~~~
 
 Get a list of the available admin functions:
 
@@ -99,7 +99,7 @@ bench
 
 ..  code-block:: console
 
-    tt cartridge bench [options]
+    $ tt cartridge bench [OPTION ...]
 
 ``tt cartridge bench`` runs benchmarks for Tarantool.
 
@@ -164,7 +164,7 @@ failover
 
 ..  code-block:: console
 
-    tt cartridge failover COMMAND [command options]
+    $ tt cartridge failover COMMAND [FAILOVER_OPTION ...]
 
 ``tt cartridge failover`` manages an application failover.
 
@@ -190,7 +190,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge failover set MODE [options]
+                    $ tt cartridge failover set MODE [FAILOVER_OPTION ...]
 
                 Options:
 
@@ -206,7 +206,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge failover setup --file STRING
+                    $ tt cartridge failover setup --file STRING
 
                 The ``failover.yml`` file might look as follows:
 
@@ -226,7 +226,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge failover status
+                    $ tt cartridge failover status
 
         *   -   ``disable``
             -   Disable failover.
@@ -235,7 +235,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge failover disable
+                    $ tt cartridge failover disable
 
 
 .. _tt_cartridge_failover_options:
@@ -259,7 +259,7 @@ repair
 
 ..  code-block:: console
 
-    tt cartridge repair COMMAND [command options]
+    tt cartridge repair COMMAND [REPAIR_OPTION ...]
 
 ``tt cartridge repair`` repairs a running application.
 
@@ -281,7 +281,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge repair list-topology [options]
+                    $ tt cartridge repair list-topology [REPAIR_OPTION ...]
 
         *   -   ``remove-instance``
             -   Remove the instance with the specified UUID from the cluster. If the instance isn't found, raise an error.
@@ -290,7 +290,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge repair remove-instance UUID [options]
+                    $ tt cartridge repair remove-instance UUID [REPAIR_OPTION ...]
 
         *   -   ``set-advertise-uri``
             -   Change the instance's advertise URI. Raise an error if the instance isn't found or is expelled.
@@ -299,7 +299,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge repair set-advertise-uri INSTANCE-UUID NEW-URI [options]
+                    $ tt cartridge repair set-advertise-uri INSTANCE-UUID NEW-URI [REPAIR_OPTION ...]
 
         *   -   ``set-leader``
             -   Set the instance as the leader of the replica set. Raise an error in the following cases:
@@ -353,7 +353,7 @@ replicasets
 
 ..  code-block:: console
 
-    tt cartridge replicasets COMMAND [command options]
+    $ tt cartridge replicasets COMMAND [REPLICASETS_OPTION ...]
 
 ``tt cartridge replicasets`` manages an application's replica sets.
 
@@ -376,7 +376,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets setup [options]
+                    $ tt cartridge replicasets setup [REPLICASETS_OPTION ...]
 
                 Options:
 
@@ -390,7 +390,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets save [options]
+                    $ tt cartridge replicasets save [REPLICASETS_OPTION ...]
 
                 Options:
 
@@ -403,7 +403,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets list [options]
+                    $ tt cartridge replicasets list [REPLICASETS_OPTION ...]
 
                 Options:
 
@@ -418,7 +418,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets join INSTANCE_NAME... [options]
+                    $ tt cartridge replicasets join INSTANCE_NAME... [REPLICASETS_OPTION ...]
 
                 Options:
 
@@ -431,7 +431,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets list-roles [options]
+                    $ tt cartridge replicasets list-roles [REPLICASETS_OPTION ...]
 
         *   -   ``list-vshard-groups``
             -   List the available vshard groups.
@@ -440,7 +440,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets list-vshard-groups [options]
+                    $ tt cartridge replicasets list-vshard-groups [REPLICASETS_OPTION ...]
 
         *   -   ``add-roles``
             -   Add roles to the replica set.
@@ -449,7 +449,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets add-roles ROLE_NAME... [options]
+                    $ tt cartridge replicasets add-roles ROLE_NAME... [REPLICASETS_OPTION ...]
 
                 Options:
 
@@ -463,7 +463,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets remove-roles ROLE_NAME... [options]
+                    $ tt cartridge replicasets remove-roles ROLE_NAME... [REPLICASETS_OPTION ...]
 
                 Options:
 

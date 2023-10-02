@@ -5,7 +5,7 @@ Listing available Tarantool versions
 
 ..  code-block:: bash
 
-    tt search PROGRAM_NAME [OPTION ...]
+    $ tt search PROGRAM_NAME [OPTION ...]
 
 ``tt search`` lists versions of Tarantool and ``tt`` that are available for
 installation. The possible values of ``PROGRAM_NAME`` are:

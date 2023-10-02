@@ -5,7 +5,7 @@ Packaging the application
 
 ..  code-block:: console
 
-    tt pack TYPE [OPTION ...] ..
+    $ tt pack TYPE [OPTION ...] ..
 
 ``tt pack`` packages an application into a distributable bundle of the specified ``TYPE``:
 

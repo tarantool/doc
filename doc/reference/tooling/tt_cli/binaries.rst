@@ -5,7 +5,7 @@ Showing a list of installed binaries
 
 ..  code-block:: console
 
-    tt binaries
+    $ tt binaries
 
 ``tt binaries`` shows a list of installed binaries and their versions.
 

@@ -3,9 +3,9 @@
 Using the LuaRocks package manager
 ==================================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt rocks [FLAG ...] [VAR=VALUE] COMMAND [ARGUMENT]
+    $ tt rocks [FLAG ...] [VAR=VALUE] COMMAND [ARGUMENT]
 
 ``tt rocks`` provides means to manage Lua modules (rocks) via the
 `LuaRocks <https://luarocks.org/>`_ package manager. `tt` uses its own
@@ -14,42 +14,54 @@ LuaRocks installation connected to the `Tarantool rocks repository <https://www.
 Below are lists of supported LuaRocks flags and commands. For detailed information on
 their usage, refer to `LuaRocks documentation <https://github.com/luarocks/luarocks/wiki/Documentation>`_.
 
-Flags
------
+Options
+-------
 
-..  container:: table
+.. option:: --dev
 
-    ..  list-table::
-        :widths: 30 70
-        :header-rows: 0
+    Enable the sub-repositories in rocks servers for rockspecs of in-development versions.
 
-        *   -   ``--dev``
-            -   Enable the sub-repositories in rocks servers
-                for rockspecs of in-development versions
-        *   -   ``--server=<server>``
-            -   Fetch rocks/rockspecs from this server
-                (takes priority over config file)
-        *   -   ``--only-server=<server>``
-            -   Fetch rocks/rockspecs from this server only
-                (overrides any entries in the config file)
-        *   -   ``--only-sources=<url>``
-            -   Restrict downloads to paths matching the given URL
-        *   -   ``--lua-dir=<prefix>``
-            -   Specify which Lua installation to use
-        *   -   ``--lua-version=<ver>``
-            -   Specify which Lua version to use
-        *   -   ``--tree=<tree>``
-            -   Specify which tree to operate on
-        *   -   ``--local``
-            -   Use the tree in the user's home directory.
-                Call ``tt rocks help path`` to learn how to enable it
-        *   -   ``--global``
-            -   Use the system tree when `local_by_default` is `true`
-        *   -   ``--verbose``
-            -   Display verbose output for the command executed
-        *   -   ``--timeout=<seconds>``
-            -   Timeout on network operations, in seconds.
-                0 means no timeout (wait forever). Default: 30
+.. option:: --server=SERVER
+
+    Fetch rocks/rockspecs from this server (takes priority over config file).
+
+.. option:: --only-server=SERVER
+
+    Fetch rocks/rockspecs from this server only (overrides any entries in the config file).
+
+.. option:: --only-sources=URL
+
+    Restrict downloads to paths matching the given URL.
+
+.. option:: --lua-dir=PREFIX
+
+    Specify which Lua installation to use
+
+.. option:: --lua-version=VERSION
+
+    Specify which Lua version to use.
+
+.. option:: --tree=TREE
+
+    Specify which tree to operate on.
+
+.. option:: --local
+
+    Use the tree in the user's home directory.
+    Call ``tt rocks help path`` to learn how to enable it.
+
+.. option:: --global
+
+    Use the system tree when ``local_by_default`` is ``true``.
+
+.. option:: --verbose
+
+    Display verbose output for the command executed.
+
+.. option:: --timeout=SECONDS
+
+    Timeout on network operations, in seconds.
+    ``0`` means no timeout (wait forever). Default: ``30``.
 
 Commands
 --------
