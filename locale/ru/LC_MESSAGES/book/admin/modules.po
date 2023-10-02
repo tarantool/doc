@@ -42,10 +42,10 @@ msgstr "Выполните следующие действия:"
 
 msgid ""
 "Install Tarantool as recommended on the `download page "
-"<http://tarantool.org/download.html>`_."
+"<https://www.tarantool.io/download>`_."
 msgstr ""
 "Установите Tarantool в соответствии с рекомендациями на `странице загрузки "
-"<http://tarantool.org/download.html>`_."
+"<https://www.tarantool.io/download>`_."
 
 msgid ""
 "Install the module you need. Look up the module's name on `Tarantool rocks "

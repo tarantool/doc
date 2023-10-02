@@ -448,7 +448,7 @@ msgstr ""
 "Если значение больше 0,01, код приложения однозначно необходимо "
 "проанализировать на предмет оптимизации использования памяти."
 
-msgid "Problem: Fiber switch is forbidden in ``__gc`` metamethod"
+msgid "Problem: Fiber switch is forbidden in '__gc' metamethod"
 msgstr "Проблема: Переключатель файберов запрещен в метаметоде ``__gc``"
 
 msgid "Problem description"
