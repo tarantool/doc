@@ -65,7 +65,7 @@ you need. The ``tt version`` call will execute this module instead of the built-
     tt version # Calls the external module if it's available
 
 You can force the use of the internal module by running ``tt`` with the ``--internal`` or ``-I``
-:doc:`argument <arguments>`. The following call will execute the built-in ``version``
+:ref:`option <tt-global-options>`. The following call will execute the built-in ``version``
 even if there is an external module with the same name:
 
 ..  code-block:: bash

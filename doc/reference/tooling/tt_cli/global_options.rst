@@ -1,3 +1,5 @@
+.. _tt-global-options:
+
 Global options
 ==============
 

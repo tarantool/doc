@@ -14,7 +14,7 @@ execution is its configuration file.
 By default, the configuration file is called ``tt.yaml``. The location
 where ``tt`` searches for it depends on the :ref:`launch mode <tt-config_modes>`.
 You can also pass the configuration file explicitly in the ``--cfg``
-:doc:`argument <arguments>`.
+:ref:`option <tt-global-options>`.
 
 The ``tt`` configuration file is a YAML file with the following content:
 
