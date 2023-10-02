@@ -19,6 +19,7 @@ Global options
     :doc:`external module <external_modules>` with the same name.
 
 .. option:: -L=DIRECTORY, --local=DIRECTORY
+
     Use the ``tt`` environment from the specified directory.
     Learn more about the :ref:`local launch mode <tt-config_modes-local>`.
 
