@@ -5,7 +5,7 @@ Rotating instance logs
 
 ..  code-block:: console
 
-    $ tt logrotate INSTANCE|APPLICATION
+    $ tt logrotate {INSTANCE|APPLICATION[:APP_INSTANCE]}
 
 ``tt logrotate`` rotates logs of a specified Tarantool instance.
 Learn more about :ref:`rotating logs <admin-logs>`.

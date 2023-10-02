@@ -5,7 +5,7 @@ Using the LuaRocks package manager
 
 ..  code-block:: console
 
-    $ tt rocks [FLAG ...] [VAR=VALUE] COMMAND [ARGUMENT]
+    $ tt rocks [OPTION ...] [VAR=VALUE] COMMAND [ARGUMENT]
 
 ``tt rocks`` provides means to manage Lua modules (rocks) via the
 `LuaRocks <https://luarocks.org/>`_ package manager. `tt` uses its own

@@ -28,7 +28,7 @@ Commands
 Examples
 --------
 
-The following command prints a ``tt`` environment configuration:
+Print the current ``tt`` environment configuration:
 
 ..  code-block:: console
 

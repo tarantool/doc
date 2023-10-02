@@ -5,7 +5,7 @@ Restarting a Tarantool instance
 
 ..  code-block:: console
 
-    $ tt restart INSTANCE
+    $ tt restart INSTANCE [OPTION ...]
 
 ``tt restart`` restarts the specified running Tarantool instance.
 A ``tt restart`` call is equivalent to consecutive calls of

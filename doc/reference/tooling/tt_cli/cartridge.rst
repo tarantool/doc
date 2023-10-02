@@ -99,7 +99,7 @@ bench
 
 ..  code-block:: console
 
-    $ tt cartridge bench [OPTION ...]
+    $ tt cartridge bench [BENCH_OPTION ...]
 
 ``tt cartridge bench`` runs benchmarks for Tarantool.
 
@@ -164,7 +164,7 @@ failover
 
 ..  code-block:: console
 
-    $ tt cartridge failover COMMAND [FAILOVER_OPTION ...]
+    $ tt cartridge failover COMMAND [COMMAND_OPTION ...]
 
 ``tt cartridge failover`` manages an application failover.
 
@@ -190,7 +190,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge failover set MODE [FAILOVER_OPTION ...]
+                    $ tt cartridge failover set MODE [FAILOVER_SET_OPTION ...]
 
                 Options:
 
@@ -312,7 +312,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID [options]
+                    tt cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID [REPAIR_OPTION ...]
 
 
 .. _tt_cartridge_repair_options:
@@ -353,7 +353,7 @@ replicasets
 
 ..  code-block:: console
 
-    $ tt cartridge replicasets COMMAND [REPLICASETS_OPTION ...]
+    $ tt cartridge replicasets COMMAND [COMMAND_OPTION ...]
 
 ``tt cartridge replicasets`` manages an application's replica sets.
 
@@ -376,7 +376,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge replicasets setup [REPLICASETS_OPTION ...]
+                    $ tt cartridge replicasets setup [--file FILEPATH] [--bootstrap-vshard]
 
                 Options:
 
@@ -390,7 +390,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge replicasets save [REPLICASETS_OPTION ...]
+                    $ tt cartridge replicasets save [--file FILEPATH]
 
                 Options:
 
@@ -403,7 +403,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge replicasets list [REPLICASETS_OPTION ...]
+                    $ tt cartridge replicasets list [--replicaset STRING]
 
                 Options:
 
@@ -418,7 +418,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge replicasets join INSTANCE_NAME... [REPLICASETS_OPTION ...]
+                    $ tt cartridge replicasets join INSTANCE_NAME ... [--replicaset STRING]
 
                 Options:
 
@@ -431,7 +431,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge replicasets list-roles [REPLICASETS_OPTION ...]
+                    $ tt cartridge replicasets list-roles
 
         *   -   ``list-vshard-groups``
             -   List the available vshard groups.
@@ -440,7 +440,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge replicasets list-vshard-groups [REPLICASETS_OPTION ...]
+                    $ tt cartridge replicasets list-vshard-groups
 
         *   -   ``add-roles``
             -   Add roles to the replica set.
@@ -449,7 +449,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge replicasets add-roles ROLE_NAME... [REPLICASETS_OPTION ...]
+                    $ tt cartridge replicasets add-roles ROLE_NAME ... [--replicaset STRING] [--vshard-group STRING]
 
                 Options:
 
@@ -463,7 +463,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    $ tt cartridge replicasets remove-roles ROLE_NAME... [REPLICASETS_OPTION ...]
+                    $ tt cartridge replicasets remove-roles ROLE_NAME ... [--replicaset STRING]
 
                 Options:
 
@@ -476,7 +476,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets set-weight WEIGHT [options]
+                    tt cartridge replicasets set-weight WEIGHT [--replicaset STRING]
 
                 Options:
 
@@ -489,7 +489,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets set-failover-priority INSTANCE_NAME... [options]
+                    tt cartridge replicasets set-failover-priority INSTANCE_NAME ... [--replicaset STRING]
 
                 Options:
 
@@ -502,7 +502,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets bootstrap-vshard [options]
+                    tt cartridge replicasets bootstrap-vshard
 
         *   -   ``expel``
             -   Expel one or more instances from the cluster.
@@ -511,4 +511,4 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets expel INSTANCE_NAME... [options]
+                    tt cartridge replicasets expel INSTANCE_NAME ...
