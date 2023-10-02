@@ -19,7 +19,7 @@ concept explanation, and the ``tt`` command reference.
 
     installation
     configuration
-    arguments
+    global_options
     commands
     external_modules
 
