@@ -1,9 +1,9 @@
 Environment configuration
 =========================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt cfg COMMAND [command flags]
+    tt cfg COMMAND [OPTION ...]
 
 ``tt cfg`` manages a ``tt`` environment :ref:`configuration <tt-config_file>`.
 
@@ -20,7 +20,7 @@ Commands
         *   -   ``dump``
             -   Print a ``tt`` environment configuration.
 
-                Flags:
+                Options:
 
                 *   ``-r``, ``--raw``: Print a raw content of the ``tt.yaml`` configuration file.
 
@@ -30,6 +30,6 @@ Examples
 
 The following command prints a ``tt`` environment configuration:
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt cfg dump
+    $ tt cfg dump

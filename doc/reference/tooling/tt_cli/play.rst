@@ -5,31 +5,39 @@ Playing the contents of .snap and .xlog files to a Tarantool instance
 
 ..  code-block:: bash
 
-    tt play URI FILE .. [flags]
+    tt play URI FILE ... [OPTION ...]
 
 ``tt play`` plays the contents of :ref:`snapshot <internals-snapshot>` (``.snap``) and
 :ref:`WAL <internals-wal>` (``.xlog``) files to another Tarantool instance.
 A single call of ``tt play`` can play multiple files.
 
-Flags
------
+Options
+-------
 
-..  container:: table
+..  option:: --from LSN
 
-    ..  list-table::
-        :widths: 20 80
-        :header-rows: 0
+    Play operations starting from the given LSN.
 
-        *   -   ``--from``
-            -   Play operations starting from the given LSN
-        *   -   ``--to``
-            -   Play operations up to the given LSN. Default: 18446744073709551615
-        *   -   ``--replica``
-            -   Filter the operations by replica id. Can be passed more than once
-        *   -   ``--space``
-            -   Filter the operations by space id. Can be passed more than once
-        *   -   ``--show-system``
-            -   Play the operations on system spaces
+..  option:: --to LSN
+
+    Play operations up to the given LSN. Default: ``18446744073709551615``.
+
+..  option:: --replica ID
+
+    Filter the operations by replica ID. Can be passed more than once.
+
+    When calling ``tt cat`` with filters by LSN (``--from`` and ``--to`` flags) and
+    replica ID (``--replica``), remember that LSNs differ across replicas.
+    Thus, if you pass more than one replica ID via ``--from`` or ``--to``,
+    the result may not reflect the actual sequence of operations.
+
+..  option:: --space ID
+
+    Filter the output by space ID. Can be passed more than once.
+
+..  option:: --show-system
+
+    Show the operations on system spaces.
 
 Details
 -------
@@ -49,31 +57,25 @@ on this instance. This means that:
 
 *   Replica IDs will change in accordance with the destination instance configuration.
 
-
-When calling ``tt play`` with filters by LSN (``--from`` and ``--to`` flags) and
-replica ID (``--replica``), remember that LSNs differ across replicas.
-Thus, if you pass more than one replica ID via ``--from`` or ``--to``,
-the result may not reflect the actual sequence of operations.
-
 Examples
 --------
 
 *   Play the contents of ``00000000000000000000.xlog`` to the instance on
     ``192.168.10.10:3301``:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt play 192.168.10.10:3301 00000000000000000000.xlog
+        $ tt play 192.168.10.10:3301 00000000000000000000.xlog
 
 *   Play operations on spaces with ``space_id`` 512 and 513 from the
     ``00000000000000000012.snap`` snapshot file:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt play 192.168.10.10:3301 00000000000000000012.snap --space 512 --space 513
+        $ tt play 192.168.10.10:3301 00000000000000000012.snap --space 512 --space 513
 
 *   Play the contents of ``00000000000000000000.xlog`` including operations on system spaces:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt play 192.168.10.10:3301 00000000000000000000.xlog --show-system
+        $ tt play 192.168.10.10:3301 00000000000000000000.xlog --show-system

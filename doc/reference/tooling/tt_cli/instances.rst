@@ -3,7 +3,7 @@
 Listing enabled applications
 ============================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt instances
 
@@ -21,6 +21,6 @@ Example
 
 *   Show the list of enabled applications:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt instances
+        $ tt instances

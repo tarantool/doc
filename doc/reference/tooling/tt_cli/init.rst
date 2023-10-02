@@ -3,7 +3,7 @@
 Creating a tt environment
 =========================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt init
 
@@ -47,6 +47,6 @@ Example
 
 Create a ``tt`` environment in the current directory:
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt init
+    $ tt init

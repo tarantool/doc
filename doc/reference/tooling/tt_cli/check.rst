@@ -3,7 +3,7 @@
 Checking an application file
 ============================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt check APP_FILE
 
@@ -24,13 +24,13 @@ Examples
 
 *   Check the syntax of the ``app.lua`` file from the ``instances_enabled`` directory:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt check app
+        $ tt check app
 
 
 *   Check the syntax of the ``init.lua`` file from the ``instance1/`` directory inside ``instances_enabled``:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt check instance1
+        $ tt check instance1

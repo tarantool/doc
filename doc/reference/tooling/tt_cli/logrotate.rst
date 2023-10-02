@@ -3,7 +3,7 @@
 Rotating instance logs
 ======================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt logrotate INSTANCE
 
@@ -15,6 +15,6 @@ Examples
 
 Rotate logs of the ``app`` instance:
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt logrotate app
+    $ tt logrotate app

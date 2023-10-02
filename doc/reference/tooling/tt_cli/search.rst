@@ -5,7 +5,7 @@ Listing available Tarantool versions
 
 ..  code-block:: bash
 
-    tt search PROGRAM_NAME [flags]
+    tt search PROGRAM_NAME [OPTION ...]
 
 ``tt search`` lists versions of Tarantool and ``tt`` that are available for
 installation. The possible values of ``PROGRAM_NAME`` are:
@@ -20,35 +20,37 @@ installation. The possible values of ``PROGRAM_NAME`` are:
     (see the :ref:`ee section <tt-config_file_ee>` of the configuration file) or
     provide interactively.
 
-Flags
------
+Options
+-------
 
-..  container:: table
+.. option:: --debug
 
-    ..  list-table::
-        :widths: 20 80
-        :header-rows: 0
+    **Applicable to:** ``taranttol-ee``
 
-        *   -   ``--debug``
-            -   (``tarantool-ee`` only) Search for debug builds of Tarantool Enterprise SDK
-        *   -   ``--local-repo``
-            -   Search in the local repository, which is specified in the
-                :ref:`repo section <tt-config_file_repo>` of the ``tt``
-                configuration file
-        *   -   ``--version``
-            -   (``tarantool-ee`` only) Tarantool Enterprise version
+    Search for debug builds of Tarantool Enterprise SDK.
+
+.. option:: --local-repo
+
+    Search in the local repository, which is specified in the
+    :ref:`repo section <tt-config_file_repo>` of the ``tt`` configuration file.
+
+.. option:: --version VERSION
+
+    **Applicable to:** ``taranttol-ee``
+
+    Tarantool Enterprise version.
 
 Example
 --------
 
 *   List available Tarantool versions:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt search tarantool
+        $ tt search tarantool
 
 *   List available ``tt`` versions from the local repository:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt search --local-repo tt
+        $ tt search --local-repo tt

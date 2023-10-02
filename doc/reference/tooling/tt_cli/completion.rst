@@ -3,7 +3,7 @@
 Generating completion for tt
 ============================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt completion SHELL
 
@@ -16,7 +16,7 @@ Examples
 
 Generate ``tt`` completion for the current ``bash`` terminal:
 
-..  code-block:: bash
+..  code-block:: console
 
     . <(tt completion bash)
 

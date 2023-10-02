@@ -3,13 +3,13 @@
 Manipulating Tarantool core dumps
 =================================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt coredump COMMAND [ARGUMENT]
 
 ``tt coredump`` provides commands for manipulating Tarantool core dumps.
 
-..  note::
+..  important::
 
         ``tt coredump`` does not support macOS.
 
@@ -54,20 +54,20 @@ Examples
 
 *   Pack a ``tar.gz`` file with a Tarantool core dump and supporting data:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt coredump pack name.core
+        $ tt coredump pack name.core
 
 
 *   Unpack a ``tar.gz`` archive packed by ``tt coredump pack``:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt coredump unpack tarantool-core-dump.tar.gz
+        $ tt coredump unpack tarantool-core-dump.tar.gz
 
 
 *   Inspect the unpacked core dump with ``gdb``:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt coredump inspect tarantool-core-dump
+        $ tt coredump inspect tarantool-core-dump

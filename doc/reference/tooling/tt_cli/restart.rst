@@ -3,7 +3,7 @@
 Restarting a Tarantool instance
 ===============================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt restart INSTANCE
 
@@ -23,7 +23,7 @@ Examples
 
 Restart the ``app`` instance with automatic confirmation:
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt restart app -y
+    $ tt restart app -y
 

@@ -3,7 +3,7 @@
 Displaying the tt version
 =========================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt version
 

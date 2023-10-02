@@ -3,9 +3,9 @@
 Packaging the application
 =========================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt pack TYPE [options] ..
+    tt pack TYPE [OPTION ...] ..
 
 ``tt pack`` packages an application into a distributable bundle of the specified ``TYPE``:
 
@@ -41,7 +41,7 @@ Options
 
     .. code-block:: console
 
-        tt pack tgz --app-list app1,app3
+        $ tt pack tgz --app-list app1,app3
 
 ..  option:: --cartridge-compat
 
@@ -59,7 +59,7 @@ Options
 
     .. code-block:: console
 
-        tt pack deb --deps 'wget,make>0.1.0,unzip>1,unzip<=7'
+        $ tt pack deb --deps 'wget,make>0.1.0,unzip>1,unzip<=7'
 
 ..  option:: --deps-file STRING
 
@@ -78,7 +78,7 @@ Options
 
     .. code-block:: console
 
-        tt pack deb --deps-file package-deps.txt
+        $ tt pack deb --deps-file package-deps.txt
 
 ..  option:: --filename
 
@@ -88,7 +88,7 @@ Options
 
     .. code-block:: console
 
-        tt pack tgz --filename sample-app.tar.gz
+        $ tt pack tgz --filename sample-app.tar.gz
 
 ..  option:: --name PACKAGE_NAME
 
@@ -98,7 +98,7 @@ Options
 
     .. code-block:: console
 
-        tt pack tgz --name sample-app --version 1.0.1
+        $ tt pack tgz --name sample-app --version 1.0.1
 
 ..  option:: --preinst
 
@@ -110,7 +110,7 @@ Options
 
     .. code-block:: console
 
-        tt pack deb --preinst pre.sh
+        $ tt pack deb --preinst pre.sh
 
 ..  option:: --postinst
 
@@ -122,7 +122,7 @@ Options
 
     .. code-block:: console
 
-        tt pack deb --postinst post.sh
+        $ tt pack deb --postinst post.sh
 
 ..  option:: --use-docker
 
@@ -137,7 +137,7 @@ Options
 
     .. code-block:: console
 
-        tt pack tgz --name sample-app --version 1.0.1
+        $ tt pack tgz --name sample-app --version 1.0.1
 
 ..  option:: --with-binaries
 

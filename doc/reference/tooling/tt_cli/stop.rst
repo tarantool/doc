@@ -3,7 +3,7 @@
 Stopping a Tarantool instance
 =============================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt stop INSTANCE|APPLICATION
 
@@ -14,23 +14,24 @@ Examples
 
 Single instance
 ~~~~~~~~~~~~~~~
+
 *   Stop the ``app`` instance:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt stop app
+        $ tt stop app
 
 Multiple instances
 ~~~~~~~~~~~~~~~~~~
 
 *   Stop all instances of the ``app`` application:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt stop app
+        $ tt stop app
 
 *   Stop the ``replica`` instance of the ``app`` application:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt stop app:replica
+        $ tt stop app:replica

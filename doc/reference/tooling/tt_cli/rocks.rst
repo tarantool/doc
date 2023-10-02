@@ -108,40 +108,40 @@ Examples
 
 *   Install the rock ``queue`` from the Tarantool rocks repository:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt rocks install queue
+        $ tt rocks install queue
 
 *   Search for the rock ``queue`` in **both** the Tarantool rocks repository and
     the `default LuaRocks repository <https://luarocks.org>`_:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt rocks search queue --server='https://luarocks.org'
+        $ tt rocks search queue --server='https://luarocks.org'
 
 *   List the documentation files for the installed rock ``queue``:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt rocks doc queue --list
+        $ tt rocks doc queue --list
 
     Without the ``--list`` flag, this command displays documentation in the user's default browser.
 
 *   Create a ``*.rock`` file from the installed rock ``queue``:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt rocks pack queue
+        $ tt rocks pack queue
 
 *   Unpack a ``*.rock`` file:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt rocks unpack queue-scm-1.all.rock
+        $ tt rocks unpack queue-scm-1.all.rock
 
 *   Remove the installed rock ``queue``:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt rocks remove queue
+        $ tt rocks remove queue
         

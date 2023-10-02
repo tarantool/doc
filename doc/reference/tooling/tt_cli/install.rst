@@ -5,7 +5,7 @@ Installing Tarantool software
 
 ..  code-block:: bash
 
-    tt install PROGRAM_NAME [version] [flags]
+    tt install PROGRAM_NAME [VERSION] [OPTION ...]
 
 ``tt install`` installs the latest or an explicitly specified version of Tarantool
 or ``tt``. The possible values of ``PROGRAM_NAME`` are:
@@ -21,31 +21,37 @@ or ``tt``. The possible values of ``PROGRAM_NAME`` are:
     (see the :ref:`ee section <tt-config_file_ee>` of the configuration file) or
     provide them interactively.
 
-Flags
------
+Options
+-------
 
-..  container:: table
+.. option:: --dynamic
 
-    ..  list-table::
-        :widths: 20 80
-        :header-rows: 0
+   **Applicable to:** ``tarantool``, ``tarantool-ee``
 
-        *   -   ``--dynamic``
-            -   (``tarantool`` and ``tarantool-ee``) Use dynamic linking for building Tarantool
-        *   -   ``-f``
+    Use dynamic linking for building Tarantool.
 
-                ``--force``
-            -   Skip dependency check before installation
-        *   -   ``--local-repo``
-            -   Install a program from the local repository, which is specified
-                in the :ref:`repo section <tt-config_file_repo>` of the ``tt``
-                configuration file
-        *   -   ``--no-clean``
-            -   Don't delete temporary files
-        *   -   ``--reinstall``
-            -   Reinstall a previously installed program
-        *   -   ``--use-docker``
-            -   (``tarantool`` and ``tarantool-ee``) Build Tarantool in an Ubuntu 18.04 Docker container
+.. option:: -f, --force
+
+    Skip dependency check before installation.
+
+.. option:: --local-repo
+
+    Install a program from the local repository, which is specified in the
+    :ref:`repo section <tt-config_file_repo>` of the ``tt`` configuration file.
+
+.. option:: --no-clean
+
+    Don't delete temporary files.
+
+.. option:: --reinstall
+
+    Reinstall a previously installed program.
+
+.. option:: --use-docker
+
+   **Applicable to:** ``tarantool``, ``tarantool-ee``
+
+    Build Tarantool in an Ubuntu 18.04 Docker container.
 
 Details
 -------
@@ -71,24 +77,24 @@ Example
 
 *   Install the latest available version of Tarantool:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt install tarantool
+        $ tt install tarantool
 
 *   Install Tarantool 2.11.1 from the local repository:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt install tarantool 2.11.1 --local-repo
+        $ tt install tarantool 2.11.1 --local-repo
 
 *   Reinstall Tarantool 2.10.8:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt install tarantool 2.10.8 --reinstall
+        $ tt install tarantool 2.10.8 --reinstall
 
 *   Install Tarantool :ref:`built from sources <building_from_source>`:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt install tarantool-dev ~/src/tarantool/build
+        $ tt install tarantool-dev ~/src/tarantool/build

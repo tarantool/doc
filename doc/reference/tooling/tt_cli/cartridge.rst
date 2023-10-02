@@ -3,7 +3,7 @@
 Managing a Cartridge application
 ================================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt cartridge COMMAND [command options]
 
@@ -22,7 +22,7 @@ Managing a Cartridge application
 admin
 -----
 
-..  code-block:: bash
+..  code-block:: console
 
     tt cartridge admin ADMIN_FUNC_NAME [options]
 
@@ -61,7 +61,7 @@ Example
 
 Get a list of the available admin functions:
 
-.. code-block:: bash
+.. code-block:: console
 
     tt cartridge admin --name APPNAME --list
 
@@ -71,7 +71,7 @@ Get a list of the available admin functions:
 
 Get help for a specific function:
 
-.. code-block:: bash
+.. code-block:: console
 
     tt cartridge admin --name APPNAME probe --help
 
@@ -84,7 +84,7 @@ Get help for a specific function:
 
 Call a function with an argument:
 
-.. code-block:: bash
+.. code-block:: console
 
     tt cartridge admin --name APPNAME probe --uri localhost:3301
 
@@ -97,7 +97,7 @@ Call a function with an argument:
 bench
 -----
 
-..  code-block:: bash
+..  code-block:: console
 
     tt cartridge bench [options]
 
@@ -162,7 +162,7 @@ Options
 failover
 --------
 
-..  code-block:: bash
+..  code-block:: console
 
     tt cartridge failover COMMAND [command options]
 
@@ -188,7 +188,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge failover set MODE [options]
 
@@ -204,7 +204,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge failover setup --file STRING
 
@@ -224,7 +224,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge failover status
 
@@ -233,7 +233,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge failover disable
 
@@ -257,7 +257,7 @@ Options
 repair
 ------
 
-..  code-block:: bash
+..  code-block:: console
 
     tt cartridge repair COMMAND [command options]
 
@@ -279,7 +279,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge repair list-topology [options]
 
@@ -288,7 +288,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge repair remove-instance UUID [options]
 
@@ -297,7 +297,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge repair set-advertise-uri INSTANCE-UUID NEW-URI [options]
 
@@ -310,7 +310,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID [options]
 
@@ -351,7 +351,7 @@ The following options work with any ``repair`` command, except ``list-topology``
 replicasets
 -----------
 
-..  code-block:: bash
+..  code-block:: console
 
     tt cartridge replicasets COMMAND [command options]
 
@@ -374,7 +374,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets setup [options]
 
@@ -388,7 +388,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets save [options]
 
@@ -401,7 +401,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets list [options]
 
@@ -416,7 +416,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets join INSTANCE_NAME... [options]
 
@@ -429,7 +429,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets list-roles [options]
 
@@ -438,7 +438,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets list-vshard-groups [options]
 
@@ -447,7 +447,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets add-roles ROLE_NAME... [options]
 
@@ -461,7 +461,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets remove-roles ROLE_NAME... [options]
 
@@ -474,7 +474,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets set-weight WEIGHT [options]
 
@@ -487,7 +487,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets set-failover-priority INSTANCE_NAME... [options]
 
@@ -500,7 +500,7 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets bootstrap-vshard [options]
 
@@ -509,6 +509,6 @@ Subcommands
 
                 Usage:
 
-                .. code-block:: bash
+                .. code-block:: console
 
                     tt cartridge replicasets expel INSTANCE_NAME... [options]

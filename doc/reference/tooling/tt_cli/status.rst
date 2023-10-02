@@ -3,7 +3,7 @@
 Checking instance status
 ========================
 
-..  code-block:: bash
+..  code-block:: console
 
     tt status INSTANCE|APPLICATION
 
@@ -18,21 +18,21 @@ Single instance
 
 *   Check the status of the ``app`` instance:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt status app
+        $ tt status app
 
 Multiple instances
 ~~~~~~~~~~~~~~~~~~
 
 *   Check the status of all instances of the ``app`` application:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt status app
+        $ tt status app
 
 *   Check the status of the ``replica`` instance of the ``app`` application:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt status app:replica
+        $ tt status app:replica

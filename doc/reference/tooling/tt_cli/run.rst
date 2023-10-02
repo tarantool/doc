@@ -5,35 +5,28 @@ Running code in a Tarantool instance
 
 ..  code-block:: bash
 
-    tt run [SCRIPT|-e EXPR] [flags]
+    tt run [SCRIPT|-e EXPR] [OPTION ...]
 
 ``tt run`` executes Lua code in a Tarantool instance.
 
-Flags
------
+Options
+-------
 
-..  container:: table
+.. option:: -e EXPR, --evaluate EXPR
 
-    ..  list-table::
-        :widths: 30 70
-        :header-rows: 0
+    Execute the specified expression in a Tarantool instance.
 
-        *   -   ``-e EXPR``
+.. option:: -l LIB_NAME, --library LIB_NAME
 
-                ``--evaluate EXPR``
-            -   Execute the specified expression in a Tarantool instance
-        *   -   ``-l LIB_NAME``
+    Require the specified library.
 
-                ``--library LIB_NAME``
-            -   Require the specified library
-        *   -   ``-i``
+.. option:: -i, --interactive
 
-                ``--interactive``
-            -   Enter the interactive mode after the script execution
-        *   -   ``-v``
+    Enter the interactive mode after the script execution.
 
-                ``--version``
-            -   Print the Tarantool version that is used for script execution
+.. option:: -v, --version
+
+    Print the Tarantool version that is used for script execution.
 
 Details
 -------
@@ -54,18 +47,18 @@ Examples
 
 *   Execute the ``app.lua`` file in a Tarantool instance:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt run app.lua
+        $ tt run app.lua
 
 *   Execute an expression in a Tarantool instance:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt run -e "print('hi there')"
+        $ tt run -e "print('hi there')"
 
 *   Execute the ``app.lua`` file in a Tarantool instance and leave it running:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt run app.lua -i
+        $ tt run app.lua -i
