@@ -3,9 +3,9 @@
 Managing a Cartridge application
 ================================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt cartridge COMMAND [command options]
+    $ tt cartridge COMMAND {[OPTION ...]|SUBCOMMAND}
 
 ``tt cartridge`` manages a Cartridge application.
 ``COMMAND`` is one of the following:
@@ -22,9 +22,9 @@ Managing a Cartridge application
 admin
 -----
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt cartridge admin ADMIN_FUNC_NAME [options]
+    $ tt cartridge admin ADMIN_FUNC_NAME [ADMIN_OPTION ...]
 
 ``tt cartridge admin`` calls `admin functions <https://github.com/tarantool/cartridge-cli-extensions/blob/master/doc/admin.md>`_ provided by the application.
 
@@ -56,14 +56,14 @@ Options
 
 .. _tt_cartridge_admin_examples:
 
-Example
-~~~~~~~
+Examples
+~~~~~~~~
 
 Get a list of the available admin functions:
 
-.. code-block:: bash
+.. code-block:: console
 
-    tt cartridge admin --name APPNAME --list
+    $ tt cartridge admin --name APPNAME --list
 
        • Available admin functions:
 
@@ -71,9 +71,9 @@ Get a list of the available admin functions:
 
 Get help for a specific function:
 
-.. code-block:: bash
+.. code-block:: console
 
-    tt cartridge admin --name APPNAME probe --help
+    $ tt cartridge admin --name APPNAME probe --help
 
        • Admin function "probe" usage:
 
@@ -84,9 +84,9 @@ Get help for a specific function:
 
 Call a function with an argument:
 
-.. code-block:: bash
+.. code-block:: console
 
-    tt cartridge admin --name APPNAME probe --uri localhost:3301
+    $ tt cartridge admin --name APPNAME probe --uri localhost:3301
 
        • Probe "localhost:3301": OK
 
@@ -97,9 +97,9 @@ Call a function with an argument:
 bench
 -----
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt cartridge bench [options]
+    $ tt cartridge bench [BENCH_OPTION ...]
 
 ``tt cartridge bench`` runs benchmarks for Tarantool.
 
@@ -162,81 +162,84 @@ Options
 failover
 --------
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt cartridge failover COMMAND [command options]
+    $ tt cartridge failover COMMAND [COMMAND_OPTION ...]
 
 ``tt cartridge failover`` manages an application failover.
+The following commands are available:
 
-.. _tt_cartridge_failover_commands:
+*   ``set``
+*   ``setup``
+*   ``status``
+*   ``disable``
 
-Subcommands
-~~~~~~~~~~~
+.. _tt_cartridge_failover_set:
 
-..  container:: table
+failover set
+~~~~~~~~~~~~
 
-    ..  list-table::
-        :widths: 25 75
-        :header-rows: 0
+.. code-block:: console
 
-        *   -   ``set``
-            -   Setup failover in the specified mode:
+    $ tt cartridge failover set MODE [FAILOVER_SET_OPTION ...]
 
-                *   ``stateful``
-                *   ``eventual``
-                *   ``disabled``
+Setup failover in the specified mode:
 
-                Usage:
+*   ``stateful``
+*   ``eventual``
+*   ``disabled``
 
-                .. code-block:: bash
+Options:
 
-                    tt cartridge failover set MODE [options]
+*   ``--state-provider STRING``: A failover's state provider. Can be ``stateboard`` or ``etcd2``. Used only in the ``stateful`` mode.
+*   ``--params STRING``: Failover parameters specified in a JSON-formatted string, for example, ``"{'fencing_timeout': 10', 'fencing_enabled': true}"``.
+*   ``--provider-params STRING``: Failover provider parameters specified in a JSON-formatted string, for example, ``"{'lock_delay': 14}"``.
 
-                Options:
+.. _tt_cartridge_failover_setup:
 
-                *   ``--state-provider STRING``: A failover's state provider. Can be ``stateboard`` or ``etcd2``. Used only in the ``stateful`` mode.
-                *   ``--params STRING``: Failover parameters specified in a JSON-formatted string, for example, ``"{'fencing_timeout': 10', 'fencing_enabled': true}"``.
-                *   ``--provider-params STRING``: Failover provider parameters specified in a JSON-formatted string, for example, ``"{'lock_delay': 14}"``.
+failover setup
+~~~~~~~~~~~~~~
 
-        *   -   ``setup``
-            -   Setup failover with parameters described in a file.
-                The failover configuration file defaults to ``failover.yml``.
+.. code-block:: console
 
-                Usage:
+    $ tt cartridge failover setup --file STRING
 
-                .. code-block:: bash
+Setup failover with parameters described in a file.
+The failover configuration file defaults to ``failover.yml``.
 
-                    tt cartridge failover setup --file STRING
+The ``failover.yml`` file might look as follows:
 
-                The ``failover.yml`` file might look as follows:
 
-                .. code-block:: yaml
+.. code-block:: yaml
 
-                    mode: stateful
-                    state_provider: stateboard
-                    stateboard_params:
-                        uri: localhost:4401
-                        password: passwd
-                    failover_timeout: 15
+    mode: stateful
+    state_provider: stateboard
+    stateboard_params:
+        uri: localhost:4401
+        password: passwd
+    failover_timeout: 15
 
-        *   -   ``status``
-            -   Get the current failover status.
+.. _tt_cartridge_failover_status:
 
-                Usage:
+failover status
+~~~~~~~~~~~~~~~
 
-                .. code-block:: bash
+.. code-block:: console
 
-                    tt cartridge failover status
+    $ tt cartridge failover status
 
-        *   -   ``disable``
-            -   Disable failover.
+Get the current failover status.
 
-                Usage:
+.. _tt_cartridge_failover_disable:
 
-                .. code-block:: bash
+failover disable
+~~~~~~~~~~~~~~~~
 
-                    tt cartridge failover disable
+.. code-block:: console
 
+    $ tt cartridge failover disable
+
+Disable failover.
 
 .. _tt_cartridge_failover_options:
 
@@ -257,63 +260,65 @@ Options
 repair
 ------
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt cartridge repair COMMAND [command options]
+    $ tt cartridge repair COMMAND [REPAIR_OPTION ...]
 
 ``tt cartridge repair`` repairs a running application.
+The following commands are available:
 
-.. _tt_cartridge_repair_commands:
+*   ``list-topology``
+*   ``remove-instance``
+*   ``set-advertise-uri``
+*   ``set-leader``
 
-Subcommands
-~~~~~~~~~~~
+.. _tt_cartridge_repair_list-topology:
 
-..  container:: table
+repair list-topology
+~~~~~~~~~~~~~~~~~~~~
 
-    ..  list-table::
-        :widths: 25 75
-        :header-rows: 0
+.. code-block:: console
 
-        *   -   ``list-topology``
-            -   Get a summary of the current cluster topology.
+    $ tt cartridge repair list-topology [REPAIR_OPTION ...]
 
-                Usage:
+Get a summary of the current cluster topology.
 
-                .. code-block:: bash
+.. _tt_cartridge_repair_remove-instance:
 
-                    tt cartridge repair list-topology [options]
+repair remove-instance
+~~~~~~~~~~~~~~~~~~~~~~
 
-        *   -   ``remove-instance``
-            -   Remove the instance with the specified UUID from the cluster. If the instance isn't found, raise an error.
+.. code-block:: console
 
-                Usage:
+    $ tt cartridge repair remove-instance UUID [REPAIR_OPTION ...]
 
-                .. code-block:: bash
+Remove the instance with the specified UUID from the cluster. If the instance isn't found, raise an error.
 
-                    tt cartridge repair remove-instance UUID [options]
+.. _tt_cartridge_repair_set-advertise-uri:
 
-        *   -   ``set-advertise-uri``
-            -   Change the instance's advertise URI. Raise an error if the instance isn't found or is expelled.
+repair set-advertise-uri
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-                Usage:
+.. code-block:: console
 
-                .. code-block:: bash
+    $ tt cartridge repair set-advertise-uri INSTANCE-UUID NEW-URI [REPAIR_OPTION ...]
 
-                    tt cartridge repair set-advertise-uri INSTANCE-UUID NEW-URI [options]
+Change the instance's advertise URI. Raise an error if the instance isn't found or is expelled.
 
-        *   -   ``set-leader``
-            -   Set the instance as the leader of the replica set. Raise an error in the following cases:
+.. _tt_cartridge_set-leader:
 
-                *   There is no replica set or instance with that UUID.
-                *   The instance doesn't belong to the replica set.
-                *   The instance has been disabled or expelled.
+repair set-leader
+~~~~~~~~~~~~~~~~~
 
-                Usage:
+.. code-block:: console
 
-                .. code-block:: bash
+    $ tt cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID [REPAIR_OPTION ...]
 
-                    tt cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID [options]
+Set the instance as the leader of the replica set. Raise an error in the following cases:
 
+*   There is no replica set or instance with that UUID.
+*   The instance doesn't belong to the replica set.
+*   The instance has been disabled or expelled.
 
 .. _tt_cartridge_repair_options:
 
@@ -344,171 +349,196 @@ The following options work with any ``repair`` command, except ``list-topology``
 
     Enable instance configuration to reload after the patch.
 
-
-
 .. _tt_cartridge_replicasets:
 
 replicasets
 -----------
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt cartridge replicasets COMMAND [command options]
+    $ tt cartridge replicasets COMMAND [COMMAND_OPTION ...]
 
 ``tt cartridge replicasets`` manages an application's replica sets.
+The following commands are available:
 
+*   ``setup``
+*   ``save``
+*   ``list``
+*   ``join``
+*   ``list-roles``
+*   ``list-vshard-groups``
+*   ``add-roles``
+*   ``remove-roles``
+*   ``set-weight``
+*   ``set-failover-priority``
+*   ``bootstrap-vshard``
+*   ``expel``
 
-.. _tt_cartridge_replicasets_commands:
+.. _tt_cartridge_replicasets_setup:
 
-Subcommands
-~~~~~~~~~~~
+replicasets setup
+~~~~~~~~~~~~~~~~~
 
-..  container:: table
+.. code-block:: console
 
-    ..  list-table::
-        :widths: 25 75
-        :header-rows: 0
+    $ tt cartridge replicasets setup [--file FILEPATH] [--bootstrap-vshard]
 
-        *   -   ``setup``
-            -   Setup replica sets using a file.
+Setup replica sets using a file.
 
-                Usage:
+Options:
 
-                .. code-block:: bash
+*   ``--file``: A file with a replica set configuration. Defaults to ``replicasets.yml``.
+*   ``--bootstrap-vshard``: Bootstrap vshard upon setup.
 
-                    tt cartridge replicasets setup [options]
+.. _tt_cartridge_replicasets_save:
 
-                Options:
+replicasets save
+~~~~~~~~~~~~~~~~
 
-                *   ``--file``: A file with a replica set configuration. Defaults to ``replicasets.yml``.
-                *   ``--bootstrap-vshard``: Bootstrap vshard upon setup.
+.. code-block:: console
 
-        *   -   ``save``
-            -   Save the current replica set configuration to a file.
+    $ tt cartridge replicasets save [--file FILEPATH]
 
-                Usage:
+Save the current replica set configuration to a file.
 
-                .. code-block:: bash
+Options:
 
-                    tt cartridge replicasets save [options]
+*   ``--file``: A file to save the configuration to. Defaults to ``replicasets.yml``.
 
-                Options:
 
-                *   ``--file``: A file to save the configuration to. Defaults to ``replicasets.yml``.
+.. _tt_cartridge_replicasets_list:
 
-        *   -   ``list``
-            -   List the current cluster topology.
+replicasets list
+~~~~~~~~~~~~~~~~
 
-                Usage:
+.. code-block:: console
 
-                .. code-block:: bash
+    $ tt cartridge replicasets list [--replicaset STRING]
 
-                    tt cartridge replicasets list [options]
+List the current cluster topology.
 
-                Options:
+Options:
 
-                *   ``--replicaset STRING``: A replica set name.
+*   ``--replicaset STRING``: A replica set name.
 
-        *   -   ``join``
-            -   Join the instance to a cluster.
-                If a replica set with the specified alias isn't found in cluster, it is created.
-                Otherwise, instances are joined to an existing replica set.
+.. _tt_cartridge_replicasets_join:
 
-                Usage:
+replicasets join
+~~~~~~~~~~~~~~~~
 
-                .. code-block:: bash
+.. code-block:: console
 
-                    tt cartridge replicasets join INSTANCE_NAME... [options]
+    $ tt cartridge replicasets join INSTANCE_NAME ... [--replicaset STRING]
 
-                Options:
+Join the instance to a cluster.
+If a replica set with the specified alias isn't found in the cluster, it is created.
+Otherwise, instances are joined to an existing replica set.
 
-                *   ``--replicaset STRING``: A replica set name.
+Options:
 
-        *   -   ``list-roles``
-            -   List the available roles.
+*   ``--replicaset STRING``: A replica set name.
 
-                Usage:
+.. _tt_cartridge_replicasets_list-roles:
 
-                .. code-block:: bash
+replicasets list-roles
+~~~~~~~~~~~~~~~~~~~~~~
 
-                    tt cartridge replicasets list-roles [options]
+.. code-block:: console
 
-        *   -   ``list-vshard-groups``
-            -   List the available vshard groups.
+    $ tt cartridge replicasets list-roles
 
-                Usage:
+List the available roles.
 
-                .. code-block:: bash
+.. _tt_cartridge_replicasets_list-vshard-groups:
 
-                    tt cartridge replicasets list-vshard-groups [options]
+replicasets list-vshard-groups
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        *   -   ``add-roles``
-            -   Add roles to the replica set.
+.. code-block:: console
 
-                Usage:
+    $ tt cartridge replicasets list-vshard-groups
 
-                .. code-block:: bash
+List the available vshard groups.
 
-                    tt cartridge replicasets add-roles ROLE_NAME... [options]
+.. _tt_cartridge_replicasets_add-roles:
 
-                Options:
+replicasets add-roles
+~~~~~~~~~~~~~~~~~~~~~
 
-                *   ``--replicaset STRING``: A replica set name.
-                *   ``--vshard-group STRING``: A vshard group for ``vshard-storage`` replica sets.
+.. code-block:: console
 
-        *   -   ``remove-roles``
-            -   Remove roles from the replica set.
+    $ tt cartridge replicasets add-roles ROLE_NAME ... [--replicaset STRING] [--vshard-group STRING]
 
-                Usage:
+Add roles to the replica set.
 
-                .. code-block:: bash
+Options:
 
-                    tt cartridge replicasets remove-roles ROLE_NAME... [options]
+*   ``--replicaset STRING``: A replica set name.
+*   ``--vshard-group STRING``: A vshard group for ``vshard-storage`` replica sets.
 
-                Options:
+.. _tt_cartridge_replicasets_remove-roles:
 
-                *   ``--replicaset STRING``: A replica set name.
+replicasets remove-roles
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-        *   -   ``set-weight``
-            -   Specify replica set weight.
+.. code-block:: console
 
-                Usage:
+    $ tt cartridge replicasets remove-roles ROLE_NAME ... [--replicaset STRING]
 
-                .. code-block:: bash
+Remove roles from the replica set.
 
-                    tt cartridge replicasets set-weight WEIGHT [options]
+Options:
 
-                Options:
+*   ``--replicaset STRING``: A replica set name.
 
-                *   ``--replicaset STRING``: A replica set name.
+.. _tt_cartridge_replicasets_set-weight:
 
-        *   -   ``set-failover-priority``
-            -   Configure replica set failover priority.
+replicasets set-weight
+~~~~~~~~~~~~~~~~~~~~~~
 
-                Usage:
+.. code-block:: console
 
-                .. code-block:: bash
+    $ tt cartridge replicasets set-weight WEIGHT [--replicaset STRING]
 
-                    tt cartridge replicasets set-failover-priority INSTANCE_NAME... [options]
+Specify replica set weight.
 
-                Options:
+Options:
 
-                *   ``--replicaset STRING``: A replica set name.
+*   ``--replicaset STRING``: A replica set name.
 
-        *   -   ``bootstrap-vshard``
-            -   Bootstrap vshard.
+.. _tt_cartridge_replicasets_set-failover-priority:
 
-                Usage:
+replicasets set-failover-priority
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-                .. code-block:: bash
+.. code-block:: console
 
-                    tt cartridge replicasets bootstrap-vshard [options]
+    $ tt cartridge replicasets set-failover-priority INSTANCE_NAME ... [--replicaset STRING]
 
-        *   -   ``expel``
-            -   Expel one or more instances from the cluster.
+Configure replica set failover priority.
 
-                Usage:
+Options:
 
-                .. code-block:: bash
+*   ``--replicaset STRING``: A replica set name.
 
-                    tt cartridge replicasets expel INSTANCE_NAME... [options]
+.. _tt_cartridge_replicasets_bootstrap-vshard:
+
+replicasets bootstrap-vshard
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: console
+
+    $ tt cartridge replicasets bootstrap-vshard
+
+Bootstrap vshard.
+
+.. _tt_cartridge_replicasets_expel:
+
+replicasets expel
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: console
+
+    $ tt cartridge replicasets expel INSTANCE_NAME ...
+
+Expel one or more instances from the cluster.

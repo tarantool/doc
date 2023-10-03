@@ -3,25 +3,19 @@
 Building an application
 =======================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt build [PATH] [flags]
+    $ tt build [PATH] [--spec SPEC_FILE_PATH]
 
 
 ``tt build`` builds a Tarantool application locally.
 
-Flags
------
+Options
+-------
 
-..  container:: table
+..  option:: --spec SPEC_FILE_PATH
 
-    ..  list-table::
-        :widths: 30 70
-        :header-rows: 0
-
-        *   -   ``--spec``
-            -   Path to a ``.rockspec`` file to use for the current build
-
+    Path to a ``.rockspec`` file to use for the current build
 
 Details
 -------
@@ -68,18 +62,18 @@ Examples
 
 *   Build the application ``app1`` from its directory:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt build
+        $ tt build
 
 *   Build the application ``app1`` from the ``simple_app`` directory inside the current directory:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt build simple_app
+        $ tt build simple_app
 
 *   Build the application ``app1`` from its directory explicitly specifying the rockspec file to use:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt build --spec app1-scm-1.rockspec
+        $ tt build --spec app1-scm-1.rockspec

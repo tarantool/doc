@@ -3,9 +3,9 @@
 Creating a tt environment
 =========================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt init
+    $ tt init
 
 ``tt init`` creates a ``tt`` environment in the current directory. This includes:
 
@@ -47,6 +47,6 @@ Example
 
 Create a ``tt`` environment in the current directory:
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt init
+    $ tt init

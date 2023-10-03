@@ -3,42 +3,39 @@
 Creating an application from a template
 =======================================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt create TEMPLATE_NAME [flags]
+    $ tt create TEMPLATE_NAME [OPTION ...]
 
 
 ``tt create`` creates a new Tarantool application from a template.
 
-Flags
------
+Options
+-------
 
-..  container:: table
+.. option:: -d PATH, --dst PATH
 
-    ..  list-table::
-        :widths: 30 70
-        :header-rows: 0
+    Path to the directory where the application will be created.
 
-        *   -   ``-d``
+.. option:: -f, --force
 
-                ``--dst``
-            -   Path to the directory where the application will be created
-        *   -   ``-f``
+    Force rewrite the application directory if it already exists.
 
-                ``--force``
-            -   Force rewrite the application directory if it already exists
-        *   -   ``-n``
+.. option:: --name NAME
 
-                ``--name``
-            -   Application name
-        *   -   ``-s``
+    Application name.
 
-                ``--non-interactive``
-            -   Non-interactive mode
-        *   -   ``--var``
-            -   Variable definition. Usage: ``--var var_name=value``
-        *   -   ``--vars-file``
-            -   Path to the file with variable definitions
+.. option:: -s, --non-interactive
+
+    Non-interactive mode.
+
+.. option:: --var [VAR=VALUE ...]
+
+    Variable definition. Usage: ``--var var_name=value``.
+
+.. option:: --vars-file FILEPATH
+
+    Path to the file with variable definitions.
 
 Details
 -------
@@ -159,16 +156,16 @@ flag to disable the interactive input. In this case, the values are searched in 
 *   In the ``--var`` flag. Pass a string of the ``var=value`` format after the ``--var``
     flag. You can pass multiple variables, each after a separate ``--var`` flag:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt create template app --var user_name=admin
+        $ tt create template app --var user_name=admin
 
 *   In a file. Specify ``var=value`` pairs in a plain text file, each on a new line, and
     pass it as the value of the ``--vars-file`` flag:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt create template app --vars-file variables.txt
+        $ tt create template app --vars-file variables.txt
 
     ``variables.txt`` can look like this:
 
@@ -196,15 +193,15 @@ Examples
 
 *   Create the application ``app1`` from the ``simple_app`` template in the current directory:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt create simple_app --name app1
+        $ tt create simple_app --name app1
 
 
 *   Create the ``app1`` application in ``/opt/tt/apps/``, set the ``user_name``
     variable to ``admin``, force rewrite the application directory if it already exists.
     User interaction is disabled.
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt create cartridge --name app1 --var user_name=admin -f --non-interactive -dst /opt/tt/apps/
+        $ tt create cartridge --name app1 --var user_name=admin -f --non-interactive -dst /opt/tt/apps/

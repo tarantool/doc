@@ -3,37 +3,30 @@
 Connecting to a Tarantool instance
 ==================================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt connect URI|INSTANCE_NAME [flags]
+    $ tt connect {URI|INSTANCE} [OPTION ...]
 
 
 ``tt connect`` connects to a Tarantool instance by its URI or name specified
 during its startup (``tt start``).
 
-Flags
------
+Options
+-------
 
-..  container:: table
+..  option:: -u USERNAME, --username USERNAME
 
-    ..  list-table::
-        :widths: 30 70
-        :header-rows: 0
+    Username
 
-        *   -   ``-u``
+..  option:: -p PASSWORD, --password PASSWORD
 
-                ``--username``
-            -   Username
-        *   -   ``-p``
+    Password
 
-                ``--password``
-            -   Password
-        *   -   ``-f``
+..  option:: -f FILEPATH, --file FILEPATH
 
-                ``--file``
-            -   Connect and evaluate the script from a file.
+    Connect and evaluate the script from a file.
 
-                ``-`` – read the script from stdin.
+    ``-`` – read the script from stdin.
 
 Details
 -------
@@ -59,31 +52,31 @@ Examples
 
 *   Connect to the ``app`` instance in the same environment:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt connect app
+        $ tt connect app
 
 *   Connect to the ``master`` instance of the ``app`` application in the same environment:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt connect app:master
+        $ tt connect app:master
 
 *   Connect to the ``192.168.10.10`` host on port ``3301`` with authentication:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt connect 192.168.10.10:3301 -u myuser -p p4$$w0rD
+        $ tt connect 192.168.10.10:3301 -u myuser -p p4$$w0rD
 
 *   Connect to the ``app`` instance and evaluate the code from the ``test.lua`` file:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt connect app -f test.lua
+        $ tt connect app -f test.lua
 
 *   Connect to the ``app`` instance and evaluate the code from stdin:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        echo "function test() return 1 end" | tt connect app -f - # Create the test() function
-        echo "test()" | tt connect app -f -                       # Call this function
+        $ echo "function test() return 1 end" | tt connect app -f - # Create the test() function
+        $ echo "test()" | tt connect app -f -                       # Call this function

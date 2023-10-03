@@ -3,9 +3,9 @@
 Starting a Tarantool instance
 =============================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt start APPLICATION
+    $ tt start {INSTANCE | APPLICATION[:APP_INSTANCE]}
 
 ``tt start`` starts Tarantool applications.
 
@@ -32,9 +32,9 @@ Single instance
 *   Start an instance with the ``app.lua`` application from the ``instances_enabled``
     directory:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt start app
+        $ tt start app
 
 
 Multiple instances
@@ -43,12 +43,12 @@ Multiple instances
 *   Start all instances of the application stored in the ``app/`` directory inside
     ``instances_enabled`` in accordance with the :ref:`instances configuration <tt-instances>`:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt start app
+        $ tt start app
 
 *   Start only the ``master`` instance of the application stored in the ``app/`` directory inside ``instances_enabled``:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt start app:master
+        $ tt start app:master

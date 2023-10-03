@@ -3,9 +3,9 @@
 Displaying help for tt and its commands
 =======================================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt help [COMMAND]
+    $ tt help [COMMAND]
 
 ``tt help`` displays help:
 
@@ -17,12 +17,12 @@ Examples
 
 *   Display ``tt`` help
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt help
+        $ tt help
 
 *   Display help for the ``start`` command:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt help start
+        $ tt help start

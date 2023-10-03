@@ -3,9 +3,9 @@
 Listing enabled applications
 ============================
 
-..  code-block:: bash
+..  code-block:: console
 
-    tt instances
+    $ tt instances
 
 ``tt instances`` shows the list of enabled applications.
 
@@ -21,6 +21,6 @@ Example
 
 *   Show the list of enabled applications:
 
-    ..  code-block:: bash
+    ..  code-block:: console
 
-        tt instances
+        $ tt instances
