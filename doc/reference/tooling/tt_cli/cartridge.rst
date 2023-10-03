@@ -173,8 +173,12 @@ failover
 Subcommands
 ~~~~~~~~~~~
 
-set
-^^^
+failover set
+^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge failover set MODE [FAILOVER_SET_OPTION ...]
 
 Setup failover in the specified mode:
 
@@ -182,31 +186,42 @@ Setup failover in the specified mode:
 *   ``eventual``
 *   ``disabled``
 
-Usage:
-
-.. code-block:: console
-
-    $ tt cartridge failover set MODE [FAILOVER_SET_OPTION ...]
-
 Options:
 
 *   ``--state-provider STRING``: A failover's state provider. Can be ``stateboard`` or ``etcd2``. Used only in the ``stateful`` mode.
 *   ``--params STRING``: Failover parameters specified in a JSON-formatted string, for example, ``"{'fencing_timeout': 10', 'fencing_enabled': true}"``.
 *   ``--provider-params STRING``: Failover provider parameters specified in a JSON-formatted string, for example, ``"{'lock_delay': 14}"``.
 
-setup
-^^^^^
-
-Setup failover with parameters described in a file.
-The failover configuration file defaults to ``failover.yml``.
-
-Usage:
+failover setup
+^^^^^^^^^^^^^^
 
 .. code-block:: console
 
     $ tt cartridge failover setup --file STRING
 
+Setup failover with parameters described in a file.
+The failover configuration file defaults to ``failover.yml``.
+
 The ``failover.yml`` file might look as follows:
+
+
+failover status
+^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge failover status
+
+Get the current failover status.
+
+failover disable
+^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge failover disable
+
+Disable failover.
 
 .. code-block:: yaml
 
@@ -312,6 +327,47 @@ repair
 Subcommands
 ~~~~~~~~~~~
 
+repair list-topology
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge repair list-topology [REPAIR_OPTION ...]
+
+Get a summary of the current cluster topology.
+
+repair remove-instance
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge repair remove-instance UUID [REPAIR_OPTION ...]
+
+Remove the instance with the specified UUID from the cluster. If the instance isn't found, raise an error.
+
+repair set-advertise-uri
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge repair set-advertise-uri INSTANCE-UUID NEW-URI [REPAIR_OPTION ...]
+
+Change the instance's advertise URI. Raise an error if the instance isn't found or is expelled.
+
+repair set-leader
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID [REPAIR_OPTION ...]
+
+Set the instance as the leader of the replica set. Raise an error in the following cases:
+
+*   There is no replica set or instance with that UUID.
+*   The instance doesn't belong to the replica set.
+*   The instance has been disabled or expelled.
+
+
 ..  container:: table
 
     ..  list-table::
@@ -407,8 +463,154 @@ replicasets
 Subcommands
 ~~~~~~~~~~~
 
-..  container:: table
+replicasets setup
+^^^^^^^^^^^^^^^^^
 
+.. code-block:: console
+
+    $ tt cartridge replicasets setup [--file FILEPATH] [--bootstrap-vshard]
+
+Setup replica sets using a file.
+
+Options:
+
+*   ``--file``: A file with a replica set configuration. Defaults to ``replicasets.yml``.
+*   ``--bootstrap-vshard``: Bootstrap vshard upon setup.
+
+replicasets save
+^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets save [--file FILEPATH]
+
+Save the current replica set configuration to a file.
+
+Options:
+
+*   ``--file``: A file to save the configuration to. Defaults to ``replicasets.yml``.
+
+replicasets list
+^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets list [--replicaset STRING]
+
+
+List the current cluster topology.
+
+Options:
+
+*   ``--replicaset STRING``: A replica set name.
+
+
+replicasets join
+^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets join INSTANCE_NAME ... [--replicaset STRING]
+
+Join the instance to a cluster.
+If a replica set with the specified alias isn't found in cluster, it is created.
+Otherwise, instances are joined to an existing replica set.
+
+Options:
+
+*   ``--replicaset STRING``: A replica set name.
+
+replicasets list-roles
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets list-roles
+
+List the available roles.
+
+replicasets list-vshard-groups
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets list-vshard-groups
+
+List the available vshard groups.
+
+
+replicasets add-roles
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets add-roles ROLE_NAME ... [--replicaset STRING] [--vshard-group STRING]
+
+Add roles to the replica set.
+
+Options:
+
+*   ``--replicaset STRING``: A replica set name.
+*   ``--vshard-group STRING``: A vshard group for ``vshard-storage`` replica sets.
+
+replicasets remove-roles
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets remove-roles ROLE_NAME ... [--replicaset STRING]
+
+Remove roles from the replica set.
+
+Options:
+
+*   ``--replicaset STRING``: A replica set name.
+
+replicasets set-weight
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets set-weight WEIGHT [--replicaset STRING]
+
+Specify replica set weight.
+
+Options:
+
+*   ``--replicaset STRING``: A replica set name.
+
+replicasets set-failover-priority
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets set-failover-priority INSTANCE_NAME ... [--replicaset STRING]
+
+Configure replica set failover priority.
+
+Options:
+
+*   ``--replicaset STRING``: A replica set name.
+
+replicasets bootstrap-vshard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets bootstrap-vshard
+
+Bootstrap vshard.
+
+replicasets expel
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ tt cartridge replicasets expel INSTANCE_NAME ...
+
+Expel one or more instances from the cluster.
+
+..  container:: table
     ..  list-table::
         :widths: 25 75
         :header-rows: 0
