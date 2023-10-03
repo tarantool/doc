@@ -34,8 +34,14 @@ help for the given command.
             -   Manipulate Tarantool core dumps
         *   -   :doc:`create <create>`
             -   Create an application from a template
+        *   -   :doc:`crud <crud>`
+            -   Interact with the CRUD module (`Enterprise only <https://www.tarantool.io/compare/>`_)
+        *   -   :doc:`export <export>`
+            -   Export data to a file (`Enterprise only <https://www.tarantool.io/compare/>`_)
         *   -   :doc:`help <help>`
             -   Display help for ``tt`` or a specific command
+        *   -   :doc:`import <import>`
+            -   Import data from a file (`Enterprise only <https://www.tarantool.io/compare/>`_)
         *   -   :doc:`init <init>`
             -   Create a new ``tt`` environment in the current directory
         *   -   :doc:`install <install>`
@@ -81,7 +87,10 @@ help for the given command.
     connect <connect>
     coredump <coredump>
     create <create>
+    crud <crud>
+    export <export>
     help <help>
+    import <import>
     init <init>
     install <install>
     instances <instances>

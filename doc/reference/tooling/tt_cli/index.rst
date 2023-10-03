@@ -3,12 +3,18 @@
 tt CLI utility
 ==============
 
+Latest release on GitHub: :tt-release:`1.3.0`
+
 ``tt`` is a utility that provides a unified command-line interface for managing
 Tarantool-based applications. It covers a wide range of tasks -- from installing
 a specific Tarantool version to managing remote instances and developing applications.
 
 ``tt`` is developed in its own `GitHub repository <https://github.com/tarantool/tt>`_.
 Here you can find its source code, changelog, and releases information.
+
+There is also the Enterprise version of ``tt`` available in a
+Tarantool Enterprise's `release package <https://www.tarantool.io/en/enterprise_doc/setup/#package-contents>`_.
+The Enterprise version provides additional features, for example, :ref:`importing <tt-import>` and :ref:`exporting <tt-export>` data.
 
 This section provides instructions on ``tt`` installation and configuration,
 concept explanation, and the ``tt`` command reference.
