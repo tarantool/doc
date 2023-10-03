@@ -52,8 +52,8 @@ index_object:pairs()
         :param after: a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``pairs`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option to start the search from the first tuple.
 
 
-        :return: The `iterator <https://www.lua.org/pil/7.1.html>`_, which can be
-                 used in a for/end loop or with `totable()
+        :return: The `iterator <https://luafun.github.io/under_the_hood.html>`_, which can be
+                 used in a ``for/end`` loop or with `totable()
                  <https://luafun.github.io/reducing.html#fun.totable>`_.
 
         **Possible errors:**
