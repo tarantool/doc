@@ -35,7 +35,7 @@ Installing a module from deb/rpm
 Follow these steps:
 
 1. Install Tarantool as recommended on the
-   `download page <https://tarantool.io/download.html>`_.
+   `download page <https://www.tarantool.io/download>`_.
 
 2. Install the module you need. Look up the module's name on
    `Tarantool rocks page <https://tarantool.io/rocks.html>`_ and put the prefix

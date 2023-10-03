@@ -13,13 +13,12 @@ box.schema.user.grant()
     Grant :ref:`privileges <authentication-owners_privileges>` to a user or
     to another role.
 
-    :param string   user-name: the name of the user.
-    :param string  privileges: 'read' or 'write' or 'execute' or 'create' or
-                               'alter' or 'drop' or a combination.
-    :param string object-type: 'space' or 'function' or 'sequence' or 'role'.
-    :param string object-name: name of object to grant permissions for.
-    :param string   role-name: name of role to grant to user.
-    :param table      options: ``grantor``, ``if_not_exists``.
+    :param string   user-name: the name of a user to grant privileges to
+    :param string  privileges: one or more privileges to grant to the user (for example, `read` or `read,write`)
+    :param string object-type: a database object type to grant privileges to (for example, `space`, `role`, or `function`)
+    :param string object-name: the name of a database object to grant privileges to
+    :param string   role-name: the name of a role to grant to the user
+    :param table      options: ``grantor``, ``if_not_exists``
 
     If :samp:`'function','{object-name}'` is specified, then a _func tuple with
     that object-name must exist.

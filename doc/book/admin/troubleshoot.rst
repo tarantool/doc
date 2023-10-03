@@ -311,7 +311,7 @@ code analysis aimed at optimizing memory usage.
 .. _admin-troubleshoot-finalizer_yielding:
 
 --------------------------------------------------------------------------------
-Problem: Fiber switch is forbidden in ``__gc`` metamethod
+Problem: Fiber switch is forbidden in '__gc' metamethod
 --------------------------------------------------------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~
