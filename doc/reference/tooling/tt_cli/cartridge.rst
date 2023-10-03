@@ -173,6 +173,50 @@ failover
 Subcommands
 ~~~~~~~~~~~
 
+set
+^^^
+
+Setup failover in the specified mode:
+
+*   ``stateful``
+*   ``eventual``
+*   ``disabled``
+
+Usage:
+
+.. code-block:: console
+
+    $ tt cartridge failover set MODE [FAILOVER_SET_OPTION ...]
+
+Options:
+
+*   ``--state-provider STRING``: A failover's state provider. Can be ``stateboard`` or ``etcd2``. Used only in the ``stateful`` mode.
+*   ``--params STRING``: Failover parameters specified in a JSON-formatted string, for example, ``"{'fencing_timeout': 10', 'fencing_enabled': true}"``.
+*   ``--provider-params STRING``: Failover provider parameters specified in a JSON-formatted string, for example, ``"{'lock_delay': 14}"``.
+
+setup
+^^^^^
+
+Setup failover with parameters described in a file.
+The failover configuration file defaults to ``failover.yml``.
+
+Usage:
+
+.. code-block:: console
+
+    $ tt cartridge failover setup --file STRING
+
+The ``failover.yml`` file might look as follows:
+
+.. code-block:: yaml
+
+    mode: stateful
+    state_provider: stateboard
+    stateboard_params:
+        uri: localhost:4401
+        password: passwd
+    failover_timeout: 15
+
 ..  container:: table
 
     ..  list-table::
