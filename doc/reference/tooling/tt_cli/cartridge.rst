@@ -476,7 +476,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets set-weight WEIGHT [--replicaset STRING]
+                    $ tt cartridge replicasets set-weight WEIGHT [--replicaset STRING]
 
                 Options:
 
@@ -489,7 +489,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets set-failover-priority INSTANCE_NAME ... [--replicaset STRING]
+                    $ tt cartridge replicasets set-failover-priority INSTANCE_NAME ... [--replicaset STRING]
 
                 Options:
 
@@ -502,7 +502,7 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets bootstrap-vshard
+                    $ tt cartridge replicasets bootstrap-vshard
 
         *   -   ``expel``
             -   Expel one or more instances from the cluster.
@@ -511,4 +511,4 @@ Subcommands
 
                 .. code-block:: console
 
-                    tt cartridge replicasets expel INSTANCE_NAME ...
+                    $ tt cartridge replicasets expel INSTANCE_NAME ...
