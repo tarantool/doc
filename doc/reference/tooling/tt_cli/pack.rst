@@ -17,7 +17,7 @@ The command below creates a DEB package for an application:
 
     .. code-block:: console
 
-        tt pack deb
+        $ tt pack deb
 
 This command generates a ``.deb`` file whose name depends on the environment directory name and the operating system architecture, for example, ``test-env_0.1.0.0-1_x86_64.deb``.
 You can also pass various :ref:`options <tt-pack-options>` to the ``tt pack`` command to adjust generation properties, for example, customize a bundle name, choose which artifacts should be included, specify the required application dependencies.
