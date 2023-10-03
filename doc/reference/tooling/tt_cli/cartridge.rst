@@ -415,7 +415,6 @@ replicasets list
 
     $ tt cartridge replicasets list [--replicaset STRING]
 
-
 List the current cluster topology.
 
 Options:
@@ -432,7 +431,7 @@ replicasets join
     $ tt cartridge replicasets join INSTANCE_NAME ... [--replicaset STRING]
 
 Join the instance to a cluster.
-If a replica set with the specified alias isn't found in cluster, it is created.
+If a replica set with the specified alias isn't found in the cluster, it is created.
 Otherwise, instances are joined to an existing replica set.
 
 Options:
