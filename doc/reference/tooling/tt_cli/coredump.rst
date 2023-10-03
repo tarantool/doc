@@ -22,6 +22,10 @@ Commands
 pack
 ~~~~
 
+..  code-block:: console
+
+    $ tt coredump pack COREDUMP_FILE
+
 Pack a Tarantool core dump and supporting data into a ``tar.gz`` archive.
 It includes:
 
@@ -35,12 +39,20 @@ Option: a path to a core dump file.
 unpack
 ~~~~~~
 
+..  code-block:: console
+
+    $ tt coredump unpack ARCHIVE
+
 Unpack a Tarantool core dump created with ``tt coredump pack`` into a new directory.
 
 Option: a path to a ``tar.gz`` archive packed by ``tt coredump pack``.
 
 inspect
 ~~~~~~~
+
+..  code-block:: console
+
+    $ tt coredump inspect DIRECTORY
 
 Inspect a Tarantool core dump directory with the `GNU debugger <https://www.sourceware.org/gdb/>`__ (``gdb``)
 The directory being inspected must have the same structure as the core dump archive

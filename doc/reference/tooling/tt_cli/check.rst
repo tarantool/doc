@@ -5,7 +5,7 @@ Checking an application file
 
 ..  code-block:: console
 
-    $ tt check {INSTANCE|APPLICATION[:APP_INSTANCE]}
+    $ tt check {INSTANCE | APPLICATION[:APP_INSTANCE]}
 
 ``tt check`` checks the specified Tarantool application or instance for syntax errors.
 

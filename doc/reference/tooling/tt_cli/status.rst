@@ -5,7 +5,7 @@ Checking instance status
 
 ..  code-block:: console
 
-    $ tt status {INSTANCE|APPLICATION[:APP_INSTANCE]}
+    $ tt status {INSTANCE | APPLICATION[:APP_INSTANCE]}
 
 ``tt status`` prints the current status of the specified Tarantool instance or
 all instances of an application.

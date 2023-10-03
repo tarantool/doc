@@ -3,7 +3,7 @@
 Installing Tarantool software
 =============================
 
-..  code-block:: bash
+..  code-block:: console
 
     $ tt install PROGRAM_NAME [VERSION] [OPTION ...]
 

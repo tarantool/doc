@@ -3,7 +3,7 @@
 Listing available Tarantool versions
 ====================================
 
-..  code-block:: bash
+..  code-block:: console
 
     $ tt search PROGRAM_NAME [OPTION ...]
 

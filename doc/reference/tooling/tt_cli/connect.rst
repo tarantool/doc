@@ -5,7 +5,7 @@ Connecting to a Tarantool instance
 
 ..  code-block:: console
 
-    $ tt connect URI|INSTANCE [OPTION ...]
+    $ tt connect {URI|INSTANCE} [OPTION ...]
 
 
 ``tt connect`` connects to a Tarantool instance by its URI or name specified
