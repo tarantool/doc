@@ -167,14 +167,17 @@ failover
     $ tt cartridge failover COMMAND [COMMAND_OPTION ...]
 
 ``tt cartridge failover`` manages an application failover.
+The following commands are available:
 
-.. _tt_cartridge_failover_commands:
+*   ``set``
+*   ``setup``
+*   ``status``
+*   ``disable``
 
-Subcommands
-~~~~~~~~~~~
+.. _tt_cartridge_failover_set:
 
 failover set
-^^^^^^^^^^^^
+~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -192,8 +195,10 @@ Options:
 *   ``--params STRING``: Failover parameters specified in a JSON-formatted string, for example, ``"{'fencing_timeout': 10', 'fencing_enabled': true}"``.
 *   ``--provider-params STRING``: Failover provider parameters specified in a JSON-formatted string, for example, ``"{'lock_delay': 14}"``.
 
+.. _tt_cartridge_failover_setup:
+
 failover setup
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -214,8 +219,10 @@ The ``failover.yml`` file might look as follows:
         password: passwd
     failover_timeout: 15
 
+.. _tt_cartridge_failover_status:
+
 failover status
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -223,8 +230,10 @@ failover status
 
 Get the current failover status.
 
+.. _tt_cartridge_failover_disable:
+
 failover disable
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -256,14 +265,17 @@ repair
     $ tt cartridge repair COMMAND [REPAIR_OPTION ...]
 
 ``tt cartridge repair`` repairs a running application.
+The following commands are available:
 
-.. _tt_cartridge_repair_commands:
+*   ``list-topology``
+*   ``remove-instance``
+*   ``set-advertise-uri``
+*   ``set-leader``
 
-Subcommands
-~~~~~~~~~~~
+.. _tt_cartridge_repair_list-topology:
 
 repair list-topology
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -271,8 +283,10 @@ repair list-topology
 
 Get a summary of the current cluster topology.
 
+.. _tt_cartridge_repair_remove-instance:
+
 repair remove-instance
-^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -280,8 +294,10 @@ repair remove-instance
 
 Remove the instance with the specified UUID from the cluster. If the instance isn't found, raise an error.
 
+.. _tt_cartridge_repair_set-advertise-uri:
+
 repair set-advertise-uri
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -289,8 +305,10 @@ repair set-advertise-uri
 
 Change the instance's advertise URI. Raise an error if the instance isn't found or is expelled.
 
+.. _tt_cartridge_set-leader:
+
 repair set-leader
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -331,8 +349,6 @@ The following options work with any ``repair`` command, except ``list-topology``
 
     Enable instance configuration to reload after the patch.
 
-
-
 .. _tt_cartridge_replicasets:
 
 replicasets
@@ -343,15 +359,25 @@ replicasets
     $ tt cartridge replicasets COMMAND [COMMAND_OPTION ...]
 
 ``tt cartridge replicasets`` manages an application's replica sets.
+The following commands are available:
 
+*   ``setup``
+*   ``save``
+*   ``list``
+*   ``join``
+*   ``list-roles``
+*   ``list-vshard-groups``
+*   ``add-roles``
+*   ``remove-roles``
+*   ``set-weight``
+*   ``set-failover-priority``
+*   ``bootstrap-vshard``
+*   ``expel``
 
-.. _tt_cartridge_replicasets_commands:
-
-Subcommands
-~~~~~~~~~~~
+.. _tt_cartridge_replicasets_setup:
 
 replicasets setup
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -364,8 +390,10 @@ Options:
 *   ``--file``: A file with a replica set configuration. Defaults to ``replicasets.yml``.
 *   ``--bootstrap-vshard``: Bootstrap vshard upon setup.
 
+.. _tt_cartridge_replicasets_save:
+
 replicasets save
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -377,8 +405,11 @@ Options:
 
 *   ``--file``: A file to save the configuration to. Defaults to ``replicasets.yml``.
 
+
+.. _tt_cartridge_replicasets_list:
+
 replicasets list
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -391,9 +422,10 @@ Options:
 
 *   ``--replicaset STRING``: A replica set name.
 
+.. _tt_cartridge_replicasets_join:
 
 replicasets join
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -407,8 +439,10 @@ Options:
 
 *   ``--replicaset STRING``: A replica set name.
 
+.. _tt_cartridge_replicasets_list-roles:
+
 replicasets list-roles
-^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -416,8 +450,10 @@ replicasets list-roles
 
 List the available roles.
 
+.. _tt_cartridge_replicasets_list-vshard-groups:
+
 replicasets list-vshard-groups
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -425,9 +461,10 @@ replicasets list-vshard-groups
 
 List the available vshard groups.
 
+.. _tt_cartridge_replicasets_add-roles:
 
 replicasets add-roles
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -440,8 +477,10 @@ Options:
 *   ``--replicaset STRING``: A replica set name.
 *   ``--vshard-group STRING``: A vshard group for ``vshard-storage`` replica sets.
 
+.. _tt_cartridge_replicasets_remove-roles:
+
 replicasets remove-roles
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -453,8 +492,10 @@ Options:
 
 *   ``--replicaset STRING``: A replica set name.
 
+.. _tt_cartridge_replicasets_set-weight:
+
 replicasets set-weight
-^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -466,8 +507,10 @@ Options:
 
 *   ``--replicaset STRING``: A replica set name.
 
+.. _tt_cartridge_replicasets_set-failover-priority:
+
 replicasets set-failover-priority
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -479,8 +522,10 @@ Options:
 
 *   ``--replicaset STRING``: A replica set name.
 
+.. _tt_cartridge_replicasets_bootstrap-vshard:
+
 replicasets bootstrap-vshard
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
@@ -488,8 +533,10 @@ replicasets bootstrap-vshard
 
 Bootstrap vshard.
 
+.. _tt_cartridge_replicasets_expel:
+
 replicasets expel
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 .. code-block:: console
 
