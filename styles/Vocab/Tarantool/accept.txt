@@ -34,3 +34,15 @@ dereference
 upsert
 tt
 SEQSCAN
+iproto
+autoincrement
+etcd
+canonicalization
+libcurl
+CMake
+fuzzer
+subcommand
+vshard
+boolean
+failover
+rebalancer

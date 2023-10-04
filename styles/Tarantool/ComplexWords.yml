@@ -26,8 +26,6 @@ swap:
   aggregate: total
   aircraft: plane
   alleviate: ease
-  allocate: assign|divide
-  alternatively: or
   alternatives: choices|options
   ameliorate: improve
   amend: change
@@ -36,8 +34,6 @@ swap:
   ascertain: discover|find out
   assistance: help
   attain: meet
-  attempt: try
-  authorize: allow
   belated: late
   bestow: give
   cease: stop|end
@@ -45,45 +41,33 @@ swap:
   commence: begin
   compensate: pay
   comprise: form|include
-  concept: idea
   concerning: about
   confer: give|award
   consequently: so
   consolidate: merge
   constitutes: forms
   convene: meet
-  demonstrate: show|prove
   depart: leave
   designate: choose
   desire: want|wish
-  determine: decide|find
   detrimental: bad|harmful
   disclose: share|tell
   discontinue: stop
   disseminate: send|give
-  eliminate: end
   elucidate: explain
   employ: use
-  enclosed: inside|included
   endeavor: try
   enumerate: count
   equitable: fair
-  equivalent: equal
   exclusively: only
   expedite: hurry
   facilitate: ease
   females: women
   frequently: often
-  identical: same
-  indication: sign
-  initiate: start|begin
   itemized: listed
   jeopardize: risk
   liaise: work with|partner with
-  maintain: keep|support
   methodology: method
-  modify: change
-  monitor: check|watch
   necessitate: cause
   numerous: many
   objective: aim|goal
@@ -92,7 +76,6 @@ swap:
   permit: let
   portion: part
   possess: own
-  previously: before
   procure: buy
   purchase: buy
   relocate: move
@@ -101,7 +84,6 @@ swap:
   subsequent: later|next
   substantial: large
   sufficient: enough
-  terminate: end
   transmit: send
   utilization: use
   utilize: use

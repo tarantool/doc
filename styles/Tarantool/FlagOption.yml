@@ -1,0 +1,9 @@
+extends: substitution
+message: "Use 'option' instead of 'flag' if you are referring to a command-line option (including boolean options)."
+link: "https://www.tarantool.io/doc/latest/contributing/docs/localization/glossaries/"
+level: suggestion
+ignorecase: true
+action:
+  name: replace
+swap:
+  flag: option
