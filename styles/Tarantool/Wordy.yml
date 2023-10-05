@@ -3,7 +3,6 @@ message: "%s"
 level: suggestion
 ignorecase: true
 swap:
-  note that: "Remove the phrase 'note that'."
   please: "Use 'please' only if we've inconvenienced the user."
   respectively: "Remove 'respectively' and list each option instead."
   and so on: "Remove 'and so on'. Try to use 'like' and provide examples instead."
