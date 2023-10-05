@@ -132,9 +132,7 @@ Below is a list of all ``net.box`` functions.
         *   -   :ref:`conn:eval() <net_box-eval>`                                
             -   Evaluate the expression in a string and execute it                
         *   -   :ref:`conn:call() <net_box-call>`                      
-            -   Call a stored procedure               
-        *   -   :ref:`conn:timeout() <conn-timeout>`                               
-            -   Set a timeout
+            -   Call a stored procedure
         *   -   :ref:`conn:watch() <conn-watch>`
             -   Subscribe to events broadcast by a remote host
         *   -   :ref:`conn:on_connect() <net_box-on_connect>`                            

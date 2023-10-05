@@ -37,7 +37,7 @@ box.session.push()
             * If the result is not an error, then the return is the boolean value ``true``.
             * When the return is ``true``, the message has gone to the network
               buffer as a :ref:`packet <box_protocol-iproto_protocol>`
-              with a different :ref:`header code <box_protocol-responses_out_of_band>`
+              with a different header code
               so the client can distinguish from an ordinary Okay response.
 
     The server's sole job is to call ``box.session.push()``, there is no

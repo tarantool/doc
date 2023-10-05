@@ -30,7 +30,7 @@ Upgrading a standalone instance
     using a package manager or the :ref:`tt utility <tt-cli>`.
     See the installation instructions at Tarantool `download page <http://tarantool.org/download.html>`_
     and in the :ref:`tt install reference <tt-install>`.
-   To check that the target Tarantool version is installed, run ``tarantool -v``.
+    To check that the target Tarantool version is installed, run ``tarantool -v``.
 
 #.  Start your application on the target version.
 

@@ -179,9 +179,12 @@ Configuration parameters
 
 Example:
 
-..  literalinclude:: ./_includes/confval_template.rst
+..  literalinclude:: /reference/configuration/cfg_basic.rst
     :language: rst
+    :lines: 219-231
 
 Result:
 
-..  include:: ./_includes/confval_template.rst
+..  include:: /reference/configuration/cfg_basic.rst
+    :start-line: 219
+    :end-line: 231

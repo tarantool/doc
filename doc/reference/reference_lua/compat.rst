@@ -37,18 +37,27 @@ Consider example below:
 
 *   In release 4.0, ``json_esc_slash`` is marked as obsolete, and the old behavior is no longer accessible. Developers are forced to use the new behavior.
 
-Basic compat usage
-------------------
+Basic usage
+-----------
 
 If you want to explicitly secure every behavior in ``compat``, you can do it manually, and then call ``compat.dump()`` to get a Lua command that sets up the ``compat`` with all the options selected.
 You should place this commands at the beginning of code in your ``init.lua`` file. In this way, you are guaranteed to get the same behavior on any other Tarantool version.
 See a :doc:`tutorial on using compat <./compat/compat_tutorial>` for more examples.
 
-Existing compat options
------------------------
+Options
+-------
+
+Below are the available ``compat`` options:
+
+* :doc:`json_escape_forward_slash <./compat/json_escape_forward_slash>`
+* :doc:`yaml_pretty_multiline <./compat/yaml_pretty_multiline>`
+* :doc:`fiber_channel_close_mode <./compat/fiber_channel_close_mode>`
+* :doc:`box_cfg_replication_sync_timeout <./compat/box_cfg_replication_sync_timeout>`
+* :doc:`sql_seq_scan_default <./compat/sql_seq_scan_default>`
+* :doc:`fiber_slice_default <./compat/fiber_slice_default>`
 
 ..  toctree::
-    :maxdepth: 1
+    :hidden:
 
     compat/json_escape_forward_slash
     compat/yaml_pretty_multiline
@@ -56,3 +65,4 @@ Existing compat options
     compat/box_cfg_replication_sync_timeout
     compat/sql_seq_scan_default
     compat/fiber_slice_default
+    compat/compat_tutorial

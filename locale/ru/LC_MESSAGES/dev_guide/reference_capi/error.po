@@ -3,11 +3,9 @@ msgid "Module `error`"
 msgstr "Модуль `error`"
 
 msgid "For a complete list of errors, refer to the Tarantool"
-" `error code header file <https://github.com/tarantool/tarantool/blob/2.10/src/box/errcode.h>`__"
-" (provided for version 2.10)."
+" `error code header file <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__"
 msgstr "Полный список ошибок Tarantool находится в "
-"`файле заголовка errcode.h <https://github.com/tarantool/tarantool/blob/2.10/src/box/errcode.h>`__"
-" (актуален для версии 2.10)."
+"`файле заголовка errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__"
 
 msgid "Error -- contains information about error."
 msgstr "Ошибка -- содержит информацию об ошибке."
