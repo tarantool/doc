@@ -40,6 +40,7 @@ extensions = [
 
 extlinks = {
     'tarantool-issue': ('https://github.com/tarantool/tarantool/issues/%s', 'gh-'),
+    'tarantool-ee-issue': ('https://github.com/tarantool/tarantool-ee/issues/%s', 'gh-'),
     'tarantool-release': ('https://github.com/tarantool/tarantool/releases/%s', 'v. '),
     'tt-release': ('https://github.com/tarantool/tt/releases/v%s', 'v. '),
     'doc-issue': ('https://github.com/tarantool/doc/issues/%s', 'doc-'),

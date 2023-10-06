@@ -62,7 +62,7 @@ administration, deployment, and security management, along with premium support 
 This edition includes all the Community Edition features
 and is more predictable in terms of solution cost and maintenance.
 The Enterprise Edition is shipped as an SDK and includes a number of closed-source modules.
-See the `documentation for Tarantool EE <https://www.tarantool.io/en/enterprise_doc/>`__.
+See the :ref:`Tarantool Enterprise <tarantool_enterprise>` documentation.
 
 ..  _overview-use_cases:
 

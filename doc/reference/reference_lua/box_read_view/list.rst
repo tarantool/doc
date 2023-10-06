@@ -9,7 +9,7 @@ box.read_view.list()
     Return an array of all active database read views.
     This array might include the following read view types:
 
-    *   `read views <https://www.tarantool.io/en/enterprise_doc/read_views/>`_ created by application code (available in Tarantool Enterprise only)
+    *   :ref:`read views <read_views>` created by application code (available in Tarantool Enterprise only)
 
     *   system read views (used, for example, to make a :ref:`checkpoint <book_cfg_checkpoint_daemon>`
         or join a new :ref:`replica <replication-architecture>`)
@@ -21,7 +21,7 @@ box.read_view.list()
     .. NOTE::
 
         ``read_view.list()`` also contains read views created using the
-        `C API <https://www.tarantool.io/en/enterprise_doc/read_views/c_api/>`_ (``box_raw_read_view_new()``).
+        :ref:`C API <read_views_c_api>` (:ref:`box_raw_read_view_new() <box_raw_read_view_new>`).
         Note that you cannot access database spaces included in such views from Lua.
 
 

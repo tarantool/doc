@@ -16,3 +16,18 @@
 [submodule "modules/tntcxx"]
 	path = modules/tntcxx
 	url = https://github.com/tarantool/tntcxx.git
+[submodule "modules/task"]
+	path = modules/task
+	url = https://github.com/tarantool/task.git
+[submodule "modules/odbc"]
+	path = modules/odbc
+	url = https://github.com/tarantool/odbc.git
+[submodule "modules/ldap"]
+	path = modules/ldap
+	url = https://github.com/tarantool/ldap.git
+[submodule "modules/oracle"]
+	path = modules/oracle
+	url = https://github.com/tarantool/oracle.git
+[submodule "modules/space-explorer"]
+	path = modules/space-explorer
+	url = https://github.com/tarantool/space-explorer.git

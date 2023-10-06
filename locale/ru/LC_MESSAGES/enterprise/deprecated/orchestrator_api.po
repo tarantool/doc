@@ -1,0 +1,279 @@
+
+msgid "Orchestrator API reference"
+msgstr "Справочник по Orchestrator API"
+
+msgid "Configuring the zones"
+msgstr "Configuring the zones"
+
+msgid ":ref:`POST /api/v1/zone <orchestrator_api-post_zone>`"
+msgstr ":ref:`POST /api/v1/zone <orchestrator_api-post_zone>`"
+
+msgid ":ref:`GET /api/v1/zone/ <orchestrator_api-get_zone>`"
+msgstr ":ref:`GET /api/v1/zone/ <orchestrator_api-get_zone>`"
+
+msgid ":ref:`PUT /api/v1/zone/ <orchestrator_api-put_zone>`"
+msgstr ":ref:`PUT /api/v1/zone/ <orchestrator_api-put_zone>`"
+
+msgid ":ref:`DELETE /api/v1/zone/ <orchestrator_api-delete_zone>`"
+msgstr ":ref:`DELETE /api/v1/zone/ <orchestrator_api-delete_zone>`"
+
+msgid "Create a new zone."
+msgstr "Создание новой зоны."
+
+msgid "**Request**"
+msgstr "**Запрос**"
+
+msgid "**Response**"
+msgstr "**Ответ**"
+
+msgid "**Potential errors**"
+msgstr "**Возможные ошибки**"
+
+msgid "``zone_exists`` - the specified zone already exists"
+msgstr "``zone_exists`` -- указанная зона уже существует"
+
+msgid "Return information on the specified zone or on all the zones."
+msgstr "Возврат информации об указанной зоне или обо всех зонах."
+
+msgid "``zone_not_found`` - the specified zone is not found"
+msgstr "``zone_not_found`` -- указанная зона не обнаружена"
+
+msgid "Update information on the zone."
+msgstr "Обновление информации о зоне."
+
+msgid "**Body**"
+msgstr "**Тело**"
+
+msgid "Delete a zone if it doesn’t store any nodes."
+msgstr "Удаление зоны, если в ней нет узлов."
+
+msgid "``zone_in_use`` - the specified zone stores at least one node"
+msgstr "``zone_in_use`` -- в указанной зоне есть хотя бы один узел"
+
+msgid "Configuring the zone weights"
+msgstr "Настройка веса зоны"
+
+msgid ":ref:`GET /api/v1/zones/weights <orchestrator_api-get_weights>`"
+msgstr ":ref:`GET /api/v1/zones/weights <orchestrator_api-get_weights>`"
+
+msgid ":ref:`POST /api/v1/zones/weights <orchestrator_api-post_weights>`"
+msgstr ":ref:`POST /api/v1/zones/weights <orchestrator_api-post_weights>`"
+
+msgid "Set the zone weights configuration."
+msgstr "Конфигурация веса зоны."
+
+msgid "``zones_weights_error`` - configuration error"
+msgstr "``zones_weights_error`` -- ошибка конфигурации"
+
+msgid "Return the zone weights configuration."
+msgstr "Возврат конфигурации веса зоны."
+
+msgid "Configuring registry"
+msgstr "Настройка реестра"
+
+msgid ":ref:`GET /api/v1/registry/nodes/new <orchestrator_api-get_new>`"
+msgstr ":ref:`GET /api/v1/registry/nodes/new <orchestrator_api-get_new>`"
+
+msgid ""
+":ref:`POST /api/v1/registry/node <orchestrator_api-post_registry_node>`"
+msgstr ""
+":ref:`POST /api/v1/registry/node <orchestrator_api-post_registry_node>`"
+
+msgid ":ref:`PUT /api/v1/registry/node/ <orchestrator_api-put_node>`"
+msgstr ":ref:`PUT /api/v1/registry/node/ <orchestrator_api-put_node>`"
+
+msgid ":ref:`GET /api/v1/registry/node/ <orchestrator_api-get_node>`"
+msgstr ":ref:`GET /api/v1/registry/node/ <orchestrator_api-get_node>`"
+
+msgid ":ref:`DELETE /api/v1/registry/node/ <orchestrator_api-delete_node>`"
+msgstr ":ref:`DELETE /api/v1/registry/node/ <orchestrator_api-delete_node>`"
+
+msgid "Return all the detected nodes."
+msgstr "Возврат всех обнаруженных узлов."
+
+msgid "Register the detected node."
+msgstr "Регистрация обнаруженного узла."
+
+msgid "``node_already_registered`` - the specified node is already registered"
+msgstr "``node_already_registered`` -- указанный узел уже зарегистрирован"
+
+msgid "``node_not_discovered`` - the specified node is not detected"
+msgstr "``node_not_discovered`` -- указанный узел не обнаружен"
+
+msgid "Update the registered node parameters."
+msgstr "Обновление параметров зарегистрированного узла."
+
+msgid "Pass only those parameters that need to be updated."
+msgstr "Передача только обновляемых параметров."
+
+msgid "``node_not_registered`` - the specified node is not registered"
+msgstr "``node_not_registered`` -- указанный узел не зарегистрирован"
+
+msgid ""
+"Return information on the nodes in a cluster. If ``node_uuid`` is passed, "
+"information on this node only is returned."
+msgstr ""
+"Возврат информации об узлах в кластере. Если передать ``node_uuid``, "
+"вернется информация только по данному узлу."
+
+msgid "Delete the node if it doesn’t belong to any replica set."
+msgstr "Удаление узла, если он не относится ни к одному набору реплик."
+
+msgid "``node_in_use`` - the specified node is in use by a replica set"
+msgstr "``node_in_use`` -- указанный узел используется в наборе реплик"
+
+msgid "Routers API"
+msgstr "API по роутерам"
+
+msgid ":ref:`GET /api/v1/routers <orchestrator_api-get_routers>`"
+msgstr ":ref:`GET /api/v1/routers <orchestrator_api-get_routers>`"
+
+msgid ":ref:`POST /api/v1/routers <orchestrator_api-post_routers>`"
+msgstr ":ref:`POST /api/v1/routers <orchestrator_api-post_routers>`"
+
+msgid ":ref:`DELETE /api/v1/routers/{uuid} <orchestrator_api-delete_routers>`"
+msgstr ""
+":ref:`DELETE /api/v1/routers/{uuid} <orchestrator_api-delete_routers>`"
+
+msgid "Return the list of all nodes that constitute the router."
+msgstr "Возврат списка всех узлов, которые представляют собой роутер."
+
+msgid "Assign the router role to the node."
+msgstr "Присвоение узлу роли роутера."
+
+msgid "Release the router role from the node."
+msgstr "Снятие роли роутера с узла."
+
+msgid "Configuring replica sets"
+msgstr "Настройка наборов реплик"
+
+msgid ":ref:`POST /api/v1/replicaset <orchestrator_api-post_replicaset>`"
+msgstr ":ref:`POST /api/v1/replicaset <orchestrator_api-post_replicaset>`"
+
+msgid ":ref:`PUT /api/v1/replicaset/ <orchestrator_api-put_replicaset>`"
+msgstr ":ref:`PUT /api/v1/replicaset/ <orchestrator_api-put_replicaset>`"
+
+msgid ":ref:`GET /api/v1/replicaset/ <orchestrator_api-get_replicaset>`"
+msgstr ":ref:`GET /api/v1/replicaset/ <orchestrator_api-get_replicaset>`"
+
+msgid ":ref:`DELETE /api/v1/replicaset/ <orchestrator_api-delete_replicaset>`"
+msgstr ""
+":ref:`DELETE /api/v1/replicaset/ <orchestrator_api-delete_replicaset>`"
+
+msgid ""
+":ref:`POST /api/v1/replicaset/{replicaset_uuid}/master <orchestrator_api-"
+"post_master>`"
+msgstr ""
+":ref:`POST /api/v1/replicaset/{replicaset_uuid}/master <orchestrator_api-"
+"post_master>`"
+
+msgid ""
+":ref:`POST /api/v1/replicaset/{replicaset_uuid}/node <orchestrator_api-"
+"post_replicaset_node>`"
+msgstr ""
+":ref:`POST /api/v1/replicaset/{replicaset_uuid}/node <orchestrator_api-"
+"post_replicaset_node>`"
+
+msgid "Create a replica set containing all the registered nodes."
+msgstr "Создание набора реплик со всеми зарегистрированными узлами."
+
+msgid "``replicaset_exists`` – the specified replica set already exists"
+msgstr "``replicaset_exists`` -- указанный набор реплик уже существует"
+
+msgid ""
+"``replicaset_empty`` – the specified replica set doesn’t contain any nodes"
+msgstr ""
+"``replicaset_empty`` -- указанный набор реплик не содержит ни одного узла"
+
+msgid "``node_not_registered`` – the specified node is not registered"
+msgstr "``node_not_registered`` -- указанный узел не зарегистрирован"
+
+msgid "``node_in_use`` – the specified node is in use by another replica set"
+msgstr "``node_in_use`` -- указанный узел используется в другом наборе реплик"
+
+msgid "Update the replica set parameters."
+msgstr "Обновление параметров набора реплик."
+
+msgid "``replicaset_not_found`` – the specified replica set is not found"
+msgstr "``replicaset_not_found`` -- указанный набор реплик не обнаружен"
+
+msgid ""
+"Return information on all the cluster components. If ``replicaset_uuid`` is "
+"passed, information on this replica set only is returned."
+msgstr ""
+"Возврат информации обо всех компонентах кластера. Если передать "
+"``replicaset_uuid``, вернется информация только по данному набору реплик."
+
+msgid "Delete a replica set."
+msgstr "Удаление набора реплик."
+
+msgid "``replicaset_not_found`` - the specified replica set is not found"
+msgstr "``replicaset_not_found`` -- указанный набор реплик не обнаружен"
+
+msgid "Switch the master in the replica set."
+msgstr "Смена мастера в наборе реплик."
+
+msgid ""
+"``node_not_in_replicaset`` – the specified node is not in the specified "
+"replica set"
+msgstr ""
+"``node_not_in_replicaset`` -- указанный узел находится не в указанном наборе"
+" реплик"
+
+msgid "Add a node to the replica set."
+msgstr "Добавление узла в набор реплик."
+
+msgid "Return statistics on the cluster."
+msgstr "Возврат статистики по кластеру."
+
+msgid "Setting up configuration versions"
+msgstr "Настройка версии конфигурации"
+
+msgid ":ref:`POST /api/v1/version <orchestrator_api-post_version>`"
+msgstr ":ref:`POST /api/v1/version <orchestrator_api-post_version>`"
+
+msgid ":ref:`GET /api/v1/version <orchestrator_api-get_version>`"
+msgstr ":ref:`GET /api/v1/version <orchestrator_api-get_version>`"
+
+msgid "Set the configuration version."
+msgstr "Настройка версии конфигурации."
+
+msgid "``cfg_error`` - configuration error"
+msgstr "``cfg_error`` -- ошибка конфигурации"
+
+msgid "Return the configuration version."
+msgstr "Возврат версии конфигурации."
+
+msgid "Configuring sharding"
+msgstr "Конфигурация шардинга"
+
+msgid ":ref:`POST /api/v1/sharding/cfg <orchestrator_api-post_cfg>`"
+msgstr ":ref:`POST /api/v1/sharding/cfg <orchestrator_api-post_cfg>`"
+
+msgid ":ref:`GET /api/v1/sharding/cfg <orchestrator_api-get_cfg>`"
+msgstr ":ref:`GET /api/v1/sharding/cfg <orchestrator_api-get_cfg>`"
+
+msgid "Add a new sharding configuration."
+msgstr "Добавление новой конфигурации шардинга."
+
+msgid "Return the current sharding configuration."
+msgstr "Возврат текущей конфигурации шардинга."
+
+msgid "Resetting cluster configuration"
+msgstr "Сброс конфигурации кластера"
+
+msgid ":ref:`POST /api/v1/clean/cfg <orchestrator_api-post_clean_cfg>`"
+msgstr ":ref:`POST /api/v1/clean/cfg <orchestrator_api-post_clean_cfg>`"
+
+msgid ":ref:`POST /api/v1/clean/all <orchestrator_api-post_clean_all>`"
+msgstr ":ref:`POST /api/v1/clean/all <orchestrator_api-post_clean_all>`"
+
+msgid "Reset the cluster configuration."
+msgstr "Сброс конфигурации кластера."
+
+msgid ""
+"Reset the cluster configuration and delete information on the cluster nodes "
+"from the ZooKeeper catalogues."
+msgstr ""
+"Сброс конфигурации кластера и удаление информации об узлах кластера из "
+"каталогов ZooKeeper."

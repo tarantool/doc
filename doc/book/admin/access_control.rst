@@ -90,7 +90,7 @@ There are two functions for managing passwords in Tarantool:
 
 *   :doc:`/reference/reference_lua/box_schema/user_password` returns a hash of a user's password.
 
-Tarantool Enterprise also allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on. Learn more from the `Access control <https://www.tarantool.io/en/enterprise_doc/security/#access-control>`__ section.
+Tarantool Enterprise also allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on. Learn more from the :ref:`Access control <enterprise-access-control>` section.
 
 
 

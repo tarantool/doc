@@ -82,7 +82,7 @@ A password can be provided using either the new ``ssl_password`` URI parameter o
         }
     }}
 
-To learn more, see `Traffic encryption <https://www.tarantool.io/en/enterprise_doc/security/#traffic-encryption>`_.
+To learn more, see :ref:`Traffic encryption <enterprise-iproto-encryption>`.
 
 
 .. _2-11-security_enforcement_options:
@@ -106,8 +106,8 @@ To specify the maximum period of time (in days) a user can use the same password
 
 Note that by default, new options are not specified.
 You can learn more about all the available options from the
-`Authentication restrictions <https://www.tarantool.io/en/enterprise_doc/security/#authentication-restrictions>`_ and
-`Password policy <https://www.tarantool.io/en/enterprise_doc/security/#password-policy>`_ sections.
+:ref:`Authentication restrictions <enterprise-auth-restrictions>` and
+:ref:`Password policy <enterprise-password-policy>` sections.
 
 
 .. _2-11-pap_sha_256:
@@ -123,14 +123,14 @@ With Tarantool Enterprise, you can enable PAP authentication with the SHA256 has
 For PAP, a password is salted with a user-unique salt before saving it in the database.
 
 Given that PAP transmits a password as plain text, Tarantool requires configuring
-`SSL/TLS <https://www.tarantool.io/en/enterprise_doc/security/#enterprise-iproto-encryption-config>`_.
+:ref:`SSL/TLS <enterprise-iproto-encryption-config>`.
 Then, you need to specify the ``box.cfg.auth_type`` option as follows:
 
 .. code-block:: lua
 
     box.cfg{ auth_type = 'pap-sha256' }
 
-Learn more from the `Authentication protocol <https://www.tarantool.io/en/enterprise_doc/security/#authentication-protocol>`_ section.
+Learn more from the :ref:`Authentication protocol <enterprise-authentication-protocol>` section.
 
 
 
@@ -169,7 +169,7 @@ Working with read views consists of three main steps:
 
             tarantool> read_view1:close()
 
-To learn more, see the `Read views <https://www.tarantool.io/en/enterprise_doc/read_views/>`_ topic.
+To learn more, see the :ref:`Read views <read_views>` topic.
 
 
 .. _2-11-data_compression_improvements:
@@ -177,7 +177,7 @@ To learn more, see the `Read views <https://www.tarantool.io/en/enterprise_doc/r
 Data compression improvements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tarantool Enterprise now includes the ``zlib`` algorithm for `tuple compression <https://www.tarantool.io/en/enterprise_doc/tuple_compression/>`_.
+Tarantool Enterprise now includes the ``zlib`` algorithm for :ref:`tuple compression <tuple_compression>`.
 This algorithm shows good performance in data decompression,
 which reduces CPU usage if the volume of read operations significantly exceeds the volume of write operations.
 
@@ -190,7 +190,7 @@ To use the new algorithm, set the ``compression`` option to ``zlib`` when format
         {name = 'data', type = 'string', compression = 'zlib'},
     }
 
-The new ``compress`` module provides an API for compressing and decompressing arbitrary data strings using the same algorithms available for tuple compression:
+The new :ref:`compress <compress-module>` module provides an API for compressing and decompressing arbitrary data strings using the same algorithms available for tuple compression:
 
 .. code-block:: lua
 
@@ -217,7 +217,7 @@ With 2.11, Tarantool Enterprise provides WAL extensions that add auxiliary infor
 For example, you can enable storing old and new tuples for each write-ahead log record.
 This is especially useful for the ``update`` operation because a write-ahead log record contains only a key value.
 
-See the `WAL extensions <https://www.tarantool.io/en/enterprise_doc/wal_extensions/>`_ topic to learn how to enable and configure WAL extensions.
+See the :ref:`WAL extensions <wal_extensions>` topic to learn how to enable and configure WAL extensions.
 
 
 
