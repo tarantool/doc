@@ -1,0 +1,267 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:5
+msgid "Class *cartridge.test-helpers.server*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:7
+msgid "Extended luatest.Server class to run a cartridge instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:21
+msgid "Server:build_env ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:23
+msgid "Generates environment to run process with. The result is merged into os.environ()."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:28
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:74
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:186
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:30
+msgid "map"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:37
+msgid "Server:start ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:39
+msgid "Start the server."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:48
+msgid "Server:stop ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:50
+msgid "Stop server process."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:59
+msgid "Server:graphql (request, http_options)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:61
+msgid "Perform GraphQL request."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:64
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:96
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:114
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:134
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:165
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:66
+msgid "*request:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:68
+msgid "*query:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) grapqhl query"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:69
+msgid "*variables:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) variables for graphql query"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:70
+msgid "*raise:* (optional **boolean**) raise if response contains an error(default: **true**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:72
+msgid "*http_options:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) passed to  ``http_request``  options. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:76
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) parsed response JSON."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:79
+msgid "**Raises:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:82
+msgid "HTTPRequest error"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:83
+msgid "GraphQL error"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:91
+msgid "Server:join_cluster (main_server[, options])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:93
+msgid "Advertise this server to the cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:98
+msgid "*main_server:*  Server to perform GraphQL request on."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:99
+msgid "*options:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:101
+msgid "*timeout:*  request timeout"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:109
+msgid "Server:setup_replicaset (config)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:111
+msgid "Update server's replicaset config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:116
+msgid "*config:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:118
+msgid "*uuid:*  replicaset uuid"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:119
+msgid "*roles:*  list of roles"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:120
+msgid "*master:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:121
+msgid "*weight:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:129
+msgid "Server:upload_config (config, table)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:131
+msgid "Upload application config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:136
+msgid "*config:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) * table will be encoded as yaml and posted to /admin/config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:137
+msgid "*table:*  opts - http request options"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:144
+msgid "Server:download_config ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:146
+msgid "Download application config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:153
+msgid "Methods"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:160
+msgid "cartridge.test-helpers.server:new (object)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:162
+msgid "Build server object."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:167
+msgid "*object:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:169
+msgid "*command:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Command to start server process."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:170
+msgid "*workdir:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Value to be passed in  ``TARANTOOL_WORKDIR`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:171
+msgid "*chdir:* (**bool**) Path to cwd before starting a process. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:172
+msgid "*env:* (**tab**) Table to pass as env variables to process. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:173
+msgid "*args:* (**tab**) Args to run command with. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:174
+msgid "*http_port:* (**int**) Value to be passed in  ``TARANTOOL_HTTP_PORT``  and used to perform HTTP requests. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:175
+msgid "*advertise_port:* (**int**) Value to generate  ``TARANTOOL_ADVERTISE_URI``  and used for net_box connection."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:176
+msgid "*net_box_port:* (**int**) Alias for  ``advertise_port`` . (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:177
+msgid "*net_box_credentials:* (**tab**) Override default net_box credentials. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:178
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Instance alias."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:179
+msgid "*cluster_cookie:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Value to be passed in  ``TARANTOOL_CLUSTER_COOKIE``  and used as default net_box password."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:180
+msgid "*instance_uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Server identifier. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:181
+msgid "*replicaset_uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Replicaset identifier. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:182
+msgid "*zone:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Vshard zone. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:183
+msgid "*swim_period:* (**number**) SWIM protocol period in seconds. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.server.rst:188
+msgid "input object"
+msgstr ""

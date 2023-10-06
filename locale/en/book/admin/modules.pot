@@ -1,0 +1,254 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/modules.rst:4
+msgid "Managing modules"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:6
+msgid "This section covers the installation and reloading of Tarantool modules. To learn about writing your own module and contributing it, check the :ref:`Contributing a module <app_server-contributing_module>` section."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:13
+msgid "Installing a module"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:15
+msgid "Modules in Lua and C that come from Tarantool developers and community contributors are available in the following locations:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:18
+msgid "Tarantool modules repository (see :ref:`below <app_server-installing_module_luarocks>`)"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:19
+msgid "Tarantool deb/rpm repositories (see :ref:`below <app_server-installing_module_debrpm>`)"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:24
+msgid "Installing a module from a repository"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:26
+msgid "See `README in tarantool/rocks repository <https://github.com/tarantool/rocks#managing-modules-with-tarantool-174>`_ for detailed instructions."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:33
+msgid "Installing a module from deb/rpm"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:35
+msgid "Follow these steps:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:37
+msgid "Install Tarantool as recommended on the `download page <https://www.tarantool.io/download>`_."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:40
+msgid "Install the module you need. Look up the module's name on `Tarantool rocks page <https://tarantool.io/rocks.html>`_ and put the prefix \"tarantool-\" before the module name to avoid ambiguity:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:44
+msgid "$ # for Ubuntu/Debian:\n"
+"$ sudo apt-get install tarantool-<module-name>\n"
+"\n"
+"$ # for RHEL/CentOS/Amazon:\n"
+"$ sudo yum install tarantool-<module-name>"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:52
+msgid "For example, to install the module `vshard <http://github.com/tarantool/vshard>`_ on Ubuntu, say:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:55
+msgid "$ sudo apt-get install tarantool-vshard"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:59
+msgid "Once these steps are complete, you can:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:61
+msgid "load any module with"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:63
+msgid "tarantool> name = require('module-name')"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:67
+msgid "for example:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:69
+msgid "tarantool> vshard = require('vshard')"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:73
+msgid "search locally for installed modules using ``package.path`` (Lua) or ``package.cpath`` (C):"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:76
+msgid "tarantool> package.path\n"
+"---\n"
+"- ./?.lua;./?/init.lua; /usr/local/share/tarantool/?.lua;/usr/local/share/\n"
+"tarantool/?/init.lua;/usr/share/tarantool/?.lua;/usr/share/tarantool/?/ini\n"
+"t.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;/\n"
+"usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;\n"
+"...\n"
+"\n"
+"tarantool> package.cpath\n"
+"---\n"
+"- ./?.so;/usr/local/lib/x86_64-linux-gnu/tarantool/?.so;/usr/lib/x86_64-li\n"
+"nux-gnu/tarantool/?.so;/usr/local/lib/tarantool/?.so;/usr/local/lib/x86_64\n"
+"-linux-gnu/lua/5.1/?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so;/usr/local/\n"
+"lib/lua/5.1/?.so;\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:96
+msgid "Question-marks stand for the module name that was specified earlier when saying ``require('module-name')``."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:102
+msgid "Reloading a module"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:104
+msgid "You can reload any Tarantool application or module with zero downtime."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:109
+msgid "Reloading a module in Lua"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:111
+msgid "Here's an example that illustrates the most typical case -- \"update and reload\"."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:115
+msgid "In this example, we use recommended :ref:`administration practices <admin>` based on :ref:`instance files <admin-instance_file>` and :ref:`tt <tt-cli>` utility."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:119
+msgid "Update the application file."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:121
+msgid "For example, a module in ``/usr/share/tarantool/app.lua``:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:123
+msgid "local function start()\n"
+"  -- initial version\n"
+"  box.once(\"myapp:v1.0\", function()\n"
+"    box.schema.space.create(\"somedata\")\n"
+"    box.space.somedata:create_index(\"primary\")\n"
+"    ...\n"
+"  end)\n"
+"\n"
+"  -- migration code from 1.0 to 1.1\n"
+"  box.once(\"myapp:v1.1\", function()\n"
+"    box.space.somedata.index.primary:alter(...)\n"
+"    ...\n"
+"  end)\n"
+"\n"
+"  -- migration code from 1.1 to 1.2\n"
+"  box.once(\"myapp:v1.2\", function()\n"
+"    box.space.somedata.index.primary:alter(...)\n"
+"    box.space.somedata:insert(...)\n"
+"    ...\n"
+"  end)\n"
+"end\n"
+"\n"
+"-- start some background fibers if you need\n"
+"\n"
+"local function stop()\n"
+"  -- stop all background fibers and clean up resources\n"
+"end\n"
+"\n"
+"local function api_for_call(xxx)\n"
+"  -- do some business\n"
+"end\n"
+"\n"
+"return {\n"
+"  start = start,\n"
+"  stop = stop,\n"
+"  api_for_call = api_for_call\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:163
+msgid "Update the :ref:`instance file <admin-instance_file>`."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:165
+msgid "For example, ``/etc/tarantool/instances.enabled/my_app.lua``:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:167
+msgid "#!/usr/bin/env tarantool\n"
+"--\n"
+"-- hot code reload example\n"
+"--\n"
+"\n"
+"box.cfg({listen = 3302})\n"
+"\n"
+"-- ATTENTION: unload it all properly!\n"
+"local app = package.loaded['app']\n"
+"if app ~= nil then\n"
+"  -- stop the old application version\n"
+"  app.stop()\n"
+"  -- unload the application\n"
+"  package.loaded['app'] = nil\n"
+"  -- unload all dependencies\n"
+"  package.loaded['somedep'] = nil\n"
+"end\n"
+"\n"
+"-- load the application\n"
+"log.info('require app')\n"
+"app = require('app')\n"
+"\n"
+"-- start the application\n"
+"app.start({some app options controlled by sysadmins})"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:194
+msgid "The important thing here is to properly unload the application and its dependencies."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:197
+msgid "Manually reload the application file."
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:199
+msgid "For example, using ``tt``:"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:201
+msgid "$ tt connect my_app -f /etc/tarantool/instances.enabled/my_app.lua"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:208
+msgid "Reloading a module in C"
+msgstr ""
+
+#: ../../doc/book/admin/modules.rst:210
+msgid "After you compiled a new version of a C module (``*.so`` shared library), call :doc:`box.schema.func.reload('module-name') </reference/reference_lua/box_schema/func_reload>` from your Lua script to reload the module."
+msgstr ""

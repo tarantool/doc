@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/README.rst:5
+msgid "Tarantool Cartridge"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:7
+msgid "A framework for distributed applications development."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:37
+msgid "Contents"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:41
+msgid "About Tarantool Cartridge"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:43
+msgid "Tarantool Cartridge allows you to easily develop Tarantool-based applications and run them on one or more Tarantool instances organized into a cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:46
+msgid "This is the recommended alternative to the `old-school practices <https://www.tarantool.io/en/doc/latest/book/app_server/>`_ of application development for Tarantool."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:50
+msgid "As a **software development kit (SDK)**, Tarantool Cartridge provides you with utilities and an application template to help:"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:53
+#: ../../doc/book/cartridge/README.rst:88
+msgid "easily set up a development environment for your applications;"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:54
+msgid "plug the necessary Lua modules."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:56
+msgid "The resulting package can be installed and started on one or multiple servers as one or multiple instantiated services |--| independent or organized into a **cluster**."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:60
+msgid "A Tarantool cluster is a collection of Tarantool instances acting in concert. While a single Tarantool instance can leverage the performance of a single server and is vulnerable to failure, the cluster spans multiple servers, utilizes their cumulative CPU power, and is fault-tolerant."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:65
+msgid "To fully utilize the capabilities of a Tarantool cluster, you need to develop applications keeping in mind they are to run in a cluster environment."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:68
+msgid "As a **cluster management tool**, Tarantool Cartridge provides your cluster-aware applications with the following key benefits:"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:71
+msgid "horizontal scalability and load balancing via built-in automatic sharding;"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:72
+msgid "asynchronous replication;"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:73
+msgid "automatic failover;"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:74
+msgid "centralized cluster control via GUI or API;"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:75
+msgid "automatic configuration synchronization;"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:76
+msgid "instance functionality segregation."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:78
+msgid "A Tarantool Cartridge cluster can segregate functionality between instances via built-in and custom (user-defined) **cluster roles**. You can toggle instances on and off on the fly during cluster operation. This allows you to put different types of workloads (e.g., compute- and transaction-intensive ones) on different physical servers with dedicated hardware."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:84
+msgid "Tarantool Cartridge has an external utility called `cartridge-cli <https://github.com/tarantool/cartridge-cli>`_ which provides you with utilities and an application template to help:"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:89
+msgid "plug the necessary Lua modules;"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:90
+msgid "pack the applications in an environment-independent way: together with module binaries and Tarantool executables."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:95
+msgid "Getting started"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:99
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:101
+msgid "To get a template application that uses Tarantool Cartridge and run it, you need to install several packages:"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:104
+msgid "``tarantool`` and ``tarantool-dev`` (see these `instructions <https://www.tarantool.io/en/download/>`__);"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:106
+msgid "``cartridge-cli`` (see these `instructions <https://github.com/tarantool/cartridge-cli#installation>`__)"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:108
+msgid "``git``, ``gcc``, ``cmake`` and ``make``."
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:112
+msgid "Create your first application"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:114
+msgid "Long story short, enter these commands into the console one-by-one:"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:116
+msgid "cartridge create --name myapp\n"
+"cd myapp\n"
+"cartridge build\n"
+"cartridge start -d\n"
+"cartridge replicasets setup --bootstrap-vshard\n"
+"cartridge failover set stateful --state-provider stateboard --provider-params '{\"uri\": \"localhost:4401\", \"password\": \"passwd\"}'"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:126
+msgid "That's all! Now you can visit http://localhost:8081 and see your application's Admin Web UI:"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:140
+msgid "Next steps"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:142
+msgid "See:"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:144
+msgid "A more detailed `getting started guide <https://www.tarantool.io/en/doc/latest/getting_started/getting_started_cartridge/>`_"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:146
+msgid "More `application examples <https://github.com/tarantool/examples>`_"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:148
+msgid "`Cartridge documentation <https://www.tarantool.io/en/doc/latest/book/cartridge/>`_"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:149
+msgid "`Cartridge API reference <https://www.tarantool.io/en/doc/latest/book/cartridge/cartridge_api/>`_"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:153
+msgid "Contributing"
+msgstr ""
+
+#: ../../doc/book/cartridge/README.rst:155
+msgid "The most essential contribution is your *feedback*, don't hesitate to `open an issue <https://github.com/tarantool/cartridge/issues/new>`_. If you'd like to propose some changes in code, see the contribution `guide <https://github.com/tarantool/cartridge/blob/master/CONTRIBUTING.rst>`_."
+msgstr ""

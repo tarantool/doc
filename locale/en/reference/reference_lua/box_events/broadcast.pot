@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:5
+msgid "box.broadcast()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:9
+msgid "Update the value of a particular key and notify all key watchers of the update."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:11
+msgid "key name of the event to subscribe to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:12
+msgid "any data that can be encoded in MsgPack"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:14
+msgid "none"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:16
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:18
+msgid "The value can't be encoded as MsgPack."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:19
+msgid "The key refers to a ``box.`` system event"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:21
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/broadcast.rst:23
+msgid "-- Broadcast value 42 for the 'foo' key.\n"
+"box.broadcast('foo', 42)"
+msgstr ""

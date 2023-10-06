@@ -1,0 +1,544 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:2
+msgid "Packaging an application into RPM or DEB"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:4
+msgid "``cartridge pack rpm|deb`` creates an RPM or DEB package."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:7
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:9
+msgid "Use the following flags to control the local packaging of an RPM or DEB distribution. For flags that are applicable for packaging any distribution type, check the :doc:`packaging overview </book/cartridge/cartridge_cli/commands/pack>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:19
+msgid "``--deps``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:20
+msgid "Defines the dependencies of the package."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:21
+msgid "``--deps-file``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:22
+msgid "Path to the file that contains package dependencies. Defaults to ``package-deps.txt`` in the application directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:24
+msgid "``--preinst``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:25
+msgid "Path to the pre-install script for RPM and DEB packages."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:26
+msgid "``--postinst``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:27
+msgid "Path to the post-install script for RPM and DEB packages."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:28
+msgid "``--unit-template``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:29
+msgid "Path to the template for the ``systemd`` unit file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:30
+msgid "``--instantiated-unit-template``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:31
+msgid "Path to the template for the ``systemd`` instantiated unit file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:32
+msgid "``--stateboard-unit-template``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:33
+msgid "Path to the template for the stateboard ``systemd`` unit file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:34
+msgid "``--unit-params-file``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:35
+msgid "Path to the file that contains unit parameters for ``systemd`` unit files. Defaults to ``systemd-unit-params.yml`` in the application root directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:40
+msgid "Package contents"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:42
+msgid "The resulting artifact name is ``<app-name>-<version>[.<suffix>]-1_<arch>.deb`` or ``<app-name>-<version>[.<suffix>]-1.<arch>.rpm``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:45
+msgid "The package name is ``<app-name>`` no matter what the artifact name is."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:47
+msgid "If you're using an open-source version of Tarantool, the package has a ``tarantool`` dependency (version >= ``<major>.<minor>`` and < ``<major+1>``, where ``<major>.<minor>`` is the version of Tarantool used for packaging the application)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:51
+msgid "The package contents are as follows:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:53
+msgid "Contents of the application directory. They will be placed at ``/usr/share/tarantool/<app-name>``. In case of Tarantool Enterprise, this directory also contains the ``tarantool`` and ``tarantoolctl`` binaries."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:58
+msgid "Unit files that allow running the application as a ``systemd`` service. They will be unpacked as ``/etc/systemd/system/<app-name>.service`` and ``/etc/systemd/system/<app-name>@.service``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:62
+msgid "Application stateboard unit file. When unpacked, it is placed at ``/etc/systemd/system/<app-name>-stateboard.service``. This file will be packed only if the application contains ``stateboard.init.lua`` in its root directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:67
+msgid "The file ``/usr/lib/tmpfiles.d/<app-name>.conf``, which allows the instance to restart after server reboot."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:70
+msgid "Upon package installation, the following directories are created:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:72
+msgid "``/etc/tarantool/conf.d/`` stores instance configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:73
+msgid "``/var/lib/tarantool/`` stores instance snapshots."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:74
+msgid "``/var/run/tarantool/`` stores PID files and console sockets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:77
+msgid "Dependencies"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:79
+msgid "The ``--deps`` and ``--deps-file`` flags require similar formats of dependency information. However, ``--deps`` does not allow you to specify major and minor versions:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:82
+msgid "# You can't do that:\n"
+"cartridge pack rpm --deps dependency_06>=4,<5 appname\n"
+"\n"
+"# Instead, do this:\n"
+"cartridge pack rpm --deps dependency_06>=4,dependency_06<5 appname\n"
+"\n"
+"# Or this:\n"
+"cartridge pack rpm --deps dependency_06>=4 --deps dependency_06<5 appname"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:93
+msgid "``--deps-file`` lets you specify dependencies in a file (``package-deps.txt`` by default). The file is located in the application root directory. If you created your application from template, ``package-deps.txt`` is already there."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:98
+msgid "Example dependencies file"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:100
+msgid "dependency_01 >= 2.5\n"
+"dependency_01 <\n"
+"dependency_02 >= 1, < 5\n"
+"dependency_03==2\n"
+"dependency_04<5,>=1.5.3"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:108
+msgid "Each line must describe a single dependency. For each dependency, you can specify the major and minor version, as well as the highest and lowest compatible versions."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:116
+msgid "Pre-install and post-install scripts"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:118
+msgid "You can add Bash scripts that will run before and after the installation of your RPM/DEB package. This might be useful, for example, if you want to set up symlinks. Place these files in your application root directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:123
+msgid "``preinst.sh`` is the default name of the pre-install script. ``postinst.sh`` is the default name of the post-install script."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:126
+msgid "To specify different names, use ``cartridge pack`` with the ``--preinst`` and ``--postinst`` flags correspondingly."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:129
+msgid "Provide absolute paths to executables in the pre- and post-install scripts, or use ``/bin/sh -c ''`` instead."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:133
+msgid "Example pre-/post-install script"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:135
+msgid "/bin/sh -c 'touch file-path'\n"
+"/bin/sh -c 'mkdir dir-path'\n"
+"# or\n"
+"/bin/mkdir dir-path"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:144
+msgid "Customizing systemd unit files"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:146
+msgid "Use the flags ``--unit-template``, ``--instantiated-unit-template``, and ``--stateboard-unit-template`` to customize standard unit files."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:149
+msgid "One reason to customize standard unit files is if you want to deploy your RPM/DEB package on a platform different from the one where you've built it. In this case, ``ExecStartPre`` may contain an incorrect path to ``mkdir``. As a hotfix, we suggest editing the unit files."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:155
+msgid "The unit files can contain `text templates <https://golang.org/pkg/text/template/>`__."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:158
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:287
+msgid "Example"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:159
+msgid "This is an instantiated unit file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:161
+msgid "[Unit]\n"
+"Description=Tarantool Cartridge app {{ .Name }}@%i\n"
+"After=network.target\n"
+"\n"
+"[Service]\n"
+"Type=simple\n"
+"ExecStartPre=/bin/sh -c 'mkdir -p {{ .InstanceWorkDir }}'\n"
+"ExecStart={{ .Tarantool }} {{ .AppEntrypointPath }}\n"
+"Restart=on-failure\n"
+"RestartSec=2\n"
+"User=tarantool\n"
+"Group=tarantool\n"
+"\n"
+"Environment=TARANTOOL_APP_NAME={{ .Name }}\n"
+"Environment=TARANTOOL_WORKDIR={{ .InstanceWorkDir }}\n"
+"Environment=TARANTOOL_CFG={{ .ConfPath }}\n"
+"Environment=TARANTOOL_PID_FILE={{ .InstancePidFile }}\n"
+"Environment=TARANTOOL_CONSOLE_SOCK={{ .InstanceConsoleSock }}\n"
+"Environment=TARANTOOL_INSTANCE_NAME=%i\n"
+"\n"
+"LimitCORE=infinity\n"
+"# Disable OOM killer\n"
+"OOMScoreAdjust=-1000\n"
+"# Increase fd limit for Vinyl\n"
+"LimitNOFILE=65535\n"
+"\n"
+"# Systemd waits until all xlogs are recovered\n"
+"TimeoutStartSec=86400s\n"
+"# Give a reasonable amount of time to close xlogs\n"
+"TimeoutStopSec=10s\n"
+"\n"
+"[Install]\n"
+"WantedBy=multi-user.target\n"
+"Alias={{ .Name }}.%i"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:199
+msgid "Supported variables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:207
+msgid "``Name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:208
+msgid "Application name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:209
+msgid "``StateboardName``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:210
+msgid "Application stateboard name (``<app-name>-stateboard``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:211
+msgid "``DefaultWorkDir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:212
+msgid "Default instance working directory (``/var/lib/tarantool/<app-name>.default``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:214
+msgid "``InstanceWorkDir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:215
+msgid "Application instance working directory (``/var/lib/tarantool/<app-name>.<instance-name>``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:217
+msgid "``StateboardWorkDir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:218
+msgid "Stateboard working directory (``/var/lib/tarantool/<app-name>-stateboard``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:220
+msgid "``DefaultPidFile``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:221
+msgid "Default instance PID file (``/var/run/tarantool/<app-name>.default.pid``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:222
+msgid "``InstancePidFile``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:223
+msgid "Application instance PID file (``/var/run/tarantool/<app-name>.<instance-name>.pid``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:225
+msgid "``StateboardPidFile``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:226
+msgid "Stateboard PID file (``/var/run/tarantool/<app-name>-stateboard.pid``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:227
+msgid "``DefaultConsoleSock``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:228
+msgid "Default instance console socket (``/var/run/tarantool/<app-name>.default.control``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:230
+msgid "``InstanceConsoleSock``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:231
+msgid "Application instance console socket (``/var/run/tarantool/<app-name>.<instance-name>.control``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:233
+msgid "``StateboardConsoleSock``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:234
+msgid "Stateboard console socket (``/var/run/tarantool/<app-name>-stateboard.control``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:235
+msgid "``ConfPath``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:236
+msgid "Path to the application instances config (``/etc/tarantool/conf.d``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:237
+msgid "``AppEntrypointPath``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:238
+msgid "Path to the application entrypoint (``/usr/share/tarantool/<app-name>/init.lua``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:240
+msgid "``StateboardEntrypointPath``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:241
+msgid "Path to the stateboard entrypoint (``/usr/share/tarantool/<app-name>/stateboard.init.lua``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:245
+msgid "Passing parameters to unit files"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:247
+msgid "You can pass certain parameters to your application's unit files using a special file. By default, it is ``systemd-unit-params.yml``, located in the project directory. To use a different file, specify its name with the ``--unit-params-file`` flag."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:252
+msgid "For example, the ``fd-limit`` option lets you limit the number of file descriptors determined by the ``LimitNOFILE`` parameter in the ``systemd`` unit file and instantiated unit file. Another example would be ``stateboard-fd-limit``, which lets you set the file descriptor limit in the stateboard ``systemd`` unit file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:258
+msgid "You can also pass parameters via environment variables with the systemd unit file. To do so, specify the instance and stateboard arguments in the unit parameters file. The parameter will convert to ``Environment=TARANTOOL_<PARAM>: <value>`` in the unit file. Note that these variables have higher priority than the variables in the instance configuration file (``--cfg``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:267
+msgid "Supported parameters"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:275
+msgid "``fd-limit``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:276
+msgid "``LimitNOFILE`` for an application instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:277
+msgid "``stateboard-fd-limit``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:278
+msgid "``LimitNOFILE`` for a stateboard instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:279
+msgid "``instance-env``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:280
+msgid ":doc:`cartridge.argparse </book/cartridge/cartridge_api/modules/cartridge.argparse>` environment variables (like ``net-msg-max``) for an application instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:282
+msgid "``stateboard-env``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:283
+msgid ":doc:`cartridge.argparse </book/cartridge/cartridge_api/modules/cartridge.argparse>` environment variables (like ``net-msg-max``) for a stateboard instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:289
+msgid "``systemd-unit-params.yml``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:291
+msgid "fd-limit: 1024\n"
+"stateboard-fd-limit: 2048\n"
+"instance-env:\n"
+"    app-name: 'my-app'\n"
+"    net_msg_max: 1024\n"
+"    pid_file: '/some/special/dir/my-app.%i.pid'\n"
+"    my-param: 'something'\n"
+"    # or\n"
+"    # TARANTOOL_MY_PARAM: 'something'\n"
+"stateboard-env:\n"
+"    app-name: 'my-app-stateboard'\n"
+"    pid_file: '/some/special/dir/my-app-stateboard.pid'"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:307
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:309
+msgid "If you are using open-source Tarantool, your application package has Tarantool as a dependency. In this case, before installing your RPM/DEB package, you have to enable the Tarantool repo to allow your package manager to install this dependency correctly:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:314
+msgid "curl -L https://tarantool.io/installer.sh | VER=${TARANTOOL_VERSION} bash"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:318
+msgid "After this, you can install the application package."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:321
+msgid "Starting application instances"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:323
+msgid "After you've installed the package, configure the instances you want to start."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:325
+msgid "For example, if your application name is ``myapp`` and you want to start two instances, you might put the following ``myapp.yml`` file in the ``/etc/tarantool/conf.d`` directory:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:329
+msgid "myapp:\n"
+"  cluster_cookie: secret-cookie\n"
+"\n"
+"myapp.instance-1:\n"
+"  http_port: 8081\n"
+"  advertise_uri: localhost:3301\n"
+"\n"
+"myapp.instance-2:\n"
+"  http_port: 8082\n"
+"  advertise_uri: localhost:3302"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:342
+msgid "Learn more about :ref:`configuring Cartridge application instances <cartridge-config-basic>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:345
+msgid "Now start the instances you've configured:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:347
+msgid "systemctl start myapp@instance-1\n"
+"systemctl start myapp@instance-2"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:352
+msgid "If you use stateful failover, start the application stateboard as well. Make sure that your application has ``stateboard.init.lua`` in its root directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:355
+msgid "Add the ``myapp-stateboard`` section to ``/etc/tarantool/conf.d/myapp.yml``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:357
+msgid "myapp-stateboard:\n"
+"  listen: localhost:3310\n"
+"  password: passwd"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:363
+msgid "Then start the stateboard service:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/rpm-deb.rst:365
+msgid "systemctl start myapp-stateboard"
+msgstr ""

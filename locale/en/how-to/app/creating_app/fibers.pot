@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/creating_app/fibers.rst:4
+msgid "Fibers, yields and cooperative multitasking"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/fibers.rst:6
+msgid "But wait! If we launch it as shown above -- ``self.respawn()`` -- the function will be executed only once, just like all the other methods. But we need to execute ``respawn()`` every 60 seconds. Creating a :ref:`fiber <app-fibers>` is the Tarantool way of making application logic work in the background at all times."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/fibers.rst:12
+msgid "A **fiber** is a set of instructions that are executed with :ref:`cooperative multitasking <app-cooperative_multitasking>`: the instructions contain :ref:`yield <app-yields>` signals, upon which control is passed to another fiber."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/fibers.rst:16
+msgid "Let's launch ``respawn()`` in a fiber to make it work in the background all the time. To do so, we'll need to amend ``respawn()``:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/fibers.rst:19
+msgid "respawn = function(self)\n"
+"    -- let's give our fiber a name;\n"
+"    -- this will produce neat output in fiber.info()\n"
+"    fiber.name('Respawn fiber')\n"
+"    while true do\n"
+"        for _, tuple in box.space.pokemons.index.status:pairs(\n"
+"                self.state.CAUGHT) do\n"
+"            box.space.pokemons:update(\n"
+"                tuple[self.ID],\n"
+"                {{'=', self.STATUS, self.state.ACTIVE}}\n"
+"            )\n"
+"        end\n"
+"        fiber.sleep(self.respawn_time)\n"
+"    end\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/fibers.rst:37
+msgid "and call it as a fiber in ``start()``:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/fibers.rst:39
+msgid "start = function(self)\n"
+"    -- create spaces and indexes\n"
+"        <...>\n"
+"    -- create models\n"
+"        <...>\n"
+"    -- compile models\n"
+"        <...>\n"
+"    -- start the game\n"
+"       self.pokemon_model = compiled_pokemon\n"
+"       self.player_model = compiled_player\n"
+"       fiber.create(self.respawn, self)\n"
+"       log.info('Started')\n"
+"    -- errors if schema creation or compilation fails\n"
+"       <...>\n"
+"end"
+msgstr ""

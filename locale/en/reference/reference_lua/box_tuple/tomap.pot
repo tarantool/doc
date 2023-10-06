@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:6
+msgid "tuple_object:tomap()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:12
+msgid "A `Lua table <https://www.lua.org/pil/2.5.html>`_ can have indexed values, also called key:value pairs. For example, here:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:16
+msgid "a = {}; a['field1'] = 10; a['field2'] = 20"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:20
+msgid "``a`` is a table with \"field1: 10\" and \"field2: 20\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:22
+msgid "The :doc:`/reference/reference_lua/box_tuple/totable` function only returns a table containing the values. But the ``tuple_object:tomap()`` function returns a table containing not only the values, but also the key:value pairs."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:27
+msgid "This only works if the tuple comes from a space that has been formatted with a :ref:`format clause <box_space-format>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:30
+msgid "the only possible option is ``names_only``.  If ``names_only`` is false or omitted (default), then all the fields will appear twice, first with numeric headings and second with name headings.  If ``names_only`` is true, then all the fields will appear only once, with name headings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:30
+msgid "the only possible option is ``names_only``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:32
+msgid "If ``names_only`` is false or omitted (default), then all the fields will appear twice, first with numeric headings and second with name headings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:37
+msgid "If ``names_only`` is true, then all the fields will appear only once, with name headings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:41
+msgid "field-number:value pair(s) and key:value pair(s) from the tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:42
+msgid "lua-table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:44
+msgid "In the following example, a tuple named ``t1`` is returned from a space that has been formatted, then tables named ``t1map1`` and ``t1map2`` are produced from ``t1``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:48
+msgid "format = {{'field1', 'unsigned'}, {'field2', 'unsigned'}}\n"
+"s = box.schema.space.create('test', {format = format})\n"
+"s:create_index('pk',{parts={1,'unsigned',2,'unsigned'}})\n"
+"t1 = s:insert{10, 20}\n"
+"t1map = t1:tomap()\n"
+"t1map_names_only = t1:tomap({names_only=true})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:57
+msgid "``t1map`` will contain \"1: 10\", \"2: 20\", \"field1: 10\", \"field2: 20\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/tomap.rst:59
+msgid "``t1map_names_only`` will contain \"field1: 10\", \"field2: 20\"."
+msgstr ""

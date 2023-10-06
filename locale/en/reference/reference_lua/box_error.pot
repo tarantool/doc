@@ -1,0 +1,466 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_error.rst:4
+msgid "Submodule box.error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:6
+msgid "The ``box.error`` submodule can be used to work with errors in your application. For example, you can get the information about the last error raised by Tarantool or raise custom errors manually."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:10
+msgid "The difference between raising an error using ``box.error`` and a Lua's built-in `error <https://www.lua.org/pil/8.3.html>`_ function is that when the error reaches the client, its error code is preserved. In contrast, a Lua error would always be presented to the client as :errcode:`ER_PROC_LUA`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:18
+msgid "To learn how to handle errors in your application, see the :ref:`Handling errors <error_handling>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:24
+msgid "Creating an error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:26
+msgid "You can create an error object using the :ref:`box.error.new() <box_error-new>` function. The created object can be passed to :ref:`box.error() <box_error-error>` to raise the error. You can also raise the error using :ref:`error_object:raise() <box_error-raise>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:30
+msgid "The example below shows how to create and raise the error with the specified code and reason."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:32
+msgid "local custom_error = box.error.new({ code = 500,\n"
+"                                     reason = 'Internal server error' })\n"
+"\n"
+"box.error(custom_error)\n"
+"--[[\n"
+"---\n"
+"- error: Internal server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:38
+msgid "``box.error.new()`` provides different overloads for creating an error object with different parameters. These overloads are similar to the ``box.error()`` overloads described in the :ref:`next section <box_error_raise_error>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:45
+msgid "Raising an error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:47
+msgid "To raise an error, call the :ref:`box.error() <box_error-error>` function. This function can accept the specified error parameters or an error object :ref:`created using box.error.new() <box_error_create_error>`. In both cases, you can use ``box.error()`` to raise the following error types:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:51
+msgid "A custom error with the specified reason, code, and type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:52
+msgid "A predefined Tarantool error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:58
+msgid "Custom error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:60
+msgid "The following ``box.error()`` overloads are available for raising a custom error:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:62
+msgid ":ref:`box.error({ reason = string[, code = number, type = string] }) <box_error-error-table>` accepts a Lua table containing the error reason, code, and type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:63
+msgid ":ref:`box.error(type, reason[, args]) <box_error-error-array>` accepts the error type, its reason, and optional arguments passed to a reason's string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:67
+msgid "The same overloads are available for :ref:`box.error.new() <box_error-new>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:73
+msgid "box.error({ reason = string[, ...] })"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:75
+msgid "In the example below, ``box.error()`` accepts a Lua table with the specified error code and reason:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:77
+msgid "box.error { code = 500,\n"
+"            reason = 'Custom server error' }\n"
+"--[[\n"
+"---\n"
+"- error: Custom server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:83
+msgid "The next example shows how to specify a custom error type:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:85
+msgid "box.error { code = 500,\n"
+"            reason = 'Internal server error',\n"
+"            type = 'CustomInternalError' }\n"
+"--[[\n"
+"---\n"
+"- error: Internal server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:91
+msgid "When a custom type is specified, it is returned in the :ref:`error_object.type <box_error-type>` attribute. When it is not specified, ``error_object.type`` returns one of the built-in errors, such as ``ClientError`` or ``OutOfMemory``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:98
+msgid "box.error(type, reason[, ...])"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:100
+msgid "This example shows how to raise an error with the type and reason specified in the ``box.error()`` arguments:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:102
+msgid "box.error('CustomConnectionError', 'cannot connect to the given port')\n"
+"--[[\n"
+"---\n"
+"- error: cannot connect to the given port\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:108
+msgid "You can also use a format string to compose an error reason:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:110
+msgid "box.error('CustomConnectionError', '%s cannot connect to the port %u', 'client', 8080)\n"
+"--[[\n"
+"---\n"
+"- error: client cannot connect to the port 8080\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:121
+msgid "Tarantool error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:123
+msgid "The :ref:`box.error(code[, ...]) <box_error-error-predefined>` overload raises a predefined :ref:`Tarantool error <error_codes>` specified by its identifier. The error code defines the error message format and the number of required arguments. In the example below, no arguments are passed for the ``box.error.READONLY`` error code:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:128
+msgid "box.error(box.error.READONLY)\n"
+"--[[\n"
+"---\n"
+"- error: Can't modify data on a read-only instance\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:134
+msgid "For the ``box.error.NO_SUCH_USER`` error code, you need to pass one argument:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:136
+msgid "box.error(box.error.NO_SUCH_USER, 'John')\n"
+"--[[\n"
+"---\n"
+"- error: User 'John' is not found\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:142
+msgid "``box.error.CREATE_SPACE`` requires two arguments:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:144
+msgid "box.error(box.error.CREATE_SPACE, 'my_space', 'the space already exists')\n"
+"--[[\n"
+"---\n"
+"- error: 'Failed to create space ''my_space'': the space already exists'\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:154
+msgid "Getting the last error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:156
+msgid "To get the last raised error, call :ref:`box.error.last() <box_error-last>`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:158
+msgid "box.error.last()\n"
+"--[[\n"
+"---\n"
+"- error: Internal server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:167
+msgid "Obtaining error details"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:169
+msgid "To get error details, call the :ref:`error_object.unpack() <box_error-unpack>`. Error details may include an error code, type, message, and trace."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:172
+msgid "box.error.last():unpack()\n"
+"--[[\n"
+"---\n"
+"- code: 500\n"
+"  base_type: CustomError\n"
+"  type: CustomInternalError\n"
+"  custom_type: CustomInternalError\n"
+"  message: Internal server error\n"
+"  trace:\n"
+"  - file: '[string \"custom_error = box.error.new({ code = 500,...\"]'\n"
+"    line: 1\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:181
+msgid "Setting the last error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:183
+msgid "You can set the last error explicitly by calling :ref:`box.error.set() <box_error-set>`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:185
+msgid "-- Create two errors --\n"
+"local error1 = box.error.new({ code = 500, reason = 'Custom error 1' })\n"
+"local error2 = box.error.new({ code = 505, reason = 'Custom error 2' })\n"
+"\n"
+"-- Raise the first error --\n"
+"box.error(error1)\n"
+"--[[\n"
+"---\n"
+"- error: Custom error 1\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Get the last error --\n"
+"box.error.last()\n"
+"--[[\n"
+"---\n"
+"- Custom error 1\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Set the second error as the last error --\n"
+"box.error.set(error2)\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Get the last error --\n"
+"box.error.last()\n"
+"--[[\n"
+"---\n"
+"- Custom error 2\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:194
+msgid "Error lists"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:196
+msgid ":ref:`error_object <box_error-error_object>` provides the API for organizing errors into lists. To set and get the previous error, use the :ref:`error_object:set_prev() <box_error-set_prev>` method and :ref:`error_object.prev <box_error-prev>` attribute."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:199
+msgid "local base_server_error = box.error.new({ code = 500,\n"
+"                                          reason = 'Base server error',\n"
+"                                          type = 'BaseServerError' })\n"
+"local storage_server_error = box.error.new({ code = 507,\n"
+"                                             reason = 'Not enough storage',\n"
+"                                             type = 'StorageServerError' })\n"
+"\n"
+"base_server_error:set_prev(storage_server_error)\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"box.error(base_server_error)\n"
+"--[[\n"
+"---\n"
+"- error: Base server error\n"
+"...\n"
+"--]]\n"
+"\n"
+"box.error.last().prev:unpack()\n"
+"--[[\n"
+"---\n"
+"- code: 507\n"
+"  base_type: CustomError\n"
+"  type: StorageServerError\n"
+"  custom_type: StorageServerError\n"
+"  message: Not enough storage\n"
+"  trace:\n"
+"  - file: '[string \"storage_server_error = box.error.new({ code =...\"]'\n"
+"    line: 1\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:205
+msgid "Cycles are not allowed for error lists:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:207
+msgid "storage_server_error:set_prev(base_server_error)\n"
+"--[[\n"
+"---\n"
+"- error: 'builtin/error.lua:120: Cycles are not allowed'\n"
+"...\n"
+"--]]"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:216
+msgid "Setting the previous error does not erase its own previous members:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:218
+msgid "-- e1 -> e2 -> e3 -> e4\n"
+"e1:set_prev(e2)\n"
+"e2:set_prev(e3)\n"
+"e3:set_prev(e4)\n"
+"e2:set_prev(e5)\n"
+"-- Now there are two lists: e1 -> e2 -> e5 and e3 -> e4"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:227
+msgid "IPROTO also supports stacked diagnostics. See details in :ref:`MessagePack extensions -- The ERROR type <msgpack_ext-error>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:233
+msgid "Clearing errors"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:235
+msgid "To clear the errors, call :ref:`box.error.clear() <box_error-clear>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:237
+msgid "box.error.clear()\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+"box.error.last()\n"
+"--[[\n"
+"---\n"
+"- null\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:248
+msgid "API Reference"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:250
+msgid "Below is a list of ``box.error`` functions and related objects."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:261
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:262
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:264
+msgid ":doc:`./box_error/error`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:265
+msgid "Raise the last error or the error defined by the specified parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:267
+msgid ":doc:`./box_error/last`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:268
+msgid "Get the last raised error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:270
+msgid ":doc:`./box_error/clear`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:271
+msgid "Clear the errors"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:273
+msgid ":doc:`./box_error/new`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:274
+msgid "Create the error but do not raise it"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:276
+msgid ":doc:`./box_error/set`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:277
+msgid "Set the specified error as the last system error explicitly"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:279
+msgid ":doc:`./box_error/error_object`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error.rst:280
+msgid "An object that defines an error"
+msgstr ""

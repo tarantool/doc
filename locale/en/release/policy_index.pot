@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/policy_index.rst:2
+msgid "Release policies"
+msgstr ""
+
+#: ../../doc/release/policy_index.rst:4
+msgid "Since version 2.10, there's a :doc:`new release policy for Tarantool <policy>`. In short, Tarantool version numbers consist of three parts:"
+msgstr ""
+
+#: ../../doc/release/policy_index.rst:7
+msgid "MAJOR.MINOR.PATCH"
+msgstr ""
+
+#: ../../doc/release/policy_index.rst:11
+msgid "Any version without extra prefixes is a release version. If you need a version for production use, pick the latest release. For evaluation and development, you can use beta versions. They are marked with ``-betaN`` suffixes."
+msgstr ""
+
+#: ../../doc/release/policy_index.rst:16
+msgid "Before 2.10.0, version numbers were subject to the :doc:`legacy versioning policy <legacy-policy>`:"
+msgstr ""
+
+#: ../../doc/release/policy_index.rst:19
+msgid "MAJOR_VERSION.RELEASE_SERIES.RELEASE"
+msgstr ""

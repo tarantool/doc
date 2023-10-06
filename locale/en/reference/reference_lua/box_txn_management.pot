@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:5
+msgid "Functions for transaction management"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:7
+msgid "For general information and examples, see section :ref:`Transactions <atomic-atomic_execution>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:10
+msgid "Observe the following rules when working with transactions:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:12
+msgid "Rule #1"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:15
+msgid "The requests in a transaction must be sent to a server as a single block. It is not enough to enclose them between begin and commit or rollback. To ensure they are sent as a single block: put them in a function, or put them all on one line, or use a delimiter so that multi-line requests are handled together."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:21
+msgid "Rule #2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:24
+msgid "All database operations in a transaction should use the same storage engine. It is not safe to access tuple sets that are defined with ``{engine='vinyl'}`` and also access tuple sets that are defined with ``{engine='memtx'}``, in the same transaction."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:29
+msgid "Rule #3"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:32
+msgid "Requests which cause changes to the data definition -- create, alter, drop, truncate -- are only allowed with Tarantool version 2.1 or later. Data-definition requests which change an index or change a format, such as :doc:`space_object:create_index() </reference/reference_lua/box_schema_sequence/create_index>` and :ref:`space_object:format() <box_space-format>`, are not allowed inside transactions except as the first request after ``box.begin()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:43
+msgid "Below is a list of all functions for transaction management."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:54
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:55
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:57
+msgid ":doc:`./box_txn_management/begin`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:58
+msgid "Begin the transaction"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:60
+msgid ":doc:`./box_txn_management/commit`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:61
+msgid "End the transaction and save all changes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:63
+msgid ":doc:`./box_txn_management/rollback`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:64
+msgid "End the transaction and discard all changes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:66
+msgid ":doc:`./box_txn_management/savepoint`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:67
+msgid "Get a savepoint descriptor"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:69
+msgid ":doc:`./box_txn_management/rollback_to_savepoint`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:70
+msgid "Do not end the transaction and discard all changes made after a savepoint"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:73
+msgid ":doc:`./box_txn_management/atomic`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:74
+msgid "Execute a function, treating it as a transaction"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:76
+msgid ":doc:`./box_txn_management/on_commit`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:77
+msgid "Define a trigger that will be activated by ``box.commit``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:79
+msgid ":doc:`./box_txn_management/on_rollback`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:80
+msgid "Define a trigger that will be activated by ``box.rollback``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:82
+msgid ":doc:`./box_txn_management/is_in_txn`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management.rst:83
+msgid "State whether a transaction is in progress"
+msgstr ""

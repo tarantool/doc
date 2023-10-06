@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:4
+msgid "System space views"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:6
+msgid "A system space view, also called a 'sysview', is a restricted read-only copy of a system space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:8
+msgid "The system space views and the system spaces that they are associated with are: |br| ``_vcollation``, a view of :ref:`_collation <box_space-collation>`, |br| ``_vfunc``, a view of :ref:`_func <box_space-func>`, |br| ``_vindex``, a view of :ref:`_index <box_space-index>`, |br| ``_vpriv``, a view of :ref:`_priv <box_space-priv>`, |br| ``_vsequence``, a view of :ref:`_sequence <box_space-sequence>`, |br| ``_vspace``, a view of :ref:`_space <box_space-space>`, |br| ``_vspace_sequence``, a view of :ref:`_space_sequence <box_space-space-sequence>`, |br| ``_vuser``, a view of :ref:`_user <box_space-user>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:18
+msgid "The structure of a system space view's tuples is identical to the structure of the associated space's tuples. However, the privileges for a system space view are usually different. By default, ordinary users do not have any privileges for most system spaces, but have a 'read' privilege for system space views."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:23
+msgid "Typically this is the default situation: |br| * :ref:`The 'public' role <box_space-user>` has 'read' privilege on all system space views because that is the situation when the database is first created. |br| * All users have the 'public' role, because it is granted to them automatically during :ref:`box.schema.user.create() <box_schema-user_create>`. |br| * The system space view will contain the tuples in the associated system space, if and only if the user has a privilege for the object named in the tuple. |br| Unless administrators change the privileges, the effect is that non-administrator users cannot access the system space, but they can access the system space view, which shows only the objects that they can access."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:34
+msgid "For example, typically, the 'admin' user can do anything with ``_space`` and ``_vspace`` looks the same as ``_space``. But the 'guest' user can only read ``_vspace``, and ``_vspace`` contains fewer tuples than ``_space``. Therefore in most installations the 'guest' user should select from ``_vspace`` to get a list of spaces."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:39
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:41
+msgid "This example shows the difference between ``_vuser`` and ``_user``. We have explained that: If the user has the full set of privileges (like 'admin'), the contents of ``_vuser`` match the contents of ``_user``. If the user has limited access, ``_vuser`` contains only tuples accessible to this user."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:47
+msgid "To see how ``_vuser`` works, :ref:`connect to a Tarantool database remotely <connecting-remotely>` via ``net.box`` and select all tuples from the ``_user`` space, both when the 'guest' user *is* and *is not* allowed to read from the database."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:53
+msgid "First, start Tarantool and grant read, write and execute privileges to the ``guest`` user:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:56
+msgid "tarantool> box.cfg{listen = 3301}\n"
+"---\n"
+"...\n"
+"tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:65
+msgid "Switch to the other terminal, connect to the Tarantool instance and select all tuples from the ``_user`` space:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:68
+msgid "tarantool> conn = require('net.box').connect(3301)\n"
+"---\n"
+"...\n"
+"tarantool> conn.space._user:select{}\n"
+"---\n"
+"- - [0, 1, 'guest', 'user', {}]\n"
+"  - [1, 1, 'admin', 'user', {}]\n"
+"  - [2, 1, 'public', 'role', {}]\n"
+"  - [3, 1, 'replication', 'role', {}]\n"
+"  - [31, 1, 'super', 'role', {}]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:82
+msgid "This result contains the same set of users as if you made the request from your Tarantool instance as 'admin'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:85
+msgid "Switch to the first terminal and revoke the read privileges from the 'guest' user:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:87
+msgid "tarantool> box.schema.user.revoke('guest', 'read', 'universe')\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:93
+msgid "Switch to the other terminal, stop the session (to stop ``tarantool`` type Ctrl+C or Ctrl+D), start again, connect again, and repeat the ``conn.space._user:select{}`` request. The access is denied:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:97
+msgid "tarantool> conn.space._user:select{}\n"
+"---\n"
+"- error: Read access to space '_user' is denied for user 'guest'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:104
+msgid "However, if you select from ``_vuser`` instead, the users' data available for the 'guest' user is displayed:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/system_views.rst:107
+msgid "tarantool> conn.space._vuser:select{}\n"
+"---\n"
+"- - [0, 1, 'guest', 'user', {}]\n"
+"..."
+msgstr ""

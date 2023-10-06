@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:4
+msgid "Building an application"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:6
+msgid "$ tt build [PATH] [--spec SPEC_FILE_PATH]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:11
+msgid "``tt build`` builds a Tarantool application locally."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:14
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:18
+msgid "Path to a ``.rockspec`` file to use for the current build"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:21
+msgid "Details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:23
+msgid "The ``PATH`` argument should contain the path to the application directory (that is, to the build source). The default path is ``.`` (current directory)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:26
+msgid "The application directory must contain a ``.rockspec`` file to use for the build. If there is more than one ``.rockspec`` file in the application directory, specify the one to use in the ``--spec`` argument."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:30
+msgid "``tt build`` builds an application with the ``tt rocks make`` command. It downloads the application dependencies into the ``.rocks`` directory, making the application ready to run locally."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:35
+msgid "Pre-build and post-build scripts"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:37
+msgid "In addition to building the application with LuaRocks, ``tt build`` can execute *pre-build* and *post-build* scripts. These scripts should contain steps to execute right before and after building the application. These files must be named ``tt.pre-build`` and ``tt.post-build`` correspondingly and located in the application directory."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:45
+msgid "For compatibility with Cartridge applications, the pre-build and post-build scripts can also have names ``cartridge.pre-build`` and ``cartridge.post-build``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:49
+msgid "If your application depends on closed-source rocks, or if the build should contain rocks from a project added as a submodule, **install** these dependencies using the pre-build script **before** building. For example, add the following line:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:54
+msgid "tt rocks make --chdir ./third_party/proj"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:58
+msgid "Learn more about :doc:`pre-build and post-build scripts </book/cartridge/cartridge_cli/pre-post-build>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:61
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:63
+msgid "Build the application ``app1`` from its directory:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:65
+msgid "$ tt build"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:69
+msgid "Build the application ``app1`` from the ``simple_app`` directory inside the current directory:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:71
+msgid "$ tt build simple_app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:75
+msgid "Build the application ``app1`` from its directory explicitly specifying the rockspec file to use:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/build.rst:77
+msgid "$ tt build --spec app1-scm-1.rockspec"
+msgstr ""

@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:4
+msgid "Stopping a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:6
+msgid "$ tt stop {INSTANCE | APPLICATION[:APP_INSTANCE]}"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:10
+msgid "``tt stop`` stops the specified running Tarantool instances."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:13
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:16
+msgid "Single instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:18
+msgid "Stop the ``app`` instance:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:20
+#: ../../doc/reference/tooling/tt_cli/stop.rst:29
+msgid "$ tt stop app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:25
+msgid "Multiple instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:27
+msgid "Stop all instances of the ``app`` application:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:33
+msgid "Stop the ``replica`` instance of the ``app`` application:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/stop.rst:35
+msgid "$ tt stop app:replica"
+msgstr ""

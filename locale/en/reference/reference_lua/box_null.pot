@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_null.rst:5
+msgid "Constant box.NULL"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:7
+msgid "There are some major problems with using Lua **nil** values in tables. For example: you can't correctly assess the length of a table that is not a sequence. (Learn more about data types in `Lua <https://www.lua.org/manual/5.1/manual.html#2.2>`__ and `LuaJIT <http://luajit.org/ext_ffi_semantics.html>`__.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:12
+#: ../../doc/reference/reference_lua/box_null.rst:60
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:14
+msgid "tarantool> t = {0, nil, 1, 2, nil}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> t\n"
+"---\n"
+"- - 0\n"
+"  - null\n"
+"  - 1\n"
+"  - 2\n"
+"...\n"
+"\n"
+"tarantool> #t\n"
+"---\n"
+"- 4\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:33
+msgid "The console output of ``t`` processes **nil** values in the middle and at the end of the table differently. This is due to undefined behavior."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:38
+msgid "Trying to find the length for sparse arrays in LuaJIT leads to another scenario of `undefined behavior <https://www.lua.org/manual/5.1/manual.html#2.5.5>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:42
+msgid "To avoid this problem, use Tarantool's ``box.NULL`` constant instead of **nil**. ``box.NULL`` is a placeholder for a **nil** value in tables to preserve a key without a value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:48
+msgid "Using box.NULL"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:50
+msgid "``box.NULL`` is a value of the `cdata <http://luajit.org/ext_ffi_semantics.html>`__ type representing a NULL pointer. It is similar to ``msgpack.NULL``, ``json.NULL`` and ``yaml.NULL``. So it is some not **nil** value, even if it is a pointer to NULL."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:54
+msgid "Use ``box.NULL`` only with capitalized NULL (``box.null`` is incorrect)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:58
+msgid "Technically speaking, ``box.NULL`` equals to ``ffi.cast('void *', 0)``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:62
+msgid "tarantool> t = {0, box.NULL, 1, 2, box.NULL}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> t\n"
+"---\n"
+"- - 0\n"
+"  - null # cdata\n"
+"  - 1\n"
+"  - 2\n"
+"  - null # cdata\n"
+"...\n"
+"\n"
+"tarantool> #t\n"
+"---\n"
+"- 5\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:84
+msgid "Notice that ``t[2]`` shows the same ``null`` output in both examples. However in this example ``t[2]`` and ``t[5]`` are of the cdata type, while in the previous example their type was **nil**."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:90
+msgid "Avoid using implicit comparisons with nullable values when using ``box.NULL``. Due to `Lua behavior <https://www.lua.org/manual/5.1/manual.html#2.4.4>`_, returning anything except **false** or **nil** from a condition expression is considered as **true**. And, as it was mentioned earlier, ``box.NULL`` is a pointer by design."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:96
+msgid "That is why the expression ``box.NULL`` will always be considered **true** in case it is used as a condition in a comparison. This means that the code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:99
+msgid "``if box.NULL then func() end``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:101
+msgid "will always execute the function ``func()`` (because the condition ``box.NULL`` will always be neither **false** nor **nil**)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:106
+msgid "Distinction of nil and box.NULL"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:108
+msgid "Use the expression ``if x == nil`` to check if the ``x`` is either a **nil** or a ``box.NULL``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:111
+msgid "To check whether ``x`` is a **nil** but not a ``box.NULL``, use the following condition expression:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:114
+msgid "type(x) == 'nil'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:118
+msgid "If it's **true**, then ``x`` is a **nil**, but not a ``box.NULL``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:120
+msgid "You can use the following for ``box.NULL``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:122
+msgid "x == nil and type(x) == 'cdata'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:126
+msgid "If the expression above is **true**, then ``x`` is a ``box.NULL``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:130
+msgid "By converting data to different formats (JSON, YAML, msgpack), you shall expect that it is possible that **nil** in sparse arrays will be converted to ``box.NULL``. And it is worth mentioning that such conversion might be unexpected (for example: by sending data via :ref:`net.box <net_box-module>` or by obtaining data from :ref:`spaces <box_space>` etc.)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:136
+msgid "tarantool> type(({1, nil, 2})[2])\n"
+"---\n"
+"- nil\n"
+"...\n"
+"\n"
+"tarantool> type(json.decode(json.encode({1, nil, 2}))[2])\n"
+"---\n"
+"- cdata\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_null.rst:148
+msgid "You must anticipate such behavior and use a proper condition expression. Use the explicit comparison ``x == nil`` for checking for NULL in nullable values. It will detect both **nil** and ``box.NULL``."
+msgstr ""

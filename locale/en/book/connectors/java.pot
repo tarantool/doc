@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/connectors/java.rst:4
+msgid "Java"
+msgstr ""
+
+#: ../../doc/book/connectors/java.rst:6
+msgid "There are two Java connectors available:"
+msgstr ""
+
+#: ../../doc/book/connectors/java.rst:8
+msgid "`cartridge-java <http://github.com/tarantool/cartridge-java/>`__ supports both single Tarantool nodes and clusters, as well as applications built using the :doc:`Cartridge framework </book/cartridge/index>` and its modules. The Tarantool team actively updates this module with the newest Tarantool features."
+msgstr ""
+
+#: ../../doc/book/connectors/java.rst:13
+msgid "`tarantool-java <http://github.com/tarantool/tarantool-java/>`__ works with early Tarantool versions (1.6 and later) and offers JDBC interface support for single Tarantool nodes. This module *isn't currently maintained* and does not support the newest 2.x Tarantool features or Tarantool clusters."
+msgstr ""
+
+#: ../../doc/book/connectors/java.rst:19
+msgid "The following modules support Java libraries and frameworks:"
+msgstr ""
+
+#: ../../doc/book/connectors/java.rst:21
+msgid "`TestContainers Tarantool module <http://github.com/tarantool/cartridge-java-testcontainers/>`__ adds support for the popular `TestСontainers framework <https://www.testcontainers.org/>`__ used for integration testing of Java applications."
+msgstr ""
+
+#: ../../doc/book/connectors/java.rst:24
+msgid "`Spring Data Tarantool module <http://github.com/tarantool/cartridge-springdata/>`__ adds support for the `Spring framework <https://projects.spring.io/spring-data/>`__."
+msgstr ""
+
+#: ../../doc/book/connectors/java.rst:27
+msgid "Check out the `Spring Pet Clinic project <http://github.com/tarantool/spring-petclinic-tarantool/>`__ to get familiar with using this module in real applications."
+msgstr ""

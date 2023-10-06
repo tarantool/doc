@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:2
+msgid "Cartridge application lifecycle"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:4
+msgid "In a nutshell:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:6
+msgid ":doc:`Create an application</book/cartridge/cartridge_cli/commands/create/>` (for example, ``myapp``) from a template:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:9
+msgid "cartridge create --name myapp\n"
+"cd ./myapp"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:14
+msgid ":doc:`Build the application </book/cartridge/cartridge_cli/commands/build/>` for local development and testing:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:17
+msgid "cartridge build"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:21
+msgid ":doc:`Run instances locally </book/cartridge/cartridge_cli/commands/start/>`:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:23
+msgid "cartridge start\n"
+"cartridge stop"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:28
+msgid ":doc:`Pack the application </book/cartridge/cartridge_cli/commands/pack/>` into a distributable (like an RPM package):"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/lifecycle.rst:31
+msgid "cartridge pack rpm"
+msgstr ""

@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:4
+msgid "MP_* MessagePack types"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:6
+msgid "The binary protocol handles data in the  `MessagePack <http://MessagePack.org>`_ format. Short descriptions of the basic MessagePack data types are on MessagePack's `specification page <https://github.com/msgpack/msgpack/blob/master/spec.md>`_. Tarantool also introduces several MessagePack type :ref:`extensions <internals-msgpack_ext>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:11
+msgid "In this document, MessagePack types are described by words that start with **MP_**. See this table:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:21
+msgid "**MP_NIL**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:22
+msgid "nil"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:23
+msgid "**MP_UINT**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:24
+msgid "unsigned integer"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:25
+msgid "**MP_INT**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:26
+msgid "either integer or unsigned integer"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:27
+msgid "**MP_STR**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:28
+msgid "string"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:29
+msgid "**MP_BIN**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:30
+msgid "binary string"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:31
+msgid "**MP_ARRAY**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:32
+msgid "array"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:33
+msgid "**MP_MAP**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:34
+msgid "map"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:35
+msgid "**MP_BOOL**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:36
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:37
+msgid "**MP_FLOAT**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:38
+msgid "float"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:39
+msgid "**MP_DOUBLE**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:40
+msgid "double"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:41
+msgid "**MP_EXT**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:42
+msgid ":ref:`extension <internals-msgpack_ext>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:43
+msgid "**MP_OBJECT**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/mp_types.rst:44
+msgid "any MessagePack object"
+msgstr ""

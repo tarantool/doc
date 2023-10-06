@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:2
+msgid "Cleaning up instance files"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:4
+msgid "Locally running instances create a number of files, such as the log file, the workdir, the console socket, the PID file, and the notify socket. To remove all of these files for one or more instances, use the ``clean`` command:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:8
+msgid "cartridge clean [INSTANCE_NAME...] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:12
+msgid "where ``[INSTANCE_NAME...]`` means that more than one instance name can be specified."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:14
+msgid "If no ``INSTANCE_NAME`` is provided, all the instances from the Cartridge instance configuration file are taken as arguments. See the ``--cfg`` option below."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:19
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:27
+msgid "``--stateboard``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:28
+msgid "Remove the stateboard files as well as the files of other instances. Ignored if ``--stateboard-only`` is specified."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:30
+msgid "``--stateboard-only``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:31
+msgid "Remove only the application stateboard files. If this flag is specified, ``INSTANCE_NAME...`` is ignored."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:33
+msgid "``--run-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:34
+msgid "The directory where PID and socket files are stored. Defaults to ``./tmp/run``. ``run-dir`` is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:39
+msgid "``--data-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:40
+msgid "The directory containing the working directories of instances. Defaults to ``./tmp/data``. ``data-dir`` is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:45
+msgid "``--log-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:46
+msgid "The directory that stores logs for instances that are running in the background. Defaults to ``./tmp/log``. ``log-dir`` is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:51
+msgid "``--cfg``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:52
+msgid "Path to the Cartridge instances configuration file. Defaults to ``./instances.yml``. ``cfg``is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/clean.rst:58
+msgid "``clean`` also supports :doc:`global flags </book/cartridge/cartridge_cli/global-flags>`."
+msgstr ""

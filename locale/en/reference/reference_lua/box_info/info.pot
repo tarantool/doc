@@ -1,0 +1,78 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:5
+msgid "box.info()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:11
+msgid "Since ``box.info`` contents are dynamic, it's not possible to iterate over keys with the Lua ``pairs()`` function. For this purpose, ``box.info()`` builds and returns a Lua table with all keys and values provided in the submodule."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:16
+msgid "keys and values in the submodule"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:17
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:19
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:21
+msgid "This example is for a master-replica set that contains one master instance and one replica instance. The request was issued at the replica instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/info.rst:24
+msgid "tarantool> box.info()\n"
+"---\n"
+"- version: 2.4.0-251-gc44ed3c08\n"
+"  id: 1\n"
+"  ro: false\n"
+"  uuid: 1738767b-afa3-4987-b485-c333cf83415b\n"
+"  package: Tarantool\n"
+"  cluster:\n"
+"    uuid: 40ee7f0f-7070-4650-8883-801e7014407c\n"
+"  listen: '[::1]:57122'\n"
+"  replication:\n"
+"    1:\n"
+"      id: 1\n"
+"      uuid: 1738767b-afa3-4987-b485-c333cf83415b\n"
+"      lsn: 16\n"
+"  signature: 16\n"
+"  status: running\n"
+"  vinyl: []\n"
+"  uptime: 21\n"
+"  lsn: 16\n"
+"  sql: []\n"
+"  gc: []\n"
+"  pid: 20293\n"
+"  memory: []\n"
+"  vclock: {1: 16}\n"
+"..."
+msgstr ""

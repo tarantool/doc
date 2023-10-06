@@ -1,0 +1,209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/getting_started_net_box.rst:4
+msgid "Getting started with net.box"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:6
+msgid "The tutorial shows how to work with some common ``net.box`` methods."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:8
+msgid "For more information about the ``net.box`` module, check the :ref:`corresponding module reference <net_box-module>`."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:12
+msgid "Sandbox configuration"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:14
+msgid "The sandbox configuration for the tutorial assumes that:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:16
+msgid "The Tarantool instance is running on ``localhost 127.0.0.1:3301``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:17
+msgid "There is a space named ``tester`` with a numeric primary key."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:18
+msgid "The space contains a tuple with the key value = ``800``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:19
+msgid "The current user has read, write, and execute privileges."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:21
+msgid "Use the commands below for a quick sandbox setup:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:23
+msgid "box.cfg{listen = 3301}\n"
+"s = box.schema.space.create('tester')\n"
+"s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})\n"
+"t = s:insert({800, 'TEST'})\n"
+"box.schema.user.grant('guest', 'read,write,execute', 'universe')"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:32
+msgid "Creating a net.box connection"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:34
+msgid "First, load the ``net.box`` module with the ``require('net.box')`` method:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:36
+msgid "tarantool> net_box = require('net.box')"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:40
+msgid "The next step is to create a new connection. In ``net.box``, self-connection is pre-established. That is, ``conn = net_box.connect('localhost:3301')`` command can be replaced with the ``conn = net_box.self`` object call:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:44
+msgid "tarantool> conn = net_box.self"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:48
+msgid "Then, make a ping:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:50
+msgid "tarantool> conn:ping()\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:58
+msgid "Using data operations"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:60
+msgid "Select all tuples in the ``tester`` space where the key value is ``800``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:62
+msgid "tarantool> conn.space.tester:select{800}\n"
+"---\n"
+"- - [800, 'TEST']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:69
+msgid "Insert two tuples into the space:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:71
+msgid "tarantool> conn.space.tester:insert({700, 'TEST700'})\n"
+"---\n"
+"- [700, 'TEST700']\n"
+"...\n"
+"tarantool> conn.space.tester:insert({600, 'TEST600'})\n"
+"---\n"
+"- [600, 'TEST600']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:82
+msgid "After the insert, there is one tuple where the key value is ``600``. To select this tuple, you can use the ``get()`` method. Unlike the ``select()`` command, ``get()`` returns only one tuple that satisfies the stated condition."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:86
+msgid "tarantool> conn.space.tester:get({600})\n"
+"---\n"
+"- [600, 'TEST600']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:93
+msgid "To update the existing tuple, you can use either ``update()`` or ``upsert()``. The ``update()`` method can be used for assignment, arithmetic (if the field is numeric), cutting and pasting fragments of a field, and deleting or inserting a field."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:97
+msgid "In this tutorial, the ``update()`` command is used to update the tuple identified by primary key value = ``800``. The operation assigns a new value to the second field in the tuple:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:100
+msgid "tarantool> conn.space.tester:update(800, {{'=', 2, 'TEST800'}})\n"
+"---\n"
+"- [800, 'TEST800']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:107
+msgid "As for the ``upsert`` function, if there is an existing tuple that matches the key field of tuple, then the command has the same effect as ``update()``. Otherwise, the effect is equal to the ``insert()`` method."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:111
+msgid "tarantool> conn.space.tester:upsert({500, 'TEST500'}, {{'=', 2, 'TEST'}})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:115
+msgid "To delete a tuple where the key value is ``600``, run the ``delete()`` method below:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:117
+msgid "tarantool> conn.space.tester:delete{600}\n"
+"---\n"
+"- [600, 'TEST600']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:124
+msgid "Then, replace the existing tuple with a new one:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:126
+msgid "tarantool> conn.space.tester:replace{500, 'New data', 'Extra data'}\n"
+"---\n"
+"- [500, 'New data', 'Extra data']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:133
+msgid "Finally, select all tuples from the space:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:135
+msgid "tarantool> conn.space.tester:select{}\n"
+"---\n"
+"- - [800, 'TEST800']\n"
+"  - [500, 'New data', 'Extra data']\n"
+"  - [700, 'TEST700']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:145
+msgid "Closing the connection"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:147
+msgid "In the end, close the connection when it is no longer needed:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_net_box.rst:149
+msgid "tarantool> conn:close()\n"
+"---\n"
+"..."
+msgstr ""

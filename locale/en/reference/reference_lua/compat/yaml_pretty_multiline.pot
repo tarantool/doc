@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:4
+msgid "Lua-YAML prettier multiline output"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:6
+msgid "The ``lua-yaml`` encoder selects the string style automatically, but in Tarantool context, it can be beneficial to enforce them, for example, for better readability. The ``yaml_pretty_multiline`` compat option allows to encode multiline strings in a block style."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:10
+msgid "Old and new behavior"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:12
+msgid "The ``compat`` module allows you to chose between the ``lua-yaml`` encodes multiline strings as usual or in the enforced block scalar style:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:14
+msgid "tarantool> compat.yaml_pretty_multiline = 'old'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> return \"Title: xxx\\n- Item 1\\n- Item 2\\n\"\n"
+"---\n"
+"- 'Title: xxx\n"
+"\n"
+"  - Item 1\n"
+"\n"
+"  - Item 2\n"
+"\n"
+"  '\n"
+"...\n"
+"\n"
+"tarantool> compat.yaml_pretty_multiline = 'new'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> return \"Title: xxx\\n- Item 1\\n- Item 2\\n\"\n"
+"---\n"
+"- |\n"
+"  Title: xxx\n"
+"  - Item 1\n"
+"  - Item 2\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:43
+msgid "You can select the new/old behavior in ``compat``. It affects the global YAML encoder."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:46
+msgid "Known compatibility issues"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:48
+msgid "At this point, no incompatible modules are known."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:51
+msgid "Detecting issues in your codebase"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:53
+msgid "Both encoding styles are correct from the YAML standard standpoint, but if your module relies on encodings results bytewise, it may break with this change. Be cautious if you do the following:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:56
+msgid "Compare results of YAML encoding as strings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/yaml_pretty_multiline.rst:57
+msgid "Hash results of yaml encoding."
+msgstr ""

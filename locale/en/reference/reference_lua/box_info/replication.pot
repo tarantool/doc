@@ -1,0 +1,153 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:5
+msgid "box.info.replication"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:11
+msgid "The **replication** section of ``box.info()`` is a table with statistics for all instances in the replica set that the current instance belongs to. To see the example, refer to :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:14
+msgid "In the following, *n* is the index number of one table item, for example, :samp:`replication[1]`, which has data about server instance number 1, which may or may not be the same as the current instance (the \"current instance\" is what is responding to ``box.info``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:19
+msgid ":samp:`replication[{n}].id` is a short numeric identifier of instance *n* within the replica set. This value is stored in the :ref:`box.space._cluster <box_space-cluster>` system space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:23
+msgid ":samp:`replication[{n}].uuid` is a globally unique identifier of instance *n*. This value is stored in the :ref:`box.space._cluster <box_space-cluster>` system space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:26
+msgid ":samp:`replication[{n}].lsn` is the :ref:`log sequence number <replication-mechanism>` (LSN) for the latest entry in instance *n*'s :ref:`write-ahead log <index-box_persistence>` (WAL)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:30
+msgid ":samp:`replication[{n}].upstream` appears (is not ``nil``) if the current instance is following or intending to follow instance *n*, which ordinarily means :samp:`replication[{n}].upstream.status` = ``follow``, :samp:`replication[{n}].upstream.peer` = url of instance *n* which is being followed, :samp:`replication[{n}].lag and idle` = the instance's speed, described later. Another way to say this is: :samp:`replication[{n}].upstream` will appear when :samp:`replication[{n}].upstream.peer` is not of the current instance, and is not read-only, and was specified in ``box.cfg{replication={...}}``, so it is shown in :ref:`box.cfg.replication <cfg_replication-replication>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:41
+msgid ":samp:`replication[{n}].upstream.status` is the replication status of the connection with the instance *n*:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:44
+msgid "``connect``: an instance is connecting to the master."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:45
+msgid "``auth``: :ref:`authentication <authentication>` is being performed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:46
+msgid "``wait_snapshot``: an instance is receiving metadata from the master. If join fails with a non-critical :ref:`error <error_codes>` at this stage (for example, ``ER_READONLY``, ``ER_ACCESS_DENIED``, or a network-related issue), an instance tries to find a new master to join."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:47
+msgid "``fetch_snapshot``: an instance is receiving data from the master's ``.snap`` files."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:48
+msgid "``final_join``: an instance is receiving new data added during ``fetch_snapshot``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:49
+msgid "``sync``: the master and replica are synchronizing to have the same data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:50
+msgid "``follow``: the current instance's role is **replica**. This means that the instance is read-only or acts as a replica for this remote peer in :ref:`master-master <replication-roles>` configuration. The instance is receiving or able to receive data from the instance *n*'s (upstream) master."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:53
+msgid "``stopped``: replication is stopped due to a replication error (for example, :ref:`duplicate key <error_codes>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:55
+msgid "``disconnected``: an instance is not connected to the replica set (for example, due to network issues, not replication errors)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:58
+msgid "Learn more from :ref:`Replication stages <replication_stages>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:62
+msgid ":samp:`replication[{n}].upstream.idle` is the time (in seconds) since the last event was received. This is the primary indicator of replication health. Learn more from :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:69
+msgid ":samp:`replication[{n}].upstream.peer` contains instance *n*'s :ref:`URI <index-uri>`, for example, 127.0.0.1:3302. Learn more from :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:75
+msgid ":samp:`replication[{n}].upstream.lag` is the time difference between the local time of instance *n*, recorded when the event was received, and the local time at another master recorded when the event was written to the :ref:`write-ahead log <internals-wal>` on that master. Learn more from :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:81
+msgid ":samp:`replication[{n}].upstream.message` contains an error message in case of a :ref:`degraded state <replication-recover>`; otherwise, it is ``nil``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:84
+msgid ":samp:`replication[{n}].downstream` appears (is not ``nil``) with data about an instance that is following instance *n* or is intending to follow it, which ordinarily means :samp:`replication[{n}].downstream.status` = ``follow``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:89
+msgid ":samp:`replication[{n}].downstream.vclock` contains the :ref:`vector clock <replication-vector>`, which is a table of '**id**, **lsn**' pairs, for example, :code:`vclock: {1: 3054773, 4: 8938827, 3: 285902018}`. (Notice that the table may have multiple pairs although ``vclock`` is a singular name)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:96
+msgid "Even if instance *n* is :ref:`removed <replication-remove_instances>`, its values will still appear here; however, its values will be overridden if an instance joins later with the same UUID. Vector clock pairs will only appear if ``lsn > 0``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:101
+msgid ":samp:`replication[{n}].downstream.vclock` may be the same as the current instance's vclock (``box.info.vclock``) because this is for all known vclock values of the cluster. A master will know what is in a replica's copy of vclock because, when the master makes a data change, it sends the change information to the replica (including the master's vector clock), and the replica replies with what is in its entire vector clock table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:110
+msgid "A replica also sends its entire vector clock table in response to a master's heartbeat message, see the heartbeat-message examples in the section :ref:`Binary protocol -- replication <box_protocol-heartbeat>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:114
+msgid ":samp:`replication[{n}].downstream.idle` is the time (in seconds) since the last time that instance *n* sent events through the downstream replication."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:117
+msgid ":samp:`replication[{n}].downstream.status` is the replication status for downstream replications:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:120
+msgid "``stopped`` means that downstream replication has stopped,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:121
+msgid "``follow`` means that downstream replication is in progress (instance *n* is ready to accept data from the master or is currently doing so)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:124
+msgid ":samp:`replication[{n}].downstream.lag` is the time difference between the local time at the master node, recorded when a particular transaction was written to the :ref:`write-ahead log <internals-wal>`, and the local time recorded when it receives an acknowledgment for this transaction from a replica. Since version :doc:`2.10.0 </release/2.10.0>`. See more in :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:131
+msgid ":samp:`replication[{n}].downstream.message` and :samp:`replication[{n}].downstream.system_message` will be ``nil`` unless a problem occurs with the connection. For example, if instance *n* goes down, then one may see ``status = 'stopped'``, ``message = 'unexpected EOF when reading from socket'``, and ``system_message = 'Broken pipe'``. See also :ref:`degraded state <replication-recover>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication.rst:140
+msgid "For better understanding, see the following diagram illustrating the ``upstream`` and ``downstream`` connections within the replica set of three instances:"
+msgstr ""

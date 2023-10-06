@@ -1,0 +1,207 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:2
+msgid "Packaging an application into a Docker image"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:4
+msgid "``cartridge pack docker`` builds a Docker image that can be used to start containers of application instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:8
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:10
+msgid "Use these flags to control the local packaging of a Docker image. For flags applicable for packaging any distribution type, check the :doc:`packaging overview </book/cartridge/cartridge_cli/commands/pack>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:20
+msgid "``--tag``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:21
+msgid "Tag(s) of the Docker image that results from ``cartridge pack docker``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:22
+msgid "``--from``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:23
+msgid "Path to the base Dockerfile of the result image. Defaults to ``Dockerfile.cartridge`` in the application root directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:25
+msgid "``--tarantool-version``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:26
+msgid "Tarantool version to install in the result image. Supported format: \"<Major>\", \"<Major>.<Minor>\", \"<Major>.<Minor>.<Patch>\", \"<Major>.<Minor>.<Patch>-<TagSuffix>\". Defaults to the Tarantool version from the user environment."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:32
+msgid "Result image tag"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:34
+msgid "The result image is tagged as follows:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:36
+msgid "``<name>:<detected-version>[-<suffix>]``: by default."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:37
+msgid "``<name>:<version>[-<suffix>]``: if the ``--version`` parameter is specified."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:38
+msgid "``<tag>``: if the ``--tag`` parameter is specified."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:41
+msgid "Starting application instances"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:43
+msgid "To start ``instance-1`` of the ``myapp`` application, run:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:45
+msgid "docker run -d \\\n"
+"                --name instance-1 \\\n"
+"                -e TARANTOOL_INSTANCE_NAME=instance-1 \\\n"
+"                -e TARANTOOL_ADVERTISE_URI=3302 \\\n"
+"                -e TARANTOOL_CLUSTER_COOKIE=secret \\\n"
+"                -e TARANTOOL_HTTP_PORT=8082 \\\n"
+"                -p 127.0.0.1:8082:8082 \\\n"
+"                myapp:1.0.0"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:56
+msgid "By default, ``TARANTOOL_INSTANCE_NAME`` is set to ``default``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:58
+msgid "You can specify the environment variables ``CARTRIDGE_RUN_DIR`` and ``CARTRIDGE_DATA_DIR``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:60
+msgid "docker run -d \\\n"
+"                --name instance-1 \\\n"
+"                -e CARTRIDGE_RUN_DIR=my-custom-run-dir \\\n"
+"                -e CARTRIDGE_DATA_DIR=my-custom-data-dir \\\n"
+"                -e TARANTOOL_ADVERTISE_URI=3302 \\\n"
+"                -e TARANTOOL_CLUSTER_COOKIE=secret \\\n"
+"                -e TARANTOOL_HTTP_PORT=8082 \\\n"
+"                -p 127.0.0.1:8082:8082 \\\n"
+"                myapp:1.0.0"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:72
+msgid "``CARTRIDGE_DATA_DIR`` is the working directory that contains the instance's PID file and console socket. By default, it is set to ``/var/lib/tarantool``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:76
+msgid "You can also set variables like ``TARANTOOL_WORKDIR``, ``TARANTOOL_PID_FILE``, and ``TARANTOOL_CONSOLE_SOCK``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:79
+msgid "docker run -d \\\n"
+"                --name instance-1 \\\n"
+"                -e TARANTOOL_WORKDIR=custom-workdir \\\n"
+"                -e TARANTOOL_PID_FILE=custom-pid-file \\\n"
+"                -e TARANTOOL_CONSOLE_SOCK=custom-console-sock \\\n"
+"                -e TARANTOOL_ADVERTISE_URI=3302 \\\n"
+"                -e TARANTOOL_CLUSTER_COOKIE=secret \\\n"
+"                -e TARANTOOL_HTTP_PORT=8082 \\\n"
+"                -p 127.0.0.1:8082:8082 \\\n"
+"                myapp:1.0.0"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:93
+msgid "To check the instance logs, run:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:95
+msgid "docker logs instance-1"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:100
+msgid "Image details"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:102
+msgid "The base image is ``centos:7`` (see below)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:104
+msgid "The application code is placed in ``/usr/share/tarantool/<app-name>``. An open-source version of Tarantool is installed to the image."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:107
+msgid "The run directory is ``/var/run/tarantool/<app-name>``. The workdir is ``/var/lib/tarantool/<app-name>``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:110
+msgid "The runtime image also contains the file ``/usr/lib/tmpfiles.d/<app-name>.conf`` that allows the instance to restart after container reboot."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:113
+msgid "It is the user's responsibility to set up the proper ``advertise_uri`` parameter (``<host>:<port>``) if the containers are deployed on different machines. Make sure each instance's ``advertise_uri`` is the same on all machines, because all other instances will use it to connect to that instance. Suppose you start an instance with ``advertise_uri`` set to ``localhost:3302``. Addressing that instance as ``<instance-host>:3302`` from a different instance won't work, because other instances will only recognize it as ``localhost:3302``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:121
+msgid "If you specify only the port, ``cartridge`` will use an auto-detected IP. In this case you have to configure Docker networks to set up inter-instance communication."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:124
+msgid "You can use Docker volumes to store instance snapshots and xlogs on the host machine. If you updated your application code, you can create a new image for it, stop the old container, and start a new one using the new image."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:129
+msgid "Installing packages required by the application in runtime"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:131
+msgid "By default, the result image is based on ``centos:7``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:133
+msgid "If your application requires some other packages in runtime, you can specify base layers for result image."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:136
+msgid "Place the file ``Dockerfile.cartridge`` in your application root directory or pass a path to another Dockerfile with the ``--from`` flag. Make sure your Dockerfile starts with the line ``FROM centos:7`` or ``FROM centos:8`` (except comments)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:141
+msgid "For example, if your application requires ``zip`` for runtime, customize the Dockerfile as follows:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:144
+msgid "`Dockerfile.cartridge`:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/docker.rst:146
+msgid "FROM centos:8\n"
+"\n"
+"RUN yum install -y zip"
+msgstr ""

@@ -1,0 +1,580 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:5
+msgid "Class *luatest.server*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:7
+msgid "Class to manage Tarantool instances."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:15
+msgid "Methods"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:22
+msgid "Server.build_listen_uri (server_alias[, extra_path])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:24
+msgid "Build a listen URI based on the given server alias and extra path. The resulting URI: `<Server.vardir>/[<extra_path>/]<server_alias>.sock`. Provide a unique alias or extra path to avoid collisions with other sockets. For now, only UNIX sockets are supported."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:31
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:53
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:69
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:110
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:131
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:186
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:281
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:305
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:340
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:390
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:414
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:444
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:460
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:487
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:501
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:515
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:531
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:547
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:33
+msgid "*server_alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Server alias."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:34
+msgid "*extra_path:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Extra path relative to the  ``Server.vardir``  directory. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:36
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:172
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:190
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:205
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:220
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:235
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:250
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:265
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:291
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:317
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:359
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:38
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:237
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:45
+msgid "Server:assert_follows_upstream (server_id)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:47
+msgid "Assert that the server follows the source node with the given ID. Meaning that it replicates from the remote node normally, and has already joined and subscribed."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:55
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:188
+msgid "*server_id:* (**number**) Server ID."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:62
+msgid "Server:call (fn_name[, args[, options]])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:64
+msgid "Call remote function on the server by name."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:66
+msgid "This is a shortcut for  ``server.net_box:call()`` ."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:71
+msgid "*fn_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:72
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:113
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:134
+msgid "*args:* (**tab**)  (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:73
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:114
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:135
+msgid "*options:* (**tab**)  (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:80
+msgid "Server:connect_net_box ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:82
+msgid "Establish  ``net.box``  connection. It's available in  ``net_box``  field."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:92
+msgid "Server:drop ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:94
+msgid "Stop the server and clean its working directory."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:103
+msgid "Server:eval (code[, args[, options]])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:105
+msgid "Evaluate Lua code on the server."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:107
+msgid "This is a shortcut for  ``server.net_box:eval()`` ."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:112
+msgid "*code:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:121
+msgid "Server:exec (fn[, args[, options]])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:123
+msgid "Run given function on the server."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:125
+msgid "Much like  ``Server:eval`` , but takes a function instead of a string. The executed function must have no upvalues (closures). Though it may use global functions and modules (like  ``box`` ,  ``os`` , etc.)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:133
+msgid "*fn:* (**function**)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:140
+msgid "Usage:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:142
+msgid "local vclock = server:exec(function()\n"
+"    return box.info.vclock\n"
+"end)\n"
+"\n"
+"local sum = server:exec(function(a, b)\n"
+"    return a + b\n"
+"end, {1, 2})\n"
+"-- sum == 3\n"
+"\n"
+"local t = require('luatest')\n"
+"server:exec(function()\n"
+"    -- luatest is available via `t` upvalue\n"
+"    t.assert_equals(math.pi, 3)\n"
+"end)\n"
+"-- mytest.lua:12: expected: 3, actual: 3.1415926535898"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:165
+msgid "Server:get_box_cfg ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:167
+msgid "A simple wrapper around the  ``Server:exec()``  method to get the  ``box.cfg``  value from the server."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:174
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:192
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:267
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:361
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:181
+msgid "Server:get_downstream_vclock (server_id)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:183
+msgid "Get vclock acknowledged by another node to the current server."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:199
+msgid "Server:get_election_term ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:201
+msgid "Get the election term as seen by the server."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:207
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:222
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:252
+msgid "number"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:214
+msgid "Server:get_instance_id ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:216
+msgid "Get ID of the server instance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:229
+msgid "Server:get_instance_uuid ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:231
+msgid "Get UUID of the server instance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:244
+msgid "Server:get_synchro_queue_term ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:246
+msgid "Get the synchro term as seen by the server."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:259
+msgid "Server:get_vclock ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:261
+msgid "Get the server's own vclock, including the local component."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:274
+msgid "Server:grep_log (pattern[, bytes_num[, opts]])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:276
+msgid "Search a string pattern in the server's log file. If the server has crashed,  ``opts.filename``  is required."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:283
+msgid "*pattern:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) String pattern to search in the server's log file."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:284
+msgid "*bytes_num:* (**number**) Number of bytes to read from the server's log file. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:285
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:393
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:416
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:287
+msgid "*reset:* (**bool**) Reset the result when  ``Tarantool %d+.%d+.%d+-.*%d+-g.*`` pattern is found, which means that the server was restarted.Defaults to  ``true`` . (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:288
+msgid "*filename:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Path to the server's log file.Defaults to  ``box.cfg.log`` . (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:293
+msgid "string|nil"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:300
+msgid "Server:http_request (method, path[, options])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:302
+msgid "Perform HTTP request."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:307
+msgid "*method:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:308
+msgid "*path:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:309
+msgid "*options:*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:311
+msgid "*body:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) request body (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:312
+msgid "*json:*  data to encode as JSON into request body (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:313
+msgid "*http:* (**tab**) other options for HTTP-client (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:314
+msgid "*raise:* (**bool**) raise error when status is not in 200..299. Default to true. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:319
+msgid "response object from HTTP client with helper methods."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:322
+msgid "**Raises:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:324
+msgid "HTTPRequest error when response status is not 200."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:327
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:399
+msgid "**See also:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:329
+msgid "luatest.http_response"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:335
+msgid "Server:new ([object[, extra]])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:337
+msgid "Build a server object."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:342
+msgid "*object:* Table with the entries listed below. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:344
+msgid "*command:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Executable path to run a server process with.Defaults to the internal  ``server_instance.lua``  script. If a custom pathis provided, it should correctly process all env variables listed belowto make constructor parameters work. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:345
+msgid "*args:* (**tab**) Arbitrary args to run  ``object.command``  with. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:346
+msgid "*env:* (**tab**) Pass the given env variables into the server process. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:347
+msgid "*chdir:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Change to the given directory before runningthe server process. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:348
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Alias for the new server and the value of the.. code-block:: lua     ``TARANTOOL_ALIAS``  env variable which is passed into the server process.Defaults to 'server'. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:349
+msgid "*workdir:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Working directory for the new server and thevalue of the `TARANTOOL_WORKDIR` env variable which is passed into theserver process.Defaults to `<vardir>/<alias>-<random id>`. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:350
+msgid "*datadir:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Directory path whose contents will be recursivelycopied into  ``object.workdir``  during initialization. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:351
+msgid "*http_port:* (**number**) Port for HTTP connection to the new server andthe value of the  ``TARANTOOL_HTTP_PORT``  env variable which is passed intothe server process.Not supported in the default  ``server_instance.lua``  script. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:352
+msgid "*net_box_port:* (**number**) Port for the  ``net.box``  connection to the newserver and the value of the  ``TARANTOOL_LISTEN``  env variable which is passedinto the server process. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:353
+msgid "*net_box_uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) URI for the  ``net.box``  connection to the newserver and the value of the  ``TARANTOOL_LISTEN``  env variable which is passedinto the server process. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:354
+msgid "*net_box_credentials:* (**tab**) Override the default credentials for the.. code-block:: lua     ``net.box``  connection to the new server. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:355
+msgid "*box_cfg:* (**tab**) Extra options for  ``box.cfg()``  and the value of the.. code-block:: lua     ``TARANTOOL_BOX_CFG``  env variable which is passed into the server process. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:357
+msgid "*extra:* (**tab**) Table with extra properties for the server object. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:368
+msgid "Server:play_wal_until_synchro_queue_is_busy ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:370
+msgid "Play WAL until the synchro queue becomes busy. WAL records go one by one. The function is needed, because during ``box.ctl.promote()``  it is not known for sure which WAL record is PROMOTE - first, second, third? Even if known, it might change in the future. WAL delay should already be started before the function is called."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:383
+msgid "Server:restart ([params[, opts]])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:385
+msgid "Restart the server with the given parameters. Optionally waits until the server is ready."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:392
+msgid "*params:* (**tab**) Parameters to restart the server with.Like  ``command`` ,  ``args`` ,  ``env`` , etc. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:395
+msgid "*wait_until_ready:* (**bool**) Wait until the server is ready.Defaults to  ``true``  unless a custom executable path was provided whilebuilding the server object. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:401
+msgid "luatest.server.Server:new"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:407
+msgid "Server:start ([opts])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:409
+msgid "Start a server. Optionally waits until the server is ready."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:418
+msgid "*wait_until_ready:* (**bool**) Wait until the server is ready.Defaults to  ``true``  unless a custom executable was provided while buildingthe server object. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:426
+msgid "Server:stop ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:428
+msgid "Stop the server. Waits until the server process is terminated."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:438
+msgid "Server:update_box_cfg (cfg)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:440
+msgid "A simple wrapper around the  ``Server:exec()``  method to update the  ``box.cfg``  value on the server."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:446
+msgid "*cfg:* (**tab**) Box configuration settings."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:453
+msgid "Server:wait_for_downstream_to (server)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:455
+msgid "Wait for the given server to reach at least the same vclock as the local server.  Not including the local component, of course."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:462
+msgid "*server:* (**tab**) Server's object."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:469
+msgid "Server:wait_for_election_leader ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:471
+msgid "Wait for the server to become a **writable** election leader."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:480
+msgid "Server:wait_for_election_state (state)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:482
+msgid "Wait for the server to enter the given election state. Note that if it becomes a leader, it does not mean it is already writable."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:489
+msgid "*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Election state to wait for."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:496
+msgid "Server:wait_for_election_term (term)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:498
+msgid "Wait for the server to reach at least the given election term."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:503
+msgid "*term:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Election term to wait for."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:510
+msgid "Server:wait_for_synchro_queue_term (term)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:512
+msgid "Wait for the server to reach at least the given synchro term."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:517
+msgid "*term:* (**number**) Synchro queue term to wait for."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:524
+msgid "Server:wait_for_vclock (vclock)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:526
+msgid "Wait until the server's own vclock reaches at least the given value. Including the local component."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:533
+msgid "*vclock:* (**tab**) Server's own vclock to reach."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:540
+msgid "Server:wait_for_vclock_of (other_server)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:542
+msgid "Wait for the server to reach at least the same vclock as the other server. Not including the local component, of course."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:549
+msgid "*other_server:* (**tab**) Other server's object."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:556
+msgid "Server:wait_until_election_leader_found ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:558
+msgid "Wait for the server to discover an election leader."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:567
+msgid "Server:wait_until_ready ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.server.rst:569
+msgid "Wait until the server is ready after the start. A server is considered ready when its  ``_G.ready``  variable becomes  ``true`` ."
+msgstr ""

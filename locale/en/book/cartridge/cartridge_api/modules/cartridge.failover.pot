@@ -1,0 +1,308 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:5
+msgid "Module *cartridge.failover*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:7
+msgid "Gather information regarding instances leadership."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:11
+msgid "Failover can operate in two modes:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:13
+msgid "In `disabled` mode the leader is the first server configured in ``topology.replicasets[].master``  array."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:15
+msgid "In  ``eventual``  mode the leader isn't elected consistently. Instead, every instance in cluster thinks the leader is the first **healthy** server in replicaset, while instance health is determined according to membership status (the SWIM protocol)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:19
+msgid "In `stateful` mode leaders appointments are polled from the external storage. (**Added** in v2.0.2-2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:23
+msgid "This module behavior depends on the instance state."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:25
+msgid "From the very beginning it reports `is_rw() == false`, ``is_leader() == false`` ,  ``get_active_leaders() == {}`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:28
+msgid "The module is configured when the instance enters `ConfiguringRoles` state for the first time. From that moment it reports actual values according to the mode set in clusterwide config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:32
+msgid "(**Added** in v1.2.0-17)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:37
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:44
+msgid "get_coordinator ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:46
+msgid "Get current stateful failover coordinator"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:50
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:143
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:162
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:210
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:225
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:240
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:255
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:270
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:285
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:300
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:320
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:345
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:52
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) coordinator"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:55
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:325
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:350
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:57
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:327
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:352
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:59
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:329
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:354
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:64
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:71
+msgid "schedule_clear ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:73
+msgid "Cancel all pending reconfigure_all tasks."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:82
+msgid "schedule_add ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:84
+msgid "Schedule new reconfigure_all task."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:93
+msgid "_get_appointments_disabled_mode ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:95
+msgid "Generate appointments according to clusterwide configuration. Used in 'disabled' failover mode."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:105
+msgid "_get_appointments_eventual_mode ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:107
+msgid "Generate appointments according to membership status. Used in 'eventual' failover mode."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:117
+msgid "_get_appointments_stateful_mode ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:119
+msgid "Get appointments from external storage. Used in 'stateful' failover mode."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:129
+msgid "accept_appointments (replicaset_uuid)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:131
+msgid "Accept new appointments."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:133
+msgid "Get appointments wherever they come from and put them into cache. Cached active_leaders table is never modified, but overriden by it's modified copy (if necessary)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:139
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:316
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:341
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:141
+msgid "*replicaset_uuid:* (`{[string]=string} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) to leader_uuid map"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:145
+msgid "(**boolean**) Whether leadership map has changed"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:152
+msgid "fencing_check ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:154
+msgid "Perform the fencing healthcheck."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:156
+msgid "Fencing is actuated when the instance disconnects from both the state provider and a replica, i.e. the check returns false."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:164
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:227
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:242
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:257
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:272
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:287
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:302
+msgid "(**boolean**) true / false"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:171
+msgid "check_suppressing_lock ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:173
+msgid "Lock failover if failover suppressing is on."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:182
+msgid "failover_loop ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:184
+msgid "Repeatedly fetch new appointments and reconfigure roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:193
+msgid "cfg ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:195
+msgid "Initialize the failover module."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:204
+msgid "get_active_leaders ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:206
+msgid "Get map of replicaset leaders."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:212
+msgid "{[replicaset_uuid] = instance_uuid,...}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:219
+msgid "is_leader ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:221
+msgid "Check current instance leadership."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:234
+msgid "is_rw ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:236
+msgid "Check current instance writability."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:249
+msgid "is_vclockkeeper ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:251
+msgid "Check if current instance has persisted his vclock."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:264
+msgid "is_paused ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:266
+msgid "Check if failover paused on current instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:279
+msgid "failover_suppressed ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:281
+msgid "Check if failover suppressed on current instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:294
+msgid "consistency_needed ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:296
+msgid "Check if current configuration implies consistent switchover."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:309
+msgid "force_inconsistency (replicaset_uuid)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:311
+msgid "Force inconsistent leader switching. Do it by resetting vclockkeepers in state provider."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:318
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:343
+msgid "*replicaset_uuid:* (`{[string]=string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) to leader_uuid mapping"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:322
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:347
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:336
+msgid "wait_consistency (replicaset_uuid)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.failover.rst:338
+msgid "Wait when promoted instances become vclockkeepers."
+msgstr ""

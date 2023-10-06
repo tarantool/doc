@@ -1,0 +1,320 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/log.rst:5
+msgid "Module log"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:13
+msgid "Tarantool provides a set of :ref:`options <cfg_logging>` used to configure logging in various ways: you can set a level of logging, specify where to send the log's output, configure a log format, and so on. The ``log`` module allows you to configure logging in your application and provides additional capabilities, for example, logging custom messages and rotating log files."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:22
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:24
+msgid "Below is a list of all ``log`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:32
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:32
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:34
+msgid ":ref:`log.cfg({}) <log-cfg>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:34
+msgid "Configure a logger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:37
+msgid ":ref:`log.error() <log-ug_message>` |br| :ref:`log.warn() <log-ug_message>` |br| :ref:`log.info() <log-ug_message>` |br| :ref:`log.verbose() <log-ug_message>` |br| :ref:`log.debug() <log-ug_message>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:41
+msgid "Log a message with the specified level"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:48
+msgid ":ref:`log.pid() <log-pid>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:48
+msgid "Get the PID of a logger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:51
+msgid ":ref:`log.rotate() <log-rotate>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:51
+msgid "Rotate a log file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:54
+msgid ":ref:`log.new() <log-new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:54
+msgid "Create a new logger with the specified name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:62
+msgid "Configure logging options. The following options are available:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:65
+msgid "``level``: Specifies the level of detail the log has."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:67
+msgid "Learn more: :ref:`log_level <cfg_logging-log_level>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:69
+msgid "``log``: Specifies where to send the log's output, for example, to a file, pipe, or system logger."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:72
+msgid "Learn more: :ref:`log <cfg_logging-log>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:74
+msgid "``nonblock``: If **true**, Tarantool does not block during logging when the system is not ready for writing, and drops the message instead."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:77
+msgid "Learn more: :ref:`log_nonblock <cfg_logging-log_nonblock>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:79
+msgid "``format``: Specifies the log format: 'plain' or 'json'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:81
+msgid "Learn more: :ref:`log_format <cfg_logging-log_format>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:83
+msgid "``modules``: Configures the specified log levels for different modules."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:85
+msgid "Learn more: :ref:`log_modules <cfg_logging-log_modules>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:87
+msgid "The example below shows how to set the log level to 'debug' and how to send the resulting log to the 'tarantool.log' file:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:90
+msgid "log = require('log')\n"
+"log.cfg{ level='debug', log='tarantool.log'}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:97
+msgid "Note that calling ``log.cfg()`` before ``box.cfg()`` takes into account logging options specified using :ref:`environment variables <box-cfg-params-env>`, such as ``TT_LOG`` and ``TT_LOG_LEVEL``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:109
+msgid "Log a message with the specified logging level. You can learn more about the available levels from the :ref:`log_level <cfg_logging-log_level>` property description."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:113
+msgid "The example below shows how to log a message with the ``info`` level:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:115
+msgid "log = require('log')\n"
+"\n"
+"-- Prints 'warn' messages --\n"
+"log.warn('Warning message')\n"
+"--[[\n"
+"2023-07-20 11:03:57.029 [16300] main/103/interactive/tarantool [C]:-1 W> Warning message\n"
+"---\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:0
+#: ../../doc/reference/reference_lua/log.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:120
+msgid "A log message.  * A message can be a string.  * A message may contain C-style format specifiers ``%d`` or ``%s``. Example:    .. code-block:: lua        box.cfg{}       log = require('log')       log.info('Info %s', box.info.version)  * A message may be a scalar data type or a table. Example:    .. code-block:: lua        log = require('log')       log.error({500,'Internal error'})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:120
+msgid "A log message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:122
+msgid "A message can be a string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:124
+msgid "A message may contain C-style format specifiers ``%d`` or ``%s``. Example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:126
+msgid "box.cfg{}\n"
+"log = require('log')\n"
+"log.info('Info %s', box.info.version)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:132
+msgid "A message may be a scalar data type or a table. Example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:134
+msgid "log = require('log')\n"
+"log.error({500,'Internal error'})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:0
+#: ../../doc/reference/reference_lua/log.rst:0
+#: ../../doc/reference/reference_lua/log.rst:0
+#: ../../doc/reference/reference_lua/log.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:139
+#: ../../doc/reference/reference_lua/log.rst:165
+msgid "nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:141
+msgid "The actual output will be a line in the log, containing:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:143
+msgid "the current timestamp"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:144
+msgid "a module name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:145
+msgid "'E', 'W', 'I', 'V' or 'D' depending on the called function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:146
+msgid "``message``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:148
+msgid "Note that the message will not be logged if the severity level corresponding to the called function is less than :ref:`log_level <cfg_logging-log_level>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:155
+msgid "A PID of a logger. You can use this PID to send a signal to a log rotation program, so it can rotate logs."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:161
+msgid "Rotate the log. For example, you need to call this function to continue logging after a log rotation program renames or moves a file with the latest logs."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:171
+msgid "**Since:** :doc:`2.11.0 </release/2.11.0>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:173
+msgid "Create a new logger with the specified name. You can configure a specific log level for a new logger using the :ref:`log_modules <cfg_logging-log_modules>` configuration property."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:176
+msgid "a logger name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:177
+msgid "a logger instance"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:179
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:181
+msgid "The code snippet below shows how to set the ``verbose`` level for ``module1`` and the ``error`` level for ``module2``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:183
+msgid "box_cfg = { log_level = 'warn',\n"
+"            log_modules = {\n"
+"                module1 = 'verbose',\n"
+"                module2 = 'error' }\n"
+"}\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:188
+msgid "To create the ``module1`` and ``module2`` loggers, call the ``new()`` function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:190
+msgid "-- Creates new loggers --\n"
+"module1_log = require('log').new('module1')\n"
+"module2_log = require('log').new('module2')\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:195
+msgid "Then, you can call functions corresponding to different logging levels to make sure that events with severities above or equal to the given levels are shown:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:198
+msgid "-- Prints 'info' messages --\n"
+"module1_log.info('Info message from module1')\n"
+"--[[\n"
+"[16300] main/103/interactive/module1 I> Info message from module1\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Swallows 'debug' messages --\n"
+"module1_log.debug('Debug message from module1')\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Swallows 'info' messages --\n"
+"module2_log.info('Info message from module2')\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/log.rst:203
+msgid "At the same time, the events with severities below the specified levels are swallowed."
+msgstr ""

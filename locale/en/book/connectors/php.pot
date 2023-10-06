@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/connectors/php.rst:2
+msgid "PHP"
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:4
+msgid "`tarantool-php <https://github.com/tarantool/tarantool-php>`__ is the official PHP connector for Tarantool. It is not supplied as part of the Tarantool repository and must be installed separately (see `installation instructions <https://github.com/tarantool/tarantool-php/#installing-and-building>`__ in the connector's ``README`` file)."
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:11
+msgid "Here is a complete PHP program that inserts ``[99999,'BB']`` into a space named ``examples`` via the PHP API."
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:14
+msgid "Before trying to run, check that the server instance is :ref:`listening <cfg_basic-listen>` at ``localhost:3301`` and that the space ``examples`` exists, as :ref:`described earlier <index-connector_setting>`."
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:18
+msgid "To run, paste the code into a file named :file:`example.php` and say:"
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:20
+msgid "$ php -d extension=~/tarantool-php/modules/tarantool.so example.php"
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:24
+msgid "The program will open a socket connection with the Tarantool instance at ``localhost:3301``, then send an :ref:`INSERT <box_space-insert>` request, then -- if all is well -- print \"Insert succeeded\"."
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:28
+msgid "If the tuple already exists, the program will print \"Duplicate key exists in unique index 'primary' in space 'examples'\"."
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:31
+msgid "<?php\n"
+"$tarantool = new Tarantool('localhost', 3301);\n"
+"\n"
+"try {\n"
+"    $tarantool->insert('examples', [99999, 'BB']);\n"
+"    echo \"Insert succeeded\\n\";\n"
+"} catch (Exception $e) {\n"
+"    echo $e->getMessage(), \"\\n\";\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:43
+msgid "The example program only shows one request and does not show all that's necessary for good practice. For that, please see `tarantool/tarantool-php <https://github.com/tarantool/tarantool-php>`__ project at GitHub."
+msgstr ""
+
+#: ../../doc/book/connectors/php.rst:48
+msgid "Besides, there is another community-driven `tarantool-php GitHub project <https://github.com/tarantool-php>`__ which includes an `alternative connector <https://github.com/tarantool-php/client>`__ written in pure PHP, an `object mapper <https://github.com/tarantool-php/mapper>`__, a `queue <https://github.com/tarantool-php/queue>`__ and other packages."
+msgstr ""

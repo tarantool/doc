@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:5
+msgid "Module *cartridge.lua-api.vshard*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:7
+msgid "Administration functions (vshard related)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:21
+msgid "get_config ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:23
+msgid "This function returns local vshard config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:27
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:50
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:29
+msgid "(**VshardConfig**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:32
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:55
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:34
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:57
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:36
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:59
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:43
+msgid "bootstrap_vshard ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:45
+msgid "Call  ``vshard.router.bootstrap()`` . This function distributes all buckets across the replica sets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.vshard.rst:52
+msgid "(**boolean**) `true`"
+msgstr ""

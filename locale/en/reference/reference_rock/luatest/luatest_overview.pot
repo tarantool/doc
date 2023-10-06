@@ -1,0 +1,808 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/luatest/luatest_overview.rst:3
+msgid "Luatest"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/luatest_overview.rst:5
+msgid "More about Luatest API see :ref:`below <luatest-api>`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:3
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:5
+msgid "Tool for testing tarantool applications."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:7
+msgid "Highlights:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:9
+msgid "executable to run tests in directory or specific files,"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:10
+msgid "before/after suite hooks,"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:11
+msgid "before/after test group hooks,"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:12
+msgid "`output capturing <Capturing output_>`_,"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:13
+msgid "`helpers <Test helpers_>`_ for testing tarantool applications,"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:14
+msgid "`luacov integration <luacov integration_>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:18
+msgid "Requirements"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:20
+msgid "Tarantool (it requires tarantool-specific ``fio`` module and ``ffi`` from LuaJIT)."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:24
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:26
+msgid "tarantoolctl rocks install luatest\n"
+".rocks/bin/luatest --help # list available options"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:33
+msgid "Usage"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:35
+msgid "Define tests."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:37
+msgid "-- test/feature_test.lua\n"
+"local t = require('luatest')\n"
+"local g = t.group('feature')\n"
+"-- Default name is inferred from caller filename when possible.\n"
+"-- For `test/a/b/c_d_test.lua` it will be `a.b.c_d`.\n"
+"-- So `local g = t.group()` works the same way.\n"
+"\n"
+"-- Tests. All properties with name staring with `test` are treated as test cases.\n"
+"g.test_example_1 = function() ... end\n"
+"g.test_example_n = function() ... end\n"
+"\n"
+"-- Define suite hooks\n"
+"t.before_suite(function() ... end)\n"
+"t.before_suite(function() ... end)\n"
+"\n"
+"-- Hooks to run once for tests group\n"
+"g.before_all(function() ... end)\n"
+"g.after_all(function() ... end)\n"
+"\n"
+"-- Hooks to run for each test in group\n"
+"g.before_each(function() ... end)\n"
+"g.after_each(function() ... end)\n"
+"\n"
+"-- Hooks to run for a specified test in group\n"
+"g.before_test('test_example_1', function() ... end)\n"
+"g.after_test('test_example_2', function() ... end)\n"
+"-- before_test runs after before_each\n"
+"-- after_test runs before after_each\n"
+"\n"
+"-- test/other_test.lua\n"
+"local t = require('luatest')\n"
+"local g = t.group('other')\n"
+"-- ...\n"
+"g.test_example_2 = function() ... end\n"
+"g.test_example_m = function() ... end\n"
+"\n"
+"-- Define parametrized groups\n"
+"local pg = t.group('pgroup', {{engine = 'memtx'}, {engine = 'vinyl'}})\n"
+"pg.test_example_3 = function(cg)\n"
+"    -- Use cg.params here\n"
+"    box.schema.space.create('test', {\n"
+"        engine = cg.params.engine,\n"
+"    })\n"
+"end\n"
+"\n"
+"-- Hooks can be specified for one parameter\n"
+"pg.before_all({engine = 'memtx'}, function() ... end)\n"
+"pg.before_each({engine = 'memtx'}, function() ... end)\n"
+"pg.before_test('test_example_3', {engine = 'vinyl'}, function() ... end)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:89
+msgid "Run tests from a path."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:91
+msgid "luatest                               # run all tests from the ./test directory\n"
+"luatest test/integration              # run all tests from the specified directory\n"
+"luatest test/feature_test.lua         # run all tests from the specified file"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:97
+msgid "Run tests from a group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:99
+msgid "luatest feature                       # run all tests from the specified group\n"
+"luatest other.test_example_2          # run one test from the specified group\n"
+"luatest feature other.test_example_2  # run tests by group and test name"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:105
+msgid "Note that luatest recognizes an input parameter as a path only if it contains ``/``, otherwise, it will be considered as a group name."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:108
+msgid "luatest feature                       # considered as a group name\n"
+"luatest ./feature                     # considered as a path\n"
+"luatest feature/                      # considered as a path"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:114
+msgid "You can also use ``-p`` option in combination with the examples above for running tests matching to some name pattern."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:116
+msgid "luatest feature -p test_example       # run all tests from the specified group matching to the specified pattern"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:120
+msgid "Luatest automatically requires ``test/helper.lua`` file if it's present. You can configure luatest or run any bootstrap code there."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:123
+msgid "See the `getting-started example <https://github.com/tarantool/cartridge-cli/tree/master/examples/getting-started-app/test>`_ in cartridge-cli repo."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:128
+msgid "Tests order"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:130
+msgid "Use the ``--shuffle`` option to tell luatest how to order the tests. The available ordering schemes are ``group``, ``all`` and ``none``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:133
+msgid "``group`` shuffles tests within the groups."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:135
+msgid "``all`` randomizes execution order across all available tests. Be careful: ``before_all/after_all`` hooks run always when test group is changed, so it may run multiple time."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:139
+msgid "``none`` is the default, which executes examples within the group in the order they are defined (eventually they are ordered by functions line numbers)."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:142
+msgid "With ``group`` and ``all`` you can also specify a ``seed`` to reproduce specific order."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:144
+msgid "--shuffle none\n"
+"--shuffle group\n"
+"--shuffle all --seed 123\n"
+"--shuffle all:123 # same as above"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:151
+msgid "To change default order use:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:153
+msgid "-- test/helper.lua\n"
+"local t = require('luatest')\n"
+"t.configure({shuffle = 'group'})"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:162
+msgid "List of luatest functions"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:165
+msgid "**Assertions**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:167
+msgid "``assert (value[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:167
+msgid "Check that value is truthy."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:169
+msgid "``assert_almost_equals (actual, expected, margin[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:169
+msgid "Check that two floats are close by margin."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:171
+msgid "``assert_covers (actual, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:171
+msgid "Checks that actual map includes expected one."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:173
+msgid "``assert_lt (left, right[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:173
+msgid "Compare numbers."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:175
+msgid "``assert_le (left, right[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:177
+msgid "``assert_gt (left, right[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:179
+msgid "``assert_ge (left, right[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:181
+msgid "``assert_equals (actual, expected[, message[, deep_analysis]])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:181
+msgid "Check that two values are equal."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:183
+msgid "``assert_error (fn, ...)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:183
+msgid "Check that calling fn raises an error."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:185
+msgid "``assert_error_msg_contains (expected_partial, fn, ...)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:187
+msgid "``assert_error_msg_content_equals (expected, fn, ...)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:187
+msgid "Strips location info from message text."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:189
+msgid "``assert_error_msg_equals (expected, fn, ...)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:189
+msgid "Checks full error: location and text."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:191
+msgid "``assert_error_msg_matches (pattern, fn, ...)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:193
+msgid "``assert_eval_to_false (value[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:193
+msgid "Alias for assert_not."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:195
+msgid "``assert_eval_to_true (value[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:195
+msgid "Alias for assert."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:197
+msgid "``assert_items_include (actual, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:197
+msgid "Checks that one table includes all items of another, irrespective of their keys."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:200
+msgid "``assert_is (actual, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:200
+msgid "Check that values are the same."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:202
+msgid "``assert_is_not (actual, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:202
+msgid "Check that values are not the same."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:204
+msgid "``assert_items_equals (actual, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:204
+msgid "Checks that two tables contain the same items, irrespective of their keys."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:207
+msgid "``assert_nan (value[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:209
+msgid "``assert_not (value[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:209
+msgid "Check that value is falsy."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:211
+msgid "``assert_not_almost_equals (actual, expected, margin[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:211
+msgid "Check that two floats are not close by margin"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:213
+msgid "``assert_not_covers (actual, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:213
+msgid "Checks that map does not contain the other one."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:216
+msgid "``assert_not_equals (actual, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:216
+msgid "Check that two values are not equal."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:218
+msgid "``assert_not_nan (value[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:220
+msgid "``assert_not_str_contains (actual, expected[, is_pattern[, message]])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:220
+#: ../../doc/reference/reference_rock/luatest/README.rst:225
+msgid "Case-sensitive strings comparison."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:223
+msgid "``assert_not_str_icontains (value, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:223
+#: ../../doc/reference/reference_rock/luatest/README.rst:227
+msgid "Case-insensitive strings comparison."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:225
+msgid "``assert_str_contains (value, expected[, is_pattern[, message]])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:227
+msgid "``assert_str_icontains (value, expected[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:229
+msgid "``assert_str_matches (value, pattern[, start=1[, final=value:len() [, message]]])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:229
+msgid "Verify a full match for the string."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:232
+msgid "``assert_type (value, expected_type[, message])``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:232
+msgid "Check value's type."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:234
+msgid "**Flow control**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:236
+msgid "``fail (message)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:236
+msgid "Stops a test due to a failure."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:238
+msgid "``fail_if (condition, message)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:238
+msgid "Stops a test due to a failure if condition is met."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:241
+msgid "``xfail (message)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:241
+msgid "Mark test as xfail."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:243
+msgid "``xfail_if (condition, message)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:243
+msgid "Mark test as xfail if condition is met."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:245
+msgid "``skip (message)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:245
+msgid "Skip a running test."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:247
+msgid "``skip_if (condition, message)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:247
+msgid "Skip a running test if condition is met."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:249
+msgid "``success ()``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:249
+msgid "Stops a test with a success."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:251
+msgid "``success_if (condition)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:251
+msgid "Stops a test with a success if condition is met."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:254
+msgid "**Suite and groups**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:256
+msgid "``after_suite (fn)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:256
+msgid "Add after suite hook."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:258
+msgid "``before_suite (fn)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:258
+msgid "Add before suite hook."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:260
+msgid "``group (name)``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:260
+msgid "Create group of tests."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:267
+msgid "XFail"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:269
+msgid "The ``xfail`` mark makes test results to be interpreted vice versa: it's threated as passed when an assertion fails, and it fails if no errors are raised. It allows one to mark a test as temporarily broken due to a bug in some other component which can't be fixed immediately. It's also a good practice to keep xfail tests in sync with an issue tracker."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:275
+msgid "local g = t.group()\n"
+"g.test_fail = function()\n"
+"    t.xfail('Must fail no matter what')\n"
+"    t.assert_equals(3, 4)\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:283
+msgid "XFail only applies to the errors raised by the luatest assertions. Regular Lua errors still cause the test failure."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:290
+msgid "Capturing output"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:292
+msgid "By default runner captures all stdout/stderr output and shows it only for failed tests. Capturing can be disabled with ``-c`` flag."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:299
+msgid "Tests repeating"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:301
+msgid "Runners can repeat tests with flags ``-r`` / ``--repeat`` (to repeat all the tests) or ``-R`` / ``--repeat-group`` (to repeat all the tests within the group)."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:308
+msgid "Parametrization"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:310
+msgid "Test group can be parametrized."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:312
+msgid "local g = t.group('pgroup', {{a = 1, b = 4}, {a = 2, b = 3}})\n"
+"\n"
+"g.test_params = function(cg)\n"
+"    ...\n"
+"    log.info('a = %s', cg.params.a)\n"
+"    log.info('b = %s', cg.params.b)\n"
+"    ...\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:323
+msgid "Group can be parametrized with a matrix of parameters using `luatest.helpers`:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:325
+msgid "local g = t.group('pgroup', t.helpers.matrix({a = {1, 2}, b = {3, 4}}))\n"
+"-- Will run:\n"
+"-- * a = 1, b = 3\n"
+"-- * a = 1, b = 4\n"
+"-- * a = 2, b = 3\n"
+"-- * a = 2, b = 4"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:334
+msgid "Each test will be performed for every params combination. Hooks will work as usual unless there are specified params. The order of execution in the hook group is determined by the order of declaration."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:338
+msgid "-- called before every test\n"
+"g.before_each(function(cg) ... end)\n"
+"\n"
+"-- called before tests when a == 1\n"
+"g.before_each({a = 1}, function(cg) ... end)\n"
+"\n"
+"-- called only before the test when a == 1 and b == 3\n"
+"g.before_each({a = 1, b = 3}, function(cg) ... end)\n"
+"\n"
+"-- called before test named 'test_something' when a == 1\n"
+"g.before_test('test_something', {a = 1}, function(cg) ... end)\n"
+"\n"
+"--etc"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:354
+msgid "Test from a parameterized group can be called from the command line in such a way:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:356
+msgid "luatest pgroup.a:1.b:4.test_params\n"
+"luatest pgroup.a:2.b:3.test_params"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:361
+msgid "Note that values for ``a`` and ``b`` have to match to defined group params. The command below will give you an error because such params are not defined for the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:364
+msgid "luatest pgroup.a:2.b:2.test_params  # will raise an error"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:372
+msgid "Test helpers"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:374
+msgid "There are helpers to run tarantool applications and perform basic interaction with it. If application follows configuration conventions it is possible to use options to configure server instance and helpers at the same time. For example ``http_port`` is used to perform http request in tests and passed in ``TARANTOOL_HTTP_PORT`` to server process."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:380
+msgid "local server = luatest.Server:new({\n"
+"    command = '/path/to/executable.lua',\n"
+"    -- arguments for process\n"
+"    args = {'--no-bugs', '--fast'},\n"
+"    -- additional envars to pass to process\n"
+"    env = {SOME_FIELD = 'value'},\n"
+"    -- passed as TARANTOOL_WORKDIR\n"
+"    workdir = '/path/to/test/workdir',\n"
+"    -- passed as TARANTOOL_HTTP_PORT, used in http_request\n"
+"    http_port = 8080,\n"
+"    -- passed as TARANTOOL_LISTEN, used in connect_net_box\n"
+"    net_box_port = 3030,\n"
+"    -- passed to net_box.connect in connect_net_box\n"
+"    net_box_credentials = {user = 'username', password = 'secret'},\n"
+"})\n"
+"server:start()\n"
+"-- Wait until server is ready to accept connections.\n"
+"-- This may vary from app to app: for one server:connect_net_box() is enough,\n"
+"-- for another more complex checks are required.\n"
+"luatest.helpers.retrying({}, function() server:http_request('get', '/ping') end)\n"
+"\n"
+"-- http requests\n"
+"server:http_request('get', '/path')\n"
+"server:http_request('post', '/path', {body = 'text'})\n"
+"server:http_request('post', '/path', {json = {field = value}, http = {\n"
+"    -- http client options\n"
+"    headers = {Authorization = 'Basic ' .. credentials},\n"
+"    timeout = 1,\n"
+"}})\n"
+"\n"
+"-- This method throws error when response status is outside of then range 200..299.\n"
+"-- To change this behaviour, path `raise = false`:\n"
+"t.assert_equals(server:http_request('get', '/not_found', {raise = false}).status, 404)\n"
+"t.assert_error(function() server:http_request('get', '/not_found') end)\n"
+"\n"
+"-- using net_box\n"
+"server:connect_net_box()\n"
+"server:eval('return do_something(...)', {arg1, arg2})\n"
+"server:call('function_name', {arg1, arg2})\n"
+"server:exec(function() return box.info() end)\n"
+"server:stop()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:424
+msgid "``luatest.Process:start(path, args, env)`` provides low-level interface to run any other application."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:426
+msgid "There are several small helpers for common actions:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:428
+msgid "luatest.helpers.uuid('ab', 2, 1) == 'abababab-0002-0000-0000-000000000001'\n"
+"\n"
+"luatest.helpers.retrying({timeout = 1, delay = 0.1}, failing_function, arg1, arg2)\n"
+"-- wait until server is up\n"
+"luatest.helpers.retrying({}, function() server:http_request('get', '/status') end)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:440
+msgid "luacov integration"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:442
+msgid "Install `luacov <https://github.com/keplerproject/luacov>`_ with ``tarantoolctl rocks install luacov``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:443
+msgid "Configure it with ``.luacov`` file"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:444
+msgid "Clean old reports ``rm -f luacov.*.out*``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:445
+msgid "Run luatest with ``--coverage`` option"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:446
+msgid "Generate report with ``.rocks/bin/luacov .``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:447
+msgid "Show summary with ``grep -A999 '^Summary' luacov.report.out``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:449
+msgid "When running integration tests with coverage collector enabled, luatest automatically starts new tarantool instances with luacov enabled. So coverage is collected from all the instances. However this has some limitations:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:454
+msgid "It works only for instances started with ``Server`` helper."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:455
+msgid "Process command should be executable lua file or tarantool with script argument."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:456
+msgid "Instance must be stopped with ``server:stop()``, because this is the point where stats are saved."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:457
+msgid "Don't save stats concurrently to prevent corruption."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:461
+msgid "Development"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:463
+msgid "Check out the repo."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:464
+msgid "Prepare makefile with ``cmake .``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:465
+msgid "Install dependencies with ``make bootstrap``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:466
+msgid "Run it with ``make lint`` before committing changes."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:467
+msgid "Run tests with ``bin/luatest``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:471
+msgid "Contributing"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:473
+msgid "Bug reports and pull requests are welcome on at https://github.com/tarantool/luatest."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:478
+msgid "License"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/README.rst:480
+msgid "MIT"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/_includes/index.rst:3
+msgid "API"
+msgstr ""

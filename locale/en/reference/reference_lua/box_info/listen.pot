@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/listen.rst:5
+msgid "box.info.listen"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/listen.rst:11
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Return a real address to which an instance was bound. For example, if ``box.cfg{listen}`` was set with a zero port, ``box.info.listen`` will show a real port. The address is stored as a string:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/listen.rst:16
+msgid "unix/:<path> for UNIX domain sockets"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/listen.rst:17
+msgid "<ip>:<port> for IPv4"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/listen.rst:18
+msgid "[ip]:<port> for IPv6"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/listen.rst:20
+msgid "If an instance does not listen to anything, ``box.info.listen`` is nil."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/listen.rst:22
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/listen.rst:24
+msgid "tarantool> box.cfg{listen=0}\n"
+"---\n"
+"...\n"
+"tarantool> box.cfg.listen\n"
+"---\n"
+"- '0'\n"
+"...\n"
+"tarantool> box.info.listen\n"
+"---\n"
+"- 0.0.0.0:44149\n"
+"..."
+msgstr ""

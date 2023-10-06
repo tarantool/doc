@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:4
+msgid "Listing available Tarantool versions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:6
+msgid "$ tt search PROGRAM_NAME [OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:10
+msgid "``tt search`` lists versions of Tarantool and ``tt`` that are available for installation. The possible values of ``PROGRAM_NAME`` are:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:13
+msgid "``tarantool``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:14
+msgid "``tarantool-ee``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:15
+msgid "``tt``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:19
+msgid "For ``tarantool-ee``, account credentials are required. Specify them in a file (see the :ref:`ee section <tt-config_file_ee>` of the configuration file) or provide interactively."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:24
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:28
+#: ../../doc/reference/tooling/tt_cli/search.rst:39
+msgid "**Applicable to:** ``taranttol-ee``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:30
+msgid "Search for debug builds of Tarantool Enterprise SDK."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:34
+msgid "Search in the local repository, which is specified in the :ref:`repo section <tt-config_file_repo>` of the ``tt`` configuration file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:41
+msgid "Tarantool Enterprise version."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:44
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:46
+msgid "List available Tarantool versions:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:48
+msgid "$ tt search tarantool"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:52
+msgid "List available ``tt`` versions from the local repository:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/search.rst:54
+msgid "$ tt search --local-repo tt"
+msgstr ""

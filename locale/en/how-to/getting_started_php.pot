@@ -1,0 +1,301 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/getting_started_php.rst:5
+msgid "Connecting from PHP"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:11
+msgid "Pre-requisites"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:13
+msgid "Before we proceed:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:15
+msgid "`Install <https://github.com/tarantool-php/client#installation>`__ the ``tarantool/client`` library."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:18
+msgid ":ref:`Start <getting_started_db>` Tarantool (locally or in Docker) and make sure that you have created and populated a database as we suggested :ref:`earlier <creating-db-locally>`:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:22
+msgid "box.cfg{listen = 3301}\n"
+"s = box.schema.space.create('tester')\n"
+"s:format({\n"
+"         {name = 'id', type = 'unsigned'},\n"
+"         {name = 'band_name', type = 'string'},\n"
+"         {name = 'year', type = 'unsigned'}\n"
+"         })\n"
+"s:create_index('primary', {\n"
+"         type = 'hash',\n"
+"         parts = {'id'}\n"
+"         })\n"
+"s:create_index('secondary', {\n"
+"         type = 'hash',\n"
+"         parts = {'band_name'}\n"
+"         })\n"
+"s:insert{1, 'Roxette', 1986}\n"
+"s:insert{2, 'Scorpions', 2015}\n"
+"s:insert{3, 'Ace of Base', 1993}"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:45
+msgid "Please do not close the terminal window where Tarantool is running -- you'll need it soon."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:48
+msgid "In order to connect to Tarantool as an administrator, reset the password for the ``admin`` user:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:51
+msgid "box.schema.user.passwd('pass')"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:59
+msgid "Connecting to Tarantool"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:61
+msgid "To configure a connection to the Tarantool server, say this:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:63
+msgid "use Tarantool\\Client\\Client;\n"
+"\n"
+"require __DIR__.'/vendor/autoload.php';\n"
+"$client = Client::fromDefaults();"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:70
+msgid "The connection itself will be established at the first request. You can also specify the user name and password, if needed:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:73
+msgid "$client = Client::fromOptions([\n"
+"    'uri' => 'tcp://127.0.0.1:3301',\n"
+"    'username' => '<username>',\n"
+"    'password' => '<password>'\n"
+"]);"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:81
+msgid "The default user is ``guest``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:87
+msgid "Manipulating the data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:89
+msgid "A :term:`space` is a container for :term:`tuples <tuple>`. To access a space as a named object, use ``getSpace``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:92
+msgid "$tester = $client->getSpace('tester');"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:100
+msgid "Inserting data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:102
+msgid "To insert a tuple into a space, use ``insert``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:104
+msgid "$result = $tester->insert([4, 'ABBA', 1972]);"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:112
+msgid "Querying data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:114
+msgid "Let's start with selecting a tuple by the primary key (in our example, this is the index named ``primary``, based on the ``id`` field of each tuple). Use ``select``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:118
+msgid "use Tarantool\\Client\\Schema\\Criteria;\n"
+"\n"
+"$result = $tester->select(Criteria::key([4]));\n"
+"printf(json_encode($result));"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:125
+msgid "[[4, 'ABBA', 1972]]"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:129
+msgid "Next, select tuples by a secondary key. For this purpose, you need to specify the number *or* name of the index."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:132
+msgid "First off, select tuples using the index number:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:134
+msgid "$result = $tester->select(Criteria::index(1)->andKey(['Scorpions']));\n"
+"printf(json_encode($result));"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:139
+#: ../../doc/how-to/getting_started_php.rst:154
+msgid "[2, 'Scorpions', 2015]"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:143
+msgid "(We say ``index(1)`` because index numbers in Tarantool start with 0, and we're using our second index here.)"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:146
+msgid "Now make a similar query by the index name and make sure that the result is the same:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:149
+msgid "$result = $tester->select(Criteria::index('secondary')->andKey(['Scorpions']));\n"
+"printf(json_encode($result));"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:158
+msgid "Finally, select all the tuples in a space via a ``select``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:160
+msgid "$result = $tester->select(Criteria::allIterator());"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:168
+msgid "Updating data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:170
+msgid "Update a :term:`field` value using ``update``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:172
+msgid "use Tarantool\\Client\\Schema\\Operations;\n"
+"\n"
+"$result = $tester->update([4], Operations::set(1, 'New group')->andAdd(2, 2));"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:178
+msgid "This updates the value of field ``1`` and increases the value of field ``2`` in the tuple with ``id = 4``. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:182
+msgid "Now use ``replace`` to totally replace the tuple that matches the primary key. If a tuple with this primary key doesn't exist, Tarantool will do nothing."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:186
+msgid "$result = $tester->replace([4, 'New band', 2015]);"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:190
+msgid "You can also update the data using ``upsert`` that works similarly to ``update``, but creates a new tuple if the old one was not found."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:193
+msgid "use Tarantool\\Client\\Schema\\Operations;\n"
+"\n"
+"$tester->upsert([4, 'Another band', 2000], Operations::add(2, 5));"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:199
+msgid "This increases by 5 the value of field ``2`` in the tuple with ``id = 4``, or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:207
+msgid "Deleting data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:209
+msgid "To delete a tuple, use ``delete(primary_key)``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:211
+msgid "$result = $tester->delete([4]);"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:215
+msgid "To delete all tuples in a space (or to delete an entire space), use ``call``. We'll focus on this function in more detail in the :ref:`next <getting_started-php-stored-procs>` section."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:219
+msgid "To delete all tuples in a space, call ``space:truncate``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:221
+msgid "$result = $client->call('box.space.tester:truncate');"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:225
+msgid "To delete an entire space, call ``space:drop``. This requires connecting to Tarantool as the ``admin`` user:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:228
+msgid "$result = $client->call('box.space.tester:drop');"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:236
+msgid "Executing stored procedures"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:238
+msgid "Switch to the terminal window where Tarantool is running."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:242
+msgid "If you don't have a terminal window with remote connection to Tarantool, check out these guides:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:245
+msgid ":ref:`connecting to a local Tarantool instance <connecting-remotely>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:246
+msgid ":ref:`attaching to a Tarantool instance that runs in a Docker container <getting_started-docker-attaching>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:248
+msgid "Define a simple Lua function:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:250
+msgid "function sum(a, b)\n"
+"    return a + b\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:256
+msgid "Now we have a Lua function defined in Tarantool. To invoke this function from ``php``, use ``call``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:259
+msgid "$result = $client->call('sum', 3, 2);"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:263
+msgid "To send bare Lua code for execution, use ``eval``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_php.rst:265
+msgid "$result = $client->evaluate('return 4 + 5');"
+msgstr ""

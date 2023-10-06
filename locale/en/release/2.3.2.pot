@@ -1,0 +1,289 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.3.2.rst:2
+msgid "Tarantool 2.3.2"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:4
+msgid "Release: :tarantool-release:`2.3.2` Date: 2020-04-20 Tag: 2.3.2-1-g9be641b"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:10
+msgid "2.3.2 is the first stable version of the 2.3 release series. The label stable means we have all planned features implemented and we see no high-impact issues."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:14
+msgid "This release resolves roughly 39 issues since the latest beta version. There may be bugs in less common areas, please feel free to file an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:18
+msgid "Please note, this release contains **no new features**."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:21
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:23
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout, client-server protocol and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:26
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/2.3/book/admin/upgrades/>`__ using the box.schema.upgrade() procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:32
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:35
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:37
+msgid ":ref:`fiber.storage <fiber_object-storage>` is cleaned between requests, and can be used as a request-local storage. Previously ``fiber.storage`` could contain some old values in the beginning of an iproto request execution, and it needed to be nullified manually. Now the cleanup is unneeded (:tarantool-issue:`4662`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:43
+msgid "``tuple``/``space``/``index``:``update()``/``upsert()`` were fixed not to turn a value into an infinity when a float value was added to or subtracted from a float column and exceeded the float value range (:tarantool-issue:`4701`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:47
+msgid "Fix potential execution abort when operating the system runs under heavy memory load (:tarantool-issue:`4722`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:49
+msgid "Make RTREE indexes handle the out of memory error: before this fix, OOM during the recovery of an RTREE index resulted in segmentation fault (:tarantool-issue:`4619`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:52
+msgid "Fix the error message returned on using an already dropped sequence (:tarantool-issue:`4753`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:54
+msgid "Add cancellation guard to avoid WAL thread stuck (:tarantool-issue:`4127`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:55
+msgid "Fix execution abort when ``memtx_memory`` and ``vinyl_memory`` are set to more than 4398046510080 bytes. Now an error message is returned (:tarantool-issue:`4705`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:58
+msgid "Add Lua output format support for ``box.session.push()`` (:tarantool-issue:`4686`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:61
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:63
+msgid "Fix rebootstrap procedure not working in case replica itself is listed in ``box.cfg.replication`` (:tarantool-issue:`4759`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:65
+msgid "Fix possible user password leaking via replication logs (:tarantool-issue:`4493`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:66
+msgid "Refactor vclock map to be exactly 4 bytes in size to fit all 32 replicas regardless of the compiler used (https://github.com/tarantool/tarantool/commit/e5679980aa5f813553a95ab7d31f111dd0893df6)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:69
+msgid "Fix crash when the replication applier rollbacks a transaction (:tarantool-issue:`4730`, :tarantool-issue:`4776`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:71
+msgid "Fix segmentation fault on master side when one of the replicas transitions from anonymous to normal (:tarantool-issue:`4731`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:73
+msgid "Local space operations are now counted in 0th vclock component. Every instance may have its own 0-th vclock component not matching others’. Local space operations are not replicated at all, even as NOPs (:tarantool-issue:`4114`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:77
+msgid "Gc consumers are now ordered by their vclocks and not by vclock signatures. Only the WALS that contain no entries needed by any of the consumers are deleted (:tarantool-issue:`4114`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:82
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:84
+msgid "json: ``:decode()`` does not spoil instance’s options with per-call ones (when it is called with the second argument) (:tarantool-issue:`4761`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:86
+msgid "Handle empty input for ``uri.format()`` properly (:tarantool-issue:`4779`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:87
+msgid "``os.environ()`` is now changed when ``os.setenv()`` is called (:tarantool-issue:`4733`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:89
+msgid "``netbox.self:call/eval()`` now returns the same types as ``netbox_connection:call``/``eval``. Previously it could return a tuple or ``box.error`` cdata (:tarantool-issue:`4513`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:92
+msgid "``box.tuple.*`` namespace is cleaned up from private functions. :doc:`/reference/reference_lua/box_tuple/is` description is added to documentation (:tarantool-issue:`4684`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:94
+msgid "``tarantoolctl rocks search``: fix the ``--all`` flag (:tarantool-issue:`4529`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:95
+msgid "``tarantoolctl rocks remove``: fix the ``--force`` flag (:tarantool-issue:`3632`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:96
+msgid "libev: backport fix for listening for more then 1024 file descriptors on Mac OS (:tarantool-issue:`3867`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:100
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:102
+msgid "Fix ``box.stat()`` behavior: now it collects statistics on the ``PREPARE`` and ``EXECUTE`` methods as expected (:tarantool-issue:`4756`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:104
+msgid "Add an empty body to the ``UNPREPARE`` IProto response (:tarantool-issue:`4769`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:105
+msgid "Reset all the placeholders’ bound values after execution of a prepared statement (:tarantool-issue:`4825`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:107
+msgid "The inserted values are inserted in the order in which they are given in case of INSERT into space with autoincrement (:tarantool-issue:`4256`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:111
+msgid "HTTP client"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:113
+msgid "When building Tarantool with bundled ``libcurl``, link it with the ``c-ares`` library by default (:tarantool-issue:`4591`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:117
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:119
+msgid "``__pairs``/``__ipairs`` metamethods handling is removed since we faced the issues with the backward compatibility between Lua 5.1 and Lua 5.2 within Tarantool modules as well as other third party code (:tarantool-issue:`4770`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:124
+msgid "Introduce ``luajit-gdb.py`` extension with commands for inspecting LuaJIT internals. The extension obliges one to provide gdbinfo for ``libluajit``, otherwise loading fails. The extension provides the following commands:"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:129
+msgid "``lj-arch`` dumps values of LJ_64 and LJ_GC64 macro definitions"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:130
+msgid "``lj-tv`` dumps the type and GCobj info related to the given TValue"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:132
+msgid "``lj-str`` dumps the contents of the given GCstr"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:133
+msgid "``lj-tab`` dumps the contents of the given GCtab"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:134
+msgid "``lj-stack`` dumps Lua stack of the given lua_State"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:135
+msgid "``lj-state`` shows current VM, GC and JIT states"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:136
+msgid "``lj-gc`` shows current GC stats"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:138
+msgid "Fix string to number conversion: current implementation respects the buffer length (:tarantool-issue:`4773`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:141
+msgid "“FFI sandwich” (\\*) detection is introduced. If sandwich is detected while trace recording the recording is aborted. The sandwich detected while mcode execution leads to the platform panic."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:145
+msgid "luaJIT_setmode call is prohibited while mcode execution and leads to the platform panic."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:148
+msgid "(\\*) The following stack mix is called FFI sandwich:"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:150
+msgid "Lua-FFI -> C routine -> Lua-C API -> Lua VM"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:152
+msgid "This sort of re-entrancy is explicitly not supported by LuaJIT compiler. For more info see :tarantool-issue:`4427`."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:156
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:158
+msgid "Fix assertion fault due to triggered dump process during secondary index build (:tarantool-issue:`4810`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:162
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:164
+msgid "Fix crashes at attempts to use ``-e`` and ``-l`` command line options concatenated with their values, like this: ``-eprint(100)`` (:tarantool-issue:`4775`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:167
+msgid "Fix inability to upgrade from 2.1 if there was an automatically generated sequence (:tarantool-issue:`4771`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:169
+msgid "Update ``libopenssl`` version to 1.1.1f since the previous one was EOLed (:tarantool-issue:`4830`)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:173
+msgid "Building from sources"
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:175
+msgid "Update the ``decNumber`` library to silence the build warning produced on too long integer constant (https://github.com/tarantool/tarantool/commit/aab03a735c7a215b4371ef834f7d08432b1bf0f7)."
+msgstr ""
+
+#: ../../doc/release/2.3.2.rst:178
+msgid "Fix static build (``-DBUILD_STATIC=ON``) when ``libunwind`` depends on ``liblzma`` (:tarantool-issue:`4551`)."
+msgstr ""

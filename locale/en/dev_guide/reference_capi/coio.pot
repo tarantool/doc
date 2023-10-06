@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:5
+msgid "Module coio"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:11
+msgid "READ event"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:15
+msgid "WRITE event"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:21
+msgid "Wait until READ or WRITE event on socket (``fd``). Yields."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:0
+#: ../../doc/dev_guide/reference_capi/coio.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:23
+#: ../../doc/dev_guide/reference_capi/coio.rst:72
+msgid "non-blocking socket file description"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:24
+msgid "requested events to wait. Combination of ``COIO_READ | COIO_WRITE`` bit flags."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:26
+msgid "timeout in seconds."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:0
+#: ../../doc/dev_guide/reference_capi/coio.rst:0
+#: ../../doc/dev_guide/reference_capi/coio.rst:0
+#: ../../doc/dev_guide/reference_capi/coio.rst:0
+#: ../../doc/dev_guide/reference_capi/coio.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:28
+msgid "0 - timeout"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:29
+msgid ">0 - returned events. Combination of ``TNT_IO_READ | TNT_IO_WRITE`` bit flags."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:35
+msgid "Create new eio task with specified function and arguments. Yield and wait until the task is complete. This function may use the :ref:`worker_pool_threads <cfg_basic-worker_pool_threads>` configuration parameter."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:40
+msgid "To avoid double error checking, this function does not throw exceptions. In most cases it is also necessary to check the return value of the called function and perform necessary actions. If func sets errno, the errno is preserved across the call."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:45
+msgid "-1 and ``errno`` = ENOMEM if failed to create a task"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:46
+msgid "the function's return (``errno`` is preserved)."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:48
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:50
+msgid "static ssize_t openfile_cb(va_list ap)\n"
+"{\n"
+"        const char* filename = va_arg(ap);\n"
+"        int flags = va_arg(ap);\n"
+"        return open(filename, flags);\n"
+"}\n"
+"\n"
+"if (coio_call(openfile_cb, \"/tmp/file\", 0) == -1)\n"
+"    // handle errors.\n"
+"..."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:65
+msgid "Fiber-friendly version of :manpage:`getaddrinfo(3)`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:69
+msgid "Close the ``fd`` and wake any fiber blocked in :ref:`coio_wait() <c_api-coio-coio_wait>` call on this ``fd``."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/coio.rst:74
+msgid "the result of ``close(fd)``, see :manpage:`close(2)`"
+msgstr ""

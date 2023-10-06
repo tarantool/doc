@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/index.rst:7
+msgid "Administration"
+msgstr ""
+
+#: ../../doc/book/admin/index.rst:9
+msgid "Tarantool is designed to have multiple running instances on the same host."
+msgstr ""
+
+#: ../../doc/book/admin/index.rst:11
+msgid "Here we show how to administer Tarantool instances using any of the following utilities:"
+msgstr ""
+
+#: ../../doc/book/admin/index.rst:14
+msgid "``systemd`` native utilities, or"
+msgstr ""
+
+#: ../../doc/book/admin/index.rst:15
+msgid ":ref:`tt <tt-cli>`, a command-line utility for managing Tarantool-based applications."
+msgstr ""
+
+#: ../../doc/book/admin/index.rst:19
+msgid "Unlike the rest of this manual, here we use system-wide paths."
+msgstr ""
+
+#: ../../doc/book/admin/index.rst:20
+msgid "Console examples here are for Fedora."
+msgstr ""
+
+#: ../../doc/book/admin/index.rst:22
+msgid "This chapter includes the following sections:"
+msgstr ""

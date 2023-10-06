@@ -1,0 +1,239 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:4
+msgid "box.stat.net()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:10
+msgid "Shows network activity: the number of bytes sent and received, the number of connections, streams, and requests (current, average, and total)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:0
+#: ../../doc/reference/reference_lua/box_stat/net.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:14
+msgid "in the tables that ``box.stat.net()`` returns:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:16
+msgid "``SENT.rps`` and ``RECEIVED.rps`` -- average number of bytes sent/received per second in the last 5 seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:18
+msgid "``SENT.total`` and ``RECEIVED.total`` -- total number of bytes sent/received since the server started"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:20
+msgid "``CONNECTIONS.current`` -- number of open connections"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:21
+msgid "``CONNECTIONS.rps`` -- average number of connections opened per second in the last 5 seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:22
+msgid "``CONNECTIONS.total`` -- total number of connections opened since the server started"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:23
+msgid "``REQUESTS.current`` -- number of requests in progress, which can be limited by :ref:`box.cfg.net_msg_max <cfg_networking-net_msg_max>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:25
+msgid "``REQUESTS.rps`` -- average number of requests processed per second in the last 5 seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:26
+msgid "``REQUESTS.total`` -- total number of requests processed since the server started"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:27
+msgid "``REQUESTS_IN_PROGRESS.current`` -- number of requests being currently processed by the :ref:`TX thread <memtx-memory>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:28
+msgid "``REQUESTS_IN_PROGRESS.rps`` -- average number of requests processed by the TX thread per second in the last 5 seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:29
+msgid "``REQUESTS_IN_PROGRESS.total`` -- total number of requests processed by the TX thread since the server started"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:30
+msgid "``STREAMS.current`` -- number of active :ref:`streams <txn_mode_stream-interactive-transactions>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:31
+msgid "``STREAMS.rps`` -- average number of streams opened per second in the last 5 seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:32
+msgid "``STREAMS.total`` -- total number of streams opened since the server started"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:33
+msgid "``REQUESTS_IN_STREAM_QUEUE.current`` -- number of requests waiting in stream queues"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:34
+msgid "``REQUESTS_IN_STREAM_QUEUE.rps`` -- average number of requests in stream queues per second in the last 5 seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:35
+msgid "``REQUESTS_IN_STREAM_QUEUE.total`` -- total number of requests placed in stream queues since the server started"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:38
+#: ../../doc/reference/reference_lua/box_stat/net.rst:87
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:40
+msgid "tarantool> box.stat.net() -- 5 tables\n"
+"---\n"
+"- CONNECTIONS:\n"
+"    current: 1\n"
+"    rps: 0\n"
+"    total: 1\n"
+"  REQUESTS:\n"
+"    current: 0\n"
+"    rps: 0\n"
+"    total: 8\n"
+"  REQUESTS_IN_PROGRESS:\n"
+"    current: 0\n"
+"    rps: 0\n"
+"    total: 7\n"
+"  SENT:\n"
+"    total: 19579\n"
+"    rps: 0\n"
+"  REQUESTS_IN_STREAM_QUEUE:\n"
+"    current: 0\n"
+"    rps: 0\n"
+"    total: 0\n"
+"  STREAMS:\n"
+"    current: 0\n"
+"    rps: 0\n"
+"    total: 0\n"
+"  RECEIVED:\n"
+"    total: 197\n"
+"    rps\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:77
+msgid "Shows network activity per :ref:`network thread <thread_model>`: the number of bytes sent and received, the number of connections, streams, and requests (current, average, and total)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:81
+msgid "When called with an index (``box.stat.net.thread[1]``), shows network statistics for a single network thread."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:84
+msgid "Same network activity metrics as :ref:`box.stat.net() <box_introspection-box_stat_net>` for each network thread"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:89
+msgid "tarantool> box.stat.net.thread() -- iproto_threads = 2\n"
+"- - CONNECTIONS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    REQUESTS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    REQUESTS_IN_PROGRESS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    SENT:\n"
+"      total: 0\n"
+"      rps: 0\n"
+"    REQUESTS_IN_STREAM_QUEUE:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    STREAMS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    RECEIVED:\n"
+"      total: 0\n"
+"      rps: 0\n"
+"  - CONNECTIONS:\n"
+"      current: 1\n"
+"      rps: 0\n"
+"      total: 1\n"
+"    REQUESTS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 8\n"
+"    REQUESTS_IN_PROGRESS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 7\n"
+"    SENT:\n"
+"      total: 19579\n"
+"      rps: 0\n"
+"    REQUESTS_IN_STREAM_QUEUE:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    STREAMS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    RECEIVED:\n"
+"      total: 197\n"
+"      rps: 0\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/net.rst:146
+msgid "tarantool> box.stat.net.thread[1] -- first network thread\n"
+"- - CONNECTIONS:\n"
+"      current: 1\n"
+"      rps: 0\n"
+"      total: 1\n"
+"    REQUESTS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 8\n"
+"    REQUESTS_IN_PROGRESS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 7\n"
+"    SENT:\n"
+"      total: 19579\n"
+"      rps: 0\n"
+"    REQUESTS_IN_STREAM_QUEUE:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    STREAMS:\n"
+"      current: 0\n"
+"      rps: 0\n"
+"      total: 0\n"
+"    RECEIVED:\n"
+"      total: 197\n"
+"      rps: 0\n"
+"..."
+msgstr ""

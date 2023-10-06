@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.9.rst:3
+msgid "Tarantool 1.9"
+msgstr ""
+
+#: ../../doc/release/1.9.rst:5
+msgid "Release: :tarantool-release:`1.9.0`"
+msgstr ""
+
+#: ../../doc/release/1.9.rst:11
+msgid "**Release 1.9.0**"
+msgstr ""
+
+#: ../../doc/release/1.9.rst:13
+msgid "Release type: stable. Release date: 2018-02-26.  Tag: 1.9.0-4-g195d446."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:15
+msgid "Release: :tarantool-release:`1.9.0.`"
+msgstr ""
+
+#: ../../doc/release/1.9.rst:17
+msgid "This is the successor of the 1.7.6 stable release. The goal of this release is increased maturity of vinyl and master-master replication, and it contributes a number of features to this cause. Please follow the download instructions at https://tarantool.io/en/download/download.html to download and install a package for your operating system."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:23
+msgid "Functionality added or changed:"
+msgstr ""
+
+#: ../../doc/release/1.9.rst:25
+msgid "(Security) it is now possible to :ref:`block/unblock <authentication-owners_privileges>` users. (:tarantool-issue:`2898`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:28
+msgid "(Security) new function :ref:`box.session.euid() <box_session-euid>` to return effective user. Effective user can be different from authenticated user in case of ``setuid`` functions or ``box.session.su``. (:tarantool-issue:`2994`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:32
+msgid "(Security) new :ref:`super <box_space-user>` role, with superuser access. Grant 'super' to guest to disable access control. (:tarantool-issue:`3022`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:35
+msgid "(Security) :ref:`on_auth <box_session-on_auth>` trigger is now fired in case of both successful and failed authentication. (:tarantool-issue:`3039`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:38
+msgid "(Replication/recovery) new replication configuration algorithm: if replication doesn't connect to replication_quorum peers in :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>` seconds, the server start continues but the server enters the new :ref:`orphan <replication-orphan_status>` status, which is basically read-only, until the replicas connect to each other. (:tarantool-issue:`3151` and :tarantool-issue:`2958`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:44
+msgid "(Replication/recovery) after replication connect at startup, the server does not start processing write requests before :ref:`syncing up <replication-orphan_status>` syncing up with all connected peers."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:47
+msgid "(Replication/recovery) it is now possible to explicitly set :ref:`instance_uuid <cfg_replication-instance_uuid>` and :ref:`replica set uuid <cfg_replication-replicaset_uuid>` as configuration parameters. (:tarantool-issue:`2967`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:51
+msgid "(Replication/recovery) :ref:`box.once() <box-once>` no longer fails on a read-only replica but waits. (:tarantool-issue:`2537`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:54
+msgid "(Replication/recovery) :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>` can now skip a corrupted xlog file. (:tarantool-issue:`3076`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:56
+msgid "(Replication/recovery) improved replication monitoring: :ref:`box.info.replication <box_info_replication>` shows peer ip:port and correct replication lag even for idle peers. (:tarantool-issue:`2753` and :tarantool-issue:`2689`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:60
+msgid "(Application server) new :ref:`before <box_space-before_replace>` triggers which can be used for conflict resolution in master-master replication. (:tarantool-issue:`2993`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:63
+msgid "(Application server) :ref:`http client <http-module>` now correctly parses cookies and supports http+unix:// paths. (:tarantool-issue:`3040` and :tarantool-issue:`2801`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:67
+msgid "(Application server) ``fio`` rock now supports ``file_exists()``, ``rename()`` works across filesystems, and ``read()`` without arguments reads the whole file. (:tarantool-issue:`2924`, :tarantool-issue:`2751` and :tarantool-issue:`2925`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:73
+msgid "(Application server) ``fio`` rock errors now follow Tarantool function call conventions and always return an error message in addition to the error flag."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:75
+msgid "(Application server) ``digest`` rock now supports pbkdf2 password hashing algorithm, useful in PCI/DSS compliant applications. (:tarantool-issue:`2874`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:78
+msgid "(Application server) :ref:`box.info.memory() <box_info_memory>` provides a high-level overview of server memory usage, including networking, Lua, transaction and index memory. (:tarantool-issue:`934`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:81
+msgid "(Database) it is now possible to :ref:`add missing tuple fields <key_part_is_nullable>` to an index, which is very useful when adding an index along with the evolution of the database schema. :tarantool-issue:`2988`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:85
+msgid "(Database) lots of improvements in field type support when creating or :ref:`altering <box_index-alter>` spaces and indexes. (:tarantool-issue:`2893`, :tarantool-issue:`3011` and :tarantool-issue:`3008`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:90
+msgid "(Database) it is now possible to turn on :ref:`is_nullable <key_part_is_nullable>` property on a field even if the space is not empty, the change is instantaneous. (:tarantool-issue:`2973`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:93
+msgid "(Database) :ref:`logging <log-module>` has been improved in many respects: individual messages (:tarantool-issue:`1972`, :tarantool-issue:`2743`, :tarantool-issue:`2900`), more logging in cases when it was useful (:tarantool-issue:`3096`, :tarantool-issue:`2871`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:100
+msgid "(Vinyl storage engine) it is now possible to make a :ref:`unique <box_index-unique>` vinyl index non-unique without index rebuild. (:tarantool-issue:`2449`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:103
+msgid "(Vinyl storage engine) improved UPDATE, REPLACE and recovery performance in presence of secondary keys. (:tarantool-issue:`2289`, :tarantool-issue:`2875` and :tarantool-issue:`3154`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:108
+msgid "(Vinyl storage engine) :ref:`space:len() <box_space-len>` and :ref:`space:bsize() <box_space-bsize>` now work for vinyl (although they are still not exact). (:tarantool-issue:`3056`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:112
+msgid "(Vinyl storage engine) recovery speed has improved in presence of secondary keys. (:tarantool-issue:`2099`)."
+msgstr ""
+
+#: ../../doc/release/1.9.rst:115
+msgid "(Builds) Alpine Linux support. (:tarantool-issue:`3067`)."
+msgstr ""

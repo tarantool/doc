@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/atomic/txn_mode_default.rst:4
+msgid "Transaction mode: default"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_default.rst:6
+msgid "By default, Tarantool does not allow :ref:`\"yielding\" <app-yields>` inside a :ref:`memtx <engines-chapter>` transaction and the :ref:`transaction manager <txn_mode_mvcc-tnx-manager>` is disabled. This allows fast atomic transactions without conflicts, but brings some limitations:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_default.rst:10
+msgid "You cannot use :ref:`interactive transactions <txn_mode_interactive_transaction>`."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_default.rst:12
+msgid "Any fiber yield leads to the abort of a transaction."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_default.rst:14
+msgid "All changes are made immediately, but in the event of a yield or error, the transaction is rolled back, including the return of the previous data."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_default.rst:18
+msgid "To learn how to enable yielding inside a :ref:`memtx <engines-chapter>` transaction, see :ref:`Transaction mode: MVCC <txn_mode_transaction-manager>`."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_default.rst:20
+msgid "To switch back to the default mode, disable the transaction manager:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_default.rst:22
+msgid "box.cfg { memtx_use_mvcc_engine = false }"
+msgstr ""

@@ -1,0 +1,639 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/c_tutorial.rst:2
+msgid "C tutorial"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:7
+msgid "C stored procedures"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:9
+msgid "Tarantool can call C code with :ref:`modules <app_server-modules>`, or with :ref:`ffi <cookbook-ffi_printf>`, or with C stored procedures. This tutorial only is about the third option, C stored procedures. In fact the routines are always \"C functions\" but the phrase \"stored procedure\" is commonly used for historical reasons."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:16
+msgid "In this tutorial, which can be followed by anyone with a Tarantool development package and a C compiler, there are five tasks:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:19
+msgid ":ref:`easy.c <f_c_tutorial-easy>` -- prints \"hello world\";"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:20
+msgid ":ref:`harder.c <f_c_tutorial-harder>` -- decodes a passed parameter value;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:21
+msgid ":ref:`hardest.c <f_c_tutorial-hardest>` -- uses the C API to do a DBMS insert;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:22
+msgid ":ref:`read.c <f_c_tutorial-read>` -- uses the C API to do a DBMS select;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:23
+msgid ":ref:`write.c <f_c_tutorial-write>` -- uses the C API to do a DBMS replace."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:25
+msgid "After following the instructions, and seeing that the results are what is described here, users should feel confident about writing their own stored procedures."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:30
+msgid "Preparation"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:32
+msgid "Check that these items exist on the computer:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:34
+msgid "Tarantool 2.1 or later"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:35
+msgid "A gcc compiler, any modern version should work"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:36
+msgid "``module.h`` and files #included in it"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:37
+msgid "``msgpuck.h``"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:38
+msgid "``libmsgpuck.a`` (only for some recent msgpuck versions)"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:40
+msgid "The ``module.h`` file will exist if Tarantool was installed from source. Otherwise Tarantool's \"developer\" package must be installed. For example on Ubuntu say:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:44
+msgid "$ sudo apt-get install tarantool-dev"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:48
+msgid "or on Fedora say:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:50
+msgid "$ dnf -y install tarantool-devel"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:54
+msgid "The ``msgpuck.h`` file will exist if Tarantool was installed from source. Otherwise the \"msgpuck\" package must be installed from `https://github.com/tarantool/msgpuck <https://github.com/tarantool/msgpuck>`_."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:58
+msgid "Both ``module.h`` and ``msgpuck.h`` must be on the include path for the C compiler to see them. For example, if ``module.h`` address is ``/usr/local/include/tarantool/module.h``, and ``msgpuck.h`` address is ``/usr/local/include/msgpuck/msgpuck.h``, and they are not currently on the include path, say:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:64
+msgid "$ export CPATH=/usr/local/include/tarantool:/usr/local/include/msgpuck"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:68
+msgid "The ``libmsgpuck.a`` static library is necessary with msgpuck versions produced after February 2017. If and only if you encounter linking problems when using the gcc statements in the examples for this tutorial, you should put ``libmsgpuck.a`` on the path (``libmsgpuck.a`` is produced from both msgpuck and Tarantool source downloads so it should be easy to find). For example, instead of \":code:`gcc -shared -o harder.so -fPIC harder.c`\" for the second example below, you will need to say \":code:`gcc -shared -o harder.so -fPIC harder.c libmsgpuck.a`\"."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:77
+msgid "Requests will be done using Tarantool as a :ref:`client <admin-using_tarantool_as_a_client>`. Start Tarantool, and enter these requests."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:81
+msgid "box.cfg{listen=3306}\n"
+"box.schema.space.create('capi_test')\n"
+"box.space.capi_test:create_index('primary')\n"
+"net_box = require('net.box')\n"
+"capi_connection = net_box:new(3306)"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:89
+msgid "In plainer language: create a space named ``capi_test``, and make a connection to self named ``capi_connection``."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:92
+msgid "Leave the client running. It will be necessary to enter more requests later."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:97
+msgid "easy.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:99
+msgid "Start another shell. Change directory (``cd``) so that it is the same as the directory that the client is running on."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:102
+msgid "Create a file. Name it ``easy.c``. Put these six lines in it."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:104
+msgid "#include \"module.h\"\n"
+"int easy(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
+"{\n"
+"  printf(\"hello world\\n\");\n"
+"  return 0;\n"
+"}\n"
+"int easy2(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
+"{\n"
+"  printf(\"hello world -- easy2\\n\");\n"
+"  return 0;\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:119
+msgid "Compile the program, producing a library file named ``easy.so``:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:121
+msgid "$ gcc -shared -o easy.so -fPIC easy.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:125
+#: ../../doc/how-to/app/c_tutorial.rst:214
+#: ../../doc/how-to/app/c_tutorial.rst:302
+#: ../../doc/how-to/app/c_tutorial.rst:406
+#: ../../doc/how-to/app/c_tutorial.rst:488
+msgid "Now go back to the client and execute these requests:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:127
+msgid "box.schema.func.create('easy', {language = 'C'})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'easy')\n"
+"capi_connection:call('easy')"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:133
+msgid "If these requests appear unfamiliar, re-read the descriptions of :doc:`/reference/reference_lua/box_schema/func_create`, :doc:`/reference/reference_lua/box_schema/user_grant` and :ref:`conn:call() <net_box-call>`."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:139
+msgid "The function that matters is ``capi_connection:call('easy')``."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:141
+msgid "Its first job is to find the 'easy' function, which should be easy because by default Tarantool looks on the current directory for a file named ``easy.so``."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:145
+msgid "Its second job is to call the 'easy' function. Since the ``easy()`` function in ``easy.c`` begins with ``printf(\"hello world\\n\")``, the words \"hello world\" will appear on the screen."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:149
+msgid "Its third job is to check that the call was successful. Since the ``easy()`` function in ``easy.c`` ends with :code:`return 0`, there is no error message to display and the request is over."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:153
+#: ../../doc/how-to/app/c_tutorial.rst:331
+msgid "The result should look like this:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:155
+msgid "tarantool> capi_connection:call('easy')\n"
+"hello world\n"
+"---\n"
+"- []\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:163
+msgid "Now let's call the other function in easy.c -- ``easy2()``. This is almost the same as the ``easy()`` function, but there's a detail: when the file name is not the same as the function name, then we have to specify :samp:`{file-name}.{function-name}`."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:169
+msgid "box.schema.func.create('easy.easy2', {language = 'C'})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'easy.easy2')\n"
+"capi_connection:call('easy.easy2')"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:175
+msgid "... and this time the result will be \"hello world -- easy2\"."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:177
+msgid "Conclusion: calling a C function is easy."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:182
+msgid "harder.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:184
+msgid "Go back to the shell where the ``easy.c`` program was created."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:186
+msgid "Create a file. Name it ``harder.c``. Put these 17 lines in it:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:188
+msgid "#include \"module.h\"\n"
+"#include \"msgpuck.h\"\n"
+"int harder(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
+"{\n"
+"  uint32_t arg_count = mp_decode_array(&args);\n"
+"  printf(\"arg_count = %d\\n\", arg_count);\n"
+"  uint32_t field_count = mp_decode_array(&args);\n"
+"  printf(\"field_count = %d\\n\", field_count);\n"
+"  uint32_t val;\n"
+"  int i;\n"
+"  for (i = 0; i < field_count; ++i)\n"
+"  {\n"
+"    val = mp_decode_uint(&args);\n"
+"    printf(\"val=%d.\\n\", val);\n"
+"  }\n"
+"  return 0;\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:208
+msgid "Compile the program, producing a library file named ``harder.so``:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:210
+msgid "$ gcc -shared -o harder.so -fPIC harder.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:216
+msgid "box.schema.func.create('harder', {language = 'C'})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'harder')\n"
+"passable_table = {}\n"
+"table.insert(passable_table, 1)\n"
+"table.insert(passable_table, 2)\n"
+"table.insert(passable_table, 3)\n"
+"capi_connection:call('harder', {passable_table})"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:226
+msgid "This time the call is passing a Lua table (``passable_table``) to the ``harder()`` function. The ``harder()`` function will see it, it's in the :code:`char *args` parameter."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:230
+msgid "At this point the ``harder()`` function will start using functions defined in `msgpuck.h <https://github.com/tarantool/msgpuck>`_. The routines that begin with \"mp\" are msgpuck functions that handle data formatted according to the `MsgPack <http://msgpack.org/>`_ specification. Passes and returns are always done with this format so one must become acquainted with msgpuck to become proficient with the C API."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:238
+msgid "For now, though, it's enough to know that ``mp_decode_array()`` returns the number of elements in an array, and ``mp_decode_uint`` returns an unsigned integer, from :code:`args`. And there's a side effect: when the decoding finishes, :code:`args` has changed and is now pointing to the next element."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:244
+msgid "Therefore the first displayed line will be \"arg_count = 1\" because there was only one item passed: ``passable_table``. |br| The second displayed line will be \"field_count = 3\" because there are three items in the table. |br| The next three lines will be \"1\" and \"2\" and \"3\" because those are the values in the items in the table."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:251
+msgid "And now the screen looks like this:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:253
+msgid "tarantool> capi_connection:call('harder', passable_table)\n"
+"arg_count = 1\n"
+"field_count = 3\n"
+"val=1.\n"
+"val=2.\n"
+"val=3.\n"
+"---\n"
+"- []\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:265
+msgid "Conclusion: decoding parameter values passed to a C function is not easy at first, but there are routines to do the job, and they're documented, and there aren't very many of them."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:273
+msgid "hardest.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:275
+msgid "Go back to the shell where the ``easy.c`` and the ``harder.c`` programs were created."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:278
+msgid "Create a file. Name it ``hardest.c``. Put these 13 lines in it:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:280
+msgid "#include \"module.h\"\n"
+"#include \"msgpuck.h\"\n"
+"int hardest(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
+"{\n"
+"  uint32_t space_id = box_space_id_by_name(\"capi_test\", strlen(\"capi_test\"));\n"
+"  char tuple[1024]; /* Must be big enough for mp_encode results */\n"
+"  char *tuple_pointer = tuple;\n"
+"  tuple_pointer = mp_encode_array(tuple_pointer, 2);\n"
+"  tuple_pointer = mp_encode_uint(tuple_pointer, 10000);\n"
+"  tuple_pointer = mp_encode_str(tuple_pointer, \"String 2\", 8);\n"
+"  int n = box_insert(space_id, tuple, tuple_pointer, NULL);\n"
+"  return n;\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:296
+msgid "Compile the program, producing a library file named ``hardest.so``:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:298
+msgid "$ gcc -shared -o hardest.so -fPIC hardest.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:304
+msgid "box.schema.func.create('hardest', {language = \"C\"})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'hardest')\n"
+"box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
+"capi_connection:call('hardest')"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:311
+msgid "This time the C function is doing three things:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:313
+msgid "finding the numeric identifier of the ``capi_test`` space by calling ``box_space_id_by_name()``;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:315
+msgid "formatting a tuple using more ``msgpuck.h`` functions;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:316
+msgid "inserting a tuple using ``box_insert()``."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:320
+msgid "``char tuple[1024];`` is used here as just a quick way of saying \"allocate more than enough bytes\". For serious programs the developer must be careful to allow enough space for all the bytes that the ``mp_encode`` routines will use up."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:325
+msgid "Now, still on the client, execute this request:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:327
+msgid "box.space.capi_test:select()"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:333
+msgid "tarantool> box.space.capi_test:select()\n"
+"---\n"
+"- - [10000, 'String 2']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:340
+msgid "This proves that the ``hardest()`` function succeeded, but where did :ref:`box_space_id_by_name() <box-box_space_id_by_name>` and :ref:`box_insert() <box-box_insert>` come from? Answer: the :ref:`C API <index-c_api_reference>`."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:348
+msgid "read.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:350
+msgid "Go back to the shell where the ``easy.c`` and the ``harder.c`` and the ``hardest.c`` programs were created."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:353
+msgid "Create a file. Name it ``read.c``. Put these 43 lines in it:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:355
+msgid "#include \"module.h\"\n"
+"#include <msgpuck.h>\n"
+"int read(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
+"{\n"
+"  char tuple_buf[1024];      /* where the raw MsgPack tuple will be stored */\n"
+"  uint32_t space_id = box_space_id_by_name(\"capi_test\", strlen(\"capi_test\"));\n"
+"  uint32_t index_id = 0;     /* The number of the space's first index */\n"
+"  uint32_t key = 10000;      /* The key value that box_insert() used */\n"
+"  mp_encode_array(tuple_buf, 0); /* clear */\n"
+"  box_tuple_format_t *fmt = box_tuple_format_default();\n"
+"  box_tuple_t *tuple = NULL;\n"
+"  char key_buf[16];          /* Pass key_buf = encoded key = 1000 */\n"
+"  char *key_end = key_buf;\n"
+"  key_end = mp_encode_array(key_end, 1);\n"
+"  key_end = mp_encode_uint(key_end, key);\n"
+"  assert(key_end <= key_buf + sizeof(key_buf));\n"
+"  /* Get the tuple. There's no box_select() but there's this. */\n"
+"  int r = box_index_get(space_id, index_id, key_buf, key_end, &tuple);\n"
+"  assert(r == 0);\n"
+"  assert(tuple != NULL);\n"
+"  /* Get each field of the tuple + display what you get. */\n"
+"  int field_no;             /* The first field number is 0. */\n"
+"  for (field_no = 0; field_no < 2; ++field_no)\n"
+"  {\n"
+"    const char *field = box_tuple_field(tuple, field_no);\n"
+"    assert(field != NULL);\n"
+"    assert(mp_typeof(*field) == MP_STR || mp_typeof(*field) == MP_UINT);\n"
+"    if (mp_typeof(*field) == MP_UINT)\n"
+"    {\n"
+"      uint32_t uint_value = mp_decode_uint(&field);\n"
+"      printf(\"uint value=%u.\\n\", uint_value);\n"
+"    }\n"
+"    else /* if (mp_typeof(*field) == MP_STR) */\n"
+"    {\n"
+"      const char *str_value;\n"
+"      uint32_t str_value_length;\n"
+"      str_value = mp_decode_str(&field, &str_value_length);\n"
+"      printf(\"string value=%.*s.\\n\", str_value_length, str_value);\n"
+"    }\n"
+"  }\n"
+"  return 0;\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:400
+msgid "Compile the program, producing a library file named ``read.so``:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:402
+msgid "$ gcc -shared -o read.so -fPIC read.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:408
+msgid "box.schema.func.create('read', {language = \"C\"})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'read')\n"
+"box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
+"capi_connection:call('read')"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:415
+msgid "This time the C function is doing four things:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:417
+#: ../../doc/how-to/app/c_tutorial.rst:499
+msgid "once again, finding the numeric identifier of the ``capi_test`` space by calling ``box_space_id_by_name()``;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:419
+msgid "formatting a search key = 10000 using more ``msgpuck.h`` functions;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:420
+msgid "getting a tuple using ``box_index_get()``;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:421
+msgid "going through the tuple's fields with ``box_tuple_get()`` and then decoding each field depending on its type. In this case, since what we are getting is the tuple that we inserted with ``hardest.c``, we know in advance that the type is either MP_UINT or MP_STR; however, it's very common to have a case statement here with one option for each possible type."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:428
+msgid "The result of ``capi_connection:call('read')`` should look like this:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:430
+msgid "tarantool> capi_connection:call('read')\n"
+"uint value=10000.\n"
+"string value=String 2.\n"
+"---\n"
+"- []\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:439
+msgid "This proves that the ``read()`` function succeeded. Once again the important functions that start with `box` -- :ref:`box_index_get() <c_api-box_index-box_index_get>` and :ref:`box_tuple_field() <c_api-tuple-box_tuple_field>` -- came from the :ref:`C API <index-c_api_reference>`."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:448
+msgid "write.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:450
+msgid "Go back to the shell where the programs ``easy.c``, ``harder.c``, ``hardest.c`` and ``read.c`` were created."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:453
+msgid "Create a file. Name it ``write.c``. Put these 24 lines in it:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:455
+msgid "#include \"module.h\"\n"
+"#include <msgpuck.h>\n"
+"int write(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
+"{\n"
+"  static const char *space = \"capi_test\";\n"
+"  char tuple_buf[1024]; /* Must be big enough for mp_encode results */\n"
+"  uint32_t space_id = box_space_id_by_name(space, strlen(space));\n"
+"  if (space_id == BOX_ID_NIL) {\n"
+"    return box_error_set(__FILE__, __LINE__, ER_PROC_C,\n"
+"    \"Can't find space %s\", \"capi_test\");\n"
+"  }\n"
+"  char *tuple_end = tuple_buf;\n"
+"  tuple_end = mp_encode_array(tuple_end, 2);\n"
+"  tuple_end = mp_encode_uint(tuple_end, 1);\n"
+"  tuple_end = mp_encode_uint(tuple_end, 22);\n"
+"  box_txn_begin();\n"
+"  if (box_replace(space_id, tuple_buf, tuple_end, NULL) != 0)\n"
+"    return -1;\n"
+"  box_txn_commit();\n"
+"  fiber_sleep(0.001);\n"
+"  struct tuple *tuple = box_tuple_new(box_tuple_format_default(),\n"
+"                                      tuple_buf, tuple_end);\n"
+"  return box_return_tuple(ctx, tuple);\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:482
+msgid "Compile the program, producing a library file named ``write.so``:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:484
+msgid "$ gcc -shared -o write.so -fPIC write.c"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:490
+msgid "box.schema.func.create('write', {language = \"C\"})\n"
+"box.schema.user.grant('guest', 'execute', 'function', 'write')\n"
+"box.schema.user.grant('guest', 'read,write', 'space', 'capi_test')\n"
+"capi_connection:call('write')"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:497
+msgid "This time the C function is doing six things:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:501
+msgid "making a new tuple;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:502
+msgid "starting a transaction;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:503
+msgid "replacing a tuple in ``box.space.capi_test``"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:504
+msgid "ending a transaction;"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:505
+msgid "the final line is a replacement for the loop in ``read.c`` -- instead of getting each field and printing it, use the ``box_return_tuple(...)`` function to return the entire tuple to the caller and let the caller display it."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:510
+msgid "The result of ``capi_connection:call('write')`` should look like this:"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:512
+msgid "tarantool> capi_connection:call('write')\n"
+"---\n"
+"- [[1, 22]]\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:519
+msgid "This proves that the ``write()`` function succeeded. Once again the important functions that start with `box` -- :ref:`box_txn_begin() <txn-box_txn_begin>`, :ref:`box_txn_commit() <txn-box_txn_commit>` and :ref:`box_return_tuple() <box-box_return_tuple>` -- came from the :ref:`C API <index-c_api_reference>`."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:526
+msgid "Conclusion: the long description of the whole C API is there for a good reason. All of the functions in it can be called from C functions which are called from Lua. So C \"stored procedures\" have full access to the database."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:533
+msgid "Cleaning up"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:535
+msgid "Get rid of each of the function tuples with :doc:`/reference/reference_lua/box_schema/func_drop`."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:537
+msgid "Get rid of the ``capi_test`` space with :ref:`box.schema.capi_test:drop() <box_space-drop>`."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:539
+msgid "Remove the ``.c`` and ``.so`` files that were created for this tutorial."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:543
+msgid "An example in the test suite"
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:545
+msgid "Download the source code of Tarantool. Look in a subdirectory :code:`test/box`. Notice that there is a file named :code:`tuple_bench.test.lua` and another file named :code:`tuple_bench.c`. Examine the Lua file and observe that it is calling a function in the C file, using the same techniques that this tutorial has shown."
+msgstr ""
+
+#: ../../doc/how-to/app/c_tutorial.rst:552
+msgid "Conclusion: parts of the standard test suite use C stored procedures, and they must work, because releases don't happen if Tarantool doesn't pass the tests."
+msgstr ""

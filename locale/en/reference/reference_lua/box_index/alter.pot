@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:5
+msgid "index_object:alter()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:11
+msgid "Alter an index. It is legal in some circumstances to change one or more of the index characteristics, for example its type, its sequence options, its parts, and whether it is unique. Usually this causes rebuilding of the space,  except for the simple case where a part's ``is_nullable`` flag is changed from ``false`` to ``true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:18
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:20
+msgid "index options (see :ref:`index_opts <index_opts_object>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:22
+msgid "nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:24
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:26
+msgid "index does not exist"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:27
+msgid "the primary-key index cannot be changed to ``{unique = false}``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:31
+msgid "Vinyl does not support ``alter()`` of a primary-key index unless the space is empty."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:33
+msgid "**Example 1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:35
+msgid "You can add and remove fields that make up a primary index:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:37
+msgid "tarantool> s = box.schema.create_space('test')\n"
+"---\n"
+"...\n"
+"tarantool> i = s:create_index('i', {parts = {{field = 1, type = 'unsigned'}}})\n"
+"---\n"
+"...\n"
+"tarantool> s:insert({1, 2})\n"
+"---\n"
+"- [1, 2]\n"
+"...\n"
+"tarantool> i:select()\n"
+"---\n"
+"- - [1, 2]\n"
+"...\n"
+"tarantool> i:alter({parts = {{field = 1, type = 'unsigned'}, {field = 2, type = 'unsigned'}}})\n"
+"---\n"
+"...\n"
+"tarantool> s:insert({1, 't'})\n"
+"---\n"
+"- error: 'Tuple field 2 type does not match one required by operation: expected unsigned'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:61
+msgid "**Example 2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:63
+msgid "You can change index options for both memtx and vinyl spaces:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/alter.rst:65
+msgid "tarantool> box.space.space55.index.primary:alter({type = 'HASH'})\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> box.space.vinyl_space.index.i:alter({page_size=4096})\n"
+"---\n"
+"..."
+msgstr ""

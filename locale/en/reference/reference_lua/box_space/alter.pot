@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/alter.rst:5
+msgid "space_object:alter()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/alter.rst:11
+msgid "Since version :doc:`2.5.2 </release/2.5.2>`. Alter an existing space. This method changes certain space parameters."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/alter.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/alter.rst:14
+msgid "the space options such as ``field_count``, ``user``, ``format``, ``name``, and other. The full list of these options with descriptions parameters is provided in :doc:`/reference/reference_lua/box_schema/space_create`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/alter.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/alter.rst:19
+msgid "nothing in case of success; an error when fails"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/alter.rst:21
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/alter.rst:23
+msgid "tarantool> s = box.schema.create_space('tester')\n"
+"---\n"
+"...\n"
+"tarantool> format = {{name = 'field1', type = 'unsigned'}}\n"
+"---\n"
+"...\n"
+"tarantool> s:alter({name = 'tester1', format = format})\n"
+"---\n"
+"...\n"
+"tarantool> s.name\n"
+"---\n"
+"- tester1\n"
+"...\n"
+"tarantool> s:format()\n"
+"---\n"
+"- [{'name': 'field1', 'type': 'unsigned'}]\n"
+"..."
+msgstr ""

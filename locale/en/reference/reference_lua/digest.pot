@@ -1,0 +1,489 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/digest.rst:5
+msgid "Module digest"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:13
+msgid "A \"digest\" is a value which is returned by a function (usually a `Cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_), applied against a string. Tarantool's ``digest`` module supports several types of cryptographic hash functions ( `AES <https://en.wikipedia.org/wiki/Advanced_Encryption_Standard>`_, `MD4 <https://en.wikipedia.org/wiki/Md4>`_, `MD5 <https://en.wikipedia.org/wiki/Md5>`_, `SHA-1 <https://en.wikipedia.org/wiki/Sha-1>`_, `SHA-2 <https://en.wikipedia.org/wiki/Sha-2>`_, `PBKDF2 <https://en.wikipedia.org/wiki/PBKDF2>`_) as well as a checksum function (`CRC32 <https://en.wikipedia.org/wiki/Cyclic_redundancy_check>`_), two functions for `base64 <https://en.wikipedia.org/wiki/Base64>`_, and two non-cryptographic hash functions (`guava <https://code.google.com/p/guava-libraries/wiki/HashingExplained>`_, `murmur <https://en.wikipedia.org/wiki/MurmurHash>`_). Some of the digest functionality is also present in the :ref:`crypto <crypto>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:31
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:33
+msgid "Below is a list of all ``digest`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:41
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:41
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:43
+msgid ":ref:`digest.aes256cbc.encrypt() <digest-aes>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:43
+msgid "Encrypt a string using AES"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:46
+msgid ":ref:`digest.aes256cbc.decrypt() <digest-aes>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:46
+msgid "Decrypt a string using AES"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:49
+msgid ":ref:`digest.md4() <digest-md4>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:49
+msgid "Get a digest made with MD4"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:52
+msgid ":ref:`digest.md4_hex() <digest-md4_hex>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:52
+msgid "Get a hexadecimal digest made with MD4"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:55
+msgid ":ref:`digest.md5() <digest-md5>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:55
+msgid "Get a digest made with MD5"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:58
+msgid ":ref:`digest.md5_hex() <digest-md5_hex>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:58
+msgid "Get a hexadecimal digest made with MD5"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:61
+msgid ":ref:`digest.pbkdf2() <digest-pbkdf2>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:61
+msgid "Get a digest made with PBKDF2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:64
+msgid ":ref:`digest.sha1() <digest-sha1>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:64
+msgid "Get a digest made with SHA-1"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:67
+msgid ":ref:`digest.sha1_hex() <digest-sha1_hex>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:67
+msgid "Get a hexadecimal digest made with SHA-1"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:70
+msgid ":ref:`digest.sha224() <digest-sha224>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:70
+msgid "Get a 224-bit digest made with SHA-2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:73
+msgid ":ref:`digest.sha224_hex() <digest-sha224_hex>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:73
+msgid "Get a 56-byte hexadecimal digest made with SHA-2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:76
+msgid ":ref:`digest.sha256() <digest-sha256>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:76
+msgid "Get a 256-bit digest made with SHA-2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:79
+msgid ":ref:`digest.sha256_hex() <digest-sha256_hex>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:79
+msgid "Get a 64-byte hexadecimal digest made with SHA-2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:82
+msgid ":ref:`digest.sha384() <digest-sha384>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:82
+msgid "Get a 384-bit digest made with SHA-2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:85
+msgid ":ref:`digest.sha384_hex() <digest-sha384_hex>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:85
+msgid "Get a 96-byte hexadecimal digest made with SHA-2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:88
+msgid ":ref:`digest.sha512() <digest-sha512>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:88
+msgid "Get a 512-bit digest made with SHA-2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:91
+msgid ":ref:`digest.sha512_hex() <digest-sha512_hex>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:91
+msgid "Get a 128-byte hexadecimal digest made with SHA-2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:94
+msgid ":ref:`digest.base64_encode() <digest-base64_encode>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:94
+msgid "Encode a string to Base64"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:97
+msgid ":ref:`digest.base64_decode() <digest-base64_decode>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:97
+msgid "Decode a Base64-encoded string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:100
+msgid ":ref:`digest.urandom() <digest-urandom>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:100
+msgid "Get an array of random bytes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:103
+msgid ":ref:`digest.crc32() <digest-crc32>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:103
+msgid "Get a 32-bit checksum made with CRC32"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:106
+msgid ":ref:`digest.crc32.new() <digest-crc32_new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:106
+msgid "Initiate incremental CRC32"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:109
+msgid ":ref:`digest.guava() <digest-guava>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:109
+msgid "Get a number made with a consistent hash"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:112
+msgid ":ref:`digest.murmur() <digest-murmur>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:112
+msgid "Get a digest made with MurmurHash"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:115
+msgid ":ref:`digest.murmur.new() <digest-murmur_new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:115
+msgid "Initiate incremental MurmurHash"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:124
+msgid "Returns 256-bit binary string = digest made with AES."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:130
+msgid "Returns 128-bit binary string = digest made with MD4."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:136
+msgid "Returns 32-byte string = hexadecimal of a digest calculated with md4."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:142
+msgid "Returns 128-bit binary string = digest made with MD5."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:148
+msgid "Returns 32-byte string = hexadecimal of a digest calculated with md5."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:154
+msgid "Returns binary string = digest made with PBKDF2. |br| For effective encryption the ``iterations`` value should be at least several thousand. The ``digest-length`` value determines the length of the resulting binary string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:161
+msgid "``digest.pbkdf2()`` yields and should not be used in a transaction (between ``box.begin()`` and ``box.commit()``/``box.rollback()``). PBKDF2 is a time-consuming hash algorithm. It runs in a separate coio thread. While calculations are performed, the fiber that calls ``digest.pbkdf2()`` yields and another fiber continues working in the tx thread."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:171
+msgid "Returns 160-bit binary string = digest made with SHA-1."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:177
+msgid "Returns 40-byte string = hexadecimal of a digest calculated with sha1."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:183
+msgid "Returns 224-bit binary string = digest made with SHA-2."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:189
+msgid "Returns 56-byte string = hexadecimal of a digest calculated with sha224."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:195
+msgid "Returns 256-bit binary string =  digest made with SHA-2."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:201
+msgid "Returns 64-byte string = hexadecimal of a digest calculated with sha256."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:207
+msgid "Returns 384-bit binary string =  digest made with SHA-2."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:213
+msgid "Returns 96-byte string = hexadecimal of a digest calculated with sha384."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:219
+msgid "Returns 512-bit binary string = digest made with SHA-2."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:225
+msgid "Returns 128-byte string = hexadecimal of a digest calculated with sha512."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:231
+msgid "Returns base64 encoding from a regular string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:233
+msgid "The possible options are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:235
+msgid "``nopad`` -- result must not include '=' for padding at the end,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:236
+msgid "``nowrap`` -- result must not include line feed for splitting lines after 72 characters,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:238
+msgid "``urlsafe`` -- result must not include '=' or line feed, and may contain '-' or '_' instead of '+' or '/' for positions 62 and 63 in the index table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:242
+msgid "Options may be ``true`` or ``false``, the default value is ``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:244
+msgid "For example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:246
+msgid "digest.base64_encode(string_variable,{nopad=true})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:254
+msgid "Returns a regular string from a base64 encoding."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:260
+msgid "Returns array of random bytes with length = integer."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:266
+msgid "Returns 32-bit checksum made with CRC32."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:268
+msgid "The ``crc32`` and ``crc32_update`` functions use the `Cyclic Redundancy Check <https://en.wikipedia.org/wiki/Cyclic_redundancy_check>`_ polynomial value: ``0x1EDC6F41`` / ``4812730177``. (Other settings are: input = reflected, output = reflected, initial value = 0xFFFFFFFF, final xor value = 0x0.) If it is necessary to be compatible with other checksum functions in other programming languages, ensure that the other functions use the same polynomial value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:276
+msgid "For example, in Python, install the ``crcmod`` package and say:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:278
+msgid ">>> import crcmod\n"
+">>> fun = crcmod.mkCrcFun('4812730177')\n"
+">>> fun('string')\n"
+"3304160206L"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:285
+msgid "In Perl, install the ``Digest::CRC`` module and run the following code:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:287
+msgid "use Digest::CRC;\n"
+"$d = Digest::CRC->new(width => 32, poly => 0x1EDC6F41, init => 0xFFFFFFFF, refin => 1, refout => 1);\n"
+"$d->add('string');\n"
+"print $d->digest;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:294
+msgid "(the expected output is 3304160206)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:300
+msgid "Initiates incremental crc32. See :ref:`incremental methods <digest-incremental_digests>` notes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:307
+msgid "Returns a number made with consistent hash."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:309
+msgid "The guava function uses the `Consistent Hashing <https://en.wikipedia.org/wiki/Consistent_hashing>`_ algorithm of the Google guava library. The first parameter should be a hash code; the second parameter should be the number of buckets; the returned value will be an integer between 0 and the number of buckets. For example,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:315
+msgid "tarantool> digest.guava(10863919174838991, 11)\n"
+"---\n"
+"- 8\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:326
+msgid "Returns 32-bit binary string = digest made with MurmurHash."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:332
+msgid "Initiates incremental MurmurHash. See :ref:`incremental methods <digest-incremental_digests>` notes. For example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:336
+msgid "murmur.new({seed=0})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:344
+msgid "Incremental methods in the ``digest`` module"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:346
+msgid "Suppose that a digest is done for a string 'A', then a new part 'B' is appended to the string, then a new digest is required. The new digest could be recomputed for the whole string 'AB', but it is faster to take what was computed before for 'A' and apply changes based on the new part 'B'. This is called multi-step or \"incremental\" digesting, which Tarantool supports with crc32 and with murmur..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:352
+msgid "digest = require('digest')\n"
+"\n"
+"-- print crc32 of 'AB', with one step, then incrementally\n"
+"print(digest.crc32('AB'))\n"
+"c = digest.crc32.new()\n"
+"c:update('A')\n"
+"c:update('B')\n"
+"print(c:result())\n"
+"\n"
+"-- print murmur hash of 'AB', with one step, then incrementally\n"
+"print(digest.murmur('AB'))\n"
+"m = digest.murmur.new()\n"
+"m:update('A')\n"
+"m:update('B')\n"
+"print(m:result())"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:372
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:374
+msgid "In the following example, the user creates two functions, ``password_insert()`` which inserts a `SHA-1 <https://en.wikipedia.org/wiki/Sha-1>`_ digest of the word \"**^S^e^c^ret Wordpass**\" into a tuple set, and ``password_check()`` which requires input of a password."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:378
+msgid "tarantool> digest = require('digest')\n"
+"---\n"
+"...\n"
+"tarantool> function password_insert()\n"
+"         >   box.space.tester:insert{1234, digest.sha1('^S^e^c^ret Wordpass')}\n"
+"         >   return 'OK'\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> function password_check(password)\n"
+"         >   local t = box.space.tester:select{12345}\n"
+"         >   if digest.sha1(password) == t[2] then\n"
+"         >     return 'Password is valid'\n"
+"         >   else\n"
+"         >     return 'Password is not valid'\n"
+"         >   end\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> password_insert()\n"
+"---\n"
+"- 'OK'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:404
+msgid "If a later user calls the ``password_check()`` function and enters the wrong password, the result is an error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/digest.rst:407
+msgid "tarantool> password_check('Secret Password')\n"
+"---\n"
+"- 'Password is not valid'\n"
+"..."
+msgstr ""

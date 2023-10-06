@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/using_ide.rst:5
+msgid "Developing with an IDE"
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:7
+msgid "You can use IntelliJ IDEA as an IDE to develop and debug Lua applications for Tarantool."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:10
+msgid "Download and install the IDE from the `official web-site <https://www.jetbrains.com/idea/>`_."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:13
+msgid "JetBrains provides specialized editions for particular languages: IntelliJ IDEA (Java), PHPStorm (PHP), PyCharm (Python), RubyMine (Ruby), CLion (C/C++), WebStorm (Web) and others. So, download a version that suits your primary programming language."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:18
+msgid "Tarantool integration is supported for all editions."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:20
+msgid "Configure the IDE:"
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:22
+msgid "Start IntelliJ IDEA."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:23
+msgid "Click ``Configure`` button and select ``Plugins``."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:30
+msgid "Click ``Browse repositories``."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:37
+msgid "Install ``EmmyLua`` plugin."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:41
+msgid "Please don’t be confused with ``Lua`` plugin, which is less powerful than ``EmmyLua``."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:49
+msgid "Restart IntelliJ IDEA."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:50
+msgid "Click ``Configure``, select ``Project Defaults`` and then ``Run Configurations``."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:58
+msgid "Find ``Lua Application`` in the sidebar at the left."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:60
+msgid "In ``Program``, type a path to an installed ``tarantool`` binary."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:62
+msgid "By default, this is ``tarantool`` or ``/usr/bin/tarantool`` on most platforms."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:65
+msgid "If you installed ``tarantool`` from sources to a custom directory, please specify the proper path here."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:73
+msgid "Now IntelliJ IDEA is ready to use with Tarantool."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:75
+msgid "Create a new Lua project."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:82
+msgid "Add a new Lua file, for example ``init.lua``."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:89
+msgid "Write your code, save the file."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:91
+msgid "To run you application, click ``Run -> Run`` in the main menu and select your source file in the list."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:99
+msgid "Or click ``Run -> Debug`` to start debugging."
+msgstr ""
+
+#: ../../doc/how-to/app/using_ide.rst:103
+msgid "To use Lua debugger, please upgrade Tarantool to version 1.7.5-29-gbb6170e4b or later."
+msgstr ""

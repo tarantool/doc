@@ -1,0 +1,643 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/localization/glossaries.rst:2
+msgid "Glossaries"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/glossaries.rst:5
+msgid "Tarantool Core"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Term [en]"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Term [ru]"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Description [en]"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Description [ru]"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "space"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "спейс"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "A space is a container for tuples."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "https://www.tarantool.io/en/doc/latest/book/box/data_model/#spaces\""
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "NOUN"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "кортеж"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "A tuple plays the same role as a “row” or a “record”. The number of tuples in a space is unlimited. Tuples in Tarantool are stored as MsgPack arrays. https://www.tarantool.io/en/doc/latest/book/box/data_model/#tuples"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Tarantool"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "НЕ ПЕРЕВОДИТЬ"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "primary index"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "первичный индекс"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "The first index defined on a space is called the primary key index, and it must be unique. All other indexes are called secondary indexes, and they may be non-unique. https://www.tarantool.io/en/doc/latest/book/box/data_model/#indexes"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "fiber"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "файбер"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "A fiber is a set of instructions which are executed with cooperative multitasking. Fibers managed by the fiber module are associated with a user-supplied function called the fiber function. https://www.tarantool.io/en/doc/latest/reference/reference_lua/fiber/#fibers"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Tarantool garbage collector"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "сборщик мусора в Tarantool"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "A garbage collector fiber runs in the background on the master storages of each replica set. It starts deleting the contents of the bucket in the GARBAGE state part by part. Once the bucket is empty, its record is deleted from the _bucket system space. https://www.tarantool.io/en/doc/latest/reference/reference_rock/vshard/vshard_admin/#garbage-collector"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Lua garbage collector"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "сборщик мусора на Lua"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Lua manages memory automatically by running a garbage collector from time to time to collect all dead objects (that is, objects that are no longer accessible from Lua). https://www.lua.org/manual/5.1/manual.html#2.10"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "storage engine"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "движок базы данных"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "A storage engine is a set of very-low-level routines which actually store and retrieve tuple values. https://www.tarantool.io/en/doc/latest/book/box/engines/"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "thread"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "поток"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "A thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Lua application"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Lua-приложение, приложение на языке Lua"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Tarantool’s native language for writing applications is Lua."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "memtx"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "instance"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "экземпляр"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "implicit casting"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "неявное приведение типов"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "database"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "база данных"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Release policy"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Релизная политика"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "A set of rules for releasing and naming new distributions of Tarantool: where we add new features and where we don't, how we give them numbers, what versions are suitable to use in production."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "field"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "поле"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Fields are distinct data values, contained in a tuple. They play the same role as «row columns» or «record fields» in relational databases."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "https://www.tarantool.io/ru/doc/latest/book/box/data_model/#term-field\""
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "leader election"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "выборы лидера"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(in a replica set, by the Raft algorithm)"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "replica set"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "набор реплик"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "heartbeat"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "контрольный сигнал"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "functionality"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "функциональность"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "log"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "журнал"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "node"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "узел"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "follower"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "реплика"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "small allocator"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "аллокатор small"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "https://github.com/tarantool/small"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "patch"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "патч"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "breaking change"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "критическое изменение"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "parser"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "парсер"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "UUID"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "data type"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "тип данных"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "alias"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "алиас"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "или псевдоним?"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "push"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "выполнить push"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "MVCC"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(механизм) MVCC"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "dirty read"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "\"грязное чтение\""
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "в кавычках"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "snapshot"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "снимок (данных)"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "keywords"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "ключевые слова"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "identifier"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "имя, идентификатор"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "clause"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "предложение, блок"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(SQL) A clause in SQL is a part of a query that lets you filter or customizes how you want your data to be queried to you."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "expression"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "выражение"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "predicate"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "предикат"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(SQL) Predicates, which specify conditions that can be evaluated to SQL three-valued logic (3VL) (true/false/unknown) or Boolean truth values and are used to limit the effects of statements and queries, or to change program flow."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "query"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "запрос"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(SQL) Queries retrieve the data based on specific criteria. A query is a statement that returns a result set (possibly empty)."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "result set"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "результат запроса"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(SQL) An SQL result set is a set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. A result set is effectively a table."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "resultset"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "statement"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "инструкция"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(SQL) A statement is any text that the database engine recognizes as a valid command."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(SQL) Любой текст, который распознаётся движком БД как команда. Инструкция состоит из ключевых слов и выражений языка SQL, которые предписывают Tarantool выполнять какие-либо действия с базой данных."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Tarantool: A statement consists of SQL-language keywords and expressions that direct Tarantool to do something with a database. https://www.tarantool.io/en/doc/latest/reference/reference_sql/sql_user_guide/#statements\""
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "batch"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "пакет (инструкций)"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(SQL) A series of SQL statements sent to the server at once is called a batch."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(SQL) Серия SQL-инструкций (statements), отправляемая на сервер вместе"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "production configuration"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "конфигурация производственной среды"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "deployment"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "Transforming a mechanical, electrical, or computer system from a packaged to an operational state. IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "roll back"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "отменить"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "транзакцию"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "deploy to production"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment. Production environment is a setting where software and other products are actually put into operation for their intended uses by end users"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "operations"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "эксплуатация"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "(DevOps) Information technology operations, or IT operations, are the set of all processes and services that are both provisioned by an IT staff to their internal or external clients and used by themselves, to run themselves as a business."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "to deploy"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "deployment plan"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary.csv:1
+msgid "A sequence of operations or steps that must be carried to deliver changes into a target system environment."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/glossaries.rst:13
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Cartridge"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "приложение на Tarantool Cartridge"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Если без предлога, то теряется  смысл: читается так, как будто Tarantool Cartridge — это название приложения. А это не так."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Tarantool Cartridge application"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Tarantool Cartridge — это фреймворк"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "на базе которого можно разработать свое приложение.\""
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "production environment"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "производственная среда"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "Production environment is a term used mostly by developers to describe the setting where software and other products are actually put into operation for their intended uses by end users."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "failover"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "восстановление после сбоев"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "In computing and related technologies such as networking, failover is switching to a redundant or standby computer server, system, hardware component or network upon the failure or abnormal termination of the previously active application, server, system, hardware component, or network."
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "replicaset"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "directory"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "директория"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "bucket"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "сегмент"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "check"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "выберите, выбрать"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/_includes/glossary-cartridge.csv:1
+msgid "To select a checkbox"
+msgstr ""

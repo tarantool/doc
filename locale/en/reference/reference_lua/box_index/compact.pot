@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/compact.rst:5
+msgid "index_object:compact()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/compact.rst:11
+msgid "Remove unused index space. For the memtx storage engine this method does nothing; ``index_object:compact()`` is only for the vinyl storage engine. For example, with vinyl, if a tuple is deleted, the space is not immediately reclaimed. There is a scheduler for reclaiming space automatically based on factors such as lsm shape and amplification as discussed in the section :ref:`Storing data with vinyl <engines-vinyl>`, so calling ``index_object:compact()`` manually is not always necessary."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/compact.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/compact.rst:20
+msgid "nil (Tarantool returns without waiting for compaction to complete)"
+msgstr ""

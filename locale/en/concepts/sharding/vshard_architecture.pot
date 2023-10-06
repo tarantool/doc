@@ -1,0 +1,528 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:4
+msgid "Architecture"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:11
+msgid "Consider a distributed Tarantool cluster that consists of subclusters called **shards**, each storing some part of data. Each shard, in its turn, constitutes a **replica set** consisting of several **replicas**, one of which serves as a master node that processes all read and write requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:16
+msgid "The whole dataset is logically partitioned into a predefined number of :ref:`virtual buckets <vshard-vbuckets>` (further just **buckets**), each assigned a unique number ranging from 1 to N, where N is the total number of buckets. The number of buckets is specifically chosen to be several orders of magnitude larger than the potential number of cluster nodes, even given future cluster scaling. For example, with M projected nodes the dataset may be split into 100 * M or even 1,000 * M buckets. Care should be taken when picking the number of buckets: if too large, it may require extra memory for storing the routing information; if too small, it may decrease the granularity of rebalancing."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:27
+msgid "Each shard stores a unique subset of buckets, which means that a bucket cannot belong to several shards at once, as illustrated below:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:33
+msgid "This shard-to-bucket mapping is stored in a table in one of Tarantool’s system spaces, with each shard holding only a specific part of the mapping that covers those buckets that were assigned to this shard."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:37
+msgid "Apart from the mapping table, the **bucket id** is also stored in a special field of every tuple of every table participating in sharding."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:40
+msgid "Once a shard receives any request (except for SELECT) from an application, this shard checks the bucket id specified in the request against the table of bucket ids that belong to a given node. If the specified bucket id is invalid, the request gets terminated with the following error: “wrong bucket”. Otherwise the request is executed, and all the data created in the process is assigned the bucket id specified in the request. Note that the request should only modify the data that has the same bucket id as the request itself."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:49
+msgid "Storing bucket ids both in the data itself and the mapping table ensures data consistency regardless of the application logic and makes rebalancing transparent for the application. Storing the mapping table in a system space ensures sharding is performed consistently in case of a failover, as all the replicas in a shard share a common table state."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:58
+msgid "Virtual buckets"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:60
+msgid "The sharded dataset is partitioned into a large number of abstract nodes called **virtual buckets** (further just **buckets**)."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:63
+msgid "The dataset is partitioned using the sharding key (or **bucket id**, in Tarantool terminology). Bucket id is a number from 1 to N, where N is the total number of buckets."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:70
+msgid "Each replica set stores a unique subset of buckets. One bucket cannot belong to multiple replica sets at a time."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:73
+msgid "The total number of buckets is determined by the administrator who sets up the initial cluster configuration."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:76
+msgid "Every space you plan to shard must have a numeric field containing bucket id-s. This field must comply with the following requirements:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:79
+msgid "The field's data type can be: unsigned, number or integer."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:80
+msgid "The field must be not nullable."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:81
+msgid "The field must be indexed by the :ref:`shard_index <cfg_basic-shard_index>`. The default name for this index is ``bucket_id``."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:84
+msgid "See the :ref:`configuration example <vshard-define-spaces>`."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:89
+msgid "Structure"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:91
+msgid "A sharded cluster in Tarantool consists of:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:93
+msgid "storages,"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:94
+msgid "routers,"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:95
+msgid "and a rebalancer."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:103
+msgid "Storage"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:105
+msgid "**Storage** is a node storing a subset of the dataset. Multiple replicated (for redundancy) storages comprise a **replica set** (also called **shard**)."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:108
+msgid "Each storage in a replica set has a role, **master** or **replica**. A master processes read and write requests. A replica processes read requests but cannot process write requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:118
+msgid "Router"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:120
+msgid "**Router** is a standalone software component that routes read and write requests from the client application to shards."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:123
+msgid "All requests from the application come to the sharded cluster through a ``router``. The ``router`` keeps the topology of a sharded cluster transparent for the application, thus keeping the application unaware of:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:127
+msgid "the number and location of shards,"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:128
+msgid "data rebalancing process,"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:129
+msgid "the fact and the process of a failover that occurred after a replica's failure."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:131
+msgid "A router can also calculate a bucket id on its own provided that the application clearly defines rules for calculating a bucket id based on the request data. To do it, a router needs to be aware of the data schema."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:135
+msgid "The ``router`` does not have a persistent state, nor does it store the cluster topology or balance the data. The ``router`` is a standalone software component that can run in the storage layer or application layer depending on the application features."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:139
+msgid "A router maintains a constant pool of connections to all the storages that is created at startup. Creating it this way helps avoid configuration errors. Once a pool is created, a router caches the current state of the ``_vbucket`` table to speed up the routing. In case a bucket id is moved to another storage as a result of data rebalancing, or one of the shards fails over to a replica, a router updates the routing table in a way that's transparent for the application."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:146
+msgid "Sharding is not integrated into any centralized configuration storage system. It is assumed that the application itself handles all the interactions with such systems and passes sharding parameters. That said, the configuration can be changed dynamically - for example, when adding or deleting one or several shards:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:151
+msgid "To add a new shard to the cluster, a system administrator first changes the configuration of all the routers and then the configuration of all the storages."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:153
+msgid "The new shard becomes available to the storage layer for rebalancing."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:154
+msgid "As a result of rebalancing, one of the vbuckets is moved to the new shard."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:155
+msgid "When trying to access the vbucket, a router receives a special error code that specifies the new vbucket location."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:159
+msgid "CRUD (create, read, update, delete) operations"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:161
+msgid "CRUD operations can be:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:163
+msgid "executed in a stored procedure inside a storage, or"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:164
+msgid "initialized by the application."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:166
+msgid "In any case, the application must include the operation bucket id in a request. When executing an INSERT request, the operation bucket id is stored in a newly created tuple. In other cases, it is checked if the specified operation bucket id matches the bucket id of a tuple being modified."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:172
+msgid "SELECT requests"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:174
+msgid "Since a storage is not aware of the mapping between a bucket id and a primary key, all the SELECT requests executed in stored procedures inside a storage are only executed locally. Those SELECT requests that were initialized by the application are forwarded to a router. Then, if the application has passed a bucket id, a router uses it for shard calculation."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:181
+msgid "Calling stored procedures"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:183
+msgid "There are several ways of calling stored procedures in cluster replica sets. Stored procedures can be called:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:186
+msgid "on a specific vbucket located in a replica set (in this case, it is necessary to differentiate between read and write procedures, as write procedures are not applicable to vbuckets that are being migrated), or"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:189
+msgid "without specifying any particular vbucket."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:191
+msgid "All the routing validity checks performed for sharded DML operations hold true for vbucket-bound stored procedures as well."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:197
+msgid "Rebalancer"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:199
+msgid "**Rebalancer** is a background rebalancing process that ensures an even distribution of buckets across the shards. During rebalancing, buckets are being migrated among replica sets."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:203
+msgid "The rebalancer \"wakes up\" periodically and redistributes data from the most loaded nodes to less loaded nodes. Rebalancing starts if the **replicaset disbalance** of a replica set exceeds a disbalance threshold specified in the configuration."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:207
+msgid "The replicaset disbalance is calculated as follows:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:209
+msgid "|etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:216
+msgid "Migration of buckets"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:218
+msgid "A replica set from which the bucket is being migrated is called a **source** ; a target replica set to which the bucket is being migrated is called a **destination**."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:221
+msgid "A **replica set lock** makes a replica set invisible to the rebalancer. A locked replica set can neither receive new buckets nor migrate its own buckets."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:224
+msgid "While a bucket is being migrated, it can have different states:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:226
+msgid "ACTIVE – the bucket is available for read and write requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:227
+msgid "PINNED – the bucket is locked for migrating to another replica set. Otherwise pinned buckets are similar to buckets in the ACTIVE state."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:229
+msgid "SENDING – the bucket is currently being copied to the destination replica set; read requests to the source replica set are still processed."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:231
+msgid "RECEIVING – the bucket is currently being filled; all requests to it are rejected."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:232
+msgid "SENT – the bucket was migrated to the destination replica set. The `router` uses the SENT state to calculate the new location of the bucket. A bucket in the SENT state goes to the GARBAGE state automatically after BUCKET_SENT_GARBAGE_DELAY seconds, which by default is :ref:`0.5 seconds <cfg_basic-collect_bucket_garbage_interval>`."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:236
+msgid "GARBAGE – the bucket was already migrated to the destination replica set during rebalancing; or the bucket was initially in the RECEIVING state, but some error occurred during the migration."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:240
+msgid "Buckets in the GARBAGE state are deleted by the garbage collector."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:245
+msgid "Migration is performed as follows:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:247
+msgid "At the destination replica set, a new bucket is created and assigned the RECEIVING state, the data copying starts, and the bucket rejects all requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:249
+msgid "The source bucket in the source replica set is assigned the SENDING state, and the bucket continues to process read requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:251
+msgid "Once the data is copied, the bucket on the source replica set is assigned the SENT and it starts rejecting all requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:253
+msgid "The bucket on the destination replica set is assigned the ACTIVE state and starts accepting all requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:258
+msgid "There is a specific error ``vshard.error.code.TRANSFER_IS_IN_PROGRESS`` that returns in case a request tries to perform an action not applicable to a bucket which is being relocated. You need to retry the request in this case."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:265
+msgid "The _bucket system space"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:267
+msgid "The ``_bucket`` system space of each replica set stores the ids of buckets present in the replica set. The space contains the following fields:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:270
+msgid "``bucket`` – bucket id"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:271
+msgid "``status`` – state of the bucket"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:272
+msgid "``destination`` – UUID of the destination replica set"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:274
+msgid "An example of ``_bucket.select{}``:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:276
+msgid "---\n"
+"- - [1, ACTIVE, abfe2ef6-9d11-4756-b668-7f5bc5108e2a]\n"
+"  - [2, SENT, 19f83dcb-9a01-45bc-a0cf-b0c5060ff82c]\n"
+"..."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:283
+msgid "Once the bucket is migrated, the destination replica set identified by UUID is filled in the table. While the bucket is still located on the source replica set, the value of the destination replica set UUID is equal to ``NULL``."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:290
+msgid "The routing table"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:292
+msgid "А routing table on the ``router`` stores the map of all bucket ids to replica sets. It ensures the consistency of sharding in case of failover."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:295
+msgid "The ``router`` keeps a persistent pool of connections to all the storages that are created at startup. This helps prevent configuration errors. Once the connection pool is created, the ``router`` caches the current state of the routing table in order to speed up routing. If a bucket migrated to another ``storage`` after rebalancing, or a failover occurred and caused one of the shards switching to another replica, the ``discovery fiber`` on the ``router`` updates the routing table automatically."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:302
+msgid "As the bucket id is explicitly indicated both in the data and in the mapping table on the ``router``, the data is consistent regardless of the application logic. It also makes rebalancing transparent for the application."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:309
+msgid "Processing requests"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:311
+msgid "Requests to the database can be performed by the application or using stored procedures. Either way, the bucket id should be explicitly specified in the request."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:314
+msgid "All requests are forwarded to the ``router`` first. The only operation supported by the ``router`` is ``call``. The operation is performed via the ``vshard.router.call()`` function:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:318
+msgid "result = vshard.router.call(<bucket_id>, <mode>, <function_name>, {<argument_list>}, {<opts>})"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:322
+msgid "Requests are processed as follows:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:324
+msgid "The ``router`` uses the bucket id to search for a replica set with the corresponding bucket in the routing table."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:327
+msgid "If the map of the bucket id to the replica set is not known to the ``router`` (the discovery fiber hasn’t filled the table yet), the ``router`` makes requests to all ``storages`` to find out where the bucket is located."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:330
+msgid "Once the bucket is located, the shard checks:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:332
+msgid "whether the bucket is stored in the ``_bucket`` system space of the replica set;"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:333
+msgid "whether the bucket is ACTIVE or PINNED (for a read request, it can also be SENDING)."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:335
+msgid "If all the checks succeed, the request is executed. Otherwise, it is terminated with the error: ``“wrong bucket”``."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:341
+msgid "Glossary"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:346
+msgid "**Vertical scaling**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:348
+msgid "Adding more power to a single server: using a more powerful CPU, adding more capacity to RAM, adding more storage space, etc."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:352
+msgid "**Horizontal scaling**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:354
+msgid "Adding more servers to the pool of resources, then partitioning and distributing a dataset across the servers."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:358
+msgid "**Sharding**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:360
+msgid "A database architecture that allows partitioning a dataset using a sharding key and distributing a dataset across multiple servers. Sharding is a special case of horizontal scaling."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:365
+msgid "**Node**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:367
+msgid "A virtual or physical server instance."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:370
+msgid "**Cluster**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:372
+msgid "A set of nodes that make up a single group."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:375
+msgid "**Storage**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:377
+msgid "A node storing a subset of a dataset."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:380
+msgid "**Replica set**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:382
+msgid "A set of storage nodes storing copies of a dataset. Each storage in a replica set has a role, master or replica."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:386
+msgid "**Master**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:388
+msgid "A storage in a replica set processing read and write requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:391
+msgid "**Replica**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:393
+msgid "A storage in a replica set processing only read requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:396
+msgid "**Read requests**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:398
+msgid "Read-only requests, that is, select requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:401
+msgid "**Write requests**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:403
+msgid "Data-change operations, that is create, read, update, delete requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:406
+msgid "**Buckets (virtual buckets)**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:408
+msgid "The abstract virtual nodes into which the dataset is partitioned by the sharding key (bucket id)."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:412
+msgid "**Bucket id**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:414
+msgid "A sharding key defining which bucket belongs to which replica set. A bucket id may be calculated from a :ref:`hash key <router_api-bucket_id_strcrc32>`."
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:418
+msgid "**Router**"
+msgstr ""
+
+#: ../../doc/concepts/sharding/vshard_architecture.rst:420
+msgid "A proxy server responsible for routing requests from an application to nodes in a cluster."
+msgstr ""

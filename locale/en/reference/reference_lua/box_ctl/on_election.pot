@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_ctl/on_election.rst:5
+msgid "box.ctl.on_election()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_election.rst:11
+msgid "**Since:** :doc:`2.10.0 </release/2.10.0>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_election.rst:13
+msgid "Create a :ref:`trigger <triggers>` executed every time the current state of a replica set node in regard to :ref:`leader election <repl_leader_elect>` changes. The current state is available in the :ref:`box.info.election <box_info_election>` table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_election.rst:17
+msgid "The trigger doesn't accept any parameters. You can see the changes in ``box.info.election`` and :ref:`box.info.synchro <box_info_synchro>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_election.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_election.rst:21
+msgid "a trigger function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_election.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_election.rst:23
+msgid "``nil`` or a function pointer"
+msgstr ""

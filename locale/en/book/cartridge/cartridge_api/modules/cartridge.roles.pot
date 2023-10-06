@@ -1,0 +1,313 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:5
+msgid "Module *cartridge.roles*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:7
+msgid "Role management (internal module)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:11
+msgid "The module consolidates all the role management functions: ``cfg`` , some getters,  ``validate_config``  and  ``apply_config`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:14
+msgid "The module is almost stateless, it's only state is a collection of registered roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:17
+msgid "(**Added** in v1.2.0-20)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:22
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:29
+msgid "reload ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:31
+msgid "Perform hot-reload of cartridge roles code."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:33
+msgid "This is an experimental feature, it's only allowed if the application enables it explicitly:  ``cartridge.cfg({roles_reload_allowed = true})`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:37
+msgid "Reloading starts by stopping all roles and restoring the initial state. It's supposed that a role cleans up the global state when stopped, but even if it doesn't, cartridge kills all fibers and removes global variables and HTTP routes."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:42
+msgid "All Lua modules that were loaded during :ref:`cartridge.cfg <cartridge.cfg>` are unloaded, including supplementary modules required by a role. Modules, loaded before :ref:`cartridge.cfg <cartridge.cfg>` aren't affected."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:46
+msgid "Instance performs roles reload in a dedicated state  ``ReloadingRoles`` . If reload fails, the instance enters the  ``ReloadError``  state, which can later be retried. Otherwise, if reload succeeds, instance proceeds to the  ``ConfiguringRoles``  state and initializes them as usual with  ``validate_config()`` ,  ``init()`` , and  ``apply_config()`` callbacks."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:53
+msgid "Hot-reload could be forbidden in runtime with  ``forbid_reload``  function."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:58
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:80
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:102
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:124
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:150
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:183
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:208
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:226
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:245
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:267
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:287
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:306
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:333
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:60
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:82
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:104
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:126
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:152
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:185
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:308
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:335
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:63
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:85
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:107
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:129
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:155
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:188
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:311
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:338
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:65
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:87
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:109
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:131
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:157
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:190
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:313
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:340
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:67
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:89
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:111
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:133
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:159
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:192
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:315
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:342
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:74
+msgid "forbid_reload ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:76
+msgid "Forbid hot-reload of cartridge roles code."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:96
+msgid "allow_reload ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:98
+msgid "Allow hot-reload of cartridge roles code."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:118
+msgid "is_reload_forbidden ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:120
+msgid "Returns true if hot-reload of cartridge roles code is forbidden."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:140
+msgid "on_apply_config (table, string)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:142
+msgid "Do additional job after the roles configuration applying."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:145
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:179
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:263
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:283
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:301
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:327
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:147
+msgid "*table:*  conf"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:148
+msgid "*string:*  state"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:164
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:171
+msgid "cfg (module_names)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:173
+msgid "Load modules and register them as Cartridge Roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:175
+msgid "This function is internal, it's called as a part of :ref:`cartridge.cfg <cartridge.cfg>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:181
+msgid "*module_names:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:199
+msgid "get_all_roles ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:201
+msgid "List all registered roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:203
+msgid "Hidden and permanent roles are listed too."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:210
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:228
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:247
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:289
+msgid "(`{string,..} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:217
+msgid "get_known_roles ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:219
+msgid "List registered roles names."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:221
+msgid "Hidden roles are not listed as well as permanent ones."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:235
+msgid "get_enabled_roles_without_deps ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:237
+msgid "List top-level roles names."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:239
+msgid "Dependencies of top-level roles of the replicaset, hidden roles are not listed as well as permanent ones."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:254
+msgid "get_enabled_roles (roles)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:256
+msgid "Roles to be enabled on the server. This function returns all roles that will be enabled including their dependencies (both hidden and not) and permanent roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:265
+msgid "*roles:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or `{[string]=boolean,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:269
+msgid "(`{[string]=boolean,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:276
+msgid "get_role_dependencies (role_name)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:278
+msgid "List role dependencies. Including sub-dependencies."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:285
+msgid "*role_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:296
+msgid "validate_config (conf_new, conf_old)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:298
+msgid "Validate configuration by all roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:303
+msgid "*conf_new:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:304
+msgid "*conf_old:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:322
+msgid "apply_config (conf, opts, is_master)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:324
+msgid "Apply the role configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:329
+msgid "*conf:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:330
+msgid "*opts:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:331
+msgid "*is_master:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:349
+msgid "stop ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.roles.rst:351
+msgid "Stop all roles."
+msgstr ""

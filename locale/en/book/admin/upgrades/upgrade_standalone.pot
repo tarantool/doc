@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:5
+msgid "Standalone instance upgrade"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:7
+msgid "This page describes the process of upgrading a standalone Tarantool instance in production. Note that this **always implies a downtime** because the application needs to be stopped and restarted on the target version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:11
+msgid "To upgrade **without downtime**, you need multiple Tarantool servers running in a replication cluster. Find detailed instructions in :ref:`Replication cluster upgrade <admin-upgrades-replication-cluster>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:15
+msgid "Checking your application"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_check_app.rst:1
+msgid "Before upgrading, make sure your application is compatible with the target Tarantool version:"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_check_app.rst:4
+msgid "Set up a development environment with the target Tarantool version installed. See the installation instructions at the Tarantool `download page <http://tarantool.org/download.html>`_ and in the :ref:`tt install reference <tt-install>`."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_check_app.rst:8
+msgid "Deploy the application in this environment and check how it works. In case of any issues, adjust the application code to ensure compatibility with the target version."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_check_app.rst:11
+msgid "When your application is ready to run on the target Tarantool version, you can start upgrading the production environment."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:20
+msgid "Upgrading a standalone instance"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:22
+msgid "Stop the Tarantool instance."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:24
+msgid "Make a copy of all data and the package from which the current (old) version was installed. You may need it for rollback purposes. Find the backup instruction in the appropriate hot backup procedure in :ref:`Backups <admin-backups>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:29
+msgid "Install the target Tarantool version on the host. You can do this using a package manager or the :ref:`tt utility <tt-cli>`. See the installation instructions at Tarantool `download page <http://tarantool.org/download.html>`_ and in the :ref:`tt install reference <tt-install>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:33
+msgid "To check that the target Tarantool version is installed, run ``tarantool -v``."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:35
+msgid "Start your application on the target version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:37
+msgid "Run :ref:`box.schema.upgrade() <box_schema-upgrade>`. This will update the Tarantool system spaces to match the currently installed version of Tarantool."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:42
+msgid "To undo schema upgrade in a case of failed upgrade, you can use :ref:`box.schema.downgrade() <box_schema-downgrade>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:45
+msgid "Rollback"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_standalone.rst:47
+msgid "The rollback procedure for a standalone instance is almost the same as the upgrade. The only difference is in the last step: you should call :ref:`box.schema.downgrade() <box_schema-downgrade>` to return the schema to the original version."
+msgstr ""

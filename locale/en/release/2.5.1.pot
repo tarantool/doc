@@ -1,0 +1,341 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.5.1.rst:2
+msgid "Tarantool 2.5.1"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:4
+msgid "Release: :tarantool-release:`2.5.1` Date: 2020-07-17 Tag: 2.5.1-1-g635f6e5"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:10
+msgid "2.5.1 is the beta version of the 2.5 release series."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:12
+msgid "This release introduces roughly 11 features and resolves 34 bugs since the 2.4.1 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`_."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:17
+msgid "Notable changes are:"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:19
+msgid "Synchronous replication (beta)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:20
+msgid "Allow an anonymous replica follow another anonymous replica."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:21
+msgid "Fixed numerous crashes in Vinyl."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:22
+msgid "Make implicit cast rules for assignment operation more strict in SQL."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:23
+msgid "Updated curl version to 7.71."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:26
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:28
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:31
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/2.3/book/admin/upgrades/>`_ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:36
+msgid "There are changes labeled with **[Breaking change]**. It means that the old behavior was considered error-prone and therefore changed to protect users from unintended mistakes. However, there is a little probability that someone can lean on the old behavior, and this label is to bring attention to the things that have been changed."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:43
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:46
+#: ../../doc/release/2.5.1.rst:126
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:48
+msgid "**[Breaking change]** :doc:`/reference/reference_lua/box_session/push` parameter ``sync`` is deprecated and deleted. It does not work anymore, and a usage attempt leads to an error (:tarantool-issue:`4689`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:51
+msgid "**[Breaking change]** Define new rules for implicit cast for assignment operation in SQL (:tarantool-issue:`3809`). Read more: :ref:`sql-implicit_cast`."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:53
+msgid "Symbols of the Tarantool executable are not masked anymore. Some private symbols may become visible and available for FFI and ``dlopen()`` + ``dlsym()`` (:tarantool-issue:`2971`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:56
+msgid "Add ability to set up logging early without configuring the ``box`` engine (:tarantool-issue:`689`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:58
+msgid "To retrieve information about memory usage, :doc:`/reference/reference_lua/box_info/memory` can be used (:tarantool-issue:`4688`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:63
+#: ../../doc/release/2.5.1.rst:187
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:65
+msgid "``box.snapshot()`` now ignores throttling of the scheduler and forces the dump process immediately (:tarantool-issue:`3519`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:69
+#: ../../doc/release/2.5.1.rst:175
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:71
+msgid "Use naming pattern “COLUMN_N” for automatically generated column’s names (:tarantool-issue:`3962`). Read more: :ref:`sql_select_list`."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:75
+#: ../../doc/release/2.5.1.rst:148
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:77
+msgid "Add :doc:`/reference/reference_lua/box_info/replication_anon`. When called, it lists anonymous replicas in the same format as ``box.info.replication``, the only exception is that anonymous replicas are indexed by their uuid strings (:tarantool-issue:`4900`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:82
+msgid "Allow anonymous replicas to be followed by other ones (:tarantool-issue:`4696`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:83
+msgid ":ref:`Synchronous replication <repl_sync>` can be enabled per-space using the ``is_sync`` space option (:tarantool-issue:`4842`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:87
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:89
+msgid "Add initial support for OpenBSD (:tarantool-issue:`4967`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:92
+#: ../../doc/release/2.5.1.rst:215
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:94
+msgid "Don’t start the :ref:`‘example’ instance <creating-db-locally>` after installing Tarantool (:tarantool-issue:`4507`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:97
+msgid "Before this release, the Tarantool package for Debian and Ubuntu automatically enable and start the ‘example’ instance, which listens on the TCP port 3301. Starting from this release, the instance file is installed to ``/etc/tarantool/instances.available/example.lua``, but is not enabled by default and not started anymore. One may perform the following actions to enable and start it:"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:104
+msgid "ln -s /etc/tarantool/instances.available/example.lua \\\n"
+"    /etc/tarantool/instances.enabled/example.lua\n"
+"systemctl start tarantool@example"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:110
+msgid "The existing configuration will not be updated automatically at package update, so manual actions are required to stop and disable the instance (if it is not needed, of course):"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:114
+msgid "systemctl stop tarantool@example\n"
+"rm /etc/tarantool/instances.enabled/example.lua"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:119
+msgid "When LTO is enabled, Luajit is built with it (:tarantool-issue:`3743`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:122
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:128
+msgid "Fixed assert outdated due to multikey index arrival (:tarantool-issue:`5132`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:129
+msgid "Fixed a bug in altering a normal index to a functional one (n/a)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:130
+msgid "Fixed a couple of internal symbols dangling in global namespace \\_G (:tarantool-issue:`4812`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:132
+msgid "Fixed bug when on_shutdown triggers were not executed after EOF (:tarantool-issue:`4703`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:134
+msgid "Fixed inability to handle ULL constants in Lua mode console (:tarantool-issue:`4682`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:136
+msgid "Fixed a bug in C module reloading (:tarantool-issue:`4945`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:137
+msgid "Fixed confusing implicit requirements for tuple fields (:tarantool-issue:`5027`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:138
+msgid "Added needed key validation to space_before_replace (:tarantool-issue:`5017`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:139
+msgid "Fixed check of index field map size which led to crash (:tarantool-issue:`5084`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:140
+msgid "Fixed NULL pointer dereference when merger is called via the binary protocol (say, via net.box) (:tarantool-issue:`4954`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:142
+msgid "Fix wrong mpsgpack extension type in an error message at decoding (:tarantool-issue:`5017`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:144
+msgid "Fixed crash when invalid JSON was used in update() (:tarantool-issue:`5135`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:150
+msgid "Fixed possible ER_TUPLE_FOUND error when bootstrapping replicas in an 1.10/2.1.1 cluster (:tarantool-issue:`4924`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:152
+msgid "Fixed tx boundary check for half-applied txns (:tarantool-issue:`5125`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:153
+msgid "Fixed replication tx boundaries after local space rework (:tarantool-issue:`4928`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:156
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:158
+msgid "Added format string usage to form a CustomError message (:tarantool-issue:`4903`). Read more: :ref:`Custom error <box_error_raise_custom_error>`."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:160
+msgid "Fixed error while closing socket.tcp_server socket (:tarantool-issue:`4087`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:161
+msgid "Extended box.error objects reference counter to 64 bit to prevent possible overflow (:tarantool-issue:`4902`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:163
+msgid "Refactored Lua table encoding: removed excess Lua function object and left protected Lua frame only for the case \\__serialize is a function to improve ``msgpack.encode()`` performance (no GH issue)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:166
+msgid "Improved Lua call procedure for the case of built-in functions. Prepared GCfunc object is used instead of temporary one, resulting in 3-6% garbage collection reduction."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:169
+msgid "Enabled luacheck in continuous integration (no GH issue)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:170
+msgid "Fixed warnings (two of them were real bugs!) found by luacheck in a source code (no GH issue)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:177
+msgid "Fixed wrong order of rows as a result of query containing column of SCALAR type in ORDER BY clause (:tarantool-issue:`4697`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:179
+msgid "Fixed bug with the display of collation for scalar fields in <SELECT> result, when ``sql_full_metadata`` is enabled (:tarantool-issue:`4755`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:181
+msgid "Block using HASH indexes in SQL since scheduler is unable to use it properly (:tarantool-issue:`4659`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:183
+msgid "Fixed races and corner cases in box (re)configuration (:tarantool-issue:`4231`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:189
+msgid "Fixed crash during compaction due to tuples with size exceeding vinyl_max_tuple_size setting (:tarantool-issue:`4864`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:191
+msgid "Fixed crash during recovery of vinyl index due to the lack of file descriptors (:tarantool-issue:`4805`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:193
+msgid "Fixed crash during executing upsert changing primary key in debug mode (:tarantool-issue:`5005`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:195
+msgid "Fixed crash due to triggered dump process during secondary index creation (:tarantool-issue:`5042`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:197
+msgid "Fixed crash/deadlock (depending on build type) during dump process scheduling and concurrent DDL operation (:tarantool-issue:`4821`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:199
+msgid "Fixed crash during read of prepared but still not yet not committed statement (:tarantool-issue:`3395`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:201
+msgid "Fixed squashing set and arithmetic upsert operations (:tarantool-issue:`5106`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:202
+msgid "Created missing folders for vinyl spaces and indexes if needed to avoid confusing fails of tarantool started from backup (:tarantool-issue:`5090`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:204
+msgid "Fixed crash during squash of many (more than 4000) upserts modifying the same key (:tarantool-issue:`4957`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:208
+msgid "Memtx"
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:210
+msgid "Fixed concurrent replaces on index building. Tuples are now referenced on all needed execution paths (:tarantool-issue:`4973`)."
+msgstr ""
+
+#: ../../doc/release/2.5.1.rst:217
+msgid "Fixed a possible stacked diagnostics crash due to incorrect reference count (:tarantool-issue:`4887`)."
+msgstr ""

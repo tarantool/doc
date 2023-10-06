@@ -1,0 +1,503 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:4
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:256
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:348
+msgid "datetime_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:8
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:14
+msgid "Convert the information from a ``datetime`` object into the table format. Resulting table has the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:23
+msgid "Field name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:24
+msgid "Description"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:26
+msgid "nsec"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:27
+msgid "Nanosecods"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:29
+msgid "sec"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:30
+msgid "Seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:32
+msgid "min"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:33
+msgid "Minutes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:35
+msgid "hour"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:36
+msgid "Hours"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:38
+msgid "day"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:39
+msgid "Day number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:41
+msgid "month"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:42
+msgid "Month number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:44
+msgid "year"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:45
+msgid "Year"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:47
+msgid "wday"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:48
+msgid "Days since the beginning of the week"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:50
+msgid "yday"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:51
+msgid "Days since the beginning of the year"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:53
+msgid "isdst"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:54
+msgid "Is the DST (Daylight saving time) applicable for the date. Boolean."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:56
+msgid "tzoffset"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:57
+msgid "Time zone offset from UTC"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:59
+msgid "table with the date and time parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:60
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:62
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:107
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:153
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:200
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:351
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:64
+msgid "tarantool> dt = datetime.new {\n"
+"            sec = 20,\n"
+"            min = 25,\n"
+"            hour = 18,\n"
+"\n"
+"            day = 20,\n"
+"            month = 8,\n"
+"            year = 2021,\n"
+"            }\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> dt:totable()\n"
+"---\n"
+"- sec: 20\n"
+"  min: 25\n"
+"  yday: 232\n"
+"  day: 20\n"
+"  nsec: 0\n"
+"  isdst: false\n"
+"  wday: 6\n"
+"  tzoffset: 0\n"
+"  month: 8\n"
+"  year: 2021\n"
+"  hour: 18\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:97
+msgid "Convert the standard ``datetime`` object presentation into a formatted string. The conversion specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ library. Additional specification for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below). If no arguments are set for the method, the default conversions are used: `'%FT%T.%f%z'` (see the example below)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:102
+msgid "string consisting of zero or more conversion specifications and ordinary characters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:104
+msgid "string with the formatted date and time information"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:105
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:109
+msgid "tarantool> dt = datetime.new {\n"
+"            nsec = 123456789,\n"
+"\n"
+"            sec = 20,\n"
+"            min = 25,\n"
+"            hour = 18,\n"
+"\n"
+"            day = 20,\n"
+"            month = 8,\n"
+"            year = 2021,\n"
+"\n"
+"            tzoffset  = 180\n"
+"            }\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> dt:format('%d.%m.%y %H:%M:%S.%5f')\n"
+"---\n"
+"- 20.08.21 18:25:20.12345\n"
+"...\n"
+"\n"
+"tarantool> dt:format()\n"
+"---\n"
+"- 2021-08-20T18:25:20.123456789+0300\n"
+"...\n"
+"\n"
+"tarantool> dt:format('%FT%T.%f%z')\n"
+"---\n"
+"- 2021-08-20T18:25:20.123456789+0300\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:146
+msgid "Update the field values in the existing ``datetime`` object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:148
+msgid "Table of time units. The :ref:`time units <datetime-new-args>` are the same as for the ``datetime.new()`` function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:150
+msgid "updated datetime_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:151
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:198
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:257
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:349
+msgid "cdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:155
+msgid "tarantool> dt = datetime.new {\n"
+"            nsec = 123456789,\n"
+"\n"
+"            sec = 20,\n"
+"            min = 25,\n"
+"            hour = 18,\n"
+"\n"
+"            day = 20,\n"
+"            month = 8,\n"
+"            year = 2021,\n"
+"\n"
+"            tzoffset  = 180\n"
+"            }\n"
+"\n"
+"tarantool> dt:set {msec = 567}\n"
+"---\n"
+"- 2021-08-20T18:25:20.567+0300\n"
+"...\n"
+"\n"
+"tarantool> dt:set {tzoffset = 60}\n"
+"---\n"
+"- 2021-08-20T18:25:20.567+0100\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:185
+msgid "Convert an input string with the date and time information into a ``datetime`` object. The input string should be formatted according to one of the following standards:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:188
+msgid "ISO 8601"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:189
+msgid "RFC 3339"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:190
+msgid "extended `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ -- see description of the :ref:`format() <datetime-format>` for details."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:192
+msgid "string with the date and time information."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:193
+msgid "indicator of the input_sting format. Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string. If no value is set, the default formatting  is used."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:195
+msgid "time zone offset from UTC, in minutes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:197
+msgid "a datetime_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:202
+msgid "tarantool> t = datetime.parse('1970-01-01T00:00:00Z')\n"
+"\n"
+"tarantool> t\n"
+"---\n"
+"- 1970-01-01T00:00:00Z\n"
+"...\n"
+"\n"
+"tarantool> t = datetime.parse('1970-01-01T00:00:00', {format = 'iso8601', tzoffset = 180})\n"
+"\n"
+"tarantool> t\n"
+"---\n"
+"- 1970-01-01T00:00:00+0300\n"
+"...\n"
+"\n"
+"tarantool> t = datetime.parse('2017-12-27T18:45:32.999999-05:00', {format = 'rfc3339'})\n"
+"\n"
+"tarantool> t\n"
+"---\n"
+"- 2017-12-27T18:45:32.999999-0500\n"
+"...\n"
+"\n"
+"tarantool> T = datetime.parse('Thu Jan  1 03:00:00 1970', {format = '%c'})\n"
+"\n"
+"tarantool> T\n"
+"---\n"
+"- 1970-01-01T03:00:00Z\n"
+"...\n"
+"\n"
+"tarantool> T = datetime.parse('12/31/2020', {format = '%m/%d/%y'})\n"
+"\n"
+"tarantool> T\n"
+"---\n"
+"- 2020-12-31T00:00:00Z\n"
+"...\n"
+"\n"
+"tarantool> T = datetime.parse('1970-01-01T03:00:00.125000000+0300', {format = '%FT%T.%f%z'})\n"
+"\n"
+"tarantool> T\n"
+"---\n"
+"- 1970-01-01T03:00:00.125+0300\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:250
+msgid "Modify an existing datetime object by adding values of the input argument."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:252
+msgid "an :ref:`interval object <interval_obj>` or an equivalent table (see **Example #1**)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:253
+msgid "defines how to round days in a month after an arithmetic operation. Possible values: ``none``, ``last``, ``excess`` (see **Example #2**). Defaults to ``none``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:259
+msgid "**Example #1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:261
+msgid "tarantool> dt = datetime.new {\n"
+"            day = 26,\n"
+"            month = 8,\n"
+"            year = 2021,\n"
+"            tzoffset  = 180\n"
+"            }\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> iv = datetime.interval.new {day = 7}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> dt, iv\n"
+"---\n"
+"- 2021-08-26T00:00:00+0300\n"
+"- +7 days\n"
+"...\n"
+"\n"
+"tarantool> dt:add(iv)\n"
+"---\n"
+"- 2021-09-02T00:00:00+0300\n"
+"...\n"
+"\n"
+"tarantool> dt:add{ day = 7 }\n"
+"---\n"
+"- 2021-09-09T00:00:00+0300\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:294
+msgid "**Example #2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:296
+msgid "tarantool> dt = datetime.new {\n"
+"            day = 29,\n"
+"            month = 2,\n"
+"            year = 2020\n"
+"            }\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> dt:add{month = 1, adjust = 'none'}\n"
+"---\n"
+"- 2020-03-29T00:00:00Z\n"
+"...\n"
+"\n"
+"tarantool> dt = datetime.new {\n"
+"            day = 29,\n"
+"            month = 2,\n"
+"            year = 2020\n"
+"            }\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> dt:add{month = 1, adjust = 'last'}\n"
+"---\n"
+"- 2020-03-31T00:00:00Z\n"
+"...\n"
+"\n"
+"tarantool> dt = datetime.new {\n"
+"            day = 31,\n"
+"            month = 1,\n"
+"            year = 2020\n"
+"            }\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> dt:add{month = 1, adjust = 'excess'}\n"
+"---\n"
+"- 2020-03-02T00:00:00Z\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:341
+msgid "Modify an existing datetime object by subtracting values of the input argument."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:343
+msgid "an :ref:`interval object <interval_obj>` or an equivalent table (see **Example**)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:344
+msgid "defines how to round days in a month after an arithmetic operation. Possible values: ``none``, ``last``, ``excess``. Defaults to ``none``. The logic is similar to the one of the ``:add()`` method -- see :ref:`Example #2 <datetime-add-example2>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/datetime_object.rst:353
+msgid "tarantool> dt = datetime.new {\n"
+"            day = 26,\n"
+"            month = 8,\n"
+"            year = 2021,\n"
+"            tzoffset  = 180\n"
+"            }\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> iv = datetime.interval.new {day = 5}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> dt, iv\n"
+"---\n"
+"- 2021-08-26T00:00:00+0300\n"
+"- +5 days\n"
+"...\n"
+"\n"
+"tarantool> dt:sub(iv)\n"
+"---\n"
+"- 2021-08-21T00:00:00+0300\n"
+"...\n"
+"\n"
+"tarantool> dt:sub{ day = 1 }\n"
+"---\n"
+"- 2021-08-20T00:00:00+0300\n"
+"..."
+msgstr ""

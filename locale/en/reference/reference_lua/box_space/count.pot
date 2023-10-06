@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:5
+msgid "space_object:count()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:11
+msgid "Return the number of tuples. If compared with :doc:`len() </reference/reference_lua/box_space/len>`, this method works slower because ``count()`` scans the entire space to count the tuples."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:16
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:18
+msgid "primary-key field values, must be passed as a Lua table if key is multi-part"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:20
+msgid "comparison method"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:22
+msgid "Number of tuples."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:24
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:26
+msgid ":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:29
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/count.rst:31
+msgid "tarantool> box.space.tester:count(2, {iterator='GE'})\n"
+"---\n"
+"- 1\n"
+"..."
+msgstr ""

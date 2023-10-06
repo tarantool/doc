@@ -1,0 +1,294 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/markup/code.rst:2
+msgid "Writing about code"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:4
+msgid "When writing articles, you need to format code specially, separating it from other text. This document will guide you through typical cases when it is recommended to use code highlighting."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:9
+msgid "Defining what code is"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:11
+msgid "In general, code is any text, processed by a machine. It is also probably code if the expression contains characters that ordinary words do not have, such as ``_, {}, [ ], .``. Also, you should format the expression as code if it fits at least one of the items in the list below:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:17
+msgid "parts of a programming language: names of classes, variables, and functions, short expressions, data types and so on,"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:19
+msgid "multiline fragments of application logs,"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:20
+msgid "example link which the reader will not open: ``example.com``, ``https://example.com:80``,"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:21
+msgid "parts of URL, like port number,"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:22
+msgid "package names,"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:23
+msgid "CLI app names."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:25
+msgid "Items we don't format as code:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:27
+msgid "names of products, organizations and services, for example, Tarantool, memtx, vinyl"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:29
+msgid "well-established terms such as stdin and stdout"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:31
+msgid "Keep in mind that grammar doesn't apply to code, even inline."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:33
+msgid "Correct: \"use ``shellcheck`` to analyze your Bash code\"."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:34
+msgid "Incorrect: \"``shellcheck`` your Bash code\". Please do not use code as a verb."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:36
+msgid "Even worse: \"shellcheck your Bash code\". There's no such word in English and we don't explain what to use."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:38
+msgid "Cursed: \"try ``shellchecking`` your Bash code\". There's no such word and no such application."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:42
+msgid "Code blocks and inline code"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:44
+msgid "If you have to choose between inline code and code block highlighting, pay attention to the following guidelines:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:48
+msgid "Code snippets"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:50
+msgid "Use code blocks when you have to highlight multiple lines of code. Also, use it if your code snippet contains a standalone element that is not a part of the article's text."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:54
+msgid "For code snippets, we use the ``code-block:: language`` `directive <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block>`_. You can enable syntax highlighting if you specify the language for the snippet. The most commonly used highlighting languages are:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:59
+msgid "``tarantoolsession``—interactive Tarantool session, where command lines start with ``tarantool>`` prompt."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:61
+msgid "``console``—interactive console session, where command lines start with ``$`` or ``#``."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:63
+msgid "``lua``, ``bash`` or ``c`` for programming languages."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:64
+msgid "``text`` for cases when we want the code block to have no highlighting."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:66
+msgid "Sphinx uses the Pygments library for highlighting source code. For a complete list of possible languages, see the `list of Pygments lexers <https://pygments.org/docs/lexers/>`_."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:70
+msgid "For example, a code snippet in Lua:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:72
+msgid "..  code-block:: lua\n"
+"\n"
+"    for page in paged_iter(\"X\", 10) do\n"
+"      print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"      for i=1,#page,1 do print(page[i]) end\n"
+"    end"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:75
+msgid "Lua syntax is highlighted in the output:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/lua.rst:1
+msgid "for page in paged_iter(\"X\", 10) do\n"
+"  print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"  for i=1,#page,1 do print(page[i]) end\n"
+"end"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:79
+msgid "Note that in code blocks you can write comments and translate them:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:81
+msgid "..  //Here is the first comment.\n"
+"..  //Here is the second comment."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:85
+msgid "Inline code"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:87
+msgid "Use inline code when you need to wrap a short snippet of code in text, such as variable name or function definition. Keep in mind that inline code doesn't have syntax highlighting."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:91
+msgid "To format some inline text as ``code``, enclose it with double ````` characters or use the ``:code:`` role:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:94
+msgid "*   Formatting code with backticks: ``echo \"Hello world!\"``.\n"
+"\n"
+"*   Formatting code with a role: :code:`echo \"Hello world!\"`."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:97
+msgid "Both options produce the same output:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/inline-code.rst:1
+msgid "Formatting code with backticks: ``echo \"Hello world!\"``."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/inline-code.rst:3
+msgid "Formatting code with a role: :code:`echo \"Hello world!\"`."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:103
+msgid "Notes on using inline-code"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:105
+msgid "If you have expressions such as ``id==4``, you should format the whole expression as code inline. Also, you can use the words \"equals\", \"doesn't equal\" or other similar words without formatting expression as code. Both variants are correct."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:110
+msgid "Inline code can be used to highlight expressions that are hard to read, for example, words containing ``il``, ``Il`` or ``O0``."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:115
+msgid "Highlighting variables in code"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:117
+msgid "If you need to mark up a placeholder inside code inline, use the ``:samp:`` or our custom ``:extsamp:`` role, like this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:120
+msgid ":samp:`{space_object}:insert(\\\\{ffi.cast('double', {value})\\\\})`\n"
+"\n"
+":extsamp:`{*{space_object}*}:insert({ffi.cast('double', {**{value}**})})`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:123
+#: ../../doc/contributing/docs/markup/code.rst:159
+msgid "And you will get this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/samp.rst:1
+msgid ":samp:`{space_object}:insert(\\\\{ffi.cast('double', {value})\\\\})`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/samp.rst:3
+msgid ":extsamp:`{*{space_object}*}:insert({ffi.cast('double', {**{value}**})})`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:127
+msgid "Notice two backslashes before the curly brackets in the first line. They are needed to escape curly brackets from Lua syntax."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:130
+msgid "As you can see, ``:extsamp:`` extends the abilities of ``:samp:``. It allows you to highlight placeholders in both italics and bold and avoid escaping curly brackets. ``:extsamp:`` has the following syntax:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:135
+msgid "``{*{element}*}`` for *italic*"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:136
+msgid "``{**{element}**}`` for **bold**"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:138
+msgid "If you need to mark up a placeholder in code block, use the following syntax:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:141
+msgid "..  cssclass:: highlight\n"
+"..  parsed-literal::\n"
+"\n"
+"    :samp:`box.space.{space-name}:create_index('{index-name}')`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:144
+msgid "The output will look like this:"
+msgstr ""
+
+#: ../../internal padding after doc/contributing/docs/markup/_includes/highlight.rst:209
+msgid ":samp:`box.space.{space-name}:create_index('{index-name}')`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:149
+msgid "Formatting file and directory names"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:151
+msgid "If you need to highlight some file standalone name or path to file in text, use the ``:file:`` role. You can use curly braces inside this role to mark up a replaceable part:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/code.rst:156
+msgid ":file:`/usr/bin/example.py`\n"
+"\n"
+":file:`/usr/{dirname}/example.py`\n"
+"\n"
+":file:`/usr/{dirname}/{filename.ext}`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/file.rst:1
+msgid ":file:`/usr/bin/example.py`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/file.rst:3
+msgid ":file:`/usr/{dirname}/example.py`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/file.rst:5
+msgid ":file:`/usr/{dirname}/{filename.ext}`"
+msgstr ""

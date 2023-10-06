@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:5
+msgid "box.info.ro_reason"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:11
+msgid "Since :doc:`2.10.0 </release/2.10.0>`. Show the current mode of an instance (writable or read-only). Contains ``nil`` if the instance is in writable mode. When the field is not ``nil``, reports the reason why the instance is read-only."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:16
+msgid "Possible error reasons:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:18
+msgid "``election`` -- the instance is not the leader. That is, ``box.cfg.election_mode`` is not ``off``. See :ref:`box.info.election <box_info_election>` for details."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:22
+msgid "``synchro`` -- the instance is not the owner of the synchronous transaction queue. For details, see :ref:`box.info.synchro <box_info_synchro>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:25
+msgid "``config`` -- the server instance is in read-only mode. That is, :ref:`box.cfg.read_only <cfg_basic-read_only>` is ``true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:28
+msgid "``orphan`` -- the instance is in ``orphan`` state. For details, see :ref:`the orphan status page <internals-replication-orphan_status>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:31
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:33
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/ro_reason.rst:35
+msgid "tarantool> box.info.ro_reason\n"
+"---\n"
+"- null\n"
+"..."
+msgstr ""

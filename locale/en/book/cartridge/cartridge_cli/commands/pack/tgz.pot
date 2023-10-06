@@ -1,0 +1,29 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/tgz.rst:2
+msgid "Packaging an application into a TGZ archive"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/tgz.rst:4
+msgid "``cartridge pack tgz`` creates a ``.tgz`` archive. It contains the directory ``<app-name>`` with the application source code and the ``.rocks`` modules described in the application's ``.rockspec`` file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/tgz.rst:9
+msgid "The resulting artifact name is ``<app-name>-<version>[.<suffix>].<arch>.tar.gz``."
+msgstr ""

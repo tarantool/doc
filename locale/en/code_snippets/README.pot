@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/code_snippets/README.md:1
+msgid "Tarantool code examples"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:3
+msgid "The `doc/code_snippets` folder of a Tarantool documentation repository contains runnable code examples that show how to work with various Tarantool modules. Code from these examples is [referenced](#referencing-code-snippets) in corresponding documentation sections."
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:5
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:7
+msgid "First, install the [tt CLI utility](https://www.tarantool.io/en/doc/latest/reference/tooling/tt_cli/). Then, go to the `doc/code_snippets` folder and install the following libraries:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:10
+msgid "Install [luatest](https://github.com/tarantool/luatest):"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:11
+msgid "tt rocks install luatest\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:15
+msgid "Install [luarapidxml](https://github.com/tarantool/luarapidxml):"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:16
+msgid "tt rocks install luarapidxml\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:22
+msgid "Running and testing examples"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:24
+msgid "To test all the examples, go to the `doc/code_snippets` folder and execute the `luatest` command:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:26
+msgid ".rocks/bin/luatest\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:30
+msgid "To test the examples from the specified directory, pass its relative path to the `luatest` command:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:32
+msgid ".rocks/bin/luatest test/transactions\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:36
+msgid "To test a specific example with the `stdout` output enabled, use the `luatest` command with the `-c` option, for example:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:38
+msgid ".rocks/bin/luatest -c test/http_client/get_test.lua\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:42
+msgid "Note that the HTTP client samples (placed in `test/http_client`) use the `httpbin` service. You can run `httpbin` locally using Docker to stabilize test results:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:45
+msgid "docker run -p 80:80 kennethreitz/httpbin\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:49
+msgid "In this case, you need to replace `https://httpbin.org` links with `http://127.0.0.1`."
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:52
+msgid "Referencing code snippets"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:53
+msgid "To display a specific source file in a topic, use the `literalinclude` directive as follows:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:54
+msgid "..  literalinclude:: /code_snippets/test/http_client/post_json_test.lua\n"
+"    :language: lua\n"
+"    :lines: 1-6\n"
+""
+msgstr ""

@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/uninstall.rst:4
+msgid "Uninstalling Tarantool software"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/uninstall.rst:6
+msgid "$ tt uninstall PROGRAM_NAME [VERSION]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/uninstall.rst:10
+msgid "``tt uninstall`` uninstalls a previously :doc:`installed <install>` Tarantool version."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/uninstall.rst:13
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/uninstall.rst:15
+msgid "Uninstall Tarantool 2.10.4:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/uninstall.rst:17
+msgid "$ tt uninstall tarantool 2.10.4"
+msgstr ""

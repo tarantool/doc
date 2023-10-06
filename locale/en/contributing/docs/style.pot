@@ -1,0 +1,391 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/style.rst:2
+msgid "Language and style"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:5
+msgid "General style"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:8
+msgid "Concise is good"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:10
+msgid "People usually read technical documentation because they want something up and running quickly. Write simpler, more concise sentences."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:13
+msgid "Split the content into smaller paragraphs to improve readability. This will also eliminate the need for using ``|br|`` and help us translate content faster. Any paragraph over 6 sentences is large."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:18
+msgid "Keep your audience in mind"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:20
+msgid "Consider your audience's level. A getting started guide should be written in simpler terms than an advanced internals description."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:23
+msgid "If you choose to use metaphors to clarify a concept, make sure they are relatable for an international audience of IT professionals."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:27
+msgid "Don't say \"we\""
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:29
+msgid "Only use the pronoun \"we\" in entry-level texts like getting started guides. In other cases, avoid using \"we\", because it is unclear who that is exactly. `Consider how Gentoo does it <https://wiki.gentoo.org/wiki/Gentoo_Wiki:Guidelines#Avoid_first_and_second_person_writing>`__."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:34
+msgid "Stick to the facts"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:36
+msgid "Use measurable facts instead of personal judgments. Different users may have different ideas of what \"often\", \"slow\", or \"small\" means."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:39
+msgid "**Bad example:** This parameter is rarely updated."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:41
+msgid "**Good example:** This parameter is updated every two hours or more rarely."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:44
+msgid "Refer to absolute time"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:46
+msgid "Temporal adverbs like \"today\", \"currently\", \"now\", \"in the future\", etc. are relative -- that is, they are based on the time the documentation is created."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:49
+msgid "Instead of these words, use absolute terms like version numbers or years. The meaning of those terms doesn't change over time."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:52
+msgid "If technical documentation is tied semantically to the time it was created, it increases the risk of the documentation becoming obsolete."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:55
+msgid "**Bad example:** Previously, the functionality worked differently. Currently, it supports SSL."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:58
+msgid "**Good example:** Before version x.y.z, the functionality worked differently. Since version x.y.z, it supports SSL."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:62
+msgid "Express one idea in a sentence"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:64
+msgid "Say exactly one thing in a sentence. If you want to define or clarify something, do it in a separate sentence. Simple sentences are easier to read, understand and translate."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:77
+msgid "Don't"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:78
+msgid "Do"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:80
+msgid "Dogs (I have three of them) are my favorite animals. Their names are Ace, Bingo and Charm; Charm is the youngest one."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:83
+msgid "Dogs are my favorite animals. I have three of them. Their names are Ace, Bingo and Charm. Charm is the youngest one."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:88
+msgid "memtx (the in-memory storage engine) is the default and was the first to arrive."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:89
+msgid "memtx is an in-memory storage engine. It is the default and was the first to arrive."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:92
+msgid "The replica set from where the bucket is being migrated is called the source; the target replica set where the bucket is being migrated to is called the destination."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:94
+msgid "The replica set from where the bucket is being migrated is called the source. The target replica set where the bucket is being migrated to is called the destination."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:98
+msgid "Put examples next to theory"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:100
+msgid "It's best if examples immediately follow the concept they illustrate. The readers wouldn't want to look for the examples in a different part of the article."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:104
+msgid "Specify link text"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:106
+msgid "When you provide a :doc:`link </contributing/docs/markup/links>`, clearly specify where it leads. In this way, you will not mislead the reader."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:109
+#: ../../doc/contributing/docs/style.rst:137
+msgid "Bad example:"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:111
+msgid "For more details, click :doc:`here </contributing/docs/markup/links>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:113
+msgid "Use :doc:`this </contributing/docs/markup/links>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:115
+#: ../../doc/contributing/docs/style.rst:143
+msgid "Good example:"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:117
+msgid "For more details, refer to the documentation on :doc:`making links </contributing/docs/markup/links>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:120
+msgid "Use full :doc:`link names </contributing/docs/markup/links>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:123
+msgid "Formatting"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:126
+msgid "Use lists and tables"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:128
+msgid "Lists and tables help split heavy content into manageable chunks."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:130
+msgid "To make tables maintainable and easy to translate, use the ``list-table`` directive, as described in the Tarantool :doc:`table markup reference </contributing/docs/markup/tables>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:134
+msgid "Translators find it hard to work with content \"drawn\" with ASCII characters, because it requires adjusting the number of spaces and manually counting characters."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:None
+msgid "Don't \"draw\" tables with ASCII characters"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:None
+msgid "Use the \"list-table\" directive instead"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:151
+msgid "Format code as code"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:153
+msgid "Format large code fragments using the ``code-block`` directive, indicating the language. For ``shorter code snippets``, make sure that only code goes in the backticks. Non-code shouldn't be formatted as code, because this confuses users (and translators, too). Check our guidelines on :doc:`writing about code </contributing/docs/markup/code/>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:159
+msgid "For more about formatting, check out the Tarantool :doc:`markup reference </contributing/docs/markup/>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:164
+msgid "Word choice"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:167
+msgid "Instance vs server"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:169
+msgid "We say \"instance\" rather than \"server\" to refer to a Tarantool server instance. This keeps the manual terminology consistent with names like ``/etc/tarantool/instances.enabled`` in the Tarantool environment."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:173
+msgid "Wrong usage: \"Replication allows multiple Tarantool *servers* to work with copies of the same database.\""
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:176
+msgid "Correct usage: \"Replication allows multiple Tarantool *instances* to work with copies of the same database.\""
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:180
+msgid "Don't use i.e. and e.g."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:182
+msgid "Don't use the following contractions:"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:184
+msgid "`\"i.e.\" <https://www.merriam-webster.com/dictionary/i.e.>`_---from the Latin \"id est\". Use \"that is\" or \"which means\" instead."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:186
+msgid "`\"e.g.\" <https://www.merriam-webster.com/dictionary/e.g.>`_---from the Latin \"exempli gratia\". Use \"for example\" or \"such as\" instead."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:189
+msgid "Many people, especially non-native English speakers, aren't familiar with the `\"i.e.\" and \"e.g.\" contractions <https://www.merriam-webster.com/words-at-play/ie-vs-eg-abbreviation-meaning-usage-difference>`_ or don't know the difference between them. For this reason, it's best to avoid using them."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:198
+msgid "Spelling and punctuation"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:201
+msgid "Tarantool capitalization"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:203
+msgid "The word \"Tarantool\" is capitalized because it's a product name. The only context where it can start with a lowercase \"t\" is code. Learn more about :doc:`code formatting in Tarantool documentation </contributing/docs/markup/code>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:209
+msgid "US vs British spelling"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:211
+msgid "Use the US English spelling."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:214
+msgid "Check your spelling and punctuation"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:216
+msgid "Consider checking spelling, grammar, and punctuation with special tools like `LanguageTool <https://languagetool.org/>`_ or `Grammarly <https://www.grammarly.com/>`_."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:220
+msgid "Dashes"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:222
+msgid "Special symbols like dashes, quotation marks, and apostrophes look the same across all Tarantool documentation in a single language. This is because the documentation :doc:`builder </contributing/docs/build/>` renders specific character sequences in the source into correct typographic characters."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:227
+msgid "Tarantool documentarians are recommended to use the **en dash** (--) only. Type two hyphens to insert it: ``--``. Add spaces on both sides of the dash. Don't use a single hyphen as a dash."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:231
+msgid "Use the dash for the following purposes:"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:233
+msgid "To separate extra information."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:234
+msgid "To mark a break in a sentence."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:235
+msgid "To mark ranges like 4--16 GB (don't surround the dash with spaces in this case)."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:237
+msgid "When indicating a range like ``code element 1``\\--``code element 2``, escape the series of hyphens using `character-level inline markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#character-level-inline-markup-1>`_. Otherwise, the RST interpreter will perceive the dash as part of the RST syntax:"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:241
+msgid "``box.begin()``\\--``box.commit()``"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:247
+msgid "Ending punctuation in lists and tables"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:249
+msgid "The following recommendations are *for the English language only.* You can find similar guidelines for the Russian language in the `external reference for Russian proofreaders <http://new.gramota.ru/spravka/letters/83-rubric-77>`__."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:254
+msgid "Lists"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:256
+msgid "There are two kinds of lists:"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:258
+msgid "Where each item forms a complete sentence."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:259
+msgid "Where each item is a phrase of three or less words or a term."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:261
+msgid "In the former case, start each item with a capital letter and end with a period. In the latter case, start it with a lowercase letter and add no ending punctuation (no period, no comma, no semicolon)."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:265
+msgid "A list should be formatted uniformly: choose the first or second rule for all items in a list."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:268
+msgid "The above rules are adapted from the `Microsoft style guide <https://docs.microsoft.com/en-us/style-guide/scannable-content/lists>`__."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:271
+msgid "The sentence preceding a list can end either with a semicolon or a period."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:273
+msgid "Don't add redundant conjunctions like \"and\"/\"or\" before the last list item."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:275
+msgid "General English punctuation rules still apply for text in lists."
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:278
+msgid "Tables"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:280
+msgid "For the text in cells, use periods or other end punctuation only if the cells contain complete sentences or a mixture of fragments and sentences. (This is also a `Microsoft guideline <https://docs.microsoft.com/en-us/style-guide/scannable-content/tables#punctuation>`__ for the English language.)"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:286
+msgid "Besides, make sure that your table punctuation is consistent -- either all similar list/table items end with a period or they all don't. In the example below, *all* items in the second column don't have ending punctuation. Meanwhile, *all* items in the fourth column end with a period, because they are a mix of fragments and sentences:"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:None
+msgid "Items in one column have similar ending punctuation"
+msgstr ""
+
+#: ../../doc/contributing/docs/style.rst:295
+msgid "To learn more about table formatting, check the :doc:`table markup reference </contributing/docs/markup/tables>`."
+msgstr ""

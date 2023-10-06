@@ -1,0 +1,193 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "create"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "build"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "start"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "stop"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "status"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "enter"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "connect"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "log"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "clean"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "pack"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "repair"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "admin"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "replicasets"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:42
+msgid "failover"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:2
+msgid "Supported Cartridge CLI commands"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:10
+msgid ":doc:`create <commands/create>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:11
+msgid "Create a new application from template"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:12
+msgid ":doc:`build <commands/build>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:13
+msgid "Build an application for local development and testing"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:14
+msgid ":doc:`start <commands/start>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:15
+msgid "Start one or more Tarantool instances locally"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:16
+msgid ":doc:`stop <commands/stop>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:17
+msgid "Stop one or more Tarantool instances started locally"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:18
+msgid ":doc:`status <commands/status>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:19
+msgid "Get the status of one or more instances running locally"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:20
+msgid ":doc:`enter <commands/enter>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:21
+msgid "Enter a locally running instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:22
+msgid ":doc:`connect <commands/connect>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:23
+msgid "Connect to a locally running instance at a specific address"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:24
+msgid ":doc:`log <commands/log>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:25
+msgid "Get the logs of one or more instances"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:26
+msgid ":doc:`clean <commands/clean>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:27
+msgid "Clean the files of one or more instances"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:28
+msgid ":doc:`pack <commands/pack>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:29
+msgid "Pack the application into a distributable bundle"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:30
+msgid ":doc:`repair <commands/repair>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:31
+msgid "Patch cluster configuration files"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:32
+msgid ":doc:`admin <commands/admin>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:33
+msgid "Сall an admin function provided by the application"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:34
+msgid ":doc:`replicasets <commands/replicasets>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:35
+msgid "Manage cluster replica sets running locally"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:36
+msgid ":doc:`failover <commands/failover>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:37
+msgid "Manage cluster failover"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands.rst:39
+msgid "All commands support :doc:`global flags <global-flags>` that control output verbosity."
+msgstr ""

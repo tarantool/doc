@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:5
+msgid "Module *cartridge.tar*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:7
+msgid "Handle basic tar format."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:11
+msgid "<http://www.gnu.org/software/tar/manual/html_node/Standard.html>"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:13
+msgid "While an archive may contain many files, the archive itself is a single ordinary file. Physically, an archive consists of a series of file entries terminated by an end-of-archive entry, which consists of two 512 blocks of zero bytes. A file entry usually describes one of the files in the archive (an archive member), and consists of a file header and the contents of the file. File headers contain file names and statistics, checksum information which tar uses to detect file corruption, and information about file types."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:22
+msgid "A tar archive file contains a series of blocks. Each block contains exactly 512 (`BLOCKSIZE`) bytes:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:25
+msgid "+---------+-------+-------+-------+---------+-------+-----\n"
+"| header1 | file1 |  ...  |  ...  | header2 | file2 | ...\n"
+"+---------+-------+-------+-------+---------+-------+-----"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:32
+msgid "All characters in header blocks are represented by using 8-bit characters in the local variant of ASCII. Each field within the structure is contiguous; that is, there is no padding used within the structure. Each character on the archive medium is stored contiguously. Bytes representing the contents of files (after the header block of each file) are not translated in any way and are not constrained to represent characters in any character set. The tar format does not distinguish text files from binary files, and no translation of file contents is performed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:45
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:52
+msgid "pack (files)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:54
+msgid "Create TAR archive."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:57
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:85
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:59
+msgid "*files:* (`{string=string} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:61
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:89
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:63
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The archive"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:66
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:94
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:68
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:96
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:70
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:98
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:77
+msgid "unpack (tar)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:79
+msgid "Parse TAR archive."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:81
+msgid "Only regular files are extracted, directories are ommitted."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:87
+msgid "*tar:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.tar.rst:91
+msgid "(`{string=string} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Extracted files (their names and content)"
+msgstr ""

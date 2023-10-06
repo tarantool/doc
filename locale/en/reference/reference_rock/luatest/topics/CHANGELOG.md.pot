@@ -1,0 +1,445 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:7
+msgid "Changelog"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:13
+msgid "Unreleased"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:15
+msgid "Add new module `replica_set.lua`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:16
+msgid "Extend `server.lua` API:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:18
+msgid "Update parameters of the `Server:new()` function: - The `alias` parameter defaults to 'server'. - The `command` parameter is optional. - The `workdir` parameter is optional. - New parameter `datadir` (optional). - New parameter `box_cfg` (optional)."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:24
+msgid "Add waiting until the started server is ready."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:25
+msgid "Add waiting until the process of the stopped server is terminated."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:26
+msgid "Add new functions: - `Server.build_listen_uri()` - `Server:drop()` - `Server:wait_until_ready()` - `Server:get_instance_id()` - `Server:get_instance_uuid()` - `Server:grep_log()` - `Server:assert_follows_upstream()` - `Server:get_election_term()` - `Server:wait_for_election_term()` - `Server:wait_for_election_state()` - `Server:wait_for_election_leader()` - `Server:wait_until_election_leader_found()` - `Server:get_synchro_queue_term()` - `Server:wait_for_synchro_queue_term()` - `Server:play_wal_until_synchro_queue_is_busy()` - `Server:get_vclock()` - `Server:get_downstream_vclock()` - `Server:wait_for_vclock()` - `Server:wait_for_downstream_to()` - `Server:wait_for_vclock_of()` - `Server:update_box_cfg()` - `Server:get_box_cfg()`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:50
+msgid "Check docs generation with LDoc."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:51
+msgid "Add `--repeat-group` (`-R`) option to run tests in a circle within the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:52
+msgid "Forbid negative values for `--repeat` (`-r`) option."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:53
+msgid "Change `coverage_report` parameter type to boolean in `Server:new()` function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:54
+msgid "Print Tarantool version used by luatest."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:55
+msgid "Add new module `replica_proxy.lua`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:56
+msgid "Add new module `tarantool.lua`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:57
+msgid "Auto-require `luatest` module in `Server:exec()` function where it is available via the corresponding upvalue."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:59
+msgid "Add new function `tarantool.skip_if_not_enterprise`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:60
+msgid "Raise an error when non-array arguments passed to the `server:exec()`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:61
+msgid "Raise an error in the `Server:wait_for_condition()` function when the server process is terminated. This is useful to not wait for timeout, for example, when a server fails to start due to bad configuration."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:64
+msgid "Save server artifacts (logs, snapshots, etc.) if the test fails."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:65
+msgid "Group working directories of servers inside a replica set into one directory."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:71
+msgid "0.5.7"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:73
+msgid "Fix invalid arguments logging in some assertions."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:74
+msgid "Fix confusing error message from `assert_not_equals` function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:75
+msgid "Fix confusing error message from `assert_items_equals` function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:76
+msgid "Fix confusing error message from `assert_items_include` function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:77
+msgid "Print `(no reason specified)` message instead of `nil` value when the test is skipped and no reason is specified."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:79
+msgid "Check `net_box_uri` param is less than max Unix domain socket path length."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:80
+msgid "Change test run summary report: use verbs in past simple tense (succeeded, failed, xfailed, etc.) instead of nouns (success(es), fail(s), xfail(s), etc.)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:87
+msgid "0.5.6"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:89
+msgid "Add `xfail` status."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:90
+msgid "Add new `Server:exec()` function which runs a Lua function remotely."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:96
+msgid "0.5.5"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:98
+msgid "Repeat `_each` and `_test` hooks when `--repeat` is specified."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:99
+msgid "Add group parametrization."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:105
+msgid "0.5.4"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:107
+msgid "Add `after_test` and `before_test` hooks."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:108
+msgid "Add tap version to the output."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:109
+msgid "New `restart` server method."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:110
+msgid "Add new `eval` and `call` server methods for convenient net_box calls."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:111
+msgid "Server can use a unix socket as a listen port."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:112
+msgid "Add `TARANTOOL_ALIAS` in the server env space."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:113
+msgid "Server args are updated on start."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:119
+msgid "0.5.3"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:121
+msgid "Add `_le`, `_lt`, `_ge`, `_gt` assertions."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:122
+msgid "Write execution time for each test in the verbose mode."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:123
+msgid "When capture is disabled and verbose mode is on test names are printed twice: at the start and at the end with result."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:125
+msgid "`assert_error_msg_` assertions print return values if no error is generated."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:126
+msgid "Fix `--repeat` runner option."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:132
+msgid "0.5.2"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:134
+msgid "Throw parser error when .json is accessed on response with invalid body."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:135
+msgid "Set `Content-Type: application/json` for `:http_request(..., {json = ...})` requests."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:141
+msgid "0.5.1"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:143
+msgid "Assertions pretty-prints non-string extra messages (useful for custom errors as tables)."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:144
+msgid "String values in errors are printed as valid Lua strings (with `%q` formatter)."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:145
+msgid "Add `TARANTOOL_DIR` to rockspec build.variables"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:146
+msgid "Replace `--error` and  `--failure` options with `--fail-fast`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:147
+msgid "Fix stripping luatest trace from backtrace."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:148
+msgid "Fix luarocks 3 test engine installation."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:154
+msgid "0.5.0"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:156
+msgid "`assert_is` treats `box.NULL` and `nil` as different values."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:157
+msgid "Add luacov integration."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:158
+msgid "Fix `assert_items_equals` for repeated values. Add support for `tuple` items."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:159
+msgid "Add `assert_items_include` matcher."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:160
+msgid "`assert_equals` uses same comparison rules for nested values."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:161
+msgid "Fix generated group names when running files within specific directory."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:167
+msgid "0.4.0"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:169
+msgid "Fix not working `--exclude`, `--pattern` options"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:170
+msgid "Fix error messages for `*_covers` matchers"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:171
+msgid "Raise error when `group()` is called with existing group name."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:172
+msgid "Allow dot in group name."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:173
+msgid "Prevent using `/` in group name."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:174
+msgid "Decide group name from filename for `group()` call without args."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:175
+msgid "`assert` returns input values."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:176
+msgid "`assert[_not]_equals` works for Tarantool's box.tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:177
+msgid "Print tables in lua-compatible way in errors."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:178
+msgid "Fix performance issue with large errors messages."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:179
+msgid "Unify hooks definition: group hooks are defined via function calls."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:180
+msgid "Keep running other groups when group hook failed."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:181
+msgid "Prefix and colorize captured output."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:182
+msgid "Fix numeric assertions for cdata values."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:188
+msgid "0.3.0"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:190
+msgid "Make --shuffle option accept `group`, `all`, `none` values"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:191
+msgid "Replace `raw` option for `Server:http_request` with `raise`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:192
+msgid "Remove not documented methods inherited from luaunit."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:193
+msgid "Colorize report."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:199
+msgid "0.2.2"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:201
+msgid "Fix issue with crashes in capture."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:202
+msgid "Do not raise error for 2xx responses in Server:http_request"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:208
+msgid "0.2.1"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:210
+msgid "Don't run suite hooks when suite is not going to be run."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:211
+msgid "Gracefully shutdown even when luanit calls `os.exit`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:212
+msgid "Show failed tests summary."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:213
+msgid "Capture works with large outputs."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:219
+msgid "0.2.0"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:221
+msgid "GC'ed processes are killed automatically."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:222
+msgid "Print captured output when suite/group hook fails."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:223
+msgid "Rename Server:console to Server:net_box."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:224
+msgid "Use real time instead of CPU time for duration."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:225
+msgid "LDoc comments."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:226
+msgid "Make assertions box.NULL aware."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:227
+msgid "Luarocks 3 tests engine."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:228
+msgid "`assert_covers` matcher."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:234
+msgid "0.1.1"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:236
+msgid "Fix exit code on failure."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:242
+msgid "0.1.0"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/topics/CHANGELOG.md.rst:244
+msgid "Initial implementation."
+msgstr ""

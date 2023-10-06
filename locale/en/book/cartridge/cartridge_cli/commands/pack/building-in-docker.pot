@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:2
+msgid "Building in Docker"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:4
+msgid "To build your application in Docker, run this:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:6
+msgid "cartridge pack TYPE --use-docker"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:10
+msgid "For ``TYPE``, indicate ``rpm``, ``deb``, or ``tgz``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:12
+msgid "You might want to perform application build in Docker if your distributable is intended for a system different than the one you use."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:15
+msgid "In this case, ``cartridge.pre-build``, ``tarantoolctl rocks make``, and ``cartridge.post-build`` run inside a Docker image that has a volume mapped onto the build directory. As a result, the build directory will contain Linux-specific application files and rocks modules."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:21
+msgid "If you want to package a distribution on your local machine without using Docker, check the :doc:`packaging overview </book/cartridge/cartridge_cli/commands/pack>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:25
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:33
+msgid "``--build-from``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:34
+msgid "Path to the base Dockerfile of the build image. Defaults to ``Dockerfile.build.cartridge`` in the application root directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:36
+msgid "``--cache-from``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:37
+msgid "Images that work as cache sources for both build and runtime images. See the ``--cache-from`` flag for ``docker build``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:39
+msgid "``--sdk-path``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:40
+msgid "Enterprise only. Path to the SDK to be delivered in the final artifact. Alternatively, you can pass the path via the ``TARANTOOL_SDK_PATH`` environment variable, which is of lower priority."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:44
+msgid "``--sdk-local``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:45
+msgid "Enterprise only. Deliver the SDK from the local machine in the final artifact."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:50
+msgid "If you're building a Tarantool Enterprise application in Docker, make sure you specify the path to the SDK you want to include in the image. Do that using the ``--sdk-path`` flag or the environment variable ``TARANTOOL_SDK_PATH``, which has lower priority. To specify the currently activated SDK, pass the ``--sdk-local`` flag."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:57
+msgid "Build image"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:59
+msgid "The image where the package is built will be referred to as the build image. It has the following structure:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:62
+msgid "Base image: ``centos:7`` (see below)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:63
+msgid "Pre-installed packages: ``git``, ``gcc``, ``make``, ``cmake``, ``unzip``. These are the packages required for building the default  ``cartridge`` application."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:65
+msgid "The image includes a version of Tarantool:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:67
+msgid "If you use open-source Tarantool, the image contains the same version you've used for local development."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:69
+msgid "If you use Tarantool Enterprise, the SDK with Tarantool Enterprise binaries is copied to the image. See the ``--sdk-path`` and ``--sdk-local`` flags."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:73
+msgid "To customize your build image, use the ``Dockerfile.build.cartridge`` file in the application root directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:77
+msgid "Installing packages required for application build"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:79
+msgid "By default, the build image is based on ``centos:7``. ``git``, ``gcc``, ``make``, ``cmake``, and ``unzip`` packages are installed in that image. If your application requires other packages for building, you can specify more base layers for the build image."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:84
+msgid "To do that, place the file ``Dockerfile.build.cartridge`` in your application root directory or pass a path to another Dockerfile with the ``--build-from`` flag. Make sure your Dockerfile starts with the line ``FROM centos:7`` (except comments)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:88
+msgid "For example, if your application build requires ``gcc-c++``, customize the Dockerfile as follows:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:91
+msgid "``Dockerfile.build.cartridge``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:93
+msgid "FROM centos:7\n"
+"RUN yum install -y gcc-c++\n"
+"# Note that git, gcc, make, cmake, and unzip\n"
+"# will be installed anyway"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack/building-in-docker.rst:102
+msgid "``git``, ``gcc``, ``make``, ``cmake``, and ``unzip`` will be installed anyway on the next layer."
+msgstr ""

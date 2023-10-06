@@ -1,0 +1,314 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.10.8.rst:2
+msgid "Tarantool 2.10.8"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:4
+msgid "Released on 2023-09-14."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:6
+msgid "Release: :tarantool-release:`2.10.8`."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:7
+msgid "Tag: ``2.10.8``."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:12
+msgid "2.10.8 is the ninth :doc:`stable </release/policy/>` version of the 2.10 release series. It introduces 5 improvements and resolves 28 bugs since 2.10.7."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:16
+msgid "The “stable” label means that we have all planned features implemented and we see no high-impact issues. However, if you encounter an issue, feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:22
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:24
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:27
+msgid "Please :doc:`upgrade </book/admin/upgrades>` using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:31
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:34
+#: ../../doc/release/2.10.8.rst:167
+msgid "Box"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:36
+msgid "The maximum length of ``box.cfg{}`` string parameters is now 512 instead of 256."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:40
+msgid "Test"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:43
+msgid "Fuzz"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:45
+msgid "LuaJIT now can be fuzzed using grammar-based fuzzer (:tarantool-issue:`4823`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:48
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:50
+msgid "Hardening against memory corruption attacks is now enabled by default on FreeBSD (:tarantool-issue:`7536`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:52
+msgid "Added the CMake option ``FIBER_STACK_SIZE`` to set the default fiber stack size."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:54
+msgid "Updated libcurl to version 8.3.0."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:57
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:60
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:62
+msgid "Fixed a bug when Tarantool failed to decode a request containing an unknown IPROTO key. The bug resulted in broken connectivity between Tarantool 2.10 and 2.11 (:tarantool-issue:`8745`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:65
+msgid "Fixed a bug causing the ``ER_CURSOR_NO_TRANSACTION`` failure for transactions on synchronous spaces when the ``on_commit/on_rollback`` triggers are set (:tarantool-issue:`8505`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:68
+msgid "Fixed a bug causing the effective session and user are not propagated to ``box.on_commit`` and ``box.on_rollback`` trigger callbacks when transaction is synchronous (:tarantool-issue:`8742`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:71
+msgid "Fixed a crash that could happen when Tarantool is started in the :ref:`background mode <cfg_basic-background>` (:tarantool-issue:`6128`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:73
+msgid "Fixed a bug when MVCC sometimes lost gap record (:tarantool-issue:`8326`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:74
+msgid "Fixed a bug when MVCC rollback of prepared statement could break internal invariants (:tarantool-issue:`8648`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:76
+msgid "Now MVCC engine automatically aborts a transaction if it reads changes of a prepared transaction and this transaction is aborted (:tarantool-issue:`8654`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:79
+msgid "Fixed a bug that caused writing incorrect values into the ``stream_id`` field of xlog headers (:tarantool-issue:`8783`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:81
+msgid "Fixed a bug when a space that is referenced by a foreign key could not be truncated even if the referring space was empty (:tarantool-issue:`8946`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:83
+msgid "Fixed a crash that could happen when Tarantool is compiled by ``clang`` version 15 and above with enabled AddressSanitizer (:ref:`tarantool/tarantool-qa#321 <https://github.com/tarantool/tarantool-qa/issues/321>`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:86
+msgid "Fixed a use-after-free bug in iproto server code (:tarantool-issue:`9037`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:87
+msgid "Fixed a heap-buffer-overflow bug in fiber creation code (:tarantool-issue:`9026`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:90
+msgid "Memtx"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:92
+msgid "Fixed a heap-use-after-free bug in the transaction manager, which could occur when performing a DDL operation concurrently with a transaction on the same space (:tarantool-issue:`8781`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:97
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:99
+msgid "Fixed a heap-use-after-free bug in the Vinyl read iterator caused by a race between a disk read and a memory dump task. The bug could lead to a crash or an invalid query result (:tarantool-issue:`8852`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:104
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:106
+msgid "Fixed a possible failure to promote the desired node by ``box.ctl.promote()`` on a cluster with nodes configured with ``election_mode = \"candidate\"`` (:tarantool-issue:`8497`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:109
+msgid "Fixed nodes configured with ``election_mode = 'candidate'`` spuriously detecting a split-vote when another candidate should win with exactly a quorum of votes for it (:tarantool-issue:`8698`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:114
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:116
+msgid "Backported patches from the vanilla LuaJIT trunk (:tarantool-issue:`8516`, :tarantool-issue:`8825`). The following issues were fixed as part of this activity:"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:119
+msgid "Fixed canonicalization of +-0.0 keys for ``IR_NEWREF``."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:121
+msgid "Fixed result truncation for ``bit.rol`` on x86_64 platforms."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:123
+msgid "Fixed ``lua_yield()`` invocation inside C hooks."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:125
+msgid "Fixed memory chunk allocation beyond the memory limit."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:127
+msgid "Fixed TNEW load forwarding with instable types."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:129
+msgid "Fixed use-def analysis for ``BC_VARG``, ``BC_FUNCV``."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:131
+msgid "Fixed ``BC_UCLO`` insertion for returns."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:133
+msgid "Fixed recording of ``BC_VARG`` with unused vararg values."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:135
+msgid "Initialization instructions on trace are now emitted only for the first member of a union."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:138
+msgid "Prevent integer overflow while parsing long strings."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:140
+msgid "Fixed various ``^`` operator and ``math.pow()`` function inconsistencies."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:143
+msgid "Fixed parsing with predicting ``next()`` and ``pairs()``."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:145
+msgid "Fixed binary number literal parsing. Parsing of binary number with a zero fractional part raises error too now."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:148
+msgid "Fixed load forwarding optimization applied after table rehashing."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:150
+msgid "Fixed recording of the ``BC_TSETM``."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:153
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:155
+msgid "Fixed the xlog reader Lua module to show unknown row header fields. Before this change the xlog reader silently skipped them."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:159
+msgid "Netbox"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:161
+msgid "Fixed a heap-use-after-free bug in the function creating a tuple format Lua object for ``net.box`` (:tarantool-issue:`8889`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:169
+msgid "Fixed the memory leaks caused by the multi-statement transaction errors in the space index building and the space format checking operations (:tarantool-issue:`8773`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:172
+msgid "Fixed a bug in the box console implementation because of which the ``language`` parameter was shared between connected clients (:tarantool-issue:`8817`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:175
+msgid "Fixed an invalid memory access in a corner case of a specialized comparison function (:tarantool-issue:`8899`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:179
+msgid "Console"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:181
+msgid "Fixed console ignoring ``-i`` flag in case stdin is not a tty (:tarantool-issue:`5064`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:185
+msgid "Datetime"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:187
+msgid "Fixed a bug raising a false positive error when creating new intervals with range boundary values (:tarantool-issue:`8878`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:189
+msgid "Fixed a bug with buffer overflow in ``tnt_strptime`` (:tarantool-issue:`8502`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:192
+msgid "Http"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:194
+msgid "Fixed a streaming connection stuck if etcd is stopped unexpectedly (:tarantool-issue:`9086`)."
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:198
+msgid "Msgpack"
+msgstr ""
+
+#: ../../doc/release/2.10.8.rst:200
+msgid "Fixed decoding datetime intervals with fields larger than possible int32 values (:tarantool-issue:`8887`)."
+msgstr ""

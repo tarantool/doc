@@ -1,0 +1,439 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:6
+msgid "index_object:pairs()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:12
+msgid "Search for a tuple or a set of tuples via the given index, and allow iterating over one tuple at a time. To search by the primary index in the specified space, use the :ref:`box_space-pairs` method."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:16
+msgid "The :samp:`{key}` parameter specifies what must match within the index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:20
+msgid ":samp:`{key}` is only used to find the first match. Do not assume all matched tuples will contain the key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:23
+msgid "The :samp:`{iterator}` parameter specifies the rule for matching and ordering. Different index types support different iterators. For example, a TREE index maintains a strict order of keys and can return all tuples in ascending or descending order, starting from the specified key. Other index types, however, do not support ordering."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:29
+msgid "To understand consistency of tuples returned by an iterator, it's essential to know the principles of the Tarantool transaction processing subsystem. An iterator in Tarantool does not own a consistent read view. Instead, each procedure is granted exclusive access to all tuples and spaces until there is a \"context switch\": which may happen due to :ref:`the implicit yield rules <app-implicit-yields>`, or by an explicit call to :ref:`fiber.yield <fiber-yield>`. When the execution flow returns to the yielded procedure, the data set could have changed significantly. Iteration, resumed after a yield point, does not preserve the read view, but continues with the new content of the database. The tutorial :ref:`Indexed pattern search <c_lua_tutorial-indexed_pattern_search>` shows one way that iterators and yields can be used together."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:43
+msgid "For information about iterators' internal structures, see the `\"Lua Functional library\" <https://luafun.github.io/index.html>`_ documentation."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:47
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:49
+msgid "value to be matched against the index key, which may be multi-part."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:51
+msgid "as defined in tables below. The default iterator type is 'EQ'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:52
+msgid "a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``pairs`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option to start the search from the first tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:55
+msgid "The `iterator <https://luafun.github.io/under_the_hood.html>`_, which can be used in a ``for/end`` loop or with `totable() <https://luafun.github.io/reducing.html#fun.totable>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:59
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:61
+msgid "no such space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:62
+msgid "wrong type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:63
+msgid "selected iteration type is not supported for the index type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:64
+msgid "key is not supported for the iteration type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:65
+msgid "iterator position is invalid"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:67
+msgid "**Complexity factors:** Index size, Index type; Number of tuples accessed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:70
+msgid "A search-key-value can be a number (for example ``1234``), a string (for example ``'abcd'``), or a table of numbers and strings (for example ``{1234, 'abcd'}``). Each part of a key will be compared to each part of an index key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:75
+msgid "The returned tuples will be in order by index key value, or by the hash of the index key value if index type = 'hash'. If the index is non-unique, then duplicates will be secondarily in order by primary key value. The order will be reversed if the iterator type is 'LT' or 'LE' or 'REQ'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:82
+msgid "**Iterator types for TREE indexes**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:93
+msgid "Iterator type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:93
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:192
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:215
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "Arguments"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:93
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:192
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:215
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "Description"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:95
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:199
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:221
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "box.index.EQ or 'EQ'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:95
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:101
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:106
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:113
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:120
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:124
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:130
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:199
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "search value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:95
+msgid "The comparison operator is '==' (equal to). If an index key is equal to a search value, it matches. Tuples are returned in ascending order by index key. This is the default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:101
+msgid "box.index.REQ or 'REQ'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:101
+msgid "Matching is the same as for ``box.index.EQ``. Tuples are returned in descending order by index key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:106
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "box.index.GT or 'GT'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:106
+msgid "The comparison operator is '>' (greater than). If an index key is greater than a search value, it matches. Tuples are returned in ascending order by index key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:113
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "box.index.GE or 'GE'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:113
+msgid "The comparison operator is '>=' (greater than or equal to). If an index key is greater than or equal to a search value, it matches. Tuples are returned in ascending order by index key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:120
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:217
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "box.index.ALL or 'ALL'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:120
+msgid "Same as box.index.GE."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:124
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "box.index.LT or 'LT'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:124
+msgid "The comparison operator is '<' (less than). If an index key is less than a search value, it matches. Tuples are returned in descending order by index key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:130
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "box.index.LE or 'LE'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:130
+msgid "The comparison operator is '<=' (less than or equal to). If an index key is less than or equal to a search value, it matches. Tuples are returned in descending order by index key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:138
+msgid "Informally, we can state that searches with TREE indexes are generally what users will find is intuitive, provided that there are no nils and no missing parts. Formally, the logic is as follows. A search key has zero or more parts, for example {}, {1,2,3},{1,nil,3}. An index key has one or more parts, for example {1}, {1,2,3},{1,2,3}. A search key may contain nil (but not msgpack.NULL, which is the wrong type). An index key may not contain nil or msgpack.NULL, although a later version of Tarantool will have different rules --  the behavior of searches with nil is subject to change. Possible iterators are LT, LE, EQ, REQ, GE, GT. A search key is said to \"match\" an index key if the following statements, which are pseudocode for the comparison operation, return TRUE."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:193
+msgid "If (number-of-search-key-parts > number-of-index-key-parts) return ERROR\n"
+"If (number-of-search-key-parts == 0) return TRUE\n"
+"for (i = 1; ; ++i)\n"
+"{\n"
+"  if (i > number-of-search-key-parts) OR (search-key-part[i] is nil)\n"
+"  {\n"
+"    if (iterator is LT or GT) return FALSE\n"
+"    return TRUE\n"
+"  }\n"
+"  if (type of search-key-part[i] is not compatible with type of index-key-part[i])\n"
+"  {\n"
+"    return ERROR\n"
+"  }\n"
+"  if (search-key-part[i] == index-key-part[i])\n"
+"  {\n"
+"    continue\n"
+"  }\n"
+"  if (search-key-part[i] > index-key-part[i])\n"
+"  {\n"
+"    if (iterator is EQ or REQ or LE or LT) return FALSE\n"
+"    return TRUE\n"
+"  }\n"
+"  if (search-key-part[i] < index-key-part[i])\n"
+"  {\n"
+"    if (iterator is EQ or REQ or GE or GT) return FALSE\n"
+"    return TRUE\n"
+"  }\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:183
+msgid "**Iterator types for HASH indexes**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:192
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:215
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "Type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:194
+msgid "box.index.ALL"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:194
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:217
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "none"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:194
+msgid "All index keys match. Tuples are returned in ascending order by hash of index key, which will appear to be random."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:199
+msgid "The comparison operator is '==' (equal to). If an index key is equal to a search value, it matches. The number of returned tuples will be 0 or 1. This is the default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:206
+msgid "**Iterator types for BITSET indexes**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:217
+msgid "All index keys match. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:221
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:226
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:231
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:236
+msgid "bitset value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:221
+msgid "If an index key is equal to a bitset value, it matches. Tuples are returned in their order within the space. This is the default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:226
+msgid "box.index.BITS_ALL_SET"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:226
+msgid "If all of the bits which are 1 in the bitset value are 1 in the index key, it matches. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:231
+msgid "box.index.BITS_ANY_SET"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:231
+msgid "If any of the bits which are 1 in the bitset value are 1 in the index key, it matches. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:236
+msgid "box.index.BITS_ALL_NOT_SET"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:236
+msgid "If all of the bits which are 1 in the bitset value are 0 in the index key, it matches. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:244
+msgid "**Iterator types for RTREE indexes**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "All keys match. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "If all points of the rectangle-or-box defined by the search value are the same as the rectangle-or-box defined by the index key, it matches. Tuples are returned in their order within the space. \"Rectangle-or-box\" means \"rectangle-or-box as explained in section about :ref:`RTREE <box_index-rtree>`\". This is the default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "If all points of the rectangle-or-box defined by the search value are within the rectangle-or-box defined by the index key, it matches. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "If all points of the rectangle-or-box defined by the search value are within, or at the side of, the rectangle-or-box defined by the index key, it matches. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "If all points of the rectangle-or-box defined by the index key are within the rectangle-or-box defined by the search key, it matches. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "If all points of the rectangle-or-box defined by the index key are within, or at the side of, the rectangle-or-box defined by the search key, it matches. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "box.index.OVERLAPS or 'OVERLAPS'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "If some points of the rectangle-or-box defined by the search value are within the rectangle-or-box defined by the index key, it matches. Tuples are returned in their order within the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "box.index.NEIGHBOR or 'NEIGHBOR'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/box_index_rtree.csv:1
+msgid "If some points of the rectangle-or-box defined by the defined by the key are within, or at the side of, defined by the index key, it matches. Tuples are returned in order: nearest neighbor first."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:259
+msgid "**Examples:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:261
+msgid "Below are few examples of using ``pairs`` with different parameters. To try out these examples, you need to bootstrap a Tarantool instance as described in :ref:`Using data operations <box_space-operations-detailed-examples>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/pairs.rst:267
+msgid "-- Insert test data --\n"
+"tarantool> bands:insert{1, 'Roxette', 1986}\n"
+"           bands:insert{2, 'Scorpions', 1965}\n"
+"           bands:insert{3, 'Ace of Base', 1987}\n"
+"           bands:insert{4, 'The Beatles', 1960}\n"
+"           bands:insert{5, 'Pink Floyd', 1965}\n"
+"           bands:insert{6, 'The Rolling Stones', 1962}\n"
+"           bands:insert{7, 'The Doors', 1965}\n"
+"           bands:insert{8, 'Nirvana', 1987}\n"
+"           bands:insert{9, 'Led Zeppelin', 1968}\n"
+"           bands:insert{10, 'Queen', 1970}\n"
+"---\n"
+"...\n"
+"\n"
+"-- Select all tuples by the primary index --\n"
+"tarantool> for _, tuple in bands.index.primary:pairs() do\n"
+"               print(tuple)\n"
+"           end\n"
+"[1, 'Roxette', 1986]\n"
+"[2, 'Scorpions', 1965]\n"
+"[3, 'Ace of Base', 1987]\n"
+"[4, 'The Beatles', 1960]\n"
+"[5, 'Pink Floyd', 1965]\n"
+"[6, 'The Rolling Stones', 1962]\n"
+"[7, 'The Doors', 1965]\n"
+"[8, 'Nirvana', 1987]\n"
+"[9, 'Led Zeppelin', 1968]\n"
+"[10, 'Queen', 1970]\n"
+"---\n"
+"...\n"
+"\n"
+"-- Select all tuples whose secondary key values start with the specified string --\n"
+"tarantool> for _, tuple in bands.index.band:pairs(\"The\", {iterator = \"GE\"}) do\n"
+"             if (string.sub(tuple[2], 1, 3) ~= \"The\") then break end\n"
+"             print(tuple)\n"
+"           end\n"
+"[4, 'The Beatles', 1960]\n"
+"[7, 'The Doors', 1965]\n"
+"[6, 'The Rolling Stones', 1962]\n"
+"---\n"
+"...\n"
+"\n"
+"-- Select all tuples whose secondary key values are between 1965 and 1970 --\n"
+"tarantool> for _, tuple in bands.index.year:pairs(1965, {iterator = \"GE\"}) do\n"
+"             if (tuple[3] > 1970) then break end\n"
+"             print(tuple)\n"
+"           end\n"
+"[2, 'Scorpions', 1965]\n"
+"[5, 'Pink Floyd', 1965]\n"
+"[7, 'The Doors', 1965]\n"
+"[9, 'Led Zeppelin', 1968]\n"
+"[10, 'Queen', 1970]\n"
+"---\n"
+"...\n"
+"\n"
+"-- Select all tuples after the specified tuple --\n"
+"tarantool> for _, tuple in bands.index.primary:pairs({}, {after={7, 'The Doors', 1965}}) do\n"
+"               print(tuple)\n"
+"           end\n"
+"[8, 'Nirvana', 1987]\n"
+"[9, 'Led Zeppelin', 1968]\n"
+"[10, 'Queen', 1970]\n"
+"---\n"
+"..."
+msgstr ""

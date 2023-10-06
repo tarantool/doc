@@ -1,0 +1,336 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:5
+msgid "Configuration reference"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:11
+msgid "Basic parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:13
+msgid ":ref:`sharding <cfg_basic-sharding>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:14
+msgid ":ref:`weights <cfg_basic-weights>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:15
+msgid ":ref:`shard_index <cfg_basic-shard_index>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:16
+msgid ":ref:`bucket_count <cfg_basic-bucket_count>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:17
+msgid ":ref:`collect_bucket_garbage_interval <cfg_basic-collect_bucket_garbage_interval>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:18
+msgid ":ref:`collect_lua_garbage <cfg_basic-collect_lua_garbage>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:19
+msgid ":ref:`sync_timeout <cfg_basic-sync_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:20
+msgid ":ref:`rebalancer_disbalance_threshold <cfg_basic-rebalancer_disbalance_threshold>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:21
+msgid ":ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:22
+msgid ":ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:23
+msgid ":ref:`discovery_mode <cfg_basic-discovery_mode>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:29
+msgid "A field defining the logical topology of the sharded Tarantool cluster."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:31
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:42
+msgid "Type: table"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:32
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:43
+msgid "Default: false"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:33
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:44
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:91
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:101
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:113
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:128
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:149
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:164
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:175
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:276
+msgid "Dynamic: yes"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:39
+msgid "A field defining the configuration of relative weights for each zone pair in a replica set. See the :ref:`Replica weights <vshard-replica-weights>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:50
+msgid "Name or id of a TREE index over the :ref:`bucket id <vshard-vbuckets>`. Spaces without this index do not participate in a sharded Tarantool cluster and can be used as regular spaces if needed. It is necessary to specify the first part of the index, other parts are optional."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:55
+msgid "Type: non-empty string or non-negative integer"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:56
+msgid "Default: \"bucket_id\""
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:57
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:81
+msgid "Dynamic: no"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:63
+msgid "The total number of buckets in a cluster."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:65
+msgid "This number should be several orders of magnitude larger than the potential number of cluster nodes, considering potential scaling out in the foreseeable future."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:68
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:139
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:70
+msgid "If the estimated number of nodes is M, then the data set should be divided into 100M or even 1000M buckets, depending on the planned scaling out. This number is certainly greater than the potential number of cluster nodes in the system being designed."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:75
+msgid "Keep in mind that too many buckets can cause a need to allocate more memory to store routing information. On the other hand, an insufficient number of buckets can lead to decreased granularity when rebalancing."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:79
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:89
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:111
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:126
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:147
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:162
+msgid "Type: number"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:80
+msgid "Default: 3000"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:87
+msgid "The interval between garbage collector actions, in seconds."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:90
+msgid "Default: 0.5"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:97
+msgid "If set to true, the Lua ``collectgarbage()`` function is called periodically."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:99
+msgid "Type: boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:100
+msgid "Default: no"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:107
+msgid "Timeout to wait for synchronization of the old master with replicas before demotion. Used when switching a master or when manually calling the ``sync()`` function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:112
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:127
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:163
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:205
+msgid "Default: 1"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:119
+msgid "A maximum bucket disbalance threshold, in percent. The disbalance is calculated for each replica set using the following formula:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:122
+msgid "|etalon_bucket_count - real_bucket_count| / etalon_bucket_count * 100"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:134
+msgid "The maximum number of buckets that can be received in parallel by a single replica set. This number must be limited, because when a new replica set is added to a cluster, the rebalancer sends a very large amount of buckets from the existing replica sets to the new replica set. This produces a heavy load on the new replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:141
+msgid "Suppose ``rebalancer_max_receiving`` is equal to 100, ``bucket_count`` is equal to 1000. There are 3 replica sets with 333, 333 and 334 buckets on each respectively. When a new replica set is added, each replica set’s ``etalon_bucket_count`` becomes equal to 250. Rather than receiving all 250 buckets at once, the new replica set receives 100, 100 and 50 buckets sequentially."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:148
+msgid "Default: 100"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:155
+msgid "The degree of parallelism for :ref:`parallel rebalancing <vshard-parallel-rebalancing>`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:158
+msgid "Works for storages only, ignored for routers."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:160
+msgid "The maximum value is ``15``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:170
+msgid "A mode of a bucket discovery fiber: ``on``/``off``/``once``. See details :ref:`below <router_api-discovery_set>`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:173
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:274
+msgid "Type: string"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:174
+msgid "Default: 'on'"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:181
+msgid "Replica set parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:183
+msgid ":ref:`uuid <cfg_replica_set-uuid>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:184
+msgid ":ref:`weight <cfg_replica_set-weight>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:185
+msgid ":ref:`master <cfg_replica_set-master>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:191
+msgid "A unique identifier of a replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:193
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:204
+msgid "Type:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:194
+msgid "Default:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:195
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:206
+msgid "Dynamic:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:201
+msgid "A weight of a replica set. See the :ref:`Replica set weights <vshard-replica-set-weights>` section for details."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:212
+msgid "Turns on automated master discovery in a replica set if set to ``auto``. Applicable only to the configuration of a router; the storage configuration ignores this parameter."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:215
+msgid "The parameter should be specified per replica set. The configuration is not compatible with a manual master selection."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:218
+msgid "**Examples**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:220
+msgid "Correct configuration:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:222
+msgid "config = {\n"
+"    sharding = {\n"
+"        <replicaset uuid> = {\n"
+"            master = 'auto',\n"
+"            replicas = {...},\n"
+"        },\n"
+"        ...\n"
+"    },\n"
+"    ...\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:236
+msgid "Incorrect configuration:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:238
+msgid "config = {\n"
+"    sharding = {\n"
+"        <replicaset uuid> = {\n"
+"            master = 'auto',\n"
+"            replicas = {\n"
+"                <replica uuid1> = {\n"
+"                    master = true,\n"
+"                    ...\n"
+"                },\n"
+"                <replica uuid2> = {\n"
+"                    master = false,\n"
+"                    ...\n"
+"                },\n"
+"            },\n"
+"        },\n"
+"        ...\n"
+"    },\n"
+"    ...\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:261
+msgid "If the configuration is incorrect, it is not applied, and the ``vshard.router.cfg()`` call throws an error."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:263
+msgid "If the ``master`` parameter is set to ``auto`` for some replica sets, the router goes to these replica sets, discovers the master in each of them, and periodically checks if the master instance still has its master status. When the master in the replica set stops being a master, the router goes around all the nodes of the replica set to find out which one is the new master."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:268
+msgid "Without this setting, the router cannot detect master nodes in the configured replica sets on its own. It relies only on how they are specified in the configuration. This becomes a problem when the master changes, and the change is not delivered to the router's configuration: for instance, in case the router doesn't rely on a central configuration provider or the provider cannot deliver a new configuration due to some reason."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:275
+msgid "Default: ``nil``"
+msgstr ""

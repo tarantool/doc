@@ -1,0 +1,74 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:4
+msgid "object prepared_table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:12
+msgid "Execute a statement that has been prepared with :doc:`/reference/reference_lua/box_sql/prepare`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:15
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:58
+msgid "Parameter ``prepared_table`` should be the result from ``box.prepare()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:17
+msgid "Parameter ``extra-parameters`` should be an optional table to match :ref:`placeholders or named parameters <box-sql_extra_parameters>` in the statement."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:21
+msgid "There are two ways to execute: with the method or with the statement id. That is, :samp:`{prepared_table}:execute()` and :samp:`box.execute({prepared_table}.stmt_id)` do the same thing."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:25
+msgid "Example: here is a test. This function inserts a million rows in a table using a prepared INSERT statement."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:28
+msgid "function f()\n"
+"  local p, start_time\n"
+"  box.execute([[DROP TABLE IF EXISTS t;]])\n"
+"  box.execute([[CREATE TABLE t (s1 INTEGER PRIMARY KEY);]])\n"
+"  start_time = os.time()\n"
+"  p = box.prepare([[INSERT INTO t VALUES (?);]])\n"
+"  for i=1,1000000 do p:execute({i}) end\n"
+"  p:unprepare()\n"
+"  end_time = os.time()\n"
+"  box.execute([[COMMIT;]])\n"
+"  print(end_time - start_time) -- elapsed time\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:44
+msgid "Take note of the elapsed time. Now change the line with the loop to: |br| ``for i=1,1000000 do box.execute([[INSERT INTO t VALUES (?);]], {i}) end`` |br| Run the function again, and take note of the elapsed time again. The function which executes the prepared statement will be about 15% faster, though of course this will vary depending on Tarantool version and environment."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:55
+msgid "Undo the result of an earlier :doc:`/reference/reference_lua/box_sql/prepare` request. This is equivalent to standard-SQL DEALLOCATE PREPARE."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:60
+msgid "There are two ways to unprepare: with the method or with the statement id. That is, :samp:`{prepared_table}:unprepare()` and :samp:`box.unprepare({prepared_table}.stmt_id)` do the same thing."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/prepared_table.rst:64
+msgid "Tarantool strongly recommends using ``unprepare`` as soon as the immediate objective (executing a prepared statement multiple times) is done, or whenever a prepared statement expires. There is no automatic eviction policy, although automatic ``unprepare`` will happen when the session disconnects (the session's prepared statements will be removed from the prepared-statement cache)."
+msgstr ""

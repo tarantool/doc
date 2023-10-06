@@ -1,0 +1,147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/errno.rst:5
+msgid "Module errno"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:13
+msgid "The ``errno`` module is typically used within a function or within a Lua program, in association with a module whose functions can return operating-system errors, such as :ref:`fio <fio-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:19
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:21
+msgid "Below is a list of all ``errno`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:29
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:29
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:31
+msgid ":ref:`errno() <errno-errno>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:31
+msgid "Get an error number for the last OS-related function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:34
+msgid ":ref:`errno.strerror() <errno-strerror>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:34
+msgid "Get an error message for the corresponding error number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:42
+msgid "Return an error number for the last operating-system-related function, or 0. To invoke it, simply say ``errno()``, without the module name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:0
+#: ../../doc/reference/reference_lua/errno.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:45
+msgid "integer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:51
+msgid "Return a string, given an error number. The string will contain the text of the conventional error message for the current operating system. If ``code`` is not supplied, the error message will be for the last operating-system-related function, or 0."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:56
+msgid "number of an operating-system error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:58
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:60
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:62
+msgid "This function displays the result of a call to :ref:`fio.open() <fio-open>` which causes error 2 (``errno.ENOENT``). The display includes the error number, the associated error string, and the error name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:66
+msgid "tarantool> function f()\n"
+"         >   local fio = require('fio')\n"
+"         >   local errno = require('errno')\n"
+"         >   fio.open('no_such_file')\n"
+"         >   print('errno() = ' .. errno())\n"
+"         >   print('errno.strerror() = ' .. errno.strerror())\n"
+"         >   local t = getmetatable(errno).__index\n"
+"         >   for k, v in pairs(t) do\n"
+"         >     if v == errno() then\n"
+"         >       print('errno() constant = ' .. k)\n"
+"         >     end\n"
+"         >   end\n"
+"         > end\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> f()\n"
+"errno() = 2\n"
+"errno.strerror() = No such file or directory\n"
+"errno() constant = ENOENT\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:91
+msgid "To see all possible error names stored in the ``errno`` metatable, say ``getmetatable(errno)`` (output abridged):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/errno.rst:94
+msgid "tarantool> getmetatable(errno)\n"
+"---\n"
+"- __newindex: 'function: 0x41666a38'\n"
+"  __call: 'function: 0x41666890'\n"
+"  __index:\n"
+"  ENOLINK: 67\n"
+"  EMSGSIZE: 90\n"
+"  EOVERFLOW: 75\n"
+"  ENOTCONN: 107\n"
+"  EFAULT: 14\n"
+"  EOPNOTSUPP: 95\n"
+"  EEXIST: 17\n"
+"  ENOSR: 63\n"
+"  ENOTSOCK: 88\n"
+"  EDESTADDRREQ: 89\n"
+"  <...>\n"
+"..."
+msgstr ""

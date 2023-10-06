@@ -1,0 +1,287 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/jit.rst:5
+msgid "Module jit"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:13
+msgid "The ``jit`` module has functions for tracing the `LuaJIT <http://luajit.org>`_ Just-In-Time compiler's progress, showing the byte-code or assembler output that the compiler produces, and in general providing information about what LuaJIT does with Lua code."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:20
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:22
+msgid "Below is a list of all ``jit`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:28
+msgid "In this document, we will use:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:27
+msgid "``jit_dis_x64`` for ``require('jit.dis_x64')``,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:28
+msgid "``jit_v`` for ``require('jit.v')``,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:29
+msgid "``jit_dump`` for ``require('jit.dump')``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:38
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:38
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:40
+msgid ":ref:`jit_bc.dump() <jit-bc-dump>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:40
+msgid "Print the byte code of a function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:43
+msgid ":ref:`jit_dis_x86.disass() <jit-dis-x86-disass>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:43
+msgid "Print the i386 assembler code of a string of bytes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:46
+msgid ":ref:`jit_dis_x64.disass() <jit-dis-x64-disass>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:46
+msgid "Print the x86-64 assembler code of a string of bytes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:49
+msgid ":ref:`jit_dump.on() <jit-dump-on>`, :ref:`jit_dump.off() <jit-dump-off>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:49
+msgid "Print the intermediate or machine code of the following Lua code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:54
+msgid ":ref:`jit_v.on() <jit-v-on>`, :ref:`jit_v.off() <jit-v-off>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:54
+msgid "Print a trace of LuaJIT's progress compiling and interpreting code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:64
+msgid "Prints the byte code of a function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:66
+#: ../../doc/reference/reference_lua/jit.rst:106
+#: ../../doc/reference/reference_lua/jit.rst:132
+#: ../../doc/reference/reference_lua/jit.rst:160
+#: ../../doc/reference/reference_lua/jit.rst:228
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:68
+msgid "tarantool> jit_bc = require('jit.bc')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> function f()\n"
+"         > print(\"D\")\n"
+"         > end\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> jit_bc.dump(f)\n"
+"-- BYTECODE -- 0x01113163c8:1-3\n"
+"0001    GGET     0   0      ; \"print\"\n"
+"0002    KSTR     2   1      ; \"D\"\n"
+"0003    CALL     0   1   2\n"
+"0004    RET0     0   1\n"
+"\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:90
+msgid "function f()\n"
+"  print(\"D\")\n"
+"end\n"
+"require('jit.bc').dump(f)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:97
+msgid "For a list of available options, read `the source code of bc.lua <https://github.com/tarantool/luajit/tree/tarantool-1.7/src/jit/bc.lua>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:104
+msgid "Prints the i386 assembler code of a string of bytes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:108
+msgid "tarantool> -- Disassemble hexadecimal 97 which is the x86 code for xchg eax, edi\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> jit_dis_x86 = require('jit.dis_x86')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> jit_dis_86.disass('\\x97')\n"
+"00000000  97                xchg eax, edi\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:123
+msgid "For a list of available options, read `the source code of dis_x86.lua <https://github.com/tarantool/luajit/tree/tarantool-1.7/src/jit/dis_x86.lua>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:130
+msgid "Prints the x86-64 assembler code of a string of bytes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:134
+msgid "tarantool> -- Disassemble hexadecimal 97 which is the x86-64 code for xchg eax, edi\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> jit_dis_x64 = require('jit.dis_x64')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> jit_dis_64.disass('\\x97')\n"
+"00000000  97                xchg eax, edi\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:149
+msgid "For a list of available options, read `the source code of dis_x64.lua <https://github.com/tarantool/luajit/tree/tarantool-1.7/src/jit/dis_x64.lua>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:158
+msgid "Prints the intermediate or machine code of the following Lua code."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:162
+msgid "tarantool> -- Show the machine code of a Lua \"for\" loop\n"
+"tarantool> jit_dump = require('jit.dump')\n"
+"tarantool> jit_dump.on('m')\n"
+"tarantool> x = 0;\n"
+"tarantool> for i = 1, 1e6 do\n"
+"         > x = x + i\n"
+"         > end\n"
+"---- TRACE 1 start 0x01047fbc38:1\n"
+"---- TRACE 1 mcode 148\n"
+"104c29f6b  mov dword [r14-0xed0], 0x1\n"
+"104c29f76  cvttsd2si ebp, [rdx]\n"
+"104c29f7a  rorx rbx, [rdx-0x10], 0x2f\n"
+"104c29f81  shr rbx, 0x11\n"
+"104c29f85  mov rdx, [rbx+0x10]\n"
+"104c29f89  cmp dword [rdx+0x34], +0x3f\n"
+"104c29f8d  jnz 0x104c1a010  ->0\n"
+"104c29f93  mov rcx, [rdx+0x28]\n"
+"104c29f97  mov rdi, 0xfffd8001046b3d58\n"
+"104c29fa1  cmp rdi, [rcx+0x320]\n"
+"104c29fa8  jnz 0x104c1a010  ->0\n"
+"104c29fae  lea rax, [rcx+0x318]\n"
+"104c29fb5  cmp dword [rax+0x4], 0xfff90000\n"
+"104c29fbc  jnb 0x104c1a010  ->0\n"
+"104c29fc2  xorps xmm7, xmm7\n"
+"104c29fc5  cvtsi2sd xmm7, ebp\n"
+"104c29fc9  addsd xmm7, [rax]\n"
+"104c29fcd  movsd [rax], xmm7\n"
+"104c29fd1  add ebp, +0x01\n"
+"104c29fd4  cmp ebp, 0x000f4240\n"
+"104c29fda  jg 0x104c1a014   ->1\n"
+"->LOOP:\n"
+"104c29fe0  xorps xmm6, xmm6\n"
+"104c29fe3  cvtsi2sd xmm6, ebp\n"
+"104c29fe7  addsd xmm7, xmm6\n"
+"104c29feb  movsd [rax], xmm7\n"
+"104c29fef  add ebp, +0x01\n"
+"104c29ff2  cmp ebp, 0x000f4240\n"
+"104c29ff8  jle 0x104c29fe0  ->LOOP\n"
+"104c29ffa  jmp 0x104c1a01c  ->3\n"
+"---- TRACE 1 stop -> loop\n"
+"\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> print(x)\n"
+"500000500000\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> jit_dump.off()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:217
+msgid "For a list of available options, read `the source code of dump.lua <https://github.com/tarantool/luajit/tree/tarantool-1.7/src/jit/dump.lua>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:226
+msgid "Prints a trace of LuaJIT's progress compiling and interpreting code."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:230
+msgid "tarantool> -- Show what LuaJIT is doing for a Lua \"for\" loop\n"
+"tarantool> jit_v = require('jit.v')\n"
+"tarantool> jit_v.on()\n"
+"tarantool> l = 0\n"
+"tarantool> for i = 1, 1e6 do\n"
+"         >     l = l + i\n"
+"         > end\n"
+"[TRACE   3 \"for i = 1, 1e6 do\n"
+"    l = l + i\n"
+"end\":1 loop]\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> print(l)\n"
+"500000500000\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> jit_v.off()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/jit.rst:254
+msgid "For a list of available options, read `the source code of v.lua <https://github.com/tarantool/luajit/tree/tarantool-1.7/src/jit/v.lua>`_."
+msgstr ""

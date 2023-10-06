@@ -1,0 +1,1493 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/fio.rst:5
+msgid "Module fio"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:13
+msgid "Tarantool supports file input/output with an API that is similar to POSIX syscalls. All operations are performed asynchronously. Multiple fibers can access the same file simultaneously."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:17
+msgid "The ``fio`` module contains:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:19
+msgid "functions for :ref:`common pathname manipulations <fio-pathname>`,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:20
+msgid "functions for :ref:`directory or file existence and type checks<fio-checks>`,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:21
+msgid "functions for :ref:`common file manipulations <fio-file>`, and"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:22
+msgid ":ref:`constants <fio-c>` which are the same as POSIX flag values (for example ``fio.c.flag.O_RDONLY`` = POSIX O_RDONLY)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:27
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:29
+msgid "Below is a list of all ``fio`` functions and members."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:39
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:39
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:41
+msgid ":ref:`fio.pathjoin() <fio-pathjoin>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:41
+msgid "Form a path name from one or more partial strings"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:44
+msgid ":ref:`fio.basename() <fio-basename>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:44
+msgid "Get a file name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:47
+msgid ":ref:`fio.dirname() <fio-dirname>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:47
+msgid "Get a directory name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:50
+msgid ":ref:`fio.abspath() <fio-abspath>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:50
+msgid "Get a directory and file name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:53
+msgid ":ref:`fio.path.exists() <fio-path_exists>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:53
+#: ../../doc/reference/reference_lua/fio.rst:65
+msgid "Check if file or directory exists"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:56
+msgid ":ref:`fio.path.is_dir() <fio-path_is_dir>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:56
+msgid "Check if file or directory is a directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:59
+msgid ":ref:`fio.path.is_file() <fio-path_is_file>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:59
+msgid "Check if file or directory is a file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:62
+msgid ":ref:`fio.path.is_link() <fio-path_is_link>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:62
+msgid "Check if file or directory is a link"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:65
+msgid ":ref:`fio.path.lexists() <fio-path_lexists>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:68
+msgid ":ref:`fio.umask() <fio-umask>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:68
+msgid "Set mask bits"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:71
+msgid ":ref:`fio.lstat() <fio-stat>` |br| :ref:`fio.stat() <fio-stat>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:72
+msgid "Get information about a file object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:76
+msgid ":ref:`fio.mkdir() <fio-mkdir>` |br| :ref:`fio.rmdir() <fio-mkdir>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:77
+msgid "Create or delete a directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:81
+msgid ":ref:`fio.chdir() <fio-chdir>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:81
+msgid "Change working directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:84
+msgid ":ref:`fio.listdir() <fio-listdir>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:84
+msgid "List files in a directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:87
+msgid ":ref:`fio.glob() <fio-glob>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:87
+msgid "Get files whose names match a given string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:90
+msgid ":ref:`fio.tempdir() <fio-tempdir>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:90
+msgid "Get the name of a directory for storing temporary files"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:93
+msgid ":ref:`fio.cwd() <fio-cwd>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:93
+msgid "Get the name of the current working directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:96
+msgid ":ref:`fio.copytree() <fio-copytree>` |br| :ref:`fio.mktree() <fio-mktree>` |br| :ref:`fio.rmtree() <fio-rmtree>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:99
+msgid "Create and delete directories"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:103
+msgid ":ref:`fio.link() <fio-link>` |br| :ref:`fio.symlink() <fio-link>` |br| :ref:`fio.readlink() <fio-link>` |br| :ref:`fio.unlink() <fio-link>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:106
+msgid "Create and delete links"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:112
+msgid ":ref:`fio.rename() <fio-rename>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:112
+msgid "Rename a file or directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:115
+msgid ":ref:`fio.utime() <fio-utime>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:115
+msgid "Change file update time"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:118
+msgid ":ref:`fio.copyfile() <fio-copyfile>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:118
+msgid "Copy a file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:121
+msgid ":ref:`fio.chown() <fio-chown>` |br| :ref:`fio.chmod() <fio-chown>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:122
+msgid "Manage rights to and ownership of file objects"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:126
+msgid ":ref:`fio.truncate() <fio-truncate>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:126
+msgid "Reduce the file size"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:129
+msgid ":ref:`fio.sync() <fio-sync>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:129
+msgid "Ensure that changes are written to disk"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:132
+msgid ":ref:`fio.open() <fio-open>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:132
+msgid "Open a file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:135
+msgid ":ref:`file-handle:close() <file_handle-close>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:135
+msgid "Close a file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:138
+msgid ":ref:`file-handle:pread() <file_handle-pread>` |br| :ref:`file-handle:pwrite() <file_handle-pwrite>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:139
+msgid "Perform random-access read or write on a file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:143
+msgid ":ref:`file-handle:read() <file_handle-read>` |br| :ref:`file-handle:write() <file_handle-write>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:144
+msgid "Perform non-random-access read or write on a file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:148
+msgid ":ref:`file-handle:truncate() <file_handle-truncate>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:148
+msgid "Change the size of an open file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:151
+msgid ":ref:`file-handle:seek() <file_handle-seek>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:151
+msgid "Change position in a file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:154
+msgid ":ref:`file-handle:stat() <file_handle-stat>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:154
+msgid "Get statistics about an open file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:157
+msgid ":ref:`file-handle:fsync() <file_handle-fsync>` |br| :ref:`file-handle:fdatasync() <file_handle-fsync>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:158
+msgid "Ensure that changes made to an open file are written to disk"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:162
+msgid ":ref:`fio.c <fio-c_table>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:162
+msgid "Table of constants similar to POSIX flag values"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:172
+msgid "Common pathname manipulations"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:178
+msgid "Concatenate partial string, separated by '/' to form a path name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:180
+msgid "one or more strings to be concatenated."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:181
+#: ../../doc/reference/reference_lua/fio.rst:204
+#: ../../doc/reference/reference_lua/fio.rst:234
+msgid "path name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+#: ../../doc/reference/reference_lua/fio.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:182
+#: ../../doc/reference/reference_lua/fio.rst:208
+#: ../../doc/reference/reference_lua/fio.rst:237
+#: ../../doc/reference/reference_lua/fio.rst:256
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:184
+#: ../../doc/reference/reference_lua/fio.rst:210
+#: ../../doc/reference/reference_lua/fio.rst:239
+#: ../../doc/reference/reference_lua/fio.rst:258
+#: ../../doc/reference/reference_lua/fio.rst:334
+#: ../../doc/reference/reference_lua/fio.rst:370
+#: ../../doc/reference/reference_lua/fio.rst:409
+#: ../../doc/reference/reference_lua/fio.rst:429
+#: ../../doc/reference/reference_lua/fio.rst:450
+#: ../../doc/reference/reference_lua/fio.rst:473
+#: ../../doc/reference/reference_lua/fio.rst:490
+#: ../../doc/reference/reference_lua/fio.rst:505
+#: ../../doc/reference/reference_lua/fio.rst:533
+#: ../../doc/reference/reference_lua/fio.rst:557
+#: ../../doc/reference/reference_lua/fio.rst:578
+#: ../../doc/reference/reference_lua/fio.rst:599
+#: ../../doc/reference/reference_lua/fio.rst:625
+#: ../../doc/reference/reference_lua/fio.rst:651
+#: ../../doc/reference/reference_lua/fio.rst:675
+#: ../../doc/reference/reference_lua/fio.rst:698
+#: ../../doc/reference/reference_lua/fio.rst:720
+#: ../../doc/reference/reference_lua/fio.rst:746
+#: ../../doc/reference/reference_lua/fio.rst:764
+#: ../../doc/reference/reference_lua/fio.rst:874
+#: ../../doc/reference/reference_lua/fio.rst:905
+#: ../../doc/reference/reference_lua/fio.rst:1032
+#: ../../doc/reference/reference_lua/fio.rst:1059
+#: ../../doc/reference/reference_lua/fio.rst:1084
+#: ../../doc/reference/reference_lua/fio.rst:1105
+#: ../../doc/reference/reference_lua/fio.rst:1138
+#: ../../doc/reference/reference_lua/fio.rst:1160
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:186
+msgid "tarantool> fio.pathjoin('/etc', 'default', 'myfile')\n"
+"---\n"
+"- /etc/default/myfile\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:197
+msgid "Given a full path name, remove all but the final part (the file name). Also remove the suffix, if it is passed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:200
+msgid "Note that the basename of a path with a trailing slash is an empty string. It is different from how the Unix ``basename`` program interprets such a path."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:205
+msgid "suffix"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:207
+#: ../../doc/reference/reference_lua/fio.rst:253
+msgid "file name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:212
+msgid "tarantool> fio.basename('/path/to/my.lua', '.lua')\n"
+"---\n"
+"- my\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:219
+msgid "**Example with a trailing slash:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:221
+msgid "tarantool> fio.basename('/path/to/')\n"
+"---\n"
+"-\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:232
+msgid "Given a full path name, remove the final part (the file name)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:236
+msgid "directory name, that is, path name except for file name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:241
+msgid "tarantool> fio.dirname('/path/to/my.lua')\n"
+"---\n"
+"- '/path/to/'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:251
+msgid "Given a final part (the file name), return the full path name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:255
+msgid "directory name, that is, path name including file name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:260
+msgid "tarantool> fio.abspath('my.lua')\n"
+"---\n"
+"- '/path/to/my.lua'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:271
+msgid "Directory or file existence and type checks"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:273
+msgid "Functions in this section are similar to some `Python os.path <https://docs.python.org/2/library/os.path.html>`_ functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:281
+#: ../../doc/reference/reference_lua/fio.rst:289
+#: ../../doc/reference/reference_lua/fio.rst:297
+#: ../../doc/reference/reference_lua/fio.rst:305
+#: ../../doc/reference/reference_lua/fio.rst:313
+msgid "path to directory or file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:282
+msgid "true if path-name refers to a directory or file that exists and is not a broken symbolic link; otherwise false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:283
+#: ../../doc/reference/reference_lua/fio.rst:291
+#: ../../doc/reference/reference_lua/fio.rst:299
+#: ../../doc/reference/reference_lua/fio.rst:307
+#: ../../doc/reference/reference_lua/fio.rst:315
+#: ../../doc/reference/reference_lua/fio.rst:407
+#: ../../doc/reference/reference_lua/fio.rst:427
+#: ../../doc/reference/reference_lua/fio.rst:555
+#: ../../doc/reference/reference_lua/fio.rst:576
+#: ../../doc/reference/reference_lua/fio.rst:597
+#: ../../doc/reference/reference_lua/fio.rst:649
+#: ../../doc/reference/reference_lua/fio.rst:673
+#: ../../doc/reference/reference_lua/fio.rst:696
+#: ../../doc/reference/reference_lua/fio.rst:744
+#: ../../doc/reference/reference_lua/fio.rst:762
+#: ../../doc/reference/reference_lua/fio.rst:872
+#: ../../doc/reference/reference_lua/fio.rst:932
+#: ../../doc/reference/reference_lua/fio.rst:1023
+#: ../../doc/reference/reference_lua/fio.rst:1057
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:290
+msgid "true if path-name refers to a directory; otherwise false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:298
+msgid "true if path-name refers to a file; otherwise false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:306
+msgid "true if path-name refers to a symbolic link; otherwise false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:314
+msgid "true if path-name refers to a directory or file that exists or is a broken symbolic link; otherwise false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:321
+msgid "Common file manipulations"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:327
+msgid "Set the mask bits used when creating files or directories. For a detailed description type ``man 2 umask``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:330
+msgid "mask bits."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:331
+msgid "previous mask bits."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:332
+#: ../../doc/reference/reference_lua/fio.rst:1080
+msgid "number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:336
+msgid "tarantool> fio.umask(tonumber('755', 8))\n"
+"---\n"
+"- 493\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:348
+msgid "Returns information about a file object. For details type ``man 2 lstat`` or ``man 2 stat``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:351
+msgid "path name of file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:352
+msgid "(If no error) table of fields which describe the file's block size, creation time, size, and other attributes. |br| (If error) two return values: null, error message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:355
+msgid "table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:357
+msgid "Additionally, the result of ``fio.stat('file-name')`` will include methods equivalent to POSIX macros:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:360
+msgid "``is_blk()`` = POSIX macro S_ISBLK,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:361
+msgid "``is_chr()`` = POSIX macro S_ISCHR,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:362
+msgid "``is_dir()`` = POSIX macro S_ISDIR,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:363
+msgid "``is_fifo()`` = POSIX macro S_ISFIFO,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:364
+msgid "``is_link()`` = POSIX macro S_ISLINK,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:365
+msgid "``is_reg()`` = POSIX macro S_ISREG,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:366
+msgid "``is_sock()`` = POSIX macro S_ISSOCK."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:368
+msgid "For example, ``fio.stat('/'):is_dir()`` will return true."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:372
+msgid "tarantool> fio.lstat('/etc')\n"
+"---\n"
+"- inode: 1048577\n"
+"  rdev: 0\n"
+"  size: 12288\n"
+"  atime: 1421340698\n"
+"  mode: 16877\n"
+"  mtime: 1424615337\n"
+"  nlink: 160\n"
+"  uid: 0\n"
+"  blksize: 4096\n"
+"  gid: 0\n"
+"  ctime: 1424615337\n"
+"  dev: 2049\n"
+"  blocks: 24\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:398
+msgid "Create or delete a directory. For details type ``man 2 mkdir`` or ``man 2 rmdir``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:401
+#: ../../doc/reference/reference_lua/fio.rst:425
+#: ../../doc/reference/reference_lua/fio.rst:445
+msgid "path of directory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:402
+msgid "Mode bits can be passed as a number or as string constants, for example ``S_IWUSR``. Mode bits can be combined by enclosing them in braces."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:405
+#: ../../doc/reference/reference_lua/fio.rst:553
+#: ../../doc/reference/reference_lua/fio.rst:574
+#: ../../doc/reference/reference_lua/fio.rst:647
+#: ../../doc/reference/reference_lua/fio.rst:671
+#: ../../doc/reference/reference_lua/fio.rst:694
+#: ../../doc/reference/reference_lua/fio.rst:742
+msgid "(If no error) true. |br| (If error) two return values: false, error message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:411
+msgid "tarantool> fio.mkdir('/etc')\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:422
+msgid "Change working directory. For details type ``man 2 chdir``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:426
+msgid "(If success) true. (If failure) false."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:431
+msgid "tarantool> fio.chdir('/etc')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:442
+msgid "List files in directory. The result is similar to the ``ls`` shell command."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:446
+msgid "(If no error) a list of files. |br| (If error) two return values: null, error message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:448
+#: ../../doc/reference/reference_lua/fio.rst:469
+#: ../../doc/reference/reference_lua/fio.rst:1103
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:452
+msgid "tarantool> fio.listdir('/usr/lib/tarantool')\n"
+"---\n"
+"- - mysql\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:463
+msgid "Return a list of files that match an input string. The list is constructed with a single flag that controls the behavior of the function: ``GLOB_NOESCAPE``. For details type ``man 3 glob``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:467
+msgid "path-name, which may contain wildcard characters."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:468
+msgid "list of files whose names match the input string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:471
+#: ../../doc/reference/reference_lua/fio.rst:826
+#: ../../doc/reference/reference_lua/fio.rst:1082
+msgid "**Possible errors:** nil."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:475
+msgid "tarantool> fio.glob('/etc/x*')\n"
+"---\n"
+"- - /etc/xdg\n"
+"  - /etc/xml\n"
+"  - /etc/xul-ext\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:488
+msgid "Return the name of a directory that can be used to store temporary files."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:492
+msgid "tarantool> fio.tempdir()\n"
+"---\n"
+"- /tmp/lG31e7\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:499
+msgid "``fio.tempdir()`` stores the created temporary directory into ``/tmp`` by default. Since version :doc:`2.4.1 </release/2.4.1>`, this can be changed by setting the ``TMPDIR`` environment variable. Before starting Tarantool, or at runtime by ``os.setenv()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:507
+msgid "tarantool> fio.tempdir()\n"
+"---\n"
+"- /tmp/lG31e7\n"
+"...\n"
+"tarantool> fio.mkdir('./mytmp')\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> os.setenv('TMPDIR', './mytmp')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> fio.tempdir()\n"
+"---\n"
+"- ./mytmp/506Z0b\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:531
+msgid "Return the name of the current working directory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:535
+msgid "tarantool> fio.cwd()\n"
+"---\n"
+"- /home/username/tarantool_sandbox\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:546
+msgid "Copy everything in the from-path, including subdirectory contents, to the to-path. The result is similar to the ``cp -r`` shell command. The to-path should not be empty."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:551
+#: ../../doc/reference/reference_lua/fio.rst:552
+#: ../../doc/reference/reference_lua/fio.rst:573
+#: ../../doc/reference/reference_lua/fio.rst:594
+msgid "path-name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:559
+msgid "tarantool> fio.copytree('/home/original','/home/archives')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:570
+msgid "Create the path, including parent directories, but without file contents. The result is similar to the ``mkdir -p`` shell command."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:580
+msgid "tarantool> fio.mktree('/home/archives')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:591
+msgid "Remove the directory indicated by path-name, including subdirectories. The result is similar to the ``rm -rf`` shell command."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:595
+msgid "(If no error) true. |br| (If error) two return values: null, error message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:601
+msgid "tarantool> fio.rmtree('/home/archives')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:615
+msgid "Functions to create and delete links. For details type ``man readlink``, ``man 2 link``, ``man 2 symlink``, ``man 2 unlink``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:618
+msgid "existing file name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:619
+msgid "linked name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:621
+msgid "(If no error) ``fio.link`` and ``fio.symlink`` and ``fio.unlink`` return true, ``fio.readlink`` returns the link value. |br| (If error) two return values: false|null, error message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:627
+msgid "tarantool> fio.link('/home/username/tmp.txt', '/home/username/tmp.txt2')\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fio.unlink('/home/username/tmp.txt2')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:642
+msgid "Rename a file or directory. For details type ``man 2 rename``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:644
+msgid "original name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:645
+msgid "new name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:653
+msgid "tarantool> fio.rename('/home/username/tmp.txt', '/home/username/tmp.txt2')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:664
+msgid "Change the access time and possibly also change the update time of a file. For details type ``man 2 utime``. Times should be expressed as number of seconds since the epoch."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:667
+msgid "name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:668
+msgid "time of last access. default current time."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:669
+msgid "time of last update. default = access time."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:677
+msgid "tarantool> fio.utime('/home/username/tmp.txt')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:688
+msgid "Copy a file. The result is similar to the ``cp`` shell command."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:691
+msgid "path to original file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:692
+msgid "path to new file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:700
+msgid "tarantool> fio.copyfile('/home/user/tmp.txt', '/home/usern/tmp.txt2')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:712
+msgid "Manage the rights to file objects, or ownership of file objects. For details type ``man 2 chown`` or ``man 2 chmod``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:715
+msgid "new user uid."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:716
+msgid "new group uid."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:717
+msgid "new permissions"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:718
+msgid "null"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:722
+msgid "tarantool> fio.chmod('/home/username/tmp.txt', tonumber('0755', 8))\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fio.chown('/home/username/tmp.txt', 'username', 'username')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:737
+msgid "Reduce file size to a specified value. For details type ``man 2 truncate``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:748
+msgid "tarantool> fio.truncate('/home/username/tmp.txt', 99999)\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:759
+msgid "Ensure that changes are written to disk. For details type ``man 2 sync``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:761
+#: ../../doc/reference/reference_lua/fio.rst:871
+#: ../../doc/reference/reference_lua/fio.rst:931
+#: ../../doc/reference/reference_lua/fio.rst:1022
+#: ../../doc/reference/reference_lua/fio.rst:1056
+#: ../../doc/reference/reference_lua/fio.rst:1136
+msgid "true if success, false if failure."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:766
+msgid "tarantool> fio.sync()\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:781
+msgid "Open a file in preparation for reading or writing or seeking."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:783
+msgid "Full path to the file to open."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:784
+msgid "Flags can be passed as a number or as string constants, for example '``O_RDONLY``', '``O_WRONLY``', '``O_RDWR``'. Flags can be combined by enclosing them in braces. On Linux the full set of flags as described on the `Linux man page <http://man7.org/linux/man-pages/man2/open.2.html>`_ is:  * O_APPEND (start at end of file), * O_ASYNC (signal when IO is possible), * O_CLOEXEC (enable a flag related to closing), * O_CREAT (create file if it doesn't exist), * O_DIRECT (do less caching or no caching), * O_DIRECTORY (fail if it's not a directory), * O_EXCL (fail if file cannot be created), * O_LARGEFILE (allow 64-bit file offsets), * O_NOATIME (no access-time updating), * O_NOCTTY (no console tty), * O_NOFOLLOW (no following symbolic links), * O_NONBLOCK (no blocking), * O_PATH (get a path for low-level use), * O_SYNC (force writing if it's possible), * O_TMPFILE (the file will be temporary and nameless), * O_TRUNC (truncate)  ... and, always, one of:  * O_RDONLY (read only), * O_WRONLY (write only), or * O_RDWR (either read or write)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:784
+msgid "Flags can be passed as a number or as string constants, for example '``O_RDONLY``', '``O_WRONLY``', '``O_RDWR``'. Flags can be combined by enclosing them in braces. On Linux the full set of flags as described on the `Linux man page <http://man7.org/linux/man-pages/man2/open.2.html>`_ is:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:793
+msgid "O_APPEND (start at end of file),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:794
+msgid "O_ASYNC (signal when IO is possible),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:795
+msgid "O_CLOEXEC (enable a flag related to closing),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:796
+msgid "O_CREAT (create file if it doesn't exist),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:797
+msgid "O_DIRECT (do less caching or no caching),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:798
+msgid "O_DIRECTORY (fail if it's not a directory),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:799
+msgid "O_EXCL (fail if file cannot be created),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:800
+msgid "O_LARGEFILE (allow 64-bit file offsets),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:801
+msgid "O_NOATIME (no access-time updating),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:802
+msgid "O_NOCTTY (no console tty),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:803
+msgid "O_NOFOLLOW (no following symbolic links),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:804
+msgid "O_NONBLOCK (no blocking),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:805
+msgid "O_PATH (get a path for low-level use),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:806
+msgid "O_SYNC (force writing if it's possible),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:807
+msgid "O_TMPFILE (the file will be temporary and nameless),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:808
+msgid "O_TRUNC (truncate)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:810
+msgid "... and, always, one of:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:812
+msgid "O_RDONLY (read only),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:813
+msgid "O_WRONLY (write only), or"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:814
+msgid "O_RDWR (either read or write)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:816
+msgid "Mode bits can be passed as a number or as string constants, for example ``S_IWUSR``. Mode bits are significant if flags include ``O_CREAT`` or ``O_TMPFILE``. Mode bits can be combined by enclosing them in braces."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:821
+msgid "(If no error) file handle (abbreviated as 'fh' in later description). |br| (If error) two return values: null, error message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:824
+msgid "userdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:828
+msgid "Note that since version :doc:`2.4.1 </release/2.4.1>` ``fio.open()`` returns a descriptor which can be closed manually by calling the ``:close()`` method, or it will be closed automatically when it has no references, and the garbage collector deletes it."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:833
+msgid "Keep in mind that the number of file descriptors is limited, and they can become exhausted earlier than the garbage collector will be triggered to collect not used descriptors. It is always good practice to close them manually as soon as possible."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:837
+msgid "**Example 1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:839
+msgid "tarantool> fh = fio.open('/home/username/tmp.txt', {'O_RDWR', 'O_APPEND'})\n"
+"---\n"
+"...\n"
+"tarantool> fh -- display file handle returned by fio.open\n"
+"---\n"
+"- fh: 11\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:849
+msgid "**Example 2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:851
+msgid "Using ``fio.open()`` with ``tonumber('N', 8)`` to set permissions as an octal number:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:854
+msgid "tarantool> fio.open('x.txt', {'O_WRONLY', 'O_CREAT'}, tonumber('644',8))\n"
+"---\n"
+"- fh: 12\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:867
+msgid "Close a file that was opened with ``fio.open``. For details type ``man 2 close``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:870
+#: ../../doc/reference/reference_lua/fio.rst:968
+#: ../../doc/reference/reference_lua/fio.rst:1055
+#: ../../doc/reference/reference_lua/fio.rst:1075
+#: ../../doc/reference/reference_lua/fio.rst:1101
+#: ../../doc/reference/reference_lua/fio.rst:1135
+msgid "file-handle as returned by ``fio.open()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:876
+msgid "tarantool> fh:close() -- where fh = file-handle\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:888
+msgid "Perform random-access read operation on a file, without affecting the current seek position of the file. For details type ``man 2 pread``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:892
+#: ../../doc/reference/reference_lua/fio.rst:925
+#: ../../doc/reference/reference_lua/fio.rst:1017
+msgid "file-handle as returned by ``fio.open()``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:893
+msgid "where to read into (if the format is ``pread(buffer, count, offset)``)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:895
+#: ../../doc/reference/reference_lua/fio.rst:971
+msgid "number of bytes to read"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:896
+msgid "offset within file where reading begins"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:898
+msgid "If the format is ``pread(count, offset)`` then return a string containing the data that was read from the file, or empty string if failure."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:901
+msgid "If the format is ``pread(buffer, count, offset)`` then return the data to the buffer. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:907
+msgid "tarantool> fh:pread(25, 25)\n"
+"---\n"
+"- |\n"
+"  elete from t8//\n"
+"  insert in\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:921
+msgid "Perform random-access write operation on a file, without affecting the current seek position of the file. For details type ``man 2 pwrite``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:926
+msgid "value to write (if the format is ``pwrite(new-string, offset)``)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:927
+msgid "value to write (if the format is ``pwrite(buffer, count, offset)``)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:928
+#: ../../doc/reference/reference_lua/fio.rst:1020
+msgid "number of bytes to write"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:929
+msgid "offset within file where writing begins"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:934
+msgid "If the format is ``pwrite(new-string, offset)`` then the returned string is written to the file, as far as the end of the string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:937
+msgid "If the format is ``pwrite(buffer, count, offset)`` then the buffer contents are written to the file, for ``count`` bytes. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:941
+msgid "tarantool> ibuf = require('buffer').ibuf()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> fh:pwrite(ibuf, 1, 0)\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:957
+msgid "Perform non-random-access read on a file. For details type ``man 2 read`` or ``man 2 write``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:962
+#: ../../doc/reference/reference_lua/fio.rst:1011
+msgid "``fh:read`` and ``fh:write`` affect the seek position within the file, and this must be taken into account when working on the same file from multiple fibers. It is possible to limit or prevent file access from other fibers with :ref:`fiber.cond() <fiber-cond>` or :ref:`fiber.channel() <fiber-channel>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:969
+msgid "where to read into (if the format is ``read(buffer, count)``)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:973
+msgid "If the format is ``read()`` -- omitting ``count`` -- then read all bytes in the file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:976
+msgid "If the format is ``read()``  or ``read([count])`` then return a string containing the data that was read from the file, or empty string if failure."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:979
+msgid "If the format is ``read(buffer, count)`` then return the data to the buffer. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:983
+msgid "In case of an error the method returns ``nil, err`` and sets the error to ``errno``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:986
+msgid "tarantool> ibuf = require('buffer').ibuf()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> fh:read(ibuf:reserve(5), 5)\n"
+"---\n"
+"- 5\n"
+"...\n"
+"\n"
+"tarantool> require('ffi').string(ibuf:alloc(5),5)\n"
+"---\n"
+"- abcde"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1006
+msgid "Perform non-random-access write on a file. For details type ``man 2 write``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1018
+msgid "value to write (if the format is ``write(new-string)``)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1019
+msgid "value to write (if the format is ``write(buffer, count)``)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1025
+msgid "If the format is ``write(new-string)`` then the returned string is written to the file, as far as the end of the string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1028
+msgid "If the format is ``write(buffer, count)`` then the buffer contents are written to the file, for ``count`` bytes. Buffers can be acquired with :ref:`buffer.ibuf <buffer-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1034
+msgid "tarantool> fh:write(\"new data\")\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> ibuf = require('buffer').ibuf()\n"
+"---\n"
+"...\n"
+"tarantool> fh:write(ibuf, 1)\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1052
+msgid "Change the size of an open file. Differs from ``fio.truncate``, which changes the size of a closed file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1061
+msgid "tarantool> fh:truncate(0)\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1072
+msgid "Shift position in the file to the specified position. For details type ``man 2 seek``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1076
+msgid "position to seek to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1077
+msgid "'``SEEK_END``' = end of file, '``SEEK_CUR``' = current position, '``SEEK_SET``' = start of file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1079
+msgid "the new position if success"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1086
+msgid "tarantool> fh:seek(20, 'SEEK_SET')\n"
+"---\n"
+"- 20\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1097
+msgid "Return statistics about an open file. This differs from ``fio.stat`` which return statistics about a closed file. For details type ``man 2 stat``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1102
+msgid "details about the file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1107
+msgid "tarantool> fh:stat()\n"
+"---\n"
+"- inode: 729866\n"
+"  rdev: 0\n"
+"  size: 100\n"
+"  atime: 140942855\n"
+"  mode: 33261\n"
+"  mtime: 1409430660\n"
+"  nlink: 1\n"
+"  uid: 1000\n"
+"  blksize: 4096\n"
+"  gid: 1000\n"
+"  ctime: 1409430660\n"
+"  dev: 2049\n"
+"  blocks: 8\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1131
+msgid "Ensure that file changes are written to disk, for an open file. Compare ``fio.sync``, which is for all files. For details type ``man 2 fsync`` or ``man 2 fdatasync``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1140
+msgid "tarantool> fh:fsync()\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1151
+msgid "FIO constants"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1157
+msgid "Table with constants which are the same as POSIX flag values on the target platform (see ``man 2 stat``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fio.rst:1162
+msgid "tarantool> fio.c\n"
+"---\n"
+"- seek:\n"
+"    SEEK_SET: 0\n"
+"    SEEK_END: 2\n"
+"    SEEK_CUR: 1\n"
+"  mode:\n"
+"    S_IWGRP: 16\n"
+"    S_IXGRP: 8\n"
+"    S_IROTH: 4\n"
+"    S_IXOTH: 1\n"
+"    S_IRUSR: 256\n"
+"    S_IXUSR: 64\n"
+"    S_IRWXU: 448\n"
+"    S_IRWXG: 56\n"
+"    S_IWOTH: 2\n"
+"    S_IRWXO: 7\n"
+"    S_IWUSR: 128\n"
+"    S_IRGRP: 32\n"
+"  flag:\n"
+"    O_EXCL: 2048\n"
+"    O_NONBLOCK: 4\n"
+"    O_RDONLY: 0\n"
+"    <...>\n"
+"..."
+msgstr ""

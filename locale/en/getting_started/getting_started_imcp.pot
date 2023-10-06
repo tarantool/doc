@@ -1,0 +1,680 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/getting_started/getting_started_imcp.rst:4
+msgid "First steps"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:6
+msgid "This is the recommended guide for getting to know the product."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:10
+msgid "You also might want to check out our :ref:`basic Tarantool tutorial <getting_started_db>`. It shows how to launch one Tarantool instance, create a space, build an index, and write data."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:15
+msgid "We recommend that beginners go through the current tutorial first and then see the basic tutorial to dive deeper into the product."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:18
+msgid "If you just want to run the complete tutorial code quickly, go to :ref:`Launching an application <app_server-launching_app>`."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:22
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:24
+msgid "**Launch in the cloud**"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:26
+msgid "This tutorial is also available in the cloud. It's free, and it's the fastest way to start. To follow this tutorial in the cloud, go to `try.tarantool.io <https://try.tarantool.io>`__."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:29
+msgid "However, you will still need to install Tarantool if you want to get better acquainted with it."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:32
+msgid "**Run locally**"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:34
+msgid "**For Linux/macOS users:**"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:36
+msgid "Install Tarantool from the `Download page <https://tarantool.io/download>`__."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:37
+msgid "Install `Node.js <https://nodejs.org/en/download/>`_, which is required for the tutorial frontend."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:38
+msgid "Install the ``cartridge-cli`` utility through your package manager:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:40
+msgid "sudo yum install cartridge-cli"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:44
+msgid "brew install cartridge-cli"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:48
+msgid "To learn more, check the ``cartridge-cli`` :doc:`installation guide </book/cartridge/cartridge_cli/installation/>`."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:51
+msgid "Clone the `Getting Started tutorial repository <https://github.com/tarantool/getting-started>`__."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:53
+msgid "Everything is ready and organized in this repository. In the cloned directory, run the following:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:56
+msgid "cartridge build\n"
+"cartridge start"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:63
+msgid "In case of a problem with `cartridge build`, run it with the `--verbose` flag to learn about the source of the problem. If there is a problem with Node.js (`npm`):"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:66
+msgid "Check that Node.js is in the `$PATH`."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:68
+msgid "Try forcefully removing the `node_modules` directory from the dependencies' directories:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:70
+msgid "`rm -rf analytics/node_modules front/node_modules`"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:72
+msgid "After that, try running `cartridge build` again. If all else fails, please `file us an issue on GitHub <https://github.com/tarantool/getting-started/issues/new>`_."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:76
+msgid "You're all set! At http://localhost:8081, you will see the Tarantool Cartridge UI."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:78
+msgid "**Running in Docker:**"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:80
+msgid "docker run -p 3301:3301 -p 8081:8081 tarantool/getting-started"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:84
+msgid "That's it! At http://localhost:8081, you will see the Tarantool Cartridge UI."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:86
+msgid "**For Windows users:**"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:88
+msgid "Use Docker to get started."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:92
+msgid "Getting to know Tarantool"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:94
+msgid "Today, we will solve a high-performance challenge for TikTok using Tarantool."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:97
+msgid "You will implement a counter of likes for videos. First, you will create base tables and search indexes. Then you will set up an HTTP API for mobile clients."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:101
+msgid "The challenge doesn't require you to write any additional code. Everything will be implemented on the Tarantool platform."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:104
+msgid "If you accidentally do something wrong while following the instructions, there is a magic button to help you reset all changes. It is called **\"Reset Configuration\"**.  You can find it at the top of the \"Cluster\" page."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:109
+msgid "Configuring a cluster [1 minute]"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:111
+msgid "**Everything you need to know to get started:**"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:113
+msgid "A Tarantool cluster has two service roles: router and storage."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:115
+msgid "Storage is used to store data."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:116
+msgid "Router is an intermediary between clients and storages. It accepts a client's request, takes data from the proper storage, and returns it to the client."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:120
+msgid "We see that we have 5 unconfigured instances on the \"Cluster\" tab."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:125
+#: ../../doc/getting_started/getting_started_imcp.rst:125
+msgid "List of all nodes"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:127
+msgid "Let's create one router and one storage for a start."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:129
+msgid "First, click the \"Configure\" button on the \"router\" instance and configure it as in the screenshot below:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:135
+#: ../../doc/getting_started/getting_started_imcp.rst:135
+msgid "Configuring a router"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:137
+msgid "Next, we configure the \"s1-master\" instance:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:142
+#: ../../doc/getting_started/getting_started_imcp.rst:142
+msgid "Configuring s1-master"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:144
+msgid "It will look something like this:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:149
+#: ../../doc/getting_started/getting_started_imcp.rst:149
+msgid "Cluster view after first setup"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:151
+msgid "Let's enable sharding in the cluster using the \"Bootstrap vshard\" button. It is located in the top right corner."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:155
+msgid "Creating a data schema [2 minutes]"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:157
+msgid "Let's start with the data schema -- take a look at the **Code** tab on the left."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:159
+msgid "There you can find a file called ``schema.yml``. In this file, you can describe the entire cluster's data schema, edit the current schema, validate its correctness, and apply it to the whole cluster."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:163
+msgid "First, let's create the necessary tables. In Tarantool, they are called spaces."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:165
+msgid "We need to store:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:167
+msgid "Users"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:168
+msgid "Videos with descriptions"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:169
+msgid "Likes for each video"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:171
+msgid "Copy the schema description from the code block below and paste it in the ``schema.yml`` file on the **Code** tab. Click the \"Apply\" button. After that, the data schema will be described in the cluster."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:175
+msgid "This is what our data schema will look like:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:177
+msgid "spaces:\n"
+"  users:\n"
+"    engine: memtx\n"
+"    is_local: false\n"
+"    temporary: false\n"
+"    sharding_key:\n"
+"    - \"user_id\"\n"
+"    format:\n"
+"    - {name: bucket_id, type: unsigned, is_nullable: false}\n"
+"    - {name: user_id, type: uuid, is_nullable: false}\n"
+"    - {name: fullname, type: string, is_nullable: false}\n"
+"    indexes:\n"
+"    - name: user_id\n"
+"      unique: true\n"
+"      parts: [{path: user_id, type: uuid, is_nullable: false}]\n"
+"      type: HASH\n"
+"    - name: bucket_id\n"
+"      unique: false\n"
+"      parts: [{path: bucket_id, type: unsigned, is_nullable: false}]\n"
+"      type: TREE\n"
+"  videos:\n"
+"    engine: memtx\n"
+"    is_local: false\n"
+"    temporary: false\n"
+"    sharding_key:\n"
+"    - \"video_id\"\n"
+"    format:\n"
+"    - {name: bucket_id, type: unsigned, is_nullable: false}\n"
+"    - {name: video_id, type: uuid, is_nullable: false}\n"
+"    - {name: description, type: string, is_nullable: true}\n"
+"    indexes:\n"
+"    - name: video_id\n"
+"      unique: true\n"
+"      parts: [{path: video_id, type: uuid, is_nullable: false}]\n"
+"      type: HASH\n"
+"    - name: bucket_id\n"
+"      unique: false\n"
+"      parts: [{path: bucket_id, type: unsigned, is_nullable: false}]\n"
+"      type: TREE\n"
+"\n"
+"  likes:\n"
+"    engine: memtx\n"
+"    is_local: false\n"
+"    temporary: false\n"
+"    sharding_key:\n"
+"    - \"video_id\"\n"
+"    format:\n"
+"    - {name: bucket_id, type: unsigned, is_nullable: false}\n"
+"    - {name: like_id, type: uuid, is_nullable: false}\n"
+"    - {name: user_id, type: uuid, is_nullable: false}\n"
+"    - {name: video_id, type: uuid, is_nullable: false}\n"
+"    - {name: timestamp, type: string, is_nullable: true}\n"
+"    indexes:\n"
+"    - name: like_id\n"
+"      unique: true\n"
+"      parts: [{path: like_id, type: uuid, is_nullable: false}]\n"
+"      type: HASH\n"
+"    - name: bucket_id\n"
+"      unique: false\n"
+"      parts: [{path: bucket_id, type: unsigned, is_nullable: false}]\n"
+"      type: TREE"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:241
+msgid "It's simple. Let's take a closer look at the essential points."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:243
+msgid "Tarantool has two built-in storage engines: memtx and vinyl. memtx stores all data in RAM while asynchronously writing to disk so that nothing gets lost."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:247
+msgid "Vinyl is a classic engine for storing data on the hard drive. It is optimized for write-intensive scenarios."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:250
+msgid "In TikTok, there are a lot of simultaneous readings and posts: users watch videos, like them, and comment on them. Therefore, let's use memtx."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:254
+msgid "The configuration above describes three memtx spaces (tables) and the necessary indexes for each of the spaces."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:257
+msgid "Each space has two indexes:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:259
+msgid "The primary key, which is required to read/write data."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:260
+msgid "An index on the bucket_id field, which is a service field used for sharding."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:262
+msgid "**Important:** The name ``bucket_id`` is reserved. If you choose another name, sharding won't work for this space. If you don't use sharding in your project, you can remove the second index."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:266
+msgid "To understand which field to shard data by, Tarantool uses ``sharding_key``. ``sharding_key`` points to fields in the space by which database records will be sharded. There can be more than one such field, but in this example, we will only use one. When some data is inserted, Tarantool forms a hash from this field, calculates the bucket number, and selects the storage to record the data into."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:273
+msgid "Yes, buckets can repeat, and each storage stores a specific range of buckets."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:275
+msgid "Here are a couple more interesting facts:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:277
+msgid "The ``parts`` field in the index description can contain several fields, which allows building a composite index. You won't need it in this tutorial."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:279
+msgid "Tarantool does not support foreign keys, so you have to check manually upon insertion that ``video_id`` and ``user_id`` exist in the ``likes`` space."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:284
+msgid "Writing data [5 minutes]"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:286
+msgid "We will write data to the Tarantool cluster using the CRUD module. You don't have to specify the shard you want to read from or write to -- the module does it for you."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:290
+msgid "**Important:** All cluster operations must be performed only on the router and using the CRUD module."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:293
+msgid "Let's connect the CRUD module in the code and write three procedures:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:295
+msgid "User creation"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:296
+msgid "Adding a video"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:297
+msgid "Liking a video"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:299
+msgid "The procedures must be described in a special file. To do this, go to the \"Code\" tab. Create a new directory called ``extensions``, and in this directory, create the file ``api.lua``."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:303
+msgid "Paste the code below into ``api.lua`` and click \"Apply\"."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:305
+msgid "local cartridge = require('cartridge')\n"
+"local crud = require('crud')\n"
+"local uuid = require('uuid')\n"
+"local json = require('json')\n"
+"\n"
+"function add_user(request)\n"
+"    local fullname = request:post_param(\"fullname\")\n"
+"    local result, err = crud.insert_object('users', {user_id = uuid.new(), fullname = fullname})\n"
+"    if err ~= nil then\n"
+"        return {body = json.encode({status = \"Error!\", error = err}), status = 500}\n"
+"    end\n"
+"\n"
+"    return {body = json.encode({status = \"Success!\", result = result}), status = 200}\n"
+"end\n"
+"\n"
+"function add_video(request)\n"
+"    local description = request:post_param(\"description\")\n"
+"    local result, err = crud.insert_object('videos', {video_id = uuid.new(), description = description})\n"
+"    if err ~= nil then\n"
+"        return {body = json.encode({status = \"Error!\", error = err}), status = 500}\n"
+"    end\n"
+"\n"
+"    return {body = json.encode({status = \"Success!\", result = result}), status = 200}\n"
+"end\n"
+"\n"
+"function like_video(request)\n"
+"    local video_id = request:post_param(\"video_id\")\n"
+"    local user_id = request:post_param(\"user_id\")\n"
+"\n"
+"    local result, err = crud.insert_object('likes', {like_id = uuid.new(),\n"
+"                                                video_id = uuid.fromstr(video_id),\n"
+"                                                user_id = uuid.fromstr(user_id)})\n"
+"    if err ~= nil then\n"
+"        return {body = json.encode({status = \"Error!\", error = err}), status = 500}\n"
+"    end\n"
+"\n"
+"    return {body = json.encode({status = \"Success!\", result = result}), status = 200}\n"
+"end\n"
+"\n"
+"return {\n"
+"    add_user = add_user,\n"
+"    add_video = add_video,\n"
+"    like_video = like_video,\n"
+"}"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:353
+msgid "Setting up HTTP API [2 minutes]"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:355
+msgid "Clients will visit the Tarantool cluster using the HTTP protocol. The cluster already has a built-in HTTP server."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:358
+msgid "To configure HTTP paths, you need to write a configuration file. Go to the \"Code\" tab. Create the file ``config.yml`` in the ``extensions`` directory, which you created on the last step."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:362
+msgid "Paste the configuration example below into ``config.yml`` and click \"Apply\"."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:364
+msgid "---\n"
+" functions:\n"
+"\n"
+"   add_user:\n"
+"     module: extensions.api\n"
+"     handler: add_user\n"
+"     events:\n"
+"     - http: {path: \"/add_user\", method: POST}\n"
+"\n"
+"   add_video:\n"
+"     module: extensions.api\n"
+"     handler: add_video\n"
+"     events:\n"
+"     - http: {path: \"/add_video\", method: POST}\n"
+"\n"
+"   like_video:\n"
+"     module: extensions.api\n"
+"     handler: like_video\n"
+"     events:\n"
+"     - http: {path: \"/like_video\", method: POST}\n"
+"..."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:388
+msgid "Done! Let's make test requests from the console."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:390
+msgid "curl -X POST --data \"fullname=Taran Tool\" url/add_user"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:396
+msgid "In the requests, substitute ``url`` with the address of your sandbox. The protocol must be strictly HTTP."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:399
+msgid "For example, if you're following this tutorial with Try Tarantool, this request will look something like this (note that your hash is different):"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:402
+msgid "curl -X POST --data \"fullname=Taran Tool\" http://artpjcvnmwctc4qppejgf57.try.tarantool.io/add_user"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:406
+msgid "But if you've bootstrapped Tarantool locally, the request will look as follows:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:408
+msgid "curl -X POST --data \"fullname=Taran Tool\" http://localhost:8081/add_user"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:412
+msgid "We've just created a user and got their UUID. Let's remember it."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:414
+msgid "curl -X POST --data \"description=My first tiktok\" url/add_video"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:418
+msgid "Let's say a user has added their first video with a description. The video clip also has a UUID. Let's remember it, too."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:421
+msgid "In order to \"like\" the video, you need to specify the user UUID and the video UUID from the previous steps. Substitute the ellipses in the command below with the corresponding UUIDs:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:424
+msgid "curl -X POST --data \"video_id=...&user_id=...\" url/like_video"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:428
+msgid "The result will be something like this:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:433
+#: ../../doc/getting_started/getting_started_imcp.rst:433
+msgid "Test queries in the console"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:435
+msgid "In our example, you can \"like\" the video as many times as you want. It makes no sense in the real life, but it will help us understand how sharding works -- more precisely, the ``sharding_key`` parameter."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:439
+msgid "Our ``sharding_key`` for the ``likes`` is ``video_id``. We also specified a ``sharding_key`` for the ``videos`` space. It means that likes will be stored on the same storage as videos. This ensures data locality with regard to storage and allows getting all the information you need in one network trip to Storage."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:445
+msgid "More details are described on the next step."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:448
+msgid "Looking at the data [1 minute]"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:452
+msgid "The following instructions are for Tarantool Enterprise Edition and the Try Tarantool cloud service."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:454
+msgid "The Space-Explorer tool is unavailable in the open-source version. Use the console to view data."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:456
+msgid "Check our documentation to learn more about :doc:`data viewing </reference/reference_lua/box_space/select/>`. To learn how to connect to a Tarantool instance, :ref:`read the basic Tarantool manual <getting_started_db>`."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:460
+msgid "Go to the \"Space-Explorer\" tab to see all the nodes in the cluster. As we have only one storage and one router started so far, the data is stored on only one node."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:464
+msgid "Let's go to the node ``s1-master``: click \"Connect\" and select the necessary space. Check that everything is in place and move on."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:470
+#: ../../doc/getting_started/getting_started_imcp.rst:470
+msgid "Space Explorer, host list"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:475
+msgid "Space Explorer, view likes"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:475
+msgid "Space Explorer, viewing likes"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:479
+msgid "Scaling the cluster [1 minute]"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:481
+msgid "Let's create a second shard. Click on the \"Cluster\" tab, select ``s2-master``, and click \"Configure\". Select the roles as shown in the picture:"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:487
+#: ../../doc/getting_started/getting_started_imcp.rst:487
+msgid "Cluster, new shard configuration screen"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:489
+msgid "Click on the necessary roles and create a shard (replica set)."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:492
+msgid "Checking how sharding works [1 minute]"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:494
+msgid "Now we have two shards -- two logical nodes that share data among themselves. The router decides what piece of data goes to what shard. By default, the router uses the hash function from the field ``sharding_key`` we've specified in the DDL."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:499
+msgid "To enable a new shard, you need to set its weight to one. Go back to the \"Cluster\" tab, open the ``s2-master`` settings, set the Replica set weight to 1, and apply."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:503
+msgid "Something has already happened. Let's go to Space-Explorer and check the node ``s2-master``. It turns out that some of the data from the first shard has already migrated here! The scaling is done automatically."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:507
+msgid "Now let's try adding more data to the cluster via the HTTP API. We can check back later and make sure that the new data is also evenly distributed across the two shards."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:512
+msgid "Disconnecting a shard for a while [1 minute]"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:514
+msgid "In the ``s1-master`` settings, set Replica set weight to 0 and apply. Wait for a few seconds, then go to Space-Explorer and look at the data in ``s2-master``. You will see that all the data has been migrated to the remaining shard automatically."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:519
+msgid "Now we can safely disable the first shard for maintenance."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:522
+msgid "See also"
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:524
+msgid "README of the `DDL <https://github.com/tarantool/ddl>`__ module to create your own data schema."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:526
+msgid "README of the `CRUD <https://github.com/tarantool/crud>`__ module to learn more about the API and create your own cluster queries."
+msgstr ""
+
+#: ../../doc/getting_started/getting_started_imcp.rst:530
+msgid "To continue to the next steps of the tutorial, click the button in the bottom right corner or select the section in the table of contents on the left."
+msgstr ""

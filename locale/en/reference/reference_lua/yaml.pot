@@ -1,0 +1,489 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/yaml.rst:5
+msgid "Module yaml"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:11
+msgid "The ``yaml`` module takes strings in `YAML <http://yaml.org/>`_ format and decodes them, or takes a series of non-YAML values and encodes them."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:16
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:18
+msgid "Below is a list of all ``yaml`` functions and members."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:26
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:26
+#: ../../doc/reference/reference_lua/yaml.rst:117
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:28
+msgid ":ref:`yaml.encode() <yaml-encode>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:28
+msgid "Convert a Lua object to a YAML string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:31
+msgid ":ref:`yaml.decode() <yaml-decode>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:31
+msgid "Convert a YAML string to a Lua object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:34
+msgid ":ref:`__serialize parameter <yaml-serialize>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:34
+msgid "Output structure specification"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:37
+msgid ":ref:`yaml.cfg() <yaml-cfg>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:37
+msgid "Change configuration"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:40
+msgid ":ref:`yaml.NULL <yaml-null>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:40
+msgid "Analog of Lua's \"nil\""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:50
+msgid "Convert a Lua object to a YAML string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:0
+#: ../../doc/reference/reference_lua/yaml.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:52
+msgid "either a scalar value or a Lua table value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:0
+#: ../../doc/reference/reference_lua/yaml.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:53
+msgid "the original value reformatted as a YAML string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:0
+#: ../../doc/reference/reference_lua/yaml.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:54
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:60
+msgid "Convert a YAML string to a Lua object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:62
+msgid "a string formatted as YAML."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:63
+msgid "the original contents formatted as a Lua table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:64
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:68
+msgid "**__serialize parameter:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:70
+msgid "The YAML output structure can be specified with ``__serialize``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:72
+msgid "``'seq'``, ``'sequence'``, ``'array'``: table encoded as an array"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:73
+msgid "``'map'``, ``'mapping'``: table encoded as a map"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:74
+msgid "``function``: the meta-method called to unpack serializable representation of table, cdata, or userdata objects"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:77
+msgid "``'seq'`` or ``'map'`` also enable the flow (compact) mode for the YAML serializer (``flow=\"[1,2,3]\"`` vs ``block=\" - 1\\n - 2\\n - 3\\n\"``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:80
+msgid "Serializing ``'A'`` and ``'B'`` with different ``__serialize`` values brings different results:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:83
+msgid "tarantool> yaml.encode(setmetatable({'A', 'B'}, { __serialize=\"seq\"}))\n"
+"---\n"
+"- '[\"A\",\"B\"]'\n"
+"...\n"
+"tarantool> yaml.encode(setmetatable({'A', 'B'}, { __serialize=\"map\"}))\n"
+"---\n"
+"- '{\"1\":\"A\",\"2\":\"B\"}'\n"
+"...\n"
+"tarantool> yaml.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize=\"map\"})})\n"
+"---\n"
+"- '[{\"f2\":\"B\",\"f1\":\"A\"}]'\n"
+"...\n"
+"tarantool> yaml.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize=\"seq\"})})\n"
+"---\n"
+"- '[[]]'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:106
+msgid "Set values affecting the behavior of encode and decode functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:108
+msgid "The values are all either integers or boolean ``true``/``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:117
+msgid "Option"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:117
+msgid "Default"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:119
+msgid "``cfg.encode_invalid_numbers``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:119
+#: ../../doc/reference/reference_lua/yaml.rst:124
+#: ../../doc/reference/reference_lua/yaml.rst:134
+#: ../../doc/reference/reference_lua/yaml.rst:148
+#: ../../doc/reference/reference_lua/yaml.rst:151
+msgid "true"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:119
+msgid "A flag saying whether to enable encoding of NaN and Inf numbers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:122
+msgid "``cfg.encode_number_precision``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:122
+msgid "14"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:122
+msgid "Precision of floating point numbers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:124
+msgid "``cfg.encode_load_metatables``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:124
+msgid "A flag saying whether the serializer will follow :ref:`__serialize <json-serialize>` metatable field"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:128
+msgid "``cfg.encode_use_tostring``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:128
+#: ../../doc/reference/reference_lua/yaml.rst:131
+msgid "false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:128
+msgid "A flag saying whether to use ``tostring()`` for unknown types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:131
+msgid "``cfg.encode_invalid_as_nil``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:131
+msgid "A flag saying whether to use NULL for non-recognized types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:134
+msgid "``cfg.encode_sparse_convert``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:134
+msgid "A flag saying whether to handle excessively sparse arrays as maps. See detailed description :ref:`below <yaml-cfg_sparse>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:139
+msgid "``cfg.encode_sparse_ratio``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:139
+msgid "2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:139
+msgid "1/``encode_sparse_ratio`` is the permissible percentage of missing values in a sparse array"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:143
+msgid "``cfg.encode_sparse_safe``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:143
+msgid "10"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:143
+msgid "A limit ensuring that small Lua arrays are always encoded as sparse arrays (instead of generating an error or encoding as map)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:148
+msgid "``cfg.decode_invalid_numbers``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:148
+msgid "A flag saying whether to enable decoding of NaN and Inf numbers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:151
+msgid "``cfg.decode_save_metatables``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:151
+msgid "A flag saying whether to set metatables for all arrays and maps"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:157
+msgid "**Sparse arrays features:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:159
+msgid "During encoding, The YAML encoder tries to classify table into one of four kinds:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:161
+msgid "Map: at least one table index is not unsigned integer."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:162
+msgid "Regular array: all array indexes are available."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:163
+msgid "Sparse array: at least one array index is missing."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:164
+msgid "Excessively sparse array: the number of values missing exceeds the configured ratio."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:166
+msgid "An array is excessively sparse when **all** the following conditions are met:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:168
+msgid "``encode_sparse_ratio`` > 0"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:169
+msgid "``max(table)`` > ``encode_sparse_safe``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:170
+msgid "``max(table)`` > ``count(table)`` * ``encode_sparse_ratio``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:172
+msgid "The YAML encoder will never consider an array to be excessively sparse when ``encode_sparse_ratio = 0``. The ``encode_sparse_safe`` limit ensures that small Lua arrays are always encoded as sparse arrays. By default, attempting to encode an excessively sparse array will generate an error. If ``encode_sparse_convert`` is set to ``true``, excessively sparse arrays will be handled as maps."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:179
+msgid "**yaml.cfg() example 1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:181
+msgid "The following code will encode 0/0 as NaN (\"not a number\") and 1/0 as Inf (\"infinity\"), rather than returning nil or an error message:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:184
+msgid "yaml = require('yaml')\n"
+"yaml.cfg{encode_invalid_numbers = true}\n"
+"x = 0/0\n"
+"y = 1/0\n"
+"yaml.encode({1, x, y, 2})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:192
+msgid "The result of the ``yaml.encode()`` request will look like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:194
+msgid "tarantool> yaml.encode({1, x, y, 2})\n"
+"---\n"
+"- '[1,nan,inf,2]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:201
+msgid "**yaml.cfg example 2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:203
+msgid "To avoid generating errors on attempts to encode unknown data types as userdata/cdata, you can use this code:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:206
+msgid "tarantool> httpc = require('http.client').new()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> yaml.encode(httpc.curl)\n"
+"---\n"
+"- error: unsupported Lua type 'userdata'\n"
+"...\n"
+"\n"
+"tarantool> yaml.encode(httpc.curl, {encode_use_tostring=true})\n"
+"---\n"
+"- '\"userdata: 0x010a4ef2a0\"'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:224
+msgid "To achieve the same effect for only one call to ``yaml.encode()`` (i.e. without changing the configuration permanently), you can use ``yaml.encode({1, x, y, 2}, {encode_invalid_numbers = true})``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:228
+msgid "Similar configuration settings exist for :ref:`JSON <json-module_cfg>` and :ref:`MsgPack <msgpack-cfg>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:235
+msgid "A value comparable to Lua \"nil\" which may be useful as a placeholder in a tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:239
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:241
+msgid "tarantool> yaml = require('yaml')\n"
+"---\n"
+"...\n"
+"tarantool> y = yaml.encode({'a', 1, 'b', 2})\n"
+"---\n"
+"...\n"
+"tarantool> z = yaml.decode(y)\n"
+"---\n"
+"...\n"
+"tarantool> z[1], z[2], z[3], z[4]\n"
+"---\n"
+"- a\n"
+"- 1\n"
+"- b\n"
+"- 2\n"
+"...\n"
+"tarantool> if yaml.NULL == nil then print('hi') end\n"
+"hi\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:264
+msgid "The `YAML collection style <http://yaml.org/spec/1.1/#id930798>`_ can be specified with ``__serialize``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:267
+msgid "``__serialize=\"sequence\"`` for a Block Sequence array,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:268
+msgid "``__serialize=\"seq\"`` for a Flow Sequence array,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:269
+msgid "``__serialize=\"mapping\"`` for a Block Mapping map,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:270
+msgid "``__serialize=\"map\"`` for a Flow Mapping map."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:272
+msgid "Serializing ``'A'`` and ``'B'`` with different ``__serialize`` values causes different results:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/yaml.rst:275
+msgid "tarantool> yaml = require('yaml')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> print(yaml.encode(setmetatable({'A', 'B'}, { __serialize=\"sequence\"})))\n"
+"---\n"
+"- A\n"
+"- B\n"
+"...\n"
+"\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> print(yaml.encode(setmetatable({'A', 'B'}, { __serialize=\"seq\"})))\n"
+"--- ['A', 'B']\n"
+"...\n"
+"\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> print(yaml.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize=\"map\"})}))\n"
+"---\n"
+"- {'f2': 'B', 'f1': 'A'}\n"
+"...\n"
+"\n"
+"---\n"
+"..."
+msgstr ""

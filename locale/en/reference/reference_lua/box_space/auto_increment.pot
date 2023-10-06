@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:5
+msgid "space_object:auto_increment()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:11
+msgid "Insert a new tuple using an auto-increment primary key. The space specified by space_object must have an :ref:`'unsigned' or 'integer' or 'number' <index-box_indexed-field-types>` primary key index of type ``TREE``. The primary-key field will be incremented before the insert."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:17
+msgid "Since version 1.7.5 this method is deprecated – it is better to use a :ref:`sequence <index-box_sequence>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:20
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:22
+msgid "tuple's fields, other than the primary-key field"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:25
+msgid "the inserted tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:26
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:28
+msgid "**Complexity factors:** Index size, Index type, Number of indexes accessed, :ref:`WAL settings <cfg_binary_logging_snapshots-rows_per_wal>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:31
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:33
+msgid "index has wrong type;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:34
+msgid "primary-key indexed field is not a number."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:36
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/auto_increment.rst:38
+msgid "tarantool> box.space.tester:auto_increment{'Fld#1', 'Fld#2'}\n"
+"---\n"
+"- [1, 'Fld#1', 'Fld#2']\n"
+"...\n"
+"tarantool> box.space.tester:auto_increment{'Fld#3'}\n"
+"---\n"
+"- [2, 'Fld#3']\n"
+"..."
+msgstr ""

@@ -1,0 +1,100 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:5
+msgid "Class *luatest.group*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:7
+msgid "Tests group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:10
+msgid "To add new example add function at key starting with  ``test`` ."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:12
+msgid "Group hooks run always when test group is changed. So it may run multiple times when  ``--shuffle``  option is used."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:18
+msgid "Instance methods"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:25
+msgid "Group.mt.after_all (fn)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:27
+msgid "Add callback to run once after all tests in the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:30
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:44
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:58
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:72
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:86
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:32
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:46
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:60
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:74
+msgid "*fn:*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:39
+msgid "Group.mt.after_each (fn)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:41
+msgid "Add callback to run after each test in the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:53
+msgid "Group.mt.before_all (fn)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:55
+msgid "Add callback to run once before all tests in the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:67
+msgid "Group.mt.before_each (fn)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:69
+msgid "Add callback to run before each test in the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:81
+msgid "Group.mt:initialize ([name])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:88
+msgid "*name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Default name is inferred from caller filename when possible.For  ``test/a/b/c_d_test.lua``  it will be  ``a.b.c_d`` . (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:90
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.group.rst:92
+msgid "Group instance"
+msgstr ""

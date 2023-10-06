@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/os_notes.rst:5
+msgid "Notes for operating systems"
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:10
+msgid "macOS"
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:12
+msgid "On macOS, no native system tools for administering Tarantool are supported. The recommended way to administer Tarantool instances is using :ref:`tt CLI <tt-cli>`."
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:18
+msgid "Gentoo Linux"
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:20
+msgid "The section below is about a dev-db/tarantool package installed from the official layman overlay (named ``tarantool``)."
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:23
+msgid "The default instance directory is ``/etc/tarantool/instances.available``, can be redefined in ``/etc/default/tarantool``."
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:26
+msgid "Tarantool instances can be managed (start/stop/reload/status/...) using OpenRC. Consider the example how to create an OpenRC-managed instance:"
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:29
+msgid "$ cd /etc/init.d\n"
+"$ ln -s tarantool your_service_name\n"
+"$ ln -s /usr/share/tarantool/your_service_name.lua /etc/tarantool/instances.available/your_service_name.lua"
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:35
+msgid "Checking that it works:"
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:37
+msgid "$ /etc/init.d/your_service_name start\n"
+"$ tail -f -n 100 /var/log/tarantool/your_service_name.log"
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:46
+msgid "FreeBSD"
+msgstr ""
+
+#: ../../doc/book/admin/os_notes.rst:48
+msgid "To learn about specifics of using the deprecated ``tarantoolctl`` utility on FreeBSD, check its :ref:`documentation <tarantoolctl-freebsd>`."
+msgstr ""

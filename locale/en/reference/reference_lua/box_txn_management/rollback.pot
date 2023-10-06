@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_txn_management/rollback.rst:5
+msgid "box.rollback()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/rollback.rst:9
+msgid "End the transaction, but cancel all its data-change operations. An explicit call to functions outside ``box.space`` that always yield, such as :ref:`fiber.sleep() <fiber-sleep>` or :ref:`fiber.yield() <fiber-yield>`, will have the same effect."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/rollback.rst:14
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/rollback.rst:16
+msgid "-- Insert test data --\n"
+"box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"\n"
+"-- Rollback the transaction --\n"
+"box.begin()\n"
+"box.space.bands:insert { 4, 'The Beatles', 1960 }\n"
+"box.space.bands:replace { 1, 'Pink Floyd', 1965 }\n"
+"box.rollback()\n"
+""
+msgstr ""

@@ -1,0 +1,317 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/uuid.rst:4
+msgid "Module uuid"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:7
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:9
+msgid "A \"UUID\" is a `Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_. If an application requires that a value be unique only within a single computer or on a single database, then a simple counter is better than a UUID, because getting a UUID is time-consuming (it requires a `syscall <https://en.wikipedia.org/wiki/Syscall>`_). For clusters of computers, or widely distributed applications, UUIDs are better. Tarantool generates UUIDs following the rules for RFC 4122 `version 4 variant 1 <https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:19
+msgid "API Reference"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:21
+msgid "Below is list of all ``uuid`` functions and members."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:32
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:33
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:35
+msgid ":ref:`uuid.NULL <uuid-null>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:36
+msgid "A nil UUID object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:38
+msgid ":ref:`uuid() <uuid-__call>` |br| :ref:`uuid.bin() <uuid-bin>` |br| :ref:`uuid.str() <uuid-str>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:42
+msgid "Get a UUID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:44
+msgid ":ref:`uuid.new() <uuid-new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:45
+msgid "Create a UUID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:47
+msgid ":ref:`uuid.fromstr() <uuid-fromstr>` |br| :ref:`uuid.frombin() <uuid-frombin>` |br| :ref:`uuid_object:bin() <uuid-object_bin>` |br| :ref:`uuid_object:str() <uuid-object_str>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:52
+msgid "Get a converted UUID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:54
+msgid ":ref:`uuid.is_uuid() <uuid-is_uuid>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:55
+msgid "Check if the specified value has UUID type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:57
+msgid ":ref:`uuid_object:isnil() <uuid-isnil>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:58
+msgid "Check if a UUID is an all-zero value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:67
+msgid "A nil UUID object. Contains the all-zero UUID value -- ``00000000-0000-0000-0000-000000000000``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:73
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Create a UUID sequence. You can use it in an index over a :ref:`UUID field <index-box_indexed-field-types>`. For example, to create such index for a space named ``test``, say:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:78
+msgid "tarantool> box.space.test:create_index(\"pk\", {parts={{field = 1, type = 'uuid'}}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:82
+msgid "Now you can insert UUIDs into the space:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:84
+msgid "tarantool> box.space.test:insert{uuid.new()}\n"
+"---\n"
+"- [e631fdcc-0e8a-4d2f-83fd-b0ce6762b13f]\n"
+"...\n"
+"\n"
+"tarantool> box.space.test:insert{uuid.fromstr('64d22e4d-ac92-4a23-899a-e59f34af5479')}\n"
+"---\n"
+"- [64d22e4d-ac92-4a23-899a-e59f34af5479]\n"
+"...\n"
+"\n"
+"tarantool> box.space.test:select{}\n"
+"---\n"
+"- - [64d22e4d-ac92-4a23-899a-e59f34af5479]\n"
+"- [e631fdcc-0e8a-4d2f-83fd-b0ce6762b13f]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:102
+#: ../../doc/reference/reference_lua/uuid.rst:109
+#: ../../doc/reference/reference_lua/uuid.rst:123
+#: ../../doc/reference/reference_lua/uuid.rst:130
+msgid "a UUID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:103
+#: ../../doc/reference/reference_lua/uuid.rst:110
+#: ../../doc/reference/reference_lua/uuid.rst:139
+#: ../../doc/reference/reference_lua/uuid.rst:154
+msgid "cdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+#: ../../doc/reference/reference_lua/uuid.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:116
+msgid "Byte order of the resulting UUID:  * ``'l'`` -- little-endian * ``'b'`` -- big-endian * ``'h'``, ``'host'`` -- endianness depends on host (default) * ``'n'``, ``'network'`` -- endianness depends on network"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:116
+#: ../../doc/reference/reference_lua/uuid.rst:172
+msgid "Byte order of the resulting UUID:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:118
+msgid "``'l'`` -- little-endian"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:119
+msgid "``'b'`` -- big-endian"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:120
+msgid "``'h'``, ``'host'`` -- endianness depends on host (default)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:121
+msgid "``'n'``, ``'network'`` -- endianness depends on network"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:124
+msgid "16-byte string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:131
+msgid "36-byte binary string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:137
+msgid "UUID in 36-byte hexadecimal string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:138
+#: ../../doc/reference/reference_lua/uuid.rst:153
+msgid "converted UUID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:145
+msgid "UUID in 16-byte binary string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:146
+msgid "Byte order of the given string:  * ``'l'`` -- little-endian, * ``'b'`` -- big-endian, * ``'h'``, ``'host'`` -- endianness depends on host (default), * ``'n'``, ``'network'`` -- endianness depends on network."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:146
+msgid "Byte order of the given string:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:148
+#: ../../doc/reference/reference_lua/uuid.rst:174
+msgid "``'l'`` -- little-endian,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:149
+#: ../../doc/reference/reference_lua/uuid.rst:175
+msgid "``'b'`` -- big-endian,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:150
+#: ../../doc/reference/reference_lua/uuid.rst:176
+msgid "``'h'``, ``'host'`` -- endianness depends on host (default),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:151
+#: ../../doc/reference/reference_lua/uuid.rst:177
+msgid "``'n'``, ``'network'`` -- endianness depends on network."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:160
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:162
+msgid "a value to check"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:163
+msgid "``true`` if the specified value is a UUID, and ``false`` otherwise"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:164
+#: ../../doc/reference/reference_lua/uuid.rst:199
+msgid "bool"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:172
+msgid "Byte order of the resulting UUID:  * ``'l'`` -- little-endian, * ``'b'`` -- big-endian, * ``'h'``, ``'host'`` -- endianness depends on host (default), * ``'n'``, ``'network'`` -- endianness depends on network."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:179
+#: ../../doc/reference/reference_lua/uuid.rst:186
+msgid "UUID converted from cdata input value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:180
+msgid "16-byte binary string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:187
+msgid "36-byte hexadecimal string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:193
+msgid "The all-zero UUID value can be expressed as :ref:`uuid.NULL <uuid-null>`, or as ``uuid.fromstr('00000000-0000-0000-0000-000000000000')``. The comparison with an all-zero value can also be expressed as ``uuid_with_type_cdata == uuid.NULL``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:198
+msgid "true if the value is all zero, otherwise false."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:203
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uuid.rst:205
+msgid "tarantool> uuid = require('uuid')\n"
+"---\n"
+"...\n"
+"tarantool> uuid(), uuid.bin(), uuid.str()\n"
+"---\n"
+"- 16ffedc8-cbae-4f93-a05e-349f3ab70baa\n"
+"- !!binary FvG+Vy1MfUC6kIyeM81DYw==\n"
+"- 67c999d2-5dce-4e58-be16-ac1bcb93160f\n"
+"...\n"
+"tarantool> uu = uuid()\n"
+"---\n"
+"...\n"
+"tarantool> #uu:bin(), #uu:str(), type(uu), uu:isnil()\n"
+"---\n"
+"- 16\n"
+"- 36\n"
+"- cdata\n"
+"- false\n"
+"..."
+msgstr ""

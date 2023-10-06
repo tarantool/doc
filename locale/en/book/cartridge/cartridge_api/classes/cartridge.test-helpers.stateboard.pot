@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:5
+msgid "Class *cartridge.test-helpers.stateboard*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:7
+msgid "Class to run and manage stateboard."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:14
+msgid "Methods"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:21
+msgid "cartridge.test-helpers.stateboard:new (object)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:23
+msgid "Build stateboard object."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:26
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:28
+msgid "*object:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:30
+msgid "*name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Human-readable node name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:31
+msgid "*command:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Command to run stateboard."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:32
+msgid "*workdir:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Path to the data directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:33
+msgid "*net_box_port:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Value to be passed in  ``TARANTOOL_LISTEN``  and used for net_box connection."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:34
+msgid "*net_box_credentials:* (**tab**) Override default net_box credentials. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:35
+msgid "*env:* (**tab**) Environment variables passed to the process. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:38
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.stateboard.rst:40
+msgid "object"
+msgstr ""

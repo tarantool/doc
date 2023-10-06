@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:5
+msgid "box.space._priv"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:11
+msgid "``_priv`` is a system space where :ref:`privileges <authentication-owners_privileges>` are stored."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:14
+msgid "Tuples in this space contain the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:16
+msgid "the numeric id of the user who gave the privilege (\"grantor_id\"),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:17
+msgid "the numeric id of the user who received the privilege (\"grantee_id\"),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:18
+msgid "the type of object: 'space', 'index', 'function', 'sequence', 'user', 'role', or 'universe',"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:19
+msgid "the numeric id of the object,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:20
+msgid "the type of operation: \"read\" = 1, \"write\" = 2, \"execute\" = 4, \"create\" = 32, \"drop\" = 64, \"alter\" = 128, or a combination such as \"read,write,execute\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:24
+msgid "See :ref:`Access control <authentication>` for details about user privileges."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_priv.rst:26
+msgid "The :ref:`system space view <box_space-sysviews>` for ``_priv`` is ``_vpriv``."
+msgstr ""

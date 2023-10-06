@@ -1,0 +1,1255 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/http.rst:4
+msgid "Module http"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:9
+msgid "The ``http`` module, specifically the ``http.client`` submodule, provides the functionality of an HTTP client with support for HTTPS and keepalive. The HTTP client uses the `libcurl <https://curl.haxx.se/libcurl/>`_ library under the hood and takes into account the `environment variables <https://curl.haxx.se/libcurl/c/libcurl-env.html>`_ libcurl understands."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:18
+msgid "Creating a client"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:20
+msgid "To create an HTTP client, call the :ref:`http.client.new() <http-new>` function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:22
+#: ../../doc/reference/reference_lua/http.rst:380
+msgid "local http_client = require('http.client').new()\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:26
+msgid "Optionally, this function can accept specific client configuration options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:32
+msgid "Making requests"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:34
+msgid "After :ref:`creating the client <creating_client>`, you can make HTTP requests."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:39
+msgid "HTTP method"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:41
+msgid "The main way of making HTTP requests is the :ref:`request <client_object-request>` method, which accepts the following arguments:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:43
+msgid "An HTTP method, such as ``GET``, ``POST``, ``PUT``, and so on."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:44
+msgid "A request URL. You can use the :ref:`uri <uri-module>` module to construct a URL from its components."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:45
+msgid "(Optional) a request body for the ``POST``, ``PUT``, and ``PATCH`` methods."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:46
+msgid "(Optional) request options, such as request headers, SSL settings, and so on."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:48
+msgid "The example below shows how to make the ``GET`` request to the ``https://httpbin.org/get`` URL:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:50
+#: ../../doc/reference/reference_lua/http.rst:469
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:request('GET', 'https://httpbin.org/get')\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:54
+msgid "In addition to ``request``, the HTTP client provides the API for particular HTTP methods: :ref:`get <client_object-get>`, :ref:`post <client_object-post>`, :ref:`put <client_object-put>`, and so on. For example, you can replace the request above by calling ``get`` as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:58
+#: ../../doc/reference/reference_lua/http.rst:496
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/get')\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:67
+msgid "Query parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:69
+msgid "To add query string parameters, use the :ref:`params <request_options-params>` option exposed by the :ref:`request_options <request_options>` object:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:71
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/get', {\n"
+"    params = { page = 1 },\n"
+"})\n"
+"print('URL: '..response.url)\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:75
+msgid "In the example above, the requested URL is ``https://httpbin.org/get?page=1``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:79
+msgid "If a parameter name or value contains a reserved character (for example, ``&`` or ``=``), the HTTP client `encodes <https://en.wikipedia.org/wiki/URL_encoding>`_ a query string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:86
+#: ../../doc/reference/reference_lua/http.rst:207
+msgid "Headers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:88
+msgid "To add headers to the request, use the :ref:`headers <request_options-headers>` option:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:90
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/headers', {\n"
+"    headers = {\n"
+"        ['User-Agent'] = 'Tarantool HTTP client',\n"
+"        ['Authorization'] = 'Bearer abc123'\n"
+"    }\n"
+"})\n"
+"print('Authorization: '..response:decode()['headers']['Authorization'])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:98
+#: ../../doc/reference/reference_lua/http.rst:220
+msgid "Cookies"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:100
+msgid "You can add cookies to the request using the :ref:`headers <request_options-headers>` option:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:102
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/cookies', {\n"
+"    headers = {\n"
+"        ['Cookie'] = 'session_id=abc123; csrftoken=u32t4o;',\n"
+"    }\n"
+"})\n"
+"print(response.body)\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:106
+msgid "To learn how to obtain cookies passed in the ``Set-Cookie`` response header, see :ref:`Response cookies <response_cookies>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:113
+msgid "Body"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:118
+msgid "Serialization"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:120
+msgid "The HTTP client automatically serializes the content in a specific format when sending a request based on the specified ``Content-Type`` header. By default, the client uses the ``application/json`` content type and sends data serialized as JSON:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:123
+#: ../../doc/reference/reference_lua/http.rst:524
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:post('https://httpbin.org/anything', {\n"
+"    user_id = 123,\n"
+"    user_name = 'John Smith'\n"
+"})\n"
+"print('Posted data: '..response:decode()['data'])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:127
+msgid "The body for the request above might look like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:129
+msgid "{\n"
+"    \"user_id\": 123,\n"
+"    \"user_name\": \"John Smith\"\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:136
+msgid "To send data in the YAML or MsgPack format, set the ``Content-Type`` header explicitly to ``application/yaml`` or ``application/msgpack``, for example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:138
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:post('https://httpbin.org/anything', {\n"
+"    user_id = 123,\n"
+"    user_name = 'John Smith'\n"
+"}, {\n"
+"    headers = {\n"
+"        ['Content-Type'] = 'application/yaml',\n"
+"    }\n"
+"})\n"
+"print('Posted data:\\n'..response:decode()['data'])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:142
+msgid "In this case, the request body is serialized to YAML:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:144
+msgid "user_id: 123\n"
+"user_name: John Smith"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:153
+msgid "Form parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:155
+msgid "To send form parameters using the ``application/x-www-form-urlencoded`` type, use the :ref:`params <request_options-params>` option:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:158
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:post('https://httpbin.org/anything', nil, {\n"
+"    params = { user_id = 123, user_name = 'John Smith' },\n"
+"})\n"
+"print('User ID: '..response:decode()['form']['user_id'])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:166
+msgid "Streaming upload"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:168
+msgid "The HTTP client supports chunked writing of request data. This can be achieved as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:171
+#: ../../doc/reference/reference_lua/http.rst:298
+msgid "Set the :ref:`chunked <request_options-chunked>` option to ``true``. In this case, a request method returns :ref:`io_object <io_object>` instead of :ref:`response_object <response_object>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:173
+msgid "Use the :ref:`io_object.write() <io_object-write>` method to write a chunk of data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:174
+msgid "Call the :ref:`io_object.finish() <io_object-finish>` method to finish writing data and make a request."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:176
+msgid "The example below shows how to upload data in two chunks:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:178
+msgid "local http_client = require('http.client').new()\n"
+"local json = require('json')\n"
+"\n"
+"local io = http_client:post('https://httpbin.org/anything', nil, {chunked = true})\n"
+"io:write('Data part 1')\n"
+"io:write('Data part 2')\n"
+"io:finish()\n"
+"response = io:read('\\r\\n')\n"
+"decoded_data = json.decode(response)\n"
+"print('Posted data: '..decoded_data['data'])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:187
+msgid "Receiving responses"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:189
+msgid "All methods that are used to :ref:`make an HTTP request <making_requests>` (``request``, ``get``, ``post``, etc.) receive :ref:`response_object <response_object>`. ``response_object`` exposes the API required to get a response body and obtain response parameters, such as a status code, headers, and so on."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:195
+msgid "Status code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:197
+msgid "To get a response's status code and text, use the :ref:`response_object.status <response_object-status>` and :ref:`response_object.reason <response_object-reason>` options, respectively:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:199
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/get')\n"
+"print('Status: '..response.status..' '.. response.reason)\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:209
+msgid "The :ref:`response_object.headers <response_object-headers>` option returns a set of response headers. The example below shows how to obtain the ``ETag`` header value:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:212
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/etag/7c876b7e')\n"
+"print('ETag header value: '..response.headers['etag'])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:222
+msgid "To obtain response cookies, use :ref:`response_object.cookies <response_object-cookies>`. This option returns a Lua table where a cookie name is the key. The value is an array of two elements where the first one is the cookie value and the second one is an array with the cookie's options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:226
+msgid "The example below shows how to obtain the ``session_id`` cookie value:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:228
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/cookies/set?session_id=abc123&csrftoken=u32t4o&', {follow_location = false})\n"
+"print(\"'session_id' cookie value: \"..response.cookies['session_id'][1])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:236
+msgid "Response body"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:241
+msgid "Deserialization"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:243
+msgid "The HTTP client can deserialize response data to a Lua object based on the ``Content-Type`` response header value. To deserialize data, call the :ref:`response_object.decode() <response_object-decode>` method. In the example below, the JSON response is deserialized into a Lua object:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:247
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/json')\n"
+"local document = response:decode()\n"
+"print(\"'title' value: \"..document['slideshow']['title'])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:251
+msgid "The following content types are supported out of the box:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:253
+msgid "``application/json``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:254
+msgid "``application/msgpack``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:255
+msgid "``application/yaml``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:257
+msgid "If the response doesn't have the ``Content-Type`` header, the client uses ``application/json``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:259
+msgid "To deserialize other content types, you need to provide a custom deserializer using the :ref:`client_object.decoders <client_object-decoders>` property. In the example below, ``application/xml`` responses are decoded using the ``luarapidxml`` library:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:264
+msgid "local http_client = require('http.client').new()\n"
+"local xml = require(\"luarapidxml\")\n"
+"\n"
+"http_client.decoders = {\n"
+"    ['application/xml'] = function(body, _content_type)\n"
+"        return xml.decode(body)\n"
+"    end,\n"
+"}\n"
+"\n"
+"local response = http_client:get('https://httpbin.org/xml')\n"
+"local document = response:decode()\n"
+"print(\"'title' value: \"..document['attr']['title'])\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:268
+msgid "The output for the code sample above should look as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:270
+msgid "'title' value: Sample Slide Show"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:279
+msgid "Decompressing"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:281
+msgid "The HTTP client can automatically decompress a response body based on the ``Content-Encoding`` header value. To enable this capability, pass the required formats using the :ref:`request_options.accept_encoding <request_options-accept_encoding>` option:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:285
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/gzip', {accept_encoding = \"br, gzip, deflate\"})\n"
+"print('Is response gzipped: '..tostring(response:decode()['gzipped']))\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:293
+msgid "Streaming download"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:295
+msgid "The HTTP client supports chunked reading of request data. This can be achieved as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:300
+msgid "Use the :ref:`io_object.read() <io_object-read>` method to read data in chunks of a specified length or up to a specific delimiter."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:302
+msgid "Call the :ref:`io_object.finish() <io_object-finish>` method to finish reading data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:304
+msgid "The example below shows how to get chunks of a JSON response sequentially instead of waiting for the entire response:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:306
+msgid "local http_client = require('http.client').new()\n"
+"local json = require('json')\n"
+"\n"
+"local io = http_client:get('https://httpbin.org/stream/5', {chunked = true})\n"
+"local chunk_ids = ''\n"
+"while data ~= '' do\n"
+"    local data = io:read('\\n')\n"
+"    if data == '' then break end\n"
+"    local decoded_data = json.decode(data)\n"
+"    chunk_ids = chunk_ids..decoded_data['id']..' '\n"
+"end\n"
+"print('IDs of received chunks: '..chunk_ids)\n"
+"io:finish()\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:314
+msgid "Redirects"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:316
+msgid "By default, the HTTP client redirects to a URL provided in the ``Location`` header of a ``3xx`` response. If required, you can disable redirection using the :ref:`follow_location <request_options-follow_location>` option:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:319
+msgid "local http_client = require('http.client').new()\n"
+"local response = http_client:get('https://httpbin.org/cookies/set?session_id=abc123&csrftoken=u32t4o&', {follow_location = false})\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:328
+msgid "API Reference"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:338
+msgid "**Functions**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:341
+msgid ":ref:`http.client.new() <http-new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:342
+msgid "Create an HTTP client instance"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:344
+msgid "**Objects**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:347
+msgid ":ref:`client_options <client_options>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:348
+msgid "Configuration options of the client"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:350
+msgid ":ref:`client_object <client_object>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:351
+msgid "An HTTP client instance"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:353
+msgid ":ref:`request_options <request_options>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:354
+msgid "Options passed to a request"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:356
+#: ../../doc/reference/reference_lua/http.rst:462
+#: ../../doc/reference/reference_lua/http.rst:489
+#: ../../doc/reference/reference_lua/http.rst:517
+#: ../../doc/reference/reference_lua/http.rst:545
+#: ../../doc/reference/reference_lua/http.rst:567
+#: ../../doc/reference/reference_lua/http.rst:588
+#: ../../doc/reference/reference_lua/http.rst:609
+#: ../../doc/reference/reference_lua/http.rst:630
+#: ../../doc/reference/reference_lua/http.rst:651
+#: ../../doc/reference/reference_lua/http.rst:672
+msgid ":ref:`response_object <response_object>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:357
+msgid "A response object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:359
+msgid ":ref:`io_object <io_object>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:360
+msgid "An IO object used to read/write data in chunks"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:367
+msgid "http.client.new()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:371
+msgid "Create an HTTP client instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:373
+msgid "configuration options of the client (see :ref:`client_options <client_options>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:375
+msgid "a new HTTP client instance (see :ref:`client_object <client_object>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+#: ../../doc/reference/reference_lua/http.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:376
+msgid "userdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:378
+#: ../../doc/reference/reference_lua/http.rst:403
+#: ../../doc/reference/reference_lua/http.rst:467
+#: ../../doc/reference/reference_lua/http.rst:494
+#: ../../doc/reference/reference_lua/http.rst:522
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:388
+msgid "client_options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:392
+msgid "Configuration options of the client. These options can be passed to the :ref:`http.client.new() <http-new>` function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:399
+msgid "Specifies the maximum number of entries in the cache. This option affects libcurl `CURLMOPT_MAXCONNECTS <https://curl.haxx.se/libcurl/c/CURLMOPT_MAXCONNECTS.html>`_. The default is ``-1``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:405
+msgid "local http_client = require('http.client').new({max_connections = 5})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:409
+#: ../../doc/reference/reference_lua/http.rst:428
+msgid "**Note**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:411
+msgid "Do not set ``max_connections`` to less than ``max_total_connections`` unless you are confident about your actions. If ``max_connections`` is less than ``max_total_connections``, libcurl doesn't reuse sockets in some cases for requests that go to the same host. If the limit is reached and a new request occurs, then libcurl creates a new socket first, sends the request, waits for the first connection to be free, and closes it to avoid exceeding the ``max_connections`` cache size. In the worst case, libcurl creates a new socket for every request, even if all requests go to the same host."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:425
+msgid "Specifies the maximum number of active connections. This option affects libcurl `CURLMOPT_MAX_TOTAL_CONNECTIONS <https://curl.haxx.se/libcurl/c/CURLMOPT_MAX_TOTAL_CONNECTIONS.html>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:430
+msgid "You may want to control the maximum number of sockets that a particular HTTP client uses simultaneously. If a system passes many requests to distinct hosts, then libcurl cannot reuse sockets. In this case, setting ``max_total_connections`` may be useful since it causes curl to avoid creating too many sockets, which would not be used anyway."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:440
+msgid "client_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:444
+msgid "An HTTP client instance that exposes the API for :ref:`making requests <making_requests>`. To create the client, call :ref:`http.client.new() <http-new>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:451
+msgid "Make an HTTP request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:453
+msgid "a request HTTP method. Possible values: ``GET``, ``POST``, ``PUT``, ``PATCH``, ``OPTIONS``, ``HEAD``, ``DELETE``, ``TRACE``, ``CONNECT``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:454
+#: ../../doc/reference/reference_lua/http.rst:482
+#: ../../doc/reference/reference_lua/http.rst:602
+#: ../../doc/reference/reference_lua/http.rst:623
+#: ../../doc/reference/reference_lua/http.rst:644
+msgid "a request URL, for example, ``https://httpbin.org/get``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:455
+#: ../../doc/reference/reference_lua/http.rst:510
+#: ../../doc/reference/reference_lua/http.rst:538
+#: ../../doc/reference/reference_lua/http.rst:560
+msgid "a request body (see :ref:`Body <request_body>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:456
+#: ../../doc/reference/reference_lua/http.rst:483
+#: ../../doc/reference/reference_lua/http.rst:511
+#: ../../doc/reference/reference_lua/http.rst:539
+#: ../../doc/reference/reference_lua/http.rst:561
+#: ../../doc/reference/reference_lua/http.rst:582
+#: ../../doc/reference/reference_lua/http.rst:603
+#: ../../doc/reference/reference_lua/http.rst:624
+#: ../../doc/reference/reference_lua/http.rst:645
+#: ../../doc/reference/reference_lua/http.rst:666
+msgid "request options (see :ref:`request_options <request_options>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:460
+msgid "This method returns one of the following objects:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:463
+#: ../../doc/reference/reference_lua/http.rst:490
+#: ../../doc/reference/reference_lua/http.rst:518
+#: ../../doc/reference/reference_lua/http.rst:546
+#: ../../doc/reference/reference_lua/http.rst:568
+#: ../../doc/reference/reference_lua/http.rst:589
+#: ../../doc/reference/reference_lua/http.rst:610
+#: ../../doc/reference/reference_lua/http.rst:631
+#: ../../doc/reference/reference_lua/http.rst:652
+#: ../../doc/reference/reference_lua/http.rst:673
+msgid ":ref:`io_object <io_object>` if :ref:`request_options.chunked <request_options-chunked>` is set to ``true``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:465
+#: ../../doc/reference/reference_lua/http.rst:492
+#: ../../doc/reference/reference_lua/http.rst:520
+#: ../../doc/reference/reference_lua/http.rst:548
+#: ../../doc/reference/reference_lua/http.rst:570
+#: ../../doc/reference/reference_lua/http.rst:591
+#: ../../doc/reference/reference_lua/http.rst:612
+#: ../../doc/reference/reference_lua/http.rst:633
+#: ../../doc/reference/reference_lua/http.rst:654
+#: ../../doc/reference/reference_lua/http.rst:675
+#: ../../doc/reference/reference_lua/http.rst:750
+#: ../../doc/reference/reference_lua/http.rst:764
+#: ../../doc/reference/reference_lua/http.rst:1038
+#: ../../doc/reference/reference_lua/http.rst:1051
+#: ../../doc/reference/reference_lua/http.rst:1062
+#: ../../doc/reference/reference_lua/http.rst:1085
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:473
+#: ../../doc/reference/reference_lua/http.rst:500
+#: ../../doc/reference/reference_lua/http.rst:528
+#: ../../doc/reference/reference_lua/http.rst:550
+#: ../../doc/reference/reference_lua/http.rst:572
+#: ../../doc/reference/reference_lua/http.rst:593
+#: ../../doc/reference/reference_lua/http.rst:614
+#: ../../doc/reference/reference_lua/http.rst:635
+#: ../../doc/reference/reference_lua/http.rst:656
+#: ../../doc/reference/reference_lua/http.rst:677
+msgid "**See also:** :ref:`Making requests <making_requests>`, :ref:`Receiving responses <receiving_responses>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:480
+msgid "Make a ``GET`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:487
+#: ../../doc/reference/reference_lua/http.rst:515
+#: ../../doc/reference/reference_lua/http.rst:543
+#: ../../doc/reference/reference_lua/http.rst:565
+#: ../../doc/reference/reference_lua/http.rst:586
+#: ../../doc/reference/reference_lua/http.rst:607
+#: ../../doc/reference/reference_lua/http.rst:628
+#: ../../doc/reference/reference_lua/http.rst:649
+#: ../../doc/reference/reference_lua/http.rst:670
+msgid "This method might return one of the following objects:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:507
+msgid "Make a ``POST`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:509
+msgid "a request URL, for example, ``https://httpbin.org/post``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:535
+msgid "Make a ``PUT`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:537
+msgid "a request URL, for example, ``https://httpbin.org/put``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:557
+msgid "Make a ``PATCH`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:559
+msgid "a request URL, for example, ``https://httpbin.org/patch``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:579
+msgid "Make a ``DELETE`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:581
+msgid "a request URL, for example, ``https://httpbin.org/delete``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:600
+msgid "Make a ``HEAD`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:621
+msgid "Make an ``OPTIONS`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:642
+msgid "Make a ``TRACE`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:663
+msgid "Make a ``CONNECT`` request and receive a response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:665
+msgid "a request URL, for example, ``server.example.com:80``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:684
+msgid "Get a table with statistics for the HTTP client:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:686
+msgid "``active_requests`` -- the number of currently executing requests"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:687
+msgid "``sockets_added`` -- the total number of sockets added into an event loop"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:688
+msgid "``sockets_deleted`` -- the total number of sockets from an event loop"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:689
+msgid "``total_requests`` -- the total number of requests"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:690
+msgid "``http_200_responses`` -- the total number of requests that returned HTTP ``200 OK`` responses"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:691
+msgid "``http_other_responses`` -- the total number of requests that returned non-``200 OK`` responses"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:692
+msgid "``failed_requests`` -- the total number of failed requests, including system, curl, and HTTP errors"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:699
+#: ../../doc/reference/reference_lua/http.rst:735
+#: ../../doc/reference/reference_lua/http.rst:756
+#: ../../doc/reference/reference_lua/http.rst:1080
+#: ../../doc/reference/reference_lua/http.rst:1099
+msgid "**Since:** :doc:`2.11.0 </release/2.11.0>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:701
+msgid "Decoders used to deserialize response data based on the ``Content-Type`` header value. Learn more from :ref:`Deserialization <response_deserialization>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:707
+msgid "request_options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:711
+msgid "Options passed to a request method (:ref:`request <client_object-request>`, :ref:`get <client_object-get>`, :ref:`post <client_object-post>`, and so on)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:713
+msgid "**See also:** :ref:`Making requests <making_requests>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:719
+msgid "The path to an SSL certificate file to verify the peer with."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:721
+#: ../../doc/reference/reference_lua/http.rst:729
+#: ../../doc/reference/reference_lua/http.rst:856
+#: ../../doc/reference/reference_lua/http.rst:875
+#: ../../doc/reference/reference_lua/http.rst:903
+#: ../../doc/reference/reference_lua/http.rst:914
+#: ../../doc/reference/reference_lua/http.rst:925
+#: ../../doc/reference/reference_lua/http.rst:946
+#: ../../doc/reference/reference_lua/http.rst:993
+#: ../../doc/reference/reference_lua/http.rst:1027
+#: ../../doc/reference/reference_lua/http.rst:1073
+#: ../../doc/reference/reference_lua/http.rst:1116
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:727
+msgid "The path to a directory holding one or more certificates to verify the peer with."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:737
+msgid "Specifies whether an HTTP client should return the full response (:ref:`response_object <response_object>`) or an IO object (:ref:`io_object <io_object>`) used for streaming download/upload."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:740
+#: ../../doc/reference/reference_lua/http.rst:833
+#: ../../doc/reference/reference_lua/http.rst:957
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:742
+#: ../../doc/reference/reference_lua/http.rst:1140
+msgid "**See also:** :ref:`Streaming download <response_streaming_download>`, :ref:`Streaming upload <request_streaming_upload>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:748
+msgid "A table of :ref:`HTTP headers <request_headers>` passed to a request."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:758
+msgid "A table of parameters passed to a request. The behavior of this option depends on the request type, for example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:761
+msgid "For a :ref:`GET <client_object-get>` request, this option specifies :ref:`query string parameters <request_query_parameters>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:762
+msgid "For a :ref:`POST <client_object-post>` request, this option specifies :ref:`form parameters <request_form_parameters>` to be sent using the ``application/x-www-form-urlencoded`` type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:770
+msgid "A delay (in seconds) the operating system waits while the connection is idle before sending keepalive probes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:772
+#: ../../doc/reference/reference_lua/http.rst:786
+#: ../../doc/reference/reference_lua/http.rst:798
+#: ../../doc/reference/reference_lua/http.rst:809
+#: ../../doc/reference/reference_lua/http.rst:822
+#: ../../doc/reference/reference_lua/http.rst:887
+#: ../../doc/reference/reference_lua/http.rst:937
+#: ../../doc/reference/reference_lua/http.rst:966
+#: ../../doc/reference/reference_lua/http.rst:976
+#: ../../doc/reference/reference_lua/http.rst:1017
+msgid "integer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:774
+msgid "**See also:** `CURLOPT_TCP_KEEPIDLE <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPIDLE.html>`_, :ref:`keepalive_interval <request_options-keepalive_interval>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:781
+msgid "The interval (in seconds) the operating system waits between sending keepalive probes. If both :ref:`keepalive_idle <request_options-keepalive_idle>` and ``keepalive_interval`` are set, then Tarantool also sets the HTTP keepalive headers: ``Connection:Keep-Alive`` and ``Keep-Alive:timeout=<keepalive_idle>``. Otherwise, Tarantool sends ``Connection:close``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:788
+msgid "**See also:** `CURLOPT_TCP_KEEPINTVL <https://curl.haxx.se/libcurl/c/CURLOPT_TCP_KEEPINTVL.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:795
+msgid "The average transfer speed in bytes per second that the transfer should be below during \"low speed time\" seconds for the library to consider it to be too slow and abort."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:800
+msgid "**See also:** `CURLOPT_LOW_SPEED_LIMIT <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_LIMIT.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:807
+msgid "The time that the transfer speed should be below the \"low speed limit\" for the library to consider it too slow and abort."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:811
+msgid "**See also:** `CURLOPT_LOW_SPEED_TIME <https://curl.haxx.se/libcurl/c/CURLOPT_LOW_SPEED_TIME.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:818
+msgid "The maximum length of a header name. If a header name length exceeds this value, it is truncated to this length. The default value is ``32``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:829
+msgid "Specify whether the HTTP client follows redirect URLs provided in the ``Location`` header for ``3xx`` responses. When a non-``3xx`` response is received, the client returns it as a result. If you set this option to ``false``, the client returns the first ``3xx`` response."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:835
+msgid "**See also:** :ref:`Redirects <response_redirect>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:842
+msgid "A comma-separated list of hosts that do not require proxies, or ``*``, or ``''``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:844
+msgid "Set :samp:`no_proxy = {host} [, {host} ...]` to specify hosts that can be reached without requiring a proxy, even if ``proxy`` is set to a non-blank value and/or if a proxy-related environment variable has been set."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:847
+msgid "Set ``no__proxy = '*'`` to specify that all hosts can be reached without requiring a proxy, which is equivalent to setting ``proxy=''``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:849
+msgid "Set ``no_proxy = ''`` to specify that no hosts can be reached without requiring a proxy, even if a proxy-related environment variable (``HTTP_PROXY``) is used."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:853
+msgid "If ``no_proxy`` is not set, then a proxy-related environment variable (``HTTP_PROXY``) may be used."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:858
+msgid "**See also:** `CURLOPT_NOPROXY <https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:865
+msgid "A proxy server host or IP address, or ``''``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:867
+msgid "If ``proxy`` is a host or IP address, then it may begin with a scheme, for example, ``https://`` for an HTTPS proxy or ``http://`` for an HTTP proxy."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:869
+msgid "If ``proxy`` is set to ``''`` an empty string, then proxy use is disabled, and no proxy-related environment variable is used."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:871
+msgid "If ``proxy`` is not set, then a proxy-related environment variable may be used, such as ``HTTP_PROXY`` or ``HTTPS_PROXY`` or ``FTP_PROXY``, or ``ALL_PROXY`` if the protocol can be any protocol."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:877
+msgid "**See also:** `CURLOPT_PROXY <https://curl.haxx.se/libcurl/c/CURLOPT_PROXY.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:884
+msgid "A proxy server port. The default is ``443`` for an HTTPS proxy and ``1080`` for a non-HTTPS proxy."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:889
+msgid "**See also:** `CURLOPT_PROXYPORT <https://curl.haxx.se/libcurl/c/CURLOPT_PROXYPORT.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:896
+msgid "A proxy server username and password. This option might have one of the following formats:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:899
+msgid ":samp:`proxy_user_pwd = {user_name}:`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:900
+msgid ":samp:`proxy_user_pwd = :{password}`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:901
+msgid ":samp:`proxy_user_pwd = {user_name}:{password}`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:905
+msgid "**See also:** `CURLOPT_USERPWD <https://curl.haxx.se/libcurl/c/CURLOPT_USERPWD.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:912
+msgid "A path to an SSL client certificate file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:916
+msgid "**See also:** `CURLOPT_SSLCERT <https://curl.haxx.se/libcurl/c/CURLOPT_SSLCERT.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:923
+msgid "A path to a private key file for a TLS and SSL client certificate."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:927
+msgid "**See also:** `CURLOPT_SSLKEY <https://curl.haxx.se/libcurl/c/CURLOPT_SSLKEY.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:934
+msgid "The number of seconds to wait for a curl API read request before timing out. The default timeout is set to infinity (``36586400100`` seconds)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:944
+msgid "A socket name to use instead of an Internet address for a local connection."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:948
+msgid "**Example:** ``/tmp/unix_domain_socket.sock``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:955
+msgid "Turn on/off a verbose mode."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:964
+msgid "Enable verification of the certificate's name (CN) against the specified host."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:968
+msgid "**See also:** `CURLOPT_SSL_VERIFYHOST <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYHOST.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:974
+msgid "Set on/off verification of the peer's SSL certificate."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:978
+msgid "**See also:** `CURLOPT_SSL_VERIFYPEER <https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:985
+msgid "Enable :ref:`decompression <response_decompressing>` of an HTTP response data based on the specified ``Accept-Encoding`` request header. You can pass the following values to this option:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:989
+msgid "``''`` -- if an empty string is passed, the ``Accept-Encoding`` contains all the supported encodings (``identity``, ``deflate``, ``gzip``, and ``br``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:991
+msgid "``br, gzip, deflate`` -- a comma-separated list of encodings passed in ``Accept-Encoding``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:995
+msgid "**See also:** `CURLOPT_ACCEPT_ENCODING <https://curl.haxx.se/libcurl/c/CURLOPT_ACCEPT_ENCODING.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1003
+msgid "response_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1007
+msgid "A response object returned by a request method (:ref:`request <client_object-request>`, :ref:`get <client_object-get>`, :ref:`post <client_object-post>`, and so on)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1009
+msgid "**See also:** :ref:`io_object <io_object>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1015
+msgid "A response status code."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1019
+#: ../../doc/reference/reference_lua/http.rst:1029
+msgid "**See also:** :ref:`Status code <response_status_code>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1025
+msgid "A response status text."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1036
+msgid "Response headers."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1040
+msgid "**See also:** :ref:`Headers <response_headers>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1047
+msgid "Response cookies. The value is an array of two elements where the first one is the cookie value and the second one is an array with the cookie's options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1053
+msgid "**See also:** :ref:`Cookies <response_cookies>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1059
+msgid "A response body. Use :ref:`decode <response_object-decode>` to decode the response body."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1064
+msgid "**See also:** :ref:`Response body <response_body>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1071
+msgid "An HTTP protocol version."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1082
+msgid "Decode the response body to a Lua object based on the content type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1084
+msgid "a decoded body"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1087
+msgid "**See also:** :ref:`Deserialization <response_deserialization>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1095
+msgid "io_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1101
+msgid "An IO object used to read or write data in chunks. To get an IO object instead of the full response (:ref:`response_object <response_object>`), you need to set the :ref:`chunked <request_options-chunked>` request option to ``true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1110
+msgid "Read request data in chunks of a specified length or up to a specific delimiter."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1112
+msgid "the maximum number of bytes to read"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1113
+msgid "the delimiter used to stop reading data"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1114
+#: ../../doc/reference/reference_lua/http.rst:1128
+#: ../../doc/reference/reference_lua/http.rst:1138
+msgid "the number of seconds to wait. The default is ``10``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1115
+msgid "A chunk of read data. Returns an empty string if there is nothing more to read."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1118
+msgid "**See also:** :ref:`Streaming download <response_streaming_download>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1125
+msgid "Write the specified chunk of data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1127
+msgid "data to be written"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1130
+msgid "**See also:** :ref:`Streaming upload <request_streaming_upload>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/http.rst:1136
+msgid "Finish reading or writing data."
+msgstr ""

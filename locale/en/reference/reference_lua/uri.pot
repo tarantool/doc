@@ -1,0 +1,658 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/uri.rst:4
+msgid "Module uri"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:11
+msgid "The URI module provides functions that convert `URI <https://en.wikipedia.org/wiki/Uniform_Resource_Identifier>`_ strings into their components, or turn components into URI strings, for example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:14
+msgid "local uri = require('uri')\n"
+"\n"
+"parsed_uri = uri.parse('https://www.tarantool.io/doc/latest/reference/reference_lua/http/#api-reference')\n"
+"--[[\n"
+"---\n"
+"- host: www.tarantool.io\n"
+"  fragment: api-reference\n"
+"  scheme: https\n"
+"  path: /doc/latest/reference/reference_lua/http/\n"
+"...\n"
+"--]]\n"
+"\n"
+"formatted_uri = uri.format({ scheme = 'https',\n"
+"                             host = 'www.tarantool.io',\n"
+"                             path = '/doc/latest/reference/reference_lua/http/',\n"
+"                             fragment = 'api-reference' })\n"
+"--[[\n"
+"---\n"
+"- https://www.tarantool.io/doc/latest/reference/reference_lua/http/#api-reference\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:18
+msgid "You can also use this module to encode and decode arbitrary strings using the specified encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:24
+msgid "API Reference"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:26
+msgid "Below is a list of ``uri`` functions, properties, and related objects."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:36
+msgid "**Functions**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:39
+msgid ":ref:`uri.parse() <uri-parse>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:40
+msgid "Get a table of URI components"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:42
+msgid ":ref:`uri.format() <uri-format>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:43
+msgid "Construct a URI from the specified components"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:45
+msgid ":ref:`uri.escape() <uri-escape>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:46
+msgid "Encode a string using the specified encoding options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:48
+msgid ":ref:`uri.unescape() <uri-unescape>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:49
+msgid "Decode a string using the specified encoding options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:51
+msgid "**Properties**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:54
+msgid ":ref:`uri.RFC3986 <uri-rfc3986>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:55
+msgid "Encoding options that use unreserved symbols defined in RFC 3986"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:57
+msgid ":ref:`uri.PATH <uri-path>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:58
+msgid "Options used to encode the ``path`` URI component"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:60
+msgid ":ref:`uri.PATH_PART <uri-path-part>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:61
+msgid "Options used to encode specific ``path`` parts"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:63
+msgid ":ref:`uri.QUERY <uri-query>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:64
+msgid "Options used to encode the ``query`` URI component"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:66
+msgid ":ref:`uri.QUERY_PART <uri-query-part>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:67
+msgid "Options used to encode specific ``query`` parts"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:69
+msgid ":ref:`uri.FRAGMENT <uri-fragment>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:70
+msgid "Options used to encode the ``fragment`` URI component"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:72
+msgid ":ref:`uri.FORM_URLENCODED <uri-form-url-encoded>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:73
+msgid "Options used to encode ``application/x-www-form-urlencoded`` form parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:75
+msgid "**Related objects**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:78
+msgid ":ref:`uri_components <uri_components>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:79
+msgid "URI components"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:81
+msgid ":ref:`uri_encoding_opts <uri_encoding_opts>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:82
+msgid "URI encoding options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:90
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:96
+msgid "Parse a URI string into components."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:98
+msgid "**See also:** :ref:`uri.format() <uri-format>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:100
+msgid "a URI string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:101
+msgid "a URI components table (see :ref:`uri_components <uri_components>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+#: ../../doc/reference/reference_lua/uri.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:103
+#: ../../doc/reference/reference_lua/uri.rst:242
+#: ../../doc/reference/reference_lua/uri.rst:252
+#: ../../doc/reference/reference_lua/uri.rst:262
+#: ../../doc/reference/reference_lua/uri.rst:272
+#: ../../doc/reference/reference_lua/uri.rst:282
+#: ../../doc/reference/reference_lua/uri.rst:292
+#: ../../doc/reference/reference_lua/uri.rst:302
+#: ../../doc/reference/reference_lua/uri.rst:454
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:105
+#: ../../doc/reference/reference_lua/uri.rst:127
+#: ../../doc/reference/reference_lua/uri.rst:427
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:107
+msgid "local uri = require('uri')\n"
+"\n"
+"parsed_uri = uri.parse('https://www.tarantool.io/doc/latest/reference/reference_lua/http/#api-reference')\n"
+"--[[\n"
+"---\n"
+"- host: www.tarantool.io\n"
+"  fragment: api-reference\n"
+"  scheme: https\n"
+"  path: /doc/latest/reference/reference_lua/http/\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:116
+msgid "Construct a URI from the specified components."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:118
+msgid "**See also:** :ref:`uri.parse() <uri-parse>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:120
+msgid "a series of ``name=value`` pairs, one for each component (see :ref:`uri_components <uri_components>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:122
+msgid "specify whether the password component is rendered in clear text; otherwise, it is omitted"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:124
+msgid "URI string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:125
+#: ../../doc/reference/reference_lua/uri.rst:154
+#: ../../doc/reference/reference_lua/uri.rst:200
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:129
+msgid "local uri = require('uri')\n"
+"\n"
+"formatted_uri = uri.format({ scheme = 'https',\n"
+"                             host = 'www.tarantool.io',\n"
+"                             path = '/doc/latest/reference/reference_lua/http/',\n"
+"                             fragment = 'api-reference' })\n"
+"--[[\n"
+"---\n"
+"- https://www.tarantool.io/doc/latest/reference/reference_lua/http/#api-reference\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:139
+#: ../../doc/reference/reference_lua/uri.rst:185
+#: ../../doc/reference/reference_lua/uri.rst:422
+msgid "**Since:** :doc:`2.11.0 </release/2.11.0>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:141
+msgid "Encode a string using the specified encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:143
+#: ../../doc/reference/reference_lua/uri.rst:189
+msgid "By default, ``uri.escape()`` uses encoding options defined by the :ref:`uri.RFC3986 <uri-rfc3986>` table. If required, you can customize encoding options using the ``uri_encoding_opts`` optional parameter, for example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:146
+#: ../../doc/reference/reference_lua/uri.rst:192
+msgid "Pass the predefined set of options targeted for encoding a specific URI part (for example, :ref:`uri.PATH <uri-path>` or :ref:`uri.QUERY <uri-query>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:148
+#: ../../doc/reference/reference_lua/uri.rst:194
+msgid "Pass custom encoding options using the :ref:`uri_encoding_opts <uri_encoding_opts>` object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:150
+msgid "a string to encode"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:151
+#: ../../doc/reference/reference_lua/uri.rst:197
+msgid "encoding options (optional, see :ref:`uri_encoding_opts <uri_encoding_opts>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:152
+msgid "an encoded string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:156
+#: ../../doc/reference/reference_lua/uri.rst:202
+msgid "**Example 1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:158
+msgid "This example shows how to encode a string using the default encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:160
+msgid "local uri = require('uri')\n"
+"\n"
+"escaped_string = uri.escape('C++')\n"
+"--[[\n"
+"---\n"
+"- C%2B%2B\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:164
+#: ../../doc/reference/reference_lua/uri.rst:210
+msgid "**Example 2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:166
+msgid "This example shows how to encode a string using the :ref:`uri.FORM_URLENCODED <uri-form-url-encoded>` encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:168
+msgid "local uri = require('uri')\n"
+"\n"
+"escaped_string_url_enc = uri.escape('John Smith', uri.FORM_URLENCODED)\n"
+"--[[\n"
+"---\n"
+"- John+Smith\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:172
+#: ../../doc/reference/reference_lua/uri.rst:218
+msgid "**Example 3:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:174
+msgid "This example shows how to encode a string using custom encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:176
+#: ../../doc/reference/reference_lua/uri.rst:431
+msgid "local uri = require('uri')\n"
+"\n"
+"local escape_opts = {\n"
+"    plus = true,\n"
+"    unreserved = uri.unreserved(\"a-z\")\n"
+"}\n"
+"escaped_string_custom = uri.escape('Hello World', escape_opts)\n"
+"--[[\n"
+"---\n"
+"- '%48ello+%57orld'\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:187
+msgid "Decode a string using the specified encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:196
+msgid "a string to decode"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:198
+msgid "a decoded string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:204
+msgid "This example shows how to decode a string using the default encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:206
+msgid "local uri = require('uri')\n"
+"\n"
+"unescaped_string = uri.unescape('C%2B%2B')\n"
+"--[[\n"
+"---\n"
+"- C++\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:212
+msgid "This example shows how to decode a string using the :ref:`uri.FORM_URLENCODED <uri-form-url-encoded>` encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:214
+msgid "local uri = require('uri')\n"
+"\n"
+"unescaped_string_url_enc = uri.unescape('John+Smith', uri.FORM_URLENCODED)\n"
+"--[[\n"
+"---\n"
+"- John Smith\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:220
+msgid "This example shows how to decode a string using custom encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:222
+msgid "local uri = require('uri')\n"
+"\n"
+"local escape_opts = {\n"
+"    plus = true,\n"
+"    unreserved = uri.unreserved(\"a-z\")\n"
+"}\n"
+"unescaped_string_custom = uri.unescape('%48ello+%57orld', escape_opts)\n"
+"--[[\n"
+"---\n"
+"- Hello World\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:230
+msgid "Properties"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:236
+msgid "Encoding options that use unreserved symbols defined in RFC 3986. These are default options used to encode and decode using the :ref:`uri.escape() <uri-escape>` and :ref:`uri.unescape() <uri-unescape>` functions, respectively."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:240
+#: ../../doc/reference/reference_lua/uri.rst:250
+#: ../../doc/reference/reference_lua/uri.rst:260
+#: ../../doc/reference/reference_lua/uri.rst:270
+#: ../../doc/reference/reference_lua/uri.rst:280
+#: ../../doc/reference/reference_lua/uri.rst:290
+#: ../../doc/reference/reference_lua/uri.rst:300
+msgid "**See also:** :ref:`uri_encoding_opts <uri_encoding_opts>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:248
+msgid "Options used to encode the ``path`` URI component."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:258
+msgid "Options used to encode specific ``path`` parts."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:268
+msgid "Options used to encode the ``query`` URI component."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:278
+msgid "Options used to encode specific ``query`` parts."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:288
+msgid "Options used to encode the ``fragment`` URI component."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:298
+msgid "Options used to encode ``application/x-www-form-urlencoded`` form parameters."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:308
+msgid "Related objects"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:313
+msgid "uri_components"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:318
+msgid "URI components. The ``uri_components`` object is used in the following functions:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:321
+msgid "The :ref:`uri.parse() <uri-parse>` function returns the ``uri_components`` object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:322
+msgid "The :ref:`uri.format() <uri-format>` function accepts the ``uri_components`` object as an argument."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:329
+msgid "A URI scheme."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:331
+msgid "**Examples:** ``https``, ``http``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:337
+msgid "A user name, which is a part of the ``userinfo`` subcomponent."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:343
+msgid "A password, which is a part of the ``userinfo`` subcomponent."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:349
+msgid "A host subcomponent."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:351
+msgid "**Example:** ``www.tarantool.io``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:357
+msgid "A service subcomponent. This property might return different values depending on the used URI scheme, for example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:360
+msgid "If the ``https`` or ``http`` scheme is used, ``service`` returns the port value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:361
+msgid "If the Unix domain socket is used, ``service`` returns the socket path."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:363
+msgid "**Examples:** ``3301``, ``/tmp/unix.sock``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:369
+msgid "A path component."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:371
+msgid "**Example:** ``/doc/latest/reference/reference_lua/http/``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:377
+msgid "A query component."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:379
+msgid "**Example:** ``key1=value1&key2=value2``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:385
+msgid "A fragment component."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:387
+msgid "**Example:** ``api-reference``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:393
+msgid "An IPv4 address."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:395
+msgid "**Example:** ``127.0.0.1``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:401
+msgid "An IPv6 address."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:403
+msgid "**Example:** ``2a00:1148:b0ba:2016:12bf:48ff:fe78:fd10``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:409
+msgid "A Unix domain socket."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:411
+msgid "**Example:** ``/tmp/unix.sock``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:417
+msgid "uri_encoding_opts"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:424
+msgid "URI encoding options. These options can be passed to the :ref:`uri.escape() <uri-escape>` and :ref:`uri.unescape() <uri-unescape>` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:429
+msgid "The example below shows how to encode a string using custom encoding options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:437
+msgid "The ``uri`` module also provides several sets of predefined options targeted for encoding a specific URI part (for example, :ref:`uri.PATH <uri-path>` or :ref:`uri.QUERY <uri-query>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:443
+msgid "Enable encoding of ``+`` as the space character. By default, this property is set to ``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:446
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:452
+msgid "Specify a Lua pattern defining unreserved symbols that are not encoded."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/uri.rst:456
+msgid "**Example:** ``'a-zA-Z0-9%-._~'``"
+msgstr ""

@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_session/sync.rst:6
+msgid "box.session.sync()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/sync.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/sync.rst:12
+msgid "the value of the :code:`sync` integer constant used in the `binary protocol <https://github.com/tarantool/tarantool/blob/2.1/src/box/iproto_constants.h>`_. This value becomes invalid when the session is disconnected."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/sync.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/sync.rst:16
+msgid "number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/sync.rst:18
+msgid "This function is local for the request, i.e. not global for the session. If the connection behind the session is multiplexed, this function can be safely used inside the request processor."
+msgstr ""

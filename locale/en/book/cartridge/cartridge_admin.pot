@@ -1,0 +1,1541 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:5
+msgid "Administrator's guide"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:7
+msgid "This guide explains how to deploy and manage a Tarantool cluster with Tarantool Cartridge."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:12
+msgid "For more information on managing Tarantool instances, see the `server administration section <https://www.tarantool.io/en/doc/latest/book/admin/>`__ of the Tarantool manual."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:16
+msgid "Before deploying the cluster, familiarize yourself with the notion of :ref:`cluster roles <cartridge-roles>` and :ref:`deploy Tarantool instances <cartridge-deploy>` according to the desired cluster topology."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:25
+msgid "Deploying the cluster"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:27
+msgid "To deploy the cluster, first, :ref:`configure <cartridge-config>` your Tarantool instances according to the desired cluster topology, for example:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:30
+msgid "my_app.router: {\"advertise_uri\": \"localhost:3301\", \"http_port\": 8080, \"workdir\": \"./tmp/router\"}\n"
+"my_app.storage_A_master: {\"advertise_uri\": \"localhost:3302\", \"http_enabled\": False, \"workdir\": \"./tmp/storage-a-master\"}\n"
+"my_app.storage_A_replica: {\"advertise_uri\": \"localhost:3303\", \"http_enabled\": False, \"workdir\": \"./tmp/storage-a-replica\"}\n"
+"my_app.storage_B_master: {\"advertise_uri\": \"localhost:3304\", \"http_enabled\": False, \"workdir\": \"./tmp/storage-b-master\"}\n"
+"my_app.storage_B_replica: {\"advertise_uri\": \"localhost:3305\", \"http_enabled\": False, \"workdir\": \"./tmp/storage-b-replica\"}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:38
+msgid "Then :ref:`start the instances <cartridge-run>`, for example using ``cartridge`` CLI:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:41
+msgid "$ cartridge start my_app --cfg demo.yml --run-dir ./tmp/run"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:45
+msgid "And bootstrap the cluster. You can do this via the Web interface which is available at ``http://<instance_hostname>:<instance_http_port>`` (in this example, ``http://localhost:8080``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:52
+msgid "Bootstrapping from an existing cluster (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:54
+msgid "You can bootstrap a cluster from an existing cluster (*original* cluster in the example below) via the argparse option ``TARANTOOL_BOOTSTRAP_FROM`` or ``--bootstrap_from`` in the following form: ``TARANTOOL_BOOTSTRAP_FROM=admin:SECRET-ORIGINAL-CLUSTER-COOKIE@HOST:MASTER_PORT,...``. That option should be present on each instance in replicasets of the target cluster. Make sure that you've prepared a valid configuration for the target cluster. A valid topology should contain the **same** *replicaset uuids* for each replicaset and *instance uuids* that **differ** from original cluster. You can list several instances in this option. This is required for the latests Tarantool bootstrap policy."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:64
+msgid "Several notes:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:66
+msgid "You can bootstrap specific replicasets from a cluster (for example, data nodes only) instead of the whole cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:69
+msgid "Don't load data in the target cluster while bootstrapping. If you need to hot switch between original and target cluster, stop data loading in original cluster until bootstrapping is completed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:73
+msgid "Check logs and ``box.info.replication`` on target cluster after bootstrapping. If something went wrong, try again."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:76
+msgid "Example of valid data in ``edit_topology`` request:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:78
+msgid "Original cluster topology:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:80
+msgid "{\n"
+"    \"replicasets\": [\n"
+"        {\n"
+"            \"alias\": \"router-original\",\n"
+"            \"uuid\": \"aaaaaaaa-aaaa-0000-0000-000000000000\",\n"
+"            \"join_servers\": [\n"
+"                {\n"
+"                    \"uri\": \"localhost:3301\",\n"
+"                    \"uuid\": \"aaaaaaaa-aaaa-0000-0000-000000000001\"\n"
+"                }\n"
+"            ],\n"
+"            \"roles\": [\"vshard-router\", \"failover-coordinator\"]\n"
+"        },\n"
+"        {\n"
+"            \"alias\": \"storage-original\",\n"
+"            \"uuid\": \"bbbbbbbb-0000-0000-0000-000000000000\",\n"
+"            \"weight\": 1,\n"
+"            \"join_servers\": [\n"
+"                {\n"
+"                    \"uri\": \"localhost:3302\",\n"
+"                    \"uuid\": \"bbbbbbbb-bbbb-0000-0000-000000000001\"\n"
+"                }\n"
+"            ],\n"
+"            \"roles\": [\"vshard-storage\"]\n"
+"        }\n"
+"    ]\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:110
+msgid "Target cluster topology:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:112
+msgid "{\n"
+"    \"replicasets\": [\n"
+"        {\n"
+"            \"alias\": \"router-original\",\n"
+"            \"uuid\": \"cccccccc-cccc-0000-0000-000000000000\", // <- this is dataless router,\n"
+"            // it's not necessary to bootstrap it from original cluster\n"
+"            \"join_servers\": [\n"
+"                {\n"
+"                    \"uri\": \"localhost:13301\", // <- different uri\n"
+"                    \"uuid\": \"cccccccc-cccc-0000-0000-000000000001\"\n"
+"                }\n"
+"            ],\n"
+"            \"roles\": [\"vshard-router\", \"failover-coordinator\"]\n"
+"        },\n"
+"        {\n"
+"            \"alias\": \"storage-original\",\n"
+"            \"uuid\": \"bbbbbbbb-0000-0000-0000-000000000000\", // replicaset_uuid is the same as in the original cluster\n"
+"            // that allows us bootstrap target cluster from original cluster\n"
+"            \"weight\": 1,\n"
+"            \"join_servers\": [\n"
+"                {\n"
+"                    \"uri\": \"localhost:13302\", // <- different uri\n"
+"                    \"uuid\": \"bbbbbbbb-bbbb-0000-0000-000000000002\" // <- different instance_uuid\n"
+"                }\n"
+"            ],\n"
+"            \"roles\": [\"vshard-storage\"]\n"
+"        }\n"
+"    ]\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:147
+msgid "Cluster setup"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:149
+msgid "In the web interface, do the following:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:151
+msgid "Depending on the authentication state:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:153
+msgid "If enabled (in production), enter your credentials and click **Login**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:160
+#: ../../doc/book/cartridge/cartridge_admin.rst:172
+#: ../../doc/book/cartridge/cartridge_admin.rst:184
+#: ../../doc/book/cartridge/cartridge_admin.rst:199
+#: ../../doc/book/cartridge/cartridge_admin.rst:228
+#: ../../doc/book/cartridge/cartridge_admin.rst:245
+#: ../../doc/book/cartridge/cartridge_admin.rst:259
+#: ../../doc/book/cartridge/cartridge_admin.rst:278
+#: ../../doc/book/cartridge/cartridge_admin.rst:294
+#: ../../doc/book/cartridge/cartridge_admin.rst:388
+#: ../../doc/book/cartridge/cartridge_admin.rst:408
+#: ../../doc/book/cartridge/cartridge_admin.rst:516
+#: ../../doc/book/cartridge/cartridge_admin.rst:541
+#: ../../doc/book/cartridge/cartridge_admin.rst:601
+#: ../../doc/book/cartridge/cartridge_admin.rst:609
+#: ../../doc/book/cartridge/cartridge_admin.rst:638
+#: ../../doc/book/cartridge/cartridge_admin.rst:648
+#: ../../doc/book/cartridge/cartridge_admin.rst:656
+#: ../../doc/book/cartridge/cartridge_admin.rst:688
+#: ../../doc/book/cartridge/cartridge_admin.rst:696
+#: ../../doc/book/cartridge/cartridge_admin.rst:708
+#: ../../doc/book/cartridge/cartridge_admin.rst:732
+#: ../../doc/book/cartridge/cartridge_admin.rst:740
+#: ../../doc/book/cartridge/cartridge_admin.rst:752
+#: ../../doc/book/cartridge/cartridge_admin.rst:768
+#: ../../doc/book/cartridge/cartridge_admin.rst:777
+#: ../../doc/book/cartridge/cartridge_admin.rst:797
+#: ../../doc/book/cartridge/cartridge_admin.rst:1197
+#: ../../doc/book/cartridge/cartridge_admin.rst:1216
+#: ../../doc/book/cartridge/cartridge_admin.rst:1225
+#: ../../doc/book/cartridge/cartridge_admin.rst:1263
+#: ../../doc/book/cartridge/cartridge_admin.rst:1272
+#: ../../doc/book/cartridge/cartridge_admin.rst:1283
+#: ../../doc/book/cartridge/cartridge_admin.rst:1307
+#: ../../doc/book/cartridge/cartridge_admin.rst:1315
+#: ../../doc/book/cartridge/cartridge_admin.rst:1323
+#: ../../doc/book/cartridge/cartridge_admin.rst:1339
+#: ../../doc/book/cartridge/cartridge_admin.rst:1347
+msgid "|nbsp|"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:162
+msgid "If disabled (for easier testing), simply proceed to configuring the cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:165
+msgid "Click **Сonfigure** next to the first unconfigured server to create the first replica set -- solely for the router (intended for *compute-intensive* workloads)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:174
+msgid "In the pop-up window, check the ``vshard-router`` role or any custom role that has ``vshard-router`` as a dependent role (in this example, this is a custom role named ``app.roles.api``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:178
+msgid "(Optional) Specify a display name for the replica set, for example ``router``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:188
+msgid "As described in the :ref:`built-in roles section <cartridge-built-in-roles>`, it is a good practice to enable workload-specific cluster roles on instances running on physical servers with workload-specific hardware."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:192
+msgid "Click **Create replica set** and see the newly-created replica set in the web interface:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:203
+msgid "Be careful: after an instance joins a replica set, you **CAN NOT** revert this or make the instance join any other replica set."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:206
+msgid "Create another replica set for a master storage node (intended for *transaction-intensive* workloads)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:209
+msgid "Check the ``vshard-storage`` role or any custom role that has ``vshard-storage`` as a dependent role (in this example, this is a custom role named ``app.roles.storage``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:213
+msgid "(Optional) Check a specific group, for example ``hot``. Replica sets with ``vshard-storage`` roles can belong to different groups. In our example, these are ``hot`` or ``cold`` groups meant to process hot and cold data independently. These groups are specified in the cluster's :ref:`configuration file <cartridge-vshard-groups>`; by default, a cluster has no groups."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:220
+msgid "(Optional) Specify a display name for the replica set, for example ``hot-storage``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:222
+msgid "Click **Create replica set**."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:230
+msgid "(Optional) If required by topology, populate the second replica set with more storage nodes:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:233
+msgid "Click **Configure** next to another unconfigured server dedicated for *transaction-intensive* workloads."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:236
+msgid "Click **Join Replica Set** tab."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:238
+msgid "Select the second replica set, and click **Join replica set** to add the server to it."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:247
+msgid "Depending on cluster topology:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:249
+msgid "add more instances to the first or second replica sets, or"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:250
+msgid "create more replica sets and populate them with instances meant to handle a specific type of workload (compute or transactions)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:253
+msgid "For example:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:261
+msgid "(Optional) By default, all new ``vshard-storage`` replica sets get a weight of ``1`` before the ``vshard`` bootstrap in the next step."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:266
+msgid "In case you add a new replica set after ``vshard`` bootstrap, as described in the :ref:`topology change section <cartridge-change-cluster-topology>`, it will get a weight of 0 by default."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:270
+msgid "To make different replica sets store different numbers of buckets, click **Edit** next to a replica set, change its default weight, and click **Save**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:280
+msgid "For more information on buckets and replica set's weights, see the `vshard module documentation <https://www.tarantool.io/en/doc/latest/reference/reference_rock/vshard/>`__."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:283
+msgid "Bootstrap ``vshard`` by clicking the corresponding button, or by saying ``cartridge.admin.boostrap_vshard()`` over the administrative console."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:286
+msgid "This command creates virtual buckets and distributes them among storages."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:288
+msgid "From now on, all cluster configuration can be done via the web interface."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:300
+msgid "Updating the configuration"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:302
+msgid "Cluster configuration is specified in a YAML configuration file. This file includes cluster topology and role descriptions."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:305
+msgid "All instances in Tarantool cluster have the same configuration. To this end, every instance stores a copy of the configuration file, and the cluster keeps these copies in sync: as you submit updated configuration in the Web interface, the cluster validates it (and rejects inappropriate changes) and distributes **automatically** across the cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:311
+msgid "To update the configuration:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:313
+msgid "Click **Configuration files** tab."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:315
+msgid "(Optional) Click **Downloaded** to get hold of the current configuration file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:317
+msgid "Update the configuration file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:319
+msgid "You can add/change/remove any sections except system ones: ``topology``, ``vshard``, and ``vshard_groups``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:322
+msgid "To remove a section, simply remove it from the configuration file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:324
+msgid "Compress the configuration file as a ``.zip`` archive and click **Upload configuration** button to upload it."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:327
+msgid "You will see a message in the lower part of the screen saying whether configuration was uploaded successfully, and an error description if the new configuration was not applied."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:335
+msgid "Managing the cluster"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:337
+msgid "This chapter explains how to:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:339
+msgid "change the cluster topology,"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:340
+msgid "enable automatic failover,"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:341
+msgid "switch the replica set's master manually,"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:342
+msgid "deactivate replica sets, and"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:343
+msgid "expel instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:349
+msgid "Changing the cluster topology"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:351
+msgid "Upon adding a newly deployed instance to a new or existing replica set:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:353
+msgid "The cluster validates the configuration update by checking if the new instance is available using the `membership module <https://www.tarantool.io/en/doc/1.10/reference/reference_rock/membership/>`_."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:358
+msgid "The ``membership`` module works over the UDP protocol and can operate before the ``box.cfg`` function is called."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:361
+msgid "All the nodes in the cluster must be healthy for validation success."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:363
+msgid "The new instance waits until another instance in the cluster receives the configuration update and discovers it, again, using the ``membership`` module. On this step, the new instance does not have a UUID yet."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:367
+msgid "Once the instance realizes its presence is known to the cluster, it calls the `box.cfg <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_cfg/>`__ function and starts living its life."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:371
+msgid "An optimal strategy for connecting new nodes to the cluster is to deploy a new zero-weight replica set instance by instance, and then increase the weight. Once the weight is updated and all cluster nodes are notified of the configuration change, buckets start migrating to new nodes."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:376
+msgid "To populate the cluster with more nodes, do the following:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:378
+msgid "Deploy new Tarantool instances as described in the :ref:`deployment section <cartridge-deploy>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:381
+msgid "If new nodes do not appear in the Web interface, click **Probe server** and specify their URIs manually."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:390
+msgid "If a node is accessible, it will appear in the list."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:392
+msgid "In the Web interface:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:394
+msgid "Create a new replica set with one of the new instances: click **Configure** next to an unconfigured server, check the necessary roles, and click **Create replica set**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:400
+msgid "In case you are adding a new ``vshard-storage`` instance, remember that all such instances get a ``0`` weight by default after the ``vshard`` bootstrap which happened during the initial cluster deployment."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:410
+msgid "Or add the instances to existing replica sets: click **Configure** next to an unconfigured server, click **Join replica set** tab, select a replica set, and click **Join replica set**."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:414
+msgid "If necessary, repeat this for more instances to reach the desired redundancy level."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:416
+msgid "In case you are deploying a new ``vshard-storage`` replica set, populate it with data when you are ready: click **Edit** next to the replica set in question, increase its weight, and click **Save** to start :ref:`data rebalancing <cartridge-rebalance-data>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:421
+msgid "As an alternative to the web interface, you can view and change cluster topology via GraphQL. The cluster's endpoint for serving GraphQL queries is ``/admin/api``. You can use any third-party GraphQL client like `GraphiQL <https://github.com/graphql/graphiql>`__ or `Altair <https://altair.sirmuel.design>`__."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:427
+msgid "Examples:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:429
+msgid "listing all servers in the cluster:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:431
+msgid "query {\n"
+"    servers { alias uri uuid }\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:437
+msgid "listing all replica sets with their servers:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:439
+msgid "query {\n"
+"    replicasets {\n"
+"        uuid\n"
+"        roles\n"
+"        servers { uri uuid }\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:449
+msgid "joining a server to a new replica set with a storage role enabled:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:451
+msgid "mutation {\n"
+"    join_server(\n"
+"        uri: \"localhost:33003\"\n"
+"        roles: [\"vshard-storage\"]\n"
+"    )\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:464
+msgid "Data rebalancing"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:466
+msgid "Rebalancing (resharding) is initiated periodically and upon adding a new replica set with a non-zero weight to the cluster. For more information, see the `rebalancing process section <https://www.tarantool.io/en/doc/latest/reference/reference_rock/vshard/vshard_admin/#rebalancing-process>`_ of the ``vshard`` module documentation."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:471
+msgid "The most convenient way to trace through the process of rebalancing is to monitor the number of active buckets on storage nodes. Initially, a newly added replica set has 0 active buckets. After a few minutes, the background rebalancing process begins to transfer buckets from other replica sets to the new one. Rebalancing continues until the data is distributed evenly among all replica sets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:477
+msgid "To monitor the current number of buckets, connect to any Tarantool instance over the :ref:`administrative console <cartridge-manage-sharding-cli>`, and say:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:480
+msgid "tarantool> vshard.storage.info().bucket\n"
+"---\n"
+"- receiving: 0\n"
+"  active: 1000\n"
+"  total: 1000\n"
+"  garbage: 0\n"
+"  sending: 0\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:491
+msgid "The number of buckets may be increasing or decreasing depending on whether the rebalancer is migrating buckets to or from the storage node."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:494
+msgid "For more information on the monitoring parameters, see the :ref:`monitoring storages section <cartridge-monitor-storage>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:501
+msgid "Deactivating replica sets"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:503
+msgid "To deactivate an entire replica set (e.g., to perform maintenance on it) means to move all of its buckets to other sets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:506
+msgid "To deactivate a set, do the following:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:508
+msgid "Click **Edit** next to the set in question."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:510
+msgid "Set its weight to ``0`` and click **Save**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:518
+msgid "Wait for the rebalancing process to finish migrating all the set's buckets away. You can monitor the current bucket number as described in the :ref:`data rebalancing section <cartridge-rebalance-data>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:526
+msgid "Expelling instances"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:531
+msgid "Once an instance is *expelled*, it can never participate in the cluster again as every instance will reject it."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:534
+msgid "To expel an instance, stop it, then click **...** next to it, then click **Expel server** and **Expel**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:545
+msgid "There are two restrictions:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:547
+msgid "You can't expel a leader if it has a replica. Switch leadership first."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:548
+msgid "You can't expel a vshard-storage if it has buckets. Set the weight to zero and wait until rebalancing is completed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:551
+msgid "Since Cartridge 2.8.0 you will see an issue if you had a replica set with an expelled instance in ``box.space._cluster``. You can fix it by manually remove expelled instance from ``box.space._cluster``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:555
+msgid "-- call thin on leader:\n"
+"local confapplier = require('cartridge.confapplier')\n"
+"local topology = require('cartridge.topology')\n"
+"local topology_cfg = confapplier.get_readonly('topology')\n"
+"local fun = require('fun')\n"
+"for _, uuid, _ in fun.filter(topology.expelled, topology_cfg.servers) do\n"
+"    box.space._cluster.index.uuid:delete(uuid)\n"
+"end"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:568
+msgid "Do not expel instances until they're stopped."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:569
+msgid "Do not forget to clean expelled instence's data directory and remove it from your pipelines."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:571
+msgid "You can not return expelled instance to the cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:577
+msgid "Enabling automatic failover"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:579
+msgid "In a master-replica cluster configuration with automatic failover enabled, if the user-specified master of any replica set fails, the cluster automatically chooses a replica from the priority list and grants it the active master role (read/write). To learn more about details of failover work, see :ref:`failover documentation <cartridge-failover>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:587
+msgid "Failover disabled (default)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:589
+msgid "The leader is the first instance according to the topology configuration. No automatic decisions are made. You can manually change the leader in the failover priority list or call ``box.cfg{read_only = false}`` on any instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:593
+msgid "To disable failover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:595
+#: ../../doc/book/cartridge/cartridge_admin.rst:642
+#: ../../doc/book/cartridge/cartridge_admin.rst:682
+#: ../../doc/book/cartridge/cartridge_admin.rst:726
+msgid "Click **Failover**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:603
+msgid "In the **Failover control** box, select the **Disabled** mode:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:613
+msgid "Eventual failover (not recommended for production)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:617
+msgid "The eventual failover mode is **not recommended** for use on large clusters in production. If you have a high load production cluster, use the stateful failover with ``etcd`` instead."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:621
+msgid "The leader isn’t elected consistently. Every instance thinks the leader is the first healthy server in the replicaset. The instance health is determined according to the membership status (the SWIM protocol)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:625
+msgid "To set the priority in a replica set:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:627
+msgid "Click **Edit** next to the replica set in question."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:629
+msgid "Scroll to the bottom of the **Edit replica set** box to see the list of servers."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:632
+msgid "Drag replicas to their place in the priority list, and click **Save**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:640
+msgid "To enable eventual failover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:650
+msgid "In the **Failover control** box, select the **Eventual** mode:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:660
+msgid "Stateful failover"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:664
+msgid "The stateful failover mode with Tarantool Stateboard is **not recommended** for use on large clusters in production. If you have a high load production cluster, use the stateful failover with ``etcd`` instead."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:668
+msgid "Leader appointments are polled from the external state provider. Decisions are made by one of the instances with the ``failover-coordinator`` role enabled. There are two options of external state provider:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:672
+msgid "Tarantool Stateboard - you need to run instance of stateboard with command ``tarantool stateboard.init.lua``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:675
+msgid "etcd v2 - you need to run and configure etcd cluster. Note that **only etcd v2 API is supported**, so you can still use etcd v3 with ``ETCD_ENABLE_V2=true``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:678
+msgid "To enable stateful failover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:680
+msgid "Run stateboard or etcd"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:690
+msgid "In the **Failover control** box, select the **Stateful** mode:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:698
+#: ../../doc/book/cartridge/cartridge_admin.rst:742
+msgid "Check the necessary parameters."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:701
+msgid "In this mode, you can choose the leader with the **Promote a leader** button in the WebUI (or a GraphQL request)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:712
+msgid "Raft failover (beta)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:716
+msgid "Raft failover in Cartridge is in beta. Don't use it in production."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:718
+msgid "The replicaset leader is chosen by :ref:`built-in Raft <repl_leader_elect>`, then the other replicasets get information about leader change from membership. Raft parameters can be configured by environment variables."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:722
+msgid "To enable the Raft failover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:724
+msgid "Make sure that your Tarantool version is higher than 2.10.0"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:734
+msgid "In the **Failover control** box, select the **Raft** mode:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:745
+msgid "In this mode, you can choose the leader with the **Promote a leader** button in the WebUI (or a GraphQL request or manual call ``box.ctl.promote``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:758
+msgid "Changing failover priority list"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:760
+msgid "To change failover priority list:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:762
+msgid "Click the **Edit** button next to the replica set in question:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:770
+msgid "Scroll to the bottom of the **Edit replica set** box to see the list of servers. The server on the top is the master."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:779
+msgid "Drag a required server to the top position and click **Save**."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:781
+msgid "In case of eventual failover, the new master will automatically enter the read/write mode, while the ex-master will become read-only. This works for any roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:788
+msgid "Managing users"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:790
+msgid "On the **Users** tab, you can enable/disable authentication as well as add, remove, edit, and view existing users who can access the web interface."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:799
+msgid "Notice that the **Users** tab is available only if authorization in the web interface is :ref:`implemented <cartridge-auth-enable>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:802
+msgid "Also, some features (like deleting users) can be disabled in the cluster configuration; this is regulated by the `auth_backend_name <https://www.tarantool.io/en/rocks/cluster/1.0/modules/cluster/#cfg-opts-box-opts>`__ option passed to ``cartridge.cfg()``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:811
+msgid "Resolving conflicts"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:813
+msgid "Tarantool has an embedded mechanism for asynchronous replication. As a consequence, records are distributed among the replicas with a delay, so conflicts can arise."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:816
+msgid "To prevent conflicts, the special trigger ``space.before_replace`` is used. It is executed every time before making changes to the table for which it was configured. The trigger function is implemented in the Lua programming language. This function takes the original and new values of the tuple to be modified as its arguments. The returned value of the function is used to change the result of the operation: this will be the new value of the modified tuple."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:823
+msgid "For insert operations, the old value is absent, so ``nil`` is passed as the first argument."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:826
+msgid "For delete operations, the new value is absent, so ``nil`` is passed as the second argument. The trigger function can also return ``nil``, thus turning this operation into delete."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:830
+msgid "This example shows how to use the ``space.before_replace`` trigger to prevent replication conflicts. Suppose we have a ``box.space.test`` table that is modified in multiple replicas at the same time. We store one payload field in this table. To ensure consistency, we also store the last modification time in each tuple of this table and set the ``space.before_replace`` trigger, which gives preference to newer tuples. Below is the code in Lua:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:837
+msgid "fiber = require('fiber')\n"
+"-- define a function that will modify the function test_replace(tuple)\n"
+"        -- add a timestamp to each tuple in the space\n"
+"        tuple = box.tuple.new(tuple):update{{'!', 2, fiber.time()}}\n"
+"        box.space.test:replace(tuple)\n"
+"end\n"
+"box.cfg{ } -- restore from the local directory\n"
+"-- set the trigger to avoid conflicts\n"
+"box.space.test:before_replace(function(old, new)\n"
+"        if old ~= nil and new ~= nil and new[2] < old[2] then\n"
+"                return old -- ignore the request\n"
+"        end\n"
+"        -- otherwise apply as is\n"
+"end)\n"
+"box.cfg{ replication = {...} } -- subscribe"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:859
+msgid "Monitoring a cluster via CLI"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:861
+msgid "This section describes parameters you can monitor over the administrative console."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:868
+msgid "Connecting to nodes via CLI"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:870
+msgid "Each Tarantool node (``router``/``storage``) provides an administrative console (Command Line Interface) for debugging, monitoring, and troubleshooting. The console acts as a Lua interpreter and displays the result in the human-readable YAML format."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:875
+msgid "To connect to a Tarantool instance via the console, you can choose one of the commands:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:878
+msgid "Old-fashioned way:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:880
+msgid "$ tarantoolctl connect <instance_hostname>:<port>"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:884
+msgid "If you have cartridge-cli installed:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:886
+msgid "$ cartridge connect <instance_hostname>:<port>"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:890
+msgid "If you ran Cartridge locally:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:892
+msgid "$ cartridge enter <node_name>"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:896
+msgid "where the ``<instance_hostname>:<port>`` is the instance's URI."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:902
+msgid "Monitoring storages"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:904
+msgid "Use ``vshard.storage.info()`` to obtain information on storage nodes."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:910
+#: ../../doc/book/cartridge/cartridge_admin.rst:1085
+msgid "Output example"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:912
+msgid "tarantool> vshard.storage.info()\n"
+"---\n"
+"- replicasets:\n"
+"    <replicaset_2>:\n"
+"    uuid: <replicaset_2>\n"
+"    master:\n"
+"        uri: storage:storage@127.0.0.1:3303\n"
+"    <replicaset_1>:\n"
+"    uuid: <replicaset_1>\n"
+"    master:\n"
+"        uri: storage:storage@127.0.0.1:3301\n"
+"  bucket: <!-- buckets status\n"
+"    receiving: 0 <!-- buckets in the RECEIVING state\n"
+"    active: 2 <!-- buckets in the ACTIVE state\n"
+"    garbage: 0 <!-- buckets in the GARBAGE state (are to be deleted)\n"
+"    total: 2 <!-- total number of buckets\n"
+"    sending: 0 <!-- buckets in the SENDING state\n"
+"  status: 1 <!-- the status of the replica set\n"
+"  replication:\n"
+"    status: disconnected <!-- the status of the replication\n"
+"    idle: <idle>\n"
+"  alerts:\n"
+"  - ['MASTER_IS_UNREACHABLE', 'Master is unreachable: disconnected']"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:942
+#: ../../doc/book/cartridge/cartridge_admin.rst:1114
+msgid "Status list"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:950
+#: ../../doc/book/cartridge/cartridge_admin.rst:1122
+msgid "**Code**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:950
+#: ../../doc/book/cartridge/cartridge_admin.rst:1122
+msgid "**Critical level**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:950
+#: ../../doc/book/cartridge/cartridge_admin.rst:1122
+msgid "**Description**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:952
+#: ../../doc/book/cartridge/cartridge_admin.rst:1124
+msgid "0"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:952
+#: ../../doc/book/cartridge/cartridge_admin.rst:1124
+msgid "Green"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:952
+msgid "A replica set works in a regular way."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:954
+#: ../../doc/book/cartridge/cartridge_admin.rst:1126
+msgid "1"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:954
+#: ../../doc/book/cartridge/cartridge_admin.rst:1126
+msgid "Yellow"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:954
+msgid "There are some issues, but they don’t affect a replica set efficiency (worth noticing, but don't require immediate intervention)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:959
+#: ../../doc/book/cartridge/cartridge_admin.rst:1129
+msgid "2"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:959
+#: ../../doc/book/cartridge/cartridge_admin.rst:1129
+msgid "Orange"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:959
+msgid "A replica set is in a degraded state."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:961
+#: ../../doc/book/cartridge/cartridge_admin.rst:1131
+msgid "3"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:961
+#: ../../doc/book/cartridge/cartridge_admin.rst:1131
+msgid "Red"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:961
+msgid "A replica set is disabled."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:968
+#: ../../doc/book/cartridge/cartridge_admin.rst:1138
+msgid "Potential issues"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:970
+msgid "``MISSING_MASTER`` -- No master node in the replica set configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:972
+#: ../../doc/book/cartridge/cartridge_admin.rst:1148
+#: ../../doc/book/cartridge/cartridge_admin.rst:1157
+msgid "**Critical level:** Orange."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:974
+msgid "**Cluster condition:** Service is degraded for data-change requests to the replica set."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:977
+msgid "**Solution:** Set the master node for the replica set in the configuration using API."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:979
+msgid "``UNREACHABLE_MASTER`` -- No connection between the master and the replica."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:981
+#: ../../doc/book/cartridge/cartridge_admin.rst:1026
+msgid "**Critical level:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:983
+msgid "If idle value doesn’t exceed T1 threshold (1 s.)---Yellow,"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:984
+msgid "If idle value doesn’t exceed T2 threshold (5 s.)---Orange,"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:985
+msgid "If idle value exceeds T3 threshold (10 s.)---Red."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:987
+msgid "**Cluster condition:** For read requests to replica, the data may be obsolete compared with the data on master."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:990
+msgid "**Solution:** Reconnect to the master: fix the network issues, reset the current master, switch to another master."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:993
+msgid "``LOW_REDUNDANCY`` -- Master has access to a single replica only."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:995
+#: ../../doc/book/cartridge/cartridge_admin.rst:1013
+#: ../../doc/book/cartridge/cartridge_admin.rst:1053
+#: ../../doc/book/cartridge/cartridge_admin.rst:1168
+msgid "**Critical level:** Yellow."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:997
+msgid "**Cluster condition:** The data storage redundancy factor is equal to 2. It is lower than the minimal recommended value for production usage."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1000
+msgid "**Solution:** Check cluster configuration:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1002
+msgid "If only one master and one replica are specified in the configuration, it is recommended to add at least one more replica to reach the redundancy factor of 3."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1005
+msgid "If three or more replicas are specified in the configuration, consider checking the replicas' states and network connection among the replicas."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1008
+msgid "``INVALID_REBALANCING`` -- Rebalancing invariant was violated. During migration, a storage node can either send or receive buckets. So it shouldn’t be the case that a replica set sends buckets to one replica set and receives buckets from another replica set at the same time."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1015
+msgid "**Cluster condition:** Rebalancing is on hold."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1017
+msgid "**Solution:** There are two possible reasons for invariant violation:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1019
+msgid "The ``rebalancer`` has crashed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1020
+msgid "Bucket states were changed manually."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1022
+msgid "Either way, please contact Tarantool support."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1024
+msgid "``HIGH_REPLICATION_LAG`` -- Replica’s lag exceeds T1 threshold (1 sec.)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1028
+msgid "If the lag doesn’t exceed T1 threshold (1 sec.)---Yellow;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1029
+msgid "If the lag exceeds T2 threshold (5 sec.)---Orange."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1031
+#: ../../doc/book/cartridge/cartridge_admin.rst:1042
+msgid "**Cluster condition:** For read-only requests to the replica, the data may be obsolete compared with the data on the master."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1034
+#: ../../doc/book/cartridge/cartridge_admin.rst:1045
+msgid "**Solution:** Check the replication status of the replica. Further instructions are given in the `Tarantool troubleshooting guide <https://www.tarantool.io/en/doc/latest/book/admin/troubleshoot/>`_."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1038
+msgid "``OUT_OF_SYNC`` -- Mal-synchronization occurred. The lag exceeds T3 threshold (10 sec.)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1040
+msgid "**Critical level:** Red."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1051
+msgid "``UNREACHABLE_REPLICA`` -- One or multiple replicas are unreachable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1055
+msgid "**Cluster condition:** Data storage redundancy factor for the given replica set is less than the configured factor. If the replica is next in the queue for rebalancing (in accordance with the weight configuration), the requests are forwarded to the replica that is still next in the queue."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1060
+msgid "**Solution:** Check the error message and find out which replica is unreachable. If a replica is disabled, enable it. If this doesn’t help, consider checking the network."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1064
+msgid "``UNREACHABLE_REPLICASET`` -- All replicas except for the current one are unreachable. **Critical level:** Red."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1067
+msgid "**Cluster condition:** The replica stores obsolete data."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1069
+msgid "**Solution:** Check if the other replicas are enabled. If all replicas are enabled, consider checking network issues on the master. If the replicas are disabled, check them first: the master might be working properly."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1077
+msgid "Monitoring routers"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1079
+msgid "Use ``vshard.router.info()`` to obtain information on the router."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1087
+msgid "tarantool> vshard.router.info()\n"
+"---\n"
+"- replicasets:\n"
+"    <replica set UUID>:\n"
+"      master:\n"
+"        status: <available / unreachable / missing>\n"
+"        uri: <!-- URI of master\n"
+"        uuid: <!-- UUID of instance\n"
+"      replica:\n"
+"        status: <available / unreachable / missing>\n"
+"        uri: <!-- URI of replica used for slave requests\n"
+"        uuid: <!-- UUID of instance\n"
+"      uuid: <!-- UUID of replica set\n"
+"    <replica set UUID>: ...\n"
+"    ...\n"
+"  status: <!-- status of router\n"
+"  bucket:\n"
+"    known: <!-- number of buckets with the known destination\n"
+"    unknown: <!-- number of other buckets\n"
+"  alerts: [<alert code>, <alert description>], ..."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1124
+msgid "The ``router`` works in a regular way."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1126
+msgid "Some replicas are unreachable (affects the speed of executing read requests)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1129
+msgid "Service is degraded for changing data."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1131
+msgid "Service is degraded for reading data."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1142
+msgid "Depending on the nature of the issue, use either the UUID of a replica, or the UUID of a replica set."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1145
+msgid "``MISSING_MASTER`` -- The master in one or multiple replica sets is not specified in the configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1150
+#: ../../doc/book/cartridge/cartridge_admin.rst:1159
+msgid "**Cluster condition:** Partial degrade for data-change requests."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1152
+msgid "**Solution:** Specify the master in the configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1154
+msgid "``UNREACHABLE_MASTER`` -- The ``router`` lost connection with the master of one or multiple replica sets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1161
+msgid "**Solution:** Restore connection with the master. First, check if the master is enabled. If it is, consider checking the network."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1164
+msgid "``SUBOPTIMAL_REPLICA`` -- There is a replica for read-only requests, but this replica is not optimal according to the configured weights. This means that the optimal replica is unreachable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1170
+msgid "**Cluster condition:** Read-only requests are forwarded to a backup replica."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1172
+msgid "**Solution:** Check the status of the optimal replica and its network connection."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1174
+msgid "``UNREACHABLE_REPLICASET`` -- A replica set is unreachable for both read-only and data-change requests."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1177
+msgid "**Critical Level:** Red."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1179
+msgid "**Cluster condition:** Partial degrade for read-only and data-change requests."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1181
+msgid "**Solution:** The replica set has an unreachable master and replica. Check the error message to detect this replica set. Then fix the issue in the same way as for :ref:`UNREACHABLE_REPLICA <unreachable_replica>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1189
+msgid "Issues and suggestions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1191
+msgid "Cartridge displays cluster and instances issues in WebUI:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1199
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1201
+msgid "**critical**: \"Replication from ... to ... isn't running\" -- when ``box.info.replication.upstream == nil``;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1204
+msgid "**critical**: \"Replication from ... to ... state \"stopped\"/\"orphan\"/etc. (...)\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1206
+msgid "**warning**: \"Replication from ... to ...: high lag\" -- when ``upstream.lag > box.cfg.replication_sync_lag``;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1209
+msgid "**warning**: \"Replication from ... to ...: long idle\" -- when ``upstream.idle > 2 * box.cfg.replication_timeout``;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1218
+msgid "Cartridge can propose you to fix some of replication issues by restarting replication:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1227
+msgid "Failover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1229
+msgid "**warning**: \"Can't obtain failover coordinator (...)\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1230
+msgid "**warning**: \"There is no active failover coordinator\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1231
+msgid "**warning**: \"Failover is stuck on ...: Error fetching appointments (...)\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1232
+msgid "**warning**: \"Failover is stuck on ...: Failover fiber is dead\" -- this is likely a bug;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1234
+msgid "Switchover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1236
+msgid "**warning**: \"Consistency on ... isn't reached yet\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1238
+msgid "Clock:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1240
+msgid "**warning**: \"Clock difference between ... and ... exceed threshold\" -- ``limits.clock_delta_threshold_warning``;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1242
+msgid "Memory:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1244
+msgid "**critical**: \"Running out of memory on ...\" -- when all 3 metrics ``items_used_ratio``, ``arena_used_ratio``, ``quota_used_ratio`` from ``box.slab.info()`` exceed ``limits.fragmentation_threshold_critical``;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1248
+msgid "**warning**: \"Memory is highly fragmented on ...\" - when ``items_used_ratio > limits.fragmentation_threshold_warning`` and both ``arena_used_ratio``, ``quota_used_ratio`` exceed critical limit;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1252
+msgid "Configuration:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1254
+msgid "**warning**: \"Configuration checksum mismatch on ...\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1255
+msgid "**warning**: \"Configuration is prepared and locked on ...\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1256
+msgid "**warning**: \"Advertise URI (...) differs from clusterwide config (...)\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1257
+msgid "**warning**: \"Configuring roles is stuck on ... and hangs for ... so far\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1265
+msgid "Cartridge can propose you to fix some of configuration issues by force applying configuration:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1274
+msgid "Alien members:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1276
+msgid "**warning**: \"Instance ... with alien uuid is in the membership\" -- when two separate clusters share the same cluster cookie;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1285
+msgid "Deprecated space format:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1287
+msgid "**warning**: \"Instance ... has spaces with deprecated format: space1, ...\""
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1289
+msgid "Custom issues (defined by user):"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1291
+msgid "Custom roles can announce more issues with their own level, topic and message. See `custom-role.get_issues`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1298
+msgid "Since Tarantool Enterprise supporting compression, Cartridge can check if you have spaces where you can use compression. To enable it, click on button \"Suggestions\". Note that the operation can affect cluster perfomance, so choose the time to use it wisely."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1309
+msgid "You will see the warning about cluster perfomance and then click \"Continue\"."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1317
+msgid "You will see information about fields that can be compressed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1330
+msgid "Instances general info"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1332
+msgid "You can check some general instance info in WebUI. To see it, click on \"Server details button\"."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1341
+msgid "And then choose one of the tabs to see various parameters:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1354
+msgid "Changing cluster cookie"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1356
+msgid "In some cases it could be useful to change cluster-cookie (e.g. when you need to fix a broken cluster). To do it, perform next actions:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1359
+#: ../../doc/book/cartridge/cartridge_admin.rst:1382
+msgid "(Optional) If you use stateful failover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1361
+msgid "-- remember old cookie hash\n"
+"local cluster_cookie = require('cartridge.cluster-cookie')\n"
+"\n"
+"local old_hash = cluster_cookie.get_cookie_hash()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1368
+msgid "Change cluster-cookie on each instance:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1370
+msgid "local cluster_cookie = require('cartridge.cluster-cookie')\n"
+"\n"
+"cluster_cookie.set_cookie(new_cookie)\n"
+"\n"
+"require('membership').set_encryption_key(cluster_cookie.cookie())\n"
+"\n"
+"if require('cartridge.failover').is_leader() then\n"
+"    box.schema.user.passwd(new_cookie)\n"
+"end"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1384
+msgid "-- update cookie hash in a state provider\n"
+"require('cartridge.vars').new('cartridge.failover').client:set_identification_string(\n"
+"    cluster_cookie.get_cookie_hash(), old_hash)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1390
+msgid "Call ``apply_config`` in cluster to reapply changes to each instance:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1392
+msgid "local confapplier = require('cartridge.confapplier')\n"
+"local clusterwide_config = confapplier.get_active_config()\n"
+"return confapplier.apply_config(clusterwide_config)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1403
+msgid "Fixing broken instance configuration"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1405
+msgid "It's possible that some instances have a broken configuration. To do it, perform next actions:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1408
+msgid "Try to reapply configuration forcefully:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1410
+msgid "cartridge.config_force_reapply(instaces_uuids) -- pass here uuids of broken instances"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1414
+msgid "If it didn't work, you could try to copy a config from healthy instance:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1416
+msgid "Stop broken instance and remove it's ``config`` directory. Don't touch any other files in working directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1419
+msgid "Copy ``config``  directory from a healthy instance to broken one's directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1421
+msgid "Start broken instance and check if it's working."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1423
+msgid "If nothing had worked, try to carefully remove a broken instance from cluster and setup a new one."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1430
+msgid "Upgrading schema"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1432
+msgid "When upgrading Tarantool to a newer version, please don't forget to:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1434
+msgid "Stop the cluster"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1435
+msgid "Make sure that ``upgrade_schema`` :ref:`option <cartridge.cfg>` is enabled"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1436
+msgid "Start the cluster again"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1438
+msgid "This will automatically apply `box.schema.upgrade() <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/#admin-upgrades>`_ on the leader, according to the failover priority in the topology configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1446
+msgid "Disaster recovery"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1448
+msgid "Please see the `disaster recovery section <https://www.tarantool.io/en/doc/latest/book/admin/disaster_recovery/>`_ in the Tarantool manual."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1456
+msgid "Backups"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_admin.rst:1458
+msgid "Please see the `backups section <https://www.tarantool.io/en/doc/latest/book/admin/backups/>`_ in the Tarantool manual."
+msgstr ""

@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:5
+msgid "box.ctl.on_schema_init()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:11
+msgid "Create a \"schema_init :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed when :ref:`box.cfg{} <index-book_cfg>` happens for the first time. That is, the ``schema_init`` trigger is called before the server's configuration and recovery begins, and therefore ``box.ctl.on_schema_init`` must be called before ``box.cfg`` is called."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:18
+msgid "function which will become the trigger function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:20
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:23
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:25
+msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:28
+msgid "A common use is: make a ``schema_init`` trigger function which creates a ``before_replace`` trigger function on a system space. Thus, since system spaces are created when the server starts, the ``before_replace`` triggers will be activated for each tuple in each system space. For example, such a trigger could change the storage engine of a given space, or make a given space :ref:`replica-local <replication-local>` while a replica is being bootstrapped. Making such a change after ``box.cfg`` is not reliable because other connections might use the database before the change is made."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:38
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:40
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:42
+msgid "Suppose that, before the server is fully up and ready for connections, you want to make sure that the engine of space ``space_name`` is vinyl. So you want to make a trigger that will be activated when a tuple is inserted in the ``_space`` system space. In this case you could end up with a master that has space-name with ``engine='memtx'`` and a replica that has space_name with ``engine='vinyl'``, with the same contents."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_schema_init.rst:51
+msgid "function function_for_before_replace(old, new)\n"
+"  if old == nil and new ~= nil and new[3] == 'space_name' and new[4] ~= 'vinyl' then\n"
+"    return new:update{{'=', 4, 'vinyl'}}\n"
+"  end\n"
+"end\n"
+"\n"
+"box.ctl.on_schema_init(function()\n"
+"  box.space._space:before_replace(function_for_before_replace)\n"
+"end)\n"
+"\n"
+"box.cfg{replication='master_uri', ...}"
+msgstr ""

@@ -1,0 +1,74 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:5
+msgid "box.tuple.new()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:11
+msgid "Construct a new tuple from either a scalar or a Lua table. Alternatively, one can get new tuples from Tarantool's :ref:`select <box_space-select>` or :ref:`insert <box_space-insert>` or :ref:`replace <box_space-replace>` or :ref:`update <box_space-update>` requests, which can be regarded as statements that do ``new()`` implicitly."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:18
+msgid "the value that will become the tuple contents."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:20
+msgid "a new tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:21
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:23
+msgid "In the following example, ``x`` will be a new table object containing one tuple and ``t`` will be a new tuple object. Saying ``t`` returns the entire tuple ``t``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:27
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/new.rst:29
+msgid "tarantool> x = box.space.tester:insert{\n"
+"         >   33,\n"
+"         >   tonumber('1'),\n"
+"         >   tonumber64('2')\n"
+"         > }:totable()\n"
+"---\n"
+"...\n"
+"tarantool> t = box.tuple.new{'abc', 'def', 'ghi', 'abc'}\n"
+"---\n"
+"...\n"
+"tarantool> t\n"
+"---\n"
+"- ['abc', 'def', 'ghi', 'abc']\n"
+"..."
+msgstr ""

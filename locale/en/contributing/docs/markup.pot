@@ -1,0 +1,30 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/markup.rst:11
+#: ../../doc/contributing/docs/markup.rst:11
+msgid "Contents:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup.rst:3
+msgid "Markup reference"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup.rst:5
+msgid "Tarantool documentation is built via the `Sphinx <https://www.sphinx-doc.org/en/master/index.html>`_ engine and is written in `reStructuredText <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_. This section will guide you through our typical documentation formatting cases."
+msgstr ""

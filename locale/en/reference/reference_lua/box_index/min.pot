@@ -1,0 +1,108 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:4
+msgid "index_object:min()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:10
+msgid "Find the minimum value in the specified index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:12
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:14
+msgid "values to be matched against the index key"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:16
+msgid "the tuple for the first key in the index. If the optional ``key`` value is supplied, returns the first key that is greater than or equal to ``key``. Starting with :doc:`Tarantool 2.0.4 </release/2.1.2>`, ``index_object:min(key)`` returns nothing if ``key`` doesn't match any value in the index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:21
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:23
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:25
+msgid "Index is not of type 'TREE'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:26
+msgid ":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:29
+msgid "**Complexity factors:** Index size, Index type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:31
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:33
+msgid "Below are few examples of using ``min``. To try out these examples, you need to bootstrap a Tarantool database as described in :ref:`Using data operations <box_space-operations-detailed-examples>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/min.rst:37
+msgid "-- Insert test data --\n"
+"box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"box.space.bands:insert { 4, 'The Beatles', 1960 }\n"
+"box.space.bands:insert { 5, 'Pink Floyd', 1965 }\n"
+"box.space.bands:insert { 6, 'The Rolling Stones', 1962 }\n"
+"box.space.bands:insert { 7, 'The Doors', 1965 }\n"
+"box.space.bands:insert { 8, 'Nirvana', 1987 }\n"
+"box.space.bands:insert { 9, 'Led Zeppelin', 1968 }\n"
+"box.space.bands:insert { 10, 'Queen', 1970 }\n"
+"\n"
+"-- Find the minimum value in the specified index\n"
+"min = box.space.bands.index.year:min()\n"
+"--[[\n"
+"---\n"
+"- [4, 'The Beatles', 1960]\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Find the minimum value that matches the partial key value\n"
+"min_partial = box.space.bands.index.year_band:min(1965)\n"
+"--[[\n"
+"---\n"
+"- [5, 'Pink Floyd', 1965]\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""

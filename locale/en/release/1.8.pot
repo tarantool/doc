@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.8.rst:3
+msgid "Tarantool 1.8"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:5
+msgid "Release: :tarantool-release:`1.8.0`"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:11
+msgid "**Release 1.8.1**"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:13
+msgid "Release type: alpha. Release date: 2017-05-17.  Tag: 1.8.1. Release: https://groups.google.com/forum/#!msg/tarantool-ru/XYaoqJpc544/mSvKrYwNAgAJ or :tarantool-release:`1.8.1.`"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:17
+msgid "This is an alpha release which delivers support for a substantial subset of the ISO/IEC 9075:2011 SQL standard, including joins, subqueries and views. SQL is a major feature of the 1.8 release series, in which we plan to add support for ODBC and JDBC connectors, SQL triggers, prepared statements, security and roles, and generally ensure SQL is a first class query language in Tarantool."
+msgstr ""
+
+#: ../../doc/release/1.8.rst:24
+msgid "Functionality added or changed:"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:26
+msgid "A new function ``box.sql.execute()`` (later changed to ``box.execute`` in Tarantool 2.1) was added to query Tarantool databases using SQL statements, e.g.:"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:30
+msgid "tarantool> box.sql.execute([[SELECT * FROM _schema]]);"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:34
+msgid "SQL and Lua are fully interoperable."
+msgstr ""
+
+#: ../../doc/release/1.8.rst:35
+msgid "New meta-commands introduced to Tarantool's console."
+msgstr ""
+
+#: ../../doc/release/1.8.rst:37
+msgid "You can now set input language to either SQL or Lua, e.g.:"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:39
+msgid "tarantool> \\set language sql\n"
+"tarantool> SELECT * FROM _schema\n"
+"tarantool> \\set language lua\n"
+"tarantool> print(\"Hello, world!\")"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:46
+msgid "Most SQL statements are supported:"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:48
+msgid "CREATE/DROP TABLE/INDEX/VIEW"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:50
+msgid "tarantool> CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:54
+msgid "INSERT/UPDATE/DELETE statements e.g.:"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:56
+msgid "tarantool> INSERT INTO table1 VALUES (1, 'A');\n"
+"...\n"
+"tarantool> UPDATE table1 SET column2 = 'B';"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:67
+msgid "SELECT statements, including complex complicated variants which include"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:63
+msgid "multiple JOINs, nested SELECTs etc. e.g.:"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:65
+msgid "tarantool> SELECT sum(column1) FROM table1 WHERE column2 LIKE '_B' GROUP BY column2;"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:69
+msgid "WITH statements e.g."
+msgstr ""
+
+#: ../../doc/release/1.8.rst:71
+msgid "tarantool> WITH cte AS ( SELECT SUBSTR(column2,1,2), column1 FROM table1 WHERE column1 >= 0) SELECT * FROM cte;"
+msgstr ""
+
+#: ../../doc/release/1.8.rst:75
+msgid "SQL schema is persistent, so it is able to survive ``snapshot()``/``restore()`` sequence."
+msgstr ""
+
+#: ../../doc/release/1.8.rst:76
+msgid "SQL features are described in a :ref:`tutorial <sql_tutorial>`."
+msgstr ""

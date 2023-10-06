@@ -1,0 +1,47 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/count_fields.rst:6
+msgid "#tuple_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/count_fields.rst:12
+msgid "The ``#`` operator in Lua means \"return count of components\". So, if ``t`` is a tuple instance, ``#t`` will return the number of fields."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/count_fields.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/count_fields.rst:15
+msgid "number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/count_fields.rst:17
+msgid "In the following example, a tuple named ``t`` is created and then the number of fields in ``t`` is returned."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/count_fields.rst:20
+msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4'}\n"
+"---\n"
+"...\n"
+"tarantool> #t\n"
+"---\n"
+"- 4\n"
+"..."
+msgstr ""

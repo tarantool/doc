@@ -1,0 +1,231 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:5
+msgid "Class *luatest.replica_set*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:7
+msgid "Class to manage groups of Tarantool instances with the same data set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:15
+msgid "Methods"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:22
+msgid "ReplicaSet:add_server (server)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:24
+msgid "Add the server object to the replica set. The added server object should be built via the  ``ReplicaSet:build_server`` function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:30
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:44
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:66
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:88
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:128
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:146
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:203
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:231
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:32
+msgid "*server:* (**tab**) Server object to be added to the replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:39
+msgid "ReplicaSet:build_and_add_server ([config])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:41
+msgid "Build a server object and add it to the replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:46
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:68
+msgid "*config:* (**tab**) Configuration for the new server. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:48
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:70
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:114
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:132
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:153
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:50
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:72
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:116
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:155
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:53
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:75
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:158
+msgid "**See also:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:55
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:77
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:160
+msgid "luatest.server.Server:new"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:61
+msgid "ReplicaSet:build_server ([config])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:63
+msgid "Build a server object for the replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:83
+msgid "ReplicaSet:delete_server (alias)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:85
+msgid "Delete the server object from the replica set by the given server alias."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:90
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:130
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Server alias."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:97
+msgid "ReplicaSet:drop ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:99
+msgid "Stop all servers in the replica set and clean their working directories."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:108
+msgid "ReplicaSet:get_leader ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:110
+msgid "Get a server which is a writable node in the replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:123
+msgid "ReplicaSet:get_server (alias)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:125
+msgid "Get the server object from the replica set by the given server alias."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:134
+msgid "table|nil"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:141
+msgid "ReplicaSet:new ([object])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:143
+msgid "Build a replica set object."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:148
+msgid "*object:* Table with the entries listed below. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:150
+msgid "*servers:* (**tab**) List of server configurations to build serverobjects from and add them to the new replica set. See an example below. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:164
+msgid "Usage:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:166
+msgid "local ReplicaSet = require('luatest.replica_set')\n"
+"local Server = require('luatest.server')\n"
+"local box_cfg = {\n"
+"    replication_timeout = 0.1,\n"
+"    replication_connect_timeout = 10,\n"
+"    replication_sync_lag = 0.01,\n"
+"    replication_connect_quorum = 3,\n"
+"    replication = {\n"
+"        Server.build_listen_uri('replica1'),\n"
+"        Server.build_listen_uri('replica2'),\n"
+"        Server.build_listen_uri('replica3'),\n"
+"    },\n"
+"}\n"
+"local replica_set = ReplicaSet:new({\n"
+"    servers = {\n"
+"        {alias = 'replica1', box_cfg = box_cfg},\n"
+"        {alias = 'replica2', box_cfg = box_cfg},\n"
+"        {alias = 'replica3', box_cfg = box_cfg},\n"
+"    }\n"
+"})\n"
+"replica_set:start()\n"
+"replica_set:wait_for_fullmesh()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:196
+msgid "ReplicaSet:start ([opts])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:198
+msgid "Start all servers in the replica set. Optionally waits until all servers are ready."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:205
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:233
+msgid "*opts:* Table with the entries listed below. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:207
+msgid "*wait_until_ready:* (**bool**) Wait until all servers are ready.Defaults to  ``true`` . (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:215
+msgid "ReplicaSet:stop ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:217
+msgid "Stop all servers in the replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:226
+msgid "ReplicaSet:wait_for_fullmesh ([opts])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:228
+msgid "Wait until every node is connected to every other node in the replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:235
+msgid "*timeout:* (**number**) Timeout in seconds to wait for full mesh.Defaults to 60. (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.replica_set.rst:236
+msgid "*delay:* (**number**) Delay in seconds between attempts to check full mesh.Defaults to 0.1. (optional)"
+msgstr ""

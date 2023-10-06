@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:6
+msgid "tuple_object:pairs(), tuple_object:ipairs()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:13
+msgid "In Lua, `lua-table-value:pairs() <https://www.lua.org/pil/7.3.html>`_ is a method which returns: ``function``, ``lua-table-value``, ``nil``. Tarantool has extended this so that ``tuple-value:pairs()`` returns: ``function``, ``tuple-value``, ``nil``. It is useful for Lua iterators, because Lua iterators traverse a value's components until an end marker is reached."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:20
+msgid "``tuple_object:ipairs()`` is the same as ``pairs()``, because tuple fields are always integers."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:23
+msgid "function, tuple-value, nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:24
+msgid "function, lua-value, nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:26
+msgid "In the following example, a tuple named ``t`` is created and then all its fields are selected using a Lua for-end loop."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/pairs.rst:29
+msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
+"---\n"
+"...\n"
+"tarantool> tmp = ''\n"
+"---\n"
+"...\n"
+"tarantool> for k, v in t:pairs() do\n"
+"         >   tmp = tmp .. v\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> tmp\n"
+"---\n"
+"- Fld#1Fld#2Fld#3Fld#4Fld#5\n"
+"..."
+msgstr ""

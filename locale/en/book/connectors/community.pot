@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/connectors/community.rst:9
+msgid "C++"
+msgstr ""
+
+#: ../../doc/book/connectors/community.rst:4
+msgid "Community-supported connectors"
+msgstr ""
+
+#: ../../doc/book/connectors/community.rst:6
+msgid "This section provides information on several `community-supported connectors <https://www.tarantool.io/en/download/connectors>`_. Note that they may have limited support for new Tarantool features."
+msgstr ""
+
+#: ../../doc/book/connectors/community.rst:18
+msgid "For Erlang, use the `Erlang tarantool driver <https://github.com/stofel/taran>`__."
+msgstr ""
+
+#: ../../doc/book/connectors/community.rst:20
+msgid "For R, use the `tarantoolr <https://github.com/thekvs/tarantoolr>`__ connector."
+msgstr ""

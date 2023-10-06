@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/getting_started/index.rst:8
+msgid "Getting started"
+msgstr ""
+
+#: ../../doc/getting_started/index.rst:10
+msgid "The :ref:`First steps <getting_started-imcp>` section will get you acquainted with Tarantool in 15 minutes. We will be creating a basic microservice for TikTok. We will start Tarantool, create a data schema, and write our first data. You'll get an understanding of the technology and learn about the basic terms and features."
+msgstr ""
+
+#: ../../doc/getting_started/index.rst:16
+msgid "In the :ref:`Connecting to cluster <connecting_to_cluster>` section, we'll show you how to read or write data to Tarantool from your Python/Go/PHP application or another programming language."
+msgstr ""
+
+#: ../../doc/getting_started/index.rst:20
+msgid "After connecting to the database for the first time, you might want to change the data schema. In the section :ref:`Updating the data schema <getting_started-schema_changing>`, we'll discuss the approaches to changing the data schema and the associated limitations."
+msgstr ""
+
+#: ../../doc/getting_started/index.rst:24
+msgid "To make our code work with Tarantool, we may want to transfer some of our data logic to Tarantool. In the section :ref:`Writing cluster application code <getting_started-wrirting_cluster-code>`, we'll write a \"Hello, World!\" program in the Lua language, which will work in our Tarantool cluster. This will give you a basic understanding of how the role mechanism works. In this way, you'll understand what part of your business logic you would like to write in/migrate to Tarantool."
+msgstr ""
+
+#: ../../doc/getting_started/index.rst:41
+msgid "To continue exploring Tarantool and its ecosystem, you might want to check out Tarantool :doc:`tutorials and guides <../how-to/index>`. The :ref:`Cartridge beginner tutorial <getting_started_cartridge>` can also be found there."
+msgstr ""

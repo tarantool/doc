@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:5
+msgid "Streams"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:10
+msgid "The :ref:`Streams and interactive transactions <txn_mode_stream-interactive-transactions>` feature, which was added in Tarantool version :tarantool-release:`2.10.0`, allows two things: sequential processing and interleaving."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:15
+msgid "**Sequential processing**: With streams there is a guarantee that the server instance will not handle the next request in a stream until it has completed the previous one."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:19
+msgid "**Interleaving**: For example, a series of requests can include \"begin for stream #1\", \"begin for stream #2\", \"insert for stream #1\", \"insert for stream #2\", \"delete for stream #1\", \"commit for stream #1\", \"rollback for stream #2\"."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:25
+msgid "To work with stream transactions using iproto, the following is required:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:27
+msgid "The engine should be :ref:`vinyl <engines-vinyl>` or :ref:`memtx with mvcc <cfg_basic-memtx_use_mvcc_engine>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:28
+msgid "The client is responsible for ensuring that the stream identifier, unsigned integer :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`, is in the request header. IPROTO_STREAM_ID can be any positive 64-bit number, and should be unique for the connection. If IPROTO_STREAM_ID equals zero, the server instance will ignore it."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:34
+msgid "Basic request description"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:42
+msgid "Name"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:43
+msgid "Code"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:44
+msgid "Description"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:46
+msgid ":ref:`IPROTO_BEGIN <box_protocol-begin>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:47
+msgid "0x0e"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:48
+msgid "Begin a transaction in the specified stream"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:50
+msgid ":ref:`IPROTO_COMMIT <box_protocol-commit>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:51
+msgid "0x0f"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:52
+msgid "Commit the transaction in the specified stream"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:54
+msgid ":ref:`IPROTO_ROLLBACK <box_protocol-rollback>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:55
+msgid "0x10"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:56
+msgid "Rollback the transaction in the specified stream"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:61
+msgid "IPROTO_BEGIN"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:63
+msgid "Code: 0x0e."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:65
+msgid "Begin a transaction in the specified stream. See :ref:`stream:begin() <net_box-stream_begin>`. The body is optional and can contain two items:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:72
+msgid "IPROTO_TIMEOUT is an optional timeout (in seconds). After it expires, the transaction will be rolled back automatically."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:78
+msgid "IPROTO_COMMIT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:80
+msgid "Code: 0x0f."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:82
+msgid "Commit the transaction in the specified stream. See :ref:`stream:commit() <net_box-stream_commit>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:91
+msgid "IPROTO_ROLLBACK"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:93
+msgid "Codde: 0x10."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:95
+msgid "Rollback the transaction in the specified stream. See :ref:`stream:rollback() <net_box-stream_rollback>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:103
+msgid "Example"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:105
+msgid "Suppose that the client has started a stream with the :ref:`net.box module <net_box-module>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:108
+msgid "net_box = require('net.box')\n"
+"conn = net_box.connect('localhost:3302')\n"
+"stream = conn:new_stream()"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:114
+msgid "At this point the stream object will look like a duplicate of the conn object, with just one additional member: ``stream_id``. Now, using stream instead of conn, the client sends two requests:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:118
+msgid "stream.space.T:insert{1}\n"
+"stream.space.T:insert{2}"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:123
+msgid "The header and body of these requests will be the same as in non-stream :ref:`IPROTO_INSERT <box_protocol-insert>` requests, except that the header will contain an additional item: IPROTO_STREAM_ID=0x0a with MP_UINT=0x01. It happens to equal 1 for this example because each call to conn:new_stream() assigns a new number, starting with 1."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:131
+msgid "The client makes stream transactions by sending, in order:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:133
+msgid "IPROTO_BEGIN with an optional transaction timeout in the IPROTO_TIMEOUT field of the request body."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:134
+msgid "The transaction data-change and query requests."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:135
+msgid "IPROTO_COMMIT or IPROTO_ROLLBACK."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:137
+msgid "All these requests must contain the same IPROTO_STREAM_ID value."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:139
+msgid "A rollback will happen automatically if a disconnect occurs or the transaction timeout expires before the commit is possible."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/streams.rst:142
+msgid "Thus there are now multiple ways to do transactions: with ``net_box`` ``stream:begin()`` and ``stream:commit()`` or ``stream:rollback()`` which cause IPROTO_BEGIN and IPROTO_COMMIT or IPROTO_ROLLBACK with the current value of stream.stream_id; with :ref:`box.begin() <box-begin>` and :ref:`box.commit() <box-commit>` or :ref:`box.rollback() <box-rollback>`; with SQL and :ref:`START TRANSACTION <sql_start_transaction>` and :ref:`COMMIT <sql_commit>` or :ref:`ROLLBACK <sql_rollback>`. An application can use any or all of these ways."
+msgstr ""

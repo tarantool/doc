@@ -1,0 +1,600 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/membership.rst:5
+msgid "Module membership"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:7
+msgid "This module is a ``membership`` library for Tarantool based on a gossip protocol."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:9
+msgid "This library builds a mesh from multiple Tarantool instances. The mesh monitors itself, helps members discover everyone else in the group and get notified about their status changes with low latency. It is built upon the ideas from Consul or, more precisely, the SWIM algorithm."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:14
+msgid "The ``membership`` module works over UDP protocol and can operate even before the ``box.cfg`` initialization."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:21
+msgid "Member data structure"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:23
+msgid "A member is represented by the table with the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:25
+msgid "``uri`` (string) is a Uniform Resource Identifier."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:26
+msgid "``status`` (string) is a string that takes one of the values below."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:28
+msgid "``alive``: a member that replies to ping-messages is ``alive`` and well."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:29
+msgid "``suspect``: if any member in the group cannot get a reply from any other member, the first member asks three other ``alive`` members to send a ping-message to the member in question. If there is no response, the latter becomes a ``suspect``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:33
+msgid "``dead``: a ``suspect`` becomes ``dead`` after a timeout."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:34
+msgid "``left``: a member gets the ``left`` status after executing the :ref:`leave() <membership-leave>` function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:37
+msgid "The gossip protocol guarantees that every member in the group becomes aware of any status change in two communication cycles."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:40
+msgid "``incarnation`` (number) is a value incremented every time the instance becomes a ``suspect``, ``dead``, or updates its payload."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:42
+msgid "``payload`` (table) is auxiliary data that can be used by various modules."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:43
+msgid "``timestamp`` (number) is a value of ``fiber.time64()`` which:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:45
+msgid "corresponds to the last update of ``status`` or ``incarnation``;"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:46
+msgid "is always local;"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:47
+msgid "does not depend on other members' clock setting."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:49
+msgid "Below is an example of the table:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:51
+msgid "tarantool> membership.myself()\n"
+"---\n"
+"uri: localhost:33001\n"
+"status: alive\n"
+"incarnation: 1\n"
+"payload:\n"
+"    uuid: 2d00c500-2570-4019-bfcc-ab25e5096b73\n"
+"timestamp: 1522427330993752\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:67
+msgid "API reference"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:69
+msgid "Below is a list of ``membership``'s common, encryption, subscription functions, and options."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:78
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:78
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:80
+msgid "Common functions"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:82
+msgid ":ref:`init(advertise_host, port) <membership-init>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:82
+msgid "Initialize the ``membership`` module."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:85
+msgid ":ref:`myself() <membership-myself>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:85
+msgid "Get the member data structure of the current instance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:88
+msgid ":ref:`get_member(uri) <membership-get-member>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:88
+msgid "Get the member data structure for a given URI."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:91
+msgid ":ref:`members() <membership-members>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:91
+msgid "Obtain a table with all members known to the current instance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:94
+msgid ":ref:`pairs() <membership-pairs>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:94
+msgid "Shorthand for ``pairs(membership.members())``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:97
+msgid ":ref:`add_member(uri) <membership-add-member>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:97
+msgid "Add a member to the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:100
+msgid ":ref:`probe_uri(uri) <membership-probe-uri>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:100
+msgid "Check if the member is in the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:103
+msgid ":ref:`broadcast() <membership-broadcast>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:103
+msgid "Discover members in LAN by sending a UDP broadcast message."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:106
+msgid ":ref:`set_payload(key, value) <membership-set-payload>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:106
+msgid "Update ``myself().payload`` and disseminate it."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:109
+msgid ":ref:`leave() <membership-leave>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:109
+msgid "Gracefully leave the group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:112
+msgid ":ref:`is_encrypted() <membership-is-encrypted>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:112
+msgid "Check if encryption is enabled."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:115
+msgid "Encryption functions"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:117
+msgid ":ref:`set_encryption_key(key) <membership-set-enc-key>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:117
+msgid "Set the key for low-level message encryption."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:120
+msgid ":ref:`get_encryption_key() <membership-get-enc-key>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:120
+msgid "Retrieve the encryption key in use."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:123
+msgid "Subscription functions"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:125
+msgid ":ref:`subscribe() <membership-subscribe>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:125
+msgid "Subscribe for the members table updates."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:128
+msgid ":ref:`unsubscribe() <membership-unsubscribe>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:128
+msgid "Remove the subscription."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:131
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:133
+msgid ":ref:`PROTOCOL_PERIOD_SECONDS <membership-protocol_period_seconds>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:133
+msgid "Direct ping period."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:136
+msgid ":ref:`ACK_TIMEOUT_SECONDS <membership-ack_timeout_seconds>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:136
+msgid "ACK message wait time."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:139
+msgid ":ref:`ANTI_ENTROPY_PERIOD_SECONDS <member-anti_entropy_period_seconds>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:139
+msgid "Anti-entropy synchronization period."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:142
+msgid ":ref:`SUSPECT_TIMEOUT_SECONDS <membership-suspect_timeout_seconds>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:142
+msgid "Timeout to mark a ``suspect`` ``dead``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:145
+msgid ":ref:`NUM_FAILURE_DETECTION_SUBGROUPS <membership-num_fail_detect_subgr>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:145
+msgid "Number of members to ping a ``suspect`` indirectly."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:152
+msgid "Common functions:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:158
+msgid "Initialize the ``membership`` module. This binds a UDP socket to ``0.0.0.0:<port>``, sets the ``advertise_uri`` parameter to ``<advertise_host>:<port>``, and ``incarnation`` to ``1``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:162
+msgid "The ``init()`` function can be called several times, the old socket will be closed and a new one opened."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:165
+msgid "If the ``advertise_uri`` changes during the next ``init()``, the old URI is considered ``DEAD``. In order to leave the group gracefully, use the :ref:`leave() <membership-leave>` function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:169
+msgid "a hostname or IP address to advertise to other members"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:170
+msgid "a UDP port to bind"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:171
+#: ../../doc/reference/reference_rock/membership.rst:267
+#: ../../doc/reference/reference_rock/membership.rst:277
+msgid "``true``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:172
+#: ../../doc/reference/reference_rock/membership.rst:232
+#: ../../doc/reference/reference_rock/membership.rst:244
+#: ../../doc/reference/reference_rock/membership.rst:255
+#: ../../doc/reference/reference_rock/membership.rst:268
+#: ../../doc/reference/reference_rock/membership.rst:278
+#: ../../doc/reference/reference_rock/membership.rst:285
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+#: ../../doc/reference/reference_rock/membership.rst:0
+msgid "raises"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:173
+msgid "socket bind error"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:179
+msgid "the :ref:`member data structure <membership-datastruct>` of the current instance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:181
+#: ../../doc/reference/reference_rock/membership.rst:190
+#: ../../doc/reference/reference_rock/membership.rst:203
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:187
+msgid "the given member's ``advertise_uri``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:188
+msgid "the :ref:`member data structure <membership-datastruct>` of the instance with the given URI."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:196
+msgid "Obtain all members known to the current instance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:198
+msgid "Editing this table has no effect."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:200
+msgid "a table with URIs as keys and corresponding :ref:`member data structures <membership-datastruct>` as values."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:209
+msgid "A shorthand for ``pairs(membership.members())``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:211
+msgid "Lua iterator"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:213
+msgid "It can be used in the following way:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:215
+msgid "for uri, member in membership.pairs()\n"
+"  -- do something\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:225
+msgid "Add a member with the given URI to the group and propagate this event to other members. Adding a member to a single instance is enough as everybody else in the group will receive the update with time. It does not matter who adds whom."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:230
+msgid "the ``advertise_uri`` of the member to add"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:231
+msgid "``true`` or ``nil`` in case of an error"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:233
+msgid "parse error if the URI cannot be parsed"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:239
+msgid "Send a message to a member to make sure it is in the group. If the member is ``alive`` but not in the group, it is added. If it already is in the group, nothing happens."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:242
+msgid "the ``advertise_uri`` of the member to ping"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:243
+msgid "``true`` if the member responds within 0.2 seconds, otherwise ``no response``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:245
+msgid "``ping was not sent`` if the hostname could not be resolved"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:251
+msgid "Discover members in local network by sending a UDP broadcast message to all networks discovered by a ``getifaddrs()`` C call."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:254
+msgid "``true`` if broadcast was sent, ``false`` if ``getaddrinfo()`` fails."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:261
+msgid "Update ``myself().payload`` and disseminate it along with the member status."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:263
+msgid "Increments ``incarnation``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:265
+msgid "a key to set in payload table"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:266
+msgid "auxiliary data"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:274
+msgid "Gracefully leave the ``membership`` group. The node will be marked with the ``left`` status and no other members will ever try to reconnect it."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:284
+msgid "``true`` if encryption is enabled, ``false`` otherwise."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:287
+msgid "Encryption functions:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:293
+msgid "Set the key used for low-level message encryption. The key is either trimmed or padded automatically to be exactly 32 bytes. If the ``key`` value is ``nil``, the encryption is disabled."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:297
+msgid "The encryption is handled by the ``crypto.cipher.aes256.cbc`` Tarantool module."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:300
+msgid "For proper communication, all members must be configured to use the same encryption key. Otherwise, members report either ``dead`` or ``non-decryptable`` in their status."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:304
+msgid "encryption key"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:305
+#: ../../doc/reference/reference_rock/membership.rst:336
+msgid "``nil``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:311
+msgid "Retrieve the encryption key that is currently in use."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:313
+msgid "encryption key or ``nil`` if the encryption is disabled."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:314
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:316
+msgid "Subscription functions:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:322
+msgid "Subscribe for updates in the members table."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:324
+msgid "a ``fiber.cond`` object broadcasted whenever the members table changes."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:325
+msgid "object"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:331
+msgid "Remove subscription on ``cond`` obtained by the :ref:`subscribe() function <membership-subscribe>`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:333
+msgid "The ``cond``'s validity is not checked."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:335
+msgid "the ``fiber.cond`` object obtained from :ref:`subscribe() <membership-subscribe>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:338
+msgid "Below is a list of ``membership`` options. They can be set as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:340
+msgid "options = require('membership.options')\n"
+"options.<option> = <value>"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:349
+msgid "Period of sending direct pings. Denoted as ``T'`` in the SWIM protocol."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:355
+msgid "Time to wait for ACK message after a ping. If a member is late to reply, the indirect ping algorithm is invoked."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:362
+msgid "Period to perform the anti-entropy synchronization algorithm of the SWIM protocol."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:369
+msgid "Timeout to mark ``suspect`` members as ``dead``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/membership.rst:375
+msgid "Number of members to try pinging a ``suspect`` indirectly. Denoted as ``k`` in the SWIM protocol."
+msgstr ""

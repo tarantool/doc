@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:4
+msgid "box.ctl.demote()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:8
+msgid "Since version :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:10
+msgid "Revoke the leader role from the instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:12
+msgid "On :ref:`synchronous transaction queue owner <box_info_synchro>`, the function works in the following way:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:14
+msgid "If :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is ``off``, the function writes a ``DEMOTE`` request to WAL. The ``DEMOTE`` request clears the ownership of the synchronous transaction queue, while the ``PROMOTE`` request assigns it to a new instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:19
+msgid "If :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is enabled in any mode, then the function makes the instance start a new term and give up the leader role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:22
+msgid "On instances that are not queue owners, the function does nothing and returns immediately."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:24
+msgid "Parameters: none"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/demote.rst:26
+msgid "nil"
+msgstr ""

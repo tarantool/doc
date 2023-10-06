@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:6
+msgid "box.session.euid()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:12
+msgid "the effective user ID of the :ref:`current user <authentication-users>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:14
+msgid "This is the same as :doc:`/reference/reference_lua/box_session/uid`, except in two cases:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:17
+msgid "The first case: if the call to ``box.session.euid()`` is within a function invoked by :doc:`box.session.su(user-name, function-to-execute) </reference/reference_lua/box_session/su>` -- in that case, ``box.session.euid()`` returns the ID of the changed user (the user who is specified by the ``user-name`` parameter of the ``su`` function)  but ``box.session.uid()`` returns the ID of the original user (the user who is calling the ``su`` function)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:25
+msgid "The second case: if the call to ``box.session.euid()`` is within a function specified with :doc:`box.schema.func.create(function-name, {setuid= true}) </reference/reference_lua/box_schema/func_create>` and the binary protocol is in use -- in that case, ``box.session.euid()`` returns the ID of the user who created \"function-name\" but ``box.session.uid()`` returns the ID of the the user who is calling \"function-name\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:33
+msgid "number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:35
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/euid.rst:37
+msgid "tarantool> box.session.su('admin')\n"
+"---\n"
+"...\n"
+"tarantool> box.session.uid(), box.session.euid()\n"
+"---\n"
+"- 1\n"
+"- 1\n"
+"...\n"
+"tarantool> function f() return {box.session.uid(),box.session.euid()} end\n"
+"---\n"
+"...\n"
+"tarantool> box.session.su('guest', f)\n"
+"---\n"
+"- - 1\n"
+"  - 0\n"
+"..."
+msgstr ""

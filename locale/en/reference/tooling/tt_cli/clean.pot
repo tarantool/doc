@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:4
+msgid "Cleaning instance files"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:6
+msgid "$ tt clean {INSTANCE | APPLICATION[:APP_INSTANCE]} [OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:10
+msgid "``tt clean`` cleans stored files of Tarantool instances: logs, snapshots, and other files. To avoid accidental deletion of files, ``tt clean`` shows the files it is going to delete and asks for confirmation."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:15
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:19
+msgid "Clean files without confirmation."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:23
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:26
+msgid "Single instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:28
+msgid "Clean the files of the ``app`` instance:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:30
+#: ../../doc/reference/tooling/tt_cli/clean.rst:39
+msgid "$ tt clean app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:35
+msgid "Multiple instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:37
+msgid "Clean the files of all instances of the ``app`` application:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:43
+msgid "Clean the files of the ``master`` instance of the ``app`` application:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/clean.rst:45
+msgid "$ tt clean app:master"
+msgstr ""

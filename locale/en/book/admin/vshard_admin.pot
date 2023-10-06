@@ -1,0 +1,686 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/vshard_admin.rst:4
+msgid "Sharding with vshard"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:6
+msgid "Sharding in Tarantool is implemented in the ``vshard`` module. For a quick start with ``vshard``, refer to the :ref:`guide <vshard-quick-start>`."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:12
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:14
+msgid "The ``vshard`` module is distributed separately from the main Tarantool package. To install the module, execute the following command:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:17
+msgid "$ tt rocks install vshard"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:23
+msgid "The ``vshard`` module requires Tarantool of the version 1.10.1 or higher, :ref:`Tarantool development package <f_c_tutorial-c_stored_procedures>`, ``git``, ``cmake`` and ``gcc`` packages installed."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:30
+msgid "Configuration"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:32
+msgid "Any viable sharded cluster consists of:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:34
+msgid "one or more replica sets, each containing two or more :ref:`storage <vshard-architecture-storage>` instances,"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:36
+msgid "one or more :ref:`router <vshard-architecture-router>` instances."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:38
+msgid "The number of ``storage`` instances in a replica set defines the redundancy factor of the data. The recommended value is 3 or more. The number of ``router`` instances is not limited, because routers are completely stateless. We recommend increasing the number of routers when an existing ``router`` instance becomes CPU or I/O bound."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:43
+msgid "``vshard`` supports multiple ``router`` instances on a single Tarantool instance. Each ``router`` can be connected to any ``vshard`` cluster. Multiple ``router`` instances can be connected to the same cluster."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:47
+msgid "As the ``router`` and ``storage`` applications perform completely different sets of functions, they should be deployed to different Tarantool instances. Although it is technically possible to place the router application on every ``storage`` node, this approach is highly discouraged and should be avoided on production deployments."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:52
+msgid "All ``storage`` instances can be deployed using identical instance (configuration) files."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:55
+msgid "All ``router`` instances can also be deployed using identical instance (configuration) files."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:58
+msgid "All cluster nodes must share a common topology. An administrator must ensure that the configurations are identical. We suggest using a configuration management tool like Ansible or Puppet to deploy the cluster."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:62
+msgid "Sharding is not integrated into any system for centralized configuration management. It is expected that the application itself is responsible for interacting with such a system and passing the sharding parameters."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:66
+msgid "The configuration example of a simple sharded cluster is available :ref:`here <vshard-config-cluster-example>`."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:72
+msgid "Replica weights"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:74
+msgid "The ``router`` sends all read-write requests to the master instance only. Setting replica weights allows sending read-only requests not only to the master instance, but to any available replica that is the 'nearest' to the ``router``. Weights are used to define distances between replicas within a replica set."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:79
+msgid "Weights can be used, for example, to define the physical distance between the ``router`` and each replica in each replica set. In this case read requests are sent to the nearest replica (with the lowest weight)."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:83
+msgid "Setting weights can also help to define the most powerful replicas: the ones that can process the largest number of requests per second."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:86
+msgid "The idea is to specify the zone for every ``router`` and every replica, therefore filling a matrix of relative zone weights. This approach allows setting different weights in different zones for the same replica set."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:90
+msgid "To set weights, use the zone attribute for each replica during configuration:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:92
+msgid "local cfg = {\n"
+"   sharding = {\n"
+"      ['...replicaset_uuid...'] = {\n"
+"         replicas = {\n"
+"            ['...replica_uuid...'] = {\n"
+"                 ...,\n"
+"                 zone = <number or string>\n"
+"            }\n"
+"         }\n"
+"      }\n"
+"   }\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:107
+msgid "Then, specify relative weights for each zone pair in the ``weights`` parameter of ``vshard.router.cfg``. For example:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:110
+msgid "weights = {\n"
+"    [1] = {\n"
+"        [2] = 1, -- Routers of the 1st zone see the weight of the 2nd zone as 1.\n"
+"        [3] = 2, -- Routers of the 1st zone see the weight of the 3rd zone as 2.\n"
+"        [4] = 3, -- ...\n"
+"    },\n"
+"    [2] = {\n"
+"        [1] = 10,\n"
+"        [2] = 0,\n"
+"        [3] = 10,\n"
+"        [4] = 20,\n"
+"    },\n"
+"    [3] = {\n"
+"        [1] = 100,\n"
+"        [2] = 200, -- Routers of the 3rd zone see the weight of the 2nd zone as 200.\n"
+"                   -- Mind that it is not equal to the weight of the 2nd zone visible\n"
+"                   -- from the 1st zone (= 1).\n"
+"        [4] = 1000,\n"
+"    }\n"
+"}\n"
+"\n"
+"local cfg = vshard.router.cfg({weights = weights, sharding = ...})"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:138
+msgid "Replica set weights"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:140
+msgid "A replica set weight is not the same as the replica weight. The weight of a replica set defines the capacity of the replica set: the larger the weight, the more buckets the replica set can store. The total size of all sharded spaces in the replica set is also its capacity metric."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:145
+msgid "You can consider replica set weights as the relative amount of data within a replica set. For example, if ``replicaset_1 = 100``, and ``replicaset_2 = 200``, the second replica set stores twice as many buckets as the first one. By default, all weights of all replica sets are equal."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:150
+msgid "You can use weights, for example, to store the prevailing amount of data on a replica set with more memory space."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:156
+msgid "Rebalancing process"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:158
+msgid "There is an **etalon number** of buckets for a replica set. (Etalon in this context means \"ideal\".) If there is no deviation from this number in the whole replica set, then the buckets are distributed evenly."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:163
+msgid "The etalon number is calculated automatically considering the number of buckets in the cluster and weights of the replica sets."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:166
+msgid "Rebalancing starts if the **disbalance threshold of a replica set** exceeds the disbalance threshold :ref:`specified in the configuration <cfg_basic-rebalancer_disbalance_threshold>`."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:170
+msgid "The disbalance threshold of a replica set is calculated as follows:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:172
+msgid "|etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:176
+msgid "For example: The user specified the number of buckets is 3000, and weights of 3 replica sets are 1, 0.5, and 1.5. The resulting etalon numbers of buckets for the replica sets are: 1st replica set – 1000, 2nd replica set – 500, 3rd replica set – 1500."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:181
+msgid "This approach allows assigning a zero weight to a replica set, which initiates migration of its buckets to the remaining cluster nodes. It also allows adding a new zero-load replica set, which initiates migration of the buckets from the loaded replica sets to the zero-load replica set."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:188
+msgid "A new zero-load replica set should be assigned a weight for rebalancing to start."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:190
+msgid "When a new shard is added, the configuration can be updated dynamically:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:192
+msgid "The configuration should be updated on all the ``routers`` first, and then on all the ``storages``."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:194
+msgid "The new shard becomes available for rebalancing in the ``storage`` layer."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:195
+msgid "As a result of rebalancing, buckets are migrated to the new shard."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:196
+msgid "If a migrated bucket is requested, ``router`` receives an error code containing information about the new location of the bucket."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:199
+msgid "At this time, the new shard is already present in the ``router``'s pool of connections, so redirection is transparent for the application."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:205
+msgid "Parallel rebalancing"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:207
+msgid "Originally, ``vshard`` had quite a simple ``rebalancer`` – one process on one node that calculated *routes* which should send buckets, how many, and to whom. The nodes applied these routes one by one sequentially."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:212
+msgid "Unfortunately, such a simple schema worked not fast enough, especially for Vinyl, where costs of reading disk were comparable with network costs. In fact, with Vinyl the ``rebalancer`` routes applier was sleeping most of the time."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:217
+msgid "Now each node can send multiple buckets in parallel in a round-robin manner to multiple destinations, or to just one."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:220
+msgid "To set the degree of parallelism, a new option was added -- :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`. You can specify it in a storage configuration in the root table:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:224
+msgid "cfg.rebalancer_max_sending = 5\n"
+"vshard.storage.cfg(cfg, box.info.uuid)"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:229
+msgid "In routers, this option is ignored."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:233
+msgid "Specifying ``cfg.rebalancer_max_sending = N`` probably won't give N times speed up. It depends on network, disk, number of other fibers in the system."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:236
+msgid "**Example #1:**"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:238
+msgid "You have 10 replica sets and a new one is added. Now all the 10 replica sets will try to send buckets to the new one."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:241
+msgid "Assume that each replica set can send up to 5 buckets at once. In that case, the new replica set will experience a rather big load of 50 buckets being downloaded at once. If the node needs to do some other work, perhaps such a big load is undesirable. Also too many parallel buckets can cause timeouts in the rebalancing process itself."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:248
+msgid "To fix the problem, you can set a lower value for ``rebalancer_max_sending`` for old replica sets, or decrease ``rebalancer_max_receiving`` for the new one. In the latter case some workers on old nodes will be throttled, and you will see that in the logs."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:253
+msgid "``rebalancer_max_sending`` is important, if you have restrictions for the maximal number of buckets that can be read-only at once in the cluster. As you remember, when a bucket is being sent, it does not accept new write requests."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:258
+msgid "**Example #2:**"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:260
+msgid "You have 100000 buckets and each bucket stores ~0.001% of your data. The cluster has 10 replica sets. And you never can afford > 0.1% of data locked on write. Then you should not set ``rebalancer_max_sending`` > 10 on these nodes. It guarantees that the rebalancer won't send more than 100 buckets at once in the whole cluster."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:267
+msgid "If ``max_sending`` is too high and ``max_receiving`` is too low, then some buckets will try to get relocated – and will fail with that. This problem will consume network resources and time. It is important to configure these parameters to not conflict with each other."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:275
+msgid "Replica set lock and bucket pin"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:277
+msgid "A replica set lock makes a replica set invisible to the ``rebalancer``: a locked replica set can neither receive new buckets nor migrate its own buckets."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:280
+msgid "A bucket pin blocks a specific bucket from migrating: a pinned bucket stays on the replica set to which it is pinned, until it is unpinned."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:283
+msgid "Pinning all replica set buckets is not equivalent to locking a replica set. Even if you pin all buckets, a non-locked replica set can still receive new buckets."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:286
+msgid "Replica set lock is helpful, for example, to separate a replica set from production replica sets for testing, or to preserve some application metadata that must not be sharded for a while. A bucket pin is used for similar cases but in a smaller scope."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:291
+msgid "By both locking a replica set and pinning all buckets, one can isolate an entire replica set."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:294
+msgid "Locked replica sets and pinned buckets affect the rebalancing algorithm as the ``rebalancer`` must ignore locked replica sets and consider pinned buckets when attempting to reach the best possible balance."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:298
+msgid "The issue is not trivial as a user can pin too many buckets to a replica set, so a perfect balance becomes unreachable. For example, consider the following cluster (assume all replica set weights are equal to 1)."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:302
+msgid "The initial configuration:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:304
+msgid "rs1: bucket_count = 150\n"
+"rs2: bucket_count = 150, pinned_count = 120"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:309
+msgid "Adding a new replica set:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:311
+msgid "rs1: bucket_count = 150\n"
+"rs2: bucket_count = 150, pinned_count = 120\n"
+"rs3: bucket_count = 0"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:317
+msgid "The perfect balance would be ``100 - 100 - 100``, which is impossible since the ``rs2`` replica set has 120 pinned buckets. The best possible balance here is the following:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:321
+msgid "rs1: bucket_count = 90\n"
+"rs2: bucket_count = 120, pinned_count 120\n"
+"rs3: bucket_count = 90"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:327
+msgid "The ``rebalancer`` moved as many buckets as possible from ``rs2`` to decrease the disbalance. At the same time it respected equal weights of ``rs1`` and ``rs3``."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:330
+msgid "The algorithms for implementing locks and pins are completely different, although they look similar in terms of functionality."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:336
+msgid "Replica set lock and rebalancing"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:338
+msgid "Locked replica sets simply do not participate in rebalancing. This means that even if the actual total number of buckets is not equal to the etalon number, the disbalance cannot be fixed due to the lock. When the rebalancer detects that one of the replica sets is locked, it recalculates the etalon number of buckets of the non-locked replica sets as if the locked replica set and its buckets did not exist at all."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:348
+msgid "Bucket pin and rebalancing"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:350
+msgid "Rebalancing replica sets with pinned buckets requires a more complex algorithm. Here ``pinned_count[o]`` is the number of pinned buckets, and ``etalon_count`` is the etalon number of buckets for a replica set:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:354
+msgid "The ``rebalancer`` calculates the etalon number of buckets as if all buckets were not pinned. Then the rebalancer checks each replica set and compares the etalon number of buckets with the number of pinned buckets in a replica set. If ``pinned_count < etalon_count``, non-locked replica sets (at this point all locked replica sets already are filtered out) with pinned buckets can receive new buckets."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:360
+msgid "If ``pinned_count > etalon_count``, the disbalance cannot be fixed, as the ``rebalancer`` cannot move pinned buckets out of this replica set. In such a case the etalon number is updated and set equal to the number of pinned buckets. The replica sets with ``pinned_count > etalon_count`` are not processed by the ``rebalancer``, and the number of pinned buckets is subtracted from the total number of buckets. The rebalancer tries to move out as many buckets as possible from such replica sets."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:367
+msgid "This procedure is restarted from step 1 for replica sets with ``pinned_count >= etalon_count`` until ``pinned_count <= etalon_count`` on all replica sets. The procedure is also restarted when the total number of buckets is changed."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:372
+msgid "Here is the pseudocode for the algorithm:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:374
+msgid "function cluster_calculate_perfect_balance(replicasets, bucket_count)\n"
+"        -- rebalance the buckets using weights of the still viable replica sets --\n"
+"end;\n"
+"\n"
+"cluster = <all of the non-locked replica sets>;\n"
+"bucket_count = <the total number of buckets in the cluster>;\n"
+"can_reach_balance = false\n"
+"while not can_reach_balance do\n"
+"        can_reach_balance = true\n"
+"        cluster_calculate_perfect_balance(cluster, bucket_count);\n"
+"        foreach replicaset in cluster do\n"
+"                if replicaset.perfect_bucket_count <\n"
+"                   replicaset.pinned_bucket_count then\n"
+"                        can_reach_balance = false\n"
+"                        bucket_count -= replicaset.pinned_bucket_count;\n"
+"                        replicaset.perfect_bucket_count =\n"
+"                                replicaset.pinned_bucket_count;\n"
+"                end;\n"
+"        end;\n"
+"end;\n"
+"cluster_calculate_perfect_balance(cluster, bucket_count);"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:398
+msgid "The complexity of the algorithm is ``O(N^2)``, where N is the number of replica sets. On each step, the algorithm either finishes the calculation, or ignores at least one new replica set overloaded with the pinned buckets, and updates the etalon number of buckets on other replica sets."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:406
+msgid "Bucket ref"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:408
+msgid "Bucket ref is an in-memory counter that is similar to the :ref:`bucket pin <vshard-lock-pin>`, but has the following differences:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:411
+msgid "Bucket ref is not persistent. Refs are intended for forbidding bucket transfer during request execution, but on restart all requests are dropped."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:414
+msgid "There are two types of bucket refs: read-only (RO) and read-write (RW)."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:416
+msgid "If a bucket has RW refs, it cannot be moved. However, when the rebalancer needs it to be sent, it locks the bucket for new write requests, waits until all current requests are finished, and then sends the bucket."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:420
+msgid "If a bucket has RO refs, it can be sent, but cannot be dropped. Such a bucket can even enter GARBAGE or SENT state, but its data is kept until the last reader is gone."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:424
+msgid "A single bucket can have both RO and RW refs."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:426
+msgid "Bucket ref is countable."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:428
+msgid "The :ref:`vshard.storage.bucket_ref/unref()<storage_api-bucket_ref>` methods are called automatically when :ref:`vshard.router.call() <router_api-call>` or :ref:`vshard.storage.call() <storage_api-call>` is used. For raw API like ``r = vshard.router.route() r:callro/callrw`` you should explicitly call the ``bucket_ref()`` method inside the function. Also, make sure that you call ``bucket_unref()`` after ``bucket_ref()``, otherwise the bucket cannot be moved from the storage until the instance restart."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:436
+msgid "To see how many refs there are for a bucket, use :ref:`vshard.storage.buckets_info([bucket_id]) <storage_api-buckets_info>` (the ``bucket_id`` parameter is optional)."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:440
+msgid "For example:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:442
+msgid "vshard.storage.buckets_info(1)\n"
+"---\n"
+"- 1:\n"
+"    status: active\n"
+"    ref_rw: 1\n"
+"    ref_ro: 1\n"
+"    ro_lock: true\n"
+"    rw_lock: true\n"
+"    id: 1"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:457
+msgid "Defining spaces"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:459
+msgid "Database Schema is stored on ``storages``, while ``routers`` know nothing about spaces and tuples."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:462
+msgid "Spaces should be defined within a storage application using ``box.once()``. For example:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:465
+msgid "box.once(\"testapp:schema:1\", function()\n"
+"    local customer = box.schema.space.create('customer')\n"
+"    customer:format({\n"
+"        {'customer_id', 'unsigned'},\n"
+"        {'bucket_id', 'unsigned'},\n"
+"        {'name', 'string'},\n"
+"    })\n"
+"    customer:create_index('customer_id', {parts = {'customer_id'}})\n"
+"    customer:create_index('bucket_id', {parts = {'bucket_id'}, unique = false})\n"
+"\n"
+"    local account = box.schema.space.create('account')\n"
+"    account:format({\n"
+"        {'account_id', 'unsigned'},\n"
+"        {'customer_id', 'unsigned'},\n"
+"        {'bucket_id', 'unsigned'},\n"
+"        {'balance', 'unsigned'},\n"
+"        {'name', 'string'},\n"
+"    })\n"
+"    account:create_index('account_id', {parts = {'account_id'}})\n"
+"    account:create_index('customer_id', {parts = {'customer_id'}, unique = false})\n"
+"    account:create_index('bucket_id', {parts = {'bucket_id'}, unique = false})\n"
+"    box.snapshot()\n"
+"\n"
+"    box.schema.func.create('customer_lookup')\n"
+"    box.schema.role.grant('public', 'execute', 'function', 'customer_lookup')\n"
+"    box.schema.func.create('customer_add')\n"
+"end)"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:497
+msgid "Every space you plan to shard must have a field with :ref:`bucket id <vshard-vbuckets>` numbers, indexed by the :ref:`shard index <cfg_basic-shard_index>`."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:504
+msgid "Adding data"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:506
+msgid "All DML operations with data should be performed via ``router``. The only operation supported by ``router`` is `CALL` via ``bucket_id``:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:509
+msgid "result = vshard.router.call(bucket_id, mode, func, args)"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:513
+msgid "``vshard.router.call()`` routes ``result = func(unpack(args))`` call to a shard which serves ``bucket_id``."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:516
+msgid "``bucket_id`` is just a regular number in the range ``1..``:ref:`bucket_count<cfg_basic-bucket_count>`. This number can be assigned in an arbitrary way by the client application. A sharded Tarantool cluster uses this number as an opaque unique identifier to distribute data across replica sets. It is guaranteed that all records with the same ``bucket_id`` will be stored on the same replica set."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:526
+msgid "Bootstrapping and restarting a storage"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:528
+msgid "If a replica set master fails, it is recommended to:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:530
+msgid "Switch one of the replicas into the master mode. This allows the new master to process all the incoming requests."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:532
+msgid "Update the configuration of all the cluster members. This forwards all the requests to the new master."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:535
+msgid "Monitoring the master and switching the instance modes can be handled by any external utility."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:538
+msgid "To perform a scheduled downtime of a replica set master, it is recommended to:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:540
+msgid "Update the configuration of the master and wait for the replicas to get into sync. All the requests then are forwarded to a new master."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:542
+msgid "Switch another instance into the master mode."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:543
+#: ../../doc/book/admin/vshard_admin.rst:549
+msgid "Update the configuration of all the nodes."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:544
+msgid "Shut down the old master."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:546
+msgid "To perform a scheduled downtime of a replica set, it is recommended to:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:548
+msgid "Migrate all the buckets to the other cluster storages."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:550
+msgid "Shut down the replica set."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:552
+msgid "In case a whole replica set fails, some part of the dataset becomes inaccessible. Meanwhile, the ``router`` tries to reconnect to the master of the failed replica set. This way, once the replica set is up and running again, the cluster is automatically restored."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:560
+msgid "Fibers"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:562
+msgid "Searches for buckets, buckets recovery, and buckets rebalancing are performed automatically and do not require manual intervention."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:565
+msgid "Technically, there are multiple fibers responsible for different types of operations:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:568
+msgid "a **discovery** fiber on the ``router`` searches for buckets in the background"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:569
+msgid "a **failover** fiber on the ``router`` maintains replica connections"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:570
+msgid "a **garbage collector** fiber on each master ``storage`` removes the contents of buckets that were moved"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:572
+msgid "a **bucket recovery** fiber on each master ``storage`` recovers buckets in the SENDING and RECEIVING states in case of reboot"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:574
+msgid "a **rebalancer** on a single master ``storage`` among all replica sets executes the rebalancing process."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:577
+msgid "See the :ref:`Rebalancing process <vshard-rebalancing>` and :ref:`Migration of buckets <vshard-migrate-buckets>` sections for details."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:583
+msgid "Garbage collector"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:585
+msgid "A **garbage collector** fiber runs in the background on the master storages of each replica set. It starts deleting the contents of the bucket in the GARBAGE state part by part. Once the bucket is empty, its record is deleted from the ``_bucket`` system space."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:593
+msgid "Bucket recovery"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:595
+msgid "A **bucket recovery** fiber runs on the master storages. It helps to recover buckets in the SENDING and RECEIVING states in case of reboot."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:598
+msgid "Buckets in the SENDING state are recovered as follows:"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:600
+msgid "The system first searches for buckets in the SENDING state."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:601
+msgid "If such a bucket is found, the system sends a request to the destination replica set."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:603
+msgid "If the bucket on the destination replica set is ACTIVE, the original bucket is deleted from the source node."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:606
+msgid "Buckets in the RECEIVING state are deleted without extra checks."
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:611
+msgid "Failover"
+msgstr ""
+
+#: ../../doc/book/admin/vshard_admin.rst:613
+msgid "A **failover** fiber runs on every ``router``. If a master of a replica set becomes unavailable, the failover fiber redirects read requests to the replicas. Write requests are rejected with an error until the master becomes available."
+msgstr ""

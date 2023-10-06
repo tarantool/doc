@@ -1,0 +1,661 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:4
+msgid "Managing a Cartridge application"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:6
+msgid "$ tt cartridge COMMAND {[OPTION ...]|SUBCOMMAND}"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:10
+msgid "``tt cartridge`` manages a Cartridge application. ``COMMAND`` is one of the following:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:13
+msgid ":ref:`admin <tt_cartridge_admin>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:14
+msgid ":ref:`bench <tt_cartridge_bench>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:15
+msgid ":ref:`failover <tt_cartridge_failover>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:16
+msgid ":ref:`repair <tt_cartridge_repair>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:17
+msgid ":ref:`replicasets <tt_cartridge_replicasets>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:23
+msgid "admin"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:25
+msgid "$ tt cartridge admin ADMIN_FUNC_NAME [ADMIN_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:29
+msgid "``tt cartridge admin`` calls `admin functions <https://github.com/tarantool/cartridge-cli-extensions/blob/master/doc/admin.md>`_ provided by the application."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:34
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:109
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:247
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:326
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:38
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:332
+msgid "(Required) An application name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:42
+msgid "List the available admin functions."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:46
+msgid "A name of the instance to connect to."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:50
+msgid "An address to connect to."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:54
+msgid "A directory where PID and socket files are stored. Defaults to ``/var/run/tarantool``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:60
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:62
+msgid "Get a list of the available admin functions:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:64
+msgid "$ tt cartridge admin --name APPNAME --list\n"
+"\n"
+"   • Available admin functions:\n"
+"\n"
+"probe  Probe instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:72
+msgid "Get help for a specific function:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:74
+msgid "$ tt cartridge admin --name APPNAME probe --help\n"
+"\n"
+"   • Admin function \"probe\" usage:\n"
+"\n"
+"Probe instance\n"
+"\n"
+"Args:\n"
+"  --uri string  Instance URI"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:85
+msgid "Call a function with an argument:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:87
+msgid "$ tt cartridge admin --name APPNAME probe --uri localhost:3301\n"
+"\n"
+"   • Probe \"localhost:3301\": OK"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:98
+msgid "bench"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:100
+msgid "$ tt cartridge bench [BENCH_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:104
+msgid "``tt cartridge bench`` runs benchmarks for Tarantool."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:113
+msgid "A Tarantool instance address (the default is ``127.0.0.1:3301``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:117
+msgid "A username used to connect to the instance (the default is ``guest``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:121
+msgid "A password used to connect to the instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:125
+msgid "A number of concurrent connections (the default is ``10``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:129
+msgid "A number of simultaneous requests per connection (the default is ``10``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:133
+msgid "The duration of a benchmark test in seconds (the default is ``10``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:137
+msgid "The size of a key part of benchmark data in bytes (the default is ``10``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:141
+msgid "The size of a value part of benchmark data in bytes (the default is ``20``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:145
+msgid "A percentage of inserts (the default is ``100``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:149
+msgid "A percentage of selects."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:153
+msgid "A percentage of updates."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:157
+msgid "A number of records to pre-fill the space (the default is ``1000000``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:163
+msgid "failover"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:165
+msgid "$ tt cartridge failover COMMAND [COMMAND_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:169
+msgid "``tt cartridge failover`` manages an application failover. The following commands are available:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:172
+msgid "``set``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:173
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:364
+msgid "``setup``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:174
+msgid "``status``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:175
+msgid "``disable``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:180
+msgid "failover set"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:182
+msgid "$ tt cartridge failover set MODE [FAILOVER_SET_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:186
+msgid "Setup failover in the specified mode:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:188
+msgid "``stateful``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:189
+msgid "``eventual``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:190
+msgid "``disabled``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:192
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:388
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:404
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:420
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:437
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:474
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:490
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:505
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:520
+msgid "Options:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:194
+msgid "``--state-provider STRING``: A failover's state provider. Can be ``stateboard`` or ``etcd2``. Used only in the ``stateful`` mode."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:195
+msgid "``--params STRING``: Failover parameters specified in a JSON-formatted string, for example, ``\"{'fencing_timeout': 10', 'fencing_enabled': true}\"``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:196
+msgid "``--provider-params STRING``: Failover provider parameters specified in a JSON-formatted string, for example, ``\"{'lock_delay': 14}\"``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:201
+msgid "failover setup"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:203
+msgid "$ tt cartridge failover setup --file STRING"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:207
+msgid "Setup failover with parameters described in a file. The failover configuration file defaults to ``failover.yml``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:210
+msgid "The ``failover.yml`` file might look as follows:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:213
+msgid "mode: stateful\n"
+"state_provider: stateboard\n"
+"stateboard_params:\n"
+"    uri: localhost:4401\n"
+"    password: passwd\n"
+"failover_timeout: 15"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:225
+msgid "failover status"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:227
+msgid "$ tt cartridge failover status"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:231
+msgid "Get the current failover status."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:236
+msgid "failover disable"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:238
+msgid "$ tt cartridge failover disable"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:242
+msgid "Disable failover."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:251
+msgid "An application name. Defaults to \"package\" in rockspec."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:255
+msgid "A path to the file containing failover settings. Defaults to ``failover.yml``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:261
+msgid "repair"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:263
+msgid "$ tt cartridge repair COMMAND [REPAIR_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:267
+msgid "``tt cartridge repair`` repairs a running application. The following commands are available:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:270
+msgid "``list-topology``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:271
+msgid "``remove-instance``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:272
+msgid "``set-advertise-uri``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:273
+msgid "``set-leader``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:278
+msgid "repair list-topology"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:280
+msgid "$ tt cartridge repair list-topology [REPAIR_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:284
+msgid "Get a summary of the current cluster topology."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:289
+msgid "repair remove-instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:291
+msgid "$ tt cartridge repair remove-instance UUID [REPAIR_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:295
+msgid "Remove the instance with the specified UUID from the cluster. If the instance isn't found, raise an error."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:300
+msgid "repair set-advertise-uri"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:302
+msgid "$ tt cartridge repair set-advertise-uri INSTANCE-UUID NEW-URI [REPAIR_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:306
+msgid "Change the instance's advertise URI. Raise an error if the instance isn't found or is expelled."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:311
+msgid "repair set-leader"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:313
+msgid "$ tt cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID [REPAIR_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:317
+msgid "Set the instance as the leader of the replica set. Raise an error in the following cases:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:319
+msgid "There is no replica set or instance with that UUID."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:320
+msgid "The instance doesn't belong to the replica set."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:321
+msgid "The instance has been disabled or expelled."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:328
+msgid "The following options work with any ``repair`` subcommand:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:336
+msgid "The directory containing the instances' working directories. Defaults to ``/var/lib/tarantool``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:338
+msgid "The following options work with any ``repair`` command, except ``list-topology``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:342
+msgid "The directory where PID and socket files are stored. Defaults to ``/var/run/tarantool``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:346
+msgid "Launch in dry-run mode: show changes but do not apply them."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:350
+msgid "Enable instance configuration to reload after the patch."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:355
+msgid "replicasets"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:357
+msgid "$ tt cartridge replicasets COMMAND [COMMAND_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:361
+msgid "``tt cartridge replicasets`` manages an application's replica sets. The following commands are available:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:365
+msgid "``save``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:366
+msgid "``list``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:367
+msgid "``join``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:368
+msgid "``list-roles``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:369
+msgid "``list-vshard-groups``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:370
+msgid "``add-roles``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:371
+msgid "``remove-roles``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:372
+msgid "``set-weight``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:373
+msgid "``set-failover-priority``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:374
+msgid "``bootstrap-vshard``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:375
+msgid "``expel``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:380
+msgid "replicasets setup"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:382
+msgid "$ tt cartridge replicasets setup [--file FILEPATH] [--bootstrap-vshard]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:386
+msgid "Setup replica sets using a file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:390
+msgid "``--file``: A file with a replica set configuration. Defaults to ``replicasets.yml``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:391
+msgid "``--bootstrap-vshard``: Bootstrap vshard upon setup."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:396
+msgid "replicasets save"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:398
+msgid "$ tt cartridge replicasets save [--file FILEPATH]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:402
+msgid "Save the current replica set configuration to a file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:406
+msgid "``--file``: A file to save the configuration to. Defaults to ``replicasets.yml``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:412
+msgid "replicasets list"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:414
+msgid "$ tt cartridge replicasets list [--replicaset STRING]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:418
+msgid "List the current cluster topology."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:422
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:439
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:476
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:492
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:507
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:522
+msgid "``--replicaset STRING``: A replica set name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:427
+msgid "replicasets join"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:429
+msgid "$ tt cartridge replicasets join INSTANCE_NAME ... [--replicaset STRING]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:433
+msgid "Join the instance to a cluster. If a replica set with the specified alias isn't found in the cluster, it is created. Otherwise, instances are joined to an existing replica set."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:444
+msgid "replicasets list-roles"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:446
+msgid "$ tt cartridge replicasets list-roles"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:450
+msgid "List the available roles."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:455
+msgid "replicasets list-vshard-groups"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:457
+msgid "$ tt cartridge replicasets list-vshard-groups"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:461
+msgid "List the available vshard groups."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:466
+msgid "replicasets add-roles"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:468
+msgid "$ tt cartridge replicasets add-roles ROLE_NAME ... [--replicaset STRING] [--vshard-group STRING]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:472
+msgid "Add roles to the replica set."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:477
+msgid "``--vshard-group STRING``: A vshard group for ``vshard-storage`` replica sets."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:482
+msgid "replicasets remove-roles"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:484
+msgid "$ tt cartridge replicasets remove-roles ROLE_NAME ... [--replicaset STRING]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:488
+msgid "Remove roles from the replica set."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:497
+msgid "replicasets set-weight"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:499
+msgid "$ tt cartridge replicasets set-weight WEIGHT [--replicaset STRING]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:503
+msgid "Specify replica set weight."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:512
+msgid "replicasets set-failover-priority"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:514
+msgid "$ tt cartridge replicasets set-failover-priority INSTANCE_NAME ... [--replicaset STRING]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:518
+msgid "Configure replica set failover priority."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:527
+msgid "replicasets bootstrap-vshard"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:529
+msgid "$ tt cartridge replicasets bootstrap-vshard"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:533
+msgid "Bootstrap vshard."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:538
+msgid "replicasets expel"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:540
+msgid "$ tt cartridge replicasets expel INSTANCE_NAME ..."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cartridge.rst:544
+msgid "Expel one or more instances from the cluster."
+msgstr ""

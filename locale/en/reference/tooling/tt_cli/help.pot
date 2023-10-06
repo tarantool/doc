@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:4
+msgid "Displaying help for tt and its commands"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:6
+msgid "$ tt help [COMMAND]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:10
+msgid "``tt help`` displays help:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:12
+msgid "for ``tt`` utility when called without a ``COMMAND``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:13
+msgid "for a specified ``tt`` command."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:16
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:18
+msgid "Display ``tt`` help"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:20
+msgid "$ tt help"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:24
+msgid "Display help for the ``start`` command:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/help.rst:26
+msgid "$ tt help start"
+msgstr ""

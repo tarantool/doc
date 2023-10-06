@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:2
+msgid "Building your application locally"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:4
+msgid "To build your application locally (for local testing), run this in any directory:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:6
+msgid "cartridge build [PATH] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:11
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:19
+msgid "``--spec``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:20
+msgid "Path to a custom ``.rockspec`` file that you want use for the current build."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:23
+msgid "If you run ``cartridge build`` without the ``--spec`` flag, your application directory must contain a ``.rockspec``. The file is already in that directory if you created your app from the default template."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:27
+msgid "``build`` also supports :doc:`global flags </book/cartridge/cartridge_cli/global-flags>`. The ``--quiet`` flag is particularly convenient when building an application."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:31
+msgid "Details"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:33
+msgid "The command requires one argument -- the path to your application directory (that is, to the build source). The default path is ``.`` (current directory)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:37
+msgid "``cartridge build`` runs:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:39
+msgid "``./cartridge.pre-build`` (if this file exists in the application root directory)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:40
+msgid "``tarantoolctl rocks make``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:42
+msgid "During step 2 -- the key step here -- ``cartridge`` installs all dependencies specified in the ``.rockspec`` file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:45
+msgid "If your application depends on closed-source rocks, or if the build should contain rocks from a project added as a submodule, **install** all these dependencies **before** calling ``tarantoolctl rocks make``. You can do so using a special file, ``cartridge.pre-build``, which has to be located in your application directory. If you created your application from template, the directory already contains the file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:52
+msgid "In ``cartridge.pre-build``, specify all the rocks to build from submodules. For example, add the following line:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:55
+msgid "tarantoolctl rocks make --chdir ./third_party/proj"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:59
+msgid "To learn more, read about :doc:`pre-build and post-build scripts </book/cartridge/cartridge_cli/pre-post-build>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:62
+msgid "The fully built application will appear in the ``.rocks`` directory. You can start it locally from your application directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/build.rst:65
+msgid "Instead of using the pre-build script, you can define the build logic by including ``cmake`` commands in your ``.rockspec``, `like we do it in Cartridge <https://github.com/tarantool/cartridge/blob/master/cartridge-scm-1.rockspec#L26>`_."
+msgstr ""

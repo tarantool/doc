@@ -1,0 +1,197 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:5
+msgid "Module *cartridge.rpc*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:7
+msgid "Remote procedure calls between cluster instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:21
+msgid "get_candidates (role_name[, opts])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:23
+msgid "List candidates suitable for performing a remote call. Candidates are deduced from a local config and membership, which may differ from replica to replica (e.g. during  ``patch_clusterwide`` ). It may produce invalid candidates."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:30
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:60
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:127
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:32
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:62
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:129
+msgid "*role_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:33
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:65
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:130
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:35
+msgid "*leader_only:* (optional **boolean**) Filter instances which are leaders now.(default: **false**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:36
+msgid "*healthy_only:* (optional **boolean**) The member is considered healthy ifit reports either  ``ConfiguringRoles``  or  ``RolesConfigured``  stateand its SWIM status is either  ``alive``  or  ``suspect`` (added in v1.1.0-11, default: **true**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:37
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Filter instances that have the specified labels. Adding labels is possible via theedit_topology method or via graphqlExample: rpc.get_candidates('role', { labels = {['msk'] = 'dc'} })"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:40
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:79
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:137
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:42
+msgid "(`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) URIs"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:49
+msgid "call (role_name, fn_name[, args[, opts]])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:51
+msgid "Perform a remote procedure call. Find a suitable healthy instance with an enabled role and perform a [ ``net.box``   ``conn:call`` ]( https://tarantool.io/en/doc/latest/reference/reference_lua/net_box/#net-box-call) on it.  ``rpc.call()``  can only be used for functions defined in role return table unlike  ``net.box``   ``conn:call()`` , which is used for global functions as well."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:63
+msgid "*fn_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:64
+msgid "*args:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)  (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:67
+msgid "*prefer_local:* (optional **boolean**) Don't perform a remote call if possible. When the role is enabledlocally and current instance is healthy the remote netbox call issubstituted with a local Lua function call. When the option isdisabled it never tries to perform call locally and always usesnetbox connection, even to connect self.(default: **true**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:68
+msgid "*leader_only:* (optional **boolean**) Perform a call only on the replica set leaders.(default: **false**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:69
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Force a call to be performed on this particular uri.Disregards member status and  ``opts.prefer_local`` .Conflicts with  ``opts.leader_only = true`` .(added in v1.2.0-63)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:70
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Filter instances that have the specified labels. Adding labels is possible via theedit_topology method or via graphql.Example: rpc.call('role', 'func', {}, { labels = { ['msk'] = 'dc' } })"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:71
+msgid "*remote_only:*  (*deprecated*) Use  ``prefer_local``  instead."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:72
+msgid "*timeout:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:73
+msgid "*buffer:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:74
+msgid "*on_push:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:75
+msgid "*on_push_ctx:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:76
+msgid "*is_async:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:81
+msgid "`conn:call()` result"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:84
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:142
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:86
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:144
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:88
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:146
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:93
+msgid "Usage:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:95
+msgid "-- myrole.lua\n"
+"return {\n"
+"    role_name = 'myrole',\n"
+"    add = function(a, b) return a + b end,\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:103
+msgid "-- call it as follows:\n"
+"cartridge.rpc_call('myrole', 'add', {2, 2}) -- returns 4"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:111
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:118
+msgid "get_connection (role_name[, opts])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:120
+msgid "Connect to an instance with an enabled role. Candidates to connect are deduced from a local config and membership, which may differ from replica to replica (e.g. during  ``patch_clusterwide`` ). It may produce invalid candidates."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:132
+msgid "*prefer_local:* (optional **boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:133
+msgid "*leader_only:* (optional **boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:134
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rpc.rst:139
+msgid "``net.box``  connection"
+msgstr ""

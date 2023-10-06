@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:5
+msgid "box.space._session_settings"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:11
+msgid "A temporary system space with settings that affect behavior, particularly SQL behavior, for the current session. It uses a special engine named 'service'. Every 'service' tuple is created on the fly, that is, new tuples are made every time ``_session_settings`` is accessed. Every settings tuple has two fields: ``name`` (the primary key) and ``value``. The tuples' names and default values are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:18
+msgid "``sql_default_engine``: default :ref:`storage engine <engines-chapter>` for new SQL tables. Default: ``memtx``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:19
+msgid "``sql_full_column_names``: use full column names in :ref:`SQL result set metadata <box-sql_result_sets>`. Default: ``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:21
+msgid "``sql_full_metadata``: whether :ref:`SQL result set metadata <box-sql_result_sets>` includes more than just name and type. Default:``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:23
+msgid "``sql_parser_debug``: show parser steps for following statements. Default: ``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:24
+msgid "``sql_recursive_triggers``: whether a triggered statement can activate a :ref:`trigger <sql_create_trigger>`. Default: ``true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:26
+msgid "``sql_reverse_unordered_selects``: return result rows in reverse order if there is no :ref:`ORDER BY clause <sql_order_by>`. Default: ``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:28
+msgid "``sql_select_debug``: show execution steps during :ref:`SELECT <sql_select>`. Default:``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:29
+msgid "``sql_seq_scan``: allow sequential scans in SQL :ref:`SELECT <sql_select>`. Default: ``true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:30
+msgid "``sql_vdbe_debug``: for internal use. Default:``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:31
+msgid "``sql_defer_foreign_keys`` (removed in :doc:`2.11.0 </release/2.11.0>`): whether foreign-key checks can wait till commit. Default: ``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:33
+msgid "``error_marshaling_enabled`` (removed in :doc:`2.10.0 </release/2.10.0>`): whether :doc:`error objects </reference/reference_lua/box_error/new>` have a special structure. Default: ``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_session_settings.rst:36
+msgid "Three requests are possible: :doc:`select </reference/reference_lua/box_space/select>`, :doc:`get </reference/reference_lua/box_space/get>` and :doc:`update </reference/reference_lua/box_space/update>`. For example, after ``s = box.space._session_settings``, ``s:select('sql_default_engine')`` probably returns ``{'sql_default_engine', 'memtx'}``, and ``s:update('sql_default_engine', {{'=', 'value', 'vinyl'}})`` changes the default engine to 'vinyl'. |br| Updating ``sql_parser_debug`` or ``sql_select_debug`` or ``sql_vdbe_debug`` has no effect unless Tarantool was built with ``-DCMAKE_BUILD_TYPE=Debug``. To check if this is so, look at ``require('tarantool').build.target``."
+msgstr ""

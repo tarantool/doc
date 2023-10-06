@@ -1,0 +1,304 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/monitoring/getting_started.rst:4
+msgid "Monitoring: getting started"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:9
+msgid "Tarantool"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:11
+msgid "First, install the ``metrics`` package:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:13
+msgid "$ cd ${PROJECT_ROOT}\n"
+"$ tarantoolctl rocks install metrics"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:18
+msgid "Next, require it in your code:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:20
+msgid "local metrics = require('metrics')"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:24
+msgid "Enable default Tarantool metrics such as network, memory, operations, etc. You may also set a global label for your metrics:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:27
+msgid "metrics.cfg{alias = 'alias'}"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:31
+msgid "Initialize the Prometheus exporter or export metrics in another format:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:33
+msgid "local httpd = require('http.server')\n"
+"local http_handler = require('metrics.plugins.prometheus').collect_http\n"
+"\n"
+"\n"
+"httpd.new('0.0.0.0', 8088)\n"
+"    :route({path = '/metrics'}, function(...)\n"
+"        return http_handler(...)\n"
+"end)\n"
+"    :start()\n"
+"\n"
+"box.cfg{\n"
+"    listen = 3302\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:49
+msgid "Now you can use the HTTP API endpoint ``/metrics`` to collect your metrics in the Prometheus format. To learn how to obtain custom metrics, check the :ref:`API reference <metrics-api_reference>`."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:56
+msgid "Collect HTTP metrics"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:58
+msgid "To enable the collection of HTTP metrics, you need to create a collector first."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:60
+msgid "local httpd = require('http.server').new(ip, port)\n"
+"\n"
+"-- Create a summary collector for latency\n"
+"local collector = metrics.http_middleware.build_default_collector('summary')\n"
+"\n"
+"-- Set a route handler for latency summary collection\n"
+"httpd:route({ path = '/path-1', method = 'POST' }, metrics.http_middleware.v1(handler_1, collector))\n"
+"httpd:route({ path = '/path-2', method = 'GET' }, metrics.http_middleware.v1(handler_2, collector))\n"
+"\n"
+"-- Start HTTP routing\n"
+"httpd:start()"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:74
+msgid "You can collect all HTTP metrics with a single collector. If you're using the default :ref:`Grafana dashboard <monitoring-grafana_dashboard-page>`, don't change the default collector name. Otherwise, your metrics won't appear on the charts."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:84
+msgid "Instance health check"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:86
+msgid "In production environments, Tarantool Cartridge usually has a large number of so-called routers -- Tarantool instances that handle input load. Various load balancers help distribute that load evenly. However, any load balancer has to know which routers are ready to accept the load at the moment. The Tarantool metrics library has a special plugin that creates an HTTP handler, which the load balancer can use to check the current state of any Tarantool instance. If the instance is ready to accept the load, it will return a response with a 200 status code, and if not, with a 500 status code."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:99
+msgid "Cartridge role"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:101
+msgid "``cartridge.roles.metrics`` is a `Tarantool Cartridge <https://github.com/tarantool/cartridge>`__ role. It allows using default metrics in a Cartridge application and managing them via Cartridge configuration."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:106
+msgid "**Usage**"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:108
+msgid "Add ``cartridge-metrics-role`` package to the dependencies in the ``.rockspec`` file."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:110
+msgid "dependencies = {\n"
+"    ...\n"
+"    'cartridge-metrics-role >= 0.1.0-1',\n"
+"    ...\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:118
+msgid "If you're using older version of metrics package, you need to add ``metrics`` package instead of ``cartridge-metrics-role``."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:121
+msgid "dependencies = {\n"
+"    ...\n"
+"    'metrics == 0.17.0-1',\n"
+"    ...\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:129
+msgid "Cartridge role is present in package versions from **0.3.0** to **0.17.0**."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:131
+msgid "Make sure that ``cartridge.roles.metrics`` is included in the roles list in ``cartridge.cfg`` in your entry point file (for example, ``init.lua``):"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:135
+msgid "local ok, err = cartridge.cfg({\n"
+"    ...\n"
+"    roles = {\n"
+"        ...\n"
+"        'cartridge.roles.metrics',\n"
+"        ...\n"
+"    },\n"
+"})"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:146
+msgid "To get metrics via API endpoints, use ``set_export``."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:150
+msgid "``set_export`` has lower priority than clusterwide configuration and may be overridden by the metrics configuration."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:153
+msgid "local metrics = require('cartridge.roles.metrics')\n"
+"metrics.set_export({\n"
+"    {\n"
+"        path = '/path_for_json_metrics',\n"
+"        format = 'json'\n"
+"    },\n"
+"    {\n"
+"        path = '/path_for_prometheus_metrics',\n"
+"        format = 'prometheus'\n"
+"    },\n"
+"    {\n"
+"        path = '/health',\n"
+"        format = 'health'\n"
+"    }\n"
+"})"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:171
+msgid "You can add several endpoints of the same format with different paths. For example:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:174
+msgid "metrics.set_export({\n"
+"    {\n"
+"        path = '/path_for_json_metrics',\n"
+"        format = 'json'\n"
+"    },\n"
+"    {\n"
+"        path = '/another_path_for_json_metrics',\n"
+"        format = 'json'\n"
+"    },\n"
+"})"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:187
+msgid "The metrics will be available on the path specified in ``path``, in the format specified in ``format``."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:190
+msgid "Since version **0.6.0**, the metrics role is permanent and enabled on instances by default. If you use old version of metrics, you should enable the role in the interface:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:196
+msgid "After the role has been initialized, the default metrics will be enabled and the global label ``alias`` will be set. **Note** that the ``alias`` label value is set by the ``alias`` or ``instance_name`` instance :ref:`configuration option <cartridge-config>` (since **0.6.1**)."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:201
+msgid "You can use the functionality of any metrics package by getting it as a Cartridge service and calling it with ``require`` like a regular package:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:205
+msgid "local cartridge = require('cartridge')\n"
+"local metrics = cartridge.service_get('metrics')"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:210
+msgid "Since Tarantool Cartridge ``2.4.0``, you can set a zone for each instance in the cluster. When a zone is set, all the metrics on the instance receive the ``zone`` label."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:214
+msgid "To change the HTTP path for a metric in **runtime**, you can use the configuration below. `Learn more about Cartridge configuration <https://www.tarantool.io/en/doc/latest/book/cartridge/cartridge_dev/#managing-role-specific-data>`_). It is not recommended to set up the metrics role in this way. Use ``set_export`` instead."
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:219
+msgid "metrics:\n"
+"  export:\n"
+"    - path: '/path_for_json_metrics'\n"
+"      format: 'json'\n"
+"    - path: '/path_for_prometheus_metrics'\n"
+"      format: 'prometheus'\n"
+"    - path: '/health'\n"
+"      format: 'health'"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:233
+msgid "You can set custom global labels with the following configuration:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:235
+msgid "metrics:\n"
+"  export:\n"
+"    - path: '/metrics'\n"
+"      format: 'json'\n"
+"  global-labels:\n"
+"    my-custom-label: label-value"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:244
+msgid "Another option is to invoke the ``set_default_labels`` function in ``init.lua``:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:246
+msgid "local metrics = require('cartridge.roles.metrics')\n"
+"metrics.set_default_labels({ ['my-custom-label'] = 'label-value' })"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:251
+msgid "You can use the configuration below to choose the default metrics to be exported. If you add the include section, only the metrics from this section will be exported:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:254
+msgid "metrics:\n"
+"  export:\n"
+"    - path: '/metrics'\n"
+"      format: 'json'\n"
+"  # export only vinyl, luajit and memory metrics:\n"
+"  include:\n"
+"    - vinyl\n"
+"    - luajit\n"
+"    - memory"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:266
+msgid "If you add the exclude section, the metrics from this section will be removed from the default metrics list:"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:269
+msgid "metrics:\n"
+"  export:\n"
+"    - path: '/metrics'\n"
+"      format: 'json'\n"
+"  # export all metrics except vinyl, luajit and memory:\n"
+"  exclude:\n"
+"    - vinyl\n"
+"    - luajit\n"
+"    - memory"
+msgstr ""
+
+#: ../../doc/book/monitoring/getting_started.rst:281
+msgid "For the full list of default metrics, check the :ref:`API reference <metrics-api_reference-functions>`."
+msgstr ""

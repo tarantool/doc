@@ -1,0 +1,443 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:5
+msgid "Module *cartridge.auth*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:7
+msgid "Administrators authentication and authorization."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:14
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:21
+msgid "set_enabled (enabled)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:23
+msgid "Allow or deny unauthenticated access to the administrator's page. (*Changed* in v0.11)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:26
+msgid "This function affects only the current instance. It can't be used after the cluster was bootstrapped. To modify clusterwide config use  ``set_params``  instead."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:32
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:87
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:139
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:210
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:245
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:268
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:312
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:344
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:373
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:432
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:34
+msgid "*enabled:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:36
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:60
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:99
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:114
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:148
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:170
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:227
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:249
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:272
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:319
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:348
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:380
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:406
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:436
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:38
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:101
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:150
+msgid "(**boolean**) `true`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:41
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:153
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:324
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:353
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:385
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:411
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:441
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:43
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:155
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:326
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:355
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:387
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:413
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:443
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:45
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:157
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:328
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:357
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:389
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:415
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:445
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:52
+msgid "get_enabled ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:54
+msgid "Check if unauthenticated access is forbidden. (*Added* in v0.7)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:62
+msgid "(**boolean**) enabled"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:69
+msgid "init ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:71
+msgid "Initialize the authentication HTTP API."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:73
+msgid "Set up  ``login``  and  ``logout``  HTTP endpoints."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:82
+msgid "set_callbacks (callbacks)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:84
+msgid "Set authentication callbacks."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:89
+msgid "*callbacks:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:91
+msgid "*add_user:* (**function**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:92
+msgid "*get_user:* (**function**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:93
+msgid "*edit_user:* (**function**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:94
+msgid "*list_users:* (**function**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:95
+msgid "*remove_user:* (**function**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:96
+msgid "*check_password:* (**function**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:108
+msgid "get_callbacks ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:110
+msgid "Get authentication callbacks."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:116
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) callbacks"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:121
+msgid "Configuration"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:128
+msgid "set_params (opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:130
+msgid "Modify authentication params. (*Changed* in v0.11)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:133
+msgid "Can't be used before the bootstrap. Affects all cluster instances. Triggers :ref:`cartridge.config_patch_clusterwide <cartridge.config_patch_clusterwide>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:141
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:143
+msgid "*enabled:* (optional **boolean**) (*Added* in v0.11)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:144
+msgid "*cookie_max_age:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:145
+msgid "*cookie_renew_age:* (optional **number**) (*Added* in v0.11)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:164
+msgid "get_params ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:166
+msgid "Retrieve authentication params."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:172
+msgid "(`AuthParams <cartridge.auth.AuthParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:179
+msgid "AuthParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:181
+msgid "Authentication params."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:184
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:291
+msgid "**Fields:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:186
+msgid "*enabled:* (**boolean**) Whether unauthenticated access is forbidden"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:187
+msgid "*cookie_max_age:* (**number**) Number of seconds until the authentication cookie expires"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:188
+msgid "*cookie_renew_age:* (**number**) Update provided cookie if it's older then this age (in seconds)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:193
+msgid "Authorizarion"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:200
+msgid "set_lsid_cookie (user)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:202
+msgid "Create session for current user."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:204
+msgid "Creates session for user with specified username and user version or clear it if no arguments passed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:207
+msgid "(**Added** in v2.2.0-43)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:212
+msgid "*user:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:219
+msgid "get_session_username ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:221
+msgid "Get username for the current HTTP session."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:223
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:242
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:265
+msgid "(**Added** in v1.1.0-4)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:229
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or **nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:236
+msgid "authorize_request (request)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:238
+msgid "Authorize an HTTP request."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:240
+msgid "Get username from cookies or basic HTTP authentication."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:247
+msgid "*request:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:251
+msgid "(**boolean**) Access granted"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:258
+msgid "render_response (response)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:260
+msgid "Render HTTP response."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:262
+msgid "Inject set-cookie headers into response in order to renew or reset the cookie."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:270
+msgid "*response:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:274
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) The same response with cookies injected"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:279
+msgid "User management"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:286
+msgid "UserInfo"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:288
+msgid "User information."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:293
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:314
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:346
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:375
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:434
+msgid "*username:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:294
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:316
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:377
+msgid "*fullname:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:295
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:317
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:378
+msgid "*email:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:296
+msgid "*version:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:303
+msgid "add_user (username, password, fullname, email)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:305
+msgid "Trigger registered add_user callback."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:307
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:339
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:368
+msgid "The callback is triggered with the same arguments and must return a table with fields conforming to  ``UserInfo`` . Unknown fields are ignored."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:315
+msgid "*password:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:321
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:350
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:382
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:438
+msgid "(`UserInfo <cartridge.auth.UserInfo_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:335
+msgid "get_user (username)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:337
+msgid "Trigger registered get_user callback."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:364
+msgid "edit_user (username, password, fullname, email)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:366
+msgid "Trigger registered edit_user callback."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:376
+msgid "*password:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:396
+msgid "list_users ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:398
+msgid "Trigger registered list_users callback."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:400
+msgid "The callback is triggered without any arguments. It must return an array of  ``UserInfo``  objects."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:408
+msgid "(`{UserInfo,...} <cartridge.auth.UserInfo_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:422
+msgid "remove_user (username)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:424
+msgid "Trigger registered remove_user callback."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.auth.rst:426
+msgid "The callback is triggered with the same arguments and must return a table with fields conforming to  ``UserInfo`` , which was removed. Unknown fields are ignored."
+msgstr ""

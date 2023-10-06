@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_stat.rst:5
+msgid "Submodule box.stat"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:7
+msgid "The ``box.stat`` submodule provides access to request and network statistics."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:9
+msgid "Below is a list of all ``box.stat`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:20
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:21
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:23
+msgid ":doc:`./box_stat/stat`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:24
+msgid "Show request statistics"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:26
+msgid ":doc:`./box_stat/net`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:27
+msgid "Show network activity"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:29
+msgid ":doc:`./box_stat/vinyl`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:30
+msgid "Show vinyl-storage-engine activity"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:32
+msgid ":doc:`./box_stat/reset`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat.rst:33
+msgid "Reset the statistics"
+msgstr ""

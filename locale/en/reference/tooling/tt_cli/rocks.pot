@@ -1,0 +1,309 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:4
+msgid "Using the LuaRocks package manager"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:6
+msgid "$ tt rocks [OPTION ...] [VAR=VALUE] COMMAND [ARGUMENT]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:10
+msgid "``tt rocks`` provides means to manage Lua modules (rocks) via the `LuaRocks <https://luarocks.org/>`_ package manager. `tt` uses its own LuaRocks installation connected to the `Tarantool rocks repository <https://www.tarantool.io/en/download/rocks>`_."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:14
+msgid "Below are lists of supported LuaRocks flags and commands. For detailed information on their usage, refer to `LuaRocks documentation <https://github.com/luarocks/luarocks/wiki/Documentation>`_."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:18
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:22
+msgid "Enable the sub-repositories in rocks servers for rockspecs of in-development versions."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:26
+msgid "Fetch rocks/rockspecs from this server (takes priority over config file)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:30
+msgid "Fetch rocks/rockspecs from this server only (overrides any entries in the config file)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:34
+msgid "Restrict downloads to paths matching the given URL."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:38
+msgid "Specify which Lua installation to use"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:42
+msgid "Specify which Lua version to use."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:46
+msgid "Specify which tree to operate on."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:50
+msgid "Use the tree in the user's home directory. Call ``tt rocks help path`` to learn how to enable it."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:55
+msgid "Use the system tree when ``local_by_default`` is ``true``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:59
+msgid "Display verbose output for the command executed."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:63
+msgid "Timeout on network operations, in seconds. ``0`` means no timeout (wait forever). Default: ``30``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:67
+msgid "Commands"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:75
+msgid "``build``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:76
+msgid "Build and compile a rock"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:77
+msgid "``config``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:78
+msgid "Query information about the LuaRocks configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:79
+msgid "``doc``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:80
+msgid "Show documentation for an installed rock"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:81
+msgid "``download``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:82
+msgid "Download a specific rock file from a rocks server"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:83
+msgid "``help``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:84
+msgid "Help on commands. Type ``tt rocks help <command>`` for more"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:85
+msgid "``init``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:86
+msgid "Initialize a directory for a Lua project using LuaRocks"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:87
+msgid "``install``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:88
+msgid "Install a rock"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:89
+msgid "``lint``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:90
+msgid "Check syntax of a rockspec"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:91
+msgid "``list``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:92
+msgid "List the currently installed rocks"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:93
+msgid "``make``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:94
+msgid "Compile package in the current directory using a rockspec"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:95
+msgid "``make_manifest``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:96
+msgid "Compile a manifest file for a repository"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:97
+msgid "``new_version``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:98
+msgid "Auto-write a rockspec for a new version of a rock"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:99
+msgid "``pack``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:100
+msgid "Create a rock, packing sources or binaries"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:101
+msgid "``purge``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:102
+msgid "Remove all installed rocks from a tree"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:103
+msgid "``remove``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:104
+msgid "Uninstall a rock"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:105
+msgid "``search``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:106
+msgid "Query the LuaRocks servers"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:107
+msgid "``show``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:108
+msgid "Show information about an installed rock"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:109
+msgid "``test``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:110
+msgid "Run the test suite in the current directory"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:111
+msgid "``unpack``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:112
+msgid "Unpack the contents of a rock"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:113
+msgid "``which``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:114
+msgid "Tell which file corresponds to a given module name"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:115
+msgid "``write_rockspec``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:116
+msgid "Write a template for a rockspec file"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:119
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:121
+msgid "Install the rock ``queue`` from the Tarantool rocks repository:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:123
+msgid "$ tt rocks install queue"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:127
+msgid "Search for the rock ``queue`` in **both** the Tarantool rocks repository and the `default LuaRocks repository <https://luarocks.org>`_:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:130
+msgid "$ tt rocks search queue --server='https://luarocks.org'"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:134
+msgid "List the documentation files for the installed rock ``queue``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:136
+msgid "$ tt rocks doc queue --list"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:140
+msgid "Without the ``--list`` flag, this command displays documentation in the user's default browser."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:142
+msgid "Create a ``*.rock`` file from the installed rock ``queue``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:144
+msgid "$ tt rocks pack queue"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:148
+msgid "Unpack a ``*.rock`` file:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:150
+msgid "$ tt rocks unpack queue-scm-1.all.rock"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:154
+msgid "Remove the installed rock ``queue``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/rocks.rst:156
+msgid "$ tt rocks remove queue"
+msgstr ""

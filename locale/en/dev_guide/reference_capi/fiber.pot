@@ -1,0 +1,343 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:3
+msgid "Module fiber"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:7
+msgid "Fiber - contains information about a :ref:`fiber <application_server_fibers>`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:11
+msgid "Function to run inside a fiber."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:15
+msgid "Create a new fiber."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:17
+msgid "Takes a fiber from the fiber cache, if it's not empty. Can fail only if there is not enough memory for the fiber structure or fiber stack."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:20
+msgid "The created fiber automatically returns itself to the fiber cache when its \"main\" function completes."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:23
+#: ../../doc/dev_guide/reference_capi/fiber.rst:39
+msgid "string with fiber name"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:24
+msgid "func for run inside fiber"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:26
+#: ../../doc/dev_guide/reference_capi/fiber.rst:43
+msgid "See also: :ref:`fiber_start()<c_api-fiber-fiber_start>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:30
+msgid "Create a new fiber with defined attributes."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:32
+msgid "Can fail only if there is not enough memory for the fiber structure or fiber stack."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:35
+msgid "The created fiber automatically returns itself to the fiber cache if has a default stack size when its \"main\" function completes."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:40
+#: ../../doc/dev_guide/reference_capi/fiber.rst:175
+#: ../../doc/dev_guide/reference_capi/fiber.rst:181
+msgid "fiber attributes container"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:41
+msgid "function to run inside the fiber"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:49
+msgid "Start execution of created fiber."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:51
+msgid "fiber to start"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:52
+msgid "arguments to start the fiber with"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:56
+msgid "Return control to another fiber and wait until it'll be woken."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:58
+msgid "See also: :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:64
+msgid "Interrupt a synchronous wait of a fiber"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:66
+#: ../../doc/dev_guide/reference_capi/fiber.rst:108
+msgid "fiber to be woken up"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:72
+msgid "Cancel the subject fiber."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:74
+msgid "Cancellation is asynchronous. Use :ref:`fiber_join()<c_api-fiber-fiber_join>` to wait for the cancellation to complete."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:77
+msgid "After ``fiber_cancel()`` is called, the fiber may or may not check whether it was cancelled. If the fiber does not check it, it cannot ever be cancelled."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:80
+msgid "fiber to be cancelled"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:84
+msgid "Deprecated since :doc:`2.11.0 </release/2.11.0>`. Make it possible or not possible to wakeup the current fiber immediately when it's cancelled."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:87
+#: ../../doc/dev_guide/reference_capi/fiber.rst:98
+msgid "fiber"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:88
+#: ../../doc/dev_guide/reference_capi/fiber.rst:99
+msgid "status to set"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+#: ../../doc/dev_guide/reference_capi/fiber.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:90
+msgid "previous state"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:96
+msgid "Set fiber to be joinable (``false`` by default)."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:105
+msgid "Wait until the fiber is dead and then move its execution status to the caller. The fiber must not be detached."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:110
+msgid "Before: ``FIBER_IS_JOINABLE`` flag is set."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:112
+msgid "See also: :ref:`fiber_set_joinable()<c_api-fiber-fiber_set_joinable>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:116
+msgid "Put the current fiber to sleep for at least 's' seconds."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:118
+msgid "time to sleep"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:120
+msgid "Note: this is a cancellation point."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:122
+msgid "See also: :ref:`fiber_is_cancelled()<c_api-fiber-fiber_is_cancelled>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:128
+msgid "Check current fiber for cancellation (it must be checked manually)."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:132
+msgid "Report loop begin time as double (cheap)."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:136
+msgid "Report loop begin time as 64-bit int. Uses real time clock."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:140
+msgid "Report loop begin time as double (cheap). Uses monotonic clock."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:144
+msgid "Report loop begin time as 64-bit int. Uses monotonic clock."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:148
+msgid "Reschedule fiber to end of event loop cycle."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:154
+msgid "Return ``slab_cache`` suitable to use with ``tarantool/small`` library"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:158
+msgid "Return the current fiber."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:164
+msgid "Create a new fiber attributes container and initialize it with default parameters."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:167
+msgid "Can be used for creating many fibers: corresponding fibers will not take ownership."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:172
+msgid "Delete the ``fiber_attr`` and free all allocated resources. This is safe when fibers created with this attribute still exist."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:179
+msgid "Set the fiber's stack size in the fiber attributes container."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:182
+msgid "stack size for new fibers (in bytes)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:184
+msgid "0 on success"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:185
+msgid "-1 on failure (if ``stack_size`` is smaller than the minimum allowable fiber stack size)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:190
+msgid "Get the fiber's stack size from the fiber attributes container."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:192
+msgid "fiber attributes container, or NULL for default"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:195
+msgid "stack size (in bytes)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:201
+msgid "A conditional variable: a synchronization primitive that allow fibers in Tarantool's :ref:`cooperative multitasking <app-cooperative_multitasking>` environment to yield until some predicate is satisfied."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:205
+msgid "Fiber conditions have two basic operations -- \"wait\" and \"signal\", -- where \"wait\" suspends the execution of a fiber (i.e. yields) until \"signal\" is called."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:209
+msgid "Unlike ``pthread_cond``, ``fiber_cond`` doesn't require mutex/latch wrapping."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:213
+msgid "Create a new conditional variable."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:217
+msgid "Delete the conditional variable."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:219
+msgid "Note: behavior is undefined if there are fibers waiting for the conditional variable."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:222
+msgid "conditional variable to delete"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:228
+msgid "Wake up **one** (any) of the fibers waiting for the conditional variable."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:230
+#: ../../doc/dev_guide/reference_capi/fiber.rst:238
+msgid "Does nothing if no one is waiting."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:232
+#: ../../doc/dev_guide/reference_capi/fiber.rst:240
+#: ../../doc/dev_guide/reference_capi/fiber.rst:256
+msgid "conditional variable"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:236
+msgid "Wake up **all** fibers waiting for the conditional variable."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:246
+msgid "Suspend the execution of the current fiber (i.e. yield) until :ref:`fiber_cond_signal() <c_api-fiber_cond_signal>` is called."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:249
+msgid "Like ``pthread_cond``, ``fiber_cond`` can issue spurious wake ups caused by explicit :ref:`fiber_wakeup()<c_api-fiber-fiber_wakeup>` or :ref:`fiber_cancel()<c_api-fiber-fiber_cancel>` calls. It is highly recommended to wrap calls to this function into a loop and check the actual predicate and :ref:`fiber_is_cancelled()<c_api-fiber-fiber_is_cancelled>` on every iteration."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:257
+msgid "timeout in seconds"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:259
+msgid "0 on :ref:`fiber_cond_signal() <c_api-fiber_cond_signal>` call or a spurious wake up"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:261
+msgid "-1 on timeout, and the error code is set to 'TimedOut'"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/fiber.rst:265
+msgid "Shortcut for :ref:`fiber_cond_wait_timeout() <c_api-fiber_cond_wait_timeout>`."
+msgstr ""

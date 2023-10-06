@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:5
+msgid "Module *cartridge.lua-api.deprecated*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:7
+msgid "Administration functions (deprecated)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:14
+msgid "Deprecated functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:21
+msgid "join_server (args)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:23
+msgid "Join an instance to the cluster (*deprecated*)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:25
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:65
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:99
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:127
+msgid "(**Deprecated** since v1.0.0-17 in favor of :ref:`cartridge.admin_edit_topology <cartridge.admin_edit_topology>`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:29
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:69
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:103
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:131
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:31
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:71
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:133
+msgid "*args:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:33
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:34
+msgid "*instance_uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:35
+msgid "*replicaset_uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:36
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:137
+msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:37
+msgid "*timeout:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:38
+msgid "*zone:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) (**Added** in v2.4.0-14)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:39
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:75
+msgid "*labels:* (optional `{[string]=string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:40
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:140
+msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:41
+msgid "*replicaset_alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:42
+msgid "*replicaset_weight:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:45
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:78
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:107
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:144
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:47
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:80
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:109
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:146
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:50
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:83
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:112
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:149
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:52
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:85
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:114
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:151
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:54
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:87
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:116
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:153
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:61
+msgid "edit_server (args)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:63
+msgid "Edit an instance (*deprecated*)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:73
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:105
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:135
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:74
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:94
+msgid "expel_server (uuid)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:96
+msgid "Expel an instance (*deprecated*). Forever."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:123
+msgid "edit_replicaset (args)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:125
+msgid "Edit replicaset parameters (*deprecated*)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:136
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:138
+msgid "*master:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Failover order"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:139
+msgid "*weight:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.deprecated.rst:141
+msgid "*all_rw:* (optional **boolean**)"
+msgstr ""

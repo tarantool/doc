@@ -1,0 +1,301 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/merger.rst:5
+msgid "Module merger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:11
+msgid "The ``merger`` module takes a stream of tuples and provides access to them as tables."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:16
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:18
+msgid "The four functions for creating a merger object instance are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:20
+msgid ":ref:`merger.new_tuple_source() <merger-new_tuple_source>`,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:21
+msgid ":ref:`merger.new_buffer_source() <merger-new_buffer_source>`,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:22
+msgid ":ref:`merger.new_table_source <merger-new_table_source>`,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:23
+#: ../../doc/reference/reference_lua/merger.rst:111
+msgid ":ref:`merger.new(merger_source...) <merger-new_merger_source>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:25
+msgid "The methods for using a merger object are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:27
+msgid ":ref:`merger_object:select() <merger-select>`,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:28
+#: ../../doc/reference/reference_lua/merger.rst:116
+msgid ":ref:`merger_object:pairs() <merger-pairs>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:36
+msgid "Create a new merger instance from a tuple source."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:38
+msgid "A tuple source just returns one tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:40
+msgid "The generator function ``gen()`` allows creation of multiple tuples via an iterator."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:43
+msgid "The ``gen()`` function should return:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:45
+msgid "state, tuple each time it is called and a new tuple is available,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:46
+msgid "nil when no more tuples are available."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:0
+#: ../../doc/reference/reference_lua/merger.rst:0
+#: ../../doc/reference/reference_lua/merger.rst:0
+#: ../../doc/reference/reference_lua/merger.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:48
+msgid "function for iteratively returning tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:49
+msgid "parameter for the gen function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:0
+#: ../../doc/reference/reference_lua/merger.rst:0
+#: ../../doc/reference/reference_lua/merger.rst:0
+#: ../../doc/reference/reference_lua/merger.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:51
+#: ../../doc/reference/reference_lua/merger.rst:95
+msgid "merger-object :ref:`a merger object <merger-object>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:53
+#: ../../doc/reference/reference_lua/merger.rst:100
+msgid "Example: see :ref:`merger_object:pairs() <merger-pairs>` method."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:59
+msgid "Create a new merger instance from a buffer source."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:61
+#: ../../doc/reference/reference_lua/merger.rst:73
+msgid "Parameters and return: same as for :ref:`merger.new_tuple_source <merger-new_tuple_source>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:64
+msgid "To set up a buffer, or a series of buffers, use :ref:`the buffer module <buffer-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:71
+msgid "Create a new merger instance from a table source."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:76
+msgid "Example: see :ref:`merger_object:select() <merger-select>` method."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:82
+msgid "Create a new merger instance from a merger source."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:84
+msgid "A merger source is created from a :ref:`key_def <key_def-module>` object and a set of (tuple or buffer or table or merger) sources. It performs a kind of merge sort. It chooses a source with a minimal / maximal tuple on each step, consumes a tuple from this source, and repeats."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:91
+msgid "object created with ``key_def``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:92
+msgid "parameter for the ``gen()`` function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:93
+msgid "``reverse=true`` if descending, false or nil if ascending"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:97
+msgid "A ``key_def`` can be cached across requests with the same ordering rules (typically these would be requests accessing the same space)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:106
+msgid "A merger object is an object returned by:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:108
+msgid ":ref:`merger.new_tuple_source() <merger-new_tuple_source>` or"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:109
+msgid ":ref:`merger.new_buffer_source() <merger-new_buffer_source>` or"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:110
+msgid ":ref:`merger.new_table_source <merger-new_table_source>` or"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:113
+msgid "It has methods:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:115
+msgid ":ref:`merger_object:select() <merger-select>` or"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:122
+msgid "Access the contents of a merger object with familiar ``select`` syntax."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:124
+#: ../../doc/reference/reference_lua/merger.rst:125
+msgid "as in ``net.box`` client :ref:`conn:select <conn-select>` method"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:127
+msgid "a table of tuples, similar to what ``select`` would return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:129
+msgid "**Example with new_table_source():**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:131
+msgid "-- Source via new_table_source, simple generator function\n"
+"-- tarantool> s:select()\n"
+"-- ---\n"
+"-- - - [100]\n"
+"--   - [200]\n"
+"-- ...\n"
+"merger=require('merger')\n"
+"k=0\n"
+"function merger_function(param)\n"
+"  k = k + 1\n"
+"  if param[k] == nil then return nil end\n"
+"  return box.NULL, param[k]\n"
+"  end\n"
+"chunks={}\n"
+"chunks[1] = {{100}} chunks[2] = {{200}} chunks[3] = nil\n"
+"s = merger.new_table_source(merger_function, chunks)\n"
+"s:select()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:155
+msgid "The ``pairs()`` method (or the equivalent ``ipairs() alias`` method) returns a luafun iterator. It is a Lua iterator, but also provides a set of handy methods to operate in functional style."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:160
+msgid "tuple or Lua table with field contents"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:162
+msgid "the tuples that can be found with a standard ``pairs()`` function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:164
+msgid "**Example with new_tuple_source():**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:166
+msgid "-- Source via new_tuple_source, from a space of tables\n"
+"-- The result will look like this:\n"
+"-- tarantool> so:pairs():totable()\n"
+"-- ---\n"
+"-- - - [100]\n"
+"--   - [200]\n"
+"-- ...\n"
+"merger = require('merger')\n"
+"box.schema.space.create('s')\n"
+"box.space.s:create_index('i')\n"
+"box.space.s:insert({100})\n"
+"box.space.s:insert({200})\n"
+"so = merger.new_tuple_source(box.space.s:pairs())\n"
+"so:pairs():totable()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:183
+msgid "**Example with two mergers:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:185
+msgid "-- Source via key_def, and table data\n"
+"\n"
+"-- Create the key_def object\n"
+"merger = require('merger')\n"
+"key_def_lib = require('key_def')\n"
+"key_def = key_def_lib.new({{\n"
+"    fieldno = 1,\n"
+"    type = 'string',\n"
+"}})\n"
+"-- Create the table source\n"
+"data = {{'a'}, {'b'}, {'c'}}\n"
+"source = merger.new_source_fromtable(data)\n"
+"i1 = merger.new(key_def, {source}):pairs()\n"
+"i2 = merger.new(key_def, {source}):pairs()\n"
+"-- t1 will be 'a' (tuple 1 from merger 1)\n"
+"t1 = i1:head():totable()\n"
+"-- t3 will be 'c' (tuple 3 from merger 2)\n"
+"t3 = i2:head():totable()\n"
+"-- t2 will be 'b' (tuple 2 from merger 1)\n"
+"t2 = i1:head():totable()\n"
+"-- i1:is_null() will be true (merger 1 ends)\n"
+"i1:is_null()\n"
+"-- i2:is_null() will be true (merger 2 ends)\n"
+"i2:is_null()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:212
+msgid "**More examples:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/merger.rst:214
+msgid "See `https://github.com/Totktonada/tarantool-merger-examples <https://github.com/Totktonada/tarantool-merger-examples>`_ which, in addition to discussing the merger API in detail, shows Lua code for handling many more situations than are in this manual's brief examples."
+msgstr ""

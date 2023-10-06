@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:2
+msgid "box.stat()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:8
+msgid "Shows the total number of requests since startup and the average number of requests per second, broken down by request type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:12
+msgid "in the tables that ``box.stat()`` returns:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:14
+msgid "``total``: total number of requests processed per second since the server started"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:15
+msgid "``rps``: average number of requests per second in the last 5 seconds."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:17
+msgid "``ERROR`` is the count of requests that resulted in an error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:19
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/stat.rst:21
+msgid "tarantool> box.stat() -- return 15 tables\n"
+"---\n"
+"- DELETE:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  COMMIT:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  SELECT:\n"
+"    total: 12\n"
+"    rps: 0\n"
+"  ROLLBACK:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  INSERT:\n"
+"    total: 6\n"
+"    rps: 0\n"
+"  EVAL:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  ERROR:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  CALL:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  BEGIN:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  PREPARE:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  REPLACE:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  UPSERT:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  AUTH:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  EXECUTE:\n"
+"    total: 0\n"
+"    rps: 0\n"
+"  UPDATE:\n"
+"    total: 2\n"
+"    rps: 0\n"
+"...\n"
+"\n"
+"tarantool> box.stat().DELETE -- total + requests per second from one table\n"
+"---\n"
+"- total: 0\n"
+"  rps: 0\n"
+"..."
+msgstr ""

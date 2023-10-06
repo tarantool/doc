@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:5
+msgid "index_object:random()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:11
+msgid "Find a random value in the specified index. This method is useful when it's important to get insight into data distribution in an index without having to iterate over the entire data set."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:16
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:18
+msgid "an arbitrary non-negative integer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:20
+msgid "the tuple for the random key in the index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:21
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:23
+msgid "**Complexity factors:** Index size, Index type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:25
+msgid "**Note regarding storage engine:** vinyl does not support ``random()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:27
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/random.rst:29
+msgid "tarantool> box.space.tester.index.secondary:random(1)\n"
+"---\n"
+"- ['Beta!', 66, 'This is the second tuple!']\n"
+"..."
+msgstr ""

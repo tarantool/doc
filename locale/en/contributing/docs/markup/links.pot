@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/markup/links.rst:2
+msgid "Links and references"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:5
+msgid "Linking to other documentation pages"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:7
+msgid "To create a link to another document in our documentation, we use the ``:doc:`` role. For example, this link points to the document ``/reference/reference_lua/box_error.rst``:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:10
+msgid ":doc:`box.error reference </reference/reference_lua/box_error>`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:14
+msgid "Our convention is to put the full path to the referred document so that we can easily replace the path if it changes. Note that we can omit the ``.rst`` part of the filename."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:18
+msgid "You can use the target document's title as the link text. To do so, omit the text in the link definition:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:21
+#: ../../doc/contributing/docs/markup/_includes/doc-link.rst:1
+msgid ":doc:`/reference/reference_lua/box_index`"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:24
+msgid "And you will get this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:29
+msgid "Linking to labels (anchors)"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:31
+msgid "To generate a link to the certain place in the page, we use the ``:ref:`` role. For this purpose, we add our own labels for linking to any place in this documentation."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:34
+msgid "Our naming convention is as follows:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:36
+msgid "Character set: a through z, 0 through 9, hyphen, underscore."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:37
+msgid "Format: ``path hyphen filename hyphen tag``"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:39
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:41
+msgid "..  _c_api-box_index-iterator_type:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:45
+msgid "where:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:47
+msgid "``c_api`` is the directory name,"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:48
+msgid "``box_index`` is the file name (without \".rst\"), and"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:49
+msgid "``iterator_type`` is the tag."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:51
+msgid "Use a hyphen \"-\" to delimit the path and the file name. In the documentation source, we use only underscores \"_\" in paths and file names, reserving the hyphen \"-\" as the delimiter for local links."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:55
+msgid "The tag can be anything meaningful. The only guideline is for Tarantool syntax items (such as members), where the preferred tag syntax is ``module_or_object_name hyphen member_name``. For example, ``box_space-drop``."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:59
+msgid "To add a link to an anchor, use the following syntax:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:61
+#: ../../doc/contributing/docs/markup/_includes/ref-link.rst:1
+msgid "Check out the :ref:`Quick start guide <vshard-quick-start>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:64
+msgid "The result will be like this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:69
+msgid "Linking to external resources"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:71
+msgid "To make an external link, use the following syntax:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:73
+msgid "Feel free to report an issue at `Tarantool GitHub <https://github.com/tarantool/tarantool/issues>`_."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:77
+msgid "Avoid separating the link and the target definition, like this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:81
+msgid "Feel free to report an issue at `Tarantool GitHub`_.\n"
+"\n"
+"..  _Tarantool GitHub: https://github.com/tarantool/tarantool/issues"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/links.rst:87
+msgid "because every separated link tends to cause troubles when this documentation is translated to other languages."
+msgstr ""

@@ -1,0 +1,101 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:5
+msgid "Custom error types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:7
+msgid "From above you know that errors can be created in two ways: with ``box.error.new()`` and with ``box.error()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:10
+msgid "Both methods can take arguments either as a list (``code, reason, <reason string args>``):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:12
+msgid "box.error(9, 'my_space', 'reason') -- error: 'Failed to create space my_space: reason'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:16
+msgid "...or as a table (``{code = code, reason = reason, ...}``):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:18
+msgid "box.error({code = 9, reason = 'Failed to create space my_space: reason'})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:22
+msgid "It is also possible to specify your own type of errors instead of pre-defined ones. Put a string with your type in the ``type`` field if you pass arguments as a table, or instead of the ``code`` parameter if you use listing:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:26
+msgid "box.error('MyErrorType', 'Message')\n"
+"box.error({type = 'MyErrorType', code = 1024, reason = 'Message'})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:31
+msgid "Or a no-throw version:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:33
+msgid "box.error.new('MyErrorType', 'Message')\n"
+"box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:38
+msgid "When a custom type is specified, it is reported in the ``err.type`` attribute. When it is not specified, ``err.type`` reports one of built-in errors such as ``'ClientError'``, ``'OutOfMemory'``, etc."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:42
+msgid "The maximum name length for a custom type is *63 bytes*. Everything longer than this limit is truncated."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:45
+msgid "The original error type can be checked using the ``err.base_type`` member, although normally it should not be used. For user-defined types, the base type is ``'CustomError'``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:49
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:51
+msgid "tarantool> e = box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> e:unpack()\n"
+"---\n"
+"- code: 1024\n"
+"trace:\n"
+"- file: '[string \"e = box.error.new({type = ''MyErrorType'', code...\"]'\n"
+"    line: 1\n"
+"type: MyErrorType\n"
+"custom_type: MyErrorType\n"
+"message: Message\n"
+"base_type: CustomError\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:69
+msgid "Since version :doc:`2.4.2 </release/2.4.2>`, you can also use a format string to compose an error message for the ``'CustomError'`` type:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/custom_type.rst:73
+msgid "box.error('MyCustomType', 'The error reason: %s', 'some error reason')"
+msgstr ""

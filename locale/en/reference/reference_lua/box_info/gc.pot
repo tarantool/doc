@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:5
+msgid "box.info.gc()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:11
+msgid "The **gc** function of ``box.info`` gives the ``admin`` user a picture of the factors that affect the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`. The garbage collector compares vclock (:ref:`vector clock <replication-vector>`) values of users and checkpoints, so a look at ``box.info.gc()`` may show why the garbage collector has not removed old WAL files, or show what it may soon remove."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:18
+msgid "**gc().consumers** -- a list of users whose requests might affect the garbage collector."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:19
+msgid "**gc().checkpoints** -- a list of preserved checkpoints."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:20
+msgid "**gc().checkpoints[n].references** -- a list of references to a checkpoint."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:21
+msgid "**gc().checkpoints[n].vclock** -- a checkpoint's vclock value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:22
+msgid "**gc().checkpoints[n].signature** -- a sum of a checkpoint's vclock's components."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:23
+msgid "**gc().checkpoint_is_in_progress** -- true if a checkpoint is in progress, otherwise false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:24
+msgid "**gc().vclock** -- the garbage collector's vclock."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/gc.rst:25
+msgid "**gc().signature** -- the sum of the garbage collector's checkpoint's components."
+msgstr ""

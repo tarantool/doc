@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:5
+msgid "box.schema.user.grant()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:13
+msgid "Grant :ref:`privileges <authentication-owners_privileges>` to a user or to another role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:16
+msgid "the name of a user to grant privileges to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:17
+msgid "one or more privileges to grant to the user (for example, `read` or `read,write`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:18
+msgid "a database object type to grant privileges to (for example, `space`, `role`, or `function`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:19
+msgid "the name of a database object to grant privileges to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:20
+msgid "the name of a role to grant to the user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:21
+msgid "``grantor``, ``if_not_exists``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:23
+msgid "If :samp:`'function','{object-name}'` is specified, then a _func tuple with that object-name must exist."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:26
+msgid "**Variation:** instead of ``object-type, object-name`` say 'universe' which means 'all object-types and all objects'. In this case, object name is omitted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:29
+msgid "**Variation:** instead of ``privilege, object-type, object-name`` say ``role-name`` (see section :ref:`Roles <authentication-roles>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:32
+msgid "**Variation:** instead of :samp:`box.schema.user.grant('{user-name}','usage,session','universe',nil,` :code:`{if_not_exists=true})` say :samp:`box.schema.user.enable('{user-name}')`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:36
+msgid "The possible options are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:38
+msgid "``grantor`` = *grantor_name_or_id* -- string or number, for custom grantor,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:39
+msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the user already has the privilege."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:42
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_grant.rst:44
+msgid "box.schema.user.grant('Lena', 'read', 'space', 'tester')\n"
+"box.schema.user.grant('Lena', 'execute', 'function', 'f')\n"
+"box.schema.user.grant('Lena', 'read,write', 'universe')\n"
+"box.schema.user.grant('Lena', 'Accountant')\n"
+"box.schema.user.grant('Lena', 'read,write,execute', 'universe')\n"
+"box.schema.user.grant('X', 'read', 'universe', nil, {if_not_exists=true})"
+msgstr ""

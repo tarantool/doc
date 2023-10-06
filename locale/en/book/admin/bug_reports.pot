@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/bug_reports.rst:5
+msgid "Bug reports"
+msgstr ""
+
+#: ../../doc/book/admin/bug_reports.rst:7
+msgid "If you found a bug in Tarantool, you’re doing us a favor by taking the time to tell us about it."
+msgstr ""
+
+#: ../../doc/book/admin/bug_reports.rst:10
+msgid "Please create an issue at Tarantool repository at GitHub. We encourage you to include the following information:"
+msgstr ""
+
+#: ../../doc/book/admin/bug_reports.rst:13
+msgid "Steps needed to reproduce the bug, and an explanation why this differs from the expected behavior according to our manual. Please provide specific unique information. For example, instead of \"I can’t get certain information\", say \"box.space.x:delete() didn’t report what was deleted\"."
+msgstr ""
+
+#: ../../doc/book/admin/bug_reports.rst:18
+msgid "Your operating system name and version, the Tarantool name and version, and any unusual details about your machine and its configuration."
+msgstr ""
+
+#: ../../doc/book/admin/bug_reports.rst:21
+msgid "Related files like a :ref:`stack trace <admin-stack_traces>` or a Tarantool :ref:`log file <admin-logs>`."
+msgstr ""
+
+#: ../../doc/book/admin/bug_reports.rst:24
+msgid "If this is a feature request or if it affects a special category of users, be sure to mention that."
+msgstr ""
+
+#: ../../doc/book/admin/bug_reports.rst:27
+msgid "Usually within one or two workdays a Tarantool team member will write an acknowledgment, or some questions, or suggestions for a workaround."
+msgstr ""

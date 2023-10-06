@@ -1,0 +1,214 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/localization/locstate.rst:2
+msgid "State of localization"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:10
+msgid "Repository"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:11
+msgid "State"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:12
+msgid "Volume, words"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:14
+msgid "Tarantool Community"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:15
+msgid "|doc|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "doc"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:16
+msgid "352 000"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:18
+msgid "Cartridge"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:19
+msgid "|cartridge|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "cartridge"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:20
+msgid "14 000"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:22
+msgid "Tarantool Ansible Role"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:23
+msgid "|tarantool-ansible-role|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "tarantool-ansible-role"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:24
+msgid "11 000"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:26
+msgid "Cartridge CLI"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:27
+msgid "|cartridge-cli|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "cartridge-cli"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:28
+msgid "6 500"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:30
+msgid "Tarantool Enterprise"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:31
+msgid "|tarantool-enterprise|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "tarantool-enterprise"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:32
+msgid "6 000"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:34
+msgid "Tarantool Data Grid"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:35
+msgid "|tarantool-data-grid|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "tarantool-data-grid"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:36
+#: ../../doc/contributing/docs/localization/locstate.rst:40
+#: ../../doc/contributing/docs/localization/locstate.rst:44
+msgid "4 000"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:38
+msgid "Tarantool Metrics"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:39
+msgid "|tarantool-metrics|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "tarantool-metrics"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:42
+msgid "Tarantool C++ Driver"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:43
+msgid "|tarantool-cpp|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "tarantool-cpp"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:46
+msgid "Tarantool Kubernetes Operator"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:47
+msgid "|tarantool-kubernetes-operator|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "tarantool-kubernetes-operator"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:48
+msgid "2 750"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:50
+msgid "Tarantool Luatest"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:51
+msgid "|tarantool-luatest|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "tarantool-luatest"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:52
+msgid "750"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:54
+msgid "Tarantool Graphana Dashboard"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:55
+msgid "|tarantool-graphana-dashboard|"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+#: ../../doc/contributing/docs/localization/locstate.rst:0
+msgid "tarantool-graphana-dashboard"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization/locstate.rst:56
+msgid "500"
+msgstr ""

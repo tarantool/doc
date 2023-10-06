@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:2
+msgid "Pre-build and post-build scripts"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:4
+msgid "Put the files ``cartridge.pre-build`` and ``cartridge.post-build`` in your application directory to control the packaging process."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:9
+msgid "These files are not to be confused with :ref:`pre-install and post-install scripts <cartridge-cli-preinst_postinst>`, which can be added to an RPM/DEB package of your Cartridge application."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:15
+msgid "cartridge.pre-build"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:17
+msgid "If your application depends on closed-source rocks, or if the build should contain rocks from a project added as a submodule, then you need to **install** all these dependencies before calling ``tarantoolctl rocks make``. To avoid doing it manually, use the file ``cartridge.pre-build``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:22
+msgid "``cartridge.pre-build`` is a script that runs before ``tarantoolctl rocks make``. The main purpose of this script is to build non-standard rocks modules (for example, from a submodule). Specify in it all the ``.rocks`` to build from submodules. For example: ``tarantoolctl rocks make --chdir ./third_party/proj``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:27
+msgid "The file must be executable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:29
+msgid "If you created your application from template, ``cartridge.pre-build`` is already in your application directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:34
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:54
+msgid "Example"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:36
+msgid "#!/bin/sh\n"
+"\n"
+"# The main purpose of this script is to build non-standard rocks modules.\n"
+"# The script will run before `tarantoolctl rocks make` during application build.\n"
+"\n"
+"tarantoolctl rocks make --chdir ./third_party/my-custom-rock-module"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:47
+msgid "cartridge.post-build"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:49
+msgid "``cartridge.post-build`` is a script that runs after ``tarantoolctl rocks make``. The main purpose of this script is to remove build artifacts from the final package. Must be executable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/pre-post-build.rst:56
+msgid "#!/bin/sh\n"
+"\n"
+"# The main purpose of this script is to remove build artifacts from the resulting package.\n"
+"# The script will run after `tarantoolctl rocks make` during application build.\n"
+"\n"
+"rm -rf third_party\n"
+"rm -rf node_modules\n"
+"rm -rf doc"
+msgstr ""

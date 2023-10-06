@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/data_model/schema_desc.rst:4
+msgid "Data schema description"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:6
+msgid "In Tarantool, the use of a data schema is optional."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:8
+msgid "When creating a :term:`space <space>`, you do not have to define a data schema. In this case, the tuples store random data. This rule does not apply to indexed fields. Such fields must contain data of the same type."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:12
+msgid "You can define a data schema when creating a space. Read more in the description of the :doc:`/reference/reference_lua/box_schema/space_create` function. If you have already created a space without specifying a data schema, you can do it later using :doc:`/reference/reference_lua/box_space/format`."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:17
+msgid "After the data schema is defined, all the data is validated by type. Before any insert or update, you will get an error if the data types do not match."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:20
+msgid "We recommend using a data schema because it helps avoid mistakes."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:22
+msgid "In Tarantool, you can define a data schema in two different ways."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:25
+msgid "Data schema description in a code file"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:27
+msgid "The code file is usually called ``init.lua`` and contains the following schema description:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:29
+msgid "box.cfg()\n"
+"\n"
+"users = box.schema.create_space('users', { if_not_exists = true })\n"
+"users:format({{ name = 'user_id', type = 'number'}, { name = 'fullname', type = 'string'}})\n"
+"\n"
+"users:create_index('pk', { parts = { { field = 'user_id', type = 'number'}}})"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:38
+msgid "This is quite simple: when you run tarantool, it executes this code and creates a data schema. To run this file, use:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:41
+msgid "tarantool init.lua"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:45
+msgid "However, it may seem complicated if you do not plan to dive deep into the Lua language and its syntax."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:47
+msgid "Possible difficulty: the snippet above has a function call with a colon: ``users:format``. It is used to pass the ``users`` variable as the first argument of the ``format`` function. This is similar to ``self`` in object-based languages."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:52
+msgid "So it might be more convenient for you to describe the data schema with YAML."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:57
+msgid "Data schema description using the DDL module"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:59
+msgid "The `DDL module <https://github.com/tarantool/ddl>`_ allows you to describe a data schema in the YAML format in a declarative way."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:62
+msgid "The schema would look something like this:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:64
+msgid "spaces:\n"
+"  users:\n"
+"    engine: memtx\n"
+"    is_local: false\n"
+"    temporary: false\n"
+"    format:\n"
+"    - {name: user_id, type: uuid, is_nullable: false}\n"
+"    - {name: fullname, type: string,  is_nullable: false}\n"
+"    - {name: bucket_id, type: unsigned, is_nullable: false}\n"
+"    indexes:\n"
+"    - name: user_id\n"
+"      unique: true\n"
+"      parts: [{path: user_id, type: uuid, is_nullable: false}]\n"
+"      type: HASH\n"
+"    - name: bucket_id\n"
+"      unique: false\n"
+"      parts: [{path: bucket_id, type: unsigned, is_nullable: false}]\n"
+"      type: TREE\n"
+"    sharding_key: [user_id]\n"
+"    sharding_func: test_module.sharding_func"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:87
+msgid "This alternative is simpler to use, and you do not have to dive deep into Lua."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:89
+msgid "``DDL`` is a built-in :doc:`Cartridge </book/cartridge/index>` module. Cartridge is a cluster solution for Tarantool. In its WebUI, there is a separate tab called \"Code\". On this tab, in the ``schema.yml`` file, you can define the schema, check its correctness, and apply it to the whole cluster."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:95
+msgid "If you do not use Cartridge, you can still use the DDL module: put the following Lua code into the file that you use to run Tarantool. This file is usually called ``init.lua``."
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:99
+msgid "local yaml = require('yaml')\n"
+"local ddl = require('ddl')\n"
+"\n"
+"box.cfg{}\n"
+"\n"
+"local fh = io.open('ddl.yml', 'r')\n"
+"local schema = yaml.decode(fh:read('*all'))\n"
+"fh:close()\n"
+"local ok, err = ddl.check_schema(schema)\n"
+"if not ok then\n"
+"    print(err)\n"
+"end\n"
+"local ok, err = ddl.set_schema(schema)\n"
+"if not ok then\n"
+"    print(err)\n"
+"end"
+msgstr ""
+
+#: ../../doc/concepts/data_model/schema_desc.rst:120
+msgid "It is forbidden to modify the data schema in DDL after it has been applied. For migration, there are different scenarios described in the :ref:`Migrations <migrations>` section."
+msgstr ""

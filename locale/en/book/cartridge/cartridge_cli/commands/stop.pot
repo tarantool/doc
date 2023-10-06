@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:2
+msgid "Stopping instances"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:4
+msgid "To stop one or more instances that are running locally in the background, run:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:6
+msgid "cartridge stop [INSTANCE_NAME...] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:10
+msgid "where ``[INSTANCE_NAME...]`` means that more than one instance can be specified."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:12
+msgid "If no ``INSTANCE_NAME`` is provided, all the instances from the Cartridge instance configuration file are taken as arguments. See the ``--cfg`` option below."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:17
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:25
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:26
+msgid "Application name. By default, it is taken from the ``package`` field of the application's ``.rockspec``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:29
+msgid "``-f, --force``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:30
+msgid "Force stop the instance(s) with a SIGKILL. By default, the instances receive a SIGTERM."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:32
+msgid "``--stateboard``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:33
+msgid "Stop the application :ref:`stateboard <cartridge-stateful_failover>` and the instances. Ignored if ``--stateboard-only`` is specified."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:37
+msgid "``--stateboard-only``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:38
+msgid "Stop only the application stateboard. If specified, ``INSTANCE_NAME...`` is ignored."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:40
+msgid "``--run-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:41
+msgid "The directory where PID and socket files are stored. Defaults to ``./tmp/run``. ``run-dir`` is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:46
+msgid "``--cfg``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:47
+msgid "Path to the Cartridge instances configuration file. Defaults to ``./instances.yml``. ``cfg``is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/stop.rst:55
+msgid "Use the exact same ``run-dir`` as you did with ``cartridge start``. The PID files stored in that directory are used to stop running instances."
+msgstr ""

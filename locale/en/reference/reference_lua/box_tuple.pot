@@ -1,0 +1,213 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:5
+msgid "Submodule box.tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:7
+msgid "The ``box.tuple`` submodule provides read-only access for the ``tuple`` userdata type. It allows, for a single :ref:`tuple <index-box_tuple>`: selective retrieval of the field contents, retrieval of information about size, iteration over all the fields, and conversion to a `Lua table <https://www.lua.org/pil/2.5.html>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:12
+msgid "Below is a list of all ``box.tuple`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:23
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:24
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:26
+msgid ":doc:`./box_tuple/new`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:27
+msgid "Create a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:29
+msgid ":doc:`./box_tuple/is`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:30
+msgid "Check whether a given object is a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:32
+msgid ":doc:`./box_tuple/count_fields`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:33
+msgid "Count tuple fields"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:35
+msgid ":doc:`./box_tuple/bsize`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:36
+msgid "Get count of bytes in a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:38
+msgid ":doc:`./box_tuple/field_number`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:39
+msgid "Get a tuple's field by specifying a number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:41
+msgid ":doc:`./box_tuple/field_name`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:42
+msgid "Get a tuple's field by specifying a name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:44
+msgid ":doc:`./box_tuple/field_path`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:45
+msgid "Get a tuple's fields or parts by specifying a path"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:47
+msgid ":doc:`./box_tuple/find`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:48
+msgid "Get the number of the first field/all fields matching the search value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:50
+msgid ":doc:`./box_tuple/next`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:51
+msgid "Get the next field value from tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:53
+msgid ":doc:`./box_tuple/pairs`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:54
+msgid "Prepare for iterating"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:56
+msgid ":doc:`./box_tuple/totable`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:57
+msgid "Get a tuple's fields as a table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:59
+msgid ":doc:`./box_tuple/tomap`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:60
+msgid "Get a tuple's fields as a table along with key:value pairs"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:62
+msgid ":doc:`./box_tuple/transform`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:63
+msgid "Remove (and replace) a tuple's fields"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:65
+msgid ":doc:`./box_tuple/unpack`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:66
+msgid "Get a tuple's fields"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:68
+msgid ":doc:`./box_tuple/update`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:69
+msgid "Update a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:71
+msgid ":doc:`./box_tuple/upsert`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:72
+msgid "Update a tuple ignoring errors"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:96
+msgid "How to convert tuples to/from Lua tables"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:98
+msgid "This function will illustrate how to convert tuples to/from Lua tables and lists of scalars:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:101
+msgid "tuple = box.tuple.new({scalar1, scalar2, ... scalar_n}) -- scalars to tuple\n"
+"lua_table = {tuple:unpack()}                            -- tuple to Lua table\n"
+"lua_table = tuple:totable()                             -- tuple to Lua table\n"
+"scalar1, scalar2, ... scalar_n = tuple:unpack()         -- tuple to scalars\n"
+"tuple = box.tuple.new(lua_table)                        -- Lua table to tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:109
+msgid "Then it will find the field that contains 'b', remove that field from the tuple, and display how many bytes remain in the tuple. The function uses Tarantool ``box.tuple`` functions ``new()``, ``unpack()``, ``find()``, ``transform()``, ``bsize()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:114
+msgid "function example()\n"
+"  local tuple1, tuple2, lua_table_1, scalar1, scalar2, scalar3, field_number\n"
+"  local luatable1 = {}\n"
+"  tuple1 = box.tuple.new({'a', 'b', 'c'})\n"
+"  luatable1 = tuple1:totable()\n"
+"  scalar1, scalar2, scalar3 = tuple1:unpack()\n"
+"  tuple2 = box.tuple.new(luatable1[1],luatable1[2],luatable1[3])\n"
+"  field_number = tuple2:find('b')\n"
+"  tuple2 = tuple2:transform(field_number, 1)\n"
+"  return 'tuple2 = ' , tuple2 , ' # of bytes = ' , tuple2:bsize()\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:128
+msgid "... And here is what happens when one invokes the function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple.rst:130
+msgid "tarantool> example()\n"
+"---\n"
+"- tuple2 =\n"
+"- ['a', 'c']\n"
+"- ' # of bytes = '\n"
+"- 5\n"
+"..."
+msgstr ""

@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_session/su.rst:6
+msgid "box.session.su()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/su.rst:12
+msgid "Change Tarantool's :ref:`current user <authentication-users>` -- this is analogous to the Unix command ``su``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/su.rst:15
+msgid "Or, if function-to-execute is specified, change Tarantool's :ref:`current user <authentication-users>` temporarily while executing the function -- this is analogous to the Unix command ``sudo``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/su.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/su.rst:20
+msgid "name of a target user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/su.rst:21
+msgid "name of a function, or definition of a function. Additional parameters may be passed to ``box.session.su``, they will be interpreted as parameters of function-to-execute."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/su.rst:26
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/su.rst:28
+msgid "tarantool> function f(a) return box.session.user() .. a end\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> box.session.su('guest', f, '-xxx')\n"
+"---\n"
+"- guest-xxx\n"
+"...\n"
+"\n"
+"tarantool> box.session.su('guest',function(...) return ... end,1,2)\n"
+"---\n"
+"- 1\n"
+"- 2\n"
+"..."
+msgstr ""

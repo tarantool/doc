@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:4
+msgid "box.space._space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:10
+msgid "``_space`` is a system space. It contains all spaces hosted on the current Tarantool instance, both system ones and created by users."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:13
+msgid "Tuples in this space contain the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:15
+msgid "``id``,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:16
+msgid "``owner`` (= id of user who owns the space),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:17
+msgid "``name``, ``engine``, ``field_count``,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:18
+msgid "``flags`` (e.g. temporary),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:19
+msgid "``format`` (as made by a :doc:`format clause </reference/reference_lua/box_space/format>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:21
+msgid "These fields are established by :doc:`/reference/reference_lua/box_schema/space_create`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:23
+msgid "The :ref:`system space view <box_space-sysviews>` for ``_space`` is ``_vspace``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:25
+msgid "**Example #1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:27
+msgid "The following function will display every simple field in all tuples of ``_space``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:30
+msgid "function example()\n"
+"  local ta = {}\n"
+"  local i, line\n"
+"  for k, v in box.space._space:pairs() do\n"
+"    i = 1\n"
+"    line = ''\n"
+"    while i <= #v do\n"
+"      if type(v[i]) ~= 'table' then\n"
+"        line = line .. v[i] .. ' '\n"
+"      end\n"
+"    i = i + 1\n"
+"    end\n"
+"    table.insert(ta, line)\n"
+"  end\n"
+"  return ta\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:49
+msgid "Here is what ``example()`` returns in a typical installation:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:51
+msgid "tarantool> example()\n"
+"---\n"
+"- - '272 1 _schema memtx 0  '\n"
+"  - '280 1 _space memtx 0  '\n"
+"  - '281 1 _vspace sysview 0  '\n"
+"  - '288 1 _index memtx 0  '\n"
+"  - '296 1 _func memtx 0  '\n"
+"  - '304 1 _user memtx 0  '\n"
+"  - '305 1 _vuser sysview 0  '\n"
+"  - '312 1 _priv memtx 0  '\n"
+"  - '313 1 _vpriv sysview 0  '\n"
+"  - '320 1 _cluster memtx 0  '\n"
+"  - '512 1 tester memtx 0  '\n"
+"  - '513 1 origin vinyl 0  '\n"
+"  - '514 1 archive memtx 0  '\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:70
+msgid "**Example #2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:72
+msgid "The following requests will create a space using ``box.schema.space.create()`` with a :doc:`format clause </reference/reference_lua/box_space/format>`, then retrieve the ``_space`` tuple for the new space. This illustrates the typical use of the ``format`` clause, it shows the recommended names and data types for the fields."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space.rst:78
+msgid "tarantool> box.schema.space.create('TM', {\n"
+"         >   id = 12345,\n"
+"         >   format = {\n"
+"         >     [1] = {[\"name\"] = \"field_1\"},\n"
+"         >     [2] = {[\"type\"] = \"unsigned\"}\n"
+"         >   }\n"
+"         > })\n"
+"---\n"
+"- index: []\n"
+"  on_replace: 'function: 0x41c67338'\n"
+"  temporary: false\n"
+"  id: 12345\n"
+"  engine: memtx\n"
+"  enabled: false\n"
+"  name: TM\n"
+"  field_count: 0\n"
+"- created\n"
+"...\n"
+"tarantool> box.space._space:select(12345)\n"
+"---\n"
+"- - [12345, 1, 'TM', 'memtx', 0, {}, [{'name': 'field_1'}, {'type': 'unsigned'}]]\n"
+"..."
+msgstr ""
