@@ -154,7 +154,7 @@
 
 .. _capi-tuple_key_def:
 
-.. c:type:: typedef struct key_def box_key_def_t
+.. c:type:: box_key_def_t
 
     Key definition
 

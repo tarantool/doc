@@ -82,7 +82,7 @@ Core
    not be truncated even if the referring space was empty (:tarantool-issue:`8946`).
 -  Fixed a crash that could happen when Tarantool is compiled by
    ``clang`` version 15 and above with enabled AddressSanitizer
-   (:ref:`tarantool/tarantool-qa#321 <https://github.com/tarantool/tarantool-qa/issues/321>`).
+   (`tarantool/tarantool-qa#321 <https://github.com/tarantool/tarantool-qa/issues/321>`_).
 -  Fixed a use-after-free bug in iproto server code (:tarantool-issue:`9037`).
 -  Fixed a heap-buffer-overflow bug in fiber creation code (:tarantool-issue:`9026`).
 

@@ -322,7 +322,7 @@ If required, you can disable redirection using the :ref:`follow_location <reques
 
 
 
-.. _index:
+.. _http-module-api-reference:
 
 API Reference
 -------------

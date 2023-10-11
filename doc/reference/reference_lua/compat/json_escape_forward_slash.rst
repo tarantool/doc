@@ -11,7 +11,7 @@ Old and new behavior
 
 By toggling the ``json_escape_forward_slash`` compat option, you can chose either the json encoder escapes the '/' sign or it does not:
 
-..  code-block:: lua
+..  code-block:: tarantoolsession
 
     tarantool> require('compat').json_escape_forward_slash = 'old'
     ---

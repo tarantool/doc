@@ -139,7 +139,7 @@
     | Dynamic: yes
 
     Setting ``read_only == true`` affects spaces differently depending on the
-    :ref:`options <box_schema-space_create-options>` that were used during
+    :ref:`options <space_opts_object>` that were used during
     :doc:`box.schema.space.create </reference/reference_lua/box_schema/space_create>`,
     as summarized by this chart:
 

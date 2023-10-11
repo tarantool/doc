@@ -1,7 +1,7 @@
 .. _compat-tutorial:
 
-compat module tutorial
-======================
+Tutorial: Module compat
+=======================
 
 This tutorial covers the following ``compat`` module API and its usage:
 
@@ -219,7 +219,7 @@ Option hot reload:
 You can change an existing option in runtime using add_option(), it will update all the fields but keep currently selected behavior if any.
 The new action will be called afterwards.
 
-..  code-block:: lua
+..  code-block:: tarantoolsession
 
     tarantool> compat.add_option{
                      name = 'option_4',

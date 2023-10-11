@@ -1,4 +1,4 @@
-..  _datetime-new:
+..  _datetime-interval-new:
 
 datetime.interval.new()
 =======================

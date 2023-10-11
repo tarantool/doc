@@ -2,15 +2,15 @@
                        Module fiber
 ===========================================================
 
-.. c:type:: struct fiber
+.. c:type:: fiber
 
     Fiber - contains information about a :ref:`fiber <application_server_fibers>`.
 
-.. c:type:: typedef int (*fiber_func)(va_list)
+.. c:type:: int (*fiber_func)(va_list)
 
     Function to run inside a fiber.
 
-.. c:function:: struct fiber *fiber_new(const char *name, fiber_func f)
+.. c:function:: fiber *fiber_new(const char *name, fiber_func f)
 
     Create a new fiber.
 
@@ -25,7 +25,7 @@
 
     See also: :ref:`fiber_start()<c_api-fiber-fiber_start>`
 
-.. c:function:: struct fiber *fiber_new_ex(const char *name, const struct fiber_attr *fiber_attr, fiber_func f)
+.. c:function:: fiber *fiber_new_ex(const char *name, const struct fiber_attr *fiber_attr, fiber_func f)
 
     Create a new fiber with defined attributes.
 
@@ -147,17 +147,17 @@
 
     Reschedule fiber to end of event loop cycle.
 
-.. c:type:: struct slab_cache
+.. c:type:: slab_cache
 
 .. c:function:: struct slab_cache *cord_slab_cache(void)
 
     Return ``slab_cache`` suitable to use with ``tarantool/small`` library
 
-.. c:function:: struct fiber *fiber_self(void)
+.. c:function:: fiber *fiber_self(void)
 
     Return the current fiber.
 
-.. c:type:: struct fiber_attr
+.. c:type:: fiber_attr
 
 .. c:function:: void fiber_attr_new(void)
 
@@ -196,7 +196,7 @@
 
 .. _c_api-fiber_cond:
 
-.. c:type:: struct fiber_cond
+.. c:type:: fiber_cond
 
     A conditional variable: a synchronization primitive that allow fibers in
     Tarantool's :ref:`cooperative multitasking <app-cooperative_multitasking>`
@@ -212,7 +212,7 @@
 
     Create a new conditional variable.
 
-.. c:function:: void fiber_cond_delete(struct fiber_cond *cond)
+.. c:function:: void fiber_cond_delete(fiber_cond *cond)
 
     Delete the conditional variable.
 
@@ -254,7 +254,7 @@
     on every iteration.
 
     :param struct fiber_cond* cond: conditional variable
-    :param struct double timeout: timeout in seconds
+    :param double timeout: timeout in seconds
 
     :return: 0 on :ref:`fiber_cond_signal() <c_api-fiber_cond_signal>` call or a
              spurious wake up

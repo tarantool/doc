@@ -9,8 +9,7 @@
 .. c:enum:: box_error_code
 
     For a complete list of errors, refer to the Tarantool
-    `error code header file <https://github.com/tarantool/tarantool/blob/2.10/src/box/errcode.h>`__
-    (provided for version 2.10).
+    `error code header file <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__.
 
 .. c:type:: box_error_t
 

@@ -1,5 +1,7 @@
-.. // this instruction does not include the final step (calling box.snapshot())
-.. // because we need to add a warning after step 5 in one use of this instruction
+..
+    This instruction does not include the final step (calling box.snapshot())
+    because we need to add a warning after step 5 in one use of this instruction.
+
 Upgrade storage instances by performing the following steps for each replica set:
 
 .. note::
@@ -25,5 +27,3 @@ Upgrade storage instances by performing the following steps for each replica set
     This will update the Tarantool system spaces to match the currently installed
     version of Tarantool. The changes will be propagated to other nodes via the
     replication mechanism later.
-
-
