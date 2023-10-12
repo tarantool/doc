@@ -4,7 +4,7 @@ msgstr "Справочник по модулям"
 
 msgid ""
 "This section covers open and closed source Lua modules for Tarantool "
-"Enterprise included in the distribution as an offline rocks repository."
+"Enterprise Edition included in the distribution as an offline rocks repository."
 msgstr ""
 "В данной главе рассматриваются Lua-модули с открытым и закрытым исходным "
 "кодом для Tarantool Enterprise, которые включены в дистрибутив в качестве "

@@ -108,7 +108,7 @@ ee section
 ~~~~~~~~~~
 
 *   ``credential_path`` -- a path to the file with credentials used for
-    downloading Tarantool Enterprise.
+    downloading Tarantool Enterprise Edition.
 
 templates section
 ~~~~~~~~~~~~~~~~~

@@ -1,19 +1,19 @@
 Security audit
 ==============
 
-This document will help you audit the security of a Tarantool Enterprise cluster.
+This document will help you audit the security of a Tarantool cluster.
 It explains certain security aspects, their rationale, and the ways to check them.
-For details on how to configure Tarantool Enterprise and its infrastructure for each aspect,
+For details on how to configure Tarantool Enterprise Edition and its infrastructure for each aspect,
 refer to the :doc:`security hardening guide <security>`.
 
 Encryption of external iproto traffic
 -------------------------------------
 
-Tarantool Enterprise uses the
+Tarantool uses the
 :doc:`iproto binary protocol </dev_guide/internals/box_protocol>`
 for replicating data between instances and also in the connector libraries.
 
-Since version 2.10.0, Tarantool Enterprise has the built-in support for using SSL to encrypt the client-server communications over binary connections.
+Since version 2.10.0, the Enterprise Edition has the built-in support for using SSL to encrypt the client-server communications over binary connections.
 For details on enabling SSL encryption, see the :ref:`enterprise-iproto-encryption` section of this document.
 
 In case the built-in encryption is not enabled, we recommend using VPN to secure data exchange between data centers.
@@ -21,7 +21,7 @@ In case the built-in encryption is not enabled, we recommend using VPN to secure
 Closed iproto ports
 -------------------
 
-When a Tarantool Enterprise cluster does not use iproto for external requests,
+When a Tarantool cluster does not use iproto for external requests,
 connections to the iproto ports should be allowed only between Tarantool instances.
 
 For more details on configuring ports for iproto,
@@ -31,7 +31,7 @@ see the ``advertise_uri`` section in the Cartridge documentation.
 HTTPS connection termination
 ----------------------------
 
-A Tarantool Enterprise instance can accept HTTP connections from external services
+A Tarantool instance can accept HTTP connections from external services
 or access the administrative web UI.
 All such connections must go through an HTTPS-providing web server,
 running on the same host, such as nginx.
@@ -43,7 +43,7 @@ is not sufficiently secure.
 Closed HTTP ports
 -----------------
 
-Tarantool Enterprise accepts HTTP connections on a specific port, configured with
+Tarantool accepts HTTP connections on a specific port, configured with
 ``http_port: <number>`` value
 (see :ref:`configuring Cartridge instances <cartridge-config>`).
 It must be only available on the same host for nginx to connect to it.
@@ -94,7 +94,7 @@ There are two ways to check this vulnerability:
     Besides searching for the whole code pattern,
     search for any entries of ``'universe'``.
 
-*   Try connecting with ``tt connect`` to each Tarantool Enterprise node.
+*   Try connecting with ``tt connect`` to each Tarantool node.
 
 For more details, refer to the documentation on
 :ref:`access control <authentication>`.
@@ -109,7 +109,7 @@ See more details in the documentation on
 Running under the tarantool user
 --------------------------------
 
-All Tarantool Enterprise instances should be running under the ``tarantool`` user.
+All Tarantool instances should be running under the ``tarantool`` user.
 
 Limiting access to the tarantool user
 -------------------------------------
@@ -121,9 +121,9 @@ Also, it must not have a password set to prevent logging in via SSH or ``su``.
 Keeping two or more snapshots
 -----------------------------
 
-In order to have a reliable backup, a Tarantool Enterprise instance must keep
+In order to have a reliable backup, a Tarantool instance must keep
 two or more latest snapshots.
-This should be checked on each Tarantool Enterprise instance.
+This should be checked on each Tarantool instance.
 
 The :ref:`snapshot_count <cfg_checkpoint_daemon-checkpoint_count>` value
 determines the number of kept snapshots.
@@ -143,7 +143,7 @@ using the console:
 Enabled write-ahead logging (WAL)
 ---------------------------------
 
-Tarantool Enterprise records all incoming data in the write-ahead log (WAL).
+Tarantool records all incoming data in the write-ahead log (WAL).
 The WAL must be enabled to ensure that data will be recovered in case of
 a possible instance restart.
 
@@ -157,7 +157,7 @@ Secure values of ``wal_mode`` are ``write`` and ``fsync``:
 
 An exclusion from this requirement is when the instance is processing data,
 which can be freely rejected.
-For example, when Tarantool Enterprise is used for caching.
+For example, when Tarantool is used for caching.
 Then WAL can be disabled to reduce i/o load.
 
 For more details, see the
@@ -182,4 +182,4 @@ For a full list of logging levels, see the
 Logging with journald
 ---------------------
 
-Tarantool Enterprise should use ``journald`` for logging.
+Tarantool should use ``journald`` for logging.

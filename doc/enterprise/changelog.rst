@@ -6,7 +6,7 @@ Changelog
 Versioning policy
 -----------------
 
-A Tarantool Enterprise's SDK version consists of two parts:
+A Tarantool Enterprise SDK version consists of two parts:
 
 ..  code-block:: text
 

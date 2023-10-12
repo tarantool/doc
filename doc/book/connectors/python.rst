@@ -188,6 +188,6 @@ Last update: September 2023
         -   No
         -   `Yes <https://github.com/tarantool/tarantool-python/wiki/PEP-249-Database-API>`__
 
-    *   -   :ref:`Encrypted connection (Tarantool Enterprise) <enterprise-iproto-encryption>`
+    *   -   :ref:`Encrypted connection (Enterprise Edition) <enterprise-iproto-encryption>`
         -   No (`issue #22 <https://github.com/igorcoding/asynctnt/issues/22>`__)
         -   Yes

@@ -3,7 +3,7 @@
 Flight recorder
 ===============
 
-The flight recorder available in Tarantool Enterprise is an event collection tool that
+The flight recorder available in the Enterprise Edition is an event collection tool that
 gathers various information about a working Tarantool instance, such as:
 
 *   logs

@@ -4,7 +4,7 @@
 Setup
 ===============================================================================
 
-This chapter explains how to download and set up Tarantool Enterprise and run
+This chapter explains how to download and set up Tarantool Enterprise Edition and run
 a sample application provided with it.
 
 .. _enterprise-prereqs:
@@ -34,7 +34,7 @@ of servers; however, it is not recommended to use such configurations for produc
 Software requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. As host operating systems, Tarantool Enterprise supports
+#. As host operating systems, Tarantool Enterprise Edition supports
    **Red Hat Enterprise Linux** and **CentOS** versions 7.5 and higher.
 
    .. NOTE::

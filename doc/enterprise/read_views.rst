@@ -18,7 +18,7 @@ Tarantool duplicates only blocks modified after a read view is created.
 
 .. NOTE::
 
-    Tarantool Enterprise supports read views starting from v2.11.0 and enables the ability
+    Tarantool Enterprise Edition supports read views starting from v2.11.0 and enables the ability
     to work with them using both :ref:`Lua <read_views_lua_api>` and :ref:`C API <read_views_c_api>`.
 
 

@@ -43,7 +43,7 @@ msgid "Software requirements"
 msgstr "Требования к программному обеспечению"
 
 msgid ""
-"As host operating systems, Tarantool Enterprise supports **Red Hat "
+"As host operating systems, Tarantool Enterprise Edition supports **Red Hat "
 "Enterprise Linux** and **CentOS** versions 7.5 and higher."
 msgstr ""
 "Tarantool Enterprise поддерживает операционные системы **Red Hat Enterprise "

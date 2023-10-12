@@ -5,7 +5,7 @@ Developer's guide
 ===============================================================================
 
 To develop an application, use the Tarantool Cartridge framework that is
-:ref:`installed <enterprise-install>` as part of Tarantool Enterprise.
+:ref:`installed <enterprise-install>` as part of Tarantool Enterprise Edition.
 
 Here is a summary of the commands you need:
 
@@ -60,7 +60,7 @@ Here is a summary of the commands you need:
 
             $ tarantool init.lua
 
-For details and examples, please consult the open-source Tarantool documentation:
+For details and examples, consult the following documentation:
 
 * a `getting started guide <https://github.com/tarantool/cartridge-cli/blob/master/examples/getting-started-app/README.md>`_
   that walks you through developing and deploying a simple clustered application using
@@ -70,7 +70,7 @@ For details and examples, please consult the open-source Tarantool documentation
   Tarantool Cartridge.
 
 Further on, this guide focuses on Enterprise-specific developer features available
-on top of the open-source Tarantool version with the Tarantool Cartridge framework:
+on top of Tarantool Community Edition with the Tarantool Cartridge framework:
 
 * :ref:`LDAP authorization in the web interface <ldap_auth>`,
 * :ref:`environment-independent applications <enterprise-env-independent-apps>`,
@@ -119,7 +119,7 @@ the following way:
 Delivering environment-independent applications
 --------------------------------------------------------------------------------
 
-Tarantool Enterprise allows you to build environment-independent applications.
+Tarantool Enterprise Edition allows you to build environment-independent applications.
 
 An environment-independent application is an assembly (in one directory) of:
 

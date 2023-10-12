@@ -51,18 +51,18 @@ Editions
 Tarantool comes in two editions: the open-source **Community Edition (CE)**
 and the commercial **Enterprise Edition (EE)**.
 
-**Tarantool CE** lets you develop applications and speed up a system in operation.
+**Tarantool Community Edition** lets you develop applications and speed up a system in operation.
 It features :ref:`synchronous replication <repl_sync>`, affords easy :ref:`scalability <sharding>`,
 and includes tools to develop efficient :ref:`applications <app_server>`.
 The `Tarantool community <https://t.me/tarantool>`__ helps with any practical questions
 regarding the Community Edition.
 
-**Tarantool EE** `provides advanced tools <https://www.tarantool.io/en/compare/>`__ for
+**Tarantool Enterprise Edition** `provides advanced tools <https://www.tarantool.io/en/compare/>`__ for
 administration, deployment, and security management, along with premium support services.
 This edition includes all the Community Edition features
 and is more predictable in terms of solution cost and maintenance.
 The Enterprise Edition is shipped as an SDK and includes a number of closed-source modules.
-See the :ref:`Tarantool Enterprise <tarantool_enterprise>` documentation.
+See the :ref:`Tarantool Enterprise Edition <tarantool_enterprise>` documentation.
 
 ..  _overview-use_cases:
 

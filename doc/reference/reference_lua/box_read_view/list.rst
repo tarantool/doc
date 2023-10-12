@@ -9,7 +9,7 @@ box.read_view.list()
     Return an array of all active database read views.
     This array might include the following read view types:
 
-    *   :ref:`read views <read_views>` created by application code (available in Tarantool Enterprise only)
+    *   :ref:`read views <read_views>` created by application code (Enterprise Edition only)
 
     *   system read views (used, for example, to make a :ref:`checkpoint <book_cfg_checkpoint_daemon>`
         or join a new :ref:`replica <replication-architecture>`)

@@ -21,7 +21,7 @@ Enabling LDAP authorization
 
 First, you should enable LDAP authorization function in your :ref:`application development project <cartridge-project>`:
 
-*   set up dependency to the ``cartridge-auth-extension`` module that is available in the :ref:`Tarantool Enterprise package <enterprise-package-contents>`.
+*   set up dependency to the ``cartridge-auth-extension`` module that is available in the :ref:`Enterprise Edition's package <enterprise-package-contents>`.
 *   update the configuration in the application initialization file.
 
 ..  note::

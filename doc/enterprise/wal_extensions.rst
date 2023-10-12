@@ -3,7 +3,7 @@
 WAL extensions
 ==============
 
-WAL extensions available in Tarantool Enterprise allow you to add auxiliary information to each :ref:`write-ahead log <internals-wal>` record.
+WAL extensions available in Tarantool Enterprise Edition allow you to add auxiliary information to each :ref:`write-ahead log <internals-wal>` record.
 For example, you can enable storing an old and new tuple for each CRUD operation performed.
 This information might be helpful for implementing a CDC (Change Data Capture) utility
 that transforms a data replication stream.

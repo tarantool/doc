@@ -18,4 +18,4 @@ This reference covers third-party Lua modules for Tarantool.
     other
 
 For Tarantool Enterprise modules, see the
-:ref:`Tarantool Enterprise documentation <enterprise-rocks>`.
+:ref:`Tarantool EE <enterprise-rocks>` documentation.

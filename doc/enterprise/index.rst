@@ -7,11 +7,11 @@ Tarantool Enterprise Edition
 
     .. container:: documentation-main-page-description
 
-        This section describes the Enterprise edition of Tarantool software -- a Lua
+        This section describes the Enterprise Edition of Tarantool software -- a Lua
         application server integrated with a DBMS for deploying fault-tolerant
         distributed data storages.
 
-        The Enterprise edition provides an `extended feature set <https://www.tarantool.io/en/compare/>`__ for developing
+        The Enterprise Edition provides an `extended feature set <https://www.tarantool.io/en/compare/>`__ for developing
         and managing clustered Tarantool applications, for example:
 
         * :ref:`Static package <enterprise-env-independent-apps>`

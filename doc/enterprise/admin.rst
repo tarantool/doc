@@ -5,12 +5,12 @@ Cluster administrator's guide
 ===============================================================================
 
 This guide focuses on Enterprise-specific administration features available
-on top of the open-source Tarantool version with Tarantool Cartridge framework:
+on top of Tarantool Community Edition with Tarantool Cartridge framework:
 
 * :ref:`space explorer <space_explorer>`
 * :ref:`upgrade of environment-independent applications in production <enterprise-production-upgrade>`
 
-Otherwise, please consult the open-source Tarantool documentation for:
+Otherwise, consult the following documentation for:
 
 * basic information on
   :doc:`deploying and managing a Tarantool cluster </book/cartridge/cartridge_admin>`

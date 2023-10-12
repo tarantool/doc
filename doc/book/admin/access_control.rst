@@ -78,7 +78,7 @@ Tarantool supports two protocols for authenticating users:
     In this case, password hashes are stored in the ``_user`` space `unsalted <https://en.wikipedia.org/wiki/Salt_(cryptography)>`_.
     If an attacker gains access to the database, they may crack a password using, for example, a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
 
-*   `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ with ``SHA256`` hashing (Tarantool Enterprise)
+*   `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ with ``SHA256`` hashing (Enterprise Edition)
 
     For PAP, a password is salted with a user-unique salt before saving it in the ``_user`` space.
     This keeps the database protected from cracking using a rainbow table.
@@ -90,7 +90,7 @@ There are two functions for managing passwords in Tarantool:
 
 *   :doc:`/reference/reference_lua/box_schema/user_password` returns a hash of a user's password.
 
-Tarantool Enterprise also allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on. Learn more from the :ref:`Access control <enterprise-access-control>` section.
+Tarantool Enterprise Edition also allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on. Learn more from the :ref:`Access control <enterprise-access-control>` section.
 
 
 

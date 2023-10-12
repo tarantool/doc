@@ -11,7 +11,7 @@ State of localization
             -   State
             -   Volume, words
 
-        *   -   Tarantool Community
+        *   -   Tarantool Community Edition
             -   |doc|
             -   352 000
 
@@ -27,7 +27,7 @@ State of localization
             -   |cartridge-cli|
             -   6 500
 
-        *   -   Tarantool Enterprise
+        *   -   Tarantool Enterprise Edition
             -   |tarantool-enterprise|
             -   6 000
 

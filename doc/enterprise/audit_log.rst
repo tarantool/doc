@@ -3,7 +3,7 @@
 Audit module
 ============
 
-The Tarantool audit module available in Tarantool Enterprise writes messages that record Tarantool events in plain text, CSV, or JSON format.
+The audit module available in Tarantool Enterprise Edition writes messages that record Tarantool events in plain text, CSV, or JSON format.
 
 It provides detailed reports of security-related activities and helps you find and
 fix breaches to protect your business. For example, you can see who created a new user

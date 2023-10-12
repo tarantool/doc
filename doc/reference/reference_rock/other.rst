@@ -10,4 +10,4 @@ that is hosted externally -- mostly on GitHub pages or in READMEs:
 *   `tracing <https://github.com/tarantool/tracing/>`_
 
 For Tarantool Enterprise modules, see the
-:ref:`Tarantool Enterprise documentation <enterprise-rocks>`.
+:ref:`Tarantool EE <enterprise-rocks>` documentation.

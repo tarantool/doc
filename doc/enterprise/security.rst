@@ -3,17 +3,17 @@
 Security hardening guide
 ========================
 
-This guide explains how to enhance security in your Tarantool Enterprise
+This guide explains how to enhance security in your Tarantool Enterprise Edition's
 cluster using built-in features and provides general recommendations on security
 hardening.
 If you need to perform a security audit of a Tarantool Enterprise cluster,
 refer to the :doc:`security checklist <audit>`.
 
-Tarantool Enterprise does not provide a dedicated API for security control. All
+Tarantool Enterprise Edition does not provide a dedicated API for security control. All
 the necessary configurations can be done via an administrative console or
 initialization code.
 
-Tarantool Enterprise has the following built-in security features:
+Tarantool Enterprise Edition has the following built-in security features:
 
 *  :ref:`authentication <enterprise-authentication>`
 *  :ref:`access control <enterprise-access-control>`
@@ -26,7 +26,7 @@ Tarantool Enterprise has the following built-in security features:
 Authentication
 --------------
 
-Tarantool Enterprise supports password-based authentication and allows for two
+Tarantool Enterprise Edition supports password-based authentication and allows for two
 types of connections:
 
 * Via an :doc:`administrative console </reference/reference_lua/console>`.
@@ -51,7 +51,7 @@ In addition, Tarantool provides the following functionality:
 Access control
 --------------
 
-Tarantool Enterprise provides the means for administrators to prevent
+Tarantool Enterprise Edition provides the means for administrators to prevent
 unauthorized access to the database and to certain functions.
 
 Tarantool recognizes:
@@ -79,7 +79,7 @@ privileges for what they create. For more information, see the
 Authentication restrictions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tarantool Enterprise provides the ability to apply additional restrictions for user authentication.
+Tarantool Enterprise Edition provides the ability to apply additional restrictions for user authentication.
 For example, you can specify the minimum time between authentication attempts
 or disable access for guest users.
 
@@ -286,7 +286,7 @@ protocol to authenticate users and applies ``SHA-1`` hashing to
 Note that CHAP stores password hashes in the ``_user`` space unsalted.
 If an attacker gains access to the database, they may crack a password, for example, using a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
 
-With Tarantool Enterprise, you can enable
+In the Enterprise Edition, you can enable
 `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ authentication
 with the ``SHA256`` hashing algorithm.
 For PAP, a password is salted with a user-unique salt before saving it in the database,
@@ -375,7 +375,7 @@ the client uses the protocol configured on the server via ``box.cfg.auth_type``.
 Audit log
 ---------
 
-Tarantool Enterprise has a built-in audit log that records events such as:
+Tarantool Enterprise Edition has a built-in audit log that records events such as:
 
 * authentication successes and failures
 * connection closures
@@ -413,7 +413,7 @@ system object -- via ``chmod``.
 Traffic encryption
 ------------------
 
-Since version 2.10.0, Tarantool Enterprise has the built-in support for using SSL to encrypt the client-server communications over :ref:`binary connections <box_protocol-iproto_protocol>`,
+Since version 2.10.0, Tarantool Enterprise Edition has the built-in support for using SSL to encrypt the client-server communications over :ref:`binary connections <box_protocol-iproto_protocol>`,
 that is, between Tarantool instances in a cluster or connecting to an instance via connectors using :doc:`net.box </reference/reference_lua/net_box>`.
 
 Tarantool uses the OpenSSL library that is included in the delivery package.
@@ -691,7 +691,7 @@ This section lists recommendations that can help you harden the cluster's securi
 Encrypting traffic
 ~~~~~~~~~~~~~~~~~~
 
-Since version 2.10.0, Tarantool Enterprise has built-in support for using SSL to encrypt the client-server communications over binary connections,
+Since version 2.10.0, Tarantool Enterprise Edition has built-in support for using SSL to encrypt the client-server communications over binary connections,
 that is, between Tarantool instances in a cluster. For details on enabling SSL encryption, see the :ref:`enterprise-iproto-encryption` section of this guide.
 
 In case the built-in encryption is not set for particular connections, consider the following security recommendations:
@@ -708,7 +708,7 @@ does not support the HTTPS protocol. To set up a secure connection for a client
 a cluster of instances) behind an Nginx server and setting up an SSL certificate
 for it.
 
-To make sure that no information can be intercepted 'from the wild', run Nginx
+To make sure that no information can be intercepted 'from the wild', run nginx
 on the same physical server as the instance and set up their communication over
 a Unix socket. For more information, see the
 :doc:`socket module reference </reference/reference_lua/socket>`.
@@ -734,7 +734,7 @@ Consider using third-party software instead.
 Data integrity
 ~~~~~~~~~~~~~~
 
-Tarantool Enterprise does not keep checksums or provide the means to control
+Tarantool Enterprise Edition does not keep checksums or provide the means to control
 data integrity. However, it ensures data persistence using a write-ahead log,
 regularly snapshots the entire data set to disk, and checks the data format
 whenever it reads the data back from the disk. For more information, see the

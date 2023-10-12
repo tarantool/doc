@@ -10,9 +10,9 @@ Installing Tarantool software
 ``tt install`` installs the latest or an explicitly specified version of Tarantool
 or ``tt``. The possible values of ``PROGRAM_NAME`` are:
 
-*   ``tarantool``: Install Tarantool Community edition.
+*   ``tarantool``: Install Tarantool Community Edition.
 *   ``tarantool-dev``: Install Tarantool from a local build directory.
-*   ``tarantool-ee``: Install Tarantool Enterprise edition.
+*   ``tarantool-ee``: Install Tarantool Enterprise Edition.
 *   ``tt``: Install the ``tt`` command-line utility.
 
 .. note::
@@ -60,11 +60,11 @@ When called without an explicitly specified version, ``tt install`` installs the
 latest available version. To check versions available for installation, use
 :doc:`tt search <search>`.
 
-By default, available versions of Tarantool CE and ``tt`` are taken from their git repositories.
+By default, available versions of Tarantool Community Edition and ``tt`` are taken from their git repositories.
 Their installation includes building from sources, which requires some tools and
 dependencies, such as a C compiler. Make sure they are available in the system.
 
-Tarantool EE is installed from prebuilt packages.
+Tarantool Enterprise Edition is installed from prebuilt packages.
 
 You can also set up a local repository with installation files you need.
 To use it, specify its location in the :ref:`repo section <tt-config_file_repo>`

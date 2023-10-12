@@ -6,7 +6,7 @@ Release date: May 24, 2023
 Releases on GitHub: :tarantool-release:`2.11.1`, :tarantool-release:`2.11.0`
 
 The 2.11 release of Tarantool includes many new features and fixes.
-This document provides an overview of the most important features for Enterprise and Community versions.
+This document provides an overview of the most important features for the Enterprise and Community editions.
 
 2.11 is the long-term support (LTS) release with four years of maintenance.
 This means that you will continue to receive all the necessary security fixes and bug fixes throughout this period.
@@ -19,8 +19,8 @@ You can learn more about the Tarantool release policy from the :doc:`correspondi
         :widths: 50 50
         :header-rows: 1
 
-        *   -   :ref:`Tarantool Enterprise <2-11-enterprise>`
-            -   :ref:`Tarantool Community <2-11-community>`
+        *   -   :ref:`Enterprise Edition <2-11-enterprise>`
+            -   :ref:`Community Edition <2-11-community>`
 
         *   -   * :ref:`Security enhancements <2-11-security_enhancements>`
                 * :ref:`Read views <2-11-read_views>`
@@ -49,8 +49,8 @@ To learn how to upgrade to Tarantool 2.11, see :doc:`Upgrades </book/admin/upgra
 
 .. _2-11-enterprise:
 
-Tarantool Enterprise
---------------------
+Enterprise Edition
+------------------
 
 
 .. _2-11-security_enhancements:
@@ -64,7 +64,7 @@ Security enhancements
 Encrypted SSL/TLS keys
 **********************
 
-Tarantool Enterprise now supports encrypted SSL/TLS private key files protected with a password.
+Tarantool Enterprise Edition now supports encrypted SSL/TLS private key files protected with a password.
 Given that most certificate authorities generate encrypted keys, this feature simplifies the maintenance of Tarantool instances.
 
 A password can be provided using either the new ``ssl_password`` URI parameter or in a text file specified using ``ssl_password_file``, for example:
@@ -90,7 +90,7 @@ To learn more, see :ref:`Traffic encryption <enterprise-iproto-encryption>`.
 Security enforcement options
 ****************************
 
-With 2.11, Tarantool Enterprise includes new security enforcement options.
+With 2.11, Tarantool Enterprise Edition includes new security enforcement options.
 These options enable you to enforce the use of strong passwords, set up a maximum password age, and so on.
 For example, the ``password_min_length`` configuration option specifies the minimum number of characters for a password:
 
@@ -119,7 +119,7 @@ By default, Tarantool uses the CHAP protocol to authenticate users and applies S
 In this case, password hashes are stored in the ``_user`` space unsalted.
 If an attacker gains access to the database, they may crack a password, for example, using a rainbow table.
 
-With Tarantool Enterprise, you can enable PAP authentication with the SHA256 hashing algorithm.
+With the Enterprise Edition, you can enable PAP authentication with the SHA256 hashing algorithm.
 For PAP, a password is salted with a user-unique salt before saving it in the database.
 
 Given that PAP transmits a password as plain text, Tarantool requires configuring
@@ -140,7 +140,7 @@ Learn more from the :ref:`Authentication protocol <enterprise-authentication-pro
 Read views
 ~~~~~~~~~~
 
-Starting with 2.11, Tarantool Enterprise provides the ability to create read views - in-memory snapshots of the entire database that aren't affected by future data modifications.
+Starting with 2.11, Tarantool Enterprise Edition provides the ability to create read views - in-memory snapshots of the entire database that aren't affected by future data modifications.
 Read views can be used to make complex analytical queries.
 This reduces the load on the main database and improves RPS for a single Tarantool instance.
 
@@ -177,7 +177,7 @@ To learn more, see the :ref:`Read views <read_views>` topic.
 Data compression improvements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tarantool Enterprise now includes the ``zlib`` algorithm for :ref:`tuple compression <tuple_compression>`.
+Tarantool Enterprise Edition now includes the ``zlib`` algorithm for :ref:`tuple compression <tuple_compression>`.
 This algorithm shows good performance in data decompression,
 which reduces CPU usage if the volume of read operations significantly exceeds the volume of write operations.
 
@@ -213,7 +213,7 @@ Another use case is implementing a CDC (Change Data Capture) utility that transf
     :align: center
     :alt: Write-ahead log extensions
 
-With 2.11, Tarantool Enterprise provides WAL extensions that add auxiliary information to each write-ahead log record.
+With 2.11, Tarantool Enterprise Edition provides WAL extensions that add auxiliary information to each write-ahead log record.
 For example, you can enable storing old and new tuples for each write-ahead log record.
 This is especially useful for the ``update`` operation because a write-ahead log record contains only a key value.
 
@@ -223,8 +223,8 @@ See the :ref:`WAL extensions <wal_extensions>` topic to learn how to enable and 
 
 .. _2-11-community:
 
-Tarantool Community
--------------------
+Community Edition
+-----------------
 
 .. _2-11-pagination:
 

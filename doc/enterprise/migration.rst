@@ -41,7 +41,7 @@ packages with Tarantool Enterprise SDK:
     tt pack rpm
 
 Now the pipeline will produce a new service artifact, which includes
-Tarantool Enterprise.
+Tarantool Enterprise Edition.
 
 Update the service
 ------------------
@@ -55,6 +55,6 @@ To learn how to do it with ``ansible-cartridge``,
 That's it!
 ----------
 
-You can now use Tarantool Enterprise features in your installation.
+You can now use Tarantool Enterprise Edition's features in your installation.
 For example, to enable the audit log,
 :ref:`set up the audit_log parameter in your node configuration <enterprise-logging>`.
