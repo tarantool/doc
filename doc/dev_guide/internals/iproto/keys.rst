@@ -10,6 +10,8 @@ The keys are Tarantool constants that are either defined or mentioned in the
 
 While the keys themselves are unsigned 8-bit integers, their values can have different types.
 
+..  _internals-iproto-keys-basic:
+
 Basic description
 -----------------
 
@@ -49,6 +51,10 @@ General
         *   -   :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>`
             -   0x00 |br| MP_UINT
             -   Request type or response type
+
+        *   -   :ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>`
+            -   -1 |br| MP_UINT
+            -   Unknown request or response type
 
         *   -   :ref:`IPROTO_ERROR <internals-iproto-keys-error>`
             -   0x52 |br| :ref:`MP_ERROR <msgpack_ext-error>`
@@ -132,6 +138,8 @@ General
             -   If ``IPROTO_FETCH_POSITION`` is **true**, returns a base64-encoded string representing
                 the position of the last selected tuple
 
+..  _internals-iproto-keys-streams:
+
 Streams
 ~~~~~~~
 
@@ -192,8 +200,7 @@ General replication
 
         *   -   IPROTO_REPLICASET_UUID
             -   0x25 |br| MP_STR
-            -   UUID of the replica set.
-                Prior to Tarantool version 2.11, IPROTO_REPLICASET_UUID was called IPROTO_CLUSTER_UUID.
+            -   Before Tarantool version 2.11, IPROTO_REPLICASET_UUID was called IPROTO_CLUSTER_UUID.
 
         *   -   IPROTO_LSN
             -   0x03 |br| MP_UINT
@@ -271,7 +278,7 @@ General replication
                 followed by an array of ids of instances whose rows won't be relayed to the replica.
                 Since v. :doc:`2.10.0 </release/2.10.0>`
 
-..  _internals-iproto-keys-syncro-replication:
+..  _internals-iproto-keys-synchro-replication:
 
 Synchronous replication
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -319,6 +326,8 @@ Synchronous replication
 
 All ``IPROTO_RAFT_*`` keys are used only in ``IPROTO_RAFT*`` requests.
 
+..  _internals-iproto-keys-events:
+
 Events and subscriptions
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -341,6 +350,8 @@ Events and subscriptions
             -   :ref:`Event <box-protocol-watchers>` data sent to a remote watcher
 
 :ref:`Learn more about events and subscriptions in iproto <box-protocol-watchers>`.
+
+..  _internals-iproto-keys-sql-specific:
 
 SQL-specific
 ~~~~~~~~~~~~
@@ -460,7 +471,7 @@ Available IPROTO_FEATURES are the following:
     in the request header). Learn more about :ref:`sending transaction commands <box_protocol-stream_transactions>`.
 
 -   ``IPROTO_FEATURE_ERROR_EXTENSION = 2`` -- :ref:`MP_ERROR <msgpack_ext-error>`
-    MsgPack extension support. Clients that don't support this feature will receive
+    MsgPack extension support. Clients that don't support this feature receive
     error responses for :ref:`IPROTO_EVAL <box_protocol-eval>` and
     :ref:`IPROTO_CALL <box_protocol-call>` encoded to string error messages.
 
@@ -587,6 +598,13 @@ See requests and responses for :ref:`client-server communication <internals-requ
 :ref:`events and subscriptions <box-protocol-watchers>`,
 :ref:`streams and interactive transactions <internals-iproto-streams>`.
 
+..  _internals-iproto-keys-unknown:
+
+IPROTO_UNKNOWN
+~~~~~~~~~~~~~~
+
+Code: -1.
+
 ..  _internals-iproto-keys-error:
 
 IPROTO_ERROR
@@ -606,7 +624,7 @@ IPROTO_ERROR_24
 
 Code: 0x31.
     
-IPROTO_ERROR_24 is used in Tarantool versions prior to :doc:`2.4.1 </release/2.4.1>`.
+IPROTO_ERROR_24 is used in Tarantool versions before :doc:`2.4.1 </release/2.4.1>`.
 The key contains the error in the string format.
 
 Since :doc:`Tarantool 2.4.1 </release/2.4.1>`,
@@ -654,10 +672,10 @@ Code: 0x09.
 When it comes to replicating synchronous transactions, the IPROTO_FLAGS key is included in the header.
 The key contains an MP_UINT value of one or more bits:
 
-*   IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction.
-*   IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message
+*   IPROTO_FLAG_COMMIT (0x01) is set if this is the last message for a transaction.
+*   IPROTO_FLAG_WAIT_SYNC (0x02) is set if this is the last message
     for a transaction which cannot be completed immediately.
-*   IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchronous transaction.
+*   IPROTO_FLAG_WAIT_ACK (0x04) is set if this is the last message for a synchronous transaction.
 
 Example:
 
@@ -739,7 +757,7 @@ at least IPROTO_FIELD_NAME (0x00) and MP_STR, and IPROTO_FIELD_TYPE (0x01) and M
 
 Additionally, if ``sql_full_metadata`` in the
 :ref:`_session_settings <box_space-session_settings>` system space
-is TRUE, then the array will have these additional column maps
+is TRUE, then the array has these additional column maps
 which correspond to components described in the :ref:`box.execute() <box-sql_if_full_metadata>` section.
 
 ..  _internals-iproto-keys-sql_bind:

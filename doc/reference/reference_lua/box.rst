@@ -27,6 +27,7 @@ with ``box``, with no arguments. The ``box`` module contains:
     box_error
     box_index
     box_info
+    box_iproto
     box_read_view
     box_schema
     box_schema_sequence

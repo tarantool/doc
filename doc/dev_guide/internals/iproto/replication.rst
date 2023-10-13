@@ -11,6 +11,8 @@ These values and the corresponding packet body structures are considered below.
 
 Connectors and clients do not need to send replication packets.
 
+..  _box_protocol-general:
+
 General
 -------
 
@@ -198,7 +200,7 @@ Synchronous
             -   0x28
             -   Confirm that the RAFT transactions have achieved quorum and can be committed
 
-        *   -   :ref:`IPROTO_RAFT_ROLLBACK <box_protocol-raft_confirm>`
+        *   -   :ref:`IPROTO_RAFT_ROLLBACK <box_protocol-raft_rollback>`
             -   0x29
             -   Roll back the RAFT transactions because they haven't achieved quorum 
 
