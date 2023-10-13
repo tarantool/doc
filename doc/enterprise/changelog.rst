@@ -18,6 +18,32 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``TARANTOOL_BASE_VERSION`` is the Community version which the Enterprise version is based on.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
+595
+---
+
+-   Updated tt-ee to `1.3.0 <https://github.com/tarantool/tt-ee/releases/tag/v1.3.0>`__.
+-   Updated cartridge to `2.8.3 <https://github.com/tarantool/cartridge/releases/tag/2.8.3>`__.
+-   Updated cartridge-cli-extensions to `1.1.2 <https://github.com/tarantool/cartridge-cli-extensions/releases/tag/1.1.2>`__.
+-   Updated crud to `1.3.0 <https://github.com/tarantool/crud/releases/tag/1.3.0>`__.
+-   Updated queue to `1.3.3 <https://github.com/tarantool/queue/releases/tag/1.3.3>`__.
+-   Updated sharded-queue to `0.1.1 <https://github.com/tarantool/sharded-queue/releases/tag/0.1.1>`__.
+-   Updated membership to `2.4.1 <https://github.com/tarantool/membership/releases/tag/2.4.1>`__.
+-   Added tests for Astra Linux 1.7.
+
+
+589
+---
+
+-   Updated ``tarantool-2.10`` to 2.10.8.
+-   Updated ``tarantool-master`` to 3.0.0-alpha3.
+-   Updated migrations to `0.6.0 <https://github.com/tarantool/migrations/releases/tag/0.6.0>`__.
+-   Updated tt-ee to `1.2.0 <https://github.com/tarantool/tt-ee/releases/tag/v1.2.0>`__.
+-   Updated space-explorer to `1.1.8 <https://github.com/tarantool/space-explorer/releases/tag/1.1.8>`__.
+-   Updated cartridge-metrics-role to `0.1.1 <https://github.com/tarantool/cartridge-metrics-role/releases/tag/0.1.1>`__.
+-   Updated cartridge to `2.8.2 <https://github.com/tarantool/cartridge/releases/tag/2.8.2>`__.
+-   Updated expirationd to `1.5.0 <https://github.com/tarantool/expirationd/releases/tag/1.5.0>`__.
+-   Added sideservice `0.1.0 <https://github.com/tarantool/sideservice/releases/tag/0.1.0>`__.
+
 579
 ---
 
