@@ -28,7 +28,7 @@ box.schema.downgrade()
     in the target Tarantool version.
     You can see all such issues using the :ref:`box.schema.downgrade_issues() <box_schema-downgrade_issues>` method,
     which accepts the target version.
-    For example, ``downgrade`` to the ``2.8.4`` version fails if you use `tuple compression <https://www.tarantool.io/en/enterprise_doc/tuple_compression/>`__ or field :ref:`constraints <index-constraint_functions>` in your database:
+    For example, ``downgrade`` to the ``2.8.4`` version fails if you use :ref:`tuple compression <tuple_compression>` or field :ref:`constraints <index-constraint_functions>` in your database:
 
     ..  code-block:: tarantoolsession
 

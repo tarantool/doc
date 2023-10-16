@@ -13,6 +13,7 @@
     Cluster on Cartridge <book/cartridge/index>
     book/admin/index
     book/connectors
+    enterprise/index
     reference/index
     release/index
     contributing/index

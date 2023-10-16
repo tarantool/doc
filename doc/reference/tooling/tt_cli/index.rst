@@ -13,7 +13,7 @@ a specific Tarantool version to managing remote instances and developing applica
 Here you can find its source code, changelog, and releases information.
 
 There is also the Enterprise version of ``tt`` available in a
-Tarantool Enterprise's `release package <https://www.tarantool.io/en/enterprise_doc/setup/#package-contents>`_.
+Tarantool Enterprise Edition's :ref:`release package <enterprise-package-contents>`.
 The Enterprise version provides additional features, for example, :ref:`importing <tt-import>` and :ref:`exporting <tt-export>` data.
 
 This section provides instructions on ``tt`` installation and configuration,

@@ -141,7 +141,7 @@ Options
 
 ..  option:: --readview
 
-    Export data using a `read view <https://www.tarantool.io/en/enterprise_doc/read_views/>`_.
+    Export data using a :ref:`read view <read_views>`.
 
 ..  option:: --username STRING
 

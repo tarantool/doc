@@ -1,0 +1,1007 @@
+
+msgid "Modules reference"
+msgstr "Справочник по модулям"
+
+msgid ""
+"This section covers open and closed source Lua modules for Tarantool "
+"Enterprise Edition included in the distribution as an offline rocks repository."
+msgstr ""
+"В данной главе рассматриваются Lua-модули с открытым и закрытым исходным "
+"кодом для Tarantool Enterprise, которые включены в дистрибутив в качестве "
+"автономного репозитория сторонних библиотек."
+
+msgid "Open source modules"
+msgstr "Модули с открытым исходным кодом:"
+
+msgid ""
+"`avro-schema <https://github.com/tarantool/avro-"
+"schema/blob/master/README.md>`_ is an assembly of `Apache Avro "
+"<http://avro.apache.org/docs/current/>`_ schema tools;"
+msgstr ""
+"`avro-schema <https://github.com/tarantool/avro-"
+"schema/blob/master/README.md>`_ -- набор инструментов для схемы `Apache Avro"
+" <http://avro.apache.org/docs/current/>`_;"
+
+msgid ""
+"`cartridge <https://www.tarantool.io/en/rocks/cartridge/1.0/>`_ is a high-"
+"level cluster management interface that contains several modules:"
+msgstr ""
+"`cartridge <https://www.tarantool.io/en/rocks/cartridge/1.0/>`_ -- это "
+"высокоуровневый интерфейс управления кластером, который содержит несколько "
+"модулей:"
+
+msgid ""
+"``rpc`` implements remote procedure calls between cluster instances and "
+"allows roles running on some instances to interact with other roles on other"
+" instances."
+msgstr ""
+"``rpc`` обеспечивает удаленные вызовы процедур между экземплярами кластера и"
+" позволяет ролям, запущенным на некоторых экземплярах, взаимодействовать с "
+"другими ролями в других экземплярах."
+
+msgid ""
+"``service-registry`` implements inter-role interaction and allows different "
+"roles to interact with each other in the scope of one instance."
+msgstr ""
+"``service-registry`` обеспечивает взаимодействие между ролями и позволяет "
+"различным ролям взаимодействовать друг с другом в рамках одного экземпляра."
+
+msgid ""
+"``confapplier`` implements cluster-wide configuration validation and "
+"application via a two-phase commit."
+msgstr ""
+"``confapplier`` обеспечивает валидацию и применение конфигурации в масштабе "
+"всего кластера с помощью двухфазной фиксации."
+
+msgid "``auth`` manages authentication."
+msgstr "``auth`` управляет аутентификацией."
+
+msgid "``pool`` reuses Tarantool's ``net.box`` connections."
+msgstr "``pool`` повторно использует соединения ``net.box`` в Tarantool."
+
+msgid "``admin`` implements administration functions."
+msgstr "``admin`` обеспечивает функции администрирования."
+
+msgid ""
+"`cartridge-cli "
+"</reference/reference_rock/cartridge-"
+"cli/>`_ is the command-line interface for the ``cartridge`` module."
+msgstr ""
+"`cartridge-cli "
+"</reference/reference_rock/cartridge-"
+"cli/>`_ -- это интерфейс командной строки для модуля ``cartridge``."
+
+msgid ""
+"`checks <https://github.com/tarantool/checks/blob/master/README.md>`_ is a "
+"type checker of functional arguments. This library that declares a "
+"``checks()`` function and ``checkers`` table that allow to check the "
+"parameters passed to a Lua function in a fast and unobtrusive way."
+msgstr ""
+"`checks <https://github.com/tarantool/checks/blob/master/README.md>`_ -- это"
+" модуль контроля типов функциональных аргументов. Эта библиотека объявляет "
+"функцию ``checks()`` и таблицу ``checkers``, которые позволяют быстро и "
+"незаметно проверять параметры, передаваемые в Lua-функцию."
+
+msgid ""
+"`http <https://github.com/tarantool/http/blob/master/README.md>`_ is an on-"
+"board HTTP-server, which comes in addition to Tarantool's out-of-the-box "
+"HTTP client, and must be installed as described in the :ref:`installation "
+"section <enterprise-rocks-install>`."
+msgstr ""
+"`http <https://github.com/tarantool/http/blob/master/README.md>`_ -- это "
+"встроенный HTTP-сервер, который дополняет стандартный HTTP-клиент и требует "
+"установки, как описано в :ref:`разделе по установке <enterprise-rocks-"
+"install>`."
+
+msgid ""
+"`icu-date <https://github.com/tarantool/icu-date/blob/master/README.md>`_ is"
+" a date-and-time formatting library for Tarantool based on International "
+"Components for Unicode;"
+msgstr ""
+"`icu-date <https://github.com/tarantool/icu-date/blob/master/README.md>`_ --"
+" библиотека форматирования даты и времени для Tarantool, которая основана на"
+" библиотеке для работы с Unicode (International Components for Unicode);"
+
+msgid ""
+"`kafka <https://github.com/tarantool/kafka/blob/master/README.md>`_ is a "
+"full-featured high-performance ``kafka`` library for Tarantool based on "
+"``librdkafka``;"
+msgstr ""
+"`kafka <https://github.com/tarantool/kafka/blob/master/README.md>`_ -- это "
+"полноценная высокопроизводительная библиотека ``kafka`` для Tarantool на "
+"основе ``librdkafka``;"
+
+msgid ""
+"`luacheck <https://github.com/tarantool/luacheck>`_ is a static analyzer and"
+" linter for Lua, preconfigured for Tarantool."
+msgstr ""
+
+msgid ""
+"`luarapidxml "
+"<https://github.com/tarantool/luarapidxml/blob/master/README.md>`_ is a fast"
+" XML parser."
+msgstr ""
+"`luarapidxml "
+"<https://github.com/tarantool/luarapidxml/blob/master/README.md>`_ -- "
+"быстрый анализатор XML."
+
+msgid ""
+"`luatest <https://github.com/tarantool/luatest/blob/master/README.rst>`_ is a"
+" Tarantool test framework written in Lua."
+msgstr ""
+"`luatest <https://github.com/tarantool/luatest/blob/master/README.rst>`_ -- "
+"среда тестирования Tarantool, которая написана на Lua."
+
+msgid ""
+"`membership "
+"</reference/reference_rock/membership/>`_"
+" builds a mesh from multiple Tarantool instances based on gossip protocol. "
+"The mesh monitors itself, helps members discover everyone else in the group "
+"and get notified about their status changes with low latency. It is built "
+"upon the ideas from Consul or, more precisely, the SWIM algorithm."
+msgstr ""
+"`membership "
+"</reference/reference_rock/membership/>`_"
+" создает сеть из нескольких экземпляров Tarantool на основе протокола "
+"gossip. Сеть сама контролирует себя, помогает участникам обнаружить всех "
+"остальных в группе и получать уведомления об изменениях своего статуса с "
+"низкой задержкой. Модуль основан на концепциях из Consul или, точнее, "
+"алгоритма SWIM."
+
+msgid ""
+":doc:`metrics </book/monitoring/index>` is a "
+"collection of useful monitoring metrics."
+msgstr ""
+":doc:`metrics </book/monitoring/index>` -- набор "
+"полезных метрик для мониторинга."
+
+msgid ""
+"`vshard "
+"</reference/reference_rock/vshard/>`_ is"
+" an automatic sharding system that enables horizontal scaling for Tarantool "
+"DBMS instances."
+msgstr ""
+"`vshard "
+"</reference/reference_rock/vshard/>`_ --"
+" автоматическая система шардинга для горизонтального масштабирования "
+"экземпляров СУБД Tarantool."
+
+msgid "Closed source modules"
+msgstr "Модули с закрытым исходным кодом"
+
+msgid ""
+"`ldap <https://www.tarantool.io/en/doc/latest/enterprise/rocksref/ldap/>`_ "
+"allows you to authenticate in a LDAP server and perform searches."
+msgstr ""
+"`ldap <https://www.tarantool.io/en/doc/latest/enterprise/rocksref/ldap/>`_ "
+"позволяет осуществлять аутентификацию на сервере LDAP и выполнять поиск."
+
+msgid ""
+"`odbc <https://www.tarantool.io/en/doc/latest/enterprise/rocksref/odbc/>`_ "
+"is an ODBC connector for Tarantool based on unixODBC."
+msgstr ""
+"`odbc <https://www.tarantool.io/en/doc/latest/enterprise/rocksref/odbc/>`_ "
+"-- коннектор ODBC для Tarantool на основе unixODBC."
+
+msgid ""
+"`oracle "
+"<https://www.tarantool.io/en/doc/latest/enterprise/rocksref/oracle/>`_ is "
+"an Oracle connector for Lua applications through which they can send and "
+"receive data to and from Oracle databases. The advantage of the Tarantool-"
+"Oracle integration is that anyone can handle all the tasks with Oracle DBMSs"
+" (control, manipulation, storage, access) with the same high-level language "
+"(Lua) and with minimal delay."
+msgstr ""
+"`oracle "
+"<https://www.tarantool.io/en/doc/latest/enterprise/rocksref/oracle/>`_ -- "
+"коннектор Oracle для Lua-приложений, с помощью которого они могут обращаться"
+" к базам данных Oracle. Преимущество интеграции Tarantool-Oracle состоит в "
+"том, что любой может выполнять задачи по работе с СУБД Oracle (управление, "
+"обработка, хранение, доступ) на одном языке высокого уровня (Lua) с "
+"минимальной задержкой."
+
+msgid ""
+"`task <https://www.tarantool.io/en/doc/latest/enterprise/rocksref/task/>`_ is a "
+"module for managing background tasks in a Tarantool cluster."
+msgstr ""
+"`task <task <https://www.tarantool.io/en/doc/latest/enterprise/rocksref/task/>`_ -- "
+"модуль для управления фоновыми задачами в Tarantool-кластере."
+
+msgid ""
+"`tracing <https://www.tarantool.io/en/rocks/tracing/1.0/topics/README.md/>`_"
+" is a module for debugging performance issues."
+msgstr ""
+"`tracing <https://www.tarantool.io/en/rocks/tracing/1.0/topics/README.md/>`_"
+" -- модуль для отладки проблем с производительностью."
+
+msgid ""
+"`space-explorer "
+"<https://www.tarantool.io/en/doc/latest/enterprise/rocksref/space-"
+"explorer/>`_ is a module for exploring Tarantool spaces in "
+"``cartridge``."
+msgstr ""
+"`space-explorer "
+"<https://www.tarantool.io/en/doc/latest/enterprise/rocksref/space-"
+"explorer/>`_ -- модуль для просмотра спейсов Tarantool в ``cartridge``."
+
+msgid "Installing and using modules"
+msgstr "Установка и использование модулей"
+
+msgid "To use a module, install the following:"
+msgstr "Чтобы использовать модуль, установите следующие элементы:"
+
+msgid ""
+"All the necessary third-party software packages (if any). See the module's "
+"prerequisites for the list."
+msgstr ""
+"Все необходимые сторонние пакеты программного обеспечения (при "
+"необходимости). Список программ см. в требованиях модуля."
+
+msgid "The module itself on every Tarantool instance:"
+msgstr "Сам модуль на каждый экземпляр Tarantool:"
+
+msgid ""
+"See also other useful `tarantoolctl commands "
+"</reference/tarantoolctl/#commands-for-"
+"managing-tarantool-modules>`_ for managing Tarantool modules."
+msgstr ""
+"Для получения информации об управлении модулями Tarantool см. также другие "
+"важные `команды tarantoolctl "
+"</reference/tarantoolctl/#commands-for-"
+"managing-tarantool-modules>`_."
+
+#~ msgid ""
+#~ "The ``membership`` module works over UDP protocol and can operate even "
+#~ "before the ``box.cfg`` initialization."
+#~ msgstr ""
+#~ "Модуль ``membership`` работает по протоколу UDP и может производить операции"
+#~ " даже до инициализации ``box.cfg``."
+
+#~ msgid "Member data structure"
+#~ msgstr "Структура членов данных"
+
+#~ msgid "A member is represented by the table with the following fields:"
+#~ msgstr "Члены-данные представлены в виде таблиц со следующими полями:"
+
+#~ msgid "``uri`` (string) is a Uniform Resource Identifier."
+#~ msgstr "``uri`` (строка) -- это унифицированный идентификатор ресурса."
+
+#~ msgid "``status`` (string) is a string that takes one of the values below."
+#~ msgstr ""
+#~ "``status`` (строка) -- это строка, которая принимает одно из следующих "
+#~ "значений."
+
+#~ msgid ""
+#~ "``alive``: a member that replies to ping-messages is ``alive`` and well."
+#~ msgstr ""
+#~ "``alive``: член группы, который отвечает на сообщения проверки связи, "
+#~ "работоспособен в статусе ``alive``."
+
+#~ msgid ""
+#~ "``suspect``: if any member in the group cannot get a reply from any other "
+#~ "member, the first member asks three other ``alive`` members to send a ping-"
+#~ "message to the member in question. If there is no response, the latter "
+#~ "becomes a ``suspect``."
+#~ msgstr ""
+#~ "``suspect``: если какой-либо член группы не может получить ответ от какого-"
+#~ "либо другого участника, первый член группы просит трех других активных "
+#~ "членов группы в статусе ``alive`` отправить сообщение проверки связи "
+#~ "соответствующему участнику. Если ответа нет, последний получает статус "
+#~ "сомнительного, то есть ``suspect``."
+
+#~ msgid "``dead``: a ``suspect`` becomes ``dead`` after a timeout."
+#~ msgstr ""
+#~ "``dead``: член группы в статусе ``suspect`` получает статус вышедшего из "
+#~ "строя ``dead`` по истечении времени ожидания.."
+
+#~ msgid ""
+#~ "``left``: a member gets the ``left`` status after executing the "
+#~ ":ref:`leave() <membership-leave>` function."
+#~ msgstr ""
+#~ "``left``: член группы получает статус выбывшего ``left`` после выполнения "
+#~ "функции :ref:`leave() <membership-leave>`."
+
+#~ msgid ""
+#~ "The gossip protocol guarantees that every member in the group becomes aware "
+#~ "of any status change in two communication cycles."
+#~ msgstr ""
+#~ "Протокол gossip гарантирует, что каждый член группы узнает о любом изменении"
+#~ " статуса в двух циклах связи."
+
+#~ msgid ""
+#~ "``incarnation`` (number) is a value incremented every time the instance is "
+#~ "becomes a ``suspect``, ``dead``, or updates its payload."
+#~ msgstr ""
+#~ "``incarnation`` (число) -- это значение, которое увеличивается каждый раз, "
+#~ "когда экземпляр получает статус ``suspect``, ``dead`` или обновляет полезную"
+#~ " нагрузку."
+
+#~ msgid ""
+#~ "``payload`` (table) is auxiliary data that can be used by various modules."
+#~ msgstr ""
+#~ "``payload`` (таблица) -- это вспомогательные данные, которыми могут "
+#~ "воспользоваться различные модули."
+
+#~ msgid "``timestamp`` (number) is a value of ``fiber.time64()`` which:"
+#~ msgstr "``timestamp`` (число) -- это значение ``fiber.time64()``, которое:"
+
+#~ msgid "corresponds to the last update of ``status`` or ``incarnation``;"
+#~ msgstr ""
+#~ "соответствует последнему обновлению параметра ``status`` или "
+#~ "``incarnation``;"
+
+#~ msgid "is always local;"
+#~ msgstr "всегда локально;"
+
+#~ msgid "does not depend on other members' clock setting."
+#~ msgstr "не зависит от настроек часов других членов группы."
+
+#~ msgid "Below is an example of the table:"
+#~ msgstr "Ниже приведен пример таблицы:"
+
+#~ msgid ""
+#~ "Below is a list of ``membership``'s common, encryption, subscription "
+#~ "functions, and options."
+#~ msgstr ""
+#~ "Ниже приведен список простых функций, функций шифрования, подписки и "
+#~ "параметры модуля ``membership``."
+
+#~ msgid "Common functions"
+#~ msgstr "Простые функции"
+
+#~ msgid ":ref:`init(advertise_host, port) <membership-init>`"
+#~ msgstr ":ref:`init(advertise_host, port) <membership-init>`"
+
+#~ msgid "Initialize the ``membership`` module."
+#~ msgstr "Инициализация модуля ``membership``."
+
+#~ msgid ":ref:`myself() <membership-myself>`"
+#~ msgstr ":ref:`myself() <membership-myself>`"
+
+#~ msgid "Get the member data structure of the current instance."
+#~ msgstr "Получение структуры данных текущего экземпляра."
+
+#~ msgid ":ref:`get_member(uri) <membership-get-member>`"
+#~ msgstr ":ref:`get_member(uri) <membership-get-member>`"
+
+#~ msgid "Get the member data structure for a given URI."
+#~ msgstr "Получение структуры данных для указанного URI."
+
+#~ msgid ":ref:`members() <membership-members>`"
+#~ msgstr ":ref:`members() <membership-members>`"
+
+#~ msgid "Obtain a table with all members known to the current instance."
+#~ msgstr ""
+#~ "Получение таблицы со всеми членами группы, известными текущему экземпляру."
+
+#~ msgid ":ref:`pairs() <membership-pairs>`"
+#~ msgstr ":ref:`pairs() <membership-pairs>`"
+
+#~ msgid "Shorthand for ``pairs(membership.members())``."
+#~ msgstr "Сокращение для ``pairs(membership.members())``."
+
+#~ msgid ":ref:`add_member(uri) <membership-add-member>`"
+#~ msgstr ":ref:`add_member(uri) <membership-add-member>`"
+
+#~ msgid "Add a member to the group."
+#~ msgstr "Добавление члена в группу."
+
+#~ msgid ":ref:`probe_uri(uri) <membership-probe-uri>`"
+#~ msgstr ":ref:`probe_uri(uri) <membership-probe-uri>`"
+
+#~ msgid "Check if the member is in the group."
+#~ msgstr "Проверка принадлежности члена к группе."
+
+#~ msgid ":ref:`broadcast() <membership-broadcast>`"
+#~ msgstr ":ref:`broadcast() <membership-broadcast>`"
+
+#~ msgid "Discover members in LAN by sending a UDP broadcast message."
+#~ msgstr ""
+#~ "Обнаружение участников в локальной сети путем отправки широковещательного "
+#~ "сообщения UDP."
+
+#~ msgid ":ref:`set_payload(key, value) <membership-set-payload>`"
+#~ msgstr ":ref:`set_payload(key, value) <membership-set-payload>`"
+
+#~ msgid "Update ``myself().payload`` and disseminate it."
+#~ msgstr "Обновление ``myself().payload`` и распространение информации."
+
+#~ msgid ":ref:`leave() <membership-leave>`"
+#~ msgstr ":ref:`leave() <membership-leave>`"
+
+#~ msgid "Gracefully leave the group."
+#~ msgstr "Корректное исключение из группы."
+
+#~ msgid ":ref:`is_encrypted() <membership-is-encrypted>`"
+#~ msgstr ":ref:`is_encrypted() <membership-is-encrypted>`"
+
+#~ msgid "Check if encryption is enabled."
+#~ msgstr "Проверка, включено ли шифрование."
+
+#~ msgid "Encryption functions"
+#~ msgstr "Функции шифрования"
+
+#~ msgid ":ref:`set_encryption_key(key) <membership-set-enc-key>`"
+#~ msgstr ":ref:`set_encryption_key(key) <membership-set-enc-key>`"
+
+#~ msgid "Set the key for low-level message encryption."
+#~ msgstr "Установка ключа для низкоуровневого шифрования сообщений."
+
+#~ msgid ":ref:`get_encryption_key() <membership-get-enc-key>`"
+#~ msgstr ":ref:`get_encryption_key() <membership-get-enc-key>`"
+
+#~ msgid "Retrieve the encryption key in use."
+#~ msgstr "Получение используемого ключа шифрования."
+
+#~ msgid "Subscription functions"
+#~ msgstr "Функции подписки"
+
+#~ msgid ":ref:`subscribe() <membership-subscribe>`"
+#~ msgstr ":ref:`subscribe() <membership-subscribe>`"
+
+#~ msgid "Subscribe for the members table updates."
+#~ msgstr "Подписка на обновления членов таблицы."
+
+#~ msgid ":ref:`unsubscribe() <membership-unsubscribe>`"
+#~ msgstr ":ref:`unsubscribe() <membership-unsubscribe>`"
+
+#~ msgid "Remove the subscription."
+#~ msgstr "Удаление подписки."
+
+#~ msgid "Options"
+#~ msgstr "Параметры"
+
+#~ msgid ":ref:`PROTOCOL_PERIOD_SECONDS <membership-protocol_period_seconds>`"
+#~ msgstr ":ref:`PROTOCOL_PERIOD_SECONDS <membership-protocol_period_seconds>`"
+
+#~ msgid "Direct ping period."
+#~ msgstr "Время отправки сообщений проверки связи напрямую."
+
+#~ msgid ":ref:`ACK_TIMEOUT_SECONDS <membership-ack_timeout_seconds>`"
+#~ msgstr ":ref:`ACK_TIMEOUT_SECONDS <membership-ack_timeout_seconds>`"
+
+#~ msgid "ACK message wait time."
+#~ msgstr "Время ожидания сообщения подтверждения."
+
+#~ msgid ""
+#~ ":ref:`ANTI_ENTROPY_PERIOD_SECONDS <member-anti_entropy_period_seconds>`"
+#~ msgstr ""
+#~ ":ref:`ANTI_ENTROPY_PERIOD_SECONDS <member-anti_entropy_period_seconds>`"
+
+#~ msgid "Anti-entropy synchronization period."
+#~ msgstr "Период синхронизации во избежание энтропии."
+
+#~ msgid ":ref:`SUSPECT_TIMEOUT_SECONDS <membership-suspect_timeout_seconds>`"
+#~ msgstr ":ref:`SUSPECT_TIMEOUT_SECONDS <membership-suspect_timeout_seconds>`"
+
+#~ msgid "Timeout to mark a ``suspect`` ``dead``."
+#~ msgstr ""
+#~ "Время ожидания, чтобы перевести члена группы из статуса ``suspect`` в "
+#~ "``dead``."
+
+#~ msgid ""
+#~ ":ref:`NUM_FAILURE_DETECTION_SUBGROUPS <membership-num_fail_detect_subgr>`"
+#~ msgstr ""
+#~ ":ref:`NUM_FAILURE_DETECTION_SUBGROUPS <membership-num_fail_detect_subgr>`"
+
+#~ msgid "Number of members to ping a ``suspect`` indirectly."
+#~ msgstr ""
+#~ "Число членов группы, которые отправляют сообщения проверки связи члену "
+#~ "группы в статусе ``suspect``."
+
+#~ msgid "Common functions:"
+#~ msgstr "Простые функции:"
+
+#~ msgid ""
+#~ "Initialize the ``membership`` module. This binds a UDP socket to "
+#~ "``0.0.0.0:<port>``, sets the ``advertise_uri`` parameter to "
+#~ "``<advertise_host>:<port>``, and ``incarnation`` to ``1``."
+#~ msgstr ""
+#~ "Инициализация модуля ``membership``. Привязывает UDP-сокет к "
+#~ "``0.0.0.0:<port>``, задает значение параметра ``advertise_uri`` = "
+#~ "``<advertise_host>:<port>`` (передаваемый хост, порт) и значение параметра "
+#~ "``incarnation`` = ``1``."
+
+#~ msgid ""
+#~ "The ``init()`` function can be called several times, the old socket will be "
+#~ "closed and a new one opened."
+#~ msgstr ""
+#~ "Функцию ``init()`` можно вызвать несколько раз, старый сокет будет закрыт, "
+#~ "откроется новый сокет."
+
+#~ msgid ""
+#~ "If the ``advertise_uri`` changes during the next ``init()``, the old URI is "
+#~ "considered ``DEAD``. In order to leave the group gracefully, use the "
+#~ ":ref:`leave() <membership-leave>` function."
+#~ msgstr ""
+#~ "Если значение параметра ``advertise_uri`` изменится во время очередного "
+#~ "выполнения ``init()``, старый URI считается недоступным со статусом "
+#~ "``DEAD``. Чтобы корректно исключить члена из группы, используйте функцию "
+#~ ":ref:`leave() <membership-leave>`."
+
+#~ msgid "a hostname or IP address to advertise to other members"
+#~ msgstr "имя хоста или IP-адрес, передаваемый другим членам группы"
+
+#~ msgid "a UDP port to bind"
+#~ msgstr "привязываемый UDP-порт"
+
+#~ msgid "``true``"
+#~ msgstr "``true``"
+
+#~ msgid "raises"
+#~ msgstr "вызывает"
+
+#~ msgid "socket bind error"
+#~ msgstr "ошибка привязки сокета"
+
+#~ msgid ""
+#~ "the :ref:`member data structure <enterprise-membership-datastruct>` of the "
+#~ "current instance."
+#~ msgstr ""
+#~ ":ref:`структура данных члена группы <enterprise-membership-datastruct>` для "
+#~ "текущего экземпляра."
+
+#~ msgid "the given member's ``advertise_uri``"
+#~ msgstr "``advertise_uri`` для указанного члена группы"
+
+#~ msgid ""
+#~ "the :ref:`member data structure <enterprise-membership-datastruct>` of the "
+#~ "instance with the given URI."
+#~ msgstr ""
+#~ ":ref:`структура данных <enterprise-membership-datastruct>` экземпляра с "
+#~ "указанным URI."
+
+#~ msgid "Obtain all members known to the current instance."
+#~ msgstr "Получение всех членов группы, известных текущему экземпляру."
+
+#~ msgid "Editing this table has no effect."
+#~ msgstr "Редактирование этой таблицы ни на что не влияет."
+
+#~ msgid ""
+#~ "a table with URIs as keys and corresponding :ref:`member data structures "
+#~ "<enterprise-membership-datastruct>` as values."
+#~ msgstr ""
+#~ "таблица с URI в качестве ключей и :ref:`структурой данных члена группы "
+#~ "<enterprise-membership-datastruct>` в качестве значений."
+
+#~ msgid "A shorthand for ``pairs(membership.members())``."
+#~ msgstr "Сокращение для ``pairs(membership.members())``."
+
+#~ msgid "Lua iterator"
+#~ msgstr "Lua-итератор"
+
+#~ msgid "It can be used in the following way:"
+#~ msgstr "Можно использовать следующим образом:"
+
+#~ msgid ""
+#~ "Add a member with the given URI to the group and propagate this event to "
+#~ "other members. Adding a member to a single instance is enough as everybody "
+#~ "else in the group will receive the update with time. It does not matter who "
+#~ "adds whom."
+#~ msgstr ""
+#~ "Добавление в группу члена с указанным URI и передача информации об этом "
+#~ "событии другим членам группы. Достаточно добавить члена группы в один "
+#~ "экземпляр, так как все остальные экземпляры в группе со временем получат "
+#~ "информацию об этом. Не имеет значения, кто кого добавляет."
+
+#~ msgid "the ``advertise_uri`` of the member to add"
+#~ msgstr "параметр ``advertise_uri`` добавляемого члена группы"
+
+#~ msgid "``true`` or ``nil`` in case of an error"
+#~ msgstr "``true`` (правда) или нулевое значение ``nil`` в случае ошибки"
+
+#~ msgid "parse error if the URI cannot be parsed"
+#~ msgstr "ошибка анализа, если URI нельзя проанализировать"
+
+#~ msgid ""
+#~ "Send a message to a member to make sure it is in the group. If the member is"
+#~ " ``alive`` but not in the group, it is added. If it already is in the group,"
+#~ " nothing happens."
+#~ msgstr ""
+#~ "Отправка сообщения члену группы, чтобы убедиться, что он включен в группу. "
+#~ "Если экземпляр активен со статусом ``alive``, но не включен в группу, "
+#~ "происходит его добавление. Если он уже включен в группу, ничего не "
+#~ "происходит."
+
+#~ msgid "the ``advertise_uri`` of the member to ping"
+#~ msgstr ""
+#~ "параметр ``advertise_uri`` члена группы, которому отправляются сообщения "
+#~ "проверки связи"
+
+#~ msgid ""
+#~ "``true`` if the member responds within 0.2 seconds, otherwise ``no "
+#~ "response``"
+#~ msgstr ""
+#~ "``true`` (правда), если ответ возвращается в течение 0,2 секунды, в "
+#~ "остальных случаях ``no response`` (нет ответа)"
+
+#~ msgid "``ping was not sent`` if the hostname could not be resolved"
+#~ msgstr ""
+#~ "``ping was not sent`` (сообщение проверки связи не отправлено), если имя "
+#~ "хоста не разрешено"
+
+#~ msgid ""
+#~ "Discover members in local network by sending a UDP broadcast message to all "
+#~ "networks discovered by a ``getifaddrs()`` C call."
+#~ msgstr ""
+#~ "Обнаружение членов группы в локальной сети путем отправки широковещательного"
+#~ " сообщения UDP во все сети, обнаруженные с помощью вызова ``getifaddrs()`` "
+#~ "на языке C."
+
+#~ msgid "``true`` if broadcast was sent, ``false`` if ``getaddrinfo()`` fails."
+#~ msgstr ""
+#~ "``true`` (правда), если сообщение отправлено, ``false`` (ложь), если "
+#~ "``getaddrinfo()`` не выполнена."
+
+#~ msgid ""
+#~ "Update ``myself().payload`` and disseminate it along with the member status."
+#~ msgstr ""
+#~ "Обновление ``myself().payload`` и распространение соответствующей информации"
+#~ " вместе со статусом члена группы."
+
+#~ msgid "Increments ``incarnation``."
+#~ msgstr "Увеличивает значение параметра ``incarnation``."
+
+#~ msgid "a key to set in payload table"
+#~ msgstr "ключ, задаваемый в таблице payload "
+
+#~ msgid "auxiliary data"
+#~ msgstr "дополнительные данные"
+
+#~ msgid ""
+#~ "Gracefully leave the ``membership`` group. The node will be marked with the "
+#~ "``left`` status and no other members will ever try to reconnect it."
+#~ msgstr ""
+#~ "Корректное исключение из группы ``membership``. Узел получает статус "
+#~ "выбывшего ``left``, другие члены группы не будут пытаться снова подключить "
+#~ "его."
+
+#~ msgid "``true`` if encryption is enabled, ``false`` otherwise."
+#~ msgstr ""
+#~ "``true`` (правда), если шифрование включено, ``false`` в противном случае."
+
+#~ msgid "Encryption functions:"
+#~ msgstr "Функции шифрования:"
+
+#~ msgid ""
+#~ "Set the key used for low-level message encryption. The key is either trimmed"
+#~ " or padded automatically to be exactly 32 bytes. If the ``key`` value is "
+#~ "``nil``, the encryption is disabled."
+#~ msgstr ""
+#~ "Установка ключа, который используется для низкоуровневого шифрования "
+#~ "сообщений. Ключ автоматически обрезается или дополняется до 32 байтов. Если "
+#~ "значения ключа ``key`` нулевое ``nil``, шифрование будет отключено."
+
+#~ msgid ""
+#~ "The encryption is handled by the ``crypto.cipher.aes256.cbc`` Tarantool "
+#~ "module."
+#~ msgstr "Модуль Tarantool ``crypto.cipher.aes256.cbc`` занимается шифрованием."
+
+#~ msgid ""
+#~ "For proper communication, all members must be configured to use the same "
+#~ "encryption key. Otherwise, members report either ``dead`` or ``non-"
+#~ "decryptable`` in their status."
+#~ msgstr ""
+#~ "Чтобы обеспечить правильную связь, все члены группы должны быть настроены на"
+#~ " использование одного и того же ключа шифрования. В противном случае члены "
+#~ "группы получат статус либо ``dead``, либо ``non-decryptable`` (невозможно "
+#~ "расшифровать)."
+
+#~ msgid "encryption key"
+#~ msgstr "ключ шифрования"
+
+#~ msgid "``nil``."
+#~ msgstr "``nil``."
+
+#~ msgid "Retrieve the encryption key that is currently in use."
+#~ msgstr "Получение используемого ключа шифрования."
+
+#~ msgid "encryption key or ``nil`` if the encryption is disabled."
+#~ msgstr ""
+#~ "ключ шифрования или нулевое значение ``nil``, если шифрование отключено."
+
+#~ msgid "Subscription functions:"
+#~ msgstr "Функции подписки:"
+
+#~ msgid "Subscribe for updates in the members table."
+#~ msgstr "Подписка на обновления членов таблицы."
+
+#~ msgid ""
+#~ "a ``fiber.cond`` object broadcasted whenever the members table changes."
+#~ msgstr ""
+#~ "объект ``fiber.cond``, который передается при каждом изменении таблицы."
+
+#~ msgid ""
+#~ "Remove subscription on ``cond`` obtained by the :ref:`subscribe() function "
+#~ "<membership-subscribe>`."
+#~ msgstr ""
+#~ "Удаление подписки на ``cond``, получаемый с помощью функции "
+#~ ":ref:`subscribe() <membership-subscribe>`."
+
+#~ msgid "The ``cond``'s validity is not checked."
+#~ msgstr "Достоверность ``cond`` не проверяется."
+
+#~ msgid ""
+#~ "the ``fiber.cond`` object obtained from :ref:`subscribe() <membership-"
+#~ "subscribe>`"
+#~ msgstr ""
+#~ "объект ``fiber.cond``, получаемый с помощью функции :ref:`subscribe() "
+#~ "<membership-subscribe>`"
+
+#~ msgid "Below is a list of ``membership`` options. They can be set as follows:"
+#~ msgstr ""
+#~ "Ниже приведен перечень параметров ``membership``. Их можно задать следующим "
+#~ "образом:"
+
+#~ msgid ""
+#~ "Period of sending direct pings. Denoted as ``T'`` in the SWIM protocol."
+#~ msgstr ""
+#~ "Период отправки сообщение проверки связи напрямую. Обозначается как ``T'`` в"
+#~ " протоколе SWIM."
+
+#~ msgid ""
+#~ "Time to wait for ACK message after a ping. If a member is late to reply, the"
+#~ " indirect ping algorithm is invoked."
+#~ msgstr ""
+#~ "Время ожидания сообщения подтверждения после отправки сообщения проверки "
+#~ "связи. Если ответ запаздывает, вызывается алгоритм косвенной проверки связи."
+
+#~ msgid ""
+#~ "Period to perform the anti-entropy synchronization algorithm of the SWIM "
+#~ "protocol."
+#~ msgstr ""
+#~ "Период выполнения алгоритма синхронизации во избежание энтропии из протокола"
+#~ " SWIM."
+
+#~ msgid "Timeout to mark ``suspect`` members as ``dead``."
+#~ msgstr ""
+#~ "Время ожидания, чтобы перевести члена группы из статуса ``suspect`` в "
+#~ "``dead``."
+
+#~ msgid ""
+#~ "Number of members to try pinging a ``suspect`` indirectly. Denoted as ``k`` "
+#~ "in the SWIM protocol."
+#~ msgstr ""
+#~ "Число членов группы, которые пытаются отправить сообщения проверки связи "
+#~ "члену группы в статусе ``suspect``. Обозначается как ``k`` в протоколе SWIM."
+
+#~ msgid "``checks`` is a type checker of functional arguments;"
+#~ msgstr "``checks`` -- модуль контроля типов для аргументов функций;"
+
+#~ msgid "``http`` is an on-board HTTP-server;"
+#~ msgstr "``http`` -- встроенный HTTP-сервер;"
+
+#~ msgid "``ldecnumber`` is the decimal arithmetic library;"
+#~ msgstr "``ldecnumber`` -- библиотека для десятичной арифметики;"
+
+#~ msgid "``luarapidxml`` is a fast XML parser;"
+#~ msgstr "``luarapidxml`` -- быстрый анализатор XML;"
+
+#~ msgid "``membership`` is a mesh of instances based on gossip protocol;"
+#~ msgstr "``membership`` -- это сеть экземпляров на основе протокола gossip;"
+
+#~ msgid ""
+#~ "``vshard`` is an automatic sharding system for Tarantool DBMS instances."
+#~ msgstr ""
+#~ "``vshard`` -- автоматическая система шардинга для экземпляров СУБД "
+#~ "Tarantool;"
+
+#~ msgid ""
+#~ ":ref:`oracle <enterprise-oracle-api>` is an Oracle connector for Lua "
+#~ "applications through which they can access Oracle databases;"
+#~ msgstr ""
+#~ "``oracle`` -- это коннектор Oracle для Lua-приложений, с помощью которого "
+#~ "они могут обращаться к базам данных Oracle."
+
+#~ msgid "Consult the module's API documentation:"
+#~ msgstr "Документацию по API модуля:"
+
+#~ msgid "Or read the module's reference to get a grasp on how to use it:"
+#~ msgstr ""
+#~ "Или прочтите справочник по модулю, чтобы понять, как его использовать."
+
+#~ msgid "Module `membership`"
+#~ msgstr "Модуль `membership`"
+
+#~ msgid ""
+#~ "This module is a ``membership`` library for Tarantool based on a gossip "
+#~ "protocol."
+#~ msgstr ""
+#~ "Этот модуль представляет собой библиотеку ``membership`` для Tarantool на "
+#~ "основе протокола gossip."
+
+#~ msgid ""
+#~ "This library builds a mesh from multiple Tarantool instances. The mesh "
+#~ "monitors itself, helps members discover everyone else in the group and get "
+#~ "notified about their status changes with low latency. It is built upon the "
+#~ "ideas from Consul or, more precisely, the SWIM algorithm."
+#~ msgstr ""
+#~ "Эта библиотека создает сеть из нескольких экземпляров Tarantool. Сеть сама "
+#~ "контролирует себя, помогает участникам обнаружить всех остальных в группе и "
+#~ "получать уведомления об изменениях своего статуса с низкой задержкой. Модуль"
+#~ " основан на концепциях из Consul или, точнее, алгоритма SWIM."
+
+#~ msgid ""
+#~ "For more information, see the `membership module documentation "
+#~ "</reference/reference_rock/membership/>`_."
+#~ msgstr ""
+#~ "Для получения дополнительной информации см. `документацию по модулю vshard "
+#~ "<https://www.tarantool.io/en/doc/1.9/reference/reference_rock/vshard/>`_."
+
+#~ msgid "Module `vshard`"
+#~ msgstr "Модуль `vshard`"
+
+#~ msgid ""
+#~ "The ``vshard`` module introduces the sharding feature that enables "
+#~ "horizontal scaling in Tarantool."
+#~ msgstr ""
+#~ "В модуле ``vshard`` реализована новая функция шардинга (сегментирования), "
+#~ "которая позволяет осуществлять горизонтальное масштабирование в Tarantool."
+
+#~ msgid ""
+#~ "For more information, see the `vshard module documentation "
+#~ "</reference/reference_rock/vshard/>`_."
+#~ msgstr ""
+#~ "Для получения дополнительной информации см. `документацию по модулю vshard "
+#~ "<https://www.tarantool.io/en/doc/1.9/reference/reference_rock/vshard/>`_."
+
+#~ msgid "Module `http`"
+#~ msgstr "Модуль `http`"
+
+#~ msgid ""
+#~ "In addition to the out-of-the-box HTTP client, this module includes an HTTP "
+#~ "server but the latter has to be installed as described in the "
+#~ ":ref:`installation section <enterprise-rocks-install>`."
+#~ msgstr ""
+#~ "В дополнение к стандартному HTTP-клиенту этот модуль включает в себя HTTP-"
+#~ "сервер, но последний необходимо установить, как описано в :ref:`разделе по "
+#~ "установке <enterprise-rocks-install>`."
+
+#~ msgid ""
+#~ "For more information, see the `HTTP README file "
+#~ "<https://github.com/tarantool/http/blob/master/README.md>`_ in Tarantool's "
+#~ "GitHub repository."
+#~ msgstr ""
+#~ "Для получения дополнительной информации см. `файл HTTP README "
+#~ "<https://github.com/tarantool/http/blob/master/README.md>`_ в репозитории "
+#~ "Tarantool на GitHub."
+
+#~ msgid "Module `checks`"
+#~ msgstr "Модуль `checks`"
+
+#~ msgid ""
+#~ "For more information, see the `checks README file "
+#~ "<https://github.com/tarantool/checks/blob/master/README.md>`_ in Tarantool's"
+#~ " GitHub repository."
+#~ msgstr ""
+#~ "Для получения дополнительной информации см. `файл checks README "
+#~ "<https://github.com/tarantool/checks/blob/master/README.md>`_ в репозитории "
+#~ "Tarantool на GitHub."
+
+#~ msgid "Module `oracle`"
+#~ msgstr "Модуль `oracle`"
+
+#~ msgid ""
+#~ "The ``oracle`` module is an Oracle connector for Tarantool. With this "
+#~ "package, Lua applications can send and receive data to and from Oracle "
+#~ "databases."
+#~ msgstr ""
+#~ "Модуль ``oracle`` представляет собой коннектор Oracle для Tarantool. С "
+#~ "помощью данного пакета Lua-приложения могут отправлять данные в базы данных "
+#~ "Oracle и получать данные из них."
+
+#~ msgid ""
+#~ "The advantage of the Tarantool-Oracle integration is that anyone can handle "
+#~ "all the tasks with Oracle DBMSs (control, manipulation, storage, access) "
+#~ "with the same high-level language (Lua) and with minimal delay."
+#~ msgstr ""
+#~ "Преимущество интеграции Tarantool и Oracle состоит в том, что любой может "
+#~ "выполнять все задачи в СУБД Oracle (управление, манипулирование, хранение, "
+#~ "доступ) на одном высокоуровневом языке программирования (Lua) и с "
+#~ "минимальной задержкой."
+
+#~ msgid "Prerequisites"
+#~ msgstr "Предварительные условия"
+
+#~ msgid ""
+#~ "The ``oracle`` module requires the Instant Client Package (ICP) from Oracle."
+#~ " To install it via CLI, say:"
+#~ msgstr ""
+#~ "Для модуля ``oracle`` требуется Instant Client Package (ICP) от Oracle. "
+#~ "Чтобы установить его с помощью CLI, выполните команду:"
+
+#~ msgid ""
+#~ "Or get the package at `oracle.com "
+#~ "<https://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html>`_ "
+#~ "and install it the same way."
+#~ msgstr ""
+#~ "Или получите пакет из `oracle.com "
+#~ "<https://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html>`_ и "
+#~ "установите его таким же образом."
+
+#~ msgid "Please, note the version is 12.2."
+#~ msgstr "Обратите внимание, что необходима версия 12.2."
+
+#~ msgid "Quick start"
+#~ msgstr "Краткое руководство"
+
+#~ msgid "Start Tarantool in the interactive mode and do the following:"
+#~ msgstr ""
+#~ "Запустите Tarantool в интерактивном режиме и выполните следующие действия:"
+
+#~ msgid "Connect to an Oracle database:"
+#~ msgstr "Подключитесь к базе данных Oracle:"
+
+#~ msgid "Create a table and put some data into it:"
+#~ msgstr "Создайте таблицу и поместите в нее некоторые данные:"
+
+#~ msgid "Retrieve the result:"
+#~ msgstr "Получите результат:"
+
+#~ msgid "API reference"
+#~ msgstr "Справочник по API"
+
+#~ msgid "Below is a list of ``oracle`` functions."
+#~ msgstr "Ниже приведен перечень функций ``oracle``."
+
+#~ msgid "Name"
+#~ msgstr "Имя"
+
+#~ msgid "Use"
+#~ msgstr "Использование"
+
+#~ msgid ":ref:`:exec('sql') <oracle-exec>`"
+#~ msgstr ":ref:`:exec('sql') <oracle-exec>`"
+
+#~ msgid "Execute an SQL request or raise an error."
+#~ msgstr "Выполнение SQL-запроса или вывод ошибки."
+
+#~ msgid ":ref:`:version() <oracle-version>`"
+#~ msgstr ":ref:`:version() <oracle-version>`"
+
+#~ msgid "Get version string."
+#~ msgstr "Получение строки с версией."
+
+#~ msgid "Executes an SQL request or raises an error."
+#~ msgstr "Выполнение SQL-запроса или вывод ошибки."
+
+#~ msgid "Parameters"
+#~ msgstr "Параметры"
+
+#~ msgid "SQL statement with the appropriate syntax."
+#~ msgstr "Оператор SQL с соответствующим синтаксисом."
+
+#~ msgid "Returns"
+#~ msgstr "Возвращается"
+
+#~ msgid ""
+#~ "* ``0`` in case of success; additionally, data and its size in case it was"
+#~ "   a ``SELECT`` request. * ``1`` in case of an ``ORA``-error and the "
+#~ "corresponding error message."
+#~ msgstr ""
+#~ "* ``0`` если выполнена; плюс данные и их размер, если это запрос выборки "
+#~ "``SELECT``. * ``1`` в случае ошибки типа ``ORA`` плюс соответствующее "
+#~ "сообщение об ошибке."
+
+#~ msgid ""
+#~ "``0`` in case of success; additionally, data and its size in case it was a "
+#~ "``SELECT`` request."
+#~ msgstr ""
+#~ "``0`` если выполнена; плюс данные и их размер, если это запрос выборки "
+#~ "``SELECT``."
+
+#~ msgid "``1`` in case of an ``ORA``-error and the corresponding error message."
+#~ msgstr ""
+#~ "``1`` в случае ошибки типа ``ORA`` плюс соответствующее сообщение об ошибке."
+
+#~ msgid "**Examples**"
+#~ msgstr "**Примеры**"
+
+#~ msgid "versions of both the connector and OCI."
+#~ msgstr "версии коннектора и OCI."
+
+#~ msgid "Return type"
+#~ msgstr "Тип возвращаемого значения"
+
+#~ msgid "**Example**"
+#~ msgstr "**Пример**"

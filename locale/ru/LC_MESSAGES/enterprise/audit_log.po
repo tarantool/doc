@@ -1,0 +1,182 @@
+
+msgid "Audit module"
+msgstr "Журнал аудита"
+
+msgid ""
+"Audit log provides records on the Tarantool DBMS events in the JSON-format. "
+"The following event logs are available:"
+msgstr ""
+"Журнал аудита содержит записи о событиях СУБД Tarantool в формате JSON. "
+"Доступны следующие журналы событий:"
+
+msgid "successful/failed user authentication and authorization,"
+msgstr "пройденная/непройденная аутентификация и авторизация пользователя,"
+
+msgid "closed connection,"
+msgstr "закрытое соединение,"
+
+msgid "password change,"
+msgstr "изменение пароля,"
+
+msgid "creation/deletion of a user/role,"
+msgstr "создание/удаление пользователя/роли,"
+
+msgid "enabling/disabling a user,"
+msgstr "включение/отключение пользователя,"
+
+msgid "changing privileges of a user/role."
+msgstr "изменение прав пользователя/роли."
+
+msgid "Log structure"
+msgstr "Структура журнала"
+
+msgid "Key"
+msgstr "Ключ"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Example"
+msgstr "Пример"
+
+msgid "``type``"
+msgstr "``type``"
+
+msgid "string"
+msgstr "строка"
+
+msgid "type of event"
+msgstr "тип события"
+
+msgid "``type_id``"
+msgstr "``type_id``"
+
+msgid "number"
+msgstr "число"
+
+msgid "id of event"
+msgstr "идентификатор события"
+
+msgid "``description``"
+msgstr "``description``"
+
+msgid "description of event"
+msgstr "описание события"
+
+msgid "``time``"
+msgstr "``time``"
+
+msgid "time of event"
+msgstr "время события"
+
+msgid "``peer``"
+msgstr "``peer``"
+
+msgid "remote client"
+msgstr "удаленный клиент"
+
+msgid "``user``"
+msgstr "``user``"
+
+msgid "user"
+msgstr "пользователь"
+
+msgid "``param``"
+msgstr "``param``"
+
+msgid "parameters of event"
+msgstr "параметры события"
+
+msgid "see below"
+msgstr "см. ниже"
+
+msgid "Events description"
+msgstr "Описание события"
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "user authorized successfully"
+msgstr "авторизация пользователя пройдена"
+
+msgid "``auth_ok``"
+msgstr "``auth_ok``"
+
+msgid "user authorization failed"
+msgstr "авторизация пользователя не пройдена"
+
+msgid "``auth_fail``"
+msgstr "``auth_fail``"
+
+msgid "user logged out or quit the session"
+msgstr "пользователь вышел из системы или завершил сеанс"
+
+msgid "``disconnect``"
+msgstr "``disconnect``"
+
+msgid ""
+"failed access attempts to secure data (personal records, details, "
+"geolocation, etc.)"
+msgstr ""
+"неудачные попытки доступа к конфиденциальным данным (личные записи, данные, "
+"геолокация и т. д.)"
+
+msgid "``access_denied``"
+msgstr "``access_denied``"
+
+msgid "creating a user"
+msgstr "создание пользователя"
+
+msgid "``user_create``"
+msgstr "``user_create``"
+
+msgid "dropping a user"
+msgstr "удаление пользователя"
+
+msgid "``user_drop``"
+msgstr "``user_drop``"
+
+msgid "disabling a user"
+msgstr "отключение пользователя"
+
+msgid "``user_disable``"
+msgstr "``user_disable``"
+
+msgid "enabling a user"
+msgstr "включение пользователя"
+
+msgid "``user_enable``"
+msgstr "``user_enable``"
+
+msgid "granting (changing) privileges (roles, profiles, etc.) for the user"
+msgstr "выдача (изменение) прав (роли, профили и т.д.) пользователю"
+
+msgid "``user_priv``"
+msgstr "``user_priv``"
+
+msgid ""
+"resetting password of the user (the user making changes should be specified)"
+msgstr ""
+"сброс пароля пользователя (должен быть указан пользователь, который вносит "
+"изменения)"
+
+msgid "``password_change``"
+msgstr "``password_change``"
+
+msgid "creating a role"
+msgstr "создание роли"
+
+msgid "``role_create``"
+msgstr "``role_create``"
+
+msgid "granting (changing) privileges for the role"
+msgstr "выдача (изменение) прав для роли"
+
+msgid "``role_priv``"
+msgstr "``role_priv``"

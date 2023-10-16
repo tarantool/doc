@@ -27,7 +27,7 @@ Options
 
     **Applicable to:** ``taranttol-ee``
 
-    Search for debug builds of Tarantool Enterprise SDK.
+    Search for debug builds of Tarantool Enterprise Edition's SDK.
 
 .. option:: --local-repo
 

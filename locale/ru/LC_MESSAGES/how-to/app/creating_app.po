@@ -239,11 +239,11 @@ msgstr ""
 
 msgid ""
 "First you need to `install "
-"<https://www.tarantool.io/en/doc/1.10/book/app_server/installing_module/>`_ "
+"</book/app_server/installing_module/>`_ "
 "the module with ``tarantoolctl rocks install avro-schema``."
 msgstr ""
 "Для начала необходимо `установить "
-"<https://www.tarantool.io/en/doc/1.10/book/app_server/installing_module/>`_ "
+"</book/app_server/installing_module/>`_ "
 "модуль с помощью команды ``tarantoolctl rocks install avro-schema``."
 
 msgid "Further usage is quite straightforward:"

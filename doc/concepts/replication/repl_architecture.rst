@@ -29,7 +29,7 @@ the update operations to save space.
 
 .. NOTE::
 
-    `WAL extensions <https://www.tarantool.io/en/enterprise_doc/wal_extensions/>`_ available in Tarantool Enterprise enable you to add auxiliary information to each write-ahead log record.
+    :ref:`WAL extensions <wal_extensions>` available in Tarantool Enterprise Edition enable you to add auxiliary information to each write-ahead log record.
     This information might be helpful for implementing a CDC (Change Data Capture) utility that transforms a data replication stream.
 
 The following are specifics of adding different types of information to the WAL:

@@ -1,0 +1,271 @@
+
+msgid "Monitoring system metrics"
+msgstr "Метрики системы мониторинга"
+
+msgid "Option"
+msgstr "Параметр"
+
+msgid "SNMP type"
+msgstr "Тип по SNMP"
+
+msgid "Units of measure"
+msgstr "Единицы измерения"
+
+msgid "Threshold"
+msgstr "Предел"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Tarantool version"
+msgstr "Версия Tarantool"
+
+msgid "DisplayString"
+msgstr "DisplayString"
+
+msgid "IsAlive"
+msgstr "IsAlive"
+
+msgid "instance availability indicator"
+msgstr "Показатель доступности экземпляра"
+
+msgid "Integer"
+msgstr "Integer"
+
+msgid "(listing)"
+msgstr "(список)"
+
+msgid "0 - unavailable"
+msgstr "0 - недоступен"
+
+msgid "1 - available"
+msgstr "1 - доступен"
+
+msgid "MemoryLua"
+msgstr "MemoryLua"
+
+msgid "storage space used by Lua"
+msgstr "объем памяти, занятый Lua"
+
+msgid "Gauge32"
+msgstr "Gauge32"
+
+msgid "Mbyte"
+msgstr "МБайт"
+
+msgid "900"
+msgstr "900"
+
+msgid "MemoryData"
+msgstr "MemoryData"
+
+msgid "storage space used for storing data"
+msgstr "объем, используемый для хранения данных"
+
+msgid "set the value manually"
+msgstr "значение задается вручную"
+
+msgid "MemoryNet"
+msgstr "MemoryNet"
+
+msgid "storage space used for network I/O"
+msgstr "объем, используемый для сетевого ввода-выводы"
+
+msgid "1024"
+msgstr "1024"
+
+msgid "MemoryIndex"
+msgstr "MemoryIndex"
+
+msgid "storage space used for storing indexes"
+msgstr "объем, используемый для хранения индексов"
+
+msgid "MemoryCache"
+msgstr "MemoryCache"
+
+msgid "storage space used for storing caches (for vinyl engine only)"
+msgstr "объем, используемый для хранения кэша (только для vinyl)"
+
+msgid "ReplicationLag"
+msgstr "ReplicationLag"
+
+msgid ""
+"lag time since the last sync between (the maximum value in case there are "
+"multiple fibers)"
+msgstr ""
+"время задержки с момента последней синхронизации (максимальное значение, "
+"если есть несколько файберов)"
+
+msgid "Integer32"
+msgstr "Integer32"
+
+msgid "sec."
+msgstr "сек."
+
+msgid "5"
+msgstr "5"
+
+msgid "FiberCount"
+msgstr "FiberCount"
+
+msgid "number of fibers"
+msgstr "количество файберов"
+
+msgid "pc."
+msgstr "шт."
+
+msgid "1000"
+msgstr "1000"
+
+msgid "CurrentTime"
+msgstr "CurrentTime"
+
+msgid "current time, in seconds, starting at January, 1st, 1970"
+msgstr "текущее время в секундах, с 1 января 1970г."
+
+msgid "Unsigned32"
+msgstr "Unsigned32"
+
+msgid "Unix timestamp, in sec."
+msgstr "временная отметка Unix в сек."
+
+msgid "StorageStatus"
+msgstr "StorageStatus"
+
+msgid "status of a replica set"
+msgstr "статус набора реплик"
+
+msgid "listing"
+msgstr "список"
+
+msgid "> 1"
+msgstr "> 1"
+
+msgid "StorageAlerts"
+msgstr "StorageAlerts"
+
+msgid "number of alerts for storage nodes"
+msgstr "количество "
+
+msgid ">= 1"
+msgstr ">= 1"
+
+msgid "StorageTotalBkts"
+msgstr "StorageTotalBkts"
+
+msgid "total number of buckets in the storage"
+msgstr "общее количество сегментов в хранилище"
+
+msgid "< 0"
+msgstr "< 0"
+
+msgid "StorageActiveBkts"
+msgstr "StorageActiveBkts"
+
+msgid "number of buckets in the ACTIVE state"
+msgstr "количество сегментов в статусе ACTIVE"
+
+msgid "StorageGarbageBkts"
+msgstr "StorageGarbageBkts"
+
+msgid "number of buckets in the GARBAGE state"
+msgstr "количество сегментов в статусе GARBAGE"
+
+msgid "StorageReceivingBkts"
+msgstr "StorageReceivingBkts"
+
+msgid "number of buckets in the RECEIVING state"
+msgstr "количество сегментов в статусе RECEIVING"
+
+msgid "StorageSendingBkts"
+msgstr "StorageSendingBkts"
+
+msgid "number of buckets in the SENDING state"
+msgstr "количество сегментов в статусе SENDING"
+
+msgid "RouterStatus"
+msgstr "RouterStatus"
+
+msgid "status of the ``router``"
+msgstr "статус роутера"
+
+msgid "RouterAlerts"
+msgstr "RouterAlerts"
+
+msgid "number of alerts for the router"
+msgstr "количество предупреждений для роутера"
+
+msgid "RouterKnownBkts"
+msgstr "RouterKnownBkts"
+
+msgid "number of buckets within the known destination replica sets"
+msgstr "количество сегментов в известных наборах реплик"
+
+msgid "RouterUnknownBkts"
+msgstr "RouterUnknownBkts"
+
+msgid "number of buckets that are unknown to the ``router``"
+msgstr "количество реплик, неизвестных роутеру"
+
+msgid "RequestCount"
+msgstr "RequestCount"
+
+msgid "total number of requests"
+msgstr "общее количество запросов"
+
+msgid "Counter64"
+msgstr "Counter64"
+
+msgid "InsertCount"
+msgstr "InsertCount"
+
+msgid "total number of insert requests"
+msgstr "общее количество запросов вставки"
+
+msgid "DeleteCount"
+msgstr "DeleteCount"
+
+msgid "total number of delete requests"
+msgstr "общее количество запросов на удаление"
+
+msgid "ReplaceCount"
+msgstr "ReplaceCount"
+
+msgid "total number of replace requests"
+msgstr "общее количество запросов замены"
+
+msgid "UpdateCount"
+msgstr "UpdateCount"
+
+msgid "total number of update requests"
+msgstr "общее количество запросов на обновление"
+
+msgid "SelectCount"
+msgstr "SelectCount"
+
+msgid "total number of select requests"
+msgstr "общее количество запросов выборки"
+
+msgid "EvalCount"
+msgstr "EvalCount"
+
+msgid "number of calls made via Eval"
+msgstr "количество вызовов через Eval"
+
+msgid "CallCount"
+msgstr "CallCount"
+
+msgid "number of calls made via ``call``"
+msgstr "количество вызовов через ``call``"
+
+msgid "ErrorCount"
+msgstr "ErrorCount"
+
+msgid "number of errors in Tarantool"
+msgstr "количество ошибок в Tarantool"
+
+msgid "AuthCount"
+msgstr "AuthCount"
+
+msgid "number of completed authentication operations"
+msgstr "количество завершенных операций по аутентификации"

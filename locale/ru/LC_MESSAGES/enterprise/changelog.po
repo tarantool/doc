@@ -1,0 +1,1408 @@
+
+msgid "Changelog"
+msgstr "Журнал изменений"
+
+msgid "Versioning Policy"
+msgstr "Политика версионирования"
+
+msgid "Tarantool Enterprise SDK version consists of two parts:"
+msgstr "Версия Tarantool Enterprise SDK состоит из двух частей:"
+
+msgid "For example: ``2.11.1-0-gc42d9735b-r589``."
+msgstr "Например: ``2.11.1-0-gc42d9735b-r589``."
+
+msgid ""
+"``TARANTOOL_BASE_VERSION`` is the Community version which the Enterprise version"
+" is based on."
+msgstr ""
+"``TARANTOOL_BASE_VERSION`` -- это версия Community, на которой основана "
+"версия Enterprise."
+
+msgid ""
+"``REVISION`` is the SDK revision. Besides Tarantool itself, it includes "
+"examples, templates, and a set of rocks."
+msgstr ""
+"``REVISION`` -- это версия SDK. Помимо самого Tarantool, в ней содержатся "
+"примеры, шаблоны и набор библиотек rocks."
+
+msgid "r422"
+msgstr "r422"
+
+msgid ""
+"Added space-explorer ``v1.1.4`` rock with removed permanency flag and "
+"reduced bundle size."
+msgstr ""
+"Добавлен модуль (rock) space-explorer ``v1.1.4`` без флага permanency и с "
+"меньшим размером сборки."
+
+msgid "r421"
+msgstr "r421"
+
+msgid "Updated base versions:"
+msgstr "Обновлены базовые версии:"
+
+msgid "1.10.11-0-gf0b0e7ecf"
+msgstr "1.10.11-0-gf0b0e7ecf"
+
+msgid "2.7.3-0-gdddf926c3"
+msgstr "2.7.3-0-gdddf926c3"
+
+msgid "2.8.2-0-gfc96d10f5"
+msgstr "2.8.2-0-gfc96d10f5"
+
+msgid "Fixed audit log."
+msgstr "Исправлен журнал аудита."
+
+msgid "r419"
+msgstr "r419"
+
+msgid "Fixed compatibility with Tarantool 2.9:"
+msgstr "Исправлена проблема совместимости с Tarantool 2.9:"
+
+msgid "Added errors 2.2.1."
+msgstr "Добавлен модуль ``errors`` 2.2.1."
+
+msgid "Added cartridge 2.7.1 instead of 2.7.0."
+msgstr "Модуль ``cartridge`` 2.7.0 обновлен до версии 2.7.1."
+
+msgid "r418"
+msgstr "r418"
+
+msgid ""
+"Added cartridge 2.7.0. (`Changelog "
+"<https://github.com/tarantool/cartridge/releases/tag/2.7.0>`__)"
+msgstr ""
+"Добавлен модуль ``cartridge`` 2.7.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge/releases/tag/2.7.0>`__)"
+
+msgid ""
+"Added membership 2.4.0. (`Changelog "
+"<https://github.com/tarantool/membership/releases/tag/2.4.0>`__)"
+msgstr ""
+"Добавлен модуль ``membership`` 2.4.0. (`Журнал изменений "
+"<https://github.com/tarantool/membership/releases/tag/2.4.0>`__)"
+
+msgid ""
+"Added ddl 1.5.0. (`Changelog "
+"<https://github.com/tarantool/ddl/releases/tag/1.5.0>`__)"
+msgstr ""
+"Добавлен модуль ``ddl`` 1.5.0. (`Журнал изменений "
+"<https://github.com/tarantool/ddl/releases/tag/1.5.0>`__)"
+
+msgid ""
+"Added vshard 0.1.18. (`Changelog "
+"<https://github.com/tarantool/vshard/releases/tag/0.1.18>`__)"
+msgstr ""
+"Добавлен модуль ``vshard`` 0.1.18. (`Журнал изменений "
+"<https://github.com/tarantool/vshard/releases/tag/0.1.18>`__)"
+
+msgid ""
+"Added frontend-core 7.10.0. (`Changelog "
+"<https://github.com/tarantool/frontend-core/releases/tag/7.10.0>`__)"
+msgstr ""
+"Добавлен модуль ``frontend-core`` 7.10.0. (`Журнал изменений "
+"<https://github.com/tarantool/frontend-core/releases/tag/7.10.0>`__)"
+
+msgid ""
+"Added luatest 0.5.4. (`Changelog "
+"<https://github.com/tarantool/luatest/releases/tag/0.5.4>`__)"
+msgstr ""
+"Добавлен модуль ``luatest`` 0.5.4. (`Журнал изменений "
+"<https://github.com/tarantool/luatest/releases/tag/0.5.4>`__)"
+
+msgid ""
+"Added cartridge-extensions 1.1.0. (`Changelog "
+"<https://github.com/tarantool/cartridge-extensions/releases/tag/1.1.0>`__)"
+msgstr ""
+"Добавлен модуль ``cartridge-extensions`` 1.1.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-extensions/releases/tag/1.1.0>`__)"
+
+msgid "r417"
+msgstr "r417"
+
+msgid "No noticeable changes"
+msgstr "Нет заметных изменений."
+
+msgid "r416"
+msgstr "r416"
+
+msgid ""
+"Added metrics 0.10.0. (`Changelog "
+"<https://github.com/tarantool/metrics/releases/tag/0.10.0>`__)"
+msgstr ""
+"Добавлен модуль ``metrics`` 0.10.0. (`Журнал изменений "
+"<https://github.com/tarantool/metrics/releases/tag/0.10.0>`__)"
+
+msgid "r415"
+msgstr "r415"
+
+msgid ""
+"Updated Cartridge CLI to v2.10.0. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.10.0>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.10.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.10.0>`__)"
+
+msgid "r414"
+msgstr "r414"
+
+msgid "1.10.10-52-g0df29b137"
+msgstr "1.10.10-52-g0df29b137"
+
+msgid "2.7.2-110-g51248c7d2"
+msgstr "2.7.2-110-g51248c7d2"
+
+msgid "2.8.1-119-g1b0050564"
+msgstr "2.8.1-119-g1b0050564"
+
+msgid ""
+"The most notable change is the fix for `gh-4040 "
+"<https://github.com/tarantool/tarantool/issues/4040>`__."
+msgstr ""
+"Самое важное изменение: исправлена проблема, описанная в тикете `gh-4040 "
+"<https://github.com/tarantool/tarantool/issues/4040>`__."
+
+msgid "r413"
+msgstr "r413"
+
+msgid "Added migrations 0.4.1."
+msgstr "Добавлен модуль ``migrations`` 0.4.1."
+
+msgid "r412"
+msgstr "r412"
+
+msgid "Added ldap 1.0.2 instead of 1.0.1 with a bugfix."
+msgstr "Модуль ldap обновлен с версии 1.0.1 до 1.0.2, исправлены ошибки."
+
+msgid "r411"
+msgstr "r411"
+
+msgid ""
+"Added expirationd 1.1.0. (`Changelog "
+"<https://github.com/tarantool/expirationd/releases/tag/1.1.0>`__)"
+msgstr ""
+"Добавлен модуль ``expirationd`` 1.1.0. (`Журнал изменений "
+"<https://github.com/tarantool/expirationd/releases/tag/1.1.0>`__)"
+
+msgid "r410"
+msgstr "r410"
+
+msgid ""
+"Added crud 0.8.0. (`Changelog "
+"<https://github.com/tarantool/crud/releases/tag/0.8.0>`__)"
+msgstr ""
+"Добавлен модуль ``crud`` 0.8.0. (`Журнал изменений "
+"<https://github.com/tarantool/crud/releases/tag/0.8.0>`__)"
+
+msgid ""
+"Added luatest 0.5.3. (`Changelog "
+"<https://github.com/tarantool/luatest/releases/tag/0.5.3>`__)"
+msgstr ""
+"Добавлен модуль ``luatest`` 0.5.3. (`Журнал изменений "
+"<https://github.com/tarantool/luatest/releases/tag/0.5.3>`__)"
+
+msgid "r409"
+msgstr "r409"
+
+msgid ""
+"Added tuple-merger 0.0.2. (`Changelog <https://github.com/tarantool/tuple-"
+"merger/releases/tag/0.0.2>`__)"
+msgstr ""
+"Добавлен модуль ``tuple-merger`` 0.0.2. (`Журнал изменений "
+"<https://github.com/tarantool/tuple-merger/releases/tag/0.0.2>`__)"
+
+msgid "r408"
+msgstr "r408"
+
+msgid ""
+"Added crud 0.7.1 instead of broken 0.7.0. (`Changelog "
+"<https://github.com/tarantool/crud/releases/tag/0.7.1>`__)"
+msgstr ""
+"Добавлен модуль ``crud`` 0.7.1 вместо неисправной версии 0.7.0. (`Журнал "
+"изменений <https://github.com/tarantool/crud/releases/tag/0.7.1>`__)"
+
+msgid "r407"
+msgstr "r407"
+
+msgid ""
+"Added crud 0.7.0. (`Changelog "
+"<https://github.com/tarantool/crud/releases/tag/0.7.0>`__)"
+msgstr ""
+"Добавлен модуль ``crud`` 0.7.0. (`Журнал изменений "
+"<https://github.com/tarantool/crud/releases/tag/0.7.0>`__)"
+
+msgid ""
+"Added tuple-keydef 0.0.2. (`Changelog <https://github.com/tarantool/tuple-"
+"keydef/releases/tag/0.0.2>`__)"
+msgstr ""
+"Добавлен модуль ``tuple-keydef`` 0.0.2. (`Журнал изменений "
+"<https://github.com/tarantool/tuple-keydef/releases/tag/0.0.2>`__)"
+
+msgid ""
+"Added watchdog 1.1.1 instead of 1.0.1. (`Changelog "
+"<https://github.com/tarantool/watchdog/releases/tag/1.1.1>`__)"
+msgstr ""
+"Модуль ``watchdog`` обновлен с версии 1.0.1 до 1.1.1. (`Журнал изменений "
+"<https://github.com/tarantool/watchdog/releases/tag/1.1.1>`__)"
+
+msgid "Added ldap 1.0.1 instead of 1.0.0 with several bugfixes."
+msgstr "Модуль ldap обновлен с версии 1.0.0 до 1.0.1, исправлены ошибки."
+
+msgid "Added space-explorer 1.1.3 with fixed roles reload compatibility."
+msgstr ""
+"Добавлен модуль ``space-explorer`` 1.1.3 с улучшенной совместимостью при "
+"перезагрузке ролей."
+
+msgid "r406"
+msgstr "r406"
+
+msgid ""
+"Added metrics 0.9.0. (`Changelog "
+"<https://github.com/tarantool/metrics/releases/tag/0.9.0>`__)"
+msgstr ""
+"Добавлен модуль ``metrics`` 0.9.0. (`Журнал изменений "
+"<https://github.com/tarantool/metrics/releases/tag/0.9.0>`__)"
+
+msgid "r405"
+msgstr "r405"
+
+msgid ""
+"Added errors 2.2.0. (`Changelog "
+"<https://github.com/tarantool/errors/releases/tag/2.2.0>`__)"
+msgstr ""
+"Добавлен модуль ``errors`` 2.2.0. (`Журнал изменений "
+"<https://github.com/tarantool/errors/releases/tag/2.2.0>`__)"
+
+msgid "r404"
+msgstr "r404"
+
+msgid ""
+"Added smtp 0.0.6. (`Changelog "
+"<https://github.com/tarantool/smtp/releases/tag/0.0.6>`__)"
+msgstr ""
+"Добавлен модуль ``smtp`` 0.0.6. (`Журнал изменений "
+"<https://github.com/tarantool/smtp/releases/tag/0.0.6>`__)"
+
+msgid "r403"
+msgstr "r403"
+
+msgid ""
+"Updated Cartridge CLI to v2.9.1. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.9.1>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.9.1. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.9.1>`__)"
+
+msgid "r402"
+msgstr "r402"
+
+msgid ""
+"Added odbc 1.0.1. (`Changelog "
+"<https://github.com/tarantool/odbc/releases/tag/1.0.1>`__)"
+msgstr ""
+"Добавлен модуль ``odbc`` 1.0.1. (`Журнал изменений "
+"<https://github.com/tarantool/odbc/releases/tag/1.0.1>`__)"
+
+msgid "r401"
+msgstr "r401"
+
+msgid "Added tools for collecting crash artifacts:"
+msgstr "Добавлены инструменты для сбора артефактов сбоев:"
+
+msgid "``tools/gdb.sh``"
+msgstr "``tools/gdb.sh``"
+
+msgid "``tools/tarabrt.sh``"
+msgstr "``tools/tarabrt.sh``"
+
+msgid "Also moved luajit gdb extension:"
+msgstr "Также перемещено расширение LuaJIT gdb:"
+
+msgid "``tools/luajit-gdb.py``"
+msgstr "``tools/luajit-gdb.py``"
+
+msgid "r400"
+msgstr "r400"
+
+msgid ""
+"Updated Cartridge CLI to v2.9.0. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.9.0>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.9.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.9.0>`__)"
+
+msgid ""
+"Added cartridge v2.6.0 rock. (`Changelog "
+"<https://github.com/tarantool/cartridge/releases/tag/2.6.0>`__)"
+msgstr ""
+"Добавлен модуль ``cartridge`` 2.6.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge/releases/tag/2.6.0>`__)"
+
+msgid ""
+"Added ddl v1.4.0 rock. (`Changelog "
+"<https://github.com/tarantool/ddl/releases/tag/1.4.0>`__)"
+msgstr ""
+"Добавлен модуль ``ddl`` v1.4.0. (`Журнал изменений "
+"<https://github.com/tarantool/ddl/releases/tag/1.4.0>`__)"
+
+msgid ""
+"Added vshard v0.1.17 rock. (`Changelog "
+"<https://github.com/tarantool/vshard/releases/tag/0.1.17>`__)"
+msgstr ""
+"Добавлен модуль ``vshard`` v0.1.17. (`Журнал изменений "
+"<https://github.com/tarantool/vshard/releases/tag/0.1.17>`__)"
+
+msgid ""
+"Added membership v2.3.2 rock. (`Changelog "
+"<https://github.com/tarantool/membership/releases/tag/2.3.2>`__)"
+msgstr ""
+"Добавлен модуль ``membership`` v2.3.2. (`Журнал изменений "
+"<https://github.com/tarantool/membership/releases/tag/2.3.2>`__)"
+
+msgid ""
+"Added frontend-core v7.7.0 rock. (`Changelog "
+"<https://github.com/tarantool/frontend-core/releases/tag/7.7.0>`__)"
+msgstr ""
+"Добавлен модуль ``frontend-core`` 7.7.0. (`Журнал изменений "
+"<https://github.com/tarantool/frontend-core/releases/tag/7.7.0>`__)"
+
+msgid ""
+"Added graphql v0.1.1 rock. (`Changelog "
+"<https://github.com/tarantool/graphql/releases/tag/0.1.1>`__)"
+msgstr ""
+"Добавлен модуль ``graphql`` v0.1.1. (`Журнал изменений "
+"<https://github.com/tarantool/graphql/releases/tag/0.1.1>`__)"
+
+msgid "r399"
+msgstr "r399"
+
+msgid "1.10.10-0-gaea7ae77a"
+msgstr "1.10.10-0-gaea7ae77a"
+
+msgid "2.6.3-0-gcd487a2c5"
+msgstr "2.6.3-0-gcd487a2c5"
+
+msgid "2.7.2-0-g4d8c06890"
+msgstr "2.7.2-0-g4d8c06890"
+
+msgid "2.8.1-0-ge2a1ec0c2"
+msgstr "2.8.1-0-ge2a1ec0c2"
+
+msgid "r398"
+msgstr "r398"
+
+msgid ""
+"Added metrics 0.8.0. (`Changelog "
+"<https://github.com/tarantool/metrics/releases/tag/0.8.0>`__)"
+msgstr ""
+"Добавлен модуль ``metrics`` v0.8.0. (`Журнал изменений "
+"<https://github.com/tarantool/metrics/releases/tag/0.8.0>`__)"
+
+msgid "r397"
+msgstr "r397"
+
+msgid ""
+"Added queue 1.1.0. (`Changelog "
+"<https://github.com/tarantool/queue/releases/tag/1.1.0>`__)"
+msgstr ""
+"Добавлен модуль ``queue`` 1.1.0. (`Журнал изменений "
+"<https://github.com/tarantool/queue/releases/tag/1.1.0>`__)"
+
+msgid "r396"
+msgstr "r396"
+
+msgid "r395"
+msgstr "r395"
+
+msgid ""
+"Added task v0.8.4 rock. (:doc:`Changelog "
+"<modules/task/rst/topics/CHANGELOG.md>`)"
+msgstr ""
+"Добавлен модуль task v.0.8.4. (:doc:`Журнал изменений "
+"<modules/task/rst/topics/CHANGELOG.md>`)"
+
+msgid "r394"
+msgstr "r394"
+
+msgid ""
+"Updated Cartridge CLI to v2.8.0. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.8.0>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.8.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.8.0>`__)"
+
+msgid "r392"
+msgstr "r392"
+
+msgid ""
+"Added crud v0.6.0 rock. (`Changelog "
+"<https://github.com/tarantool/crud/releases/tag/0.6.0>`__)"
+msgstr ""
+"Добавлен модуль ``crud`` v0.6.0. (`Журнал изменений "
+"<https://github.com/tarantool/crud/releases/tag/0.6.0>`__)"
+
+msgid "r391"
+msgstr "r391"
+
+msgid ""
+"Added cartridge v2.5.1 rock. (`Changelog "
+"<https://github.com/tarantool/cartridge/releases/tag/2.5.1>`__)"
+msgstr ""
+"Добавлен модуль ``cartridge`` v2.5.1. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge/releases/tag/2.5.1>`__)"
+
+msgid ""
+"Added cartridge-cli-extensions v1.1.1 rock. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli-"
+"extensions/releases/tag/1.1.1>`__)"
+msgstr ""
+"Добавлен модуль ``cartridge-cli-extensions`` v1.1.1. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli-"
+"extensions/releases/tag/1.1.1>`__)"
+
+msgid ""
+"Added errors v2.1.5 rock. (`Changelog "
+"<https://github.com/tarantool/errors/releases/tag/2.1.5>`__)"
+msgstr ""
+"Добавлен модуль ``errors`` v2.1.5. (`Журнал изменений "
+"<https://github.com/tarantool/errors/releases/tag/2.1.5>`__)"
+
+msgid ""
+"Updated Cartridge CLI to v2.7.2. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.7.2>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.7.2. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.7.2>`__)"
+
+msgid "r390"
+msgstr "r390"
+
+msgid "Updated 2.6 version to ``2.6.2-124-g2c3b91439``."
+msgstr "Базовая версия 2.6 обновлена до ``2.6.2-124-g2c3b91439``."
+
+msgid ""
+"Added metrics v0.7.1. (`Changelog "
+"<https://github.com/tarantool/metrics/releases/tag/0.7.1>`__)"
+msgstr ""
+"Добавлен модуль ``metrics`` 0.7.1. (`Журнал изменений "
+"<https://github.com/tarantool/metrics/releases/tag/0.7.1>`__)"
+
+msgid "Added watchdog 1.1.0 with a new option to enable core dumps."
+msgstr ""
+"Добавлен модуль ``watchdog`` 1.1.0 с новой возможностью совершать дампы "
+"памяти."
+
+msgid "Bundle luajit gdb extension."
+msgstr "Расширение LuaJIT gdb упаковано."
+
+msgid "r389"
+msgstr "r389"
+
+msgid "Fixed OpenSSL certificates lookup."
+msgstr "Исправлен поиск сертификатов OpenSSL."
+
+msgid "Fixed smtp module compatibility (tarantool 2.6, 2.7 only)."
+msgstr "Исправлена совместимость модуля smtp (только Tarantool 2.6, 2.7)."
+
+msgid "r388"
+msgstr "r388"
+
+msgid ""
+"Updated Cartridge CLI to v2.7.1. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.7.1>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.7.1. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.7.1>`__)"
+
+msgid "r387"
+msgstr "r387"
+
+msgid "Added odbc v1.0.0 rock."
+msgstr "Добавлен модуль ``odbc`` v1.0.0."
+
+msgid "r386"
+msgstr "r386"
+
+msgid ""
+"Updated Cartridge CLI to v2.7.0. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.7.0>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.7.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.7.0>`__)"
+
+msgid "r385"
+msgstr "r385"
+
+msgid ""
+"Added crud v0.5.0 rock. (`Changelog "
+"<https://github.com/tarantool/crud/releases/tag/0.5.0>`__)"
+msgstr ""
+"Добавлен модуль ``crud`` v0.5.0. (`Журнал изменений "
+"<https://github.com/tarantool/crud/releases/tag/0.5.0>`__)"
+
+msgid "r384"
+msgstr "r384"
+
+msgid "Added cartridge v2.5.0 rock."
+msgstr "Добавлен модуль ``cartridge`` v2.5.0."
+
+msgid "Added frontend-core v7.5.0 rock (a cartridge dependency)."
+msgstr "Добавлен модуль ``frontend-core`` v7.5.0 (зависимость Cartridge)."
+
+msgid "Updated luarapidxml rock: added v2.0.2, removed v2.0.1."
+msgstr "Модуль luarapidxml обновлен с 2.0.1 до 2.0.2."
+
+msgid "r383"
+msgstr "r383"
+
+msgid "Added luagraphqlparser v0.1.0 rock."
+msgstr "Добавлен модуль ``luagraphqlparser`` v0.1.0."
+
+msgid "Added graphql v0.1.0 rock."
+msgstr "Добавлен модуль ``graphql`` v0.1.0."
+
+msgid "r382"
+msgstr "r382"
+
+msgid ""
+"Updated Cartridge CLI to v2.6.0. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.6.0>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.6.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.6.0>`__)"
+
+msgid "r381"
+msgstr "r381"
+
+msgid "Add ``space-explorer`` v1.1.2 rock with fixed styles."
+msgstr "Добавлен модуль ``space-explorer`` v1.1.2 с исправленными стилями."
+
+msgid "r380"
+msgstr "r380"
+
+msgid "Add ``metrics`` v0.7.0 rock."
+msgstr "Добавлен модуль ``metrics`` v0.7.0."
+
+msgid "r376"
+msgstr "r376"
+
+msgid "Add ``migrations`` v0.4.0 rock."
+msgstr "Добавлен модуль ``migrations`` v0.4.0."
+
+msgid "r375"
+msgstr "r375"
+
+msgid "Update base versions:"
+msgstr "Обновлены базовые версии:"
+
+msgid "1.10.9-0-g720ffdd23"
+msgstr "1.10.9-0-g720ffdd23"
+
+msgid "2.5.3-0-gf93e48013"
+msgstr "2.5.3-0-gf93e48013"
+
+msgid "2.6.2-0-g34d504d7d"
+msgstr "2.6.2-0-g34d504d7d"
+
+msgid "2.7.1-0-g3ac498c9f"
+msgstr "2.7.1-0-g3ac498c9f"
+
+msgid "r372"
+msgstr "r372"
+
+msgid "Add ``frontend-core`` v7.4.0 rock (a Cartridge dependency)."
+msgstr "Добавлен модуль ``frontend-core`` v7.4.0 (зависимость Cartridge)."
+
+msgid ""
+"Add ``metrics`` v0.6.1 rock. (`Changelog "
+"<https://github.com/tarantool/metrics/releases/tag/0.6.1>`__)."
+msgstr ""
+"Добавлен модуль ``metrics`` v0.6.1. (`Журнал изменений "
+"<https://github.com/tarantool/metrics/releases/tag/0.6.1>`__)."
+
+msgid ""
+"Add ``kafka`` v1.3.1 rock. (`Changelog "
+"<https://github.com/tarantool/kafka/releases/tag/1.3.1>`__)."
+msgstr ""
+"Добавлен модуль ``kafka`` v1.3.1. (`Журнал изменений "
+"<https://github.com/tarantool/kafka/releases/tag/1.3.1>`__)."
+
+msgid "r371"
+msgstr "r371"
+
+msgid ""
+"Add ``ddl`` v1.3.0 rock. (`Changelog "
+"<https://github.com/tarantool/ddl/releases/tag/1.3.0>`__)"
+msgstr ""
+"Добавлен модуль ``ddl`` v1.3.0. (`Журнал изменений "
+"<https://github.com/tarantool/ddl/releases/tag/1.3.0>`__)"
+
+msgid "r370"
+msgstr "r370"
+
+msgid ""
+"Add ``cartridge`` v2.4.0 rock. (`Changelog "
+"<https://github.com/tarantool/cartridge/releases/tag/2.4.0>`__)"
+msgstr ""
+"Добавлен модуль ``cartridge`` v2.4.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge/releases/tag/2.4.0>`__)"
+
+msgid ""
+"Add ``metrics`` v0.6.0 rock. (`Changelog "
+"<https://github.com/tarantool/metrics/releases/tag/0.6.0>`__)"
+msgstr ""
+"Добавлен модуль ``metrics`` v0.6.0. (`Журнал изменений "
+"<https://github.com/tarantool/metrics/releases/tag/0.6.0>`__)"
+
+msgid ""
+"Update Cartridge CLI to v2.5.0. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.5.0>`__)"
+msgstr ""
+"Утилита Cartridge CLI обновлена до v2.5.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli/releases/tag/2.5.0>`__)"
+
+msgid ""
+"Add ``cartridge-cli-extensions`` 1.1.0 rock. (`Changelog "
+"<https://github.com/tarantool/cartridge-cli-"
+"extensions/releases/tag/1.1.0>`__)"
+msgstr ""
+"Добавлен модуль ``cartridge-cli-extensions`` v1.1.0. (`Журнал изменений "
+"<https://github.com/tarantool/cartridge-cli-"
+"extensions/releases/tag/1.1.0>`__)"
+
+msgid ""
+"Add ``crud`` 0.4.0 rock. (`Changelog "
+"<https://github.com/tarantool/crud/releases/tag/0.4.0>`__)"
+msgstr ""
+"Добавлен модуль ``crud`` v0.4.0. (`Журнал изменений "
+"<https://github.com/tarantool/crud/releases/tag/0.4.0>`__)"
+
+msgid "r369"
+msgstr "r369"
+
+msgid "Update ``luarapidxml`` rock: added v2.0.1, removed v2.0.0"
+msgstr "Модуль ``luarapidxml`` обновлен с версии 2.0.0 до 2.0.1."
+
+msgid "r368"
+msgstr "r368"
+
+msgid "Update ``migrations`` rock: added v0.3.1"
+msgstr "Модуль ``migrations`` обновлен до версии 0.3.1."
+
+msgid "r366"
+msgstr "r366"
+
+msgid ""
+"Update ``kafka`` rock: added v1.3.0, removed v1.2.0 and earlier, critical "
+"fix."
+msgstr ""
+"Модуль ``kafka`` обновлен до версии 1.3.0. Версии 1.2.0 и более ранние "
+"удалены, исправлена критическая ошибка."
+
+msgid "r363"
+msgstr "r363"
+
+msgid "Update ``oracle`` rock: added v1.3.2, removed v1.3.0, critical fix."
+msgstr ""
+"Модуль ``oracle`` обновлен с версии 1.3.0 до 1.3.2, исправлена критическая "
+"ошибка."
+
+msgid "r360"
+msgstr "r360"
+
+msgid "1.10.8-0-g2f18757b7"
+msgstr "1.10.8-0-g2f18757b7"
+
+msgid "2.4.3-0-g5180d98f1"
+msgstr "2.4.3-0-g5180d98f1"
+
+msgid "2.5.2-0-g05730d326"
+msgstr "2.5.2-0-g05730d326"
+
+msgid "2.6.1-0-gcfe0d1a55"
+msgstr "2.6.1-0-gcfe0d1a55"
+
+msgid "1.10.6-16, 2.2.2-56, 2.3.1-143 and 2.4.2-8"
+msgstr "1.10.6-16, 2.2.2-56, 2.3.1-143 и 2.4.2-8"
+
+msgid "Changed:"
+msgstr "Изменения:"
+
+msgid "**Tarantool 1.10** version updated to 1.10.6-16-g4764acd68"
+msgstr "Версия **Tarantool 1.10** обновлена до 1.10.6-16-g4764acd68."
+
+msgid "**Tarantool 2.2** version updated to 2.2.2-56-g62efd9cf6"
+msgstr "Версия **Tarantool 2.2** обновлена до 2.2.2-56-g62efd9cf6."
+
+msgid "**Tarantool 2.3** version (2.3.1-143-g8124538b8) added"
+msgstr "Добавлена версия **Tarantool 2.3** (2.3.1-143-g8124538b8)."
+
+msgid "**Tarantool 2.4** version (2.4.2-8-ge56224b) added"
+msgstr "Добавлена версия **Tarantool 2.4** (2.4.2-8-ge56224b)."
+
+msgid "Update ``cartridge-cli`` to v2.4.0"
+msgstr "Утилита ``cartridge-cli`` обновлена до v2.4.0."
+
+msgid "All ``cartridge-cli`` rocks are removed"
+msgstr "Удалены все модули ``cartridge-cli``."
+
+msgid "Update ``vshard-zookeeper`` rock"
+msgstr "Обновлен модуль ``vshard-zookeeper``."
+
+msgid "Added:"
+msgstr "Добавлено:"
+
+msgid "Add ``kafka`` rock v1.2.0"
+msgstr "Модуль ``kafka`` v1.2.0."
+
+msgid "Add ``task`` rock v0.8.3"
+msgstr "Модуль ``task`` v0.8.3."
+
+msgid "Add ``kafka`` rock v1.1.0"
+msgstr "Модуль ``kafka`` v1.1.0."
+
+msgid "Add ``vshard`` rock v0.1.15"
+msgstr "Модуль ``vshard`` v0.1.15."
+
+msgid "Add ``odbc`` rock v0.5.0, v0.6.4, v0.7.2, v0.7.3"
+msgstr "Модуль ``odbc`` v0.5.0, v0.6.4, v0.7.2, v0.7.3."
+
+msgid "Add ``cartridge`` rock v2.1.2"
+msgstr "Модуль ``cartridge`` v2.1.2."
+
+msgid "Add ``cartridge`` rock v2.2.1"
+msgstr "Модуль ``cartridge`` v2.2.1."
+
+msgid "Add ``cartridge`` rock v2.3.0"
+msgstr "Модуль ``cartridge`` v2.3.0."
+
+msgid "Add ``icu-date`` rock v1.3.3"
+msgstr "Модуль ``icu-date`` v1.3.3."
+
+msgid "Add ``ddl`` rock v1.1.0"
+msgstr "Модуль ``ddl`` v1.1.0."
+
+msgid "Add ``errors`` rock v2.1.3"
+msgstr "Модуль ``errors`` v2.1.3."
+
+msgid "Add ``errors`` rock v2.1.4"
+msgstr "Модуль ``errors`` v2.1.4."
+
+msgid "Add ``frontend-core`` rock v6.5.1"
+msgstr "Модуль ``frontend-core`` v6.5.1."
+
+msgid "Add ``frontend-core`` rock v7.1.0"
+msgstr "Модуль ``frontend-core`` v7.1.0."
+
+msgid "Add ``luatest`` rock v0.5.2"
+msgstr "Модуль ``luatest`` v0.5.2."
+
+msgid "Add ``metrics`` rock v0.3.0"
+msgstr "Модуль ``metrics`` v0.3.0."
+
+msgid "Add ``metrics`` rock v0.4.0"
+msgstr "Модуль ``metrics`` v0.4.0."
+
+msgid "Add ``metrics`` rock v0.5.0"
+msgstr "Модуль ``metrics`` v0.5.0."
+
+msgid "Add ``http`` rock v2.1.0"
+msgstr "Модуль ``http`` v2.1.0."
+
+msgid "Add ``luacheck`` rock v0.26.0"
+msgstr "Модуль ``luacheck`` v0.26.0."
+
+msgid "Add ``luacov-reporters`` rock v0.1.0 -- collection of LuaCov reporters."
+msgstr "Модуль ``luacov-reporters`` v0.1.0 -- генераторы отчетов LuaCov."
+
+msgid "Add ``migrations`` rock v0.3.0"
+msgstr "Модуль ``migrations`` v0.3.0."
+
+msgid "Add ``checks`` rock v3.1.0"
+msgstr "Модуль ``checks`` v3.1.0."
+
+msgid "Add ``crud`` rock v0.3.0"
+msgstr "Модуль ``crud`` v0.3.0."
+
+msgid "Add ``cartridge-cli-extensions`` rock v1.0.0"
+msgstr "Модуль ``cartridge-cli-extensions`` v1.0.0."
+
+msgid "Removed:"
+msgstr "Удалено:"
+
+msgid "Remove ``quickfix`` rock v1.0.0"
+msgstr "Модуль ``quickfix`` v1.0.0."
+
+msgid "1.10.5-12 / 2.1.3-1 / 2.2.2-3"
+msgstr "1.10.5-12 / 2.1.3-1 / 2.2.2-3"
+
+msgid "Release date: 2020-02-07"
+msgstr "Дата релиза: 2020-02-07"
+
+msgid ""
+"Since this release, we also deliver Enterprise bundles based on Tarantool "
+"Community version 2.2. It supports decimals, multikey indexes, functional "
+"indexes, ``key_def`` module, partial core dumps, tuple format over "
+"``netbox``, parallel applier, etc."
+msgstr ""
+"Начиная с этого релиза, мы выпускаем сборки Enterprise на основе Tarantool "
+"Community 2.2. В этих сборках поддерживаются числовой тип decimal, "
+"многозначные (multikey) индексы, функциональные индексы, модуль ``key_def``,"
+" частичные дампы памяти, передача формата кортежей по ``netbox``, "
+"параллельный applier и т. д."
+
+msgid "The underlying Tarantool Community version upgraded to:"
+msgstr "Базовая версия Tarantool Community обновлена до:"
+
+msgid "1.10.5-15-gcfd9d54ae"
+msgstr "1.10.5-15-gcfd9d54ae"
+
+msgid "2.1.3-16-g7dd5910"
+msgstr "2.1.3-16-g7dd5910"
+
+msgid "2.2.2-29-g5c8a435df"
+msgstr "2.2.2-29-g5c8a435df"
+
+msgid ""
+"``cartridge-cli`` module v1.4.0 with local cluster start, colored logs, "
+"packer for docker images and dev packages, updated templates, and many "
+"smaller improvements."
+msgstr ""
+"Модуль ``cartridge-cli`` v1.4.0: локальный запуск кластера, цветные логи, "
+"упаковка docker-образов и dev-пакетов, обновленные шаблоны и многое другое."
+
+msgid "``cartridge-cli`` module v1.3.2."
+msgstr "Модуль ``cartridge-cli`` v1.3.2."
+
+msgid ""
+"``cartridge`` module v2.0.1 with dramatic improvements in failover, cluster-"
+"wide DDL and configuration editor, and many smaller improvements."
+msgstr ""
+"Модуль ``cartridge`` v2.0.1: значительные улучшения в работе восстановления "
+"после сбоев, общекластерные DDL-схема и редактор конфигурации, а также много"
+" мелких изменений."
+
+msgid ""
+"``task`` module v0.7.1 with sharded mode support and the ability to define "
+"task arguments, default configuration, recurrence strategy and anonymous "
+"tasks."
+msgstr ""
+"Модуль ``task`` v0.7.1: поддержка режима шардирования, возможность указывать"
+" аргументы задач, конфигурацию по умолчанию, стратегию повторов и анонимные "
+"задачи."
+
+msgid ""
+"``luatest`` module v0.5.0 with automatic coverage builds, colored logs, and "
+"many smaller improvements."
+msgstr ""
+"Модуль ``luatest`` v0.5.0: сборки с автоматическим покрытием тестами, "
+"цветные логи и много мелких улучшений."
+
+msgid "``luatest`` module v0.4.0."
+msgstr "Модуль ``luatest`` v0.4.0."
+
+msgid ""
+"``ddl`` module v1.0.0, a cluster-wide DDL schema used in ``cartridge`` "
+"v2.0.0."
+msgstr ""
+"Модуль ``ddl`` v1.0.0: общекластерная DDL-схема, которая используется в "
+"``cartridge`` v2.0.0."
+
+msgid "``luacov`` module v0.13.0, a code coverage analyzer for Lua."
+msgstr "Модуль ``luacov`` v0.13.0: анализатор покрытия кода для Lua."
+
+msgid "``odbc`` module v0.4.1."
+msgstr "Модуль ``odbc`` v0.4.1."
+
+msgid "``avro-schema`` module v3.0.4."
+msgstr "Модуль ``avro-schema`` v3.0.4."
+
+msgid "``vshard`` module v0.1.14."
+msgstr "Модуль ``vshard`` v0.1.14."
+
+msgid "``tracing`` module v0.1.1."
+msgstr "Модуль ``tracing`` v0.1.1."
+
+msgid "``oracle`` module v1.3.0."
+msgstr "Модуль ``oracle`` v1.3.0."
+
+msgid "``watchdog`` module v1.0.2."
+msgstr "Модуль ``watchdog`` v1.0.2."
+
+msgid "``metrics`` module v0.1.7 and v0.1.8."
+msgstr "Модуль ``metrics`` v0.1.7 и v0.1.8."
+
+msgid "``queue`` module v1.0.5."
+msgstr "Модуль ``queue`` v1.0.5."
+
+msgid "``membership`` module v2.2.0."
+msgstr "Модуль ``membership`` v2.2.0."
+
+msgid "1.10.4-1 / 2.1.2-109"
+msgstr "1.10.4-1 / 2.1.2-109"
+
+msgid "Release date: 2019-10-23"
+msgstr "Дата релиза: 2019-10-23"
+
+msgid "Major news:"
+msgstr "Главные новости:"
+
+msgid ""
+"The framework for developing cluster applications (:doc:`Tarantool Cartridge"
+" </book/cartridge/index>`) has gone open source as two modules: "
+":doc:`cartridge </book/cartridge/index>` (successor of ``cluster`` "
+"rock) and :doc:`cartridge-cli "
+"</book/cartridge/cartridge_cli/index>` (successor of "
+"``tarantoolapp`` utility)."
+msgstr ""
+"Фреймворк для разработки кластерных приложений (:doc:`Tarantool Cartridge "
+"</book/cartridge/index>`) стал частью Tarantool с открытым кодом. "
+"Теперь Cartridge представлен двумя модулями: :doc:`cartridge "
+"</book/cartridge/index>` (вместо модуля ``cluster``) и "
+":doc:`cartridge-cli </book/cartridge/cartridge_cli/index>` (вместо "
+"утилиты ``tarantoolapp``)."
+
+msgid ""
+"We added another open source module named `luacheck "
+"<https://github.com/tarantool/luacheck>`_ -- a static analyzer and linter "
+"for Lua, preconfigured for Tarantool."
+msgstr ""
+"Добавлен новый открытый модуль `luacheck "
+"<https://github.com/tarantool/luacheck>`__ -- статический анализатор кода "
+"для Lua, предконфигурированный под Tarantool."
+
+msgid ""
+"We added :doc:`documentation </rocksref>` for all closed source modules."
+msgstr ""
+"Для всех модулей с закрытым кодом добавлена :doc:`документация </rocksref>`."
+
+msgid "Meet the redesigned administrative web interface!"
+msgstr "Обновлен дизайн веб-интерфейса администратора."
+
+msgid "1.10.4-21-g9349237"
+msgstr "1.10.4-21-g9349237"
+
+msgid "2.1.2-206-g2499a73"
+msgstr "2.1.2-206-g2499a73"
+
+msgid "``vshard-zookeeper`` module updated."
+msgstr "Обновлен модуль ``vshard-zookeeper``."
+
+msgid "``quickfix`` module v1.0.0."
+msgstr "Модуль ``quickfix`` v1.0.0."
+
+msgid "``luarapidxml`` module v2.0.0."
+msgstr "Модуль ``luarapidxml`` v2.0.0."
+
+msgid "``cartridge`` module v1.0.0, successor of ``cluster`` module."
+msgstr "Модуль ``cartridge`` v1.0.0 (вместо модуля ``cluster``)."
+
+msgid ""
+"``cartridge-cli`` module v1.0.0-1, successor of ``tarantoolapp`` utility."
+msgstr "Модуль ``cartridge-cli`` v1.0.0-1 (вместо утилиты ``tarantoolapp``)."
+
+msgid "``task`` module v0.4.0."
+msgstr "Модуль ``task`` v0.4.0."
+
+msgid ""
+"``membership`` module v2.1.2 with improved stability on large clusters."
+msgstr ""
+"Модуль ``membership`` v2.1.2, улучшение стабильности на больших кластерах."
+
+msgid "``membership`` module v2.1.4."
+msgstr "Модуль ``membership`` v2.1.4."
+
+msgid "``odbc`` module v0.3.0."
+msgstr "Модуль ``odbc`` v0.3.0."
+
+msgid "``cluster`` module v0.10.0."
+msgstr "Модуль ``cluster`` v0.10.0."
+
+msgid "``task`` module v0.3.0."
+msgstr "Модуль ``task`` v0.3.0."
+
+msgid "``odbc`` module v0.4.0."
+msgstr "Модуль ``odbc`` v0.4.0."
+
+msgid "``kafka`` module v1.0.2."
+msgstr "Модуль ``kafka`` v1.0.2."
+
+msgid "``frontend-core`` module v6.0.1."
+msgstr "Модуль ``frontend-core`` v6.0.1."
+
+msgid "``space-explorer`` module v1.1.0."
+msgstr "Модуль ``space-explorer`` v1.1.0."
+
+msgid "``oracle`` module v1.2.2."
+msgstr "Модуль ``oracle`` v1.2.2."
+
+msgid "``http`` module v1.1.0."
+msgstr "Модуль ``http`` v1.1.0."
+
+msgid "``avro-schema`` module v3.0.3."
+msgstr "Модуль ``avro-schema`` v3.0.3."
+
+msgid "``vshard`` module v0.1.12."
+msgstr "Модуль ``vshard`` v0.1.12."
+
+msgid "``icu-date`` module v1.3.1."
+msgstr "Модуль ``icu-date`` v1.3.1."
+
+msgid "``luatest`` module v0.2.2."
+msgstr "Модуль ``luatest`` v0.2.2."
+
+msgid "``metrics`` module v0.1.6."
+msgstr "Модуль ``metrics`` v0.1.6."
+
+msgid "``queue`` module v1.0.4."
+msgstr "Модуль ``queue`` v1.0.4."
+
+msgid "``tarantoolapp`` utility."
+msgstr "Утилита ``tarantoolapp``."
+
+msgid "1.10.3-71 / 2.1.2-63"
+msgstr "1.10.3-71 / 2.1.2-63"
+
+msgid "Release date: 2019-07-12"
+msgstr "Дата релиза: 2019-07-12"
+
+msgid "1.10.3-89-g412e943"
+msgstr "1.10.3-89-g412e943"
+
+msgid "2.1.2-127-gcb2f5e4"
+msgstr "2.1.2-127-gcb2f5e4"
+
+msgid ""
+"Unit / integration test templates for a Tarantool cluster; available via "
+"``tarantoolctl rocks test``."
+msgstr ""
+"Шаблоны юнит-тестов и интеграционных тестов для кластера Tarantool, "
+"доступные через ``tarantoolctl rocks test``."
+
+msgid ""
+"``.tarantoolapp.ignore`` files to exclude specific resources from build."
+msgstr ""
+"При сборке проекта теперь можно исключать ресурсы с помощью файлов "
+"``.tarantoolapp.ignore``."
+
+msgid "``kafka`` module v1.0.1 (Apache Kafka connector for Tarantool)."
+msgstr "Модуль ``kafka`` v1.0.1 (коннектор Apache Kafka для Tarantool)."
+
+msgid ""
+"``tracing`` module v0.1.0 (for debugging performance issues in applications;"
+" based on OpenTracing/Zipkin)."
+msgstr ""
+"Модуль ``tracing`` v0.1.0 для отладки производительности приложения. "
+"Реализован на базе OpenTracing/Zipkin."
+
+msgid ""
+"``task`` module v0.2.0 (for managing background tasks in cluster "
+"applications)."
+msgstr ""
+"Модуль ``task`` v0.2.0 для работы с фоновыми задачами в кластерных "
+"приложениях."
+
+msgid "``odbc`` module v0.1.0 (outgoing ODBC connector for Tarantool)."
+msgstr "Модуль ``odbc`` v0.1.0 (исходящий ODBC-коннектор для Tarantool)."
+
+msgid "``luatest`` module v0.2.0 (testing framework for Tarantool)."
+msgstr "Модуль ``luatest`` v0.2.0 (тестовый фреймворк для Tarantool)."
+
+msgid "``checks`` module v3.0.1."
+msgstr "Модуль ``checks`` v3.0.1."
+
+msgid "``errors`` module v2.1.1."
+msgstr "Модуль ``errors`` v2.1.1."
+
+msgid "``frontend-core`` module v5.0.2."
+msgstr "Модуль ``frontend-core`` v5.0.2."
+
+msgid "``metrics`` module v0.1.5."
+msgstr "Модуль ``metrics`` v0.1.5."
+
+msgid "``oracle`` module v1.1.6."
+msgstr "Модуль ``oracle`` v1.1.6."
+
+msgid "``cluster`` module v0.9.2 with new features:"
+msgstr "Модуль ``cluster`` v0.9.2 с новыми функциональными возможностями:"
+
+msgid ""
+"**Users**, a new tab in the web interface for managing cluster admin users."
+msgstr ""
+"**Users**, новая вкладка веб-интерфейса для управления пользователями-"
+"администраторами кластера."
+
+msgid ""
+"Multiple isolated groups for storage replica sets in a single cluster, e.g. "
+"``hot`` or ``cold`` groups to process hot and cold data independently."
+msgstr ""
+"Для наборов реплик storage в одном кластере можно задавать группы (например,"
+" группы ``hot`` и ``cold`` для независимой обработки горячих и холодных "
+"данных)."
+
+msgid "Integration tests helpers for ``luatest``."
+msgstr "Вспомогательные утилиты для интеграционных тестов на ``luatest``."
+
+msgid "``cluster`` module v0.2.0, v0.3.0."
+msgstr "Модуль ``cluster`` v0.2.0, v0.3.0."
+
+msgid "``oracle`` module v1.0.0, v1.1.0."
+msgstr "Модуль ``oracle`` v1.0.0, v1.1.0."
+
+msgid "``vshard`` module v0.1.5, v0.1.6."
+msgstr "Модуль ``vshard`` v0.1.5, v0.1.6."
+
+msgid "1.10.3-29 / 2.1.2-21"
+msgstr "1.10.3-29 / 2.1.2-21"
+
+msgid "Release date: 2019-05-28"
+msgstr "Дата релиза: 2019-05-28"
+
+msgid ""
+"Since this release, we also deliver Enterprise bundles based on Tarantool "
+"Community version 2.1."
+msgstr ""
+"Начиная с этого релиза, мы выпускаем сборки Enterprise на основе Tarantool "
+"Community 2.1."
+
+msgid "2.1.2-85-g6b01fa0"
+msgstr "2.1.2-85-g6b01fa0"
+
+msgid "1.10.3-57-gd2efb0d"
+msgstr "1.10.3-57-gd2efb0d"
+
+msgid "``tarantoolapp pack`` now puts VERSION file inside of packed project."
+msgstr ""
+"Команда ``tarantoolapp pack`` теперь добавляет в упакованный проект файл "
+"VERSION."
+
+msgid "Ability to set up logging level per route."
+msgstr ""
+"Возможность задавать уровень детализации записей журнала для каждого "
+"маршрута."
+
+msgid ""
+"``http`` module v0.1.6 with a new feature: setting up logging level per "
+"route."
+msgstr ""
+"Модуль ``http`` v0.1.6 с новой возможностью определять уровень детализации "
+"записей журнала для каждого маршрута."
+
+msgid "``space-explorer`` module v1.0.2."
+msgstr "Модуль ``space-explorer`` v1.0.2."
+
+msgid "``cron-parser`` module v1.0.0."
+msgstr "Модуль ``cron-parser`` v1.0.0."
+
+msgid "``argon2`` module v3.0.1 with PCI DSS grade hashing algorithms."
+msgstr "Модуль ``argon2`` v3.0.1 с алгоритмами хеширования класса PCI DSS."
+
+msgid "``metrics`` module v0.1.3."
+msgstr "Модуль ``metrics`` v0.1.3."
+
+msgid "``vshard`` module v0.1.9"
+msgstr "Модуль ``vshard`` v0.1.9."
+
+msgid "``oracle`` module v1.1.5."
+msgstr "Модуль ``oracle`` v1.1.5."
+
+msgid "``frontend-core`` module v5.0.0, v5.0.1"
+msgstr "Модуль ``frontend-core`` v5.0.0, v5.0.1."
+
+msgid "``cluster`` module v0.8.0 with some bug fixes and new features:"
+msgstr ""
+"Модуль ``cluster`` v0.8.0 с исправленными ошибками и новыми возможностями:"
+
+msgid "role dependencies;"
+msgstr "зависимостями для ролей;"
+
+msgid "cluster cookies;"
+msgstr "кластерными cookies;"
+
+msgid "labels for servers."
+msgstr "метками для серверов."
+
+msgid "1.10.3-5"
+msgstr "1.10.3-5"
+
+msgid "Release date: 2019-04-05"
+msgstr "Дата релиза: 2019-04-05"
+
+msgid ""
+"The underlying Tarantool Community version upgraded to 1.10.3-6-gfbf53b9."
+msgstr "Базовая версия Tarantool Community обновлена до 1.10.3-6-gfbf53b9."
+
+msgid "The following features added:"
+msgstr "Добавлены следующие функциональные возможности:"
+
+msgid "Failover priority configuration via the web interface."
+msgstr "Настройка приоритета восстановления после сбоев через веб-интерфейс."
+
+msgid "RPC module (remote calls between cluster instances)."
+msgstr "Модуль RPC (удаленные вызовы между экземплярами кластера)."
+
+msgid "Space explorer via the web interface."
+msgstr "Space-explorer в веб-интерфейсе."
+
+msgid "OpenLDAP client for Tarantool."
+msgstr "Клиент OpenLDAP для Tarantool."
+
+msgid ""
+"Instance restart now triggers configuration validation before the roles "
+"initialization."
+msgstr ""
+"При перезапуске экземпляра конфигурация теперь проверяется до инициализации "
+"ролей."
+
+msgid "The web interface design has been updated."
+msgstr "Обновлен дизайн веб-интерфейса."
+
+msgid "1.10.2-41"
+msgstr "1.10.2-41"
+
+msgid "Release date: 2019-02-08"
+msgstr "Дата релиза: 2019-02-08"
+
+msgid ""
+"The underlying Tarantool Community version has been upgraded to "
+"1.10.2-131-g6f96bfe."
+msgstr "Базовая версия Tarantool Community обновлена до 1.10.2-131-g6f96bfe."
+
+msgid ""
+"The cluster template has been updated to allow the application to operate "
+"across several hosts (virtual machines)."
+msgstr ""
+"Обновлен шаблон кластера, чтобы приложение могло работать на нескольких "
+"хостах (виртуальных машинах)."
+
+msgid ""
+"The following closed-source modules of latest versions have been added: "
+"``queue``, ``front``, ``errors``, ``membership``, ``cluster``, and "
+"``oracle``. These rocks include:"
+msgstr ""
+"Добавлены последние версии следующих модулей с закрытым исходным кодом: "
+"``queue``, ``front``, ``errors``, ``membership``, ``cluster`` и ``oracle``. "
+"Эти модули rocks включают в себя:"
+
+msgid "a new front-end core with cosmetic changes;"
+msgstr "новое ядро фронтенда с косметическими изменениями;"
+
+msgid "active master indication during failover;"
+msgstr "индикатор активного мастера во время восстановления после сбоев;"
+
+msgid ""
+"the ability to disable the ``vshard-storage`` role after the end of the "
+"rebalancing process;"
+msgstr ""
+"возможность отключить роль ``vshard-storage`` по окончании процесса "
+"балансировки;"
+
+msgid "dependencies updates and minor improvements."
+msgstr "обновление зависимостей и незначительные улучшения."
+
+msgid "1.10.2-15"
+msgstr "1.10.2-15"
+
+msgid "Release date: 2018-12-13"
+msgstr "Дата релиза: 2018-12-13"
+
+msgid ""
+"The underlying Tarantool Community version has been upgraded to "
+"1.10.2-84-g19d471bd4."
+msgstr "Базовая версия Tarantool Community обновлена до 1.10.2-84-g19d471bd4."
+
+msgid "The ``checks`` module has been updated in the bundle."
+msgstr "Обновлена сборка модуля ``checks``."
+
+msgid ""
+"The custom (user-defined) cluster roles API has been added to the "
+"``cluster`` module."
+msgstr ""
+"В модуль ``cluster`` добавлены пользовательские API для кластерных ролей."
+
+msgid "The ``vshard`` replica set's weight parameter is now supported."
+msgstr "Добавлена поддержка параметра веса для наборов реплик в ``vshard``."
+
+msgid "1.10.2-4"
+msgstr "1.10.2-4"
+
+msgid "Release date: 2018-10-31"
+msgstr "Дата релиза: 2018-10-31"
+
+msgid ""
+"Sample applications demonstrating how to run Tarantool in Docker and a "
+"write-through cache to PostgreSQL have been added."
+msgstr ""
+"Добавлены примеры приложений, демонстрирующих запуск Tarantool в Docker и "
+"использование кэша со сквозной записью для PostgreSQL."
+
+msgid ""
+"The abilities to manually switch the replica set's master and enable "
+"automatic failover have been added to Web interface."
+msgstr ""
+"В веб-интерфейсе добавлена возможность переключать мастер в наборе реплик "
+"вручную, а также включить автоматическое восстановление после сбоев."
+
+msgid ""
+"The ``tarantoolapp`` utility that helps set up a development environment and"
+" pack the application in an environment-independent way has been added."
+msgstr ""
+"Добавлена утилита ``tarantoolapp``, которая помогает настроить среду "
+"разработки и упаковать приложение независимо от среды разработки."
+
+msgid "1.10.1-29"
+msgstr "1.10.1-29"
+
+msgid "Release date: 2018-10-04"
+msgstr "Дата релиза: 2018-10-04"
+
+msgid ""
+"The sample application is now cluster-based and the cluster is orchestrated "
+"via a Web interface."
+msgstr ""
+"Приложение-пример теперь кластерное, а оркестрация кластера выполняется "
+"через веб-интерфейс."
+
+msgid ""
+"Tarantool Enterprise release comes in an archive that includes an offline "
+"rocks repository from which you can install all necessary modules."
+msgstr ""
+"Релиз Tarantool Enterprise представляет собой архив. Он включает в себя "
+"автономный репозиторий, из которого можно установить все необходимые модули."
+
+msgid ""
+"Oracle connector is now included in the rocks repository. With this package,"
+" Lua applications can access Oracle databases."
+msgstr ""
+"В репозиторий с модулями добавлен коннектор для Oracle. Теперь Lua-"
+"приложения могут получать доступ к базам данных Oracle."
+
+msgid "1.10.1"
+msgstr "1.10.1"
+
+msgid "Release date: 2018-04-09"
+msgstr "Дата релиза: 2018-04-09"
+
+msgid ""
+"The Tarantool build is now static: all dependencies are linked into a static"
+" binary. This simplifies deploy of Tarantool in the Linux environment."
+msgstr ""
+"Теперь у Tarantool статическая сборка: все зависимости скомпонованы в "
+"статический бинарный файл. Это упрощает развертывание Tarantool в среде "
+"Linux."
+
+msgid ""
+"The underlying Tarantool Community version has been upgraded to 1.10.1. For "
+"all new features and bugfixes of the Community version please refer to "
+"https://github.com/tarantool/tarantool/releases."
+msgstr ""
+"Базовая версия Tarantool Community обновлена до 1.10.1. Описание новых "
+"возможностей и исправленных ошибок в версии Community доступно по ссылке "
+"https://github.com/tarantool/tarantool/releases."
+
+msgid ""
+"The modules required for integration with ZooKeeper and orchestrator are now"
+" deprecated and no longer supported."
+msgstr ""
+"Модули, необходимые для интеграции с ZooKeeper и orchestrator, объявлены "
+"устаревшими и больше не поддерживаются."

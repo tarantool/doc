@@ -21,12 +21,12 @@ Versions that only include bug fixes are not listed in this table.
             -   Feature
 
         *   -   :doc:`2.11.0 </release/2.11.0>`
-            -   **Tarantool Enterprise** |br|
-                Security enhancements: `Encrypted SSL/TLS keys <https://www.tarantool.io/en/enterprise_doc/security/#traffic-encryption>`_, new `security enforcement options <https://www.tarantool.io/en/enterprise_doc/security/#password-policy>`_, `PAP-SHA256 support <https://www.tarantool.io/en/enterprise_doc/security/#authentication-protocol>`_ |br|
-                `Read views <https://www.tarantool.io/en/enterprise_doc/read_views/>`_ |br|
-                ``zlib`` support for `tuple compression <https://www.tarantool.io/en/enterprise_doc/tuple_compression/>`_ |br|
-                `WAL extensions <https://www.tarantool.io/en/enterprise_doc/wal_extensions/>`_ |br|
-                **Tarantool Community** |br|
+            -   **Tarantool Enterprise Edition** |br|
+                Security enhancements: :ref:`Encrypted SSL/TLS keys <enterprise-iproto-encryption>`, new :ref:`security enforcement options <enterprise-password-policy>`, :ref:`PAP-SHA256 support <enterprise-authentication-protocol>` |br|
+                :ref:`Read views <read_views>` |br|
+                ``zlib`` support for :ref:`tuple compression <tuple_compression>` |br|
+                :ref:`WAL extensions <wal_extensions>` |br|
+                **Tarantool Community Edition** |br|
                 Pagination support (the :ref:`after <box_index-select>` option) |br|
                 Support for downgrading a database (:ref:`box.schema.downgrade() <box_schema-downgrade>`) |br|
                 :ref:`New bootstrap strategy <cfg_replication-bootstrap_strategy>` |br|
