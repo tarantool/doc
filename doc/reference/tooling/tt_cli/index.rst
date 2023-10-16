@@ -28,6 +28,7 @@ concept explanation, and the ``tt`` command reference.
     global_options
     commands
     external_modules
+    test
 
 ..  _tt-cli-environments:
 
