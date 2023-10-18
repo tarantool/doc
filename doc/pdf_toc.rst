@@ -17,6 +17,7 @@
     book/cartridge/index
     book/admin/index
     book/connectors
+    enterprise/index
     reference/index
     contributing/index
     release/index
