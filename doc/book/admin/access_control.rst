@@ -1,7 +1,7 @@
 .. _authentication:
 
 ================================================================================
-Access control
+Access control changed
 ================================================================================
 
 This section explains how Tarantool makes it possible for administrators

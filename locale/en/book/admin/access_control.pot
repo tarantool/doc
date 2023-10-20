@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../../doc/book/admin/access_control.rst:5
-msgid "Access control"
+msgid "Access control changed"
 msgstr ""
 
 #: ../../doc/book/admin/access_control.rst:7
