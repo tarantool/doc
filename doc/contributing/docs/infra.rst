@@ -103,32 +103,6 @@ The ``${project_root}`` variable is defined earlier in the file as ``project_roo
 This is because the documentation build has to start from the documentation repository root
 directory.
 
-cartridge_cli
-^^^^^^^^^^^^^
-
-The content source file for the ``cartridge_cli`` submodule is
-``README.rst``, located in the directory of the submodule repository.
-In the final documentation view, the content should appear here:
-``https://www.tarantool.io/en/doc/latest/book/cartridge/cartridge_cli/``.
-
-To make this work:
-
-*   Create a directory at ``./doc/book/cartridge/cartridge_cli``.
-*   Copy ``./modules/cartridge_cli/README.rst`` to
-    ``./doc/book/cartridge/cartridge_cli/index.rst``.
-
-Here ar the corresponding settings in ``build_submodules.sh``:
-
-..  code-block:: bash
-
-    rst_dest="${project_root}/doc/book/cartridge"
-    cartridge_cli_root="${project_root}/modules/cartridge-cli"
-    cartridge_cli_dest="${rst_dest}/cartridge_cli"
-    cartridge_cli_index_dest="${cartridge_cli_dest}/index.rst"
-
-    mkdir -p "${cartridge_cli_dest}"
-    yes | cp -rf "${cartridge_cli_root}/README.rst" "${cartridge_cli_index_dest}"
-
 .. _guidelines_doc_submodules_gitignore:
 
 3. Update .gitignore

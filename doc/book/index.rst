@@ -15,7 +15,6 @@ User's Guide
     ../how-to/index
     ../concepts/index
     box/index
-    cartridge/index
     admin/index
     monitoring/index
     connectors
