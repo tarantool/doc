@@ -3,7 +3,7 @@
 Managing a Cartridge application
 ================================
 
-..  include:: ../_includes/cartridge_deprecation_note.rst
+..  include:: /_includes/cartridge_deprecation_note.rst
 
 ..  code-block:: console
 
