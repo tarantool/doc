@@ -20,6 +20,7 @@ jobs:
 
       - name: Commit generated pots
         run: |
+          git config --global --add safe.directory /__w/doc/doc
           git config --global user.name 'TarantoolBot'
           git config --global user.email 'tarantoolbot@mail.ru'
 
@@ -28,7 +29,7 @@ jobs:
             exit 0
           fi
 
-          git add locale/en/
+          git add -f locale/en/
           git commit -m "updated pot"
           git push origin test-weblate
 
