@@ -64,7 +64,6 @@ Tarantool Enterprise Edition
     flight_recorder
     audit_log
     space_upgrade
-    migration
     system_metrics
     deprecated
     rocksref

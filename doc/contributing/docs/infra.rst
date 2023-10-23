@@ -15,9 +15,8 @@ The documentation source files are mainly stored in the
 `documentation repository <https://github.com/tarantool/doc>`_.
 However, in some cases, they are stored in the
 repositories of other Tarantool-related products
-or modules -- `Cartridge <https://github.com/tarantool/cartridge>`_,
-`Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`__,
-and others.
+or modules, such as
+`Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`__.
 
 If you are working with source files from a product or module repository,
 add that repository as a submodule to the
