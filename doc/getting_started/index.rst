@@ -9,7 +9,7 @@ Getting started
 .. TODO: New Getting Started https://github.com/tarantool/doc/issues/3636
 
 The :ref:`Creating your first Tarantool database <getting_started_db>` section
-will get you acquainted with Tarantool in 15 minutes.
+will get you acquainted with Tarantool.
 We will start Tarantool, create a data schema, and write our first data.
 You'll get an understanding of the technology and learn about the basic terms and features.
 
