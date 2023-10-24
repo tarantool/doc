@@ -14,27 +14,6 @@ Open source modules
 * `avro-schema <https://github.com/tarantool/avro-schema/blob/master/README.md>`_
   is an assembly of `Apache Avro <http://avro.apache.org/docs/current/>`_
   schema tools;
-* :doc:`cartridge </book/cartridge/index>`
-  is a high-level cluster management interface that contains
-  several modules:
-
-  * ``rpc`` implements remote procedure calls between cluster instances and
-    allows roles running on some instances to interact with other roles on
-    other instances.
-  * ``service-registry`` implements inter-role interaction and allows different
-    roles to interact with each other in the scope of one instance.
-  * ``confapplier`` implements cluster-wide configuration validation and
-    application via a two-phase commit.
-  * ``auth`` manages authentication.
-  * ``pool`` reuses Tarantool's ``net.box`` connections.
-  * ``admin`` implements administration functions.
-
-* :doc:`cartridge-cli </book/cartridge/cartridge_cli/index>`
-  is the command-line interface for the ``cartridge`` module.
-
-  .. important::
-
-    ``cartridge-cli`` is deprecated in favor of the :ref:`tt CLI utility <tt-cli>`.
 
 * :ref:`checks <checks-module>`
   is a type checker of functional arguments. This library that declares
@@ -85,8 +64,6 @@ Closed source modules
   same high-level language (Lua) and with minimal delay.
 * :doc:`task <modules/task/rst/index>`
   is a module for managing background tasks in a Tarantool cluster.
-* :doc:`space-explorer <modules/space-explorer/rst/topics/README.md>`
-  is a module for exploring Tarantool spaces in ``cartridge``.
 
 .. _enterprise-rocks-install:
 

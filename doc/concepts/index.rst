@@ -53,9 +53,6 @@ Application server
 Using Tarantool as an application server, you can write
 applications in Lua, C, or C++. You can also create reusable :ref:`modules <concepts-modules>`.
 
-A convenient way to serve a clustered application on Tarantool is using :ref:`Tarantool Cartridge <tarantool-cartridge>` --
-a framework for developing, deploying, and managing applications.
-
 To increase the speed of code execution, Tarantool has a Lua Just-In-Time compiler (LuaJIT) on board.
 LuaJIT compiles hot paths in the code -- paths that are used many times --
 thus making the application work faster. 
@@ -118,7 +115,6 @@ For details, check the :ref:`Storage engines <engines-chapter>` section.
     coop_multitasking
     atomic
     modules      
-    Tarantool Cartridge <https://tarantool.io/doc/latest/book/cartridge>
     sharding/index
     replication/index  
     triggers

@@ -9,7 +9,6 @@ This reference covers third-party Lua modules for Tarantool.
 ..  toctree::
     :maxdepth: 1
 
-    ../../book/cartridge/index
     membership
     Module metrics <../../book/monitoring/index>
     Module luatest <luatest/luatest_overview>
