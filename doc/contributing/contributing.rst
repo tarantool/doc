@@ -132,8 +132,8 @@ There are several ways to improve the documentation:
   see how it works. This can be done automatically in Docker.
   To learn more, check the `README of the tarantool/doc repository <https://github.com/tarantool/doc>`_.
 
-Some projects, like `Tarantool Cartridge <https://github.com/tarantool/cartridge/>`_,
-have their documentation in the code repository.
+Some Tarantool projects have their documentation in the code repository.
+This is typical for modules, for example, `metrics <https://github.com/tarantool/metrics/>`_.
 This is done on purpose, so the developers themselves can update it faster.
 You can find instructions for building such documentation in the code repository.
 
@@ -161,8 +161,6 @@ Here are some of our official modules:
   the persistent message queue.
 * `metrics <https://github.com/tarantool/metrics>`_: Ready-to-use solution for
   collecting metrics.
-* `cartridge <https://github.com/tarantool/cartridge>`_: Framework for writing
-  distributed applications.
 
 Official modules are provided in our organization on GitHub.
 
@@ -311,11 +309,8 @@ help with application deployment, or allow working with Kubernetes.
 
 Here are some of the tools created by the Tarantool team:
 
-* `ansible-cartridge <https://github.com/tarantool/ansible-cartridge>`_:
-  an Ansible role to deploy Cartridge applications.
-* `cartridge-cli <https://github.com/tarantool/cartridge-cli>`_:
-  a CLI utility for creating applications, launching clusters locally on Cartridge,
-  and solving operation problems.
+* `tt <https://github.com/tarantool/tt>`_:
+  a CLI utility for creating and managing Tarantool applications.
 * `tarantool-operator <https://github.com/tarantool/tarantool-operator>`_:
   a Kubernetes operator for cluster orchestration.
 

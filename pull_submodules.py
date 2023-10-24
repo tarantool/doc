@@ -6,8 +6,6 @@ import subprocess
 
 modules_dir = 'modules'
 modules = {
-    'cartridge': 'INPUT_CARTRIDGE',
-    'cartridge-cli': 'INPUT_CARTRIDGE_CLI',
     'grafana-dashboard': 'INPUT_GRAFANA',
     'luatest': 'INPUT_LUATEST',
     'metrics': 'INPUT_METRICS',

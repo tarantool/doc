@@ -8,7 +8,7 @@ There are two Java connectors available:
 *   `cartridge-java <http://github.com/tarantool/cartridge-java/>`__
     supports both single Tarantool nodes and clusters,
     as well as applications built using the
-    :doc:`Cartridge framework </book/cartridge/index>` and its modules.
+    `Cartridge framework <https://github.com/tarantool/cartridge>`__ and its modules.
     The Tarantool team actively updates this module with the newest Tarantool features.
 *   `tarantool-java <http://github.com/tarantool/tarantool-java/>`__
     works with early Tarantool versions (1.6 and later)
