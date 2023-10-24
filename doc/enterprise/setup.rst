@@ -88,9 +88,7 @@ the administration server should be able to access the following TCP ports on
 Tarantool servers:
 
 * 22 to use the SSH protocol,
-* ports specified in
-  :ref:`instance configuration <cartridge-config>`
-  (``http_port`` parameter) to monitor the HTTP-metrics.
+* ports specified in instance configuration to monitor the HTTP-metrics.
 
 Additionally, it is recommended to apply the following settings for ``sysctl``
 on all Tarantool servers:
@@ -136,13 +134,6 @@ Archive contents:
   .. important::
 
     ``tarantoolctl`` is deprecated in favor of the :ref:`tt CLI utility <tt-cli>`.
-
-* ``cartridge`` is the utility script to help you set up a development
-  environment for applications and pack them for easy deployment.
-
-  .. important::
-
-    ``cartridge`` utility is deprecated in favor of the :ref:`tt CLI utility <tt-cli>`.
 
 * ``examples/`` is the directory containing sample applications:
 

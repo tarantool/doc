@@ -1,7 +1,6 @@
 ﻿Term [en];Term [ru];Description [en];Description [ru]
 space;спейс;A space is a container for tuples.;
-;"https://www.tarantool.io/en/doc/latest/book/box/data_model/#spaces""";;NOUN
-tuple;кортеж;A tuple plays the same role as a “row” or a “record”. The number of tuples in a space is unlimited. Tuples in Tarantool are stored as MsgPack arrays. https://www.tarantool.io/en/doc/latest/book/box/data_model/#tuples;
+tuple;кортеж;A tuple plays the same role as a “row” or a “record”. The number of tuples in a space is unlimited. Tuples in Tarantool are stored as MsgPack arrays.;
 Tarantool;Tarantool;НЕ ПЕРЕВОДИТЬ;
 primary index;первичный индекс;The first index defined on a space is called the primary key index, and it must be unique. All other indexes are called secondary indexes, and they may be non-unique. https://www.tarantool.io/en/doc/latest/book/box/data_model/#indexes;
 fiber;файбер;A fiber is a set of instructions which are executed with cooperative multitasking. Fibers managed by the fiber module are associated with a user-supplied function called the fiber function. https://www.tarantool.io/en/doc/latest/reference/reference_lua/fiber/#fibers;
@@ -16,8 +15,6 @@ implicit casting;неявное приведение типов;;
 database;база данных;;
 Release policy;Релизная политика;A set of rules for releasing and naming new distributions of Tarantool: where we add new features and where we don't, how we give them numbers, what versions are suitable to use in production.;
 field;поле;Fields are distinct data values, contained in a tuple. They play the same role as «row columns» or «record fields» in relational databases.;
-;;;
-;"https://www.tarantool.io/ru/doc/latest/book/box/data_model/#term-field""";;NOUN
 leader election;выборы лидера;(in a replica set, by the Raft algorithm);
 replica set;набор реплик;;
 heartbeat;контрольный сигнал;;
@@ -43,14 +40,18 @@ expression;выражение;;
 predicate;предикат;(SQL) Predicates, which specify conditions that can be evaluated to SQL three-valued logic (3VL) (true/false/unknown) or Boolean truth values and are used to limit the effects of statements and queries, or to change program flow.;
 query;запрос;(SQL) Queries retrieve the data based on specific criteria. A query is a statement that returns a result set (possibly empty).;
 result set;результат запроса;(SQL) An SQL result set is a set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. A result set is effectively a table.;
-resultset;результат запроса;(SQL) An SQL result set is a set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. A result set is effectively a table.;
 statement;инструкция;(SQL) A statement is any text that the database engine recognizes as a valid command.;(SQL) Любой текст, который распознаётся движком БД как команда. Инструкция состоит из ключевых слов и выражений языка SQL, которые предписывают Tarantool выполнять какие-либо действия с базой данных.
-;"Tarantool: A statement consists of SQL-language keywords and expressions that direct Tarantool to do something with a database. https://www.tarantool.io/en/doc/latest/reference/reference_sql/sql_user_guide/#statements""";;
+;;"Tarantool: A statement consists of SQL-language keywords and expressions that direct Tarantool to do something with a database. https://www.tarantool.io/en/doc/latest/reference/reference_sql/sql_user_guide/#statements""";;
 batch;пакет (инструкций);(SQL) A series of SQL statements sent to the server at once is called a batch.;(SQL) Серия SQL-инструкций (statements), отправляемая на сервер вместе
 production configuration;конфигурация производственной среды;;
-deployment;;Transforming a mechanical, electrical, or computer system from a packaged to an operational state. IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment.;
+deployment;развертывание;Transforming a mechanical, electrical, or computer system from a packaged to an operational state. IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment.;
 roll back;отменить;;транзакцию
 deploy to production;;IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment. Production environment is a setting where software and other products are actually put into operation for their intended uses by end users;
 operations;эксплуатация;(DevOps) Information technology operations, or IT operations, are the set of all processes and services that are both provisioned by an IT staff to their internal or external clients and used by themselves, to run themselves as a business. ;
 to deploy;;Transforming a mechanical, electrical, or computer system from a packaged to an operational state. IT infrastructure deployment typically involves defining the sequence of operations or steps, often referred to as a deployment plan, that must be carried to deliver changes into a target system environment.;
 deployment plan;;A sequence of operations or steps that must be carried to deliver changes into a target system environment.;
+production environment;производственная среда;Production environment is a term used mostly by developers to describe the setting where software and other products are actually put into operation for their intended uses by end users.;
+failover;восстановление после сбоев;In computing and related technologies such as networking, failover is switching to a redundant or standby computer server, system, hardware component or network upon the failure or abnormal termination of the previously active application, server, system, hardware component, or network.;
+directory;директория;;
+bucket;сегмент;;
+select;выберите, выбрать;To select a checkbox;

@@ -43,9 +43,9 @@ is not sufficiently secure.
 Closed HTTP ports
 -----------------
 
-Tarantool accepts HTTP connections on a specific port, configured with
-``http_port: <number>`` value
-(see :ref:`configuring Cartridge instances <cartridge-config>`).
+.. TODO: update for new EE config
+
+Tarantool accepts HTTP connections on a specific port.
 It must be only available on the same host for nginx to connect to it.
 
 Check that the configured HTTP port is closed
@@ -103,8 +103,6 @@ Authorization in the web UI
 ---------------------------
 
 Using the web interface must require logging in with a username and password.
-See more details in the documentation on
-:ref:`configuring web interface authorization <cartridge-auth-enable>`.
 
 Running under the tarantool user
 --------------------------------
@@ -128,8 +126,7 @@ This should be checked on each Tarantool instance.
 The :ref:`snapshot_count <cfg_checkpoint_daemon-checkpoint_count>` value
 determines the number of kept snapshots.
 Configuration values are primarily set in the configuration files
-but :doc:`can be overridden </book/cartridge/cartridge_api/modules/cartridge.argparse>`
-with environment variables and command-line arguments.
+but can be overridden with environment variables and command-line arguments.
 So, it's best to check both the values in the configuration files and the actual values
 using the console:
 
