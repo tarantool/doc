@@ -12,50 +12,6 @@ po_dest="${project_root}/locale/ru/LC_MESSAGES"
 cp README.rst doc/contributing/docs/_includes/README.rst
 
 
-# Cartridge
-cartridge_root="${project_root}/modules/cartridge"
-
-# Build Cartridge to extract docs
-cd "${cartridge_root}" || exit
-CMAKE_DUMMY_WEBUI=true tarantoolctl rocks make
-
-# Copy Cartridge docs, including diagrams and images
-cartridge_rst_src="${cartridge_root}/build.luarocks/build.rst"
-cartridge_rst_dest="${project_root}/doc/book/cartridge"
-cd "${cartridge_rst_src}" || exit
-mkdir -p "${cartridge_rst_dest}"
-find . -iregex '.*\.\(rst\|png\|puml\|svg\)$' -exec cp -r --parents {} "${cartridge_rst_dest}" \;
-
-# Copy translation templates
-cartridge_pot_src="${cartridge_root}/build.luarocks/build.rst/locale"
-cartridge_pot_dest="${project_root}/locale/book/cartridge"
-cd "${cartridge_pot_src}" || exit
-mkdir -p "${cartridge_pot_dest}"
-find . -name '*.pot' -exec cp -rv --parents {} "${cartridge_pot_dest}" \;
-
-# Copy translations
-cartridge_po_src="${cartridge_root}/build.luarocks/build.rst/locale/ru/LC_MESSAGES"
-cartridge_po_dest="${po_dest}/book/cartridge"
-cd "${cartridge_po_src}" || exit
-mkdir -p "${cartridge_po_dest}"
-find . -name '*.po' -exec cp -rv --parents {} "${cartridge_po_dest}" \;
-
-
-# Cartridge CLI
-cartridge_cli_root="${project_root}/modules/cartridge-cli/doc"
-cartridge_cli_dest="${cartridge_rst_dest}/cartridge_cli"
-cartridge_cli_po_dest="${po_dest}/book/cartridge/cartridge_cli"
-
-# Copy Cartridge CLI docs, including diagrams and images
-mkdir -p "${cartridge_cli_dest}"
-cd ${cartridge_cli_root} || exit
-find . -iregex '.*\.\(rst\|png\|puml\|svg\)$' -exec cp -rv --parents {} "${cartridge_cli_dest}" \;
-
-# Copy translations
-mkdir -p "${cartridge_cli_po_dest}"
-cd "${cartridge_cli_root}/locale/ru/LC_MESSAGES/doc/" || exit
-find . -name '*.po' -exec cp -rv --parents {} "${cartridge_cli_po_dest}" \;
-
 # Monitoring
 monitoring_root="${project_root}/modules/metrics/doc/monitoring"
 monitoring_dest="${project_root}/doc/book"
