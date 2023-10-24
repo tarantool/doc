@@ -49,7 +49,7 @@ Options
 
     Package a Cartridge CLI-compatible archive.
 
-    ..  include:: /_includes/cartridge_deprecation_note.rst
+    ..  include:: _includes/cartridge_deprecation_note.rst
 
 ..  option:: --deps STRINGS
 
