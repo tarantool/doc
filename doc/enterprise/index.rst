@@ -14,11 +14,10 @@ Tarantool Enterprise Edition
         The Enterprise Edition provides an `extended feature set <https://www.tarantool.io/en/compare/>`__ for developing
         and managing clustered Tarantool applications, for example:
 
-        * :ref:`Static package <enterprise-env-independent-apps>`
-          for standalone Linux systems.
-        * Tarantool :ref:`bindings to OpenLDAP <ldap_auth>`.
+        * Static package for standalone Linux systems.
+        * Tarantool bindings to OpenLDAP.
         * Security :ref:`audit log <enterprise-logging>`.
-        * Enterprise :ref:`database connectivity <enterprise-run-app>`:
+        * Enterprise database connectivity:
           Oracle and any ODBC-supported DBMS
           (for example, MySQL, Microsoft SQL Server).
         * SSL support for :ref:`traffic encryption <enterprise-iproto-encryption>`.
@@ -36,11 +35,10 @@ Tarantool Enterprise Edition
         Enterprise-версия предлагает `дополнительные возможности <https://www.tarantool.io/ru/compare/>`__ по
         разработке и эксплуатации кластерных приложений, например:
 
-        * :ref:`Статическая сборка <enterprise-env-independent-apps>`
-          для автономных Linux-систем.
-        * :ref:`Модуль интеграции с OpenLDAP <ldap_auth>`.
+        * Статическая сборка для автономных Linux-систем.
+        * Модуль интеграции с OpenLDAP.
         * :ref:`Журнал аудита безопасности <enterprise-logging>`.
-        * Подключения к :ref:`корпоративным базам данных <enterprise-run-app>`:
+        * Подключения к корпоративным базам данных:
           Oracle и любым СУБД с интерфейсом ODBC (MySQL, Microsoft SQL Server и т.д.).
           (например, MySQL, Microsoft SQL Server).
         * :ref:`Шифрование трафика <enterprise-iproto-encryption>` с помощью SSL.
@@ -64,7 +62,6 @@ Tarantool Enterprise Edition
     flight_recorder
     audit_log
     space_upgrade
-    migration
     system_metrics
     deprecated
     rocksref

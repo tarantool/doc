@@ -15,17 +15,9 @@ State of localization
             -   |doc|
             -   352 000
 
-        *   -   Cartridge
-            -   |cartridge|
-            -   14 000
-
         *   -   Tarantool Ansible Role
             -   |tarantool-ansible-role|
             -   11 000
-
-        *   -   Cartridge CLI
-            -   |cartridge-cli|
-            -   6 500
 
         *   -   Tarantool Enterprise Edition
             -   |tarantool-enterprise|
@@ -57,12 +49,6 @@ State of localization
 
 .. |doc| image:: https://badges.crowdin.net/tarantool-docs/localized.svg
    :target: https://crowdin.com/project/tarantool-docs/ru#
-
-.. |cartridge| image:: https://badges.crowdin.net/tarantool-cartridge-docs/localized.svg
-   :target: https://crowdin.com/project/tarantool-cartridge-docs/ru#
-
-.. |cartridge-cli| image:: https://badges.crowdin.net/tarantool-cartridge-cli/localized.svg
-   :target: https://crowdin.com/project/tarantool-cartridge-cli/ru#
 
 .. |tarantool-enterprise| image:: https://badges.crowdin.net/tarantool-enterprise-docs/localized.svg
    :target: https://crowdin.com/project/tarantool-enterprise-docs/ru#

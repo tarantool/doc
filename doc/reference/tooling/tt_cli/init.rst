@@ -15,6 +15,8 @@ Creating a tt environment
 Details
 -------
 
+..  include:: _includes/cartridge_deprecation_note.rst
+
 ``tt init`` checks the existence of configuration files for Cartridge (``cartridge.yml``)
 or the ``tarantoolctl`` utility (``.tarantoolctl``) in the current directory.
 If such files are found, ``tt`` generates an environment that uses the same
