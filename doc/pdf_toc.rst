@@ -14,7 +14,6 @@
     how-to/index
     concepts/index
     CRUD operations <reference/reference_lua/box_space>
-    book/cartridge/index
     book/admin/index
     book/connectors
     reference/index

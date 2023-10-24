@@ -86,14 +86,7 @@ The schema would look something like this:
 
 This alternative is simpler to use, and you do not have to dive deep into Lua.
 
-``DDL`` is a built-in
-:doc:`Cartridge </book/cartridge/index>` module.
-Cartridge is a cluster solution for Tarantool. In its WebUI, there is a separate tab
-called "Code". On this tab, in the ``schema.yml`` file, you can define the schema, check its correctness,
-and apply it to the whole cluster.
-
-If you do not use Cartridge, you can still use the DDL module:
-put the following Lua code into the file that you use to run Tarantool.
+To use the DDL module, put the following Lua code into the file that you use to run Tarantool.
 This file is usually called ``init.lua``.
 
 ..  code:: lua

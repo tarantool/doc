@@ -46,16 +46,34 @@ and located in the application directory.
     the pre-build and post-build scripts can also have names ``cartridge.pre-build``
     and ``cartridge.post-build``.
 
-If your application depends on closed-source rocks, or if the build should contain
-rocks from a project added as a submodule, **install** these
-dependencies using the pre-build script **before** building.
-For example, add the following line:
+``tt.pre-build`` is helpful when your application depends on closed-source rocks,
+or if the build should contain rocks from a project added as a submodule.
+You can **install** these dependencies using the pre-build script **before** building.
+Example:
 
 ..  code-block:: bash
 
+    #!/bin/sh
+
+    # The main purpose of this script is to build non-standard rocks modules.
+    # The script will run before `tt rocks make` during application build.
+
     tt rocks make --chdir ./third_party/proj
 
-Learn more about :doc:`pre-build and post-build scripts </book/cartridge/cartridge_cli/pre-post-build>`.
+``tt.post.build`` is a script that runs after ``tt rocks make``. The main purpose
+of this script is to remove build artifacts from the final package. Example:
+
+..  code-block:: bash
+
+    #!/bin/sh
+
+    # The main purpose of this script is to remove build artifacts from the resulting package.
+    # The script will run after `tt rocks make` during application build.
+
+    rm -rf third_party
+    rm -rf node_modules
+    rm -rf doc
+
 
 Examples
 --------
