@@ -3,7 +3,7 @@
 tt CLI utility
 ==============
 
-Latest release on GitHub: :tt-release:`1.3.0`
+Latest release on GitHub: :tt-release:`1.3.1`
 
 ``tt`` is a utility that provides a unified command-line interface for managing
 Tarantool-based applications. It covers a wide range of tasks -- from installing
