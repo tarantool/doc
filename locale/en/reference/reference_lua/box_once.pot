@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_once.rst:5
+msgid "Function box.once"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:9
+msgid "Execute a function, provided it has not been executed before. A passed value is checked to see whether the function has already been executed. If it has been executed before, nothing happens. If it has not been executed before, the function is invoked."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:14
+msgid "See an example of using ``box.once()`` while :ref:`bootstrapping a replica set <replication-bootstrap>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:17
+msgid "**Warning:** If an error occurs inside ``box.once()`` when initializing a database, you can re-execute the failed ``box.once()`` block without stopping the database. The solution is to delete the ``once`` object from the system space :ref:`_schema <box_space-schema>`. Say ``box.space._schema:select{}``, find your ``once`` object there and delete it. For example, re-executing a block with ``key='hello'`` :"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:24
+msgid "When ``box.once()`` is used for initialization, it may be useful to wait until the database is in an appropriate state (read-only or read-write). In that case, see the functions in the :doc:`/reference/reference_lua/box_ctl`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:28
+msgid "tarantool> box.space._schema:select{}\n"
+"---\n"
+"- - ['cluster', 'b4e15788-d962-4442-892e-d6c1dd5d13f2']\n"
+"  - ['max_id', 512]\n"
+"  - ['oncebye']\n"
+"  - ['oncehello']\n"
+"  - ['version', 1, 7, 2]\n"
+"...\n"
+"\n"
+"tarantool> box.space._schema:delete('oncehello')\n"
+"---\n"
+"- ['oncehello']\n"
+"...\n"
+"\n"
+"tarantool> box.once('hello', function() end)\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:48
+msgid "a value that will be checked"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:49
+msgid "a function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:50
+msgid "arguments that must be passed to function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_once.rst:54
+msgid "The parameter ``key`` will be stored in the :ref:`_schema <box_space-schema>` system space after ``box.once()`` is called in order to prevent a double run. These keys are global per replica set. So a simultaneous call of ``box.once()`` with the same key on two instances of the same replica set may succeed on both of them, but it'll lead to a transaction conflict."
+msgstr ""

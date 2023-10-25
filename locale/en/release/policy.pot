@@ -1,0 +1,439 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/policy.rst:2
+msgid "Tarantool release policy"
+msgstr ""
+
+#: ../../doc/release/policy.rst:7
+msgid "Summary"
+msgstr ""
+
+#: ../../doc/release/policy.rst:9
+msgid "The Tarantool release policy is changing to become more clear and intuitive. The new policy uses a `SemVer-like <https://semver.org/>`__ versioning format, and introduces a new version lifecycle with more long-time support series. This document explains the new release policy, versioning rules, and :term:`release series` lifecycle."
+msgstr ""
+
+#: ../../doc/release/policy.rst:14
+msgid "The new release policy replaces :doc:`the legacy policy </release/legacy-policy>` for:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:17
+msgid "The ``2.x.y`` series since the ``2.10.0`` release. Development for this new release starts with version ``2.10.0-beta1``."
+msgstr ""
+
+#: ../../doc/release/policy.rst:19
+msgid "The future ``3.0.0`` series."
+msgstr ""
+
+#: ../../doc/release/policy.rst:21
+msgid "Here are the most significant changes from the legacy release policy:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:23
+msgid "The third number in the version label doesn't distinguish between pre-release (alpha and beta) and release versions. Instead, it is used for patch (bugfix-only) releases. Pre-release versions have suffixes, like ``3.0.0-alpha1``."
+msgstr ""
+
+#: ../../doc/release/policy.rst:28
+msgid "In the legacy release policy, ``1.10`` was a long-term support (LTS) series, while ``2.x.y`` had stable releases, but wasn't an LTS series. Now both series are long-term supported."
+msgstr ""
+
+#: ../../doc/release/policy.rst:32
+msgid "The topics below describe the new versioning policy in more detail."
+msgstr ""
+
+#: ../../doc/release/policy.rst:35
+msgid "Versioning policy"
+msgstr ""
+
+#: ../../doc/release/policy.rst:38
+msgid "Release series and versions"
+msgstr ""
+
+#: ../../doc/release/policy.rst:40
+msgid "The new Tarantool release policy is based on having several release series, each with its own lifecycle, pre-release and release versions."
+msgstr ""
+
+#: ../../doc/release/policy.rst:44
+msgid "Release series"
+msgstr ""
+
+#: ../../doc/release/policy.rst:47
+msgid "Release series is a sequence of development and production-ready versions with linear evolution toward a defined roadmap. A series has a distinct lifecycle and certain compatibility guarantees within itself and with other series. The intended support time for each series is at least two years since the first release."
+msgstr ""
+
+#: ../../doc/release/policy.rst:52
+msgid "At the moment when this document is published, there are two release series: series ``1.10`` and series ``2``."
+msgstr ""
+
+#: ../../doc/release/policy.rst:53
+msgid "Release version"
+msgstr ""
+
+#: ../../doc/release/policy.rst:56
+msgid "Release version is a Tarantool distribution which is thoroughly tested and ready for production usage. It is bound to a certain commit. Release version label consists of three numbers:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:60
+msgid "MAJOR.MINOR.PATCH"
+msgstr ""
+
+#: ../../doc/release/policy.rst:64
+msgid "These numbers correspond to the three types of release versions:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:67
+msgid "Major release"
+msgstr ""
+
+#: ../../doc/release/policy.rst:70
+msgid "Major release is the first :term:`release version <release version>` of its own :term:`release series <release series>`. It introduces new features and can have a few backward-incompatible changes. Such release changes the first version number:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:75
+msgid "MAJOR.0.0\n"
+"\n"
+"3.0.0"
+msgstr ""
+
+#: ../../doc/release/policy.rst:80
+msgid "Minor release"
+msgstr ""
+
+#: ../../doc/release/policy.rst:83
+msgid "Minor release introduces a few new features, but guarantees backward compatibility. There can be a few bugs fixed as well. Such release changes the second version number:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:87
+msgid "MAJOR.MINOR.0\n"
+"\n"
+"3.1.0\n"
+"3.2.0"
+msgstr ""
+
+#: ../../doc/release/policy.rst:93
+msgid "Patch release"
+msgstr ""
+
+#: ../../doc/release/policy.rst:96
+msgid "Patch release fixes bugs from an earlier release, but doesn't introduce new features. Such release changes the third version number:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:99
+msgid "MAJOR.MINOR.PATCH\n"
+"\n"
+"3.0.1\n"
+"3.0.2"
+msgstr ""
+
+#: ../../doc/release/policy.rst:106
+msgid "Release versions conform to a set of requirements:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:108
+msgid "The release has gone through pre-release testing and adoption in the internal projects until there were no doubts regarding its stability."
+msgstr ""
+
+#: ../../doc/release/policy.rst:111
+msgid "There are no known bugs in the typical usage scenarios."
+msgstr ""
+
+#: ../../doc/release/policy.rst:113
+msgid "There are no degradations from the previous release or release series, in case of a major release."
+msgstr ""
+
+#: ../../doc/release/policy.rst:115
+msgid "Backwards compatibility is guaranteed between all versions in the same release series. It is also appreciated, but not guaranteed between different release series (major number changes). See :doc:`compatibility guarantees page </release/compatibility>` for details."
+msgstr ""
+
+#: ../../doc/release/policy.rst:120
+msgid "Pre-release versions"
+msgstr ""
+
+#: ../../doc/release/policy.rst:123
+msgid "Pre-release version"
+msgstr ""
+
+#: ../../doc/release/policy.rst:126
+msgid "Pre-release versions are the ones published for testing and evaluation, and not intended for production use. Such versions use the same pattern with an additional suffix:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:130
+msgid "MAJOR.MINOR.PATCH-suffix"
+msgstr ""
+
+#: ../../doc/release/policy.rst:134
+msgid "There are a few types of pre-release versions:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:137
+msgid "Development build"
+msgstr ""
+
+#: ../../doc/release/policy.rst:140
+msgid "Development builds reflect the state of current development process. They're used entirely for development and testing, and not intended for any external use."
+msgstr ""
+
+#: ../../doc/release/policy.rst:144
+msgid "Development builds have suffixes made with ``$(git describe --always --long)-dev``:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:146
+msgid "MAJOR.MINOR.PATCH-describe-dev\n"
+"\n"
+"2.10.2-149-g1575f3c07-dev\n"
+"3.0.0-alpha1-14-gxxxxxxxxx-dev\n"
+"3.0.0-entrypoint-17-gxxxxxxxxx-dev\n"
+"3.1.2-5-gxxxxxxxxx-dev"
+msgstr ""
+
+#: ../../doc/release/policy.rst:154
+msgid "Alpha version"
+msgstr ""
+
+#: ../../doc/release/policy.rst:157
+msgid "Alpha version has some of the features planned in the release series. It can be incomplete or unstable, and can break the backwards compatibility with the previous release series."
+msgstr ""
+
+#: ../../doc/release/policy.rst:161
+msgid "Alpha versions are published for early adopters and developers of dependent components, such as connectors and modules."
+msgstr ""
+
+#: ../../doc/release/policy.rst:164
+msgid "MAJOR.MINOR.PATCH-alphaN\n"
+"\n"
+"3.0.0-alpha1\n"
+"3.0.0-alpha2"
+msgstr ""
+
+#: ../../doc/release/policy.rst:170
+msgid "Beta version"
+msgstr ""
+
+#: ../../doc/release/policy.rst:173
+msgid "Beta version has all the features which are planned for the release series. It is a good choice to start developing a new application."
+msgstr ""
+
+#: ../../doc/release/policy.rst:176
+msgid "Readiness of a feature can be checked in a beta version to decide whether to remove the feature, finish it later, or replace it with something else. A beta version can still have a known bug in the new functionality, or a known degradation since the previous release series that affects a common use case."
+msgstr ""
+
+#: ../../doc/release/policy.rst:181
+msgid "MAJOR.MINOR.PATCH-betaN\n"
+"\n"
+"3.0.0-beta1\n"
+"3.0.0-beta2"
+msgstr ""
+
+#: ../../doc/release/policy.rst:188
+msgid "Note that the development of ``2.10.0``, the first release under the new policy, starts with version ``2.10.0-beta1``."
+msgstr ""
+
+#: ../../doc/release/policy.rst:190
+msgid "Release candidate"
+msgstr ""
+
+#: ../../doc/release/policy.rst:193
+msgid "Release candidate is used to fix bugs, mature the functionality, and collect feedback before an upcoming release. Release candidate has the same feature set as the preceding beta version and doesn't have known bugs in typical usage scenarios or degradations from the previous release series."
+msgstr ""
+
+#: ../../doc/release/policy.rst:199
+msgid "Release candidate is a good choice to set up a staging server."
+msgstr ""
+
+#: ../../doc/release/policy.rst:201
+msgid "MAJOR.MINOR.PATCH-rcN\n"
+"\n"
+"3.0.0-rc1\n"
+"3.0.0-rc2\n"
+"3.0.1-rc1"
+msgstr ""
+
+#: ../../doc/release/policy.rst:212
+msgid "Release series lifecycle"
+msgstr ""
+
+#: ../../doc/release/policy.rst:214
+msgid "Every release series goes through the following stages:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:220
+#: ../../doc/release/policy.rst:286
+msgid "Early development"
+msgstr ""
+
+#: ../../doc/release/policy.rst:222
+msgid "The early development stage goes on until the first :term:`major release <major release>`. Alpha, beta, and release candidate versions are published at this stage."
+msgstr ""
+
+#: ../../doc/release/policy.rst:225
+msgid "The stage splits into two phases:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:227
+msgid "Development of a new functionality through alpha and beta versions. Features can be added and, sometimes, removed in this phase."
+msgstr ""
+
+#: ../../doc/release/policy.rst:230
+msgid "Stabilization starts with the first release candidate version. Feature set doesn't change in this phase."
+msgstr ""
+
+#: ../../doc/release/policy.rst:234
+#: ../../doc/release/policy.rst:296
+msgid "Support"
+msgstr ""
+
+#: ../../doc/release/policy.rst:236
+msgid "The stage starts when the first release is published. The release series now is an object of only backward compatible changes."
+msgstr ""
+
+#: ../../doc/release/policy.rst:239
+msgid "At this stage, all known security problems and all found degradations since the previous series are being fixed."
+msgstr ""
+
+#: ../../doc/release/policy.rst:242
+msgid "The series receives degradation fixes and other bugfixes during the support stage and until the series transitions into the end of life (EOL) stage."
+msgstr ""
+
+#: ../../doc/release/policy.rst:245
+msgid "The decision of whether to fix a particular problem in a particular release series depends on the impact of the problem, risks around backward compatibility, and the complexity of backporting a fix."
+msgstr ""
+
+#: ../../doc/release/policy.rst:249
+msgid "The release series might receive new features at this stage, but only in a backward compatible manner. Also, a release candidate may be published to collect feedback before the release version."
+msgstr ""
+
+#: ../../doc/release/policy.rst:253
+msgid "During the support period a release series receives new versions of supported Linux distributives to build infrastructure."
+msgstr ""
+
+#: ../../doc/release/policy.rst:256
+msgid "The intended duration of the support period for each series is at least two years."
+msgstr ""
+
+#: ../../doc/release/policy.rst:259
+#: ../../doc/release/policy.rst:305
+msgid "End of life"
+msgstr ""
+
+#: ../../doc/release/policy.rst:261
+msgid "A series reaches the end of life (EOL) when the last release in the series is published. The series will not receive updates anymore."
+msgstr ""
+
+#: ../../doc/release/policy.rst:264
+msgid "In modules, connectors and tools, we don't guarantee support of any release series that reaches EOL."
+msgstr ""
+
+#: ../../doc/release/policy.rst:267
+msgid "A release series cannot reach EOL until the vast majority of production environments, for which we have commitments and SLAs, is updated to a newer series."
+msgstr ""
+
+#: ../../doc/release/policy.rst:272
+msgid "Versions per lifecycle stage"
+msgstr ""
+
+#: ../../doc/release/policy.rst:282
+msgid "Stage"
+msgstr ""
+
+#: ../../doc/release/policy.rst:283
+msgid "Version types"
+msgstr ""
+
+#: ../../doc/release/policy.rst:284
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/release/policy.rst:287
+msgid "Alpha, beta, release candidate"
+msgstr ""
+
+#: ../../doc/release/policy.rst:289
+msgid "3.0.0-alpha1\n"
+"3.0.0-beta1\n"
+"3.0.0-rc1\n"
+"3.0.0-dev"
+msgstr ""
+
+#: ../../doc/release/policy.rst:297
+msgid "Release candidate, release"
+msgstr ""
+
+#: ../../doc/release/policy.rst:299
+msgid "3.0.0\n"
+"3.0.1-rc1\n"
+"3.0.1-dev"
+msgstr ""
+
+#: ../../doc/release/policy.rst:306
+msgid "None"
+msgstr ""
+
+#: ../../doc/release/policy.rst:307
+msgid "N/A"
+msgstr ""
+
+#: ../../doc/release/policy.rst:311
+msgid "Example of a release series"
+msgstr ""
+
+#: ../../doc/release/policy.rst:313
+msgid "A release series in an early development stage can have the following version sequence:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:316
+msgid "3.0.0-alpha1\n"
+"3.0.0-alpha2\n"
+"...\n"
+"3.0.0-alpha7\n"
+"\n"
+"3.0.0-beta1\n"
+"...\n"
+"3.0.0-beta5\n"
+"\n"
+"3.0.0-rc1\n"
+"...\n"
+"3.0.0-rc4\n"
+"\n"
+"3.0.0 (release)"
+msgstr ""
+
+#: ../../doc/release/policy.rst:333
+msgid "Since the first release version, the series comes into a support stage. Then it can proceed with a version sequence like the following:"
+msgstr ""
+
+#: ../../doc/release/policy.rst:336
+msgid "3.0.0 (release of a new major version)\n"
+"\n"
+"3.0.1-rc1\n"
+"...\n"
+"3.0.1-rc4\n"
+"3.0.1 (release with some bugs fixed but no new features)\n"
+"\n"
+"3.1.0-rc1\n"
+"...\n"
+"3.1.0-rc6\n"
+"3.1.0 (release with new features and, possibly, extra fixed bugs)"
+msgstr ""
+
+#: ../../doc/release/policy.rst:350
+msgid "Eventually, the support stage stops and the release series comes to the end of life (EOL) stage. No new versions are released since then."
+msgstr ""
+
+#: ../../doc/release/policy.rst:356
+msgid "See all currently supported Tarantool versions visualised as :doc:`a calendar <calendar>` or as :ref:`a release lifetime table <release-table>`."
+msgstr ""

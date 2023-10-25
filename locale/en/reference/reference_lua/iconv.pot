@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/iconv.rst:5
+msgid "Module iconv"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:13
+msgid "The ``iconv`` module provides a way to convert a string with one encoding to a string with another encoding, for example from ASCII to UTF-8. It is based on the POSIX iconv routines."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:17
+msgid "An exact list of the available encodings may depend on environment. Typically the list includes ASCII, BIG5, KOI8R, LATIN8, MS-GREEK, SJIS, and about 100 others. For a complete list, type ``iconv --list`` on a terminal."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:24
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:26
+msgid "Below is a list of all ``iconv`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:34
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:34
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:36
+msgid ":ref:`iconv.new() <iconv-new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:36
+msgid "Create an iconv instance"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:39
+msgid ":ref:`iconv.converter() <iconv-converter>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:39
+msgid "Perform conversion on a string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:47
+msgid "Construct a new iconv instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:49
+msgid "the name of the encoding that we will convert to."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:50
+msgid "the name of the encoding that we will convert from."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:0
+#: ../../doc/reference/reference_lua/iconv.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:52
+msgid "a new iconv instance -- in effect, a callable function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:53
+msgid "userdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:55
+msgid "If either parameter is not a valid name, there will be an error message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:57
+#: ../../doc/reference/reference_lua/iconv.rst:78
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:59
+msgid "tarantool> converter = require('iconv').new('UTF8', 'ASCII')\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:69
+msgid "Convert."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:0
+msgid "param string input-string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:71
+msgid "the string to be converted (the \"from\" string)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:73
+msgid "the string that results from the conversion (the \"to\" string)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:75
+msgid "If anything in input-string cannot be converted, there will be an error message and the result string will be unchanged."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:80
+msgid "We know that the Unicode code point for \"Д\" (CYRILLIC CAPITAL LETTER DE) is hexadecimal 0414 according to the character database of `Unicode <http://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt>`_. Therefore that is what it will look like in UTF-16. We know that Tarantool typically uses the UTF-8 character set. So make a from-UTF-8-to-UTF-16 converter, use string.hex('Д') to show what Д's encoding looks like in the UTF-8 source, and use string.hex('Д'-after-conversion) to show what it looks like in the UTF-16 target. Since the result is 0414, we see that iconv conversion works. (Different iconv implementations might use different names, for example UTF-16BE instead of UTF16BE.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/iconv.rst:91
+msgid "tarantool> string.hex('Д')\n"
+"---\n"
+"- d094\n"
+"...\n"
+"\n"
+"tarantool> converter = require('iconv').new('UTF16BE', 'UTF8')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> utf16_string = converter('Д')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> string.hex(utf16_string)\n"
+"---\n"
+"- '0414'\n"
+"..."
+msgstr ""

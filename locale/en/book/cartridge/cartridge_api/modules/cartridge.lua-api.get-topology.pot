@@ -1,0 +1,166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:5
+msgid "Module *cartridge.lua-api.get-topology*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:7
+msgid "Administration functions ( ``get-topology``  implementation)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:14
+msgid "Tables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:21
+msgid "ReplicasetInfo"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:23
+msgid "Replicaset general information."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:26
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:49
+msgid "**Fields:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:28
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The replicaset UUID."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:29
+msgid "*roles:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Roles enabled on the replicaset."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:30
+msgid "*status:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Replicaset health."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:31
+msgid "*master:* (`ServerInfo <cartridge.lua-api.get-topology.ServerInfo_>`_) Replicaset leader according to configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:32
+msgid "*active_master:* (`ServerInfo <cartridge.lua-api.get-topology.ServerInfo_>`_) Active leader."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:33
+msgid "*weight:* (**number**) Vshard replicaset weight.Matters only if vshard-storage role is enabled."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:34
+msgid "*vshard_group:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Name of vshard group the replicaset belongs to."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:35
+msgid "*all_rw:* (**boolean**) A flag indicating that all servers in the replicaset should be read-write."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:36
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Human-readable replicaset name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:37
+msgid "*servers:* (`{ServerInfo,...} <cartridge.lua-api.get-topology.ServerInfo_>`_) Circular reference to all instances in the replicaset."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:44
+msgid "ServerInfo"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:46
+msgid "Instance general information."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:51
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Human-readable instance name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:52
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:53
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:54
+msgid "*disabled:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:55
+msgid "*electable:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:56
+msgid "*status:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Instance health."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:57
+msgid "*message:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Auxilary health status."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:58
+msgid "*replicaset:* (`ReplicasetInfo <cartridge.lua-api.get-topology.ReplicasetInfo_>`_) Circular reference to a replicaset."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:59
+msgid "*priority:* (**number**) Leadership priority for automatic failover."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:60
+msgid "*clock_delta:* (**number**) Difference between remote clock and the current one (inseconds), obtained from the membership module (SWIM protocol).Positive values mean remote clock are ahead of local, and viceversa."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:61
+msgid "*zone:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:66
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:73
+msgid "get_topology ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:75
+msgid "Get servers and replicasets lists."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:79
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:81
+msgid "(**{servers={ServerInfo,...},replicasets={ReplicasetInfo,...}}**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:84
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:86
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.get-topology.rst:88
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""

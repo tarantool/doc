@@ -1,0 +1,429 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space.rst:7
+msgid "Submodule box.space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:9
+msgid "**CRUD operations** in Tarantool are implemented by the ``box.space`` submodule. It has the data-manipulation functions ``select``, ``insert``, ``replace``, ``update``, ``upsert``, ``delete``, ``get``, ``put``. It also has members, such as id, and whether or not a space is enabled."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:14
+msgid "Below is a list of all ``box.space`` functions and members."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:25
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:26
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:28
+msgid ":doc:`./box_schema/space_create`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:29
+msgid "Create a space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:31
+msgid ":doc:`./box_space/alter`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:32
+msgid "Alter a space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:34
+msgid ":doc:`./box_space/auto_increment`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:35
+msgid "Generate key + Insert a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:37
+msgid ":doc:`./box_space/bsize`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:38
+msgid "Get count of bytes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:40
+msgid ":doc:`./box_space/count`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:41
+#: ../../doc/reference/reference_lua/box_space.rst:65
+msgid "Get count of tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:43
+msgid ":doc:`./box_space/create_index`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:44
+msgid "Create an index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:46
+msgid ":doc:`./box_space/delete`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:47
+msgid "Delete a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:49
+msgid ":doc:`./box_space/drop`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:50
+msgid "Destroy a space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:52
+msgid ":doc:`./box_space/format`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:53
+msgid "Declare field names and types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:55
+msgid ":doc:`./box_space/frommap`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:56
+msgid "Convert from map to tuple or table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:58
+msgid ":doc:`./box_space/get`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:59
+msgid "Select a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:61
+msgid ":doc:`./box_space/insert`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:62
+msgid "Insert a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:64
+msgid ":doc:`./box_space/len`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:67
+msgid ":doc:`./box_space/on_replace`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:68
+msgid "Create a replace trigger with a function that cannot change the tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:70
+msgid ":doc:`./box_space/before_replace`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:71
+msgid "Create a replace trigger with a function that can change the tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:73
+msgid ":doc:`./box_space/pairs`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:74
+msgid "Prepare for iterating"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:76
+msgid ":doc:`./box_space/put`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:77
+#: ../../doc/reference/reference_lua/box_space.rst:83
+msgid "Insert or replace a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:79
+msgid ":doc:`./box_space/rename`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:80
+msgid "Rename a space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:82
+msgid ":doc:`./box_space/replace`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:85
+msgid ":doc:`./box_space/run_triggers`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:86
+msgid "Enable/disable a replace trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:88
+msgid ":doc:`./box_space/select`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:89
+msgid "Select one or more tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:91
+msgid ":doc:`./box_space/truncate`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:92
+msgid "Delete all tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:94
+msgid ":doc:`./box_space/update`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:95
+#: ../../doc/reference/reference_lua/box_space.rst:98
+msgid "Update a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:97
+msgid ":doc:`./box_space/upsert`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:100
+msgid ":doc:`./box_space/user_defined`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:101
+msgid "Any function / method that any user wants to add"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:103
+msgid ":doc:`./box_space/create_check_constraint`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:104
+msgid "Create a check constraint"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:106
+msgid ":doc:`./box_space/enabled`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:107
+msgid "Flag, true if space is enabled"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:109
+msgid ":doc:`./box_space/field_count`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:110
+msgid "Required number of fields"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:112
+msgid ":doc:`./box_space/id`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:113
+msgid "Numeric identifier of space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:115
+msgid ":doc:`./box_space/index_data`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:116
+msgid "Container of space's indexes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:118
+msgid ":doc:`./box_space/_cluster`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:119
+msgid "(Metadata) List of replica sets"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:121
+msgid ":doc:`./box_space/_func`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:122
+msgid "(Metadata) List of function tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:124
+msgid ":doc:`./box_space/_index`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:125
+msgid "(Metadata) List of indexes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:127
+msgid ":doc:`./box_space/_vindex`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:128
+msgid "(Metadata) List of indexes accessible for the current user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:130
+msgid ":doc:`./box_space/_priv`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:131
+msgid "(Metadata) List of privileges"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:133
+msgid ":doc:`./box_space/_vpriv`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:134
+msgid "(Metadata) List of privileges accessible for the current user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:136
+msgid ":doc:`./box_space/_schema`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:137
+msgid "(Metadata) List of schemas"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:139
+msgid ":doc:`./box_space/_sequence`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:140
+#: ../../doc/reference/reference_lua/box_space.rst:143
+msgid "(Metadata) List of sequences"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:142
+msgid ":doc:`./box_space/_sequence_data`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:145
+msgid ":doc:`./box_space/_space`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:146
+msgid "(Metadata) List of spaces"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:148
+msgid ":doc:`./box_space/_vspace`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:149
+msgid "(Metadata) List of spaces accessible for the current user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:151
+msgid ":doc:`./box_space/_space_sequence`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:152
+msgid "(Metadata) List of connections between spaces and sequences"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:154
+msgid ":doc:`./box_space/_vspace_sequence`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:155
+msgid "(Metadata) List of connections between spaces and sequences accessible for the current user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:158
+msgid ":doc:`./box_space/_user`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:159
+msgid "(Metadata) List of users"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:161
+msgid ":doc:`./box_space/_vuser`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:162
+msgid "(Metadata) List of users accessible for the current user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:164
+msgid ":doc:`./box_space/_ck_constraint`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:165
+msgid "(Metadata) List of check constraints"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:167
+msgid ":doc:`./box_space/_collation`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:168
+msgid "(Metadata) List of collations"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:170
+msgid ":doc:`./box_space/_vcollation`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:171
+msgid "(Metadata) List of collations accessible for the current user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:173
+msgid ":doc:`./box_space/system_views`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:174
+msgid "(Metadata) Spaces whose names begin with _v"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:176
+msgid ":doc:`./box_space/_session_settings`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:177
+msgid "(Metadata) List of settings affecting behavior of the current session"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space.rst:179
+msgid "To see examples, visit the :ref:`how-to guide on CRUD operations <box_space_examples>`."
+msgstr ""

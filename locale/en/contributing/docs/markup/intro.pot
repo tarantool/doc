@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/markup/intro.rst:2
+msgid "General syntax guidelines"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:5
+msgid "Basic syntax"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:7
+msgid "Paragraphs contain text and may contain inline markup: *emphasis*, **strong emphasis**, `interpreted text`, ``inline literals``."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:10
+msgid "Text can be organized in bullet-lists:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:12
+msgid "*   This is a bullet list.\n"
+"\n"
+"*   Bullets can be \"*\", \"+\", or \"-\".\n"
+"\n"
+"    -   Lists can be nested. And it is good to indent them with 4 spaces."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:20
+msgid "or in enumerated lists:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:22
+msgid "1.  This is an enumerated list.\n"
+"\n"
+"2.  Tarantool build uses only arabic numbers as enumerators.\n"
+"\n"
+"#.  You can put #. instead of point numbers and Sphinx will\n"
+"    recognize it as an enumerated list."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:32
+msgid "Wrapping text"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:34
+msgid "It's good practice to wrap lines in documentation source text. It makes source better readable and results in lesser ``git diff``'s. The recommended limit is 80 characters per line for plain text."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:38
+msgid "In new documents, try to wrap lines by sentences, or by parts of a complex sentence. Don't wrap formatted text if it affects rST readability and/or HTML output. However, wrapping with proper indentation shouldn't break things."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:44
+msgid "Indentation"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:46
+msgid "In rST, indents play exactly the same role as in Python: they denote object boundaries and nesting."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:49
+msgid "For example, a list starts with a marker, then come some spaces and text. From there, all lines relating to that list item must be at the same indentation level. We can continue the list item by creating a second paragraph in it. To do that we have to leave it at the same level."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:54
+msgid "We can put a new object inside: another list, or a block of code. Then we have to indent 4 more spaces."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:57
+msgid "It's best if all indents are multiples of 4 spaces, even in lists. Otherwise the document is not consistent. Also, it is much easier to put indents with tabs than manually."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:61
+msgid "Note that you have to use two or three spaces instead of one. It is allowed in rST markup:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:64
+msgid "|...|...|...|...\n"
+"*   unordered list\n"
+"#.  ordered list\n"
+"..  directive::\n"
+"|...|...|...|..."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:72
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:74
+msgid "|...|...|...|...\n"
+"#.  List item 1.\n"
+"    Paragraph continues.\n"
+"\n"
+"    Second paragraph.\n"
+"\n"
+"#.  List item 2.\n"
+"\n"
+"    *   Nested list item.\n"
+"\n"
+"        ..  code-block:: bash\n"
+"\n"
+"            # this code block is in a nested list item\n"
+"\n"
+"    *   Another nested list item.\n"
+"|...|...|...|...\n"
+""
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:77
+msgid "Resulting output:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/indentation.rst:1
+msgid "List item 1. Paragraph continues."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/indentation.rst:4
+msgid "Second paragraph."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/indentation.rst:6
+msgid "List item 2."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/indentation.rst:8
+msgid "Nested list item."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/indentation.rst:10
+msgid "# this code block is in a nested list item"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/_includes/indentation.rst:14
+msgid "Another nested list item."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:84
+msgid "Making comments"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:86
+msgid "Sometimes we may need to leave comments in an rST file. To make Sphinx ignore some text during processing, use the following per-line notation with ``.. //`` as the comment marker:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:90
+msgid ".. // your comment here"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:94
+msgid "The starting characters ``.. //`` do not interfere with the other rST markup, and they are easy to find both visually and using ``grep``. To find comments in source files, go ahead with something like this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:98
+msgid "$ grep -n \"\\.\\. //\" doc/reference/**/*.rst\n"
+"doc/reference/reference_lua/box.rst:47:.. // moved to \"User Guide > 5. Server administration\":\n"
+"doc/reference/reference_lua/box.rst:48:.. // /book/box/triggers\n"
+"..."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:105
+msgid "If you're working with PyCharm or other similar IDE, links in the console will be clickable and will lead right to the source file and string. Check it out!"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:None
+msgid "clickable links in the console"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/intro.rst:114
+msgid "These comments don't work properly in nested documentation, though. For example, if you leave a comment in module -> object -> method, Sphinx ignores the comment and all nested content that follows in the method description."
+msgstr ""

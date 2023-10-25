@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:3
+msgid "Module latch"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:7
+msgid "A lock for cooperative multitasking environment"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:11
+msgid "Allocate and initialize the new latch."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:0
+#: ../../doc/dev_guide/reference_capi/latch.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:13
+msgid "allocated latch object"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:0
+#: ../../doc/dev_guide/reference_capi/latch.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:14
+msgid "box_latch_t *"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:18
+msgid "Destroy and free the latch."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:0
+#: ../../doc/dev_guide/reference_capi/latch.rst:0
+#: ../../doc/dev_guide/reference_capi/latch.rst:0
+#: ../../doc/dev_guide/reference_capi/latch.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:20
+msgid "latch to destroy"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:24
+msgid "Lock a latch. Waits indefinitely until the current fiber can gain access to the latch. Since version :doc:`2.11.0 </release/2.11.0>`, locks are acquired exactly in the order in which they were requested."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:28
+#: ../../doc/dev_guide/reference_capi/latch.rst:34
+msgid "latch to lock"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:32
+msgid "Try to lock a latch. Return immediately if the latch is locked."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:35
+msgid "status of operation. 0 - success, 1 - latch is locked"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:36
+msgid "int"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:40
+msgid "Unlock a latch. The fiber calling this function must own the latch."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/latch.rst:42
+msgid "latch to unlock"
+msgstr ""

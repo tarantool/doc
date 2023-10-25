@@ -1,0 +1,765 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/server_introspection.rst:4
+msgid "Server introspection"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:9
+msgid "Using Tarantool as a client"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:11
+msgid "Tarantool enters the interactive mode if:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:13
+msgid "you start Tarantool without an :ref:`instance file <admin-instance_file>`, or"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:16
+msgid "the instance file contains :ref:`console.start() <console-start>`."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:18
+msgid "Tarantool displays a prompt (e.g. \"tarantool>\") and you can enter requests. When used this way, Tarantool can be a client for a remote server. See basic examples in :ref:`Getting started <getting_started>`."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:22
+msgid "The interactive mode is used in the ``tt`` utility's :ref:`connect <tt-connect>` command."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:27
+msgid "Executing code on an instance"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:29
+msgid "You can attach to an instance's :ref:`admin console <admin-security>` and execute some Lua code using ``tt``:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:32
+msgid "$ # for local instances:\n"
+"$ tt connect my_app\n"
+"   • Connecting to the instance...\n"
+"   • Connected to /var/run/tarantool/example.control\n"
+"\n"
+"/var/run/tarantool/my_app.control> 1 + 1\n"
+"---\n"
+"- 2\n"
+"...\n"
+"/var/run/tarantool/my_app.control>\n"
+"\n"
+"$ # for local and remote instances:\n"
+"$ tt connect username:password@127.0.0.1:3306"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:48
+msgid "You can also use ``tt`` to execute Lua code on an instance without attaching to its admin console. For example:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:51
+msgid "$ # executing commands directly from the command line\n"
+"$ <command> | tt connect my_app -f -\n"
+"<...>\n"
+"\n"
+"$ # - OR -\n"
+"\n"
+"$ # executing commands from a script file\n"
+"$ tt connect my_app -f script.lua\n"
+"<...>"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:65
+msgid "Alternatively, you can use the :ref:`console <console-module>` module or the :ref:`net.box <net_box-module>` module from a Tarantool server. Also, you can write your client programs with any of the :ref:`connectors <index-box_connectors>`. However, most of the examples in this manual illustrate usage with either ``tt connect`` or :ref:`using the Tarantool server as a client <admin-using_tarantool_as_a_client>`."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:75
+msgid "Health checks"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:77
+msgid "To check the instance status, run:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:79
+msgid "$ tt status my_app\n"
+"INSTANCE     STATUS      PID\n"
+"my_app       RUNNING     67172\n"
+"\n"
+"$ # - OR -\n"
+"\n"
+"$ systemctl status tarantool@my_app"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:89
+msgid "To check the boot log, on systems with ``systemd``, run:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:91
+msgid "$ journalctl -u tarantool@my_app -n 5"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:95
+msgid "For more specific checks, use the reports provided by functions in the following submodules:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:97
+msgid ":doc:`/reference/reference_lua/box_cfg` (check and specify all configuration parameters for the Tarantool server)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:100
+msgid ":doc:`/reference/reference_lua/box_slab` (monitor the total use and fragmentation of memory allocated for storing data in Tarantool)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:103
+msgid ":doc:`/reference/reference_lua/box_info` (introspect Tarantool server variables, primarily those related to replication)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:106
+msgid ":doc:`/reference/reference_lua/box_stat` (introspect Tarantool request and network statistics)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:109
+msgid "Finally, there is the `metrics <https://github.com/tarantool/metrics>`_ library, which enables collecting metrics (such as memory usage or number of requests) from Tarantool applications and expose them via various protocols, including Prometheus. Check :ref:`Monitoring <monitoring>` for more details."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:114
+#: ../../doc/book/admin/server_introspection.rst:662
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:116
+msgid "A very popular administrator request is :doc:`/reference/reference_lua/box_slab/slab_info`, which displays detailed memory usage statistics for a Tarantool instance."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:120
+msgid "tarantool> box.slab.info()\n"
+"---\n"
+"- items_size: 228128\n"
+"  items_used_ratio: 1.8%\n"
+"  quota_size: 1073741824\n"
+"  quota_used_ratio: 0.8%\n"
+"  arena_used_ratio: 43.2%\n"
+"  items_used: 4208\n"
+"  quota_used: 8388608\n"
+"  arena_size: 2325176\n"
+"  arena_used: 1003632\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:135
+msgid "Tarantool takes memory from the operating system, for example when a user does many insertions. You can see how much it has taken by saying (on Linux):"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:139
+msgid "ps -eo args,%mem | grep \"tarantool\""
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:143
+msgid "Tarantool almost never releases this memory, even if the user deletes everything that was inserted, or reduces fragmentation by calling the Lua garbage collector via the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:148
+msgid "Ordinarily this does not affect performance. But, to force Tarantool to release memory, you can call :doc:`box.snapshot() </reference/reference_lua/box_snapshot>`, stop the server instance, and restart it."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:156
+msgid "Inspect traffic"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:158
+msgid "Inspecting binary traffic is a boring task. We offer a `Wireshark plugin <https://github.com/tarantool/tarantool-dissector>`_ to simplify the analysis of Tarantool's traffic."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:162
+msgid "To enable the plugin, follow the steps below."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:164
+msgid "Clone the tarantool-dissector repository:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:166
+msgid "git clone https://github.com/tarantool/tarantool-dissector.git"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:170
+msgid "Copy or symlink the plugin files into the Wireshark plugin directory:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:172
+msgid "mkdir -p ~/.local/lib/wireshark/plugins\n"
+"cd ~/.local/lib/wireshark/plugins\n"
+"ln -s /path/to/tarantool-dissector/MessagePack.lua ./\n"
+"ln -s /path/to/tarantool-dissector/tarantool.dissector.lua ./"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:179
+msgid "(For the location of the plugin directory on macOS and Windows, please refer to the `Plugin folders <https://www.wireshark.org/docs/wsug_html_chunked/ChPluginFolders.html>`_ chapter in the Wireshark documentation.)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:183
+msgid "Run the Wireshark GUI and ensure that the plugins are loaded:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:185
+msgid "Open :guilabel:`Help` > :guilabel:`About Wireshark` > :guilabel:`Plugins`."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:186
+msgid "Find ``MessagePack.lua`` and ``tarantool.dissector.lua`` in the list."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:188
+msgid "Now you can inspect incoming and outgoing Tarantool packets with user-friendly annotations."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:191
+msgid "Visit the project page for details: `https://github.com/tarantool/tarantool-dissector <https://github.com/tarantool/tarantool-dissector>`_."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:197
+msgid "Profiling performance issues"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:199
+msgid "Tarantool can at times work slower than usual. There can be multiple reasons, such as disk issues, CPU-intensive Lua scripts or misconfiguration. Tarantool’s log may lack details in such cases, so the only indications that something goes wrong are log entries like this: ``W> too long DELETE: 8.546 sec``. Here are tools and techniques that can help you collect Tarantool’s performance profile, which is helpful in troubleshooting slowdowns."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:208
+msgid "Most of these tools -- except ``fiber.info()`` -- are intended for generic GNU/Linux distributions, but not FreeBSD or Mac OS."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:212
+msgid "fiber.info()"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:214
+msgid "The simplest profiling method is to take advantage of Tarantool’s built-in functionality. :ref:`fiber.info() <fiber-info>` returns information about all running fibers with their corresponding C stack traces. You can use this data to see how many fibers are running and which C functions are executed more often than others."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:220
+msgid "First, enter your instance’s interactive administrator console:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:222
+#: ../../doc/book/admin/server_introspection.rst:500
+msgid "$ tt connect NAME|URI"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:226
+msgid "Once there, load the ``fiber`` module:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:228
+msgid "tarantool> fiber = require('fiber')"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:232
+msgid "After that you can get the required information with ``fiber.info()``."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:234
+msgid "At this point, your console output should look something like this:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:236
+msgid "tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> fiber.info()\n"
+"---\n"
+"- 360:\n"
+"    csw: 2098165\n"
+"    backtrace:\n"
+"    - '#0 0x4d1b77 in wal_write(journal*, journal_entry*)+487'\n"
+"    - '#1 0x4bbf68 in txn_commit(txn*)+152'\n"
+"    - '#2 0x4bd5d8 in process_rw(request*, space*, tuple**)+136'\n"
+"    - '#3 0x4bed48 in box_process1+104'\n"
+"    - '#4 0x4d72f8 in lbox_replace+120'\n"
+"    - '#5 0x50f317 in lj_BC_FUNCC+52'\n"
+"    fid: 360\n"
+"    memory:\n"
+"      total: 61744\n"
+"      used: 480\n"
+"    name: main\n"
+"  129:\n"
+"    csw: 113\n"
+"    backtrace: []\n"
+"    fid: 129\n"
+"    memory:\n"
+"      total: 57648\n"
+"      used: 0\n"
+"    name: 'console/unix/:'\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:267
+msgid "We highly recommend to assign meaningful names to fibers you create so that you can find them in the ``fiber.info()`` list. In the example below, we create a fiber named ``myworker``:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:271
+msgid "tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> f = fiber.create(function() while true do fiber.sleep(0.5) end end)\n"
+"---\n"
+"...\n"
+"tarantool> f:name('myworker') <!-- assigning the name to a fiber\n"
+"---\n"
+"...\n"
+"tarantool> fiber.info()\n"
+"---\n"
+"- 102:\n"
+"    csw: 14\n"
+"    backtrace:\n"
+"    - '#0 0x501a1a in fiber_yield_timeout+90'\n"
+"    - '#1 0x4f2008 in lbox_fiber_sleep+72'\n"
+"    - '#2 0x5112a7 in lj_BC_FUNCC+52'\n"
+"    fid: 102\n"
+"    memory:\n"
+"      total: 57656\n"
+"      used: 0\n"
+"    name: myworker <!-- newly created background fiber\n"
+"  101:\n"
+"    csw: 284\n"
+"    backtrace: []\n"
+"    fid: 101\n"
+"    memory:\n"
+"      total: 57656\n"
+"      used: 0\n"
+"    name: interactive\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:305
+msgid "You can kill any fiber with :ref:`fiber.kill(fid) <fiber-kill>`:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:307
+msgid "tarantool> fiber.kill(102)\n"
+"---\n"
+"...\n"
+"tarantool> fiber.info()\n"
+"---\n"
+"- 101:\n"
+"    csw: 324\n"
+"    backtrace: []\n"
+"    fid: 101\n"
+"    memory:\n"
+"      total: 57656\n"
+"      used: 0\n"
+"    name: interactive\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:324
+msgid "To get a table of all alive fibers you can use :ref:`fiber.top() <fiber-top>`."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:326
+msgid "If you want to dynamically obtain information with ``fiber.info()``, the shell script below may come in handy. It connects to a Tarantool instance specified by ``NAME`` every 0.5 seconds, grabs the ``fiber.info()`` output and writes it to the ``fiber-info.txt`` file:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:331
+msgid "$ rm -f fiber.info.txt\n"
+"$ watch -n 0.5 \"echo 'require(\\\"fiber\\\").info()' | tt connect NAME -f - | tee -a fiber-info.txt\""
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:336
+msgid "If you can't understand which fiber causes performance issues, collect the metrics of the ``fiber.info()`` output for 10-15 seconds using the script above and contact the Tarantool team at support@tarantool.org."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:341
+msgid "Poor man’s profilers"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:343
+msgid "**pstack <pid>**"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:345
+msgid "To use this tool, first install it with a package manager that comes with your Linux distribution. This command prints an execution stack trace of a running process specified by the PID. You might want to run this command several times in a row to pinpoint the bottleneck that causes the slowdown."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:350
+msgid "Once installed, say:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:352
+msgid "$ pstack $(pidof tarantool INSTANCENAME.lua)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:356
+#: ../../doc/book/admin/server_introspection.rst:403
+msgid "Next, say:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:358
+#: ../../doc/book/admin/server_introspection.rst:405
+msgid "$ echo $(pidof tarantool INSTANCENAME.lua)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:362
+#: ../../doc/book/admin/server_introspection.rst:409
+msgid "to show the PID of the Tarantool instance that runs the ``INSTANCENAME.lua`` file."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:364
+msgid "You should get similar output:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:366
+msgid "Thread 19 (Thread 0x7f09d1bff700 (LWP 24173)):\n"
+"#0 0x00007f0a1a5423f2 in ?? () from /lib64/libgomp.so.1\n"
+"#1 0x00007f0a1a53fdc0 in ?? () from /lib64/libgomp.so.1\n"
+"#2 0x00007f0a1ad5adc5 in start_thread () from /lib64/libpthread.so.0\n"
+"#3 0x00007f0a1a050ced in clone () from /lib64/libc.so.6\n"
+"Thread 18 (Thread 0x7f09d13fe700 (LWP 24174)):\n"
+"#0 0x00007f0a1a5423f2 in ?? () from /lib64/libgomp.so.1\n"
+"#1 0x00007f0a1a53fdc0 in ?? () from /lib64/libgomp.so.1\n"
+"#2 0x00007f0a1ad5adc5 in start_thread () from /lib64/libpthread.so.0\n"
+"#3 0x00007f0a1a050ced in clone () from /lib64/libc.so.6\n"
+"<...>\n"
+"Thread 2 (Thread 0x7f09c8bfe700 (LWP 24191)):\n"
+"#0 0x00007f0a1ad5e6d5 in pthread_cond_wait@@GLIBC_2.3.2 () from /lib64/libpthread.so.0\n"
+"#1 0x000000000045d901 in wal_writer_pop(wal_writer*) ()\n"
+"#2 0x000000000045db01 in wal_writer_f(__va_list_tag*) ()\n"
+"#3 0x0000000000429abc in fiber_cxx_invoke(int (*)(__va_list_tag*), __va_list_tag*) ()\n"
+"#4 0x00000000004b52a0 in fiber_loop ()\n"
+"#5 0x00000000006099cf in coro_init ()\n"
+"Thread 1 (Thread 0x7f0a1c47fd80 (LWP 24172)):\n"
+"#0 0x00007f0a1a0512c3 in epoll_wait () from /lib64/libc.so.6\n"
+"#1 0x00000000006051c8 in epoll_poll ()\n"
+"#2 0x0000000000607533 in ev_run ()\n"
+"#3 0x0000000000428e13 in main ()"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:392
+msgid "**gdb -ex \"bt\" -p <pid>**"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:394
+msgid "As with ``pstack``, the GNU debugger (also known as ``gdb``) needs to be installed before you can start using it. Your Linux package manager can help you with that."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:397
+msgid "Once the debugger is installed, say:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:399
+msgid "$ gdb -ex \"set pagination 0\" -ex \"thread apply all bt\" --batch -p $(pidof tarantool INSTANCENAME.lua)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:411
+msgid "After using the debugger, your console output should look like this:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:413
+msgid "[Thread debugging using libthread_db enabled]\n"
+"Using host libthread_db library \"/lib/x86_64-linux-gnu/libthread_db.so.1\".\n"
+"\n"
+"[CUT]\n"
+"\n"
+"Thread 1 (Thread 0x7f72289ba940 (LWP 20535)):\n"
+"#0 _int_malloc (av=av@entry=0x7f7226e0eb20 <main_arena>, bytes=bytes@entry=504) at malloc.c:3697\n"
+"#1 0x00007f7226acf21a in __libc_calloc (n=<optimized out>, elem_size=<optimized out>) at malloc.c:3234\n"
+"#2 0x00000000004631f8 in vy_merge_iterator_reserve (capacity=3, itr=0x7f72264af9e0) at /usr/src/tarantool/src/box/vinyl.c:7629\n"
+"#3 vy_merge_iterator_add (itr=itr@entry=0x7f72264af9e0, is_mutable=is_mutable@entry=true, belong_range=belong_range@entry=false) at /usr/src/tarantool/src/box/vinyl.c:7660\n"
+"#4 0x00000000004703df in vy_read_iterator_add_mem (itr=0x7f72264af990) at /usr/src/tarantool/src/box/vinyl.c:8387\n"
+"#5 vy_read_iterator_use_range (itr=0x7f72264af990) at /usr/src/tarantool/src/box/vinyl.c:8453\n"
+"#6 0x000000000047657d in vy_read_iterator_start (itr=<optimized out>) at /usr/src/tarantool/src/box/vinyl.c:8501\n"
+"#7 0x00000000004766b5 in vy_read_iterator_next (itr=itr@entry=0x7f72264af990, result=result@entry=0x7f72264afad8) at /usr/src/tarantool/src/box/vinyl.c:8592\n"
+"#8 0x000000000047689d in vy_index_get (tx=tx@entry=0x7f7226468158, index=index@entry=0x2563860, key=<optimized out>, part_count=<optimized out>, result=result@entry=0x7f72264afad8) at /usr/src/tarantool/src/box/vinyl.c:5705\n"
+"#9 0x0000000000477601 in vy_replace_impl (request=<optimized out>, request=<optimized out>, stmt=0x7f72265a7150, space=0x2567ea0, tx=0x7f7226468158) at /usr/src/tarantool/src/box/vinyl.c:5920\n"
+"#10 vy_replace (tx=0x7f7226468158, stmt=stmt@entry=0x7f72265a7150, space=0x2567ea0, request=<optimized out>) at /usr/src/tarantool/src/box/vinyl.c:6608\n"
+"#11 0x00000000004615a9 in VinylSpace::executeReplace (this=<optimized out>, txn=<optimized out>, space=<optimized out>, request=<optimized out>) at /usr/src/tarantool/src/box/vinyl_space.cc:108\n"
+"#12 0x00000000004bd723 in process_rw (request=request@entry=0x7f72265a70f8, space=space@entry=0x2567ea0, result=result@entry=0x7f72264afbc8) at /usr/src/tarantool/src/box/box.cc:182\n"
+"#13 0x00000000004bed48 in box_process1 (request=0x7f72265a70f8, result=result@entry=0x7f72264afbc8) at /usr/src/tarantool/src/box/box.cc:700\n"
+"#14 0x00000000004bf389 in box_replace (space_id=space_id@entry=513, tuple=<optimized out>, tuple_end=<optimized out>, result=result@entry=0x7f72264afbc8) at /usr/src/tarantool/src/box/box.cc:754\n"
+"#15 0x00000000004d72f8 in lbox_replace (L=0x413c5780) at /usr/src/tarantool/src/box/lua/index.c:72\n"
+"#16 0x000000000050f317 in lj_BC_FUNCC ()\n"
+"#17 0x00000000004d37c7 in execute_lua_call (L=0x413c5780) at /usr/src/tarantool/src/box/lua/call.c:282\n"
+"#18 0x000000000050f317 in lj_BC_FUNCC ()\n"
+"#19 0x0000000000529c7b in lua_cpcall ()\n"
+"#20 0x00000000004f6aa3 in luaT_cpcall (L=L@entry=0x413c5780, func=func@entry=0x4d36d0 <execute_lua_call>, ud=ud@entry=0x7f72264afde0) at /usr/src/tarantool/src/lua/utils.c:962\n"
+"#21 0x00000000004d3fe7 in box_process_lua (handler=0x4d36d0 <execute_lua_call>, out=out@entry=0x7f7213020600, request=request@entry=0x413c5780) at /usr/src/tarantool/src/box/lua/call.c:382\n"
+"#22 box_lua_call (request=request@entry=0x7f72130401d8, out=out@entry=0x7f7213020600) at /usr/src/tarantool/src/box/lua/call.c:405\n"
+"#23 0x00000000004c0f27 in box_process_call (request=request@entry=0x7f72130401d8, out=out@entry=0x7f7213020600) at /usr/src/tarantool/src/box/box.cc:1074\n"
+"#24 0x000000000041326c in tx_process_misc (m=0x7f7213040170) at /usr/src/tarantool/src/box/iproto.cc:942\n"
+"#25 0x0000000000504554 in cmsg_deliver (msg=0x7f7213040170) at /usr/src/tarantool/src/cbus.c:302\n"
+"#26 0x0000000000504c2e in fiber_pool_f (ap=<error reading variable: value has been optimized out>) at /usr/src/tarantool/src/fiber_pool.c:64\n"
+"#27 0x000000000041122c in fiber_cxx_invoke(fiber_func, typedef __va_list_tag __va_list_tag *) (f=<optimized out>, ap=<optimized out>) at /usr/src/tarantool/src/fiber.h:645\n"
+"#28 0x00000000005011a0 in fiber_loop (data=<optimized out>) at /usr/src/tarantool/src/fiber.c:641\n"
+"#29 0x0000000000688fbf in coro_init () at /usr/src/tarantool/third_party/coro/coro.c:110"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:452
+msgid "Run the debugger in a loop a few times to collect enough samples for making conclusions about why Tarantool demonstrates suboptimal performance. Use the following script:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:456
+msgid "$ rm -f stack-trace.txt\n"
+"$ watch -n 0.5 \"gdb -ex 'set pagination 0' -ex 'thread apply all bt' --batch -p $(pidof tarantool INSTANCENAME.lua) | tee -a stack-trace.txt\""
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:461
+msgid "Structurally and functionally, this script is very similar to the one used with ``fiber.info()`` above."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:464
+msgid "If you have any difficulties troubleshooting, let the script run for 10-15 seconds and then send the resulting ``stack-trace.txt`` file to the Tarantool team at support@tarantool.org."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:470
+msgid "Use the poor man’s profilers with caution: each time they attach to a running process, this stops the process execution for about a second, which may leave a serious footprint in high-load services."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:475
+msgid "gperftools"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:477
+msgid "To use the CPU profiler from the Google Performance Tools suite with Tarantool, first take care of the prerequisites:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:480
+msgid "For Debian/Ubuntu, run:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:482
+msgid "$ apt-get install libgoogle-perftools4"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:486
+msgid "For RHEL/CentOS/Fedora, run:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:488
+msgid "$ yum install gperftools-libs"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:492
+msgid "Once you do this, install Lua bindings:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:494
+msgid "$ tt rocks install gperftools"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:498
+msgid "Now you're ready to go. Enter your instance’s interactive administrator console:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:504
+msgid "To start profiling, say:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:506
+msgid "tarantool> cpuprof = require('gperftools.cpu')\n"
+"tarantool> cpuprof.start('/home/<username>/tarantool-on-production.prof')"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:511
+msgid "It takes at least a couple of minutes for the profiler to gather performance metrics. After that, save the results to disk (you can do that as many times as you need):"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:515
+msgid "tarantool> cpuprof.flush()"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:519
+msgid "To stop profiling, say:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:521
+msgid "tarantool> cpuprof.stop()"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:525
+msgid "You can now analyze the output with the ``pprof`` utility that comes with the ``gperftools`` package:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:528
+msgid "$ pprof --text /usr/bin/tarantool /home/<username>/tarantool-on-production.prof"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:534
+msgid "On Debian/Ubuntu, the ``pprof`` utility is called ``google-pprof``."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:536
+msgid "Your output should look similar to this:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:538
+msgid "Total: 598 samples\n"
+"      83 13.9% 13.9% 83 13.9% epoll_wait\n"
+"      54 9.0% 22.9% 102 17.1%\n"
+"vy_mem_tree_insert.constprop.35\n"
+"      32 5.4% 28.3% 34 5.7% __write_nocancel\n"
+"      28 4.7% 32.9% 42 7.0% vy_mem_iterator_start_from\n"
+"      26 4.3% 37.3% 26 4.3% _IO_str_seekoff\n"
+"      21 3.5% 40.8% 21 3.5% tuple_compare_field\n"
+"      19 3.2% 44.0% 19 3.2%\n"
+"::TupleCompareWithKey::compare\n"
+"      19 3.2% 47.2% 38 6.4% tuple_compare_slowpath\n"
+"      12 2.0% 49.2% 23 3.8% __libc_calloc\n"
+"       9 1.5% 50.7% 9 1.5%\n"
+"::TupleCompare::compare@42efc0\n"
+"       9 1.5% 52.2% 9 1.5% vy_cache_on_write\n"
+"       9 1.5% 53.7% 57 9.5% vy_merge_iterator_next_key\n"
+"       8 1.3% 55.0% 8 1.3% __nss_passwd_lookup\n"
+"       6 1.0% 56.0% 25 4.2% gc_onestep\n"
+"       6 1.0% 57.0% 6 1.0% lj_tab_next\n"
+"       5 0.8% 57.9% 5 0.8% lj_alloc_malloc\n"
+"       5 0.8% 58.7% 131 21.9% vy_prepare"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:563
+msgid "perf"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:565
+msgid "This tool for performance monitoring and analysis is installed separately via your package manager. Try running the ``perf`` command in the terminal and follow the prompts to install the necessary package(s)."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:571
+msgid "By default, some ``perf`` commands are restricted to **root**, so, to be on the safe side, either run all commands as **root** or prepend them with ``sudo``."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:575
+msgid "To start gathering performance statistics, say:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:577
+msgid "$ perf record -g -p $(pidof tarantool INSTANCENAME.lua)"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:581
+msgid "This command saves the gathered data to a file named ``perf.data`` inside the current working directory. To stop this process (usually, after 10-15 seconds), press **ctrl+C**. In your console, you’ll see:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:585
+msgid "^C[ perf record: Woken up 1 times to write data ]\n"
+"[ perf record: Captured and wrote 0.225 MB perf.data (1573 samples) ]"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:590
+msgid "Now run the following command:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:592
+msgid "$ perf report -n -g --stdio | tee perf-report.txt"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:596
+msgid "It formats the statistical data in the ``perf.data`` file into a performance report and writes it to the ``perf-report.txt`` file."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:599
+msgid "The resulting output should look similar to this:"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:601
+msgid "# Samples: 14K of event 'cycles'\n"
+"# Event count (approx.): 9927346847\n"
+"#\n"
+"# Children Self Samples Command Shared Object Symbol\n"
+"# ........ ........ ............ ......... .................. .......................................\n"
+"#\n"
+"    35.50% 0.55% 79 tarantool tarantool [.] lj_gc_step\n"
+"            |\n"
+"             --34.95%--lj_gc_step\n"
+"                       |\n"
+"                       |--29.26%--gc_onestep\n"
+"                       | |\n"
+"                       | |--13.85%--gc_sweep\n"
+"                       | | |\n"
+"                       | | |--5.59%--lj_alloc_free\n"
+"                       | | |\n"
+"                       | | |--1.33%--lj_tab_free\n"
+"                       | | | |\n"
+"                       | | | --1.01%--lj_alloc_free\n"
+"                       | | |\n"
+"                       | | --1.17%--lj_cdata_free\n"
+"                       | |\n"
+"                       | |--5.41%--gc_finalize\n"
+"                       | | |\n"
+"                       | | |--1.06%--lj_obj_equal\n"
+"                       | | |\n"
+"                       | | --0.95%--lj_tab_set\n"
+"                       | |\n"
+"                       | |--4.97%--rehashtab\n"
+"                       | | |\n"
+"                       | | --3.65%--lj_tab_resize\n"
+"                       | | |\n"
+"                       | | |--0.74%--lj_tab_set\n"
+"                       | | |\n"
+"                       | | --0.72%--lj_tab_newkey\n"
+"                       | |\n"
+"                       | |--0.91%--propagatemark\n"
+"                       | |\n"
+"                       | --0.67%--lj_cdata_free\n"
+"                       |\n"
+"                        --5.43%--propagatemark\n"
+"                                  |\n"
+"                                   --0.73%--gc_mark"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:647
+msgid "Unlike the poor man’s profilers, ``gperftools`` and ``perf`` have low overhead (almost negligible as compared with ``pstack`` and ``gdb``): they don’t result in long delays when attaching to a process and therefore can be used without serious consequences."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:653
+msgid "jit.p"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:656
+msgid "The jit.p profiler comes with the Tarantool application server, to load it one only needs to say ``require('jit.p')`` or ``require('jit.profile')``. There are many options for sampling and display, they are described in the documentation for the LuaJIT Profiler, available from the 2.1 branch of the git repository in the file: ``doc/ext_profiler.html``."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:664
+msgid "Make a function that calls a function named f1 that does 500,000 inserts and deletes in a Tarantool space. Start the profiler, execute the function, stop the profiler, and show what the profiler sampled."
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:669
+msgid "box.space.t:drop()\n"
+"box.schema.space.create('t')\n"
+"box.space.t:create_index('i')\n"
+"function f1() for i = 1,500000 do\n"
+"  box.space.t:insert{i}\n"
+"  box.space.t:delete{i}\n"
+"  end\n"
+"return 1\n"
+"end\n"
+"function f3() f1() end\n"
+"jit_p = require(\"jit.profile\")\n"
+"sampletable = {}\n"
+"jit_p.start(\"f\", function(thread, samples, vmstate)\n"
+"  local dump=jit_p.dumpstack(thread, \"f\", 1)\n"
+"  sampletable[dump] = (sampletable[dump] or 0) + samples\n"
+"end)\n"
+"f3()\n"
+"jit_p.stop()\n"
+"for d,v in pairs(sampletable) do print(v, d) end"
+msgstr ""
+
+#: ../../doc/book/admin/server_introspection.rst:691
+msgid "Typically the result will show that the sampling happened within f1() many times, but also within internal Tarantool functions, whose names may change with each new version."
+msgstr ""

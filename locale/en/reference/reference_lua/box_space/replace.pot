@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:5
+msgid "space_object:replace() / put()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:12
+msgid "Insert a tuple into a space. If a tuple with the same primary key already exists, ``box.space...:replace()`` replaces the existing tuple with a new one. The syntax variants ``box.space...:replace()`` and ``box.space...:put()`` have the same effect; the latter is sometimes used to show that the effect is the converse of ``box.space...:get()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:18
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:20
+msgid "tuple to be inserted"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:22
+msgid "the inserted tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:23
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:25
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:27
+msgid ":errcode:`ER_TUPLE_FOUND` if a different tuple with the same unique-key value already exists. (This will only happen if there is a unique secondary index.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:29
+msgid ":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:32
+msgid "**Complexity factors:** Index size, Index type, Number of indexes accessed, WAL settings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:35
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:37
+msgid "box.space.tester:replace{5000, 'tuple number five thousand'}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/replace.rst:41
+msgid "For more usage scenarios and typical errors see :ref:`Example: using data operations <box_space-operations-detailed-examples>` further in this section."
+msgstr ""

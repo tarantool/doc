@@ -1,0 +1,176 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:4
+msgid "box.stat.vinyl()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:10
+msgid "Shows vinyl-storage-engine activity, for example ``box.stat.vinyl().tx`` has the number of commits and rollbacks."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:13
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:15
+msgid "tarantool> box.stat.vinyl().tx.commit -- one item of the vinyl table\n"
+"---\n"
+"- 1047632\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:25
+msgid "box.stat.vinyl().regulator"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:26
+msgid "The vinyl regulator decides when to take or delay actions for disk IO, grouping activity in batches so that it is consistent and efficient. The regulator is invoked by the vinyl scheduler, once per second, and updates related variables whenever it is invoked."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:32
+msgid "``box.stat.vinyl().regulator.dump_bandwidth`` is the estimated average rate at which dumps are done. Initially this will appear as 10485760 (10 megabytes per second). Only significant dumps (larger than one megabyte) are used for estimating."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:37
+msgid "``box.stat.vinyl().regulator.dump_watermark`` is the point when dumping must occur. The value is slightly smaller than the amount of memory that is allocated for vinyl trees, which is the :ref:`vinyl_memory <cfg_storage-vinyl_memory>` parameter."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:43
+msgid "``box.stat.vinyl().regulator.write_rate`` is the actual average rate at which recent writes to disk are done. Averaging is done over a 5-second time window, so if there has been no activity for 5 seconds then ``regulator.write_rate = 0``. The ``write_rate`` may be slowed when a dump is in progress or when the user has set :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:51
+msgid "``box.stat.vinyl().regulator.rate_limit`` is the write rate limit, in bytes per second, imposed on transactions by the regulator based on the observed dump/compaction performance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:55
+msgid "``box.stat.vinyl().regulator.blocked_writers`` is the number of fibers currently blocked waiting for vinyl :ref:`L0 memory <engines-algorithm_filling_lsm>` quota."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:63
+msgid "box.stat.vinyl().disk"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:64
+msgid "Since vinyl is an on-disk storage engine (unlike memtx which is an in-memory storage engine), it can handle large databases -- but if a database is larger than the amount of memory that is allocated for vinyl, then there will be more disk activity."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:70
+msgid "``box.stat.vinyl().disk.data`` and ``box.stat.vinyl().disk.index`` are the amount of data that has gone into files in a subdirectory of :ref:`vinyl_dir <cfg_basic-vinyl_dir>`, with names like ``{lsn}.run`` and ``{lsn}.index``. The size of the run will be related to the output of ``scheduler.dump_*``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:77
+msgid "``box.stat.vinyl().disk.data_compacted`` Sum size of data stored at the last LSM tree level, in bytes, without taking disk compression into account. It can be thought of as the size of disk space that the user data would occupy if there were no compression, indexing, or space increase caused by the LSM tree design."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:86
+msgid "box.stat.vinyl().memory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:87
+msgid "Although the vinyl storage engine is not \"in-memory\", Tarantool does need to have memory for write buffers and for caches:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:90
+msgid "``box.stat.vinyl().memory.tuple_cache`` is the number of bytes that are being used for tuples (data)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:92
+msgid "``box.stat.vinyl().memory.tx`` is transactional memory. This will usually be 0."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:94
+msgid "``box.stat.vinyl().memory.level0`` is the \"level0\" memory area, sometimes abbreviated \"L0\", which is the area that vinyl can use for in-memory storage of an LSM tree."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:98
+msgid "Therefore we can say that \"L0 is becoming full\" when the amount in ``memory.level0`` is close to the maximum, which is :ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`. We can expect that \"L0 = 0\" immediately after a dump. ``box.stat.vinyl().memory.page_index`` and  ``box.stat.vinyl().memory.bloom_filter`` have the current amount being used for index-related structures. The size is a function of the number and size of keys, plus :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`, plus :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`. This is not a count of bloom filter \"hits\" (the number of reads that could be avoided because the bloom filter predicts their presence in a run file) -- that statistic can be found with :doc:`/reference/reference_lua/box_index/stat`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:116
+msgid "box.stat.vinyl().tx"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:117
+msgid "This is about requests that affect transactional activity (\"tx\" is used here as an abbreviation for \"transaction\"):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:120
+msgid "``box.stat.vinyl().tx.conflict`` counts conflicts that caused a transaction to roll back."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:122
+msgid "``box.stat.vinyl().tx.commit`` is the count of commits (successful transaction ends). It includes implicit commits, for example any insert causes a commit unless it is within a begin-end block."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:126
+msgid "``box.stat.vinyl().tx.rollback`` is the count of rollbacks (unsuccessful transaction ends). This is not merely a count of explicit :doc:`/reference/reference_lua/box_txn_management/rollback` requests -- it includes requests that ended in errors. For example, after an attempted insert request that causes a \"Duplicate key exists in unique index\" error, ``tx.rollback`` is incremented."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:134
+msgid "``box.stat.vinyl().tx.statements`` will usually be 0."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:136
+msgid "``box.stat.vinyl().tx.transactions`` is the number of transactions that are currently running."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:138
+msgid "``box.stat.vinyl().tx.gap_locks`` is the number of gap locks that are outstanding during execution of a request. For a low-level description of Tarantool's implementation of gap locking, see `Gap locks in Vinyl transaction manager <https://github.com/tarantool/tarantool/issues/2671>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:142
+msgid "``box.stat.vinyl().tx.read_views`` shows whether a transaction has entered a read-only state to avoid conflict temporarily. This will usually be 0."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:147
+msgid "box.stat.vinyl().scheduler"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:148
+msgid "This primarily has counters related to tasks that the scheduler has arranged for dumping or compaction: (most of these items are reset to 0 when the server restarts or when :ref:`box.stat.reset() <box_introspection-box_stat_reset>` occurs):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:153
+msgid "``box.stat.vinyl().scheduler.compaction_*`` is the amount of data from recent changes that has been :doc:`compacted </reference/reference_lua/box_index/compact>`. This is divided into ``scheduler.compaction_input`` (the amount that is being compacted), ``scheduler.compaction_queue`` (the amount that is waiting to be compacted), ``scheduler.compaction_time`` (total time spent by all worker threads performing compaction, in seconds), and ``scheduler.compaction_output`` (the amount that has been compacted, which is presumably smaller than ``scheduler.compaction_input``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:163
+msgid "``box.stat.vinyl().scheduler.tasks_*`` is about dump/compaction tasks, in three categories, ``scheduler.tasks_inprogress`` (currently running), ``scheduler.tasks_completed`` (successfully completed) ``scheduler.tasks_failed`` (aborted due to errors)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:169
+msgid "``box.stat.vinyl().scheduler.dump_*`` has the amount of data from recent changes that has been dumped, including ``dump_time`` (total time spent by all worker threads performing dumps, in seconds), and ``dump_count`` (the count of completed dumps), ``dump_input`` and ``dump_output``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:175
+msgid "A \"dump\" is explained in section :ref:`Storing data with vinyl <engines-algorithm_filling_lsm>`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:177
+msgid "Sooner or later the number of elements in an LSM tree exceeds the L0 size and that is when L0 gets written to a file on disk (called a 'run') and then cleared for storing new elements. This operation is called a 'dump'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:181
+msgid "Thus it can be predicted that a dump will occur if the size of L0 (which is :ref:`memory.level0 <box_introspection-box_stat_vinyl_memory>`) is approaching the maximum (which is :ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`) and a dump is not already in progress. In fact Tarantool will try to arrange a dump before this hard limit is reached."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_stat/vinyl.rst:191
+msgid "A dump will also occur during a :doc:`snapshot </reference/reference_lua/box_snapshot>` operation."
+msgstr ""

@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:5
+msgid "box.info.memory()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:11
+msgid "The **memory** function of ``box.info`` gives the ``admin`` user a picture of the whole Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:16
+msgid "To get a picture of the vinyl subsystem, use :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>` instead."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:19
+msgid "**memory().cache** -- number of bytes used for caching user data. The memtx storage engine does not require a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:23
+msgid "**memory().data** -- number of bytes used for storing user data (the tuples) with the memtx engine and with level 0 of the vinyl engine, without taking memory fragmentation into account."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:26
+msgid "**memory().index** -- number of bytes used for indexing user data, including memtx and vinyl memory tree extents, the vinyl page index, and the vinyl bloom filters."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:29
+msgid "**memory().lua** -- number of bytes used for Lua runtime."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:30
+msgid "**memory().net** -- number of bytes used for network input/output buffers."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:31
+msgid "**memory().tx** -- number of bytes in use by active transactions. For the vinyl storage engine, this is the total size of all allocated objects (struct ``txv``, struct ``vy_tx``, struct ``vy_read_interval``) and tuples pinned for those objects."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:36
+msgid "An example with a minimum allocation while only the memtx storage engine is in use:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/memory.rst:39
+msgid "tarantool> box.info.memory()\n"
+"---\n"
+"- cache: 0\n"
+"  data: 6552\n"
+"  tx: 0\n"
+"  lua: 1315567\n"
+"  net: 98304\n"
+"  index: 1196032\n"
+"..."
+msgstr ""

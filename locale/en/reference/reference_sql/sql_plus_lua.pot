@@ -1,0 +1,880 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:5
+msgid "SQL PLUS LUA -- Adding Tarantool/NoSQL to Tarantool/SQL"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:7
+msgid "The Adding Tarantool/NoSQL To Tarantool/SQL Guide contains descriptions of NoSQL database objects that can be accessed from SQL, of SQL database objects that can be accessed from NoSQL, of the way to call SQL from Lua, and of the way to call Lua from SQL."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:18
+msgid "Heading"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:19
+msgid "Summary"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:20
+msgid ":ref:`Lua requests <sql_lua_requests>`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:21
+msgid "Some Lua requests that are especially useful for SQL, such as requests to grant privileges"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:23
+msgid ":ref:`System tables <sql_system_tables>`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:24
+msgid "Looking at Lua sysview spaces such as _space"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:25
+msgid ":ref:`Calling Lua routines from SQL <sql_calling_lua>`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:26
+msgid "Tarantool's implementation of SQL stored procedures"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:27
+msgid ":ref:`Executing Lua chunks <sql_executing_lua_chunks>`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:28
+msgid "The LUA(...) function"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:29
+msgid ":ref:`Example sessions <sql_example_sessions>`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:30
+msgid "Million-row insert, etc."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:31
+msgid ":ref:`Lua functions to make views of metadata <sql_lua_functions>`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:32
+msgid "Making equivalents to standard-SQL information_schema tables"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:42
+msgid "Lua Requests"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:44
+msgid "A great deal of functionality is not specifically part of Tarantool's SQL feature, but is part of the Tarantool Lua application server and DBMS. Here are some examples so it is clear where to look in other sections of the Tarantool manual."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:48
+msgid "NoSQL :ref:`\"spaces\" <index-box_space>` can be accessed as SQL ``\"tables\"``, and vice versa. For example, suppose a table has been created with |br| ``CREATE TABLE things (id INTEGER PRIMARY KEY, remark SCALAR);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:52
+msgid "This is viewable from Tarantool's NoSQL feature as a memtx space named THINGS with a primary-key :ref:`TREE index <index-box_index>` ..."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:55
+msgid "tarantool> box.space.THINGS\n"
+"---\n"
+"- engine: memtx\n"
+"  before_replace: 'function: 0x40bb4608'\n"
+"  on_replace: 'function: 0x40bb45e0'\n"
+"  ck_constraint: []\n"
+"  field_count: 2\n"
+"  temporary: false\n"
+"  index:\n"
+"    0: &0\n"
+"      unique: true\n"
+"      parts:\n"
+"     - type: integer\n"
+"        is_nullable: false\n"
+"        fieldno: 1\n"
+"      id: 0\n"
+"      space_id: 520\n"
+"      type: TREE\n"
+"      name: pk_unnamed_THINGS_1\n"
+"    pk_unnamed_THINGS_1: *0\n"
+"  is_local: false\n"
+"  enabled: true\n"
+"  name: THINGS\n"
+"  id: 520"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:82
+msgid "The NoSQL :ref:`basic data operation requests <index-box_data-operations>` select, insert, replace, upsert, update, delete will all work. Particularly interesting are the requests that come only via NoSQL."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:86
+msgid "To create an index on things (remark) with a non-default :ref:`option <index_opts_object>` for example a special id, say: |br| ``box.space.THINGS:create_index('idx_100_things_2', {id=100, parts={2, 'scalar'}})``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:89
+msgid "(If the SQL data type name is SCALAR, then the NoSQL type is 'scalar', as described earlier. See the chart in section :ref:`Operands <sql_operands>`.)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:92
+msgid "To :doc:`grant </reference/reference_lua/box_schema/user_grant>` database-access privileges to user 'guest', say |br| ``box.schema.user.grant('guest', 'execute', 'universe')`` |br| To grant SELECT privileges on table things to user 'guest', say |br| ``box.schema.user.grant('guest',  'read', 'space', 'THINGS')`` |br| To grant UPDATE privileges on table things to user 'guest', say: |br| ``box.schema.user.grant('guest', 'read,write', 'space', 'THINGS')`` |br| To grant DELETE or INSERT privileges on table things if no reading is involved, say: |br| ``box.schema.user.grant('guest', 'write', 'space', 'THINGS')`` |br| To grant DELETE or INSERT privileges on table things if reading is involved, say: |br| ``box.schema.user.grant('guest',  'read,write',  'space',  'THINGS')`` |br| To grant CREATE TABLE privilege to user 'guest', say |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_schema')`` |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_space')`` |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_index')`` |br| ``box.schema.user.grant('guest', 'create', 'space')`` |br| To grant CREATE TRIGGER privilege to user 'guest', say |br| ``box.schema.user.grant('guest', 'read', 'space', '_space')`` |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_trigger')`` |br| To grant CREATE INDEX privilege to user 'guest', say |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_index')`` |br| ``box.schema.user.grant('guest', 'create', 'space')`` |br| To grant CREATE TABLE ... INTEGER PRIMARY KEY AUTOINCREMENT to user 'guest', say |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_schema')`` |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_space')`` |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_index')`` |br| ``box.schema.user.grant('guest', 'create', 'space')`` |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_space_sequence')`` |br| ``box.schema.user.grant('guest', 'read,write', 'space', '_sequence')`` |br| ``box.schema.user.grant('guest', 'create', 'sequence')`` |br|"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:123
+msgid "To write a stored procedure that inserts 5 rows in things, say |br| ``function f() for i = 3, 7 do box.space.THINGS:insert{i, i} end end`` |br| For client-side API functions, see section :ref:`\"Connectors\" <index-box_connectors>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:127
+msgid "To make spaces with field names that SQL can understand, use :ref:`space_object:format() <box_space-format>`. (Exception: in Tarantool/NoSQL it is legal for tuples to have more fields than are described by a format clause, but in Tarantool/SQL such fields will be ignored.)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:132
+msgid "To handle replication and sharding of SQL data, see section :ref:`Sharding <vshard-summary>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:135
+msgid "To enhance performance of SQL statements by preparing them in advance, see section :ref:`box.prepare() <box-sql_box_prepare>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:138
+msgid "To call SQL from Lua, see section :ref:`box.execute([[...]]) <box-sql>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:141
+msgid "Limitations: (`Issue#2368 <https://github.com/tarantool/tarantool/issues/2368>`_) |br| * after ``box.schema.user.grant('guest','read,write,execute','universe')``, user ``'guest'`` can create tables. But this is a powerful set of privileges."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:144
+msgid "Limitations: (`Issue#4659 <https://github.com/tarantool/tarantool/issues/4659>`_, `Issue#4757 <https://github.com/tarantool/tarantool/issues/4757>`_, `Issue#4758 <https://github.com/tarantool/tarantool/issues/4758>`_) |br| SELECT with * or ORDER BY or GROUP BY from spaces that have map fields or array fields may cause errors. Any access to spaces that have hash indexes may cause severe errors in Tarantool version 2.3 or earlier."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:155
+msgid "System Tables"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:157
+msgid "There is a way to get some information about the database objects, for example the names of all the tables and their indexes, using :ref:`SELECT statements <sql_select>`. This is done by looking at special read-only tables which Tarantool updates automatically whenever objects are created or dropped. See the :ref:`submodule box.space <box_space>` overview section. Names of system tables are in lower case so always enclose them in ``\"quotes\"``."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:165
+msgid "For example, the :ref:`_space <box_space-space>` system table has these fields which are seen in SQL as columns: |br| |nbsp|  id = numeric identifier |br| |nbsp|  owner = for example, 1 if the object was made by the ``'admin'`` user |br| |nbsp|  name = the name that was used with :ref:`CREATE TABLE <sql_create_table>` |br| |nbsp|  engine = usually ``'memtx'`` (the ``'vinyl'`` engine can be used but is not default) |br| |nbsp|  field_count = sometimes 0, but usually a count of the table's columns |br| |nbsp|  flags = usually empty |br| |nbsp|  format = what a Lua format() function or an SQL CREATE statement produced |br| Example selection: |br| |nbsp|  ``SELECT \"id\", \"name\" FROM \"_space\";``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:176
+msgid "See also: :ref:`Lua functions to make views of metadata <sql_lua_functions>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:275
+msgid "Calling Lua routines from SQL"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:277
+msgid "SQL statements can invoke functions that are written in Lua. This is Tarantool's equivalent for the \"stored procedure\" feature found in other SQL DBMSs. Tarantool server-side stored procedures are written in Lua rather than SQL/PSM dialect."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:281
+msgid "Functions can be invoked anywhere that the SQL syntax allows a literal or a column name for reading. Function parameters can include any number of SQL values. If a SELECT statement's result set has a million rows, and the :ref:`select list <sql_select_list>` invokes a non-deterministic function, then the function is called a million times."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:287
+msgid "To create a Lua function that you can call from SQL, use :ref:`box.schema.func.create(func-name, {options-with-body}) <box_schema-func_create_with-body>` with these additional options:"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:291
+msgid "``exports = {'LUA', 'SQL'}`` -- This indicates what languages can call the function. The default is ``'LUA'``. Specify both: ``'LUA', 'SQL'``."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:294
+msgid "``param_list = {list}`` -- This is the list of parameters. Specify the Lua type names for each parameter of the function. Remember that a Lua type name is :ref:`the same as <sql_operands>` an SQL data type name, in lower case. The Lua type should not be an array."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:300
+msgid "Also it is good to specify ``{deterministic = true}`` if possible, because that may allow Tarantool to generate more efficient SQL byte code."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:303
+msgid "For a useful example, here is a general function for decoding a single Lua ``'map'`` field:"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:305
+msgid "box.schema.func.create('_DECODE',\n"
+"   {language = 'LUA',\n"
+"    returns = 'string',\n"
+"    body = [[function (field, key)\n"
+"             -- If Tarantool version < 2.10.1, replace next line with\n"
+"             -- return require('msgpack').decode(field)[key]\n"
+"             return field[key]\n"
+"             end]],\n"
+"    is_sandboxed = false,\n"
+"    -- If Tarantool version < 2.10.1, replace next line with\n"
+"    -- param_list = {'string', 'string'},\n"
+"    param_list = {'map', 'string'},\n"
+"    exports = {'LUA', 'SQL'},\n"
+"    is_deterministic = true})"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:322
+msgid "See it work with, say, the _trigger space. That space has a ``'map'`` field named opts which has a key named sql. By selecting from the space and passing the field and the key name to _DECODE, you can get a list of all the trigger bodies."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:327
+msgid "box.execute([[SELECT _decode(\"opts\", 'sql') FROM \"_trigger\";]])"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:331
+msgid "Remember that SQL converts :ref:`regular identifiers <sql_identifiers>` to upper case, so this example works with a function named _DECODE. If the function had been named _decode, then the SELECT statement would have to be: |br| ``box.execute([[SELECT \"_decode\"(\"opts\", 'sql') FROM \"_trigger\";]])``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:336
+msgid "Here is another example, which illustrates the way that Tarantool creates a view which includes the table_name and table_type columns in the same way that the standard-SQL information_schema.tables view contains them. The difficulty is that, in order to discover whether table_type should be ``'BASE TABLE'`` or should be ``'VIEW'``, it is necessary to know the value of the ``\"flags\"`` field in the Tarantool/NoSQL :ref:`\"_space\" <box_space-space>` or ``\"_vspace\"`` space. The ``\"flags\"`` field type is ``\"map\"``, which SQL does not understand well. If there were no Lua functions, it would be necessary to treat the field as a VARBINARY and look for ``POSITION(X'A476696577C3',\"flags\")  > 0`` (A4 is a MsgPack signal that a 4-byte string follows, 76696577 is UTF8 encoding for 'view', C3 is a MsgPack code meaning true). In any case, starting with Tarantool version 2.10, POSITION() does not work on VARBINARY operands. But there is a more sophisticated way, namely, creating a function that returns true if ``\"flags\".view`` is true. So for this case the way to make the function looks like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:352
+msgid "box.schema.func.create('TABLES_IS_VIEW',\n"
+"     {language = 'LUA',\n"
+"      returns = 'boolean',\n"
+"      body = [[function (flags)\n"
+"          local view\n"
+"          -- If Tarantool version < 2.10.1, replace next line with\n"
+"          -- view = require('msgpack').decode(flags).view\n"
+"          view = flags.view\n"
+"          if view == nil then return false end\n"
+"          return view\n"
+"          end]],\n"
+"     is_sandboxed = false,\n"
+"     -- If Tarantool version < 2.10.1, replace next line with\n"
+"     -- param_list = {'string'},\n"
+"     param_list = {'map'},\n"
+"     exports = {'LUA', 'SQL'},\n"
+"     is_deterministic = true})"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:372
+msgid "And this creates the view:"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:374
+msgid "box.execute([[\n"
+"CREATE VIEW vtables AS SELECT\n"
+"\"name\" AS table_name,\n"
+"CASE WHEN tables_is_view(\"flags\") == TRUE THEN 'VIEW'\n"
+"     ELSE 'BASE TABLE' END AS table_type,\n"
+"\"id\" AS id,\n"
+"\"engine\" AS engine,\n"
+"(SELECT \"name\" FROM \"_vuser\" x\n"
+" WHERE x.\"id\" = y.\"owner\") AS owner,\n"
+"\"field_count\" AS field_count\n"
+"FROM \"_vspace\" y;\n"
+"]])"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:389
+msgid "Remember that these Lua functions are persistent, so if the server has to be restarted then they do not have to be re-declared."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:395
+msgid "Executing Lua chunks"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:397
+msgid "To execute Lua code without creating a function, use: |br| :samp:`LUA({Lua-code-string})` |br| where Lua-code-string is any amount of Lua code. The string should begin with ``'return '``."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:402
+msgid "For example this will show the number of seconds since the epoch: |br| ``box.execute([[SELECT lua('return os.time()');]])`` |br| For example this will show a database configuration member: |br| ``box.execute([[SELECT lua('return box.cfg.memtx_memory');]])`` |br| For example this will return FALSE because Lua nil and box.NULL are the same as SQL NULL: |br| ``box.execute([[SELECT lua('return box.NULL') IS NOT NULL;]])``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:409
+msgid "Warning: the SQL statement must not invoke a Lua function, or execute a Lua chunk, that accesses a space that underlies any SQL table that the SQL statement accesses. For example, if function ``f()`` contains a request ``\"box.space.TEST:insert{0}\"``, then the SQL statement ``\"SELECT f() FROM test;\"`` will try to access the same space in two ways. The results of such conflict may include a hang or an infinite loop."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:419
+msgid "Example Sessions"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:423
+msgid "Example Session -- Create, Insert, Select"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:425
+msgid "Assume that the task is to create two tables, put some rows in each table, create a :ref:`view <sql_create_view>` that is based on a join of the tables, then select from the view all rows where the second column values are not null, ordered by the first column."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:430
+msgid "That is, the way to populate the table is |br| ``CREATE TABLE t1 (c1 INTEGER PRIMARY KEY, c2 STRING);`` |br| ``CREATE TABLE t2 (c1 INTEGER PRIMARY KEY, x2 STRING);`` |br| ``INSERT INTO t1 VALUES (1, 'A'), (2, 'B'), (3, 'C');`` |br| ``INSERT INTO t1 VALUES (4, 'D'), (5, 'E'), (6, 'F');`` |br| ``INSERT INTO t2 VALUES (1, 'C'), (4, 'A'), (6, NULL);`` |br| ``CREATE VIEW v AS SELECT * FROM t1 NATURAL JOIN t2;`` |br| ``SELECT * FROM v WHERE c2 IS NOT NULL ORDER BY c1;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:439
+msgid "So the session looks like this: |br| ``box.cfg{}`` |br| ``box.execute([[CREATE TABLE t1 (c1 INTEGER PRIMARY KEY, c2 STRING);]])`` |br| ``box.execute([[CREATE TABLE t2 (c1 INTEGER PRIMARY KEY, x2 STRING);]])`` |br| ``box.execute([[INSERT INTO t1 VALUES (1, 'A'), (2, 'B'), (3, 'C');]])`` |br| ``box.execute([[INSERT INTO t1 VALUES (4, 'D'), (5, 'E'), (6, 'F');]])`` |br| ``box.execute([[INSERT INTO t2 VALUES (1, 'C'), (4, 'A'), (6, NULL);]])`` |br| ``box.execute([[CREATE VIEW v AS SELECT * FROM t1 NATURAL JOIN t2;]])`` |br| ``box.execute([[SELECT * FROM v WHERE c2 IS NOT NULL ORDER BY c1;]])``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:449
+msgid "If one executes the above requests with Tarantool as a client, provided the database objects do not already exist, the execution will be successful and the final display will be"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:452
+msgid "tarantool> box.execute([[SELECT * FROM v WHERE c2 IS NOT NULL ORDER BY c1;]])\n"
+"---\n"
+"- - [1, 'A', 'C']\n"
+"- [4, 'D', 'A']\n"
+"- [6, 'F', null]"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:462
+msgid "Example Session -- Get a List of Columns"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:464
+msgid "Here  is a function which will create a table that contains a list of all the columns and their Lua types, for all tables. It is not a necessary function because one can create a :ref:`_COLUMNS view <sql__columns_view>` instead. It merely shows, with simpler Lua code, how to make a base table instead of a view."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:470
+msgid "function create_information_schema_columns()\n"
+"  box.execute([[DROP TABLE IF EXISTS information_schema_columns;]])\n"
+"  box.execute([[CREATE TABLE information_schema_columns (\n"
+"                    table_name STRING,\n"
+"                    column_name STRING,\n"
+"                    ordinal_position INTEGER,\n"
+"                    data_type STRING,\n"
+"                    PRIMARY KEY (table_name, column_name));]]);\n"
+"  local space = box.space._vspace:select()\n"
+"  local sqlstring = ''\n"
+"  for i = 1, #space do\n"
+"      for j = 1, #space[i][7] do\n"
+"          sqlstring = \"INSERT INTO information_schema_columns VALUES (\"\n"
+"                  .. \"'\" .. space[i][3] .. \"'\"\n"
+"                  .. \",\"\n"
+"                  .. \"'\" .. space[i][7][j].name .. \"'\"\n"
+"                  .. \",\"\n"
+"                  .. j\n"
+"                  .. \",\"\n"
+"                  .. \"'\" .. space[i][7][j].type .. \"'\"\n"
+"                  .. \");\"\n"
+"          box.execute(sqlstring)\n"
+"      end\n"
+"  end\n"
+"  return\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:499
+msgid "If you now execute the function by saying |br| ``create_information_schema_columns()`` |br| you will see that there is a table named information_schema_columns containing table_name and column_name and ordinal_position and data_type for everything that was accessible."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:506
+msgid "Example Session -- Million-Row Insert"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:508
+msgid "Here is a variation of the Lua tutorial :ref:`\"Insert one million tuples with a Lua stored procedure\" <c_lua_tutorial-insert_one_million_tuples>`. The differences are: the creation is done with an SQL :ref:`CREATE TABLE statement <sql_create_table>`, and the inserting is done with an SQL :ref:`INSERT statement <sql_insert>`. Otherwise, it is the same. It is the same because Lua and SQL are compatible, just as Lua and NoSQL are compatible."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:516
+msgid "box.execute([[CREATE TABLE tester (s1 INTEGER PRIMARY KEY, s2 STRING);]])\n"
+"\n"
+"function string_function()\n"
+"  local random_number\n"
+"  local random_string\n"
+"  random_string = \"\"\n"
+"  for x = 1,10,1 do\n"
+"    random_number = math.random(65, 90)\n"
+"    random_string = random_string .. string.char(random_number)\n"
+"  end\n"
+"  return random_string\n"
+"end\n"
+"\n"
+"function main_function()\n"
+"    local string_value, t, sql_statement\n"
+"    for i = 1,1000000, 1 do\n"
+"    string_value = string_function()\n"
+"    sql_statement = \"INSERT INTO tester VALUES (\" .. i .. \",'\" .. string_value .. \"');\"\n"
+"    box.execute(sql_statement)\n"
+"    end\n"
+"end\n"
+"start_time = os.clock()\n"
+"main_function()\n"
+"end_time = os.clock()\n"
+"'insert done in ' .. end_time - start_time .. ' seconds'"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:544
+msgid "Limitations: The function takes more time than the original (Tarantool/NoSQL)."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:551
+msgid "Lua functions to make views of metadata"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:553
+msgid "Tarantool does not include all the standard-SQL `information_schema <https://en.wikipedia.org/wiki/information_schema>`_ views, which are for looking at metadata, that is, \"data about the data\". But here is the Lua code and SQL code for creating equivalents: |br| :ref:`_TABLES <sql__tables_view>` nearly equivalent to INFORMATION_SCHEMA.TABLES |br| :ref:`_COLUMNS <sql__columns_view>` nearly equivalent to INFORMATION_SCHEMA.COLUMNS |br| :ref:`_VIEWS <sql__views_view>` nearly equivalent to INFORMATION_SCHEMA.VIEWS |br| :ref:`_TRIGGERS <sql__triggers_view>` nearly equivalent to INFORMATION_SCHEMA.TRIGGERS |br| :ref:`_REFERENTIAL_CONSTRAINTS <sql__referential_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS |br| :ref:`_CHECK_CONSTRAINTS <sql__check_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.CHECK_CONSTRAINTS |br| :ref:`_TABLE_CONSTRAINTS <sql__table_constraints_view>` nearly equivalent to INFORMATION_SCHEMA.TABLE_CONSTRAINTS. |br| For each view there will be an example of a SELECT from the view, and the code. Users who want metadata can simply copy the code. Use this code only with Tarantool version 2.3.0 or later. With an earlier Tarantool version, a :ref:`PRAGMA statement <sql_pragma>` may be useful."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:573
+msgid "_TABLES view"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:575
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:649
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:751
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:814
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:871
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:926
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:976
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:577
+msgid "tarantool>SELECT * FROM _tables WHERE id > 340 LIMIT 5;\n"
+"OK 5 rows selected (0.0 seconds)\n"
+"+---------------+--------------+----------------+------------+-----+--------+-------+-------------+\n"
+"| TABLE_CATALOG | TABLE_SCHEMA | TABLE_NAME     | TABLE_TYPE | ID  | ENGINE | OWNER | FIELD_COUNT |\n"
+"+---------------+--------------+----------------+------------+-----+--------+-------+-------------+\n"
+"| NULL          | NULL         | _fk_constraint | BASE TABLE | 356 | memtx  | admin |        0    |\n"
+"| NULL          | NULL         | _ck_constraint | BASE TABLE | 364 | memtx  | admin |        0    |\n"
+"| NULL          | NULL         | _func_index    | BASE TABLE | 372 | memtx  | admin |        0    |\n"
+"| NULL          | NULL         | _COLUMNS       | VIEW       | 513 | memtx  | admin |        8    |\n"
+"| NULL          | NULL         | _VIEWS         | VIEW       | 514 | memtx  | admin |        7    |\n"
+"+---------------+--------------+----------------+------------+-----+--------+-------+-------------+"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:591
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:665
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:767
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:827
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:994
+msgid "Definition of the function and the CREATE VIEW statement:"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:593
+msgid "box.schema.func.drop('_TABLES_IS_VIEW',{if_exists = true})\n"
+"box.schema.func.create('_TABLES_IS_VIEW',\n"
+"     {language = 'LUA',\n"
+"      returns = 'boolean',\n"
+"      body = [[function (flags)\n"
+"          local view\n"
+"          -- If Tarantool version < 2.10.1, replace next line with\n"
+"          -- view = require('msgpack').decode(flags).view\n"
+"          view = flags.view\n"
+"          if view == nil then return false end\n"
+"          return view\n"
+"          end]],\n"
+"     is_sandboxed = false,\n"
+"     -- If Tarantool version < 2.10.1, replace next line with\n"
+"     -- param_list = {'string'},\n"
+"     param_list = {'map'},\n"
+"     exports = {'LUA', 'SQL'},\n"
+"     is_deterministic = true})\n"
+"box.schema.role.grant('public', 'execute', 'function', '_TABLES_IS_VIEW')\n"
+"pcall(function ()\n"
+"    box.schema.role.revoke('public', 'read', 'space', '_TABLES', {if_exists = true})\n"
+"    end)\n"
+"box.execute([[DROP VIEW IF EXISTS _tables;]])\n"
+"box.execute([[\n"
+"CREATE VIEW _tables AS SELECT\n"
+"    CAST(NULL AS STRING) AS table_catalog,\n"
+"    CAST(NULL AS STRING) AS table_schema,\n"
+"    \"name\" AS table_name,\n"
+"    CASE\n"
+"        WHEN _tables_is_view(\"flags\") = TRUE THEN 'VIEW'\n"
+"        ELSE 'BASE TABLE' END\n"
+"        AS table_type,\n"
+"    \"id\" AS id,\n"
+"    \"engine\" AS engine,\n"
+"    (SELECT \"name\" FROM \"_vuser\" x WHERE x.\"id\" = y.\"owner\") AS owner,\n"
+"    \"field_count\" AS field_count\n"
+"FROM \"_vspace\" y;\n"
+"]])\n"
+"box.schema.role.grant('public', 'read', 'space', '_TABLES')"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:639
+msgid "_COLUMNS view"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:641
+msgid "This is also an example of how one can use :ref:`recursive views <sql_with>` to make temporary tables with multiple rows for each tuple in the original ``\"_vspace\"`` space. It requires a global variable, _G.box.FORMATS, as a temporary static variable."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:645
+msgid "Warning: Use this code only with Tarantool version 2.3.2 or later. Use with earlier versions will cause an assertion. See `Issue#4504 <https://github.com/tarantool/tarantool/issues/4504>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:651
+msgid "tarantool>SELECT * FROM _columns WHERE ordinal_position = 9;\n"
+"OK 6 rows selected (0.0 seconds)\n"
+"+--------------+-------------+--------------------------+--------------+------------------+-------------+-----------+-----+\n"
+"| CATALOG_NAME | SCHEMA_NAME | TABLE_NAME               | COLUMN_NAME  | ORDINAL_POSITION | IS_NULLABLE | DATA_TYPE | ID  |\n"
+"+--------------+-------------+--------------------------+--------------+------------------+-------------+-----------+-----+\n"
+"| NULL         | NULL        | _sequence                | cycle        |                9 | YES         | boolean   | 284 |\n"
+"| NULL         | NULL        | _vsequence               | cycle        |                9 | YES         | boolean   | 286 |\n"
+"| NULL         | NULL        | _func                    | returns      |                9   YES           string    | 296 |\n"
+"| NULL         | NULL        | _fk_constraint           | parent_cols  |                9 | YES         | array     | 356 |\n"
+"| NULL         | NULL        | _REFERENTIAL_CONSTRAINTS | MATCH_OPTION |                9 | YES         | string    | 518 |\n"
+"+--------------+-------------+--------------------------+--------------+------------------+-------------+-----------+-----+"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:667
+msgid "box.schema.func.drop('_COLUMNS_FORMATS', {if_exists = true})\n"
+"box.schema.func.create('_COLUMNS_FORMATS',\n"
+"    {language = 'LUA',\n"
+"     returns = 'scalar',\n"
+"     body = [[\n"
+"     function (row_number_, ordinal_position)\n"
+"         if row_number_ == 0 then\n"
+"             _G.box.FORMATS = {}\n"
+"             local vspace = box.space._vspace:select()\n"
+"             for i = 1, #vspace do\n"
+"                 local format = vspace[i][\"format\"]\n"
+"                 for j = 1, #format do\n"
+"                     local is_nullable = 'YES'\n"
+"                     if format[j].is_nullable == false then\n"
+"                         is_nullable = 'NO'\n"
+"                     end\n"
+"                     table.insert(_G.box.FORMATS,\n"
+"                                  {vspace[i].name, format[j].name, j,\n"
+"                                   is_nullable, format[j].type, vspace[i].id})\n"
+"                 end\n"
+"             end\n"
+"             return ''\n"
+"         end\n"
+"         if row_number_ > #_G.box.FORMATS then\n"
+"             _G.box.FORMATS = {}\n"
+"             return ''\n"
+"         end\n"
+"         return _G.box.FORMATS[row_number_][ordinal_position]\n"
+"     end\n"
+"     ]],\n"
+"    param_list = {'integer', 'integer'},\n"
+"    exports = {'LUA', 'SQL'},\n"
+"    is_sandboxed = false,\n"
+"    setuid = false,\n"
+"    is_deterministic = false})\n"
+"box.schema.role.grant('public', 'execute', 'function', '_COLUMNS_FORMATS')\n"
+"\n"
+"pcall(function ()\n"
+"    box.schema.role.revoke('public', 'read', 'space', '_COLUMNS', {if_exists = true})\n"
+"    end)\n"
+"box.execute([[DROP VIEW IF EXISTS _columns;]])\n"
+"box.execute([[\n"
+"CREATE VIEW _columns AS\n"
+"WITH RECURSIVE r_columns AS\n"
+"(\n"
+"SELECT 0 AS row_number_,\n"
+"      '' AS table_name,\n"
+"      '' AS column_name,\n"
+"      0 AS ordinal_position,\n"
+"      '' AS is_nullable,\n"
+"      '' AS data_type,\n"
+"      0 AS id\n"
+"UNION ALL\n"
+"SELECT row_number_ + 1 AS row_number_,\n"
+"       _columns_formats(row_number_, 1) AS table_name,\n"
+"       _columns_formats(row_number_, 2) AS column_name,\n"
+"       _columns_formats(row_number_, 3) AS ordinal_position,\n"
+"       _columns_formats(row_number_, 4) AS is_nullable,\n"
+"       _columns_formats(row_number_, 5) AS data_type,\n"
+"       _columns_formats(row_number_, 6) AS id\n"
+"    FROM r_columns\n"
+"    WHERE row_number_ == 0 OR row_number_ <= lua('return #_G.box.FORMATS + 1')\n"
+")\n"
+"SELECT CAST(NULL AS STRING) AS catalog_name,\n"
+"       CAST(NULL AS STRING) AS schema_name,\n"
+"       table_name,\n"
+"       column_name,\n"
+"       ordinal_position,\n"
+"       is_nullable,\n"
+"       data_type,\n"
+"       id\n"
+"    FROM r_columns\n"
+"    WHERE data_type <> '';\n"
+"]])\n"
+"box.schema.role.grant('public', 'read', 'space', '_COLUMNS')"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:749
+msgid "_VIEWS view"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:753
+msgid "tarantool>SELECT table_name, substr(view_definition,1,20), id, owner, field_count FROM _views LIMIT 5;\n"
+"OK 5 rows selected (0.0 seconds)\n"
+"+--------------------------+------------------------------+-----+-------+-------------+\n"
+"| TABLE_NAME               | SUBSTR(VIEW_DEFINITION,1,20) | ID  | OWNER | FIELD_COUNT |\n"
+"+--------------------------+------------------------------+-----+-------+-------------+\n"
+"| _COLUMNS                 | CREATE VIEW _columns         | 513 | admin |           8 |\n"
+"| _TRIGGERS                | CREATE VIEW _trigger         | 515 | admin |           4 |\n"
+"| _CHECK_CONSTRAINTS       | CREATE VIEW _check_c         | 517 | admin |           8 |\n"
+"| _REFERENTIAL_CONSTRAINTS | CREATE VIEW _referen         | 518 | admin |          12 |\n"
+"| _TABLE_CONSTRAINTS       | CREATE VIEW _table_c         | 519 | admin |          11 |\n"
+"+--------------------------+------------------------------+-----+-------+-------------+"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:769
+msgid "box.schema.func.drop('_VIEWS_DEFINITION',{if_exists = true})\n"
+"box.schema.func.create('_VIEWS_DEFINITION',\n"
+"    {language = 'LUA',\n"
+"     returns = 'string',\n"
+"     body = [[function (flags)\n"
+"              -- If Tarantool version < 2.10.1, replace next line with\n"
+"              -- return require('msgpack').decode(flags).sql\n"
+"              return flags.sql\n"
+"              end]],\n"
+"     -- If Tarantool version < 2.10.1, replace next line with\n"
+"     -- param_list = {'string'},\n"
+"     param_list = {'map'},\n"
+"     exports = {'LUA', 'SQL'},\n"
+"     is_sandboxed = false,\n"
+"     setuid = false,\n"
+"     is_deterministic = false})\n"
+"box.schema.role.grant('public', 'execute', 'function', '_VIEWS_DEFINITION')\n"
+"pcall(function ()\n"
+"    box.schema.role.revoke('public', 'read', 'space', '_VIEWS', {if_exists = true})\n"
+"    end)\n"
+"box.execute([[DROP VIEW IF EXISTS _views;]])\n"
+"box.execute([[\n"
+"CREATE VIEW _views AS SELECT\n"
+"    CAST(NULL AS STRING) AS table_catalog,\n"
+"    CAST(NULL AS STRING) AS table_schema,\n"
+"    \"name\" AS table_name,\n"
+"    CAST(_views_definition(\"flags\") AS STRING) AS VIEW_DEFINITION,\n"
+"    \"id\" AS id,\n"
+"    (SELECT \"name\" FROM \"_vuser\" x WHERE x.\"id\" = y.\"owner\") AS owner,\n"
+"    \"field_count\" AS field_count\n"
+"    FROM \"_vspace\" y\n"
+"    WHERE _tables_is_view(\"flags\") = TRUE;\n"
+"]])\n"
+"box.schema.role.grant('public', 'read', 'space', '_VIEWS')"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:806
+msgid "_TABLES_IS_VIEW() was described earlier, see :ref:`_TABLES view <sql__tables_view>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:812
+msgid "_TRIGGERS view"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:816
+msgid "tarantool>SELECT trigger_name, opts_sql FROM _triggers;\n"
+"OK 2 rows selected (0.0 seconds)\n"
+"+--------------+-------------------------------------------------------------------------------------------------+\n"
+"| TRIGGER_NAME | OPTS_SQL                                                                                        |\n"
+"+--------------+-------------------------------------------------------------------------------------------------+\n"
+"| THINGS1_AD   | CREATE TRIGGER things1_ad AFTER DELETE ON things1 FOR EACH ROW BEGIN DELETE FROM things2; END;  |\n"
+"| THINGS1_BI   | CREATE TRIGGER things1_bi BEFORE INSERT ON things1 FOR EACH ROW BEGIN DELETE FROM things2; END; |\n"
+"+--------------+-------------------------------------------------------------------------------------------------+"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:829
+msgid "box.schema.func.drop('_TRIGGERS_OPTS_SQL',{if_exists = true})\n"
+"box.schema.func.create('_TRIGGERS_OPTS_SQL',\n"
+"    {language = 'LUA',\n"
+"     returns = 'string',\n"
+"     body = [[function (opts)\n"
+"              -- If Tarantool version < 2.10.1, replace next line with\n"
+"              -- return require('msgpack').decode(opts).sql\n"
+"              return opts.sql\n"
+"              end]],\n"
+"     -- If Tarantool version < 2.10.1, replace next line with\n"
+"     -- param_list = {'string'},\n"
+"     param_list = {'map'},\n"
+"     exports = {'LUA', 'SQL'},\n"
+"     is_sandboxed = false,\n"
+"     setuid = false,\n"
+"     is_deterministic = false})\n"
+"box.schema.role.grant('public', 'execute', 'function', '_TRIGGERS_OPTS_SQL')\n"
+"pcall(function ()\n"
+"    box.schema.role.revoke('public', 'read', 'space', '_TRIGGERS', {if_exists = true})\n"
+"    end)\n"
+"box.execute([[DROP VIEW IF EXISTS _triggers;]])\n"
+"box.execute([[\n"
+"CREATE VIEW _triggers AS SELECT\n"
+"    CAST(NULL AS STRING) AS trigger_catalog,\n"
+"    CAST(NULL AS STRING) AS trigger_schema,\n"
+"    \"name\" AS trigger_name,\n"
+"    CAST(_triggers_opts_sql(\"opts\") AS STRING) AS opts_sql,\n"
+"    \"space_id\" AS space_id\n"
+"    FROM \"_trigger\";\n"
+"]])\n"
+"box.schema.role.grant('public', 'read', 'space', '_TRIGGERS')"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:863
+msgid "Users who select from this view will need 'read' privilege on the _trigger space."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:869
+msgid "_REFERENTIAL_CONSTRAINTS view"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:873
+msgid "tarantool>SELECT constraint_name, update_rule, delete_rule, match_option,\n"
+"> referencing, referenced\n"
+"> FROM _referential_constraints;\n"
+"OK 2 rows selected (0.0 seconds)\n"
+"+----------------------+-------------+-------------+--------------+-------------+------------+\n"
+"| CONSTRAINT_NAME      | UPDATE_RULE | DELETE_RULE | MATCH_OPTION | REFERENCING | REFERENCED |\n"
+"+----------------------+-------------+-------------+--------------+-------------+------------+\n"
+"| fk_unnamed_THINGS2_1 | no_action   | no_action   | simple       | THINGS2     | THINGS1    |\n"
+"| fk_unnamed_THINGS3_1 | no_action   | no_action   | simple       | THINGS3     | THINGS1    |\n"
+"+----------------------+-------------+-------------+--------------+-------------+------------+"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:886
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:941
+msgid "Definition of the CREATE VIEW statement:"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:888
+msgid "pcall(function ()\n"
+"    box.schema.role.revoke('public', 'read', 'space', '_REFERENTIAL_CONSTRAINTS', {if_exists = true})\n"
+"    end)\n"
+"box.execute([[DROP VIEW IF EXISTS _referential_constraints;]])\n"
+"box.execute([[\n"
+"CREATE VIEW _referential_constraints AS SELECT\n"
+"    CAST(NULL AS STRING) AS constraint_catalog,\n"
+"    CAST(NULL AS STRING) AS constraint_schema,\n"
+"    \"name\" AS constraint_name,\n"
+"    CAST(NULL AS STRING) AS unique_constraint_catalog,\n"
+"    CAST(NULL AS STRING) AS unique_constraint_schema,\n"
+"    '' AS unique_constraint_name,\n"
+"    \"on_update\" AS update_rule,\n"
+"    \"on_delete\" AS delete_rule,\n"
+"    \"match\" AS match_option,\n"
+"    (SELECT \"name\" FROM \"_vspace\" x WHERE x.\"id\" = y.\"child_id\") AS referencing,\n"
+"    (SELECT \"name\" FROM \"_vspace\" x WHERE x.\"id\" = y.\"parent_id\") AS referenced,\n"
+"    \"is_deferred\" AS is_deferred,\n"
+"    \"child_id\" AS child_id,\n"
+"    \"parent_id\" AS parent_id\n"
+"    FROM \"_fk_constraint\" y;\n"
+"]])\n"
+"box.schema.role.grant('public', 'read', 'space', '_REFERENTIAL_CONSTRAINTS')"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:914
+msgid "In this example child_cols or parent_cols are not taken from the _fk_constraint space because in standard SQL those are in a separate table."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:918
+msgid "Users who select from this view will need 'read' privilege on the _fk_constraint space."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:924
+msgid "_CHECK_CONSTRAINTS view"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:928
+msgid "tarantool>SELECT constraint_name, check_clause, space_name, language\n"
+"> FROM _check_constraints;\n"
+"OK 3 rows selected (0.0 seconds)\n"
+"+------------------------+-------------------------+------------+----------+\n"
+"| CONSTRAINT_NAME        | CHECK_CLAUSE            | SPACE_NAME | LANGUAGE |\n"
+"+------------------------+-------------------------+------------+----------+\n"
+"| ck_unnamed_Employees_1 | first_name LIKE 'Влад%' | Employees  | SQL      |\n"
+"| ck_unnamed_Critics_1   | first_name LIKE 'Vlad%' | Critics    | SQL      |\n"
+"| ck_unnamed_ACTORS_1    | salary > 0              | ACTORS     | SQL      |\n"
+"+------------------------+-------------------------+------------+----------+"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:943
+msgid "pcall(function ()\n"
+"    box.schema.role.revoke('public', 'read', 'space', '_CHECK_CONSTRAINTS', {if_exists = true})\n"
+"    end)\n"
+"box.execute([[DROP VIEW IF EXISTS _check_constraints;]])\n"
+"box.execute([[\n"
+"CREATE VIEW _check_constraints AS SELECT\n"
+"    CAST(NULL AS STRING) AS constraint_catalog,\n"
+"    CAST(NULL AS STRING) AS constraint_schema,\n"
+"    \"name\" AS constraint_name,\n"
+"    \"code\" AS check_clause,\n"
+"    (SELECT \"name\" FROM \"_vspace\" x WHERE x.\"id\" = y.\"space_id\") AS space_name,\n"
+"    \"language\" AS language,\n"
+"    \"is_deferred\" AS is_deferred,\n"
+"    \"space_id\" AS space_id\n"
+"    FROM \"_ck_constraint\" y;\n"
+"]])\n"
+"box.schema.role.grant('public', 'read', 'space', '_CHECK_CONSTRAINTS')"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:963
+msgid "Users who select from this view will need 'read' privilege on the _ck_constraint space."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:969
+msgid "_TABLE_CONSTRAINTS view"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:971
+msgid "This has only the constraints (primary-key and unique-key) that can be found by looking at the :ref:`_index <box_space-index>` space. It is not a list of indexes, that is, it is not equivalent to INFORMATION_SCHEMA.STATISTICS. The columns of the index are not taken because in standard SQL they would be in a different table."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:978
+msgid "tarantool>SELECT constraint_name, constraint_type, table_name, id, iid, index_type\n"
+"> FROM _table_constraints\n"
+"> LIMIT 5;\n"
+"OK 5 rows selected (0.0 seconds)\n"
+"+-----------------+-----------------+-------------+-----+-----+------------+\n"
+"| CONSTRAINT_NAME | CONSTRAINT_TYPE | TABLE_NAME  | ID  | IID | INDEX_TYPE |\n"
+"+-----------------+-----------------+-------------+-----+-----+------------+\n"
+"| primary         | PRIMARY         | _schema     | 272 |   0 | tree       |\n"
+"| primary         | PRIMARY         | _collation  | 276 |   0 | tree       |\n"
+"| name            | UNIQUE          | _collation  | 276 |   1 | tree       |\n"
+"| primary         | PRIMARY         | _vcollation | 277 |   0 | tree       |\n"
+"| name            | UNIQUE          | _vcollation | 277 |   1 | tree       |\n"
+"+-----------------+-----------------+-------------+-----+-----+------------+"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql_plus_lua.rst:996
+msgid "box.schema.func.drop('_TABLE_CONSTRAINTS_OPTS_UNIQUE',{if_exists = true})\n"
+"function _TABLE_CONSTRAINTS_OPTS_UNIQUE (opts) return require('msgpack').decode(opts).unique end\n"
+"box.schema.func.create('_TABLE_CONSTRAINTS_OPTS_UNIQUE',\n"
+"    {language = 'LUA',\n"
+"     returns = 'boolean',\n"
+"     body = [[function (opts) return require('msgpack').decode(opts).unique end]],\n"
+"     param_list = {'string'},\n"
+"     exports = {'LUA', 'SQL'},\n"
+"     is_sandboxed = false,\n"
+"     setuid = false,\n"
+"     is_deterministic = false})\n"
+"box.schema.role.grant('public', 'execute', 'function', '_TABLE_CONSTRAINTS_OPTS_UNIQUE')\n"
+"pcall(function ()\n"
+"box.schema.role.revoke('public', 'read', 'space', '_TABLE_CONSTRAINTS', {if_exists = true})\n"
+"end)\n"
+"box.execute([[DROP VIEW IF EXISTS _table_constraints;]])\n"
+"box.execute([[\n"
+"CREATE VIEW _table_constraints AS SELECT\n"
+"CAST(NULL AS STRING) AS constraint_catalog,\n"
+"CAST(NULL AS STRING) AS constraint_schema,\n"
+"\"name\" AS constraint_name,\n"
+"(SELECT \"name\" FROM \"_vspace\" x WHERE x.\"id\" = y.\"id\") AS table_name,\n"
+"CASE WHEN \"iid\" = 0 THEN 'PRIMARY' ELSE 'UNIQUE' END AS constraint_type,\n"
+"CAST(NULL AS STRING) AS initially_deferrable,\n"
+"CAST(NULL AS STRING) AS deferred,\n"
+"CAST(NULL AS STRING) AS enforced,\n"
+"\"id\" AS id,\n"
+"\"iid\" AS iid,\n"
+"\"type\" AS index_type\n"
+"FROM \"_vindex\" y\n"
+"WHERE _table_constraints_opts_unique(\"opts\") = TRUE;\n"
+"]])\n"
+"box.schema.role.grant('public', 'read', 'space', '_TABLE_CONSTRAINTS')"
+msgstr ""

@@ -1,0 +1,30 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/localization.rst:8
+#: ../../doc/contributing/docs/localization.rst:8
+msgid "Contents:"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization.rst:2
+msgid "Localization"
+msgstr ""
+
+#: ../../doc/contributing/docs/localization.rst:4
+msgid "This section covers the specifics of localizing Tarantool into Russian. If you are translating Tarantool docs into Russian, be sure to check out our translation guidelines."
+msgstr ""

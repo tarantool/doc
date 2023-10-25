@@ -1,0 +1,29 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/getting_started/writing_cluster_code.rst:5
+msgid "Writing code in a cluster application"
+msgstr ""
+
+#: ../../doc/getting_started/writing_cluster_code.rst:7
+msgid "In the \"Getting Started\" tutorial, we wrote the application code directly in the browser. We used the file ``config.yml`` to describe HTTP endpoint handlers. This is a convenient and fast way to write code that allows you to use Tarantool as a repository without any additional HTTP service. This functionality is implemented through the ``cartridge-extensions`` module. It is also included in the tutorial default application."
+msgstr ""
+
+#: ../../doc/getting_started/writing_cluster_code.rst:15
+msgid "However, in Tarantool, you can implement absolutely any business logic on top of a cluster. This :doc:`Cartridge getting started section </how-to/getting_started_cartridge>` covers the cluster roles mechanism and writing a cluster application from scratch."
+msgstr ""

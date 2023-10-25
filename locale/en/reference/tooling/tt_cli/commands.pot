@@ -1,0 +1,385 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "binaries"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "build"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "cartridge"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "cat"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "cfg"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "check"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "clean"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "completion"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "connect"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "coredump"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "create"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "crud"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "export"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "help"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "import"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "init"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "install"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "logrotate"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "pack"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "play"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "restart"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "rocks"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "run"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "search"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "start"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "status"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "stop"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "uninstall"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:76
+msgid "version"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:4
+msgid "Commands"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:6
+msgid "Below is a list of `tt` commands. Run ``tt COMMAND help`` to see the detailed help for the given command."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:15
+msgid ":doc:`binaries <binaries>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:16
+msgid "Show a list of installed binaries and their versions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:17
+msgid ":doc:`build <build>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:18
+msgid "Build an application locally"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:19
+msgid ":doc:`cartridge <cartridge>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:20
+msgid "Manage a Cartridge application"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:21
+msgid ":doc:`cat <cat>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:22
+msgid "Print the contents of ``.snap`` or ``.xlog`` files into stdout"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:23
+msgid ":doc:`cfg <cfg>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:24
+msgid "Manage a ``tt`` environment configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:25
+msgid ":doc:`check <check>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:26
+msgid "Check an application file for syntax errors"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:27
+msgid ":doc:`clean <clean>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:28
+msgid "Clean instance files"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:29
+msgid ":doc:`completion <completion>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:30
+msgid "Generate completion for a specified shell"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:31
+msgid ":doc:`connect <connect>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:32
+msgid "Connect to a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:33
+msgid ":doc:`coredump <coredump>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:34
+msgid "Manipulate Tarantool core dumps"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:35
+msgid ":doc:`create <create>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:36
+msgid "Create an application from a template"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:37
+msgid ":doc:`crud <crud>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:38
+msgid "Interact with the CRUD module (`Enterprise only <https://www.tarantool.io/compare/>`_)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:39
+msgid ":doc:`export <export>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:40
+msgid "Export data to a file (`Enterprise only <https://www.tarantool.io/compare/>`_)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:41
+msgid ":doc:`help <help>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:42
+msgid "Display help for ``tt`` or a specific command"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:43
+msgid ":doc:`import <import>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:44
+msgid "Import data from a file (`Enterprise only <https://www.tarantool.io/compare/>`_)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:45
+msgid ":doc:`init <init>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:46
+msgid "Create a new ``tt`` environment in the current directory"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:47
+msgid ":doc:`install <install>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:48
+msgid "Install Tarantool or ``tt``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:49
+msgid ":doc:`instances <instances>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:50
+msgid "List enabled applications"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:51
+msgid ":doc:`logrotate <logrotate>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:52
+msgid "Rotate instance logs"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:53
+msgid ":doc:`pack <pack>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:54
+msgid "Package an application"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:55
+msgid ":doc:`play <play>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:56
+msgid "Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:57
+msgid ":doc:`restart <restart>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:58
+msgid "Restart a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:59
+msgid ":doc:`rocks <rocks>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:60
+msgid "Use the LuaRocks package manager"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:61
+msgid ":doc:`run <run>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:62
+msgid "Run Lua code in a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:63
+msgid ":doc:`search <search>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:64
+msgid "Search available Tarantool and ``tt`` versions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:65
+msgid ":doc:`start <start>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:66
+msgid "Start a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:67
+msgid ":doc:`status <status>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:68
+msgid "Get the current status of a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:69
+msgid ":doc:`stop <stop>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:70
+msgid "Stop a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:71
+msgid ":doc:`uninstall <uninstall>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:72
+msgid "Uninstall Tarantool or ``tt``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:73
+msgid ":doc:`version <version>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/commands.rst:74
+msgid "Show the ``tt`` version information"
+msgstr ""

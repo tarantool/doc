@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:5
+msgid "Module *cartridge.pool*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:7
+msgid "Connection pool."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:11
+msgid "Reuse tarantool net.box connections with ease."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:16
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:23
+msgid "connect (uri[, opts])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:25
+msgid "Connect a remote or get cached connection. Connection is established using  ``net.box.connect()`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:29
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:70
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:90
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:31
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:32
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:94
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:34
+msgid "*wait_connected:* (**boolean** or **number**) by default, connection creation is blocked until the connection is established, but passing  ``wait_connected=false``  makes it return immediately. Also, passing a timeout makes it wait before returning (e.g.  ``wait_connected=1.5``  makes it wait at most 1.5 seconds)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:35
+msgid "*fetch_schema:* (optional **number**) Fetch schema from tarantool instances"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:36
+msgid "*connect_timeout:* (optional **number**) (*deprecated*)Use `wait_connected` instead"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:37
+msgid "*user:*  (*deprecated*) don't use it"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:38
+msgid "*password:*  (*deprecated*) don't use it"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:39
+msgid "*reconnect_after:*  (*deprecated*) don't use it"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:42
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:74
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:100
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:44
+msgid "``net.box``  connection"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:47
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:49
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:51
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:56
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:63
+msgid "format_uri (uri)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:65
+msgid "Enrich URI with credentials. Suitable to connect other cluster instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:72
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) `host:port`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:76
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) `username:password@host:port`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:83
+msgid "map_call (fn_name[, args[, opts]])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:85
+msgid "Perform a remote call to multiple URIs and map results."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:87
+msgid "(**Added** in v1.2.0-17)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:92
+msgid "*fn_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:93
+msgid "*args:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) function arguments (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:96
+msgid "*uri_list:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of URIs for performing remote call"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:97
+msgid "*timeout:* (optional **number**) passed to  ``net.box``   ``conn:call()``  (unit: seconds, default: 10)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:102
+msgid "(**{URI=value,...}**) Call results mapping for every URI."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.pool.rst:104
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) United error object, gathering errors for every URI that failed."
+msgstr ""

@@ -1,0 +1,441 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/start_stop_instance.rst:4
+msgid "Starting and stopping instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:6
+msgid "To start a Tarantool instance from an :ref:`instance file <admin-instance_file>` using the :ref:`tt <tt-cli>` utility:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:9
+msgid "Place the instance file (for example, ``my_app.lua``) into ``/etc/tarantool/instances.enabled/``. This is the default location where ``tt`` searches for instance files."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:12
+#: ../../doc/book/admin/start_stop_instance.rst:282
+msgid "Run ``tt start``:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:14
+msgid "$ tt start\n"
+"   • Starting an instance [my_app]..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:19
+msgid "In this case, ``tt`` starts an instance from any ``*.lua`` file it finds in ``/etc/tarantool/instances.enabled/``."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:22
+msgid "Starting instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:24
+msgid "All the instance files or directories placed in the ``instances_enabled`` directory specified in :ref:`tt configuration <tt-config_file>` are called *enabled instances*. If there are several enabled instances, ``tt start`` starts a separate Tarantool instance for each of them."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:29
+msgid "Learn more about working with multiple Tarantool instances in :ref:`Multi-instance applications <admin-start_stop_instance-multi-instance>`."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:32
+msgid "To start a specific enabled instance, specify its name in the ``tt start`` argument:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:34
+msgid "$ tt start my_app\n"
+"   • Starting an instance [my_app]..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:39
+msgid "When starting an instance, ``tt`` uses its :ref:`configuration file <tt-config>` ``tt.yaml`` to set up a :ref:`tt environment <tt-cli-environments>` in which the instance runs. The default ``tt`` configuration file is created automatically in ``/etc/tarantool/``. Learn how to set up a ``tt`` environment in a directory of your choice in :ref:`Running Tarantool locally <admin-start_stop_instance-running_locally>`."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:45
+msgid "After the instance has started and worked for some time, you can find its artifacts in the directories specified in the ``tt`` configuration. These are the default locations:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:49
+msgid "``/var/log/tarantool/<instance_name>.log`` -- instance :ref:`logs <admin-logs>`."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:50
+msgid "``/var/lib/tarantool/<instance_name>/`` -- snapshots and write-ahead logs."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:51
+msgid "``/var/run/tarantool/<instance_name>.control`` -- a control socket. This is a Unix socket with the Lua console attached to it. This file is used to connect to the instance console."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:54
+msgid "``/var/run/tarantool/<instance_name>.pid`` -- a PID file that ``tt`` uses to check the instance status and send control commands."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:58
+msgid "Basic instance management"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:62
+msgid "These commands can be called without an instance name. In this case, they are executed for all enabled instances."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:65
+msgid "``tt`` provides a set of commands for performing basic operations over instances:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:67
+msgid "``tt check`` -- check the instance file for syntax errors:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:69
+msgid "$ tt check my_app\n"
+"   • Result of check: syntax of file '/etc/tarantool/instances.enabled/my_app.lua' is OK"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:74
+msgid "``tt status`` -- check the instance status:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:76
+msgid "$ tt status my_app\n"
+"INSTANCE     STATUS          PID\n"
+"my_app       NOT RUNNING"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:82
+msgid "``tt restart`` -- restart the instance:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:84
+msgid "$ tt restart my_app -y\n"
+"   • The Instance my_app (PID = 729) has been terminated.\n"
+"   • Starting an instance [my_app]..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:90
+msgid "The ``-y`` option responds \"yes\" to the confirmation prompt automatically."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:92
+msgid "``tt stop`` -- stop the instance:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:94
+msgid "$ tt stop my_app\n"
+"   • The Instance my_app (PID = 639) has been terminated."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:99
+msgid "``tt clean`` -- remove instance artifacts: logs, snapshots, and other files."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:101
+msgid "$ tt clean my_app -f\n"
+"   • List of files to delete:\n"
+"\n"
+"   • /var/log/tarantool/my_app.log\n"
+"   • /var/lib/tarantool/my_app/00000000000000000000.snap\n"
+"   • /var/lib/tarantool/my_app/00000000000000000000.xlog"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:110
+msgid "The ``-f`` option removes the files without confirmation."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:115
+msgid "Multi-instance applications"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:117
+msgid "Tarantool applications can include multiple instances that run different code. A typical example is a cluster application that includes router and storage instances. The ``tt`` utility enables managing such applications. With a single ``tt`` call, you can:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:122
+msgid "start an application on multiple instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:123
+msgid "check the status of application instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:124
+msgid "connect to a specific instance of an application"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:125
+msgid "stop a specific instance of an application or all its instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:128
+msgid "Application layout"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:130
+msgid "To create a multi-instance application, prepare its layout in a directory inside ``instances_enabled``. The directory name is used as the application identifier."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:134
+msgid "This directory should contain the following files:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:136
+msgid "The default instance file named ``init.lua``. This file is used for all instances of the application unless there are specific instance files (see below)."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:138
+msgid "The instances configuration file ``instances.yml`` with instance names followed by colons:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:140
+msgid "<instance_name1>:\n"
+"<instance_name2>:\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:148
+msgid "Do not use the dot (``.``) and dash (``-``) characters in the instance names. They are reserved for system use."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:151
+msgid "(Optional) Specific instances files. These files should have names ``<instance_name>.init.lua``, where ``<instance_name>`` is the name specified in ``instances.yml``. For example, if your application has separate source files for the ``router`` and ``storage`` instances, place the router code in the ``router.init.lua`` file."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:157
+msgid "For example, take a ``demo`` application that has three instances:``storage1``, ``storage2``, and ``router``. Storage instances share the same code, and ``router`` has its own. The application directory ``demo`` inside ``instances_enabled`` must contain the following files:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:161
+msgid "``instances.yml`` -- the instances configuration:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:163
+msgid "storage1:\n"
+"storage2:\n"
+"router:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:169
+msgid "``init.lua`` -- the code of ``storage1`` and ``storage2``"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:170
+msgid "``router.init.lua`` -- the code of ``router``"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:174
+msgid "Identifying instances in code"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:176
+msgid "When the application is working, each instance has associated environment variables ``TARANTOOL_INSTANCE_NAME`` and ``TARANTOOL_APP_NAME``. You can use them in the application code to identify the instance on which the code runs."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:180
+msgid "To obtain the instance and application names, use the following code:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:182
+msgid "local inst_name = os.getenv('TARANTOOL_INSTANCE_NAME')\n"
+"local app_name = os.getenv('TARANTOOL_APP_NAME')"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:189
+msgid "Managing multi-instance applications"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:191
+msgid "Start all three instances of the ``demo`` application:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:193
+msgid "$ tt start demo\n"
+"   • Starting an instance [demo:router]...\n"
+"   • Starting an instance [demo:storage1]...\n"
+"   • Starting an instance [demo:storage2]..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:200
+msgid "Check the status of ``demo`` instances:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:202
+msgid "$ tt status demo\n"
+"INSTANCE         STATUS      PID\n"
+"demo:router      RUNNING     55\n"
+"demo:storage1    RUNNING     56\n"
+"demo:storage2    RUNNING     57"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:210
+msgid "Check the status of a specific instance:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:212
+msgid "$ tt status demo:router\n"
+"INSTANCE         STATUS      PID\n"
+"demo:router      RUNNING     55"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:218
+msgid "Connect to an instance:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:220
+msgid "$ tt connect demo:router\n"
+"   • Connecting to the instance...\n"
+"   • Connected to /var/run/tarantool/demo/router/router.control\n"
+"\n"
+"/var/run/tarantool/demo/router/router.control>"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:228
+msgid "Stop a specific instance:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:230
+msgid "$ tt stop demo:storage1\n"
+"   • The Instance demo:storage1 (PID = 56) has been terminated."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:235
+msgid "Stop all running instances of the ``demo`` application:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:237
+msgid "$ tt stop demo\n"
+"   • The Instance demo:router (PID = 55) has been terminated.\n"
+"   • can't \"stat\" the PID file. Error: \"stat /var/run/tarantool/demo/storage1/storage1.pid: no such file or directory\"\n"
+"   • The Instance demo:storage2 (PID = 57) has been terminated."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:246
+msgid "The error message indicates that ``storage1`` is already not running."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:251
+msgid "Running Tarantool locally"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:253
+msgid "Sometimes you may need to run a Tarantool instance locally, for example, for test purposes. ``tt`` runs in a local environment if it finds a ``tt.yaml`` configuration file in the current directory or any of its enclosing directories."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:257
+msgid "To set up a local environment for ``tt``:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:259
+msgid "Create a home directory for the environment."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:261
+msgid "Run ``tt init`` in this directory:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:263
+msgid "$ tt init\n"
+"   • Environment config is written to 'tt.yaml'"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:268
+msgid "This command creates a default ``tt`` configuration file ``tt.yaml`` for a local environment and the directories for instance files, control sockets, logs, and other artifacts:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:272
+msgid "$ ls\n"
+"bin  distfiles  include  instances.enabled  modules  templates  tt.yaml"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:277
+msgid "To run a Tarantool instance in the local environment:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:279
+msgid "Place the instance file into the ``instances.enabled/`` directory inside the current directory."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:284
+msgid "$ tt start"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:288
+msgid "After the instance is started, you can find its artifacts in their locations inside the current directory:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:291
+msgid "logs in ``var/log/<instance_name>``"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:292
+msgid "snapshots and write-ahead logs in ``var/lib/<instance_name>``"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:293
+msgid "control sockets and PID files in ``var/run/<instance_name>``"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:295
+msgid "To work with a local environment from a directory outside it, issue ``tt`` calls with the ``-L`` or ``--local`` argument with the path to this environment as its value:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:298
+msgid "$ tt --local=/usr/tt/env/ start"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:305
+msgid "Using systemd tools"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:307
+msgid "If you start an instance using ``systemd`` tools, like this (the instance name is ``my_app``):"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:310
+msgid "$ systemctl start tarantool@my_app\n"
+"$ ps axuf|grep my_app\n"
+"taranto+  5350  1.3  0.3 1448872 7736 ?        Ssl  20:05   0:28 tarantool my_app.lua <running>"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:316
+msgid "This actually calls ``tarantoolctl`` like in case of ``tarantoolctl start my_app``."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:319
+msgid "To enable ``my_app`` instance for auto-load during system startup, say:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:321
+msgid "$ systemctl enable tarantool@my_app"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:325
+msgid "To stop a running ``my_app`` instance with ``systemctl``, run:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:327
+msgid "$ systemctl stop tarantool@my_app"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:331
+msgid "To restart a running ``my_app`` instance with ``systemctl``, run:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:333
+msgid "$ systemctl restart tarantool@my_app"
+msgstr ""

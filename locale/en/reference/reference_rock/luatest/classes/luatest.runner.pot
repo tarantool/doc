@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:5
+msgid "Class *luatest.runner*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:7
+msgid "Class to run test suite."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:15
+msgid "Methods"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:22
+msgid "Runner.is_test_name (s)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:24
+msgid "Check that string matches the name of a test method. Default rule is that is starts with 'test'"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:28
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:42
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:72
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:86
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:30
+msgid "*s:*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:37
+msgid "Runner.run ([args=_G.args[, options]])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:39
+msgid "Main entrypoint to run test suite."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:44
+msgid "*args:* (**tab**) List of CLI arguments (default $(def))"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:45
+msgid "*options:*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:47
+msgid "*verbosity:* (**int**)  (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:48
+msgid "*fail_fast:* (**bool**)  (default $(def))"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:49
+msgid "*output_file_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Filename for JUnit report (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:50
+msgid "*exe_repeat:* (**int**) Times to repeat each test (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:51
+msgid "*exe_repeat_group:* (**int**) Times to repeat each group of tests (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:52
+msgid "*tests_pattern:* (**tab**) Patterns to filter tests (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:53
+msgid "*tests_names:* (**tab**) List of test names or groups to run (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:54
+msgid "*paths:* (**tab**) List of directories to load tests from. (default $(def))"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:55
+msgid "*load_tests:* (**func**) Function to load tests. Called once for every item in  ``paths`` . (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:56
+msgid "*shuffle:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Shuffle method (none, all, group) (default $(def))"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:57
+msgid "*seed:* (**int**) Random seed for shuffle (optional)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:58
+msgid "*output:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Output formatter (text, tap, junit, nil) (default $(def))"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:66
+msgid "Runner.split_test_method_name (someName)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:68
+msgid "Split  ``some.group.name.method``  into  ``some.group.name``  and  ``method`` . Returns  ``nil, input``  if input value does not have a dot."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:74
+msgid "*someName:*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:81
+msgid "Runner:expand_group (group)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:83
+msgid "Exrtact all test methods from group."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.runner.rst:88
+msgid "*group:*"
+msgstr ""

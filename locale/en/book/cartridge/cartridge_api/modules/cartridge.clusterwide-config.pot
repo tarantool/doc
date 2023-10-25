@@ -1,0 +1,232 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:5
+msgid "Module *cartridge.clusterwide-config*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:7
+msgid "The abstraction, representing clusterwide configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:11
+msgid "Clusterwide configuration is more than just a lua table. It's an object in terms of OOP paradigm."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:14
+msgid "On filesystem clusterwide config is represented by a file tree."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:16
+msgid "In Lua it's represented as an object which holds both plaintext files content and unmarshalled lua tables. Unmarshalling is implicit and performed automatically for the sections with  ``.yml``  file extension."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:20
+msgid "To access plaintext content there are two functions: `get_plaintext` and  ``set_plaintext`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:23
+msgid "Unmarshalled lua tables are accessed without  ``.yml``  extension by ``get_readonly``  and  ``get_deepcopy`` . Plaintext serves for accessing unmarshalled representation of corresponding sections."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:27
+msgid "To avoid ambiguity it's prohibited to keep both `<FILENAME>` and `<FILENAME>.yml` in the configuration. An attempt to do so would result in `return nil, err` from `new()` and `load()`, and an attempt to call  ``get_readonly/deepcopy``  would raise an error. Nevertheless one can keep any other extensions because they aren't unmarshalled implicitly."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:34
+msgid "(**Added** in v1.2.0-17)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:38
+msgid "Usage:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:40
+msgid "tarantool> cfg = ClusterwideConfig.new({\n"
+"         >     -- two files\n"
+"         >     ['forex.yml'] = '{EURRUB_TOM: 70.33, USDRUB_TOM: 63.18}',\n"
+"         >     ['text'] = 'Lorem ipsum dolor sit amet',\n"
+"         > })\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> cfg:get_plaintext()\n"
+"---\n"
+"- text: Lorem ipsum dolor sit amet\n"
+"  forex.yml: '{EURRUB_TOM: 70.33, USDRUB_TOM: 63.18}'\n"
+"...\n"
+"\n"
+"tarantool> cfg:get_readonly()\n"
+"---\n"
+"- forex.yml: '{EURRUB_TOM: 70.33, USDRUB_TOM: 63.18}'\n"
+"  forex:\n"
+"    EURRUB_TOM: 70.33\n"
+"    USDRUB_TOM: 63.18\n"
+"  text: Lorem ipsum dolor sit amet\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:69
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:76
+msgid "new ([data])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:78
+msgid "Create new object."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:81
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:111
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:141
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:171
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:196
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:227
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:83
+msgid "*data:* (`{string=string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Plaintext content (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:85
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:116
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:145
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:175
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:200
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:231
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:87
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:147
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:177
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:202
+msgid "(**ClusterwideConfig**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:90
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:121
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:150
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:180
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:205
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:236
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:92
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:123
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:152
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:182
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:207
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:238
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:94
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:125
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:154
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:184
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:209
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:240
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:101
+msgid "save (clusterwide_config, filename)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:103
+msgid "Write configuration to filesystem."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:105
+msgid "Write atomicity is achieved by splitting it into two phases: 1. Configuration is saved with a random filename in the same directory 2. Temporal filename is renamed to the destination"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:113
+msgid "*clusterwide_config:* (**ClusterwideConfig**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:114
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:143
+msgid "*filename:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:118
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:233
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:132
+msgid "load (filename)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:134
+msgid "Load object from filesystem."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:136
+msgid "This function handles both old-style single YAML and new-style directory with a file tree."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:159
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:166
+msgid "load_from_file (filename)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:168
+msgid "Load old-style config from YAML file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:173
+msgid "*filename:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Filename to load."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:191
+msgid "load_from_dir (path)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:193
+msgid "Load new-style config from a directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:198
+msgid "*path:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Path to the config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:216
+msgid "remove (string)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:218
+msgid "Remove config from filesystem atomically."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:220
+msgid "The atomicity is achieved by splitting it into two phases: 1. Configuration is saved with a random filename in the same directory 2. Temporal filename is renamed to the destination"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.clusterwide-config.rst:229
+msgid "*string:* (**path**) Directory path to remove."
+msgstr ""

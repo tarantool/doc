@@ -1,0 +1,1371 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:5
+msgid "Module *cartridge*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:7
+msgid "Tarantool framework for distributed applications development."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:11
+msgid "Cartridge provides you a simple way to manage distributed applications operations. The cluster consists of several Tarantool instances acting in concert. Cartridge does not care about how the instances start, it only cares about the configuration of already running processes."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:17
+msgid "Cartridge automates vshard and replication configuration, simplifies custom configuration and administrative tasks."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:23
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:30
+msgid "cfg (opts, box_opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:32
+msgid "Initialize the cartridge module."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:34
+msgid "After this call, you can operate the instance via Tarantool console. Notice that this call does not initialize the database -  ``box.cfg``  is not called yet. Do not try to call  ``box.cfg``  yourself:  ``cartridge``  will do it when it is time."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:38
+msgid "Both :ref:`cartridge.cfg <cartridge.cfg>` and  ``box.cfg``  options can be configured with command-line arguments or environment variables."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:43
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:208
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:268
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:346
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:372
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:397
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:411
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:436
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:464
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:573
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:611
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:695
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:780
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:802
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:833
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:868
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:898
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:924
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:954
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1016
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1049
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1072
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1115
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1152
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1185
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1226
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:45
+msgid "*opts:* Available options are:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:47
+msgid "*workdir:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) a directory where all data will be stored: snapshots, wal logs and cartridge config file.(default: \".\", overridden byenv  ``TARANTOOL_WORKDIR`` ,args  ``--workdir`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:48
+msgid "*advertise_uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) either `\"<HOST>:<PORT>\"` or `\"<HOST>:\"` or `\"<PORT>\"`.Used by other instances to connect to the current one.When `<HOST>` isn't specified, it's detected as the only non-local IP address.If there is more than one IP address available - defaults to \"localhost\".When `<PORT>` isn't specified, it's derived as follows:If the `TARANTOOL_INSTANCE_NAME` has numeric suffix `_<N>`, then `<PORT> = 3300+<N>`.Otherwise default `<PORT> = 3301` is used."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:49
+msgid "*cluster_cookie:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) secret used to separate unrelated applications, whichprevents them from seeing each other during broadcasts.Also used as admin password in HTTP and binary connections and forencrypting internal communications.Allowed symbols are  ``[a-zA-Z0-9_.~-]`` .(default: \"secret-cluster-cookie\", overridden byenv  ``TARANTOOL_CLUSTER_COOKIE`` ,args  ``--cluster-cookie`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:50
+msgid "*swim_broadcast:* (optional **boolean**) Announce own `advertise_uri` over UDP broadcast.Cartridge health-checks are governed by SWIM protocol. To simplifyinstances discovery on start it can UDP broadcast all networksknown from `getifaddrs()` C call. The broadcast is sent to severalports: default 3301, the `<PORT>` from the `advertise_uri` option,and its neighbours `<PORT>+1` and `<PORT>-1`.(**Added** in v2.3.0-23,default: true, overridden byenv `TARANTOOL_SWIM_BROADCAST`,args `--swim-broadcast`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:51
+msgid "*bucket_count:* (optional **number**) bucket count for vshard cluster. See vshard doc for more details.Can be set only **once**, before the first run of Cartridge application, and can't bechanged after that.(default: 30000, overridden byenv  ``TARANTOOL_BUCKET_COUNT`` ,args  ``--bucket-count`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:52
+msgid "*vshard_groups:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) vshard storage groups.``{group_name = VshardGroup, ...}`` ,  ``{'group1', 'group2', ...}``  or``{group1 = VshardGroup, 'group2', ...}`` .default group name:  ``default``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:53
+msgid "*http_enabled:* (optional **boolean**) whether http server should be started(default: true, overridden byenv `TARANTOOL_HTTP_ENABLED`,args `--http-enabled`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:54
+msgid "*webui_enabled:* (optional **boolean**) whether WebUI and corresponding API (HTTP + GraphQL) should beinitialized. Ignored if  ``http_enabled``  is  ``false`` . Doesn'taffect  ``auth_enabled`` .(**Added** in v2.4.0-38,default: true, overridden byenv  ``TARANTOOL_WEBUI_ENABLED`` ,args  ``--webui-enabled`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:55
+msgid "*http_port:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or **number**) port to open administrative UI and API on(default: 8081, derived from`TARANTOOL_INSTANCE_NAME`,overridden byenv `TARANTOOL_HTTP_PORT`,args `--http-port`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:56
+msgid "*http_host:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) host to open administrative UI and API on(**Added** in v2.4.0-42,default: \"0.0.0.0\", overridden byenv  ``TARANTOOL_HTTP_HOST`` ,args  ``--http-host`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:57
+msgid "*webui_prefix:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) modify WebUI and cartridge HTTP API routes(**Added** in v2.6.0-18,default: \"\", overridden byenv  ``TARANTOOL_WEBUI_PREFIX`` ,args  ``--webui-prefix`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:58
+msgid "*webui_enforce_root_redirect:* (optional **boolean**) respond on `GET /` with a redirect to `<WEBUI_PREFIX>/admin`.(**Added** in v2.6.0-18,default: true, overridden byenv `TARANTOOL_WEBUI_ENFORCE_ROOT_REDIRECT`,args `--webui-enforce-root-redirect`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:59
+msgid "*alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) human-readable instance name that will be available in administrative UI(default: argparse instance name, overridden byenv `TARANTOOL_ALIAS`,args `--alias`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:60
+msgid "*roles:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) list of user-defined roles that will be availableto enable on the instance_uuid"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:61
+msgid "*auth_enabled:* (optional **boolean**) toggle authentication in administrative UI and API(default: false)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:62
+msgid "*auth_backend_name:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) user-provided set of callbacks related to authentication"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:63
+msgid "*console_sock:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Socket to start console listening on.(default: nil, overridden byenv  ``TARANTOOL_CONSOLE_SOCK`` ,args  ``--console-sock`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:64
+msgid "*webui_blacklist:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) List of pages to be hidden in WebUI.(**Added** in v2.0.1-54, default:  ``{}`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:65
+msgid "*upgrade_schema:* (optional **boolean**) Run schema upgrade on the leader instance.(**Added** in v2.0.2-3,default:  ``false`` , overridden byenv  ``TARANTOOL_UPGRADE_SCHEMA`` args  ``--upgrade-schema`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:66
+msgid "*roles_reload_allowed:* (optional **boolean**) Allow calling :ref:`cartridge.reload_roles <cartridge.reload_roles>`.(**Added** in v2.3.0-73, default:  ``false`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:67
+msgid "*upload_prefix:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Temporary directory used for saving files during clusterwideconfig upload. If relative path is specified, it's evaluatedrelative to the  ``workdir`` .(**Added** in v2.4.0-43,default:  ``/tmp`` , overridden byenv  ``TARANTOOL_UPLOAD_PREFIX`` ,args  ``--upload-prefix`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:69
+msgid "*box_opts:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) tarantool extra box.cfg options (e.g. memtx_memory),that may require additional tuning"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:71
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:116
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:142
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:185
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:212
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:243
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:272
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:350
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:376
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:415
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:440
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:468
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:491
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:557
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:590
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:620
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:784
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:806
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:837
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:872
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:902
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:929
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:973
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1026
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1053
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1076
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1093
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1128
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1161
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1201
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1230
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:73
+msgid "true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:76
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:121
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:190
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:217
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:248
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:277
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:355
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:381
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:420
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:445
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:473
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:496
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:595
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:625
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:842
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:877
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:907
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:978
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1133
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1166
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1206
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1235
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:78
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:123
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:192
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:219
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:250
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:279
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:357
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:383
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:422
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:447
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:475
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:498
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:597
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:627
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:844
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:879
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:904
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:931
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:980
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1135
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1168
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1208
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1237
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:80
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:125
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:194
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:221
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:252
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:281
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:359
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:385
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:424
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:449
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:477
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:500
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:599
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:629
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:846
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:881
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:982
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1137
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1170
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1210
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1239
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:87
+msgid "reload_roles ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:89
+msgid "Perform hot-reload of cartridge roles code."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:91
+msgid "This is an experimental feature, it's only allowed if the application enables it explicitly:  ``cartridge.cfg({roles_reload_allowed = true})`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:95
+msgid "Reloading starts by stopping all roles and restoring the initial state. It's supposed that a role cleans up the global state when stopped, but even if it doesn't, cartridge kills all fibers and removes global variables and HTTP routes."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:100
+msgid "All Lua modules that were loaded during :ref:`cartridge.cfg <cartridge.cfg>` are unloaded, including supplementary modules required by a role. Modules, loaded before :ref:`cartridge.cfg <cartridge.cfg>` aren't affected."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:104
+msgid "Instance performs roles reload in a dedicated state  ``ReloadingRoles`` . If reload fails, the instance enters the  ``ReloadError``  state, which can later be retried. Otherwise, if reload succeeds, instance proceeds to the  ``ConfiguringRoles``  state and initializes them as usual with  ``validate_config()`` ,  ``init()`` , and  ``apply_config()`` callbacks."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:111
+msgid "Hot-reload could be forbidden in runtime with  ``forbid_reload``  function."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:118
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:470
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:839
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:874
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1130
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1163
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1203
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1232
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:132
+msgid "is_healthy ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:134
+msgid "Check the cluster health. It is healthy if all instances are healthy."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:137
+msgid "The function is designed mostly for testing purposes."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:144
+msgid "(**boolean**) true / false"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:149
+msgid "Tables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:156
+msgid "VshardGroup"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:158
+msgid "Vshard storage group configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:160
+msgid "Every vshard storage must be assigned to a group."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:163
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:298
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:322
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:519
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:713
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:734
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:754
+msgid "**Fields:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:165
+msgid "*bucket_count:* (**number**) Bucket count for the storage group."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:170
+msgid "Global functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:177
+msgid "_G.cartridge_get_schema ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:179
+msgid "Get clusterwide DDL schema."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:181
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:205
+msgid "(**Added** in v1.2.0-28)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:187
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:245
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Schema in YAML format"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:201
+msgid "_G.cartridge_set_schema (schema)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:203
+msgid "Apply clusterwide DDL schema."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:210
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:270
+msgid "*schema:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) in YAML format"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:214
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:274
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The same new schema"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:226
+msgid "Clusterwide DDL schema"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:233
+msgid "get_schema ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:235
+msgid "Get clusterwide DDL schema. It's like **\\_G.cartridge\\_get\\_schema**, but isn't a global variable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:239
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:265
+msgid "(**Added** in v2.0.1-54)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:259
+msgid "set_schema (schema)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:261
+msgid "Apply clusterwide DDL schema. It's like **\\_G.cartridge\\_set\\_schema**, but isn't a global variable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:286
+msgid "Cluster administration"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:293
+msgid "ServerInfo"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:295
+msgid "Instance general information."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:300
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Human-readable instance name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:301
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:399
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:526
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:756
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1189
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:302
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:737
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1119
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1156
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1228
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:303
+msgid "*disabled:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:304
+msgid "*electable:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:305
+msgid "*status:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Instance health."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:306
+msgid "*message:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Auxilary health status."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:307
+msgid "*replicaset:* (`ReplicasetInfo <cartridge.ReplicasetInfo_>`_) Circular reference to a replicaset."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:308
+msgid "*priority:* (**number**) Leadership priority for automatic failover."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:309
+msgid "*clock_delta:* (**number**) Difference between remote clock and the current one (inseconds), obtained from the membership module (SWIM protocol).Positive values mean remote clock are ahead of local, and viceversa."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:310
+msgid "*zone:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:317
+msgid "ReplicasetInfo"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:319
+msgid "Replicaset general information."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:324
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The replicaset UUID."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:325
+msgid "*roles:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Roles enabled on the replicaset."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:326
+msgid "*status:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Replicaset health."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:327
+msgid "*master:* (`ServerInfo <cartridge.ServerInfo_>`_) Replicaset leader according to configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:328
+msgid "*active_master:* (`ServerInfo <cartridge.ServerInfo_>`_) Active leader."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:329
+msgid "*weight:* (**number**) Vshard replicaset weight.Matters only if vshard-storage role is enabled."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:330
+msgid "*vshard_group:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Name of vshard group the replicaset belongs to."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:331
+msgid "*all_rw:* (**boolean**) A flag indicating that all servers in the replicaset should be read-write."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:332
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Human-readable replicaset name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:333
+msgid "*servers:* (`{ServerInfo,...} <cartridge.ServerInfo_>`_) Circular reference to all instances in the replicaset."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:340
+msgid "admin_get_servers ([uuid])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:342
+msgid "Get servers list. Optionally filter out the server with the given uuid."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:348
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:374
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:352
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:417
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:442
+msgid "(`{ServerInfo,...} <cartridge.ServerInfo_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:366
+msgid "admin_get_replicasets ([uuid])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:368
+msgid "Get replicasets list. Optionally filter out the replicaset with given uuid."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:378
+msgid "(`{ReplicasetInfo,...} <cartridge.ReplicasetInfo_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:392
+msgid "admin_probe_server (uri)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:394
+msgid "Discover an instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:406
+msgid "admin_enable_servers (uuids)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:408
+msgid "Enable nodes after they were disabled."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:413
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:438
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:870
+msgid "*uuids:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:431
+msgid "admin_disable_servers (uuids)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:433
+msgid "Temporarily disable nodes."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:456
+msgid "admin_restart_replication (...)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:458
+msgid "Restart replication on specified instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:460
+msgid "(added in v2.6.0-43)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:466
+msgid "*...:* (`{string, <https://www.lua.org/manual/5.1/manual.html#5.4>`_) } uuids"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:484
+msgid "admin_bootstrap_vshard ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:486
+msgid "Call  ``vshard.router.bootstrap()`` . This function distributes all buckets across the replica sets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:493
+msgid "(**boolean**) `true`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:505
+msgid "Automatic failover management"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:512
+msgid "FailoverParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:514
+msgid "Failover parameters."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:516
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:553
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:570
+msgid "(**Added** in v2.0.2-2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:521
+msgid "*mode:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Supported modes are \"disabled\", \"eventual\", \"stateful\" or \"raft\""
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:522
+msgid "*state_provider:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Supported state providers are \"tarantool\" and \"etcd2\"."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:523
+msgid "*failover_timeout:* (**number**) (added in v2.3.0-52)Timeout (in seconds), used by membership tomark  ``suspect``  members as  ``dead``  (default: 20)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:524
+msgid "*tarantool_params:* (added in v2.0.2-2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:527
+msgid "*password:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:529
+msgid "*etcd2_params:* (added in v2.1.2-26)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:531
+msgid "*prefix:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Prefix used for etcd keys: `<prefix>/lock` and`<prefix>/leaders`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:532
+msgid "*lock_delay:* (optional **number**) Timeout (in seconds), determines lock's time-to-live (default: 10)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:533
+msgid "*endpoints:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) URIs that are used to discover and to access etcd cluster instances.(default:  ``{'http://localhost:2379', 'http://localhost:4001'}`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:534
+msgid "*username:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) (default: \"\")"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:535
+msgid "*password:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) (default: \"\")"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:537
+msgid "*fencing_enabled:* (**boolean**) (added in v2.3.0-57)Abandon leadership when both the state provider quorum and atleast one replica are lost (suitable in stateful mode only,default: false)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:538
+msgid "*fencing_timeout:* (**number**) (added in v2.3.0-57)Time (in seconds) to actuate fencing after the check fails(default: 10)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:539
+msgid "*fencing_pause:* (**number**) (added in v2.3.0-57)The period (in seconds) of performing the check(default: 2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:540
+msgid "*leader_autoreturn:* (**boolean**) (added in v2.7.7)If enabled, then switched leader will return after ` ``autoreturn_delay`` `(default: false)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:541
+msgid "*autoreturn_delay:* (**number**) (added in v2.7.7)Time (in seconds) until failover try to return leader to the first nodein ` ``failover_priority`` `(default: 300)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:542
+msgid "*check_cookie_hash:* (**boolean**) (added in v2.7.8)If enabled, then check that nobody else uses this stateboard(default: true)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:549
+msgid "failover_get_params ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:551
+msgid "Get failover configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:559
+msgid "(`FailoverParams <cartridge.FailoverParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:566
+msgid "failover_set_params (opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:568
+msgid "Configure automatic failover."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:575
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:614
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:959
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1019
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:577
+msgid "*mode:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:578
+msgid "*state_provider:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:579
+msgid "*failover_timeout:* (optional **number**) (added in v2.3.0-52)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:580
+msgid "*tarantool_params:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:581
+msgid "*etcd2_params:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) (added in v2.1.2-26)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:582
+msgid "*fencing_enabled:* (optional **boolean**) (added in v2.3.0-57)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:583
+msgid "*fencing_timeout:* (optional **number**) (added in v2.3.0-57)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:584
+msgid "*fencing_pause:* (optional **number**) (added in v2.3.0-57)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:585
+msgid "*leader_autoreturn:* (optional **boolean**) (added in v2.7.7)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:586
+msgid "*autoreturn_delay:* (optional **number**) (added in v2.7.7)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:587
+msgid "*check_cookie_hash:* (optional **boolean**) (added in v2.7.8)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:592
+msgid "(**boolean**) `true` if config applied successfully"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:606
+msgid "failover_promote (replicaset_uuid[, opts])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:608
+msgid "Promote leaders in replicasets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:613
+msgid "*replicaset_uuid:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) ] = leader_uuid }"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:616
+msgid "*force_inconsistency:* (optional **boolean**) (default: **false**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:617
+msgid "*skip_error_on_change:* (optional **boolean**) Skip etcd error if vclockkeeper was changed between calls (default: **false**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:622
+msgid "(**boolean**) true On success"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:636
+msgid "admin_get_failover ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:638
+msgid "Get current failover state."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:640
+msgid "(**Deprecated** since v2.0.2-2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:649
+msgid "admin_enable_failover ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:651
+msgid "Enable failover. (**Deprecated** since v2.0.1-95 in favor of :ref:`cartridge.failover_set_params <cartridge.failover_set_params>`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:662
+msgid "admin_disable_failover ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:664
+msgid "Disable failover. (**Deprecated** since v2.0.1-95 in favor of :ref:`cartridge.failover_set_params <cartridge.failover_set_params>`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:673
+msgid "Managing cluster topology"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:680
+msgid "admin_edit_topology (args)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:682
+msgid "Edit cluster topology. This function can be used for:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:685
+msgid "bootstrapping cluster from scratch"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:686
+msgid "joining a server to an existing replicaset"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:687
+msgid "creating new replicaset with one or more servers"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:688
+msgid "editing uri/labels of servers"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:689
+msgid "disabling and expelling servers"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:692
+msgid "(**Added** in v1.0.0-17)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:697
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1117
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1154
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1187
+msgid "*args:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:699
+msgid "*servers:* (optional `{EditServerParams,..} <cartridge.EditServerParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:700
+msgid "*replicasets:* (optional `{EditReplicasetParams,..} <cartridge.EditReplicasetParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:708
+msgid "EditReplicasetParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:710
+msgid "Replicatets modifications."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:715
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:757
+msgid "*uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:716
+msgid "*alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:717
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1121
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1192
+msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:718
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1125
+msgid "*all_rw:* (optional **boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:719
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1123
+msgid "*weight:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:720
+msgid "*failover_priority:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of uuids specifying servers failover priority"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:721
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1124
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1196
+msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:722
+msgid "*join_servers:* (optional `{JoinServerParams,...} <cartridge.JoinServerParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:729
+msgid "EditServerParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:731
+msgid "Servers modifications."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:736
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1157
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:738
+msgid "*zone:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:739
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:759
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:740
+msgid "*disabled:* (optional **boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:741
+msgid "*electable:* (optional **boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:742
+msgid "*expelled:* (optional **boolean**) Expelling an instance is permanent and can't be undone.It's suitable for situations when the hardware is destroyed,snapshots are lost and there is no hope to bring it back to life."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:749
+msgid "JoinServerParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:751
+msgid "Parameters required for joining a new server."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:758
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1194
+msgid "*zone:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) (**Added** in v2.4.0-14)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:764
+msgid "Clusterwide configuration"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:771
+msgid "config_get_readonly ([section_name])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:773
+msgid "Get a read-only view on the clusterwide configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:775
+msgid "Returns either  ``conf[section_name]``  or entire  ``conf`` . Any attempt to modify the section or its children will raise an error."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:782
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:804
+msgid "*section_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:786
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:808
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:793
+msgid "config_get_deepcopy ([section_name])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:795
+msgid "Get a read-write deep copy of the clusterwide configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:797
+msgid "Returns either  ``conf[section_name]``  or entire  ``conf`` . Changing it has no effect unless it's used to patch clusterwide configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:815
+msgid "config_patch_clusterwide (patch)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:817
+msgid "Edit the clusterwide configuration. Top-level keys are merged with the current configuration. To remove a top-level section, use ``patch_clusterwide{key = box.NULL}`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:822
+msgid "The function executes following steps:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:824
+msgid "Patches the current configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:826
+msgid "Validates topology on the current server."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:828
+msgid "III. Executes two-phase commit on all servers in the cluster excluding expelled and disabled ones."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:835
+msgid "*patch:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:853
+msgid "config_force_reapply (uuids)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:855
+msgid "Forcefully apply config to the given instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:857
+msgid "In particular:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:859
+msgid "Abort two-phase commit (remove  ``config.prepare``  lock)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:860
+msgid "Upload the active config from the current instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:861
+msgid "Apply it (reconfigure all roles)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:864
+msgid "(**Added** in v2.3.0-68)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:886
+msgid "Inter-role interaction"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:893
+msgid "service_get (module_name)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:895
+msgid "Get a module from registry."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:900
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:926
+msgid "*module_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:909
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:916
+msgid "service_set (module_name, instance)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:918
+msgid "Put a module into registry or drop it. This function typically doesn't need to be called explicitly, the cluster automatically sets all the initialized roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:927
+msgid "*instance:* (**nil** or `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:936
+msgid "Cross-instance calls"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:943
+msgid "rpc_call (role_name, fn_name[, args[, opts]])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:945
+msgid "Perform a remote procedure call. Find a suitable healthy instance with an enabled role and perform a [ ``net.box``   ``conn:call`` ]( https://tarantool.io/en/doc/latest/reference/reference_lua/net_box/#net-box-call) on it.  ``rpc.call()``  can only be used for functions defined in role return table unlike  ``net.box``   ``conn:call()`` , which is used for global functions as well."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:956
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1018
+msgid "*role_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:957
+msgid "*fn_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:958
+msgid "*args:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)  (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:961
+msgid "*prefer_local:* (optional **boolean**) Don't perform a remote call if possible. When the role is enabledlocally and current instance is healthy the remote netbox call issubstituted with a local Lua function call. When the option isdisabled it never tries to perform call locally and always usesnetbox connection, even to connect self.(default: **true**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:962
+msgid "*leader_only:* (optional **boolean**) Perform a call only on the replica set leaders.(default: **false**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:963
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Force a call to be performed on this particular uri.Disregards member status and  ``opts.prefer_local`` .Conflicts with  ``opts.leader_only = true`` .(added in v1.2.0-63)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:964
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Filter instances that have the specified labels. Adding labels is possible via theedit_topology method or via graphql.Example: rpc.call('role', 'func', {}, { labels = { ['msk'] = 'dc' } })"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:965
+msgid "*remote_only:*  (*deprecated*) Use  ``prefer_local``  instead."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:966
+msgid "*timeout:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:967
+msgid "*buffer:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:968
+msgid "*on_push:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:969
+msgid "*on_push_ctx:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:970
+msgid "*is_async:*  passed to  ``net.box``   ``conn:call``  options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:975
+msgid "`conn:call()` result"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:987
+msgid "Usage:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:989
+msgid "-- myrole.lua\n"
+"return {\n"
+"    role_name = 'myrole',\n"
+"    add = function(a, b) return a + b end,\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:997
+msgid "-- call it as follows:\n"
+"cartridge.rpc_call('myrole', 'add', {2, 2}) -- returns 4"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1007
+msgid "rpc_get_candidates (role_name[, opts])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1009
+msgid "List candidates suitable for performing a remote call. Candidates are deduced from a local config and membership, which may differ from replica to replica (e.g. during  ``patch_clusterwide`` ). It may produce invalid candidates."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1021
+msgid "*leader_only:* (optional **boolean**) Filter instances which are leaders now.(default: **false**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1022
+msgid "*healthy_only:* (optional **boolean**) The member is considered healthy ifit reports either  ``ConfiguringRoles``  or  ``RolesConfigured``  stateand its SWIM status is either  ``alive``  or  ``suspect`` (added in v1.1.0-11, default: **true**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1023
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Filter instances that have the specified labels. Adding labels is possible via theedit_topology method or via graphqlExample: rpc.get_candidates('role', { labels = {['msk'] = 'dc'} })"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1028
+msgid "(`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) URIs"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1033
+msgid "Authentication and authorization"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1040
+msgid "http_authorize_request (request)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1042
+msgid "Authorize an HTTP request."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1044
+msgid "Get username from cookies or basic HTTP authentication."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1046
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1069
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1089
+msgid "(**Added** in v1.1.0-4)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1051
+msgid "*request:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1055
+msgid "(**boolean**) Access granted"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1062
+msgid "http_render_response (response)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1064
+msgid "Render HTTP response."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1066
+msgid "Inject set-cookie headers into response in order to renew or reset the cookie."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1074
+msgid "*response:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1078
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) The same response with cookies injected"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1085
+msgid "http_get_username ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1087
+msgid "Get username for the current HTTP session."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1095
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_ or **nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1100
+msgid "Deprecated functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1107
+msgid "admin_edit_replicaset (args)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1109
+msgid "Edit replicaset parameters (*deprecated*)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1111
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1148
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1181
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1222
+msgid "(**Deprecated** since v1.0.0-17 in favor of :ref:`cartridge.admin_edit_topology <cartridge.admin_edit_topology>`)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1120
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1122
+msgid "*master:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Failover order"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1144
+msgid "admin_edit_server (args)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1146
+msgid "Edit an instance (*deprecated*)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1158
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1195
+msgid "*labels:* (optional `{[string]=string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1177
+msgid "admin_join_server (args)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1179
+msgid "Join an instance to the cluster (*deprecated*)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1190
+msgid "*instance_uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1191
+msgid "*replicaset_uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1193
+msgid "*timeout:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1197
+msgid "*replicaset_alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1198
+msgid "*replicaset_weight:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1217
+msgid "admin_expel_server (uuid)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.rst:1219
+msgid "Expel an instance (*deprecated*). Forever."
+msgstr ""

@@ -1,0 +1,209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:2
+msgid "Repairing the cluster"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:4
+msgid "The ``cartridge repair`` command repairs a running application."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:6
+msgid "Here are several simple rules you need to know before using this command:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:8
+msgid "Do not use ``repair`` if you aren't sure that it's exactly what you need."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:9
+msgid "Always run ``repair`` with the ``--dry-run`` flag first."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:10
+msgid "Do not hesitate to use the ``--verbose`` option."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:11
+msgid "Do not use the ``--force`` option if you aren't sure that it's exactly what you need."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:16
+msgid "Please look at the :doc:`troubleshooting documentation </book/cartridge/troubleshooting>` before using ``repair``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:21
+msgid "cartridge repair [subcommand]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:26
+msgid "Subcommands"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:28
+msgid "Below is a list of the available repair commands."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:34
+msgid "list-topology"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:36
+msgid "cartridge repair list-topology [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:40
+msgid "Print the current topology summary. Requires no arguments."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:43
+msgid "remove-instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:45
+msgid "cartridge repair remove-instance UUID [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:49
+msgid "Remove an instance with the specified UUID from the cluster. If the instance isn't found, raise an error."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:53
+msgid "set-leader"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:55
+msgid "cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:59
+msgid "Set an instance as the leader of the replica set. Raise an error in the following cases:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:62
+msgid "There is no replica set or instance with that UUID."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:63
+msgid "The instance doesn't belong to the replica set."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:64
+msgid "The instance has been disabled or expelled."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:67
+msgid "set-uri"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:69
+msgid "cartridge repair set-uri INSTANCE-UUID URI-TO [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:73
+msgid "Rewrite the instance's :ref:`advertise_uri <cartridge-config-basic>` parameter. Raise an error if the instance isn't found or is expelled."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:79
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:81
+msgid "The following flags work with any ``repair`` subcommand:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:89
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:90
+msgid "(Required) Application name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:91
+msgid "``--data-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:92
+msgid "The directory containing the instances' working directories. Defaults to ``/var/lib/tarantool``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:95
+msgid "The following flags work with any repair command except ``list-topology``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:103
+msgid "``--run-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:104
+msgid "The directory where PID and socket files are stored. Defaults to ``/var/run/tarantool``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:106
+msgid "``--dry-run``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:107
+msgid "Launch in dry-run mode: show changes but do not apply them."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:108
+msgid "``--reload``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:109
+msgid "Enable instance configuration reload after the patch."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:113
+msgid "The default data and run directories for ``repair`` differ from those used by other ``cartridge-cli`` commands. This is because ``repair`` is intended for production use, while other commands are for local development."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:117
+msgid "``repair`` also supports :doc:`global flags </book/cartridge/cartridge_cli/global-flags>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:121
+msgid "What does repair actually do?"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:123
+msgid "It patches cluster-wide instance configuration files that you have on your local machine. Note that it's not enough to *apply* the new configuration, the instance has to *reload* it."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:126
+msgid "Although ``repair`` was created for production use, it can still be applied in local development. The command requires to specify ``--name``, the application name. Also, remember that the default data directory is ``/var/lib/tarantool`` and the default run directory is ``/var/run/tarantool``. To specify other directories, use the ``data-dir`` and ``--run-dir`` options correspondingly or provide the paths in the :doc:`configuration file </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:134
+msgid "In default mode, ``repair`` walks through all cluster-wide configurations in the ``<data-dir>/<app-name>.*`` directories, patching all the configuration files it locates."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:138
+msgid "With the ``--dry-run`` flag specified, files won't be patched, and you will only see the computed configuration diff."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:141
+msgid "If different instances on the local machine use different configuration files, ``repair`` raises an error. To patch different configuration versions independently, use the ``--force`` option."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/repair.rst:145
+msgid "If your application uses ``cartridge >= 2.0.0``, you can also run ``repair`` with the ``--reload`` flag to reload configuration for all your instances through the console sockets in the run directory. Make sure that you have the correct run directory specified when you use ``--reload``."
+msgstr ""

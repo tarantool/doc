@@ -1,0 +1,322 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:3
+msgid "Module index"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:7
+msgid "A space iterator"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:13
+msgid "Controls how to iterate over tuples in an index. Different index types support different iterator types. For example, one can start iteration from a particular value (request key) and then retrieve all tuples where keys are greater or equal (= GE) to this key."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:18
+msgid "If iterator type is not supported by the selected index type, iterator constructor must fail with ER_UNSUPPORTED. To be selectable for primary key, an index must support at least ITER_EQ and ITER_GE types."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:22
+msgid "NULL value of request key corresponds to the first or last key in the index, depending on iteration direction. (first key for GE and GT types, and last key for LE and LT). Therefore, to iterate over all tuples in an index, one can use ITER_GE or ITER_LE iteration types with start key equal to NULL. For ITER_EQ, the key must not be NULL."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:30
+msgid "key == x ASC order"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:34
+msgid "key == x DESC order"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:38
+msgid "all tuples"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:42
+msgid "key < x"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:46
+msgid "key <= x"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:50
+msgid "key >= x"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:54
+msgid "key > x"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:58
+msgid "all bits from x are set in key"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:62
+msgid "at least one x's bit is set"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:66
+msgid "all bits are not set"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:70
+msgid "key overlaps x"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:74
+msgid "tuples in distance ascending order from specified point"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:80
+msgid "Allocate and initialize iterator for space_id, index_id."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:82
+msgid "The returned iterator must be destroyed by :ref:`box_iterator_free<c_api-box_index-box_iterator_free>`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:85
+#: ../../doc/dev_guide/reference_capi/box_index.rst:129
+#: ../../doc/dev_guide/reference_capi/box_index.rst:139
+#: ../../doc/dev_guide/reference_capi/box_index.rst:149
+#: ../../doc/dev_guide/reference_capi/box_index.rst:168
+#: ../../doc/dev_guide/reference_capi/box_index.rst:184
+#: ../../doc/dev_guide/reference_capi/box_index.rst:200
+#: ../../doc/dev_guide/reference_capi/box_index.rst:216
+#: ../../doc/dev_guide/reference_capi/box_index.rst:234
+msgid "space identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:86
+#: ../../doc/dev_guide/reference_capi/box_index.rst:130
+#: ../../doc/dev_guide/reference_capi/box_index.rst:140
+#: ../../doc/dev_guide/reference_capi/box_index.rst:150
+#: ../../doc/dev_guide/reference_capi/box_index.rst:169
+#: ../../doc/dev_guide/reference_capi/box_index.rst:185
+#: ../../doc/dev_guide/reference_capi/box_index.rst:201
+#: ../../doc/dev_guide/reference_capi/box_index.rst:217
+#: ../../doc/dev_guide/reference_capi/box_index.rst:235
+msgid "index identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:87
+#: ../../doc/dev_guide/reference_capi/box_index.rst:218
+msgid ":ref:`iterator_type<c_api-box_index-iterator_type>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:88
+#: ../../doc/dev_guide/reference_capi/box_index.rst:170
+#: ../../doc/dev_guide/reference_capi/box_index.rst:186
+#: ../../doc/dev_guide/reference_capi/box_index.rst:202
+#: ../../doc/dev_guide/reference_capi/box_index.rst:219
+msgid "encode key in MsgPack Array format ([part1, part2, ...])"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:89
+#: ../../doc/dev_guide/reference_capi/box_index.rst:171
+#: ../../doc/dev_guide/reference_capi/box_index.rst:187
+#: ../../doc/dev_guide/reference_capi/box_index.rst:203
+#: ../../doc/dev_guide/reference_capi/box_index.rst:220
+msgid "the end of encoded ``key``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+#: ../../doc/dev_guide/reference_capi/box_index.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:91
+msgid "NULL on error (check :ref:`box_error_last <c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:92
+msgid "iterator otherwise"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:94
+msgid "See also :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`, :ref:`box_iterator_free<c_api-box_index-box_iterator_free>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:101
+msgid "Retrieve the next item from the ``iterator``."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:103
+#: ../../doc/dev_guide/reference_capi/box_index.rst:117
+msgid "an iterator returned by :ref:`box_index_iterator <c_api-box_index-box_index_iterator>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:105
+msgid "output argument. result a tuple or NULL if there is no more data."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:108
+#: ../../doc/dev_guide/reference_capi/box_index.rst:132
+#: ../../doc/dev_guide/reference_capi/box_index.rst:142
+#: ../../doc/dev_guide/reference_capi/box_index.rst:175
+msgid "-1 on error (check :ref:`box_error_last <c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:109
+msgid "0 on success. The end of data is not an error."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:115
+msgid "Destroy and deallocate iterator."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:122
+msgid "Determine a direction of the given iterator type: -1 for REQ, LT, LE, and +1 for all others."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:127
+msgid "Return the number of element in the index."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:133
+#: ../../doc/dev_guide/reference_capi/box_index.rst:143
+msgid ">= 0 otherwise"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:137
+msgid "Return the number of bytes used in memory by the index."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:147
+msgid "Return a random tuple from the index (useful for statistical analysis)."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:151
+msgid "random seed"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:152
+#: ../../doc/dev_guide/reference_capi/box_index.rst:172
+#: ../../doc/dev_guide/reference_capi/box_index.rst:188
+#: ../../doc/dev_guide/reference_capi/box_index.rst:204
+msgid "output argument. result a tuple or NULL if there is no tuples in space"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:155
+msgid "See also: :doc:`/reference/reference_lua/box_index/random`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:161
+msgid "Get a tuple from index by the key."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:163
+msgid "Please note that this function works much more faster than :doc:`/reference/reference_lua/box_index/select` or :ref:`box_index_iterator<c_api-box_index-box_index_iterator>` + :ref:`box_iterator_next<c_api-box_index-box_iterator_next>`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:176
+#: ../../doc/dev_guide/reference_capi/box_index.rst:192
+#: ../../doc/dev_guide/reference_capi/box_index.rst:208
+#: ../../doc/dev_guide/reference_capi/box_index.rst:223
+msgid "0 on success"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:178
+msgid "See also: ``index_object.get()``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:182
+msgid "Return a first (minimal) tuple matched the provided key."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:191
+#: ../../doc/dev_guide/reference_capi/box_index.rst:207
+#: ../../doc/dev_guide/reference_capi/box_index.rst:222
+msgid "-1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:194
+msgid "See also: :doc:`/reference/reference_lua/box_index/min`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:198
+msgid "Return a last (maximal) tuple matched the provided key."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:210
+msgid "See also: :doc:`/reference/reference_lua/box_index/max`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:214
+msgid "Count the number of tuple matched the provided key."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:225
+msgid "See also: :ref:`index_object.count()<box_index-count>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:230
+msgid "Return :ref:`key definition <capi-tuple_key_def>` for an index"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:232
+msgid "Returned object is valid until the next yield."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:237
+msgid "key definition on success"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:238
+msgid "NULL on error"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:240
+msgid "See also: :ref:`box_tuple_compare() <capi-tuple_box_tuple_compare>`,"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box_index.rst:241
+msgid ":ref:`box_tuple_format_new() <capi-tuple_box_tuple_format_new>`"
+msgstr ""

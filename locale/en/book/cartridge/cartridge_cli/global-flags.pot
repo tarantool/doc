@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/global-flags.rst:2
+msgid "Global flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/global-flags.rst:4
+msgid "All Cartridge CLI commands support these flags:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/global-flags.rst:12
+msgid "``--verbose``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/global-flags.rst:13
+msgid "Run commands with verbose output, including the output of nested commands like ``tarantoolctl rocks make`` or ``docker build``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/global-flags.rst:16
+msgid "``--debug``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/global-flags.rst:17
+msgid "Run command in debug mode -- that is, with verbose output and without removing temporary files. Useful for debugging ``cartridge pack``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/global-flags.rst:20
+msgid "``--quiet``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/global-flags.rst:21
+msgid "Hide command output, only display error messages. Useful for suppressing the huge output of ``cartridge pack`` and ``cartridge build``."
+msgstr ""

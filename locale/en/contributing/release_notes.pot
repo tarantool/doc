@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/release_notes.rst:2
+msgid "How to write release notes"
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:4
+msgid "Below are some best practices to make changelogs consistent, neat, and human-oriented."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:7
+msgid "Language"
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:9
+msgid "Use the past tense to describe changed or fixed behavior."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:11
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:14
+msgid "Fixed false positive panic when yielding in debug hook (gh-5649)."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:16
+msgid "Fedora 32 is supported now. Added per-commit testing, updated YUM repositories (gh-4966)."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:18
+msgid "Use the present tense to describe new behavior."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:20
+msgid "Example"
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:23
+msgid "Data changes in read-only mode are now forbidden (gh-5231)."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:25
+msgid "Start with a capital letter, end with a period."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:27
+msgid "Note that these guidelines differ from the best practice for commit message titles that suggests using the imperative mood."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:31
+msgid "Formatting"
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:33
+msgid "In release notes, use the following Sphinx syntax when referring to a specific version of Tarantool:"
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:35
+msgid "Tarantool :tarantool-release:`2.10.0`.\n"
+"This is a link to the release notes on GitHub."
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:40
+msgid "The result looks like this:"
+msgstr ""
+
+#: ../../doc/contributing/release_notes.rst:42
+msgid "Tarantool :tarantool-release:`2.10.0`. This is a link to the release notes on GitHub."
+msgstr ""

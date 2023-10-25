@@ -1,0 +1,173 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.8.4.rst:2
+msgid "Tarantool 2.8.4"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:4
+msgid "Released on 2022-04-25."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:6
+msgid "Release: :tarantool-release:`2.8.4`."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:7
+msgid "Tag: ``2.8.4``."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:12
+msgid "2.8.4 is the third :doc:`stable </release/policy/>` version of the 2.8 release series. It introduces 1 improvement and resolves 16 bugs since version :doc:`2.8.3 </release/2.8.3>`."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:16
+msgid "The “stable” label means that we have all planned features implemented and we see no high-impact issues. However, if you encounter an issue, feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:21
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:23
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:26
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:32
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:35
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:37
+msgid "Support fedora-35 build (:tarantool-issue:`6692`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:40
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:43
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:45
+msgid "Fixed a crash that could happen in case a tuple is deleted from a functional index while there is an iterator pointing to it (:tarantool-issue:`6786`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:48
+msgid "Fixed memory leak in interactive console (:tarantool-issue:`6817`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:50
+msgid "Fixed an assertion fail when passing tuple without primary key fields to before_replace trigger. Now tuple format is checked before execution of before_replace triggers and after each one (:tarantool-issue:`6780`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:54
+msgid "Banned DDL operations in space ``on_replace`` triggers, since they could lead to a crash (:tarantool-issue:`6920`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:57
+msgid "Fixed a bug due to which all fibers created with ``fiber_attr_setstacksize()`` leaked until the thread exit. Their stacks also leaked except when ``fiber_set_joinable(..., true)`` was used."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:63
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:65
+msgid "Immediate removal of compacted run files created after the last checkpoint optimization now works for replica’s initial JOIN stage (:tarantool-issue:`6568`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:69
+msgid "Fixed crash during recovery of a secondary index in case the primary index contains incompatible phantom tuples (:tarantool-issue:`6778`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:73
+msgid "Raft"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:75
+msgid "Reconfiguration of ``box.cfg.election_timeout`` could lead to a crash or undefined behaviour if done during an ongoing election with a special WAL write in progress."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:80
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:82
+msgid "Fixed top part of Lua stack (red zone, free slots, top slot) unwinding in ``lj-stack`` command."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:85
+msgid "Added the value of ``g->gc.mmudata`` field to ``lj-gc`` output."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:87
+msgid "``string.char()`` builtin recording is fixed in case when no arguments are given (:tarantool-issue:`6371`, :tarantool-issue:`6548`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:90
+msgid "Actually made JIT respect ``maxirconst`` trace limit while recording (:tarantool-issue:`6548`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:94
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:96
+msgid "Fixed ``table.equals`` result when booleans compared (:tarantool-issue:`6386`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:98
+msgid "Tap subtests inherit strict mode from parent (:tarantool-issue:`6868`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:101
+msgid "Box"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:103
+msgid "Added iterator type checking and allow to pass iterator as a ``box.index.{ALL,GT,…}`` directly (:tarantool-issue:`6501`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:107
+msgid "HTTP client"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:109
+msgid "Fixed invalid headers after redirect (:tarantool-issue:`6101`)."
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:112
+msgid "Recovery"
+msgstr ""
+
+#: ../../doc/release/2.8.4.rst:114
+msgid "When ``force_recovery`` cfg option is set, Tarantool is able to boot from ``snap``/``xlog`` combinations where ``xlog`` covers changes committed both before and after ``snap`` creation. For example, ``0...0.xlog``, covering everything up to ``vclock {1: 15}`` and ``0...09.snap``, corresponding to ``vclock {1: 9}`` (:tarantool-issue:`6794`)."
+msgstr ""

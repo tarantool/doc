@@ -1,0 +1,239 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:5
+msgid "box.space._user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:11
+msgid "``_user`` is a system space where user-names and password hashes are stored."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:13
+msgid "Tuples in this space contain the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:15
+msgid "a numeric id of the tuple (\"id\")"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:16
+msgid "a numeric id of the tuple’s creator"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:17
+msgid "a name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:18
+msgid "a type: 'user' or 'role'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:19
+msgid "(optional) a password hash"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:20
+msgid "(optional) an array of previous authentication data"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:21
+msgid "(optional) a timestamp of the last password update"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:23
+msgid "There are five special tuples in the ``_user`` space: 'guest', 'admin', 'public', 'replication', and 'super'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:36
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:36
+msgid "ID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:36
+msgid "Type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:36
+msgid "Description"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:38
+msgid "guest"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:38
+msgid "0"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:38
+#: ../../doc/reference/reference_lua/box_space/_user.rst:41
+msgid "user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:38
+msgid "Default user when connecting remotely. Usually, an untrusted user with few privileges."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:41
+msgid "admin"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:41
+msgid "1"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:41
+msgid "Default user when using Tarantool as a console. Usually, an :ref:`administrative user <authentication-owners_privileges>` with all privileges."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:46
+msgid "public"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:46
+msgid "2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:46
+#: ../../doc/reference/reference_lua/box_space/_user.rst:54
+#: ../../doc/reference/reference_lua/box_space/_user.rst:58
+msgid "role"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:46
+msgid "Pre-defined :ref:`role <authentication-roles>`, automatically granted to new users when they are created with ``box.schema.user.create(user-name)``. Therefore a convenient way to grant 'read' on space 't' to every user that will ever exist is with ``box.schema.role.grant('public','read','space','t')``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:54
+msgid "replication"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:54
+msgid "3"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:54
+msgid "Pre-defined :ref:`role <authentication-roles>`, which the 'admin' user can grant to users who need to use :ref:`replication <replication>` features."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:58
+msgid "super"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:58
+msgid "31"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:58
+msgid "Pre-defined :ref:`role <authentication-roles>`, which the 'admin' user can grant to users who need all privileges on all objects. The 'super' role has these privileges on 'universe': read, write, execute, create, drop, alter."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:66
+msgid "To select a tuple from the ``_user`` space, use ``box.space._user:select()``. In the example below, ``select`` is executed for a user with id = 0. This is the 'guest' user that has no password."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:70
+msgid "tarantool> box.space._user:select{0}\n"
+"---\n"
+"- - [0, 1, 'guest', 'user']\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:79
+msgid "To change tuples in the ``_user`` space, do not use ordinary ``box.space`` functions for insert, update, or delete. The ``_user`` space is special, so there are special functions that have appropriate error checking.\\"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:83
+msgid "To create a new user, use :doc:`/reference/reference_lua/box_schema/user_create`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:85
+msgid "box.schema.user.create(*user-name*)\n"
+"box.schema.user.create(*user-name*, {if_not_exists = true})\n"
+"box.schema.user.create(*user-name*, {password = *password*})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:91
+msgid "To change the user's password, use :doc:`/reference/reference_lua/box_schema/user_passwd`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:93
+msgid "-- To change the current user's password\n"
+"box.schema.user.passwd(*password*)\n"
+"\n"
+"-- To change a different user's password\n"
+"-- (usually only 'admin' can do it)\n"
+"box.schema.user.passwd(*user-name*, *password*)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:102
+msgid "To drop a user, use :doc:`/reference/reference_lua/box_schema/user_drop`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:104
+msgid "box.schema.user.drop(*user-name*)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:108
+msgid "To check whether a user exists, use :doc:`/reference/reference_lua/box_schema/user_exists`, which returns ``true`` or ``false``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:111
+msgid "box.schema.user.exists(*user-name*)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:115
+msgid "To find what privileges a user has, use :doc:`/reference/reference_lua/box_schema/user_info`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:117
+msgid "box.schema.user.info(*user-name*)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:123
+msgid "The maximum number of users is 32."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:125
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:127
+msgid "Here is a session which creates a new user with a strong password, selects a tuple in the ``_user`` space, and then drops the user."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:130
+msgid "tarantool> box.schema.user.create('JeanMartin', {password = 'Iwtso_6_os$$'})\n"
+"---\n"
+"...\n"
+"tarantool> box.space._user.index.name:select{'JeanMartin'}\n"
+"---\n"
+"- - [17, 1, 'JeanMartin', 'user', {'chap-sha1': 't3xjUpQdrt857O+YRvGbMY5py8Q='}]\n"
+"...\n"
+"tarantool> box.schema.user.drop('JeanMartin')\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_user.rst:143
+msgid "The :ref:`system space view <box_space-sysviews>` for ``_user`` is ``_vuser``."
+msgstr ""

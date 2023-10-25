@@ -1,0 +1,273 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/db/indexes.rst:4
+msgid "Using indexes"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:7
+msgid "Creating an index"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:9
+msgid "It is mandatory to create an index for a space before trying to insert tuples into the space, or select tuples from the space."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:12
+msgid "The simple :doc:`index-creation </reference/reference_lua/box_space/create_index>` operation is:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:57
+msgid ":extsamp:`box.space.{**{space-name}**}:create_index('{*{index-name}*}')`"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:20
+msgid "This creates a unique :ref:`TREE <indexes-tree>` index on the first field of all tuples (often called \"Field#1\"), which is assumed to be numeric."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:23
+msgid "A recommended design pattern for a data model is to base primary keys on the first fields of a tuple. This speeds up tuple comparison due to the specifics of data storage and the way comparisons are arranged in Tarantool."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:27
+msgid "The simple :doc:`SELECT </reference/reference_lua/box_index/select>` request is:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:71
+msgid ":extsamp:`box.space.{**{space-name}**}:select({*{value}*})`"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:34
+msgid "This looks for a single tuple via the first index. Since the first index is always unique, the maximum number of returned tuples will be 1. You can call ``select()`` without arguments, and it will return all tuples. Be careful! Using ``select()`` for huge spaces hangs your instance."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:39
+msgid "An index definition may also include identifiers of tuple fields and their expected **types**. See allowed indexed field types in section :ref:`Details about indexed field types <index-box_indexed-field-types>`:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:85
+msgid ":extsamp:`box.space.{**{space-name}**}:create_index({**{index-name}**}, {type = 'tree', parts = {{field = 1, type = 'unsigned'}}}`"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:48
+msgid "Space definitions and index definitions are stored permanently in Tarantool's system spaces :ref:`_space <box_space-space>` and :ref:`_index <box_space-index>`."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:51
+#: ../../doc/how-to/db/indexes.rst:166
+msgid "Tip"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:54
+msgid "See full information about creating indexes, such as how to create a multikey index, an index using the ``path`` option, or how to create a functional index in our reference for :doc:`/reference/reference_lua/box_space/create_index`."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:62
+msgid "Index operations"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:64
+msgid "Index operations are automatic: if a data manipulation request changes a tuple, then it also changes the index keys defined for the tuple."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:67
+msgid "Create a sample space named ``bands``:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:69
+msgid "bands = box.schema.space.create('bands')\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:74
+msgid "Format the created space by specifying field names and types:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:76
+msgid "box.space.bands:format({\n"
+"    { name = 'id', type = 'unsigned' },\n"
+"    { name = 'band_name', type = 'string' },\n"
+"    { name = 'year', type = 'unsigned' }\n"
+"})\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:81
+msgid "Create the **primary** index (named ``primary``):"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:83
+msgid "box.space.bands:create_index('primary', { parts = { 'id' } })\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:88
+msgid "This index is based on the ``id`` field of each tuple."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:90
+msgid "Insert some :ref:`tuples <index-box_tuple>` into the space:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:92
+msgid "box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"box.space.bands:insert { 4, 'The Beatles', 1960 }\n"
+"box.space.bands:insert { 5, 'Pink Floyd', 1965 }\n"
+"box.space.bands:insert { 6, 'The Rolling Stones', 1962 }\n"
+"box.space.bands:insert { 7, 'The Doors', 1965 }\n"
+"box.space.bands:insert { 8, 'Nirvana', 1987 }\n"
+"box.space.bands:insert { 9, 'Led Zeppelin', 1968 }\n"
+"box.space.bands:insert { 10, 'Queen', 1970 }\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:97
+msgid "Create **secondary indexes**:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:99
+msgid "-- Create a unique secondary index --\n"
+"box.space.bands:create_index('band', { parts = { 'band_name' } })\n"
+"\n"
+"-- Create a non-unique secondary index --\n"
+"box.space.bands:create_index('year', { parts = { { 'year' } }, unique = false })\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:104
+msgid "Create a **multi-part index** with two parts:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:106
+msgid "box.space.bands:create_index('year_band', { parts = { { 'year' }, { 'band_name' } } })\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:111
+msgid "There are the following SELECT variations:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:113
+msgid "The search can use **comparisons** other than equality:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:115
+msgid "-- Select maximum 3 tuples with the key value greater than 1965 --\n"
+"select_greater = bands.index.year:select({ 1965 }, { iterator = 'GT', limit = 3 })\n"
+"--[[\n"
+"---\n"
+"- - [9, 'Led Zeppelin', 1968]\n"
+"  - [10, 'Queen', 1970]\n"
+"  - [1, 'Roxette', 1986]\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:120
+msgid "The :ref:`comparison operators <box_index-iterator-types>` are:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:122
+msgid "``LT`` for \"less than\""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:123
+msgid "``LE`` for \"less than or equal\""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:124
+msgid "``GT`` for \"greater\""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:125
+msgid "``GE`` for \"greater than or equal\""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:126
+msgid "``EQ`` for \"equal\""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:127
+msgid "``REQ`` for \"reversed equal\""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:129
+msgid "Value comparisons make sense if and only if the index type is TREE. The iterator types for other types of indexes are slightly different and work differently. See details in section :ref:`Iterator types <box_index-iterator-types>`."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:133
+msgid "Note that we don't use the name of the index, which means we use primary index here."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:135
+msgid "This type of search may return more than one tuple. The tuples will be sorted in descending order by key if the comparison operator is LT or LE or REQ. Otherwise they will be sorted in ascending order."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:139
+msgid "The search can use a **secondary index**."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:141
+msgid "-- Select a tuple by the specified secondary key value --\n"
+"select_secondary = bands.index.band:select { 'The Doors' }\n"
+"--[[\n"
+"---\n"
+"- - [7, 'The Doors', 1965]\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:148
+msgid "**Partial key search:** The search may be for some key parts starting with the prefix of the key. Note that partial key searches are available only in TREE indexes."
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:152
+msgid "-- Select tuples by the specified partial key value --\n"
+"select_multipart_partial = bands.index.year_band:select { 1965 }\n"
+"--[[\n"
+"---\n"
+"- - [5, 'Pink Floyd', 1965]\n"
+"  - [2, 'Scorpions', 1965]\n"
+"  - [7, 'The Doors', 1965]\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:158
+msgid "The search can be for all fields, using a table as the value:"
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:160
+msgid "-- Select a tuple by the specified multi-part secondary key value --\n"
+"select_multipart = bands.index.year_band:select { 1960, 'The Beatles' }\n"
+"--[[\n"
+"---\n"
+"- - [4, 'The Beatles', 1960]\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/indexes.rst:169
+msgid "You can also add, drop, or alter the definitions at runtime, with some restrictions. Read more about index operations in reference for :doc:`box.index submodule </reference/reference_lua/box_index>`."
+msgstr ""

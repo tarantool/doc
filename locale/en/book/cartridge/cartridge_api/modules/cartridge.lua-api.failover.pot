@@ -1,0 +1,306 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:5
+msgid "Module *cartridge.lua-api.failover*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:7
+msgid "Administration functions (failover related)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:21
+msgid "get_params ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:23
+msgid "Get failover configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:25
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:42
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:205
+msgid "(**Added** in v2.0.2-2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:29
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:62
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:102
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:132
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:156
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:180
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:31
+msgid "(`FailoverParams <cartridge.lua-api.failover.FailoverParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:38
+msgid "set_params (opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:40
+msgid "Configure automatic failover."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:45
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:98
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:123
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:47
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:126
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:49
+msgid "*mode:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:50
+msgid "*state_provider:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:51
+msgid "*failover_timeout:* (optional **number**) (added in v2.3.0-52)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:52
+msgid "*tarantool_params:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:53
+msgid "*etcd2_params:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) (added in v2.1.2-26)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:54
+msgid "*fencing_enabled:* (optional **boolean**) (added in v2.3.0-57)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:55
+msgid "*fencing_timeout:* (optional **number**) (added in v2.3.0-57)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:56
+msgid "*fencing_pause:* (optional **number**) (added in v2.3.0-57)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:57
+msgid "*leader_autoreturn:* (optional **boolean**) (added in v2.7.7)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:58
+msgid "*autoreturn_delay:* (optional **number**) (added in v2.7.7)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:59
+msgid "*check_cookie_hash:* (optional **boolean**) (added in v2.7.8)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:64
+msgid "(**boolean**) `true` if config applied successfully"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:67
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:107
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:137
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:161
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:185
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:69
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:109
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:139
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:163
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:187
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:71
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:111
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:141
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:165
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:189
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:78
+msgid "get_failover_enabled ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:80
+msgid "Get current failover state."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:82
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:95
+msgid "(**Deprecated** since v2.0.2-2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:91
+msgid "set_failover_enabled (enabled)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:93
+msgid "Enable or disable automatic failover."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:100
+msgid "*enabled:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:104
+msgid "(**boolean**) New failover state"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:118
+msgid "promote (replicaset_uuid[, opts])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:120
+msgid "Promote leaders in replicasets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:125
+msgid "*replicaset_uuid:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) ] = leader_uuid }"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:128
+msgid "*force_inconsistency:* (optional **boolean**) (default: **false**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:129
+msgid "*skip_error_on_change:* (optional **boolean**) Skip etcd error if vclockkeeper was changed between calls (default: **false**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:134
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:158
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:182
+msgid "(**boolean**) true On success"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:148
+msgid "pause ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:150
+msgid "Stops failover across cluster at runtime.  Will be useful in case of \"failover storms\" when failover triggers too many times in minute."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:172
+msgid "resume ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:174
+msgid "Starts failover across cluster at runtime after  ``pause`` . Don't forget to resume your failover after pausing it."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:194
+msgid "Tables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:201
+msgid "FailoverParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:203
+msgid "Failover parameters."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:208
+msgid "**Fields:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:210
+msgid "*mode:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Supported modes are \"disabled\", \"eventual\", \"stateful\" or \"raft\""
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:211
+msgid "*state_provider:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Supported state providers are \"tarantool\" and \"etcd2\"."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:212
+msgid "*failover_timeout:* (**number**) (added in v2.3.0-52)Timeout (in seconds), used by membership tomark  ``suspect``  members as  ``dead``  (default: 20)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:213
+msgid "*tarantool_params:* (added in v2.0.2-2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:215
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:216
+msgid "*password:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:218
+msgid "*etcd2_params:* (added in v2.1.2-26)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:220
+msgid "*prefix:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Prefix used for etcd keys: `<prefix>/lock` and`<prefix>/leaders`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:221
+msgid "*lock_delay:* (optional **number**) Timeout (in seconds), determines lock's time-to-live (default: 10)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:222
+msgid "*endpoints:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) URIs that are used to discover and to access etcd cluster instances.(default:  ``{'http://localhost:2379', 'http://localhost:4001'}`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:223
+msgid "*username:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) (default: \"\")"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:224
+msgid "*password:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) (default: \"\")"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:226
+msgid "*fencing_enabled:* (**boolean**) (added in v2.3.0-57)Abandon leadership when both the state provider quorum and atleast one replica are lost (suitable in stateful mode only,default: false)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:227
+msgid "*fencing_timeout:* (**number**) (added in v2.3.0-57)Time (in seconds) to actuate fencing after the check fails(default: 10)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:228
+msgid "*fencing_pause:* (**number**) (added in v2.3.0-57)The period (in seconds) of performing the check(default: 2)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:229
+msgid "*leader_autoreturn:* (**boolean**) (added in v2.7.7)If enabled, then switched leader will return after ` ``autoreturn_delay`` `(default: false)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:230
+msgid "*autoreturn_delay:* (**number**) (added in v2.7.7)Time (in seconds) until failover try to return leader to the first nodein ` ``failover_priority`` `(default: 300)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.failover.rst:231
+msgid "*check_cookie_hash:* (**boolean**) (added in v2.7.8)If enabled, then check that nobody else uses this stateboard(default: true)"
+msgstr ""

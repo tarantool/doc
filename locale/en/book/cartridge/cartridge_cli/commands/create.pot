@@ -1,0 +1,267 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:4
+msgid "Creating an application from template"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:6
+msgid "To create an application from a Cartridge template, run this in any directory:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:8
+msgid "cartridge create [path] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:13
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:21
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:22
+msgid "Application name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:23
+msgid "``--from``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:24
+msgid "Path to the application template. See details below."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:25
+msgid "``--template``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:26
+msgid "Name of the application template. Currently, only the ``cartridge`` template is supported."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:29
+msgid "``create`` also supports :doc:`global flags </book/cartridge/cartridge_cli/global-flags>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:32
+msgid "Details"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:34
+msgid "Your application will appear in the ``<path>/<app-name>/`` directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:36
+msgid "The template used by default is ``cartridge``. It produces a simple Cartridge application that includes:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:39
+msgid "One custom role with an HTTP endpoint."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:40
+msgid "Sample tests and basic test helpers."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:41
+msgid "Development files like ``.luacheckrc``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:43
+msgid "If you have ``git`` installed, a Git repository with a ``.gitignore`` file will be also set up in the project root directory. The initial commit will be created and tagged with the application :ref:`version <cartridge-versioning>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:49
+msgid "Project directory"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:51
+msgid "Let's take a closer look at the files inside the ``<app_name>/`` directory:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:53
+msgid "Application files:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:55
+msgid "``app/roles/custom-role.lua``: a sample :ref:`custom role <cartridge-roles>` with a simple HTTP API. Can be enabled as ``app.roles.custom``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:57
+msgid "``<app_name>-scm-1.rockspec``: contains application dependencies."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:58
+msgid "``init.lua``: application entry point."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:59
+msgid "``stateboard.init.lua`` application :doc:`stateboard </book/cartridge/cartridge_cli/commands/failover>` entry point."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:62
+msgid "Build and packaging files:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:64
+msgid "``cartridge.pre-build``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:65
+msgid "``cartridge.post-build``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:66
+msgid "``Dockerfile.build.cartridge``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:67
+msgid "``Dockerfile.cartridge``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:69
+msgid "To learn more, check the documentation on :doc:`pre-build and post-build scripts <../pre-post-build>`, :doc:`building your application with Docker <pack/building-in-docker>`, and :doc:`creating a Docker image of your application <pack/docker>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:74
+msgid "Development files:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:76
+msgid "``deps.sh`` resolves dependencies listed in the ``.rockspec`` file and installs test dependencies (like ``luatest``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:78
+msgid "``instances.yml`` contains the configuration of instances and is used by ``cartridge start``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:80
+msgid "``.cartridge.yml`` contains the Cartridge configuration and is also used by ``cartridge start``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:82
+msgid "``systemd-unit-params.yml`` contains systemd parameters."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:83
+msgid "``tmp`` is a directory for temporary files used as a run directory (see ``.cartridge.yml``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:85
+msgid "``.git`` is the directory responsible for the Git repository."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:86
+msgid "``.gitignore`` is a file where you can specify the files for Git to ignore."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:88
+msgid "Test files (with sample tests):"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:90
+msgid "test\n"
+"├── helper\n"
+"│   ├── integration.lua\n"
+"│   └── unit.lua\n"
+"│   ├── helper.lua\n"
+"│   ├── integration\n"
+"│   │   └── api_test.lua\n"
+"│   └── unit\n"
+"│       └── sample_test.lua"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:102
+msgid "Configuration files:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:104
+msgid "``.luacheckrc``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:105
+msgid "``.luacov``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:106
+msgid "``.editorconfig``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:109
+msgid "Using a custom template"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:111
+msgid "By default, ``create`` uses a standard template named ``cartridge``. However, you can also make a custom template. To create an application from it, run ``cartridge create`` with the ``--from`` flag, specifying the path to your template."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:115
+msgid "If the template directory is a Git repository, all files in the ``.git`` directory will be ignored upon instantiating the template. Instead, a new git repo will be initialized for the newly created application."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:119
+msgid "Don't include the ``.rocks`` directory in your template application. To specify application dependencies, use the ``.rockspec`` and ``cartridge.pre-build`` files."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:123
+msgid "Text variables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:125
+msgid "Filenames and content can contain `text templates <https://golang.org/pkg/text/template/>`_."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:127
+msgid "You can use the following variables:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:129
+msgid "``Name``: application name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:130
+msgid "``StateboardName``: application stateboard name (``<app-name>-stateboard``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:131
+msgid "``Path``: absolute path to the application."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:133
+msgid "For example:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:135
+msgid "my-template\n"
+"├── {{ .Name }}-scm-1.rockspec\n"
+"└── init.lua\n"
+"└── stateboard.init.lua\n"
+"└── test\n"
+"    └── sample_test.lua"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:144
+msgid "``init.lua``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/create.rst:146
+msgid "print(\"Hi, I am {{ .Name }} application\")\n"
+"print(\"I also have a stateboard named {{ .StateboardName }}\")"
+msgstr ""

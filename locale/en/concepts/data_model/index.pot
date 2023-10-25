@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/data_model/index.rst:4
+msgid "Data model"
+msgstr ""
+
+#: ../../doc/concepts/data_model/index.rst:6
+msgid "If you tried to create a database as suggested in our :ref:`basic tutorial <getting_started_db>`, then your test database now looks like this:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/index.rst:12
+msgid "Tarantool stores data in :ref:`spaces <index-box_space>`, which can be thought of as tables in a relational database. Every record or row in a space is called a :ref:`tuple <index-box_tuple>`. A tuple may have any number of fields, and the fields may be of different :ref:`types <index-box_data-types>`."
+msgstr ""
+
+#: ../../doc/concepts/data_model/index.rst:16
+msgid "String data in fields are compared based on the specified :ref:`collation <index-collation>` rules. The user can provide hard limits for data values through :ref:`constraints <index-constraints>` and link related spaces with :ref:`foreign keys <index-box_foreign_keys>`."
+msgstr ""
+
+#: ../../doc/concepts/data_model/index.rst:20
+msgid "Tarantool supports highly customizable :ref:`indexes <index-box_index>` of various types. In particular, indexes can be defined with generators like :ref:`sequences <index-box_sequence>`."
+msgstr ""
+
+#: ../../doc/concepts/data_model/index.rst:23
+msgid "There are six basic :ref:`data operations <index-box_operations>` in Tarantool: SELECT, INSERT, UPDATE, UPSERT, REPLACE, and DELETE. A number of :ref:`complexity factors <index-box_complexity-factors>` affects the resource usage of each function."
+msgstr ""
+
+#: ../../doc/concepts/data_model/index.rst:27
+msgid "Tarantool allows :ref:`describing the data schema <index-box-data_schema_description>` but does not require it. The user can :ref:`migrate a schema <migrations>` without migrating the data."
+msgstr ""
+
+#: ../../doc/concepts/data_model/index.rst:30
+msgid "To ensure :ref:`data persistence <index-box_persistence>` and recover quickly in case of failure, Tarantool uses mechanisms like the write-ahead log (WAL) and snapshots."
+msgstr ""

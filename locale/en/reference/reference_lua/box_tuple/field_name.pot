@@ -1,0 +1,74 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:6
+msgid "tuple_object[field-name]"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:12
+msgid "If ``t`` is a tuple instance, ``t['field-name']`` will return the field named 'field-name' in the tuple. Fields have names if the tuple has been retrieved from a space that has an associated :ref:`format <box_space-format>`. :samp:`t[{lua-variable-name}]` will do the same thing if ``lua-variable-name`` contains ``'field-name'``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:18
+msgid "There is a variation which the `Lua manual <https://www.lua.org/pil/2.5.html>`_ calls \"syntactic sugar\": use ``t.field-name`` as an equivalent of ``t['field-name']``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:23
+msgid "field value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:24
+msgid "lua-value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:26
+msgid "In the following example, a tuple named ``t`` is returned from ``replace`` and then the second field in ``t`` named 'field2' is returned."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_name.rst:29
+msgid "tarantool> format = {}\n"
+"---\n"
+"...\n"
+"tarantool> format[1] = {name = 'field1', type = 'unsigned'}\n"
+"---\n"
+"...\n"
+"tarantool> format[2] = {name = 'field2', type = 'string'}\n"
+"---\n"
+"...\n"
+"tarantool> s = box.schema.space.create('test', {format = format})\n"
+"---\n"
+"...\n"
+"tarantool> pk = s:create_index('pk')\n"
+"---\n"
+"...\n"
+"tarantool> t = s:replace{1, 'Я'}\n"
+"---\n"
+"...\n"
+"tarantool> t['field2']\n"
+"---\n"
+"- Я\n"
+"..."
+msgstr ""

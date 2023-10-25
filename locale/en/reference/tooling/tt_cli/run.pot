@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:4
+msgid "Running code in a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:6
+msgid "$ tt run [SCRIPT|-e EXPR] [OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:10
+msgid "``tt run`` executes Lua code in a Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:13
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:17
+msgid "Execute the specified expression in a Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:21
+msgid "Require the specified library."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:25
+msgid "Enter the interactive mode after the script execution."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:29
+msgid "Print the Tarantool version that is used for script execution."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:32
+msgid "Details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:34
+msgid "``tt run`` executes arbitrary Lua code in a Tarantool instance. The code can be provided either in a Lua file, or in a string passed after the ``-e``/``--evaluate`` flag. When called without arguments or flags, ``tt run`` opens the Tarantool console."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:38
+msgid "If libraries are required for execution, pass their names after the ``-l``/``--library`` flag."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:41
+msgid "By default, a Tarantool instance started by ``tt run`` shuts down after code execution completes. To leave this instance running and continue working in its console, add the ``-i``/``--interactive`` flag."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:46
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:48
+msgid "Execute the ``app.lua`` file in a Tarantool instance:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:50
+msgid "$ tt run app.lua"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:54
+msgid "Execute an expression in a Tarantool instance:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:56
+msgid "$ tt run -e \"print('hi there')\""
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:60
+msgid "Execute the ``app.lua`` file in a Tarantool instance and leave it running:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/run.rst:62
+msgid "$ tt run app.lua -i"
+msgstr ""

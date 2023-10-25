@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.6.rst:2
+msgid "Tarantool 1.10.6"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:4
+msgid "Release: :tarantool-release:`1.10.6`"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:6
+msgid "Date: 2020-04-20 Tag: 1.10.6-1-g47c009a"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:11
+msgid "1.10.6 is the next stable release of the 1.10.x series. The label “stable” means there are 1.10.x-based applications running in production for quite a while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:16
+msgid "This release resolves roughly 20 issues since 1.10.5. There may be bugs in less common areas. If you find any, feel free to report an issue at GitHub."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:21
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:23
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. Please upgrade using the box.schema.upgrade() procedure to unlock all the new features of the 1.10.x series."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:29
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:32
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:34
+msgid "``fiber.storage`` is cleaned between requests, and can be used as a request-local storage. Previously ``fiber.storage`` could contain some old values in the beginning of an iproto request execution, and it needed to be nullified manually. Now the cleanup is unneeded (:tarantool-issue:`4662`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:39
+msgid "``tuple``/``space``/``index``:``update()``/``upsert()`` were fixed not to turn a value into an infinity when a float value was added to or subtracted from a float column and exceeded the float value range (:tarantool-issue:`4701`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:43
+msgid "Make RTREE indexes handle the out of memory error: before this fix, OOM during the recovery of an RTREE index resulted in segmentation fault (:tarantool-issue:`4619`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:46
+msgid "Add cancellation guard to avoid WAL thread stuck (:tarantool-issue:`4127`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:49
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:51
+msgid "Fix the rebootstrap procedure not working if the replica itself is listed in ``box.cfg.replication`` (:tarantool-issue:`4759`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:53
+msgid "Fix possible user password leaking via replication logs (:tarantool-issue:`4493`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:55
+msgid "Local space operations are now counted in 0th vclock component. Every instance may have its own 0-th vclock component not matching others’. Local space operations are not replicated at all, even as NOPs (:tarantool-issue:`4114`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:59
+msgid "Gc consumers are now ordered by their vclocks and not by vclock signatures. Only the WALS that contain no entries needed by any of the consumers are deleted (:tarantool-issue:`4114`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:64
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:66
+msgid "json: ``:decode()`` doesn’t spoil instance’s options with per-call ones (when it is called with the second argument) (:tarantool-issue:`4761`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:68
+msgid "``os.environ()`` is now changed when ``os.setenv()`` is called (:tarantool-issue:`4733`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:70
+msgid "``netbox.self:call/eval()`` now returns the same types as ``netbox_connection:call``/``eval``. Previously it could return a tuple or ``box.error`` cdata (:tarantool-issue:`4513`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:73
+msgid "libev: backport fix for listening for more then 1024 file descriptors on Mac OS (:tarantool-issue:`3867`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:77
+msgid "HTTP client"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:79
+msgid "When building Tarantool with bundled ``libcurl``, link it with the ``c-ares`` library by default (:tarantool-issue:`4591`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:83
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:85
+msgid "``__pairs``/``__ipairs`` metamethods handling is removed since we faced the issues with the backward compatibility between Lua 5.1 and Lua 5.2 within Tarantool modules as well as other third party code (:tarantool-issue:`4770`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:90
+msgid "Introduce ``luajit-gdb.py`` extension with commands for inspecting LuaJIT internals. The extension obliges one to provide gdbinfo for ``libluajit``, otherwise loading fails. The extension provides the following commands:"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:95
+msgid "``lj-arch`` dumps values of LJ_64 and LJ_GC64 macro definitions"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:96
+msgid "``lj-tv`` dumps the type and GCobj info related to the given TValue"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:98
+msgid "``lj-str`` dumps the contents of the given GCstr"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:99
+msgid "``lj-tab`` dumps the contents of the given GCtab"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:100
+msgid "``lj-stack`` dumps Lua stack of the given lua_State"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:101
+msgid "``lj-state`` shows current VM, GC and JIT states"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:102
+msgid "``lj-gc`` shows current GC stats"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:104
+msgid "Fix string to number conversion: current implementation respects the buffer length (:tarantool-issue:`4773`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:109
+msgid "“FFI sandwich”(*) detection is introduced. If sandwich is detected"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:108
+msgid "while trace recording the recording is aborted. The sandwich detected while mcode execution leads to the platform panic."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:111
+msgid "luaJIT_setmode call is prohibited while mcode execution and leads to the platform panic."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:114
+msgid "(*) The following stack mix is called FFI sandwich:"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:116
+msgid "Lua-FFI -> C routine -> Lua-C API -> Lua VM"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:118
+msgid "This sort of re-entrancy is explicitly not supported by LuaJIT compiler. For more info see (:tarantool-issue:`4427`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:122
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:124
+msgid "Fix assertion fault due to triggered dump process during secondary index build (:tarantool-issue:`4810`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:128
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:130
+msgid "Fix crashes at attempts to use ``-e`` and ``-l`` command line options concatenated with their values, like this: ``-eprint(100)`` (:tarantool-issue:`4775`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:133
+msgid "Update ``libopenssl`` version to 1.1.1f since the previous one was EOLed (:tarantool-issue:`4830`)."
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:137
+msgid "Building from sources"
+msgstr ""
+
+#: ../../doc/release/1.10.6.rst:139
+msgid "Fix static build (``-DBUILD_STATIC=ON``) when ``libunwind`` depends on ``liblzma`` (:tarantool-issue:`4551`)."
+msgstr ""

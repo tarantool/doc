@@ -1,0 +1,396 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/connectors/go.rst:4
+msgid "Go"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:6
+msgid "The following connectors are available:"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:8
+msgid "Tarantool-supported `go-tarantool <https://github.com/tarantool/go-tarantool>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:10
+msgid "Community-supported `viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:12
+msgid "Community-supported `FZambia/tarantool <https://github.com/FZambia/tarantool>`_."
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:17
+msgid "Feature comparison"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:19
+msgid "Last update: January 2023"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:26
+msgid "`tarantool/go-tarantool <https://github.com/tarantool/go-tarantool>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:27
+msgid "`viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:28
+msgid "`FZambia/tarantool <https://github.com/FZambia/tarantool>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:30
+msgid "License"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:31
+#: ../../doc/book/connectors/go.rst:33
+msgid "BSD 2-Clause"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:32
+msgid "MIT"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:35
+msgid "Last update"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:36
+msgid "2023"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:37
+#: ../../doc/book/connectors/go.rst:38
+msgid "2022"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:40
+msgid "Documentation"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:41
+msgid "README with examples and up-to-date GoDoc"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:42
+msgid "README with examples, code comments"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:43
+msgid "README with examples"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:45
+msgid "Testing / CI / CD"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:46
+#: ../../doc/book/connectors/go.rst:48
+msgid "GitHub Actions"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:47
+msgid "Travis CI"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:50
+msgid "GitHub Stars"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:51
+msgid "147"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:52
+msgid "45"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:53
+msgid "14"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:55
+msgid "Static analysis"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:56
+msgid "golangci-lint, luacheck"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:57
+msgid "golint"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:58
+msgid "golangci-lint"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:60
+msgid "Packaging"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:61
+#: ../../doc/book/connectors/go.rst:62
+#: ../../doc/book/connectors/go.rst:63
+msgid "go get"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:65
+msgid "Code coverage"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:66
+#: ../../doc/book/connectors/go.rst:76
+#: ../../doc/book/connectors/go.rst:77
+#: ../../doc/book/connectors/go.rst:78
+#: ../../doc/book/connectors/go.rst:86
+#: ../../doc/book/connectors/go.rst:87
+#: ../../doc/book/connectors/go.rst:88
+#: ../../doc/book/connectors/go.rst:101
+#: ../../doc/book/connectors/go.rst:106
+#: ../../doc/book/connectors/go.rst:116
+#: ../../doc/book/connectors/go.rst:121
+#: ../../doc/book/connectors/go.rst:127
+#: ../../doc/book/connectors/go.rst:132
+#: ../../doc/book/connectors/go.rst:137
+#: ../../doc/book/connectors/go.rst:139
+#: ../../doc/book/connectors/go.rst:142
+#: ../../doc/book/connectors/go.rst:147
+#: ../../doc/book/connectors/go.rst:152
+#: ../../doc/book/connectors/go.rst:177
+#: ../../doc/book/connectors/go.rst:182
+msgid "Yes"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:67
+#: ../../doc/book/connectors/go.rst:68
+#: ../../doc/book/connectors/go.rst:92
+#: ../../doc/book/connectors/go.rst:97
+#: ../../doc/book/connectors/go.rst:103
+#: ../../doc/book/connectors/go.rst:107
+#: ../../doc/book/connectors/go.rst:108
+#: ../../doc/book/connectors/go.rst:117
+#: ../../doc/book/connectors/go.rst:118
+#: ../../doc/book/connectors/go.rst:122
+#: ../../doc/book/connectors/go.rst:123
+#: ../../doc/book/connectors/go.rst:128
+#: ../../doc/book/connectors/go.rst:129
+#: ../../doc/book/connectors/go.rst:133
+#: ../../doc/book/connectors/go.rst:134
+#: ../../doc/book/connectors/go.rst:143
+#: ../../doc/book/connectors/go.rst:144
+#: ../../doc/book/connectors/go.rst:148
+#: ../../doc/book/connectors/go.rst:149
+#: ../../doc/book/connectors/go.rst:153
+#: ../../doc/book/connectors/go.rst:154
+#: ../../doc/book/connectors/go.rst:157
+#: ../../doc/book/connectors/go.rst:158
+#: ../../doc/book/connectors/go.rst:159
+#: ../../doc/book/connectors/go.rst:163
+#: ../../doc/book/connectors/go.rst:164
+#: ../../doc/book/connectors/go.rst:172
+#: ../../doc/book/connectors/go.rst:173
+#: ../../doc/book/connectors/go.rst:174
+#: ../../doc/book/connectors/go.rst:178
+#: ../../doc/book/connectors/go.rst:179
+#: ../../doc/book/connectors/go.rst:183
+#: ../../doc/book/connectors/go.rst:184
+msgid "No"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:70
+msgid "msgpack driver"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:71
+msgid "`vmihailenco/msgpack/v2 <https://github.com/vmihailenco/msgpack/tree/v2>`_ or `vmihailenco/msgpack/v5 <https://github.com/vmihailenco/msgpack/tree/v5>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:72
+msgid "`tinylib/msgp <https://github.com/tinylib/msgp>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:73
+msgid "`vmihailenco/msgpack/v5 <https://github.com/vmihailenco/msgpack/tree/v5>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:75
+msgid "Async work"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:80
+msgid "Schema reload"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:81
+#: ../../doc/book/connectors/go.rst:82
+#: ../../doc/book/connectors/go.rst:83
+msgid "Yes (manual pull)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:85
+msgid "Space / index names"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:90
+msgid "Tuples as structures"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:91
+#: ../../doc/book/connectors/go.rst:93
+msgid "Yes (structure and marshall functions must be predefined in Go code)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:95
+msgid "Access tuple fields by names"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:96
+#: ../../doc/book/connectors/go.rst:98
+msgid "Only if marshalled to structure"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:100
+msgid "`SQL <https://www.tarantool.io/en/doc/latest/reference/reference_sql/>`_ support"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:102
+msgid "No (`#18 <https://github.com/viciious/go-tarantool/issues/18>`_, closed)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:105
+msgid "`Interactive transactions <https://www.tarantool.io/en/doc/latest/book/box/stream/>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:110
+msgid "`Varbinary <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`_ support"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:111
+#: ../../doc/book/connectors/go.rst:112
+msgid "Yes (with in-built language tools)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:113
+msgid "Yes (decodes to string by default, see `#6 <https://github.com/FZambia/tarantool/issues/6>`_)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:115
+msgid "`UUID <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`_ support"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:120
+msgid "Decimal support"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:125
+msgid "`EXT_ERROR <https://www.tarantool.io/ru/doc/latest/dev_guide/internals/msgpack_extensions/#the-error-type>`_ support"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:131
+msgid "`Datetime <https://github.com/tarantool/tarantool/discussions/6244>`_ support"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:136
+msgid "`box.session.push() responses <https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_session/push/>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:138
+msgid "No (`#21 <https://github.com/viciious/go-tarantool/issues/21>`_)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:141
+msgid "`Session settings <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_session_settings/>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:146
+msgid "`Graceful shutdown <https://github.com/tarantool/tarantool/issues/5924>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:151
+msgid "`IPROTO_ID (feature discovering) <https://github.com/tarantool/tarantool/issues/6253>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:156
+msgid "`tarantool/crud <https://github.com/tarantool/crud>`_ support"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:161
+msgid "Connection pool"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:162
+msgid "Yes (round-robin failover, no balancing)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:166
+msgid "Transparent reconnecting"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:167
+msgid "Yes (see comments in `#129 <https://github.com/tarantool/go-tarantool/issues/129>`_)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:168
+msgid "No (handle reconnects explicitly, refer to `#11 <https://github.com/viciious/go-tarantool/issues/11>`_)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:169
+msgid "Yes (see comments in `#7 <https://github.com/FZambia/tarantool/issues/7>`_)"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:171
+msgid "Transparent request retrying"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:176
+msgid "`Watchers <https://github.com/tarantool/tarantool/pull/6510>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:181
+msgid "`Pagination <https://github.com/tarantool/tarantool/issues/7639>`_"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:186
+msgid "Language features"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:187
+#: ../../doc/book/connectors/go.rst:188
+#: ../../doc/book/connectors/go.rst:189
+msgid "context"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:191
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:192
+msgid "Supports `tarantool/queue <https://github.com/tarantool/queue>`_ API"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:193
+msgid "Can mimic a Tarantool instance (also as replica). Provides instrumentation for reading snapshot and xlog files via `snapio module <https://github.com/viciious/go-tarantool/tree/master/snapio>`_. Implements unpacking of query structs if you want to implement your own iproto proxy"
+msgstr ""
+
+#: ../../doc/book/connectors/go.rst:196
+msgid "API is experimental and breaking changes may happen"
+msgstr ""

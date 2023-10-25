@@ -1,0 +1,35 @@
+name: Push POTs
+on:
+  push:
+    branches:
+      - 'test-weblate'
+      - '3.0'
+permissions:
+  contents: write
+jobs:
+  generate-pot:
+    runs-on: ubuntu-latest
+    container: tarantool/doc-builder:fat-4.3
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Generate Portable Object Templates
+        run: |
+         cmake .
+         make update-pot  
+
+      - name: Commit generated pots
+        run: |
+          git config --global --add safe.directory /__w/doc/doc
+          git config --global user.name 'TarantoolBot'
+          git config --global user.email 'tarantoolbot@mail.ru'
+
+          if [[ $(git status) =~ .*"nothing to commit".* ]]; then
+            echo "status=nothing-to-commit"
+            exit 0
+          fi
+
+          git add -f locale/en/
+          git commit -m "updated pot"
+          git push origin test-weblate
+

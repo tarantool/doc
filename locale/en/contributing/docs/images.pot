@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/images.rst:2
+msgid "Images"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:4
+msgid "Images are useful in explanations of concepts and structures. When you introduce a term or describe a structure of multiple interconnected parts (such as a cluster), consider illustrating it with a diagram. If you are explaining how to use a GUI, check if a screenshot can make the doc clearer."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:9
+msgid "Note that illustrations should complement the text, not replace it. Even with an image, the text should be enough for readers to understand the topic."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:12
+msgid "Don't overuse images: they are harder to support than text. Use them only if they bring an obvious benefit."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:16
+msgid "Diagrams"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:18
+msgid "There is a basic set of diagram elements -- blocks, arrows, and other -- to use in Tarantool docs. It is stored in `this Miro board <https://miro.com/app/board/uXjVPYdYCng=/>`_. It also provides basic rules for creating diagrams."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:23
+msgid "Size"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:25
+msgid "There are two sizes of diagram elements:"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:27
+msgid "**M** – bigger elements to use in diagrams with a small number of elements."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:28
+msgid "**S** – smaller elements to use in diagrams with a big number of elements."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:30
+msgid "Avoid changing the size of diagram elements unless it's absolutely necessary."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:32
+msgid "The diagrams should have the same width. This guarantees that their elements have the same size on pages. The examples in the Miro board have frames of the right width. Copy the frame and and place your diagram in it without changing the frame width."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:37
+msgid "Exporting"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:39
+msgid "To save the diagram to a file:"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:41
+msgid "Make the frame transparent so that it isn't shown in the resulting image (set its color to \"no color\")."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:44
+msgid "Select all elements together with the frame and click **Copy as image** in the context menu (under the three dots). The image will be copied to the clipboard."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:48
+msgid "Paste the image from the clipboard to any graphic editor, for example, GIMP."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:50
+msgid "Remove the Miro logo in the bottom right corner."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:52
+msgid "Export/save the image to PNG."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:56
+msgid "Screenshots"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:58
+msgid "Take screenshots with any tool you like."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:60
+msgid "Ensure screenshot consistency on the page:"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:62
+msgid "Screenshots must show the same environment: operating system, product version, visual theme, and so on."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:65
+msgid "The configuration and data must be consistent. For example, if you've shown spaces with data on a screenshot, subsequent screenshots must have the same data, too."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:68
+msgid "Size and resolution must be the same across the page unless you want to zoom in to a specific part of the screen."
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:72
+msgid "Markup"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:74
+msgid "Insert the images using the ``image`` directive:"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:76
+msgid "..  image:: images/example_diagram.png\n"
+"    :alt: Example diagram alt text"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:81
+msgid "Result:"
+msgstr ""
+
+#: ../../doc/contributing/docs/images.rst:None
+msgid "Example diagram alt text"
+msgstr ""

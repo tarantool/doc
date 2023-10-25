@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:5
+msgid "Class *cartridge.test-helpers.etcd*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:7
+msgid "Class to run and manage etcd node."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:21
+msgid "Etcd:new (object)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:23
+msgid "Build etcd node object."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:26
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:28
+msgid "*object:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:30
+msgid "*name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Human-readable node name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:31
+msgid "*workdir:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Path to the data directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:32
+msgid "*etcd_path:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Path to the etcd executable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:33
+msgid "*peer_url:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) URL to listen on for peer traffic."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:34
+msgid "*client_url:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) URL to listen on for client traffic."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:35
+msgid "*env:* (**tab**) Environment variables passed to the process. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:36
+msgid "*args:* (**tab**) Command-line arguments passed to the process. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:39
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:41
+msgid "object"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:48
+msgid "Etcd:start ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:50
+msgid "Start the node."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:59
+msgid "Etcd:stop ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.etcd.rst:61
+msgid "Stop the node."
+msgstr ""

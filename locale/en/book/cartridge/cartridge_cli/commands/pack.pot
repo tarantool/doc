@@ -1,0 +1,307 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:17
+msgid "TGZ"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:17
+msgid "RPM/DEB"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:17
+msgid "Docker"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:37
+msgid "Building in Docker"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:4
+msgid "Packaging the application"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:7
+msgid "To package your application, use the ``pack`` command:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:9
+msgid "cartridge pack TYPE [PATH] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:13
+msgid "where:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:15
+msgid "``TYPE`` (required) is the distribution type. Supported types:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:24
+msgid "``PATH`` (optional) is the path to the application directory. Defaults to ``.`` (the current directory)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:27
+msgid "Before packaging, ``cartridge pack`` builds the application. This process is similar to what ``cartridge build`` :doc:`does <build>`. The resulting artifact includes ``.rocks`` modules and executables that are specific for the system where you've packaged the application. For this reason, a distribution built on one OS can't be used on another -- for example, an RPM built on MacOS can't be installed on a CentOS machine. However, you can work around this by enforcing package build in Docker via the ``--use-docker`` flag."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:44
+msgid "If you use open-source Tarantool, your artifact will have `tarantool` as a dependency. Its version will be the same as in your system's ``PATH``. If you use Tarantool Enterprise, your artifact will contain the ``tarantool`` and ``tarantoolctl`` binaries from your current SDK."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:50
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:52
+msgid "The following flags control the local packaging of any distribution type, be it RPM, DEB, TGZ, or a Docker image."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:61
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:62
+msgid "Application name. The package and the systemd service will have the same name. The default name comes from the ``package`` field in the ``.rockspec`` file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:65
+msgid "``--version``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:66
+msgid "Application package version. By default, the version string is the output of ``git describe --tags --long``, normalized to ``major.minor.patch.count``. If the application is not a git repository, you have to set the ``--version`` flag explicitly. If you set ``--version`` flag, it will be used as provided."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:72
+msgid "``--suffix``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:73
+msgid "The suffix of the resulting file or image name. For example, a ``tar.gz`` distribution is named according to the pattern: ``<name>-<version>[.<suffix>].<arch>.tar.gz``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:76
+msgid "``--filename``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:77
+msgid "Explicitly set a full name of the bundle. For example, a bundle packed with ``--filename bundle_name.tar.gz`` is named ``bundle_name.tar.gz``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:80
+msgid "``--use-docker``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:81
+msgid "Force Cartridge to build the application in Docker. Enforced if you're building a Docker image."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:83
+msgid "``--no-cache``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:84
+msgid "Disable :ref:`path caching <cartridge-cli-path_caching>`. When used with ``cartridge pack docker``, also enforces the ``--no-cache`` ``docker`` flag."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:89
+msgid "To learn about distribution-specific flags, check the documentation for creating Cartridge :doc:`RPM/DEB distributables <pack/rpm-deb>` and :doc:`Docker images <pack/docker>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:96
+msgid "Details"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:99
+msgid "Building the package"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:101
+msgid "By default, the package is built inside a temporary directory in ``~/.cartridge/tmp/``. In this way, the packaging process doesn't affect the contents of your application directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:105
+msgid "When Cartridge copies your application files, it ignores the ``.rocks`` directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:107
+msgid "All file permissions are preserved in the resulting package, and the code files owner is set to ``root:root``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:110
+msgid "Make sure all your application files have at least ``a+r`` permissions (``a+rx`` for directories). Otherwise, ``cartridge pack`` will raise an error."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:114
+msgid "Customizing your build directory"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:116
+msgid "You can specify a custom build directory for your application using the ``CARTRIDGE_TEMPDIR`` environment variable. If this directory doesn't exist, it will be created, used for packaging the application, and then removed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:121
+msgid "If you specify an existing directory in the ``CARTRIDGE_TEMPDIR`` environment variable, the ``CARTRIDGE_TEMPDIR/cartridge.tmp`` directory will be used for packaging the application and then removed. Before the packaging starts, this nested directory will be cleaned up."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:128
+msgid "This may be useful if you want to use your Docker build with GitLab CI. Docker volumes don't work properly with the default tmp directory in this case. Use ``CARTRIDGE_TEMPDIR=. cartridge pack ...``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:133
+msgid "How building works"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:135
+msgid "This section concern building Cartridge applications locally. To learn about building them in Docker, check the :doc:`corresponding documentation page <pack/building-in-docker>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:139
+msgid "Whether you're building a TGZ archive, an RPM/DEB distributable, or a Docker image, your application is built in three stages."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:143
+msgid "Stage 1: Cleaning up the application directory"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:145
+msgid "At this stage, some files are filtered out of the application directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:147
+msgid "First, ``git clean -X -d -f`` removes all untracked and ignored files (it works for submodules, too)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:149
+msgid "After that, the ``.git`` directory itself is removed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:152
+msgid "Stage 2. Building the application"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:154
+msgid "At this stage, ``cartridge`` runs the following:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:156
+msgid "``./cartridge.pre-build``, if it exists in the application root directory. Learn more about :doc:`pre-build and post-build scripts </book/cartridge/cartridge_cli/pre-post-build>`. Instead of using the pre-build script, you can define the build logic by including ``cmake`` commands in your ``.rockspec``, `like we do it in Cartridge <https://github.com/tarantool/cartridge/blob/master/cartridge-scm-1.rockspec#L26>`_."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:162
+msgid "``tarantoolctl rocks make``. This requires a ``.rockspec`` file in the application root directory. If you created your application from template, the file is already there. ``cartridge`` installs all dependencies specified in that file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:167
+msgid "As a result, the fully built application will appear in the ``.rocks`` directory. You can start it locally from your application directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:171
+msgid "Stage 3. Cleaning up the files before packing"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:173
+msgid "At this stage, ``cartridge`` runs ``cartridge.post-build``, if it exists. The post-build script removes junk files (like ``node_modules``) generated during application build."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:177
+msgid "Learn more about :doc:`pre-build and post-build scripts </book/cartridge/cartridge_cli/pre-post-build>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:182
+msgid "Versioning"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:184
+msgid "The package generates ``VERSION.lua``, a file that contains the current version of the project. When you connect to an instance with :doc:`cartridge connect <connect>`, you can check the project version by obtaining information from this file:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:189
+msgid "require('VERSION')"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:193
+msgid "``VERSION.lua`` is also used when you call :ref:`cartridge.reload_roles() <cartridge.reload_roles>`:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:196
+msgid "-- Getting the project version\n"
+"require('VERSION')\n"
+"-- Reloading the instances after making some changes to VERSION.lua\n"
+"require('cartridge').reload_roles()\n"
+"-- Getting the updated project version\n"
+"require('VERSION')"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:207
+msgid "If ``VERSION.lua`` is already in the application directory, it will be overwritten during packaging."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:213
+msgid "Path caching"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:215
+msgid "You can cache paths for packaging Cartridge applications. For example, if you package an application multiple times, the same ``.rocks`` are installed every time over and over. To speed up the repacking process, specify the cached paths in ``pack-cache-config.yml``, a file located in the application root directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:221
+msgid "By default, the ``.rocks`` directory is cached. The standard template's ``pack-cache-config.yml`` contains the path to that directory:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:224
+msgid "- path: '.rocks':\n"
+"  key-path: 'myapp-scm-1.rockspec'\n"
+"- path: 'node_modules':\n"
+"  always-cache: true\n"
+"- path: 'third_party/custom_module':\n"
+"  key: 'simple-hash-key'"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:233
+msgid "Make sure you specify the path to ``.rocks`` from the application root directory and provide a cache key. Let's look at the example above:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:236
+msgid "``<path-to-myapp>/.rocks`` will be cached depending on the content of ``myapp-scm-1.rockspec``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:238
+msgid "``<path-to-myapp>/node_modules`` will always be cached."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:239
+msgid "``<path-to-myapp>/third_party/custom_module`` will be cached depending on ``simple-hash-key``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:242
+msgid "You can't combine these options. For example, you can't specify ``always-cache`` and ``key-path`` at the same time."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:245
+msgid "One project path can only have one caching key. Suppose you cached ``.rocks`` with a ``.rockspec`` file as ``key-path``. Then you changed the contents of ``.rockspec`` and ran ``cartridge pack``. In this case, the old cache (associated with the old key) for the project's ``.rocks`` directory path will be deleted. After packing, the new ``.rocks`` cache path will be saved with the new key."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:252
+msgid "There can be no more than **5** projects in the cache that have cached paths. If the 6th project appears, the oldest existing project is removed from the cache directory. However, this is not the case for cached paths within a single project. You can cache as many paths as you like as long as they are in one project."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/pack.rst:259
+msgid "To disable caching, use the ``--no-cache`` flag or remove paths from ``pack-cache-config.yml``. To completely reset the cache, delete the ``~/.cartridge/tmp/cache`` directory."
+msgstr ""

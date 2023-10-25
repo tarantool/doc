@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:5
+msgid "Class *luatest.http_response*"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:7
+msgid "Class to provide helper methods for HTTP responses"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:14
+msgid "Instance getter methods"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:21
+msgid "HTTPResponse.getters"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:23
+msgid "For backward compatibility this methods should be accessed as object's fields (eg.,  ``response.json.id`` )."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:26
+msgid "They are not assigned to object's fields on initialization to be evaluated lazily and to be able to throw errors."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:36
+msgid "HTTPResponse.getters:json ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:38
+msgid "Parse json from body."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:45
+msgid "Usage:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:47
+msgid "response.json.id"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:56
+msgid "HTTPResponse.mt:is_successful ()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/luatest/classes/luatest.http_response.rst:58
+msgid "Check that status code is 2xx."
+msgstr ""

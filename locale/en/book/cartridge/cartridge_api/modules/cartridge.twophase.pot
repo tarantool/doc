@@ -1,0 +1,387 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:5
+msgid "Module *cartridge.twophase*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:7
+msgid "Clusterwide configuration propagation two-phase algorithm."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:11
+msgid "(**Added** in v1.2.0-19)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:16
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:23
+msgid "twophase_commit (opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:25
+msgid "Execute the two-phase commit algorithm."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:27
+msgid "(*upload*) If  ``opts.upload_data``  isn't  ``nil`` , spread it across the servers from  ``opts.uri_list`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:29
+msgid "(*prepare*) Run the  ``opts.fn_prepare``  function."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:30
+msgid "(*commit*) If all the servers do  ``return true`` , call  ``opts.fn_commit``  on every server."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:32
+msgid "(*abort*) Otherwise, if at least one server does  ``return nil, err`` or throws an exception, call  ``opts.fn_abort``  on servers which were prepared successfully."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:39
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:123
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:158
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:209
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:250
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:292
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:315
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:41
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:43
+msgid "*uri_list:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of URIs for performing twophase commit"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:44
+msgid "*upload_data:*  any Lua object to be uploaded"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:45
+msgid "*activity_name:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) understandable name of activity used for logging(default: \"twophase_commit\")"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:46
+msgid "*fn_prepare:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:47
+msgid "*fn_commit:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:48
+msgid "*fn_abort:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:51
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:127
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:162
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:186
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:213
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:296
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:319
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:347
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:371
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:53
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:129
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:164
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:321
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:349
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:373
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:56
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:132
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:167
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:191
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:218
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:324
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:352
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:58
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:134
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:169
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:193
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:220
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:326
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:354
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:60
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:136
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:171
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:195
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:222
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:328
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:356
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:65
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:258
+msgid "Usage:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:67
+msgid "local my_2pc_data = nil\n"
+"\n"
+"function _G.my_2pc_prepare(upload_id)\n"
+"    local data = upload.inbox[upload_id]\n"
+"    upload.inbox[upload_id] = nil\n"
+"    if my_2pc_data ~= nil then\n"
+"        error('Two-phase commit is locked')\n"
+"    end\n"
+"    my_2pc_data = data\n"
+"end\n"
+"\n"
+"function _G.my_2pc_commit()\n"
+"    -- Apply my_2pc_data\n"
+"    ...\n"
+"end\n"
+"\n"
+"function _G.my_2pc_abort()\n"
+"    twophase_data = nil\n"
+"end"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:89
+msgid "require('cartridge.twophase').twophase_commit({\n"
+"    uri_list = {...},\n"
+"    upload_data = ...,\n"
+"    activity_name = 'my_2pc',\n"
+"    fn_prepare = '_G.my_2pc_prepare',\n"
+"    fn_commit = '_G.my_2pc_commit',\n"
+"    fn_abort = '_G.my_2pc_abort',\n"
+"})"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:105
+msgid "patch_clusterwide (patch)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:107
+msgid "Edit the clusterwide configuration. Top-level keys are merged with the current configuration. To remove a top-level section, use ``patch_clusterwide{key = box.NULL}`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:112
+msgid "The function executes following steps:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:114
+msgid "Patches the current configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:116
+msgid "Validates topology on the current server."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:118
+msgid "III. Executes two-phase commit on all servers in the cluster excluding expelled and disabled ones."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:125
+msgid "*patch:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:143
+msgid "force_reapply (uuids)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:145
+msgid "Forcefully apply config to the given instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:147
+msgid "In particular:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:149
+msgid "Abort two-phase commit (remove  ``config.prepare``  lock)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:150
+msgid "Upload the active config from the current instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:151
+msgid "Apply it (reconfigure all roles)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:154
+msgid "(**Added** in v2.3.0-68)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:160
+msgid "*uuids:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:178
+msgid "get_schema ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:180
+msgid "Get clusterwide DDL schema."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:182
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:206
+msgid "(**Added** in v1.2.0-28)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:188
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Schema in YAML format"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:202
+msgid "set_schema (schema)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:204
+msgid "Apply clusterwide DDL schema."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:211
+msgid "*schema:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) in YAML format"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:215
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) The same new schema"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:229
+msgid "on_patch (trigger_new, trigger_old)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:231
+msgid "Set up trigger for for patch_clusterwide."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:233
+msgid "It will be executed **before** new new config applied."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:235
+msgid "If the parameters are  ``(nil, old_trigger)`` , then the old trigger is deleted."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:238
+msgid "The trigger function is called with two argument: -  ``conf_new``  ( ``ClusterwideConfig`` ) -  ``conf_old``  ( ``ClusterWideConfig`` )"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:242
+msgid "It is allowed to modify  ``conf_new`` , but not  ``conf_old`` . Return values are ignored. If calling a trigger raises an error, ``patch_clusterwide``  returns it as  ``nil, err`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:246
+msgid "(**Added** in v2.1.0-4)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:252
+msgid "*trigger_new:* (**function**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:253
+msgid "*trigger_old:* (**function**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:260
+msgid "local function inject_data(conf_new, _)\n"
+"    local data_yml = yaml.encode({foo = 'bar'})\n"
+"    conf_new:set_plaintext('data.yml', data_yml)\n"
+"end)\n"
+"\n"
+"twophase.on_patch(inject_data) -- set custom patch modifier trigger\n"
+"twophase.on_patch(nil, inject_data) -- drop trigger"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:273
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:280
+msgid "wait_config_release (timeout)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:282
+msgid "Wait until config won't released."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:284
+msgid "Two-phase commit starts with config preparation. It's just config pin into \"vars.prepared_config\". After it using this value we could determine is two-phase commit is started or not. This function allows to wait when two-phase commit will be finished (successfully or not)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:294
+msgid "*timeout:* (**number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:298
+msgid "(**boolean**) true in case of success and false otherwise"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:305
+msgid "prepare_2pc (upload_id)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:307
+msgid "Two-phase commit - preparation stage."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:309
+msgid "Validate the configuration and acquire a lock setting local variable and writing \"config.prepare.yml\" file. If the validation fails, the lock isn't acquired and doesn't have to be aborted."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:317
+msgid "*upload_id:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:335
+msgid "commit_2pc ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:337
+msgid "Two-phase commit - commit stage."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:339
+msgid "Back up the active configuration, commit changes to filesystem by renaming prepared file, release the lock, and configure roles. If any errors occur, configuration is not rolled back automatically. Any problem encountered during this call has to be solved manually."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:363
+msgid "abort_2pc ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:365
+msgid "Two-phase commit - abort stage."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.twophase.rst:367
+msgid "Release the lock for further commit attempts."
+msgstr ""

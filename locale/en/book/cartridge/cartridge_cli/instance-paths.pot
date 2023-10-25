@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:2
+msgid "Application instance paths"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:4
+msgid "The commands that operate with running instances compute instance file paths. Default paths are passed to every instance on start. Other commands use them to communicate with the instance -- for example, to show the logs or connect to the instance through its console socket."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:10
+msgid "Path configuration file"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:12
+msgid "The file ``.cartridge.yml``, located in the application root directory, lets you override default paths for a locally running application. Instead of indicating default paths with flags, you can do so by defining values for similarly named keys in ``.cartridge.yml``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:17
+msgid "For example, instead of"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:19
+msgid "cartridge start --run-dir my-run-dir --cfg my-instances.yml --script my-init.lua"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:23
+msgid "you can write the following in your ``.cartridge.yml``:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:25
+msgid "run-dir: my-run-dir\n"
+"cfg: my-instances.yml\n"
+"script: my-init.lua"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:31
+msgid "In ``.cartridge.yml``, you can also enable or disable the ``stateboard`` parameter. It is initially set to ``true`` in the template application."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:35
+msgid "Directory paths"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:38
+msgid "Run directory"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:40
+msgid "The run directory (``--run-dir``) is where PID and socket files are stored. More specifically, it contains:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:43
+msgid "Instance PID files: ``<run-dir>/<app-name>.<instance-name>.pid``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:44
+msgid "Instance console sockets: ``<run-dir>/<app-name>.<instance-name>.control``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:45
+msgid "Instance notify sockets: ``<run-dir>/<app-name>.<instance-name>.notify``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:48
+msgid "Data directory"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:50
+msgid "The data directory (``--data-dir``) contains the instances' working directories."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:53
+msgid "Each instance's working directory is ``<data-dir>/<app-name>.<instance-name>``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:57
+msgid "Logs directory"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:59
+msgid "The logs directory (``--log-dir``) is where instance logs are stored when the instances run in the background. This directory is created on ``cartridge start -d`` and can be used by ``cartridge log``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:63
+msgid "Each instance's log file is ``<log-dir>/<app-name>.<instance-name>.log``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:66
+msgid "Instance configuration file"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:68
+msgid "This file (``--cfg``) lets you configure Cartridge instances. The path to the file is passed to all instances as the environment variable ``TARANTOOL_CFG``. See the :ref:`configuration guide <cartridge-config-basic>` for details."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:74
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/instance-paths.rst:76
+msgid "myapp.router:\n"
+"    advertise_uri: localhost:3301\n"
+"    http_port: 8081\n"
+"\n"
+"myapp.s1-master:\n"
+"    advertise_uri: localhost:3302\n"
+"    http_port: 8082\n"
+"\n"
+"myapp-stateboard:\n"
+"    listen: localhost:3310\n"
+"    password: passwd"
+msgstr ""

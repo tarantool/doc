@@ -1,0 +1,1448 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:5
+msgid "Keys used in requests and responses"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:7
+msgid "This section describes ``iproto`` keys contained in requests and responses. The keys are Tarantool constants that are either defined or mentioned in the `iproto_constants.h file <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_constants.h>`_."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:11
+msgid "While the keys themselves are unsigned 8-bit integers, their values can have different types."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:14
+msgid "Basic description"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:17
+msgid "General"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:25
+#: ../../doc/dev_guide/internals/iproto/keys.rst:144
+#: ../../doc/dev_guide/internals/iproto/keys.rst:172
+#: ../../doc/dev_guide/internals/iproto/keys.rst:285
+#: ../../doc/dev_guide/internals/iproto/keys.rst:331
+#: ../../doc/dev_guide/internals/iproto/keys.rst:358
+msgid "Name"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:26
+#: ../../doc/dev_guide/internals/iproto/keys.rst:145
+#: ../../doc/dev_guide/internals/iproto/keys.rst:173
+#: ../../doc/dev_guide/internals/iproto/keys.rst:286
+#: ../../doc/dev_guide/internals/iproto/keys.rst:332
+#: ../../doc/dev_guide/internals/iproto/keys.rst:359
+msgid "Code and |br| value type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:27
+#: ../../doc/dev_guide/internals/iproto/keys.rst:146
+#: ../../doc/dev_guide/internals/iproto/keys.rst:174
+#: ../../doc/dev_guide/internals/iproto/keys.rst:287
+#: ../../doc/dev_guide/internals/iproto/keys.rst:333
+#: ../../doc/dev_guide/internals/iproto/keys.rst:360
+msgid "Description"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:29
+msgid ":ref:`IPROTO_VERSION <internals-iproto-keys-version>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:30
+msgid "0x54 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:31
+msgid "Binary protocol version supported by the client"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:33
+msgid ":ref:`IPROTO_FEATURES <internals-iproto-keys-features>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:34
+msgid "0x55 |br|  MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:35
+msgid "Supported binary protocol features"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:37
+msgid ":ref:`IPROTO_SYNC <internals-iproto-keys-sync>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:38
+msgid "0x01 |br|  MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:39
+msgid "Unique request identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:41
+msgid ":ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:42
+msgid "0x05 |br|  MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:43
+msgid "Version of the database schema"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:45
+msgid "IPROTO_TIMESTAMP"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:46
+msgid "0x04 |br| MP_DOUBLE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:47
+msgid "Time in seconds since the Unix epoch"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:49
+msgid ":ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:50
+#: ../../doc/dev_guide/internals/iproto/keys.rst:294
+#: ../../doc/dev_guide/internals/iproto/keys.rst:422
+msgid "0x00 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:51
+msgid "Request type or response type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:53
+msgid ":ref:`IPROTO_ERROR <internals-iproto-keys-error>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:54
+msgid "0x52 |br| :ref:`MP_ERROR <msgpack_ext-error>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:55
+msgid "Error response"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:57
+msgid ":ref:`IPROTO_ERROR_24 <internals-iproto-keys-error_24>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:58
+msgid "0x31 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:59
+msgid "Error as a string"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:61
+msgid "IPROTO_DATA"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:62
+msgid "0x30 |br| MP_OBJECT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:63
+msgid "Data passed in the transaction. Can be empty. Used in all requests and responses"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:65
+msgid "IPROTO_SPACE_ID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:66
+msgid "0x10 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:67
+msgid "Space identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:69
+msgid "IPROTO_INDEX_ID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:70
+msgid "0x11 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:71
+msgid "Index identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:73
+msgid ":ref:`IPROTO_TUPLE <internals-iproto-keys-tuple>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:74
+msgid "0x21 |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:75
+msgid "Tuple, arguments, operations, or authentication pair. :ref:`See details <internals-iproto-keys-tuple>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:78
+msgid "IPROTO_KEY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:79
+msgid "0x20 |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:80
+msgid "Array of index keys in the request. See :ref:`space_object:select() <box_space-select>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:82
+msgid "IPROTO_LIMIT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:83
+msgid "0x12 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:84
+msgid "Maximum number of tuples in the space"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:86
+msgid "IPROTO_OFFSET"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:87
+msgid "0x13 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:88
+msgid "Number of tuples to skip in the select"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:90
+msgid ":ref:`IPROTO_ITERATOR <internals-iproto-keys-iterator>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:91
+msgid "0x14 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:92
+msgid "Iterator type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:94
+msgid "IPROTO_INDEX_BASE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:95
+msgid "0x15 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:96
+msgid "Indicates whether the first field number is 1 or 0"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:98
+msgid "IPROTO_FUNCTION_NAME"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:99
+msgid "0x22 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:100
+msgid "Name of the called function. Used in :ref:`IPROTO_CALL <box_protocol-call>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:102
+msgid "IPROTO_USER_NAME"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:103
+msgid "0x23 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:104
+msgid "User name. Used in :ref:`IPROTO_AUTH <box_protocol-auth>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:106
+msgid "IPROTO_OPS"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:107
+msgid "0x28 |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:108
+msgid "Array of operations. Used in :ref:`IPROTO_UPSERT <box_protocol-upsert>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:110
+msgid "IPROTO_EXPR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:111
+msgid "0x27 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:112
+msgid "Command argument. Used in :ref:`IPROTO_EVAL <box_protocol-eval>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:114
+msgid "IPROTO_AUTH_TYPE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:115
+msgid "0x5b |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:116
+msgid "A :ref:`protocol <authentication-passwords>` used to generate user authentication data"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:118
+msgid "IPROTO_AFTER_POSITION"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:119
+msgid "0x2e |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:120
+msgid "The position of a tuple after which :ref:`space_object:select() <box_space-select>` starts the search"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:122
+msgid "IPROTO_AFTER_TUPLE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:123
+msgid "0x2f |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:124
+msgid "A tuple after which :ref:`space_object:select() <box_space-select>` starts the search"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:126
+msgid "IPROTO_FETCH_POSITION"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:127
+msgid "0x1f |br| MP_BOOL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:128
+msgid "If **true**, :ref:`space_object:select() <box_space-select>` returns the position of the last selected tuple"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:130
+msgid "IPROTO_POSITION"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:131
+msgid "0x35 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:132
+msgid "If ``IPROTO_FETCH_POSITION`` is **true**, returns a base64-encoded string representing the position of the last selected tuple"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:136
+msgid "Streams"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:148
+msgid ":ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:149
+msgid "0x0a |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:150
+msgid "Unique :ref:`stream <txn_mode_stream-interactive-transactions>` identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:152
+msgid "IPROTO_TIMEOUT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:153
+msgid "0x56 |br| MP_DOUBLE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:154
+msgid "Timeout in seconds, after which the transactions are rolled back"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:156
+msgid ":ref:`IPROTO_TXN_ISOLATION <internals-iproto-keys-txn_isolation>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:157
+msgid "0x59 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:158
+msgid "Transaction isolation level"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:164
+msgid "General replication"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:176
+msgid "IPROTO_REPLICA_ID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:177
+msgid "0x02 |br| MP_INT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:178
+msgid "Replica ID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:180
+msgid "IPROTO_INSTANCE_UUID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:181
+msgid "0x24 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:182
+msgid "Instance UUID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:184
+msgid ":ref:`IPROTO_VCLOCK <internals-iproto-keys-vclock>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:185
+msgid "0x26 |br| MP_MAP"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:186
+msgid "The instance's vclock"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:188
+msgid ":ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:189
+msgid "0x5a |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:190
+msgid "ID of the vclock synchronization request. Since 2.11"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:193
+msgid "IPROTO_REPLICASET_UUID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:194
+msgid "0x25 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:195
+msgid "UUID of the replica set. Prior to Tarantool version 2.11, IPROTO_REPLICASET_UUID was called IPROTO_CLUSTER_UUID."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:198
+msgid "IPROTO_LSN"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:199
+msgid "0x03 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:200
+msgid "Log sequence number of the transaction"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:202
+msgid "IPROTO_TSN"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:203
+msgid "0x08 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:204
+msgid "Transaction sequence number"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:206
+msgid ":ref:`IPROTO_BALLOT_IS_RO_CFG <internals-iproto-keys-ballot>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:207
+msgid "0x01 |br| MP_BOOL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:208
+msgid "True if the instance is configured as :ref:`read_only <cfg_basic-read_only>`. Since :doc:`2.6.1 </release/2.6.1>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:211
+msgid ":ref:`IPROTO_BALLOT_VCLOCK <internals-iproto-keys-vclock>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:212
+msgid "0x02 |br| MP_MAP"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:213
+#: ../../doc/dev_guide/internals/iproto/keys.rst:308
+msgid "Current vclock of the instance"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:215
+msgid ":ref:`IPROTO_BALLOT_GC_VCLOCK <internals-iproto-keys-vclock>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:216
+#: ../../doc/dev_guide/internals/iproto/keys.rst:307
+msgid "0x03 |br| MP_MAP"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:217
+msgid "Vclock of the instance’s oldest WAL entry"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:219
+msgid ":ref:`IPROTO_BALLOT_IS_RO <internals-iproto-keys-ballot>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:220
+#: ../../doc/dev_guide/internals/iproto/keys.rst:395
+msgid "0x04 |br| MP_BOOL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:221
+msgid "True if the instance is not writable: configured as :ref:`read_only <cfg_basic-read_only>`, has :ref:`orphan status <internals-replication-orphan_status>`, or is a :ref:`Raft follower <repl_leader_elect>`. Since :doc:`2.6.1 </release/2.6.1>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:226
+msgid ":ref:`IPROTO_BALLOT_IS_ANON <internals-iproto-keys-ballot>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:227
+#: ../../doc/dev_guide/internals/iproto/keys.rst:316
+msgid "0x05 |br| MP_BOOL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:228
+msgid "True if the replica is anonymous. Corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`. Since :doc:`2.7.1 </release/2.7.1>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:232
+msgid ":ref:`IPROTO_BALLOT_IS_BOOTED <internals-iproto-keys-ballot>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:233
+msgid "0x06 |br| MP_BOOL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:234
+msgid "True if the instance has finished its bootstrap or recovery process. Since :doc:`2.7.3 </release/2.7.3>`, :doc:`2.8.2 </release/2.8.2>`, :doc:`2.10.0 </release/2.10.0>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:237
+msgid ":ref:`IPROTO_BALLOT_CAN_LEAD <internals-iproto-keys-ballot>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:238
+msgid "0x07 |br| MP_BOOL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:239
+msgid "True if :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is ``candidate`` or ``manual``. Since v. :doc:`2.7.3 </release/2.7.3>` and :doc:`2.8.2 </release/2.8.2>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:242
+msgid ":ref:`IPROTO_BALLOT_BOOTSTRAP_LEADER_UUID <internals-iproto-keys-ballot>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:243
+msgid "0x08 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:244
+msgid "UUID of the bootstrap leader. The UUID is encoded as a 36-byte string. Since v. 2.11"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:247
+msgid ":ref:`IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS <internals-iproto-keys-ballot>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:248
+msgid "0x09 |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:249
+msgid "An array of MP_STR elements that contains the UUIDs of members registered in the replica set. Each UUID is encoded as a 36-byte string. Since v. 2.11"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:253
+msgid ":ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:254
+msgid "0x09 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:255
+msgid "Auxiliary data to indicate the last transaction message state. Included in the header of any DML request that is recorded in the WAL."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:258
+msgid "IPROTO_SERVER_VERSION"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:259
+msgid "0x06 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:260
+msgid "Tarantool version of the subscribing node, in a compact representation"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:263
+msgid "IPROTO_REPLICA_ANON"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:264
+msgid "0x50 |br| MP_BOOL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:265
+msgid "Optional key used in :ref:`SUBSCRIBE request <internals-iproto-replication-subscribe>`. True if the subscribing replica is anonymous"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:268
+msgid "IPROTO_ID_FILTER"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:269
+msgid "0x51 |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:270
+msgid "Optional key used in :ref:`SUBSCRIBE request <internals-iproto-replication-subscribe>`, followed by an array of ids of instances whose rows won't be relayed to the replica. Since v. :doc:`2.10.0 </release/2.10.0>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:277
+msgid "Synchronous replication"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:289
+msgid ":ref:`IPROTO_TERM <internals-iproto-keys-term>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:290
+msgid "0x53 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:291
+msgid ":ref:`RAFT term <repl_leader_elect>` on an instance"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:293
+msgid "IPROTO_RAFT_TERM"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:295
+msgid ":ref:`RAFT term <repl_leader_elect>` on an instance. The key is only used for requests with the :ref:`IPROTO_RAFT <box_protocol-raft>` type."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:298
+msgid "IPROTO_RAFT_VOTE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:299
+msgid "0x01 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:300
+msgid "Instance vote in the current term (if any)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:302
+msgid "IPROTO_RAFT_STATE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:303
+msgid "0x02 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:304
+msgid ":ref:`RAFT state <repl_leader_elect>`. Possible values: ``1`` -- follower, ``2`` -- candidate, ``3`` -- leader"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:306
+msgid ":ref:`IPROTO_RAFT_VCLOCK <internals-iproto-keys-vclock>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:310
+msgid "IPROTO_RAFT_LEADER_ID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:311
+msgid "0x04 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:312
+msgid "Current leader node ID as seen by the node that issues the request Since version :doc:`2.10.0 </release/2.10.0>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:315
+msgid "IPROTO_RAFT_IS_LEADER_SEEN"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:317
+msgid "True if the node has a direct connection to the leader node. Since version :doc:`2.10.0 </release/2.10.0>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:320
+msgid "All ``IPROTO_RAFT_*`` keys are used only in ``IPROTO_RAFT*`` requests."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:323
+msgid "Events and subscriptions"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:335
+msgid "IPROTO_EVENT_KEY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:336
+msgid "0x56 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:337
+msgid ":ref:`Event <box-protocol-watchers>` key name"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:339
+msgid "IPROTO_EVENT_DATA"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:340
+msgid "0x57 |br| MP_OBJECT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:341
+msgid ":ref:`Event <box-protocol-watchers>` data sent to a remote watcher"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:343
+msgid ":ref:`Learn more about events and subscriptions in iproto <box-protocol-watchers>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:346
+msgid "SQL-specific"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:348
+msgid "These keys are used with SQL within :ref:`SQL-specific requests and responses <internals-iproto-sql>` like :ref:`IPROTO_EXECUTE <box_protocol-execute>` and :ref:`IPROTO_PREPARE <box_protocol-prepare>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:362
+msgid "IPROTO_SQL_TEXT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:363
+msgid "0x40 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:364
+msgid "SQL statement text"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:366
+msgid "IPROTO_STMT_ID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:367
+msgid "0x43 |br| MP_INT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:368
+msgid "Identifier of the prepared statement"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:370
+msgid "IPROTO_OPTIONS"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:371
+msgid "0x2b |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:372
+msgid "SQL transaction options. Usually empty"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:374
+msgid ":ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:375
+msgid "0x32 |br| MP_ARRAY of MP_MAP items"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:376
+msgid "SQL transaction metadata"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:378
+msgid "IPROTO_FIELD_NAME"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:379
+msgid "0x00 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:380
+msgid "Field name. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:382
+msgid "IPROTO_FIELD_TYPE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:383
+msgid "0x01 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:384
+msgid "Field type. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:386
+msgid "IPROTO_FIELD_COLL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:387
+msgid "0x02 |br| MP_STR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:388
+msgid "Field collation. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:390
+msgid "IPROTO_FIELD_IS_NULLABLE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:391
+msgid "0x03 |br| MP_BOOL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:392
+msgid "True if the field is nullable. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:394
+msgid "IPROTO_FIELD_IS_AUTOINCREMENT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:396
+msgid "True if the field is auto-incremented. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:399
+msgid "IPROTO_FIELD_SPAN"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:400
+msgid "0x05 |br| MP_STR or MP_NIL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:401
+msgid "Original expression under SELECT. Nested in :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>`. See :ref:`box.execute() <box-sql_if_full_metadata>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:405
+msgid "IPROTO_BIND_METADATA"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:406
+msgid "0x33 |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:407
+msgid "Bind variable names and types"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:409
+msgid "IPROTO_BIND_COUNT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:410
+msgid "0x34 |br| MP_INT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:411
+msgid "Number of parameters to bind"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:413
+msgid ":ref:`IPROTO_SQL_BIND <internals-iproto-keys-sql_bind>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:414
+msgid "0x41 |br| MP_ARRAY"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:415
+msgid "Parameter values to match ? placeholders or :name placeholders"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:417
+msgid "IPROTO_SQL_INFO"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:418
+msgid "0x42 |br| MP_MAP"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:419
+msgid "Additional SQL-related parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:421
+msgid "SQL_INFO_ROW_COUNT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:423
+msgid "Number of changed rows. Is ``0`` for statements that do not change rows. Nested in IPROTO_SQL_INFO"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:425
+msgid "SQL_INFO_AUTO_INCREMENT_IDS"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:426
+msgid "0x01 |br| MP_ARRAY of MP_UINT items"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:427
+msgid "New primary key value (or values) for an INSERT in a table defined with PRIMARY KEY AUTOINCREMENT. Nested in IPROTO_SQL_INFO"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:433
+msgid "Details on individual keys"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:438
+msgid "IPROTO_VERSION"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:440
+msgid "Code: 0x54."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:442
+msgid "IPROTO_VERSION is an integer number reflecting the version of protocol that the client supports. The latest IPROTO_VERSION is |iproto_version|."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:449
+msgid "IPROTO_FEATURES"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:451
+msgid "Code: 0x55."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:453
+msgid "Available IPROTO_FEATURES are the following:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:455
+msgid "``IPROTO_FEATURE_STREAMS = 0`` -- streams support: :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>` in the request header."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:458
+msgid "``IPROTO_FEATURE_TRANSACTIONS = 1`` -- transaction support: IPROTO_BEGIN, IPROTO_COMMIT, and IPROTO_ROLLBACK commands (with :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>` in the request header). Learn more about :ref:`sending transaction commands <box_protocol-stream_transactions>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:462
+msgid "``IPROTO_FEATURE_ERROR_EXTENSION = 2`` -- :ref:`MP_ERROR <msgpack_ext-error>` MsgPack extension support. Clients that don't support this feature will receive error responses for :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>` encoded to string error messages."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:467
+msgid "``IPROTO_FEATURE_WATCHERS = 3`` -- remote watchers support: :ref:`IPROTO_WATCH <box_protocol-watch>`, :ref:`IPROTO_UNWATCH <box_protocol-unwatch>`, and :ref:`IPROTO_EVENT <box_protocol-event>` commands."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:473
+msgid "IPROTO_SYNC"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:475
+msgid "Code: 0x01."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:477
+msgid "This is an unsigned integer that should be incremented so that it is unique in every request. This integer is also returned from :doc:`/reference/reference_lua/box_session/sync`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:480
+msgid "The IPROTO_SYNC value of a response should be the same as the IPROTO_SYNC value of a request."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:486
+msgid "IPROTO_SCHEMA_VERSION"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:488
+msgid "Code: 0x05."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:490
+msgid "Version of the database schema -- an unsigned number that goes up when there is a major change in the schema."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:493
+msgid "In a *request* header, IPROTO_SCHEMA_VERSION is optional, so the version will not be checked if it is absent."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:496
+msgid "In a *response* header, IPROTO_SCHEMA_VERSION is always present, and it is up to the client to check if it has changed."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:502
+msgid "IPROTO_ITERATOR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:504
+msgid "Code: 0x14."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:506
+msgid "Possible values (see `iterator_type.h <https://github.com/tarantool/tarantool/blob/master/src/box/iterator_type.h>`_):"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:514
+msgid "``0``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:515
+msgid ":ref:`EQ <box_index-pairs>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:516
+msgid "``1``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:517
+msgid ":ref:`REQ <box_index-pairs>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:518
+msgid "``2``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:519
+msgid ":ref:`ALL <box_index-pairs>`, all tuples"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:520
+msgid "``3``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:521
+msgid ":ref:`LT <box_index-pairs>`, less than"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:522
+msgid "``4``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:523
+msgid ":ref:`LE <box_index-pairs>`, less than or equal"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:524
+msgid "``5``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:525
+msgid ":ref:`GE <box_index-pairs>`, greater than or equal"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:526
+msgid "``6``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:527
+msgid ":ref:`GT <box_index-pairs>`, greater than"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:528
+msgid "``7``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:529
+msgid ":ref:`BITS_ALL_SET <box_index-pairs>`, all bits of the value are set in the key"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:530
+msgid "``8``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:531
+msgid ":ref:`BITS_ANY_SET <box_index-pairs>`, at least one bit of the value is set"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:532
+msgid "``9``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:533
+msgid ":ref:`BITS_ALL_NOT_SET <box_index-pairs>`, no bits are set"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:534
+msgid "``10``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:535
+msgid ":ref:`OVERLAPS <box_index-pairs>`, overlaps the rectangle or box"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:536
+msgid "``11``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:537
+msgid ":ref:`NEIGHBOR <box_index-pairs>`, neighbors the rectangle or box"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:543
+msgid "IPROTO_STREAM_ID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:545
+msgid "Code: 0x0a."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:547
+msgid "Only used in :ref:`streams <txn_mode_stream-interactive-transactions>`. This is an unsigned number that should be unique in every stream."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:550
+msgid "In requests, IPROTO_STREAM_ID is useful for two things: ensuring that requests within transactions are done in separate groups, and ensuring strictly consistent execution of requests (whether or not they are within transactions)."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:554
+msgid "In responses, IPROTO_STREAM_ID does not appear."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:556
+msgid "See :ref:`Binary protocol -- streams <box_protocol-streams>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:562
+msgid "IPROTO_TXN_ISOLATION"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:564
+msgid "IPROTO_TXN_ISOLATION is the :ref:`transaction isolation level <txn_mode_mvcc-options>`. It can take the following values:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:567
+msgid "``TXN_ISOLATION_DEFAULT = 0`` -- use the default level from ``box.cfg`` (default value)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:568
+msgid "``TXN_ISOLATION_READ_COMMITTED = 1`` -- read changes that are committed but not confirmed yet"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:569
+msgid "``TXN_ISOLATION_READ_CONFIRMED = 2`` -- read confirmed changes"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:570
+msgid "``TXN_ISOLATION_BEST_EFFORT = 3`` -- determine isolation level automatically"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:572
+msgid "See :ref:`Binary protocol -- streams <box_protocol-streams>` to learn more about stream transactions in the binary protocol."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:579
+msgid "IPROTO_REQUEST_TYPE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:581
+msgid "Code: 0x00."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:583
+msgid "The key is used both in requests and responses. It indicates the request or response type and has any request or response name for the value (example: IPROTO_AUTH). See requests and responses for :ref:`client-server communication <internals-requests_responses>`, :ref:`replication <internals-iproto-replication>`, :ref:`events and subscriptions <box-protocol-watchers>`, :ref:`streams and interactive transactions <internals-iproto-streams>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:593
+msgid "IPROTO_ERROR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:595
+msgid "Code: 0x52."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:597
+msgid "In case of error, the response body contains IPROTO_ERROR and :ref:`IPROTO_ERROR_24 <internals-iproto-keys-error_24>` instead of IPROTO_DATA."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:600
+#: ../../doc/dev_guide/internals/iproto/keys.rst:616
+msgid "To learn more about error responses, check the section :ref:`Request and response format <box_protocol-responses_error>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:605
+msgid "IPROTO_ERROR_24"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:607
+msgid "Code: 0x31."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:609
+msgid "IPROTO_ERROR_24 is used in Tarantool versions prior to :doc:`2.4.1 </release/2.4.1>`. The key contains the error in the string format."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:612
+msgid "Since :doc:`Tarantool 2.4.1 </release/2.4.1>`, Tarantool packs errors as the :ref:`MP_ERROR <msgpack_ext-error>` MessagePack extension, which includes extra information. Two keys are passed in the error response body: IPROTO_ERROR and IPROTO_ERROR_24."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:621
+msgid "IPROTO_TUPLE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:623
+msgid "Code: 0x21."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:625
+msgid "Multiple operations make use of this key in different ways:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:633
+msgid ":ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_REPLACE <box_protocol-replace>`, :ref:`IPROTO_UPSERT <box_protocol-upsert>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:636
+msgid "Tuple to be inserted"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:637
+msgid ":ref:`IPROTO_UPSERT <box_protocol-update>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:638
+msgid "Operations to perform"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:639
+msgid ":ref:`IPROTO_AUTH <box_protocol-auth>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:640
+msgid "Array of 2 fields: authentication mechanism and scramble, encrypted according to the specified mechanism. See more on the :ref:`authentication <box_protocol-authentication_sequence>` sequence."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:643
+msgid ":ref:`IPROTO_CALL <box_protocol-call>`, :ref:`IPROTO_EVAL <box_protocol-eval>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:644
+msgid "Array of arguments"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:650
+msgid "IPROTO_FLAGS"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:652
+msgid "Code: 0x09."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:654
+msgid "When it comes to replicating synchronous transactions, the IPROTO_FLAGS key is included in the header. The key contains an MP_UINT value of one or more bits:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:657
+msgid "IPROTO_FLAG_COMMIT (0x01) will be set if this is the last message for a transaction."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:658
+msgid "IPROTO_FLAG_WAIT_SYNC (0x02) will be set if this is the last message for a transaction which cannot be completed immediately."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:660
+msgid "IPROTO_FLAG_WAIT_ACK (0x04) will be set if this is the last message for a synchronous transaction."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:662
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:670
+msgid "IPROTO_TERM"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:672
+msgid "Code: 0x53."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:674
+msgid "The key is used in the :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>` and :ref:`IPROTO_RAFT_DEMOTE <internals-iproto-replication-raft_demote>` requests."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:677
+msgid "Since version 2.11, the key is included in response to a :ref:`heartbeat message <box_protocol-heartbeat>`. The term corresponds to the value of :ref:`box.info.synchro.queue.term <box_info_synchro>` on the sender instance."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:683
+msgid "Vclock keys"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:685
+msgid "The vclock (vector clock) is a log sequence number map that defines the version of the dataset stored on the node. In fact, it represents the number of logical operations executed on a specific node. A vclock looks like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:691
+msgid "There are five keys that correspond to vector clocks in different contexts of replication. They all have the MP_MAP type:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:694
+msgid "IPROTO_VCLOCK (0x26) is passed to a new instance :ref:`joining the replica set <box_protocol-join>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:696
+msgid "IPROTO_VCLOCK_SYNC (0x5a) is used by :ref:`replication heartbeats <box_protocol-heartbeat>`. The master sends its heartbeats, including this monotonically growing key, to a replica. Once the replica receives a heartbeat with a non-zero IPROTO_VCLOCK_SYNC value, it starts responding with the same value in all its acknowledgements. This key was introduced in version 2.11."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:702
+msgid "IPROTO_BALLOT_VCLOCK (0x02) is included in the :ref:`IPROTO_BALLOT <box_protocol-ballots>` message. IPROTO_BALLOT is sent in response to the :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` request. This key was introduced in :doc:`/release/2.6.1`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:706
+msgid "IPROTO_BALLOT_GC_VCLOCK (0x03) is also included in the :ref:`IPROTO_BALLOT <box_protocol-ballots>` message. IPROTO_BALLOT is sent in response to the :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` request. It is the vclock of the oldest WAL entry on the instance. Corresponds to :ref:`box.info.gc().vclock <box_info_gc>`. This key was introduced in :doc:`/release/2.6.1`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:712
+msgid "IPROTO_RAFT_VCLOCK (0x03) is included in the :ref:`IPROTO_RAFT <box_protocol-raft>` message. It is present only on the instances in the :ref:`\"candidate\" state <cfg_replication-election_mode>` (IPROTO_RAFT_STATE == 2)."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:719
+msgid "IPROTO_BALLOT keys"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:721
+msgid "All IPROTO_BALLOT_* keys are only used in the :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests. There have been the following name changes starting with versions :doc:`/release/2.7.3`, :doc:`/release/2.8.2`, and :doc:`/release/2.10.0`:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:725
+msgid "IPROTO_BALLOT_IS_RO_CFG (0x01) was formerly called IPROTO_BALLOT_IS_RO."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:726
+msgid "IPROTO_BALLOT_IS_RO (0x04) was formerly called IPROTO_BALLOT_IS_LOADING."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:731
+msgid "IPROTO_METADATA"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:733
+msgid "Code: 0x32."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:735
+#: ../../doc/dev_guide/internals/iproto/keys.rst:752
+msgid "Used with SQL within :ref:`IPROTO_EXECUTE <box_protocol-execute>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:737
+msgid "The key contains an array of column maps, with each column map containing at least IPROTO_FIELD_NAME (0x00) and MP_STR, and IPROTO_FIELD_TYPE (0x01) and MP_STR."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:740
+msgid "Additionally, if ``sql_full_metadata`` in the :ref:`_session_settings <box_space-session_settings>` system space is TRUE, then the array will have these additional column maps which correspond to components described in the :ref:`box.execute() <box-sql_if_full_metadata>` section."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:748
+msgid "IPROTO_SQL_BIND"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:750
+msgid "Code: 0x41."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:754
+msgid "IPROTO_SQL_BIND is an array of parameter values to match ? placeholders or :name placeholders. It can contain values of any type, including MP_MAP."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:757
+msgid "Values that are not MP_MAP replace the ``?`` placeholders in the request."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:759
+msgid "MP_MAP values must have the format ``{[name] = value}``, where ``name`` is the named parameter in the request. Here is an example of such a request:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/keys.rst:762
+msgid "tarantool> conn:execute('SELECT ?, ?, :name1, ?, :name2, :name1', {1, 2, {[':name1'] = 5}, 'str', {[':name2'] = true}})\n"
+"---\n"
+"- metadata:\n"
+"- name: COLUMN_1\n"
+"    type: integer\n"
+"- name: COLUMN_2\n"
+"    type: integer\n"
+"- name: COLUMN_3\n"
+"    type: integer\n"
+"- name: COLUMN_4\n"
+"    type: text\n"
+"- name: COLUMN_5\n"
+"    type: boolean\n"
+"- name: COLUMN_6\n"
+"    type: boolean\n"
+"rows:\n"
+"- [1, 2, 5, 'str', true, 5]"
+msgstr ""

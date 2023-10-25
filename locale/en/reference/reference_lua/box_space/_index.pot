@@ -1,0 +1,78 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:5
+msgid "box.space._index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:11
+msgid "``_index`` is a system space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:13
+msgid "Tuples in this space contain the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:15
+msgid "``id`` (= id of space),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:16
+msgid "``iid`` (= index number within space),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:17
+msgid "``name``,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:18
+msgid "``type``,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:19
+msgid "``opts`` (e.g. unique option), [``tuple-field-no``, ``tuple-field-type`` ...]."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:21
+msgid "Here is what ``_index`` contains in a typical installation:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:23
+msgid "tarantool> box.space._index:select{}\n"
+"---\n"
+"- - [272, 0, 'primary', 'tree', {'unique': true}, [[0, 'string']]]\n"
+"  - [280, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]\n"
+"  - [280, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]\n"
+"  - [280, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]\n"
+"  - [281, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]\n"
+"  - [281, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]\n"
+"  - [281, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]\n"
+"  - [288, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]\n"
+"  - [288, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]\n"
+"  - [289, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned'], [1, 'unsigned']]]\n"
+"  - [289, 2, 'name', 'tree', {'unique': true}, [[0, 'unsigned'], [2, 'string']]]\n"
+"  - [296, 0, 'primary', 'tree', {'unique': true}, [[0, 'unsigned']]]\n"
+"  - [296, 1, 'owner', 'tree', {'unique': false}, [[1, 'unsigned']]]\n"
+"  - [296, 2, 'name', 'tree', {'unique': true}, [[2, 'string']]]\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_index.rst:44
+msgid "The :ref:`system space view <box_space-sysviews>` for ``_index`` is ``_vindex``."
+msgstr ""

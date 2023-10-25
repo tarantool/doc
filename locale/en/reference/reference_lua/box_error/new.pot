@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:5
+msgid "box.error.new()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:11
+msgid "Create an error object with the specified parameters."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:0
+#: ../../doc/reference/reference_lua/box_error/new.rst:0
+#: ../../doc/reference/reference_lua/box_error/new.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:13
+#: ../../doc/reference/reference_lua/box_error/new.rst:40
+msgid "an error description"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:14
+msgid "(optional) a numeric code for this error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:15
+msgid "(optional) an error type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:17
+msgid "**Example 1**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:19
+msgid "local custom_error = box.error.new({ code = 500,\n"
+"                                     reason = 'Internal server error' })\n"
+"\n"
+"box.error(custom_error)\n"
+"--[[\n"
+"---\n"
+"- error: Internal server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:25
+msgid "**Example 2: custom type**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:27
+msgid "local custom_error = box.error.new({ code = 500,\n"
+"                                     reason = 'Internal server error',\n"
+"                                     type = 'CustomInternalError' })\n"
+"\n"
+"box.error(custom_error)\n"
+"--[[\n"
+"---\n"
+"- error: Internal server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:37
+msgid "Create an error object with the specified type and description."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:39
+msgid "an error type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:41
+#: ../../doc/reference/reference_lua/box_error/new.rst:60
+msgid "description arguments"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:43
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:45
+msgid "local custom_error = box.error.new('CustomInternalError', 'Internal server error')\n"
+"\n"
+"box.error(custom_error)\n"
+"--[[\n"
+"---\n"
+"- error: Internal server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:55
+msgid "Create a predefined :ref:`Tarantool error <error_codes>` specified by its identifier. You can see all Tarantool errors in the `errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_ file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:59
+msgid "a pre-defined error identifier; Lua constants that correspond to those Tarantool errors are defined as members of ``box.error``, for example, ``box.error.NO_SUCH_USER == 45``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:62
+msgid "**Example 1: one argument**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:64
+msgid "local custom_error = box.error.new(box.error.NO_SUCH_USER, 'John')\n"
+"\n"
+"box.error(custom_error)\n"
+"--[[\n"
+"---\n"
+"- error: User 'John' is not found\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:70
+msgid "**Example 2: two arguments**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/new.rst:72
+msgid "local custom_error = box.error.new(box.error.CREATE_SPACE, 'my_space', 'the space already exists')\n"
+"\n"
+"box.error(custom_error)\n"
+"--[[\n"
+"---\n"
+"- error: 'Failed to create space ''my_space'': the space already exists'\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""

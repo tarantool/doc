@@ -1,0 +1,276 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.6.3.rst:2
+msgid "Tarantool 2.6.3"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:4
+msgid "Released on 2021-04-21."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:6
+msgid "Release :tarantool-release:`2.6.3`."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:7
+msgid "Tagged ``2.6.3-0-gcd487a2``"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:12
+msgid "2.6.3 is the second :doc:`stable </release/policy>` version of the 2.6 release series. It introduces 15 improvements and resolves 28 bugs since version :doc:`2.6.2 </release/2.6.2>`."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:16
+msgid "The \"stable\" label means that we have all planned features implemented and we see no high-impact issues. However, if you encounter an issue, feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:23
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:25
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:28
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:35
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:38
+#: ../../doc/release/2.6.3.rst:108
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:40
+msgid "Introduced the concept of WAL queue and the new configuration option ``wal_queue_max_size``, measured in bytes. The default value is 16 Mb. The option helps limit the pace at which replica submits new transactions to the WAL. The limit is checked every time a transaction from the master is submitted to the replica’s WAL. The space taken by the transaction is considered empty once it’s successfully written (:tarantool-issue:`5536`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:51
+#: ../../doc/release/2.6.3.rst:147
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:53
+msgid "Introduced the ``box.ctl.promote()`` function and the concept of manual elections (enabled with ``election_mode='manual'``) (:tarantool-issue:`3055`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:56
+msgid "Once the instance is in the ``manual`` election mode, it acts like a ``voter`` most of the time, but may trigger elections and become a leader when ``box.ctl.promote()`` is called. When ``election_mode ~= 'manual'``, ``box.ctl.promote()`` replaces ``box.ctl.clear_synchro_queue()``, which is now deprecated."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:65
+#: ../../doc/release/2.6.3.rst:221
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:67
+msgid "Tarantool build infrastructure now requires CMake version 3.1 or later."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:69
+msgid "Binary packages for Fedora 33 are now available (:tarantool-issue:`5502`) ."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:71
+msgid "Binary packages for CentOS 6 and Debian Jessie won't be published since this version."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:73
+msgid "RPM and DEB packages no longer have the ``autotools`` dependency (follows up :tarantool-issue:`4968`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:76
+msgid "Regular testing on MacOS 10.13 has been disabled, effectively stopping the support of this version."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:79
+msgid "The built-in ``zstd`` is upgraded from v1.3.3 to v1.4.8 (part of :tarantool-issue:`5502`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:82
+msgid "SMTP and SMTPS protocols are now enabled in the bundled ``libcurl`` (:tarantool-issue:`4559`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:84
+msgid "The ``libcurl`` headers are now shipped to system path ``${PREFIX}/include/tarantool`` when ``libcurl`` is included as a bundled library or in a static build (:tarantool-issue:`4559`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:90
+msgid "Testing"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:92
+msgid "Tarantool CI/CD has migrated to GitHub Actions (:tarantool-issue:`5662`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:94
+msgid "Single node Jepsen testing now runs on per-push basis (:tarantool-issue:`5736`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:96
+msgid "A self-sufficient LuaJIT testing environment has been implemented. As a result, LuaJIT build system is now partially ported to CMake and all testing machinery is enclosed within the `tarantool/luajit <https://github.com/tarantool/luajit/>`__ repository (:tarantool-issue:`4862`, :tarantool-issue:`5470`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:101
+msgid "Python 3 is now the default in the test infrastructure (:tarantool-issue:`5652`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:105
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:110
+msgid "The ``lbox_ctl_is_recovery_finished()`` function no longer returns ``true`` when recovery is still in progress."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:113
+msgid "A memory corruption bug has been fixed in netbox. The memory of a struct error which is still used will no longer be freed prematurely because of the wrong order of ``ffi.gc`` and ``ffi.cast`` calls."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:117
+msgid "Relay can no longer time out while a replica is joining or syncing with the master. (:tarantool-issue:`5762`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:120
+msgid "An issue with missing \"path\" value of index schema fetched by netbox has been fixed (:tarantool-issue:`5451`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:123
+msgid "Extensive usage of ``uri`` and ``uuid`` modules with debug log level no longer leads to crashes or corrupted results of the functions from these modules. Same problem is resolved for using these modules from the callbacks passed to ``ffi.gc()``, and for some functions from the modules ``fio``, ``box.tuple``, and ``iconv`` (:tarantool-issue:`5632`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:130
+msgid "The new ``wal_cleanup_delay`` option can prevent early cleanup of ``*.xlog`` files, needed by replicas. Such cleanup used to result in a ``XlogGapError`` (:tarantool-issue:`5806`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:134
+msgid "Appliers will no longer cause errors with ``Unknown request type 40`` during a final join when the master has synchronous spaces (:tarantool-issue:`5566`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:137
+msgid "Added memtx MVCC tracking of read gaps which fixes the problem of phantom reads (:tarantool-issue:`5628`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:140
+msgid "Fixed the wrong result of using ``space:count()`` with memtx MVCC (:tarantool-issue:`5972`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:142
+msgid "Fixed the dirty read after restart while using MVCC with synchronous replication (:tarantool-issue:`5973`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:149
+msgid "Fixed an issue with an applier hanging on a replica after failing to process a ``CONFIRM`` or ``ROLLBACK`` message coming from a master."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:152
+msgid "Fixed the issue where master did not send some rows to an anonymous replica which had fallen behind and was trying to register."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:155
+msgid "Fixed the bug when a synchronous transaction could be confirmed and visible on a replica, but then not confirmed or invisible again after restart. It was more likely to happen on memtx spaces with ``memtx_use_mvcc_engine`` enabled (:tarantool-issue:`5213`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:160
+msgid "Fixed the recovery of a rolled back multi-statement synchronous transaction which could lead to the transaction being applied partially, and to recovery errors. It happened in case the transaction worked with non-sync spaces (:tarantool-issue:`5874`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:165
+msgid "Fixed a bug in synchronous replication when rolled back transactions could reappear after reconnecting a sufficiently old instance (:tarantool-issue:`5445`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:171
+msgid "Swim"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:173
+msgid "Fixed an issue where ``<swim_instance>:broadcast()`` did not work on non-local addresses and spammed \"Permission denied\" errors to the log. After instance termination it could return a non-0 exit code even if there were no errors in the script, and then spam the same error again (:tarantool-issue:`5864`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:179
+msgid "Fixed the crash on attempts to call ``swim:member_by_uuid()`` with no arguments or with ``nil``/``box.NULL`` (:tarantool-issue:`5951`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:182
+msgid "Fixed the crash on attempts to pass an object of a wrong type to ``__serialize`` method of a swim member in Lua (:tarantool-issue:`5952`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:186
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:188
+msgid "Fixed the `-e` option, when ``tarantool`` used to enter the interactive mode when stdin is a TTY. Now, ``tarantool -e 'print\"Hello\"'`` doesn't enter the interactive mode, but just prints \"Hello\" and exits (:tarantool-issue:`5040`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:193
+msgid "Fixed a leak of a tuple object in ``key_def:compare_with_key(tuple, key)``, which had occurred when the serialization of the key failed (:tarantool-issue:`5388`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:198
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:200
+msgid "The string received by a user-defined C or Lua function will no longer be different from the string passed to the function. This could happen when the string passed from SQL had contained ``\\\\0`` (:tarantool-issue:`5938`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:205
+msgid "``SQL SELECT`` or ``SQL UPDATE`` on ``UUID`` or ``DECIMAL`` field will not cause a SEGMENTATION FAULT anymore (:tarantool-issue:`5011`, :tarantool-issue:`5704`, :tarantool-issue:`5913`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:209
+msgid "Fixed an issue with wrong results of ``SELECT`` with ``GROUP BY`` which occurred when one of the selected values was ``VARBINARY`` and not directly obtained from the space (:tarantool-issue:`5890`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:214
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:216
+msgid "Fixed a double ``gc_cdatanum`` decrementing in LuaJIT platform metrics which occurred when a finalizer was set for a ``GCсdata`` object (:tarantool-issue:`5820`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:223
+msgid "Fix building on FreeBSD (incomplete definition of type ``struct sockaddr``) (:tarantool-issue:`5748`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:227
+msgid "The already downloaded static build dependencies will not be fetched repeatedly (:tarantool-issue:`5761`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:230
+msgid "Recovering with ``force_recovery`` option now deletes vylog files which are newer than the snapshot. It helps an instance recover after incidents during a checkpoint (:tarantool-issue:`5823`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:233
+msgid "Fixed the ``libcurl`` configuring when Tarantool itself has been configured with ``cmake3`` command and there was no ``cmake`` command in the ``PATH`` (:tarantool-issue:`5955`)."
+msgstr ""
+
+#: ../../doc/release/2.6.3.rst:237
+msgid "This affects building Tarantool from sources with bundled ``libcurl`` (it is the default mode)."
+msgstr ""

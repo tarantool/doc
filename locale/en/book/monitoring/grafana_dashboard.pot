@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:5
+msgid "Grafana dashboard"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:7
+msgid "Tarantool Grafana dashboard is available as part of `Grafana Official & community built dashboards <https://grafana.com/grafana/dashboards>`_. There's a version `for Prometheus data source <https://grafana.com/grafana/dashboards/13054>`_ and one `for InfluxDB data source <https://grafana.com/grafana/dashboards/12567>`_. There are also separate dashboards for TDG applications: `for Prometheus data source <https://grafana.com/grafana/dashboards/16406>`_ and `for InfluxDB data source <https://grafana.com/grafana/dashboards/16405>`_. Tarantool Grafana dashboard is a ready for import template with basic memory, space operations, and HTTP load panels, based on default `metrics <https://github.com/tarantool/metrics>`_ package functionality."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:19
+msgid "Dashboard requires using ``metrics`` **0.15.0** or newer for complete experience; ``'alias'`` :ref:`global label <metrics-api_reference-labels>` must be set on each instance to properly display panels (e.g. provided with ``cartridge.roles.metrics`` role)."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:23
+msgid "To support `CRUD <https://github.com/tarantool/crud>`_ statistics, install ``CRUD`` **0.11.1** or newer. Call ``crud.cfg`` on router to enable CRUD statistics collect with latency quantiles."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:27
+msgid "crud.cfg{\n"
+"    stats = true,\n"
+"    stats_driver='metrics',\n"
+"    stats_quantiles=true\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:35
+msgid "To support `expirationd <https://github.com/tarantool/expirationd>`_ statistics, install ``expirationd`` **1.2.0** or newer. Call ``expirationd.cfg`` on instance to enable statistics export."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:39
+msgid "expirationd.cfg{metrics = true}"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:56
+msgid "Prepare a monitoring stack"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:58
+msgid "Since there are Prometheus and InfluxDB data source Grafana dashboards, you can use"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:61
+msgid "`Telegraf <https://www.influxdata.com/time-series-platform/telegraf/>`_ as a server agent for collecting metrics, `InfluxDB <https://www.influxdata.com/>`_ as a time series database for storing metrics, and `Grafana <https://grafana.com/>`_ as a visualization platform; or"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:65
+msgid "`Prometheus <https://prometheus.io/>`_ as both a server agent for collecting metrics and a time series database for storing metrics, and `Grafana <https://grafana.com/>`_ as a visualization platform."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:69
+msgid "For issues concerning setting up Prometheus, Telegraf, InfluxDB, or Grafana instances please refer to the corresponding project's documentation."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:76
+msgid "Collect metrics with server agents"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:78
+msgid "To collect metrics for Prometheus, first set up metrics output with ``prometheus`` format. You can use :ref:`cartridge.roles.metrics <monitoring-getting_started-cartridge_role>` configuration or set up the :ref:`Prometheus output plugin <metrics-plugins-available>` manually. To start collecting metrics, `add a job <https://prometheus.io/docs/prometheus/latest/getting_started/#configure-prometheus-to-monitor-the-sample-targets>`_ to Prometheus configuration with each Tarantool instance URI as a target and metrics path as it was configured on Tarantool instances:"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:86
+msgid "scrape_configs:\n"
+"  - job_name: tarantool\n"
+"    static_configs:\n"
+"      - targets:\n"
+"        - \"example_project:8081\"\n"
+"        - \"example_project:8082\"\n"
+"        - \"example_project:8083\"\n"
+"    metrics_path: \"/metrics/prometheus\""
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:98
+msgid "To collect metrics for InfluxDB, use the Telegraf agent. First off, configure Tarantool metrics output in ``json`` format with :ref:`cartridge.roles.metrics <monitoring-getting_started-cartridge_role>` configuration or corresponding :ref:`JSON output plugin <metrics-plugins-available>`. To start collecting metrics, add `http input <https://github.com/influxdata/telegraf/blob/release-1.17/plugins/inputs/http/README.md>`_ to Telegraf configuration including each Tarantool instance metrics URL:"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:105
+msgid "[[inputs.http]]\n"
+"    urls = [\n"
+"        \"http://example_project:8081/metrics/json\",\n"
+"        \"http://example_project:8082/metrics/json\",\n"
+"        \"http://example_project:8083/metrics/json\"\n"
+"    ]\n"
+"    timeout = \"30s\"\n"
+"    tag_keys = [\n"
+"        \"metric_name\",\n"
+"        \"label_pairs_alias\",\n"
+"        \"label_pairs_quantile\",\n"
+"        \"label_pairs_path\",\n"
+"        \"label_pairs_method\",\n"
+"        \"label_pairs_status\",\n"
+"        \"label_pairs_operation\",\n"
+"        \"label_pairs_level\",\n"
+"        \"label_pairs_id\",\n"
+"        \"label_pairs_engine\",\n"
+"        \"label_pairs_name\",\n"
+"        \"label_pairs_index_name\",\n"
+"        \"label_pairs_delta\",\n"
+"        \"label_pairs_stream\",\n"
+"        \"label_pairs_thread\",\n"
+"        \"label_pairs_kind\"\n"
+"    ]\n"
+"    insecure_skip_verify = true\n"
+"    interval = \"10s\"\n"
+"    data_format = \"json\"\n"
+"    name_prefix = \"tarantool_\"\n"
+"    fieldpass = [\"value\"]"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:138
+msgid "Be sure to include each label key as ``label_pairs_<key>`` so it will be extracted with plugin. For example, if you use :code:`{ state = 'ready' }` labels somewhere in metric collectors, add ``label_pairs_state`` tag key."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:142
+msgid "For TDG dashboard, please use"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:144
+msgid "[[inputs.http]]\n"
+"    urls = [\n"
+"        \"http://example_tdg_project:8081/metrics/json\",\n"
+"        \"http://example_tdg_project:8082/metrics/json\",\n"
+"        \"http://example_tdg_project:8083/metrics/json\"\n"
+"    ]\n"
+"    timeout = \"30s\"\n"
+"    tag_keys = [\n"
+"        \"metric_name\",\n"
+"        \"label_pairs_alias\",\n"
+"        \"label_pairs_quantile\",\n"
+"        \"label_pairs_path\",\n"
+"        \"label_pairs_method\",\n"
+"        \"label_pairs_status\",\n"
+"        \"label_pairs_operation\",\n"
+"        \"label_pairs_level\",\n"
+"        \"label_pairs_id\",\n"
+"        \"label_pairs_engine\",\n"
+"        \"label_pairs_name\",\n"
+"        \"label_pairs_index_name\",\n"
+"        \"label_pairs_delta\",\n"
+"        \"label_pairs_stream\",\n"
+"        \"label_pairs_thread\",\n"
+"        \"label_pairs_type\",\n"
+"        \"label_pairs_connector_name\",\n"
+"        \"label_pairs_broker_name\",\n"
+"        \"label_pairs_topic\",\n"
+"        \"label_pairs_request\",\n"
+"        \"label_pairs_kind\",\n"
+"        \"label_pairs_thread_name\",\n"
+"        \"label_pairs_type_name\",\n"
+"        \"label_pairs_operation_name\",\n"
+"        \"label_pairs_schema\",\n"
+"        \"label_pairs_entity\",\n"
+"        \"label_pairs_status_code\"\n"
+"    ]\n"
+"    insecure_skip_verify = true\n"
+"    interval = \"10s\"\n"
+"    data_format = \"json\"\n"
+"    name_prefix = \"tarantool_\"\n"
+"    fieldpass = [\"value\"]"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:188
+msgid "If you connect Telegraf instance to InfluxDB storage, metrics will be stored with ``\"<name_prefix>http\"`` measurement (``\"tarantool_http\"`` in our example)."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:195
+msgid "Import the dashboard"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:196
+msgid "Open Grafana import menu."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:201
+msgid "To import a specific dashboard, choose one of the following options:"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:203
+msgid "paste the dashboard id (``12567`` for InfluxDB dashboard, ``13054`` for Prometheus dashboard, ``16405`` for InfluxDB TDG dashboard, ``16406`` for Prometheus TDG dashboard), or"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:205
+msgid "paste a link to the dashboard ( https://grafana.com/grafana/dashboards/12567 for InfluxDB dashboard, https://grafana.com/grafana/dashboards/13054 for Prometheus dashboard, https://grafana.com/grafana/dashboards/16405 for InfluxDB TDG dashboard, https://grafana.com/grafana/dashboards/16406 for Prometheus TDG dashboard), or"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:210
+msgid "paste the dashboard JSON file contents, or"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:211
+msgid "upload the dashboard JSON file."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:213
+msgid "Set dashboard name, folder and uid (if needed)."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:218
+msgid "You can choose datasource and datasource variables after import."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:227
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:229
+msgid "If there are no data on the graphs, make sure that you picked datasource and job/measurement correctly."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:231
+msgid "If there are no data on the graphs, make sure that you have ``info`` group of Tarantool metrics (in particular, ``tnt_info_uptime``)."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:234
+msgid "If some Prometheus graphs show no data because of ``parse error: missing unit character in duration``, ensure that you use Grafana 7.2 or newer."
+msgstr ""
+
+#: ../../doc/book/monitoring/grafana_dashboard.rst:237
+msgid "If some Prometheus graphs display ``parse error: bad duration syntax \"1m0\"`` or similar error, you need to update your Prometheus version. See `grafana/grafana#44542 <https://github.com/grafana/grafana/issues/44542>`_ for more details."
+msgstr ""

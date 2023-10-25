@@ -1,0 +1,266 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/getting_started_cartridge.rst:4
+msgid "Creating your first Tarantool Cartridge application"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:6
+msgid "Here we'll walk you through developing a simple cluster application."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:8
+msgid "First, :doc:`set up the development environment </book/cartridge/cartridge_cli/installation>`."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:11
+msgid "Next, create an application named ``myapp``. Run:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:13
+msgid "$ cartridge create --name myapp"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:17
+msgid "This will create a Tarantool Cartridge application in the ``./myapp`` directory, with a handful of :doc:`template files and directories </book/cartridge/cartridge_cli/commands/create>` inside."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:22
+msgid "Go inside and make a dry run:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:24
+msgid "$ cd ./myapp\n"
+"$ cartridge build\n"
+"$ cartridge start"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:30
+msgid "This will build the application locally, start 5 instances of Tarantool and a :ref:`stateboard <cartridge-stateful_failover>` (state provider), and run the application as it is, with no business logic yet."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:34
+msgid "Why 5 instances and a stateboard? See the ``instances.yml`` file in your application directory. It contains the :ref:`configuration <cartridge-deployment>` of all instances that you can use in the cluster. By default, it defines configuration for 5 Tarantool instances and a stateboard."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:39
+msgid "---\n"
+"myapp.router:\n"
+"  advertise_uri: localhost:3301\n"
+"  http_port: 8081\n"
+"\n"
+"myapp.s1-master:\n"
+"  advertise_uri: localhost:3302\n"
+"  http_port: 8082\n"
+"\n"
+"myapp.s1-replica:\n"
+"  advertise_uri: localhost:3303\n"
+"  http_port: 8083\n"
+"\n"
+"myapp.s2-master:\n"
+"  advertise_uri: localhost:3304\n"
+"  http_port: 8084\n"
+"\n"
+"myapp.s2-replica:\n"
+"  advertise_uri: localhost:3305\n"
+"  http_port: 8085\n"
+"\n"
+"myapp-stateboard:\n"
+"  listen: localhost:4401\n"
+"  password: passwd"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:66
+msgid "You can already see these instances in the cluster management web interface at http://localhost:8081 (here 8081 is the HTTP port of the first instance specified in ``instances.yml``)."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:74
+msgid "Okay, press ``Ctrl + C`` to stop the cluster for a while."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:76
+msgid "Now it’s time to add some business logic to your application. This will be an evergreen \"Hello world!\"\" -- just to keep things simple."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:79
+msgid "Rename the template file ``app/roles/custom.lua`` to ``hello-world.lua``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:81
+msgid "$ mv app/roles/custom.lua app/roles/hello-world.lua"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:85
+msgid "This will be your *role*. In Tarantool Cartridge, a role is a Lua module that implements some instance-specific functions and/or logic. Further on we'll show how to add code to a role, build it, enable and test."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:89
+msgid "There is already some code in the role's ``init()`` function."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:91
+msgid "local function init(opts) -- luacheck: no unused args\n"
+"    -- if opts.is_master then\n"
+"    -- end\n"
+"\n"
+"    local httpd = assert(cartridge.service_get('httpd'), \"Failed to get httpd service\")\n"
+"    httpd:route({method = 'GET', path = '/hello'}, function()\n"
+"        return {body = 'Hello world!'}\n"
+"    end)\n"
+"\n"
+"    return true\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:106
+msgid "This exports an HTTP endpoint ``/hello``. For example, http://localhost:8081/hello if you address the first instance from the ``instances.yml`` file. If you open it in a browser after enabling the role (we'll do it here a bit later), you'll see \"Hello world!\" on the page."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:111
+msgid "Let's add some more code there."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:113
+msgid "local function init(opts) -- luacheck: no unused args\n"
+"    -- if opts.is_master then\n"
+"    -- end\n"
+"\n"
+"    local httpd = cartridge.service_get('httpd')\n"
+"    httpd:route({method = 'GET', path = '/hello'}, function()\n"
+"        return {body = 'Hello world!'}\n"
+"    end)\n"
+"\n"
+"    local log = require('log')\n"
+"    log.info('Hello world!')\n"
+"\n"
+"    return true\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:131
+msgid "This writes \"Hello, world!\" to the console when the role gets enabled, so you'll have a chance to spot this. No rocket science."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:134
+msgid "Next, amend ``role_name`` in the \"return\" section of the ``hello-world.lua`` file. You'll see this section at the bottom of the file. This text will be displayed as a label for your role in the cluster management web interface."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:139
+msgid " return {\n"
+"     role_name = 'Hello world!',\n"
+"     init = init,\n"
+"     stop = stop,\n"
+"     validate_config = validate_config,\n"
+"     apply_config = apply_config,\n"
+"     -- dependencies = {'cartridge.roles.vshard-router'},\n"
+" }"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:151
+msgid "The final thing to do before you can run the application is to add your role to the list of available cluster roles in the ``init.lua`` file in the project root directory."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:154
+msgid "local cartridge = require('cartridge')\n"
+"\n"
+"local ok, err = cartridge.cfg({\n"
+"    roles = {\n"
+"        'cartridge.roles.vshard-storage',\n"
+"        'cartridge.roles.vshard-router',\n"
+"        'cartridge.roles.metrics',\n"
+"        'app.roles.hello-world',\n"
+"    },\n"
+"})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:168
+msgid "Now the cluster will be aware of your role."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:170
+msgid "Why ``app.roles.hello-world``? By default, the role name here should match the path from the application root (``./myapp``) to the role file (``app/roles/hello-world.lua``)."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:174
+msgid "Great! Your role is ready. Re-build the application and re-start the cluster now:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:176
+msgid "$ cartridge build\n"
+"$ cartridge start"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:181
+msgid "Now all instances are up, but idle, waiting for you to enable roles for them."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:183
+msgid "Instances (replicas) in a Tarantool Cartridge cluster are organized into *replica sets*. Roles are enabled per replica set, so all instances in a replica set have the same roles enabled."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:187
+msgid "Let's create a replica set containing just one instance and enable your role:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:189
+msgid "Open the cluster management web interface at http://localhost:8081."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:190
+msgid "Next to the **router** instance, click :guilabel:`Configure`."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:191
+msgid "Check the role ``Hello world!`` to enable it. Notice that the role name here matches the label text that you specified in the ``role_name`` parameter in the ``hello-world.lua`` file."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:194
+msgid "(Optionally) Specify the replica set name, for example \"hello-world-replica-set\"."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:201
+msgid "Click :guilabel:`Create replica set` and see the newly-created replica set in the web interface."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:208
+msgid "Your custom role got enabled. Find the \"Hello world!\" message in console, like this:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:215
+msgid "Finally, open the HTTP endpoint of this instance at http://localhost:8081/hello and see the reply to your GET request."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:222
+msgid "Everything is up and running! What's next?"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:224
+msgid "Follow the :ref:`administrator's guide <cartridge-deployment>` to set up the rest of the cluster and try some cool cluster management features -- for example, enable failover."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:226
+msgid "Check out the Cartridge :doc:`developer's guide </book/cartridge/cartridge_dev>` and implement more sophisticated business logic for your role."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:228
+msgid ":doc:`Pack </book/cartridge/cartridge_cli/commands/pack>` your application for easy distribution. Choose what you like: a DEB or RPM package, a TGZ archive, or a Docker image. Archives and packages can be deployed with `ansible-cartridge <https://github.com/tarantool/ansible-cartridge>`__."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cartridge.rst:231
+msgid "Read the :doc:`Cartridge documentation </book/cartridge/index>`."
+msgstr ""

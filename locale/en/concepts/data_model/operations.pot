@@ -1,0 +1,213 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/data_model/operations.rst:4
+msgid "Operations"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:9
+msgid "Data operations"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:11
+msgid "The basic data operations supported in Tarantool are:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:13
+msgid "five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE), and"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:14
+msgid "one data-retrieval operation (SELECT)."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:16
+msgid "All of them are implemented as functions in :ref:`box.space <box_space>` submodule."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:18
+msgid "**Examples:**"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:20
+msgid ":ref:`INSERT <box_space-insert>`: Add a new tuple to space 'tester'."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:22
+msgid "The first field, field[1], will be 999 (MsgPack type is `integer`)."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:24
+msgid "The second field, field[2], will be 'Taranto' (MsgPack type is `string`)."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:26
+msgid "tarantool> box.space.tester:insert{999, 'Taranto'}"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:30
+msgid ":ref:`UPDATE <box_space-update>`: Update the tuple, changing field field[2]."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:32
+msgid "The clause \"{999}\", which has the value to look up in the index of the tuple's primary-key field, is mandatory, because ``update()`` requests must always have a clause that specifies a unique key, which in this case is field[1]."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:36
+msgid "The clause \"{{'=', 2, 'Tarantino'}}\" specifies that assignment will happen to field[2] with the new value."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:39
+msgid "tarantool> box.space.tester:update({999}, {{'=', 2, 'Tarantino'}})"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:43
+msgid ":ref:`UPSERT <box_space-upsert>`: Upsert the tuple, changing field field[2] again."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:46
+msgid "The syntax of ``upsert()`` is similar to the syntax of ``update()``. However, the execution logic of these two requests is different. UPSERT is either UPDATE or INSERT, depending on the database's state. Also, UPSERT execution is postponed until after transaction commit, so, unlike ``update()``, ``upsert()`` doesn't return data back."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:52
+msgid "tarantool> box.space.tester:upsert({999, 'Taranted'}, {{'=', 2, 'Tarantism'}})"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:56
+msgid ":ref:`REPLACE <box_space-replace>`: Replace the tuple, adding a new field."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:58
+msgid "This is also possible with the ``update()`` request, but the ``update()`` request is usually more complicated."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:61
+msgid "tarantool> box.space.tester:replace{999, 'Tarantella', 'Tarantula'}"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:65
+msgid ":ref:`SELECT <box_space-select>`: Retrieve the tuple."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:67
+msgid "The clause \"{999}\" is still mandatory, although it does not have to mention the primary key."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:70
+msgid "tarantool> box.space.tester:select{999}"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:74
+msgid ":ref:`DELETE <box_space-delete>`: Delete the tuple."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:76
+msgid "In this example, we identify the primary-key field."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:78
+msgid "tarantool> box.space.tester:delete{999}"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:82
+msgid "Summarizing the examples:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:84
+msgid "Functions ``insert`` and ``replace`` accept a tuple (where a primary key comes as part of the tuple)."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:86
+msgid "Function ``upsert`` accepts a tuple (where a primary key comes as part of the tuple), and also the update operations to execute."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:89
+msgid "Function ``delete`` accepts a full key of any unique index (primary or secondary)."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:91
+msgid "Function ``update`` accepts a full key of any unique index (primary or secondary), and also the operations to execute."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:94
+msgid "Function ``select`` accepts any key: primary/secondary, unique/non-unique, full/partial."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:97
+msgid "See reference on ``box.space`` for more :ref:`details on using data operations <box_space-operations-detailed-examples>`."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:102
+msgid "Besides Lua, you can use :ref:`Perl, PHP, Python or other programming language connectors <index-box_connectors>`. The client server protocol is open and documented. See this :ref:`annotated BNF <box_protocol-iproto_protocol>`."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:110
+msgid "Complexity factors"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:112
+msgid "In reference for :ref:`box.space <box_space>` and :doc:`/reference/reference_lua/box_index` submodules, there are notes about which complexity factors might affect the resource usage of each function."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:123
+msgid "Complexity factor"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:124
+msgid "Effect"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:125
+msgid "Index size"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:126
+msgid "The number of index keys is the same as the number of tuples in the data set. For a TREE index, if there are more keys, then the lookup time will be greater, although, of course, the effect is not linear. For a HASH index, if there are more keys, then there is more RAM used, but the number of low-level steps tends to remain constant."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:133
+msgid "Index type"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:134
+msgid "Typically, a HASH index is faster than a TREE index if the number of tuples in the space is greater than one."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:137
+msgid "Number of indexes accessed"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:138
+msgid "Ordinarily, only one index is accessed to retrieve one tuple. But to update the tuple, there must be N accesses if the space has N different indexes. |br| Note regarding storage engine: Vinyl optimizes away such accesses if secondary index fields are unchanged by the update. So, this complexity factor applies only to memtx, since it always makes a full-tuple copy on every update."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:147
+msgid "Number of tuples accessed"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:148
+msgid "A few requests, for example, SELECT, can retrieve multiple tuples. This factor is usually less important than the others."
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:151
+msgid "WAL settings"
+msgstr ""
+
+#: ../../doc/concepts/data_model/operations.rst:152
+msgid "The important setting for the write-ahead log is :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`. If the setting causes no writing or delayed writing, this factor is unimportant. If the setting causes every data-change request to wait for writing to finish on a slow device, this factor is more important than all the others."
+msgstr ""

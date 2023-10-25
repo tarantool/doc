@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:5
+msgid "Connecting to the cluster"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:7
+msgid "In the last section, we set up a cluster, created a schema, and wrote data through the HTTP API. Now we can connect to the cluster from code and work with data."
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:12
+msgid "If you are using Tarantool without Cartridge, go to the :ref:`Connecting from your favorite language <getting_started_connectors>` section. If you are undergoing training, read on."
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:16
+msgid "You may have noticed that we used the ``crud`` module in the HTTP handler code. The code looked something like this:"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:19
+msgid "local crud = require ('crud')\n"
+"\n"
+"function add_user(request)\n"
+"    local result, err = crud.insert_object ('users', {user_id = uuid.new (), fullname = fullname})\n"
+"end"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:28
+msgid "This module allows you to work with data in a cluster. The syntax here is similar to what the Tarantool ``box`` module offers. You will learn more about the ``box`` module in the following sections."
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:32
+msgid "The ``crud`` module contains a set of stored procedures. To work with them, we must activate special roles on all routers and storages. We selected those roles in the previous section, so we don't need to do anything. The roles are named accordingly: \"crud-router\" and \"crud-storage\"."
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:37
+msgid "To write and read data in the Tarantool cluster from code, we will call stored procedures of the ``crud`` module."
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:40
+msgid "In Python, it looks like this:"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:42
+msgid "res = conn.call('crud.insert', 'users', <uuid>, 'Jim Carrey')\n"
+"users = conn.call('crud.select', 'users', {limit: 100})"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:47
+msgid "All functions of the ``crud`` module are described in the `README of our GitHub repository <https://github.com/tarantool/crud/#insert>`_."
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:50
+msgid "Here is an incomplete list:"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:52
+msgid "``insert``"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:53
+msgid "``select``"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:54
+msgid "``get``"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:55
+msgid "``delete``"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:56
+msgid "``min``\\/``max``"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:57
+msgid "``replace``\\/``upsert``"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:58
+msgid "``truncate``"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:60
+msgid "To learn how to call stored procedures in your programming language, see the corresponding section:"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:62
+msgid ":ref:`for Python <getting_started-python>`"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:63
+msgid ":ref:`for Go <getting_started-go>`"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:64
+msgid ":ref:`for PHP <getting_started-php>`"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:65
+msgid ":doc:`for C++ </how-to/getting_started_cxx>`"
+msgstr ""
+
+#: ../../doc/getting_started/connecting_to_cluster.rst:67
+msgid "For connectors to other languages, check the README for the connector of your choice `on GitHub <https://github.com/tarantool>`_."
+msgstr ""

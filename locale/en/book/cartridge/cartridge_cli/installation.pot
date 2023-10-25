@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:2
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:4
+msgid "Install third-party software:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:6
+msgid "`Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__ ``git``, the version control system."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:9
+msgid "`Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`__ the ``unzip`` utility."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:12
+msgid "`Install <https://gcc.gnu.org/install/>`__ the ``gcc`` compiler."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:15
+msgid "`Install <https://cmake.org/install/>`__ the ``cmake`` and ``make`` tools."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:19
+msgid "Install Tarantool 1.10 or higher:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:21
+msgid "You can:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:23
+msgid "`Install it from a package <https://www.tarantool.io/en/download/>`__."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:24
+msgid "`Build it from source <https://www.tarantool.io/en/doc/latest/dev_guide/building_from_source/>`__."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:26
+msgid "[For all platforms except macOS] If you build Tarantool from source, you need to set up the Tarantool packages repository manually:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:29
+msgid "curl -L https://tarantool.io/release/2/installer.sh | sudo -E bash -s -- --repo-only"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:33
+msgid "Install the ``cartridge-cli`` package:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:35
+msgid "For CentOS, Fedora, ALT Linux (RPM package):"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:37
+msgid "sudo yum install cartridge-cli"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:41
+msgid "For Debian, Ubuntu (DEB package):"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:43
+msgid "sudo apt-get install cartridge-cli"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:47
+msgid "For MacOS X (Homebrew formula):"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:49
+msgid "brew install cartridge-cli"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:53
+msgid "Or build locally:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:55
+msgid "mage build"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:59
+msgid "Check the installation:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:61
+msgid "cartridge version"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:66
+msgid "Enable shell completion"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:69
+msgid "Linux"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:71
+msgid "The ``cartridge-cli`` RPM and DEB packages contain a Bash completion script, ``/etc/bash_completion.d/cartridge``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:74
+msgid "To enable completion after ``cartridge-cli`` installation, open a new shell or source the completion file at ``/etc/bash_completion.d/cartridge``. Make sure that you have ``bash-completion`` installed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:78
+msgid "To install Zsh completion, run:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:80
+msgid "cartridge gen completion --skip-bash --zsh=\"${fpath[1]}/_cartridge\""
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:84
+msgid "Now enable shell completion:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:86
+msgid "echo \"autoload -U compinit; compinit\" >> ~/.zshrc"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:91
+msgid "OS X"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/installation.rst:93
+msgid "If you install ``cartridge-cli`` from ``brew``, it automatically installs both Bash and Zsh completion."
+msgstr ""

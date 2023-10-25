@@ -1,0 +1,135 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:4
+msgid "Fiber channel close mode"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:6
+msgid "Before the change, there was an unexpected behavior when using ``channel:close()`` because it closed the channel entirely and discarded all unread events."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:9
+msgid "Old and new behavior"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:11
+msgid "The ``compat`` module allows you chose between the channel force and graceful closing. The latter is a new behavior."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:13
+msgid "tarantool> compat = require('compat')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> compat\n"
+"---\n"
+"- - yaml_pretty_multiline: default (old)\n"
+"  - json_escape_forward_slash: default (old)\n"
+"  - fiber_channel_close_mode: default (old)\n"
+"...\n"
+"\n"
+"tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> ch = fiber.channel(10)\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> ch:put('one')\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> ch:put('two')\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> ch:get()\n"
+"---\n"
+"- one\n"
+"...\n"
+"\n"
+"tarantool> ch:close()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> ch:get()\n"
+"---\n"
+"- null\n"
+"...\n"
+"\n"
+"tarantool> compat.fiber_channel_close_mode = 'new'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> ch = fiber.channel(10)\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> ch:put('one')\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> ch:put('two')\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> ch:get()\n"
+"---\n"
+"- one\n"
+"...\n"
+"\n"
+"tarantool> ch:close()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> ch:get()\n"
+"---\n"
+"- two\n"
+"...\n"
+"\n"
+"tarantool> ch:get()\n"
+"---\n"
+"- null\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:95
+msgid "You can select new/old behavior in ``compat``. It will affect all existing channels and the future ones."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:98
+msgid "Known compatibility issues"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:100
+msgid "At this point, no incompatible modules are known."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:103
+msgid "Detecting issues in your codebase"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_channel_close_mode.rst:105
+msgid "The new behavior is mostly backward compatible. The only known problem that can appear is when the code relies on channel being entirely closed after ``ch:close()`` and ``ch:get()`` returning ``nil``."
+msgstr ""

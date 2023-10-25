@@ -1,0 +1,142 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:4
+msgid "Installing Tarantool software"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:6
+msgid "$ tt install PROGRAM_NAME [VERSION] [OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:10
+msgid "``tt install`` installs the latest or an explicitly specified version of Tarantool or ``tt``. The possible values of ``PROGRAM_NAME`` are:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:13
+msgid "``tarantool``: Install Tarantool Community edition."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:14
+msgid "``tarantool-dev``: Install Tarantool from a local build directory."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:15
+msgid "``tarantool-ee``: Install Tarantool Enterprise edition."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:16
+msgid "``tt``: Install the ``tt`` command-line utility."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:20
+msgid "For ``tarantool-ee``, account credentials are required. Specify them in a file (see the :ref:`ee section <tt-config_file_ee>` of the configuration file) or provide them interactively."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:25
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:29
+#: ../../doc/reference/tooling/tt_cli/install.rst:52
+msgid "**Applicable to:** ``tarantool``, ``tarantool-ee``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:31
+msgid "Use dynamic linking for building Tarantool."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:35
+msgid "Skip dependency check before installation."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:39
+msgid "Install a program from the local repository, which is specified in the :ref:`repo section <tt-config_file_repo>` of the ``tt`` configuration file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:44
+msgid "Don't delete temporary files."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:48
+msgid "Reinstall a previously installed program."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:54
+msgid "Build Tarantool in an Ubuntu 18.04 Docker container."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:57
+msgid "Details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:59
+msgid "When called without an explicitly specified version, ``tt install`` installs the latest available version. To check versions available for installation, use :doc:`tt search <search>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:63
+msgid "By default, available versions of Tarantool CE and ``tt`` are taken from their git repositories. Their installation includes building from sources, which requires some tools and dependencies, such as a C compiler. Make sure they are available in the system."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:67
+msgid "Tarantool EE is installed from prebuilt packages."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:69
+msgid "You can also set up a local repository with installation files you need. To use it, specify its location in the :ref:`repo section <tt-config_file_repo>` of the ``tt`` configuration file and run ``tt install`` with the ``--local-repo`` flag."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:73
+msgid "To uninstall a Tarantool or ``tt`` version, use :doc:`tt uninstall <uninstall>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:76
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:78
+msgid "Install the latest available version of Tarantool:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:80
+msgid "$ tt install tarantool"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:84
+msgid "Install Tarantool 2.11.1 from the local repository:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:86
+msgid "$ tt install tarantool 2.11.1 --local-repo"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:90
+msgid "Reinstall Tarantool 2.10.8:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:92
+msgid "$ tt install tarantool 2.10.8 --reinstall"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:96
+msgid "Install Tarantool :ref:`built from sources <building_from_source>`:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/install.rst:98
+msgid "$ tt install tarantool-dev ~/src/tarantool/build"
+msgstr ""

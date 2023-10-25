@@ -1,0 +1,227 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/vshard_quick.rst:4
+msgid "Quick start with sharding"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:6
+msgid "For installation instructions, check out the :ref:`vshard installation manual <vshard-install>`."
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:8
+msgid "For a pre-configured development cluster, check out the ``example/`` directory in the `vshard repository <https://github.com/tarantool/vshard/>`__. This example includes 5 Tarantool instances and 2 replica sets:"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:12
+msgid "``router_1`` – a ``router`` instance"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:13
+msgid "``storage_1_a`` – a ``storage`` instance, the **master** of the **first** replica set"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:14
+msgid "``storage_1_b`` – a ``storage`` instance, the **replica** of the **first** replica set"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:15
+msgid "``storage_2_a`` – a ``storage`` instance, the **master** of the **second** replica set"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:16
+msgid "``storage_2_b`` – a ``storage`` instance, the **replica** of the **second** replica set"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:18
+msgid "All instances are managed using the :ref:`tt <tt-cli>` administrative utility."
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:20
+msgid "Change the directory to ``example/`` and use ``make`` to run the development cluster:"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:22
+msgid "$ cd example/\n"
+"$ make"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:27
+msgid "Essential ``make`` commands you need to know:"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:29
+msgid "``make start`` – start all Tarantool instances"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:30
+msgid "``make stop`` – stop all Tarantool instances"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:31
+msgid "``make logcat`` – show logs from all instances"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:32
+msgid "``make enter`` – enter the admin console on ``router_1``"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:33
+msgid "``make clean`` – clean up all persistent data"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:34
+msgid "``make test`` – run the test suite (you can also run ``test-run.py`` in the ``test`` directory)"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:35
+msgid "``make`` – execute ``make stop``, ``make clean``, ``make start`` and ``make enter``"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:37
+msgid "For example, to start all instances, use ``make start``:"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:39
+msgid "$ make start\n"
+"$ ps x|grep tarantool\n"
+"46564   ??  Ss     0:00.34 tarantool storage_1_a.lua <running>\n"
+"46566   ??  Ss     0:00.19 tarantool storage_1_b.lua <running>\n"
+"46568   ??  Ss     0:00.35 tarantool storage_2_a.lua <running>\n"
+"46570   ??  Ss     0:00.20 tarantool storage_2_b.lua <running>\n"
+"46572   ??  Ss     0:00.25 tarantool router_1.lua <running>"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:49
+msgid "To perform commands in the admin console, use the router's :ref:`public API <vshard_api_reference-router_public_api>`:"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:52
+msgid "unix/:./data/router_1.control> vshard.router.info()\n"
+"---\n"
+"- replicasets:\n"
+"    ac522f65-aa94-4134-9f64-51ee384f1a54:\n"
+"      replica: &0\n"
+"        network_timeout: 0.5\n"
+"        status: available\n"
+"        uri: storage@127.0.0.1:3303\n"
+"        uuid: 1e02ae8a-afc0-4e91-ba34-843a356b8ed7\n"
+"      uuid: ac522f65-aa94-4134-9f64-51ee384f1a54\n"
+"      master: *0\n"
+"    cbf06940-0790-498b-948d-042b62cf3d29:\n"
+"      replica: &1\n"
+"        network_timeout: 0.5\n"
+"        status: available\n"
+"        uri: storage@127.0.0.1:3301\n"
+"        uuid: 8a274925-a26d-47fc-9e1b-af88ce939412\n"
+"      uuid: cbf06940-0790-498b-948d-042b62cf3d29\n"
+"      master: *1\n"
+"  bucket:\n"
+"    unreachable: 0\n"
+"    available_ro: 0\n"
+"    unknown: 0\n"
+"    available_rw: 3000\n"
+"  status: 0\n"
+"  alerts: []\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:85
+msgid "Sample configuration"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:87
+msgid "The configuration of a simple sharded cluster can look like this:"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:89
+msgid "local cfg = {\n"
+"    memtx_memory = 100 * 1024 * 1024,\n"
+"    bucket_count = 10000,\n"
+"    rebalancer_disbalance_threshold = 10,\n"
+"    rebalancer_max_receiving = 100,\n"
+"    sharding = {\n"
+"        ['cbf06940-0790-498b-948d-042b62cf3d29'] = {\n"
+"            replicas = {\n"
+"                ['8a274925-a26d-47fc-9e1b-af88ce939412'] = {\n"
+"                    uri = 'storage:storage@127.0.0.1:3301',\n"
+"                    name = 'storage_1_a',\n"
+"                    master = true\n"
+"                },\n"
+"                ['3de2e3e1-9ebe-4d0d-abb1-26d301b84633'] = {\n"
+"                    uri = 'storage:storage@127.0.0.1:3302',\n"
+"                    name = 'storage_1_b'\n"
+"                }\n"
+"            },\n"
+"        },\n"
+"        ['ac522f65-aa94-4134-9f64-51ee384f1a54'] = {\n"
+"            replicas = {\n"
+"                ['1e02ae8a-afc0-4e91-ba34-843a356b8ed7'] = {\n"
+"                    uri = 'storage:storage@127.0.0.1:3303',\n"
+"                    name = 'storage_2_a',\n"
+"                    master = true\n"
+"                },\n"
+"                ['001688c3-66f8-4a31-8e19-036c17d489c2'] = {\n"
+"                    uri = 'storage:storage@127.0.0.1:3304',\n"
+"                    name = 'storage_2_b'\n"
+"                }\n"
+"            },\n"
+"        },\n"
+"    },\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:126
+msgid "This cluster includes one ``router`` instance and two ``storage`` instances. Each ``storage`` instance includes one master and one replica. The ``sharding`` field defines the logical topology of a sharded Tarantool cluster. All the other fields are passed to ``box.cfg()`` as they are, without modifications. See the :ref:`Configuration reference <vshard-config-reference>` section for details."
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:132
+msgid "On routers, call ``vshard.router.cfg(cfg)``:"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:134
+msgid "cfg.listen = 3300\n"
+"\n"
+"-- Start the database with sharding\n"
+"vshard = require('vshard')\n"
+"vshard.router.cfg(cfg)"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:142
+msgid "On storages, call ``vshard.storage.cfg(cfg, instance_uuid)``:"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:144
+msgid "-- Get instance name\n"
+"local MY_UUID = \"de0ea826-e71d-4a82-bbf3-b04a6413e417\"\n"
+"\n"
+"-- Call a configuration provider\n"
+"local cfg = require('localcfg')\n"
+"\n"
+"-- Start the database with sharding\n"
+"vshard = require('vshard')\n"
+"vshard.storage.cfg(cfg, MY_UUID)"
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:156
+msgid "``vshard.storage.cfg()`` automatically calls ``box.cfg()`` and configures the listen port and replication parameters."
+msgstr ""
+
+#: ../../doc/how-to/vshard_quick.rst:159
+msgid "For a sample configuration, see ``router.lua`` and ``storage.lua`` in the ``example/`` directory of the `vshard repository <https://github.com/tarantool/vshard>`__."
+msgstr ""

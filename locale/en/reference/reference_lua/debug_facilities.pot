@@ -1,0 +1,489 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:5
+msgid "Debug facilities"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:11
+msgid "Tarantool users can benefit from built-in debug facilities that are part of:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:13
+msgid "Lua (`debug <https://www.lua.org/manual/5.1/manual.html#5.9>`_ library, see details below) and"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:15
+msgid "LuaJit (`debug.* <http://luajit.org/extensions.html>`_ functions)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:19
+msgid "The ``debug`` library provides an interface for debugging Lua programs. All functions in this library reside in the ``debug`` table. Those functions that operate on a thread have an optional first parameter that specifies the thread to operate on. The default is always the current thread."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:26
+msgid "This library should be used only for debugging and profiling and not as a regular programming tool, as the functions provided here can take too long to run. Besides, several of these functions can compromise otherwise secure code."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:33
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:35
+msgid "Below is a list of all ``debug`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:43
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:43
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:45
+msgid ":ref:`debug.debug() <debug-debug>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:45
+msgid "Enter an interactive mode"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:48
+msgid ":ref:`debug.getfenv() <debug-getfenv>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:48
+msgid "Get an object's environment"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:51
+msgid ":ref:`debug.gethook() <debug-gethook>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:51
+msgid "Get a thread's current hook settings"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:54
+msgid ":ref:`debug.getinfo() <debug-getinfo>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:54
+msgid "Get information about a function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:57
+msgid ":ref:`debug.getlocal() <debug-getlocal>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:57
+msgid "Get a local variable's name and value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:60
+msgid ":ref:`debug.getmetatable() <debug-getmetatable>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:60
+msgid "Get an object's metatable"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:63
+msgid ":ref:`debug.getregistry() <debug-getregistry>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:63
+msgid "Get the registry table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:66
+msgid ":ref:`debug.getupvalue() <debug-getupvalue>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:66
+msgid "Get an upvalue's name and value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:69
+msgid ":ref:`debug.setfenv() <debug-setfenv>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:69
+msgid "Set an object's environment"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:72
+msgid ":ref:`debug.sethook() <debug-sethook>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:72
+msgid "Set a given function as a hook"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:75
+msgid ":ref:`debug.setlocal() <debug-setlocal>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:75
+msgid "Assign a value to a local variable"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:78
+msgid ":ref:`debug.setmetatable() <debug-setmetatable>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:78
+msgid "Set an object's metatable"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:81
+msgid ":ref:`debug.setupvalue() <debug-setupvalue>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:81
+msgid "Assign a value to an upvalue"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:84
+msgid ":ref:`debug.sourcedir() <debug-sourcedir>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:84
+msgid "Get the source directory name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:87
+msgid ":ref:`debug.sourcefile() <debug-sourcefile>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:87
+msgid "Get the source file name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:90
+msgid ":ref:`debug.traceback() <debug-traceback>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:90
+msgid "Get a traceback of the call stack"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:99
+msgid "Enters an interactive mode and runs each string that the user types in. The user can, among other things, inspect global and local variables, change their values and evaluate expressions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:103
+msgid "Enter ``cont`` to exit this function, so that the caller can continue its execution."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:108
+msgid "Commands for ``debug.debug()`` are not lexically nested within any function and so have no direct access to local variables."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:115
+msgid "object to get the environment of"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+#: ../../doc/reference/reference_lua/debug_facilities.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:118
+msgid "the environment of the ``object``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:124
+msgid "the current hook settings of the ``thread`` as three values:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:126
+msgid "the current hook function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:127
+msgid "the current hook mask"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:128
+msgid "the current hook count as set by the ``debug.sethook()`` function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:134
+msgid "function to get information on"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:136
+msgid "what information on the ``function`` to return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:138
+msgid "a table with information about the ``function``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:140
+msgid "You can pass in a ``function`` directly, or you can give a number that specifies a function running at level ``function`` of the call stack of the given ``thread``: level 0 is the current function (``getinfo()`` itself), level 1 is the function that called ``getinfo()``, and so on. If ``function`` is a number larger than the number of active functions, ``getinfo()`` returns ``nil``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:147
+msgid "The default for ``what`` is to get all information available, except the table of valid lines. If present, the option ``f`` adds a field named ``func`` with the function itself. If present, the option ``L`` adds a field named ``activelines`` with the table of valid lines."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:156
+#: ../../doc/reference/reference_lua/debug_facilities.rst:233
+msgid "level of the stack"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:157
+#: ../../doc/reference/reference_lua/debug_facilities.rst:234
+msgid "index of the local variable"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:159
+msgid "the name and the value of the local variable with the index ``local`` of the function at level ``level`` of the stack or ``nil`` if there is no local variable with the given index; raises an error if ``level`` is out of range"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:166
+#: ../../doc/reference/reference_lua/debug_facilities.rst:244
+msgid "You can call ``debug.getinfo()`` to check whether the level is valid."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:172
+msgid "object to get the metatable of"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:175
+msgid "a metatable of the ``object`` or ``nil`` if it does not have a metatable"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:182
+msgid "the registry table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:188
+msgid "function to get the upvalue of"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:189
+#: ../../doc/reference/reference_lua/debug_facilities.rst:264
+msgid "index of the function upvalue"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:191
+msgid "the name and the value of the upvalue with the index ``up`` of the function ``func`` or ``nil`` if there is no upvalue with the given index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:199
+msgid "Sets the environment of the ``object`` to the ``table``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:201
+msgid "object to change the environment of"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:203
+msgid "table to set the object environment to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:205
+msgid "the ``object``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:211
+msgid "Sets the given function as a hook.  When called without arguments, turns the hook off."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:214
+msgid "function to set as a hook"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:215
+msgid "describes when the ``hook`` will be called; may have the following values:  * ``c`` - the ``hook`` is called every time Lua calls a function * ``r`` - the ``hook`` is called every time Lua returns from a function * ``l`` - the ``hook`` is called every time Lua enters a new line of code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:215
+msgid "describes when the ``hook`` will be called; may have the following values:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:218
+msgid "``c`` - the ``hook`` is called every time Lua calls a function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:219
+msgid "``r`` - the ``hook`` is called every time Lua returns from a function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:220
+msgid "``l`` - the ``hook`` is called every time Lua enters a new line of code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:222
+msgid "describes when the ``hook`` will be called; when different from zero, the ``hook`` is called after every ``count`` instructions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:230
+msgid "Assigns the value ``value`` to the local variable with the index ``local`` of the function at level ``level`` of the stack."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:235
+msgid "value to assign to the local variable"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:238
+msgid "the name of the local variable or ``nil`` if there is no local variable with the given index; raises an error if ``level`` is out of range"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:250
+msgid "Sets the metatable of the ``object`` to the ``table``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:252
+msgid "object to change the metatable of"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:254
+msgid "table to set the object metatable to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:260
+msgid "Assigns the value ``value`` to the upvalue with the index ``up`` of the function ``func``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:263
+msgid "function to set the upvalue of"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:265
+msgid "value to assign to the function upvalue"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:268
+msgid "the name of the upvalue or ``nil`` if there is no upvalue with the given index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:275
+#: ../../doc/reference/reference_lua/debug_facilities.rst:294
+msgid "the level of the call stack which should contain the path (default is 2)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:278
+msgid "a string with the relative path to the source file directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:280
+msgid "Instead of ``debug.sourcedir()`` one can say ``debug.__dir__`` which means the same thing."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:282
+msgid "Determining the real path to a directory is only possible if the function was defined in a Lua file (this restriction may not apply for `loadstring() <https://www.lua.org/pil/8.html>`_ since Lua will store the entire string in debug info)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:287
+msgid "If ``debug.sourcedir()`` is part of a ``return`` argument, then it should be inside parentheses: ``return (debug.sourcedir())``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:297
+msgid "a string with the relative path to the source file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:299
+msgid "Instead of ``debug.sourcefile()`` one can say ``debug.__file__`` which means the same thing."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:301
+msgid "Determining the real path to a file is only possible if the function was defined in a Lua file (this restriction may not apply to ``loadstring()`` since Lua will store the entire string in debug info)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:306
+msgid "If ``debug.sourcefile()`` is part of a ``return`` argument, then it should be inside parentheses: ``return (debug.sourcefile())``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:313
+msgid "an optional message prepended to the traceback"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:314
+msgid "specifies at which level to start the traceback (default is 1)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:317
+msgid "a string with a traceback of the call stack"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:319
+msgid "**Debug example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:321
+msgid "Make a file in the /tmp directory named example.lua, containing:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:323
+msgid "function w()\n"
+"  print(debug.sourcedir())\n"
+"  print(debug.sourcefile())\n"
+"  print(debug.traceback())\n"
+"  print(debug.getinfo(1)['currentline'])\n"
+"end\n"
+"w()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:333
+msgid "Execute ``tarantool /tmp/example.lua``. Expect to see this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/debug_facilities.rst:335
+msgid "/tmp\n"
+"/tmp/example.lua\n"
+"stack traceback:\n"
+"    /tmp/example.lua:4: in function 'w'\n"
+"    /tmp/example.lua:7: in main chunk\n"
+"5"
+msgstr ""

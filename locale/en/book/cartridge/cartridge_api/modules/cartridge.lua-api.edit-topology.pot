@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:5
+msgid "Module *cartridge.lua-api.edit-topology*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:7
+msgid "Administration functions ( ``edit-topology``  implementation)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:14
+msgid "Editing topology"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:21
+msgid "edit_topology (args)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:23
+msgid "Edit cluster topology. This function can be used for:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:26
+msgid "bootstrapping cluster from scratch"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:27
+msgid "joining a server to an existing replicaset"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:28
+msgid "creating new replicaset with one or more servers"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:29
+msgid "editing uri/labels of servers"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:30
+msgid "disabling and expelling servers"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:33
+msgid "(**Added** in v1.0.0-17)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:36
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:38
+msgid "*args:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:40
+msgid "*servers:* (optional `{EditServerParams,..} <cartridge.lua-api.edit-topology.EditServerParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:41
+msgid "*replicasets:* (optional `{EditReplicasetParams,..} <cartridge.lua-api.edit-topology.EditReplicasetParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:49
+msgid "EditReplicasetParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:51
+msgid "Replicatets modifications."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:54
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:75
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:92
+msgid "**Fields:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:56
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:78
+msgid "*uuid:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:57
+msgid "*alias:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:58
+msgid "*roles:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:59
+msgid "*all_rw:* (optional **boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:60
+msgid "*weight:* (optional **number**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:61
+msgid "*failover_priority:* (optional `{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of uuids specifying servers failover priority"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:62
+msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:63
+msgid "*join_servers:* (optional `{JoinServerParams,...} <cartridge.lua-api.edit-topology.JoinServerParams_>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:70
+msgid "JoinServerParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:72
+msgid "Parameters required for joining a new server."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:77
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:79
+msgid "*zone:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) (**Added** in v2.4.0-14)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:80
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:97
+msgid "*labels:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:87
+msgid "EditServerParams"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:89
+msgid "Servers modifications."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:94
+msgid "*uri:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:95
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:96
+msgid "*zone:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:98
+msgid "*disabled:* (optional **boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:99
+msgid "*electable:* (optional **boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.lua-api.edit-topology.rst:100
+msgid "*expelled:* (optional **boolean**) Expelling an instance is permanent and can't be undone.It's suitable for situations when the hardware is destroyed,snapshots are lost and there is no hope to bring it back to life."
+msgstr ""

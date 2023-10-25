@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:5
+msgid "Sequences"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:7
+msgid "An introduction to sequences is in the :ref:`Sequences <index-box_sequence>` section of the \"Data model\" chapter. Here are the details for each function and option."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:11
+msgid "All functions related to sequences require appropriate :ref:`privileges <authentication-owners_privileges>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:14
+msgid "Below is a list of all ``box.schema.sequence`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:25
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:26
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:28
+msgid ":doc:`./box_schema_sequence/create`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:29
+msgid "Create a new sequence generator"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:31
+msgid ":doc:`./box_schema_sequence/next`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:32
+msgid "Generate and return the next value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:34
+msgid ":doc:`./box_schema_sequence/alter`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:35
+msgid "Change sequence options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:37
+msgid ":doc:`./box_schema_sequence/reset`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:38
+msgid "Reset sequence state"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:40
+msgid ":doc:`./box_schema_sequence/set`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:41
+msgid "Set the new value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:43
+msgid ":doc:`./box_schema_sequence/current`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:44
+msgid "Return the last retrieved value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:46
+msgid ":doc:`./box_schema_sequence/drop`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:47
+msgid "Drop the sequence"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:49
+msgid ":doc:`./box_schema_sequence/create_index`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:50
+msgid "Create an index with a sequence option"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:64
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:66
+msgid "Here is an example showing all sequence options and operations:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence.rst:68
+msgid "s = box.schema.sequence.create(\n"
+"               'S2',\n"
+"               {start=100,\n"
+"               min=100,\n"
+"               max=200,\n"
+"               cache=100000,\n"
+"               cycle=false,\n"
+"               step=100\n"
+"               })\n"
+"s:alter({step=6})\n"
+"s:next()\n"
+"s:reset()\n"
+"s:set(150)\n"
+"s:drop()"
+msgstr ""

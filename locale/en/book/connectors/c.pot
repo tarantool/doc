@@ -1,0 +1,334 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/connectors/c.rst:4
+msgid "C"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:6
+msgid "Here follow two examples of using Tarantool's high-level C API."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:9
+msgid "Example 1"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:11
+msgid "Here is a complete C program that inserts :code:`[99999,'B']` into space :code:`examples` via the high-level C API."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:14
+msgid "#include <stdio.h>\n"
+"#include <stdlib.h>\n"
+"\n"
+"#include <tarantool/tarantool.h>\n"
+"#include <tarantool/tnt_net.h>\n"
+"#include <tarantool/tnt_opt.h>\n"
+"\n"
+"void main() {\n"
+"   struct tnt_stream *tnt = tnt_net(NULL);          /* See note = SETUP */\n"
+"   tnt_set(tnt, TNT_OPT_URI, \"localhost:3301\");\n"
+"   if (tnt_connect(tnt) < 0) {                      /* See note = CONNECT */\n"
+"       printf(\"Connection refused\\n\");\n"
+"       exit(-1);\n"
+"   }\n"
+"   struct tnt_stream *tuple = tnt_object(NULL);     /* See note = MAKE REQUEST */\n"
+"   tnt_object_format(tuple, \"[%d%s]\", 99999, \"B\");\n"
+"   tnt_insert(tnt, 999, tuple);                     /* See note = SEND REQUEST */\n"
+"   tnt_flush(tnt);\n"
+"   struct tnt_reply reply;  tnt_reply_init(&reply); /* See note = GET REPLY */\n"
+"   tnt->read_reply(tnt, &reply);\n"
+"   if (reply.code != 0) {\n"
+"       printf(\"Insert failed %lu.\\n\", reply.code);\n"
+"   }\n"
+"   tnt_close(tnt);                                  /* See below = TEARDOWN */\n"
+"   tnt_stream_free(tuple);\n"
+"   tnt_stream_free(tnt);\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:44
+msgid "Paste the code into a file named :file:`example.c` and install ``tarantool-c``. One way to install ``tarantool-c`` (using Ubuntu) is:"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:47
+msgid "$ git clone git://github.com/tarantool/tarantool-c.git ~/tarantool-c\n"
+"$ cd ~/tarantool-c\n"
+"$ git submodule init\n"
+"$ git submodule update\n"
+"$ cmake .\n"
+"$ make\n"
+"$ make install"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:57
+msgid "To compile and link the program, run:"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:59
+msgid "$ # sometimes this is necessary:\n"
+"$ export LD_LIBRARY_PATH=/usr/local/lib\n"
+"$ gcc -o example example.c -ltarantool"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:65
+msgid "Before trying to run, check that a server instance is listening at ``localhost:3301`` and that the space ``examples`` exists, as :ref:`described earlier <index-connector_setting>`. To run the program, say :samp:`./example`. The program will connect to the Tarantool instance, and will send the request. If Tarantool is not running on localhost with listen address = 3301, the program will print “Connection refused”. If the insert fails, the program will print \"Insert failed\" and an error number (see all error codes in the source file `/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`__)."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:77
+msgid "Here are notes corresponding to comments in the example program."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:80
+msgid "SETUP"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:82
+msgid "The setup begins by creating a stream."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:84
+msgid "struct tnt_stream *tnt = tnt_net(NULL);\n"
+"tnt_set(tnt, TNT_OPT_URI, \"localhost:3301\");"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:89
+msgid "In this program, the stream will be named ``tnt``. Before connecting on the ``tnt`` stream, some options may have to be set. The most important option is TNT_OPT_URI. In this program, the :ref:`URI <index-uri>` is ``localhost:3301``, since that is where the Tarantool instance is supposed to be listening."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:95
+#: ../../doc/book/connectors/c.rst:113
+#: ../../doc/book/connectors/c.rst:143
+#: ../../doc/book/connectors/c.rst:165
+#: ../../doc/book/connectors/c.rst:192
+#: ../../doc/book/connectors/c.rst:213
+msgid "Function description:"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:97
+msgid "struct tnt_stream *tnt_net(struct tnt_stream *s)\n"
+"int tnt_set(struct tnt_stream *s, int option, variant option-value)"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:103
+msgid "CONNECT"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:105
+msgid "Now that the stream named ``tnt`` exists and is associated with a URI, this example program can connect to a server instance."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:108
+msgid "if (tnt_connect(tnt) < 0)\n"
+"   { printf(\"Connection refused\\n\"); exit(-1); }"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:115
+msgid "int tnt_connect(struct tnt_stream *s)"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:119
+msgid "The connection might fail for a variety of reasons, such as: the server is not running, or the URI contains an invalid :ref:`password<authentication-passwords>`. If the connection fails, the return value will be -1."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:124
+msgid "MAKE REQUEST"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:126
+msgid "Most requests require passing a structured value, such as the contents of a tuple."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:129
+msgid "struct tnt_stream *tuple = tnt_object(NULL);\n"
+"tnt_object_format(tuple, \"[%d%s]\", 99999, \"B\");"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:134
+msgid "In this program, the request will be an :ref:`INSERT<box_space-insert>`, and the tuple contents will be an integer and a string. This is a simple serial set of values, that is, there are no sub-structures or arrays. Therefore it is easy in this case to format what will be passed using the same sort of arguments that one would use with a C ``printf()`` function: ``%d`` for the integer, ``%s`` for the string, then the integer value, then a pointer to the string value."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:145
+msgid "ssize_t tnt_object_format(struct tnt_stream *s, const char *fmt, ...)"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:150
+msgid "SEND REQUEST"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:152
+msgid "The database-manipulation requests are analogous to the requests in the box library."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:155
+msgid "tnt_insert(tnt, 999, tuple);\n"
+"tnt_flush(tnt);"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:160
+msgid "In this program, the choice is to do an INSERT request, so the program passes the ``tnt_stream`` that was used for connection (``tnt``) and the ``tnt_stream`` that was set up with :c:func:`tarantoolc:tnt_object_format` (``tuple``)."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:167
+msgid "ssize_t tnt_insert(struct tnt_stream *s, uint32_t space, struct tnt_stream *tuple)\n"
+"ssize_t tnt_replace(struct tnt_stream *s, uint32_t space, struct tnt_stream *tuple)\n"
+"ssize_t tnt_select(struct tnt_stream *s, uint32_t space, uint32_t index,\n"
+"                   uint32_t limit, uint32_t offset, uint8_t iterator,\n"
+"                   struct tnt_stream *key)\n"
+"ssize_t tnt_update(struct tnt_stream *s, uint32_t space, uint32_t index,\n"
+"                   struct tnt_stream *key, struct tnt_stream *ops)"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:178
+msgid "GET REPLY"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:180
+msgid "For most requests, the client will receive a reply containing some indication whether the result was successful, and a set of tuples."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:183
+msgid "struct tnt_reply reply;  tnt_reply_init(&reply);\n"
+"tnt->read_reply(tnt, &reply);\n"
+"if (reply.code != 0)\n"
+"   { printf(\"Insert failed %lu.\\n\", reply.code); }"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:190
+msgid "This program checks for success but does not decode the rest of the reply."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:194
+msgid "struct tnt_reply *tnt_reply_init(struct tnt_reply *r)\n"
+"tnt->read_reply(struct tnt_stream *s, struct tnt_reply *r)\n"
+"void tnt_reply_free(struct tnt_reply *r)"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:201
+msgid "TEARDOWN"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:203
+msgid "When a session ends, the connection that was made with :c:func:`tarantoolc:tnt_connect` should be closed, and the objects that were made in the setup should be destroyed."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:207
+msgid "tnt_close(tnt);\n"
+"tnt_stream_free(tuple);\n"
+"tnt_stream_free(tnt);"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:215
+msgid "void tnt_close(struct tnt_stream *s)\n"
+"void tnt_stream_free(struct tnt_stream *s)"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:221
+msgid "Example 2"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:223
+msgid "Here is a complete C program that selects, using index key ``[99999]``, from space ``examples`` via the high-level C API. To display the results, the program uses functions in the `MsgPuck <https://github.com/tarantool/msgpuck>`__ library which allow decoding of `MessagePack <https://en.wikipedia.org/wiki/MessagePack>`__  arrays."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:229
+msgid "#include <stdio.h>\n"
+"#include <stdlib.h>\n"
+"#include <tarantool/tarantool.h>\n"
+"#include <tarantool/tnt_net.h>\n"
+"#include <tarantool/tnt_opt.h>\n"
+"\n"
+"#define MP_SOURCE 1\n"
+"#include <msgpuck.h>\n"
+"\n"
+"void main() {\n"
+"    struct tnt_stream *tnt = tnt_net(NULL);\n"
+"    tnt_set(tnt, TNT_OPT_URI, \"localhost:3301\");\n"
+"    if (tnt_connect(tnt) < 0) {\n"
+"        printf(\"Connection refused\\n\");\n"
+"        exit(1);\n"
+"    }\n"
+"    struct tnt_stream *tuple = tnt_object(NULL);\n"
+"    tnt_object_format(tuple, \"[%d]\", 99999); /* tuple = search key */\n"
+"    tnt_select(tnt, 999, 0, (2^32) - 1, 0, 0, tuple);\n"
+"    tnt_flush(tnt);\n"
+"    struct tnt_reply reply; tnt_reply_init(&reply);\n"
+"    tnt->read_reply(tnt, &reply);\n"
+"    if (reply.code != 0) {\n"
+"        printf(\"Select failed.\\n\");\n"
+"        exit(1);\n"
+"    }\n"
+"    char field_type;\n"
+"    field_type = mp_typeof(*reply.data);\n"
+"    if (field_type != MP_ARRAY) {\n"
+"        printf(\"no tuple array\\n\");\n"
+"        exit(1);\n"
+"    }\n"
+"    long unsigned int row_count;\n"
+"    uint32_t tuple_count = mp_decode_array(&reply.data);\n"
+"    printf(\"tuple count=%u\\n\", tuple_count);\n"
+"    unsigned int i, j;\n"
+"    for (i = 0; i < tuple_count; ++i) {\n"
+"        field_type = mp_typeof(*reply.data);\n"
+"        if (field_type != MP_ARRAY) {\n"
+"            printf(\"no field array\\n\");\n"
+"            exit(1);\n"
+"        }\n"
+"        uint32_t field_count = mp_decode_array(&reply.data);\n"
+"        printf(\"  field count=%u\\n\", field_count);\n"
+"        for (j = 0; j < field_count; ++j) {\n"
+"            field_type = mp_typeof(*reply.data);\n"
+"            if (field_type == MP_UINT) {\n"
+"                uint64_t num_value = mp_decode_uint(&reply.data);\n"
+"                printf(\"    value=%lu.\\n\", num_value);\n"
+"            } else if (field_type == MP_STR) {\n"
+"                const char *str_value;\n"
+"                uint32_t str_value_length;\n"
+"                str_value = mp_decode_str(&reply.data, &str_value_length);\n"
+"                printf(\"    value=%.*s.\\n\", str_value_length, str_value);\n"
+"            } else {\n"
+"                printf(\"wrong field type\\n\");\n"
+"                exit(1);\n"
+"            }\n"
+"        }\n"
+"    }\n"
+"    tnt_close(tnt);\n"
+"    tnt_stream_free(tuple);\n"
+"    tnt_stream_free(tnt);\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:296
+msgid "Similarly to the first example, paste the code into a file named :file:`example2.c`."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:299
+msgid "To compile and link the program, say:"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:301
+msgid "$ gcc -o example2 example2.c -ltarantool"
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:305
+msgid "To run the program, say :samp:`./example2`."
+msgstr ""
+
+#: ../../doc/book/connectors/c.rst:307
+msgid "The two example programs only show a few requests and do not show all that's necessary for good practice. See more in the `tarantool-c documentation at GitHub <http://github.com/tarantool/tarantool-c>`__."
+msgstr ""

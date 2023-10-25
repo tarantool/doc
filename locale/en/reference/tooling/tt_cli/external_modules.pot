@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:4
+msgid "Extending the tt functionality"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:6
+msgid "The ``tt`` utility implements a modular architecture: its :doc:`commands <commands>` are, in fact, separate modules. When you run ``tt`` with a command, the corresponding module is executed with the given arguments."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:10
+msgid "The modular architecture enables the option to extend the ``tt`` functionality with **external modules** (as opposed to **internal modules** that implement built-in commands). Simply said, you can write any code you want to execute from ``tt``, pack it into an executable, and run it with a ``tt`` command:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:15
+msgid "tt my-module-name my-args"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:19
+msgid "The name of the command that executes a module is the same as the name of the module's executable."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:23
+msgid "Module description and help"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:25
+msgid "Executables that implement external ``tt`` modules must have two flags:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:27
+msgid "``--description`` -- print a short description of the module. The description is shown alongside the command in the ``tt`` help."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:29
+msgid "``--help`` -- display help. The help message is shown when ``tt help <module_name>`` is called."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:33
+msgid "Location"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:35
+msgid "External modules must be located in the modules directory specified in the :ref:`configuration file <tt-config_file>`:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:38
+msgid "tt:\n"
+"  modules:\n"
+"    directory: path/to/modules/dir"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:44
+msgid "To check if a module is available in ``tt``, call ``tt help``. It will show the available external modules in the ``EXTERNAL COMMANDS`` section together with their descriptions."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:50
+msgid "Overloading built-in commands"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:52
+msgid "External modules can overload built-in ``tt`` commands. If you want to change the behavior of a built-in command, create an external module with the same name and your own implementation."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:56
+msgid "When ``tt`` sees two modules -- an external and an internal one -- with the same name, it will use the external module by default."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:59
+msgid "For example, if you want ``tt`` to show the information about your Tarantool application, write the external module ``version`` that outputs the information you need. The ``tt version`` call will execute this module instead of the built-in one:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:63
+msgid "tt version # Calls the external module if it's available"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:67
+msgid "You can force the use of the internal module by running ``tt`` with the ``--internal`` or ``-I`` :ref:`option <tt-global-options>`. The following call will execute the built-in ``version`` even if there is an external module with the same name:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/external_modules.rst:71
+msgid "tt version -I # Calls the internal module"
+msgstr ""

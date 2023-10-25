@@ -1,0 +1,405 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:4
+msgid "Bootstrapping a replica set"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:9
+msgid "Replication setup"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:11
+msgid "To enable replication, you need to specify two parameters in a ``box.cfg{}`` request:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:14
+msgid ":ref:`replication <cfg_replication-replication>` which defines the replication source(s), and"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:16
+msgid ":ref:`read_only <cfg_basic-read_only>` which is ``true`` for a replica and ``false`` for a master."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:19
+msgid "Both these parameters are \"dynamic\". This allows a replica to become a master and vice versa on the fly with the help of a ``box.cfg{}`` request."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:25
+msgid "Master-replica bootstrap"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:27
+msgid "Let us first bootstrap a simple **master-replica** set containing two instances, each located on its own machine. For easier administration, we make the :ref:`instance files <admin-instance_file>` almost identical."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:34
+msgid "Here is an example of the master's instance file:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:36
+msgid "-- instance file for the master\n"
+"box.cfg{\n"
+"  listen = 3301,\n"
+"  replication = {'replicator:password@192.168.0.101:3301',  -- master URI\n"
+"                 'replicator:password@192.168.0.102:3301'}, -- replica URI\n"
+"  read_only = false\n"
+"}\n"
+"box.once(\"schema\", function()\n"
+"   box.schema.user.create('replicator', {password = 'password'})\n"
+"   box.schema.user.grant('replicator', 'replication') -- grant replication role\n"
+"   box.schema.space.create(\"test\")\n"
+"   box.space.test:create_index(\"primary\")\n"
+"   print('box.once executed on master')\n"
+"end)"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:53
+msgid "where:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:55
+msgid "the ``box.cfg()`` :ref:`listen <cfg_basic-listen>` parameter defines a URI (port 3301 in our example), on which the master can accept connections from replicas."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:58
+msgid "the ``box.cfg()`` :ref:`replication <cfg_replication-replication>` parameter defines the URIs at which all instances in the replica set can accept connections. It includes the replica's URI as well, although the replica is not a replication source right now. This parameter is mandatory only for master-master or full-mesh cluster setups."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:66
+msgid "For security reasons, we recommend that administrators prevent unauthorized replication sources by associating a password with every user that has a replication :ref:`role <authentication-roles>`. That way, the :ref:`URI <index-uri>` for ``replication`` parameter must have the long form ``username:password@host:port``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:72
+msgid "the :ref:`read_only = false <cfg_basic-read_only>` parameter setting enables data-change operations on the instance and makes the instance act as a master, not as a replica. *That is the only parameter setting in our instance files that will differ.*"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:76
+msgid "the :doc:`box.once() </reference/reference_lua/box_once>` function contains database initialization logic that should be executed only once during the replica set lifetime."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:79
+msgid "In this example, we create a space with a primary index, and a user for replication purposes. We also say ``print('box.once executed on master')`` so that it will later be visible on a console whether ``box.once()`` was executed."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:85
+msgid "Replication requires privileges. We can grant privileges for accessing spaces directly to the user who will start the instance. However, it is more usual to grant privileges for accessing spaces to a :ref:`role <authentication-roles>`, and then grant the role to the user who will start the replica."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:91
+msgid "Here we use Tarantool's predefined role named \"replication\" which by default grants \"read\" privileges for all database objects (\"universe\"), and we can change privileges for this role as required."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:95
+msgid "In the replica's instance file, we set the ``read_only`` parameter to \"true\", and say ``print('box.once executed on replica')`` so that later it will be visible that ``box.once()`` was not executed more than once. Otherwise the replica's instance file is identical to the master's instance file."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:100
+msgid "-- instance file for the replica\n"
+"box.cfg{\n"
+"  listen = 3301,\n"
+"  replication = {'replicator:password@192.168.0.101:3301',  -- master URI\n"
+"                 'replicator:password@192.168.0.102:3301'}, -- replica URI\n"
+"  read_only = true\n"
+"}\n"
+"box.once(\"schema\", function()\n"
+"   box.schema.user.create('replicator', {password = 'password'})\n"
+"   box.schema.user.grant('replicator', 'replication') -- grant replication role\n"
+"   box.schema.space.create(\"test\")\n"
+"   box.space.test:create_index(\"primary\")\n"
+"   print('box.once executed on replica')\n"
+"end)"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:119
+msgid "The replica does not inherit the master’s configuration parameters, such as those making the :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>` run on the master. To get the same behavior, set the relevant parameters explicitly so that they are the same on both master and replica."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:124
+msgid "Now we can launch the two instances. The master..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:126
+msgid "$ # launching the master\n"
+"$ tarantool master.lua\n"
+"2017-06-14 14:12:03.847 [18933] main/101/master.lua C> version 1.7.4-52-g980d30092\n"
+"2017-06-14 14:12:03.848 [18933] main/101/master.lua C> log level 5\n"
+"2017-06-14 14:12:03.849 [18933] main/101/master.lua I> mapping 268435456 bytes for tuple arena...\n"
+"2017-06-14 14:12:03.859 [18933] iproto/101/main I> binary: bound to [::]:3301\n"
+"2017-06-14 14:12:03.861 [18933] main/105/applier/replicator@192.168.0. I> can't connect to master\n"
+"2017-06-14 14:12:03.861 [18933] main/105/applier/replicator@192.168.0. coio.cc:105 !> SystemError connect, called on fd 14, aka 192.168.0.102:56736: Connection refused\n"
+"2017-06-14 14:12:03.861 [18933] main/105/applier/replicator@192.168.0. I> will retry every 1 second\n"
+"2017-06-14 14:12:03.861 [18933] main/104/applier/replicator@192.168.0. I> remote master is 1.7.4 at 192.168.0.101:3301\n"
+"2017-06-14 14:12:19.878 [18933] main/105/applier/replicator@192.168.0. I> remote master is 1.7.4 at 192.168.0.102:3301\n"
+"2017-06-14 14:12:19.879 [18933] main/101/master.lua I> initializing an empty data directory\n"
+"2017-06-14 14:12:19.908 [18933] snapshot/101/main I> saving snapshot `/var/lib/tarantool/master/00000000000000000000.snap.inprogress'\n"
+"2017-06-14 14:12:19.914 [18933] snapshot/101/main I> done\n"
+"2017-06-14 14:12:19.914 [18933] main/101/master.lua I> vinyl checkpoint done\n"
+"2017-06-14 14:12:19.917 [18933] main/101/master.lua I> ready to accept requests\n"
+"2017-06-14 14:12:19.918 [18933] main/105/applier/replicator@192.168.0. I> failed to authenticate\n"
+"2017-06-14 14:12:19.918 [18933] main/105/applier/replicator@192.168.0. xrow.cc:431 E> ER_LOADING: Instance bootstrap hasn't finished yet\n"
+"box.once executed on master\n"
+"2017-06-14 14:12:19.920 [18933] main C> entering the event loop"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:149
+msgid "... (the display confirms that ``box.once()`` was executed on the master) -- and the replica:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:151
+msgid "$ # launching the replica\n"
+"$ tarantool replica.lua\n"
+"2017-06-14 14:12:19.486 [18934] main/101/replica.lua C> version 1.7.4-52-g980d30092\n"
+"2017-06-14 14:12:19.486 [18934] main/101/replica.lua C> log level 5\n"
+"2017-06-14 14:12:19.487 [18934] main/101/replica.lua I> mapping 268435456 bytes for tuple arena...\n"
+"2017-06-14 14:12:19.494 [18934] iproto/101/main I> binary: bound to [::]:3311\n"
+"2017-06-14 14:12:19.495 [18934] main/104/applier/replicator@192.168.0. I> remote master is 1.7.4 at 192.168.0.101:3301\n"
+"2017-06-14 14:12:19.495 [18934] main/105/applier/replicator@192.168.0. I> remote master is 1.7.4 at 192.168.0.102:3302\n"
+"2017-06-14 14:12:19.496 [18934] main/104/applier/replicator@192.168.0. I> failed to authenticate\n"
+"2017-06-14 14:12:19.496 [18934] main/104/applier/replicator@192.168.0. xrow.cc:431 E> ER_LOADING: Instance bootstrap hasn't finished yet"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:164
+msgid "In both logs, there are messages saying that the replica was bootstrapped from the master:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:166
+msgid "$ # bootstrapping the replica (from the master's log)\n"
+"<...>\n"
+"2017-06-14 14:12:20.503 [18933] main/106/main I> initial data sent.\n"
+"2017-06-14 14:12:20.505 [18933] relay/[::ffff:192.168.0.101]:/101/main I> recover from `/var/lib/tarantool/master/00000000000000000000.xlog'\n"
+"2017-06-14 14:12:20.505 [18933] main/106/main I> final data sent.\n"
+"2017-06-14 14:12:20.522 [18933] relay/[::ffff:192.168.0.101]:/101/main I> recover from `/Users/e.shebunyaeva/work/tarantool-test-repl/master_dir/00000000000000000000.xlog'\n"
+"2017-06-14 14:12:20.922 [18933] main/105/applier/replicator@192.168.0. I> authenticated"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:176
+msgid "$ # bootstrapping the replica (from the replica's log)\n"
+"<...>\n"
+"2017-06-14 14:12:20.498 [18934] main/104/applier/replicator@192.168.0. I> authenticated\n"
+"2017-06-14 14:12:20.498 [18934] main/101/replica.lua I> bootstrapping replica from 192.168.0.101:3301\n"
+"2017-06-14 14:12:20.512 [18934] main/104/applier/replicator@192.168.0. I> initial data received\n"
+"2017-06-14 14:12:20.512 [18934] main/104/applier/replicator@192.168.0. I> final data received\n"
+"2017-06-14 14:12:20.517 [18934] snapshot/101/main I> saving snapshot `/var/lib/tarantool/replica/00000000000000000005.snap.inprogress'\n"
+"2017-06-14 14:12:20.518 [18934] snapshot/101/main I> done\n"
+"2017-06-14 14:12:20.519 [18934] main/101/replica.lua I> vinyl checkpoint done\n"
+"2017-06-14 14:12:20.520 [18934] main/101/replica.lua I> ready to accept requests\n"
+"2017-06-14 14:12:20.520 [18934] main/101/replica.lua I> set 'read_only' configuration option to true\n"
+"2017-06-14 14:12:20.520 [18934] main C> entering the event loop"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:191
+msgid "Notice that ``box.once()`` was executed only at the master, although we added ``box.once()`` to both instance files."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:194
+msgid "We could as well launch the replica first:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:196
+msgid "$ # launching the replica\n"
+"$ tarantool replica.lua\n"
+"2017-06-14 14:35:36.763 [18952] main/101/replica.lua C> version 1.7.4-52-g980d30092\n"
+"2017-06-14 14:35:36.765 [18952] main/101/replica.lua C> log level 5\n"
+"2017-06-14 14:35:36.765 [18952] main/101/replica.lua I> mapping 268435456 bytes for tuple arena...\n"
+"2017-06-14 14:35:36.772 [18952] iproto/101/main I> binary: bound to [::]:3301\n"
+"2017-06-14 14:35:36.772 [18952] main/104/applier/replicator@192.168.0. I> can't connect to master\n"
+"2017-06-14 14:35:36.772 [18952] main/104/applier/replicator@192.168.0. coio.cc:105 !> SystemError connect, called on fd 13, aka 192.168.0.101:56820: Connection refused\n"
+"2017-06-14 14:35:36.772 [18952] main/104/applier/replicator@192.168.0. I> will retry every 1 second\n"
+"2017-06-14 14:35:36.772 [18952] main/105/applier/replicator@192.168.0. I> remote master is 1.7.4 at 192.168.0.102:3301"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:209
+msgid "... and the master later:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:211
+msgid "$ # launching the master\n"
+"$ tarantool master.lua\n"
+"2017-06-14 14:35:43.701 [18953] main/101/master.lua C> version 1.7.4-52-g980d30092\n"
+"2017-06-14 14:35:43.702 [18953] main/101/master.lua C> log level 5\n"
+"2017-06-14 14:35:43.702 [18953] main/101/master.lua I> mapping 268435456 bytes for tuple arena...\n"
+"2017-06-14 14:35:43.709 [18953] iproto/101/main I> binary: bound to [::]:3301\n"
+"2017-06-14 14:35:43.709 [18953] main/105/applier/replicator@192.168.0. I> remote master is 1.7.4 at 192.168.0.102:3301\n"
+"2017-06-14 14:35:43.709 [18953] main/104/applier/replicator@192.168.0. I> remote master is 1.7.4 at 192.168.0.101:3301\n"
+"2017-06-14 14:35:43.709 [18953] main/101/master.lua I> initializing an empty data directory\n"
+"2017-06-14 14:35:43.721 [18953] snapshot/101/main I> saving snapshot `/var/lib/tarantool/master/00000000000000000000.snap.inprogress'\n"
+"2017-06-14 14:35:43.722 [18953] snapshot/101/main I> done\n"
+"2017-06-14 14:35:43.723 [18953] main/101/master.lua I> vinyl checkpoint done\n"
+"2017-06-14 14:35:43.723 [18953] main/101/master.lua I> ready to accept requests\n"
+"2017-06-14 14:35:43.724 [18953] main/105/applier/replicator@192.168.0. I> failed to authenticate\n"
+"2017-06-14 14:35:43.724 [18953] main/105/applier/replicator@192.168.0. xrow.cc:431 E> ER_LOADING: Instance bootstrap hasn't finished yet\n"
+"box.once executed on master\n"
+"2017-06-14 14:35:43.726 [18953] main C> entering the event loop\n"
+"2017-06-14 14:35:43.779 [18953] main/103/main I> initial data sent.\n"
+"2017-06-14 14:35:43.780 [18953] relay/[::ffff:192.168.0.101]:/101/main I> recover from `/var/lib/tarantool/master/00000000000000000000.xlog'\n"
+"2017-06-14 14:35:43.780 [18953] main/103/main I> final data sent.\n"
+"2017-06-14 14:35:43.796 [18953] relay/[::ffff:192.168.0.102]:/101/main I> recover from `/var/lib/tarantool/master/00000000000000000000.xlog'\n"
+"2017-06-14 14:35:44.726 [18953] main/105/applier/replicator@192.168.0. I> authenticated"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:236
+msgid "In this case, the replica would wait for the master to become available, so the launch order doesn't matter. Our ``box.once()`` logic would also be executed only once, at the master."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:240
+msgid "$ # the replica has eventually connected to the master\n"
+"$ # and got bootstrapped (from the replica's log)\n"
+"2017-06-14 14:35:43.777 [18952] main/104/applier/replicator@192.168.0. I> remote master is 1.7.4 at 192.168.0.101:3301\n"
+"2017-06-14 14:35:43.777 [18952] main/104/applier/replicator@192.168.0. I> authenticated\n"
+"2017-06-14 14:35:43.777 [18952] main/101/replica.lua I> bootstrapping replica from 192.168.0.199:3310\n"
+"2017-06-14 14:35:43.788 [18952] main/104/applier/replicator@192.168.0. I> initial data received\n"
+"2017-06-14 14:35:43.789 [18952] main/104/applier/replicator@192.168.0. I> final data received\n"
+"2017-06-14 14:35:43.793 [18952] snapshot/101/main I> saving snapshot `/var/lib/tarantool/replica/00000000000000000005.snap.inprogress'\n"
+"2017-06-14 14:35:43.793 [18952] snapshot/101/main I> done\n"
+"2017-06-14 14:35:43.795 [18952] main/101/replica.lua I> vinyl checkpoint done\n"
+"2017-06-14 14:35:43.795 [18952] main/101/replica.lua I> ready to accept requests\n"
+"2017-06-14 14:35:43.795 [18952] main/101/replica.lua I> set 'read_only' configuration option to true\n"
+"2017-06-14 14:35:43.795 [18952] main C> entering the event loop"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:259
+msgid "Controlled failover"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:261
+msgid "To perform a **controlled failover**, that is, swap the roles of the master and replica, all we need to do is to set ``read_only=true`` at the master, and ``read_only=false`` at the replica. The order of actions is important here. If a system is running in production, we do not want concurrent writes happening both at the replica and the master. Nor do we want the new replica to accept any writes until it has finished fetching all replication data from the old master. To compare replica and master state, we can use :ref:`box.info.signature <box_introspection-box_info>`."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:270
+msgid "Set ``read_only=true`` at the master."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:272
+msgid "# at the master\n"
+"tarantool> box.cfg{read_only=true}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:277
+msgid "Record the master’s current position with ``box.info.signature``, containing the sum of all LSNs in the master’s vector clock."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:280
+msgid "# at the master\n"
+"tarantool> box.info.signature"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:285
+msgid "Wait until the replica’s signature is the same as the master’s."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:287
+msgid "# at the replica\n"
+"tarantool> box.info.signature"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:292
+msgid "Set ``read_only=false`` at the replica to enable write operations."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:294
+msgid "# at the replica\n"
+"tarantool> box.cfg{read_only=false}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:299
+msgid "These four steps ensure that the replica doesn’t accept new writes until it’s done fetching writes from the master."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:305
+msgid "Master-master bootstrap"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:307
+msgid "Now let us bootstrap a two-instance **master-master** set. For easier administration, we make master#1 and master#2 instance files fully identical."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:313
+msgid "We re-use the master's instance file from the :ref:`master-replica example <replication-master_replica_bootstrap>` above."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:316
+msgid "-- instance file for any of the two masters\n"
+"box.cfg{\n"
+"  listen      = 3301,\n"
+"  replication = {'replicator:password@192.168.0.101:3301',  -- master1 URI\n"
+"                 'replicator:password@192.168.0.102:3301'}, -- master2 URI\n"
+"  read_only   = false\n"
+"}\n"
+"box.once(\"schema\", function()\n"
+"   box.schema.user.create('replicator', {password = 'password'})\n"
+"   box.schema.user.grant('replicator', 'replication') -- grant replication role\n"
+"   box.schema.space.create(\"test\")\n"
+"   box.space.test:create_index(\"primary\")\n"
+"   print('box.once executed on master #1')\n"
+"end)"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:333
+msgid "In the :ref:`replication <cfg_replication-replication>` parameter, we define the URIs of both masters in the replica set and say ``print('box.once executed on master #1')`` so it will be clear when and where the ``box.once()`` logic is executed."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:338
+msgid "Now we can launch the two masters. Again, the launch order doesn't matter. The ``box.once()`` logic will also be executed only once, at the master which is elected as the replica set :ref:`leader <replication-leader>` at bootstrap."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:342
+msgid "$ # launching master #1\n"
+"$ tarantool master1.lua\n"
+"2017-06-14 15:39:03.062 [47021] main/101/master1.lua C> version 1.7.4-52-g980d30092\n"
+"2017-06-14 15:39:03.062 [47021] main/101/master1.lua C> log level 5\n"
+"2017-06-14 15:39:03.063 [47021] main/101/master1.lua I> mapping 268435456 bytes for tuple arena...\n"
+"2017-06-14 15:39:03.065 [47021] iproto/101/main I> binary: bound to [::]:3301\n"
+"2017-06-14 15:39:03.065 [47021] main/105/applier/replicator@192.168.0.10 I> can't connect to master\n"
+"2017-06-14 15:39:03.065 [47021] main/105/applier/replicator@192.168.0.10 coio.cc:107 !> SystemError connect, called on fd 14, aka 192.168.0.102:57110: Connection refused\n"
+"2017-06-14 15:39:03.065 [47021] main/105/applier/replicator@192.168.0.10 I> will retry every 1 second\n"
+"2017-06-14 15:39:03.065 [47021] main/104/applier/replicator@192.168.0.10 I> remote master is 1.7.4 at 192.168.0.101:3301\n"
+"2017-06-14 15:39:08.070 [47021] main/105/applier/replicator@192.168.0.10 I> remote master is 1.7.4 at 192.168.0.102:3301\n"
+"2017-06-14 15:39:08.071 [47021] main/105/applier/replicator@192.168.0.10 I> authenticated\n"
+"2017-06-14 15:39:08.071 [47021] main/101/master1.lua I> bootstrapping replica from 192.168.0.102:3301\n"
+"2017-06-14 15:39:08.073 [47021] main/105/applier/replicator@192.168.0.10 I> initial data received\n"
+"2017-06-14 15:39:08.074 [47021] main/105/applier/replicator@192.168.0.10 I> final data received\n"
+"2017-06-14 15:39:08.074 [47021] snapshot/101/main I> saving snapshot `/Users/e.shebunyaeva/work/tarantool-test-repl/master1_dir/00000000000000000008.snap.inprogress'\n"
+"2017-06-14 15:39:08.074 [47021] snapshot/101/main I> done\n"
+"2017-06-14 15:39:08.076 [47021] main/101/master1.lua I> vinyl checkpoint done\n"
+"2017-06-14 15:39:08.076 [47021] main/101/master1.lua I> ready to accept requests\n"
+"box.once executed on master #1\n"
+"2017-06-14 15:39:08.077 [47021] main C> entering the event loop"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:366
+msgid "$ # launching master #2\n"
+"$ tarantool master2.lua\n"
+"2017-06-14 15:39:07.452 [47022] main/101/master2.lua C> version 1.7.4-52-g980d30092\n"
+"2017-06-14 15:39:07.453 [47022] main/101/master2.lua C> log level 5\n"
+"2017-06-14 15:39:07.453 [47022] main/101/master2.lua I> mapping 268435456 bytes for tuple arena...\n"
+"2017-06-14 15:39:07.455 [47022] iproto/101/main I> binary: bound to [::]:3301\n"
+"2017-06-14 15:39:07.455 [47022] main/104/applier/replicator@192.168.0.19 I> remote master is 1.7.4 at 192.168.0.101:3301\n"
+"2017-06-14 15:39:07.455 [47022] main/105/applier/replicator@192.168.0.10 I> remote master is 1.7.4 at 192.168.0.102:3301\n"
+"2017-06-14 15:39:07.455 [47022] main/101/master2.lua I> initializing an empty data directory\n"
+"2017-06-14 15:39:07.457 [47022] snapshot/101/main I> saving snapshot `/Users/e.shebunyaeva/work/tarantool-test-repl/master2_dir/00000000000000000000.snap.inprogress'\n"
+"2017-06-14 15:39:07.457 [47022] snapshot/101/main I> done\n"
+"2017-06-14 15:39:07.458 [47022] main/101/master2.lua I> vinyl checkpoint done\n"
+"2017-06-14 15:39:07.459 [47022] main/101/master2.lua I> ready to accept requests\n"
+"2017-06-14 15:39:07.460 [47022] main C> entering the event loop\n"
+"2017-06-14 15:39:08.072 [47022] main/103/main I> initial data sent.\n"
+"2017-06-14 15:39:08.073 [47022] relay/[::ffff:192.168.0.102]:/101/main I> recover from `/Users/e.shebunyaeva/work/tarantool-test-repl/master2_dir/00000000000000000000.xlog'\n"
+"2017-06-14 15:39:08.073 [47022] main/103/main I> final data sent.\n"
+"2017-06-14 15:39:08.077 [47022] relay/[::ffff:192.168.0.102]:/101/main I> recover from `/Users/e.shebunyaeva/work/tarantool-test-repl/master2_dir/00000000000000000000.xlog'\n"
+"2017-06-14 15:39:08.461 [47022] main/104/applier/replicator@192.168.0.10 I> authenticated"
+msgstr ""

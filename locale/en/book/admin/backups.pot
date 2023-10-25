@@ -1,0 +1,117 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/backups.rst:5
+msgid "Backups"
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:7
+msgid "Tarantool has an append-only storage architecture: it appends data to files but it never overwrites earlier data. The :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` removes old files after a checkpoint. You can prevent or delay the garbage collector's action by configuring the :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`. Backups can be taken at any time, with minimal overhead on database performance."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:16
+msgid "Two functions are helpful for backups in certain situations:"
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:18
+msgid ":doc:`/reference/reference_lua/box_backup/start` informs the server that activities related to the removal of outdated backups must be suspended and returns a table with the names of snapshot and vinyl files that should be copied."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:23
+msgid ":doc:`/reference/reference_lua/box_backup/stop` later informs the server that normal operations may resume."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:30
+msgid "Hot backup (memtx)"
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:32
+msgid "This is a special case when there are only in-memory tables."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:34
+msgid "The last :ref:`snapshot file <index-box_persistence>` is a backup of the entire database; and the :ref:`WAL <internals-wal>` files that are made after the last snapshot are incremental backups. Therefore taking a backup is a matter of copying the snapshot and WAL files."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:39
+msgid "Use ``tar`` to make a (possibly compressed) copy of the latest .snap and .xlog files on the :ref:`memtx_dir <cfg_basic-memtx_dir>` and :ref:`wal_dir <cfg_basic-wal_dir>` directories."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:43
+msgid "If there is a security policy, encrypt the .tar file."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:45
+msgid "Copy the .tar file to a safe place."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:47
+msgid "Later, restoring the database is a matter of taking the .tar file and putting its contents back in the ``memtx_dir`` and ``wal_dir`` directories."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:54
+msgid "Hot backup (vinyl/memtx)"
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:56
+msgid "Vinyl stores its files in :ref:`vinyl_dir <cfg_basic-vinyl_dir>`, and creates a folder for each database space. Dump and compaction processes are append-only and create new files. The Tarantool garbage collector may remove old files after each checkpoint."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:61
+msgid "To take a mixed backup:"
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:63
+msgid "Issue :doc:`/reference/reference_lua/box_backup/start` on the :ref:`administrative console <admin-security>`. This will return a list of files to back up and suspend garbage collection for them till the next ``box.backup.stop()``."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:68
+msgid "Copy the files from the list to a safe location. This will include memtx snapshot files, vinyl run and index files, at a state consistent with the last checkpoint."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:72
+msgid "Issue :doc:`/reference/reference_lua/box_backup/stop` so the garbage collector can continue as usual."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:79
+msgid "Continuous remote backup (memtx)"
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:81
+msgid "The :ref:`replication <replication>` feature is useful for backup as well as for load balancing."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:84
+msgid "Therefore taking a backup is a matter of ensuring that any given replica is up to date, and doing a cold backup on it. Since all the other replicas continue to operate, this is not a cold backup from the end user’s point of view. This could be done on a regular basis, with a ``cron`` job or with a Tarantool fiber."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:93
+msgid "Continuous backup (memtx)"
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:95
+msgid "The logged changes done since the last cold backup must be secured, while the system is running."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:98
+msgid "For this purpose, you need a file copy utility that will do the copying remotely and continuously, copying only the parts of a write ahead log file that are changing. One such utility is `rsync <https://en.wikipedia.org/wiki/Rsync>`_."
+msgstr ""
+
+#: ../../doc/book/admin/backups.rst:103
+msgid "Alternatively, you need an ordinary file copy utility, but there should be frequent production of new snapshot files or new WAL files as changes occur, so that only the new files need to be copied."
+msgstr ""

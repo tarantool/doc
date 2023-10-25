@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/strict.rst:5
+msgid "Module strict"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/strict.rst:9
+msgid "The :code:`strict` module has functions for turning \"strict mode\" on or off. When strict mode is on, an attempt to use an undeclared global variable will cause an error. A global variable is considered \"undeclared\" if it has never had a value assigned to it. Often this is an indication of a programming error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/strict.rst:14
+msgid "By default strict mode is off, unless tarantool was built with the ``-DCMAKE_BUILD_TYPE=Debug`` option -- see the description of build options in section :ref:`building-from-source <building_from_source>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/strict.rst:18
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/strict.rst:20
+msgid "tarantool> strict = require('strict')\n"
+"---\n"
+"...\n"
+"tarantool> strict.on()\n"
+"---\n"
+"...\n"
+"tarantool> a = b -- strict mode is on so this will cause an error\n"
+"---\n"
+"- error: ... variable ''b'' is not declared'\n"
+"...\n"
+"tarantool> strict.off()\n"
+"---\n"
+"...\n"
+"tarantool> a = b -- strict mode is off so this will not cause an error\n"
+"---\n"
+"..."
+msgstr ""

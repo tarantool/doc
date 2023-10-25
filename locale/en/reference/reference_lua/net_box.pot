@@ -1,0 +1,1054 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/net_box.rst:5
+msgid "Module net.box"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:11
+msgid "The ``net.box`` module contains connectors to remote database systems. One variant, to be discussed later, is for connecting to MySQL or MariaDB or PostgreSQL (see :ref:`SQL DBMS modules <dbms_modules>` reference). The other variant, which is discussed in this section, is for connecting to Tarantool server instances via a network. For a quick start with ``net.box``, refer to the :ref:`tutorial <getting_started_net_box>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:18
+msgid "You can call the following methods:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:20
+msgid "``require('net.box')`` -- to get a ``net.box`` object (named ``net_box`` for examples in this section)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:22
+msgid "``net_box.connect()`` -- to connect and get a connection object (named ``conn`` for examples in this section)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:24
+msgid "other ``net.box()`` routines, passing ``conn:``, to execute requests on the remote database system"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:26
+msgid "``conn:close`` -- to disconnect"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:28
+msgid "All ``net.box`` methods are fiber-safe, that is, it is safe to share and use the same connection object across multiple concurrent fibers. In fact that is perhaps the best programming practice with Tarantool. When multiple fibers use the same connection, all requests are pipelined through the same network socket, but each fiber gets back a correct response. Reducing the number of active sockets lowers the overhead of system calls and increases the overall server performance. However for some cases a single connection is not enough -- for example, when it is necessary to prioritize requests or to use different authentication IDs."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:39
+msgid "Most ``net.box`` methods accept the last ``{options}`` argument, which can be:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:41
+msgid "``{timeout=...}``. For example, a method whose last argument is ``{timeout=1.5}`` will stop after 1.5 seconds on the local node, although this does not guarantee that execution will stop on the remote server node."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:45
+msgid "``{buffer=...}``. For an example, see the :ref:`buffer module <buffer-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:47
+msgid "``{is_async=...}``. For example, a method whose last argument is ``{is_async=true}`` will not wait for the result of a request. See the :ref:`is_async <net_box-is_async>` description."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:51
+msgid "``{on_push=... on_push_ctx=...}``. For receiving out-of-band messages. See the :doc:`/reference/reference_lua/box_session/push` description."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:54
+msgid "``{return_raw=...}`` (since version 2.10.0). If set to ``true``, net.box returns response data wrapped in a :ref:`MsgPack object <msgpack-object-info>` instead of decoding it to Lua. The default value is ``false``. For an example, see option description :ref:`below <net_box-return_raw>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:62
+msgid "The diagram below shows possible connection states and transitions:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:None
+msgid "net_states.png"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:70
+msgid "On this diagram:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:72
+msgid "``net_box.connect()`` method spawns a worker fiber, which will establish the connection and start the state machine."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:74
+msgid "The state machine goes to the ``initial`` state."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:76
+msgid "Authentication and schema upload. It is possible later on to re-enter the ``fetch_schema`` state from ``active`` to trigger schema reload."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:79
+msgid "The state changes to the ``graceful_shutdown`` state when the state machine receives a :ref:`box.shutdown <system-events_box-shutdown>` event from the remote host (see :ref:`conn:on_shutdown() <net_box-on_shutdown>`). Once all pending requests are completed, the state machine switches to the ``error`` (``error_reconnect``) state."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:84
+msgid "The transport goes to the ``error`` state in case of an error. It can happen, for example, if the server closed the connection. If the ``reconnect_after`` option is set, instead of the ‘error’ state, the transport goes to the ``error_reconnect`` state."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:89
+msgid "``conn.close()`` method sets the state to ``closed`` and kills the worker. If the transport is already in the ``error`` state, ``close()`` does nothing."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:94
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:96
+msgid "Below is a list of all ``net.box`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:104
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:105
+#: ../../doc/reference/reference_lua/net_box.rst:233
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:106
+msgid ":ref:`net_box.connect() <net_box-connect>` |br| :ref:`net_box.new() <net_box-new>` |br| :ref:`net_box.self <net_box-self>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:107
+msgid "Create a connection"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:108
+msgid ":ref:`conn:ping() <conn-ping>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:109
+msgid "Execute a PING command"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:110
+msgid ":ref:`conn:wait_connected() <conn-wait_connected>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:111
+msgid "Wait for a connection to be active or closed"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:112
+msgid ":ref:`conn:is_connected() <conn-is_connected>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:113
+msgid "Check if a connection is active or closed"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:114
+msgid ":ref:`conn:wait_state() <conn-wait_state>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:115
+msgid "Wait for a target state"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:116
+msgid ":ref:`conn:close() <conn-close>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:117
+msgid "Close a connection"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:118
+msgid ":ref:`conn.space.space-name:select{field-value} <conn-select>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:119
+msgid "Select one or more tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:120
+msgid ":ref:`conn.space.space-name:get{field-value} <conn-get>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:121
+msgid "Select a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:122
+msgid ":ref:`conn.space.space-name:insert{field-value} <conn-insert>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:123
+msgid "Insert a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:124
+msgid ":ref:`conn.space.space-name:replace{field-value} <conn-replace>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:125
+msgid "Insert or replace a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:126
+msgid ":ref:`conn.space.space-name:update{field-value} <conn-update>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:127
+#: ../../doc/reference/reference_lua/net_box.rst:129
+msgid "Update a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:128
+msgid ":ref:`conn.space.space-name:upsert{field-value} <conn-upsert>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:130
+msgid ":ref:`conn.space.space-name:delete{field-value} <conn-delete>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:131
+msgid "Delete a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:132
+msgid ":ref:`conn:eval() <net_box-eval>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:133
+msgid "Evaluate the expression in a string and execute it"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:134
+msgid ":ref:`conn:call() <net_box-call>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:135
+msgid "Call a stored procedure"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:136
+msgid ":ref:`conn:timeout() <conn-timeout>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:137
+msgid "Set a timeout"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:138
+msgid ":ref:`conn:watch() <conn-watch>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:139
+msgid "Subscribe to events broadcast by a remote host"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:140
+msgid ":ref:`conn:on_connect() <net_box-on_connect>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:141
+msgid "Define a connect trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:142
+msgid ":ref:`conn:on_disconnect() <net_box-on_disconnect>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:143
+msgid "Define a disconnect trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:144
+msgid ":ref:`conn:on_shutdown() <net_box-on_shutdown>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:145
+msgid "Define a shutdown trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:146
+msgid ":ref:`conn:on_schema_reload() <net_box-on_schema_reload>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:147
+msgid "Define a trigger when schema is modified"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:148
+msgid ":ref:`conn:new_stream() <conn-new_stream>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:149
+msgid "Create a stream"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:150
+msgid ":ref:`stream:begin() <net_box-stream_begin>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:151
+msgid "Begin a stream transaction"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:152
+msgid ":ref:`stream:commit() <net_box-stream_commit>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:153
+msgid "Commit a stream transaction"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:154
+msgid ":ref:`stream:rollback() <net_box-stream_rollback>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:155
+msgid "Rollback a stream transaction"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:163
+msgid "Create a new connection. The connection is established on demand, at the time of the first request. It can be re-established automatically after a disconnect (see ``reconnect_after`` option below). The returned ``conn`` object supports methods for making remote requests, such as select, update or delete."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:169
+msgid "the :ref:`URI <index-uri>` of the target for the connection"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:170
+msgid "the supported options are shown below:  *   ``user/password``: two options to connect to a remote host other than through     :ref:`URI <index-uri>`. For example, instead of ``connect('username:userpassword@localhost:3301')``     you can write ``connect('localhost:3301', {user = 'username', password='userpassword'})``.  *   ``wait_connected``: a connection timeout. By default, the connection is blocked until the connection     is established, but if you specify ``wait_connected=false``, the connection returns immediately.     If you specify this timeout, it will wait before returning (``wait_connected=1.5`` makes it wait at most 1.5 seconds).      .. NOTE::           If ``reconnect_after`` is greater than zero, then ``wait_connected`` ignores transient failures.          The wait completes once the connection is established or is closed explicitly.   *   ``reconnect_after``: a number of seconds to wait before reconnecting.     The default value, as with the other ``connect`` options, is ``nil``. If ``reconnect_after``     is greater than zero, then a ``net.box`` instance will attempt to reconnect if a connection     is lost or a connection attempt fails. This makes transient network failures transparent to the application.     Reconnection happens automatically in the background, so requests that initially fail due to connection drops     fail, are transparently retried. The number of retries is unlimited, connection retries are made after     any specified interval (for example, ``reconnect_after=5`` means that reconnect attempts are made every 5 seconds).     When a connection is explicitly closed or when the Lua garbage collector removes it, then reconnect attempts stop.   *   ``call_16``: [since 1.7.2] a new binary protocol command for CALL in ``net.box`` connections by default.     The new CALL is not backward compatible with previous versions. It no longer restricts a function to     returning an array of tuples and allows returning an arbitrary MsgPack/JSON result,     including scalars, nil and void (nothing). The old CALL is left intact for backward compatibility.     It will not be present in the next major release. All programming language drivers will gradually be switched     to the new CALL. To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``.  *   ``connect_timeout``: a number of seconds to wait before returning \"error: Connection timed out\".  *   ``fetch_schema``: a boolean option that controls fetching schema changes from the server. Default: ``true``.     If you don't operate with remote spaces, for example, run only ``call`` or ``eval``, set ``fetch_schema`` to     ``false`` to avoid fetching schema changes which is not needed in this case.      .. important::          In connections with ``fetch_schema == false``, remote spaces are unavailable         and the :ref:`on_schema_reload <net_box-on_schema_reload>` triggers don't work.  *   ``required_protocol_version``: a minimum version of the :ref:`IPROTO protocol <box_protocol-id>`     supported by the server. If the version of the :ref:`IPROTO protocol <box_protocol-id>` supported     by the server is lower than specified, the connection will fail with an error message.     With ``required_protocol_version = 1``, all connections fail where the :ref:`IPROTO protocol <box_protocol-id>`     version is lower than ``1``.  *   ``required_protocol_features``: specified :ref:`IPROTO protocol features <box_protocol-id>` supported by the server.     You can specify one or more ``net.box`` features from the table below. If the server does not     support the specified features, the connection will fail with an error message.     With ``required_protocol_features = {'transactions'}``, all connections fail where the     server has ``transactions: false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:170
+msgid "the supported options are shown below:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:172
+msgid "``user/password``: two options to connect to a remote host other than through :ref:`URI <index-uri>`. For example, instead of ``connect('username:userpassword@localhost:3301')`` you can write ``connect('localhost:3301', {user = 'username', password='userpassword'})``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:176
+msgid "``wait_connected``: a connection timeout. By default, the connection is blocked until the connection is established, but if you specify ``wait_connected=false``, the connection returns immediately. If you specify this timeout, it will wait before returning (``wait_connected=1.5`` makes it wait at most 1.5 seconds)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:182
+msgid "If ``reconnect_after`` is greater than zero, then ``wait_connected`` ignores transient failures. The wait completes once the connection is established or is closed explicitly."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:186
+msgid "``reconnect_after``: a number of seconds to wait before reconnecting. The default value, as with the other ``connect`` options, is ``nil``. If ``reconnect_after`` is greater than zero, then a ``net.box`` instance will attempt to reconnect if a connection is lost or a connection attempt fails. This makes transient network failures transparent to the application. Reconnection happens automatically in the background, so requests that initially fail due to connection drops fail, are transparently retried. The number of retries is unlimited, connection retries are made after any specified interval (for example, ``reconnect_after=5`` means that reconnect attempts are made every 5 seconds). When a connection is explicitly closed or when the Lua garbage collector removes it, then reconnect attempts stop."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:196
+msgid "``call_16``: [since 1.7.2] a new binary protocol command for CALL in ``net.box`` connections by default. The new CALL is not backward compatible with previous versions. It no longer restricts a function to returning an array of tuples and allows returning an arbitrary MsgPack/JSON result, including scalars, nil and void (nothing). The old CALL is left intact for backward compatibility. It will not be present in the next major release. All programming language drivers will gradually be switched to the new CALL. To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:203
+msgid "``connect_timeout``: a number of seconds to wait before returning \"error: Connection timed out\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:205
+msgid "``fetch_schema``: a boolean option that controls fetching schema changes from the server. Default: ``true``. If you don't operate with remote spaces, for example, run only ``call`` or ``eval``, set ``fetch_schema`` to ``false`` to avoid fetching schema changes which is not needed in this case."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:211
+msgid "In connections with ``fetch_schema == false``, remote spaces are unavailable and the :ref:`on_schema_reload <net_box-on_schema_reload>` triggers don't work."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:214
+msgid "``required_protocol_version``: a minimum version of the :ref:`IPROTO protocol <box_protocol-id>` supported by the server. If the version of the :ref:`IPROTO protocol <box_protocol-id>` supported by the server is lower than specified, the connection will fail with an error message. With ``required_protocol_version = 1``, all connections fail where the :ref:`IPROTO protocol <box_protocol-id>` version is lower than ``1``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:220
+msgid "``required_protocol_features``: specified :ref:`IPROTO protocol features <box_protocol-id>` supported by the server. You can specify one or more ``net.box`` features from the table below. If the server does not support the specified features, the connection will fail with an error message. With ``required_protocol_features = {'transactions'}``, all connections fail where the server has ``transactions: false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:232
+msgid "net.box feature"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:234
+msgid "IPROTO feature ID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:235
+msgid "IPROTO versions supporting the feature"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:236
+msgid "``streams``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:237
+msgid "Requires streams support on the server"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:238
+msgid "IPROTO_FEATURE_STREAMS"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:239
+#: ../../doc/reference/reference_lua/net_box.rst:243
+msgid "1 and newer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:240
+msgid "``transactions``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:241
+msgid "Requires transactions support on the server"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:242
+msgid "IPROTO_FEATURE_TRANSACTIONS"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:244
+msgid "``error_extension``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:245
+msgid "Requires support for :ref:`MP_ERROR <msgpack_ext-error>` MsgPack extension on the server"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:246
+msgid "IPROTO_FEATURE_ERROR_EXTENSION"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:247
+msgid "2 and newer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:248
+msgid "``watchers``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:249
+msgid "Requires remote :ref:`watchers <conn-watch>` support on the server"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:250
+msgid "IPROTO_FEATURE_WATCHERS"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:251
+msgid "3 and newer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:253
+msgid "To learn more about IPROTO features, see :ref:`IPROTO_ID <box_protocol-id>` and the :ref:`IPROTO_FEATURES <internals-iproto-keys-features>` key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:256
+msgid "conn object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+#: ../../doc/reference/reference_lua/net_box.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:257
+msgid "userdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:259
+#: ../../doc/reference/reference_lua/net_box.rst:359
+#: ../../doc/reference/reference_lua/net_box.rst:497
+#: ../../doc/reference/reference_lua/net_box.rst:531
+#: ../../doc/reference/reference_lua/net_box.rst:649
+#: ../../doc/reference/reference_lua/net_box.rst:753
+msgid "**Examples:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:261
+msgid "net_box = require('net.box')\n"
+"\n"
+"conn = net_box.connect('localhost:3301')\n"
+"conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})\n"
+"conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})\n"
+"conn = net_box.connect('127.0.0.1:3304', {required_protocol_version = 4, required_protocol_features = {'transactions', 'streams'}, })"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:274
+msgid "``new()`` is a synonym for ``connect()``. It is retained for backward compatibility. For more information, see the description of :ref:`net_box.connect() <net_box-connect>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:281
+msgid "For a local Tarantool server, there is a pre-created always-established connection object named :samp:`{net_box}.self`. Its purpose is to make polymorphic use of the ``net_box`` API easier. Therefore :samp:`conn = {net_box}.connect('localhost:3301')` can be replaced by :samp:`conn = {net_box}.self`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:287
+msgid "However, there is an important difference between the embedded connection and a remote one:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:290
+msgid "With the embedded connection, requests which do not modify data do not yield. When using a remote connection, due to :ref:`the implicit rules <app-implicit-yields>` any request can yield, and the database state may have changed by the time it regains control."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:296
+msgid "All the options passed to a request (as ``is_async``, ``on_push``, ``timeout``) will be ignored."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:305
+msgid "Execute a PING command."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:307
+msgid "the supported option is :samp:`timeout={seconds}`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:308
+msgid "true on success, false on error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:309
+#: ../../doc/reference/reference_lua/net_box.rst:325
+#: ../../doc/reference/reference_lua/net_box.rst:340
+#: ../../doc/reference/reference_lua/net_box.rst:357
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:311
+#: ../../doc/reference/reference_lua/net_box.rst:327
+#: ../../doc/reference/reference_lua/net_box.rst:342
+#: ../../doc/reference/reference_lua/net_box.rst:383
+#: ../../doc/reference/reference_lua/net_box.rst:397
+#: ../../doc/reference/reference_lua/net_box.rst:420
+#: ../../doc/reference/reference_lua/net_box.rst:434
+#: ../../doc/reference/reference_lua/net_box.rst:448
+#: ../../doc/reference/reference_lua/net_box.rst:462
+#: ../../doc/reference/reference_lua/net_box.rst:579
+#: ../../doc/reference/reference_lua/net_box.rst:710
+#: ../../doc/reference/reference_lua/net_box.rst:727
+#: ../../doc/reference/reference_lua/net_box.rst:770
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:313
+msgid "net_box.self:ping({timeout = 0.5})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:321
+msgid "Wait for connection to be active or closed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:323
+#: ../../doc/reference/reference_lua/net_box.rst:355
+msgid "in seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:324
+msgid "true when connected, false on failure."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:329
+msgid "net_box.self:wait_connected()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:337
+msgid "Show whether connection is active or closed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:339
+msgid "true if connected, false on failure."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:344
+msgid "net_box.self:is_connected()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:352
+msgid "[since 1.7.2] Wait for a target state."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:354
+msgid "target states"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:356
+msgid "true when a target state is reached, false on timeout or connection closure"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:361
+msgid "-- wait infinitely for 'active' state:\n"
+"conn:wait_state('active')\n"
+"\n"
+"-- wait for 1.5 secs at most:\n"
+"conn:wait_state('active', 1.5)\n"
+"\n"
+"-- wait infinitely for either `active` or `fetch_schema` state:\n"
+"conn:wait_state({active=true, fetch_schema=true})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:376
+msgid "Close a connection."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:378
+msgid "Connection objects are destroyed by the Lua garbage collector, just like any other objects in Lua, so an explicit destruction is not mandatory. However, since close() is a system call, it is good programming practice to close a connection explicitly when it is no longer needed, to avoid lengthy stalls of the garbage collector."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:385
+msgid "conn:close()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:393
+msgid ":samp:`conn.space.{space-name}:select`:code:`({...})` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:select`:code:`{...}` (:ref:`see details <box_space-select>`). For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:399
+msgid "conn.space.testspace:select({1,'B'}, {timeout=1})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:405
+msgid "Due to :ref:`the implicit yield rules <app-implicit-yields>` a local :samp:`box.space.{space-name}:select`:code:`{...}` does not yield, but a remote :samp:`conn.space.{space-name}:select`:code:`{...}` call does yield, so global variables or database tuples data may change when a remote :samp:`conn.space.{space-name}:select`:code:`{...}` occurs."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:416
+msgid ":samp:`conn.space.{space-name}:get(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:get(...)` (:ref:`see details <box_space-get>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:422
+msgid "conn.space.testspace:get({1})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:430
+msgid ":samp:`conn.space.{space-name}:insert(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:insert(...)` (:ref:`see details <box_space-insert>`). For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:436
+msgid "conn.space.testspace:insert({2,3,4,5}, {timeout=1.1})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:444
+msgid ":samp:`conn.space.{space-name}:replace(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:replace(...)` (:ref:`see details <box_space-replace>`). For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:450
+msgid "conn.space.testspace:replace({5,6,7,8})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:458
+msgid ":samp:`conn.space.{space-name}:update(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:update(...)` (:ref:`see details <box_space-update>`). For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:464
+msgid "conn.space.Q:update({1},{{'=',2,5}}, {timeout=0})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:472
+msgid ":samp:`conn.space.{space-name}:upsert(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:upsert(...)`. (:ref:`see details <box_space-upsert>`). For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:480
+msgid ":samp:`conn.space.{space-name}:delete(...)` is the remote-call equivalent of the local call :samp:`box.space.{space-name}:delete(...)` (:ref:`see details <box_space-delete>`). For an additional option see :ref:`Module buffer and skip-header <buffer-module_and_skip_header>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:488
+msgid ":samp:`conn:eval({Lua-string})` evaluates and executes the expression in Lua-string, which may be any statement or series of statements. An :ref:`execute privilege <authentication-owners_privileges>` is required; if the user does not have it, an administrator may grant it with :samp:`box.schema.user.grant({username}, 'execute', 'universe')`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:494
+msgid "To ensure that the return from ``conn:eval`` is whatever the Lua expression returns, begin the Lua-string with the word \"return\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:499
+msgid "tarantool> --Lua-string\n"
+"tarantool> conn:eval('function f5() return 5+5 end; return f5();')\n"
+"---\n"
+"- 10\n"
+"...\n"
+"tarantool> --Lua-string, {arguments}\n"
+"tarantool> conn:eval('return ...', {1,2,{3,'x'}})\n"
+"---\n"
+"- 1\n"
+"- 2\n"
+"- [3, 'x']\n"
+"...\n"
+"tarantool> --Lua-string, {arguments}, {options}\n"
+"tarantool> conn:eval('return {nil,5}', {}, {timeout=0.1})\n"
+"---\n"
+"- [null, 5]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:523
+msgid "``conn:call('func', {'1', '2', '3'})`` is the remote-call equivalent of ``func('1', '2', '3')``. That is, ``conn:call`` is a remote stored-procedure call. The return from ``conn:call`` is whatever the function returns."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:527
+msgid "Limitation: the called function cannot return a function, for example if ``func2`` is defined as ``function func2 () return func end`` then ``conn:call(func2)`` will return \"error: unsupported Lua type 'function'\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:533
+msgid "tarantool> -- create 2 functions with conn:eval()\n"
+"tarantool> conn:eval('function f1() return 5+5 end;')\n"
+"tarantool> conn:eval('function f2(x,y) return x,y end;')\n"
+"tarantool> -- call first function with no parameters and no options\n"
+"tarantool> conn:call('f1')\n"
+"---\n"
+"- 10\n"
+"...\n"
+"tarantool> -- call second function with two parameters and one option\n"
+"tarantool> conn:call('f2',{1,'B'},{timeout=99})\n"
+"---\n"
+"- 1\n"
+"- B\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:554
+msgid "Subscribe to events broadcast by a remote host."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:556
+msgid "a key name of an event to subscribe to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:557
+msgid "a callback to invoke when the key value is updated"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:558
+msgid "a watcher handle. The handle consists of one method -- ``unregister()``, which unregisters the watcher."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:560
+msgid "To read more about watchers, see the :ref:`Functions for watchers <box-watchers>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:562
+msgid "The method has the same syntax as the :doc:`box.watch() </reference/reference_lua/box_events/broadcast>` function, which is used for subscribing to events locally."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:565
+msgid "Watchers survive reconnection (see the ``reconnect_after`` connection :ref:`option <net_box-connect>`). All registered watchers are automatically resubscribed when the connection is reestablished."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:569
+msgid "If a remote host supports watchers, the ``watchers`` key will be set in the connection ``peer_protocol_features``. For details, check the :ref:`net.box features table <net_box-connect>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:575
+msgid "Keep in mind that garbage collection of a watcher handle doesn't lead to the watcher's destruction. In this case, the watcher remains registered. It is okay to discard the result of ``watch`` function if the watcher will never be unregistered."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:581
+msgid "Server:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:583
+msgid "-- Broadcast value 42 for the 'foo' key.\n"
+"box.broadcast('foo', 42)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:588
+msgid "Client:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:590
+msgid "conn = net.box.connect(URI)\n"
+"local log = require('log')\n"
+"-- Subscribe to updates of the 'foo' key.\n"
+"w = conn:watch('foo', function(key, value)\n"
+"    assert(key == 'foo')\n"
+"    log.info(\"The box.id value is '%d'\", value)\n"
+"end)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:600
+msgid "If you don't need the watcher anymore, you can unregister it using the command below:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:602
+msgid "w:unregister()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:610
+msgid "``{is_async=true|false}`` is an option which is applicable for all ``net_box`` requests including ``conn:call``, ``conn:eval``, and the ``conn.space.space-name`` requests."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:614
+msgid "The default is ``is_async=false``, meaning requests are synchronous for the fiber. The fiber is blocked, waiting until there is a reply to the request or until timeout expires. Before Tarantool version 1.10, the only way to make asynchronous requests was to put them in separate fibers."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:620
+msgid "The non-default is ``is_async=true``, meaning requests are asynchronous for the fiber. The request causes a yield but there is no waiting. The immediate return is not the result of the request, instead it is an object that the calling program can use later to get the result of the request."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:626
+msgid "This immediately-returned object, which we'll call \"future\", has its own methods:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:629
+msgid "``future:is_ready()`` which will return true when the result of the request is available,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:631
+msgid "``future:result()`` to get the result of the request (returns the response or **nil** in case it's not ready yet or there has been an error),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:633
+msgid "``future:wait_result(timeout)`` to wait until the result of the request is available and then get it, or throw an error if there is no result after the timeout exceeded,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:636
+msgid "``future:discard()`` to abandon the object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:638
+msgid "Typically a user would say ``future=request-name(...{is_async=true})``, then either loop checking ``future:is_ready()`` until it is true and then say ``request_result=future:result()``, or say ``request_result=future:wait_result(...)``. Alternatively the client could check for \"out-of-band\" messages from the server by calling ``pairs()`` in a loop -- see :doc:`/reference/reference_lua/box_session/push`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:645
+msgid "A user would say ``future:discard()`` to make a connection forget about the response -- if a response for a discarded object is received then it will be ignored, so that the size of the requests table will be reduced and other requests will be faster."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:651
+msgid "-- Insert a tuple asynchronously --\n"
+"tarantool> future = conn.space.bands:insert({10, 'Queen', 1970}, {is_async=true})\n"
+"---\n"
+"...\n"
+"tarantool> future:is_ready()\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> future:result()\n"
+"---\n"
+"- [10, 'Queen', 1970]\n"
+"...\n"
+"\n"
+"-- Iterate through a space with 10 records to get data in chunks of 3 records --\n"
+"tarantool> while true do\n"
+"               future = conn.space.bands:select({}, {limit=3, after=position, fetch_pos=true, is_async=true})\n"
+"               result = future:wait_result()\n"
+"               tuples = result[1]\n"
+"               position = result[2]\n"
+"               if position == nil then\n"
+"                   break\n"
+"               end\n"
+"               print('Chunk size: '..#tuples)\n"
+"           end\n"
+"Chunk size: 3\n"
+"Chunk size: 3\n"
+"Chunk size: 3\n"
+"Chunk size: 1\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:685
+msgid "Typically ``{is_async=true}`` is used only if the load is large (more than 100,000 requests per second) and latency is large (more than 1 second), or when it is necessary to send multiple requests in parallel then collect responses (sometimes called a \"map-reduce\" scenario)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:693
+msgid "Although the final result of an async request is the same as the result of a sync request, it is structured differently: as a table, instead of as the unpacked values."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:701
+msgid "``{return_raw=true}`` is ignored for:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:703
+msgid "Methods that return ``nil``: ``begin``, ``commit``, ``rollback``, ``upsert``, ``prepare``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:706
+msgid "``index.count`` (returns number)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:708
+msgid "For ``execute``, the option is applied only to data (`rows`). Metadata is decoded even if ``{return_raw=true}``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:712
+msgid "local c = require('net.box').connect(uri)\n"
+"local mp = c.eval('eval ...', {1, 2, 3}, {return_raw = true})\n"
+"mp:decode() -- {1, 2, 3}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:718
+msgid "The option can be useful if you want to pass a response through without decoding or with partial decoding. The usage of :ref:`MsgPack object <msgpack-object-info>` can reduce pressure on the Lua garbage collector."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:725
+msgid "Create a stream."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:729
+msgid "-- Start a server to create a new stream\n"
+"local conn = net_box.connect('localhost:3301')\n"
+"local conn_space = conn.space.test\n"
+"local stream = conn:new_stream()\n"
+"local stream_space = stream.space.test"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:743
+msgid "Begin a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:745
+msgid ":ref:`transaction isolation level <txn_mode_mvcc-options>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:751
+msgid "Commit a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:755
+msgid "-- Begin stream transaction\n"
+"stream:begin()\n"
+"-- In the previously created ``accounts`` space with the primary key ``test``, modify the fields 2 and 3\n"
+"stream.space.accounts:update(test_1, {{'-', 2, 370}, {'+', 3, 100}})\n"
+"-- Commit stream transaction\n"
+"stream:commit()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:768
+msgid "Rollback a stream transaction. Instead of the direct method, you can also use the ``call``, ``eval`` or execute methods with SQL transaction."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:772
+msgid "-- Test rollback for memtx space\n"
+"space:replace({1})\n"
+"-- Select return tuple that was previously inserted, because this select belongs to stream transaction\n"
+"space:select({})\n"
+"stream:rollback()\n"
+"-- Select is empty, stream transaction rollback\n"
+"space:select({})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:786
+msgid "Triggers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:788
+msgid "With the ``net.box`` module, you can use the following :ref:`triggers <triggers-box_triggers>`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:795
+msgid "Define a trigger for execution when a new connection is established, and authentication and schema fetch are completed due to an event such as ``net_box.connect``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:798
+#: ../../doc/reference/reference_lua/net_box.rst:866
+msgid "If a trigger function issues ``net_box`` requests, they must be :ref:`asynchronous <net_box-is_async>` (``{is_async = true}``). An attempt to wait for request completion with ``future:pairs()`` or ``future:wait_result()`` in the trigger function will result in an error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:802
+msgid "If the trigger execution fails and an exception happens, the connection's state changes to 'error'. In this case, the connection is terminated, regardless of the ``reconnect_after`` option's value. Can be called as many times as reconnection happens, if ``reconnect_after`` is greater than zero."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:807
+msgid "the trigger function. Takes the ``conn`` object as the first argument."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:809
+#: ../../doc/reference/reference_lua/net_box.rst:825
+#: ../../doc/reference/reference_lua/net_box.rst:854
+#: ../../doc/reference/reference_lua/net_box.rst:872
+msgid "an existing trigger function to replace with ``trigger-function``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:811
+#: ../../doc/reference/reference_lua/net_box.rst:827
+#: ../../doc/reference/reference_lua/net_box.rst:856
+#: ../../doc/reference/reference_lua/net_box.rst:874
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:817
+msgid "Define a trigger for execution after a connection is closed. If the trigger function causes an error, the error is logged but otherwise is ignored. Execution stops after a connection is explicitly closed, or once the Lua garbage collector removes it."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:822
+#: ../../doc/reference/reference_lua/net_box.rst:852
+#: ../../doc/reference/reference_lua/net_box.rst:870
+msgid "the trigger function. Takes the ``conn`` object as the first argument"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:833
+msgid "Define a trigger for shutdown when a :ref:`box.shutdown <system-events_box-shutdown>` event is received."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:835
+msgid "The trigger starts in a new fiber. While the ``on_shutdown()`` trigger is running, the connection stays active. It means that the trigger callback is allowed to send new requests."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:839
+msgid "After the trigger return, the ``net.box`` connection goes to the ``graceful_shutdown`` state (check :ref:`the state diagram <net_box-state_diagram>` for details). In this state, no new requests are allowed. The connection waits for all pending requests to be completed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:844
+msgid "Once all in-progress requests have been processed, the connection is closed. The state changes to ``error`` or ``error_reconnect`` (if the ``reconnect_after`` option is defined)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:848
+msgid "Servers that do not support the ``box.shutdown`` event or :ref:`IPROTO_WATCH <box_protocol-watch>` just close the connection abruptly. In this case, the ``on_shutdown()`` trigger is not executed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:862
+msgid "Define a trigger executed when some operation has been performed on the remote server after schema has been updated. So, if a server request fails due to a schema version mismatch error, schema reload is triggered."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:878
+msgid "If the parameters are ``(nil, old-trigger-function)``, then the old trigger is deleted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:881
+msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/net_box.rst:884
+msgid "Find the detailed information about triggers in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""

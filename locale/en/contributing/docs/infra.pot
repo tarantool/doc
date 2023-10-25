@@ -1,0 +1,160 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/infra.rst:3
+msgid "Documentation infrastructure"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:5
+msgid "This section of the :doc:`documentation guidelines </contributing/docs>` discusses some of the support activities that ensure the correct building of documentation."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:12
+msgid "Adding submodules"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:14
+msgid "The documentation source files are mainly stored in the `documentation repository <https://github.com/tarantool/doc>`_. However, in some cases, they are stored in the repositories of other Tarantool-related products or modules -- `Cartridge <https://github.com/tarantool/cartridge>`_, `Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`__, and others."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:22
+msgid "If you are working with source files from a product or module repository, add that repository as a submodule to the `documentation repository <https://github.com/tarantool/doc>`_ and configure other necessary settings. This will ensure that the entire body of Tarantool documentation, presented on the `official website <http://www.tarantool.io/en/doc>`_, is built properly."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:31
+msgid "Here is how to do that:"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:40
+msgid "1. Add a submodule"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:42
+msgid "First, we need to add the repository with content source files as a submodule."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:45
+msgid "Make sure you are in the root directory of the documentation repository."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:47
+msgid "In the ``./modules`` directory, add the new submodule:"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:49
+msgid "cd modules\n"
+"git submodule add https://<path_to_submodule_repository>\n"
+"cd .."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:56
+msgid "Check that the new submodule is in the ``.gitmodules`` file, for example:"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:58
+msgid "[submodule \"modules/metrics\"]\n"
+"   path = modules/metrics\n"
+"   url = https://github.com/tarantool/metrics.git"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:67
+msgid "2. Update build_submodules.sh"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:69
+msgid "Now define what directories and files are to be copied from the submodule repository to the documentation repository before building documentation. These settings are defined in the ``build_submodules.sh`` file in the root directory of the documentation repository."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:74
+msgid "Here are some real submodule examples that show the logic of the settings."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:78
+msgid "metrics"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:80
+msgid "The content source files for the ``metrics`` submodule are in the ``./doc/monitoring`` directory of the submodule repository. In the final documentation view, the content should appear in the `Monitoring <https://www.tarantool.io/en/doc/latest/book/monitoring/>`__ chapter (``https://www.tarantool.io/en/doc/latest/book/monitoring/``)."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:86
+#: ../../doc/contributing/docs/infra.rst:114
+msgid "To make this work:"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:88
+msgid "Create a directory at ``./doc/book/monitoring/``."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:89
+msgid "Copy the entire content of the  ``./modules/metrics/doc/monitoring/`` directory to ``./doc/book/monitoring/``."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:92
+msgid "Here are the corresponding lines in ``build_submodules.sh``:"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:94
+msgid "monitoring_root=\"${project_root}/modules/metrics/doc/monitoring\" #\n"
+"monitoring_dest=\"${project_root}/doc/book\"\n"
+"\n"
+"mkdir -p \"${monitoring_dest}\"\n"
+"yes | cp -rf \"${monitoring_root}\" \"${monitoring_dest}/\""
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:102
+msgid "The ``${project_root}`` variable is defined earlier in the file as ``project_root=$(pwd)``. This is because the documentation build has to start from the documentation repository root directory."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:107
+msgid "cartridge_cli"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:109
+msgid "The content source file for the ``cartridge_cli`` submodule is ``README.rst``, located in the directory of the submodule repository. In the final documentation view, the content should appear here: ``https://www.tarantool.io/en/doc/latest/book/cartridge/cartridge_cli/``."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:116
+msgid "Create a directory at ``./doc/book/cartridge/cartridge_cli``."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:117
+msgid "Copy ``./modules/cartridge_cli/README.rst`` to ``./doc/book/cartridge/cartridge_cli/index.rst``."
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:120
+msgid "Here ar the corresponding settings in ``build_submodules.sh``:"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:122
+msgid "rst_dest=\"${project_root}/doc/book/cartridge\"\n"
+"cartridge_cli_root=\"${project_root}/modules/cartridge-cli\"\n"
+"cartridge_cli_dest=\"${rst_dest}/cartridge_cli\"\n"
+"cartridge_cli_index_dest=\"${cartridge_cli_dest}/index.rst\"\n"
+"\n"
+"mkdir -p \"${cartridge_cli_dest}\"\n"
+"yes | cp -rf \"${cartridge_cli_root}/README.rst\" \"${cartridge_cli_index_dest}\""
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:135
+msgid "3. Update .gitignore"
+msgstr ""
+
+#: ../../doc/contributing/docs/infra.rst:137
+msgid "Finally, add paths to the copied directories and files to ``.gitignore``."
+msgstr ""

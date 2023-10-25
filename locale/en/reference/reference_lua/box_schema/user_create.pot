@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:5
+msgid "box.schema.user.create()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:11
+msgid "Create a user. For explanation of how Tarantool maintains user data, see section :ref:`Users<authentication-users>` and reference on :ref:`_user <box_space-user>` space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:16
+msgid "The possible options are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:18
+msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the user already exists,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:21
+msgid "``password`` (default = '') - string; the ``password`` = *password* specification is good because in a :ref:`URI <index-uri>` (Uniform Resource Identifier) it is usually illegal to include a user-name without a password."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:28
+msgid "The maximum number of users is 32."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:30
+msgid "a user name, which should conform to the :ref:`rules for object names <app_server-names>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:31
+msgid "``if_not_exists``, ``password``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:33
+msgid "nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:35
+msgid "**Examples:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_create.rst:37
+msgid "box.schema.user.create('testuser')\n"
+"box.schema.user.create('testuser', {password = 'foobar'})\n"
+"box.schema.user.create('testuser', {if_not_exists = false})"
+msgstr ""

@@ -1,0 +1,258 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:5
+msgid "Module *cartridge.issues*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:7
+msgid "Monitor issues across cluster instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:11
+msgid "Cartridge detects the following problems:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:13
+msgid "Replication:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:15
+msgid "critical: \"Replication from ... to ... isn't running\" - when  ``box.info.replication.upstream == nil`` ;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:17
+msgid "critical: \"Replication from ... to ... state \"stopped\"/\"orphan\"/etc. (...)\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:18
+msgid "warning: \"Replication from ... to ...: high lag\" - when  ``upstream.lag > box.cfg.replication_sync_lag`` ;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:20
+msgid "warning: \"Replication from ... to ...: long idle\" - when  ``upstream.idle > 2 * box.cfg.replication_timeout`` ;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:24
+msgid "Failover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:26
+msgid "warning: \"Can't obtain failover coordinator (...)\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:27
+msgid "warning: \"There is no active failover coordinator\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:28
+msgid "warning: \"Failover is stuck on ...: Error fetching appointments (...)\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:29
+msgid "warning: \"Failover is stuck on ...: Failover fiber is dead\" - this is likely a bug;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:33
+msgid "Switchover:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:35
+msgid "warning: \"Consistency on ... isn't reached yet\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:38
+msgid "Clock:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:40
+msgid "warning: \"Clock difference between ... and ... exceed threshold\" ``limits.clock_delta_threshold_warning`` ;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:44
+msgid "Memory:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:46
+msgid "critical: \"Running out of memory on ...\" - when all 3 metrics `items_used_ratio`, `arena_used_ratio`, `quota_used_ratio` from ``box.slab.info()``  exceed  ``limits.fragmentation_threshold_critical`` ;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:49
+msgid "warning: \"Memory is highly fragmented on ...\" - when ``items_used_ratio > limits.fragmentation_threshold_warning``  and both `arena_used_ratio`, `quota_used_ratio` exceed critical limit;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:54
+msgid "Configuration:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:56
+msgid "warning: \"Configuration checksum mismatch on ...\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:57
+msgid "warning: \"Configuration is prepared and locked on ...\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:58
+msgid "warning: \"Advertise URI (...) differs from clusterwide config (...)\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:59
+msgid "warning: \"Configuring roles is stuck on ... and hangs for ... so far\";"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:62
+msgid "Alien members:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:64
+msgid "warning: \"Instance ... with alien uuid is in the membership\" - when two separate clusters share the same cluster cookie;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:68
+msgid "Expelled instances:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:70
+msgid "warning: \"Replicaset ... has expelled instance ... in box.space._cluster\" - when instance was expelled from replicaset, but still remains in box.space._cluster;"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:74
+msgid "Deprecated space format:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:76
+msgid "warning: \"Instance ... has spaces with deprecated format: space1, ...\""
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:79
+msgid "Custom issues (defined by user):"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:81
+msgid "Custom roles can announce more issues with their own level, topic and message. See :ref:`custom-role.get_issues <custom-role.get_issues>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:85
+msgid "GraphQL request:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:87
+msgid "You can get info about cluster issues using the following GrapQL request:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:89
+msgid "{\n"
+"    cluster {\n"
+"        issues {\n"
+"            level\n"
+"            message\n"
+"            replicaset_uuid\n"
+"            instance_uuid\n"
+"            topic\n"
+"         }\n"
+"     }\n"
+" }"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:108
+msgid "Tables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:115
+msgid "limits"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:117
+msgid "Thresholds for issuing warnings. All settings are local, not clusterwide. They can be changed with corresponding environment variables ( ``TARANTOOL_*`` ) or command-line arguments. See :ref:`cartridge.argparse <cartridge.argparse>` module for details."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:124
+msgid "**Fields:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:126
+msgid "*fragmentation_threshold_critical:* (**number**) *default*: 0.85."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:127
+msgid "*fragmentation_threshold_full:* (**number**) *default*: 1.0."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:128
+msgid "*fragmentation_threshold_warning:* (**number**) *default*: 0.6."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:129
+msgid "*clock_delta_threshold_warning:* (**number**) *default*: 5."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:134
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:141
+msgid "validate_limits (limits)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:143
+msgid "Validate limits configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:146
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:171
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:148
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:173
+msgid "*limits:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:150
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:175
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:152
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:177
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:155
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:180
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:157
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:182
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:159
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:184
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:166
+msgid "set_limits (limits)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.issues.rst:168
+msgid "Update limits configuration."
+msgstr ""

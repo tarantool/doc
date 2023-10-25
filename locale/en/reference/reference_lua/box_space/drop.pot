@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:5
+msgid "space_object:drop()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:11
+msgid "Drop a space. The method is performed in background and doesn't block consequent requests."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:14
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:17
+msgid "nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:19
+msgid "**Possible errors:** ``space_object`` does not exist."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:21
+msgid "**Complexity factors:** Index size, Index type, Number of indexes accessed, WAL settings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:24
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/drop.rst:26
+msgid "box.space.space_that_does_not_exist:drop()"
+msgstr ""

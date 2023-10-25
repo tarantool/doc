@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:5
+msgid "box.space._ck_constraint"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:11
+msgid "``_ck_constraint`` is a system space where check constraints are stored."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:13
+msgid "Tuples in this space contain the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:15
+msgid "the numeric id of the space (\"space_id\"),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:16
+msgid "the name,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:17
+msgid "whether the check is deferred (\"is_deferred\"),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:18
+msgid "the language of the expression, such as 'SQL',"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:19
+msgid "the expression (\"code\")"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:21
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_ck_constraint.rst:23
+msgid "tarantool> box.space._ck_constraint:select()\n"
+"---\n"
+"- - [527, 'c1', false, 'SQL', '\"f2\" > ''A''']\n"
+"  - [527, 'c2', false, 'SQL', '\"f2\" == UPPER(\"f3\") AND NOT \"f2\" LIKE ''__''']\n"
+"..."
+msgstr ""

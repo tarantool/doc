@@ -1,0 +1,1113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/popen.rst:5
+msgid "Module popen"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:13
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`, Tarantool has the ``popen`` built-in module that supports execution of external programs. It is similar to Python's `subprocess() <https://docs.python.org/3.8/library/subprocess.html>`_ or Ruby's `Open3 <https://docs.ruby-lang.org/en/2.0.0/Open3.html>`_. However, Tarantool's ``popen`` module does not have all the helpers that those languages provide, it provides only basic functions. ``popen`` uses the `vfork() <https://pubs.opengroup.org/onlinepubs/009695399/functions/vfork.html>`_ system call to create an object, so the caller thread is blocked until execution of a child process begins."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:25
+msgid "The ``popen`` module provides two functions to create the popen object:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:28
+msgid ":ref:`popen.shell <popen-shell>` which is similar to the libc `popen <https://www.gnu.org/software/libc/manual/html_node/Pipe-to-a-Subprocess.html>`_ syscall"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:31
+msgid ":ref:`popen.new <popen-new>` to create a popen object with more specific options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:33
+msgid "Either function returns a handle which we will call ``popen_handle`` or ``ph``. With the handle one can execute methods."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:38
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:40
+msgid "Below is a list of all ``popen`` functions and handle methods."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:48
+#: ../../doc/reference/reference_lua/popen.rst:212
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:48
+#: ../../doc/reference/reference_lua/popen.rst:212
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:50
+msgid ":ref:`popen.shell() <popen-shell>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:50
+msgid "Execute a shell command"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:53
+msgid ":ref:`popen.new() <popen-new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:53
+msgid "Execute a child program in a new process"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:56
+msgid ":ref:`popen_handle:read() <popen-read>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:56
+msgid "Read data from a child peer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:59
+msgid ":ref:`popen_handle:write() <popen-write>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:59
+msgid "Write a string to stdin stream of a child process"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:62
+msgid ":ref:`popen_handle:shutdown() <popen-shutdown>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:62
+msgid "Close parent's ends of std* fds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:65
+msgid ":ref:`popen_handle:terminate() <popen-terminate>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:65
+msgid "Send SIGTERM signal to a child process"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:68
+msgid ":ref:`popen_handle:kill() <popen-kill>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:68
+msgid "Send SIGKILL signal to a child process"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:71
+msgid ":ref:`popen_handle:signal() <popen-signal>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:71
+msgid "Send signal to a child process"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:74
+msgid ":ref:`popen_handle:info() <popen-info>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:74
+msgid "Return information about the popen handle"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:77
+msgid ":ref:`popen_handle:wait() <popen-wait>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:77
+msgid "Wait until a child process gets exited or signaled"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:80
+msgid ":ref:`popen_handle:close() <popen-close>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:80
+msgid "Close a popen handle"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:83
+msgid ":ref:`Module constants <popen-constants>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:83
+msgid "Module constants"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:86
+msgid ":ref:`Handle fields <popen-handle_fields>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:86
+msgid "Handle fields"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:94
+msgid "Execute a shell command."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:96
+msgid "a command to run, mandatory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:97
+msgid "communication mode, optional"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:98
+#: ../../doc/reference/reference_lua/popen.rst:163
+msgid "(if success) a popen handle, which we will call ``popen_handle`` or ``ph``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:101
+#: ../../doc/reference/reference_lua/popen.rst:166
+#: ../../doc/reference/reference_lua/popen.rst:412
+#: ../../doc/reference/reference_lua/popen.rst:447
+#: ../../doc/reference/reference_lua/popen.rst:576
+#: ../../doc/reference/reference_lua/popen.rst:774
+msgid "(if failure) ``nil, err``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:103
+msgid "Possible errors: if a parameter is incorrect, the result is IllegalParams: incorrect type or value of a parameter. For other possible errors, see :ref:`popen.new() <popen-new>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:107
+msgid "The possible ``mode`` values are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:109
+msgid "``'w'``    which enables :ref:`popen_handle:write() <popen-write>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:110
+msgid "``'r'``    which enables :ref:`popen_handle:read() <popen-read>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:111
+msgid "``'R'``    which enables :ref:`popen_handle:read({stderr = true}) <popen-read>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:112
+msgid "``'nil'``    which means inherit parent's std* file descriptors"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:114
+msgid "Several mode characters can be set together, for example ``'rw'``, ``'rRw'``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:116
+msgid "The ``shell`` function is just a shortcut for :ref:`popen.new({command}, opts) <popen-new>` with ``opts.shell.setsid`` and ``opts.shell.group_signal`` both set to `true`, and with ``opts.stdin`` and ``opts.stdout`` and ``opts.stderr`` all set based on the ``mode`` parameter."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:120
+msgid "All std* streams are inherited from the parent by default unless it is changed using mode: ``'r'`` for stdout, ``'R'`` for stderr, or ``'w'`` for stdin."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:124
+#: ../../doc/reference/reference_lua/popen.rst:519
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:126
+msgid "This is the equivalent of the ``sh -c date`` command. It starts a process, runs ``'date'``, reads the output, and closes the popen object (``ph``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:130
+msgid "local popen = require('popen')\n"
+"-- Run the program and save its handle.\n"
+"local ph = popen.shell('date', 'r')\n"
+"-- Read program's output, strip trailing newline.\n"
+"local date = ph:read():rstrip()\n"
+"-- Free resources. The process is killed (but 'date'\n"
+"-- exits itself anyway).\n"
+"ph:close()\n"
+"print(date)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:142
+msgid "Unix defines a text file as a sequence of lines. Each line is terminated by a newline (``\\\\n``) symbol. The same convention is usually applied for text output of a command. So, when it is redirected to a file, the file will be correct."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:147
+msgid "However, internally an application usually operates on strings, which are *not* terminated by newline (for example literals for error messages). The newline is usually added just before a string is written for the outside world (stdout, console or log). That is why the example above contains ``rstrip()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:157
+msgid "Execute a child program in a new process."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:159
+msgid "an array of a program to run with command line options, mandatory; absolute path to the program is required when ``opts.shell`` is false (default)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:162
+msgid "table of options, optional"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:168
+#: ../../doc/reference/reference_lua/popen.rst:452
+#: ../../doc/reference/reference_lua/popen.rst:497
+#: ../../doc/reference/reference_lua/popen.rst:620
+#: ../../doc/reference/reference_lua/popen.rst:753
+#: ../../doc/reference/reference_lua/popen.rst:776
+msgid "Possible raised errors are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:170
+msgid "IllegalParams: incorrect type or value of a parameter"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:171
+msgid "IllegalParams: group signal is set, while setsid is not"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:173
+#: ../../doc/reference/reference_lua/popen.rst:462
+msgid "Possible error reasons when ``nil, err`` is returned are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:175
+msgid "SystemError: dup(), fcntl(), pipe(), vfork() or close() fails in the parent process"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:177
+msgid "SystemError: (temporary restriction) the parent process has closed stdin, stdout or stderr"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:179
+msgid "OutOfMemory: unable to allocate the handle or a temporary buffer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:181
+#: ../../doc/reference/reference_lua/popen.rst:400
+#: ../../doc/reference/reference_lua/popen.rst:489
+msgid "Possible ``opts`` items are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:183
+msgid "``opts.stdin`` (action on STDIN_FILENO)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:184
+msgid "``opts.stdout`` (action on STDOUT_FILENO)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:185
+msgid "``opts.stderr`` (action on STDERR_FILENO)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:187
+msgid "The ``opts`` table file descriptor actions may be:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:189
+msgid "``popen.opts.INHERIT`` (== ``'inherit'``) [default] inherit the fd from the parent"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:190
+msgid "``popen.opts.DEVNULL`` (== ``'devnull'``) open /dev/null on the fd"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:191
+msgid "``popen.opts.CLOSE`` (== ``'close'``) close the fd"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:192
+msgid "``popen.opts.PIPE`` (== ``'pipe'``) feed data from fd to parent, or from parent to fd, using a pipe"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:195
+msgid "The ``opts`` table may contain an ``env`` table of environment variables to be used inside a process. Each ``opts.env`` item may be a key-value pair (key is a variable name, value is a variable value)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:199
+msgid "If ``opts.env`` is not set then the current environment is inherited."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:200
+msgid "If ``opts.env`` is an empty table, then the environment will be dropped."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:201
+msgid "If ``opts.env`` is set to a non-empty table, then the environment will be replaced."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:203
+msgid "The ``opts`` table may contain these boolean items:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:212
+msgid "Default"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:214
+msgid "opts.shell"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:214
+#: ../../doc/reference/reference_lua/popen.rst:219
+#: ../../doc/reference/reference_lua/popen.rst:237
+#: ../../doc/reference/reference_lua/popen.rst:243
+msgid "false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:214
+msgid "If true, then run a child process via ``sh -c \"${opts.argv}\"``. If false, then call the executable directly."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:219
+msgid "opts.setsid"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:219
+msgid "If true, then run the program in a new session. If false, then run the program in the Tarantool instance's session and process group."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:225
+msgid "opts.close_fds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:225
+#: ../../doc/reference/reference_lua/popen.rst:230
+msgid "true"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:225
+msgid "If true, then close all inherited fds from the parent. If false, then do not close all inherited fds from the parent."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:230
+msgid "opts.restore_signals"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:230
+msgid "If true, then reset all signal actions modified in the parent's process. If false, then inherit all signal actions modified in the parent's process."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:237
+msgid "opts.group_signal"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:237
+msgid "If true, then send signal to a child process group, if and only if ``opts.setsid`` is enabled. If false, then send signal to a child process only."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:243
+msgid "opts.keep_child"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:243
+msgid "If true, then do not send SIGKILL to a child process (or to a process group if ``opts.group_signal`` true). If false, then do send SIGKILL to a child process (or to a process group if ``opts.group_signal`` is true) at :ref:`popen_handle:close() <popen-close>` or when Lua GC collects the handle."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:256
+msgid "The returned ``ph`` handle provides a :ref:`popen_handle:close() <popen-close>` method for explicitly releasing all occupied resources, including the child process itself if ``opts.keep_child`` is not set). However, if the ``close()`` method is not called for a handle during its lifetime, the Lua GC will trigger the same freeing actions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:263
+msgid "Tarantool recommends using ``opts.setsid`` plus ``opts.group_signal`` if a child process may spawn its own children and if they should all be killed together."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:267
+msgid "A signal will not be sent if the child process is already dead. Otherwise we might kill another process that occupies the same PID later. This means that if the child process dies before its own children die, then the function will not send a signal to the process group even when ``opts.setsid`` and ``opts.group_signal`` are set."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:274
+msgid "Use :ref:`os.environ() <os-environ>` to pass a copy of the current environment with several replacements (see example 2 below)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:277
+#: ../../doc/reference/reference_lua/popen.rst:689
+msgid "**Example 1**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:279
+msgid "This is the equivalent of the ``sh -c date`` command. It starts a process, runs 'date', reads the output, and closes the popen object (``ph``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:283
+msgid "local popen = require('popen')\n"
+"\n"
+"local ph = popen.new({'/bin/date'}, {\n"
+"    stdout = popen.opts.PIPE,\n"
+"})\n"
+"local date = ph:read():rstrip()\n"
+"ph:close()\n"
+"print(date) -- e.g. Thu 16 Apr 2020 01:40:56 AM MSK"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:294
+#: ../../doc/reference/reference_lua/popen.rst:713
+msgid "**Example 2**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:296
+msgid "Example 2 is quite similar to Example 1, but sets an environment variable and uses the shell builtin ``'echo'`` to show it."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:300
+msgid "local popen = require('popen')\n"
+"local env = os.environ()\n"
+"env['FOO'] = 'bar'\n"
+"local ph = popen.new({'echo \"${FOO}\"'}, {\n"
+"    stdout = popen.opts.PIPE,\n"
+"    shell = true,\n"
+"    env = env,\n"
+"})\n"
+"local res = ph:read():rstrip()\n"
+"ph:close()\n"
+"print(res) -- bar"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:314
+msgid "**Example 3**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:316
+msgid "Example 3 demonstrates how to capture a child's stderr."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:318
+msgid "local popen = require('popen')\n"
+"local ph = popen.new({'echo hello >&2'}, { -- !!\n"
+"    stderr = popen.opts.PIPE,              -- !!\n"
+"    shell = true,\n"
+"})\n"
+"local res = ph:read({stderr = true}):rstrip()\n"
+"ph:close()\n"
+"print(res) -- hello"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:329
+msgid "**Example 4**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:331
+msgid "Example 4 demonstrates how to run a stream program (like ``grep``, ``sed`` and so on), write to its stdin and read from its stdout."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:334
+msgid "The example assumes that input data are small enough to fit in a pipe buffer (typically 64 KiB, but this depends on the platform and its configuration)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:338
+msgid "If a process writes lengthy data, it will get stuck in :ref:`popen_handle:write() <popen-write>`. To handle this case: call :ref:`popen_handle:read() <popen-read>` in a loop in another fiber (start it before the first ``:write()``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:343
+msgid "If a process writes lengthy text to stderr, it may get stick in ``write()`` because the stderr pipe buffer becomes full. To handle this case: read stderr in a separate fiber."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:347
+msgid "local function call_jq(input, filter)\n"
+"    -- Start jq process, connect to stdin, stdout and stderr.\n"
+"    local jq_argv = {'/usr/bin/jq', '-M', '--unbuffered', filter}\n"
+"    local ph, err = popen.new(jq_argv, {\n"
+"        stdin = popen.opts.PIPE,\n"
+"        stdout = popen.opts.PIPE,\n"
+"        stderr = popen.opts.PIPE,\n"
+"    })\n"
+"    if ph == nil then return nil, err end\n"
+"    -- Write input data to child's stdin and send EOF.\n"
+"    local ok, err = ph:write(input)\n"
+"    if not ok then return nil, err end\n"
+"    ph:shutdown({stdin = true})\n"
+"    -- Read everything until EOF.\n"
+"    local chunks = {}\n"
+"    while true do\n"
+"        local chunk, err = ph:read()\n"
+"        if chunk == nil then\n"
+"            ph:close()\n"
+"            return nil, err\n"
+"        end\n"
+"        if chunk == '' then break end -- EOF\n"
+"        table.insert(chunks, chunk)\n"
+"    end\n"
+"    -- Read diagnostics from stderr if any.\n"
+"    local err = ph:read({stderr = true})\n"
+"    if err ~= '' then\n"
+"        ph:close()\n"
+"        return nil, err\n"
+"    end\n"
+"    -- Glue all chunks, strip trailing newline.\n"
+"    return table.concat(chunks):rstrip()\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:385
+msgid "popen handle methods"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:393
+msgid "Read data from a child peer."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:395
+#: ../../doc/reference/reference_lua/popen.rst:439
+#: ../../doc/reference/reference_lua/popen.rst:482
+#: ../../doc/reference/reference_lua/popen.rst:537
+#: ../../doc/reference/reference_lua/popen.rst:553
+#: ../../doc/reference/reference_lua/popen.rst:570
+#: ../../doc/reference/reference_lua/popen.rst:613
+#: ../../doc/reference/reference_lua/popen.rst:746
+#: ../../doc/reference/reference_lua/popen.rst:769
+msgid "handle of a child process created with :ref:`popen.new() <popen-new>` or :ref:`popen.shell() <popen-shell>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:398
+#: ../../doc/reference/reference_lua/popen.rst:443
+#: ../../doc/reference/reference_lua/popen.rst:485
+msgid "options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:402
+msgid "``opts.stdout`` (boolean, default ``true``, if ``true`` then read from stdout)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:403
+msgid "``opts.stderr`` (boolean, default ``false``, if ``true`` then read from stderr)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:404
+msgid "``opts.timeout`` (number, default 100 years, time quota in seconds)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:406
+msgid "In other words: by default ``read()`` reads from stdout, but reads from stderr if one sets ``opts.stderr`` to ``true``. It is not legal to set both ``opts.stdout`` and ``opts.stderr`` to ``true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:410
+msgid "(if success) string with read value, empty string if EOF"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:414
+msgid "**Possible errors**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:416
+msgid "These errors are raised on incorrect parameters or when the fiber is cancelled:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:418
+#: ../../doc/reference/reference_lua/popen.rst:454
+msgid "IllegalParams:    incorrect type or value of a parameter"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:419
+#: ../../doc/reference/reference_lua/popen.rst:455
+#: ../../doc/reference/reference_lua/popen.rst:581
+msgid "IllegalParams:    called on a closed handle"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:420
+msgid "IllegalParams:    opts.stdout and opts.stderr are both set"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:421
+msgid "IllegalParams:    a requested IO operation is not supported by the handle (stdout / stderr is not piped)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:423
+#: ../../doc/reference/reference_lua/popen.rst:459
+msgid "IllegalParams:    attempt to operate on a closed file descriptor"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:424
+msgid "FiberIsCancelled: cancelled by external code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:426
+msgid "``nil, err`` is returned on following failures:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:428
+msgid "SocketError: an IO error occurs at read()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:429
+msgid "TimedOut:    exceeded the opts.timeout quota"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:430
+msgid "OutOfMemory: no memory space for a buffer to read into"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:431
+msgid "LuajitError: (\"not enough memory\"): no memory space for the Lua string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:437
+msgid "Write string ``str`` to stdin stream of a child process."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:442
+msgid "string to write"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:444
+#: ../../doc/reference/reference_lua/popen.rst:486
+msgid "``true`` on success, ``false`` on error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+#: ../../doc/reference/reference_lua/popen.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:445
+#: ../../doc/reference/reference_lua/popen.rst:487
+msgid "(if success) boolean = true"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:449
+msgid "Possible ``opts`` items are: ``opts.timeout`` (number, default 100 years, time quota in seconds)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:456
+msgid "IllegalParams:    string length is greater then SSIZE_MAX"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:457
+msgid "IllegalParams:    a requested IO operation is not supported by the handle (stdin is not piped)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:460
+#: ../../doc/reference/reference_lua/popen.rst:757
+msgid "FiberIsCancelled: cancelled by an outside code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:464
+msgid "SocketError: an IO error occurs at write()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:465
+msgid "TimedOut:    exceeded opts.timeout quota"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:467
+msgid "``write()`` may yield forever if the child process does not read data from stdin and a pipe buffer becomes full. The size of this pipe buffer depends on the platform. Set ``opts.timeout`` when unsure."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:472
+msgid "When ``opts.timeout`` is not set, the ``write()`` blocks (yields the fiber) until all data is written or an error happens."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:480
+msgid "Close parent's ends of std* fds."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:491
+msgid "``opts.stdin`` (boolean) close parent's end of stdin"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:492
+msgid "``opts.stdout`` (boolean) close parent's end of stdout"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:493
+msgid "``opts.stderr`` (boolean) close parent's end of stderr"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:495
+msgid "We may use the term std* to mean any one of these items."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:499
+msgid "IllegalParams:  an incorrect handle parameter"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:500
+msgid "IllegalParams:  called on a closed handle"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:501
+msgid "IllegalParams:  neither stdin, stdout nor stderr is chosen"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:502
+msgid "IllegalParams:  a requested IO operation is not supported by the handle (one of std* is not piped)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:505
+msgid "The main reason to use ``shutdown()`` is to send EOF to a child's stdin. However the parent's end of stdout / stderr may be closed too."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:509
+msgid "``shutdown()`` does not fail on already closed fds (idempotence). However, it fails on an attempt to close the end of a pipe that never existed. In other words, only those ``std*`` options that were set to ``popen.opts.PIPE`` during handle creation may be used here (for :ref:`popen.shell() <popen-shell>`: ``'r'`` corresponds to stdout, ``'R'`` to stderr and ``'w'`` to stdin)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:516
+msgid "``shutdown()`` does not close any fds on a failure: either all requested fds are closed or none of them."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:521
+msgid "local popen = require('popen')\n"
+"local ph = popen.shell('sed s/foo/bar/', 'rw')\n"
+"ph:write('lorem foo ipsum')\n"
+"ph:shutdown({stdin = true})\n"
+"local res = ph:read()\n"
+"ph:close()\n"
+"print(res) -- lorem bar ipsum"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:535
+msgid "Send SIGTERM signal to a child process."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:540
+#: ../../doc/reference/reference_lua/popen.rst:556
+msgid "see :ref:`popen_handle:signal() <popen-signal>` for errors and return values"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:543
+msgid "``terminate()`` only sends a SIGTERM signal. It does *not* free any resources (such as popen handle memory and file descriptors)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:551
+msgid "Send SIGKILL signal to a child process."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:560
+msgid "``kill()`` only sends a SIGKILL signal. It does *not* free any resources (such as popen handle memory and file descriptors)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:568
+msgid "Send signal to a child process."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:573
+#: ../../doc/reference/reference_lua/popen.rst:616
+#: ../../doc/reference/reference_lua/popen.rst:749
+msgid "signal to send"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:574
+msgid "(if success) `true` (signal is sent)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:578
+msgid "Possible raised errors:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:580
+msgid "IllegalParams:    an incorrect handle parameter"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:583
+msgid "Possible error values for ``nil, err``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:585
+msgid "SystemError: a process does not exists any more (this may also be returned for a zombie process or when all processes in a group are zombies (but see note re Mac OS below)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:588
+msgid "SystemError: invalid signal number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:589
+msgid "SystemError: no permission to send a signal to a process or a process group (this is returned on Mac OS when a signal is sent to a process group, where a group leader is a zombie (or when all processes in it are zombies, details re uncertain) (this may also appear due to other reasons, details are uncertain)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:597
+msgid "If ``opts.setsid`` and ``opts.group_signal`` are set for the handle, the signal is sent to the process group rather than to the process. See :ref:`popen.new() <popen-new>` for details about group signaling. Warning: On Mac OS it is possible that a process in the group will not receive the signal, particularly if the process has just been forked (this may be due to a race condition)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:604
+msgid "Note: The module offers ``popen.signal.SIG*`` constants, because some signals have different numbers on different platforms."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:611
+msgid "Return information about the popen handle."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:617
+#: ../../doc/reference/reference_lua/popen.rst:750
+msgid "(if success) formatted result"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:618
+#: ../../doc/reference/reference_lua/popen.rst:751
+msgid "res"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:622
+#: ../../doc/reference/reference_lua/popen.rst:755
+#: ../../doc/reference/reference_lua/popen.rst:778
+msgid "IllegalParams: an incorrect handle parameter"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:623
+#: ../../doc/reference/reference_lua/popen.rst:756
+msgid "IllegalParams: called on a closed handle"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:625
+msgid "The result format is:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:627
+msgid "{\n"
+"    pid = <number> or <nil>,\n"
+"    command = <string>,\n"
+"    opts = <table>,\n"
+"    status = <table>,\n"
+"    stdin = one-of(\n"
+"        popen.stream.OPEN   (== 'open'),\n"
+"        popen.stream.CLOSED (== 'closed'),\n"
+"        nil,\n"
+"    ),\n"
+"    stdout = one-of(\n"
+"        popen.stream.OPEN   (== 'open'),\n"
+"        popen.stream.CLOSED (== 'closed'),\n"
+"        nil,\n"
+"    ),\n"
+"    stderr = one-of(\n"
+"        popen.stream.OPEN   (== 'open'),\n"
+"        popen.stream.CLOSED (== 'closed'),\n"
+"        nil,\n"
+"    ),\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:651
+msgid "``pid`` is a process id of the process when it is alive, otherwise ``pid`` is nil."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:654
+msgid "``command`` is a concatenation of space-separated arguments that were passed to ``execve()``. Multiword arguments are quoted. Quotes inside arguments are not escaped."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:658
+msgid "``opts`` is a table of handle options as in the :ref:`popen.new() <popen-new>` ``opts`` parameter. ``opts.env`` is not shown here, because the environment variables map is not stored in a handle."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:664
+msgid "``status`` is a table that represents a process status in the following format:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:667
+msgid "{\n"
+"    state = one-of(\n"
+"        popen.state.ALIVE    (== 'alive'),\n"
+"        popen.state.EXITED   (== 'exited'),\n"
+"        popen.state.SIGNALED (== 'signaled'),\n"
+"    )\n"
+"    -- Present when `state` is 'exited'.\n"
+"    exit_code = <number>,\n"
+"    -- Present when `state` is 'signaled'.\n"
+"    signo = <number>,\n"
+"    signame = <string>,\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:682
+msgid "``stdin``, ``stdout``, and ``stderr`` reflect the status of the parent's end of a piped stream. If a stream is not piped, the field is not present (``nil``). If it is piped, the status may be either ``popen.stream.OPEN`` (== ``'open'``) or ``popen.stream.CLOSED`` (== ``'closed'``). The status may be changed from ``'open'`` to ``'closed'`` by a :ref:`popen_handle:shutdown({std... = true}) <popen-shutdown>` call."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:691
+#: ../../doc/reference/reference_lua/popen.rst:715
+msgid "(on Tarantool console)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:693
+msgid "tarantool> require('popen').new({'/usr/bin/touch', '/tmp/foo'})\n"
+"---\n"
+"- command: /usr/bin/touch /tmp/foo\n"
+"  status:\n"
+"    state: alive\n"
+"  opts:\n"
+"    stdout: inherit\n"
+"    stdin: inherit\n"
+"    group_signal: false\n"
+"    keep_child: false\n"
+"    close_fds: true\n"
+"    restore_signals: true\n"
+"    shell: false\n"
+"    setsid: false\n"
+"    stderr: inherit\n"
+"  pid: 9499\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:717
+msgid "tarantool> require('popen').shell('grep foo', 'wrR')\n"
+"---\n"
+"- stdout: open\n"
+"  command: sh -c 'grep foo'\n"
+"  stderr: open\n"
+"  status:\n"
+"    state: alive\n"
+"  stdin: open\n"
+"  opts:\n"
+"    stdout: pipe\n"
+"    stdin: pipe\n"
+"    group_signal: true\n"
+"    keep_child: false\n"
+"    close_fds: true\n"
+"    restore_signals: true\n"
+"    shell: true\n"
+"    setsid: true\n"
+"    stderr: pipe\n"
+"  pid: 10497\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:744
+msgid "Wait until a child process gets exited or signaled."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:759
+msgid "The formatted result is a process status table (the same as the ``status`` component of the table returned by :ref:`popen_handle:info() <popen-info>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:767
+msgid "Close a popen handle."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:772
+msgid "(if success) true"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:780
+msgid "Possible diagnostics when ``nil, err`` is returned (do not consider them as errors):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:783
+msgid "SystemError: no permission to send a signal to a process or a process group (This diagnostic may appear due to Mac OS behavior on zombies when ``opts.group_signal`` is set, see :ref:`popen_handle:signal() <popen-signal>`. It may appear for other reasons, details are unclear.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:788
+msgid "The return is always ``true`` when a process is known to be dead (for example, after :ref:`popen_handle:wait() <popen-wait>` no signal will be sent, so no 'failure' may appear)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:792
+msgid "``close()`` kills a process using SIGKILL and releases all resources associated with the popen handle."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:795
+msgid "Details about signaling:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:797
+msgid "The signal is sent only when opts.keep_child is not set."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:798
+msgid "The signal is sent only when a process is alive according to the information available on current event loop iteration. (There is a gap here: a zombie may be signaled; it is harmless.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:802
+msgid "The signal is sent to a process or a process group depending on ``opts.group_signal``. (See :ref:`popen.new() <popen-new>` for details of group signaling)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:806
+msgid "Resources are released regardless whether or not a signal sending succeeds: fds are closed, memory is released, the handle is marked as closed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:810
+msgid "No operation is possible on a closed handle except ``close()``, which is always successful on a closed handle (idempotence)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:814
+msgid "``close()`` may return ``true`` or ``nil, err``, but it always frees the handle resources. So any return value usually means success for a caller. The return values are purely informational: they are for logging or some kind of reporting."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:821
+msgid "**Handle fields**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:823
+msgid "popen_handle.pid\n"
+"popen_handle.command\n"
+"popen_handle.opts\n"
+"popen_handle.status\n"
+"popen_handle.stdin\n"
+"popen_handle.stdout\n"
+"popen_handle.stderr"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:833
+msgid "See :ref:`popen_handle:info() <popen-info>` for details."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:837
+msgid "**Module constants**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/popen.rst:839
+msgid "- popen.opts\n"
+"  - INHERIT (== 'inherit')\n"
+"  - DEVNULL (== 'devnull')\n"
+"  - CLOSE   (== 'close')\n"
+"  - PIPE    (== 'pipe')\n"
+"\n"
+"- popen.signal\n"
+"  - SIGTERM (== 9)\n"
+"  - SIGKILL (== 15)\n"
+"  - ...\n"
+"\n"
+"- popen.state\n"
+"  - ALIVE    (== 'alive')\n"
+"  - EXITED   (== 'exited')\n"
+"  - SIGNALED (== 'signaled')\n"
+"\n"
+"- popen.stream\n"
+"  - OPEN    (== 'open')\n"
+"  - CLOSED  (== 'closed')"
+msgstr ""

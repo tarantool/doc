@@ -1,0 +1,266 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/db/sequences.rst:4
+msgid "Using sequences"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:6
+msgid "A **sequence** is a generator of ordered integer values."
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:8
+msgid "As with spaces and indexes, you should specify the sequence **name** and let Tarantool generate a unique numeric identifier (sequence ID)."
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:11
+msgid "As well, you can specify several options when creating a new sequence. The options determine the values that are generated whenever the sequence is used."
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:17
+msgid "Options for box.schema.sequence.create()"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:25
+msgid "Option name"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:26
+msgid "Type and meaning"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:27
+msgid "Default"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:28
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:29
+msgid "``start``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:30
+msgid "Integer. The value to generate the first time a sequence is used"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:31
+#: ../../doc/how-to/db/sequences.rst:35
+#: ../../doc/how-to/db/sequences.rst:51
+msgid "1"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:32
+msgid "``start=0``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:33
+msgid "``min``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:34
+msgid "Integer. Values smaller than this cannot be generated"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:36
+msgid "``min=-1000``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:37
+msgid "``max``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:38
+msgid "Integer. Values larger than this cannot be generated"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:39
+msgid "9223372036854775807"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:40
+msgid "``max=0``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:41
+msgid "``cycle``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:42
+msgid "Boolean. Whether to start again when values cannot be generated"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:43
+msgid "false"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:44
+msgid "``cycle=true``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:45
+msgid "``cache``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:46
+msgid "Integer. The number of values to store in a cache"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:47
+msgid "0"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:48
+msgid "``cache=0``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:49
+msgid "``step``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:50
+msgid "Integer. What to add to the previous generated value, when generating a new value"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:52
+msgid "``step=-1``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:53
+msgid "``if_not_exists``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:54
+msgid "Boolean. If this is true and a sequence with this name exists already, ignore other options and use the existing values"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:56
+msgid "``false``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:57
+msgid "``if_not_exists=true``"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:60
+msgid "Once a sequence exists, it can be altered, dropped, reset, forced to generate the next value, or associated with an index."
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:64
+msgid "Associating a sequence with an index"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:66
+msgid "First, create a sequence:"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:68
+msgid "-- Create a sequence --\n"
+"box.schema.sequence.create('id_seq',{min=1000, start=1000})\n"
+"--[[\n"
+"---\n"
+"- step: 1\n"
+"  id: 1\n"
+"  min: 1000\n"
+"  cache: 0\n"
+"  uid: 1\n"
+"  cycle: false\n"
+"  name: id_seq\n"
+"  start: 1000\n"
+"  max: 9223372036854775807\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:73
+msgid "The result shows that the new sequence has all default values, except for the two that were specified, ``min`` and ``start``."
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:76
+msgid "Get the next value from the sequence by calling the ``next()`` function:"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:78
+msgid "-- Get the next item --\n"
+"box.sequence.id_seq:next()\n"
+"--[[\n"
+"---\n"
+"- 1000\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:83
+msgid "The result is the same as the start value. The next call increases the value by one (the default sequence step)."
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:86
+msgid "Create a space and specify that its primary key should be generated from the sequence:"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:89
+msgid "-- Create a space --\n"
+"box.schema.space.create('customers')\n"
+"\n"
+"-- Create an index that uses the sequence --\n"
+"box.space.customers:create_index('primary',{ sequence = 'id_seq' })\n"
+"--[[\n"
+"---\n"
+"- parts:\n"
+"  - type: unsigned\n"
+"    is_nullable: false\n"
+"    fieldno: 1\n"
+"  sequence_id: 1\n"
+"  id: 0\n"
+"  space_id: 513\n"
+"  unique: true\n"
+"  hint: true\n"
+"  type: TREE\n"
+"  name: primary\n"
+"  sequence_fieldno: 1\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:94
+msgid "Insert a tuple without specifying a value for the primary key:"
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:96
+msgid "\n"
+"-- Insert a tuple without the primary key value --\n"
+"box.space.customers:insert{ nil, 'Adams' }\n"
+"--[[\n"
+"---\n"
+"- [1001, 'Adams']\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:101
+msgid "The result is a new tuple where the first field is assigned the next value from the sequence. This arrangement, where the system automatically generates the values for a primary key, is sometimes called \"auto-incrementing\" or \"identity\"."
+msgstr ""
+
+#: ../../doc/how-to/db/sequences.rst:106
+msgid "For syntax and implementation details, see the reference for :doc:`box.schema.sequence </reference/reference_lua/box_schema_sequence>`."
+msgstr ""

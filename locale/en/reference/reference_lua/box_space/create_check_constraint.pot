@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:5
+msgid "box.space.create_check_constraint()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:9
+msgid "This function was removed in :doc:`2.11.0 </release/2.11.0>`. The check constraint mechanism is replaced with the new tuple constraints. Learn more about tuple constraints in :ref:`Constraints <index-constraints>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:18
+msgid "Create a check constraint. A check constraint is a requirement that must be met when a tuple is inserted or updated in a space. Check constraints created with ``space_object:create_check_constraint`` have the same effect as check constraints created with an SQL CHECK() clause in a :ref:`CREATE TABLE statement <sql_create_table>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:25
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:27
+msgid "name of check constraint, which should conform to the :ref:`rules for object names <app_server-names>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:29
+msgid "SQL code of an expression which must return a boolean result"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:31
+msgid "check constraint object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:32
+msgid "check_constraint_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:34
+msgid "The space must be formatted with :doc:`/reference/reference_lua/box_space/format` so that the expression can contain field names. The space must be empty. The space must not be a system space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:38
+msgid "The expression must return true or false and should be deterministic. The expression may be any SQL (not Lua) expression containing field names, built-in function names, literals, and operators. Not subqueries. If a field name contains lower case characters, it must be enclosed in \"double quotes\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:43
+msgid "Check constraints are checked before the request is performed, at the same time as Lua :doc:`before_replace triggers </reference/reference_lua/box_space/before_replace>`. If there is more than one check constraint or before_replace trigger, then they are ordered according to time of creation. (This is a change from the earlier behavior of check constraints, which caused checking before the tuple was formed.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:51
+msgid "Check constraints can be dropped with :samp:`{space_object}.ck_constraint.{check_constraint_name}:drop()`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:53
+msgid "Check constraints can be disabled with :samp:`{space_object}.ck_constraint.{check_constraint_name}:enable(false)` or :samp:`{check_constraint_object}:enable(false)`. Check constraints can be enabled with :samp:`{space_object}.ck_constraint.{check_constraint_name}:enable(true)` or :samp:`{check_constraint_object}:enable(true)`. By default a check constraint is 'enabled' which means that the check is performed whenever the request is performed, but can be changed to 'disabled' which means that the check is not performed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:61
+msgid "During the recovery process, for example when the Tarantool server is starting, the check is not performed unless :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>` is specified."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:66
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:68
+msgid "box.schema.space.create('t')\n"
+"box.space.t:format({{name = 'f1', type = 'unsigned'},\n"
+"                    {name = 'f2', type = 'string'},\n"
+"                    {name = 'f3', type = 'string'}})\n"
+"box.space.t:create_index('i')\n"
+"box.space.t:create_check_constraint('c1', [[\"f2\" > 'A']])\n"
+"box.space.t:create_check_constraint('c2',\n"
+"                        [[\"f2\"=UPPER(\"f3\") AND NOT \"f2\" LIKE '__']])\n"
+"-- This insert will fail, constraint c1 expression returns false\n"
+"box.space.t:insert{1, 'A', 'A'}\n"
+"-- This insert will fail, constraint c2 expression returns false\n"
+"box.space.t:insert{1, 'B', 'c'}\n"
+"-- This insert will succeed, both constraint expressions return true\n"
+"box.space.t:insert{1, 'B', 'b'}\n"
+"-- This update will fail, constraint c2 expression returns false\n"
+"box.space.t:update(1, {{'=', 2, 'xx'}, {'=', 3, 'xx'}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_check_constraint.rst:87
+msgid "A list of check constraints is in :doc:`/reference/reference_lua/box_space/_ck_constraint`."
+msgstr ""

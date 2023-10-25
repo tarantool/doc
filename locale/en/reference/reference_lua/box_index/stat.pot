@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:5
+msgid "index_object:stat()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:11
+msgid "Return statistics about actions taken that affect the index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:13
+msgid "This is for use with the vinyl engine."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:15
+msgid "Some detail items in the output from ``index_object:stat()`` are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:17
+msgid "``index_object:stat().latency`` -- timings subdivided by percentages;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:18
+msgid "``index_object:stat().bytes`` -- the number of bytes total;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:19
+msgid "``index_object:stat().disk.rows`` -- the approximate number of tuples in each range;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:20
+msgid "``index_object:stat().disk.statement`` -- counts of inserts|updates|upserts|deletes;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:21
+msgid "``index_object:stat().disk.compaction`` -- counts of compactions and their amounts;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:22
+msgid "``index_object:stat().disk.dump`` -- counts of dumps and their amounts;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:23
+msgid "``index_object:stat().disk.iterator.bloom`` -- counts of bloom filter hits|misses;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:24
+msgid "``index_object:stat().disk.pages`` -- the size in pages;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:25
+msgid "``index_object:stat().disk.last_level`` -- size of data in the last LSM tree level;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:26
+msgid "``index_object:stat().cache.evict`` -- number of evictions from the cache;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:27
+msgid "``index_object:stat().range_size`` -- maximum number of bytes in a range;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:28
+msgid "``index_object:stat().dumps_per_compaction`` -- average number of dumps required to trigger major compaction in any range of the LSM tree."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:30
+msgid "Summary index statistics are also available via :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:33
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:36
+msgid "statistics"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/stat.rst:37
+msgid "table"
+msgstr ""

@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:4
+msgid "Default value for sql_seq_scan session setting"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:6
+msgid "The default value for the ``sql_seq_scan`` session setting will be set to false starting with Tarantool 3.0. To be able to return the behavior to the old default, a new ``compat`` option is introduced."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:10
+msgid "Old and new behavior"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:12
+msgid "Old behavior: SELECT scan queries are always allowed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:14
+msgid "New behavior: SELECT scan queries are only allowed if the SEQSCAN keyword is used correctly."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:16
+msgid "Note that the ``sql_seq_scan_default`` compat option only affects sessions during initialization. It means that you should set ``sql_seq_scan_default`` before running ``box.cfg{}`` or creating a new session. Also, a new session created before executing ``box.cfg{}`` will not be affected by the value of the ``compat`` option."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:20
+msgid "Examples of setting the option before execution of ``box.cfg{}``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:22
+msgid "tarantool> require('compat').sql_seq_scan_default = 'new'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> box.cfg{log_level = 1}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> box.space._session_settings:get{'sql_seq_scan'}\n"
+"---\n"
+"- ['sql_seq_scan', false]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:37
+msgid "tarantool> require('compat').sql_seq_scan_default = 'old'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> box.cfg{log_level = 1}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> box.space._session_settings:get{'sql_seq_scan'}\n"
+"---\n"
+"- ['sql_seq_scan', true]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:52
+msgid "Examples of setting the option before creation of a new session after execution of ``box.cfg{}``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:54
+msgid "tarantool> box.cfg{log_level = 1, listen = 3301}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> require('compat').sql_seq_scan_default = 'new'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> cn = require('net.box').connect(box.cfg.listen)\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> cn.space._session_settings:get{'sql_seq_scan'}\n"
+"---\n"
+"- ['sql_seq_scan', false]\n"
+"...\n"
+"\n"
+"tarantool> require('tarantool').compat.sql_seq_scan_default = 'old'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> cn = require('net.box').connect(box.cfg.listen)\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> cn.space._session_settings:get{'sql_seq_scan'}\n"
+"---\n"
+"- ['sql_seq_scan', true]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:87
+msgid "Known compatibility issues"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:89
+msgid "At this point, no incompatible modules are known."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:92
+msgid "Detecting issues in your codebase"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:94
+msgid "We expect most SELECTs that do not use indexes to fail after the ``sql_seq_scan`` session setting is set to false. The best way to avoid this is to refactor the query to use indexes. To understand if SELECT uses indexes, you can use EXPLAIN QUERY PLAN. If SEARCH TABLE is specified, the index is used. If it says SCAN TABLE, the index is not used."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/sql_seq_scan_default.rst:99
+msgid "You can use the SEQSCAN keyword to manually allow scanning queries. Or you can set the ``sql_seq_scan`` session setting to true to allow all scanning queries."
+msgstr ""

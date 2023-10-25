@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:5
+msgid "Updating the data schema"
+msgstr ""
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:7
+msgid "When working with data, it is sometimes necessary to change the original data schema."
+msgstr ""
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:9
+msgid "In the previous sections, we described a cluster-wide data schema in the YAML format. The ``ddl`` module is responsible for applying the schema on the cluster. This module does not allow to modify the schema after applying it."
+msgstr ""
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:13
+msgid "The easiest way to change it is to delete the database snapshots and create a schema from scratch. Of course, this is only acceptable during application development and debugging. For production scenarios, read the section on :ref:`migrations <migrations>`."
+msgstr ""
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:18
+msgid "To remove snapshots:"
+msgstr ""
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:20
+msgid "If you are using Tarantool in the cloud, click the \"Reset configuration\" button."
+msgstr ""
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:22
+msgid "If you've started Tarantool locally via ``cartridge start``, run ``cartridge clean`` in the application directory."
+msgstr ""
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:24
+msgid "If you've started Tarantool in a different way, delete the snapshots and xlogs manually. These files have the .snap and .xlog extensions respectively, and they are located in the Tarantool working directory."
+msgstr ""
+
+#: ../../doc/getting_started/change_schema_dynamically.rst:29
+msgid "To understand how the Tarantool data schema works, read the :ref:`Data model <box_data_model>` section."
+msgstr ""

@@ -1,0 +1,1157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.rst:3
+msgid "Tarantool 1.10"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:5
+msgid "Release: :tarantool-release:`1.10.0`"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:11
+msgid "**Release 1.10.4**"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:13
+msgid "Release type: stable (lts). Release date: 2019-09-26.  Tag: 1-10-4."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:15
+msgid "Release: :tarantool-release:`1.10.4.`"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:17
+#: ../../doc/release/1.10.rst:219
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:19
+msgid "1.10.4 is the next :ref:`stable (lts) <release-policy>` release in the 1.10 series. The label 'stable' means we have had systems running in production without known crashes, bad results or other showstopper bugs for quite a while now."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:23
+msgid "This release resolves about 50 issues since 1.10.3."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:25
+#: ../../doc/release/1.10.rst:227
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:27
+#: ../../doc/release/1.10.rst:229
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. Please :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 1.10.x series when migrating from 1.9 version."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:33
+#: ../../doc/release/1.10.rst:232
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:37
+msgid "(Engines) Improve dump start/stop logging. When initiating memory dump, print"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:36
+msgid "how much memory is going to be dumped, expected dump rate, ETA, and the recent write rate. Upon dump completion, print observed dump rate in addition to dump size and duration."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:44
+msgid "(Engines) Look up key in reader thread. If a key isn't found in the tuple cache,"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:40
+msgid "we fetch it from a run file. In this case disk read and page decompression is done by a reader thread, however key lookup in the fetched page is still performed by the TX thread. Since pages are immutable, this could as well be done by the reader thread, which would allow us to save some precious CPU cycles for TX (:tarantool-issue:`4257`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:46
+msgid "(Core) Improve :ref:`box.stat.net <box_introspection-box_stat>`"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:47
+msgid "(:tarantool-issue:`4150`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:50
+msgid "(Core) Add ``idle`` to downstream status in ``box.info``."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:49
+msgid "When a relay sends a row it updates ``last_row_time`` value with the current time. When ``box.info()`` is called, ``idle`` is set to ``current_time`` - ``last_row_time``."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:60
+msgid "(Replication) Print corrupted rows on decoding error."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:53
+msgid "Improve row printing to log. Print the header row by row, 16 bytes in a row, and format output to match ``xxd`` output:"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:56
+msgid "[001] 2019-04-05 18:22:46.679 [11859] iproto V> Got a corrupted row:\n"
+"[001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000000: A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53 60 5F 20 3F\n"
+"[001] 2019-04-05 18:22:46.679 [11859] iproto V> 00000010: D8 E2 D6 E2 A3 02 D6 5A E4 D9 E7 68 A1 53 8D 53"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:74
+msgid "(Lua) Add type of operation to space :ref:`trigger parameters <box_space-on_replace>`."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:63
+msgid "For example, a trigger function may now look like this:"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:65
+msgid "function before_replace_trig(old, new, space_name, op_type)\n"
+"    if op_type == 'INSERT' then\n"
+"        return old\n"
+"    else\n"
+"        return new\n"
+"    end\n"
+"end"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:75
+msgid "(:tarantool-issue:`4099`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:78
+msgid "(Lua) Add ``debug.sourcefile()`` and ``debug.sourcedir()`` helpers"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:77
+msgid "(and ``debug.__file__`` and ``debug.__dir__ shortcuts``) to determine the location of a current Lua source file. Part of (:tarantool-issue:`4193`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:85
+msgid "(HTTP client) Add ``max_total_connections`` option in addition to"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:81
+msgid "``max_connections`` to allow more fine-grained tuning of ``libcurl`` connection cache. Don't restrict the total connections` with a constant value by default, but use ``libcurl``'s default, which scales the threshold according to easy handles count (:tarantool-issue:`3945`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:87
+#: ../../doc/release/1.10.rst:253
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:89
+msgid "(Vinyl) Fix assertion failure in `vy_tx_handle_deferred_delete`"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:90
+msgid "(:tarantool-issue:`4294`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:91
+msgid "(Vinyl) Don't purge deleted runs from vylog on compaction. Cherry-picked from (:tarantool-issue:`4218`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:93
+msgid "(Vinyl) Don't throttle DDL"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:94
+msgid "(:tarantool-issue:`4238`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:95
+msgid "(Vinyl) Fix deferred DELETE statement lost on commit"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:96
+msgid "(:tarantool-issue:`4248`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:97
+msgid "(Vinyl) Fix assertion while recovering dumped statement"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:98
+msgid "(:tarantool-issue:`4222`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:99
+msgid "(Vinyl) Reset dump watermark after updating memory limit"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:100
+msgid "(:tarantool-issue:`3864`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:101
+msgid "(Vinyl) Be pessimistic about write rate when setting dump watermark"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:102
+msgid "(:tarantool-issue:`4166`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:103
+msgid "(Vinyl) Fix crash if space is dropped while space.get is reading from it"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:104
+msgid "(:tarantool-issue:`4109`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:105
+msgid "(Vinyl) Fix crash during index build"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:106
+msgid "(:tarantool-issue:`4152`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:107
+msgid "(Vinyl) Don't compress L1 runs"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:108
+msgid "(:tarantool-issue:`2389`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:109
+msgid "(Vinyl) Account statements skipped on read."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:110
+msgid "(Vinyl) Take into account primary key lookup in latency accounting."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:111
+msgid "(Vinyl) Fix ``vy_range_update_compaction_priority`` hang."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:112
+msgid "(Vinyl) Free region on vylog commit instead of resetting it and clean up region after allocating surrogate statement."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:114
+msgid "(Vinyl) Increase even more the open file limit in ``systemd`` unit file."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:115
+msgid "(Vinyl) Increment min range size to 128MB"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:116
+msgid "(Memtx) Cancel checkpoint thread at exit"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:117
+msgid "(:tarantool-issue:`4170`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:118
+msgid "(Core) Fix crash for update with empty tuple"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:119
+msgid "(:tarantool-issue:`4041`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:120
+msgid "(Core) Fix use-after-free in ``space_truncate``"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:121
+msgid "(:tarantool-issue:`4093`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:122
+msgid "(Core) Fix error while altering index with sequence"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:123
+msgid "(:tarantool-issue:`4214`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:124
+msgid "(Core) Detect a new invalid json path case"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:125
+msgid "(:tarantool-issue:`4419`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:126
+msgid "(Core) Fix empty password authentication"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:127
+msgid "(:tarantool-issue:`4327`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:128
+msgid "(Core) Fix ``txn::sub_stmt_begin`` array size."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:129
+msgid "(Core) Account ``index.pairs`` in ``box.stat.SELECT()``."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:130
+msgid "(Replication) Disallow bootstrap of read-only masters"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:131
+msgid "(:tarantool-issue:`4321`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:132
+msgid "(Replication) Enter orphan mode on manual replication configuration change"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:133
+msgid "(:tarantool-issue:`4424`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:134
+msgid "(Replication) Set ``last_row_time`` to ``now`` in ``relay_new`` and ``relay_start``. PR `4431 <https://github.com/tarantool/tarantool/pull/4431>`_."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:136
+msgid "(Replication) Stop relay on subscribe error"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:137
+msgid "(:tarantool-issue:`4399`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:138
+msgid "(Replication) Init ``coio`` watcher before join/subscribe"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:139
+msgid "(:tarantool-issue:`4110`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:140
+msgid "(Replication) Allow to change instance id during join"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:141
+msgid "(:tarantool-issue:`4107`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:142
+msgid "(Replication) Fix garbage collection logic."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:143
+msgid "(Replication) Revert packet boundary checking for iproto."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:144
+msgid "(Replication) Do not abort replication on ER_UNKNOWN_REPLICA."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:145
+msgid "(Replication) Reduce effects of input buffer fragmentation on large ``cfg.readahead``."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:146
+msgid "(Replication) Fix upgrade from 1.7 (it doesn't recognize IPROTO_VOTE request type)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:148
+msgid "(Replication) Fix memory leak in call / eval in the case when a transaction"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:148
+msgid "is not committed (:tarantool-issue:`4388`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:150
+msgid "(Lua) Fix ``fio.mktree()`` error reporting"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:151
+msgid "(:tarantool-issue:`4044`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:152
+msgid "(Lua) Fix segfault on ``ffi.C_say()`` without filename"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:153
+msgid "(:tarantool-issue:`4336`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:154
+msgid "(Lua) Fix segfault on ``json.encode()`` on a recursive table"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:155
+msgid "(:tarantool-issue:`4366`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:158
+msgid "(Lua) Fix ``pwd.getpwall()`` and ``pwd.getgrall()`` hang on CentOS 6"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:157
+msgid "and FreeBSD 12 (:tarantool-issue:`4447`, :tarantool-issue:`4428`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:160
+msgid "(Lua) Fix a segfault during initialization of a cipher from ``crypto`` module"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:161
+msgid "(:tarantool-issue:`4223`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:162
+msgid "(HTTP client) Reduce stack consumption during waiting for a DNS resolving result"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:163
+msgid "(:tarantool-issue:`4179`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:164
+msgid "(HTTP client) Increase max outgoing header size to 8 KiB"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:165
+msgid "(:tarantool-issue:`3959`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:167
+msgid "(HTTP client) Verify \"headers\" option stronger"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:167
+msgid "(:tarantool-issue:`4281`, :tarantool-issue:`3679`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:173
+msgid "(HTTP client) Use bundled ``libcurl`` rather than system-wide by default"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:170
+msgid "(:tarantool-issue:`4318`, :tarantool-issue:`4180`, :tarantool-issue:`4288`, :tarantool-issue:`4389`, :tarantool-issue:`4397`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:176
+msgid "(HTTP client) This closes several known problems that were fixed in recent"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:176
+msgid "``libcurl`` versions, including segfaults, hangs, memory leaks and performance problems."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:178
+msgid "(LuaJIT) Fix overflow of snapshot map offset"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:179
+#: ../../doc/release/1.10.rst:181
+msgid "Part of (:tarantool-issue:`4171`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:180
+msgid "(LuaJIT) Fix rechaining of pseudo-resurrected string keys"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:182
+msgid "(LuaJIT) Fix fold machinery misbehaves"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:183
+msgid "(:tarantool-issue:`4376`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:184
+msgid "(LuaJIT) Fix for `debug.getinfo(1,'>S')`"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:185
+msgid "(:tarantool-issue:`3833`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:186
+msgid "(LuaJIT) Fix `string.find` recording"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:187
+msgid "(:tarantool-issue:`4476`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:188
+msgid "(LuaJIT) Fixed a segfault when unsinking 64-bit pointers."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:189
+msgid "(Misc) Increase even more the open file limit in ``systemd`` unit file."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:190
+msgid "(Misc) Raise error in ``tarantoolctl`` when ``box.cfg()`` isn't called"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:191
+msgid "(:tarantool-issue:`3953`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:192
+msgid "(Misc) Support ``systemd``’s NOTIFY_SOCKET on OS X"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:193
+msgid "(:tarantool-issue:`4436`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:195
+msgid "(Misc) Fix ``coio_getaddrinfo()`` when 0 timeout is passed"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:195
+msgid "(affects ``netbox``’s ``connect_timeout``) (:tarantool-issue:`4209`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:198
+msgid "(Misc) Fix ``coio_do_copyfile()`` to perform truncate of destination"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:198
+msgid "(affects ``fio.copyfile()``) (:tarantool-issue:`4181`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:200
+msgid "(Misc) Make hints in ``coio_getaddrinfo()`` optional."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:201
+msgid "(Misc) Validate ``msgpack.decode()`` cdata size argument"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:202
+msgid "(:tarantool-issue:`4224`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:204
+msgid "(Misc) Fix linking with static ``openssl`` library"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:204
+msgid "(:tarantool-issue:`4437`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:206
+#: ../../doc/release/1.10.rst:350
+msgid "Deprecations"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:209
+msgid "(Core) Deprecate ``rows_per_wal`` in favor of ``wal_max_size``."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:209
+msgid "Part of (:tarantool-issue:`3762`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:213
+msgid "**Release 1.10.3**"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:215
+msgid "Release type: stable (lts). Release date: 2019-04-01.  Tag: 1-10-3."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:217
+msgid "Release: :tarantool-release:`1.10.3.`"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:221
+msgid "1.10.3 is the next :ref:`stable (lts) <release-policy>` release in the 1.10 series. The label 'stable' means we have had systems running in production without known crashes, bad results or other showstopper bugs for quite a while now."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:225
+msgid "This release resolves 69 issues since 1.10.2."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:234
+msgid "(Engines) Randomize vinyl index compaction"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:235
+msgid "(:tarantool-issue:`3944`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:236
+msgid "(Engines) Throttle tx thread if compaction doesn't keep up with dumps"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:237
+msgid "(:tarantool-issue:`3721`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:238
+msgid "(Engines) Do not apply run_count_per_level to the last level"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:239
+msgid "(:tarantool-issue:`3657`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:240
+msgid "(Server) Report the number of active iproto connections"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:241
+msgid "(:tarantool-issue:`3905`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:242
+msgid "(Replication) Never keep a dead replica around if running out of disk space"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:243
+msgid "(:tarantool-issue:`3397`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:244
+msgid "(Replication) Report join progress to the replica log"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:245
+msgid "(:tarantool-issue:`3165`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:246
+msgid "(Lua) Expose snapshot status in box.info.gc()"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:247
+msgid "(:tarantool-issue:`3935`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:248
+msgid "(Lua) Show names of Lua functions in backtraces in fiber.info()"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:249
+msgid "(:tarantool-issue:`3538`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:251
+msgid "(Lua) Check if transaction opened"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:251
+msgid "(:tarantool-issue:`3518`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:255
+msgid "(Engines) Tarantool crashes if DML races with DDL"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:256
+msgid "(:tarantool-issue:`3420`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:257
+msgid "(Engines) Recovery error if DDL is aborted"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:258
+msgid "(:tarantool-issue:`4066`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:259
+msgid "(Engines) Tarantool could commit in the read-only mode"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:260
+msgid "(:tarantool-issue:`4016`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:261
+msgid "(Engines) Vinyl iterator crashes if used throughout DDL"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:262
+msgid "(:tarantool-issue:`4000`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:263
+msgid "(Engines) Vinyl doesn't exit until dump/compaction is complete"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:264
+msgid "(:tarantool-issue:`3949`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:265
+msgid "(Engines) After re-creating secondary index no data is visible"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:266
+msgid "(:tarantool-issue:`3903`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:267
+msgid "(Engines) box.info.memory().tx underflow"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:268
+msgid "(:tarantool-issue:`3897`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:269
+msgid "(Engines) Vinyl stalls on intensive random insertion"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:270
+msgid "(:tarantool-issue:`3603`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:271
+msgid "(Server) Newer version of libcurl explodes fiber stack"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:272
+msgid "(:tarantool-issue:`3569`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:273
+msgid "(Server) SIGHUP crashes tarantool"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:274
+msgid "(:tarantool-issue:`4063`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:275
+msgid "(Server) checkpoint_daemon.lua:49: bad argument #2 to 'format'"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:276
+msgid "(:tarantool-issue:`4030`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:277
+msgid "(Server) fiber:name() show only part of name"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:278
+msgid "(:tarantool-issue:`4011`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:279
+msgid "(Server) Second hot standby switch may fail"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:280
+msgid "(:tarantool-issue:`3967`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:281
+msgid "(Server) Updating box.cfg.readahead doesn't affect existing connections"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:282
+msgid "(:tarantool-issue:`3958`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:283
+msgid "(Server) fiber.join() blocks in 'suspended' if fiber has cancelled"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:284
+msgid "(:tarantool-issue:`3948`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:285
+msgid "(Server) Tarantool can be crashed by sending gibberish to a binary socket"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:286
+msgid "(:tarantool-issue:`3900`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:287
+msgid "(Server) Stored procedure to produce push-messages never breaks on client disconnect"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:288
+msgid "(:tarantool-issue:`3559`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:289
+msgid "(Server) Tarantool crashed in lj_vm_return"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:290
+msgid "(:tarantool-issue:`3840`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:291
+msgid "(Server) Fiber executing box.cfg() may process messages from iproto"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:292
+msgid "(:tarantool-issue:`3779`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:293
+msgid "(Server) Possible regression on nosqlbench"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:294
+msgid "(:tarantool-issue:`3747`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:295
+msgid "(Server) Assertion after improper index creation"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:296
+msgid "(:tarantool-issue:`3744`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:297
+msgid "(Server) Tarantool crashes on vshard startup (lj_gc_step)"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:298
+msgid "(:tarantool-issue:`3725`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:299
+msgid "(Server) Do not restart replication on box.cfg if the configuration didn't change"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:300
+msgid "(:tarantool-issue:`3711`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:301
+msgid "(Replication) Applier times out too fast when reading large tuples"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:302
+msgid "(:tarantool-issue:`4042`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:303
+msgid "(Replication) Vinyl replica join fails"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:304
+msgid "(:tarantool-issue:`3968`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:305
+msgid "(Replication) Error during replication"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:306
+msgid "(:tarantool-issue:`3910`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:307
+msgid "(Replication) Downstream status doesn't show up in replication.info unless the channel is broken"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:308
+msgid "(:tarantool-issue:`3904`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:309
+msgid "(Replication) replication fails: tx checksum mismatch"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:310
+#: ../../doc/release/1.10.rst:324
+msgid "(:tarantool-issue:`3883`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:311
+msgid "(Replication) Rebootstrap crashes if master has replica's rows"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:312
+msgid "(:tarantool-issue:`3740`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:313
+msgid "(Replication) After restart tuples revert back to their old state which was before replica sync"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:314
+msgid "(:tarantool-issue:`3722`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:315
+msgid "(Replication) Add vclock for safer hot standby switch"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:316
+msgid "(:tarantool-issue:`3002`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:317
+msgid "(Replication) Master row is skipped forever in case of wal write failure"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:318
+msgid "(:tarantool-issue:`2283`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:319
+msgid "(Lua) space:frommap():tomap() conversion fail"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:320
+msgid "(:tarantool-issue:`4045`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:321
+msgid "(Lua) Non-informative message when trying to read a negative count of bytes from socket"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:322
+msgid "(:tarantool-issue:`3979`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:323
+msgid "(Lua) space:frommap raise \"tuple field does not match...\" even for nullable field"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:325
+msgid "(Lua) Tarantool crashes on net.box.call after some uptime with vshard internal fiber"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:326
+msgid "(:tarantool-issue:`3751`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:327
+msgid "(Lua) Heap use after free in lbox_error"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:328
+msgid "(:tarantool-issue:`1955`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:329
+msgid "(Misc) http.client doesn't honour 'connection: keep-alive'"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:330
+msgid "(:tarantool-issue:`3955`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:331
+msgid "(Misc) net.box wait_connected is broken"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:332
+msgid "(:tarantool-issue:`3856`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:333
+msgid "(Misc) Mac build fails on Mojave"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:334
+msgid "(:tarantool-issue:`3797`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:335
+msgid "(Misc) FreeBSD build error: no SSL support"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:336
+msgid "(:tarantool-issue:`3750`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:337
+msgid "(Misc) 'http.client' sets invalid (?) reason"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:338
+msgid "(:tarantool-issue:`3681`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:339
+msgid "(Misc) Http client silently modifies headers when value is not a \"string\" or a \"number\""
+msgstr ""
+
+#: ../../doc/release/1.10.rst:340
+msgid "(:tarantool-issue:`3679`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:341
+msgid "(Misc) yaml.encode uses multiline format for 'false' and 'true'"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:342
+msgid "(:tarantool-issue:`3662`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:343
+msgid "(Misc) yaml.encode encodes 'null' incorrectly"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:344
+msgid "(:tarantool-issue:`3583`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:345
+msgid "(Misc) Error object message is empty"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:346
+msgid "(:tarantool-issue:`3604`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:348
+msgid "(Misc) Log can be flooded by warning messages"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:348
+msgid "(:tarantool-issue:`2218`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:352
+msgid "Deprecate ``console=true`` option for :ref:`net.box.new() <net_box-new>`."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:356
+msgid "**Release 1.10.2**"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:358
+msgid "Release type: stable (lts). Release date: 2018-10-13.  Tag: 1-10-2."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:360
+msgid "Release: :tarantool-release:`1.10.2.`"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:362
+msgid "This is the first :ref:`stable (lts) <release-policy>` release in the 1.10 series. Also, Tarantool 1.10.2 is a major release that deprecates Tarantool 1.9.2. It resolves 95 issues since 1.9.2."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:367
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` procedure."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:372
+msgid "The goal of this release is to significantly increase ``vinyl`` stability and introduce automatic rebootstrap of a Tarantool replica set."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:375
+msgid "Functionality added or changed:"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:377
+msgid "(Engines) support ALTER for non-empty vinyl spaces (:tarantool-issue:`1653`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:379
+msgid "(Engines) tuples stored in the vinyl cache are not shared among the indexes of the same space (:tarantool-issue:`3478`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:382
+msgid "(Engines) keep a stack of UPSERTS in ``vy_read_iterator`` (:tarantool-issue:`1833`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:384
+msgid "(Engines) ``box.ctl.reset_stat()``, a function to reset vinyl statistics (:tarantool-issue:`3198`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:387
+msgid "(Server) :ref:`configurable syslog destination <cfg_logging-log>` (:tarantool-issue:`3487`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:389
+msgid "(Server) allow different nullability in indexes and format (:tarantool-issue:`3430`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:391
+msgid "(Server) allow to :ref:`back up any checkpoint <reference_lua-box_backup-backup_start>`, not just the last one (:tarantool-issue:`3410`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:395
+msgid "(Server) a way to detect that a Tarantool process was started / restarted by ``tarantoolctl`` (:ref:`TARANTOOLCTL and TARANTOOL_RESTARTED <tarantoolctl-instance_management>` env vars) (:tarantool-issue:`3384`, :tarantool-issue:`3215`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:401
+msgid "(Server) :ref:`net_msg_max <cfg_networking-net_msg_max>` configuration parameter to restrict the number of allocated fibers (:tarantool-issue:`3320`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:405
+msgid "(Replication) display the connection status if the downstream gets disconnected from the upstream (:ref:`box.info.replication.downstream.status <box_info_replication>` ``= disconnected``) (:tarantool-issue:`3365`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:411
+msgid "(Replication) :ref:`replica-local spaces <replication-local>` (:tarantool-issue:`3443`)"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:413
+msgid "(Replication) :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`, a new option in ``box.cfg{}`` to skip conflicting rows in replication (:tarantool-issue:`3270`)"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:417
+msgid "(Replication) remove old snapshots which are not needed by replicas (:tarantool-issue:`3444`)"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:420
+msgid "(Replication) log records which tried to commit twice (:tarantool-issue:`3105`)"
+msgstr ""
+
+#: ../../doc/release/1.10.rst:424
+msgid "(Lua) new function :ref:`fiber.join() <fiber_object-join>` (:tarantool-issue:`1397`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:426
+msgid "(Lua) new option ``names_only`` to :ref:`tuple:tomap() <box_tuple-tomap>` (:tarantool-issue:`3280`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:428
+msgid "(Lua) support custom rock servers (``server`` and ``only-server`` options for :ref:`tarantoolctl rocks <tarantoolctl-module_management>` command) (:tarantool-issue:`2640`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:433
+msgid "(Lua) expose ``on_commit``/``on_rollback`` triggers to Lua (:tarantool-issue:`857`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:435
+msgid "(Lua) new function :ref:`box.is_in_txn() <box-is_in_txn>` to check if a transaction is open (:tarantool-issue:`3518`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:438
+msgid "(Lua) tuple field access via a json path (by :ref:`number <box_tuple-field_number>`, :ref:`name <box_tuple-field_name>`, and :ref:`path <box_tuple-field_path>`); (:tarantool-issue:`1285`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:443
+msgid "(Lua) new function :ref:`space:frommap() <box_space-frommap>` (:tarantool-issue:`3282`)."
+msgstr ""
+
+#: ../../doc/release/1.10.rst:445
+msgid "(Lua) new module :ref:`utf8 <utf8-module>` that implements libicu's bindings for use in Lua (:tarantool-issue:`3290`, :tarantool-issue:`3385`)."
+msgstr ""

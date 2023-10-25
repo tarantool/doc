@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_session.rst:5
+msgid "Submodule box.session"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:7
+msgid "The ``box.session`` submodule allows querying the session state, writing to a session-specific temporary Lua table, or sending out-of-band messages, or setting up triggers which will fire when a session starts or ends."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:11
+msgid "A *session* is an object associated with each client connection."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:13
+msgid "Below is a list of all ``box.session`` functions and members."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:24
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:25
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:27
+msgid ":doc:`./box_session/id`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:28
+msgid "Get the current session's ID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:30
+msgid ":doc:`./box_session/exists`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:31
+msgid "Check if a session exists"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:33
+msgid ":doc:`./box_session/peer`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:34
+msgid "Get the session peer's host address and port"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:36
+msgid ":doc:`./box_session/sync`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:37
+msgid "Get the sync integer constant"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:39
+msgid ":doc:`./box_session/user`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:40
+msgid "Get the current user's name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:42
+msgid ":doc:`./box_session/type`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:43
+msgid "Get the connection type or cause of action"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:45
+msgid ":doc:`./box_session/su`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:46
+msgid "Change the current user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:48
+msgid ":doc:`./box_session/uid`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:49
+msgid "Get the current user's ID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:51
+msgid ":doc:`./box_session/euid`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:52
+msgid "Get the current effective user's ID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:54
+msgid ":doc:`./box_session/storage`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:55
+msgid "Table with session-specific names and values"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:57
+msgid ":doc:`./box_session/on_connect`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:58
+msgid "Define a connect trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:60
+msgid ":doc:`./box_session/on_disconnect`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:61
+msgid "Define a disconnect trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:63
+msgid ":doc:`./box_session/on_auth`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:64
+msgid "Define an authentication trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:66
+msgid ":doc:`./box_session/on_access_denied`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:67
+msgid "Define a trigger to report restricted actions"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:69
+msgid ":doc:`./box_session/push`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session.rst:70
+msgid "Send an out-of-band message"
+msgstr ""

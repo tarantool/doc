@@ -1,0 +1,172 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/terms.rst:2
+msgid "Defining and using terms"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:7
+msgid "What are concepts and terms"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:9
+msgid "To write well about a certain subject matter, one needs to know its details and use the right, carefully selected words for them. These details are called concepts, and the words for them are called terms."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:15
+msgid "concept"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:17
+msgid "A concept is the idea of an object, attribute, or action. It is independent of languages, audience, and products. It just exists."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:20
+msgid "For example, a large database can be partitioned into smaller instances. Those instances are easier to operate, and their throughput often exceeds the throughput of a single large database instance. The instances can exchange data to keep it consistent between them."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:24
+msgid "term"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:26
+msgid "A term is a word explicitly selected by the authors of a particular text to denote a :term:`concept` in a particular language for a particular audience."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:30
+msgid "For example, in Tarantool, we use the term \"[database] sharding\" to denote the concept described in the previous example."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:37
+msgid "Use preferred terms"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:39
+msgid "The purpose of using terms is writing concisely and unambiguously, which is good for the readers. But selecting terms is hard. Often, the community favors two or more terms for one concept, so there's no obvious choice. Selecting and consistently using any of them is much better than not making a choice and using a random term every time. This is why it's also helpful to restrict the usage of some terms explicitly."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:49
+msgid "restricted term"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:51
+msgid "A restricted term is a word that the authors explicitly prohibited to use for denoting a :term:`concept`. Such a word is sometimes used as a :term:`term` for the same :term:`concept` elsewhere -- in the community, in books, or in other product documentation. Sometimes this word is used to denote a similar but different concept. In this case, the right choice of terms helps us differentiate between concepts."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:59
+msgid "For example, in Tarantool, we don't use the term \"[database] segmentation\" to denote what we call \"database sharding.\" Nevertheless, other authors might do so. We also use the term \"[database] partitioning\" to denote a wider concept, which includes sharding among other things."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:68
+msgid "Define terms by explaining concepts"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:70
+msgid "We always want to document definitions for the most important concepts, as well as for concepts unique to Tarantool."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:73
+msgid "Define every term in the document that you find most appropriate for it. You don't have to create a dedicated glossary page containing all the definitions."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:76
+msgid "To define a term, use the ``glossary`` directive in the following way:"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:78
+msgid "..  glossary::\n"
+"\n"
+"    term\n"
+"        definition text\n"
+"\n"
+"    term2\n"
+"        definition text"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:90
+msgid "There can be several ``glossary`` directives in a Sphinx documentation project and even in a single document. This page has two of them, for example."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:94
+msgid "The `Sphinx documentation <https://github.com/sphinx-doc/sphinx/blob/master/doc/glossary.rst>`_ has an extensive glossary that can be used as a reference."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:101
+msgid "Introduce terms on first entry"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:103
+msgid "When you use a term in a document for the first time, define it and provide synonyms, a translation, examples, and/or links. It will help readers learn the term and understand the concept behind it."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:108
+msgid "Define the term or give a link to the definition."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:110
+msgid "Database sharding is a type of horizontal partitioning."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:112
+msgid "To give a link to the definition, use the `term` role:"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:114
+msgid "For example, this is a link to the definition of :term:`concept`.\n"
+"Like any rST role, it can have :term:`custom text <concept>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:119
+msgid "The resulting output will look like this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:121
+msgid "For example, this is a link to the definition of :term:`concept`. Like any rST role, it can have :term:`custom text <concept>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:124
+msgid "With acronyms, you can also use the `abbr` role:"
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:126
+msgid "Delete the corresponding :abbr:`PVC (persistent volume claim)`..."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:130
+msgid "It produces a tooltip link: :abbr:`PVC (persistent volume claim)`."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:132
+msgid "Provide synonyms, including the :term:`restricted terms <restricted term>`. Only do it on the first entry of a term."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:135
+msgid "Database sharding (also known as ...) is a type of..."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:137
+msgid "When writing in Russian, it's good to add the corresponding English term. Readers may be more familiar with it or can search it online."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:140
+msgid "Шардирование (сегментирование, sharding) --- это..."
+msgstr ""
+
+#: ../../doc/contributing/docs/terms.rst:142
+msgid "Give examples or links to extra reading where you can."
+msgstr ""

@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:2
+msgid "Environment configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:4
+msgid "$ tt cfg COMMAND [OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:8
+msgid "``tt cfg`` manages a ``tt`` environment :ref:`configuration <tt-config_file>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:12
+msgid "Commands"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:20
+msgid "``dump``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:21
+msgid "Print a ``tt`` environment configuration."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:23
+msgid "Options:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:25
+msgid "``-r``, ``--raw``: Print a raw content of the ``tt.yaml`` configuration file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:29
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:31
+msgid "Print the current ``tt`` environment configuration:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cfg.rst:33
+msgid "$ tt cfg dump"
+msgstr ""

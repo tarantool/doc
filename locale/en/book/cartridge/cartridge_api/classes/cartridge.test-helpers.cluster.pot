@@ -1,0 +1,316 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:5
+msgid "Class *cartridge.test-helpers.cluster*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:7
+msgid "Class to run and manage multiple tarantool instances."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:21
+msgid "Cluster:new (object)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:23
+msgid "Build cluster object."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:26
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:57
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:75
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:93
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:145
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:159
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:173
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:208
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:254
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:28
+msgid "*object:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:30
+msgid "*datadir:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Data directory for all cluster servers."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:31
+msgid "*server_command:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Command to run server."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:32
+msgid "*cookie:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Cluster cookie."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:33
+msgid "*base_http_port:* (**int**) Value to calculate server's http_port. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:34
+msgid "*base_advertise_port:* (**int**) Value to calculate server's advertise_port. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:35
+msgid "*use_vshard:* (**bool**) bootstrap vshard after server is started. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:36
+msgid "*replicasets:* (**tab**) Replicasets configuration. List of :ref:`replicaset_config <cartridge.test-helpers.cluster.cartridge.test-helpers.cluster.replicaset_config>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:37
+msgid "*failover:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Failover mode: disabled, eventual, or stateful. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:38
+msgid "*stateboard_entrypoint:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Command to run stateboard. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:39
+msgid "*zone_distances:* (**tab**) Vshard distances between zones. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:40
+msgid "*swim_period:* (**number**) SWIM protocol period in seconds. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:43
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:61
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:79
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:97
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:45
+msgid "object"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:52
+msgid "Cluster:server (alias)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:54
+msgid "Find server by alias."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:59
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:63
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:81
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:99
+msgid ":ref:`cartridge.test-helpers.server <cartridge.test-helpers.server>`"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:70
+msgid "Cluster:server_by_role (role_name)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:72
+msgid "Find server by role name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:77
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:95
+msgid "*role_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:88
+msgid "Cluster:servers_by_role (role_name)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:90
+msgid "Return list of servers with enabled role by role name"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:106
+msgid "Cluster:apply_topology ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:108
+msgid "Execute  ``edit_topology``  GraphQL request to setup replicasets, apply roles join servers to replicasets."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:118
+msgid "Cluster:start ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:120
+msgid "Bootstraps cluster if it wasn't bootstrapped before.  Otherwise starts servers."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:129
+msgid "Cluster:stop ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:131
+msgid "Stop all servers."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:140
+msgid "Cluster:join_server (server)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:142
+msgid "Register running server in the cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:147
+msgid "*server:* (**Server**) Server to be registered."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:154
+msgid "Cluster:wait_until_healthy (server)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:156
+msgid "Blocks fiber until  ``cartridge.is_healthy()``  returns true on main_server."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:161
+msgid "*server:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:168
+msgid "Cluster:upload_config (config, opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:170
+msgid "Upload application config, shortcut for  ``cluster.main_server:upload_config(config)`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:175
+msgid "*config:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:176
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:179
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:194
+msgid "**See also:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:181
+msgid "cartridge.test-helpers.server.Server:upload_config"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:187
+msgid "Cluster:download_config ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:189
+msgid "Download application config, shortcut for  ``cluster.main_server:download_config()`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:196
+msgid "cartridge.test-helpers.server.Server:download_config"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:202
+msgid "Cluster:retrying (config, fn[, ...])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:204
+msgid "Keeps calling fn until it returns without error. Throws last error if config.timeout is elapsed."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:210
+msgid "*config:* (**tab**) Options for  ``luatest.helpers.retrying`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:211
+msgid "*fn:* (**func**) Function to call"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:212
+msgid "*...:*  Args to run fn with. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:217
+msgid "Tables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:224
+msgid "cartridge.test-helpers.cluster.replicaset_config"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:226
+msgid "Replicaset config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:229
+msgid "**Fields:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:231
+msgid "*alias:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Prefix to generate server alias automatically. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:232
+msgid "*uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Replicaset uuid. (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:233
+msgid "*roles:* (`{string} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) List of roles for servers in the replicaset."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:234
+msgid "*vshard_group:* (optional `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Name of vshard group."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:235
+msgid "*weight:* (optional **number**) Vshard group weight."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:236
+msgid "*all_rw:* (optional **boolean**) Make all replicas writable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:237
+msgid "*servers:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_ or **number**) List of objects to build  ``Server`` s with or.. code-block:: lua       number of servers in replicaset."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:242
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:249
+msgid "cartridge.test-helpers.cluster.iter_servers_by_role (cluster, role_name)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:251
+msgid "Return iterator for cluster server's with enabled role"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:256
+msgid "*cluster:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/classes/cartridge.test-helpers.cluster.rst:257
+msgid "*role_name:*"
+msgstr ""

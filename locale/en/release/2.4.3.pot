@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.4.3.rst:2
+msgid "Tarantool 2.4.3"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:4
+msgid "Release: :tarantool-release:`2.4.3` Date: 2020-10-22 Tag: 2.4.3-1-g986fab7"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:10
+msgid "This release resolves roughly 13 issues since the 2.4.2 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`_."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:15
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:17
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:20
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`_ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:26
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:29
+#: ../../doc/release/2.4.3.rst:97
+msgid "Module API"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:31
+msgid "Exposed the box region, key_def and several other functions in order to implement external tuple.keydef and tuple.merger modules on top of them (:tarantool-issue:`5273`, :tarantool-issue:`5384`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:36
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:39
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:41
+msgid "Fixed a crash when JSON tuple field access was used to get a multikey indexed field, and when a JSON contained [*] in the beginning (:tarantool-issue:`5224`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:44
+msgid "Fixed msgpack extension types decoding error message (:tarantool-issue:`5016`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:45
+msgid "Dropped restrictions on nullable multikey index root. They were introduced due to inaccuracy in multikey index realization. It is now fixed. Also all fields are now nullable by default as it was before 2.2.1 (:tarantool-issue:`5192`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:49
+msgid "Fixed fibers switch-over to prevent JIT machinery misbehavior. Trace recording is aborted when fiber yields the execution. The yield occurring while the compiled code is being run (it’s likely a function with a yield underneath called via LuaJIT FFI) leads to the platform panic (:tarantool-issue:`1700`, :tarantool-issue:`4491`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:54
+msgid "Fixed fibers switch-over to prevent implicit GC disabling. The yield occurring while user-defined \\__gc metamethod is running leads to the platform panic."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:59
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:61
+msgid "Anonymous replica could be registered and could prevent WAL files removal (:tarantool-issue:`5287`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:63
+msgid "XlogGapError is not a critical error anymore. It means, box.info.replication will show upstream status as ‘loading’ if the error was found. The upstream will be restarted until the error is resolved automatically with a help of another instance, or until the replica is removed from box.cfg.replication (:tarantool-issue:`5287`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:70
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:72
+msgid "Fixed the error occurring on loading luajit-gdb.py with Python2 (:tarantool-issue:`4828`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:76
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:78
+msgid "Fixed unhandled Lua error that may lead to memory leaks and inconsistencies in ``<space_object>:frommap()``, ``<key_def_object>:compare()``, ``<merge_source>:select()`` (:tarantool-issue:`5382`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:84
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:86
+msgid "SQL view are not alterable anymore. Beforehand it led to undefined behavior."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:90
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:92
+msgid "Fixed potential lag on boot up procedure when system’s password database is slow in access (:tarantool-issue:`5034`)."
+msgstr ""
+
+#: ../../doc/release/2.4.3.rst:99
+msgid "Get rid of typedef redefinitions for compatibility with C99 (:tarantool-issue:`5313`)."
+msgstr ""

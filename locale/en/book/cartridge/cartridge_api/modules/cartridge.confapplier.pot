@@ -1,0 +1,191 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:5
+msgid "Module *cartridge.confapplier*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:7
+msgid "Configuration management primitives."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:11
+msgid "Implements the internal state machine which helps to manage cluster operation and protects from invalid state transitions."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:17
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:24
+msgid "get_active_config ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:26
+msgid "Get current ClusterwideConfig object of instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:30
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:53
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:75
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:99
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:118
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:136
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:172
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:32
+msgid ":ref:`cartridge.clusterwide-config <cartridge.clusterwide-config>` or nil, if instance not bootstrapped."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:40
+msgid "get_readonly ([section_name])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:42
+msgid "Get a read-only view on the clusterwide configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:44
+msgid "Returns either  ``conf[section_name]``  or entire  ``conf`` . Any attempt to modify the section or its children will raise an error."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:49
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:71
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:94
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:113
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:132
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:168
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:51
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:73
+msgid "*section_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)  (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:55
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:77
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:62
+msgid "get_deepcopy ([section_name])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:64
+msgid "Get a read-write deep copy of the clusterwide configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:66
+msgid "Returns either  ``conf[section_name]``  or entire  ``conf`` . Changing it has no effect unless it's used to patch clusterwide configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:82
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:89
+msgid "set_state (state[, err])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:91
+msgid "Perform state transition."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:96
+msgid "*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) New state"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:97
+msgid "*err:*   (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:101
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:143
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:179
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:108
+msgid "wish_state (state[, timeout])"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:110
+msgid "Make a wish for meeting desired state."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:115
+msgid "*state:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Desired state."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:116
+msgid "*timeout:* (**number**)  (optional)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:120
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) Final state, may differ from desired."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:127
+msgid "validate_config (clusterwide_config_new)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:129
+msgid "Validate configuration by all roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:134
+msgid "*clusterwide_config_new:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:138
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:174
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:141
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:177
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:145
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:181
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:152
+msgid "restart_replication ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:154
+msgid "Restart replication from topology on the current node."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:163
+msgid "apply_config (clusterwide_config)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:165
+msgid "Apply the role configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.confapplier.rst:170
+msgid "*clusterwide_config:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""

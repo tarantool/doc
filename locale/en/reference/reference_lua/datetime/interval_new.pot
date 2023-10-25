@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:4
+msgid "datetime.interval.new()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:8
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:10
+msgid "Create an object of the :ref:`interval type <index-box_interval>` from a table of time units. See :ref:`description of units <interval-new-args>` and :ref:`examples <interval-new-example>` below."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:13
+msgid "Table with :ref:`time units and parameters<interval-new-args>`. For all possible time units, the values are not restricted. If an empty table or no arguments are passed, the ``interval`` object with the default value ``0 seconds`` is created."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:16
+msgid "interval_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:17
+msgid "cdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:21
+msgid "**Possible input time units and parameters for ``datetime.interval.new()**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:29
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:30
+msgid "Description"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:31
+msgid "Type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:32
+msgid "Default"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:34
+msgid "nsec (usec, msec)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:35
+msgid "Fractional part of the last second. You can specify either nanoseconds (``nsec``), or microseconds (``usec``), or milliseconds (``msec``). Specifying two of these units simultaneously or all three ones lead to an error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:37
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:42
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:47
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:52
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:57
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:62
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:67
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:72
+msgid "number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:38
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:43
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:48
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:53
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:58
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:63
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:68
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:73
+msgid "0"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:40
+msgid "sec"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:41
+msgid "Seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:45
+msgid "min"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:46
+msgid "Minutes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:50
+msgid "hour"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:51
+msgid "Hours"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:55
+msgid "day"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:56
+msgid "Day number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:60
+msgid "week"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:61
+msgid "Week number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:65
+msgid "month"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:66
+msgid "Month number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:70
+msgid "year"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:71
+msgid "Year"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:75
+msgid "adjust"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:76
+msgid "Defines how to round days in a month after an arithmetic operation."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:77
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:78
+msgid "'none'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:82
+msgid "**Examples:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_new.rst:84
+msgid "tarantool> datetime.interval.new()\n"
+"\n"
+"---\n"
+"- 0 seconds\n"
+"...\n"
+"\n"
+"tarantool> datetime.interval.new {\n"
+"            month = 6,\n"
+"            year = 1\n"
+"            }\n"
+"---\n"
+"- +1 years, 6 months\n"
+"...\n"
+"\n"
+"tarantool> datetime.interval.new {\n"
+"            day = -1\n"
+"            }\n"
+"---\n"
+"- -1 days\n"
+"..."
+msgstr ""

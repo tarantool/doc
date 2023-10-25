@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/sharding/index.rst:5
+msgid "Sharding"
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:7
+msgid "Scaling databases in a growing project is often considered one of the most challenging issues. Once a single server cannot withstand the load, scaling methods should be applied."
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:11
+msgid "**Sharding** is a database architecture that allows for `horizontal scaling <https://en.wikipedia.org/wiki/Scalability#Horizontal_(scale_out)_and_vertical_scaling_(scale_up)>`_, which implies that a dataset is partitioned and distributed over multiple servers."
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:15
+msgid "With Tarantool's `vshard <https://github.com/tarantool/vshard>`_ module, the tuples of a dataset are distributed across multiple nodes, with a Tarantool database server instance on each node. Each instance handles only a subset of the total data, so larger loads can be handled by simply adding more servers. The initial dataset is partitioned into multiple parts, so each part is stored on a separate server."
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:22
+msgid "The ``vshard`` module is based on the concept of :ref:`virtual buckets <vshard-vbuckets>`, where a tuple set is partitioned into a large number of abstract virtual nodes (**virtual buckets**, further just **buckets**) rather than into a smaller number of physical nodes."
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:27
+msgid "The dataset is partitioned using **sharding keys** (bucket id numbers). Hashing a sharding key into a large number of buckets allows seamlessly changing the number of servers in the cluster. The **rebalancing mechanism** distributes buckets evenly among all shards in case some servers were added or removed."
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:32
+msgid "The buckets have **states**, so it is easy to monitor the server states. For example, a server instance is active and available for all types of requests, or a failover occurred and the instance accepts only read requests."
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:36
+msgid "The ``vshard`` module provides router and storage API (public and internal) for sharding-aware applications."
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:38
+msgid "Check out the :ref:`quick start guide <vshard-quick-start>` or learn more about :ref:`how sharding works <vshard-architecture>` in Tarantool:"
+msgstr ""
+
+#: ../../doc/concepts/sharding/index.rst:46
+msgid "You can also find out more about :ref:`sharding administration <vshard-admin>` or dive into the ``vshard`` configuration and API :ref:`reference <vshard>`."
+msgstr ""

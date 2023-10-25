@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:5
+msgid "box.schema.role.grant()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:13
+msgid "Grant :ref:`privileges <authentication-owners_privileges>` to a role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:15
+msgid "the name of the role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:16
+msgid "'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a combination."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:18
+msgid "'space' or 'function' or 'sequence' or 'role'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:19
+msgid "the name of a function or space or sequence or role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:20
+msgid "``if_not_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the role already has the privilege."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:24
+msgid "The role must exist, and the object must exist."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:26
+msgid "**Variation:** instead of ``object-type, object-name`` say 'universe' which means 'all object-types and all objects'. In this case, object name is omitted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:29
+msgid "**Variation:** instead of ``privilege, object-type, object-name`` say ``role-name`` -- to grant a role to a role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:32
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_grant.rst:34
+msgid "box.schema.role.grant('Accountant', 'read', 'space', 'tester')\n"
+"box.schema.role.grant('Accountant', 'execute', 'function', 'f')\n"
+"box.schema.role.grant('Accountant', 'read,write', 'universe')\n"
+"box.schema.role.grant('public', 'Accountant')\n"
+"box.schema.role.grant('role1', 'role2', nil, nil, {if_not_exists=false})"
+msgstr ""

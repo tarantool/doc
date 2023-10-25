@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:5
+msgid "Module *cartridge.upload*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:7
+msgid "Spread the data across instances in a network-efficient manner."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:11
+msgid "(**Added** in v2.4.0-43)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:16
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:23
+msgid "upload (data, uri_list)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:25
+msgid "Spread the data across the cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:27
+msgid "For each separate upload, a random `upload_id` is generated. All the instances try to create `/tmp/<upload_id>` on their side, and those who succeed act as transmitters."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:31
+msgid "When the upload finishes, all the instances load the data into the `inbox` table and the temporary files are cleared. The inbox isn't garbage-collected automatically. It's the user's responsibility to clean it up after use."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:38
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:40
+msgid "*data:*  any Lua object."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:41
+msgid "*uri_list:* (`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of URIs."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:43
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:45
+msgid "(`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) `upload_id` (if at least one upload succeded)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:48
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:50
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:52
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:57
+msgid "Tables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:64
+msgid "inbox"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.upload.rst:66
+msgid "The uploaded data. ``{[upload_id] = data}``"
+msgstr ""

@@ -1,0 +1,207 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/compatibility.rst:4
+msgid "Compatibility guarantees"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:6
+msgid "Backwards compatibility is guaranteed between all versions in the same :term:`release series`. It is also appreciated but not guaranteed between different release series (major number changes). Pre-releases and releases of one release series are compatible in all senses defined below (any release with any release):"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:11
+msgid "Pre-releases and releases of consequent series are compatible by data layout, binary protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:14
+msgid "No guarantees are given regarding compatibility between pre-releases/releases of non-consequent release series if the opposite is not stated in the :doc:`release notes </release/index>`."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:18
+msgid "No guarantees are given regarding compatibility between alpha/beta versions and between alpha/beta and pre-release/release even within one series."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:24
+msgid "Binary data layout"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:26
+msgid "Any newer release (its runtime) is backward compatible with any older one. It means the more recent release can work on top of data (``*.xlog``, ``*.snap``, ``*.vylog``, ``*.run``) from the older one. All functionality of the older release can work in this configuration. The same compatibility is maintained between :term:`release series` as well."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:32
+msgid "An attempt to use a new feature results in one of the options:"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:34
+msgid "The attempt is successful."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:36
+msgid "There is an error message about the old data layout. The error does not lead to service outage or data corruption. There is a way to avoid the message, if an instance upgrades the data layout by calling the :ref:`box.schema.upgrade() <admin-upgrades>`. The call enables all new release features (when all instances of the replicaset are processed on the same Tarantool version)."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:45
+msgid "Binary protocol"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:47
+msgid "All binary protocol requests operational in an older release keep working in a newer one. Responses have the same format, but mappings may contain fields not present in the older release."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:50
+msgid "A ``net.box`` client of an older release can work with a server running a newer release. However, ``net.box`` features introduced in the newer release won't work. A ``net.box`` client of a newer release is fully operational with a server running a older release. However, only the features implemented in the older release will work."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:58
+msgid "Replication protocol"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:60
+msgid "An instance running on a newer release can work as:"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:62
+msgid "upstream (master) of an instance with an older release"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:64
+msgid "downstream (replica) without database schema upgrade."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:66
+msgid "The database schema upgrade (``box.schema.upgrade()``) must be performed when all replicaset instances run on the same Tarantool version. An application should not lean on internal schema representation because it can be changed with the upgrade."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:73
+msgid "Lua code"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:75
+msgid "If a code is processed on an older release, it will operate with the same effect on a newer one. However, only meaningful code counts. If any code throws an error but starts doing something useful, the change is considered compatible."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:79
+msgid "There is still room for new functionality: adding new options (fields in a table argument), new arguments to the end, more fields to a return table, and more return values (multireturn)."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:82
+msgid "Adding a new built-in module or a new global value is considered as a compatible change."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:84
+msgid "Adding a new field to an existing metatable is okay if the field is not listed in the `Lua 5.1 Reference Manual <https://www.lua.org/manual/5.1/>`_. Otherwise, it should be proven that it won't break any meaningful code."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:88
+#: ../../doc/release/compatibility.rst:116
+msgid "Examples of compatible changes:"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:90
+msgid "Add ``__pairs``, ``__ipairs`` to a metatable of a userdata/cdata object. The fields are not from Lua 5.1, and the userdata/cdata has no default behaviour for ``pairs()`` and ``ipairs()`` calls."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:94
+msgid "Add or extend the ``__lt`` or ``__le`` metamethod (if the attempt to use ``<``, ``<=`` etc. leads to an error before the change)."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:97
+msgid "Extend existing ``__eq`` metamethod implementation (if the attempt to use it leads to an error before the change)."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:100
+#: ../../doc/release/compatibility.rst:131
+msgid "Examples of **incompatible** changes:"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:102
+msgid "Add ``__pairs``, ``__ipairs`` to a metatable of a table (it already has a defined behavior before the change)."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:105
+msgid "Add the ``__eq`` metamethod (any pair of Lua objects already has a defined behavior)."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:111
+msgid "SQL code"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:113
+msgid "If any request is processed on an older release, it will operate with the same effect on a newer one (except the requests that always lead to an error)."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:118
+msgid "Add a new keyword."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:119
+msgid "Add a new type."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:120
+msgid "Add a new built-in function."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:121
+msgid "Add a new system table that has a name starting with an underscore."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:122
+msgid "Add a new collation."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:123
+msgid "Add an implicit or explicit cast rule for a set of operations {X} and a list of types [Y] if [operation from {X}]([list of values of [Y] types]) had not been implemented before the change."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:126
+msgid "Change the order of tuples in the result set of ``SELECT`` in case ``ORDER BY`` is not specified."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:128
+msgid "Technically, those changes may break some working code in case of a name clash, but the probability of it is negligible."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:133
+msgid "Change the result of working implicit or explicit cast."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:134
+msgid "Change of a literal type."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:139
+msgid "C code"
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:141
+msgid "If a module or a C stored procedure runs on an older release, it will operate with the same effect on a newer one."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:144
+msgid "It is okay to add a new function or structure to the public C API. It must use one of the Tarantool prefixes (``box_``, ``fiber_``, ``luaT_``, ``luaM_`` and so on) or some new prefix."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:147
+msgid "A symbol from a used library must not be exported directly because the library may be used in a module by itself, and the clash can lead to problems. Exception: when the whole public API of the library is exported (as for libcurl)."
+msgstr ""
+
+#: ../../doc/release/compatibility.rst:151
+msgid "Do not introduce new functions or structures with the ``lua_`` and ``luaL_`` prefixes. Those prefixes are for the Lua runtime. Use ``luaT_`` for Tarantool-specific functions, and ``luaM_`` for general-purpose ones."
+msgstr ""

@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:2
+msgid "Configuring Cartridge failover"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:4
+msgid "The ``cartridge failover`` command lets you configure Cartridge failover."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:6
+msgid "cartridge failover [subcommand] [flags] [args]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:11
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:77
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:19
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:20
+msgid "Application name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:21
+msgid "``--file``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:22
+msgid "Path to the file containing failover settings. Defaults to ``failover.yml``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:25
+msgid "``failover`` also supports :doc:`global flags </book/cartridge/cartridge_cli/global-flags>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:29
+msgid "Details"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:31
+msgid "Failover is configured through the Cartridge Lua API."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:33
+msgid "To run the failover, ``cartridge-cli`` connects to a random configured instance, so you must have a topology configured. To learn more, see the :doc:`cartridge replicasets </book/cartridge/cartridge_cli/commands/replicasets>` command. You might also want to check out the documentation on :ref:`Cartridge failover architecture <cartridge-failover>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:40
+msgid "You can manage failover in the following ways:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:42
+msgid ":ref:`Set a specific failover mode <cartridge-cli_failover-set>` with ``cartridge failover set``, passing the parameters via special flags."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:44
+msgid "Specify parameters through a :ref:`configuration file <cartridge-cli_failover-setup>` and make it the default file with ``cartridge failover setup``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:46
+msgid ":ref:`Check failover status <cartridge-cli_failover-status>` with ``status``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:47
+msgid ":ref:`Disable failover <cartridge-cli_failover-disable>` with ``disable``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:51
+msgid "Subcommands"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:60
+msgid "set"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:62
+msgid "cartridge failover set [mode] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:66
+msgid "This command lets you set a failover mode. Learn more about :ref:`Cartridge failover modes <cartridge-failover>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:70
+msgid "Modes"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:72
+msgid "``stateful``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:73
+msgid "``eventual``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:74
+msgid "``disabled``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:85
+msgid "``--state-provider``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:86
+msgid "Failover state provider. Can be ``stateboard`` or ``etcd2``. Used only in the ``stateful`` mode."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:88
+msgid "``--params``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:89
+msgid "Failover parameters. Described in a JSON-formatted string like ``\"{'fencing_timeout': 10', 'fencing_enabled': true}\"``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:91
+msgid "``--provider-params``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:92
+msgid "Failover provider parameters. Described in a JSON-formatted string like ``\"{'lock_delay': 14}\"``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:95
+msgid "To learn more about the parameters, check the corresponding :ref:`section of this document <cartridge-cli_failover-parameters>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:98
+msgid "Unlike in the case with ``setup``, don't pass unnecessary parameters. For example, don't specify the ``--state-provider`` flag when the mode is ``eventual``, otherwise you will get an error."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:105
+msgid "setup"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:107
+msgid "cartridge failover setup --file [configuration file]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:111
+msgid "The failover configuration file defaults to ``failover.yml``. See the :ref:`full description of parameters <cartridge-cli_failover-parameters>` to include in the failover configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:116
+msgid "Example"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:118
+msgid "mode: stateful\n"
+"state_provider: stateboard\n"
+"stateboard_params:\n"
+"    uri: localhost:4401\n"
+"    password: passwd\n"
+"failover_timeout: 15"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:127
+msgid "You can leave extra parameters in the file, which may be convenient. Suppose you have ``stateful etcd2`` failover configured and want to change it to ``stateful stateboard``. You don't have to delete ``etcd2_params`` from the file, but you can just add ``stateboard_params`` and change the ``state_provider``. Then you might want to switch the failover to the ``eventual`` mode. This doesn't require removing ``etcd2_params`` or ``stateboard_params`` from the configuration file either."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:136
+msgid "However, be careful: all the parameters described in the configuration file will be applied on the Cartridge side. Thus, ``etcd2_params`` and ``stateboard_params`` from the example above will still be applied in the ``eventual`` mode, although they are intended for use with the ``stateful`` mode."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:144
+msgid "status"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:146
+msgid "cartridge failover status [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:150
+msgid "Checks failover status."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:155
+msgid "disable"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:157
+msgid "cartridge failover disable [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:161
+msgid "Disables failover. Another way to disable failover is to specify the ``disabled`` mode with :ref:`set <cartridge-cli_failover-set>` or in the :ref:`configuration file <cartridge-cli_failover-setup>` (see above)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:172
+msgid "Failover parameters"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:180
+msgid "``mode``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:181
+msgid "(Required) Failover mode. Possible values: ``disabled``, ``eventual``, ``stateful``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:183
+msgid "``failover_timeout``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:184
+msgid "Timeout in seconds used by membership to mark suspect members as dead."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:185
+msgid "``fencing_enabled``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:186
+msgid "Abandon leadership when both the state provider quorum and at least one replica are lost. Works for ``stateful`` mode only."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:188
+msgid "``fencing_timeout``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:189
+msgid "Time in seconds to actuate fencing after the check fails."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:190
+msgid "``fencing_pause``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:191
+msgid "Period in seconds to perform the check."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:193
+msgid "Other parameters are mode-specific."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:197
+msgid "Eventual failover"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:199
+msgid "If the ``eventual`` mode is specified, no additional parameters are required."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:201
+msgid "Read the :ref:`documentation <cartridge-failover>` to learn more about ``eventual`` failover."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:206
+msgid "Stateful failover"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:208
+msgid "The ``stateful`` failover mode requires the following parameters:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:216
+msgid "``state_provider``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:217
+msgid "External state provider type. Supported providers: ``stateboard``, ``etcd2``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:219
+msgid "``stateboard_params``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:220
+msgid "Stateboard configuration:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:222
+msgid "``uri`` (required): Stateboard instance URI."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:223
+msgid "``password`` (required): Stateboard instance password."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:225
+msgid "``etcd2_params``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:226
+msgid "Configuration for etcd2:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:228
+msgid "``prefix``: Prefix for etcd keys (<prefix>/lock and <prefix>/leaders)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:229
+msgid "``lock_delay``: Timeout in seconds. Defines the lock's time-to-live. Default value in Cartridge is ``10``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:231
+msgid "``endpoints``: URIs used to discover and access etcd cluster instances. Default value in Cartridge is ``['http://localhost:2379', 'http://localhost:4001']``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:234
+msgid "``username``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:235
+msgid "``password``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/failover.rst:237
+msgid "Read the :ref:`documentation <cartridge-failover>` to learn more about ``stateful`` failover."
+msgstr ""

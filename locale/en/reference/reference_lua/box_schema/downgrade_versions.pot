@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade_versions.rst:4
+msgid "box.schema.downgrade_versions()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade_versions.rst:10
+msgid "Return a list of Tarantool versions available for downgrade. To learn how to downgrade a database to the specified Tarantool version, see :ref:`box.schema.downgrade() <box_schema-downgrade>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade_versions.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade_versions.rst:13
+msgid "a list of Tarantool versions"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade_versions.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade_versions.rst:14
+msgid "table"
+msgstr ""

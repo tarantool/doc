@@ -1,0 +1,229 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:5
+msgid "Module *cartridge.topology*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:7
+msgid "Topology validation and filtering."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:14
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:21
+msgid "cluster_is_healthy ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:23
+msgid "Check the cluster health. It is healthy if all instances are healthy."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:26
+msgid "The function is designed mostly for testing purposes."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:31
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:74
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:93
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:122
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:148
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:166
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:195
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:33
+msgid "(**boolean**) true / false"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:38
+msgid "Local Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:45
+msgid "get_leaders_order (topology_cfg, replicaset_uuid, new_order, opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:47
+msgid "Get full list of replicaset leaders."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:49
+msgid "Full list is composed of:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:51
+msgid "New order array"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:52
+msgid "Initial order from topology_cfg (with no repetitions)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:53
+msgid "All other servers in the replicaset, sorted by uuid, ascending"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:56
+msgid "Neither  ``topology_cfg``  nor  ``new_order``  tables are modified. New order validity is ignored too."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:59
+msgid "By default,  ``get_leaders_order``  doesn't return unelectable nodes. To fix it, use  ``only_electable``  argument of  ``opts`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:62
+msgid "By default,  ``get_leaders_order``  returns disabled nodes. To fix it, use  ``only_enabled``  argument of  ``opts`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:67
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:88
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:117
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:144
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:162
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:190
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:69
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:119
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:146
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:192
+msgid "*topology_cfg:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:70
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:193
+msgid "*replicaset_uuid:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:71
+msgid "*new_order:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:72
+msgid "*opts:* (optional `table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:76
+msgid "(`{string,...} <https://www.lua.org/manual/5.1/manual.html#5.4>`_) array of leaders uuids"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:83
+msgid "validate (topology_new, topology_old)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:85
+msgid "Validate topology configuration."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:90
+msgid "*topology_new:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:91
+msgid "*topology_old:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:95
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:168
+msgid "(**boolean**) true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:98
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:171
+msgid "**Or**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:100
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:173
+msgid "(**nil**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:102
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:175
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Error description"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:109
+msgid "find_server_by_uri (topology_cfg, uri)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:111
+msgid "Find the server in topology config."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:113
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:186
+msgid "(**Added** in v1.2.0-17)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:120
+msgid "*uri:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:124
+msgid "(**nil** or `string <https://www.lua.org/manual/5.1/manual.html#5.4>`_) `instance_uuid` found"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:131
+msgid "refine_servers_uri (topology_cfg)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:133
+msgid "Merge servers URIs form topology_cfg with fresh membership status."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:135
+msgid "This function sustains cartridge operability in case of advertise_uri change. The uri map is composed basing on topology_cfg, but if some of them turns out to be dead, the member with corresponding payload.uuid is searched beyond."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:140
+msgid "(**Added** in v2.3.0-7)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:150
+msgid "(**{[uuid]**) = uri} with all servers except expelled ones."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:157
+msgid "probe_missing_members (servers)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:159
+msgid "Send UDP ping to servers missing from membership table."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:164
+msgid "*servers:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:182
+msgid "get_fullmesh_replication (topology_cfg, replicaset_uuid)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:184
+msgid "Get replication config to set up full mesh."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.topology.rst:197
+msgid "(`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""

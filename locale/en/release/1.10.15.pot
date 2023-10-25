@@ -1,0 +1,198 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.15.rst:2
+msgid "Tarantool 1.10.15"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:4
+msgid "Released on 2023-02-20."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:6
+msgid "Release: :tarantool-release:`1.10.15`."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:7
+msgid "Tag: ``1.10.15``."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:12
+msgid "1.10.15 is the next stable release in the :doc:`long-term support (LTS) version </release/policy>` 1.10.x release series."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:15
+msgid "The label “stable” means there are 1.10.x-based applications running in production for quite a while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:19
+msgid "This release introduces 2 improvements and resolves roughly 8 issues since the :doc:`1.10.14 </release/1.10.14>` version."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:23
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:25
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:28
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 1.10.x series."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:34
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:37
+#: ../../doc/release/1.10.15.rst:111
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:39
+msgid "OpenSUSE 15.1 and 15.2 are no longer supported."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:40
+msgid "Updated libcurl to version 7.87.0 (:tarantool-issue:`8150`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:43
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:46
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:48
+msgid "Fixed a bug when fields could be removed from a table stored in a variable when a logging function was called on this variable (for example, ``log.info(a)``) (:tarantool-issue:`3853`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:52
+msgid "Fixed a logging bug: when logging tables with fields that have reserved internal names (such as ``pid``) in the plain log format, such fields weren’t logged (:tarantool-issue:`3853`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:56
+msgid "Added the ``message`` field when logging tables without such field in the JSON log format (:tarantool-issue:`3853`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:59
+msgid "Fixed an assertion on malformed JSON message written to the log (:tarantool-issue:`7955`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:63
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:65
+msgid "Fixed a bug that could result in ``select()`` skipping an existing tuple after a rolled back ``delete()`` (:tarantool-issue:`7947`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:69
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:71
+msgid "Backported patches from vanilla LuaJIT trunk (:tarantool-issue:`7230`). In the scope of this activity, the following issues have been resolved:"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:74
+msgid "Fix overflow check in ``unpack()`` optimized by a compiler."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:75
+msgid "Fix recording of ``tonumber()`` with cdata argument for failed conversions (:tarantool-issue:`7655`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:77
+msgid "Fix concatenation operation on cdata. It always raises an error now."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:78
+msgid "Fix ``io.close()`` for already closed standard output."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:79
+msgid "Fix trace execution and stitching inside vmevent handler (:tarantool-issue:`6782`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:80
+msgid "Fixed ``emit_loadi()`` on x86/x64 emitting xor between condition check and jump instructions."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:82
+msgid "Fix stack top for error message when raising the OOM error (:tarantool-issue:`3840`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:83
+msgid "Disabled math.modf compilation due to its rare usage and difficulties with proper implementation of the corresponding JIT machinery."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:85
+msgid "Fixed inconsistent behaviour on signed zeros for JIT-compiled unary minus (:tarantool-issue:`6976`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:87
+msgid "Fixed ``IR_HREF`` hash calculations for non-string GC objects for GC64."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:89
+msgid "Fixed assembling of type-check-only variant of ``IR_SLOAD``."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:90
+msgid "Fixed the Lua stack dump command (``lj-stack``) not working on Python 2. Previously, it used arguments unpacking within the list initialization, which is not supported in Python 2 (:tarantool-issue:`7458`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:94
+msgid "Backported patches from vanilla LuaJIT trunk (:tarantool-issue:`8069`). In the scope of this activity, the following issues have been resolved:"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:97
+msgid "Fixed loop realigment for dual-number mode"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:98
+msgid "Fixed os.date() for wider libc strftime() compatibility."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:101
+msgid "Fiber"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:103
+msgid "Fixed the assertion fail in ``cord_on_yield`` (:tarantool-issue:`6647`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:106
+msgid "Log"
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:108
+msgid "Fixed an incorrect facility value in syslog on Alpine (:tarantool-issue:`8269`)."
+msgstr ""
+
+#: ../../doc/release/1.10.15.rst:113
+msgid "Fixed ``-Werror`` build fail on Clang 15 (:tarantool-issue:`8110`)."
+msgstr ""

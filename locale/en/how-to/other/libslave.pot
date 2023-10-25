@@ -1,0 +1,277 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/other/libslave.rst:5
+msgid "libslave tutorial"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:7
+msgid "``libslave`` is a C++ library for reading data changes done by MysQL and, optionally, writing them to a Tarantool database. It works by acting as a replication slave. The MySQL server writes data-change information to a \"binary log\", and transfers the information to any client that says \"I want to see the information starting with this file and this record, continuously\". So, ``libslave`` is primarily good for making a Tarantool database replica (much faster than using a conventional MySQL slave server), and for keeping track of data changes so they can be searched."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:18
+msgid "We will not go into the many details here -- the `API documentation <https://github.com/vozbu/libslave/wiki/API>`_ has them. We will only show an exercise: a minimal program that uses the library."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:24
+msgid "Use a test machine. Do not use a production machine."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:26
+msgid "STEP 1: Make sure you have:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:28
+msgid "a recent version of Linux (versions such as Ubuntu 14.04 will not do),"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:29
+msgid "a recent version of MySQL 5.6 or MySQL 5.7 server (MariaDB will not do),"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:30
+msgid "MySQL client development package. For example, on Ubuntu you can download it with this command:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:33
+msgid "$ sudo apt-get install mysql-client-core-5.7"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:37
+msgid "STEP 2: Download ``libslave``."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:39
+msgid "The recommended source is https://github.com/tarantool/libslave/. Downloads include the source code only."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:42
+msgid "$ sudo apt-get install libboost-all-dev\n"
+"$ cd ~\n"
+"$ git clone https://github.com/tarantool/libslave.git tarantool-libslave\n"
+"$ cd tarantool-libslave\n"
+"$ git submodule init\n"
+"$ git submodule update\n"
+"$ cmake .\n"
+"$ make"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:53
+msgid "If you see an error message mentioning the word \"vector\", edit ``field.h`` and add this line:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:56
+msgid "#include <vector>"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:60
+msgid "STEP 3: Start the MySQL server. On the command line, add appropriate switches for doing replication. For example:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:63
+msgid "$ mysqld --log-bin=mysql-bin --server-id=1"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:67
+msgid "STEP 4: For purposes of this exercise, we are assuming you have:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:69
+msgid "a \"root\" user with password \"root\" with privileges,"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:70
+msgid "a \"test\" database with a table named \"test\","
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:71
+msgid "a binary log named \"mysql-bin\","
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:72
+msgid "a server with server id = 1."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:74
+msgid "The values are hard-coded in the program, though of course you can change the program -- it's easy to see their settings."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:77
+msgid "STEP 5: Look at the program:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:79
+msgid "#include <unistd.h>\n"
+"#include <iostream>\n"
+"#include <sstream>\n"
+"#include \"Slave.h\"\n"
+"#include \"DefaultExtState.h\"\n"
+"\n"
+"slave::Slave* sl = NULL;\n"
+"\n"
+"void callback(const slave::RecordSet& event) {\n"
+"    slave::Position sBinlogPos = sl->getLastBinlogPos();\n"
+"    switch (event.type_event) {\n"
+"    case slave::RecordSet::Update: std::cout << \"UPDATE\" << \"\\n\"; break;\n"
+"    case slave::RecordSet::Delete: std::cout << \"DELETE\" << \"\\n\"; break;\n"
+"    case slave::RecordSet::Write:  std::cout << \"INSERT\" << \"\\n\"; break;\n"
+"    default: break;\n"
+"    }\n"
+"}\n"
+"\n"
+"bool isStopping()\n"
+"{\n"
+"    return 0;\n"
+"}\n"
+"\n"
+"int main(int argc, char** argv)\n"
+"{\n"
+"    slave::MasterInfo masterinfo;\n"
+"    slave::Position position(\"mysql-bin\", 0);\n"
+"    masterinfo.conn_options.mysql_host = \"127.0.0.1\";\n"
+"    masterinfo.conn_options.mysql_port = 3306;\n"
+"    masterinfo.conn_options.mysql_user = \"root\";\n"
+"    masterinfo.conn_options.mysql_pass = \"root\";\n"
+"    bool error = false;\n"
+"    try {\n"
+"        slave::DefaultExtState sDefExtState;\n"
+"        slave::Slave slave(masterinfo, sDefExtState);\n"
+"        sl = &slave;\n"
+"        sDefExtState.setMasterPosition(position);\n"
+"        slave.setCallback(\"test\", \"test\", callback);\n"
+"        slave.init();\n"
+"        slave.createDatabaseStructure();\n"
+"        try {\n"
+"            slave.get_remote_binlog(isStopping);\n"
+"        } catch (std::exception& ex) {\n"
+"            std::cout << \"Error reading: \" << ex.what() << std::endl;\n"
+"            error = true;\n"
+"        }\n"
+"    } catch (std::exception& ex) {\n"
+"        std::cout << \"Error initializing: \" << ex.what() << std::endl;\n"
+"        error = true;\n"
+"    }\n"
+"    return 0;\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:134
+msgid "Everything unnecessary has been stripped so that you can see quickly how it works. At the start of ``main()``, there are some settings used for connecting -- host, port, user, password. Then there is an initialization call with the binary log file name = \"mysql-bin\". Pay particular attention to the ``setCallback`` statement, which passes database name = \"test\", table name = \"test\", and callback function address = callback. The program will be looping and invoking this callback function. See how, earlier in the program, the callback function prints \"UPDATE\" or \"DELETE\" or \"INSERT\" depending on what is passed to it."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:145
+msgid "STEP 5: Put the program in the ``tarantool-libslave`` directory and name it ``example.cpp``."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:148
+msgid "Step 6: Compile and build:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:150
+msgid "$ g++ -I/tarantool-libslave/include example.cpp -o example libslave_a.a -ldl -lpthread"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:156
+msgid "Replace ``tarantool-libslave/include`` with the full directory name."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:158
+msgid "Notice that the name of the static library is ``libslave_a.a``, not ``libslave.a``."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:161
+msgid "Step 7: Run:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:163
+msgid "$ ./example"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:167
+msgid "The result will be nothing -- the program is looping, waiting for the MySQL server to write to the replication binary log."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:170
+msgid "Step 8: Start a MySQL client program -- any client program will do. Enter these statements:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:173
+msgid "USE test\n"
+"INSERT INTO test VALUES ('A');\n"
+"INSERT INTO test VALUES ('B');\n"
+"DELETE FROM test;"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:180
+msgid "Watch what happens in ``example.cpp`` output -- it displays:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:182
+msgid "INSERT\n"
+"INSERT\n"
+"DELETE\n"
+"DELETE"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:189
+msgid "This is row-based replication, so you see two DELETEs, because there are two rows."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:192
+msgid "What the exercise has shown is:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:194
+msgid "the library can be built, and"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:195
+msgid "programs that use the library can access everything that the MySQL server dumps."
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:198
+msgid "For the many details and examples of usage in the field, see:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:0
+msgid "Our downloadable ``libslave`` version:"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:0
+msgid "https://github.com/tarantool/libslave"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:0
+msgid "The version it was forked from (with a different README):"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:0
+msgid "https://github.com/vozbu/libslave/wiki/API"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:206
+msgid "`How to speed up your MySQL with replication to in-memory database <http://highscalability.com/blog/2017/3/29/how-to-speed-up-your-mysql-with-replication-to-in-memory-dat.html>`_ article"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:208
+msgid "`Replicating data from MySQL to Tarantool <https://habrahabr.ru/company/mailru/blog/323870/>`_ article (in Russian)"
+msgstr ""
+
+#: ../../doc/how-to/other/libslave.rst:210
+msgid "`Asynchronous replication uncensored <https://habrahabr.ru/company/oleg-bunin/blog/313594/>`_ article (in Russian)"
+msgstr ""

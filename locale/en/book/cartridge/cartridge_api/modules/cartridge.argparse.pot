@@ -1,0 +1,739 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:5
+msgid "Module *cartridge.argparse*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:7
+msgid "Gather configuration options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:11
+msgid "The module reads configuration options from multiple sources and then merges the options together according to source priority:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:14
+msgid "`--<VARNAME>` command line arguments."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:15
+msgid "`TARANTOOL_<VARNAME>` environment variables."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:16
+msgid "Configuration files."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:19
+msgid "To specify a configuration file, use the `--cfg <CONFIG_FILE>` option or the `TARANTOOL_CFG=<CONFIG_FILE>` environment variable."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:22
+msgid "Configuration files are  ``.yaml``  files, divided into sections like the following:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:26
+msgid "default:\n"
+"  memtx_memory: 10000000\n"
+"  some_option: \"default value\"\n"
+"myapp.router:\n"
+"  memtx_memory: 1024000000\n"
+"  some_option: \"router-specific value\""
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:36
+msgid "Within the configuration file, `argparse` looks for multiple matching sections:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:38
+msgid "The section named `<APP_NAME>.<INSTANCE_NAME>` is parsed first. The application name is derived automatically from the rockspec filename in the project directory. Alternatively, you can specify it manually via the  ``--app-name`` command line argument or the  ``TARANTOOL_APP_NAME``  environment variable. The instance name can be specified the same way, either as `--instance-name` or  ``TARANTOOL_INSTANCE_NAME`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:44
+msgid "The common `<APP_NAME>` section is parsed next."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:45
+msgid "Finally, the section  ``[default]``  with the global configuration is parsed with the lowest priority."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:49
+msgid "An instance name may consist of multiple period-separated parts, for example,  ``--app-name &quot;myapp&quot; --instance-name &quot;router.1&quot;`` . In this case, sections with names that include these parts are also parsed: first  ``[myapp.router.1]`` , then  ``[myapp.router]`` , then  ``[myapp]`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:54
+msgid "Instead of a single configuration file, you can use a directory. In this case, all files in the directory are parsed. To avoid conflicts, the same section mustn't repeat across different files."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:61
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:68
+msgid "parse ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:70
+msgid "Parse command line arguments, environment variables, and configuration files."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:72
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:110
+msgid "For example, running an application as follows:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:74
+msgid "TARANTOOL_MY_CUSTOM_ARG='value' ./init.lua --alias router --memtx-memory 33554432"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:78
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:116
+msgid "results in:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:80
+msgid "local argparse = require('cartridge.argparse')\n"
+"argparse.parse()\n"
+"---\n"
+"- memtx_memory: 33554432\n"
+"  my_custom_arg: value\n"
+"  alias: router\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:94
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:143
+msgid "**Returns**:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:96
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:145
+msgid "(**{argname=value,...}**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:103
+msgid "get_opts (filter)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:105
+msgid "Filter the results of parsing and cast variables to a given type."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:107
+msgid "From all the configuration options gathered by  ``parse`` , select only those specified in the filter."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:112
+msgid "TARANTOOL_ARG1='value' tarantool ./init.lua --arg2 100 --arg3 true"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:118
+msgid "local opts, err = argparse.get_opts({\n"
+"    arg1 = 'string',\n"
+"    arg2 = 'number',\n"
+"    arg3 = 'boolean'\n"
+"    missing_arg = 'string', -- no such arg, argparse returns nothing for this arg\n"
+"})\n"
+"---\n"
+"- arg1: value\n"
+"  arg2: 100\n"
+"  arg3: true\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:133
+msgid "Each option have a type: string, boolean, number. There is an ability to set multiple types for one option. Types are split by separator  ``|`` ,  e.g.  ``string|number`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:139
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:141
+msgid "*filter:* (**{argname=type,...}**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:152
+msgid "get_box_opts ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:154
+msgid "Shorthand for  ``get_opts(box_opts)`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:163
+msgid "get_cluster_opts ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:165
+msgid "Shorthand for  ``get_opts(cluster_opts)`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:172
+msgid "Tables"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:179
+msgid "cluster_opts"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:181
+msgid "Common :ref:`cartridge.cfg <cartridge.cfg>` options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:183
+msgid "Any options not listed below (like the  ``roles``  option) can't be modified with  ``argparse``  and should be configured in code."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:188
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:228
+msgid "**Fields:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:190
+msgid "*alias:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:191
+msgid "*workdir:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:192
+msgid "*http_port:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:193
+msgid "*http_host:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:194
+msgid "*http_enabled:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:195
+msgid "*webui_enabled:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:196
+msgid "*webui_prefix:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:197
+msgid "*webui_enforce_root_redirect:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:198
+msgid "*advertise_uri:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:199
+msgid "*cluster_cookie:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:200
+msgid "*console_sock:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:201
+msgid "*auth_enabled:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:202
+msgid "*bucket_count:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:203
+msgid "*upgrade_schema:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:204
+msgid "*swim_broadcast:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:205
+msgid "*upload_prefix:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:206
+msgid "*transport:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:207
+msgid "*ssl_ciphers:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:208
+msgid "*ssl_server_ca_file:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:209
+msgid "*ssl_server_cert_file:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:210
+msgid "*ssl_server_key_file:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:211
+msgid "*ssl_server_password:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:212
+msgid "*ssl_client_ca_file:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:213
+msgid "*ssl_client_cert_file:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:214
+msgid "*ssl_client_key_file:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:215
+msgid "*ssl_client_password:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:216
+msgid "*disable_errstack:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:223
+msgid "box_opts"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:225
+msgid "Common `box.cfg <https://www.tarantool.io/en/doc/latest/reference/configuration/>`_ tuning options."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:230
+msgid "*listen:*  **string|number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:231
+msgid "*memtx_memory:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:232
+msgid "*memtx_allocator:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:233
+msgid "*strip_core:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:234
+msgid "*memtx_min_tuple_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:235
+msgid "*memtx_max_tuple_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:236
+msgid "*memtx_use_mvcc_engine:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:237
+msgid "*txn_isolation:*  **string|number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:238
+msgid "*slab_alloc_factor:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:239
+msgid "*slab_alloc_granularity:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:240
+msgid "*work_dir:*  **string** (**deprecated**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:241
+msgid "*memtx_dir:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:242
+msgid "*wal_dir:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:243
+msgid "*vinyl_dir:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:244
+msgid "*vinyl_memory:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:245
+msgid "*vinyl_cache:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:246
+msgid "*vinyl_max_tuple_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:247
+msgid "*vinyl_read_threads:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:248
+msgid "*vinyl_write_threads:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:249
+msgid "*vinyl_timeout:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:250
+msgid "*vinyl_defer_deletes:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:251
+msgid "*vinyl_run_count_per_level:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:252
+msgid "*vinyl_run_size_ratio:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:253
+msgid "*vinyl_range_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:254
+msgid "*vinyl_page_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:255
+msgid "*vinyl_bloom_fpr:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:256
+msgid "*log:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:257
+msgid "*log_nonblock:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:258
+msgid "*log_level:*  **string|number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:259
+msgid "*log_modules:*  **json**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:260
+msgid "*log_format:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:261
+msgid "*audit_log:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:262
+msgid "*audit_nonblock:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:263
+msgid "*audit_format:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:264
+msgid "*audit_filter:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:265
+msgid "*auth_type:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:266
+msgid "*auth_delay:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:267
+msgid "*disable_guest:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:268
+msgid "*password_lifetime_days:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:269
+msgid "*password_min_length:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:270
+msgid "*password_enforce_uppercase:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:271
+msgid "*password_enforce_lowercase:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:272
+msgid "*password_enforce_digits:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:273
+msgid "*password_enforce_specialchars:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:274
+msgid "*password_history_length:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:275
+msgid "*flightrec_enabled:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:276
+msgid "*flightrec_logs_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:277
+msgid "*flightrec_logs_max_msg_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:278
+msgid "*flightrec_logs_log_level:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:279
+msgid "*flightrec_metrics_interval:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:280
+msgid "*flightrec_metrics_period:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:281
+msgid "*flightrec_requests_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:282
+msgid "*flightrec_requests_max_req_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:283
+msgid "*flightrec_requests_max_res_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:284
+msgid "*io_collect_interval:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:285
+msgid "*readahead:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:286
+msgid "*snap_io_rate_limit:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:287
+msgid "*too_long_threshold:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:288
+msgid "*wal_mode:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:289
+msgid "*rows_per_wal:*  **number**  (**deprecated**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:290
+msgid "*wal_max_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:291
+msgid "*wal_queue_max_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:292
+msgid "*wal_dir_rescan_delay:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:293
+msgid "*wal_cleanup_delay:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:294
+msgid "*wal_ext:*  **json**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:295
+msgid "*force_recovery:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:296
+msgid "*replication:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:297
+msgid "*instance_uuid:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:298
+msgid "*replicaset_uuid:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:299
+msgid "*custom_proc_title:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:300
+msgid "*pid_file:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:301
+msgid "*background:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:302
+msgid "*username:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:303
+msgid "*coredump:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:304
+msgid "*checkpoint_interval:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:305
+msgid "*checkpoint_wal_threshold:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:306
+msgid "*checkpoint_count:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:307
+msgid "*read_only:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:308
+msgid "*hot_standby:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:309
+msgid "*worker_pool_threads:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:310
+msgid "*replication_threads:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:311
+msgid "*replication_timeout:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:312
+msgid "*replication_sync_lag:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:313
+msgid "*replication_sync_timeout:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:314
+msgid "*replication_connect_timeout:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:315
+msgid "*replication_connect_quorum:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:316
+msgid "*replication_skip_conflict:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:317
+msgid "*replication_synchro_quorum:*  **string|number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:318
+msgid "*replication_synchro_timeout:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:319
+msgid "*feedback_enabled:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:320
+msgid "*feedback_host:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:321
+msgid "*feedback_interval:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:322
+msgid "*feedback_crashinfo:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:323
+msgid "*feedback_send_metrics:*  **boolean**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:324
+msgid "*feedback_metrics_collect_interval:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:325
+msgid "*feedback_metrics_limit:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:326
+msgid "*net_msg_max:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:327
+msgid "*iproto_threads:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:328
+msgid "*sql_cache_size:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:329
+msgid "*txn_timeout:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:330
+msgid "*election_mode:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:331
+msgid "*election_timeout:*  **number**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:332
+msgid "*election_fencing_mode:*  **string**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/cartridge.argparse.rst:333
+msgid "*metrics:*  **json**"
+msgstr ""

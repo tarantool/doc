@@ -1,0 +1,692 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/troubleshoot.rst:6
+msgid "Troubleshooting guide"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:12
+msgid "Problem: INSERT/UPDATE-requests result in ER_MEMORY_ISSUE error"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:14
+#: ../../doc/book/admin/troubleshoot.rst:70
+#: ../../doc/book/admin/troubleshoot.rst:115
+#: ../../doc/book/admin/troubleshoot.rst:176
+#: ../../doc/book/admin/troubleshoot.rst:199
+#: ../../doc/book/admin/troubleshoot.rst:224
+#: ../../doc/book/admin/troubleshoot.rst:242
+#: ../../doc/book/admin/troubleshoot.rst:275
+msgid "**Possible reasons**"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:16
+msgid "Lack of RAM (parameters ``arena_used_ratio`` and ``quota_used_ratio`` in :doc:`/reference/reference_lua/box_slab/slab_info` report are getting close to 100%)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:19
+msgid "To check these parameters, say:"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:21
+#: ../../doc/book/admin/troubleshoot.rst:81
+#: ../../doc/book/admin/troubleshoot.rst:137
+#: ../../doc/book/admin/troubleshoot.rst:254
+#: ../../doc/book/admin/troubleshoot.rst:288
+msgid "$ # attaching to a Tarantool instance\n"
+"$ tt connect <instance_name|URI>"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:26
+msgid "-- requesting arena_used_ratio value\n"
+"tarantool> box.slab.info().arena_used_ratio\n"
+"\n"
+"-- requesting quota_used_ratio value\n"
+"tarantool> box.slab.info().quota_used_ratio"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:34
+#: ../../doc/book/admin/troubleshoot.rst:75
+#: ../../doc/book/admin/troubleshoot.rst:125
+#: ../../doc/book/admin/troubleshoot.rst:157
+#: ../../doc/book/admin/troubleshoot.rst:181
+#: ../../doc/book/admin/troubleshoot.rst:204
+#: ../../doc/book/admin/troubleshoot.rst:228
+#: ../../doc/book/admin/troubleshoot.rst:250
+#: ../../doc/book/admin/troubleshoot.rst:279
+msgid "**Solution**"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:36
+#: ../../doc/book/admin/troubleshoot.rst:127
+msgid "Try either of the following measures:"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:38
+msgid "In Tarantool's :ref:`instance file <admin-instance_config>`, increase the value of :ref:`box.cfg{memtx_memory} <cfg_storage-memtx_memory>` (if memory resources are available)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:42
+msgid "In versions of Tarantool before 1.10, the server needs to be restarted to change this parameter. The Tarantool server will be unavailable while restarting from .xlog files, unless you restart it using :ref:`hot standby <index-hot_standby>` mode. In the latter case, nearly 100% server availability is guaranteed."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:48
+msgid "Clean up the database."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:50
+msgid "Check the indicators of memory fragmentation:"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:52
+msgid "-- requesting quota_used_ratio value\n"
+"tarantool> box.slab.info().quota_used_ratio\n"
+"\n"
+"-- requesting items_used_ratio value\n"
+"tarantool> box.slab.info().items_used_ratio"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:60
+msgid "In case of heavy memory fragmentation (``quota_used_ratio`` is getting close to 100%, ``items_used_ratio`` is about 50%), we recommend restarting Tarantool in the :ref:`hot standby <index-hot_standby>` mode."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:68
+msgid "Problem: Tarantool generates too heavy CPU load"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:72
+msgid "The :ref:`transaction processor thread <thread_model>` consumes over 60% CPU."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:77
+msgid "Attach to the Tarantool instance with :ref:`tt <tt-cli>` utility, analyze the query statistics with :doc:`box.stat() </reference/reference_lua/box_stat>` and spot the CPU consumption leader. The following commands can help:"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:87
+msgid "-- checking the RPS of calling stored procedures\n"
+"tarantool> box.stat().CALL.rps"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:92
+msgid "The critical RPS value is 75 000, boiling down to 10 000 - 20 000 for a rich Lua application (a Lua module of 200+ lines)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:95
+msgid "-- checking RPS per query type\n"
+"tarantool> box.stat().<query_type>.rps"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:100
+msgid "The critical RPS value for SELECT/INSERT/UPDATE/DELETE requests is 100 000."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:102
+msgid "If the load is mostly generated by SELECT requests, we recommend adding a :ref:`slave server <replication-bootstrap>` and let it process part of the queries."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:106
+msgid "If the load is mostly generated by INSERT/UPDATE/DELETE requests, we recommend :ref:`sharding the database <sharding>`."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:113
+msgid "Problem: Query processing times out"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:119
+msgid "All reasons that we discuss here can be identified by messages in Tarantool's log file, all starting with the words ``'Too long...'``."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:122
+msgid "Both fast and slow queries are processed within a single connection, so the readahead buffer is cluttered with slow queries."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:129
+msgid "Increase the readahead buffer size (:ref:`box.cfg{readahead} <cfg_networking-readahead>` parameter)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:132
+msgid "This parameter can be changed on the fly, so you don't need to restart Tarantool. Attach to the Tarantool instance with :ref:`tt <tt-cli>` utility and call ``box.cfg{}`` with a new ``readahead`` value:"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:143
+msgid "-- changing the readahead value\n"
+"tarantool> box.cfg{readahead = 10 * 1024 * 1024}"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:148
+msgid "**Example:** Given 1000 RPS, 1 Кbyte of query size, and 10 seconds of maximal query processing time, the minimal readahead buffer size must be 10 Mbytes."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:152
+msgid "On the business logic level, split fast and slow queries processing by different connections."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:155
+msgid "Slow disks."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:159
+msgid "Check disk performance (use `iostat <https://linux.die.net/man/1/iostat>`_, `iotop <https://linux.die.net/man/1/iotop>`_ or `strace <https://linux.die.net/man/1/strace>`_ utility to check ``iowait`` parameter) and try to put .xlog files and snapshot files on different physical disks (i.e. use different locations for :ref:`wal_dir <cfg_basic-wal_dir>` and :ref:`memtx_dir <cfg_basic-memtx_dir>`)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:170
+msgid "Problem: Replication \"lag\" and \"idle\" contain negative values"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:172
+msgid "This is about ``box.info.replication.(upstream.)lag`` and ``box.info.replication.(upstream.)idle`` values in :doc:`/reference/reference_lua/box_info/replication` section."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:178
+msgid "Operating system clock on the hosts is not synchronized, or the NTP server is faulty."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:183
+msgid "Check NTP server settings."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:185
+msgid "If you found no problems with the NTP server, just do nothing then. Lag calculation uses operating system clock from two different machines. If they get out of sync, the remote master clock can get consistently behind the local instance’s clock."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:194
+msgid "Problem: Replication \"idle\" keeps growing, but no related log messages appear"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:196
+msgid "This is about ``box.info.replication.(upstream.)idle`` value in :doc:`/reference/reference_lua/box_info/replication` section."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:201
+msgid "Some server was assigned different IP addresses, or some server was specified twice in ``box.cfg{}``, so duplicate connections were established."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:206
+msgid ":ref:`Upgrade Tarantool 1.6 to 1.7 <admin-upgrades_instance>`, where this error is fixed: in case of duplicate connections, replication is stopped and the following message is added to the log: ``'Incorrect value for option ''replication_source'': duplicate connection with the same replica UUID'``."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:216
+msgid "Problem: Replication statistics differ on replicas within a replica set"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:218
+msgid "This is about a replica set that consists of one master and several replicas. In a replica set of this type, values in :doc:`/reference/reference_lua/box_info/replication` section, like ``box.info.replication.lsn``, come from the master and must be the same on all replicas within the replica set. The problem is that they get different."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:226
+msgid "Replication is broken."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:230
+msgid ":ref:`Restart replication <replication-recover>`."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:236
+msgid "Problem: Master-master replication is stopped"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:238
+msgid "This is about :doc:`box.info.replication(.upstream).status </reference/reference_lua/box_info/replication>` = stopped."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:244
+msgid "In a master-master replica set of two Tarantool instances, one of the masters has tried to perform an action already performed by the other server, for example re-insert a tuple with the same unique key. This would cause an error message like ``'Duplicate key exists in unique index 'primary' in space <space_name>'``."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:252
+msgid "Restart replication with the following commands (at each master instance):"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:259
+msgid "-- restarting replication\n"
+"tarantool> original_value = box.cfg.replication\n"
+"tarantool> box.cfg{replication={}}\n"
+"tarantool> box.cfg{replication=original_value}"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:266
+msgid "We also recommend using text primary keys or setting up :ref:`master-slave replication <replication-master_replica_bootstrap>`."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:273
+msgid "Problem: Tarantool works much slower than before"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:277
+msgid "Inefficient memory usage (RAM is cluttered with a huge amount of unused objects)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:281
+msgid "Call the Lua garbage collector with the `collectgarbage('count') function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_ and measure its execution time with the Tarantool functions :ref:`clock.bench() <clock-bench>` or :ref:`clock.proc() <clock-proc>`."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:286
+msgid "Example of calculating memory usage statistics:"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:293
+msgid "-- loading Tarantool's \"clock\" module with time-related routines\n"
+"tarantool> clock = require 'clock'\n"
+"-- starting the timer\n"
+"tarantool> b = clock.proc()\n"
+"-- launching garbage collection\n"
+"tarantool> c = collectgarbage('count')\n"
+"-- stopping the timer after garbage collection is completed\n"
+"tarantool> return c, clock.proc() - b"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:304
+msgid "If the returned ``clock.proc()`` value is greater than 0.001, this may be an indicator of inefficient memory usage (no active measures are required, but we recommend to optimize your Tarantool application code)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:308
+msgid "If the value is greater than 0.01, your application definitely needs thorough code analysis aimed at optimizing memory usage."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:315
+msgid "Problem: Fiber switch is forbidden in '__gc' metamethod"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:319
+msgid "Problem description"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:321
+msgid "Fiber switch is forbidden in ``__gc`` metamethod since `this change <https://github.com/tarantool/tarantool/issues/4518#issuecomment-704259323>`_ to avoid unexpected Lua OOM. However, one may need to use a yielding function to finalize resources, for example, to close a socket."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:326
+msgid "Below are examples of proper implementing such a procedure."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:330
+msgid "Solution"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:332
+msgid "First, there come two simple examples illustrating the logic of the solution:"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:335
+msgid ":ref:`Example 1 <finalizer_yielding_example1>`"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:336
+msgid ":ref:`Example 2 <finalizer_yielding_example2>`."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:338
+msgid "Next comes the :ref:`Example 3 <finalizer_yielding_example3>` illustrating the usage of the ``sched.lua`` module that is the recommended method."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:341
+msgid "All the explanations are given in the comments in the code listing. ``-- >`` indicates the output in console."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:346
+msgid "**Example 1**"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:348
+msgid "Implementing a valid finalizer for a particular FFI type (``custom_t``)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:350
+msgid "local ffi = require('ffi')\n"
+"local fiber = require('fiber')\n"
+"\n"
+"ffi.cdef('struct custom { int a; };')\n"
+"\n"
+"local function __custom_gc(self)\n"
+"  print((\"Entered custom GC finalizer for %s... (before yield)\"):format(self.a))\n"
+"  fiber.yield()\n"
+"  print((\"Leaving custom GC finalizer for %s... (after yield)\"):format(self.a))\n"
+"end\n"
+"\n"
+"local custom_t = ffi.metatype('struct custom', {\n"
+"  __gc = function(self)\n"
+"    -- XXX: Do not invoke yielding functions in __gc metamethod.\n"
+"    -- Create a new fiber to run after the execution leaves\n"
+"    -- this routine.\n"
+"    fiber.new(__custom_gc, self)\n"
+"    print((\"Finalization is scheduled for %s...\"):format(self.a))\n"
+"  end\n"
+"})\n"
+"\n"
+"-- Create a cdata object of <custom_t> type.\n"
+"local c = custom_t(42)\n"
+"\n"
+"-- Remove a single reference to that object to make it subject\n"
+"-- for GC.\n"
+"c = nil\n"
+"\n"
+"-- Run full GC cycle to purge the unreferenced object.\n"
+"collectgarbage('collect')\n"
+"-- > Finalization is scheduled for 42...\n"
+"\n"
+"-- XXX: There is no finalization made until the running fiber\n"
+"-- yields its execution. Let's do it now.\n"
+"fiber.yield()\n"
+"-- > Entered custom GC finalizer for 42... (before yield)\n"
+"-- > Leaving custom GC finalizer for 42... (after yield)"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:392
+msgid "**Example 2**"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:394
+msgid "Implementing a valid finalizer for a particular user type (``struct custom``)."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:396
+msgid "``custom.c``"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:398
+msgid "#include <lauxlib.h>\n"
+"#include <lua.h>\n"
+"#include <module.h>\n"
+"#include <stdio.h>\n"
+"\n"
+"struct custom {\n"
+"  int a;\n"
+"};\n"
+"\n"
+"const char *CUSTOM_MTNAME = \"CUSTOM_MTNAME\";\n"
+"\n"
+"/*\n"
+" * XXX: Do not invoke yielding functions in __gc metamethod.\n"
+" * Create a new fiber to be run after the execution leaves\n"
+" * this routine. Unfortunately we can't pass the parameters to the\n"
+" * routine to be executed by the created fiber via <fiber_new_ex>.\n"
+" * So there is a workaround to load the Lua code below to create\n"
+" * __gc metamethod passing the object for finalization via Lua\n"
+" * stack to the spawned fiber.\n"
+" */\n"
+"const char *gc_wrapper_constructor = \" local fiber = require('fiber')         \"\n"
+"             \" print('constructor is initialized')    \"\n"
+"             \" return function(__custom_gc)           \"\n"
+"             \"   print('constructor is called')       \"\n"
+"             \"   return function(self)                \"\n"
+"             \"     print('__gc is called')            \"\n"
+"             \"     fiber.new(__custom_gc, self)       \"\n"
+"             \"     print('Finalization is scheduled') \"\n"
+"             \"   end                                  \"\n"
+"             \" end                                    \"\n"
+"        ;\n"
+"\n"
+"int custom_gc(lua_State *L) {\n"
+"  struct custom *self = luaL_checkudata(L, 1, CUSTOM_MTNAME);\n"
+"  printf(\"Entered custom_gc for %d... (before yield)\\n\", self->a);\n"
+"  fiber_sleep(0);\n"
+"  printf(\"Leaving custom_gc for %d... (after yield)\\n\", self->a);\n"
+"  return 0;\n"
+"}\n"
+"\n"
+"int custom_new(lua_State *L) {\n"
+"  struct custom *self = lua_newuserdata(L, sizeof(struct custom));\n"
+"  luaL_getmetatable(L, CUSTOM_MTNAME);\n"
+"  lua_setmetatable(L, -2);\n"
+"  self->a = lua_tonumber(L, 1);\n"
+"  return 1;\n"
+"}\n"
+"\n"
+"static const struct luaL_Reg libcustom_methods [] = {\n"
+"  { \"new\", custom_new },\n"
+"  { NULL, NULL }\n"
+"};\n"
+"\n"
+"int luaopen_custom(lua_State *L) {\n"
+"  int rc;\n"
+"\n"
+"  /* Create metatable for struct custom type */\n"
+"  luaL_newmetatable(L, CUSTOM_MTNAME);\n"
+"  /*\n"
+"   * Run the constructor initializer for GC finalizer:\n"
+"   * - load fiber module as an upvalue for GC finalizer\n"
+"   *   constructor\n"
+"   * - return GC finalizer constructor on the top of the\n"
+"   *   Lua stack\n"
+"   */\n"
+"  rc = luaL_dostring(L, gc_wrapper_constructor);\n"
+"  /*\n"
+"   * Check whether constructor is initialized (i.e. neither\n"
+"   * syntax nor runtime error is raised).\n"
+"   */\n"
+"  if (rc != LUA_OK)\n"
+"    luaL_error(L, \"test module loading failed: constructor init\");\n"
+"  /*\n"
+"   * Create GC object for <custom_gc> function to be called\n"
+"   * in scope of the GC finalizer and push it on top of the\n"
+"   * constructor returned before.\n"
+"   */\n"
+"  lua_pushcfunction(L, custom_gc);\n"
+"  /*\n"
+"   * Run the constructor with <custom_gc> GCfunc object as\n"
+"   * a single argument. As a result GC finalizer is returned\n"
+"   * on the top of the Lua stack.\n"
+"   */\n"
+"  rc = lua_pcall(L, 1, 1, 0);\n"
+"  /*\n"
+"   * Check whether GC finalizer is created (i.e. neither\n"
+"   * syntax nor runtime error is raised).\n"
+"   */\n"
+"  if (rc != LUA_OK)\n"
+"    luaL_error(L, \"test module loading failed: __gc init\");\n"
+"  /*\n"
+"   * Assign the returned function as a __gc metamethod to\n"
+"   * custom type metatable.\n"
+"   */\n"
+"  lua_setfield(L, -2, \"__gc\");\n"
+"\n"
+"  /*\n"
+"   * Initialize Lua table for custom module and fill it\n"
+"   * with the custom methods.\n"
+"   */\n"
+"  lua_newtable(L);\n"
+"  luaL_register(L, NULL, libcustom_methods);\n"
+"  return 1;\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:505
+msgid "``custom_c.lua``"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:507
+msgid "-- Load custom Lua C extension.\n"
+"local custom = require('custom')\n"
+"-- > constructor is initialized\n"
+"-- > constructor is called\n"
+"\n"
+"-- Create a userdata object of <struct custom> type.\n"
+"local c = custom.new(9)\n"
+"\n"
+"-- Remove a single reference to that object to make it subject\n"
+"-- for GC.\n"
+"c = nil\n"
+"\n"
+"-- Run full GC cycle to purge the unreferenced object.\n"
+"collectgarbage('collect')\n"
+"-- > __gc is called\n"
+"-- > Finalization is scheduled\n"
+"\n"
+"-- XXX: There is no finalization made until the running fiber\n"
+"-- yields its execution. Let's do it now.\n"
+"require('fiber').yield()\n"
+"-- > Entered custom_gc for 9... (before yield)\n"
+"\n"
+"-- XXX: Finalizer yields the execution, so now we are here.\n"
+"print('We are here')\n"
+"-- > We are here\n"
+"\n"
+"-- XXX: This fiber finishes its execution, so yield to the\n"
+"-- remaining fiber to finish the postponed finalization.\n"
+"-- > Leaving custom_gc for 9... (after yield)"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:541
+msgid "**Example 3**"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:543
+msgid "It is important to note that the finalizer implementations in the examples above increase pressure on the platform performance by creating a new fiber on each ``__gc`` call. To prevent such an excessive fibers spawning, it's better to start a single \"scheduler\" fiber and provide the interface to postpone the required asynchronous action."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:549
+msgid "For this purpose, the module called ``sched.lua`` is implemented (see the listing below). It is a part of Tarantool and should be made required in your custom code. The usage example is given in the ``init.lua`` file below."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:553
+msgid "``sched.lua``"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:555
+msgid "local fiber = require('fiber')\n"
+"\n"
+"local worker_next_task = nil\n"
+"local worker_last_task\n"
+"local worker_fiber\n"
+"local worker_cv = fiber.cond()\n"
+"\n"
+"-- XXX: the module is not ready for reloading, so worker_fiber is\n"
+"-- respawned when sched.lua is purged from package.loaded.\n"
+"\n"
+"--\n"
+"-- Worker is a singleton fiber for not urgent delayed execution of\n"
+"-- functions. Main purpose - schedule execution of a function,\n"
+"-- which is going to yield, from a context, where a yield is not\n"
+"-- allowed. Such as an FFI object's GC callback.\n"
+"--\n"
+"local function worker_f()\n"
+"  while true do\n"
+"    local task\n"
+"    while true do\n"
+"      task = worker_next_task\n"
+"      if task then break end\n"
+"      -- XXX: Make the fiber wait until the task is added.\n"
+"      worker_cv:wait()\n"
+"    end\n"
+"    worker_next_task = task.next\n"
+"    task.f(task.arg)\n"
+"    fiber.yield()\n"
+"  end\n"
+"end\n"
+"\n"
+"local function worker_safe_f()\n"
+"  pcall(worker_f)\n"
+"  -- The function <worker_f> never returns. If the execution is\n"
+"  -- here, this fiber is probably canceled and now is not able to\n"
+"  -- sleep. Create a new one.\n"
+"  worker_fiber = fiber.new(worker_safe_f)\n"
+"end\n"
+"\n"
+"worker_fiber = fiber.new(worker_safe_f)\n"
+"\n"
+"local function worker_schedule_task(f, arg)\n"
+"  local task = { f = f, arg = arg }\n"
+"  if not worker_next_task then\n"
+"    worker_next_task = task\n"
+"  else\n"
+"    worker_last_task.next = task\n"
+"  end\n"
+"  worker_last_task = task\n"
+"  worker_cv:signal()\n"
+"end\n"
+"\n"
+"return {\n"
+"  postpone = worker_schedule_task\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:613
+msgid "``init.lua``"
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:615
+msgid "local ffi = require('ffi')\n"
+"local fiber = require('fiber')\n"
+"local sched = require('sched')\n"
+"\n"
+"local function __custom_gc(self)\n"
+"  print((\"Entered custom GC finalizer for %s... (before yield)\"):format(self.a))\n"
+"  fiber.yield()\n"
+"  print((\"Leaving custom GC finalizer for %s... (after yield)\"):format(self.a))\n"
+"end\n"
+"\n"
+"ffi.cdef('struct custom { int a; };')\n"
+"local custom_t = ffi.metatype('struct custom', {\n"
+"  __gc = function(self)\n"
+"    -- XXX: Do not invoke yielding functions in __gc metamethod.\n"
+"    -- Schedule __custom_gc call via sched.postpone to be run\n"
+"    -- after the execution leaves this routine.\n"
+"    sched.postpone(__custom_gc, self)\n"
+"    print((\"Finalization is scheduled for %s...\"):format(self.a))\n"
+"  end\n"
+"})\n"
+"\n"
+"-- Create several <custom_t> objects to be finalized later.\n"
+"local t = { }\n"
+"for i = 1, 10 do t[i] = custom_t(i) end\n"
+"\n"
+"-- Run full GC cycle to collect the existing garbage. Nothing is\n"
+"-- going to be printed, since the table <t> is still \"alive\".\n"
+"collectgarbage('collect')\n"
+"\n"
+"-- Remove the reference to the table and, ergo, all references to\n"
+"-- the objects.\n"
+"t = nil\n"
+"\n"
+"-- Run full GC cycle to collect the table and objects inside it.\n"
+"-- As a result all <custom_t> objects are scheduled for further\n"
+"-- finalization, but the finalizer itself (i.e. __custom_gc\n"
+"-- functions) is not called.\n"
+"collectgarbage('collect')\n"
+"-- > Finalization is scheduled for 10...\n"
+"-- > Finalization is scheduled for 9...\n"
+"-- > ...\n"
+"-- > Finalization is scheduled for 2...\n"
+"-- > Finalization is scheduled for 1...\n"
+"\n"
+"-- XXX: There is no finalization made until the running fiber\n"
+"-- yields its execution. Let's do it now.\n"
+"fiber.yield()\n"
+"-- > Entered custom GC finalizer for 10... (before yield)\n"
+"\n"
+"-- XXX: Oops, we are here now, since the scheduler fiber yielded\n"
+"-- the execution to this one. Check this out.\n"
+"print(\"We're here now. Let's continue the scheduled finalization.\")\n"
+"-- > We're here now. Let's continue the finalization\n"
+"\n"
+"-- OK, wait a second to allow the scheduler to cleanup the\n"
+"-- remaining garbage.\n"
+"fiber.sleep(1)\n"
+"-- > Leaving custom GC finalizer for 10... (after yield)\n"
+"-- > Entered custom GC finalizer for 9... (before yield)\n"
+"-- > Leaving custom GC finalizer for 9... (after yield)\n"
+"-- > ...\n"
+"-- > Entered custom GC finalizer for 1... (before yield)\n"
+"-- > Leaving custom GC finalizer for 1... (after yield)\n"
+"\n"
+"print(\"Did we finish? I guess so.\")\n"
+"-- > Did we finish? I guess so.\n"
+"\n"
+"-- Stop the instance.\n"
+"os.exit(0)"
+msgstr ""

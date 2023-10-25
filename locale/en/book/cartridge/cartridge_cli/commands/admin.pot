@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:2
+msgid "Running admin functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:4
+msgid "Use ``cartridge admin`` to call admin functions provided by the application."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:6
+msgid "cartridge admin [ADMIN_FUNC_NAME] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:11
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:19
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:20
+msgid "Application name (required)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:21
+msgid "``--list``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:22
+msgid "List the available admin functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:23
+msgid "``--help``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:24
+msgid "Display help for an admin function"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:25
+msgid "``--instance``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:26
+msgid "Name of the instance to connect to"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:27
+msgid "``--conn, -c``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:28
+msgid "Address to connect to"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:29
+msgid "``--run-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:30
+msgid "The directory to place the instance's sockets (defaults to ``/var/run/tarantool``)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:33
+msgid "``admin`` also supports :doc:`global flags </book/cartridge/cartridge_cli/global-flags>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:36
+msgid "Details"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:38
+msgid "Your application can provide *admin functions*. First, you have to register them using the `admin extension <https://github.com/tarantool/cartridge-cli-extensions/blob/master/doc/admin.md>`_. The example application contains a function named `probe <https://github.com/tarantool/cartridge-cli-extensions/blob/master/doc/admin.md#example>`__, which probes an instance at a specified URI."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:46
+msgid "If your function calls ``print``, the message is displayed on ``cartridge admin`` call (since ``cartridge-cli-extensions`` `1.1.0 <https://github.com/tarantool/cartridge-cli-extensions/releases/tag/1.1.0>`_)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:53
+msgid "Your admin functions shouldn't accept arguments with names that conflict with ``cartridge admin`` option names:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:56
+msgid "``name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:57
+msgid "``list``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:58
+msgid "``help``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:59
+msgid "``instance``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:60
+msgid "``run_dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:61
+msgid "``debug``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:62
+msgid "``quiet``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:63
+msgid "``verbose``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:66
+msgid "Connecting to an instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:68
+msgid "When the ``--conn`` flag is specified, CLI connects to the address provided."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:70
+msgid "When the ``--instance`` flag is specified, CLI checks if the socket ``<run-dir>/<name>.<instance>.control`` is *available* and if so, uses it to run the admin command. Otherwise, CLI checks all ``<run-dir>/<name>.*.control`` sockets and uses the first *available* socket to run an admin command."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:76
+msgid "An *available* socket is one that can be connected to. For more insight into the search for an available socket, use the ``--verbose`` flag."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:80
+msgid "Example"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:82
+msgid "This example shows how to use the example admin function, `probe <https://github.com/tarantool/cartridge-cli-extensions/blob/master/doc/admin.md#example>`__."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:86
+msgid "Get functions help"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:88
+msgid "Get a list of available admin functions:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:90
+msgid "cartridge admin --name APPNAME --list\n"
+"\n"
+"   • Available admin functions:\n"
+"\n"
+"probe  Probe instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:99
+msgid "Get help for a specific function:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:101
+msgid "cartridge admin --name APPNAME probe --help\n"
+"\n"
+"   • Admin function \"probe\" usage:\n"
+"\n"
+"Probe instance\n"
+"\n"
+"Args:\n"
+"  --uri string  Instance URI"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:113
+msgid "Call an admin function"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:115
+msgid "Call a function with an argument:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/admin.rst:117
+msgid "cartridge admin --name APPNAME probe --uri localhost:3301\n"
+"\n"
+"   • Probe \"localhost:3301\": OK"
+msgstr ""

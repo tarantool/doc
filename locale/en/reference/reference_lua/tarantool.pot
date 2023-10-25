@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/tarantool.rst:5
+msgid "Module tarantool"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/tarantool.rst:9
+msgid "By saying ``require('tarantool')``, one can answer some questions about how the tarantool server was built, such as \"what flags were used\", or \"what was the version of the compiler\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/tarantool.rst:15
+msgid "Additionally one can see the uptime and the server version and the process id. Those information items can also be accessed with :ref:`box.info() <box_introspection-box_info>` but use of the tarantool module is recommended."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/tarantool.rst:20
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/tarantool.rst:22
+msgid "tarantool> tarantool = require('tarantool')\n"
+"---\n"
+"...\n"
+"tarantool> tarantool\n"
+"---\n"
+"- version: 2.10.4-0-g816000e\n"
+"  build:\n"
+"    target: Darwin-x86_64-Release\n"
+"    options: cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/Cellar/tarantool/2.10.4 -DENABLE_BACKTRACE=ON\n"
+"    linking: dynamic\n"
+"    mod_format: dylib\n"
+"    flags: ' -fexceptions -funwind-tables -fno-common -fopenmp -msse2 -Wformat -Wformat-security\n"
+"      -Werror=format-security -fstack-protector-strong -fPIC -fmacro-prefix-map=/tmp/tarantool-20221113-6655-1clb1lj/tarantool-2.10.4=.\n"
+"      -std=c11 -Wall -Wextra -Wno-strict-aliasing -Wno-char-subscripts -Wno-format-truncation\n"
+"      -Wno-gnu-alignof-expression -Wno-cast-function-type'\n"
+"    compiler: Clang-14.0.0.14000029\n"
+"  pid: 'function: 0x0102df34f8'\n"
+"  package: Tarantool\n"
+"  uptime: 'function: 0x0102df34c0'\n"
+"...\n"
+"tarantool> tarantool.pid()\n"
+"---\n"
+"- 30155\n"
+"...\n"
+"tarantool> tarantool.uptime()\n"
+"---\n"
+"- 108.64641499519\n"
+"..."
+msgstr ""

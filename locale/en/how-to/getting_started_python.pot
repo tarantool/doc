@@ -1,0 +1,292 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/getting_started_python.rst:5
+msgid "Connecting from Python"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:11
+msgid "Pre-requisites"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:13
+msgid "Before we proceed:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:15
+msgid "`Install <https://github.com/tarantool/tarantool-python#download-and-install>`__ the ``tarantool`` module. We recommend using ``python3`` and ``pip3``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:18
+msgid ":ref:`Start <getting_started_db>` Tarantool (locally or in Docker) and make sure that you have created and populated a database as we suggested :ref:`earlier <creating-db-locally>`:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:22
+msgid "box.cfg{listen = 3301}\n"
+"s = box.schema.space.create('tester')\n"
+"s:format({\n"
+"         {name = 'id', type = 'unsigned'},\n"
+"         {name = 'band_name', type = 'string'},\n"
+"         {name = 'year', type = 'unsigned'}\n"
+"         })\n"
+"s:create_index('primary', {\n"
+"         type = 'hash',\n"
+"         parts = {'id'}\n"
+"         })\n"
+"s:create_index('secondary', {\n"
+"         type = 'hash',\n"
+"         parts = {'band_name'}\n"
+"         })\n"
+"s:insert{1, 'Roxette', 1986}\n"
+"s:insert{2, 'Scorpions', 2015}\n"
+"s:insert{3, 'Ace of Base', 1993}"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:45
+msgid "Please do not close the terminal window where Tarantool is running -- you'll need it soon."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:48
+msgid "In order to connect to Tarantool as an administrator, reset the password for the ``admin`` user:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:51
+msgid "box.schema.user.passwd('pass')"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:59
+msgid "Connecting to Tarantool"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:61
+msgid "To get connected to the Tarantool server, say this:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:63
+msgid ">>> import tarantool\n"
+">>> connection = tarantool.connect(\"localhost\", 3301)"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:68
+msgid "You can also specify the user name and password, if needed:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:70
+msgid ">>> tarantool.connect(\"localhost\", 3301, user=username, password=password)"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:74
+msgid "The default user is ``guest``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:80
+msgid "Manipulating the data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:82
+msgid "A :term:`space` is a container for :term:`tuples <tuple>`. To access a space as a named object, use ``connection.space``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:85
+msgid ">>> tester = connection.space('tester')"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:93
+msgid "Inserting data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:95
+msgid "To insert a tuple into a space, use ``insert``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:97
+msgid ">>> tester.insert((4, 'ABBA', 1972))\n"
+"[4, 'ABBA', 1972]"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:106
+msgid "Querying data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:108
+msgid "Let's start with selecting a tuple by the primary key (in our example, this is the index named ``primary``, based on the ``id`` field of each tuple). Use ``select``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:112
+msgid ">>> tester.select(4)\n"
+"[4, 'ABBA', 1972]"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:117
+msgid "Next, select tuples by a secondary key. For this purpose, you need to specify the number *or* name of the index."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:120
+msgid "First off, select tuples using the index number:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:122
+msgid ">>> tester.select('Scorpions', index=1)\n"
+"[2, 'Scorpions', 2015]"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:127
+msgid "(We say ``index=1`` because index numbers in Tarantool start with 0, and we're using our second index here.)"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:130
+msgid "Now make a similar query by the index name and make sure that the result is the same:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:133
+msgid ">>> tester.select('Scorpions', index='secondary')\n"
+"[2, 'Scorpions', 2015]"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:138
+msgid "Finally, select all the tuples in a space via a ``select`` with no arguments:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:141
+msgid ">>> tester.select()"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:149
+msgid "Updating data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:151
+msgid "Update a :term:`field` value using ``update``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:153
+msgid ">>> tester.update(4, [('=', 1, 'New group'), ('+', 2, 2)])"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:157
+msgid "This updates the value of field ``1`` and increases the value of field ``2`` in the tuple with ``id = 4``. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:161
+msgid "Now use ``replace`` to totally replace the tuple that matches the primary key. If a tuple with this primary key doesn't exist, Tarantool will do nothing."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:165
+msgid ">>> tester.replace((4, 'New band', 2015))"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:169
+msgid "You can also update the data using ``upsert`` that works similarly to ``update``, but creates a new tuple if the old one was not found."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:172
+msgid ">>> tester.upsert((4, 'Another band', 2000), [('+', 2, 5)])"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:176
+msgid "This increases by 5 the value of field ``2`` in the tuple with ``id = 4``, or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:184
+msgid "Deleting data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:186
+msgid "To delete a tuple, use ``delete(primary_key)``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:188
+msgid ">>> tester.delete(4)\n"
+"[4, 'New group', 2012]"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:193
+msgid "To delete all tuples in a space (or to delete an entire space), use ``call``. We'll focus on this function in more detail in the :ref:`next <getting_started-python-stored-procs>` section."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:197
+msgid "To delete all tuples in a space, call ``space:truncate``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:199
+msgid ">>> connection.call('box.space.tester:truncate', ())"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:203
+msgid "To delete an entire space, call ``space:drop``. This requires connecting to Tarantool as the ``admin`` user:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:206
+msgid ">>> connection.call('box.space.tester:drop', ())"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:214
+msgid "Executing stored procedures"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:216
+msgid "Switch to the terminal window where Tarantool is running."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:220
+msgid "If you don't have a terminal window with remote connection to Tarantool, check out these guides:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:223
+msgid ":ref:`connecting to a local Tarantool instance <connecting-remotely>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:224
+msgid ":ref:`attaching to a Tarantool instance that runs in a Docker container <getting_started-docker-attaching>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:226
+msgid "Define a simple Lua function:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:228
+msgid "function sum(a, b)\n"
+"    return a + b\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:234
+msgid "Now we have a Lua function defined in Tarantool. To invoke this function from ``python``, use ``call``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:237
+msgid ">>> connection.call('sum', (3, 2))\n"
+"5"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:242
+msgid "To send bare Lua code for execution, use ``eval``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:244
+msgid ">>> connection.eval('return 4 + 5')\n"
+"9"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:253
+msgid "Feature comparison"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_python.rst:255
+msgid "See the :ref:`feature comparison table <index_connector_py>` of all Python connectors available."
+msgstr ""

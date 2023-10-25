@@ -1,0 +1,974 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/monitoring/api_reference.rst:4
+msgid "API reference"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:9
+msgid "Collectors"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:11
+msgid "An application using the ``metrics`` module has 4 primitives, called **collectors**, at its disposal:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:18
+msgid "A collector represents one or more observations that change over time."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:25
+msgid "counter"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:29
+msgid "Register a new counter."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:31
+#: ../../doc/book/monitoring/api_reference.rst:93
+#: ../../doc/book/monitoring/api_reference.rst:136
+#: ../../doc/book/monitoring/api_reference.rst:196
+msgid "collector name. Must be unique."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:32
+#: ../../doc/book/monitoring/api_reference.rst:94
+#: ../../doc/book/monitoring/api_reference.rst:137
+#: ../../doc/book/monitoring/api_reference.rst:197
+msgid "collector description."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:33
+#: ../../doc/book/monitoring/api_reference.rst:95
+#: ../../doc/book/monitoring/api_reference.rst:141
+#: ../../doc/book/monitoring/api_reference.rst:223
+msgid "collector metainfo."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:34
+msgid "A counter object."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+#: ../../doc/book/monitoring/api_reference.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:35
+msgid "counter_obj"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:43
+msgid "Increment the observation for ``label_pairs``. If ``label_pairs`` doesn't exist, the method creates it."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:46
+msgid "increment value."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:47
+#: ../../doc/book/monitoring/api_reference.rst:79
+msgid "table containing label names as keys, label values as values. Note that both label names and values in ``label_pairs`` are treated as strings."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:56
+msgid "Array of ``observation`` objects for a given counter."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:58
+msgid "{\n"
+"    label_pairs: table,          -- `label_pairs` key-value table\n"
+"    timestamp: ctype<uint64_t>,  -- current system time (in microseconds)\n"
+"    value: number,               -- current value\n"
+"    metric_name: string,         -- collector\n"
+"}"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:67
+msgid "table"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:73
+msgid "Remove the observation for ``label_pairs``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:77
+msgid "Set the observation for ``label_pairs`` to 0."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:87
+msgid "gauge"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:91
+msgid "Register a new gauge."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:97
+msgid "A gauge object."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:99
+msgid "gauge_obj"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:105
+msgid "Works like the ``inc()`` function of a :ref:`counter <metrics-api_reference-counter_inc>`."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:110
+msgid "Works like ``inc()``, but decrements the observation."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:114
+msgid "Sets the observation for ``label_pairs`` to ``num``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:118
+msgid "Returns an array of ``observation`` objects for a given gauge. For the description of ``observation``, see :ref:`counter_obj:collect() <metrics-api_reference-counter_collect>`."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:124
+#: ../../doc/book/monitoring/api_reference.rst:181
+#: ../../doc/book/monitoring/api_reference.rst:270
+msgid "Works like the ``remove()`` function of a :ref:`counter <metrics-api_reference-counter_remove>`."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:130
+msgid "histogram"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:134
+msgid "Register a new histogram."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:138
+msgid "histogram buckets (an array of sorted positive numbers). The infinity bucket (``INF``) is appended automatically. Default: ``{.005, .01, .025, .05, .075, .1, .25, .5, .75, 1.0, 2.5, 5.0, 7.5, 10.0, INF}``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:143
+msgid "A histogram object."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:145
+msgid "histogram_obj"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:149
+msgid "A histogram is basically a set of collectors:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:151
+#: ../../doc/book/monitoring/api_reference.rst:233
+msgid "``name .. \"_sum\"`` -- a counter holding the sum of added observations."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:152
+#: ../../doc/book/monitoring/api_reference.rst:234
+msgid "``name .. \"_count\"`` -- a counter holding the number of added observations."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:153
+msgid "``name .. \"_bucket\"`` -- a counter holding all bucket sizes under the label ``le`` (less or equal). To access a specific bucket -- ``x`` (where ``x`` is a number), specify the value ``x`` for the label ``le``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:161
+msgid "Record a new value in a histogram. This increments all bucket sizes under the labels ``le`` >= ``num`` and the labels that match ``label_pairs``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:165
+msgid "value to put in the histogram."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:166
+msgid "table containing label names as keys, label values as values. All internal counters that have these labels specified observe new counter values. Note that both label names and values in ``label_pairs`` are treated as strings."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:175
+msgid "Return a concatenation of ``counter_obj:collect()`` across all internal counters of ``histogram_obj``. For the description of ``observation``, see :ref:`counter_obj:collect() <metrics-api_reference-counter_collect>`."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:188
+msgid "summary"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:192
+msgid "Register a new summary. Quantile computation is based on the `\"Effective computation of biased quantiles over data streams\" <https://ieeexplore.ieee.org/document/1410103>`_ algorithm."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:198
+msgid "a list of \"targeted\" φ-quantiles in the ``{quantile = error, ... }`` form. Example: ``{[0.5]=0.01, [0.9]=0.01, [0.99]=0.01}``. The targeted φ-quantile is specified in the form of a φ-quantile and the tolerated error. For example, ``{[0.5] = 0.1}`` means that the median (= 50th percentile) is to be returned with a 10-percent error. Note that percentiles and quantiles are the same concept, except that percentiles are expressed as percentages. The φ-quantile must be in the interval ``[0, 1]``. A lower tolerated error for a φ-quantile results in higher memory and CPU usage during summary calculation."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:208
+msgid "table of the summary parameters used to configuring the sliding time window. This window consists of several buckets to store observations. New observations are added to each bucket. After a time period, the head bucket (from which observations are collected) is reset, and the next bucket becomes the new head. This way, each bucket stores observations for ``max_age_time * age_buckets_count`` seconds before it is reset. ``max_age_time`` sets the duration of each bucket's lifetime -- that is, how many seconds the observations are kept before they are discarded. ``age_buckets_count`` sets the number of buckets in the sliding time window. This variable determines the number of buckets used to exclude observations older than ``max_age_time`` from the summary. The value is a trade-off between resources (memory and CPU for maintaining the bucket) and how smooth the time window moves. Default value: ``{max_age_time = math.huge, age_buckets_count = 1}``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:225
+msgid "A summary object."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:227
+msgid "summary_obj"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:231
+msgid "A summary represents a set of collectors:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:235
+msgid "``name`` holds all the quantiles under observation that find themselves under the label ``quantile`` (less or equal). To access bucket ``x`` (where ``x`` is a number), specify the value ``x`` for the label ``quantile``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:244
+msgid "Record a new value in a summary."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:246
+msgid "value to put in the data stream."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:247
+msgid "a table containing label names as keys, label values as values. All internal counters that have these labels specified observe new counter values. You can't add the ``\"quantile\"`` label to a summary. It is added automatically. If ``max_age_time`` and ``age_buckets_count`` are set, the observed value is added to each bucket. Note that both label names and values in ``label_pairs`` are treated as strings."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:260
+msgid "Return a concatenation of ``counter_obj:collect()`` across all internal counters of ``summary_obj``. For the description of ``observation``, see :ref:`counter_obj:collect() <metrics-api_reference-counter_collect>`. If ``max_age_time`` and ``age_buckets_count`` are set, quantile observations are collected only from the head bucket in the sliding time window, not from every bucket. If no observations were recorded, the method will return ``NaN`` in the values."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:276
+msgid "Labels"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:278
+msgid "All collectors support providing ``label_pairs`` on data modification. A label is a piece of metainfo that you associate with a metric in the key-value format. For details, see `tags in Graphite <https://graphite.readthedocs.io/en/latest/tags.html>`_ and `labels in Prometheus <https://prometheus.io/docs/practices/naming/#labels>`_."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:283
+msgid "Labels are used to differentiate between the characteristics of a thing being measured. For example, in a metric associated with the total number of HTTP requests, you can represent methods and statuses as label pairs:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:287
+msgid "http_requests_total_counter:inc(1, {method = 'POST', status = '200'})"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:291
+msgid "You don't have to predefine labels in advance."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:293
+msgid "With labels, you can extract new time series (visualize their graphs) by specifying conditions with regard to label values. The example above allows extracting the following time series:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:297
+msgid "The total number of requests over time with ``method = \"POST\"`` (and any status)."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:298
+msgid "The total number of requests over time with ``status = 500`` (and any method)."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:300
+msgid "You can also set global labels by calling ``metrics.set_global_labels({ label = value, ...})``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:306
+msgid "Metrics functions"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:310
+msgid "Entrypoint to setup the module. Since 0.17.0."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:312
+msgid "module configuration options:  * ``cfg.include`` (string/table, default ``'all'``): ``'all`` to enable all   supported default metrics, ``'none'`` to disable all default metrics,   table with names of the default metrics to enable a specific set of metrics. * ``cfg.exclude`` (table, default ``{}``): table containing the names of   the default metrics that you want to disable. Has higher priority   than ``cfg.include``. * ``cfg.labels`` (table, default ``{}``): table containing label names as   string keys, label values as values."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:312
+msgid "module configuration options:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:314
+msgid "``cfg.include`` (string/table, default ``'all'``): ``'all`` to enable all supported default metrics, ``'none'`` to disable all default metrics, table with names of the default metrics to enable a specific set of metrics."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:317
+msgid "``cfg.exclude`` (table, default ``{}``): table containing the names of the default metrics that you want to disable. Has higher priority than ``cfg.include``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:320
+msgid "``cfg.labels`` (table, default ``{}``): table containing label names as string keys, label values as values."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:323
+msgid "You can work with ``metrics.cfg`` as a table to read values, but you must call ``metrics.cfg{}`` as a function to update them."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:326
+msgid "Supported default metric names (for ``cfg.include`` and ``cfg.exclude`` tables):"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:328
+msgid "``network``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:329
+msgid "``operations``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:330
+msgid "``system``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:331
+msgid "``replicas``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:332
+msgid "``info``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:333
+msgid "``slab``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:334
+msgid "``runtime``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:335
+msgid "``memory``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:336
+msgid "``spaces``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:337
+msgid "``fibers``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:338
+msgid "``cpu``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:339
+msgid "``vinyl``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:340
+msgid "``memtx``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:341
+msgid "``luajit``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:342
+msgid "``cartridge_issues``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:343
+msgid "``cartridge_failover``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:344
+msgid "``clock``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:345
+msgid "``event_loop``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:347
+msgid "See :ref:`metrics reference <metrics-reference>` for details. All metric collectors from the collection have ``metainfo.default = true``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:350
+msgid "``cfg.labels`` are the global labels to be added to every observation."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:352
+msgid "Global labels are applied only to metric collection. They have no effect on how observations are stored."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:355
+msgid "Global labels can be changed on the fly."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:357
+msgid "``label_pairs`` from observation objects have priority over global labels. If you pass ``label_pairs`` to an observation method with the same key as some global label, the method argument value will be used."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:361
+msgid "Note that both label names and values in ``label_pairs`` are treated as strings."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:365
+msgid "Same as ``metrics.cfg{include=include, exclude=exclude}``, but ``include={}`` is treated as ``include='all'`` for backward compatibility."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:370
+msgid "Same as ``metrics.cfg{labels=label_pairs}``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:374
+msgid "Collect observations from each collector."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:376
+msgid "table of collect options:  * ``invoke_callbacks`` -- if ``true``, ``invoke_callbacks()`` is triggered before actual collect. * ``default_only`` -- if ``true``, observations contain only default metrics (``metainfo.default = true``)."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:376
+msgid "table of collect options:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:378
+msgid "``invoke_callbacks`` -- if ``true``, ``invoke_callbacks()`` is triggered before actual collect."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:379
+msgid "``default_only`` -- if ``true``, observations contain only default metrics (``metainfo.default = true``)."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:385
+msgid "Remove a collector from the registry."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:387
+msgid "the collector to be removed."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:389
+#: ../../doc/book/monitoring/api_reference.rst:410
+#: ../../doc/book/monitoring/api_reference.rst:427
+#: ../../doc/book/monitoring/api_reference.rst:443
+#: ../../doc/book/monitoring/api_reference.rst:599
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:391
+msgid "local collector = metrics.gauge('some-gauge')\n"
+"\n"
+"-- after a while, we don't need it anymore\n"
+"\n"
+"metrics.registry:unregister(collector)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:401
+msgid "Find a collector in the registry."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:403
+msgid "collector kind (``counter``, ``gauge``, ``histogram``, or ``summary``)."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:404
+msgid "collector name."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:406
+msgid "A collector object or ``nil``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:408
+msgid "collector_obj"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:412
+msgid "local collector = metrics.gauge('some-gauge')\n"
+"\n"
+"collector = metrics.registry:find('gauge', 'some-gauge')"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:420
+msgid "Register a function named ``callback``, which will be called right before metric collection on plugin export."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:423
+#: ../../doc/book/monitoring/api_reference.rst:441
+msgid "a function that takes no parameters."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:425
+msgid "This method is most often used for gauge metrics updates."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:429
+msgid "metrics.register_callback(function()\n"
+"    local cpu_metrics = require('metrics.psutils.cpu')\n"
+"    cpu_metrics.update()\n"
+"end)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:438
+msgid "Unregister a function named ``callback`` that is called right before metric collection on plugin export."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:445
+msgid "local cpu_callback = function()\n"
+"    local cpu_metrics = require('metrics.psutils.cpu')\n"
+"    cpu_metrics.update()\n"
+"end\n"
+"\n"
+"metrics.register_callback(cpu_callback)\n"
+"\n"
+"-- after a while, we don't need that callback function anymore\n"
+"\n"
+"metrics.unregister_callback(cpu_callback)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:460
+msgid "Invoke all registered callbacks. Has to be called before each ``collect()``. (Since version **0.16.0**, you may use ``collect{invoke_callbacks = true}`` instead.) If you're using one of the default exporters, ``invoke_callbacks()`` will be called by the exporter."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:468
+msgid "Metrics role API"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:470
+msgid "Below are the functions that you can call with ``metrics = require('cartridge.roles.metrics')`` specified in your ``init.lua``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:475
+msgid "a table containing paths and formats of the exported metrics."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:477
+msgid "Configure the endpoints of the metrics role:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:479
+msgid "local metrics = require('cartridge.roles.metrics')\n"
+"metrics.set_export({\n"
+"    {\n"
+"        path = '/path_for_json_metrics',\n"
+"        format = 'json'\n"
+"    },\n"
+"    {\n"
+"        path = '/path_for_prometheus_metrics',\n"
+"        format = 'prometheus'\n"
+"    },\n"
+"    {\n"
+"        path = '/health',\n"
+"        format = 'health'\n"
+"    }\n"
+"})"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:497
+msgid "You can add several entry points of the same format but with different paths, for example:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:500
+msgid "metrics.set_export({\n"
+"    {\n"
+"        path = '/path_for_json_metrics',\n"
+"        format = 'json'\n"
+"    },\n"
+"    {\n"
+"        path = '/another_path_for_json_metrics',\n"
+"        format = 'json'\n"
+"    },\n"
+"})"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:515
+msgid "Add default global labels. Note that both label names and values in ``label_pairs`` are treated as strings."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:519
+msgid "Table containing label names as string keys, label values as values."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:522
+msgid "local metrics = require('cartridge.roles.metrics')\n"
+"metrics.set_default_labels({ ['my-custom-label'] = 'label-value' })"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:530
+msgid "Collecting HTTP request latency statistics"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:532
+msgid "The ``metrics`` module provides middleware for monitoring HTTP (set by the `http <https://github.com/tarantool/http>`_ module) latency statistics. The latency collector observes both latency information and the number of invocations. The metrics collected by HTTP middleware are separated by a set of labels:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:538
+msgid "route (``path``)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:539
+msgid "method (``method``)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:540
+msgid "HTTP status code (``status``)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:542
+msgid "For each route that you want to track, you must specify the middleware explicitly. The middleware does not cover the 404 errors."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:549
+msgid "Register a collector for the middleware and set it as default."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:551
+#: ../../doc/book/monitoring/api_reference.rst:563
+msgid "collector type: ``histogram`` or ``summary``. The default is ``histogram``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:552
+#: ../../doc/book/monitoring/api_reference.rst:564
+msgid "collector name. The default is ``http_server_request_latency``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:553
+#: ../../doc/book/monitoring/api_reference.rst:565
+msgid "collector description. The default is ``HTTP Server Request Latency``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:555
+#: ../../doc/book/monitoring/api_reference.rst:569
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:557
+#: ../../doc/book/monitoring/api_reference.rst:571
+msgid "A collector with the same type and name already exists in the registry."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:561
+msgid "Register and return a collector for the middleware."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:567
+#: ../../doc/book/monitoring/api_reference.rst:586
+msgid "A collector object."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:575
+msgid "Set the default collector."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:577
+msgid "middleware collector object."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:581
+msgid "Return the default collector. If the default collector hasn't been set yet, register it (with default ``http_middleware.build_default_collector(...)`` parameters) and set it as default."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:590
+msgid "Latency measuring wrap-up for the HTTP ver. ``1.x.x`` handler. Returns a wrapped handler."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:592
+msgid "handler function."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:593
+msgid "middleware collector object. If not set, the default collector is used (like in ``http_middleware.get_default_collector()``)."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:597
+msgid "**Usage:** ``httpd:route(route, http_middleware.v1(request_handler, collector))``"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:601
+msgid "#!/usr/bin/env tarantool\n"
+"package.path = package.path .. \";../?.lua\"\n"
+"\n"
+"local json = require('json')\n"
+"local fiber = require('fiber')\n"
+"local metrics = require('metrics')\n"
+"local log = require('log')\n"
+"local http_middleware = metrics.http_middleware\n"
+"\n"
+"-- Configure HTTP routing\n"
+"local ip = '127.0.0.1'\n"
+"local port = 12345\n"
+"local httpd = require('http.server').new(ip, port) -- HTTP ver. 1.x.x\n"
+"local route = { path = '/path', method = 'POST' }\n"
+"\n"
+"-- Route handler\n"
+"local handler = function(req)\n"
+"    for _ = 1, 10 do\n"
+"        fiber.sleep(0.1)\n"
+"    end\n"
+"\n"
+"    return { status = 200, body = req.body }\n"
+"end\n"
+"\n"
+"-- Configure summary latency collector\n"
+"local collector = http_middleware.build_default_collector('summary')\n"
+"\n"
+"-- Set route handler with summary latency collection\n"
+"httpd:route(route, http_middleware.v1(handler, collector))\n"
+"-- Start HTTP routing\n"
+"httpd:start()\n"
+"\n"
+"-- Set HTTP client, make some request\n"
+"local http_client = require(\"http.client\") -- HTTP ver. 1.x.x\n"
+"http_client.post('http://' .. ip .. ':' .. port .. route.path, json.encode({ body = 'text' }))\n"
+"\n"
+"-- Collect the metrics\n"
+"log.info(metrics.collect())\n"
+"--[[\n"
+"\n"
+"- label_pairs:\n"
+"    path: /path\n"
+"    method: POST\n"
+"    status: 200\n"
+"  timestamp: 1588951616500768\n"
+"  value: 1\n"
+"  metric_name: path_latency_count\n"
+"\n"
+"- label_pairs:\n"
+"    path: /path\n"
+"    method: POST\n"
+"    status: 200\n"
+"  timestamp: 1588951616500768\n"
+"  value: 1.0240110000595\n"
+"   metric_name: path_latency_sum\n"
+"\n"
+" - label_pairs:\n"
+"     path: /path\n"
+"     method: POST\n"
+"     status: 200\n"
+"     quantile: 0.5\n"
+"   timestamp: 1588951616500768\n"
+"   value: 1.0240110000595\n"
+"   metric_name: path_latency\n"
+"\n"
+" - label_pairs:\n"
+"     path: /path\n"
+"     method: POST\n"
+"     status: 200\n"
+"     quantile: 0.9\n"
+"   timestamp: 1588951616500768\n"
+"   value: 1.0240110000595\n"
+"   metric_name: path_latency\n"
+"\n"
+" - label_pairs:\n"
+"     path: /path\n"
+"     method: POST\n"
+"     status: 200\n"
+"     quantile: 0.99\n"
+"   timestamp: 1588951616500768\n"
+"   value: 1.0240110000595\n"
+"   metric_name: path_latency\n"
+"\n"
+"--]]\n"
+"\n"
+"-- Exit event loop\n"
+"os.exit()"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:694
+msgid "CPU usage metrics"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:696
+msgid "CPU metrics work only on Linux. See the :ref:`metrics reference <metrics-reference-psutils>` for details."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:699
+msgid "To enable CPU metrics, first register a callback function:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:701
+msgid "local metrics = require('metrics')\n"
+"\n"
+"local cpu_callback = function()\n"
+"    local cpu_metrics = require('metrics.psutils.cpu')\n"
+"    cpu_metrics.update()\n"
+"end\n"
+"\n"
+"metrics.register_callback(cpu_callback)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:712
+msgid "**Collected metrics example:**"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:714
+msgid "# HELP tnt_cpu_time Host CPU time\n"
+"# TYPE tnt_cpu_time gauge\n"
+"tnt_cpu_time 15006759\n"
+"# HELP tnt_cpu_thread Tarantool thread cpu time\n"
+"# TYPE tnt_cpu_thread gauge\n"
+"tnt_cpu_thread{thread_name=\"coio\",file_name=\"init.lua\",thread_pid=\"699\",kind=\"system\"} 160\n"
+"tnt_cpu_thread{thread_name=\"tarantool\",file_name=\"init.lua\",thread_pid=\"1\",kind=\"user\"} 949\n"
+"tnt_cpu_thread{thread_name=\"tarantool\",file_name=\"init.lua\",thread_pid=\"1\",kind=\"system\"} 920\n"
+"tnt_cpu_thread{thread_name=\"coio\",file_name=\"init.lua\",thread_pid=\"11\",kind=\"user\"} 79\n"
+"tnt_cpu_thread{thread_name=\"coio\",file_name=\"init.lua\",thread_pid=\"699\",kind=\"user\"} 44\n"
+"tnt_cpu_thread{thread_name=\"coio\",file_name=\"init.lua\",thread_pid=\"11\",kind=\"system\"} 294"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:728
+msgid "**Prometheus query aggregated by thread name:**"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:730
+msgid "sum by (thread_name) (idelta(tnt_cpu_thread[$__interval]))\n"
+"  / scalar(idelta(tnt_cpu_total[$__interval]) / tnt_cpu_count)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:735
+msgid "All psutils metric collectors have ``metainfo.default = true``."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:737
+msgid "To clear CPU metrics when you don't need them anymore, remove the callback and clear the collectors with a method:"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:739
+msgid "metrics.unregister_callback(cpu_callback)\n"
+"cpu_metrics.clear()"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:747
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:749
+msgid "Below are some examples of using metric primitives."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:751
+msgid "Notice that this usage is independent of export plugins such as Prometheus, Graphite, etc. For documentation on how to use the plugins, see the :ref:`Metrics plugins <metrics-plugins>` section."
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:755
+msgid "**Using counters:**"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:757
+msgid "local metrics = require('metrics')\n"
+"\n"
+"-- create a counter\n"
+"local http_requests_total_counter = metrics.counter('http_requests_total')\n"
+"\n"
+"-- somewhere in the HTTP requests middleware:\n"
+"http_requests_total_counter:inc(1, {method = 'GET'})"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:767
+msgid "**Using gauges:**"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:769
+msgid "local metrics = require('metrics')\n"
+"\n"
+"-- create a gauge\n"
+"local cpu_usage_gauge = metrics.gauge('cpu_usage', 'CPU usage')\n"
+"\n"
+"-- register a lazy gauge value update\n"
+"-- this will be called whenever export is invoked in any plugins\n"
+"metrics.register_callback(function()\n"
+"    local current_cpu_usage = some_cpu_collect_function()\n"
+"    cpu_usage_gauge:set(current_cpu_usage, {app = 'tarantool'})\n"
+"end)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:783
+msgid "**Using histograms:**"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:785
+msgid "local metrics = require('metrics')\n"
+"local fiber = require('fiber')\n"
+"-- create a histogram\n"
+"local http_requests_latency_hist = metrics.histogram(\n"
+"    'http_requests_latency', 'HTTP requests total', {2, 4, 6})\n"
+"\n"
+"-- somewhere in the HTTP request middleware:\n"
+"\n"
+"local t0 = fiber.clock()\n"
+"observable_function()\n"
+"local t1 = fiber.clock()\n"
+"\n"
+"local latency = t1 - t0\n"
+"http_requests_latency_hist:observe(latency)"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:802
+msgid "**Using summaries:**"
+msgstr ""
+
+#: ../../doc/book/monitoring/api_reference.rst:804
+msgid "local metrics = require('metrics')\n"
+"local fiber = require('fiber')\n"
+"\n"
+"-- create a summary with a window of 5 age buckets and a bucket lifetime of 60 s\n"
+"local http_requests_latency = metrics.summary(\n"
+"    'http_requests_latency', 'HTTP requests total',\n"
+"    {[0.5]=0.01, [0.9]=0.01, [0.99]=0.01},\n"
+"    {max_age_time = 60, age_buckets_count = 5}\n"
+")\n"
+"\n"
+"-- somewhere in the HTTP requests middleware:\n"
+"local t0 = fiber.clock()\n"
+"observable_function()\n"
+"local t1 = fiber.clock()\n"
+"\n"
+"local latency = t1 - t0\n"
+"http_requests_latency:observe(latency)"
+msgstr ""

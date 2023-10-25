@@ -1,0 +1,313 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.6.1.rst:2
+msgid "Tarantool 2.6.1"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:4
+msgid "Release: :tarantool-release:`2.6.1` Date: 2020-10-22 Tag: 2.6.1-0-gcfe0d1a"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:10
+msgid "2.6.1 is the beta version of the 2.6 release series."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:12
+msgid "This release introduces roughly 17 features and resolves 22 bugs since the 2.5.1 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`_."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:17
+msgid "Notable changes are:"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:19
+msgid "Transactional manager for the memtx engine that allows yielding in transactions. It also guarantees the data consistency for synchronous replication, eliminating dirty reads for unconfirmed transactions."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:24
+#: ../../doc/release/2.6.1.rst:35
+#: ../../doc/release/2.6.1.rst:218
+msgid "Read more:"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:26
+#: ../../doc/release/2.6.1.rst:220
+msgid ":ref:`txn_mode_transaction-manager`"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:27
+#: ../../doc/release/2.6.1.rst:221
+msgid ":ref:`use_mvcc_engine configuration parameter <cfg_basic-memtx_use_mvcc_engine>`"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:29
+msgid "Raft-based automated failover mechanism for a single-leader replica set. Replica set can be configured to provide automated leader election and failover. Accompanied with synchronous replication it brings data safety and service reliability on a new level."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:37
+msgid ":ref:`Automated leader election <repl_leader_elect>`"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:38
+msgid ":ref:`election_mode configuration parameter <cfg_replication-election_mode>`"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:39
+msgid ":ref:`election_timeout configuration parameter <cfg_replication-election_timeout>`"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:40
+msgid ":doc:`/reference/reference_lua/box_info/election`"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:43
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:45
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:48
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`_ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:53
+msgid "There are changes labeled with **[Breaking change]**. It means that the old behavior was considered error-prone and therefore changed to protect users from unintended mistakes. However, there is a little probability that someone can lean on the old behavior, and this label is to bring attention to the things that have been changed."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:60
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:63
+#: ../../doc/release/2.6.1.rst:145
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:65
+msgid "Introduce a function to check that the specified value is of UUID type (:tarantool-issue:`5171`). Read more: :ref:`uuid.is_uuid() <uuid-is_uuid>`."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:67
+msgid "A new function ``space:alter(options)`` to change some space settings without recreation nor touching ``_space`` space. Read more: :doc:`/reference/reference_lua/box_space/alter`."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:70
+msgid "Composite types extraction is now supported in key_def (:tarantool-issue:`4538`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:71
+msgid "Make memtx tuple hints an optional feature (:tarantool-issue:`4927`). Read more: :ref:`Options for space_object:create_index() <index_opts_object>`."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:75
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:77
+msgid "Rework upsert operation in vinyl so that now (:tarantool-issue:`5107`):"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:79
+msgid "if upsert can’t be applied it is skipped and corresponding error is logged (:tarantool-issue:`1622`);"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:81
+msgid "upserts now follow associative property: the result of several upserts does not depend on the order of their application (:tarantool-issue:`5105`);"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:84
+msgid "upserts referring to -1 fieldno are handled correctly now (:tarantool-issue:`5087`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:86
+msgid "there’s no more upserts squash procedure: upserts referring to the same field with arithmetic operations are not merged into one operation since resulting upsert might not be applied - as a result both upserts would be ignored (meanwhile only one should be)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:93
+#: ../../doc/release/2.6.1.rst:196
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:95
+msgid "**[Breaking change]** Introduce LuaJIT platform metrics (:tarantool-issue:`5187`). Read more: :ref:`LuaJIT metrics <metrics-reference-luajit>`."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:98
+msgid "This change introduces new builtin library “misc” that may conflict with user’s modules."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:102
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:104
+msgid "SQL views are not alterable anymore. Beforehand it led to the undefined behaviour."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:106
+msgid "Introduce “automatic index” optimization. Ephemeral space with single index can be created to store and speed-up intermediate results access during query execution (:tarantool-issue:`4933`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:111
+#: ../../doc/release/2.6.1.rst:168
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:113
+msgid "Automated leader election based on Raft algorithm (:tarantool-issue:`1146`). Read more: :ref:`Automated leader election <repl_leader_elect>`."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:115
+msgid "When election is enabled, a newly elected leader will automatically finish all the synchronous transactions, created by the old leader (:tarantool-issue:`5339`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:120
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:122
+msgid "Tarantool static build is enhanced in scope of :tarantool-issue:`5095`. It can be built on the host machine with no Docker at all. As a result it can be built using the OSX environment."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:127
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:129
+msgid "Add all exported symbols from bundled libcurl library (:tarantool-issue:`5223`)"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:130
+msgid "Add ``fselect`` method that is similar to select, but formats results like mysql would (:tarantool-issue:`5161`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:134
+#: ../../doc/release/2.6.1.rst:225
+msgid "Module API"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:136
+msgid "Exposed the box region, key_def and several other functions in order to implement external tuple.keydef and tuple.merger modules on top of them (:tarantool-issue:`5273`, :tarantool-issue:`5384`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:141
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:147
+msgid "Fixed a bug related to ignoring internal getaddrinfo errors on macOS in logger (:tarantool-issue:`4138`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:149
+msgid "Fixed a crash when JSON tuple field access was used to get a multikey indexed field, and when a JSON contained [*] in the beginning (:tarantool-issue:`5224`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:152
+msgid "Fixed msgpack extension types decoding error message (:tarantool-issue:`5016`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:153
+msgid "Dropped restrictions on nullable multikey index root. They were introduced due to inaccuracy in multikey index realization. It is now fixed. Also all fields are now nullable by default as it was before 2.2.1 (:tarantool-issue:`5192`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:157
+msgid "Fixed fibers switch-over to prevent JIT machinery misbehavior. Trace recording is aborted when fiber yields the execution. The yield occurring while the compiled code is being run (it’s likely a function with a yield underneath called via LuaJIT FFI) leads to the platform panic (:tarantool-issue:`1700`, :tarantool-issue:`4491`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:162
+msgid "Fixed fibers switch-over to prevent implicit GC disabling. The yield occurring while user-defined \\__gc metamethod is running leads to the platform panic."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:170
+msgid "Fixed a bug when a rolled back synchronous transaction could become committed after restart (:tarantool-issue:`5140`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:172
+msgid "Fixed crash in synchronous replication when master’s local WAL write fails (:tarantool-issue:`5146`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:174
+msgid "Instance will terminate if a synchronous transaction confirmation or rollback fail. Before it was undefined behavior (:tarantool-issue:`5159`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:176
+msgid "Snapshot could contain changes from a rolled back synchronous transaction (:tarantool-issue:`5167`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:178
+msgid "Fixed a crash when synchronous transaction’s rollback and confirm could be written simultaneously for the same LSN (:tarantool-issue:`5185`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:180
+msgid "Fixed a crash when replica cleared synchronous transaction queue, while it was not empty on master (:tarantool-issue:`5195`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:182
+msgid "During recovery of synchronous changes from snapshot the instance could crash (:tarantool-issue:`5288`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:184
+msgid "Having synchronous rows in the snapshot could make the instance hang on recovery (:tarantool-issue:`5298`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:186
+msgid "Anonymous replica could be registered and could prevent WAL files removal (:tarantool-issue:`5287`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:188
+msgid "XlogGapError is not a critical error anymore. It means, box.info.replication will show upstream status as ‘loading’ if the error was found. The upstream will be restarted until the error is resolved automatically with a help of another instance, or until the replica is removed from box.cfg.replication (:tarantool-issue:`5287`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:198
+msgid "Fixed the error occurring on loading luajit-gdb.py with Python 2 (:tarantool-issue:`4828`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:202
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:204
+msgid "Fixed a bug related to ignoring internal getaddrinfo errors. Now they can be thrown out by Lua socket functions (:tarantool-issue:`4138`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:206
+msgid "Fixed: import of table.clear() method (:tarantool-issue:`5210`). Affected versions: all 2.6.\\* until 2.6.0-53-g09aa813 (exclusive)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:208
+msgid "Fixed unhandled Lua error that may lead to memory leaks and inconsistencies in ``<space_object>:frommap()``, ``<key_def_object>:compare()``, ``<merge_source>:select()`` (:tarantool-issue:`5382`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:214
+msgid "Memtx"
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:216
+msgid "Transactional manager for memtx engine (:tarantool-issue:`4897`)."
+msgstr ""
+
+#: ../../doc/release/2.6.1.rst:227
+msgid "Get rid of typedef redefinitions for compatibility with C99 (:tarantool-issue:`5313`)."
+msgstr ""

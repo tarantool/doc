@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:4
+msgid "box.error()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:10
+msgid "Raise the last error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:12
+msgid "**See also:** :ref:`box.error.last() <box_error-last>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:18
+msgid "Raise the error defined by :ref:`error_object <box_error-error_object>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:0
+#: ../../doc/reference/reference_lua/box_error/error.rst:0
+#: ../../doc/reference/reference_lua/box_error/error.rst:0
+#: ../../doc/reference/reference_lua/box_error/error.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:20
+msgid "an error object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:22
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:24
+msgid "local custom_error = box.error.new({ code = 500,\n"
+"                                     reason = 'Internal server error' })\n"
+"\n"
+"box.error(custom_error)\n"
+"--[[\n"
+"---\n"
+"- error: Internal server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:34
+msgid "Raise the error defined by the specified parameters."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:36
+#: ../../doc/reference/reference_lua/box_error/error.rst:63
+msgid "an error description"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:37
+msgid "(optional) a numeric code for this error"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:38
+msgid "(optional) an error type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:40
+msgid "**Example 1**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:42
+msgid "box.error { code = 500,\n"
+"            reason = 'Custom server error' }\n"
+"--[[\n"
+"---\n"
+"- error: Custom server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:48
+msgid "**Example 2: custom type**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:50
+msgid "box.error { code = 500,\n"
+"            reason = 'Internal server error',\n"
+"            type = 'CustomInternalError' }\n"
+"--[[\n"
+"---\n"
+"- error: Internal server error\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:60
+msgid "Raise the error defined by the specified type and description."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:62
+msgid "an error type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:64
+#: ../../doc/reference/reference_lua/box_error/error.rst:91
+msgid "description arguments"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:66
+msgid "**Example 1: without arguments**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:68
+msgid "box.error('CustomConnectionError', 'cannot connect to the given port')\n"
+"--[[\n"
+"---\n"
+"- error: cannot connect to the given port\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:74
+msgid "**Example 2: with arguments**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:76
+msgid "box.error('CustomConnectionError', '%s cannot connect to the port %u', 'client', 8080)\n"
+"--[[\n"
+"---\n"
+"- error: client cannot connect to the port 8080\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:86
+msgid "Raise a predefined :ref:`Tarantool error <error_codes>` specified by its identifier. You can see all Tarantool errors in the `errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_ file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:90
+msgid "a pre-defined error identifier; Lua constants that correspond to those Tarantool errors are defined as members of ``box.error``, for example, ``box.error.NO_SUCH_USER == 45``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:93
+msgid "**Example 1: no arguments**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:95
+msgid "box.error(box.error.READONLY)\n"
+"--[[\n"
+"---\n"
+"- error: Can't modify data on a read-only instance\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:101
+msgid "**Example 2: one argument**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:103
+msgid "box.error(box.error.NO_SUCH_USER, 'John')\n"
+"--[[\n"
+"---\n"
+"- error: User 'John' is not found\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:109
+msgid "**Example 3: two arguments**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/error.rst:111
+msgid "box.error(box.error.CREATE_SPACE, 'my_space', 'the space already exists')\n"
+"--[[\n"
+"---\n"
+"- error: 'Failed to create space ''my_space'': the space already exists'\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""

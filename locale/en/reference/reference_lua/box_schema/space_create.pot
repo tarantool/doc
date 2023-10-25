@@ -1,0 +1,286 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:5
+msgid "box.schema.space.create()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:12
+msgid "Create a :ref:`space <index-box_space>`. You can use either syntax. For example, ``s = box.schema.space.create('tester')`` has the same effect as ``s = box.schema.create_space('tester')``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:17
+msgid "There are :ref:`three syntax variations <app_server-object_reference>` for object references targeting space objects, for example :samp:`box.schema.space.drop({space-id})` drops a space. However, the common approach is to use functions attached to the space objects, for example :ref:`space_object:drop() <box_space-drop>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:24
+msgid "After a space is created, usually the next step is to :ref:`create an index <box_space-create_index>` for it, and then it is available for insert, select, and all the other :ref:`box.space <box_space>` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:29
+msgid "name of space, which should conform to the :ref:`rules for object names <app_server-names>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:31
+msgid "space options (see :ref:`space_opts <space_opts_object>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:33
+msgid "space object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:34
+msgid "userdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:39
+msgid "space_opts"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:43
+msgid "Space options that include the space id, format, field count, constraints and foreign keys, and so on. These options are passed to the :ref:`box.schema.space.create() <box_schema-space_create>` method."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:49
+msgid "These options are also passed to :doc:`/reference/reference_lua/box_space/alter`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:55
+msgid "Create a space only if a space with the same name does not exist already. Otherwise, do nothing but do not cause an error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:58
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:121
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:135
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:144
+msgid "Type: boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:59
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:122
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:136
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:145
+msgid "Default: ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:65
+msgid "A :ref:`storage engine <engines-chapter>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:67
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:98
+msgid "Type: string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:68
+msgid "Default: `memtx`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:69
+msgid "Possible values: ``memtx``, ``vinyl``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:75
+msgid "A unique numeric identifier of the space: users can refer to spaces with this id instead of the name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:78
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:88
+msgid "Type: number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:79
+msgid "Default: last space's ID + 1"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:85
+msgid "A fixed count of :ref:`fields <index-box_tuple>`. For example, if ``field_count=5``, it is illegal to insert a tuple with fewer than or more than 5 fields."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:89
+msgid "Default: ``0`` (not fixed)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:95
+msgid "The name of the user who is considered to be the space's :ref:`owner <authentication-owners_privileges>` for authorization purposes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:99
+msgid "Default: current user's name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:105
+msgid "Field names and types. See the illustrations of format clauses in the :ref:`space_object:format() <box_space-format>` description and in the :ref:`box.space._space <box_space-space>` example. Optional and usually not specified."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:110
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:153
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:169
+msgid "Type: table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:111
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:154
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:170
+msgid "Default: blank"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:117
+msgid "Space contents are :ref:`replication-local <replication-local>`: changes are stored in the :ref:`write-ahead log <internals-wal>` of the local node but there is no :ref:`replication <replication>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:128
+msgid "Space contents are temporary: changes are not stored in the :ref:`write-ahead log <internals-wal>` and there is no :ref:`replication <replication>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:133
+msgid "Vinyl does not support temporary spaces."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:142
+msgid "Any transaction doing a DML request on this space becomes synchronous."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:151
+msgid "The :ref:`constraints <index-constraints>` that space tuples must satisfy."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:156
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:172
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:196
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:158
+msgid "-- Define a tuple constraint function --\n"
+"box.schema.func.create('check_person', {\n"
+"    language = 'LUA',\n"
+"    is_deterministic = true,\n"
+"    body = 'function(t, c) return (t.age >= 0 and #(t.name) > 3) end'\n"
+"})\n"
+"\n"
+"-- Create a space with a tuple constraint --\n"
+"customers = box.schema.space.create('customers', {constraint = 'check_person'})\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:167
+msgid "The :ref:`foreign keys <index-box_foreign_keys>` for space fields."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:174
+msgid "-- Create a space with a tuple foreign key --\n"
+"box.schema.space.create(\"orders\", {\n"
+"    foreign_key = {\n"
+"        space = 'customers',\n"
+"        field = {customer_id = 'id', customer_name = 'name'}\n"
+"    }\n"
+"})\n"
+"\n"
+"box.space.orders:format({\n"
+"    {name = \"id\", type = \"number\"},\n"
+"    {name = \"customer_id\" },\n"
+"    {name = \"customer_name\"},\n"
+"    {name = \"price_total\", type = \"number\"},\n"
+"})\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:179
+msgid "Saying ``box.cfg{read_only=true...}`` during :ref:`configuration <cfg_basic-read_only>` affects spaces differently depending on the options that were used during ``box.schema.space.create``, as summarized by this chart:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+msgid "Option"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+msgid "Can be created?"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+msgid "Can be written to?"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+msgid "Is replicated?"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+msgid "Is persistent?"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
+msgid "(default)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
+msgid "no"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
+msgid "yes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
+msgid "temporary"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
+msgid "is_local"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:198
+msgid "tarantool> s = box.schema.space.create('space55')\n"
+"---\n"
+"...\n"
+"tarantool> s = box.schema.space.create('space55', {\n"
+"         >   id = 555,\n"
+"         >   temporary = false\n"
+"         > })\n"
+"---\n"
+"- error: Space 'space55' already exists\n"
+"...\n"
+"tarantool> s = box.schema.space.create('space55', {\n"
+"         >   if_not_exists = true\n"
+"         > })\n"
+"---\n"
+"..."
+msgstr ""

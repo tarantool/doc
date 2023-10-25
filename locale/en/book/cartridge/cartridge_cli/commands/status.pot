@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:2
+msgid "Checking instance status"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:4
+msgid "Run the ``status`` command to check the current status of one or more instances:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:6
+msgid "cartridge status [INSTANCE_NAME...] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:10
+msgid "where ``[INSTANCE_NAME...]`` means that more than one instance can be specified."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:12
+msgid "If no ``INSTANCE_NAME`` is provided, all the instances from the Cartridge instance configuration file are taken as arguments. See the ``--cfg`` option below."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:18
+msgid "Make sure the instance(s) you are checking were started with ``cartridge start -d``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:21
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:29
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:30
+msgid "Application name. By default, it is taken from the ``package`` field of the application's ``.rockspec``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:32
+msgid "``--stateboard``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:33
+msgid "Get the status of the application stateboard and the instances. Ignored if ``--stateboard-only`` is specified."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:35
+msgid "``--stateboard-only``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:36
+msgid "Get only the application stateboard status. If specified, ``INSTANCE_NAME...`` is ignored."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:38
+msgid "``--run-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:39
+msgid "The directory where PID and socket files are stored. Defaults to ``./tmp/run``. ``run-dir`` is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:44
+msgid "``--cfg``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:45
+msgid "Path to the Cartridge instances configuration file. Defaults to ``./instances.yml``. ``cfg``is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:51
+msgid "``status`` also supports :doc:`global flags </book/cartridge/cartridge_cli/global-flags>`."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/status.rst:55
+msgid "Use the exact same ``run-dir`` as you did with ``cartridge start``. The PID files stored in that directory are used to stop running instances."
+msgstr ""

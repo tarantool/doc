@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.7.rst:2
+msgid "Tarantool 1.10.7"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:4
+msgid "Release: :tarantool-release:`1.10.7`"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:6
+msgid "Date: 2020-07-17 Tag: 1.10.7-1-gb93a33a"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:11
+msgid "1.10.7 is the next stable release of the 1.10.x series. The label “stable” means there are 1.10.x-based applications running in production for quite a while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:16
+msgid "This release resolves roughly 14 issues since 1.10.6. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`_."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:21
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:23
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. Please upgrade using the box.schema.upgrade() procedure to unlock all the new features of the 1.10.x series."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:29
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:32
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:34
+msgid "Fixed a bug in C module reloading (:tarantool-issue:`4945`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:35
+msgid "Fixed races and corner cases in box (re)configuration (:tarantool-issue:`4231`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:36
+msgid "Fixed check of index field map size which led to crash (:tarantool-issue:`5084`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:37
+msgid "Fixed wrong mpsgpack extension type in an error message at decoding (:tarantool-issue:`5017`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:41
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:43
+msgid "Fixed error while closing socket.tcp_server socket (:tarantool-issue:`4087`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:46
+msgid "LuaRocks"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:48
+msgid "Don’t ruin rock name when freshly installing \\*.all.rock with dependencies (:tarantool-issue:`4704`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:52
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:54
+msgid "Fixed crash during compaction due to tuples with size exceeding vinyl_max_tuple_size setting (:tarantool-issue:`4864`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:56
+msgid "Fixed crash during recovery of vinyl index due to the lack of file descriptors (:tarantool-issue:`4805`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:58
+msgid "Fixed crash during executing upsert changing primary key in debug mode (:tarantool-issue:`5005`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:60
+msgid "Fixed crash due to triggered dump process during secondary index creation (:tarantool-issue:`5042`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:62
+msgid "Fixed crash/deadlock (depending on build type) during dump process scheduling and concurrent DDL operation (:tarantool-issue:`4821`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:64
+msgid "Fixed crash during read of prepared but still not yet not committed statement (:tarantool-issue:`3395`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:66
+msgid "Fixed squashing set and arithmetic upsert operations (:tarantool-issue:`5106`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:67
+msgid "Create missing folders for vinyl spaces and indexes if needed to avoid confusing fails of tarantool started from backup (:tarantool-issue:`5090`)."
+msgstr ""
+
+#: ../../doc/release/1.10.7.rst:69
+msgid "Fixed crash during squash of many (more than 4000) upserts modifying the same key (:tarantool-issue:`4957`)."
+msgstr ""

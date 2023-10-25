@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:4
+msgid "Manipulating Tarantool core dumps"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:6
+msgid "$ tt coredump COMMAND [COMMAND_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:10
+msgid "``tt coredump`` provides commands for manipulating Tarantool core dumps."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:12
+msgid "To be able to investigate Tarantool crashes, make sure that core dumps are enabled on the host. Here is the :ref:`instruction on enabling core dumps on Unix systems <admin-core_dumps>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:17
+msgid "``tt coredump`` does not support macOS."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:20
+msgid "Commands"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:23
+msgid "pack"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:25
+msgid "$ tt coredump pack COREDUMP_FILE"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:29
+msgid "Pack a Tarantool core dump and supporting data into a ``tar.gz`` archive. It includes:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:32
+msgid "the Tarantool executable"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:33
+msgid "Tarantool version information"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:34
+msgid "OS information"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:35
+msgid "Shared libraries"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:37
+msgid "Option: a path to a core dump file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:40
+msgid "unpack"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:42
+msgid "$ tt coredump unpack ARCHIVE"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:46
+msgid "Unpack a Tarantool core dump created with ``tt coredump pack`` into a new directory."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:48
+msgid "Option: a path to a ``tar.gz`` archive packed by ``tt coredump pack``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:51
+msgid "inspect"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:53
+msgid "$ tt coredump inspect DIRECTORY"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:57
+msgid "Inspect a Tarantool core dump directory with the `GNU debugger <https://www.sourceware.org/gdb/>`__ (``gdb``) The directory being inspected must have the same structure as the core dump archive created by ``tt coredump pack``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:63
+msgid "``tt coredump inspect`` requires ``gdb`` installed on the host."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:65
+msgid "Option: a path to a directory with an unpacked core dump archive."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:68
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:70
+msgid "Pack a ``tar.gz`` file with a Tarantool core dump and supporting data:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:72
+msgid "$ tt coredump pack name.core"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:77
+msgid "Unpack a ``tar.gz`` archive packed by ``tt coredump pack``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:79
+msgid "$ tt coredump unpack tarantool-core-dump.tar.gz"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:84
+msgid "Inspect the unpacked core dump with ``gdb``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/coredump.rst:86
+msgid "$ tt coredump inspect tarantool-core-dump"
+msgstr ""

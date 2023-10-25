@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/enter.rst:2
+msgid "Enter an instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/enter.rst:4
+msgid "``cartridge enter`` allows connecting to an instance started with ``cartridge start``. The connection uses the instance's console socket placed in ``run-dir``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/enter.rst:7
+msgid "cartridge enter [INSTANCE_NAME] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/enter.rst:12
+msgid "Flags"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/enter.rst:20
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/enter.rst:21
+msgid "Application name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/enter.rst:22
+msgid "``--run-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/enter.rst:23
+msgid "The directory where PID and socket files are stored. Defaults to ``./tmp/run``. ``run-dir`` is also a section of ``.cartridge.yml``. Learn more about :doc:`instance paths </book/cartridge/cartridge_cli/instance-paths>`."
+msgstr ""

@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:4
+msgid "box.space._space_sequence"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:10
+msgid "``_space_sequence`` is a system space. It contains connections between spaces and sequences."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:13
+msgid "Tuples in this space contain the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:15
+msgid "``id`` (``unsigned``) -- space id"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:16
+msgid "``sequence_id`` (``unsigned``) -- id of the attached sequence"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:17
+msgid "``is_generated`` (``boolean``) -- ``true`` if the sequence was created automatically via a ``space:create_index('pk', {sequence = true})`` call"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:19
+msgid "``field`` (``unsigned``) -- id of the space field to which the sequence is attached."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:20
+msgid "``path`` (``string``) -- path to the data within the field that is set using the attached sequence."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:23
+msgid "The :ref:`system space view <box_space-sysviews>` for ``_space_sequence`` is ``_vspace_sequence``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:27
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_space_sequence.rst:29
+msgid "-- Create a sequence --\n"
+"box.schema.sequence.create('id_seq',{min=1000, start=1000})\n"
+"-- Create a space --\n"
+"box.schema.space.create('customers')\n"
+"\n"
+"-- Create an index that uses the sequence --\n"
+"box.space.customers:create_index('primary',{ sequence = 'id_seq' })\n"
+"\n"
+"-- Create a space --\n"
+"box.schema.space.create('orders')\n"
+"\n"
+"-- Create an index that uses an auto sequence --\n"
+"box.space.orders:create_index( 'primary', { sequence = true })\n"
+"\n"
+"-- Check the connections between spaces and sequences\n"
+"box.space._space_sequence:select{}\n"
+"--[[\n"
+"---\n"
+"- - [512, 1, false, 0, '']\n"
+"  - [513, 2, true, 0, '']\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""

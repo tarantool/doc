@@ -1,0 +1,282 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:5
+msgid "space_object:format()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:11
+msgid "Declare field names and :ref:`types <index-box_data-types>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:13
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:15
+msgid "a list of field names and types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:17
+msgid "``nil``, unless format-clause is omitted"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:19
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:21
+msgid "``space_object`` does not exist"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:22
+msgid "field names are duplicated"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:23
+msgid "type is not legal"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:27
+msgid "If you need to make a schema migration, see section :ref:`Migrations <migrations>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:29
+msgid "Ordinarily Tarantool allows unnamed untyped fields. But with ``format`` users can, for example, document that the Nth field is the surname field and must contain strings. It is also possible to specify a format clause in :doc:`box.schema.space.create() </reference/reference_lua/box_schema/space_create>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:35
+msgid "The format clause contains, for each field, a definition within braces: ``{name='...',type='...'[,is_nullable=...]}``, where:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:38
+msgid "The ``name`` value may be any string, provided that two fields do not have the same name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:40
+msgid "The ``type`` value may be any of allowed types: any | unsigned | string | integer | number | varbinary | boolean | double | decimal | uuid | array | map | scalar, but for creating an index use only :ref:`indexed fields <index-box_indexed-field-types>`;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:44
+msgid "(Optional) The ``is_nullable`` boolean value specifies whether ``nil`` can be used as a field value. See also: :ref:`key_part.is_nullable <key_part_is_nullable>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:46
+msgid "(Optional) The ``collation`` string value specifies the :ref:`collation <index-collation>` used to compare field values. See also: :ref:`key_part.collation <key_part_collation>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:48
+msgid "(Optional) The ``constraint`` table specifies the :ref:`constraints <index-constraints>` that the field value must satisfy."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:49
+msgid "(Optional) The ``foreign_key`` table specifies the :ref:`foreign keys <index-box_foreign_keys>` for the field."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:51
+msgid "It is not legal for tuples to contain values that have the wrong type. The example below will cause an error:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:54
+msgid "--This example will cause an error.\n"
+"box.space.tester:format({{' ',type='number'}})\n"
+"box.space.tester:insert{'string-which-is-not-a-number'}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:60
+msgid "It is not legal for tuples to contain null values if ``is_nullable=false``, which is the default. The example below will cause an error:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:63
+msgid "--This example will cause an error.\n"
+"box.space.tester:format({{' ',type='number',is_nullable=false}})\n"
+"box.space.tester:insert{nil,2}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:70
+msgid "It is legal for tuples to have more fields than are described by a format clause. The way to constrain the number of fields is to specify a space's :doc:`field_count </reference/reference_lua/box_space/field_count>` member."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:74
+msgid "It is legal for tuples to have fewer fields than are described by a format clause, if the omitted trailing fields are described with ``is_nullable=true``. For example, the request below will not cause a format-related error:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:78
+msgid "box.space.tester:format({{'a',type='number'},{'b',type='number',is_nullable=true}})\n"
+"box.space.tester:insert{2}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:84
+msgid "It is legal to use ``format`` on a space that already has a format, thus replacing any previous definitions, provided that there is no conflict with existing data or index definitions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:88
+msgid "It is legal to use ``format`` to change the ``is_nullable`` flag. The example below will not cause an error -- and will not cause rebuilding of the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:92
+msgid "box.space.tester:format({{' ',type='scalar',is_nullable=false}})\n"
+"box.space.tester:format({{' ',type='scalar',is_nullable=true}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:97
+msgid "But going the other way and changing ``is_nullable`` from ``true`` to ``false`` might cause rebuilding and might cause an error if there are existing tuples with nulls."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:102
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:104
+msgid "box.space.tester:format({{name='surname',type='string'},{name='IDX',type='array'}})\n"
+"box.space.tester:format({{name='surname',type='string',is_nullable=true}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:110
+msgid "There are legal variations of the format clause:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:112
+msgid "omitting both 'name=' and 'type=',"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:113
+msgid "omitting 'type=' alone,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:114
+msgid "adding extra braces."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:116
+msgid "The following examples show all the variations, first for one field named 'x', second for two fields named 'x' and 'y'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:119
+msgid "box.space.tester:format({{name='x',type='scalar'}})\n"
+"box.space.tester:format({{name='x',type='scalar'},{name='y',type='unsigned'}})\n"
+"\n"
+"box.space.tester:format({{'x'}})\n"
+"box.space.tester:format({{'x'},{'y'}})\n"
+"\n"
+"-- types\n"
+"box.space.tester:format({{name='x'}})\n"
+"box.space.tester:format({{name='x'},{name='y'}})\n"
+"\n"
+"box.space.tester:format({{'x',type='scalar'}})\n"
+"box.space.tester:format({{'x',type='scalar'},{'y',type='unsigned'}})\n"
+"\n"
+"box.space.tester:format({{'x','scalar'}})\n"
+"box.space.tester:format({{'x','scalar'},{'y','unsigned'}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:137
+msgid "The following example shows how to create a space, format it with all possible types, and insert into it."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:140
+msgid "tarantool> box.schema.space.create('t')\n"
+"---\n"
+"- engine: memtx\n"
+"  before_replace: 'function: 0x4019c488'\n"
+"  on_replace: 'function: 0x4019c460'\n"
+"  ck_constraint: []\n"
+"  field_count: 0\n"
+"  temporary: false\n"
+"  index: []\n"
+"  is_local: false\n"
+"  enabled: false\n"
+"  name: t\n"
+"  id: 534\n"
+"- created\n"
+"...\n"
+"tarantool> ffi = require('ffi')\n"
+"---\n"
+"...\n"
+"tarantool> decimal = require('decimal')\n"
+"---\n"
+"...\n"
+"tarantool> uuid = require('uuid')\n"
+"---\n"
+"...\n"
+"tarantool> box.space.t:format({{name = '1', type = 'any'},\n"
+"         >                     {name = '2', type = 'unsigned'},\n"
+"         >                     {name = '3', type = 'string'},\n"
+"         >                     {name = '4', type = 'number'},\n"
+"         >                     {name = '5', type = 'double'},\n"
+"         >                     {name = '6', type = 'integer'},\n"
+"         >                     {name = '7', type = 'boolean'},\n"
+"         >                     {name = '8', type = 'decimal'},\n"
+"         >                     {name = '9', type = 'uuid'},\n"
+"         >                     {name = 'a', type = 'scalar'},\n"
+"         >                     {name = 'b', type = 'array'},\n"
+"         >                     {name = 'c', type = 'map'}})\n"
+"---\n"
+"...\n"
+"tarantool> box.space.t:create_index('i',{parts={2, type = 'unsigned'}})\n"
+"---\n"
+"- unique: true\n"
+"  parts:\n"
+"  - type: unsigned\n"
+"    is_nullable: false\n"
+"    fieldno: 2\n"
+"  id: 0\n"
+"  space_id: 534\n"
+"  type: TREE\n"
+"  name: i\n"
+"...\n"
+"tarantool> box.space.t:insert{{'a'}, -- any\n"
+"         >                    1, -- unsigned\n"
+"         >                    'W?', -- string\n"
+"         >                    5.5, -- number\n"
+"         >                    ffi.cast('double', 1), -- double\n"
+"         >                    -0, -- integer\n"
+"         >                    true, -- boolean\n"
+"         >                    decimal.new(1.2), -- decimal\n"
+"         >                    uuid.new(), -- uuid\n"
+"         >                    true, -- scalar\n"
+"         >                    {{'a'}}, -- array\n"
+"         >                    {val=1}} -- map\n"
+"---\n"
+"- [['a'], 1, 'W?', 5.5, 1, 0, true, 1.2, 1f41e7b8-3191-483d-b46e-1aa6a4b14557, true, [['a']], {'val': 1}]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:208
+msgid "Names specified with the format clause can be used in :doc:`/reference/reference_lua/box_space/get` and in :doc:`/reference/reference_lua/box_space/create_index` and in :doc:`/reference/reference_lua/box_tuple/field_name` and in :doc:`/reference/reference_lua/box_tuple/field_path`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:214
+msgid "If the format clause is omitted, then the returned value is the table that was used in a previous :samp:`{space_object}:format({format-clause})` invocation. For example, after ``box.space.tester:format({{'x','scalar'}})``, ``box.space.tester:format()`` will return ``[{'name': 'x', 'type': 'scalar'}]``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:219
+msgid "Formatting or reformatting a large space will cause occasional :ref:`yields <app-yields>` so that other requests will not be blocked. If the other requests cause an illegal situation such as a field value of the wrong type, the formatting or reformatting will fail."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/format.rst:226
+msgid "**Note regarding storage engine:** vinyl supports formatting of non-empty spaces. Primary index definition cannot be formatted."
+msgstr ""

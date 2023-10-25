@@ -1,0 +1,426 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:4
+msgid "Setting up replicasets"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:6
+msgid "The ``cartridge replicasets`` command is used to configure replica sets on local start."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:9
+msgid "Usage"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:11
+msgid "cartridge replicasets [subcommand] [flags] [args]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:15
+msgid "The following flags work with any ``replicasets`` subcommand:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:23
+msgid "``--name``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:24
+msgid "Application name."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:25
+msgid "``--run-dir``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:26
+msgid "The directory where PID and socket files are stored. Defaults to ``./tmp/run`` or the ``run-dir`` value in ``.cartridge.yml``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:28
+msgid "``--cfg``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:29
+msgid "Instances' configuration file. Defaults to ``./instances.yml`` or the ``cfg`` value in ``.cartridge.yml``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:34
+msgid "How it works"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:36
+msgid "Replicasets are configured using the Cartridge Lua API. All instances in the topology are described in a single file, ``instances.yml`` (see the ``--cfg`` flag). The instances receive their configuration through instance console sockets that can be found in the run directory."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:42
+msgid "First, all the running instances mentioned in ``instances.yml`` are organized into a :doc:`membership </reference/reference_rock/membership/>` network. In this way, Cartridge checks if there are any instances that have already joined the cluster. One of these instances is then used to perform cluster operations."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:50
+msgid "Subcommands"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:56
+msgid "setup"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:58
+msgid "cartridge replicasets setup [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:62
+msgid "Setup replica sets using a file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:64
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:111
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:143
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:190
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:214
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:236
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:256
+msgid "Flags:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:72
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:119
+msgid "``--file``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:73
+msgid "File with replica set configuration. Defaults to ``replicasets.yml``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:75
+msgid "``--bootstrap-vshard``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:76
+msgid "Bootstrap vshard upon setup."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:78
+msgid "Example configuration:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:80
+msgid "router:\n"
+"  instances:\n"
+"  - router\n"
+"  roles:\n"
+"  - vshard-router\n"
+"  - app.roles.custom\n"
+"s-1:\n"
+"  instances:\n"
+"  - s1-master\n"
+"  - s1-replica\n"
+"  roles:\n"
+"  - vshard-storage\n"
+"  weight: 11\n"
+"  all_rw: false\n"
+"  vshard_group: default"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:98
+msgid "All the instances should be described in ``instances.yml`` (or another file passed via ``--cfg``)."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:103
+msgid "save"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:105
+msgid "cartridge replicasets save [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:109
+msgid "Saves the current replica set configuration to a file."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:120
+msgid "The file to save the configuration to. Defaults to ``replicasets.yml``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:124
+msgid "list"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:126
+msgid "cartridge replicasets list [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:130
+msgid "Lists the current cluster topology."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:135
+msgid "join"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:137
+msgid "cartridge replicasets join [INSTANCE_NAME...] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:141
+msgid "Joins an instance to a cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:151
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:198
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:222
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:244
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:264
+msgid "``--replicaset``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:152
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:199
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:223
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:245
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:265
+msgid "Name of the replica set"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:154
+msgid "If a replica set with the specified alias isn't found in cluster, it is created. Otherwise, instances are joined to an existing replica set."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:157
+msgid "To join an instance to a replica set, Cartridge requires the instance to have its :ref:`advertise_uri <cartridge-config-basic>` specified in ``instances.yml``."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:162
+msgid "list-roles"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:164
+msgid "cartridge replicasets list-roles [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:168
+msgid "List the available roles."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:171
+msgid "list-vshard-groups"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:173
+msgid "cartridge replicasets list-vshard-groups [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:177
+msgid "List the available vshard groups."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:182
+msgid "add-roles"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:184
+msgid "cartridge replicasets add-roles [ROLE_NAME...] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:188
+msgid "Add roles to the replica set."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:200
+msgid "``--vshard-group``"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:201
+msgid "Vshard group for ``vshard-storage`` replica sets"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:206
+msgid "remove-roles"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:208
+msgid "cartridge replicasets remove-roles [ROLE_NAME...] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:212
+msgid "Remove roles from the replica set."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:228
+msgid "set-weight"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:230
+msgid "cartridge replicasets set-weight WEIGHT [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:234
+msgid "Specify replica set weight."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:248
+msgid "set-failover-priority"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:250
+msgid "cartridge replicasets set-failover-priority INSTANCE_NAME... [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:254
+msgid "Configure replica set failover priority."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:268
+msgid "bootstrap-vshard"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:270
+msgid "cartridge replicasets bootstrap-vshard [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:274
+msgid "Bootstrap vshard."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:277
+msgid "expel"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:279
+msgid "cartridge replicasets expel [INSTANCE_NAME...] [flags]"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:283
+msgid "Expel one or more instances from the cluster."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:287
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:289
+msgid "We'll use an application created with ``cartridge create``. Here is its ``instances.yml`` file:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:292
+msgid "---\n"
+"myapp.router:\n"
+"advertise_uri: localhost:3301\n"
+"http_port: 8081\n"
+"\n"
+"myapp.s1-master:\n"
+"advertise_uri: localhost:3302\n"
+"http_port: 8082\n"
+"\n"
+"myapp.s1-replica:\n"
+"advertise_uri: localhost:3303\n"
+"http_port: 8083\n"
+"\n"
+"# other instances are hidden in this example"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:310
+msgid "Create two replicasets"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:312
+msgid "cartridge replicasets join --replicaset s-1 s1-master s1-replica\n"
+"\n"
+"    • Join instance(s) s1-master, s1-replica to replica set s-1\n"
+"    • Instance(s) s1-master, s1-replica have been successfully joined to replica set s-1\n"
+"\n"
+"cartridge replicasets join --replicaset router router\n"
+"\n"
+"    • Join instance(s) router to replica set router\n"
+"    • Instance(s) router have been successfully joined to replica set router"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:325
+msgid "List the available roles"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:327
+msgid "cartridge replicasets list-roles\n"
+"\n"
+"    •   Available roles:\n"
+"    •   failover-coordinator\n"
+"    •   vshard-storage\n"
+"    •   vshard-router\n"
+"    •   metrics\n"
+"    •   app.roles.custom"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:339
+msgid "Set instance roles"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:341
+msgid "cartridge replicasets add-roles --replicaset s-1 vshard-storage\n"
+"\n"
+"    • Add role(s) vshard-storage to replica set s-1\n"
+"    • Replica set s-1 now has these roles enabled:\n"
+"    •   vshard-storage (default)\n"
+"\n"
+"cartridge replicasets add-roles \\\n"
+"  --replicaset router \\\n"
+"  vshard-router app.roles.custom failover-coordinator metrics\n"
+"\n"
+"    • Add role(s) vshard-router, app.roles.custom, failover-coordinator, metrics to replica set router\n"
+"    • Replica set router now has these roles enabled:\n"
+"    •   failover-coordinator\n"
+"    •   vshard-router\n"
+"    •   metrics\n"
+"    •   app.roles.custom"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:361
+msgid "Bootstrap vshard"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:363
+msgid "cartridge replicasets bootstrap-vshard\n"
+"\n"
+"    • Bootstrap vshard task completed successfully, check the cluster status"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:370
+msgid "List current replica sets"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:372
+msgid "cartridge replicasets list\n"
+"\n"
+"    • Current replica sets:\n"
+"• router\n"
+"Role: failover-coordinator | vshard-router | metrics | app.roles.custom\n"
+"    ★ router localhost:3301\n"
+"• s-1                    default | 1\n"
+"Role: vshard-storage\n"
+"    ★ s1-master localhost:3302\n"
+"    • s1-replica localhost:3303"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:386
+msgid "Expel an instance"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_cli/commands/replicasets.rst:388
+msgid "cartridge replicasets expel s1-replica\n"
+"\n"
+"    • Instance(s) s1-replica have been successfully expelled"
+msgstr ""

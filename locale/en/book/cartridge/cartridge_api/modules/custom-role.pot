@@ -1,0 +1,164 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:5
+msgid "Module *custom-role*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:7
+msgid "User-defined role API."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:10
+msgid "If you want to implement your own role it must conform this API."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:15
+msgid "Functions"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:22
+msgid "init (opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:24
+msgid "Role initialization callback. Called when role is enabled on an instance. Caused either by editing topology or instance restart."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:30
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:48
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:67
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:82
+msgid "**Parameters:**"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:32
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:50
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:85
+msgid "*opts:*"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:34
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:52
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:87
+msgid "*is_master:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:42
+msgid "stop (opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:44
+msgid "Role shutdown callback. Called when role is disabled on an instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:60
+msgid "validate_config (conf_new, conf_old)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:62
+msgid "Validate clusterwide configuration callback. Called when role is enabled on an instance."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:69
+msgid "*conf_new:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:70
+msgid "*conf_old:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:77
+msgid "apply_config (conf, opts)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:79
+msgid "Apply clusterwide configuration callback."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:84
+msgid "*conf:* (`table <https://www.lua.org/manual/5.1/manual.html#5.5>`_) Clusterwide configuration"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:95
+msgid "get_issues ()"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:97
+msgid "Announce issues to be shown in the Cartridge WebUI."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:99
+msgid "The callback should return an array of issues, where every issue is a table with fields  ``level`` ,  ``topic`` , and  ``message`` . Like the following:"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:103
+msgid "-- myrole.lua\n"
+"\n"
+"local function get_issues()\n"
+"    return {{\n"
+"        level = 'warning',\n"
+"        topic = 'myrole',\n"
+"        message = 'custom issue description',\n"
+"    }}\n"
+"end"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:116
+msgid "All fields are optional. Extra fields are ignored."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:124
+msgid "Fields"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:131
+msgid "role_name"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:133
+msgid "Displayed role name. When absent, module name is used instead."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:137
+msgid "*role_name:* (`string <https://www.lua.org/manual/5.1/manual.html#5.4>`_)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:144
+msgid "hidden"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:146
+msgid "Hidden role flag.  aren't listed in ``cartridge.admin_get_replicasets().roles``  and therefore in WebUI. Hidden roled are supposed to be a dependency for another role."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:151
+msgid "*hidden:* (**boolean**)"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:158
+msgid "permanent"
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:160
+msgid "Permanent role flag. Permanent roles will be enabled on every instance in cluster. Implies  ``hidden = true`` ."
+msgstr ""
+
+#: ../../doc/book/cartridge/cartridge_api/modules/custom-role.rst:165
+msgid "*permanent:* (**boolean**)"
+msgstr ""

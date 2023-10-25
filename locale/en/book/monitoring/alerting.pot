@@ -1,0 +1,409 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/monitoring/alerting.rst:5
+msgid "Alerting"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:7
+msgid "You can set up alerts on metrics to get a notification when something went wrong. We will use `Prometheus alert rules <https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/>`_ as an example here. You can get full ``alerts.yml`` file at `tarantool/grafana-dashboard GitHub repo <https://github.com/tarantool/grafana-dashboard/tree/master/example_cluster/prometheus/alerts.yml>`_."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:16
+msgid "Tarantool metrics"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:18
+msgid "You can use internal Tarantool metrics to monitor detailed RAM consumption, replication state, database engine status, track business logic issues (like HTTP 4xx and 5xx responses or low request rate) and external modules statistics (like ``CRUD`` errors or Cartridge issues). Evaluation timeouts, severity levels and thresholds (especially ones for business logic) are placed here for the sake of example: you may want to increase or decrease them for your application. Also, don't forget to set sane rate time ranges based on your Prometheus configuration."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:29
+msgid "Lua memory"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:31
+msgid "The Lua memory is limited to 2 GB per instance. Monitoring ``tnt_info_memory_lua`` metric may prevent memory overflow and detect the presence of bad Lua code practices."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:35
+msgid "- alert: HighLuaMemoryWarning\n"
+"  expr: tnt_info_memory_lua >= (512 * 1024 * 1024)\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') Lua runtime warning\"\n"
+"    description: \"'{{ $labels.alias }}' instance of job '{{ $labels.job }}' uses too much Lua memory\n"
+"      and may hit threshold soon.\"\n"
+"\n"
+"- alert: HighLuaMemoryAlert\n"
+"  expr: tnt_info_memory_lua >= (1024 * 1024 * 1024)\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: page\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') Lua runtime alert\"\n"
+"    description: \"'{{ $labels.alias }}' instance of job '{{ $labels.job }}' uses too much Lua memory\n"
+"      and likely to hit threshold soon.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:59
+msgid "Memtx arena memory"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:61
+msgid "By monitoring :ref:`slab allocation statistics <box_slab_info>` you can see how many free RAM is remaining to store memtx tuples and indexes for an instance. If Tarantool hit the limits, the instance will become unavailable for write operations, so this alert may help you see when it's time to increase your ``memtx_memory`` limit or to add a new storage to a vshard cluster."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:67
+msgid "- alert: LowMemtxArenaRemainingWarning\n"
+"  expr: (tnt_slab_quota_used_ratio >= 80) and (tnt_slab_arena_used_ratio >= 80)\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') low arena memory remaining\"\n"
+"    description: \"Low arena memory (tuples and indexes) remaining for '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.\n"
+"      Consider increasing memtx_memory or number of storages in case of sharded data.\"\n"
+"\n"
+"- alert: LowMemtxArenaRemaining\n"
+"  expr: (tnt_slab_quota_used_ratio >= 90) and (tnt_slab_arena_used_ratio >= 90)\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: page\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') low arena memory remaining\"\n"
+"    description: \"Low arena memory (tuples and indexes) remaining for '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.\n"
+"      You are likely to hit limit soon.\n"
+"      It is strongly recommended to increase memtx_memory or number of storages in case of sharded data.\"\n"
+"\n"
+"- alert: LowMemtxItemsRemainingWarning\n"
+"  expr: (tnt_slab_quota_used_ratio >= 80) and (tnt_slab_items_used_ratio >= 80)\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') low items memory remaining\"\n"
+"    description: \"Low items memory (tuples) remaining for '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.\n"
+"      Consider increasing memtx_memory or number of storages in case of sharded data.\"\n"
+"\n"
+"- alert: LowMemtxItemsRemaining\n"
+"  expr: (tnt_slab_quota_used_ratio >= 90) and (tnt_slab_items_used_ratio >= 90)\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: page\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') low items memory remaining\"\n"
+"    description: \"Low items memory (tuples) remaining for '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.\n"
+"      You are likely to hit limit soon.\n"
+"      It is strongly recommended to increase memtx_memory or number of storages in case of sharded data.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:113
+msgid "Vinyl engine status"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:115
+msgid "You can monitor :ref:`vinyl regulator <box_introspection-box_stat_vinyl_regulator>` performance to track possible scheduler or disk issues."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:118
+msgid "- alert: LowVinylRegulatorRateLimit\n"
+"  expr: tnt_vinyl_regulator_rate_limit < 100000\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have low vinyl regulator rate limit\"\n"
+"    description: \"Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have low vinyl engine regulator rate limit.\n"
+"      This indicates issues with the disk or the scheduler.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:131
+msgid ":ref:`Vinyl transactions <box_introspection-box_stat_vinyl_tx>` errors are likely to lead to user requests errors."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:134
+msgid "- alert: HighVinylTxConflictRate\n"
+"  expr: rate(tnt_vinyl_tx_conflict[5m]) / rate(tnt_vinyl_tx_commit[5m]) > 0.05\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: critical\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have high vinyl tx conflict rate\"\n"
+"    description: \"Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have\n"
+"      high vinyl transactions conflict rate. It indicates that vinyl is not healthy.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:146
+msgid ":ref:`Vinyl scheduler <box_introspection-box_stat_vinyl>` failed tasks are a good signal of disk issues and may be the reason of increasing RAM consumption."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:150
+msgid "- alert: HighVinylSchedulerFailedTasksRate\n"
+"  expr: rate(tnt_vinyl_scheduler_tasks{status=\"failed\"}[5m]) > 0.1\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: critical\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have high vinyl scheduler failed tasks rate\"\n"
+"    description: \"Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have\n"
+"      high vinyl scheduler failed tasks rate.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:165
+msgid "Replication state"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:167
+msgid "If ``tnt_replication_status`` is equal to ``0``, instance :ref:`replication <box_info_replication>` status is not equal to ``\"follows\"``: replication is either not ready yet or has been stopped due to some reason."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:171
+msgid "- alert: ReplicationNotRunning\n"
+"  expr: tnt_replication_status == 0\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: critical\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') {{ $labels.stream }} (id {{ $labels.id }})\n"
+"      replication is not running\"\n"
+"    description: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') {{ $labels.stream }} (id {{ $labels.id }})\n"
+"      replication is not running. Check Cartridge UI for details.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:184
+msgid "Even if async replication is ``\"follows\"``, it could be considered malfunctioning if the lag is too high. It also may affect Tarantool garbage collector work, see :ref:`box.info.gc() <box_info_gc>`."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:188
+msgid "- alert: HighReplicationLag\n"
+"  expr: tnt_replication_lag > 1\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have high replication lag (id {{ $labels.id }})\"\n"
+"    description: \"Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have high replication lag\n"
+"      (id {{ $labels.id }}), check up your network and cluster state.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:202
+msgid "Event loop"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:204
+msgid "High :ref:`fiber <fiber-fibers>` event loop time leads to bad application performance, timeouts and various warnings. The reason could be a high quantity of working fibers or fibers that spend too much time without any yields or sleeps."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:209
+msgid "- alert: HighEVLoopTime\n"
+"  expr: tnt_ev_loop_time > 0.1\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') event loop has high cycle duration\"\n"
+"    description: \"Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' event loop has high cycle duration.\n"
+"      Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:224
+msgid "Cartridge issues"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:226
+msgid ":ref:`Cartridge issues and warnings <cartridge-troubleshooting>` aggregate both single instance or replicaset issues (like memory or replication issues we've discussed in another paragraphs) and Cartridge cluster malfunctions (for example, clusteride config issues)."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:231
+msgid "- alert: CartridgeWarningIssues\n"
+"  expr: tnt_cartridge_issues{level=\"warning\"} > 0\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') has 'warning'-level Cartridge issues\"\n"
+"    description: \"Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' has 'warning'-level Cartridge issues.\n"
+"      Possible reasons: high replication lag, replication long idle,\n"
+"      failover or switchover issues, clock issues, memory fragmentation,\n"
+"      configuration issues, alien members.\"\n"
+"\n"
+"- alert: CartridgeCriticalIssues\n"
+"  expr: tnt_cartridge_issues{level=\"critical\"} > 0\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: page\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') has 'critical'-level Cartridge issues\"\n"
+"    description: \"Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' has 'critical'-level Cartridge issues.\n"
+"      Possible reasons: replication process critical fail,\n"
+"      running out of available memory.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:259
+msgid "HTTP server statistics"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:261
+msgid ":ref:`metrics <metrics-reference>` allows to monitor `tarantool/http <https://github.com/tarantool/http>`_ handles, see :ref:`\"Collecting HTTP request latency statistics\" <metrics-api_reference-collecting_http_statistics>`. Here we use a ``summary`` collector with a default name and 0.99 quantile computation."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:266
+msgid "Too many responses with error codes usually is a sign of API issues or application malfunction."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:269
+msgid "- alert: HighInstanceHTTPClientErrorRate\n"
+"  expr: sum by (job, instance, method, path, alias) (rate(http_server_request_latency_count{ job=\"tarantool\", status=~\"^4\\\\d{2}$\" }[5m])) > 10\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: page\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') high rate of client error responses\"\n"
+"    description: \"Too many {{ $labels.method }} requests to {{ $labels.path }} path\n"
+"      on '{{ $labels.alias }}' instance of job '{{ $labels.job }}' get client error (4xx) responses.\"\n"
+"\n"
+"- alert: HighHTTPClientErrorRate\n"
+"  expr: sum by (job, method, path) (rate(http_server_request_latency_count{ job=\"tarantool\", status=~\"^4\\\\d{2}$\" }[5m])) > 20\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: page\n"
+"  annotations:\n"
+"    summary: \"Job '{{ $labels.job }}' high rate of client error responses\"\n"
+"    description: \"Too many {{ $labels.method }} requests to {{ $labels.path }} path\n"
+"      on instances of job '{{ $labels.job }}' get client error (4xx) responses.\"\n"
+"\n"
+"- alert: HighHTTPServerErrorRate\n"
+"  expr: sum by (job, instance, method, path, alias) (rate(http_server_request_latency_count{ job=\"tarantool\", status=~\"^5\\\\d{2}$\" }[5m])) > 0\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: page\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') server error responses\"\n"
+"    description: \"Some {{ $labels.method }} requests to {{ $labels.path }} path\n"
+"      on '{{ $labels.alias }}' instance of job '{{ $labels.job }}' get server error (5xx) responses.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:301
+msgid "Responding with high latency is a synonym of insufficient performance. It may be a sign of application malfunction. Or maybe you need to add more routers to your cluster."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:305
+msgid "- alert: HighHTTPLatency\n"
+"  expr: http_server_request_latency{ job=\"tarantool\", quantile=\"0.99\" } > 0.1\n"
+"  for: 5m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') high HTTP latency\"\n"
+"    description: \"Some {{ $labels.method }} requests to {{ $labels.path }} path with {{ $labels.status }} response status\n"
+"      on '{{ $labels.alias }}' instance of job '{{ $labels.job }}' are processed too long.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:317
+msgid "Having too little requests when you expect them may detect balancer, external client or network malfunction."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:320
+msgid "- alert: LowRouterHTTPRequestRate\n"
+"  expr: sum by (job, instance, alias) (rate(http_server_request_latency_count{ job=\"tarantool\", alias=~\"^.*router.*$\" }[5m])) < 10\n"
+"  for: 5m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Router '{{ $labels.alias }}' ('{{ $labels.job }}') low activity\"\n"
+"    description: \"Router '{{ $labels.alias }}' instance of job '{{ $labels.job }}' gets too little requests.\n"
+"      Please, check up your balancer middleware.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:335
+msgid "CRUD module statistics"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:337
+msgid "If your application uses `CRUD <https://github.com/tarantool/crud>`_ module requests, monitoring module statistics may track internal errors caused by invalid process of input and internal parameters."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:341
+msgid "- alert: HighCRUDErrorRate\n"
+"  expr: rate(tnt_crud_stats_count{ job=\"tarantool\", status=\"error\" }[5m]) > 0.1\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: critical\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too many CRUD {{ $labels.operation }} errors.\"\n"
+"    description: \"Too many {{ $labels.operation }} CRUD requests for '{{ $labels.name }}' space on\n"
+"      '{{ $labels.alias }}' instance of job '{{ $labels.job }}' get module error responses.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:353
+msgid "Statistics could also monitor requests performance. Too high request latency will lead to high latency of client responses. It may be caused by network or disk issues. Read requests with bad (with respect to space indexes and sharding schema) conditions may lead to full-scans or map reduces and also could be the reason of high latency."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:359
+msgid "- alert: HighCRUDLatency\n"
+"  expr: tnt_crud_stats{ job=\"tarantool\", quantile=\"0.99\" } > 0.1\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too high CRUD {{ $labels.operation }} latency.\"\n"
+"    description: \"Some {{ $labels.operation }} {{ $labels.status }} CRUD requests for '{{ $labels.name }}' space on\n"
+"      '{{ $labels.alias }}' instance of job '{{ $labels.job }}' are processed too long.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:371
+msgid "You also can directly monitor map reduces and scan rate."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:373
+msgid "- alert: HighCRUDMapReduceRate\n"
+"  expr: rate(tnt_crud_map_reduces{ job=\"tarantool\" }[5m]) > 0.1\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: warning\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too many CRUD {{ $labels.operation }} map reduces.\"\n"
+"    description: \"There are too many {{ $labels.operation }} CRUD map reduce requests for '{{ $labels.name }}' space on\n"
+"      '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.\n"
+"      Check your request conditions or consider changing sharding schema.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:391
+msgid "Server-side monitoring"
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:393
+msgid "If there are no Tarantool metrics, you may miss critical conditions. Prometheus provide ``up`` metric to monitor the health of its targets."
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:396
+msgid "- alert: InstanceDown\n"
+"  expr: up == 0\n"
+"  for: 1m\n"
+"  labels:\n"
+"    severity: page\n"
+"  annotations:\n"
+"    summary: \"Instance '{{ $labels.instance }}' ('{{ $labels.job }}') down\"\n"
+"    description: \"'{{ $labels.instance }}' of job '{{ $labels.job }}' has been down for more than a minute.\""
+msgstr ""
+
+#: ../../doc/book/monitoring/alerting.rst:407
+msgid "Do not forget to monitor your server's CPU, disk and RAM from server side with your favorite tools. For example, on some high CPU consumption cases Tarantool instance may stop to send metrics, so you can track such breakdowns only from the outside."
+msgstr ""

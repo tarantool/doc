@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:5
+msgid "index_object:update()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:11
+msgid "Update a tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:13
+msgid "Same as :ref:`box.space...update() <box_space-update>`, but key is searched in this index instead of primary key. This index should be unique."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:17
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:19
+msgid "values to be matched against the index key"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:20
+msgid "operation type represented in string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:21
+msgid "what field the operation will apply to. The field number can be negative, meaning the position from the end of tuple. (#tuple + negative field number + 1)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:25
+msgid "what value will be applied"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:27
+msgid "the updated tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:28
+msgid "nil if the key is not found"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:29
+msgid "tuple or nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/update.rst:31
+msgid "Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`."
+msgstr ""

@@ -28,6 +28,7 @@ jobs:
   deploy-branch:
     runs-on: ubuntu-latest
     container: tarantool/doc-builder:fat-4.3
+    permissions: write-all
     env:
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
@@ -54,15 +55,6 @@ jobs:
       - name: Set deployment name from source branch
         id: set-deployment-name
         run: echo "DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
-
-      - name: Start dev server deployment
-        uses: bobheadxi/deployments@v1
-        id: deployment
-        with:
-          step: start
-          token: ${{secrets.GITHUB_TOKEN}}
-          env: "branch-${{env.DEPLOYMENT_NAME}}"
-          ref: ${{github.head_ref}}
 
       - run: cmake .
         id: cmake
@@ -94,6 +86,15 @@ jobs:
           timeout_seconds: 15
           retry_wait_seconds: 15
           max_attempts: 3
+
+      - name: Start dev server deployment
+        uses: bobheadxi/deployments@v1
+        id: deployment
+        with:
+          step: start
+          token: ${{secrets.GITHUB_TOKEN}}
+          env: "branch-${{env.DEPLOYMENT_NAME}}"
+          ref: ${{github.head_ref}}
 
       - name: update deployment status
         id: finalize-deployment

@@ -1,0 +1,74 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 2.11\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:4
+msgid "Default value for max fiber slice"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:6
+msgid "The max fiber slice specifies the max fiber execution time without yield before a warning is logged or an error is raised. It is set with the :ref:`fiber.set_max_slice() <fiber-set_max_slice>` function. The new ``compat`` option – ``fiber_slice_default`` – controls the default value of the max fiber slice."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:11
+msgid "Old and new behavior"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:13
+msgid "The old default value for the max fiber slice is infinity (no warnings or errors). The new default value is ``{warn = 0.5, err = 1.0}``. To use the new behavior, set ``fiber_slice_default`` to ``new`` as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:16
+msgid "compat = require('compat')\n"
+"compat.fiber_slice_default = 'new'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:22
+msgid "Known compatibility issues"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:24
+msgid "At this point, no incompatible modules are known."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:27
+msgid "Detecting issues in your codebase"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:29
+msgid "If you see a warning like this in the log:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:31
+msgid "``fiber has not yielded for more than 0.500 seconds``,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:33
+msgid "or the following error is raised unexpectedly by a ``box`` function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:35
+msgid "``error: fiber slice is exceeded``,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:37
+msgid "then your application has a fiber that may exceed its slice and fail."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/fiber_slice_default.rst:39
+msgid "First, make sure that :ref:`fiber.yield() <fibers_yield_control>` is used for this fiber to transfer control to another fiber. You can also extend the fiber slice with the :ref:`fiber.extend_slice(slice) <fiber-extend_slice>` function."
+msgstr ""
