@@ -6,7 +6,7 @@ locale_dirs = ['../locale']
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
- ('pdf_toc', 'tarantool.tex', u'Tarantool Community Edition', u'', 'manual'),
+ ('pdf_toc', 'tarantool.tex', u'Tarantool Documentation', u'', 'manual'),
 ]
 
 extensions = [
