@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 2.11\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 15:09+0000\n"
+"POT-Creation-Date: 2023-10-26 07:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,4 @@ msgstr ""
 
 #: ../../doc/toctree.rst:3
 msgid "CRUD operations"
-msgstr ""
-
-#: ../../doc/toctree.rst:3
-msgid "Cluster on Cartridge"
 msgstr ""
