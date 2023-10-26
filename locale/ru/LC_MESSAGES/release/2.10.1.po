@@ -1,0 +1,555 @@
+
+msgid "Tarantool 2.10.1"
+msgstr ""
+
+msgid "Released on 2022-08-08."
+msgstr ""
+
+msgid "Release: :tarantool-release:`2.10.1`."
+msgstr ""
+
+msgid "Tag: ``2.10.1``."
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"It is highly recommended to use Tarantool :doc:`v. 2.10.2 </release/2.10.2>`"
+" instead."
+msgstr ""
+
+msgid ""
+"The 2.10.1 release introduced a severe regression (:tarantool-issue:`7605`),"
+" which may pass testing with a low amount of data but impact a production "
+"server heavily. It may crash the process and, that is worse, feed incorrect "
+"data. The Tarantool development team has `decided "
+"<https://github.com/orgs/tarantool/discussions/7646>`_ to remove all the "
+"packages associated with this release."
+msgstr ""
+
+msgid ""
+"2.10.1 is the second :doc:`stable </release/policy/>` version of the 2.10 "
+"release series. It introduces 17 improvements and resolves 52 bugs since "
+"2.10.0."
+msgstr ""
+
+msgid ""
+"The “stable” label means that we have all planned features implemented and "
+"we see no high-impact issues. However, if you encounter an issue, feel free "
+"to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+msgid "Notable changes are:"
+msgstr ""
+
+msgid "Interactive transactions are now possible in remote binary consoles."
+msgstr ""
+
+msgid "Improved the string representation of datetime intervals."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid ""
+"Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary "
+"data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+msgid ""
+"Please :doc:`upgrade </book/admin/upgrades>` using the "
+"``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x"
+" series."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid ""
+"**[Breaking change]** Conflicted transactions now throw the ``Transaction "
+"has been aborted by conflict`` error on any CRUD operations until they are "
+"either rolled back (which will return no error) or committed (which will "
+"return the same error) (:tarantool-issue:`7240`)."
+msgstr ""
+
+msgid ""
+"Read-view transactions now become conflicted on attempts to perform DML "
+"statements immediately. Previously, this was detected only on the "
+"transaction preparation stage, that is, when calling ``box.commit`` "
+"(:tarantool-issue:`7240`)."
+msgstr ""
+
+msgid ""
+"Interactive transactions are now possible in remote binary consoles "
+"(:tarantool-issue:`7413`)."
+msgstr ""
+
+msgid ""
+"It is now possible to omit ``space`` in declarations of foreign keys that "
+"refer to the same space (:tarantool-issue:`7200`)."
+msgstr ""
+
+msgid "Datetime"
+msgstr ""
+
+msgid ""
+"Improved the string representation of datetime intervals. Now nanoseconds "
+"aren’t converted and attached to seconds; the intervals are displayed “as "
+"is”. Example:"
+msgstr ""
+
+msgid ""
+"local ival = date.interval.new{year = 12345, hour = 48, min = 3, sec = 1,\n"
+"                               nsec = 12345678}\n"
+"print(tostring(ival))"
+msgstr ""
+
+msgid "Before:"
+msgstr ""
+
+msgid "'+12345 years, 48 hours, 3 minutes, 1.012345678 seconds'"
+msgstr ""
+
+msgid "Now:"
+msgstr ""
+
+msgid "'+12345 years, 48 hours, 3 minutes, 1 seconds, 12345678 nanoseconds'"
+msgstr ""
+
+msgid "Decimal"
+msgstr ""
+
+msgid "Added C module API for decimals (:tarantool-issue:`7228`)."
+msgstr ""
+
+msgid ""
+"Added Lua/C accessors for decimals into the module API (:tarantool-"
+"issue:`7228`)."
+msgstr ""
+
+msgid "Tuple"
+msgstr ""
+
+msgid ""
+"Added the ``box_tuple_field_by_path()`` function into the module API. It "
+"allow the access to tuple fields from C code using a JSON path (:tarantool-"
+"issue:`7228`)."
+msgstr ""
+
+msgid "Build"
+msgstr ""
+
+msgid "Fedora 30, 31, 32, and 33 are no longer supported."
+msgstr ""
+
+msgid ""
+"Ubuntu 20.10 (Groovy Gorilla) and 21.04 (Hirsute Hippo) are no longer "
+"supported."
+msgstr ""
+
+msgid "Updated libcurl to version 7.84.0."
+msgstr ""
+
+msgid "Updated OpenSSL used for static builds to version 1.1.1q."
+msgstr ""
+
+msgid "Ubuntu 21.10 (Impish Indri) is no longer supported."
+msgstr ""
+
+msgid "Updated Ncurses used for static builds to version 6.3-20220716 ."
+msgstr ""
+
+msgid "Updated Readline used for static builds to version 8.0p1."
+msgstr ""
+
+msgid "Updated libyaml to the version with fixed stack overflows."
+msgstr ""
+
+msgid "Updated zstd to version 1.5.2."
+msgstr ""
+
+msgid "Updated zlib used for static builds to version 1.2.12."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid ""
+"Improved validation of incoming tuples. Now tuples coming over the network "
+"can’t contain malformed decimals, uuids, or datetime values (:tarantool-"
+"issue:`6857`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug in the net.box connector because of which a client could fail to"
+" close its connection when receiving a shutdown request from the server. "
+"This could lead to the server hanging on exit (:tarantool-issue:`7225`)."
+msgstr ""
+
+msgid ""
+"Fixed a crash and possible undefined behaviour when using ``scalar`` and "
+"``number`` indexes over fields containing both decimals and double ``Inf`` "
+"or ``NaN``."
+msgstr ""
+
+msgid ""
+"For vinyl spaces, the above conditions could lead to wrong ordering of "
+"indexed values. To fix the issue, recreate the indexes on such spaces "
+"following this `guide <https://github.com/tarantool/tarantool/wiki/Fix-"
+"wrong-order-of-decimals-and-doubles-in-indices>`__ (:tarantool-"
+"issue:`6377`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug because of which a net.box connection was not properly "
+"terminated when the process had a child (for example, started with "
+"``popen``) sharing the connection socket fd. The bug could lead to a server "
+"hanging on exit while executing the graceful shutdown protocol (:tarantool-"
+"issue:`7256`)."
+msgstr ""
+
+msgid ""
+"Removed an assertion on ``fiber_wakeup()`` calls with dead fibers in debug "
+"builds. Such behavior was inconsistent with release builds, in which the "
+"same calls were allowed (:tarantool-issue:`5843`)."
+msgstr ""
+
+msgid ""
+"Fixed the ``exclude_null`` index option not working for multikey and JSON "
+"indexes (:tarantool-issue:`5861`)."
+msgstr ""
+
+msgid ""
+"Fixed the performance degradation of fiber backtrace collection after the "
+"backtrace rework (:tarantool-issue:`7207`)."
+msgstr ""
+
+msgid ""
+"Fixed a hang when a synchronous request was issued from a net.box "
+"``on_connect`` or ``on_schema_reload`` trigger. Now an error is raised "
+"instead (:tarantool-issue:`5358`)."
+msgstr ""
+
+msgid ""
+"Fixed a crash that could happen on x86 systems without the ``RDTSCP`` "
+"instruction (:tarantool-issue:`5869`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug that allowed to access indexed fields of nested tuples with "
+"``[*]`` in Lua (:tarantool-issue:`5226`)."
+msgstr ""
+
+msgid ""
+"Fixed the behavior of ``space_object:fselect()`` on binary data (:tarantool-"
+"issue:`7040`)."
+msgstr ""
+
+msgid ""
+"Fixed Tarantool not being able to recover from old snapshots when "
+"``box.cfg.work_dir`` and ``box.cfg.memtx_dir`` were both set (:tarantool-"
+"issue:`7232`)."
+msgstr ""
+
+msgid ""
+"Fixed Tarantool terminations on error messages with invalid UTF-8 sequences "
+"(:tarantool-issue:`6781` and :tarantool-issue:`6934`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug when the ``Transaction is active at return from function`` error"
+" was overwriting expression evaluation errors in case the expression begins "
+"a transaction (:tarantool-issue:`7288`)."
+msgstr ""
+
+msgid ""
+"Added type checking for options in net.box’s remote queries and connect "
+"method. Now graceful errors are thrown in case of incorrect options "
+"(:tarantool-issue:`6063`, :tarantool-issue:`6530`)."
+msgstr ""
+
+msgid ""
+"Fixed ``space_object:format()`` and ``space_object.foreign_key`` returning "
+"incorrect numbers of foreign key fields (:tarantool-issue:`7350`)."
+msgstr ""
+
+msgid ""
+"Fixed the foreign key check on ``space_object:truncate()`` calls "
+"(:tarantool-issue:`7309`)."
+msgstr ""
+
+msgid ""
+"Fixed a crash when ``box.stat.net.thread[i]`` is called with invalid ``i`` "
+"values (:tarantool-issue:`7196`)."
+msgstr ""
+
+msgid ""
+"Fixed a low-probability stack overflow bug in the qsort implementation."
+msgstr ""
+
+msgid "Memtx"
+msgstr ""
+
+msgid ""
+"Fixed the ability to perform read-only operations in conflicting "
+"transactions in memtx, which led to spurious results (:tarantool-"
+"issue:`7238`)."
+msgstr ""
+
+msgid ""
+"Fixed false assertion on repeatable ``replace`` with the memtx transaction "
+"manager enabled (:tarantool-issue:`7214`)."
+msgstr ""
+
+msgid ""
+"Fixed false transaction conflict on repeatable ``insert``/``upsert`` with "
+"the memtx transaction manager enabled (:tarantool-issue:`7217`)."
+msgstr ""
+
+msgid ""
+"Fixed dirty reads in the ``GT`` iterator of HASH indexes (:tarantool-"
+"issue:`7477`)."
+msgstr ""
+
+msgid "Fixed phantom reads in reverse iterators (:tarantool-issue:`7409`)."
+msgstr ""
+
+msgid ""
+"Fixed ``select`` with ``LE`` iterator in **memtx** **TREE** index returning "
+"deleted tuple (:tarantool-issue:`7432`)."
+msgstr ""
+
+msgid ""
+"Fixed incorrect handling of corner cases gap tracking in transaction manager"
+" (:tarantool-issue:`7375`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug in the memtx hash index implementation that could lead to "
+"uncommitted data written to a snapshot file (:tarantool-issue:`7539`)."
+msgstr ""
+
+msgid "Vinyl"
+msgstr ""
+
+msgid ""
+"Fixed a bug in the vinyl upsert squashing optimization that could lead to a "
+"segmentation fault error (:tarantool-issue:`5080`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug in the vinyl garbage collector. It could skip stale tuples "
+"stored in a secondary index if upsert operations were used on the space "
+"before the index was created (:tarantool-issue:`3638`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug in the vinyl read iterator that could result in a significant "
+"performance degradation of range select requests in the presence of an "
+"intensive write workload (:tarantool-issue:`5700`)."
+msgstr ""
+
+msgid ""
+"Explicitly disabled the hot standby mode for vinyl. Now an attempt to enable"
+" the hot standby mode in case the master instance has vinyl spaces results "
+"in an error. Before this change, the behavior was undefined (:tarantool-"
+"issue:`6565`)."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid ""
+"Added the logging of the error reason on a replica in case when the master "
+"didn’t send a greeting message (:tarantool-issue:`7204`)."
+msgstr ""
+
+msgid "Fixed replication being stuck occasionally for no obvious reasons."
+msgstr ""
+
+msgid ""
+"Fixed a possible split-brain when the old synchro queue owner might finalize"
+" the transactions in the presence of the new owner (:tarantool-"
+"issue:`5295`)."
+msgstr ""
+
+msgid ""
+"Improved the detection of possible split-brain situations, for example, when"
+" multiple leaders were working independently due to manually lowered quorum."
+" Once a node discovers that it received some foreign data, it immediately "
+"stops replication from such a node with an ``ER_SPLIT_BRAIN`` error "
+"(:tarantool-issue:`5295`)."
+msgstr ""
+
+msgid ""
+"Fixed a false positive split-brain error after ``box.ctl.demote()`` "
+"(:tarantool-issue:`7286`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug when followers with ``box.cfg.election_mode`` turned on did not "
+"notice the leader hang due to a long request, such as a ``select{}`` from a "
+"large space or a ``pairs`` iteration without yields between loop cycles "
+"(:tarantool-issue:`7512`)."
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid ""
+"Backported patches from vanilla LuaJIT trunk (:tarantool-issue:`6548` and "
+":tarantool-issue:`7230`). In the scope of this activity, the following "
+"issues have been resolved:"
+msgstr ""
+
+msgid ""
+"Fixed emitting for fuse load of constant in GC64 mode (:tarantool-"
+"issue:`4095`, :tarantool-issue:`4199`, :tarantool-issue:`4614`)."
+msgstr ""
+
+msgid ""
+"Now initialization of zero-filled struct is compiled (:tarantool-"
+"issue:`4630`, :tarantool-issue:`5885`)."
+msgstr ""
+
+msgid "Actually implemented ``maxirconst`` option for tuning JIT compiler."
+msgstr ""
+
+msgid ""
+"Fixed JIT stack of Lua slots overflow during recording for metamethod calls."
+msgstr ""
+
+msgid ""
+"Fixed bytecode dump unpatching for JLOOP in up-recursion compiled functions."
+msgstr ""
+
+msgid "Fixed FOLD rule for strength reduction of widening in cdata indexing."
+msgstr ""
+
+msgid "Fixed ``string.char()`` recording without arguments."
+msgstr ""
+
+msgid ""
+"Fixed ``print()`` behaviour with the reloaded default metatable for numbers."
+msgstr ""
+
+msgid "``tonumber(\"-0\")`` now saves the sign of number for conversion."
+msgstr ""
+
+msgid ""
+"``tonumber()`` now gives predictable results for negative non-base-10 "
+"numbers."
+msgstr ""
+
+msgid ""
+"Fixed write barrier for ``debug.setupvalue()`` and ``lua_setupvalue()``."
+msgstr ""
+
+msgid "Fixed conflict between 64 bit lightuserdata and ITERN key for ARM64."
+msgstr ""
+
+msgid "Fixed emitting assembly for HREFK on ARM64."
+msgstr ""
+
+msgid "Fixed pass-by-value struct in FFI calls on ARM64."
+msgstr ""
+
+msgid ""
+"``jit.p`` now flushes and closes output file after run, not at program exit."
+msgstr ""
+
+msgid "Fixed ``jit.p`` profiler interaction with GC finalizers."
+msgstr ""
+
+msgid ""
+"Fixed the case for partial recording of vararg function body with the fixed "
+"number of result values in with ``LJ_GC64`` (i.e. ``LJ_FR2`` enabled) "
+"(:tarantool-issue:`7172`)."
+msgstr ""
+
+msgid ""
+"Added ``/proc/self/exe`` symlink resolution to the symtab module to obtain "
+"the ``.symtab`` section for the Tarantool executable."
+msgstr ""
+
+msgid ""
+"Introduced stack sandwich support to sysprof’s parser (:tarantool-"
+"issue:`7244`)."
+msgstr ""
+
+msgid ""
+"Disabled proto and trace information dumpers in sysprof’s default mode. "
+"Attempts to use them lead to a segmentation fault due to an uninitialized "
+"buffer (:tarantool-issue:`7264`)."
+msgstr ""
+
+msgid "Fixed handling of errors during trace snapshot restore."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid ""
+"The ``fiber_obj:info()`` now correctly handles its options (:tarantool-"
+"issue:`7210`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug when Ctrl+C doesn’t discard the multiline input (:tarantool-"
+"issue:`7109`)."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid ""
+"Fixed the creation of ephemeral space format in ``ORDER BY`` (:tarantool-"
+"issue:`7043`)."
+msgstr ""
+
+msgid ""
+"The result type of arithmetic operations between two unsigned values is now "
+"``INTEGER`` (:tarantool-issue:`7295`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug with the ``ANY`` type in the ephemeral space format in ``ORDER "
+"BY`` (:tarantool-issue:`7043`)."
+msgstr ""
+
+msgid ""
+"Truncation of a space no longer corrupts prepared statements (:tarantool-"
+"issue:`7358`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug when ``date:set{hour=nil,min=XXX}`` did not retain the original "
+"``hour`` value (:tarantool-issue:`7298`)."
+msgstr ""
+
+msgid ""
+"Introduced the validation of incoming data at the moment messagepack is "
+"converted to datetime (:tarantool-issue:`6723`)."
+msgstr ""
+
+msgid "HTTP client"
+msgstr ""
+
+msgid ""
+"Enabled the automatic detection of system CA certificates in the runtime "
+"(:tarantool-issue:`7372`). It was disabled in 2.10.0, which led to the "
+"inability to use HTTPS without the ``verify_peer = false`` option."
+msgstr ""
+
+msgid ""
+"Fixed a build failure with gcc if libpbf is installed (:tarantool-"
+"issue:`7292`)."
+msgstr ""
+
+msgid ""
+"Fixed the static build on Mac OS 11 and newer (:tarantool-issue:`7459`)."
+msgstr ""

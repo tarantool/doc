@@ -1,0 +1,128 @@
+
+msgid "Packaging the application"
+msgstr ""
+
+msgid "$ tt pack TYPE [OPTION ...] .."
+msgstr ""
+
+msgid ""
+"``tt pack`` packages an application into a distributable bundle of the "
+"specified ``TYPE``:"
+msgstr ""
+
+msgid "``tgz``: create a ``.tgz`` archive."
+msgstr ""
+
+msgid "``deb``: create a DEB package."
+msgstr ""
+
+msgid "``rpm``: create an RPM package."
+msgstr ""
+
+msgid "The command below creates a DEB package for an application:"
+msgstr ""
+
+msgid "$ tt pack deb"
+msgstr ""
+
+msgid ""
+"This command generates a ``.deb`` file whose name depends on the environment"
+" directory name and the operating system architecture, for example, ``test-"
+"env_0.1.0.0-1_x86_64.deb``. You can also pass various :ref:`options <tt-"
+"pack-options>` to the ``tt pack`` command to adjust generation properties, "
+"for example, customize a bundle name, choose which artifacts should be "
+"included, specify the required application dependencies."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid ""
+"Include all artifacts in a bundle. In this case, a bundle might include "
+"snapshots, WAL files, and logs."
+msgstr ""
+
+msgid "Specify the applications included in a bundle."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid "$ tt pack tgz --app-list app1,app3"
+msgstr ""
+
+msgid "**Applicable to:** ``tgz``"
+msgstr ""
+
+msgid "Package a Cartridge CLI-compatible archive."
+msgstr ""
+
+msgid "**Applicable to:** ``deb``, ``rpm``"
+msgstr ""
+
+msgid "Specify dependencies included in RPM and DEB packages."
+msgstr ""
+
+msgid "$ tt pack deb --deps 'wget,make>0.1.0,unzip>1,unzip<=7'"
+msgstr ""
+
+msgid ""
+"Specify the path to a file containing dependencies included in RPM and DEB "
+"packages. For example, the ``package-deps.txt`` file below contains several "
+"dependencies and their versions:"
+msgstr ""
+
+msgid ""
+"unzip==6.0\n"
+"neofetch>=6,<7\n"
+"gcc>8"
+msgstr ""
+
+msgid ""
+"If this file is placed in the current directory, a ``tt pack`` command might"
+" look like this:"
+msgstr ""
+
+msgid "$ tt pack deb --deps-file package-deps.txt"
+msgstr ""
+
+msgid "Specify a bundle name."
+msgstr ""
+
+msgid "$ tt pack tgz --filename sample-app.tar.gz"
+msgstr ""
+
+msgid "Specify a package name."
+msgstr ""
+
+msgid "$ tt pack tgz --name sample-app --version 1.0.1"
+msgstr ""
+
+msgid "Specify the path to a pre-install script for RPM and DEB packages."
+msgstr ""
+
+msgid "$ tt pack deb --preinst pre.sh"
+msgstr ""
+
+msgid "Specify the path to a post-install script for RPM and DEB packages."
+msgstr ""
+
+msgid "$ tt pack deb --postinst post.sh"
+msgstr ""
+
+msgid ""
+"Build a package in an Ubuntu 18.04 Docker container. Before executing ``tt "
+"pack`` with this option, make sure Docker is running."
+msgstr ""
+
+msgid "Specify a package version."
+msgstr ""
+
+msgid "Include Tarantool and ``tt`` binaries in a bundle."
+msgstr ""
+
+msgid "Don't include Tarantool and ``tt`` binaries in a bundle."
+msgstr ""
+
+msgid "Don't include external modules in a bundle."
+msgstr ""

@@ -1,0 +1,91 @@
+
+msgid "Standalone instance upgrade"
+msgstr ""
+
+msgid ""
+"This page describes the process of upgrading a standalone Tarantool instance"
+" in production. Note that this **always implies a downtime** because the "
+"application needs to be stopped and restarted on the target version."
+msgstr ""
+
+msgid ""
+"To upgrade **without downtime**, you need multiple Tarantool servers running"
+" in a replication cluster. Find detailed instructions in :ref:`Replication "
+"cluster upgrade <admin-upgrades-replication-cluster>`."
+msgstr ""
+
+msgid "Checking your application"
+msgstr ""
+
+msgid ""
+"Before upgrading, make sure your application is compatible with the target "
+"Tarantool version:"
+msgstr ""
+
+msgid ""
+"Set up a development environment with the target Tarantool version "
+"installed. See the installation instructions at the Tarantool `download page"
+" <http://tarantool.org/download.html>`_ and in the :ref:`tt install "
+"reference <tt-install>`."
+msgstr ""
+
+msgid ""
+"Deploy the application in this environment and check how it works. In case "
+"of any issues, adjust the application code to ensure compatibility with the "
+"target version."
+msgstr ""
+
+msgid ""
+"When your application is ready to run on the target Tarantool version, you "
+"can start upgrading the production environment."
+msgstr ""
+
+msgid "Upgrading a standalone instance"
+msgstr ""
+
+msgid "Stop the Tarantool instance."
+msgstr ""
+
+msgid ""
+"Make a copy of all data and the package from which the current (old) version"
+" was installed. You may need it for rollback purposes. Find the backup "
+"instruction in the appropriate hot backup procedure in :ref:`Backups <admin-"
+"backups>`."
+msgstr ""
+
+msgid ""
+"Install the target Tarantool version on the host. You can do this using a "
+"package manager or the :ref:`tt utility <tt-cli>`. See the installation "
+"instructions at Tarantool `download page "
+"<http://tarantool.org/download.html>`_ and in the :ref:`tt install reference"
+" <tt-install>`."
+msgstr ""
+
+msgid ""
+"To check that the target Tarantool version is installed, run ``tarantool "
+"-v``."
+msgstr ""
+
+msgid "Start your application on the target version."
+msgstr ""
+
+msgid ""
+"Run :ref:`box.schema.upgrade() <box_schema-upgrade>`. This will update the "
+"Tarantool system spaces to match the currently installed version of "
+"Tarantool."
+msgstr ""
+
+msgid ""
+"To undo schema upgrade in a case of failed upgrade, you can use "
+":ref:`box.schema.downgrade() <box_schema-downgrade>`."
+msgstr ""
+
+msgid "Rollback"
+msgstr ""
+
+msgid ""
+"The rollback procedure for a standalone instance is almost the same as the "
+"upgrade. The only difference is in the last step: you should call "
+":ref:`box.schema.downgrade() <box_schema-downgrade>` to return the schema to"
+" the original version."
+msgstr ""

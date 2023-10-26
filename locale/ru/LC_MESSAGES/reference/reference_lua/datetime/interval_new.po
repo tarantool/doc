@@ -1,0 +1,146 @@
+
+msgid "datetime.interval.new()"
+msgstr ""
+
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+msgid ""
+"Create an object of the :ref:`interval type <index-box_interval>` from a "
+"table of time units. See :ref:`description of units <interval-new-args>` and"
+" :ref:`examples <interval-new-example>` below."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid ""
+"Table with :ref:`time units and parameters<interval-new-args>`. For all "
+"possible time units, the values are not restricted. If an empty table or no "
+"arguments are passed, the ``interval`` object with the default value ``0 "
+"seconds`` is created."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "interval_object"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "cdata"
+msgstr ""
+
+msgid ""
+"**Possible input time units and parameters for ``datetime.interval.new()**"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "nsec (usec, msec)"
+msgstr ""
+
+msgid ""
+"Fractional part of the last second. You can specify either nanoseconds "
+"(``nsec``), or microseconds (``usec``), or milliseconds (``msec``). "
+"Specifying two of these units simultaneously or all three ones lead to an "
+"error."
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+msgid "0"
+msgstr ""
+
+msgid "sec"
+msgstr ""
+
+msgid "Seconds"
+msgstr ""
+
+msgid "min"
+msgstr ""
+
+msgid "Minutes"
+msgstr ""
+
+msgid "hour"
+msgstr ""
+
+msgid "Hours"
+msgstr ""
+
+msgid "day"
+msgstr ""
+
+msgid "Day number"
+msgstr ""
+
+msgid "week"
+msgstr ""
+
+msgid "Week number"
+msgstr ""
+
+msgid "month"
+msgstr ""
+
+msgid "Month number"
+msgstr ""
+
+msgid "year"
+msgstr ""
+
+msgid "Year"
+msgstr ""
+
+msgid "adjust"
+msgstr ""
+
+msgid "Defines how to round days in a month after an arithmetic operation."
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "'none'"
+msgstr ""
+
+msgid "**Examples:**"
+msgstr ""
+
+msgid ""
+"tarantool> datetime.interval.new()\n"
+"\n"
+"---\n"
+"- 0 seconds\n"
+"...\n"
+"\n"
+"tarantool> datetime.interval.new {\n"
+"            month = 6,\n"
+"            year = 1\n"
+"            }\n"
+"---\n"
+"- +1 years, 6 months\n"
+"...\n"
+"\n"
+"tarantool> datetime.interval.new {\n"
+"            day = -1\n"
+"            }\n"
+"---\n"
+"- -1 days\n"
+"..."
+msgstr ""

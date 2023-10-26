@@ -1,0 +1,109 @@
+
+msgid "Installation"
+msgstr ""
+
+msgid ""
+"To install the ``tt`` command-line utility, use a package manager -- Yum or "
+"APT on Linux, or Homebrew on macOS. If you need a specific build, you can "
+"build ``tt`` from sources."
+msgstr ""
+
+msgid ""
+"A Tarantool Enterprise's `release package "
+"<https://www.tarantool.io/en/enterprise_doc/setup/#package-contents>`_ "
+"includes the `tt` utility extended with additional features like "
+":ref:`importing <tt-import>` and :ref:`exporting <tt-export>` data."
+msgstr ""
+
+msgid "Using Linux package managers"
+msgstr ""
+
+msgid ""
+"On Linux systems, you can install ``tt`` with ``yum`` or ``apt`` package "
+"managers from the ``tarantool/modules`` repository. Learn how to `add this "
+"repository <https://www.tarantool.io/en/download/os-installation/>`_."
+msgstr ""
+
+msgid "The installation command looks like this:"
+msgstr ""
+
+msgid "On Ubuntu:"
+msgstr ""
+
+msgid "$ sudo apt-get install tt"
+msgstr ""
+
+msgid "On CentOS:"
+msgstr ""
+
+msgid "$ sudo yum install tt"
+msgstr ""
+
+msgid "Using Homebrew on macOS"
+msgstr ""
+
+msgid "On macOS, use Homebrew to install ``tt``:"
+msgstr ""
+
+msgid "$ brew install tt"
+msgstr ""
+
+msgid "Building from sources"
+msgstr ""
+
+msgid "To build ``tt`` from sources:"
+msgstr ""
+
+msgid "Install third-party software required for building ``tt``:"
+msgstr ""
+
+msgid ""
+"`git <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__, the"
+" version control system."
+msgstr ""
+
+msgid ""
+"`Go language <https://golang.org/doc/install>`__, version 1.18 or later."
+msgstr ""
+
+msgid "`mage <https://magefile.org/>`__ build tool."
+msgstr ""
+
+msgid ""
+"Clone the `tarantool/tt <https://github.com/tarantool/tt>`_ repository:"
+msgstr ""
+
+msgid "git clone https://github.com/tarantool/tt --recursive"
+msgstr ""
+
+msgid "Go to the ``tt/`` directory:"
+msgstr ""
+
+msgid "cd tt"
+msgstr ""
+
+msgid "(Optional) Checkout a release tag to build a specific version:"
+msgstr ""
+
+msgid "git checkout tags/v1.0.0"
+msgstr ""
+
+msgid "Build ``tt`` using mage:"
+msgstr ""
+
+msgid "mage build"
+msgstr ""
+
+msgid "``tt`` will appear in the current directory."
+msgstr ""
+
+msgid "Enabling shell completion"
+msgstr ""
+
+msgid ""
+"To enable the completion for ``tt`` commands, run the following command "
+"specifying the shell (``bash`` or ``zsh``):"
+msgstr ""
+
+msgid ". <(tt completion bash)"
+msgstr ""

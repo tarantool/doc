@@ -59,14 +59,22 @@ msgstr ""
 "**pid** – идентификатор процесса. Это значение также отображается с помощью "
 "модуля :ref:`tarantool <tarantool-build>`  и по команде  ``ps -A`` в Linux."
 
+#, fuzzy
 msgid ""
-"**ro** is ``true`` if the instance is in \"read-only\" mode (same as "
+"**ro** is ``true`` if the instance is in read-only mode (same as "
 ":ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``), or if status is "
 "'orphan'."
 msgstr ""
 "**ro** принимает значение ``true``, если экземпляр находится в режиме только"
 " для чтения \"read-only\" (как :ref:`read_only <cfg_basic-read_only>` в "
 "``box.cfg{}``), или в статусе 'orphan' (одиночный)."
+
+msgid ""
+"**ro_reason** is ``nil`` if the instance is in writable mode. When the field"
+" is not ``nil``, it contains the reason why the instance is read-only. "
+"Possible error reasons: ``election``, ``synchro``, ``config``, and "
+"``orphan`` (see :ref:`box.info.ro_reason <box_info_ro-reason>` for details)."
+msgstr ""
 
 msgid ""
 "**signature** is the sum of all ``lsn`` values from each :ref:`vector clock "
@@ -140,8 +148,8 @@ msgid ""
 "**version** is the Tarantool version. This value is also shown by "
 ":ref:`tarantool -V <index-tarantool_version>`."
 msgstr ""
-"**version** -- это версия Tarantool. Данное значение также можно "
-"отобразить с помощью команды :ref:`tarantool -V <index-tarantool_version>`."
+"**version** -- это версия Tarantool. Данное значение также можно отобразить "
+"с помощью команды :ref:`tarantool -V <index-tarantool_version>`."
 
 msgid ""
 "**vinyl()** returns runtime statistics for the vinyl storage engine. This "
@@ -157,7 +165,8 @@ msgid ""
 "election (see :doc:`here </reference/reference_lua/box_info/election>`)."
 msgstr ""
 
-msgid "Below is a list of all ``box.info`` functions."
+#, fuzzy
+msgid "Below is a list of all ``box.info`` functions and members."
 msgstr "Ниже приведен перечень всех функций модуля ``box.info``."
 
 msgid "Name"
@@ -207,4 +216,22 @@ msgstr ""
 
 msgid ""
 "Show the current state of a replica set node in regards to leader election"
+msgstr ""
+
+msgid ":doc:`./box_info/synchro`"
+msgstr ""
+
+msgid "Show the current state of synchronous replication"
+msgstr ""
+
+msgid ":doc:`./box_info/ro_reason`"
+msgstr ""
+
+msgid "Show the current mode of an instance (writable or read-only)"
+msgstr ""
+
+msgid ":doc:`./box_info/schema_version`"
+msgstr ""
+
+msgid "Show the database schema version"
 msgstr ""

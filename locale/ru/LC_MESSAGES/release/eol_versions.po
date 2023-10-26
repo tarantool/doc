@@ -1,0 +1,12 @@
+
+msgid "Tarantool 1.10.0–1.10.4"
+msgstr ""
+
+msgid "EOL versions"
+msgstr ""
+
+msgid ""
+"This page lists release notes for Tarantool versions that have reached their"
+" end of life in accordance with the :doc:`release policy <policy>`. See the "
+":doc:`release calendar <calendar>` for more information."
+msgstr ""

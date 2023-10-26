@@ -261,9 +261,10 @@ msgid ""
 "..."
 msgstr ""
 
+#, fuzzy
 msgid ""
-"2. Check if the ``id`` and ``uuid`` of *instance2* are correct and remove "
-"them from the cluster:"
+"Check if the ``id`` and ``uuid`` of *instance2* are correct and remove them "
+"from the cluster:"
 msgstr ""
 "2.Проверьте корректность ``id`` и ``uuid`` *instance2* и удалите их из "
 "кластера:"

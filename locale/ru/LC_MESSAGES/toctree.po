@@ -1,0 +1,6 @@
+
+msgid "CRUD operations"
+msgstr ""
+
+msgid "Cluster on Cartridge"
+msgstr ""

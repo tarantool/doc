@@ -2,9 +2,10 @@
 msgid "index_object:get()"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"Search for a tuple via the given index, as described :ref:`earlier "
-"<box_index-note>`."
+"Search for a tuple via the given index, as described in the :ref:`select "
+"<box_index-note>` topic."
 msgstr ""
 "Поиск кортежа по заданному индексу, как описано :ref:`выше <box_index-"
 "note>`."

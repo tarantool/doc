@@ -1,0 +1,740 @@
+
+msgid "C++ connector API"
+msgstr ""
+
+msgid ""
+"The official C++ connector for Tarantool is located in the `tanartool/tntcxx"
+" <https://github.com/tarantool/tntcxx/>`_ repository."
+msgstr ""
+
+msgid ""
+"It is not supplied as part of the Tarantool repository and requires "
+"additional actions for usage. The connector itself is a header-only library "
+"and, as such, doesn't require installation and building. All you need is to "
+"clone the connector source code and embed it in your C++ project. See the "
+":doc:`C++ connector Getting started </getting_started/getting_started_cxx>` "
+"document for details and examples."
+msgstr ""
+
+msgid "Below is the description of the connector public API."
+msgstr ""
+
+msgid "Connector class"
+msgstr ""
+
+msgid ""
+"The ``Connector`` class is a template class that defines a connector client "
+"which can handle many connections to Tarantool instances asynchronously."
+msgstr ""
+
+msgid ""
+"To instantiate a client, you should specify the buffer and the network "
+"provider implementations as template parameters. You can either implement "
+"your own buffer or network provider or use the default ones."
+msgstr ""
+
+msgid "The default connector instantiation looks as follows:"
+msgstr ""
+
+msgid ""
+"using Buf_t = tnt::Buffer<16 * 1024>;\n"
+"using Net_t = EpollNetProvider<Buf_t >;\n"
+"Connector<Buf_t, Net_t> client;"
+msgstr ""
+
+msgid "Public methods"
+msgstr ""
+
+msgid ":ref:`connect() <tntcxx_api_connector_connect>`"
+msgstr ""
+
+msgid ":ref:`wait() <tntcxx_api_connector_wait>`"
+msgstr ""
+
+msgid ":ref:`waitAll() <tntcxx_api_connector_waitall>`"
+msgstr ""
+
+msgid ":ref:`waitAny() <tntcxx_api_connector_waitany>`"
+msgstr ""
+
+msgid ":ref:`close() <tntcxx_api_connector_close>`"
+msgstr ""
+
+msgid ""
+"Connects to a Tarantool instance that is listening on ``addr:port``. On "
+"successful connection, the method returns ``0``. If the host doesn't reply "
+"within the timeout period or another error occurs, it returns ``-1``. Then, "
+":ref:`Connection.getError() <tntcxx_api_connection_geterror>` gives the "
+"error message."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "object of the :ref:`Connection <tntcxx_api_connection>` class."
+msgstr ""
+
+msgid "address of the host where a Tarantool instance is running."
+msgstr ""
+
+msgid "port that a Tarantool instance is listening on."
+msgstr ""
+
+msgid "connection timeout, seconds. Optional. Defaults to ``2``."
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "``0`` on success, or ``-1`` otherwise."
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "int"
+msgstr ""
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "connection timeout"
+msgstr ""
+
+msgid "refused to connect (due to incorrect address or/and port)"
+msgstr ""
+
+msgid ""
+"system errors: a socket can't be created; failure of any of the system calls"
+" (``fcntl``, ``select``, ``send``, ``receive``)."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"using Buf_t = tnt::Buffer<16 * 1024>;\n"
+"using Net_t = EpollNetProvider<Buf_t >;\n"
+"\n"
+"Connector<Buf_t, Net_t> client;\n"
+"Connection<Buf_t, Net_t> conn(client);\n"
+"\n"
+"int rc = client.connect(conn, \"127.0.0.1\", 3301);"
+msgstr ""
+
+msgid ""
+"The main method responsible for sending a request and checking the response "
+"readiness."
+msgstr ""
+
+msgid ""
+"You should prepare a request beforehand by using the necessary method of the"
+" :ref:`Connection <tntcxx_api_connection>` class, such as :ref:`ping() "
+"<tntcxx_api_connection_ping>` and so on, which encodes the request in the "
+"`MessagePack <https://msgpack.org/>`_ format and saves it in the output "
+"connection buffer."
+msgstr ""
+
+msgid ""
+"``wait()`` sends the request and is polling the ``future`` for the response "
+"readiness. Once the response is ready, ``wait()`` returns ``0``. If at "
+"``timeout`` the response isn't ready or another error occurs, it returns "
+"``-1``. Then, :ref:`Connection.getError() <tntcxx_api_connection_geterror>` "
+"gives the error message. ``timeout = 0`` means the method is polling the "
+"``future`` until the response is ready."
+msgstr ""
+
+msgid ""
+"request ID returned by a request method of the :ref:`Connection "
+"<tntcxx_api_connection>` class, such as, :ref:`ping() "
+"<tntcxx_api_connection_ping>` and so on."
+msgstr ""
+
+msgid "waiting timeout, milliseconds. Optional. Defaults to ``0``."
+msgstr ""
+
+msgid "``0`` on receiving a response, or ``-1`` otherwise."
+msgstr ""
+
+msgid "timeout exceeded"
+msgstr ""
+
+msgid ""
+"other possible errors depend on a network provider used. If the "
+"``EpollNetProvider`` is used, failing of the ``poll``, ``read``, and "
+"``write`` system calls leads to system errors, such as, ``EBADF``, "
+"``ENOTSOCK``, ``EFAULT``, ``EINVAL``, ``EPIPE``, and ``ENOTCONN`` "
+"(``EWOULDBLOCK`` and ``EAGAIN`` don't occur in this case)."
+msgstr ""
+
+msgid "client.wait(conn, ping, WAIT_TIMEOUT)"
+msgstr ""
+
+msgid ""
+"Similar to :ref:`wait() <tntcxx_api_connector_wait>`, the method sends the "
+"requests prepared and checks the response readiness, but can send several "
+"different requests stored in the ``futures`` array. Exceeding the timeout "
+"leads to an error; :ref:`Connection.getError() "
+"<tntcxx_api_connection_geterror>` gives the error message. ``timeout = 0`` "
+"means the method is polling the ``futures`` until all the responses are "
+"ready."
+msgstr ""
+
+msgid ""
+"array with the request IDs returned by request methods of the "
+":ref:`Connection <tntcxx_api_connection>` class, such as, :ref:`ping() "
+"<tntcxx_api_connection_ping>` and so on."
+msgstr ""
+
+msgid "size of the ``futures`` array."
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid ""
+"rid_t futures[2];\n"
+"futures[0] = replace;\n"
+"futures[1] = select;\n"
+"\n"
+"client.waitAll(conn, (rid_t *) &futures, 2);"
+msgstr ""
+
+msgid ""
+"Sends all requests that are prepared at the moment and is waiting for any "
+"first response to be ready. Upon the response readiness, ``waitAny()`` "
+"returns the corresponding connection object. If at ``timeout`` no response "
+"is ready or another error occurs, it returns ``nullptr``. Then, "
+":ref:`Connection.getError() <tntcxx_api_connection_geterror>` gives the "
+"error message. ``timeout = 0`` means no time limitation while waiting for "
+"the response readiness."
+msgstr ""
+
+msgid ""
+"object of the :ref:`Connection <tntcxx_api_connection>` class on success, or"
+" ``nullptr`` on error."
+msgstr ""
+
+msgid "Connection<BUFFER, NetProvider>*"
+msgstr ""
+
+msgid ""
+"rid_t f1 = conn.ping();\n"
+"rid_t f2 = another_conn.ping();\n"
+"\n"
+"Connection<Buf_t, Net_t> *first = client.waitAny(WAIT_TIMEOUT);\n"
+"if (first == &conn) {\n"
+"    assert(conn.futureIsReady(f1));\n"
+"} else {\n"
+"    assert(another_conn.futureIsReady(f2));\n"
+"}"
+msgstr ""
+
+msgid ""
+"Closes the connection established earlier by the :ref:`connect() "
+"<tntcxx_api_connector_connect>` method."
+msgstr ""
+
+msgid ""
+"connection object of the :ref:`Connection <tntcxx_api_connection>` class."
+msgstr ""
+
+msgid "**Possible errors:** none."
+msgstr ""
+
+msgid "client.close(conn);"
+msgstr ""
+
+msgid "Connection class"
+msgstr ""
+
+msgid ""
+"The ``Connection`` class is a template class that defines a connection "
+"objects which is required to interact with a Tarantool instance. Each "
+"connection object is bound to a single socket."
+msgstr ""
+
+msgid ""
+"Similar to a :ref:`connector client <tntcxx_api_connector>`, a connection "
+"object also takes the buffer and the network provider as template "
+"parameters, and they must be the same as ones of the client. For example:"
+msgstr ""
+
+msgid ""
+"//Instantiating a connector client\n"
+"using Buf_t = tnt::Buffer<16 * 1024>;\n"
+"using Net_t = EpollNetProvider<Buf_t >;\n"
+"Connector<Buf_t, Net_t> client;\n"
+"\n"
+"//Instantiating connection objects\n"
+"Connection<Buf_t, Net_t> conn01(client);\n"
+"Connection<Buf_t, Net_t> conn02(client);"
+msgstr ""
+
+msgid ""
+"The ``Connection`` class has two nested classes, namely, :ref:`Space "
+"<tntcxx_api_connection_space>` and :ref:`Index "
+"<tntcxx_api_connection_index>` that implement the data-manipulation methods "
+"like ``select()``, ``replace()``, and so on."
+msgstr ""
+
+msgid "Public types"
+msgstr ""
+
+msgid ""
+"The alias of the built-in ``size_t`` type. ``rid_t`` is used for entities "
+"that return or contain a request ID."
+msgstr ""
+
+msgid ":ref:`call() <tntcxx_api_connection_call>`"
+msgstr ""
+
+msgid ":ref:`futureIsReady() <tntcxx_api_connection_futureisready>`"
+msgstr ""
+
+msgid ":ref:`getResponse() <tntcxx_api_connection_getresponse>`"
+msgstr ""
+
+msgid ":ref:`getError() <tntcxx_api_connection_geterror>`"
+msgstr ""
+
+msgid ":ref:`reset() <tntcxx_api_connection_reset>`"
+msgstr ""
+
+msgid ":ref:`ping() <tntcxx_api_connection_ping>`"
+msgstr ""
+
+msgid ""
+"Executes a call of a remote stored-procedure similar to :ref:`conn:call() "
+"<net_box-call>`. The method returns the request ID that is used to get the "
+"response by :ref:`getResponse() <tntcxx_api_connection_getresponse>`."
+msgstr ""
+
+msgid "a remote stored-procedure name."
+msgstr ""
+
+msgid "procedure's arguments."
+msgstr ""
+
+msgid "a request ID"
+msgstr ""
+
+msgid "rid_t"
+msgstr ""
+
+msgid ""
+"The following function is defined on the Tarantool instance you are "
+"connected to:"
+msgstr ""
+
+msgid ""
+"box.execute(\"DROP TABLE IF EXISTS t;\")\n"
+"box.execute(\"CREATE TABLE t(id INT PRIMARY KEY, a TEXT, b DOUBLE);\")\n"
+"\n"
+"function remote_replace(arg1, arg2, arg3)\n"
+"    return box.space.T:replace({arg1, arg2, arg3})\n"
+"end"
+msgstr ""
+
+msgid "The function call can look as follows:"
+msgstr ""
+
+msgid ""
+"rid_t f1 = conn.call(\"remote_replace\", std::make_tuple(5, \"some_sring\", "
+"5.55));"
+msgstr ""
+
+msgid ""
+"Checks availability of a request ID (``future``) returned by any of the "
+"request methods, such as, :ref:`ping() <tntcxx_api_connection_ping>` and so "
+"on."
+msgstr ""
+
+msgid ""
+"``futureIsReady()`` returns ``true`` if the ``future`` is available or "
+"``false`` otherwise."
+msgstr ""
+
+msgid "a request ID."
+msgstr ""
+
+msgid "``true`` or ``false``"
+msgstr ""
+
+msgid "bool"
+msgstr ""
+
+msgid ""
+"rid_t ping = conn.ping();\n"
+"conn.futureIsReady(ping);"
+msgstr ""
+
+msgid ""
+"The method takes a request ID (``future``) as an argument and returns an "
+"optional object containing a response. If the response is not ready, the "
+"method returns ``std::nullopt``. Note that for each ``future`` the method "
+"can be called only once because it erases the request ID from the internal "
+"map as soon as the response is returned to a user."
+msgstr ""
+
+msgid ""
+"A response consists of a header (``response.header``) and a body "
+"(``response.body``). Depending on success of the request execution on the "
+"server side, body may contain either runtime errors accessible by "
+"``response.body.error_stack`` or data (tuples) accessible by "
+"``response.body.data``. Data is a vector of tuples. However, tuples are not "
+"decoded and come in the form of pointers to the start and the end of "
+"MessagePacks. For details on decoding the data received, refer to "
+":ref:`\"Decoding and reading the data\" <gs_cxx_reader>`."
+msgstr ""
+
+msgid "a response object or ``std::nullopt``"
+msgstr ""
+
+msgid "std::optional<Response<BUFFER>>"
+msgstr ""
+
+msgid ""
+"rid_t ping = conn.ping();\n"
+"std::optional<Response<Buf_t>> response = conn.getResponse(ping);"
+msgstr ""
+
+msgid ""
+"Returns an error message for the last error occured during the execution of "
+"methods of the :ref:`Connector <tntcxx_api_connector>` and :ref:`Connection "
+"<tntcxx_api_connection>` classes."
+msgstr ""
+
+msgid "an error message"
+msgstr ""
+
+msgid "std::string&"
+msgstr ""
+
+msgid ""
+"int rc = client.connect(conn, address, port);\n"
+"\n"
+"if (rc != 0) {\n"
+"    assert(conn.status.is_failed);\n"
+"    std::cerr << conn.getError() << std::endl;\n"
+"    return -1;\n"
+"}"
+msgstr ""
+
+msgid ""
+"Resets a connection after errors, that is, cleans up the error message and "
+"the connection status."
+msgstr ""
+
+msgid ""
+"if (client.wait(conn, ping, WAIT_TIMEOUT) != 0) {\n"
+"    assert(conn.status.is_failed);\n"
+"    std::cerr << conn.getError() << std::endl;\n"
+"    conn.reset();\n"
+"}"
+msgstr ""
+
+msgid "Prepares a request to ping a Tarantool instance."
+msgstr ""
+
+msgid ""
+"The method encodes the request in the `MessagePack <https://msgpack.org/>`_ "
+"format and queues it in the output connection buffer to be sent later by one"
+" of :ref:`Connector's <tntcxx_api_connector>` methods, namely, :ref:`wait() "
+"<tntcxx_api_connector_wait>`, :ref:`waitAll() "
+"<tntcxx_api_connector_waitall>`, or :ref:`waitAny() "
+"<tntcxx_api_connector_waitany>`."
+msgstr ""
+
+msgid ""
+"Returns the request ID that is used to get the response by the "
+":ref:`getResponce() <tntcxx_api_connection_getresponse>` method."
+msgstr ""
+
+msgid "rid_t ping = conn.ping();"
+msgstr ""
+
+msgid "Nested classes and their methods"
+msgstr ""
+
+msgid ":ref:`Space <tntcxx_api_connection_space>`"
+msgstr ""
+
+msgid ":ref:`Index <tntcxx_api_connection_index>`"
+msgstr ""
+
+msgid "Space class"
+msgstr ""
+
+msgid ""
+"``Space`` is a nested class of the :ref:`Connection <tntcxx_api_connection>`"
+" class. It is a public wrapper to access the data-manipulation methods in "
+"the way similar to the Tarantool submodule "
+":doc:`box.space</reference/reference_lua/box_space>`, like, "
+"``space[space_id].select()``, ``space[space_id].replace()``, and so on."
+msgstr ""
+
+msgid ""
+"All the ``Space`` class methods listed below work in the following way:"
+msgstr ""
+
+msgid ""
+"A method encodes the corresponding request in the `MessagePack "
+"<https://msgpack.org/>`_ format and queues it in the output connection "
+"buffer to be sent later by one of :ref:`Connector's <tntcxx_api_connector>` "
+"methods, namely, :ref:`wait() <tntcxx_api_connector_wait>`, :ref:`waitAll() "
+"<tntcxx_api_connector_waitall>`, or :ref:`waitAny() "
+"<tntcxx_api_connector_waitany>`."
+msgstr ""
+
+msgid ""
+"A method returns the request ID. To get and read the actual data requested, "
+"first you need to get the response object by using the :ref:`getResponce() "
+"<tntcxx_api_connection_getresponse>` method and then :ref:`decode "
+"<gs_cxx_reader>` the data."
+msgstr ""
+
+msgid "**Public methods**:"
+msgstr ""
+
+msgid ":ref:`select() <tntcxx_api_connection_select>`"
+msgstr ""
+
+msgid ":ref:`replace() <tntcxx_api_connection_replace>`"
+msgstr ""
+
+msgid ":ref:`insert() <tntcxx_api_connection_insert>`"
+msgstr ""
+
+msgid ":ref:`update() <tntcxx_api_connection_update>`"
+msgstr ""
+
+msgid ":ref:`upsert() <tntcxx_api_connection_upsert>`"
+msgstr ""
+
+msgid ":ref:`delete_() <tntcxx_api_connection_delete>`"
+msgstr ""
+
+msgid ""
+"Searches for a tuple or a set of tuples in the given space. The method works"
+" similar to :doc:`/reference/reference_lua/box_space/select` and performs "
+"the search against the primary index (``index_id = 0``) by default. In other"
+" words, ``space[space_id].select()`` equals to "
+"``space[space_id].index[0].select()``."
+msgstr ""
+
+msgid "value to be matched against the index key."
+msgstr ""
+
+msgid "index ID. Optional. Defaults to ``0``."
+msgstr ""
+
+msgid ""
+"maximum number of tuples to select. Optional. Defaults to ``UINT32_MAX``."
+msgstr ""
+
+msgid "number of tuples to skip. Optional. Defaults to ``0``."
+msgstr ""
+
+msgid "the type of iterator. Optional. Defaults to ``EQ``."
+msgstr ""
+
+msgid ""
+"/* Equals to space_object:select({key_value}, {limit = 1}) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"int key_value = 5;\n"
+"uint32_t limit = 1;\n"
+"auto i = conn.space[space_id];\n"
+"rid_t select = i.select(std::make_tuple(key_value), index_id, limit, offset, iter);"
+msgstr ""
+
+msgid ""
+"Inserts a tuple into the given space. If a tuple with the same primary key "
+"already exists, ``replace()`` replaces the existing tuple with a new one. "
+"The method works similar to "
+":doc:`/reference/reference_lua/box_space/replace`."
+msgstr ""
+
+msgid "a tuple to insert."
+msgstr ""
+
+msgid ""
+"/* Equals to space_object:replace(key_value, \"111\", 1.01) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"int key_value = 5;\n"
+"std::tuple data = std::make_tuple(key_value, \"111\", 1.01);\n"
+"rid_t replace = conn.space[space_id].replace(data);"
+msgstr ""
+
+msgid ""
+"Inserts a tuple into the given space. The method works similar to "
+":doc:`/reference/reference_lua/box_space/insert`."
+msgstr ""
+
+msgid ""
+"/* Equals to space_object:insert(key_value, \"112\", 2.22) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"int key_value = 6;\n"
+"std::tuple data = std::make_tuple(key_value, \"112\", 2.22);\n"
+"rid_t insert = conn.space[space_id].insert(data);"
+msgstr ""
+
+msgid ""
+"Updates a tuple in the given space. The method works similar to "
+":doc:`/reference/reference_lua/box_space/update` and searches for the tuple "
+"to update against the primary index (``index_id = 0``) by default. In other "
+"words, ``space[space_id].update()`` equals to "
+"``space[space_id].index[0].update()``."
+msgstr ""
+
+msgid ""
+"The ``tuple`` parameter specifies an update operation, an identifier of the "
+"field to update, and a new field value. The set of available operations and "
+"the format of specifying an operation and a field identifier is the same as "
+"in Tarantool. Refer to the description of :doc:` "
+"</reference/reference_lua/box_space/update>` and example below for details."
+msgstr ""
+
+msgid ""
+"parameters for the update operation, namely, ``operator, field_identifier, "
+"value``."
+msgstr ""
+
+msgid ""
+"/* Equals to space_object:update(key, {{'=', 1, 'update' }, {'+', 2, 12}}) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"std::tuple key = std::make_tuple(5);\n"
+"std::tuple op1 = std::make_tuple(\"=\", 1, \"update\");\n"
+"std::tuple op2 = std::make_tuple(\"+\", 2, 12);\n"
+"rid_t f1 = conn.space[space_id].update(key, std::make_tuple(op1, op2));"
+msgstr ""
+
+msgid ""
+"Updates or inserts a tuple in the given space. The method works similar to "
+":doc:`/reference/reference_lua/box_space/upsert`."
+msgstr ""
+
+msgid ""
+"If there is an existing tuple that matches the key fields of ``tuple``, the "
+"request has the same effect as :ref:`update() "
+"<tntcxx_api_connection_update>` and the ``ops`` parameter is used. If there "
+"is no existing tuple that matches the key fields of ``tuple``, the request "
+"has the same effect as :ref:`insert() <tntcxx_api_connection_insert>` and "
+"the ``tuple`` parameter is used."
+msgstr ""
+
+msgid ""
+"starting number to count fields in a tuple: ``0`` or ``1``. Optional. "
+"Defaults to ``0``."
+msgstr ""
+
+msgid ""
+"/* Equals to space_object:upsert({333, \"upsert-insert\", 0.0}, {{'=', 1, 'upsert-update'}}) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"std::tuple tuple = std::make_tuple(333, \"upsert-insert\", 0.0);\n"
+"std::tuple op1 = std::make_tuple(\"=\", 1, \"upsert-update\");\n"
+"rid_t f1 = conn.space[space_id].upsert(tuple, std::make_tuple(op1));"
+msgstr ""
+
+msgid ""
+"Deletes a tuple in the given space. The method works similar to "
+":doc:`/reference/reference_lua/box_space/delete` and searches for the tuple "
+"to delete against the primary index (``index_id = 0``) by default. In other "
+"words, ``space[space_id].delete_()`` equals to "
+"``space[space_id].index[0].delete_()``."
+msgstr ""
+
+msgid ""
+"/* Equals to space_object:delete(123) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"std::tuple key = std::make_tuple(123);\n"
+"rid_t f1 = conn.space[space_id].delete_(key);"
+msgstr ""
+
+msgid "Index class"
+msgstr ""
+
+msgid ""
+"``Index`` is a nested class of the :ref:`Space "
+"<tntcxx_api_connection_space>` class. It is a public wrapper to access the "
+"data-manipulation methods in the way similar to the Tarantool submodule "
+":doc:`box.index </reference/reference_lua/box_index>`, like, "
+"``space[space_id].index[index_id].select()`` and so on."
+msgstr ""
+
+msgid ""
+"All the ``Index`` class methods listed below work in the following way:"
+msgstr ""
+
+msgid ""
+"A method returns the request ID that is used to get the response by the "
+":ref:`getResponce() <tntcxx_api_connection_getresponse>` method. Refer to "
+"the :ref:`getResponce() <tntcxx_api_connection_getresponse>` description to "
+"understand the response structure and how to read the requested data."
+msgstr ""
+
+msgid ":ref:`select() <tntcxx_api_connection_select_i>`"
+msgstr ""
+
+msgid ":ref:`update() <tntcxx_api_connection_update_i>`"
+msgstr ""
+
+msgid ":ref:`delete_() <tntcxx_api_connection_delete_i>`"
+msgstr ""
+
+msgid ""
+"This is an alternative to :ref:`space.select() "
+"<tntcxx_api_connection_select>`. The method searches for a tuple or a set of"
+" tuples in the given space against a particular index and works similar to "
+":doc:`/reference/reference_lua/box_index/select`."
+msgstr ""
+
+msgid ""
+"/* Equals to index_object:select({key}, {limit = 1}) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"uint32_t index_id = 1;\n"
+"int key = 10;\n"
+"uint32_t limit = 1;\n"
+"auto i = conn.space[space_id].index[index_id];\n"
+"rid_t select = i.select(std::make_tuple(key), limit, offset, iter);"
+msgstr ""
+
+msgid ""
+"This is an alternative to :ref:`space.update() "
+"<tntcxx_api_connection_update>`. The method updates a tuple in the given "
+"space but searches for the tuple against a particular index. The method "
+"works similar to :doc:`/reference/reference_lua/box_index/update`."
+msgstr ""
+
+msgid ""
+"The ``tuple`` parameter specifies an update operation, an identifier of the "
+"field to update, and a new field value. The set of available operations and "
+"the format of specifying an operation and a field identifier is the same as "
+"in Tarantool. Refer to the description of :doc:` "
+"</reference/reference_lua/box_index/update>` and example below for details."
+msgstr ""
+
+msgid ""
+"/* Equals to index_object:update(key, {{'=', 1, 'update' }, {'+', 2, 12}}) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"uint32_t index_id = 1;\n"
+"std::tuple key = std::make_tuple(10);\n"
+"std::tuple op1 = std::make_tuple(\"=\", 1, \"update\");\n"
+"std::tuple op2 = std::make_tuple(\"+\", 2, 12);\n"
+"rid_t f1 = conn.space[space_id].index[index_id].update(key, std::make_tuple(op1, op2));"
+msgstr ""
+
+msgid ""
+"This is an alternative to :ref:`space.delete_() "
+"<tntcxx_api_connection_delete>`. The method deletes a tuple in the given "
+"space but searches for the tuple against a particular index. The method "
+"works similar to :doc:`/reference/reference_lua/box_index/delete`."
+msgstr ""
+
+msgid ""
+"/* Equals to index_object:delete(123) in Tarantool*/\n"
+"uint32_t space_id = 512;\n"
+"uint32_t index_id = 1;\n"
+"std::tuple key = std::make_tuple(123);\n"
+"rid_t f1 = conn.space[space_id].index[index_id].delete_(key);"
+msgstr ""

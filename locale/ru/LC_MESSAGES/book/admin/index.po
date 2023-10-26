@@ -19,11 +19,9 @@ msgid "``systemd`` native utilities, or"
 msgstr "встроенные утилиты ``systemd`` или"
 
 msgid ""
-":ref:`tarantoolctl <tarantoolctl>`, an administrative utility shipped and "
-"installed as part of Tarantool distribution."
+":ref:`tt <tt-cli>`, a command-line utility for managing Tarantool-based "
+"applications."
 msgstr ""
-":ref:`tarantoolctl <tarantoolctl>`, утилита для администраторов, "
-"поставляемая и устанавливаемая вместе с дистрибутивом Tarantool."
 
 msgid "Unlike the rest of this manual, here we use system-wide paths."
 msgstr ""
@@ -35,3 +33,10 @@ msgstr "Здесь мы приводим примеры консольного �
 
 msgid "This chapter includes the following sections:"
 msgstr "Эта глава включает в себя следующие разделы:"
+
+#~ msgid ""
+#~ ":ref:`tarantoolctl <tarantoolctl>`, an administrative utility shipped and "
+#~ "installed as part of Tarantool distribution."
+#~ msgstr ""
+#~ ":ref:`tarantoolctl <tarantoolctl>`, утилита для администраторов, "
+#~ "поставляемая и устанавливаемая вместе с дистрибутивом Tarantool."

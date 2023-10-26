@@ -1,0 +1,40 @@
+
+msgid "box.broadcast()"
+msgstr ""
+
+msgid ""
+"Update the value of a particular key and notify all key watchers of the "
+"update."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "key name of the event to subscribe to"
+msgstr ""
+
+msgid "any data that can be encoded in MsgPack"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "The value can't be encoded as MsgPack."
+msgstr ""
+
+msgid "The key refers to a ``box.`` system event"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"-- Broadcast value 42 for the 'foo' key.\n"
+"box.broadcast('foo', 42)"
+msgstr ""

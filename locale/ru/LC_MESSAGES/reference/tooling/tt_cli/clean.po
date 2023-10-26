@@ -1,0 +1,42 @@
+
+msgid "Cleaning instance files"
+msgstr ""
+
+msgid "$ tt clean {INSTANCE | APPLICATION[:APP_INSTANCE]} [OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt clean`` cleans stored files of Tarantool instances: logs, snapshots, "
+"and other files. To avoid accidental deletion of files, ``tt clean`` shows "
+"the files it is going to delete and asks for confirmation."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Clean files without confirmation."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Single instance"
+msgstr ""
+
+msgid "Clean the files of the ``app`` instance:"
+msgstr ""
+
+msgid "$ tt clean app"
+msgstr ""
+
+msgid "Multiple instances"
+msgstr ""
+
+msgid "Clean the files of all instances of the ``app`` application:"
+msgstr ""
+
+msgid "Clean the files of the ``master`` instance of the ``app`` application:"
+msgstr ""
+
+msgid "$ tt clean app:master"
+msgstr ""

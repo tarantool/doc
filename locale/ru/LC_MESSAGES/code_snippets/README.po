@@ -1,0 +1,87 @@
+
+msgid "Tarantool code examples"
+msgstr ""
+
+msgid ""
+"The `doc/code_snippets` folder of a Tarantool documentation repository "
+"contains runnable code examples that show how to work with various Tarantool"
+" modules. Code from these examples is [referenced](#referencing-code-"
+"snippets) in corresponding documentation sections."
+msgstr ""
+
+msgid "Prerequisites"
+msgstr ""
+
+msgid ""
+"First, install the [tt CLI "
+"utility](https://www.tarantool.io/en/doc/latest/reference/tooling/tt_cli/). "
+"Then, go to the `doc/code_snippets` folder and install the following "
+"libraries:"
+msgstr ""
+
+msgid "Install [luatest](https://github.com/tarantool/luatest):"
+msgstr ""
+
+msgid "tt rocks install luatest\n"
+msgstr ""
+
+msgid "Install [luarapidxml](https://github.com/tarantool/luarapidxml):"
+msgstr ""
+
+msgid "tt rocks install luarapidxml\n"
+msgstr ""
+
+msgid "Running and testing examples"
+msgstr ""
+
+msgid ""
+"To test all the examples, go to the `doc/code_snippets` folder and execute "
+"the `luatest` command:"
+msgstr ""
+
+msgid ".rocks/bin/luatest\n"
+msgstr ""
+
+msgid ""
+"To test the examples from the specified directory, pass its relative path to"
+" the `luatest` command:"
+msgstr ""
+
+msgid ".rocks/bin/luatest test/transactions\n"
+msgstr ""
+
+msgid ""
+"To test a specific example with the `stdout` output enabled, use the "
+"`luatest` command with the `-c` option, for example:"
+msgstr ""
+
+msgid ".rocks/bin/luatest -c test/http_client/get_test.lua\n"
+msgstr ""
+
+msgid ""
+"Note that the HTTP client samples (placed in `test/http_client`) use the "
+"`httpbin` service. You can run `httpbin` locally using Docker to stabilize "
+"test results:"
+msgstr ""
+
+msgid "docker run -p 80:80 kennethreitz/httpbin\n"
+msgstr ""
+
+msgid ""
+"In this case, you need to replace `https://httpbin.org` links with "
+"`http://127.0.0.1`."
+msgstr ""
+
+msgid "Referencing code snippets"
+msgstr ""
+
+msgid ""
+"To display a specific source file in a topic, use the `literalinclude` "
+"directive as follows:"
+msgstr ""
+
+msgid ""
+"..  literalinclude:: /code_snippets/test/http_client/post_json_test.lua\n"
+"    :language: lua\n"
+"    :lines: 1-6\n"
+msgstr ""

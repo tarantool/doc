@@ -1,0 +1,33 @@
+
+msgid "Stopping a Tarantool instance"
+msgstr ""
+
+msgid "$ tt stop {INSTANCE | APPLICATION[:APP_INSTANCE]}"
+msgstr ""
+
+msgid "``tt stop`` stops the specified running Tarantool instances."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Single instance"
+msgstr ""
+
+msgid "Stop the ``app`` instance:"
+msgstr ""
+
+msgid "$ tt stop app"
+msgstr ""
+
+msgid "Multiple instances"
+msgstr ""
+
+msgid "Stop all instances of the ``app`` application:"
+msgstr ""
+
+msgid "Stop the ``replica`` instance of the ``app`` application:"
+msgstr ""
+
+msgid "$ tt stop app:replica"
+msgstr ""

@@ -1,0 +1,59 @@
+
+msgid "Starting a Tarantool instance"
+msgstr ""
+
+msgid "$ tt start {INSTANCE | APPLICATION[:APP_INSTANCE]}"
+msgstr ""
+
+msgid "``tt start`` starts Tarantool applications."
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid ""
+"The application files must be stored inside the ``instances_enabled`` "
+"directory specified in the :ref:`tt configuration file <tt-"
+"config_file_app>`. The ``APPLICATION`` value can be:"
+msgstr ""
+
+msgid "the name of an application file without the ``.lua`` extension."
+msgstr ""
+
+msgid ""
+"the name of an application directory. It must contain the ``init.lua`` "
+"application file and, optionally, the instances configuration if the "
+"application runs on multiple instances. Learn more about :ref:`instances "
+"configuration <tt-instances>`."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Single instance"
+msgstr ""
+
+msgid ""
+"Start an instance with the ``app.lua`` application from the "
+"``instances_enabled`` directory:"
+msgstr ""
+
+msgid "$ tt start app"
+msgstr ""
+
+msgid "Multiple instances"
+msgstr ""
+
+msgid ""
+"Start all instances of the application stored in the ``app/`` directory "
+"inside ``instances_enabled`` in accordance with the :ref:`instances "
+"configuration <tt-instances>`:"
+msgstr ""
+
+msgid ""
+"Start only the ``master`` instance of the application stored in the ``app/``"
+" directory inside ``instances_enabled``:"
+msgstr ""
+
+msgid "$ tt start app:master"
+msgstr ""

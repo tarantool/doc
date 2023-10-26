@@ -1,0 +1,52 @@
+
+msgid "box.schema.downgrade()"
+msgstr ""
+
+msgid ""
+"Allows you to downgrade a database to the specified Tarantool version. This "
+"might be useful if you need to run a database on older Tarantool versions."
+msgstr ""
+
+msgid ""
+"To prepare a database for using it on an older Tarantool instance, call "
+"``box.schema.downgrade`` and pass the desired Tarantool version:"
+msgstr ""
+
+msgid "tarantool> box.schema.downgrade('2.8.4')"
+msgstr ""
+
+msgid ""
+"The Tarantool's downgrade procedure is similar to the upgrade process that "
+"is described in the :ref:`Upgrades <admin-upgrades>` topic. You need to run "
+"``box.schema.downgrade()`` only on master and execute `box.shapshot()` on "
+"every instance in a replica set before restart to an older version."
+msgstr ""
+
+msgid ""
+"To see Tarantool versions available for downgrade, call "
+":ref:`box.schema.downgrade_versions() <box_schema-downgrade_versions>`. The "
+"oldest release available for downgrade is ``2.8.2``."
+msgstr ""
+
+msgid ""
+"Note that the downgrade process might fail if the database enables specific "
+"features not supported in the target Tarantool version. You can see all such"
+" issues using the :ref:`box.schema.downgrade_issues() <box_schema-"
+"downgrade_issues>` method, which accepts the target version. For example, "
+"``downgrade`` to the ``2.8.4`` version fails if you use `tuple compression "
+"<https://www.tarantool.io/en/enterprise_doc/tuple_compression/>`__ or field "
+":ref:`constraints <index-constraint_functions>` in your database:"
+msgstr ""
+
+msgid ""
+"tarantool> box.schema.downgrade_issues('2.8.4')\n"
+"---\n"
+"- - Tuple compression is found in space 'bands', field 'band_name'. It is supported\n"
+"    starting from version 2.10.0.\n"
+"  - Field constraint is found in space 'bands', field 'year'. It is supported starting\n"
+"    from version 2.10.0.\n"
+"..."
+msgstr ""
+
+msgid "See also: :ref:`box.schema.upgrade() <box_schema-upgrade>`"
+msgstr ""

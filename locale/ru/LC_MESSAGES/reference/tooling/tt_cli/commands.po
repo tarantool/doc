@@ -1,0 +1,286 @@
+
+msgid "binaries"
+msgstr ""
+
+msgid "build"
+msgstr ""
+
+msgid "cartridge"
+msgstr ""
+
+msgid "cat"
+msgstr ""
+
+msgid "cfg"
+msgstr ""
+
+msgid "check"
+msgstr ""
+
+msgid "clean"
+msgstr ""
+
+msgid "completion"
+msgstr ""
+
+msgid "connect"
+msgstr ""
+
+msgid "coredump"
+msgstr ""
+
+msgid "create"
+msgstr ""
+
+msgid "crud"
+msgstr ""
+
+msgid "export"
+msgstr ""
+
+msgid "help"
+msgstr ""
+
+msgid "import"
+msgstr ""
+
+msgid "init"
+msgstr ""
+
+msgid "install"
+msgstr ""
+
+msgid "instances"
+msgstr ""
+
+msgid "logrotate"
+msgstr ""
+
+msgid "pack"
+msgstr ""
+
+msgid "play"
+msgstr ""
+
+msgid "restart"
+msgstr ""
+
+msgid "rocks"
+msgstr ""
+
+msgid "run"
+msgstr ""
+
+msgid "search"
+msgstr ""
+
+msgid "start"
+msgstr ""
+
+msgid "status"
+msgstr ""
+
+msgid "stop"
+msgstr ""
+
+msgid "uninstall"
+msgstr ""
+
+msgid "version"
+msgstr ""
+
+msgid "Commands"
+msgstr ""
+
+msgid ""
+"Below is a list of `tt` commands. Run ``tt COMMAND help`` to see the "
+"detailed help for the given command."
+msgstr ""
+
+msgid ":doc:`binaries <binaries>`"
+msgstr ""
+
+msgid "Show a list of installed binaries and their versions"
+msgstr ""
+
+msgid ":doc:`build <build>`"
+msgstr ""
+
+msgid "Build an application locally"
+msgstr ""
+
+msgid ":doc:`cartridge <cartridge>`"
+msgstr ""
+
+msgid "Manage a Cartridge application"
+msgstr ""
+
+msgid ":doc:`cat <cat>`"
+msgstr ""
+
+msgid "Print the contents of ``.snap`` or ``.xlog`` files into stdout"
+msgstr ""
+
+msgid ":doc:`cfg <cfg>`"
+msgstr ""
+
+msgid "Manage a ``tt`` environment configuration"
+msgstr ""
+
+msgid ":doc:`check <check>`"
+msgstr ""
+
+msgid "Check an application file for syntax errors"
+msgstr ""
+
+msgid ":doc:`clean <clean>`"
+msgstr ""
+
+msgid "Clean instance files"
+msgstr ""
+
+msgid ":doc:`completion <completion>`"
+msgstr ""
+
+msgid "Generate completion for a specified shell"
+msgstr ""
+
+msgid ":doc:`connect <connect>`"
+msgstr ""
+
+msgid "Connect to a Tarantool instance"
+msgstr ""
+
+msgid ":doc:`coredump <coredump>`"
+msgstr ""
+
+msgid "Manipulate Tarantool core dumps"
+msgstr ""
+
+msgid ":doc:`create <create>`"
+msgstr ""
+
+msgid "Create an application from a template"
+msgstr ""
+
+msgid ":doc:`crud <crud>`"
+msgstr ""
+
+msgid ""
+"Interact with the CRUD module (`Enterprise only "
+"<https://www.tarantool.io/compare/>`_)"
+msgstr ""
+
+msgid ":doc:`export <export>`"
+msgstr ""
+
+msgid ""
+"Export data to a file (`Enterprise only "
+"<https://www.tarantool.io/compare/>`_)"
+msgstr ""
+
+msgid ":doc:`help <help>`"
+msgstr ""
+
+msgid "Display help for ``tt`` or a specific command"
+msgstr ""
+
+msgid ":doc:`import <import>`"
+msgstr ""
+
+msgid ""
+"Import data from a file (`Enterprise only "
+"<https://www.tarantool.io/compare/>`_)"
+msgstr ""
+
+msgid ":doc:`init <init>`"
+msgstr ""
+
+msgid "Create a new ``tt`` environment in the current directory"
+msgstr ""
+
+msgid ":doc:`install <install>`"
+msgstr ""
+
+msgid "Install Tarantool or ``tt``"
+msgstr ""
+
+msgid ":doc:`instances <instances>`"
+msgstr ""
+
+msgid "List enabled applications"
+msgstr ""
+
+msgid ":doc:`logrotate <logrotate>`"
+msgstr ""
+
+msgid "Rotate instance logs"
+msgstr ""
+
+msgid ":doc:`pack <pack>`"
+msgstr ""
+
+msgid "Package an application"
+msgstr ""
+
+msgid ":doc:`play <play>`"
+msgstr ""
+
+msgid ""
+"Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool "
+"instance"
+msgstr ""
+
+msgid ":doc:`restart <restart>`"
+msgstr ""
+
+msgid "Restart a Tarantool instance"
+msgstr ""
+
+msgid ":doc:`rocks <rocks>`"
+msgstr ""
+
+msgid "Use the LuaRocks package manager"
+msgstr ""
+
+msgid ":doc:`run <run>`"
+msgstr ""
+
+msgid "Run Lua code in a Tarantool instance"
+msgstr ""
+
+msgid ":doc:`search <search>`"
+msgstr ""
+
+msgid "Search available Tarantool and ``tt`` versions"
+msgstr ""
+
+msgid ":doc:`start <start>`"
+msgstr ""
+
+msgid "Start a Tarantool instance"
+msgstr ""
+
+msgid ":doc:`status <status>`"
+msgstr ""
+
+msgid "Get the current status of a Tarantool instance"
+msgstr ""
+
+msgid ":doc:`stop <stop>`"
+msgstr ""
+
+msgid "Stop a Tarantool instance"
+msgstr ""
+
+msgid ":doc:`uninstall <uninstall>`"
+msgstr ""
+
+msgid "Uninstall Tarantool or ``tt``"
+msgstr ""
+
+msgid ":doc:`version <version>`"
+msgstr ""
+
+msgid "Show the ``tt`` version information"
+msgstr ""

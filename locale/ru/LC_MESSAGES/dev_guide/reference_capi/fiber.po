@@ -1,10 +1,12 @@
 
-msgid "Module `fiber`"
+#, fuzzy
+msgid "Module fiber"
 msgstr "Модуль `fiber`"
 
+#, fuzzy
 msgid ""
-"Fiber - contains information about a :ref:`fiber <atomic-"
-"threads_fibers_yields>`."
+"Fiber - contains information about a :ref:`fiber "
+"<application_server_fibers>`."
 msgstr ""
 "Файбер -- содержит информацию о :ref:`файбере <atomic-"
 "threads_fibers_yields>`."
@@ -89,15 +91,16 @@ msgid "Cancel the subject fiber."
 msgstr "Отмена файбера."
 
 msgid ""
-"Cancellation is asynchronous. Use :ref:`fiber_join()<c_api-fiber-fiber_join>` "
-"to wait for the cancellation to complete."
+"Cancellation is asynchronous. Use :ref:`fiber_join()<c_api-fiber-"
+"fiber_join>` to wait for the cancellation to complete."
 msgstr ""
 "Отмена файбера происходит асинхронно. Чтобы дождаться окончания отмены, "
 "используйте :ref:`fiber_join()<c_api-fiber-fiber_join>`."
 
 msgid ""
-"After ``fiber_cancel()`` is called, the fiber may or may not check whether it "
-"was cancelled. If the fiber does not check it, it cannot ever be cancelled."
+"After ``fiber_cancel()`` is called, the fiber may or may not check whether "
+"it was cancelled. If the fiber does not check it, it cannot ever be "
+"cancelled."
 msgstr ""
 "После вызова ``fiber_cancel()`` файбер может проверить, был ли он отменен. "
 "Если он этого не сделает, его отменить невозможно. "
@@ -105,9 +108,10 @@ msgstr ""
 msgid "fiber to be cancelled"
 msgstr "отменяемый файбер"
 
+#, fuzzy
 msgid ""
-"Make it possible or not possible to wakeup the current fiber immediately "
-"when it's cancelled."
+"Deprecated since :doc:`2.11.0 </release/2.11.0>`. Make it possible or not "
+"possible to wakeup the current fiber immediately when it's cancelled."
 msgstr ""
 "Возможность или невозможность пробуждения текущего файбера сразу после его "
 "отмены."
@@ -158,7 +162,16 @@ msgstr "Проверка отмены текущего файбера (это д
 msgid "Report loop begin time as double (cheap)."
 msgstr "Сообщение времени начала цикла в виде числа двойной точности."
 
-msgid "Report loop begin time as 64-bit int."
+#, fuzzy
+msgid "Report loop begin time as 64-bit int. Uses real time clock."
+msgstr "Сообщение времени начала цикла в виде 64-битного целого числа."
+
+#, fuzzy
+msgid "Report loop begin time as double (cheap). Uses monotonic clock."
+msgstr "Сообщение времени начала цикла в виде числа двойной точности."
+
+#, fuzzy
+msgid "Report loop begin time as 64-bit int. Uses monotonic clock."
 msgstr "Сообщение времени начала цикла в виде 64-битного целого числа."
 
 msgid "Reschedule fiber to end of event loop cycle."
@@ -218,11 +231,11 @@ msgstr "контейнер с атрибутами файбера или NULL, �
 msgid "stack size (in bytes)"
 msgstr "размер стека (в байтах)"
 
+#, fuzzy
 msgid ""
 "A conditional variable: a synchronization primitive that allow fibers in "
-"Tarantool's :ref:`cooperative multitasking <atomic-"
-"cooperative_multitasking>` environment to yield until some predicate is "
-"satisfied."
+"Tarantool's :ref:`cooperative multitasking <app-cooperative_multitasking>` "
+"environment to yield until some predicate is satisfied."
 msgstr ""
 "Условная переменная: примитив синхронизации, который позволяет файберам в "
 "среде :ref:`кооперативной многозадачности <atomic-cooperative_multitasking>`"

@@ -1,0 +1,279 @@
+
+msgid "Go"
+msgstr ""
+
+msgid "The following connectors are available:"
+msgstr ""
+
+msgid ""
+"Tarantool-supported `go-tarantool <https://github.com/tarantool/go-"
+"tarantool>`__"
+msgstr ""
+
+msgid ""
+"Community-supported `viciious/go-tarantool <https://github.com/viciious/go-"
+"tarantool>`_"
+msgstr ""
+
+msgid ""
+"Community-supported `FZambia/tarantool "
+"<https://github.com/FZambia/tarantool>`_."
+msgstr ""
+
+msgid "Feature comparison"
+msgstr ""
+
+msgid "Last update: January 2023"
+msgstr ""
+
+msgid "`tarantool/go-tarantool <https://github.com/tarantool/go-tarantool>`_"
+msgstr ""
+
+msgid "`viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_"
+msgstr ""
+
+msgid "`FZambia/tarantool <https://github.com/FZambia/tarantool>`_"
+msgstr ""
+
+msgid "License"
+msgstr ""
+
+msgid "BSD 2-Clause"
+msgstr ""
+
+msgid "MIT"
+msgstr ""
+
+msgid "Last update"
+msgstr ""
+
+msgid "2023"
+msgstr ""
+
+msgid "2022"
+msgstr ""
+
+msgid "Documentation"
+msgstr ""
+
+msgid "README with examples and up-to-date GoDoc"
+msgstr ""
+
+msgid "README with examples, code comments"
+msgstr ""
+
+msgid "README with examples"
+msgstr ""
+
+msgid "Testing / CI / CD"
+msgstr ""
+
+msgid "GitHub Actions"
+msgstr ""
+
+msgid "Travis CI"
+msgstr ""
+
+msgid "GitHub Stars"
+msgstr ""
+
+msgid "147"
+msgstr ""
+
+msgid "45"
+msgstr ""
+
+msgid "14"
+msgstr ""
+
+msgid "Static analysis"
+msgstr ""
+
+msgid "golangci-lint, luacheck"
+msgstr ""
+
+msgid "golint"
+msgstr ""
+
+msgid "golangci-lint"
+msgstr ""
+
+msgid "Packaging"
+msgstr ""
+
+msgid "go get"
+msgstr ""
+
+msgid "Code coverage"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "msgpack driver"
+msgstr ""
+
+msgid ""
+"`vmihailenco/msgpack/v2 <https://github.com/vmihailenco/msgpack/tree/v2>`_ "
+"or `vmihailenco/msgpack/v5 "
+"<https://github.com/vmihailenco/msgpack/tree/v5>`_"
+msgstr ""
+
+msgid "`tinylib/msgp <https://github.com/tinylib/msgp>`_"
+msgstr ""
+
+msgid ""
+"`vmihailenco/msgpack/v5 <https://github.com/vmihailenco/msgpack/tree/v5>`_"
+msgstr ""
+
+msgid "Async work"
+msgstr ""
+
+msgid "Schema reload"
+msgstr ""
+
+msgid "Yes (manual pull)"
+msgstr ""
+
+msgid "Space / index names"
+msgstr ""
+
+msgid "Tuples as structures"
+msgstr ""
+
+msgid "Yes (structure and marshall functions must be predefined in Go code)"
+msgstr ""
+
+msgid "Access tuple fields by names"
+msgstr ""
+
+msgid "Only if marshalled to structure"
+msgstr ""
+
+msgid ""
+"`SQL <https://www.tarantool.io/en/doc/latest/reference/reference_sql/>`_ "
+"support"
+msgstr ""
+
+msgid ""
+"No (`#18 <https://github.com/viciious/go-tarantool/issues/18>`_, closed)"
+msgstr ""
+
+msgid ""
+"`Interactive transactions "
+"<https://www.tarantool.io/en/doc/latest/book/box/stream/>`_"
+msgstr ""
+
+msgid ""
+"`Varbinary <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`_ "
+"support"
+msgstr ""
+
+msgid "Yes (with in-built language tools)"
+msgstr ""
+
+msgid ""
+"Yes (decodes to string by default, see `#6 "
+"<https://github.com/FZambia/tarantool/issues/6>`_)"
+msgstr ""
+
+msgid ""
+"`UUID <https://www.tarantool.io/en/doc/latest/book/box/data_model/>`_ "
+"support"
+msgstr ""
+
+msgid "Decimal support"
+msgstr ""
+
+msgid ""
+"`EXT_ERROR "
+"<https://www.tarantool.io/ru/doc/latest/dev_guide/internals/msgpack_extensions/#the-"
+"error-type>`_ support"
+msgstr ""
+
+msgid ""
+"`Datetime <https://github.com/tarantool/tarantool/discussions/6244>`_ "
+"support"
+msgstr ""
+
+msgid ""
+"`box.session.push() responses "
+"<https://www.tarantool.io/ru/doc/latest/reference/reference_lua/box_session/push/>`_"
+msgstr ""
+
+msgid "No (`#21 <https://github.com/viciious/go-tarantool/issues/21>`_)"
+msgstr ""
+
+msgid ""
+"`Session settings "
+"<https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_session_settings/>`_"
+msgstr ""
+
+msgid ""
+"`Graceful shutdown <https://github.com/tarantool/tarantool/issues/5924>`_"
+msgstr ""
+
+msgid ""
+"`IPROTO_ID (feature discovering) "
+"<https://github.com/tarantool/tarantool/issues/6253>`_"
+msgstr ""
+
+msgid "`tarantool/crud <https://github.com/tarantool/crud>`_ support"
+msgstr ""
+
+msgid "Connection pool"
+msgstr ""
+
+msgid "Yes (round-robin failover, no balancing)"
+msgstr ""
+
+msgid "Transparent reconnecting"
+msgstr ""
+
+msgid ""
+"Yes (see comments in `#129 <https://github.com/tarantool/go-"
+"tarantool/issues/129>`_)"
+msgstr ""
+
+msgid ""
+"No (handle reconnects explicitly, refer to `#11 "
+"<https://github.com/viciious/go-tarantool/issues/11>`_)"
+msgstr ""
+
+msgid ""
+"Yes (see comments in `#7 <https://github.com/FZambia/tarantool/issues/7>`_)"
+msgstr ""
+
+msgid "Transparent request retrying"
+msgstr ""
+
+msgid "`Watchers <https://github.com/tarantool/tarantool/pull/6510>`_"
+msgstr ""
+
+msgid "`Pagination <https://github.com/tarantool/tarantool/issues/7639>`_"
+msgstr ""
+
+msgid "Language features"
+msgstr ""
+
+msgid "context"
+msgstr ""
+
+msgid "Miscellaneous"
+msgstr ""
+
+msgid "Supports `tarantool/queue <https://github.com/tarantool/queue>`_ API"
+msgstr ""
+
+msgid ""
+"Can mimic a Tarantool instance (also as replica). Provides instrumentation "
+"for reading snapshot and xlog files via `snapio module "
+"<https://github.com/viciious/go-tarantool/tree/master/snapio>`_. Implements "
+"unpacking of query structs if you want to implement your own iproto proxy"
+msgstr ""
+
+msgid "API is experimental and breaking changes may happen"
+msgstr ""

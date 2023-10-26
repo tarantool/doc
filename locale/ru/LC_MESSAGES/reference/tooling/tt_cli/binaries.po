@@ -1,0 +1,23 @@
+
+msgid "Showing a list of installed binaries"
+msgstr ""
+
+msgid "$ tt binaries"
+msgstr ""
+
+msgid "``tt binaries`` shows a list of installed binaries and their versions."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Show a list of installed Tarantool versions:"
+msgstr ""
+
+msgid ""
+"$ tt binaries\n"
+"List of installed binaries:\n"
+"   • tarantool:\n"
+"        2.11.1 [active]\n"
+"        2.10.8"
+msgstr ""

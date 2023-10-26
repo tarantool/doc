@@ -22,6 +22,13 @@ msgstr "добавление поля в конец спейса"
 msgid "creating an index"
 msgstr "добавление индекса"
 
+msgid ""
+"Check the `Upgrading space schema "
+"<https://www.tarantool.io/en/enterprise_doc/space_upgrade/>`__ section in "
+"the Enterprise version. With the help of ``space:upgrade()`` feature, you "
+"can enable compression and migrate, including already created tuples."
+msgstr ""
+
 msgid "Adding a field to the end of a space"
 msgstr "Добавление поля в конец спейса"
 
@@ -193,17 +200,18 @@ msgstr ""
 "Есть также два способа, которые мы **не рекомендуем использовать**, но вы "
 "можете найти их полезными по тем или иным причинам."
 
-msgid "**Method 3**: the ``tarantoolctl`` utility"
+#, fuzzy
+msgid "**Method 3**: the :ref:`tt <tt-cli>` utility"
 msgstr "**Cпособ 3**: утилита ``tarantoolctl``"
 
-msgid ""
-"The ``tarantoolctl`` utility ships with Tarantool. Connect to the necessary "
-"instance using ``tarantoolctl connect``."
+#, fuzzy
+msgid "Connect to the necessary instance using ``tt connect``."
 msgstr ""
 "Утилита ``tarantoolctl`` поставляется вместе с Tarantool. Подключитесь к "
 "нужному инстансу через команду ``tarantoolctl connect``."
 
-msgid "$ tarantoolctl connect admin:password@localhost:3301"
+#, fuzzy
+msgid "$ tt connect admin:password@localhost:3301"
 msgstr "$ tarantoolctl connect admin:password@localhost:3301"
 
 msgid ""
@@ -229,6 +237,15 @@ msgid ""
 msgstr ""
 "(или) можно скопировать код скрипта миграции, вставить его в консоль и "
 "применить."
+
+msgid ""
+"You can also connect to the instance and execute the migration script in a "
+"single call:"
+msgstr ""
+
+#, fuzzy
+msgid "$ tt connect admin:password@localhost:3301 -f 0001-delete-space.lua"
+msgstr "$ tarantoolctl connect admin:password@localhost:3301"
 
 msgid "**Method 4**: applying migration with Ansible"
 msgstr "**Способ 4**: применение миграции с помощью Ansible"

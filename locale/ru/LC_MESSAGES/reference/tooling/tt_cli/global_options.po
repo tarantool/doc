@@ -1,0 +1,30 @@
+
+msgid "Global options"
+msgstr ""
+
+msgid "``tt`` has the following global options:"
+msgstr ""
+
+msgid "Path to the :ref:`configuration file <tt-config_file>`."
+msgstr ""
+
+msgid "Display help."
+msgstr ""
+
+msgid ""
+"Force the use of an internal module even if there is an :doc:`external "
+"module <external_modules>` with the same name."
+msgstr ""
+
+msgid ""
+"Use the ``tt`` environment from the specified directory. Learn more about "
+"the :ref:`local launch mode <tt-config_modes-local>`."
+msgstr ""
+
+msgid ""
+"Use the ``tt`` environment installed in the system. Learn more about the "
+":ref:`system launch mode <tt-config_modes-system>`."
+msgstr ""
+
+msgid "Display detailed processing information (verbose mode)."
+msgstr ""

@@ -13,10 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Generate Portable Object Templates
+      - name: Update localization files 
         run: |
          cmake .
          make update-pot  
+         make update-po  
 
       - name: Commit generated pots
         run: |

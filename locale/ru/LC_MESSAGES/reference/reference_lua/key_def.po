@@ -33,10 +33,10 @@ msgstr "возвращает"
 msgid ":ref:`a key_def object <key_def-object>`"
 msgstr ":ref:`объект key_def <key_def-object>`"
 
+#, fuzzy
 msgid ""
 "The parts table has components which are the same as the ``parts`` option in"
-" :ref:`Options for space_object:create_index() <box_space-create_index-"
-"options>`."
+" :ref:`Options for space_object:create_index() <index_opts_object>`."
 msgstr ""
 "Таблица parts содержит компоненты, аналогичные тем, что указываются в "
 "параметре ``parts`` :ref:`при создании объекта space_object:create_index() "

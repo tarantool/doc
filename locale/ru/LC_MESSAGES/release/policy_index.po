@@ -1,0 +1,26 @@
+
+msgid "Release policies"
+msgstr ""
+
+msgid ""
+"Since version 2.10, there's a :doc:`new release policy for Tarantool "
+"<policy>`. In short, Tarantool version numbers consist of three parts:"
+msgstr ""
+
+msgid "MAJOR.MINOR.PATCH"
+msgstr ""
+
+msgid ""
+"Any version without extra prefixes is a release version. If you need a "
+"version for production use, pick the latest release. For evaluation and "
+"development, you can use beta versions. They are marked with ``-betaN`` "
+"suffixes."
+msgstr ""
+
+msgid ""
+"Before 2.10.0, version numbers were subject to the :doc:`legacy versioning "
+"policy <legacy-policy>`:"
+msgstr ""
+
+msgid "MAJOR_VERSION.RELEASE_SERIES.RELEASE"
+msgstr ""

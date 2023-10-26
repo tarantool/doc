@@ -2,24 +2,21 @@
 msgid "box.schema.user.passwd()"
 msgstr "box.schema.user.passwd()"
 
-msgid ""
-"Associate a password with the user who is currently logged in, or with the "
-"user specified by user-name. The user must exist and must not be 'guest'."
+msgid "Sets a password for a currently logged in or a specified user:"
 msgstr ""
-"Ассоциация пароля с авторизованным пользователем или с указанным именем "
-"пользователя. Такой пользователь должен существовать и не быть пользователем"
-" 'guest'."
 
+#, fuzzy
 msgid ""
-"Users who wish to change their own passwords should use "
-"``box.schema.user.passwd(password)`` syntax."
+"A currently logged in user can change their password using "
+"``box.schema.user.passwd(new_password)``."
 msgstr ""
 "Если пользователь хочет поменять свой пароль, ему следует использовать "
 "синтаксис ``box.schema.user.passwd(password)``."
 
+#, fuzzy
 msgid ""
-"Administrators who wish to change passwords of other users should use "
-"``box.schema.user.passwd(user-name, password)`` syntax."
+"An administrator can change the password of another user with "
+"``box.schema.user.passwd(name, new_password)``."
 msgstr ""
 "Если администратор хочет поменять пароль других пользователей, ему следует "
 "использовать синтаксис ``box.schema.user.passwd(user-name, password)``."
@@ -27,16 +24,31 @@ msgstr ""
 msgid "Parameters"
 msgstr "Параметры"
 
-msgid "user-name"
+#, fuzzy
+msgid "name"
 msgstr "имя пользователя"
 
-msgid "password"
+#, fuzzy
+msgid "new_password"
 msgstr "пароль"
 
 msgid "**Example:**"
 msgstr "**Пример:**"
 
 msgid ""
-"box.schema.user.passwd('ЛЕНА')\n"
-"box.schema.user.passwd('Lena', 'ЛЕНА')"
+"box.schema.user.passwd('foobar')\n"
+"box.schema.user.passwd('testuser', 'foobar')"
 msgstr ""
+
+#~ msgid ""
+#~ "Associate a password with the user who is currently logged in, or with the "
+#~ "user specified by user-name. The user must exist and must not be 'guest'."
+#~ msgstr ""
+#~ "Ассоциация пароля с авторизованным пользователем или с указанным именем "
+#~ "пользователя. Такой пользователь должен существовать и не быть пользователем"
+#~ " 'guest'."
+
+#~ msgid ""
+#~ "box.schema.user.passwd('ЛЕНА')\n"
+#~ "box.schema.user.passwd('Lena', 'ЛЕНА')"
+#~ msgstr ""

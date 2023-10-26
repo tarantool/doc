@@ -51,10 +51,11 @@ msgid ""
 "box.error.new({type = 'MyErrorType', code = 1024, reason = 'Message'})"
 msgstr ""
 
+#, fuzzy
 msgid ""
 "When a custom type is specified, it is reported in the ``err.type`` "
 "attribute. When it is not specified, ``err.type`` reports one of built-in "
-"errors such as ``'ClientError'``, ``'OurOfMemory'``, etc."
+"errors such as ``'ClientError'``, ``'OutOfMemory'``, etc."
 msgstr ""
 "При указании пользовательского типа он отображается в атрибуте ``err.type``."
 " Когда он не указан, ``err.type`` показывает одну из встроенных ошибок, "
@@ -102,5 +103,6 @@ msgid ""
 "string to compose an error message for the ``'CustomError'`` type:"
 msgstr ""
 
+#, python-format
 msgid "box.error('MyCustomType', 'The error reason: %s', 'some error reason')"
 msgstr ""

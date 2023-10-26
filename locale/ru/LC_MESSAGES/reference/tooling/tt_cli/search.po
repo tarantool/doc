@@ -1,0 +1,58 @@
+
+msgid "Listing available Tarantool versions"
+msgstr ""
+
+msgid "$ tt search PROGRAM_NAME [OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt search`` lists versions of Tarantool and ``tt`` that are available for "
+"installation. The possible values of ``PROGRAM_NAME`` are:"
+msgstr ""
+
+msgid "``tarantool``"
+msgstr ""
+
+msgid "``tarantool-ee``"
+msgstr ""
+
+msgid "``tt``"
+msgstr ""
+
+msgid ""
+"For ``tarantool-ee``, account credentials are required. Specify them in a "
+"file (see the :ref:`ee section <tt-config_file_ee>` of the configuration "
+"file) or provide interactively."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "**Applicable to:** ``taranttol-ee``"
+msgstr ""
+
+msgid "Search for debug builds of Tarantool Enterprise SDK."
+msgstr ""
+
+msgid ""
+"Search in the local repository, which is specified in the :ref:`repo section"
+" <tt-config_file_repo>` of the ``tt`` configuration file."
+msgstr ""
+
+msgid "Tarantool Enterprise version."
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "List available Tarantool versions:"
+msgstr ""
+
+msgid "$ tt search tarantool"
+msgstr ""
+
+msgid "List available ``tt`` versions from the local repository:"
+msgstr ""
+
+msgid "$ tt search --local-repo tt"
+msgstr ""

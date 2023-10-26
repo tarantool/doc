@@ -1,0 +1,77 @@
+
+msgid "index_object:tuple_pos()"
+msgstr ""
+
+msgid ""
+"Return a tuple's position for an index. This value can be passed to the "
+"``after`` option of the ``select`` and ``pairs`` methods:"
+msgstr ""
+
+msgid ""
+":ref:`index_object:select <box_index-select>` and :ref:`space_object:select "
+"<box_space-select>`"
+msgstr ""
+
+msgid ""
+":ref:`index_object:pairs <box_index-pairs>` and :ref:`space_object:pairs "
+"<box_space-pairs>`"
+msgstr ""
+
+msgid ""
+"Note that ``tuple_pos`` does not work with :ref:`functional <box_space-"
+"index_func>` and multikey indexes."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+msgid "a tuple whose position should be found"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "a tuple's position in a space"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "base64-encoded string"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"To try out this example, you need to bootstrap a Tarantool instance as "
+"described in :ref:`Using data operations <box_space-operations-detailed-"
+"examples>`."
+msgstr ""
+
+msgid ""
+"-- Insert test data --\n"
+"tarantool> bands:insert{1, 'Roxette', 1986}\n"
+"           bands:insert{2, 'Scorpions', 1965}\n"
+"           bands:insert{3, 'Ace of Base', 1987}\n"
+"           bands:insert{4, 'The Beatles', 1960}\n"
+"           bands:insert{5, 'Pink Floyd', 1965}\n"
+"           bands:insert{6, 'The Rolling Stones', 1962}\n"
+"---\n"
+"...\n"
+"\n"
+"-- Get a tuple's position --\n"
+"tarantool> position = bands.index.primary:tuple_pos({3, 'Ace of Base', 1987})\n"
+"---\n"
+"...\n"
+"-- Pass the tuple's position as the 'after' parameter --\n"
+"tarantool> bands:select({}, {limit = 3, after = position})\n"
+"---\n"
+"- - [4, 'The Beatles', 1960]\n"
+"  - [5, 'Pink Floyd', 1965]\n"
+"  - [6, 'The Rolling Stones', 1962]\n"
+"..."
+msgstr ""

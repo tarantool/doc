@@ -1,0 +1,164 @@
+
+msgid "Tarantool 2.10.7"
+msgstr ""
+
+msgid "Released on 2023-05-24."
+msgstr ""
+
+msgid "Release: :tarantool-release:`2.10.7`."
+msgstr ""
+
+msgid "Tag: ``2.10.7``."
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"2.10.7 is the 8th :doc:`stable </release/policy/>` version of the 2.10 "
+"release series. It resolves 17 bugs since 2.10.6."
+msgstr ""
+
+msgid ""
+"The “stable” label means that we have all planned features implemented and "
+"we see no high-impact issues. However, if you encounter an issue, feel free "
+"to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid ""
+"Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary "
+"data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+msgid ""
+"Please :doc:`upgrade </book/admin/upgrades>` using the "
+"``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x"
+" series."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid ""
+"Fixed a crash that could happen when preparing a crash report on macOS "
+"(:tarantool-issue:`8445`)."
+msgstr ""
+
+msgid ""
+"Fixed an integer overflow issue in ``net.box`` (:tarantool-sec-issue:`121`)."
+msgstr ""
+
+msgid ""
+"An ``IPROTO_EVENT`` packet now has the same sync number as the last "
+"corresponding ``IPROTO_WATCH`` request (:tarantool-issue:`8393`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug because of which a dirty (not committed to WAL) DDL record could"
+" be written to a snapshot and cause a recovery failure (:tarantool-"
+"issue:`8530`)."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid ""
+"Fixed a bug that occurred on applier failure: a node could start an election"
+" without having a quorum to do this (:tarantool-issue:`8433`)."
+msgstr ""
+
+msgid ""
+"Now if a join fails with some non-critical error, such as ``ER_READONLY``, "
+"``ER_ACCESS_DENIED``, or something network-related, the instance tries to "
+"find a new master to join off and tries again (:tarantool-issue:`6126`, "
+":tarantool-issue:`8681`)."
+msgstr ""
+
+msgid ""
+"States when joining a replica are renamed. Now the value of "
+"``box.info.replication[id].upstream.status`` during join can be either "
+"``wait_snapshot`` or ``fetch_snapshot`` instead of ``initial_join`` "
+"(:tarantool-issue:`6126`)."
+msgstr ""
+
+msgid ""
+"Fixed replicaset bootstrap getting stuck on some nodes with ``ER_READONLY`` "
+"when there are connectivity problems (:tarantool-issue:`7737`, :tarantool-"
+"issue:`8681`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug when a replicaset state machine that is tracking the number of "
+"appliers according to their states could become inconsistent during "
+"reconfiguration (:tarantool-issue:`7590`)."
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid ""
+"Backported patches from the vanilla LuaJIT trunk (:tarantool-issue:`8069`, "
+":tarantool-issue:`8516`). The following issues were fixed as part of this "
+"activity:"
+msgstr ""
+
+msgid "Fixed ``emit_rma()`` for x64/GC64 mode for non-``mov`` instructions."
+msgstr ""
+
+msgid ""
+"Limited Lua C library path with the default ``PATH_MAX`` value of 4096 "
+"bytes."
+msgstr ""
+
+msgid "Fixed assembling of ``IR_LREF`` assembling for GC64 mode on x86_64."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid ""
+"Fixed an assertion when selecting tuples with incomplete internal format "
+"(:tarantool-issue:`8418`)."
+msgstr ""
+
+msgid ""
+"Fixed integer overflow issues in built-in functions (:tarantool-sec-"
+"issue:`119`)."
+msgstr ""
+
+msgid ""
+"Fixed a possible assertion or segmentation fault when optimizing ``INSERT "
+"INTO ... SELECT FROM`` (:tarantool-issue:`8661`)."
+msgstr ""
+
+msgid ""
+"Fixed an integer overflow issue and added check for the ``printf()`` failure"
+" due to too large size (:tarantool-sec-issue:`122`)."
+msgstr ""
+
+msgid "Datetime"
+msgstr ""
+
+msgid ""
+"Fixed an error in ``datetime.set`` when ``timestamp`` is passed along with "
+"``nsec``, ``usec``, or ``msec`` (:tarantool-issue:`8583`)."
+msgstr ""
+
+msgid ""
+"Fixed errors when the string representation of a datetime object had a "
+"negative nanosecond part (:tarantool-issue:`8570`)."
+msgstr ""
+
+msgid "Build"
+msgstr ""
+
+msgid ""
+"Enabled compiler optimizations for static build dependencies, which were "
+"erroneously disabled in version 2.10.3 (:tarantool-issue:`8606`)."
+msgstr ""

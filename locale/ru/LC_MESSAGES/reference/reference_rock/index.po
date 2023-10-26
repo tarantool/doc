@@ -1,6 +1,17 @@
 
+msgid "Module metrics"
+msgstr ""
+
+msgid "Module luatest"
+msgstr ""
+
 msgid "Rocks reference"
 msgstr "Справочник по сторонним библиотекам"
 
 msgid "This reference covers third-party Lua modules for Tarantool."
 msgstr "В данном справочнике описаны сторонние Lua-модули для Tarantool."
+
+msgid ""
+"For Tarantool Enterprise modules, see the `Tarantool Enterprise "
+"documentation <https://www.tarantool.io/en/enterprise_doc/rocksref/>`_."
+msgstr ""

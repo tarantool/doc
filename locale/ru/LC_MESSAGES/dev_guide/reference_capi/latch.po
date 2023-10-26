@@ -1,5 +1,6 @@
 
-msgid "Module `latch`"
+#, fuzzy
+msgid "Module latch"
 msgstr "Модуль `latch`"
 
 msgid "A lock for cooperative multitasking environment"
@@ -31,13 +32,9 @@ msgstr "удаляемая защелка"
 
 msgid ""
 "Lock a latch. Waits indefinitely until the current fiber can gain access to "
-"the latch."
+"the latch. Since version :doc:`2.11.0 </release/2.11.0>`, locks are acquired"
+" exactly in the order in which they were requested."
 msgstr ""
-"Применение защелки. Бесконечно ожидает момента, когда текущий файбер может "
-"получить доступ к защелке."
-
-msgid "param box_latch_t* latch"
-msgstr "param box_latch_t* latch"
 
 msgid "latch to lock"
 msgstr "применяемая защелка"
@@ -60,3 +57,13 @@ msgstr ""
 
 msgid "latch to unlock"
 msgstr "отменяемая защелка"
+
+#~ msgid ""
+#~ "Lock a latch. Waits indefinitely until the current fiber can gain access to "
+#~ "the latch."
+#~ msgstr ""
+#~ "Применение защелки. Бесконечно ожидает момента, когда текущий файбер может "
+#~ "получить доступ к защелке."
+
+#~ msgid "param box_latch_t* latch"
+#~ msgstr "param box_latch_t* latch"

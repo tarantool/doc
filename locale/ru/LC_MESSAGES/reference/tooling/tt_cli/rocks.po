@@ -1,0 +1,239 @@
+
+msgid "Using the LuaRocks package manager"
+msgstr ""
+
+msgid "$ tt rocks [OPTION ...] [VAR=VALUE] COMMAND [ARGUMENT]"
+msgstr ""
+
+msgid ""
+"``tt rocks`` provides means to manage Lua modules (rocks) via the `LuaRocks "
+"<https://luarocks.org/>`_ package manager. `tt` uses its own LuaRocks "
+"installation connected to the `Tarantool rocks repository "
+"<https://www.tarantool.io/en/download/rocks>`_."
+msgstr ""
+
+msgid ""
+"Below are lists of supported LuaRocks flags and commands. For detailed "
+"information on their usage, refer to `LuaRocks documentation "
+"<https://github.com/luarocks/luarocks/wiki/Documentation>`_."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid ""
+"Enable the sub-repositories in rocks servers for rockspecs of in-development"
+" versions."
+msgstr ""
+
+msgid ""
+"Fetch rocks/rockspecs from this server (takes priority over config file)."
+msgstr ""
+
+msgid ""
+"Fetch rocks/rockspecs from this server only (overrides any entries in the "
+"config file)."
+msgstr ""
+
+msgid "Restrict downloads to paths matching the given URL."
+msgstr ""
+
+msgid "Specify which Lua installation to use"
+msgstr ""
+
+msgid "Specify which Lua version to use."
+msgstr ""
+
+msgid "Specify which tree to operate on."
+msgstr ""
+
+msgid ""
+"Use the tree in the user's home directory. Call ``tt rocks help path`` to "
+"learn how to enable it."
+msgstr ""
+
+msgid "Use the system tree when ``local_by_default`` is ``true``."
+msgstr ""
+
+msgid "Display verbose output for the command executed."
+msgstr ""
+
+msgid ""
+"Timeout on network operations, in seconds. ``0`` means no timeout (wait "
+"forever). Default: ``30``."
+msgstr ""
+
+msgid "Commands"
+msgstr ""
+
+msgid "``build``"
+msgstr ""
+
+msgid "Build and compile a rock"
+msgstr ""
+
+msgid "``config``"
+msgstr ""
+
+msgid "Query information about the LuaRocks configuration"
+msgstr ""
+
+msgid "``doc``"
+msgstr ""
+
+msgid "Show documentation for an installed rock"
+msgstr ""
+
+msgid "``download``"
+msgstr ""
+
+msgid "Download a specific rock file from a rocks server"
+msgstr ""
+
+msgid "``help``"
+msgstr ""
+
+msgid "Help on commands. Type ``tt rocks help <command>`` for more"
+msgstr ""
+
+msgid "``init``"
+msgstr ""
+
+msgid "Initialize a directory for a Lua project using LuaRocks"
+msgstr ""
+
+msgid "``install``"
+msgstr ""
+
+msgid "Install a rock"
+msgstr ""
+
+msgid "``lint``"
+msgstr ""
+
+msgid "Check syntax of a rockspec"
+msgstr ""
+
+msgid "``list``"
+msgstr ""
+
+msgid "List the currently installed rocks"
+msgstr ""
+
+msgid "``make``"
+msgstr ""
+
+msgid "Compile package in the current directory using a rockspec"
+msgstr ""
+
+msgid "``make_manifest``"
+msgstr ""
+
+msgid "Compile a manifest file for a repository"
+msgstr ""
+
+msgid "``new_version``"
+msgstr ""
+
+msgid "Auto-write a rockspec for a new version of a rock"
+msgstr ""
+
+msgid "``pack``"
+msgstr ""
+
+msgid "Create a rock, packing sources or binaries"
+msgstr ""
+
+msgid "``purge``"
+msgstr ""
+
+msgid "Remove all installed rocks from a tree"
+msgstr ""
+
+msgid "``remove``"
+msgstr ""
+
+msgid "Uninstall a rock"
+msgstr ""
+
+msgid "``search``"
+msgstr ""
+
+msgid "Query the LuaRocks servers"
+msgstr ""
+
+msgid "``show``"
+msgstr ""
+
+msgid "Show information about an installed rock"
+msgstr ""
+
+msgid "``test``"
+msgstr ""
+
+msgid "Run the test suite in the current directory"
+msgstr ""
+
+msgid "``unpack``"
+msgstr ""
+
+msgid "Unpack the contents of a rock"
+msgstr ""
+
+msgid "``which``"
+msgstr ""
+
+msgid "Tell which file corresponds to a given module name"
+msgstr ""
+
+msgid "``write_rockspec``"
+msgstr ""
+
+msgid "Write a template for a rockspec file"
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Install the rock ``queue`` from the Tarantool rocks repository:"
+msgstr ""
+
+msgid "$ tt rocks install queue"
+msgstr ""
+
+msgid ""
+"Search for the rock ``queue`` in **both** the Tarantool rocks repository and"
+" the `default LuaRocks repository <https://luarocks.org>`_:"
+msgstr ""
+
+msgid "$ tt rocks search queue --server='https://luarocks.org'"
+msgstr ""
+
+msgid "List the documentation files for the installed rock ``queue``:"
+msgstr ""
+
+msgid "$ tt rocks doc queue --list"
+msgstr ""
+
+msgid ""
+"Without the ``--list`` flag, this command displays documentation in the "
+"user's default browser."
+msgstr ""
+
+msgid "Create a ``*.rock`` file from the installed rock ``queue``:"
+msgstr ""
+
+msgid "$ tt rocks pack queue"
+msgstr ""
+
+msgid "Unpack a ``*.rock`` file:"
+msgstr ""
+
+msgid "$ tt rocks unpack queue-scm-1.all.rock"
+msgstr ""
+
+msgid "Remove the installed rock ``queue``:"
+msgstr ""
+
+msgid "$ tt rocks remove queue"
+msgstr ""

@@ -136,14 +136,15 @@ msgid "It is illegal to modify a primary key field."
 msgstr "Нельзя изменять поле первичного ключа."
 
 msgid ""
-":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the "
-":ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in "
+"the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
 msgstr ""
 ":errcode:`ER_TRANSACTION_CONFLICT`, если транзакция стала конфликтной в "
 ":ref:`транзакционном режиме MVCC <txn_mode_transaction-manager>`."
 
 msgid "**Possible errors:**"
 msgstr "**Возможные ошибки:**"
+
 msgid ""
 "**Complexity factors:** Index size, Index type, number of indexes accessed, "
 "WAL settings."

@@ -1,0 +1,36 @@
+
+msgid "Checking instance status"
+msgstr ""
+
+msgid "$ tt status {INSTANCE | APPLICATION[:APP_INSTANCE]}"
+msgstr ""
+
+msgid ""
+"``tt status`` prints the current status of the specified Tarantool instance "
+"or all instances of an application."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Single instance"
+msgstr ""
+
+msgid "Check the status of the ``app`` instance:"
+msgstr ""
+
+msgid "$ tt status app"
+msgstr ""
+
+msgid "Multiple instances"
+msgstr ""
+
+msgid "Check the status of all instances of the ``app`` application:"
+msgstr ""
+
+msgid ""
+"Check the status of the ``replica`` instance of the ``app`` application:"
+msgstr ""
+
+msgid "$ tt status app:replica"
+msgstr ""

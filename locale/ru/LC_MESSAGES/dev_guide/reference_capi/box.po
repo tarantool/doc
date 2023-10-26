@@ -1,5 +1,6 @@
 
-msgid "Module `box`"
+#, fuzzy
+msgid "Module box"
 msgstr "Модуль `box`"
 
 msgid "Opaque structure passed to a C stored procedure"
@@ -258,3 +259,21 @@ msgid ""
 msgstr ""
 "0 при успехе и -1 в обратном случае. В случае ошибки, ее можно получить с "
 "помощью ``box_error_last()``."
+
+#, fuzzy
+msgid ""
+"Since version :doc:`2.11.0 </release/2.11.0>`. Return the unique identifier "
+"(ID) for the current session."
+msgstr ""
+"С версии :doc:`2.4.1 </release/2.4.1>`. Возврат последнего полученного "
+"значения из указанной последовательности."
+
+msgid "the unique identifier (ID) for the current session"
+msgstr ""
+
+msgid "0 or -1 if there is no session"
+msgstr ""
+
+#, fuzzy
+msgid "See also :ref:`box.session.id()<box_session-id>`"
+msgstr "См. также :ref:`space_object.update()<box_space-update>`"

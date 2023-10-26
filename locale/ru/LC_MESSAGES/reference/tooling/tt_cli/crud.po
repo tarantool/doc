@@ -1,0 +1,30 @@
+
+msgid "Interacting with the CRUD module"
+msgstr ""
+
+msgid "Enterprise Edition"
+msgstr ""
+
+msgid ""
+"This command is supported by the `Enterprise Edition "
+"<https://www.tarantool.io/compare/>`_ only."
+msgstr ""
+
+msgid "$ tt crud COMMAND [COMMAND_OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt crud`` enables the interaction with a cluster using the `CRUD "
+"<https://github.com/tarantool/crud>`_ module. ``COMMAND`` is one of the "
+"following:"
+msgstr ""
+
+msgid ""
+"``export``: export a cluster's data to a file. Learn more at :ref:`Exporting"
+" data <tt-export>`."
+msgstr ""
+
+msgid ""
+"``import``: import data from a file. Learn more at :ref:`Importing data <tt-"
+"import>`."
+msgstr ""

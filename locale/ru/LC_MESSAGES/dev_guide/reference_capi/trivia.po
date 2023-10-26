@@ -1,5 +1,6 @@
 
-msgid "Module `trivia/config`"
+#, fuzzy
+msgid "Module trivia/config"
 msgstr "Модуль `trivia/config`"
 
 msgid "Extern modifier for all public functions."

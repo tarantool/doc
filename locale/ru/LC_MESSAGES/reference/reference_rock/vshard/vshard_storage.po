@@ -1,0 +1,545 @@
+
+msgid "Storage API"
+msgstr ""
+
+msgid ":ref:`Storage public API <vshard-storage_public_api>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.cfg(cfg, instance_uuid) <storage_api-cfg>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.info({options}) <storage_api-info>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) "
+"<storage_api-call>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.sync(timeout) <storage_api-sync>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_ref(bucket_id, mode) <storage_api-bucket_ref>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_refro(bucket_id) <storage_api-bucket_refro>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_refrw(bucket_id) <storage_api-bucket_refrw>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-"
+"bucket_unref>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_unrefro(bucket_id) <storage_api-bucket_unrefro>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_unrefrw(bucket_id) <storage_api-bucket_unrefrw>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.find_garbage_bucket(bucket_index, control) "
+"<storage_api-find_garbage_bucket>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.is_locked() <storage_api-is_locked>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.rebalancing_is_in_progress() <storage_api-"
+"rebalancing_is_in_progress>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.on_bucket_event() <storage_api-on_bucket_event>`"
+msgstr ""
+
+msgid ":ref:`Storage internal API <vshard-storage_internal_api>`"
+msgstr ""
+
+msgid ":ref:`vshard.storage.bucket_stat(bucket_id) <storage_api-bucket_stat>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_recv(bucket_id, from, data) <storage_api-"
+"bucket_recv>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_delete_garbage(bucket_id) <storage_api-"
+"bucket_delete_garbage>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_collect(bucket_id) <storage_api-bucket_collect>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_force_create(first_bucket_id, count) "
+"<storage_api-bucket_force_create>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_force_drop(bucket_id, to) <storage_api-"
+"bucket_force_drop>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.bucket_send(bucket_id, to) <storage_api-bucket_send>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.buckets_discovery() <storage_api-buckets_discovery>`"
+msgstr ""
+
+msgid ""
+":ref:`vshard.storage.rebalancer_request_state() <storage_api-"
+"rebalancer_request_state>`"
+msgstr ""
+
+msgid "Storage public API"
+msgstr ""
+
+msgid ""
+"Configure the database and start sharding for the specified ``storage`` "
+"instance."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "a ``storage`` configuration"
+msgstr ""
+
+msgid "UUID of the instance"
+msgstr ""
+
+msgid ""
+"Return information about the storage instance. Since vshard v.0.1.22, the "
+"function also accepts options, which can be used to get additional "
+"information."
+msgstr ""
+
+msgid ""
+"*    ``with_services`` — a bool value. If set to ``true``, the      function"
+" returns information about the background services      (such as garbage "
+"collector, rebalancer, recovery, or applier      of the routes) that are "
+"working on the current instance. See      :ref:`vshard.router.info "
+"<router_api-info>` for detailed      reference."
+msgstr ""
+
+msgid ""
+"``with_services`` — a bool value. If set to ``true``, the function returns "
+"information about the background services (such as garbage collector, "
+"rebalancer, recovery, or applier of the routes) that are working on the "
+"current instance. See :ref:`vshard.router.info <router_api-info>` for "
+"detailed reference."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> vshard.storage.info()\n"
+"---\n"
+"- replicasets:\n"
+"    c862545d-d966-45ff-93ad-763dce4a9723:\n"
+"      uuid: c862545d-d966-45ff-93ad-763dce4a9723\n"
+"      master:\n"
+"        uri: admin@localhost:3302\n"
+"    1990be71-f06e-4d9a-bcf9-4514c4e0c889:\n"
+"      uuid: 1990be71-f06e-4d9a-bcf9-4514c4e0c889\n"
+"      master:\n"
+"        uri: admin@localhost:3304\n"
+"  bucket:\n"
+"    receiving: 0\n"
+"    active: 15000\n"
+"    total: 15000\n"
+"    garbage: 0\n"
+"    pinned: 0\n"
+"    sending: 0\n"
+"  status: 0\n"
+"  replication:\n"
+"    status: master\n"
+"  alerts: []\n"
+"..."
+msgstr ""
+
+msgid "Call the specified function on the current ``storage`` instance."
+msgstr ""
+
+msgid "a bucket identifier"
+msgstr ""
+
+msgid "a type of the function: 'read' or 'write'"
+msgstr ""
+
+msgid "function to execute"
+msgstr ""
+
+msgid "array of the function's arguments"
+msgstr ""
+
+msgid "Return"
+msgstr ""
+
+msgid ""
+"The original return value of the executed function, or ``nil`` and error "
+"object."
+msgstr ""
+
+msgid "Wait until the dataset is synchronized on replicas."
+msgstr ""
+
+msgid "a timeout, in seconds"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid ""
+"``true`` if the dataset was synchronized successfully; or ``nil`` and "
+"``err`` explaining why the dataset cannot be synchronized."
+msgstr ""
+
+msgid ""
+"Pin a bucket to a replica set. A pinned bucket cannot be moved even if it "
+"breaks the cluster balance."
+msgstr ""
+
+msgid ""
+"``true`` if the bucket is pinned successfully; or ``nil`` and ``err`` "
+"explaining why the bucket cannot be pinned"
+msgstr ""
+
+msgid "Return a pinned bucket back into the active state."
+msgstr ""
+
+msgid ""
+"``true`` if the bucket is unpinned successfully; or ``nil`` and ``err`` "
+"explaining why the bucket cannot be unpinned"
+msgstr ""
+
+msgid "Create an RO or RW :ref:`ref <vshard-ref>`."
+msgstr ""
+
+msgid "'read' or 'write'"
+msgstr ""
+
+msgid ""
+"``true`` if the bucket ref is created successfully; or ``nil`` and ``err`` "
+"explaining why the ref cannot be created"
+msgstr ""
+
+msgid ""
+"An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in "
+"the RO mode."
+msgstr ""
+
+msgid ""
+"An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in "
+"the RW mode."
+msgstr ""
+
+msgid "Remove a RO/RW :ref:`ref <vshard-ref>`."
+msgstr ""
+
+msgid ""
+"``true`` if the bucket ref is removed successfully; or ``nil`` and ``err`` "
+"explaining why the ref cannot be removed"
+msgstr ""
+
+msgid ""
+"An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` "
+"in the RO mode."
+msgstr ""
+
+msgid ""
+"An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` "
+"in the RW mode."
+msgstr ""
+
+msgid ""
+"Find a bucket which has data in a space but is not stored in a ``_bucket`` "
+"space; or is in a GARBAGE state."
+msgstr ""
+
+msgid "index of a space with the part of a bucket id"
+msgstr ""
+
+msgid ""
+"a garbage collector controller. If there is an increased buckets generation,"
+" then the search should be interrupted."
+msgstr ""
+
+msgid ""
+"an identifier of the bucket in the garbage state, if found; otherwise, nil"
+msgstr ""
+
+msgid "Return information about each bucket located in storage. For example:"
+msgstr ""
+
+msgid ""
+"tarantool> vshard.storage.buckets_info(1)\n"
+"---\n"
+"- 1:\n"
+"    status: active\n"
+"    ref_rw: 1\n"
+"    ref_ro: 1\n"
+"    ro_lock: true\n"
+"    rw_lock: true\n"
+"    id: 1"
+msgstr ""
+
+msgid "Return the number of buckets located in storage."
+msgstr ""
+
+msgid "Immediately wake up a recovery fiber, if it exists."
+msgstr ""
+
+msgid ""
+"Return a flag indicating whether rebalancing is in progress. The result is "
+"true if the node is currently applying routes received from a rebalancer "
+"node in the special fiber."
+msgstr ""
+
+msgid ""
+"Return a flag indicating whether storage is invisible to the rebalancer."
+msgstr ""
+
+msgid ""
+"Disable rebalancing. A disabled rebalancer sleeps until it is enabled again "
+"with vshard.storage.rebalancer_enable()."
+msgstr ""
+
+msgid "Enable rebalancing."
+msgstr ""
+
+msgid ""
+"Show the spaces that are visible to rebalancer and garbage collector fibers."
+msgstr ""
+
+msgid ""
+"tarantool> vshard.storage.sharded_spaces()\n"
+"---\n"
+"- 513:\n"
+"    engine: memtx\n"
+"    before_replace: 'function: 0x010e50e738'\n"
+"    field_count: 0\n"
+"    id: 513\n"
+"    on_replace: 'function: 0x010e50e700'\n"
+"    temporary: false\n"
+"    index:\n"
+"      0: &0\n"
+"        unique: true\n"
+"        parts:\n"
+"        - type: number\n"
+"          fieldno: 1\n"
+"          is_nullable: false\n"
+"        id: 0\n"
+"        type: TREE\n"
+"        name: primary\n"
+"        space_id: 513\n"
+"      1: &1\n"
+"        unique: false\n"
+"        parts:\n"
+"        - type: number\n"
+"          fieldno: 2\n"
+"          is_nullable: false\n"
+"        id: 1\n"
+"        type: TREE\n"
+"        name: bucket_id\n"
+"        space_id: 513\n"
+"      primary: *0\n"
+"      bucket_id: *1\n"
+"    is_local: false\n"
+"    enabled: true\n"
+"    name: actors\n"
+"    ck_constraint: []\n"
+"..."
+msgstr ""
+
+msgid ""
+"Since vshard v.0.1.22. Define a trigger for execution when the data from the"
+" user spaces is changed (deleted or inserted) due to the rebalancing "
+"process. The trigger is invoked each time the data batch changes."
+msgstr ""
+
+msgid "function which will become the trigger function."
+msgstr ""
+
+msgid "existing trigger function which will be replaced by trigger-function."
+msgstr ""
+
+msgid "nil or function pointer"
+msgstr ""
+
+msgid "The ``trigger-function`` can have up to three parameters:"
+msgstr ""
+
+msgid ""
+"``event_type`` (string) -- in order to distinguish event, you can compare "
+"this argument with the supported event types, ``bucket_data_recv_txn`` and "
+"``bucket_data_gc_txn``."
+msgstr ""
+
+msgid "``bucket_id`` (unsigned) -- bucket id."
+msgstr ""
+
+msgid ""
+"``data`` (table) -- additional information about data change transaction. "
+"Currently it only includes an array of all spaces (``data.spaces``), "
+"affected by a transaction in which trigger-function is executed."
+msgstr ""
+
+msgid ""
+"vshard.storage.on_bucket_event(function(event, bucket_id, data)\n"
+"    if event == 'bucket_data_recv_txn' then\n"
+"        -- Handle it.\n"
+"        for idx, space in ipairs(data.spaces) do\n"
+"            ...\n"
+"        end\n"
+"    elseif event == 'bucket_data_gc_txn' then\n"
+"        -- Handle it.\n"
+"        ...\n"
+"    end\n"
+"end)"
+msgstr ""
+
+msgid ""
+"As everything executed inside triggers is already in a transaction, you "
+"shouldn't use transactions, yield-operations (:ref:`explicit <app-yields>` "
+"or not), changes to different space engines (see :ref:`rule #2 <box-"
+"txn_management>`)."
+msgstr ""
+
+msgid ""
+"If the parameters are ``(nil, old-trigger-function)``, then the old trigger "
+"is deleted. If both parameters are omitted, then the response is a list of "
+"existing trigger functions."
+msgstr ""
+
+msgid ""
+"Details about trigger characteristics are in the :ref:`triggers <triggers-"
+"box_triggers>` section."
+msgstr ""
+
+msgid "Storage internal API"
+msgstr ""
+
+msgid "Receive a bucket identified by bucket id from a remote replica set."
+msgstr ""
+
+msgid "UUID of source replica set"
+msgstr ""
+
+msgid ""
+"data logically stored in a bucket identified by bucket_id, in the same "
+"format as the return value from ``bucket_collect() <storage_api-"
+"bucket_collect>``"
+msgstr ""
+
+msgid "Return information about the bucket id:"
+msgstr ""
+
+msgid ""
+"tarantool> vshard.storage.bucket_stat(1)\n"
+"---\n"
+"- 0\n"
+"- status: active\n"
+"  id: 1\n"
+"..."
+msgstr ""
+
+msgid ""
+"Force garbage collection for the bucket identified by bucket_id in case the "
+"bucket was transferred to a different replica set."
+msgstr ""
+
+msgid ""
+"Collect all the data that is logically stored in the bucket identified by "
+"bucket_id:"
+msgstr ""
+
+msgid ""
+"tarantool> vshard.storage.bucket_collect(1)\n"
+"---\n"
+"- 0\n"
+"- - - 514\n"
+"    - - [10, 1, 1, 100, 'Account 10']\n"
+"      - [11, 1, 1, 100, 'Account 11']\n"
+"      - [12, 1, 1, 100, 'Account 12']\n"
+"      - [50, 5, 1, 100, 'Account 50']\n"
+"      - [51, 5, 1, 100, 'Account 51']\n"
+"      - [52, 5, 1, 100, 'Account 52']\n"
+"  - - 513\n"
+"    - - [1, 1, 'Customer 1']\n"
+"      - [5, 1, 'Customer 5']\n"
+"..."
+msgstr ""
+
+msgid ""
+"Force creation of the buckets (single or multiple) on the current replica "
+"set. Use only for manual emergency recovery or for initial bootstrap."
+msgstr ""
+
+msgid "an identifier of the first bucket in a range"
+msgstr ""
+
+msgid "the number of buckets to insert (default = 1)"
+msgstr ""
+
+msgid "Drop a bucket manually for tests or emergency cases."
+msgstr ""
+
+msgid ""
+"Send a specified bucket from the current replica set to a remote replica "
+"set."
+msgstr ""
+
+msgid "bucket identifier"
+msgstr ""
+
+msgid "UUID of a remote replica set"
+msgstr ""
+
+msgid ""
+"Check all buckets of the host storage that have the SENT or ACTIVE state, "
+"return the number of active buckets."
+msgstr ""
+
+msgid "the number of buckets in the active state, if found; otherwise, nil"
+msgstr ""
+
+msgid "Collect an array of active bucket identifiers for discovery."
+msgstr ""

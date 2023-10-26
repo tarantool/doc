@@ -18,12 +18,6 @@ msgstr "Имя"
 msgid "Use"
 msgstr "Использование"
 
-msgid ":doc:`./box_space/examples`"
-msgstr ":doc:`./box_space/examples`"
-
-msgid "Some useful examples"
-msgstr "Несколько полезных примеров"
-
 msgid ":doc:`./box_schema/space_create`"
 msgstr ":doc:`./box_schema/space_create`"
 
@@ -258,6 +252,24 @@ msgstr ":doc:`./box_space/_vspace`"
 msgid "(Metadata) List of spaces accessible for the current user"
 msgstr "(Метаданные) Список спейсов, доступных текущему пользователю"
 
+#, fuzzy
+msgid ":doc:`./box_space/_space_sequence`"
+msgstr ":doc:`./box_space/_sequence`"
+
+#, fuzzy
+msgid "(Metadata) List of connections between spaces and sequences"
+msgstr "(Метаданные) Список кортежей с функциями"
+
+#, fuzzy
+msgid ":doc:`./box_space/_vspace_sequence`"
+msgstr ":doc:`./box_space/_sequence`"
+
+#, fuzzy
+msgid ""
+"(Metadata) List of connections between spaces and sequences accessible for "
+"the current user"
+msgstr "(Метаданные) Список спейсов, доступных текущему пользователю"
+
 msgid ":doc:`./box_space/_user`"
 msgstr ":doc:`./box_space/_user`"
 
@@ -301,5 +313,15 @@ msgid "(Metadata) List of settings affecting behavior of the current session"
 msgstr ""
 "(Метаданные) Список настроек, которые влияют на поведение текущего сеанса"
 
-msgid "To see examples, visit the :ref:`how-to guide on CRUD operations <box_space_examples>`."
-msgstr "См. также :ref:`практические примеры работы с CRUD-операциями <box_space_examples>`."
+msgid ""
+"To see examples, visit the :ref:`how-to guide on CRUD operations "
+"<box_space_examples>`."
+msgstr ""
+"См. также :ref:`практические примеры работы с CRUD-операциями "
+"<box_space_examples>`."
+
+#~ msgid ":doc:`./box_space/examples`"
+#~ msgstr ":doc:`./box_space/examples`"
+
+#~ msgid "Some useful examples"
+#~ msgstr "Несколько полезных примеров"
