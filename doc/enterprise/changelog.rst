@@ -18,6 +18,12 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``TARANTOOL_BASE_VERSION`` is the Community version which the Enterprise version is based on.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
+598
+---
+
+-   Updated cartridge-cli to `2.12.9 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.7>`__.
+-   Updated tt-ee to `1.3.1 <https://github.com/tarantool/tt-ee/releases/tag/v1.3.1>`__.
+
 595
 ---
 
