@@ -605,6 +605,8 @@ IPROTO_UNKNOWN
 
 Code: -1.
 
+Unknown request or response type.
+
 ..  _internals-iproto-keys-error:
 
 IPROTO_ERROR

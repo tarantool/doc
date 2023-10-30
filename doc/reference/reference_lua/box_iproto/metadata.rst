@@ -5,16 +5,16 @@ box.iproto.metadata_key
 
 ..  module:: box.iproto
 
-    ..  data:: metadata_key
+..  data:: metadata_key
 
-        The ``box.iproto.metadata_key`` namespace contains the ``IPROTO_FILED_*`` keys, which are nested in the
-        :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>` key.
+    The ``box.iproto.metadata_key`` namespace contains the ``IPROTO_FILED_*`` keys, which are nested in the
+    :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>` key.
 
     Available keys:
 
     ..  list-table::
         :header-rows: 1
-        :widths: 40 20 40
+        :widths: 40 40 20
 
         *   -   Exported constant
             -   IPROTO constant name

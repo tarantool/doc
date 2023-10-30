@@ -5,16 +5,16 @@ box.iproto.flag
 
 ..  module:: box.iproto
 
-    ..  data:: flag
+..  data:: flag
 
-        The ``box.iproto.flag`` namespace contains the flags from the ``IPROTO_FLAGS`` key.
-        Learn more: :ref:`IPROTO_FLAGS key <box_protocol-flags>`.
+    The ``box.iproto.flag`` namespace contains the flags from the ``IPROTO_FLAGS`` key.
+    Learn more: :ref:`IPROTO_FLAGS key <box_protocol-flags>`.
 
     Available flags:
 
     ..  list-table::
         :header-rows: 1
-        :widths: 40 20 40
+        :widths: 40 40 20
 
         *   -   Exported flag
             -   IPROTO flag name

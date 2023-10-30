@@ -21,12 +21,6 @@ box.iproto.send()
 
     **Possible errors:**
 
-    *   Index is not of type 'TREE'.
-    *   :errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the
-    :ref:`MVCC transaction mode <txn_mode_transaction-manager>`.
-
-    **Complexity factors:** Index size, Index type.
-
     **Example:**
 
 

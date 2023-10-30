@@ -5,16 +5,16 @@ box.iproto.ballot_key
 
 ..  module:: box.iproto
 
-    ..  data:: ballot_key
+..  data:: ballot_key
 
-        The ``box.iproto.ballot_key`` namespace contains the keys from the :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
-        Learn more: :ref:`IPROTO_BALLOT keys <internals-iproto-keys-ballot>`.
+    The ``box.iproto.ballot_key`` namespace contains the keys from the :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
+    Learn more: :ref:`IPROTO_BALLOT keys <internals-iproto-keys-ballot>`.
 
     Available keys:
 
     ..  list-table::
         :header-rows: 1
-        :widths: 40 20 40
+        :widths: 40 40 20
 
         *   -   Exported constant
             -   IPROTO constant name
@@ -37,8 +37,8 @@ box.iproto.ballot_key
             -   0x04
 
         *   -   IS_ANON
-            -   0x05
             -   :ref:`IPROTO_BALLOT_IS_ANON <internals-iproto-keys-ballot>`
+            -   0x05
 
         *   -   IS_BOOTED
             -   :ref:`IPROTO_BALLOT_IS_BOOTED <internals-iproto-keys-ballot>`

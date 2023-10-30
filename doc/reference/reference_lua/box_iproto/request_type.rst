@@ -5,16 +5,16 @@ box.iproto.type
 
 ..  module:: box.iproto
 
-    ..  data:: type
+..  data:: type
 
-        The ``box.iproto.type`` namespace contains all available request types.
-        Learn more about the requests: :ref:`Client-server requests and responses <internals-requests_responses>`.
+    The ``box.iproto.type`` namespace contains all available request types.
+    Learn more about the requests: :ref:`Client-server requests and responses <internals-requests_responses>`.
 
     Available types:
 
     ..  list-table::
         :header-rows: 1
-        :widths: 40 20 40
+        :widths: 40 40 20
 
         *   -   Exported constant
             -   IPROTO constant name

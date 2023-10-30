@@ -27,7 +27,7 @@ The constants are divided into several types:
 *   :ref:`request type <reference_lua-box_iproto_type>` (:ref:`IPROTO_OK <internals-iproto-ok>`)
 *   :ref:`flag <reference_lua-box_iproto_flag>` (:ref:`IPROTO_COMMIT <box_protocol-commit>`)
 *   :ref:`ballot key <reference_lua-box_iproto_ballot>` (:ref:`IPROTO_FLAG_COMMIT <box_protocol-flags>`)
-*   :ref:`metadata key <reference_lua-box_iproto_metadata>` (``IPROTO_FIELD_IS_NULLABLE``)
+*   :ref:`metadata key <reference_lua-box_iproto_metadata>` (:ref:`IPROTO_FIELD_IS_NULLABLE <internals-iproto-keys-sql-specific>`)
 *   :ref:`RAFT key <reference_lua-box_iproto_raft>` (:ref:`IPROTO_TERM <internals-iproto-keys-term>`)
 
 Each type is located in the corresponding subnamespace without prefix.
@@ -64,7 +64,7 @@ The submodule exports:
 API reference
 -------------
 
-The table lists all available members and functions of the submodule:
+The table lists all available functions and data of the submodule:
 
 ..  container:: table
 
@@ -85,7 +85,7 @@ The table lists all available members and functions of the submodule:
             - Request types
 
         *   - :doc:`./box_iproto/flags`
-            - Flags from the :ref:`IPROTO_FLAGS <box_protocol-flags>`>` key
+            - Flags from the :ref:`IPROTO_FLAGS <box_protocol-flags>` key
 
         *   - :doc:`./box_iproto/ballot`
             - Keys from the :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests
@@ -103,7 +103,7 @@ The table lists all available members and functions of the submodule:
             - The set of supported IPROTO protocol features
 
         *   - :doc:`./box_iproto/feature`
-            - IPROTO protocol features
+            - IPROTO protocol :ref:`features <internals-iproto-keys-features>`
 
          *  - :doc:`./box_iproto/override`
             - Set the IPROTO request handler callbacks

@@ -5,16 +5,16 @@ box.iproto.raft
 
 ..  module:: box.iproto
 
-    ..  data:: raft_key
+..  data:: raft_key
 
-        The ``box.iproto.raft_key`` namespace contains the keys from the ``IPROTO_RAFT_*`` requests.
-        Learn more: :ref:`Synchronous replication keys <internals-iproto-keys-syncro-replication>`.
+    The ``box.iproto.raft_key`` namespace contains the keys from the ``IPROTO_RAFT_*`` requests.
+    Learn more: :ref:`Synchronous replication keys <internals-iproto-keys-synchro-replication>`.
 
     Available keys:
 
     ..  list-table::
         :header-rows: 1
-        :widths: 40 20 40
+        :widths: 40 40 20
 
         *   -   Exported constant
             -   IPROTO constant name

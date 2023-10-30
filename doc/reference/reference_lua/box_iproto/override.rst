@@ -18,7 +18,3 @@ box.iproto.override()
 
     **Example:**
 
-    ..  code-block:: tarantoolsession
-
-        tarantool>
-
