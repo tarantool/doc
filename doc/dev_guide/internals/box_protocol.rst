@@ -20,6 +20,14 @@ The binary protocol provides complete access to Tarantool functionality, includi
     asynchronously via the same connection
 *   response format that supports zero-copy writes
 
+..  note::
+
+    Since version :doc:`2.11.0 </release/2.11.0>`, you can use the :ref:`box.iproto <box_iproto>` submodule to access
+    IPROTO constants and features from Lua. The submodule enables to :ref:`send arbitrary IPROTO packets <reference_lua-box_iproto_send>`
+    over the session's socket and :ref:`override the behavior <reference_lua-box_iproto_override>` for all IPROTO
+    request types. Also, :ref:`IPROTO_UNKNOWN <box_iproto-unknown>` constant is introduced. The constant is used for the
+    :ref:`box.iproto.override() <reference_lua-box_iproto_override>` API, which allows setting a handler for incoming requests with an unknown type.
+
 ..  toctree::
     :maxdepth: 1
 

@@ -52,10 +52,6 @@ General
             -   0x00 |br| MP_UINT
             -   Request type or response type
 
-        *   -   :ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>`
-            -   -1 |br| MP_UINT
-            -   Unknown request or response type
-
         *   -   :ref:`IPROTO_ERROR <internals-iproto-keys-error>`
             -   0x52 |br| :ref:`MP_ERROR <msgpack_ext-error>`
             -   Error response
@@ -597,15 +593,6 @@ See requests and responses for :ref:`client-server communication <internals-requ
 :ref:`replication <internals-iproto-replication>`,
 :ref:`events and subscriptions <box-protocol-watchers>`,
 :ref:`streams and interactive transactions <internals-iproto-streams>`.
-
-..  _internals-iproto-keys-unknown:
-
-IPROTO_UNKNOWN
-~~~~~~~~~~~~~~
-
-Code: -1.
-
-Unknown request or response type.
 
 ..  _internals-iproto-keys-error:
 

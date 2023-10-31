@@ -10,9 +10,11 @@ box.iproto.protocol_version
     Current IPROTO protocol version of the server.
     Learn more: :ref:`IPROTO_ID <box_protocol-id>`.
 
+    **Example**
 
-**Example**
+    ..  code-block:: lua
 
-..  code-block:: lua
-
-    box.iproto.protocol_version = 4
+        tarantool> box.iproto.protocol_version
+        ---
+        - 4
+        ...

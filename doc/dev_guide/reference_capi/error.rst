@@ -64,6 +64,8 @@
 
     Clear the last error.
 
+.. _c_api-error-box_error_set:
+
 .. c:function:: int box_error_set(const char *file, unsigned line, uint32_t code, const char *format, ...)
 
     Set the last error.
@@ -75,6 +77,8 @@
     :param ...: format arguments
 
     See also: IPROTO :ref:`error code<capi-box_error_code>`
+
+.. _c_api-error-box_error_raise:
 
 .. c:macro:: box_error_raise(code, format, ...)
 

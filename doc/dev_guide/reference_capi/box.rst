@@ -247,38 +247,163 @@
 
 ..  _box_box_iproto_send:
 
-..  c:function:: int box_iproto_send(uint64_t sid, char *header, char *header_end, char *body, char *body_end)
+..  c:function:: int box_iproto_send(uint64_t sid, char *header, char *header_end[, char *body, char *body_end])
 
     Since version :doc:`2.11.0 </release/2.11.0>`.
     Send an :ref:`IPROTO <internals-iproto-format>` packet over the session's socket with the given MsgPack header
-    and body. NB: yields.
+    and body.
+    The function yields.
+    The function works for binary sessions only. For details, see :ref:`box.session.type() <box_session-type>`.
 
     :param uint32_t     sid: IPROTO session identifier (see :ref:`box_session_id() <box_box_session_id>`)
     :param char*     header: a MsgPack-encoded header
     :param char*     header_end: end of a header encoded as MsgPack
-    :param char*     body: a MsgPack-encoded body
+    :param char*     body: a MsgPack-encoded body. If the ``body`` and ``body_end`` parameters are omitted, the packet
+                           consists of the header only.
     :param char*     body_end: end of a body encoded as MsgPack
 
     :return: 0 on success
-    :return: 1 if there is a failure
+    :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :rtype: number
 
     See also :ref:`box.iproto.send() <reference_lua-box_iproto_send>`
+
+    **Possible errors:**
+
+    *   :errcode:`ER_SESSION_CLOSED` -- the session is closed.
+    *   :errcode:`ER_NO_SUCH_SESSION` -- the session does not exist.
+    *   :errcode:`ER_MEMORY_ISSUE` -- out of memory limit has been reached.
+    *   :errcode:`ER_WRONG_SESSION_TYPE` -- the session type is not binary.
+
+    For details, see `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__.
+
+    **Example**
+
+    ..  code-block:: c
+
+        /* IPROTO constants are not exported to C.
+        * That is, the user encodes them by himself.
+        */
+        #define IPROTO_REQUEST_TYPE 0x00
+        #define IPROTO_OK 0x00
+        #define IPROTO_SYNC 0x01
+        #define IPROTO_SCHEMA_VERSION 0x05
+        #define IPROTO_DATA 0x30
+
+        char buf[256] = {};
+        char *header = buf;
+        char *header_end = header;
+        header_end = mp_encode_map(header_end, 3);
+        header_end = mp_encode_uint(header_end, IPROTO_REQUEST_TYPE);
+        header_end = mp_encode_uint(header_end, IPROTO_OK);
+        header_end = mp_encode_uint(header_end, IPROTO_SYNC);
+        header_end = mp_encode_uint(header_end, 10);
+        header_end = mp_encode_uint(header_end, IPROTO_SCHEMA_VERSION);
+        header_end = mp_encode_uint(header_end, box_schema_version());
+
+        char *body = header_end;
+        char *body_end = body;
+        body_end = mp_encode_map(body_end, 1);
+        body_end = mp_encode_uint(body_end, IPROTO_DATA);
+        body_end = mp_encode_uint(body_end, 1);
+
+        /* The packet contains both the header and body. */
+        box_iproto_send(box_session_id(), header, header_end, body, body_end);
+
+        /* The packet contains the header only. */
+        box_iproto_send(box_session_id(), header, header_end, NULL, NULL);
 
 ..  _box_box_iproto_override:
 
 ..  c:function:: void box_iproto_override(uint32_t request_type, iproto_handler_t handler, iproto_handler_destroy_t destroy, void *ctx)
 
     Since version :doc:`2.11.0 </release/2.11.0>`.
-    Sets an IPROTO request handler with the provided context for the given request type.
+    Set a new IPROTO request handler with the provided context for the given request type.
+    The function yields.
 
-    :param uint32_t     request_type: request type code from the ``iproto_type`` enumeration
-    :param iproto_handler_t     handler: IPROTO request handler
-    :param iproto_handler_destroy_t destroy: IPROTO request handler destructor
-    :param void*    ctx: context passed to handler
+    :param uint32_t request_type: IPROTO request type code (for example, ``IPROTO_SELECT``).
+                                  For details, check :ref:`Client-server requests and responses <internals-requests_responses>`.
+
+                                  To override the handler of unknown request types, use the :ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>` type code.
+
+    :param iproto_handler_t handler: IPROTO request handler. To reset the request handler, set the ``handler`` parameter to ``NULL``.
+                                     See the full parameter description in the :ref:`Handler function <box_box_iproto_override-handler>` section.
+
+    :param iproto_handler_destroy_t destroy: IPROTO request handler destructor. The destructor is called when the
+                                             corresponding handler is removed. See the full parameter description
+                                             in the :ref:`Handler destructor function <box_box_iproto_override-destroy>` section.
+
+    :param void* ctx: a context passed to the ``handler`` and ``destroy`` callbacks
 
     :return: 0 on success
     :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :rtype: number
 
-    See also :ref:`box.session.id() <box_session-id>`
+    See also :ref:`box.iproto.override() <reference_lua-box_iproto_override>`
+
+    **Possible errors:**
+
+    If a Lua handler throws an exception, the behavior is similar to that of a remote procedure call.
+    The following errors are returned to the client over IPROTO (see `src/lua/utils.h <https://github.com/tarantool/tarantool/blob/dec0e0221e183fa972efa65bb0fb658112f2196f/src/lua/utils.h#L366-L371>`__):
+
+    *   :errcode:`ER_PROC_LUA` -- an exception is thrown from a Lua handler, diagnostic is not set.
+    *   diagnostics from ``src/box/errcode.h`` -- an exception is thrown, diagnostic is set.
+
+    For details, see `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__.
+
+..  _box_box_iproto_override-handler:
+
+    **Handler function**
+
+    The signature of a handler function (the ``handler`` parameter):
+
+    ..  code-block:: c
+
+        enum iproto_handler_status {
+                IPROTO_HANDLER_OK,
+                IPROTO_HANDLER_ERROR,
+                IPROTO_HANDLER_FALLBACK,
+        }
+
+        typedef enum iproto_handler_status
+        (*iproto_handler_t)(const char *header, const char *header_end,
+                            const char *body, const char *body_end, void *ctx);
+
+    where:
+
+    *   ``header``(const char*) -- a MsgPack-encoded header
+    *   ``header_end``(const char*) -- end of a header encoded as MsgPack
+    *   ``body``(const char*) -- a MsgPack-encoded body
+    *   ``header_end``(const char*) -- end of a body encoded as MsgPack
+
+    The handler returns a status code. Possible statuses:
+
+    *   ``IPROTO_REQUEST_HANDLER_OK`` -- success
+    *   ``IPROTO_REQUEST_HANDLER_ERROR`` -- error, diagnostic must be set by handler
+        (see :ref:`box_error_set() <c_api-error-box_error_set>` and :ref:`box_error_raise() <c_api-error-box_error_raise>`)
+
+    *   ``IPROTO_REQUEST_HANDLER_FALLBACK`` -- fallback to the default handler
+
+..  _box_box_iproto_override-destroy:
+
+    **Handler destructor function**
+
+    The destructor is called when the handler is reset.
+    The signature of a destructor function (the ``destroy`` parameter):
+
+    ..  code-block:: c
+
+        typedef void (*iproto_handler_destroy_t)(void *ctx);
+
+    where:
+
+    *   ``ctx`` (void*): the context provided by ``box_iproto_override()`` function.
+
+    **Examples**
+
+    ..  code-block:: c
+
+        box_iproto_override(1000, iproto_request_handler_с, NULL)
+        box_iproto_override(IPROTO_SELECT, iproto_request_handler_с, (uintptr_t)23)
+        box_iproto_override(IPROTO_SELECT, NULL, NULL)
+        box_iproto_override(IPROTO_UNKNOWN, iproto_unknown_request_handler_с, &ctx)

@@ -10,34 +10,15 @@ box.iproto.flag
     The ``box.iproto.flag`` namespace contains the flags from the ``IPROTO_FLAGS`` key.
     Learn more: :ref:`IPROTO_FLAGS key <box_protocol-flags>`.
 
-    Available flags:
+    **Example**
 
-    ..  list-table::
-        :header-rows: 1
-        :widths: 40 40 20
+    ..  code-block:: lua
 
-        *   -   Exported flag
-            -   IPROTO flag name
-            -   Code
-
-        *   -   COMMIT
-            -   :ref:`IPROTO_FLAG_COMMIT <internals-iproto-keys-flags>`
-            -   0x01
-
-        *   -   WAIT_SYNC
-            -   :ref:`IPROTO_FLAG_WAIT_SYNC <internals-iproto-keys-flags>`
-            -   0x02
-
-        *   -   WAIT_ACK
-            -   :ref:`IPROTO_FLAG_WAIT_ACK <internals-iproto-keys-flags>`
-            -   0x03
-
-
-**Example**
-
-..  code-block:: lua
-
-    box.iproto.flag.COMMIT = 0x01
-    -- ...
-    box.iproto.flag.WAIT_SYNC = 0x02
-    -- ...
+        tarantool> box.iproto.flag.COMMIT
+        ---
+        - 1
+        ...
+        tarantool> box.iproto.flag.WAIT_SYNC
+        ---
+        - 2
+        ...

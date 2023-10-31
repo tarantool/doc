@@ -62,7 +62,7 @@ function ``netbox_decode_data``.
 
 For example, in a successful response to ``box.space:select()``,
 the IPROTO_REQUEST_TYPE value is 0 = ``IPROTO_OK`` and the
-array have all the tuples of the result.
+array has all the tuples of the result.
 
 Read the source code file `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`__
 where the function ``decode_metadata_optional`` is an example of how Tarantool

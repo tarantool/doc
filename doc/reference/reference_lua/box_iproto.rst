@@ -6,22 +6,22 @@ Submodule box.iproto
 Since :doc:`2.11.0 </release/2.11.0>`.
 
 The ``box.iproto`` submodule provides the ability to work with the network subsystem of Tarantool.
-It enables to extend the :ref:`binary protocol <box_protocol>` functionality from the Lua libraries.
+It allows you to extend the :ref:`IPROTO <box_protocol>` functionality from Lua.
 With this submodule, you can:
 
-*   parse the unknown IPROTO requests
-*   send arbitrary IPROTO packets
-*   override the behavior of the existing request types in binary protocol
+*   :ref:`parse the unknown IPROTO requests types <reference_lua-box_iproto_override>`
+*   :ref:`send arbitrary IPROTO packets <reference_lua-box_iproto_send>`
+*   :ref:`override the behavior <reference_lua-box_iproto_override>` of the existing and unknown request types in the binary protocol
 
-To make this possible, the submodule exports all IPROTO :ref:`constants <box_iproto-constants>` and features to Lua.
+The submodule exports all IPROTO :ref:`constants <internals-box_protocol>` and :ref:`features <internals-iproto-keys-features>` to Lua.
 
 ..  _box_iproto-constants:
 
 IPROTO constants
 ----------------
 
-The IPROTO constants in the ``box.iproto`` namespace are written in the upper case without the ``IPROTO_`` prefix.
-The constants are divided into several types:
+IPROTO constants in the ``box.iproto`` namespace are written in uppercase letters without the ``IPROTO_`` prefix.
+The constants are divided into several groups:
 
 *   :ref:`key <reference_lua-box_iproto_key>` (:ref:`IPROTO_SYNC <internals-iproto-keys-sync>`, :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>`)
 *   :ref:`request type <reference_lua-box_iproto_type>` (:ref:`IPROTO_OK <internals-iproto-ok>`)
@@ -30,7 +30,7 @@ The constants are divided into several types:
 *   :ref:`metadata key <reference_lua-box_iproto_metadata>` (:ref:`IPROTO_FIELD_IS_NULLABLE <internals-iproto-keys-sql-specific>`)
 *   :ref:`RAFT key <reference_lua-box_iproto_raft>` (:ref:`IPROTO_TERM <internals-iproto-keys-term>`)
 
-Each type is located in the corresponding subnamespace without prefix.
+Each group is located in the corresponding subnamespace without the prefix.
 For example:
 
 ..  code-block:: lua
@@ -39,9 +39,9 @@ For example:
     -- ...
     box.iproto.type.SELECT = 1
     -- ...
-    box.iproto.flag.COMMIT = 0x01
+    box.iproto.flag.COMMIT = 1
     -- ...
-    box.iproto.ballot_key.VCLOCK = 0x02
+    box.iproto.ballot_key.VCLOCK = 2
     -- ...
     box.iproto.metadata_key.IS_NULLABLE = 3
     -- ...
@@ -59,6 +59,39 @@ The submodule exports:
 *   the set of IPROTO protocol features supported by the server (:ref:`box.iproto.protocol_features <reference_lua-box_iproto_protocol-features>`)
 *   IPROTO protocol features with the corresponding code (:ref:`box.iproto.feature <reference_lua-box_iproto_feature>`)
 
+**Example**
+
+The example converts the feature names from ``box.iproto.protocol_features`` set into codes:
+
+..  code-block:: lua
+
+    -- Features supported by the server
+    box.iproto.protocol_features = {
+    streams = true,
+    transactions = true,
+    error_extension = true,
+    watchers = true,
+    pagination = true,
+    }
+
+    -- Convert the feature names into codes
+    features = {}
+    for name in pairs(box.iproto.protocol_features) do
+        table.insert(features, box.iproto.feature[name])
+    end
+    features -- [0, 1, 2, 3, 4]
+
+..  _box_iproto-unknown:
+
+Handling the unknown IPROTO request types
+-----------------------------------------
+
+Every IPROTO request has a static handler.
+That is, before version :doc:`2.11.0 </release/2.11.0>`, any unknown request raised an error.
+Since :doc:`2.11.0 </release/2.11.0>`, a new request type is introduced -- :ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>`.
+This type is used to override the handlers of the unknown IPROTO request types. For details, see
+:ref:`box.iproto.override() <reference_lua-box_iproto_override>` and :ref:`box_iproto_override <box_box_iproto_override>` functions.
+
 ..  _box_iproto-reference:
 
 API reference
@@ -72,19 +105,19 @@ The table lists all available functions and data of the submodule:
     ..  rst-class:: left-align-column-2
 
     ..  list-table::
-        :widths: 25 75
+        :widths: 30 70
         :header-rows: 1
 
         *   - Name
             - Use
 
-        *   - :doc:`./box_iproto/keys`
+        *   - :doc:`./box_iproto/key`
             - Request keys
 
-        *   - :doc:`./box_iproto/request_types`
+        *   - :doc:`./box_iproto/request_type`
             - Request types
 
-        *   - :doc:`./box_iproto/flags`
+        *   - :doc:`./box_iproto/flag`
             - Flags from the :ref:`IPROTO_FLAGS <box_protocol-flags>` key
 
         *   - :doc:`./box_iproto/ballot`
@@ -94,7 +127,7 @@ The table lists all available functions and data of the submodule:
             - Keys nested in the :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>` key
 
         *   - :doc:`./box_iproto/raft`
-            - Keys from the ``IPROTO_RAFT*`` requests
+            - Keys from the ``IPROTO_RAFT_`` requests
 
         *   - :doc:`./box_iproto/protocol_version`
             - Current IPROTO protocol version
@@ -105,10 +138,10 @@ The table lists all available functions and data of the submodule:
         *   - :doc:`./box_iproto/feature`
             - IPROTO protocol :ref:`features <internals-iproto-keys-features>`
 
-         *  - :doc:`./box_iproto/override`
-            - Set the IPROTO request handler callbacks
+        *   - :doc:`./box_iproto/override`
+            - Set a new IPROTO request handler callback for the given request type
 
-         *  - :doc:`./box_iproto/send`
+        *   - :doc:`./box_iproto/send`
             - Send an IPROTO packet over the session's socket
 
 
@@ -116,7 +149,6 @@ The table lists all available functions and data of the submodule:
     :hidden:
 
     box_iproto/key
-    box_iproto/request_key
     box_iproto/request_type
     box_iproto/flag
     box_iproto/ballot
