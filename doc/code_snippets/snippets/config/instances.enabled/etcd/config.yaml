@@ -1,0 +1,5 @@
+config:
+  etcd:
+    endpoints:
+      - http://localhost:2379
+    prefix: /example

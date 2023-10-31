@@ -272,17 +272,13 @@ Centralized configuration
 Tarantool enables you to store configuration data in one reliable place using etcd.
 To achieve this, you need to:
 
-1.   Put a YAML file with a cluster's configuration to an etcd server:
+1.   Provide a local YAML configuration with an etcd endpoint address and key prefix in the ``config`` section:
 
-    .. code-block:: console
-
-        $ etcdctl put /example/config/all.yaml < remote_config.yaml
-
-2.   Provide a local YAML configuration with an etcd endpoint address and key prefix in the ``config`` section:
-
-    ..  literalinclude:: /code_snippets/test/config/etcd.yaml
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/etcd/config.yaml
         :language: yaml
         :dedent:
+
+2.   Publish a cluster's configuration to an etcd server.
 
 Learn more from the following guide: :ref:`Storing configuration in etcd <configuration_etcd>`.
 

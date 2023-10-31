@@ -25,6 +25,7 @@ This reference covers Tarantool's built-in Lua modules.
     checks
     clock
     compat
+    config
     console
     crypto
     csv
