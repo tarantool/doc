@@ -9,7 +9,7 @@
 .. toctree::
     :maxdepth: 2
 
-    overview
+    overview_index
     getting_started/index
     how-to/index
     concepts/index
