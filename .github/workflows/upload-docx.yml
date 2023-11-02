@@ -1,0 +1,94 @@
+name: Generate DOCX
+
+on:
+  push:
+    branches:
+      - 'latest'
+      - '3.0'
+      - 'lastochka42/generate-docx'
+
+jobs:
+  generate-singlehtml:
+    runs-on: ubuntu-latest
+    container: tarantool/doc-builder:fat-4.3
+    steps:
+      - uses: actions/checkout@v3
+        id: checkout
+        with:
+          submodules: recursive
+
+      - name: generate singlehtml
+        run: |
+          cmake .
+          make pull-modules
+          make build-modules
+          make singlehtml
+          make singlehtml-ru
+
+      - name: save singlehtml-en
+        uses: actions/upload-artifact@v3
+        with:
+          name: singlehtml-en
+          path: output/html/en/singlehtml.html
+
+      - name: save singlehtml-ru
+        uses: actions/upload-artifact@v3
+        with:
+          name: singlehtml-ru
+          path: output/html/ru/singlehtml.html
+
+      - name: save pandoc filters from the repo
+        uses: actions/upload-artifact@v3
+        with:
+          name: pandoc
+          path: pandoc/filter-espd.py
+  
+  generate-docx:
+    needs: generate-singlehtml
+    runs-on: ubuntu-latest
+    container: ghcr.io/tarantool/pandoc-builder:latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
+      S3_ENDPOINT_URL: ${{secrets.S3_ENDPOINT_URL}}
+      S3_UPLOAD_PATH: ${{secrets.S3_DOCX_PATH}}
+    steps:
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+
+      - name: generate docx-en
+        run: |
+          pandoc singlehtml-en/singlehtml.html \
+            --standalone \
+            --verbose \
+            --from html \
+            --to docx \
+            --output tarantool-en.docx \
+            --metadata lang=en \
+            --metadata toc-title='Table of content' \
+            --filter pandoc/filter-espd.py \
+            --table-of-contents \
+            --toc-depth=2
+
+      - name: generate docx-ru
+        run: |
+          pandoc singlehtml-ru/singlehtml.html \
+            --standalone \
+            --verbose \
+            --from html \
+            --to docx \
+            --output tarantool-ru.docx \
+            --metadata lang=ru \
+            --metadata toc-title='Оглавление' \
+            --filter pandoc/filter-espd.py \
+            --table-of-contents \
+            --toc-depth=2 
+
+      - name: Get branch name
+        run: echo "DEPLOYMENT_NAME=$(echo ${{ github.ref }} | sed -r 's|^.*/.*/(.*)$|\1|')" >> $GITHUB_ENV 
+
+      - name: upload docx
+        run: |
+          aws s3 cp tarantool-en.docx ${{ env.S3_UPLOAD_PATH }}/${{ env.DEPLOYMENT_NAME }}/ --endpoint-url=${{ env.S3_ENDPOINT_URL }}
+          aws s3 cp tarantool-ru.docx ${{ env.S3_UPLOAD_PATH }}/${{ env.DEPLOYMENT_NAME }}/ --endpoint-url=${{ env.S3_ENDPOINT_URL }}
