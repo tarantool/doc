@@ -24,7 +24,7 @@ config
     This option accepts the following values:
 
     - ``auto``: configuration is reloaded automatically when it is changed.
-    - ``manual``: configuration should be reloaded manually. In this case, you can reload the configuration in the application code using :ref:`config.reload() <config-module>`.
+    - ``manual``: configuration should be reloaded manually. In this case, you can reload the configuration in the application code using :ref:`config:reload() <config-module>`.
 
     See also: :ref:`Reloading configuration <etcd_reloading_configuration>`.
 
@@ -53,10 +53,9 @@ config
 etcd
 ~~~~
 
-..  admonition:: Enterprise Edition
-    :class: fact
-
-    Storing configuration in etcd is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+..  include:: /concepts/configuration/configuration_etcd.rst
+    :start-after: ee_note_etcd_start
+    :end-before: ee_note_etcd_end
 
 This section describes options related to :ref:`storing configuration in etcd <configuration_etcd>`.
 
@@ -96,7 +95,8 @@ This section describes options related to :ref:`storing configuration in etcd <c
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     A key prefix used to search a configuration on an etcd server.
-    Tarantool searches keys by the following path: ``/prefix/config/*``.
+    Tarantool searches keys by the following path: ``<prefix>/config/*``.
+    Note that ``<prefix>`` should start with a slash (``/``).
 
     See also: :ref:`Local etcd configuration <etcd_local_configuration>`.
 
@@ -200,7 +200,7 @@ This section describes options related to :ref:`storing configuration in etcd <c
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    A timeout for connecting to an etcd server.
+    A time period required to process an HTTP request to an etcd server: from sending a request to receiving a response.
 
     | Type: number
     | Default: nil

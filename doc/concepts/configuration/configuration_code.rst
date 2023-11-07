@@ -22,13 +22,13 @@ You can find all the available options in the :ref:`Configuration reference <box
 Initialization file
 -------------------
 
-If the command to :ref:`start Tarantool <configuration_code_run_instance_tarantool>` includes ``LUA_INITIALIZATION_FILE``, then
-Tarantool begins by invoking the Lua program in the file, which by convention
-may have the name ``script.lua``. The Lua program may get further arguments
+If the command to :ref:`start Tarantool <configuration_code_run_instance_tarantool>` includes an instance file, then
+Tarantool begins by invoking the Lua program in the file, which may have the name ``init.lua``.
+The Lua program may get further arguments
 from the command line or may use operating-system functions, such as ``getenv()``.
 The Lua program almost always begins by invoking ``box.cfg()``, if the database
 server will be used or if ports need to be opened. For example, suppose
-``script.lua`` contains the lines
+``init.lua`` contains the lines
 
 ..  _index-init-example:
 
@@ -44,25 +44,25 @@ server will be used or if ports need to be opened. For example, suppose
     print('Starting ', arg[1])
 
 and suppose the environment variable LISTEN_URI contains 3301,
-and suppose the command line is ``~/tarantool/src/tarantool script.lua ARG``.
+and suppose the command line is ``tarantool init.lua ARG``.
 Then the screen might look like this:
 
 ..  code-block:: console
 
     $ export LISTEN_URI=3301
-    $ ~/tarantool/src/tarantool script.lua ARG
-    ... main/101/script.lua C> Tarantool 2.8.3-0-g01023dbc2
-    ... main/101/script.lua C> log level 5
-    ... main/101/script.lua I> mapping 33554432 bytes for memtx tuple arena...
-    ... main/101/script.lua I> recovery start
-    ... main/101/script.lua I> recovering from './00000000000000000000.snap'
-    ... main/101/script.lua I> set 'listen' configuration option to "3301"
+    $ tarantool init.lua ARG
+    ... main/101/init.lua C> Tarantool 2.8.3-0-g01023dbc2
+    ... main/101/init.lua C> log level 5
+    ... main/101/init.lua I> mapping 33554432 bytes for memtx tuple arena...
+    ... main/101/init.lua I> recovery start
+    ... main/101/init.lua I> recovering from './00000000000000000000.snap'
+    ... main/101/init.lua I> set 'listen' configuration option to "3301"
     ... main/102/leave_local_hot_standby I> ready to accept requests
     Starting  ARG
     ... main C> entering the event loop
 
 If you wish to start an interactive session on the same terminal after
-initialization is complete, you can use :ref:`console.start() <console-start>`.
+initialization is complete, you can pass the ``-i`` :ref:`command-line option <configuration_command_options>`.
 
 
 ..  _box-cfg-params-env:
@@ -79,7 +79,7 @@ For example:
 * ``TT_LISTEN`` -- corresponds to the ``box.cfg.listen`` option.
 * ``TT_MEMTX_DIR`` -- corresponds to the ``box.cfg.memtx_dir`` option.
 
-In case of an array value, separate the array elements by comma without space:
+In case of an array value, separate the array elements by a comma without space:
 
 ..  code-block:: console
 
@@ -114,14 +114,12 @@ Configuration parameters have the form:
 
 :extsamp:`{**{box.cfg}**}{[{*{key = value}*} [, {*{key = value ...}*}]]}`
 
-Since ``box.cfg`` may contain many configuration parameters and since some of the
-parameters (such as directory addresses) are semi-permanent, it's best to keep
-``box.cfg`` in a Lua file. Typically this Lua file is the initialization file
+Configuration parameters can be set in a Lua :ref:`initialization file <index-init_label>`,
 which is specified on the Tarantool command line.
 
 Most configuration parameters are for allocating resources, opening ports, and
 specifying database behavior. All parameters are optional.
-A few parameters are dynamic, that is, they can be changed at runtime by calling ``box.cfg{}`` a second time.
+Most of the parameters are dynamic, that is, they can be changed at runtime by calling ``box.cfg{}`` a second time.
 For example, the command below sets the :ref:`listen port <cfg_basic-listen>` to ``3301``.
 
 ..  code-block:: tarantoolsession
@@ -173,14 +171,15 @@ It may contain (in order):
 * user name for login
 * password
 * host name or host IP address
-* port number.
+* port number
+* query parameters
 
 Only a port number is always mandatory. A password is mandatory if a user
-name is specified, unless the user name is 'guest'.
+name is specified unless the user name is 'guest'.
 
 Formally, the URI
 syntax is ``[host:]port`` or ``[username:password@]host:port``.
-If host is omitted, then "0.0.0.0" or "[::]" is assumed
+If a host is omitted, then "0.0.0.0" or "[::]" is assumed
 meaning respectively any IPv4 address or any IPv6 address
 on the local machine.
 If ``username:password`` is omitted, then the "guest" user is assumed. Some examples:
@@ -213,7 +212,7 @@ where a URI is expected, for example, "unix/:/tmp/unix_domain_socket.sock" or
 simply "/tmp/unix_domain_socket.sock".
 
 The :ref:`uri <uri-module>` module provides functions that convert URI strings into their
-components, or turn components into URI strings.
+components or turn components into URI strings.
 
 .. _index-uri-several:
 
@@ -334,8 +333,8 @@ Below is the syntax for starting a Tarantool instance configured in a Lua initia
 
 The ``tarantool`` command also provides a set of :ref:`options <configuration_command_options>` that might be helpful for development purposes.
 
-The command below starts a Tarantool instance configured in the ``script.lua`` file:
+The command below starts a Tarantool instance configured in the ``init.lua`` file:
 
 .. code-block:: console
 
-    $ tarantool script.lua
+    $ tarantool init.lua

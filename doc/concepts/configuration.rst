@@ -8,7 +8,7 @@ There are two approaches to configuring Tarantool:
 *   *Since version 3.0*: In a YAML file.
 
     In a YAML file, you can provide the full cluster topology and specify all configuration options.
-    You can also use :ref:`etcd <configuration_centralized>` to store configuration data in one reliable place.
+    You can also use :ref:`etcd <configuration_etcd_overview>` to store configuration data in one reliable place.
 
 *   *In version 2.11 and earlier*: :ref:`In code <configuration_code>` using the ``box.cfg`` API.
 
@@ -73,7 +73,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/config.yaml
         :language: yaml
-        :emphasize-lines: 6-8
+        :emphasize-lines: 7-8
         :dedent:
 
 -   *Replica set*
@@ -82,7 +82,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/replicaset_scope/config.yaml
         :language: yaml
-        :emphasize-lines: 4-6
+        :emphasize-lines: 5-6
         :dedent:
 
 -   *Group*
@@ -91,7 +91,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/group_scope/config.yaml
         :language: yaml
-        :emphasize-lines: 2-4
+        :emphasize-lines: 3-4
         :dedent:
 
 -   *Global*
@@ -111,28 +111,29 @@ Most of the configuration options can be applied to a specific instance, replica
 
 .. _configuration_replica_set_scopes:
 
-Replica set configuration and configuration scopes
-**************************************************
+Configuration scopes: Replica set example
+*****************************************
 
-This section shows how to configure a :ref:`replica set <replication>` with a manual failover
-and describes how specific configuration options work in different configuration scopes.
+The example below shows how specific configuration options work in different configuration scopes for a replica set with a manual failover.
+You can learn more about configuring replication from :ref:`Replication tutorials <how-to-replication>`.
 
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
     :language: yaml
+    :emphasize-lines: 1-8,10-12,14-15,21,24-25,27-28,30-31
     :end-before: Load sample data
     :dedent:
 
 -   ``credentials`` (*global*)
 
-    Options in this section grant the specified privileges to the *replicator* user used for replication and
-    the *client* user that can perform any action.
+    Options in this section grant the specified roles to the *replicator* and *client* users.
     These options are applied globally to all instances.
 
 -   ``iproto`` (*global*, *instance*)
 
     The ``iproto`` section is specified on both global and instance levels.
-    The ``iproto.advertise.peer`` option specifies a user name and a host used by replicas to connect to each other.
-    In this example, a host is not specified and taken from ``iproto.listen`` set on the instance level.
+    The ``iproto.advertise.peer`` option specifies a URI used by an instance to connect to another instance as a replica.
+    In the example above, the URI includes a user name only.
+    A host value is taken from ``iproto.listen`` that is set on the instance level.
 
 -   ``replication``: (*global*)
 
@@ -140,9 +141,8 @@ and describes how specific configuration options work in different configuration
 
 -   ``leader``: (*replica set*)
 
-    The ``<replicaset-name>.leader`` option sets a :ref:`master <replication-roles>` instance for the specified replica set.
+    The ``<replicaset-name>.leader`` option sets a :ref:`master <replication-roles>` instance for *replicaset001*.
 
-To learn more about configuring replication and sharding, see :ref:`Replication tutorials <how-to-replication>` and :ref:`Quick start with sharding <vshard-quick-start>` sections.
 
 
 .. _configuration_application:
@@ -166,7 +166,7 @@ use the ``config:get()`` function provided by the :ref:`config <config-module>` 
     :language: lua
     :dedent:
 
-As a result of :ref:`running <configuration_run_instance>` the *instance001*, a log should contain the following line:
+As a result of :ref:`starting <configuration_run_instance>` the *instance001*, a log should contain the following line:
 
 .. code-block:: console
 
@@ -191,19 +191,25 @@ Learn more about using Tarantool as the application server from :ref:`Developing
 
 
 
-.. _configuration_templating:
+.. _configuration_predefined_variables:
 
-Templating
-**********
+Predefined variables
+********************
 
-In a configuration file, you can use predefined variables that are replaced with actual values at runtime.
+In a configuration file, you can use the following predefined variables that are replaced with actual values at runtime:
+
+-   ``instance_name``
+-   ``replicaset_name``
+-   ``group_name``
+
+To reference such variables in a configuration file, use double curly braces.
 In the example below, ``{{ instance_name }}`` is replaced with *instance001*.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/templating/config.yaml
     :language: yaml
     :dedent:
 
-As a result, the paths to snapshots and write-ahead logs differ for different instances.
+As a result, the :ref:`paths to snapshots and write-ahead logs <configuration_options_directories>` differ for different instances.
 
 
 
@@ -228,48 +234,76 @@ To see all the supported environment variables, execute the ``tarantool`` comman
 
     $ tarantool --help-env-list
 
-Below are a few examples that show how to set environment variables of different types:
+Below are a few examples that show how to set environment variables of different types, like *string*, *number*, *array*, or *map*:
 
-*   In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:
+*   (*String*) In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:
 
     ..  code-block:: console
 
         $ export TT_IPROTO_LISTEN='127.0.0.1:3311'
 
-*   To specify several listening addresses, separate them by a comma without space:
+    To specify several listening addresses, separate them by a comma without space:
 
     ..  code-block:: console
 
         $ export TT_IPROTO_LISTEN='127.0.0.1:3311,127.0.0.1:3312'
 
-*   To assign map values to environment variables, use JSON objects.
-    In the example below, ``TT_APP_CFG`` is used to specify the value of a custom configuration property for a :ref:`loaded application <configuration_application>:
+*   (*Number*) In this example, ``TT_LOG_LEVEL`` is used to set a logging level to 3 (``CRITICAL``):
+
+    ..  code-block:: console
+
+        $ export TT_LOG_LEVEL=3
+
+*   (*Array*) The examples below show how to set the ``TT_SHARDING_ROLES`` variable that accepts an array value.
+    Arrays can be passed in a *simple* ...
+
+    ..  code-block:: console
+
+        $ export TT_SHARDING_ROLES=router,storage
+
+    or *JSON* format:
+
+    ..  code-block:: console
+
+        $ export TT_SHARDING_ROLES='["router", "storage"]'
+
+    The *simple* format is applicable only to arrays containing scalar values.
+
+*   (*Map*) To assign map values to environment variables, you can also use *simple* or *JSON* formats.
+    In the example below, ``TT_LOG_MODULES`` sets different logging levels for different modules using a *simple* format:
+
+    ..  code-block:: console
+
+        $ export TT_LOG_MODULES=module1=info,module2=error
+
+    In the next example, ``TT_APP_CFG`` is used to specify the value of a custom configuration property for a :ref:`loaded application <configuration_application>` using a *JSON* format:
 
     .. code-block:: console
 
         $ export TT_APP_CFG='{"greeting":"Hi"}'
 
+    The *simple* format is applicable only to maps containing scalar values.
+
 
 .. NOTE::
 
-    The ``TT_INSTANCE_NAME`` and ``TT_CONFIG`` environment variables can be used to :ref:`run <configuration_run_instance>` the specified Tarantool instance with configuration from the given file.
+    There are also special ``TT_INSTANCE_NAME`` and ``TT_CONFIG`` environment variables that can be used to :ref:`start <configuration_run_instance_tarantool>` the specified Tarantool instance with configuration from the given file.
 
 
 
 
 
 
-.. _configuration_centralized:
+.. _configuration_etcd_overview:
 
-Centralized configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration in etcd
+~~~~~~~~~~~~~~~~~~~~~
 
-..  admonition:: Enterprise Edition
-    :class: fact
+..  include:: /concepts/configuration/configuration_etcd.rst
+    :start-after: ee_note_etcd_start
+    :end-before: ee_note_etcd_end
 
-    Centralized configuration is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
-
-Tarantool enables you to store configuration data in one reliable place using etcd.
+Tarantool enables you to store configuration data in one reliable place using `etcd <https://etcd.io/>`_.
 To achieve this, you need to:
 
 1.   Provide a local YAML configuration with an etcd endpoint address and key prefix in the ``config`` section:
@@ -288,14 +322,14 @@ Learn more from the following guide: :ref:`Storing configuration in etcd <config
 Configuration precedence
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tarantool configuration options are applied in the following order:
+Tarantool configuration options are applied from multiple sources with the following precedence, from highest to lowest:
 
--   `TT_*_DEFAULT` :ref:`environment variables <configuration_environment_variable>`.
--   :ref:`Centralized configuration <configuration_centralized>` stored in etcd.
--   Configuration from a :ref:`local YAML file <configuration_file>`.
 -   `TT_*` :ref:`environment variables <configuration_environment_variable>`.
+-   Configuration from a :ref:`local YAML file <configuration_file>`.
+-   :ref:`Centralized configuration <configuration_etcd_overview>` stored in etcd.
+-   `TT_*_DEFAULT` :ref:`environment variables <configuration_environment_variable>`.
 
-This means that `TT_*` environment variables have a higher priority than other configuration ways.
+If the same option is defined in two or more locations, the option with the highest precedence is applied.
 
 
 
@@ -352,7 +386,7 @@ Below are a few examples on how to do this:
     .. code-block:: yaml
 
         iproto:
-          listen: "unix/:./{{ instance_name }}.iproto"
+          listen: "unix/:./var/run/{{ instance_name }}/tarantool.iproto"
 
 
 .. _configuration_options_access_control:
@@ -379,7 +413,7 @@ To learn more, see the :ref:`Access control <authentication>` section.
 Memory
 ~~~~~~
 
-The ``memtx.memory`` option specifies how much memory Tarantool allocates to actually store data.
+The ``memtx.memory`` option specifies how much :ref:`memory <engines-memtx>` Tarantool allocates to actually store data.
 
 .. code-block:: yaml
 
@@ -395,15 +429,17 @@ Snapshots and write-ahead logs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``snapshot.dir`` and ``wal.dir`` options can be used to configure directories for storing snapshots and write-ahead logs.
+For example, you can place snapshots and write-ahead logs on different hard drives for better reliability.
 
 .. code-block:: yaml
 
     instance001:
       snapshot:
-        dir: 'var/snapshots'
+        dir: '/media/drive1/snapshots'
       wal:
-        dir: 'var/wals'
+        dir: '/media/drive2/wals'
 
+To learn more about the persistence mechanism in Tarantool, see the :ref:`Persistence <concepts-data_model-persistence>` section.
 
 
 .. _configuration_run_instance:
@@ -423,11 +459,12 @@ The example below shows how a :ref:`layout <admin-start_stop_instance-multi-inst
 
 .. code-block:: none
 
-    instances.enabled
-    └── app
-        ├── config.yaml
-        ├── myapp.lua
-        └── instances.yml
+    ├── tt.yaml
+    └── instances.enabled
+        └── app
+            ├── config.yaml
+            ├── myapp.lua
+            └── instances.yml
 
 *   ``config.yaml`` is a :ref:`configuration file <configuration_file>`.
 *   ``myapp.lua`` is a Lua script containing an :ref:`application to load <configuration_application>`.
@@ -447,6 +484,7 @@ To start all instances, use the ``tt start app`` command:
             • Starting an instance [app:instance002]...
             • Starting an instance [app:instance003]...
 
+Then, you can connect to Tarantool instances by its names using the ``tt connect`` command.
 You can learn more from the :ref:`Starting and stopping instances <admin-start_stop_instance>` section.
 
 
@@ -461,7 +499,7 @@ Below is the syntax for starting a Tarantool instance configured in a file:
 
 ..  code-block:: console
 
-    $ tarantool --name INSTANCE_NAME --config CONFIG_FILE_PATH [OPTION ...]
+    $ tarantool [OPTION ...] --name INSTANCE_NAME --config CONFIG_FILE_PATH
 
 The command below starts ``instance001`` configured in the ``config.yaml`` file:
 
@@ -475,7 +513,7 @@ The command below starts ``instance001`` configured in the ``config.yaml`` file:
 Command-line options
 ********************
 
-Options that can be passed when :ref:`running a Tarantool instance <configuration_run_instance_tarantool>`:
+Options that can be passed when :ref:`starting a Tarantool instance <configuration_run_instance_tarantool>`:
 
 ..  option:: -h, --help
 
@@ -483,7 +521,7 @@ Options that can be passed when :ref:`running a Tarantool instance <configuratio
 
 ..  option:: --help-env-list
 
-    **Since:** :tarantool-release:`3.0.0`
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Show a list of :ref:`environment variables <configuration_environment_variable>` that can be used to configure Tarantool.
 
@@ -513,7 +551,7 @@ Options that can be passed when :ref:`running a Tarantool instance <configuratio
 
 ..  option:: -c, --config PATH
 
-    **Since:** :tarantool-release:`3.0.0`
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Set a path to a :ref:`YAML configuration file <configuration_file>`.
     You can also configure this value using the ``TT_CONFIG`` environment variable.
@@ -522,7 +560,7 @@ Options that can be passed when :ref:`running a Tarantool instance <configuratio
 
 ..  option:: -n, --name INSTANCE
 
-    **Since:** :tarantool-release:`3.0.0`
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Set the name of an instance to run.
     You can also configure this value using the ``TT_INSTANCE_NAME`` environment variable.

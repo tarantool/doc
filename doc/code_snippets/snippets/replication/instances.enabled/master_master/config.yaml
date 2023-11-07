@@ -17,8 +17,6 @@ groups:
       replicaset001:
         instances:
           instance001:
-            app:
-              file: 'load_data.lua'
             database:
               mode: rw
             iproto:

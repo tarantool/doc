@@ -3,13 +3,17 @@
 Storing configuration in etcd
 =============================
 
+.. ee_note_etcd_start
+
 ..  admonition:: Enterprise Edition
     :class: fact
 
     Storing configuration in etcd is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-Tarantool enables you to store configuration data in one place using etcd.
-To achieve this, you need to define how to access etcd and put a :ref:`YAML configuration <configuration_file>` to an etcd server.
+.. ee_note_etcd_end
+
+Tarantool enables you to store configuration data in one place using `etcd <https://etcd.io/>`_.
+To achieve this, you need to define how to access etcd and publish a cluster's :ref:`YAML configuration <configuration_file>` to an etcd server.
 
 
 .. _etcd_local_configuration:
@@ -28,7 +32,7 @@ At least, the following options should be specified:
     :dedent:
 
 -   :ref:`config.etcd.endpoints <config_etcd_endpoints>` specifies the list of etcd endpoints.
--   :ref:`config.etcd.prefix <config_etcd_prefix>` sets a key prefix used to search a configuration. Tarantool searches keys by the following path: ``/prefix/config/*``.
+-   :ref:`config.etcd.prefix <config_etcd_prefix>` sets a key prefix used to search a configuration. Tarantool searches keys by the following path: ``<prefix>/config/*``. Note that ``<prefix>`` should start with a slash (``/``).
 
 
 You can also provide additional etcd connection options:
@@ -41,7 +45,7 @@ In this example, the following options are configured in addition to an etcd end
 
 -   :ref:`config.etcd.username <config_etcd_username>` and :ref:`config.etcd.password <config_etcd_password>` specify credentials used for authentication.
 -   :ref:`config.etcd.ssl.ca_file <config_etcd_ssl_ca_file>` specifies a path to a trusted certificate authorities (CA) file.
--   :ref:`config.etcd.http.request.timeout <config_etcd_http_request_timeout>` configures a timeout for connecting to an etcd server.
+-   :ref:`config.etcd.http.request.timeout <config_etcd_http_request_timeout>` configures a request timeout for an etcd server.
 
 You can find all the available configuration options in the :ref:`etcd <configuration_reference_config_etcd>` section.
 
@@ -64,11 +68,12 @@ The example below shows how a :ref:`layout <admin-start_stop_instance-multi-inst
 
 .. code-block:: none
 
-    instances.enabled
-    └── app
-        ├── config.yaml
-        ├── cluster.yaml
-        └── instances.yml
+    ├── tt.yaml
+    └── instances.enabled
+        └── app
+            ├── config.yaml
+            ├── cluster.yaml
+            └── instances.yml
 
 *   ``config.yaml`` contains a :ref:`local configuration <etcd_local_configuration>` used to connect to etcd.
 *   ``cluster.yaml`` contains a cluster's configuration to be published.
@@ -104,7 +109,22 @@ To publish a cluster's configuration using the ``etcdctl`` utility, use the ``pu
 Starting Tarantool instances
 ----------------------------
 
-To learn how to start Tarantool instances, see the :ref:`Starting Tarantool instances <configuration_run_instance>` section.
+The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances.
+You can learn how to do this from the :ref:`Starting instances using the tt utility <configuration_run_instance_tt>` section.
+
+You can also use the ``tarantool`` command to :ref:`start a Tarantool instance <configuration_run_instance_tarantool>`.
+In this case, you can eliminate creating a :ref:`local etcd configuration  <etcd_local_configuration>` and provide etcd connection settings using the ``TT_CONFIG_ETCD_ENDPOINTS`` and ``TT_CONFIG_ETCD_PREFIX`` :ref:`environment variables <configuration_environment_variable>`.
+
+.. code-block:: console
+
+    $ export TT_CONFIG_ETCD_ENDPOINTS=http://localhost:2379
+    $ export TT_CONFIG_ETCD_PREFIX=/example
+
+    $ tarantool --name instance001
+    $ tarantool --name instance002
+    $ tarantool --name instance003
+
+
 
 
 .. _etcd_reloading_configuration:
@@ -122,7 +142,7 @@ If necessary, you can set the :ref:`config.reload <configuration_reference_confi
       etcd:
         # ...
 
-In this case, you can reload a configuration in the :ref:`application code <configuration_application>` using the ``reload()`` function provided by the :ref:`config <config-module>` module:
+In this case, you can reload a configuration in an :ref:`admin console <admin-security>` or :ref:`application code <configuration_application>` using the ``reload()`` function provided by the :ref:`config <config-module>` module:
 
 .. code-block:: lua
 

@@ -15,7 +15,6 @@ groups:
   group001:
     replicasets:
       replicaset001:
-        leader: instance002
         instances:
           instance001:
             iproto:
