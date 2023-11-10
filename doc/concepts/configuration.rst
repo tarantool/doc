@@ -3,17 +3,23 @@
 Configuration
 =============
 
+Tarantool provides the ability to configure the full topology of a cluster and set parameters specific for concrete instances, such as connection settings, memory used to store data, logging, and snapshot settings.
+Each instance uses this configuration during :ref:`startup <configuration_run_instance>` to organize the cluster.
+
 There are two approaches to configuring Tarantool:
 
-*   *Since version 3.0*: In a YAML file.
+*   *Since version 3.0*: In the YAML format.
 
-    In a YAML file, you can provide the full cluster topology and specify all configuration options.
-    You can also use :ref:`etcd <configuration_etcd_overview>` to store configuration data in one reliable place.
+    YAML configuration allows you to provide the full cluster topology and specify all configuration options.
+    You can use local configuration in a YAML file for each instance or store configuration data in one reliable place using :ref:`etcd <configuration_etcd_overview>`.
 
 *   *In version 2.11 and earlier*: :ref:`In code <configuration_code>` using the ``box.cfg`` API.
 
     In this case, configuration is provided in a Lua initialization script.
-    Starting with the 3.0 version, configuring Tarantool in code is considered a legacy approach.
+
+    .. NOTE::
+
+        Starting with the 3.0 version, configuring Tarantool in code is considered a legacy approach.
 
 
 ..  _configuration_overview:
@@ -21,13 +27,33 @@ There are two approaches to configuring Tarantool:
 Configuration overview
 ----------------------
 
-A YAML configuration file describes the full topology of a Tarantool cluster.
+YAML configuration describes the full topology of a Tarantool cluster.
 A cluster's topology includes the following elements, starting from the lower level:
 
--   An *instance* is a member of the cluster that stores data or might act as a router for handling CRUD requests in a :ref:`sharded <sharding>` cluster.
--   A *replica set* is a pack of instances that operate on copies of the same databases.
+..  code-block:: yaml
+    :emphasize-lines: 1,3,5
+
+    groups:
+      group001:
+        replicasets:
+          replicaset001:
+            instances:
+              instance001:
+                # ...
+              instance002:
+                # ...
+
+-   ``instances``
+
+    An *instance* represents a single running Tarantool instance.
+    It stores data or might act as a router for handling CRUD requests in a :ref:`sharded <sharding>` cluster.
+-   ``replicasets``
+
+    A *replica set* is a pack of instances that operate on same data sets.
     :ref:`Replication <replication>` provides redundancy and increases data availability.
--   A *group* provides the ability to organize replica sets.
+-   ``groups``
+
+    A *group* provides the ability to organize replica sets.
     For example, in a sharded cluster, one group can contain :ref:`storage <vshard-architecture-storage>` instances and another group can contain :ref:`routers <vshard-architecture-router>` used to handle CRUD requests.
 
 You can flexibly configure a cluster's settings on different levels: from global settings applied to all groups to parameters specific for concrete instances.
@@ -96,7 +122,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
 -   *Global*
 
-    In this example, ``iproto.listen`` is applied to all instances of all groups.
+    In this example, ``iproto.listen`` is applied to all instances of the cluster.
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/global_scope/config.yaml
         :language: yaml
@@ -106,7 +132,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
 .. NOTE::
 
-    The :ref:`Configuration reference <configuration_reference>` contains information to which scopes each configuration option can be applied.
+    The :ref:`Configuration reference <configuration_reference>` contains information about scopes to which each configuration option can be applied.
 
 
 .. _configuration_replica_set_scopes:
@@ -119,13 +145,12 @@ You can learn more about configuring replication from :ref:`Replication tutorial
 
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
     :language: yaml
-    :emphasize-lines: 1-8,10-12,14-15,21,24-25,27-28,30-31
     :end-before: Load sample data
     :dedent:
 
 -   ``credentials`` (*global*)
 
-    Options in this section grant the specified roles to the *replicator* and *client* users.
+    This section is used to create the *replicator* and *client* users and assign them the specified roles.
     These options are applied globally to all instances.
 
 -   ``iproto`` (*global*, *instance*)
@@ -150,7 +175,7 @@ You can learn more about configuring replication from :ref:`Replication tutorial
 Loading an application
 **********************
 
-Using Tarantool as an application server, you can write your own applications in Lua.
+Using Tarantool as an application server, you can run your own Lua applications.
 In the ``app`` section, you can load the application and provide a custom application configuration in the ``cfg`` section.
 
 In the example below, the application is loaded from the ``myapp.lua`` file placed next to the YAML configuration file:
@@ -202,7 +227,7 @@ In a configuration file, you can use the following predefined variables that are
 -   ``replicaset_name``
 -   ``group_name``
 
-To reference such variables in a configuration file, use double curly braces.
+To reference these variables in a configuration file, enclose them in double curly braces with whitespaces.
 In the example below, ``{{ instance_name }}`` is replaced with *instance001*.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/templating/config.yaml
@@ -220,10 +245,10 @@ Environment variables
 
 For each configuration parameter, Tarantool provides two sets of predefined environment variables:
 
-*   Variables whose names start with ``TT_`` are used to substitute parameters specified in a configuration file.
+*   ``TT_<CONFIG_PARAMETER>``. These variables are used to substitute parameters specified in a configuration file.
     This means that these variables have a higher :ref:`priority <configuration_precedence>` than the options specified in a configuration file.
 
-*   Variables whose names start with ``TT_`` and end with ``_DEFAULT`` are used to specify default values for parameters missing in a configuration file.
+*   ``TT_<CONFIG_PARAMETER>_DEFAULT``. These variables are used to specify default values for parameters missing in a configuration file.
     These variables have a lower :ref:`priority <configuration_precedence>` than the options specified in a configuration file.
 
 For example, ``TT_IPROTO_LISTEN`` and ``TT_IPROTO_LISTEN_DEFAULT`` correspond to the ``iproto.listen`` option.
@@ -236,7 +261,7 @@ To see all the supported environment variables, execute the ``tarantool`` comman
 
 Below are a few examples that show how to set environment variables of different types, like *string*, *number*, *array*, or *map*:
 
-*   (*String*) In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:
+*   String. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:
 
     ..  code-block:: console
 
@@ -248,20 +273,20 @@ Below are a few examples that show how to set environment variables of different
 
         $ export TT_IPROTO_LISTEN='127.0.0.1:3311,127.0.0.1:3312'
 
-*   (*Number*) In this example, ``TT_LOG_LEVEL`` is used to set a logging level to 3 (``CRITICAL``):
+*   Number. In this example, ``TT_LOG_LEVEL`` is used to set a logging level to 3 (``CRITICAL``):
 
     ..  code-block:: console
 
         $ export TT_LOG_LEVEL=3
 
-*   (*Array*) The examples below show how to set the ``TT_SHARDING_ROLES`` variable that accepts an array value.
-    Arrays can be passed in a *simple* ...
+*   Array. The examples below show how to set the ``TT_SHARDING_ROLES`` variable that accepts an array value.
+    Arrays can be passed in two ways: using a *simple* ...
 
     ..  code-block:: console
 
         $ export TT_SHARDING_ROLES=router,storage
 
-    or *JSON* format:
+    ... or *JSON* format:
 
     ..  code-block:: console
 
@@ -269,7 +294,7 @@ Below are a few examples that show how to set environment variables of different
 
     The *simple* format is applicable only to arrays containing scalar values.
 
-*   (*Map*) To assign map values to environment variables, you can also use *simple* or *JSON* formats.
+*   Map. To assign map values to environment variables, you can also use *simple* or *JSON* formats.
     In the example below, ``TT_LOG_MODULES`` sets different logging levels for different modules using a *simple* format:
 
     ..  code-block:: console
@@ -394,7 +419,7 @@ Below are a few examples on how to do this:
 Access control
 ~~~~~~~~~~~~~~
 
-The ``credentials`` section allows you to grant the specified privileges to users.
+The ``credentials`` section allows you to create users and grant them the specified privileges.
 In the example below, there are two users:
 
 *   The *replicator* user is used for replication and has a corresponding role.
