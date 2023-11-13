@@ -124,6 +124,8 @@ With a single ``tt`` call, you can:
 *   connect to a specific instance of an application
 *   stop a specific instance of an application or all its instances
 
+.. _admin-start_stop_instance-multi-instance-layout:
+
 Application layout
 ~~~~~~~~~~~~~~~~~~
 
