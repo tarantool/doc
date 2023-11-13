@@ -1,0 +1,55 @@
+credentials:
+  users:
+    replicator:
+      password: 'topsecret'
+      roles: [replication]
+    storage:
+      password: 'secret'
+      roles: [super]
+
+iproto:
+  advertise:
+    peer: replicator@
+    sharding: storage@
+
+sharding:
+  bucket_count: 1000
+
+groups:
+  storages:
+    app:
+      module: storage
+    sharding:
+      roles: [storage]
+    replication:
+      failover: manual
+    replicasets:
+      storage-a:
+        leader: storage-a-001
+        instances:
+          storage-a-001:
+            iproto:
+              listen: 127.0.0.1:3301
+          storage-a-002:
+            iproto:
+              listen: 127.0.0.1:3302
+      storage-b:
+        leader: storage-b-002
+        instances:
+          storage-b-001:
+            iproto:
+              listen: 127.0.0.1:3303
+          storage-b-002:
+            iproto:
+              listen: 127.0.0.1:3304
+  routers:
+    app:
+      module: router
+    sharding:
+      roles: [router]
+    replicasets:
+      router-a:
+        instances:
+          router-a-001:
+            iproto:
+              listen: 127.0.0.1:3300
