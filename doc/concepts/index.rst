@@ -111,6 +111,7 @@ For details, check the :ref:`Storage engines <engines-chapter>` section.
 ..  toctree::
     :hidden:
 
+    configuration
     data_model/index
     coop_multitasking
     atomic
