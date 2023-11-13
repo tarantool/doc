@@ -12,7 +12,7 @@ Configuration in code
 
 .. box_cfg_legacy_note_end
 
-This topic covers specifics of configuring Tarantool in code using the ``box.cfg`` API.
+This topic covers the specifics of configuring Tarantool in code using the ``box.cfg`` API.
 In this case, a configuration is stored in an :ref:`initialization file <index-init_label>` - a Lua script with the specified configuration options.
 You can find all the available options in the :ref:`Configuration reference <box-cfg-params-ref>`.
 
@@ -43,7 +43,7 @@ server will be used or if ports need to be opened. For example, suppose
     }
     print('Starting ', arg[1])
 
-and suppose the environment variable LISTEN_URI contains 3301,
+and suppose the environment variable ``LISTEN_URI`` contains 3301,
 and suppose the command line is ``tarantool init.lua ARG``.
 Then the screen might look like this:
 
@@ -76,8 +76,8 @@ where ``<NAME>`` is the uppercase name of the corresponding :ref:`box.cfg parame
 
 For example:
 
-* ``TT_LISTEN`` -- corresponds to the ``box.cfg.listen`` option.
-* ``TT_MEMTX_DIR`` -- corresponds to the ``box.cfg.memtx_dir`` option.
+* ``TT_LISTEN`` -- corresponds to the :ref:`box.cfg.listen <cfg_basic-listen>` option.
+* ``TT_MEMTX_DIR`` -- corresponds to the :ref:`box.cfg.memtx_dir <cfg_basic-memtx_dir>` option.
 
 In case of an array value, separate the array elements by a comma without space:
 
@@ -91,7 +91,7 @@ If you need to pass :ref:`additional parameters for URI <index-uri-several-param
 
     export TT_LISTEN="localhost:3301?param1=value1&param2=value2"
 
-An empty variable (``TT_LISTEN=``) has the same effect as an unset one meaning that the corresponding configuration parameter won't be set when calling ``box.cfg{}``.
+An empty variable (``TT_LISTEN=``) has the same effect as an unset one, meaning that the corresponding configuration parameter won't be set when calling ``box.cfg{}``.
 
 
 
@@ -179,7 +179,7 @@ name is specified unless the user name is 'guest'.
 
 Formally, the URI
 syntax is ``[host:]port`` or ``[username:password@]host:port``.
-If a host is omitted, then "0.0.0.0" or "[::]" is assumed
+If a host is omitted, then "0.0.0.0" or "[::]" is assumed,
 meaning respectively any IPv4 address or any IPv6 address
 on the local machine.
 If ``username:password`` is omitted, then the "guest" user is assumed. Some examples:
@@ -208,8 +208,8 @@ In code, the URI value can be passed as a number (if only a port is specified) o
     box.cfg { listen = "127.0.0.1:3301" }
 
 In certain circumstances, a Unix domain socket may be used
-where a URI is expected, for example, "unix/:/tmp/unix_domain_socket.sock" or
-simply "/tmp/unix_domain_socket.sock".
+where a URI is expected, for example, ``unix/:/tmp/unix_domain_socket.sock`` or
+simply ``/tmp/unix_domain_socket.sock``.
 
 The :ref:`uri <uri-module>` module provides functions that convert URI strings into their
 components or turn components into URI strings.

@@ -34,14 +34,12 @@ At least, the following options should be specified:
 -   :ref:`config.etcd.endpoints <config_etcd_endpoints>` specifies the list of etcd endpoints.
 -   :ref:`config.etcd.prefix <config_etcd_prefix>` sets a key prefix used to search a configuration. Tarantool searches keys by the following path: ``<prefix>/config/*``. Note that ``<prefix>`` should start with a slash (``/``).
 
-
-You can also provide additional etcd connection options:
+You can also provide additional etcd connection options.
+In the example below, the following options are configured in addition to an endpoint and key prefix:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/etcd_full/config.yaml
     :language: yaml
     :dedent:
-
-In this example, the following options are configured in addition to an etcd endpoint and key prefix:
 
 -   :ref:`config.etcd.username <config_etcd_username>` and :ref:`config.etcd.password <config_etcd_password>` specify credentials used for authentication.
 -   :ref:`config.etcd.ssl.ca_file <config_etcd_ssl_ca_file>` specifies a path to a trusted certificate authorities (CA) file.
