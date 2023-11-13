@@ -1,0 +1,8 @@
+groups:
+  group001:
+    iproto:
+      listen: "3301"
+    replicasets:
+      replicaset001:
+        instances:
+          instance001: {}

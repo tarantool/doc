@@ -1,0 +1,13 @@
+app:
+  file: 'myapp.lua'
+  cfg:
+    greeting: 'Hello'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen: "3301"
