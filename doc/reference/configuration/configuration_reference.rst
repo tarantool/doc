@@ -3,12 +3,279 @@
 Configuration reference
 =======================
 
+..  TODO
+    https://github.com/tarantool/doc/issues/3664
+
 This topic describes all :ref:`configuration parameters <configuration>` provided by Tarantool.
+
+
+..  _configuration_reference_config_parameter:
+
+<config_parameter>
+------------------
+
+Any configuration parameter that can be defined in the global :ref:`scope <configuration_scopes>`.
+For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the global level are applied to all instances in the cluster.
+
+
+..  _configuration_reference_groups:
+
+groups
+------
+
+The ``groups`` section provides the ability to define the :ref:`full topology of a Tarantool cluster <configuration_overview>`.
+
+.. NOTE::
+
+    ``groups`` can be defined in the global :ref:`scope <configuration_scopes>` only.
+
+-   :ref:`groups.\<group_name\> <configuration_reference_groups_name>`
+-   :ref:`groups.\<group_name\>.replicasets <configuration_reference_groups_name_replicasets>`
+-   :ref:`groups.\<group_name\>.\<config_parameter\> <configuration_reference_groups_name_config_parameter>`
+
+.. _configuration_reference_groups_name:
+
+.. confval:: groups.<group_name>
+
+    A group name.
+
+
+.. _configuration_reference_groups_name_replicasets:
+
+.. confval:: groups.<group_name>.replicasets
+
+    Replica sets that belong to this group. See :ref:`replicasets <configuration_reference_replicasets>`.
+
+
+.. _configuration_reference_groups_name_config_parameter:
+
+.. confval:: groups.<group_name>.<config_parameter>
+
+    Any configuration parameter that can be defined in the group :ref:`scope <configuration_scopes>`.
+    For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the group level are applied to all instances in this group.
+
+
+
+..  _configuration_reference_replicasets:
+
+replicasets
+~~~~~~~~~~~
+
+.. NOTE::
+
+    ``replicasets`` can be defined in the group :ref:`scope <configuration_scopes>` only.
+
+-   :ref:`replicasets.\<replicaset_name\> <configuration_reference_replicasets_name>`
+-   :ref:`replicasets.\<replicaset_name\>.leader <configuration_reference_replicasets_name_leader>`
+-   :ref:`replicasets.\<replicaset_name\>.bootstrap_leader <configuration_reference_replicasets_name_bootstrap_leader>`
+-   :ref:`replicasets.\<replicaset_name\>.instances <configuration_reference_replicasets_name_instances>`
+-   :ref:`replicasets.\<replicaset_name\>.\<config_parameter\> <configuration_reference_replicasets_name_config_parameter>`
+
+.. _configuration_reference_replicasets_name:
+
+.. confval:: replicasets.<replicaset_name>
+
+    A replica set name.
+
+
+.. _configuration_reference_replicasets_name_leader:
+
+.. confval:: replicasets.<replicaset_name>.leader
+
+    A replica set leader.
+    This option is in effect when ``manual`` :ref:`replication.failover <configuration_reference_replication_failover>` is used.
+
+    **Example**
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
+        :language: yaml
+        :start-at: replicaset001:
+        :end-at: listen: 127.0.0.1:3303
+        :dedent:
+
+
+.. _configuration_reference_replicasets_name_bootstrap_leader:
+
+.. confval:: replicasets.<replicaset_name>.bootstrap_leader
+
+    A bootstrap leader for a replica set.
+    To specify a bootstrap leader manually, you need to set :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>` to ``config``.
+
+    **Example**
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/bootstrap_strategy/config.yaml
+        :language: yaml
+        :start-at: replicaset001
+        :end-at: listen: 127.0.0.1:3303
+        :dedent:
+
+
+.. _configuration_reference_replicasets_name_instances:
+
+.. confval:: replicasets.<replicaset_name>.instances
+
+    Instances that belong to this replica set. See :ref:`instances <configuration_reference_instances>`.
+
+
+.. _configuration_reference_replicasets_name_config_parameter:
+
+.. confval:: replicasets.<replicaset_name>.<config_parameter>
+
+    Any configuration parameter that can be defined in the replica set :ref:`scope <configuration_scopes>`.
+    For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the replica set level are applied to all instances in this replica set.
+
+
+
+..  _configuration_reference_instances:
+
+instances
+*********
+
+.. NOTE::
+
+    ``instances`` can be defined in the replica set :ref:`scope <configuration_scopes>` only.
+
+-   :ref:`instances.\<instance_name\> <configuration_reference_instances_name>`
+-   :ref:`instances.\<instance_name\>.\<config_parameter\> <configuration_reference_instances_name_config_parameter>`
+
+.. _configuration_reference_instances_name:
+
+.. confval:: instances.<instance_name>
+
+    An instance name.
+
+
+.. _configuration_reference_instances_name_config_parameter:
+
+.. confval:: instances.<instance_name>.<config_parameter>
+
+    Any configuration parameter that can be defined in the instance :ref:`scope <configuration_scopes>`.
+    For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the instance level are applied to this instance only.
+
+
+..  _configuration_reference_credentials:
+
+credentials
+-----------
+
+..  TODO: https://github.com/tarantool/doc/issues/3666
+
+.. NOTE::
+
+    ``credentials`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+
+..  _configuration_reference_credentials_role:
+
+roles
+~~~~~
+
+.. _configuration_reference_credentials_roles:
+
+.. confval:: credentials.roles
+
+    | Type: map
+    | Default: nil
+    | Environment variable: TT_CREDENTIALS_ROLES
+
+.. _configuration_reference_credentials_roles_name_roles:
+
+.. confval:: credentials.roles.<role_name>.roles
+
+
+.. _configuration_reference_credentials_roles_name_privileges:
+
+.. confval:: credentials.roles.<role_name>.privileges
+
+    See :ref:`privileges <configuration_reference_credentials_privileges>`.
+
+
+..  _configuration_reference_credentials_user:
+
+users
+~~~~~
+
+
+.. _configuration_reference_credentials_users:
+
+.. confval:: credentials.users
+
+    | Type: map
+    | Default: nil
+    | Environment variable: TT_CREDENTIALS_USERS
+
+
+.. _configuration_reference_credentials_users_name_password:
+
+.. confval:: credentials.users.<username>.password
+
+
+.. _configuration_reference_credentials_users_name_roles:
+
+.. confval:: credentials.users.<username>.roles
+
+
+.. _configuration_reference_credentials_users_name_privileges:
+
+.. confval:: credentials.users.<username>.privileges
+
+    See :ref:`privileges <configuration_reference_credentials_privileges>`.
+
+
+..  _configuration_reference_credentials_privileges:
+
+privileges
+~~~~~~~~~~
+
+.. _configuration_reference_credentials_users_name_privileges_permissions:
+
+.. confval:: <user_or_role_name>.privileges.permissions
+
+
+.. _configuration_reference_credentials_users_name_privileges_spaces:
+
+.. confval:: <user_or_role_name>.privileges.spaces
+
+
+.. _configuration_reference_credentials_users_name_privileges_functions:
+
+.. confval:: <user_or_role_name>.privileges.functions
+
+
+.. _configuration_reference_credentials_users_name_privileges_sequences:
+
+.. confval:: <user_or_role_name>.privileges.sequences
+
+
+.. _configuration_reference_credentials_users_name_privileges_lua_eval:
+
+.. confval:: <user_or_role_name>.privileges.lua_eval
+
+
+.. _configuration_reference_credentials_users_name_privileges_lua_call:
+
+.. confval:: <user_or_role_name>.privileges.lua_call
+
+
+.. _configuration_reference_credentials_users_name_privileges_sql:
+
+.. confval:: <user_or_role_name>.privileges.sql
+
+
+
+
+
 
 ..  _configuration_reference_config:
 
 config
 ------
+
+The ``config`` section defines various parameters related to centralized configuration.
+
+.. NOTE::
+
+    ``config`` can be defined in the global :ref:`scope <configuration_scopes>` only.
 
 * :ref:`config.reload <configuration_reference_config_reload>`
 * :ref:`config.version <configuration_reference_config_version>`
@@ -50,8 +317,8 @@ config
 
 .. _configuration_reference_config_etcd:
 
-etcd
-~~~~
+config.etcd.*
+~~~~~~~~~~~~~
 
 ..  include:: /concepts/configuration/configuration_etcd.rst
     :start-after: ee_note_etcd_start
@@ -221,6 +488,718 @@ This section describes options related to :ref:`storing configuration in etcd <c
 
 
 
-..  TODO
-    https://github.com/tarantool/doc/issues/3664
+..  _configuration_reference_database:
+
+database
+--------
+
+The ``database`` section defines database-specific configuration parameters, such as an instance's read-write mode, transaction isolation level, and so on.
+
+.. NOTE::
+
+    ``database`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`database.hot_standby <configuration_reference_database_hot_standby>`
+-   :ref:`database.instance_uuid <configuration_reference_database_instance_uuid>`
+-   :ref:`database.mode <configuration_reference_database_mode>`
+-   :ref:`database.replicaset_uuid <configuration_reference_database_replicaset_uuid>`
+-   :ref:`database.txn_isolation <configuration_reference_database_txn_isolation>`
+-   :ref:`database.txn_timeout <configuration_reference_database_txn_timeout>`
+-   :ref:`database.use_mvcc_engine <configuration_reference_database_use_mvcc_engine>`
+
+.. _configuration_reference_database_hot_standby:
+
+.. confval:: database.hot_standby
+
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_DATABASE_HOT_STANDBY
+
+
+.. _configuration_reference_database_instance_uuid:
+
+.. confval:: database.instance_uuid
+
+    An :ref:`instance UUID <replication_uuid>`.
+
+    By default, instance UUIDs are generated automatically.
+    ``database.instance_uuid`` can be used to specify an instance identifier manually.
+
+    UUIDs should follow these rules:
+
+    *   The values must be true unique identifiers, not shared by other instances
+        or replica sets within the common infrastructure.
+
+    *   The values must be used consistently, not changed after the initial setup.
+        The initial values are stored in :ref:`snapshot files <index-box_persistence>`
+        and are checked whenever the system is restarted.
+
+    *   The values must comply with `RFC 4122 <https://tools.ietf.org/html/rfc4122>`_.
+        The `nil UUID <https://tools.ietf.org/html/rfc4122#section-4.1.7>`_ is not allowed.
+
+    See also: :ref:`database.replicaset_uuid <configuration_reference_database_replicaset_uuid>`
+
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_DATABASE_INSTANCE_UUID
+
+
+.. _configuration_reference_database_mode:
+
+.. confval:: database.mode
+
+    An instance's operating mode.
+    The following modes are available:
+
+    -   ``rw``: an instance is in read-write mode.
+    -   ``ro``: an instance is in read-only mode.
+
+    If this option is not specified explicitly, its default value depends on the number of instances in a replica set. For a single instance, the ``rw`` mode is used, while for multiple instances, the ``ro`` mode is used.
+
+    **Example**
+
+    You can set the ``database.mode`` option to ``rw`` on all instances in a replica set to make a :ref:`master-master <replication-roles>` configuration.
+    In this case, :ref:`replication.failover <configuration_reference_replication_failover>` should be set to ``off``.
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/config.yaml
+        :language: yaml
+        :dedent:
+
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_DATABASE_MODE
+
+
+.. _configuration_reference_database_replicaset_uuid:
+
+.. confval:: database.replicaset_uuid
+
+    A :ref:`replica set UUID <replication_uuid>`.
+
+    By default, replica set UUIDs are generated automatically.
+    ``database.replicaset_uuid`` can be used to specify a replica set identifier manually.
+
+    See also: :ref:`database.instance_uuid <configuration_reference_database_instance_uuid>`
+
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_DATABASE_REPLICASET_UUID
+
+
+.. _configuration_reference_database_txn_isolation:
+
+.. confval:: database.txn_isolation
+
+    A transaction :ref:`isolation level <transaction_model_levels>`.
+
+    | Type: string
+    | Default: ``best-effort``
+    | Possible values: ``best-effort``, ``read-committed``, ``read-confirmed``
+    | Environment variable: TT_DATABASE_TXN_ISOLATION
+
+
+.. _configuration_reference_database_txn_timeout:
+
+.. confval:: database.txn_timeout
+
+    A timeout (in seconds) after which the transaction is rolled back.
+
+    See also: :ref:`box.begin() <box-begin>`
+
+    | Type: number
+    | Default: 3153600000
+    | Environment variable: TT_DATABASE_TXN_TIMEOUT
+
+
+.. _configuration_reference_database_use_mvcc_engine:
+
+.. confval:: database.use_mvcc_engine
+
+    Whether the :ref:`transactional manager <txn_mode_transaction-manager>` is enabled.
+
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_DATABASE_USE_MVCC_ENGINE
+
+
+
+
+
+..  _configuration_reference_iproto:
+
+iproto
+------
+
+The ``iproto`` section is used to configure parameters related to communicating to and between cluster instances.
+
+.. NOTE::
+
+    ``iproto`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`
+
+    -   :ref:`iproto.advertise.client <configuration_reference_iproto_advertise_client>`
+    -   :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
+    -   :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`
+
+-   :ref:`iproto.listen <configuration_reference_iproto_listen>`
+-   :ref:`iproto.net_msg_max <configuration_reference_iproto_net_msg_max>`
+-   :ref:`iproto.readahead <configuration_reference_iproto_readahead>`
+-   :ref:`iproto.threads <configuration_reference_iproto_threads>`
+
+
+..  _configuration_reference_iproto_advertise:
+
+iproto.advertise.*
+~~~~~~~~~~~~~~~~~~
+
+The ``iproto.advertise.*`` configuration options specify URIs used to advertise the current instance to other cluster members or clients.
+These options accept an URI in the following formats:
+
+-   User :ref:`credentials <configuration_reference_credentials>` and an address: ``username@host:port`` or ``username:password@host:port``.
+
+-   User credentials: ``username@`` or ``username:password@``.
+    In this case, an advertise address is taken from :ref:`iproto.listen <configuration_reference_iproto_listen>`.
+
+-   An address: ``host:port``.
+
+If ``password`` is missing, it is taken from :ref:`credentials <configuration_reference_credentials>` for the specified ``username``.
+
+You can also use a Unix domain socket (``unix/:``) instead of ``host:port``.
+
+.. NOTE::
+
+    The ``host`` value cannot be ``0.0.0.0``.
+
+
+.. _configuration_reference_iproto_advertise_client:
+
+.. confval:: iproto.advertise.client
+
+    An URI used to advertise the current instance to clients.
+
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_IPROTO_ADVERTISE_CLIENT
+
+.. _configuration_reference_iproto_advertise_peer:
+
+.. confval:: iproto.advertise.peer
+
+    An URI used to advertise the current instance to other cluster members.
+    For example, it can be used by an instance to connect to another instance as a replica.
+
+    **Example**
+
+    In the example below, the following configuration options are specified:
+
+    -   In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` user with the ``replication`` role is created.
+    -   ``iproto.advertise.peer`` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` using the ``replicator`` user.
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
+        :language: yaml
+        :start-at: credentials:
+        :end-at: peer: replicator@
+        :dedent:
+
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER
+
+.. _configuration_reference_iproto_advertise_sharding:
+
+.. confval:: iproto.advertise.sharding
+
+    An URI used by a router and rebalancer.
+
+    **Example**
+
+    In the example below, the following configuration options are specified:
+
+    -   In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` and ``storage`` users are created.
+    -   ``iproto.advertise.peer`` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` with the ``replicator`` user.
+    -   ``iproto.advertise.sharding`` specifies that a router should connect to storages using an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` with the ``storage`` user.
+
+    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+        :language: yaml
+        :start-at: credentials:
+        :end-at: sharding: storage@
+        :dedent:
+
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_IPROTO_ADVERTISE_SHARDING
+
+
+.. _configuration_reference_iproto_listen:
+
+.. confval:: iproto.listen
+
+    An address used to listen for incoming requests.
+    This address is used for different purposes, for example:
+
+    -   Communicating between cluster members.
+    -   Connecting to an instance using an :ref:`admin console <admin-security>`.
+    -   Connecting to an instance using :ref:`external APIs <index-box_connectors>`.
+
+    To grant the specified privileges for connecting to an instance, use the :ref:`credentials <configuration_reference_credentials>` configuration section.
+
+    **Example**
+
+    In the example below, ``iproto.listen`` is set explicitly for each instance in a cluster:
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
+        :language: yaml
+        :start-at: groups:
+        :end-before: Load sample data
+        :dedent:
+
+    See also: :ref:`Connection settings <configuration_options_connection>`.
+
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_IPROTO_LISTEN
+
+
+.. _configuration_reference_iproto_net_msg_max:
+
+.. confval:: iproto.net_msg_max
+
+    To handle messages, Tarantool allocates fibers.
+    To prevent fiber overhead from affecting the whole system,
+    Tarantool restricts how many messages the fibers handle,
+    so that some pending requests are blocked.
+
+    -   On powerful systems, increase ``net_msg_max`` and the scheduler
+        starts processing pending requests immediately.
+
+    -   On weaker systems, decrease ``net_msg_max`` and the overhead
+        may decrease although this may take some time because the
+        scheduler must wait until already-running requests finish.
+
+    When ``net_msg_max`` is reached,
+    Tarantool suspends processing of incoming packages until it
+    has processed earlier messages. This is not a direct restriction of
+    the number of fibers that handle network messages, rather it
+    is a system-wide restriction of channel bandwidth.
+    This in turn restricts the number of incoming
+    network messages that the
+    :ref:`transaction processor thread <thread_model>`
+    handles, and therefore indirectly affects the fibers that handle
+    network messages.
+
+    .. NOTE::
+
+        The number of fibers is smaller than the number of messages because
+        messages can be released as soon as they are delivered, while
+        incoming requests might not be processed until some time after delivery.
+
+    | Type: integer
+    | Default: 768
+    | Environment variable: TT_IPROTO_NET_MSG_MAX
+
+
+.. _configuration_reference_iproto_readahead:
+
+.. confval:: iproto.readahead
+
+    The size of the read-ahead buffer associated with a client connection.
+    The larger the buffer, the more memory an active connection consumes, and the
+    more requests can be read from the operating system buffer in a single
+    system call.
+
+    The recommendation is to make sure that the buffer can contain at least a few dozen requests.
+    Therefore, if a typical tuple in a request is large, e.g. a few kilobytes or even megabytes, the read-ahead buffer size should be increased.
+    If batched request processing is not used, it’s prudent to leave this setting at its default.
+
+    | Type: integer
+    | Default: 16320
+    | Environment variable: TT_IPROTO_READAHEAD
+
+
+.. _configuration_reference_iproto_threads:
+
+.. confval:: iproto.threads
+
+    The number of :ref:`network threads <thread_model>`.
+    There can be unusual workloads where the network thread
+    is 100% loaded and the transaction processor thread is not, so the network
+    thread is a bottleneck.
+    In that case, set ``iproto_threads`` to 2 or more.
+    The operating system kernel determines which connection goes to
+    which thread.
+
+    | Type: integer
+    | Default: 1
+    | Environment variable: TT_IPROTO_THREADS
+
+
+
+
+
+..  _configuration_reference_replication:
+
+replication
+-----------
+
+The ``replication`` section defines configuration parameters related to :ref:`replication <replication>`.
+
+.. NOTE::
+
+    ``replication`` can be defined in the global, group, and replica set :ref:`scope <configuration_scopes>`.
+
+-   :ref:`replication.anon <configuration_reference_replication_anon>`
+-   :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>`
+-   :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`
+-   :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
+-   :ref:`replication.election_timeout <configuration_reference_replication_election_timeout>`
+-   :ref:`replication.election_fencing_mode <configuration_reference_replication_election_fencing_mode>`
+-   :ref:`replication.failover <configuration_reference_replication_failover>`
+-   :ref:`replication.peers <configuration_reference_replication_peers>`
+-   :ref:`replication.skip_conflict <configuration_reference_replication_skip_conflict>`
+-   :ref:`replication.sync_lag <configuration_reference_replication_sync_lag>`
+-   :ref:`replication.sync_timeout <configuration_reference_replication_sync_timeout>`
+-   :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>`
+-   :ref:`replication.synchro_timeout <configuration_reference_replication_synchro_timeout>`
+-   :ref:`replication.threads <configuration_reference_replication_threads>`
+-   :ref:`replication.timeout <configuration_reference_replication_timeout>`
+
+
+.. _configuration_reference_replication_anon:
+
+.. confval:: replication.anon
+
+    | Type: boolean
+    | Default: ``false``
+    | Environment variable: TT_REPLICATION_ANON
+
+
+.. _configuration_reference_replication_bootstrap_strategy:
+
+.. confval:: replication.bootstrap_strategy
+
+    Specifies a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`.
+    The following strategies are available:
+
+    *   ``auto``: a node doesn't boot if half or more of the other nodes in a replica set are not connected.
+        For example, if a replica set contains 2 or 3 nodes, a node requires 2 connected instances.
+        In the case of 4 or 5 nodes, at least 3 connected instances are required.
+        Moreover, a bootstrap leader fails to boot unless every connected node has chosen it as a bootstrap leader.
+
+    *   ``config``: use the specified node to bootstrap a replica set.
+        To specify the bootstrap leader, use the :ref:`<replicaset_name>.bootstrap_leader <configuration_reference_replicasets_name_bootstrap_leader>` option.
+
+    *   ``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using ``box.ctl.make_bootstrap_leader()`` on the desired node.
+
+        Configuration fails if no bootstrap leader is appointed during a :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`.
+
+    *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
+        This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
+
+    | Type: string
+    | Default: ``auto``
+    | Environment variable: TT_REPLICATION_BOOTSTRAP_STRATEGY
+
+
+.. _configuration_reference_replication_connect_timeout:
+
+.. confval:: replication.connect_timeout
+
+    A timeout (in seconds) a replica waits when trying to connect to a master in a cluster.
+    See :ref:`orphan status <replication-orphan_status>` for details.
+
+    This parameter is different from
+    :ref:`replication.timeout <configuration_reference_replication_timeout>`,
+    which a master uses to disconnect a replica when the master
+    receives no acknowledgments of heartbeat messages.
+
+    | Type: number
+    | Default: 30
+    | Environment variable: TT_REPLICATION_CONNECT_TIMEOUT
+
+
+.. _configuration_reference_replication_election_mode:
+
+.. confval:: replication.election_mode
+
+    A role of a replica set node in the :ref:`leader election process <repl_leader_elect>`.
+
+    The possible values are:
+
+    *   ``off``
+
+        A node doesn't participate in the election activities.
+
+    *   ``voter``
+
+        A node can participate in the election process but can't be a leader.
+
+    *   ``candidate``
+
+        A node should be able to become a leader.
+
+    *   ``manual``
+
+        Allow to control which instance is the leader explicitly instead of relying on automated leader election.
+
+        By default, the instance acts like a voter -- it is read-only and may vote for other candidate instances.
+        Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round.
+        If the instance wins the elections, it becomes a leader but won't participate in any new elections.
+
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_REPLICATION_ELECTION_MODE
+
+
+.. _configuration_reference_replication_election_timeout:
+
+.. confval:: replication.election_timeout
+
+    Specifies the timeout (in seconds) between election rounds in the
+    :ref:`leader election process <repl_leader_elect>` if the previous round
+    ended up with a split vote.
+
+    It is quite big, and for most of the cases, it can be lowered to
+    300-400 ms.
+
+    To avoid the split vote repeat, the timeout is randomized on each node
+    during every new election, from 100% to 110% of the original timeout value.
+    For example, if the timeout is 300 ms and there are 3 nodes started
+    the election simultaneously in the same term,
+    they can set their election timeouts to 300, 310, and 320 respectively,
+    or to 305, 302, and 324, and so on. In that way, the votes will never be split
+    because the election on different nodes won't be restarted simultaneously.
+
+    | Type: number
+    | Default: 5
+    | Environment variable: TT_REPLICATION_ELECTION_TIMEOUT
+
+
+.. _configuration_reference_replication_election_fencing_mode:
+
+.. confval:: replication.election_fencing_mode
+
+    Specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>` that
+    affects the leader election process. When the parameter is set to ``soft``
+    or ``strict``, the leader resigns its leadership if it has less than
+    :ref:`replication_synchro_quorum <configuration_reference_replication_synchro_quorum>`
+    of alive connections to the cluster nodes.
+    The resigning leader receives the status of a follower in the current election term and becomes
+    read-only.
+
+    *   In ``soft`` mode, a connection is considered dead if there are no responses for
+        :ref:`4 * replication.timeout <configuration_reference_replication_timeout>` seconds both on the current leader and the followers.
+
+    *   In ``strict`` mode, a connection is considered dead if there are no responses
+        for :ref:`2 * replication.timeout <configuration_reference_replication_timeout>` seconds on the
+        current leader and
+        :ref:`4 * replication.timeout <configuration_reference_replication_timeout>` seconds on the
+        followers. This improves the chances that there is only one leader at any time.
+
+    Fencing applies to the instances that have the
+    :ref:`replication.election_mode <configuration_reference_replication_election_mode>` set to ``candidate`` or ``manual``.
+    To turn off leader fencing, set ``election_fencing_mode`` to ``off``.
+
+    | Type: string
+    | Default: ``soft``
+    | Possible values: ``off``, ``soft``, ``strict``
+    | Environment variable: TT_REPLICATION_ELECTION_FENCING_MODE
+
+
+.. _configuration_reference_replication_failover:
+
+.. confval:: replication.failover
+
+    A failover mode used to take over a master role when the current master instance fails.
+    The following modes are available:
+
+    -   ``off``
+
+        Leadership in a replica set is controlled using the :ref:`database.mode <configuration_reference_database_mode>` option.
+        In this case, you can set the ``database.mode`` option to ``rw`` on all instances in a replica set to make a :ref:`master-master <replication-roles>` configuration.
+
+        The default ``database.mode`` is determined as follows: ``rw`` if there is one instance in a replica set; ``ro`` if there are several instances.
+
+    -   ``manual``
+
+        Leadership in a replica set is controlled using the :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` option.
+        In this case, a :ref:`master-master <replication-roles>` configuration is forbidden.
+
+        In the ``manual`` mode, the :ref:`database.mode <configuration_reference_database_mode>` option cannot be set explicitly.
+        The leader is configured in the read-write mode, all the other instances are read-only.
+
+    -   ``election``
+
+        :ref:`Automated leader election <repl_leader_elect>` is used to control leadership in a replica set.
+
+        In the ``election`` mode, :ref:`database.mode <configuration_reference_database_mode>` and :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` shouldn't be set explicitly.
+
+    -   ``supervised`` (`Enterprise Edition <https://www.tarantool.io/compare/>`_ only)
+
+        Leadership in a replica set is controlled using an external failover agent.
+
+        In the ``supervised`` mode, :ref:`database.mode <configuration_reference_database_mode>` and :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` shouldn't be set explicitly.
+
+        ..  TODO: https://github.com/tarantool/enterprise_doc/issues/253
+
+    **Example**
+
+    In the example below, the following configuration options are specified:
+
+    -   In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` user with the ``replication`` role is created.
+    -   :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` using the ``replicator`` user.
+    -   ``replication.failover`` specifies that a master instance should be set manually.
+    -   :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` sets ``instance001`` as a replica set leader.
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
+        :language: yaml
+        :end-before: Load sample data
+        :dedent:
+
+    | Type: string
+    | Default: ``off``
+    | Environment variable: TT_REPLICATION_FAILOVER
+
+
+.. _configuration_reference_replication_peers:
+
+.. confval:: replication.peers
+
+    URIs of instances that constitute a replica set.
+    These URIs are used by an instance to connect to another instance as a replica.
+
+    Alternatively, you can use :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` to specify a URI used to advertise the current instance to other cluster members.
+
+    **Example**
+
+    In the example below, the following configuration options are specified:
+
+    -   In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` user with the ``replication`` role is created.
+    -   ``replication.peers`` specifies URIs of replica set instances.
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/peers/config.yaml
+        :language: yaml
+        :start-at: credentials:
+        :end-at: - replicator:topsecret@127.0.0.1:3303
+        :dedent:
+
+    | Type: array
+    | Default: box.NULL
+    | Environment variable: TT_REPLICATION_PEERS
+
+
+.. _configuration_reference_replication_skip_conflict:
+
+.. confval:: replication.skip_conflict
+
+    By default, if a replica adds a unique key that another replica has
+    added, replication :ref:`stops <replication-replication_stops>`
+    with the ``ER_TUPLE_FOUND`` :ref:`error <error_codes>`.
+    If ``replication.skip_conflict`` is set to ``true``, such errors are ignored.
+
+    .. NOTE::
+
+        Instead of saving the broken transaction to the write-ahead log, it is written as ``NOP`` (No operation).
+
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_REPLICATION_SKIP_CONFLICT
+
+
+.. _configuration_reference_replication_sync_lag:
+
+.. confval:: replication.sync_lag
+
+    The maximum delay (in seconds) between the time when data is written to the master and the time when it is written to a replica.
+    If ``replication.sync_lag`` is set to ``nil`` or 365 * 100 * 86400 (``TIMEOUT_INFINITY``),
+    a replica is always considered to be "synced".
+
+    .. NOTE::
+
+        This parameter is ignored during bootstrap.
+        See :ref:`orphan status <replication-orphan_status>` for details.
+
+    | Type: number
+    | Default: 10
+    | Environment variable: TT_REPLICATION_SYNC_LAG
+
+
+.. _configuration_reference_replication_sync_timeout:
+
+.. confval:: replication.sync_timeout
+
+    The timeout (in seconds) that a node waits when trying to sync with
+    other nodes in a replica set after connecting or during a :ref:`configuration update <replication-configuration_update>`.
+    This could fail indefinitely if :ref:`replication.sync_lag <configuration_reference_replication_sync_lag>` is smaller than network latency, or if the replica cannot keep pace with master updates.
+    If ``replication_sync_timeout`` expires, the replica enters :ref:`orphan status <replication-orphan_status>`.
+
+    | Type: number
+    | Default: 0
+    | Environment variable: TT_REPLICATION_SYNC_TIMEOUT
+
+
+.. _configuration_reference_replication_synchro_quorum:
+
+.. confval:: replication.synchro_quorum
+
+    A number of replicas that should confirm the receipt of a :ref:`synchronous <repl_sync>` transaction before it can finish its commit.
+
+    This option supports dynamic evaluation of the quorum number.
+    For example, the default value is ``N / 2 + 1`` where ``N`` is the current number of replicas registered in a cluster.
+    Once any replicas are added or removed, the expression is re-evaluated automatically.
+
+    Note that the default value (``at least 50% of the cluster size + 1``) guarantees data reliability.
+    Using a value less than the canonical one might lead to unexpected results,
+    including a :ref:`split-brain <repl_leader_elect_splitbrain>`.
+
+    ``replication.synchro_quorum`` is not used on replicas. If the master fails, the pending synchronous
+    transactions will be kept waiting on the replicas until a new master is elected.
+
+    .. NOTE::
+
+        ``replication.synchro_quorum`` does not account for anonymous replicas.
+
+    | Type: string, number
+    | Default: ``N / 2 + 1``
+    | Environment variable: TT_REPLICATION_SYNCHRO_QUORUM
+
+
+.. _configuration_reference_replication_synchro_timeout:
+
+.. confval:: replication.synchro_timeout
+
+    | Type: number
+    | Default: 5
+    | Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT
+
+
+.. _configuration_reference_replication_threads:
+
+.. confval:: replication.threads
+
+    The number of threads spawned to decode the incoming replication data.
+
+    In most cases, one thread is enough for all incoming data.
+    Possible values range from 1 to 1000.
+    If there are multiple replication threads, connections to serve are distributed evenly between the threads.
+
+    | Type: integer
+    | Default: 1
+    | Environment variable: TT_REPLICATION_THREADS
+
+
+.. _configuration_reference_replication_timeout:
+
+.. confval:: replication.timeout
+
+    A time interval (in seconds) used by a master to send heartbeat requests to a replica when there are no updates to send to this replica.
+    For each request, a replica should return a heartbeat acknowledgment.
+
+    If a master or replica gets no heartbeat message for ``4 * replication.timeout`` seconds, a connection is dropped and a replica tries to reconnect to the master.
+
+    See also: :ref:`Monitoring a replica set <replication-monitoring>`.
+
+    | Type: number
+    | Default: 1
+    | Environment variable: TT_REPLICATION_TIMEOUT
 
