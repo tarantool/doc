@@ -182,11 +182,21 @@ intersphinx_mapping = {
     'tarantoolc': ('http://tarantool.github.io/tarantool-c/', None)
 }
 
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title, author, documentclass
+# [howto/manual]).
+latex_documents = [
+ ('pdf_toc', 'tarantool.tex', u'Tarantool Documentation', u'', 'manual'),
+]
+
 latex_elements = {
     'fontenc': r'\usepackage[T1,T2A]{fontenc}',
     'hyperref': r'\usepackage[pdftex,pagebackref=true,backref=true,bookmarksopenlevel=1,colorlinks=true,linkcolor=blue,filecolor=magenta,urlcolor=cyan]{hyperref}',
     'extraclassoptions': 'openany',
 }
+
+latex_domain_indices = False
+
 
 intersphinx_cache_limit = 0
 
