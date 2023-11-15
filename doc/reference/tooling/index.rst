@@ -7,8 +7,9 @@ to work with Tarantool.
 ..  toctree::
     :maxdepth: 1
 
-    interactive_console
     tt_cli/index
+    tcm/index
+    interactive_console
     tarantoolctl
     luajit_memprof
     luajit_getmetrics
