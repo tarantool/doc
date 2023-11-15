@@ -31,16 +31,27 @@ application.
     error stream by default. This can be changed with the
     :ref:`log <cfg_logging-log>` configuration parameter.
 
+    You can extend ``log_level`` with a custom value for the specified level as follows:
+
+   ..  code-block:: lua
+
+       box.cfg{}
+       log = require('log')
+       log.error('CUSTOM_ERROR')
+
+    ``INFO`` is usually a sufficient level of logging.
+    If this level causes too many log entries, use the ``WARNING`` (4) or ``VERBOSE`` (6) level instead.
+    ``VERBOSE`` is a level for monitoring repetitive events that would cause too much log writing if ``INFO`` were used instead.
+
     | Type: integer
     | Default: 5
     | Environment variable: TT_LOG_LEVEL
     | Dynamic: **yes**
 
     ..  note::
-        Prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was
+
+        Before version 1.7.5, there were only six levels and ``DEBUG`` was
         level 6. Starting with Tarantool 1.7.5, ``VERBOSE`` is level 6 and ``DEBUG`` is level 7.
-        ``VERBOSE`` is a new level for monitoring repetitive events which would cause
-        too much log writing if ``INFO`` were used instead.
 
 .. _cfg_logging-log:
 
