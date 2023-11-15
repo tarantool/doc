@@ -3,9 +3,6 @@ credentials:
     replicator:
       password: 'topsecret'
       roles: [replication]
-    client:
-      password: 'secret'
-      roles: [super]
 
 iproto:
   advertise:

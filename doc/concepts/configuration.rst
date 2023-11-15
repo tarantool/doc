@@ -150,7 +150,7 @@ You can learn more about configuring replication from :ref:`Replication tutorial
 
 -   ``credentials`` (*global*)
 
-    This section is used to create the *replicator* and *client* users and assign them the specified roles.
+    This section is used to create the *replicator* user and assign it the specified role.
     These options are applied globally to all instances.
 
 -   ``iproto`` (*global*, *instance*)
@@ -423,11 +423,12 @@ The ``credentials`` section allows you to create users and grant them the specif
 In the example below, there are two users:
 
 *   The *replicator* user is used for replication and has a corresponding role.
-*   The *client* user has the ``super`` role and can perform any action on Tarantool instances.
+*   The *storage* user has the ``super`` role and can perform any action on Tarantool instances.
 
-..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
     :language: yaml
-    :lines: 1-8
+    :start-at: credentials:
+    :end-at: roles: [super]
     :dedent:
 
 To learn more, see the :ref:`Access control <authentication>` section.
