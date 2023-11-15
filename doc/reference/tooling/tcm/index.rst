@@ -1,6 +1,3 @@
-:noindex:
-:fullwidth:
-
 ..  _tcm:
 
 Tarantool Cluster Manager
