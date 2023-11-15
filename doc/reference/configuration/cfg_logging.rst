@@ -39,6 +39,7 @@ application.
        log = require('log')
        log.error('CUSTOM_ERROR')
 
+
     ``INFO`` is usually a sufficient level of logging.
     If this level causes too many log entries, use the ``WARNING`` (4) or ``VERBOSE`` (6) level instead.
     ``VERBOSE`` is a level for monitoring repetitive events that would cause too much log writing if ``INFO`` were used instead.
