@@ -105,7 +105,7 @@
     :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :ref:`space_object.insert()<box_space-insert>`
+    See also: :ref:`space_object.insert()<box_space-insert>`
 
 .. _box-box_replace:
 
@@ -122,7 +122,7 @@
     :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :ref:`space_object.replace()<box_space-replace>`
+    See also: :ref:`space_object.replace()<box_space-replace>`
 
 .. c:function:: int box_delete(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, box_tuple_t **result)
 
@@ -138,7 +138,7 @@
     :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :ref:`space_object.delete()<box_space-delete>`
+    See also: :ref:`space_object.delete()<box_space-delete>`
 
 .. c:function:: int box_update(uint32_t space_id, uint32_t index_id, const char *key, const char *key_end, const char *ops, const char *ops_end, int index_base, box_tuple_t **result)
 
@@ -159,7 +159,7 @@
     :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :ref:`space_object.update()<box_space-update>`
+    See also: :ref:`space_object.update()<box_space-update>`
 
 .. c:function:: int box_upsert(uint32_t space_id, uint32_t index_id, const char *tuple, const char *tuple_end, const char *ops, const char *ops_end, int index_base, box_tuple_t **result)
 
@@ -180,7 +180,7 @@
     :return: -1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)
     :return: 0 otherwise
 
-    See also :ref:`space_object.upsert()<box_space-upsert>`
+    See also: :ref:`space_object.upsert()<box_space-upsert>`
 
 .. c:function:: int box_truncate(uint32_t space_id)
 
@@ -230,7 +230,7 @@
     :return: the database schema version
     :rtype: number
 
-    See also :ref:`box.info.schema_version <box_info_schema_version>` and :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`
+    See also: :ref:`box.info.schema_version <box_info_schema_version>` and :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`
 
 ..  _box_box_session_id:
 
@@ -239,11 +239,10 @@
     Since version :doc:`2.11.0 </release/2.11.0>`.
     Return the unique identifier (ID) for the current session.
 
-    :return: the unique identifier (ID) for the current session
-    :return: 0 or -1 if there is no session
+    :return: the session identifier; 0 or -1 if there is no session
     :rtype: number
 
-    See also :ref:`box.session.id() <box_session-id>`
+    See also: :ref:`box.session.id() <box_session-id>`
 
 ..  _box_box_iproto_send:
 
@@ -255,24 +254,23 @@
     The function yields.
     The function works for binary sessions only. For details, see :ref:`box.session.type() <box_session-type>`.
 
-    :param uint32_t     sid: IPROTO session identifier (see :ref:`box_session_id() <box_box_session_id>`)
+    :param uint32_t     sid: the IPROTO session identifier (see :ref:`box_session_id() <box_box_session_id>`)
     :param char*     header: a MsgPack-encoded header
     :param char*     header_end: end of a header encoded as MsgPack
     :param char*     body: a MsgPack-encoded body. If the ``body`` and ``body_end`` parameters are omitted, the packet
                            consists of the header only.
     :param char*     body_end: end of a body encoded as MsgPack
 
-    :return: 0 on success
-    :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
+    :return: 0 on success; -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :rtype: number
 
-    See also :ref:`box.iproto.send() <reference_lua-box_iproto_send>`
+    See also: :ref:`box.iproto.send() <reference_lua-box_iproto_send>`
 
     **Possible errors:**
 
     *   :errcode:`ER_SESSION_CLOSED` -- the session is closed.
     *   :errcode:`ER_NO_SUCH_SESSION` -- the session does not exist.
-    *   :errcode:`ER_MEMORY_ISSUE` -- out of memory limit has been reached.
+    *   :errcode:`ER_MEMORY_ISSUE` -- out-of-memory limit has been reached.
     *   :errcode:`ER_WRONG_SESSION_TYPE` -- the session type is not binary.
 
     For details, see `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__.
@@ -335,11 +333,10 @@
 
     :param void* ctx: a context passed to the ``handler`` and ``destroy`` callbacks
 
-    :return: 0 on success
-    :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
+    :return: 0 on success; -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
     :rtype: number
 
-    See also :ref:`box.iproto.override() <reference_lua-box_iproto_override>`
+    See also: :ref:`box.iproto.override() <reference_lua-box_iproto_override>`
 
     **Possible errors:**
 
@@ -371,10 +368,10 @@
 
     where:
 
-    *   ``header``(const char*) -- a MsgPack-encoded header
-    *   ``header_end``(const char*) -- end of a header encoded as MsgPack
-    *   ``body``(const char*) -- a MsgPack-encoded body
-    *   ``header_end``(const char*) -- end of a body encoded as MsgPack
+    *   ``header`` (const char*) -- a MsgPack-encoded header
+    *   ``header_end`` (const char*) -- end of a header encoded as MsgPack
+    *   ``body`` (const char*) -- a MsgPack-encoded body
+    *   ``header_end`` (const char*) -- end of a body encoded as MsgPack
 
     The handler returns a status code. Possible statuses:
 

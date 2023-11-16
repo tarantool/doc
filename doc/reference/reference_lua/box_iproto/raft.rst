@@ -7,7 +7,7 @@ box.iproto.raft
 
 ..  data:: raft_key
 
-    The ``box.iproto.raft_key`` namespace contains the keys from the ``IPROTO_RAFT_*`` requests.
+    Contains the keys from the ``IPROTO_RAFT_*`` requests.
     Learn more: :ref:`Synchronous replication keys <internals-iproto-keys-synchro-replication>`.
 
     **Example**

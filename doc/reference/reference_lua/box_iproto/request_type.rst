@@ -7,7 +7,7 @@ box.iproto.type
 
 ..  data:: type
 
-    The ``box.iproto.type`` namespace contains all available request types.
+    Contains all available request types.
     Learn more about the requests: :ref:`Client-server requests and responses <internals-requests_responses>`.
 
     **Example**

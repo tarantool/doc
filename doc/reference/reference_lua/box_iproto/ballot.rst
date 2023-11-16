@@ -7,7 +7,7 @@ box.iproto.ballot_key
 
 ..  data:: ballot_key
 
-    The ``box.iproto.ballot_key`` namespace contains the keys from the :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
+    Contains the keys from the :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests.
     Learn more: :ref:`IPROTO_BALLOT keys <internals-iproto-keys-ballot>`.
 
     **Example**

@@ -1,4 +1,4 @@
-.. _reference_lua-box_iproto_version:
+..  _reference_lua-box_iproto_version:
 
 box.iproto.protocol_version
 ===========================
@@ -7,7 +7,7 @@ box.iproto.protocol_version
 
 ..  data:: protocol_version
 
-    Current IPROTO protocol version of the server.
+    The current IPROTO protocol version of the server.
     Learn more: :ref:`IPROTO_ID <box_protocol-id>`.
 
     **Example**

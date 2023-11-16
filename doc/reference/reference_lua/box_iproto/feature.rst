@@ -7,7 +7,7 @@ box.iproto.feature
 
 ..  data:: feature
 
-    The ``box.iproto.feature`` namespace contains the IPROTO protocol features that are supported by the server.
+    Contains the IPROTO protocol features that are supported by the server.
     Each feature is mapped to its corresponding code.
     Learn more: :ref:`IPROTO_FEATURES <internals-iproto-keys-features>`.
 

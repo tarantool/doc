@@ -7,7 +7,7 @@ box.iproto.metadata_key
 
 ..  data:: metadata_key
 
-    The ``box.iproto.metadata_key`` namespace contains the ``IPROTO_FIELD_*`` keys, which are nested in the
+    Contains the ``IPROTO_FIELD_*`` keys, which are nested in the
     :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>` key.
 
     **Example**

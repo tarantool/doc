@@ -1,4 +1,4 @@
-.. _reference_lua-box_iproto_protocol-features:
+..  _reference_lua-box_iproto_protocol-features:
 
 box.iproto.protocol_features
 ============================

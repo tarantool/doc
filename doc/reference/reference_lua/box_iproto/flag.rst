@@ -7,7 +7,7 @@ box.iproto.flag
 
 ..  data:: flag
 
-    The ``box.iproto.flag`` namespace contains the flags from the ``IPROTO_FLAGS`` key.
+    Contains the flags from the ``IPROTO_FLAGS`` key.
     Learn more: :ref:`IPROTO_FLAGS key <box_protocol-flags>`.
 
     **Example**

@@ -10,6 +10,5 @@ box.session.id()
 
     Return the unique identifier (ID) for the current session.
 
-    :return: the unique identifier (ID) for the current session
-    :return: 0 or -1 if there is no session
+    :return: the session identifier; 0 or -1 if there is no session
     :rtype: number

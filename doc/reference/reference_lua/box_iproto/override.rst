@@ -20,13 +20,13 @@ box.iproto.override()
     :param function handler: IPROTO request handler.
                              The signature of a handler function: ``function(sid, header, body)``, where
 
-                             *  ``sid`` (number): current IPROTO session identifier (see :ref:`box.session.id() <box_session-id>`)
+                             *  ``sid`` (number): the current IPROTO session identifier (see :ref:`box.session.id() <box_session-id>`)
                              *  ``header`` (userdata): a request header encoded as a :ref:`msgpack_object <msgpack-object-methods>`
                              *  ``body`` (userdata): a request body encoded as a :ref:`msgpack_object <msgpack-object-methods>`
 
                              Returns ``true`` on success, otherwise ``false``. On ``false``, there is a fallback
                              to the default handler. Also, you can indicate an error by throwing an exception.
-                             In this case, the return value is ``false``, but this does not always means a failure.
+                             In this case, the return value is ``false``, but this does not always mean a failure.
 
                              To reset the request handler, set the ``handler`` parameter to ``nil``.
 
@@ -49,15 +49,15 @@ box.iproto.override()
     ..  code-block:: lua
 
         local function iproto_select_handler_lua(sid, header, body)
-                if body.space_id == 512
-                        box.iproto.send(box.session.id(),
-                                {request_type = box.iproto.type.OK,
-                                 sync = header.SYNC,
-                                 schema_version = box.info.schema_version}),
-                                {data = {1, 2, 3}})
-                        return true
-                end
-                return false
+            if body.space_id == 512 then
+                box.iproto.send(box.session.id(),
+                        { request_type = box.iproto.type.OK,
+                          sync = header.SYNC,
+                          schema_version = box.info.schema_version },
+                        { data = { 1, 2, 3 } })
+                return true
+            end
+            return false
         end
 
     Override ``box.iproto.type.SELECT`` handler:

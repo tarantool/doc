@@ -23,4 +23,4 @@ box.info.schema_version
         - 84
         ...
 
-    See also :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`
+    See also: :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`
