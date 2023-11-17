@@ -47,7 +47,7 @@ The following are specifics of adding different types of information to the WAL:
 *    Data change operations on **replication-local** spaces (:doc:`created </reference/reference_lua/box_schema/space_create>` with ``is_local = true``) are written to the WAL but are not replicated.
 
 
-To learn how to enable replication, check the :ref:`Bootstrapping a replica set <replication-setup>` guide.
+To learn how to enable replication, check the :ref:`Bootstrapping a replica set <replication-bootstrap>` guide.
 
 
 .. _replication_stages:

@@ -11,7 +11,7 @@ on the base of Tarantool and decreases
 dependency on external tools for replica set management.
 
 To learn how to configure and monitor automated leader elections,
-check the :ref:`how-to guide <how-to-repl_leader_elect>`.
+check :ref:`Managing leader elections <how-to-repl_leader_elect>`.
 
 The following topics are described below:
 
@@ -44,9 +44,9 @@ Leader election is described below.
     The system behavior can be specified exactly according to the Raft algorithm. To do this:
 
     *   Ensure that the user has only synchronous spaces.
-    *   Set the :ref:`replication_synchro_quorum <repl_leader_elect_config>` option to ``N / 2 + 1``.
-    *   Set the :ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>` option to infinity.
-    *   In the :ref:`election_fencing_mode <repl_leader_elect_config>` option, select either the ``soft`` mode (the default)
+    *   Set the :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>` option to ``N / 2 + 1``.
+    *   Set the :ref:`replication.synchro_timeout <configuration_reference_replication_synchro_timeout>` option to infinity.
+    *   In the :ref:`replication.election_fencing_mode <configuration_reference_replication_election_fencing_mode>` option, select either the ``soft`` mode (the default)
         or the ``strict`` mode, which is more restrictive.
 
 .. _repl_leader_elect_process:
@@ -71,11 +71,11 @@ for itself and sends vote requests to other nodes.
 Upon receiving vote requests, a node votes for the first of them, and then cannot
 do anything in the same term but wait for a leader to be elected.
 
-The node that collected a quorum of votes defined by the :ref:`replication_synchro_quorum <repl_leader_elect_config>` parameter
+The node that collected a quorum of votes defined by the :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>` parameter
 becomes the leader
 and notifies other nodes about that. Also, a split vote can happen
 when no nodes received a quorum of votes. In this case,
-after a :ref:`random timeout <repl_leader_elect_config>`,
+after a random timeout,
 each node increases its term and starts a new election round if no new vote
 request with a greater term arrives during this time.
 Eventually, a leader is elected.
@@ -87,7 +87,7 @@ All the non-leader nodes are called *followers*. The nodes that start a new
 election round are called *candidates*. The elected leader sends heartbeats to
 the non-leader nodes to let them know it is alive.
 
-In case there are no heartbeats for the period of :ref:`replication_timeout <cfg_replication-replication_timeout>` * 4,
+In case there are no heartbeats for the period of :ref:`replication.timeout <configuration_reference_replication_timeout>` * 4,
 a non-leader node starts a new election if the following conditions are met:
 
 *   The node has a quorum of connections to other cluster members.
@@ -96,7 +96,7 @@ a non-leader node starts a new election if the following conditions are met:
 ..  note::
 
     A cluster member considers the leader node to be alive if the member received heartbeats from the leader at least
-    once during the ``replication_timeout * 4``,
+    once during the ``replication.timeout * 4``,
     and there are no replication errors (the connection is not broken due to timeout or due to an error).
 
 Terms and votes are persisted by each instance to preserve certain Raft guarantees.
@@ -105,7 +105,7 @@ During the election, the nodes prefer to vote for those ones that have the
 newest data. So as if an old leader managed to send something before its death
 to a quorum of replicas, that data wouldn't be lost.
 
-When :ref:`election is enabled <repl_leader_elect_config>`, there must be connections
+When election is enabled, there must be connections
 between each node pair so as it would be the full mesh topology. This is needed
 because election messages for voting and other internal things need a direct
 connection between the nodes.
@@ -117,26 +117,26 @@ Once the leader is elected, it considers itself in the leader position until rec
 This can lead to a split situation if the other nodes elect a new leader upon losing the connectivity to the previous one.
 
 The issue is resolved in Tarantool version :doc:`2.10.0 </release/2.10.0>` by introducing the leader *fencing* mode.
-The mode can be switched by the :ref:`election_fencing_mode <repl_leader_elect_config>` configuration parameter.
+The mode can be switched by the :ref:`replication.election_fencing_mode <configuration_reference_replication_election_fencing_mode>` configuration parameter.
 When the fencing is set to ``soft`` or ``strict``, the leader resigns its leadership if it has less than
-:ref:`replication_synchro_quorum <repl_leader_elect_config>` of alive connections to the cluster nodes.
+:ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>` of alive connections to the cluster nodes.
 The resigning leader receives the status of a follower in the current election term and becomes read-only.
-Leader *fencing* can be turned off by setting the :ref:`election_fencing_mode <repl_leader_elect_config>` configuration parameter to ``off``.
+Leader *fencing* can be turned off by setting the :ref:`replication.election_fencing_mode <configuration_reference_replication_election_fencing_mode>` configuration parameter to ``off``.
 
 In ``soft`` mode, a connection is considered dead if there are no responses for
-:ref:`4*replication_timeout <cfg_replication-replication_timeout>` seconds both on the current leader and the followers.
+:ref:`4 * replication.timeout <configuration_reference_replication_timeout>` seconds both on the current leader and the followers.
 
 In ``strict`` mode, a connection is considered dead if there are no responses
-for :ref:`2*replication_timeout <cfg_replication-replication_timeout>` seconds on the current leader and for
-:ref:`4*replication_timeout <cfg_replication-replication_timeout>` seconds on the followers.
+for :ref:`2 * replication.timeout <configuration_reference_replication_timeout>` seconds on the current leader and for
+:ref:`4 * replication.timeout <configuration_reference_replication_timeout>` seconds on the followers.
 This improves chances that there is only one leader at any time.
 
-Fencing applies to the instances that have the :ref:`election_mode <repl_leader_elect_config>` set to "candidate" or "manual".
+Fencing applies to the instances that have the :ref:`replication.election_mode <configuration_reference_replication_election_mode>` set to "candidate" or "manual".
 
 .. _repl_leader_elect_splitbrain:
 
 There can still be a situation when a replica set has two leaders working independently (so-called *split-brain*).
-It can happen, for example, if a user mistakenly lowered the :ref:`replication_synchro_quorum <repl_leader_elect_config>` below ``N / 2 + 1``.
+It can happen, for example, if a user mistakenly lowered the :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>` below ``N / 2 + 1``.
 In this situation, to preserve the data integrity, if an instance detects the split-brain anomaly in the incoming replication data,
 it breaks the connection with the instance sending the data and writes the ``ER_SPLIT_BRAIN`` error in the log.
 
@@ -155,3 +155,99 @@ to the other nodes.
 Term numbers also work as a kind of filter.
 For example, if election is enabled on two nodes and ``node1`` has the term number less than ``node2``,
 then ``node2`` doesn't accept any transactions from ``node1``.
+
+
+..  _how-to-repl_leader_elect:
+
+Managing leader elections
+-------------------------
+
+..  _repl_leader_elect_config:
+
+Configuration
+~~~~~~~~~~~~~
+
+..  code-block:: yaml
+
+    replication:
+      election_mode: <string>
+      election_fencing_mode: <string>
+      election_timeout: <seconds>
+      timeout: <seconds>
+      synchro_quorum: <count>
+
+
+*   :ref:`replication.election_mode <configuration_reference_replication_election_mode>` -- specifies the role of a node in the leader election
+    process.
+*   :ref:`replication.election_fencing_mode <configuration_reference_replication_election_fencing_mode>` -- specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>`.
+*   :ref:`replication.election_timeout <configuration_reference_replication_election_timeout>` -- specifies the timeout between election rounds if the
+    previous round ended up with a split vote.
+*   :ref:`replication.timeout <configuration_reference_replication_timeout>` -- a time interval (in seconds) used by a master to send heartbeat requests to a replica when there are no updates to send to this replica.
+*   :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>` -- a number of replicas that should confirm the receipt of a :ref:`synchronous <repl_sync>` transaction before it can finish its commit.
+
+It is important to know that being a leader is not the only requirement for a node to be writable.
+The leader should also satisfy the following requirements:
+
+*   The :ref:`database.mode <configuration_reference_database_mode>` option is set to ``rw``.
+
+*   The leader shouldn't be in the orphan state.
+
+Nothing prevents you from setting the ``database.mode`` option to ``ro``,
+but the leader won't be writable then. The option doesn't affect the
+election process itself, so a read-only instance can still vote and become
+a leader.
+
+..  _repl_leader_elect_monitoring:
+
+Monitoring
+~~~~~~~~~~
+
+To monitor the current state of a node regarding the leader election, use the :doc:`box.info.election </reference/reference_lua/box_info/election>` function.
+
+**Example:**
+
+..  code-block:: console
+
+    tarantool> box.info.election
+    ---
+    - state: follower
+      vote: 0
+      leader: 0
+      term: 1
+    ...
+
+The Raft-based election implementation logs all its actions
+with the ``RAFT:`` prefix. The actions are new Raft message handling,
+node state changing, voting, and term bumping.
+
+..  _repl_leader_elect_important:
+
+Important notes
+~~~~~~~~~~~~~~~
+
+Leader election doesn't work correctly if the election quorum is set to less or equal
+than ``<cluster size> / 2`` because in that case, a split vote can lead to
+a state when two leaders are elected at once.
+
+For example, suppose there are five nodes. When the quorum is set to ``2``, ``node1``
+and ``node2`` can both vote for ``node1``. ``node3`` and ``node4`` can both vote
+for ``node5``. In this case, ``node1`` and ``node5`` both win the election.
+When the quorum is set to the cluster majority, that is
+``(<cluster size> / 2) + 1`` or greater, the split vote is impossible.
+
+That should be considered when adding new nodes.
+If the majority value is changing, it's better to update the quorum on all the existing nodes
+before adding a new one.
+
+Also, the automated leader election doesn't bring many benefits in terms of data
+safety when used *without* :ref:`synchronous replication <repl_sync>`.
+If the replication is asynchronous and a new leader gets elected,
+the old leader is still active and considers itself the leader.
+In such case, nothing stops
+it from accepting requests from clients and making transactions.
+Non-synchronous transactions are successfully committed because
+they are not checked against the quorum of replicas.
+Synchronous transactions fail because they are not able
+to collect the quorum -- most of the replicas reject
+these old leader's transactions since it is not a leader anymore.
+

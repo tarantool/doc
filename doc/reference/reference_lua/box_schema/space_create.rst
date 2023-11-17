@@ -136,10 +136,19 @@ space_opts
         | Default: ``false``
 
     ..  _space_opts_is_sync:
+    ..  _how-to-repl_sync:
 
     .. data:: is_sync
 
-        Any transaction doing a DML request on this space becomes synchronous.
+        Any transaction doing a DML request on this space becomes :ref:`synchronous <repl_sync>`.
+
+        **Example:**
+
+        ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/data.lua
+            :language: lua
+            :start-at: is_sync = true
+            :end-at: is_sync = true
+            :dedent:
 
         | Type: boolean
         | Default: ``false``

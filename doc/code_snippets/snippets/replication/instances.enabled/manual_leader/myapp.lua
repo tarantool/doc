@@ -8,16 +8,6 @@ function create_space()
     box.space.bands:create_index('primary', { parts = { 'id' } })
 end
 
-function create_sync_space()
-    box.schema.space.create('bands', { is_sync = true })
-    box.space.bands:format({
-        { name = 'id', type = 'unsigned' },
-        { name = 'band_name', type = 'string' },
-        { name = 'year', type = 'unsigned' }
-    })
-    box.space.bands:create_index('primary', { parts = { 'id' } })
-end
-
 function load_data()
     box.space.bands:insert { 1, 'Roxette', 1986 }
     box.space.bands:insert { 2, 'Scorpions', 1965 }

@@ -1,4 +1,5 @@
 ..  _how-to-replication:
+..  _replication-setup:
 
 Replication tutorials
 =====================
@@ -7,8 +8,6 @@ Replication tutorials
     :maxdepth: 2
 
     repl_bootstrap
-    repl_add_instances
-    repl_remove_instances
-    repl_sync
-    repl_leader_elect
+    repl_bootstrap_auto
+    repl_bootstrap_master_master
     
